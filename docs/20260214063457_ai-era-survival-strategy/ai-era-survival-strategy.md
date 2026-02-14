@@ -111,67 +111,8 @@ style: |
 
 # AIツールの進化史（図解）
 
-<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;letter-spacing:0">
-  <!-- Background -->
-  <rect width="800" height="400" fill="#f8f9fa" rx="12"/>
+![w:800 center](assets/ai-tool-evolution.svg)
 
-  <!-- Timeline line -->
-  <line x1="80" y1="200" x2="740" y2="200" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="8,4"/>
-
-  <!-- 2021 - Copilot -->
-  <circle cx="140" cy="200" r="28" fill="#3b82f6" opacity="0.9"/>
-  <text x="140" y="206" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">2021</text>
-  <rect x="85" y="100" width="110" height="60" rx="8" fill="#3b82f6" opacity="0.15"/>
-  <text x="140" y="122" text-anchor="middle" fill="#1e40af" font-size="12" font-weight="bold" font-family="sans-serif">GitHub Copilot</text>
-  <text x="140" y="140" text-anchor="middle" fill="#475569" font-size="10" font-family="sans-serif">コード補完ベース</text>
-  <line x1="140" y1="160" x2="140" y2="172" stroke="#3b82f6" stroke-width="2"/>
-
-  <!-- Arrow from 2021 to 2023 -->
-  <line x1="168" y1="200" x2="282" y2="200" stroke="#94a3b8" stroke-width="2"/>
-  <polygon points="282,195 292,200 282,205" fill="#94a3b8"/>
-
-  <!-- 2023 - ChatGPT Integration -->
-  <circle cx="340" cy="200" r="28" fill="#8b5cf6" opacity="0.9"/>
-  <text x="340" y="206" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">2023</text>
-  <rect x="275" y="240" width="130" height="60" rx="8" fill="#8b5cf6" opacity="0.15"/>
-  <text x="340" y="262" text-anchor="middle" fill="#5b21b6" font-size="12" font-weight="bold" font-family="sans-serif">ChatGPT統合</text>
-  <text x="340" y="280" text-anchor="middle" fill="#475569" font-size="10" font-family="sans-serif">会話型プログラミング</text>
-  <line x1="340" y1="228" x2="340" y2="240" stroke="#8b5cf6" stroke-width="2"/>
-
-  <!-- Arrow from 2023 to 2024 -->
-  <line x1="368" y1="200" x2="482" y2="200" stroke="#94a3b8" stroke-width="2"/>
-  <polygon points="482,195 492,200 482,205" fill="#94a3b8"/>
-
-  <!-- 2024 - Claude Code / Cursor -->
-  <circle cx="530" cy="200" r="28" fill="#f59e0b" opacity="0.9"/>
-  <text x="530" y="206" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">2024</text>
-  <rect x="457" y="100" width="146" height="60" rx="8" fill="#f59e0b" opacity="0.15"/>
-  <text x="530" y="122" text-anchor="middle" fill="#92400e" font-size="12" font-weight="bold" font-family="sans-serif">Claude Code / Cursor</text>
-  <text x="530" y="140" text-anchor="middle" fill="#475569" font-size="10" font-family="sans-serif">マルチファイル編集</text>
-  <line x1="530" y1="160" x2="530" y2="172" stroke="#f59e0b" stroke-width="2"/>
-
-  <!-- Arrow from 2024 to 2025 -->
-  <line x1="558" y1="200" x2="662" y2="200" stroke="#94a3b8" stroke-width="2"/>
-  <polygon points="662,195 672,200 662,205" fill="#94a3b8"/>
-
-  <!-- 2025 - Agent Type -->
-  <circle cx="710" cy="200" r="32" fill="#ef4444" opacity="0.9" stroke="#ef4444" stroke-width="2"/>
-  <text x="710" y="206" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">2025</text>
-  <rect x="640" y="240" width="140" height="60" rx="8" fill="#ef4444" opacity="0.15"/>
-  <text x="710" y="262" text-anchor="middle" fill="#991b1b" font-size="12" font-weight="bold" font-family="sans-serif">エージェント型AI</text>
-  <text x="710" y="280" text-anchor="middle" fill="#475569" font-size="10" font-family="sans-serif">自律的タスク実行</text>
-  <line x1="710" y1="232" x2="710" y2="240" stroke="#ef4444" stroke-width="2"/>
-
-  <!-- Capability scale label -->
-  <text x="80" y="360" fill="#94a3b8" font-size="10" font-family="sans-serif">補完</text>
-  <text x="740" y="360" text-anchor="end" fill="#94a3b8" font-size="10" font-family="sans-serif">自律</text>
-  <line x1="100" y1="355" x2="720" y2="355" stroke="#e2e8f0" stroke-width="1"/>
-  <!-- Gradient bar for capability (no url(#id) - use individual colored segments) -->
-  <rect x="100" y="350" width="155" height="6" rx="3" fill="#3b82f6" opacity="0.4"/>
-  <rect x="255" y="350" width="155" height="6" fill="#7c6ecc" opacity="0.4"/>
-  <rect x="410" y="350" width="155" height="6" fill="#c27c28" opacity="0.4"/>
-  <rect x="565" y="350" width="155" height="6" rx="3" fill="#ef4444" opacity="0.4"/>
-</svg>
 
 ---
 
@@ -289,72 +230,8 @@ style: |
 
 # AI協働の開発フロー（図解）
 
-<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
-  <!-- Background -->
-  <rect width="800" height="360" fill="#f8f9fa" rx="12"/>
+![w:800 center](assets/ai-dev-flow.svg)
 
-  <!-- Step 1: 要件定義・設計 -->
-  <rect x="30" y="120" width="150" height="70" rx="10" fill="#3b82f6" opacity="0.9"/>
-  <text x="105" y="150" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">要件定義・設計</text>
-  <text x="105" y="170" text-anchor="middle" fill="#dbeafe" font-size="10" font-family="sans-serif">人間が主導</text>
-  <!-- Human icon -->
-  <circle cx="105" cy="95" r="14" fill="#3b82f6" opacity="0.2"/>
-  <text x="105" y="100" text-anchor="middle" fill="#1e40af" font-size="16" font-family="sans-serif">👤</text>
-
-  <!-- Arrow 1→2 -->
-  <line x1="180" y1="155" x2="225" y2="155" stroke="#94a3b8" stroke-width="2"/>
-  <polygon points="225,150 235,155 225,160" fill="#94a3b8"/>
-
-  <!-- Step 2: AIが実装 -->
-  <rect x="235" y="120" width="150" height="70" rx="10" fill="#8b5cf6" opacity="0.9"/>
-  <text x="310" y="150" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">AIが実装</text>
-  <text x="310" y="170" text-anchor="middle" fill="#ede9fe" font-size="10" font-family="sans-serif">コード生成・編集</text>
-  <!-- AI icon -->
-  <circle cx="310" cy="95" r="14" fill="#8b5cf6" opacity="0.2"/>
-  <text x="310" y="100" text-anchor="middle" fill="#5b21b6" font-size="16" font-family="sans-serif">🤖</text>
-
-  <!-- Arrow 2→3 -->
-  <line x1="385" y1="155" x2="430" y2="155" stroke="#94a3b8" stroke-width="2"/>
-  <polygon points="430,150 440,155 430,160" fill="#94a3b8"/>
-
-  <!-- Step 3: 人間がレビュー -->
-  <rect x="440" y="120" width="150" height="70" rx="10" fill="#f59e0b" opacity="0.9"/>
-  <text x="515" y="150" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">人間がレビュー</text>
-  <text x="515" y="170" text-anchor="middle" fill="#fef3c7" font-size="10" font-family="sans-serif">品質・設計を確認</text>
-  <!-- Human icon -->
-  <circle cx="515" cy="95" r="14" fill="#f59e0b" opacity="0.2"/>
-  <text x="515" y="100" text-anchor="middle" fill="#92400e" font-size="16" font-family="sans-serif">👤</text>
-
-  <!-- Branch: 修正指示 (loop back) -->
-  <line x1="515" y1="190" x2="515" y2="260" stroke="#ef4444" stroke-width="2"/>
-  <line x1="515" y1="260" x2="310" y2="260" stroke="#ef4444" stroke-width="2"/>
-  <line x1="310" y1="260" x2="310" y2="195" stroke="#ef4444" stroke-width="2"/>
-  <polygon points="305,195 310,185 315,195" fill="#ef4444"/>
-  <rect x="370" y="245" width="80" height="22" rx="4" fill="#fef2f2"/>
-  <text x="410" y="260" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold" font-family="sans-serif">修正指示</text>
-
-  <!-- Branch: 承認 → マージ -->
-  <line x1="590" y1="155" x2="635" y2="155" stroke="#22c55e" stroke-width="2"/>
-  <polygon points="635,150 645,155 635,160" fill="#22c55e"/>
-  <rect x="392" y="130" width="46" height="18" rx="4" fill="white" opacity="0.3"/>
-  <text x="567" y="143" text-anchor="middle" fill="#16a34a" font-size="9" font-weight="bold" font-family="sans-serif">承認</text>
-
-  <!-- Step 4: マージ -->
-  <rect x="645" y="120" width="130" height="70" rx="10" fill="#22c55e" opacity="0.9"/>
-  <text x="710" y="150" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">マージ</text>
-  <text x="710" y="170" text-anchor="middle" fill="#dcfce7" font-size="10" font-family="sans-serif">本番反映</text>
-  <!-- Check icon -->
-  <circle cx="710" cy="95" r="14" fill="#22c55e" opacity="0.2"/>
-  <text x="710" y="100" text-anchor="middle" fill="#166534" font-size="16" font-family="sans-serif">✅</text>
-
-  <!-- Legend -->
-  <rect x="30" y="310" width="12" height="12" rx="2" fill="#3b82f6" opacity="0.6"/>
-  <text x="48" y="321" fill="#475569" font-size="10" font-family="sans-serif">人間の作業</text>
-  <rect x="130" y="310" width="12" height="12" rx="2" fill="#8b5cf6" opacity="0.6"/>
-  <text x="148" y="321" fill="#475569" font-size="10" font-family="sans-serif">AIの作業</text>
-  <rect x="230" y="310" width="12" height="12" rx="2" fill="#ef4444" opacity="0.6"/>
-  <text x="248" y="321" fill="#475569" font-size="10" font-family="sans-serif">フィードバックループ</text>
-</svg>
 
 ---
 
@@ -523,77 +400,7 @@ const canVote = (user) => user.age >= 18;
 
 # 効率的なレビューフロー
 
-<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
-  <!-- Background -->
-  <rect width="800" height="450" fill="#f8f9fa" rx="12"/>
-
-  <!-- Step 1: AI生成PR -->
-  <rect x="310" y="20" width="180" height="50" rx="10" fill="#3b82f6" opacity="0.9"/>
-  <text x="400" y="50" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">AI生成PR</text>
-
-  <!-- Arrow down -->
-  <line x1="400" y1="70" x2="400" y2="95" stroke="#94a3b8" stroke-width="2"/>
-  <polygon points="395,95 400,105 405,95" fill="#94a3b8"/>
-
-  <!-- Step 2: 自動チェック (diamond) -->
-  <polygon points="400,105 480,145 400,185 320,145" fill="#f59e0b" opacity="0.9"/>
-  <text x="400" y="142" text-anchor="middle" fill="white" font-size="12" font-weight="bold" font-family="sans-serif">自動チェック</text>
-  <text x="400" y="155" text-anchor="middle" fill="#fef3c7" font-size="9" font-family="sans-serif">lint / test / type</text>
-
-  <!-- Fail branch (left) -->
-  <line x1="320" y1="145" x2="200" y2="145" stroke="#ef4444" stroke-width="2"/>
-  <polygon points="200,140 190,145 200,150" fill="#ef4444"/>
-  <text x="260" y="138" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold" font-family="sans-serif">Fail</text>
-  <rect x="100" y="120" width="90" height="50" rx="8" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
-  <text x="145" y="148" text-anchor="middle" fill="#dc2626" font-size="12" font-weight="bold" font-family="sans-serif">修正</text>
-
-  <!-- Pass arrow down -->
-  <line x1="400" y1="185" x2="400" y2="210" stroke="#22c55e" stroke-width="2"/>
-  <polygon points="395,210 400,220 405,210" fill="#22c55e"/>
-  <text x="415" y="200" fill="#16a34a" font-size="10" font-weight="bold" font-family="sans-serif">Pass</text>
-
-  <!-- Step 3: リスク判定 (diamond) -->
-  <polygon points="400,220 480,260 400,300 320,260" fill="#8b5cf6" opacity="0.9"/>
-  <text x="400" y="258" text-anchor="middle" fill="white" font-size="12" font-weight="bold" font-family="sans-serif">リスク判定</text>
-
-  <!-- HIGH branch (left) -->
-  <line x1="320" y1="260" x2="160" y2="260" stroke="#ef4444" stroke-width="2"/>
-  <polygon points="160,255 150,260 160,265" fill="#ef4444"/>
-  <text x="240" y="253" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold" font-family="sans-serif">HIGH</text>
-  <rect x="30" y="235" width="120" height="50" rx="8" fill="#ef4444" opacity="0.12" stroke="#ef4444" stroke-width="1.5"/>
-  <text x="90" y="257" text-anchor="middle" fill="#dc2626" font-size="11" font-weight="bold" font-family="sans-serif">人間が精査</text>
-  <text x="90" y="273" text-anchor="middle" fill="#6b7280" font-size="9" font-family="sans-serif">設計・セキュリティ</text>
-
-  <!-- MID branch (center-down) -->
-  <line x1="400" y1="300" x2="400" y2="325" stroke="#f59e0b" stroke-width="2"/>
-  <polygon points="395,325 400,335 405,325" fill="#f59e0b"/>
-  <text x="430" y="315" fill="#d97706" font-size="10" font-weight="bold" font-family="sans-serif">MID</text>
-  <rect x="310" y="335" width="180" height="50" rx="8" fill="#f59e0b" opacity="0.12" stroke="#f59e0b" stroke-width="1.5"/>
-  <text x="400" y="358" text-anchor="middle" fill="#b45309" font-size="11" font-weight="bold" font-family="sans-serif">AIレビュー+人間確認</text>
-  <text x="400" y="374" text-anchor="middle" fill="#6b7280" font-size="9" font-family="sans-serif">AIが要約→人間が最終判断</text>
-
-  <!-- LOW branch (right) -->
-  <line x1="480" y1="260" x2="620" y2="260" stroke="#22c55e" stroke-width="2"/>
-  <polygon points="620,255 630,260 620,265" fill="#22c55e"/>
-  <text x="550" y="253" text-anchor="middle" fill="#16a34a" font-size="10" font-weight="bold" font-family="sans-serif">LOW</text>
-  <rect x="630" y="235" width="140" height="50" rx="8" fill="#22c55e" opacity="0.12" stroke="#22c55e" stroke-width="1.5"/>
-  <text x="700" y="257" text-anchor="middle" fill="#166534" font-size="11" font-weight="bold" font-family="sans-serif">AIレビューのみ</text>
-  <text x="700" y="273" text-anchor="middle" fill="#6b7280" font-size="9" font-family="sans-serif">定型・低リスク変更</text>
-
-  <!-- All converge to 承認 -->
-  <!-- HIGH → 承認 -->
-  <line x1="90" y1="285" x2="90" y2="415" stroke="#94a3b8" stroke-width="1.5"/>
-  <line x1="90" y1="415" x2="340" y2="415" stroke="#94a3b8" stroke-width="1.5"/>
-  <!-- MID → 承認 -->
-  <line x1="400" y1="385" x2="400" y2="400" stroke="#94a3b8" stroke-width="1.5"/>
-  <!-- LOW → 承認 -->
-  <line x1="700" y1="285" x2="700" y2="415" stroke="#94a3b8" stroke-width="1.5"/>
-  <line x1="700" y1="415" x2="460" y2="415" stroke="#94a3b8" stroke-width="1.5"/>
-
-  <!-- 承認 box -->
-  <rect x="340" y="400" width="120" height="36" rx="8" fill="#22c55e" opacity="0.9"/>
-  <text x="400" y="423" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">承認 ✓</text>
-</svg>
+![w:800 center](assets/review-flow.svg)
 
 <!--
 自動化とリスク判定を組み合わせたフロー。効率と品質を両立。

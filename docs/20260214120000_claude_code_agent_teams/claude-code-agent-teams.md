@@ -367,7 +367,6 @@ Leadがタスクを作成しチームメイトをSpawnすると、各チーム�
 - **依存関係の定義:**
 - - `addBlocks`: このタスクが完了するまで他タスクをブロック
 - - `addBlockedBy`: 他タスクの完了を待ってから開始
-
 ![w:800 center](assets/task-dependencies.svg)
 
 <!--
