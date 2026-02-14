@@ -13,13 +13,24 @@ bun run check                           # Biome lint + format check
 bun run format                          # Auto-format with Biome
 ```
 
+CLI supports `-c | --config <path>` to specify config file (default: `slides.config.yaml`).
+
 No test framework yet. When adding tests, use `bun:test`.
 
 ## Architecture
 
 Bun 1.3.5 + TypeScript CLI tool for rendering structured slide data into Marp-format markdown. Slide content is generated locally by Claude Code / Codex — no AI SDKs.
 
-**Pipeline:** Slide data JSON (Zod-validated) + YAML config → Marp markdown (`docs/`) → HTML/PDF export (`docs/dist/`) via Marp CLI.
+**Pipeline:** Slide data JSON (Zod-validated) + YAML config → Marp markdown → HTML/PDF export via Marp CLI.
+
+### Key Source Modules
+
+- `src/index.ts` — Entry point (`#!/usr/bin/env bun`)
+- `src/cli/commands.ts` — Command parser & handlers (init, render, export)
+- `src/config/` — Config loading: `schema.ts` (Zod), `defaults.ts` (YAML template), `loader.ts` (parse)
+- `src/generate/` — Render pipeline: `slide-schema.ts` (Zod), `pipeline.ts` (orchestration), `markdown.ts` (Marp output)
+- `src/export/marp.ts` — Spawns `bunx @marp-team/marp-cli` for HTML/PDF/PPTX export
+- `src/utils/files.ts` — `slugify()`, `ensureDir()`
 
 ### Two-Layer Zod Schema Design
 
@@ -39,7 +50,7 @@ Changing the slide schema → update `src/generate/markdown.ts`. Changing the co
 - **Formatter:** Biome with tab indentation. Run `bun run format` after editing.
 - **Type checker:** `tsgo` from `@typescript/native-preview` (not `tsc`).
 - **Language:** Code/comments in English. Default slide output is Japanese (`language: "ja"`).
-- **Output:** Slide markdown → `docs/`. Exported HTML/PDF → `docs/dist/` (gitignored).
+- **Output:** Each presentation gets a dedicated directory under `docs/<yyyymmddhhmmss>_<title>/`. All artifacts (`slides.config.yaml`, slide data JSON, Marp markdown, exported HTML/PDF) are stored within this directory.
 
 ## Constraints
 
@@ -47,6 +58,6 @@ Changing the slide schema → update `src/generate/markdown.ts`. Changing the co
 
 ## .claude Directory
 
-- **rules/** — path-scoped rules auto-loaded when editing matching files (`schemas.md`, `marp.md`, `slide-design.md`)
-- **agents/** — `slide-creator` (対話型スライド作成), `marp-customizer` (テーマ・CSS調整)
-- **skills/** — each skill is a directory with `SKILL.md`: `/create-slides` (対話型作成), `/generate` (JSON→レンダリング), `/review-slides` (レビュー)
+- **rules/** — Path-scoped rules auto-loaded when editing matching files: `schemas.md` (schema change checklist), `marp.md` (Marp format rules), `slide-design.md` (cognitive load & design psychology)
+- **agents/** — `slide-creator` (interactive 8-phase slide creation), `marp-customizer` (theme & CSS customization)
+- **skills/** — Each skill is a directory with `SKILL.md`: `/create-slides` (interactive creation), `/generate` (JSON → render → export), `/review-slides` (review & improvement)

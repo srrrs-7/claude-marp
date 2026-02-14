@@ -32,9 +32,20 @@ bun run slides export -f html --in docs/my-slides.md
 
 ```
 slides.config.yaml ─┐
-                     ├─→ Marpマークダウン (docs/) ─→ HTML/PDF (docs/dist/)
+                     ├─→ Marpマークダウン ─→ HTML/PDF エクスポート
 slides-data.json ────┘
-     (Zod検証)            (render)                    (export)
+     (Zod検証)            (render)            (export)
+```
+
+各スライドは `docs/<yyyymmddhhmmss>_<title>/` に専用ディレクトリを作成し、設定・データ・マークダウン・エクスポート済みファイルをすべて格納する。
+
+```
+docs/
+└── 20260214063457_ai-era-survival-strategy/
+    ├── slides.config.yaml
+    ├── slides-data.json
+    ├── ai-era-survival-strategy.md
+    └── ai-era-survival-strategy.html   # エクスポート後
 ```
 
 ## CLIコマンド
@@ -46,6 +57,15 @@ slides-data.json ────┘
 | `bun run slides export -f <html\|pdf\|pptx> --in <file.md>` | マークダウンをエクスポート |
 
 共通オプション: `-c <config.yaml>` / `--config <config.yaml>` で設定ファイルを指定（デフォルト: `slides.config.yaml`）
+
+## 技術スタック
+
+- **ランタイム:** Bun 1.3.5
+- **言語:** TypeScript（ESM）
+- **バリデーション:** Zod
+- **スライドエンジン:** [Marp CLI](https://github.com/marp-team/marp-cli)
+- **リンター/フォーマッター:** Biome
+- **型チェック:** tsgo（`@typescript/native-preview`）
 
 ## スライドデータJSON
 
@@ -156,6 +176,26 @@ output:
 ## プレビュー
 
 VSCodeでMarp拡張（`marp-team.marp-vscode`）を使用。生成された `.md` を開くと `marp: true` を検知して自動プレビュー。
+
+## プロジェクト構造
+
+```
+src/
+├── index.ts                  # エントリーポイント
+├── cli/commands.ts           # CLIコマンド定義・引数パーサー
+├── config/
+│   ├── schema.ts             # slides.config.yaml の Zodスキーマ
+│   ├── defaults.ts           # デフォルト設定YAML
+│   └── loader.ts             # YAML読み込み・バリデーション
+├── generate/
+│   ├── slide-schema.ts       # スライドデータJSON の Zodスキーマ
+│   ├── pipeline.ts           # JSON読み込み → バリデーション → レンダリング → 書き出し
+│   └── markdown.ts           # Marpマークダウン生成（front-matter + スライド）
+├── export/
+│   └── marp.ts               # Marp CLIによるHTML/PDF/PPTXエクスポート
+└── utils/
+    └── files.ts              # ファイル操作ユーティリティ
+```
 
 ## 開発
 

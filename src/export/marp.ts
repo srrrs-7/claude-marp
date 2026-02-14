@@ -18,6 +18,8 @@ export async function exportSlides(
 	const args = [
 		"bunx",
 		"@marp-team/marp-cli",
+		"--no-config",
+		"--allow-local-files",
 		inputPath,
 		"--output",
 		outputPath,

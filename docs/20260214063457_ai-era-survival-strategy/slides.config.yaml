@@ -1,0 +1,45 @@
+topic: "AI時代のソフトウェアエンジニアの生存戦略"
+audience: "混合（エンジニア＋非技術者）、技術レベル上級"
+goal: "今後のキャリア戦略の道標"
+language: "ja"
+
+slides:
+  count: 11
+  includeTableOfContents: true
+  includeTitleSlide: true
+  includeSummarySlide: true
+
+marp:
+  theme: "gaia"
+  size: "16:9"
+  paginate: true
+  header: ""
+  footer: "2026-02-14"
+  style: |
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+    section {
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    section h1, section h2 {
+      color: #e65100;
+    }
+    section strong {
+      color: #f57c00;
+    }
+    section a {
+      color: #ff9800;
+    }
+    section code {
+      background-color: #fff3e0;
+    }
+
+content:
+  codeBlocks: true
+  codeLanguage: "typescript"
+  mermaidDiagrams: true
+  bulletPointsMax: 5
+  speakerNotes: true
+
+output:
+  dir: "./docs/20260214063457_ai-era-survival-strategy"
+  baseName: "ai-era-survival-strategy"
