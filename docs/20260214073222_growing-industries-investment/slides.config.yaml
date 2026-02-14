@@ -29,3 +29,6 @@ style: |
   }
 
 directives: {}
+
+output:
+  dir: "docs/20260214073222_growing-industries-investment"

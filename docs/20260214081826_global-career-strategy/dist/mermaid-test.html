@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Mermaid Test</title>
+</head>
+<body>
+  <h1>Mermaid Test Page</h1>
+
+  <h2>Test 1: Direct Mermaid Div (Should work)</h2>
+  <div class="mermaid">
+    flowchart TD
+    A[意思決定開始] --> B{年収最大化が最優先?}
+    B -->|Yes| C{移住可能?}
+    B -->|No| D[国内ハイレンジ転職]
+  </div>
+
+  <h2>Test 2: Code Block (Should be converted)</h2>
+  <pre><code class="language-mermaid">graph LR
+A[職種] --> D[年収]
+B[地域] --> D
+C[通貨] --> D</code></pre>
+
+  <script>
+    console.log("[Test] Page loaded");
+
+    // Bootstrap logic (same as in marp.ts)
+    (function () {
+      console.log("[Mermaid] Starting bootstrap...");
+      let codeBlocks = Array.from(document.querySelectorAll("pre > code.language-mermaid"));
+      if (codeBlocks.length === 0) {
+        codeBlocks = Array.from(document.querySelectorAll('code[class*="language-mermaid"]'));
+      }
+      if (codeBlocks.length === 0) {
+        codeBlocks = Array.from(document.querySelectorAll("code.language-mermaid"));
+      }
+      console.log("[Mermaid] Found code blocks:", codeBlocks.length);
+
+      for (const code of codeBlocks) {
+        const pre = code.closest("pre");
+        if (!pre) continue;
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "mermaid";
+        wrapper.textContent = code.textContent || "";
+        pre.replaceWith(wrapper);
+      }
+
+      const mermaidDivs = document.querySelectorAll(".mermaid");
+      console.log("[Mermaid] Created mermaid divs:", mermaidDivs.length);
+
+      if (!document.querySelector(".mermaid")) {
+        console.warn("[Mermaid] No mermaid divs found, exiting");
+        return;
+      }
+
+      const run = () => {
+        if (!window.mermaid) {
+          console.error("[Mermaid] window.mermaid not found!");
+          return;
+        }
+        console.log("[Mermaid] Initializing and running...");
+        window.mermaid.initialize({ startOnLoad: false, securityLevel: "loose" });
+        window.mermaid.run({ querySelector: ".mermaid" });
+        console.log("[Mermaid] Rendering complete");
+      };
+
+      if (window.mermaid) {
+        console.log("[Mermaid] Library already loaded");
+        run();
+        return;
+      }
+
+      console.log("[Mermaid] Loading library from CDN...");
+      const s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js";
+      s.onload = () => {
+        console.log("[Mermaid] Library loaded successfully");
+        run();
+      };
+      s.onerror = (e) => console.error("[Mermaid] Failed to load library:", e);
+      document.head.appendChild(s);
+    })();
+  </script>
+</body>
+</html>

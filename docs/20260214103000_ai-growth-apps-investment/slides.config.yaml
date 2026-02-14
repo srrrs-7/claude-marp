@@ -1,0 +1,31 @@
+# Marp slide configuration
+# Generated: 2026-02-14
+
+topic: "AIを使用したアプリケーションで今後伸びる可能性が高いもの"
+theme: "gaia"
+language: "ja"
+paginate: true
+header: ""
+footer: ""
+backgroundColor: ""
+backgroundImage: ""
+style: |
+  section {
+    font-size: 28px;
+  }
+  section h1 {
+    font-size: 48px;
+  }
+  section h2 {
+    font-size: 40px;
+  }
+  section pre code {
+    font-size: 0.6em;
+    line-height: 1.4;
+  }
+  section.lead h1 {
+    text-align: center;
+  }
+
+output:
+  dir: "docs/20260214103000_ai-growth-apps-investment"

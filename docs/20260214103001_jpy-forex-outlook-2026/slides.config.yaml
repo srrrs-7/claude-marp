@@ -35,3 +35,6 @@ style: |
 
 header: ""
 footer: "© 2026 為替動向分析レポート"
+
+output:
+  dir: "docs/20260214103001_jpy-forex-outlook-2026"

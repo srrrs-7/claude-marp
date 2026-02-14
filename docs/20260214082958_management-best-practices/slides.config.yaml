@@ -1,0 +1,49 @@
+# Slide Configuration
+# Generated: 2026-02-14
+
+# Basic Settings
+topic: "部下のマネージメント：経営層のための包括ガイド"
+language: "ja"
+outputFile: "management-best-practices.md"
+
+# Marp Settings
+marp:
+  theme: "gaia"
+  class: "invert"
+  paginate: true
+  header: ""
+  footer: "© 2026 Management Best Practices Workshop"
+
+# Style Customization
+style: |
+  section {
+    font-size: 28px;
+  }
+  section h1 {
+    font-size: 48px;
+    margin-bottom: 0.5em;
+  }
+  section h2 {
+    font-size: 40px;
+    margin-bottom: 0.5em;
+  }
+  section ul {
+    font-size: 24px;
+  }
+  section pre code {
+    font-size: 0.6em;
+    line-height: 1.4;
+  }
+  section.lead {
+    text-align: center;
+  }
+
+# Export Settings (for HTML/PDF generation)
+export:
+  html: true
+  pdf: false
+  pptx: false
+  allowLocalFiles: true
+
+output:
+  dir: "docs/20260214082958_management-best-practices"

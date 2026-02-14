@@ -1,0 +1,22 @@
+topic: "2026年のWeb技術トレンド予測"
+language: "ja"
+theme: "default"
+outputDir: "."
+outputFileName: "web-tech-trends-2026"
+style: |
+  section {
+    font-size: 28px;
+  }
+  section pre code {
+    font-size: 0.6em;
+    line-height: 1.4;
+  }
+  section h1 {
+    font-size: 2em;
+  }
+  section h2 {
+    font-size: 1.5em;
+  }
+
+output:
+  dir: "docs/20260214082356_web-tech-trends-2026"
