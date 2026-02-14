@@ -737,6 +737,44 @@ graph TD
 
 ---
 
+# AssumeRoleWithSAML フロー（詳細）
+
+```mermaid
+sequenceDiagram
+    participant User as ユーザー
+    participant Browser as ブラウザ
+    participant IdP as 企業IdP<br/>(Okta/Azure AD)
+    participant STS as AWS STS
+    participant IAM as AWS IAM
+    participant S3 as AWS サービス<br/>(S3等)
+
+    User->>Browser: 1. AWSリソースにアクセス要求
+    Browser->>IdP: 2. ログインページにリダイレクト
+    User->>IdP: 3. 認証情報を入力（ユーザー名/パスワード）
+    IdP->>IdP: 4. ユーザー認証
+    IdP->>Browser: 5. SAML Assertion発行（署名済みXML）
+
+    Browser->>STS: 6. AssumeRoleWithSAML<br/>(SAML Assertion, RoleArn, PrincipalArn)
+
+    STS->>IAM: 7. SAML Providerの検証
+    IAM-->>STS: 8. Provider有効
+
+    STS->>IAM: 9. ロールのトラストポリシー確認<br/>(Federated Principal許可?)
+    IAM-->>STS: 10. 信頼関係OK
+
+    STS->>STS: 11. SAML Assertionの署名検証
+    STS->>Browser: 12. 一時認証情報発行<br/>(AccessKeyId, SecretAccessKey, SessionToken)
+
+    Browser->>S3: 13. APIリクエスト（一時認証情報を使用）
+    S3->>IAM: 14. ロールのポリシー評価
+    IAM-->>S3: 15. 許可
+    S3-->>Browser: 16. レスポンス
+    Browser-->>User: 17. AWSリソースへのアクセス成功
+```
+
+
+---
+
 # AssumeRoleWithWebIdentity
 
 - **OIDCフェデレーション** - Google, Facebook, Amazon Cognito等
