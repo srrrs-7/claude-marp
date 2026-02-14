@@ -22,11 +22,9 @@ B[地域] --> D
 C[通貨] --> D</code></pre>
 
   <script>
-    console.log("[Test] Page loaded");
 
     // Bootstrap logic (same as in marp.ts)
     (function () {
-      console.log("[Mermaid] Starting bootstrap...");
       let codeBlocks = Array.from(document.querySelectorAll("pre > code.language-mermaid"));
       if (codeBlocks.length === 0) {
         codeBlocks = Array.from(document.querySelectorAll('code[class*="language-mermaid"]'));
@@ -34,7 +32,6 @@ C[通貨] --> D</code></pre>
       if (codeBlocks.length === 0) {
         codeBlocks = Array.from(document.querySelectorAll("code.language-mermaid"));
       }
-      console.log("[Mermaid] Found code blocks:", codeBlocks.length);
 
       for (const code of codeBlocks) {
         const pre = code.closest("pre");
@@ -47,7 +44,6 @@ C[通貨] --> D</code></pre>
       }
 
       const mermaidDivs = document.querySelectorAll(".mermaid");
-      console.log("[Mermaid] Created mermaid divs:", mermaidDivs.length);
 
       if (!document.querySelector(".mermaid")) {
         console.warn("[Mermaid] No mermaid divs found, exiting");
@@ -59,23 +55,18 @@ C[通貨] --> D</code></pre>
           console.error("[Mermaid] window.mermaid not found!");
           return;
         }
-        console.log("[Mermaid] Initializing and running...");
         window.mermaid.initialize({ startOnLoad: false, securityLevel: "loose" });
         window.mermaid.run({ querySelector: ".mermaid" });
-        console.log("[Mermaid] Rendering complete");
       };
 
       if (window.mermaid) {
-        console.log("[Mermaid] Library already loaded");
         run();
         return;
       }
 
-      console.log("[Mermaid] Loading library from CDN...");
       const s = document.createElement("script");
       s.src = "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js";
       s.onload = () => {
-        console.log("[Mermaid] Library loaded successfully");
         run();
       };
       s.onerror = (e) => console.error("[Mermaid] Failed to load library:", e);

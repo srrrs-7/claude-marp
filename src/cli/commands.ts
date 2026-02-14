@@ -20,15 +20,10 @@ export async function initCommand(): Promise<void> {
 	const file = Bun.file(configPath);
 
 	if (await file.exists()) {
-		console.log("slides.config.yaml already exists. Skipping.");
 		return;
 	}
 
 	await Bun.write(configPath, defaultConfigYaml);
-	console.log("Created slides.config.yaml");
-	console.log(
-		'Edit the config, then create slides data JSON and run "bun run slides render --in data.json"',
-	);
 }
 
 export async function renderCommand(options: RenderOptions): Promise<void> {
@@ -42,8 +37,7 @@ export async function renderCommand(options: RenderOptions): Promise<void> {
 		process.exit(1);
 	}
 
-	const result = await renderSlides(options.input, config);
-	console.log(`Rendered ${result.data.slides.length} slides.`);
+	await renderSlides(options.input, config);
 }
 
 export async function exportCommand(options: ExportOptions): Promise<void> {
@@ -101,7 +95,7 @@ export function parseArgs(args: string[]): void {
 }
 
 function printUsage(): void {
-	console.log(`
+	process.stdout.write(`
 Usage: bun run slides <command> [options]
 
 Commands:

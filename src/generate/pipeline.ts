@@ -28,6 +28,5 @@ export async function renderSlides(
 	const outputPath = resolve(outputDir, `${baseName}.md`);
 	await Bun.write(outputPath, markdown);
 
-	console.log(`Slides written to: ${outputPath}`);
 	return { markdown, outputPath, data };
 }
