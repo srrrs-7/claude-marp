@@ -47,6 +47,6 @@ Changing the slide schema → update `src/generate/markdown.ts`. Changing the co
 
 ## .claude Directory
 
-- **rules/** — path-scoped rules auto-loaded when editing matching files (`schemas.md`, `marp.md`)
+- **rules/** — path-scoped rules auto-loaded when editing matching files (`schemas.md`, `marp.md`, `slide-design.md`)
 - **agents/** — `slide-creator` (対話型スライド作成), `marp-customizer` (テーマ・CSS調整)
-- **skills/** — `/create-slides` (対話型作成), `/generate` (JSON→レンダリング), `/review-slides` (レビュー)
+- **skills/** — each skill is a directory with `SKILL.md`: `/create-slides` (対話型作成), `/generate` (JSON→レンダリング), `/review-slides` (レビュー)
