@@ -1,4 +1,4 @@
-<svg width="650" height="340" viewBox="0 0 650 340" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 650 340" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <defs>
     <!-- Define clip paths for intersection -->
     <clipPath id="leftCircle">
