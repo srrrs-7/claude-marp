@@ -1,0 +1,22 @@
+{
+	"name": "claude-marp",
+	"version": "0.1.0",
+	"type": "module",
+	"scripts": {
+		"slides": "bun run src/index.ts",
+		"typecheck": "tsgo --noEmit",
+		"check": "biome check .",
+		"format": "biome format --write ."
+	},
+	"dependencies": {
+		"@marp-team/marp-cli": "^4.1.2",
+		"yaml": "^2.7.0",
+		"zod": "^3.24.2"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@bun-security-scanner/osv": "^1.0.0",
+		"@types/bun": "^1.2.4",
+		"@typescript/native-preview": "^7.0.0-dev.20260213.1"
+	}
+}

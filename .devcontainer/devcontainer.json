@@ -1,0 +1,47 @@
+// Strategy
+// - Use Dev Container Features if possible
+// - Use docker-compose to launch services
+// - Use Dockerfile if it needs to be cached
+// - Use setup.sh to run commands that don't need to be cached
+// - Use setup.personal.sh for personal setup such as dotfiles
+{
+	"name": "claude-marp",
+	"dockerComposeFile": ["compose.yaml"],
+	"service": "dev",
+	"workspaceFolder": "/workspace/main",
+	"remoteUser": "vscode",
+
+	"features": {
+		"ghcr.io/devcontainers/features/git:1": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "24"
+		}
+	},
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"biomejs.biome",
+				"streetsidesoftware.code-spell-checker",
+				"shd101wyy.markdown-preview-enhanced",
+				"bierner.markdown-mermaid",
+				"marp-team.marp-vscode"
+			],
+			"settings": {
+				"eslint.enable": false,
+				"biome.enabled": true,
+				"editor.formatOnSave": true,
+				"editor.defaultFormatter": "biomejs.biome",
+				"editor.codeActionsOnSave": {
+					"source.organizeImports.biome": "explicit",
+					"quickfix.biome": "explicit"
+				}
+			}
+		}
+	},
+
+	"postCreateCommand": "chmod +x .devcontainer/setup.sh && .devcontainer/setup.sh",
+
+	"forwardPorts": []
+}
