@@ -11,6 +11,7 @@ bun run slides export -f html --in FILE # Export Marp markdown to HTML
 bun run typecheck                       # Type checking via tsgo (native TS compiler)
 bun run check                           # Biome lint + format check
 bun run format                          # Auto-format with Biome
+bun run spellcheck                      # Spell check via cspell
 ```
 
 CLI supports `-c | --config <path>` to specify config file (default: `slides.config.yaml`).

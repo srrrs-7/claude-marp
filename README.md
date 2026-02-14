@@ -203,6 +203,7 @@ src/
 bun run typecheck   # 型チェック (tsgo)
 bun run check       # Biome lint + format確認
 bun run format      # 自動フォーマット
+bun run spellcheck  # スペルチェック (cspell)
 ```
 
 ## 制約事項
