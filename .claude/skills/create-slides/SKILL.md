@@ -19,6 +19,7 @@ user_invocable: true
 6. **レビューループ** — フィードバック → 修正 → 再レンダリング（OKまで繰り返し）
 7. **デザイン調整** — テーマ・CSS・ディレクティブの微調整
 8. **エクスポート** — `bun run slides export -f html --in <path>/<name>.md`
+9. **セルフヒーリング検証** — エクスポート後に自動検証し、問題があれば修正→再エクスポート
 
 **出力先:** すべてのファイルは `docs/<yyyymmddhhmmss>_<title>/` 配下に集約される
 
@@ -85,3 +86,49 @@ user_invocable: true
    - Changed 'bullets' to 'content' in 5 slides
    - Fixed invalid layout value 'custom' → 'default' in slide 3
    ```
+
+## Phase 9: Self-Healing Post-Export Verification
+
+**エクスポート完了後に自動実行（ユーザー介入不要）:**
+
+### 検証項目
+
+1. **アセットパス検証**: `dist/*.html` 内に `src="assets/"` が残っていないか確認
+   - 修正: `src/export/marp.ts` の `fixAssetPaths()` が自動修正するが、念のため確認
+2. **SVGアーティファクト検出**: `<p><text>` パターン（生SVGがHTMLにリークした痕跡）
+   - 修正: マークダウン内のインラインSVGの空行を除去して再レンダリング
+3. **url(#id) 違反チェック**: `assets/*.svg` に禁止パターンがないか
+   - 修正: `bun run scripts/fix-svg-url-refs.ts` を実行
+4. **コンテンツオーバーフロー**: スライドあたりの行数が上限を超えていないか
+   - 修正: `bun run split` でコード/図を分離
+
+### セルフヒーリングループ
+
+```
+export → 検証 → 問題検出？
+  ├─ No  → 完了。ユーザーに報告
+  └─ Yes → 自動修正 → 再エクスポート → 再検証（最大3回）
+           3回失敗 → ユーザーに報告して手動介入を依頼
+```
+
+### 検証コマンド
+
+```bash
+# 一括テスト（全プレゼンテーション）
+bun run test
+
+# 個別確認
+grep -rn 'src="assets/' docs/<dir>/dist/*.html    # 壊れたパス
+grep -rn 'url(#' docs/<dir>/assets/*.svg           # url(#id) 違反
+grep -rn '^```mermaid' docs/<dir>/*.md              # Mermaid 残存
+```
+
+### 完了報告テンプレート
+
+```
+✅ エクスポート完了: docs/<dir>/dist/<name>.html
+   - スライド数: N枚
+   - SVG図: M個（assets/）
+   - テスト: 全パス
+   - 問題検出: なし（or 自動修正済み: ～を修正）
+```

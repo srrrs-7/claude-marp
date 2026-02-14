@@ -43,7 +43,9 @@ bun run slides render -c docs/<dir>/slides.config.yaml --in docs/<dir>/slides-da
 bun run slides export -c docs/<dir>/slides.config.yaml -f html --in docs/<dir>/file.md
 ```
 
-No test framework yet. When adding tests, use `bun:test`.
+```bash
+bun run test                            # Run regression test suite (bun:test)
+```
 
 ## Pre-flight Validation Protocol
 
@@ -229,6 +231,7 @@ style: |
   - `/create-slides` — Interactive creation (recommended)
   - `/generate` — JSON → render → export
   - `/review-slides` — Review & improvement
+  - `/ship` — Git commit & push in one command
 
 ## Theme Selection
 
@@ -265,3 +268,15 @@ After structural changes (schema updates, template modifications), use:
 **Preview:** View exported HTML in browser. VSCode Marp extension (`marp-team.marp-vscode`) can preview `.md` files but HTML export is recommended for final presentation.
 
 **SVG not rendering in HTML export:** If SVG shadows/arrows are missing, the SVG likely uses `url(#id)` references which break inside Marp's foreignObject wrapper. Run `bun run scripts/fix-svg-url-refs.ts` to auto-fix, then re-export.
+
+**SVG images not showing in dist/ HTML:** Marp CLI does NOT inline external `<img src="assets/...">` references in HTML output. The export pipeline (`src/export/marp.ts`) automatically rewrites `src="assets/..."` to `src="../assets/..."` in HTML output so that `dist/` files can resolve the relative path. If images still don't show, verify the `assets/` directory exists at the presentation level and re-export.
+
+## Post-Export Verification
+
+**After every HTML export, verify:**
+
+1. No broken asset paths: `grep -rn 'src="assets/' docs/*/dist/*.html` should return nothing
+2. No `<p><text>` artifacts (raw SVG leaking into HTML)
+3. All `dist/*.html` files reference `../assets/` (not `assets/`)
+
+These checks are enforced automatically by PostToolUse hooks in `.claude/settings.json`.

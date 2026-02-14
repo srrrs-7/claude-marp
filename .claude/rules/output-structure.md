@@ -76,9 +76,9 @@ output:
 
 スライドから参照するSVG図解などの静的アセットを配置：
 
-- マークダウンから `![alt](assets/filename.svg)` で参照
-- Marp CLIがHTMLエクスポート時にSVGをインライン化するため、`dist/` のHTMLは**自己完結**（assets/ への外部参照なし）
-- `dist/` にSVGをコピーする必要はない
+- マークダウンから `![w:800 center](assets/filename.svg)` で参照（サイズ指定必須）
+- **注意**: Marp CLIはHTMLエクスポート時にSVGをインライン化**しない**。`src/export/marp.ts` の `fixAssetPaths()` が `src="assets/"` → `src="../assets/"` に自動修正する
+- `dist/` のHTMLは `../assets/` への相対パスで参照するため、`assets/` ディレクトリが必要
 - SVG以外のアセット（画像等）も同様に `assets/` に配置
 
 ### dist/ サブディレクトリ
@@ -173,8 +173,8 @@ docs/20260214073222_example/
 ├── assets/
 │   └── diagram.svg
 └── dist/
-    ├── example.html
-    └── diagram.svg            ← 不要（HTMLにインライン化済み）
+    ├── example.html           ← ../assets/diagram.svg を参照（自動修正済み）
+    └── diagram.svg            ← 不要（HTMLが ../assets/ を参照する）
 ```
 
 ---

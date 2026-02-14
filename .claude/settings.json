@@ -30,6 +30,36 @@
 						"async": true
 					}
 				]
+			},
+			{
+				"matcher": "Bash.*export.*-f html",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bash -c 'BROKEN=$(grep -rn \"src=\\\"assets/\" docs/*/dist/*.html 2>/dev/null); if [ -n \"$BROKEN\" ]; then echo \"⚠️ Broken asset paths found in dist/ HTML:\"; echo \"$BROKEN\"; exit 1; fi; echo \"✅ Asset paths OK\"'",
+						"statusMessage": "Verifying HTML asset paths..."
+					}
+				]
+			},
+			{
+				"matcher": "Write.*\\.svg|Edit.*\\.svg",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bash -c 'FOUND=$(grep -rn \"url(#\" docs/**/*.svg 2>/dev/null); if [ -n \"$FOUND\" ]; then echo \"⚠️ Prohibited url(#id) references found in SVG files:\"; echo \"$FOUND\"; echo \"Run: bun run scripts/fix-svg-url-refs.ts\"; exit 1; fi; echo \"✅ SVG url(#id) check passed\"'",
+						"statusMessage": "Checking SVG url(#id) references..."
+					}
+				]
+			},
+			{
+				"matcher": "Write.*docs/.*\\.md|Edit.*docs/.*\\.md",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bash -c 'FOUND=$(grep -rn \"^\\`\\`\\`mermaid\" docs/**/*.md 2>/dev/null); if [ -n \"$FOUND\" ]; then echo \"⚠️ Unconverted Mermaid blocks found:\"; echo \"$FOUND\"; exit 1; fi; echo \"✅ No Mermaid blocks\"'",
+						"statusMessage": "Checking for Mermaid residue..."
+					}
+				]
 			}
 		],
 		"SessionEnd": [
