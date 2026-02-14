@@ -1,46 +1,54 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- `src/index.ts`: CLI entry point.
-- `src/cli/commands.ts`: command parsing and command handlers.
-- `src/config/*`: config defaults, YAML loading, and Zod validation for `slides.config.yaml`.
-- `src/generate/*`: slide JSON schema and Markdown rendering pipeline.
-- `src/export/marp.ts`: HTML/PDF/PPTX export via Marp CLI.
-- `src/utils/files.ts`: shared file system helpers.
-- `docs/`: generated slide artifacts (timestamped output directories).
-
-Keep generated output in `docs/` and implementation code in `src/`.
+- `src/index.ts`: Bun CLI entry point.
+- `src/cli/commands.ts`: `init`, `render`, `export` command handlers.
+- `src/config/`: config schema (`schema.ts`), defaults (`defaults.ts`), loader (`loader.ts`).
+- `src/generate/`: slide schema, render pipeline, and Marp markdown generation.
+- `src/export/marp.ts`: export via `@marp-team/marp-cli`.
+- `docs/<timestamp>_<title>/`: per-presentation workspace.
+  - `slides.config.yaml`, `slides-data.json`, rendered `*.md`, and `dist/*.html|pdf|pptx`.
 
 ## Build, Test, and Development Commands
 - `bun install`: install dependencies.
-- `bun run slides init`: create a config template.
-- `bun run slides render --in docs/slides-data.json`: validate JSON and generate Marp Markdown.
-- `bun run slides export -f html --in <file.md>`: export slide deck.
-- `bun run typecheck`: run TypeScript native checker (`tsgo --noEmit`).
-- `bun run check`: run Biome lint/format checks.
+- `bun run slides init`: create `slides.config.yaml` template.
+- `bun run slides render --in <slides-data.json>`: validate JSON and render markdown.
+- `bun run slides export -f html --in <file.md>`: export deck.
+- `bun run typecheck`: native TypeScript check (`tsgo --noEmit`).
+- `bun run check`: Biome lint/format check.
 - `bun run format`: apply Biome formatting.
-- `bun run spellcheck`: run cspell over the repo.
+- `bun run spellcheck`: cspell check.
+
+When working under `docs/<timestamp>_<title>/`, always pass config explicitly:
+`bun run slides render -c docs/<dir>/slides.config.yaml --in docs/<dir>/slides-data.json`
 
 ## Coding Style & Naming Conventions
-- Language: TypeScript (ESM).
-- Formatting/linting: Biome (`biome.json`); run `bun run format` before opening a PR.
-- Indentation and quote style are Biome-controlled; avoid manual style drift.
-- Use descriptive file names by responsibility (`loader.ts`, `pipeline.ts`, `slide-schema.ts`).
-- Prefer kebab-case for output file names and timestamped output directories in `docs/`.
+- TypeScript ESM on Bun 1.3.x.
+- Use `node:`-prefixed core imports and `.js` extension in TS import paths.
+- Formatting is Biome-controlled (tabs/ordering); do not hand-format against Biome.
+- Keep code/comments in English; slide output default language is Japanese.
+- Use responsibility-based filenames (`loader.ts`, `pipeline.ts`, `slide-schema.ts`).
 
 ## Testing Guidelines
-- There is no full automated test suite yet.
-- Minimum quality gate for changes: `bun run typecheck && bun run check && bun run spellcheck`.
-- When adding tests, use Bun’s test runner (`bun:test`) and place tests near the related module or under a dedicated `test/` directory with `*.test.ts` naming.
+- No full test suite yet; use quality gate:
+`bun run typecheck && bun run check && bun run spellcheck`.
+- If adding tests, use `bun:test` with `*.test.ts` naming.
+
+## Slide & Content Rules
+- Recommended workflow: use `create-slides` skill for new decks.
+- Never generate blank slides; separators are only between slides.
+- Keep code blocks within limits (8 lines recommended, 12 max).
+- For claims/statistics, include source URLs; prefer primary sources.
+- If references exceed 5-6 links, split across multiple reference slides.
+
+## Codex Integration (.codex)
+- Skill source is versioned in `.codex/skills/` and mirrored from `.claude/skills/`.
+- Install skills with `bash .codex/install-skills.sh` (targets `$CODEX_HOME/skills` or `~/.codex/skills`).
+- Invoke skills by naming them in chat (for example, `create-slides`, `generate`, `review-slides`).
+- Use `.codex/rules/` as the authoritative writing/editing rules when working on matching paths.
+- Use `.codex/agents/` as execution playbooks for complex workflows (for example, interactive slide creation and Marp customization).
 
 ## Commit & Pull Request Guidelines
-- Follow existing commit style: short, imperative, lowercase summaries (for example, `add cspell spell checking configuration`).
-- Keep commits focused to one concern.
-- PRs should include:
-  - What changed and why.
-  - Commands run for verification.
-  - Sample input/output or generated file path when behavior changes (for example, `docs/<timestamp>_<topic>/...`).
-
-## Security & Configuration Tips
-- Do not commit secrets in slide content or config files.
-- Prefer HTML export in constrained environments; PDF export requires Chromium.
+- Use short, imperative, lowercase commit subjects.
+- Keep commits scoped to one concern.
+- PRs must include purpose, verification commands, and changed output paths (for example, `docs/<timestamp>_<title>/dist/...`).

@@ -1,0 +1,37 @@
+topic: "日本円為替の今後の動向分析 - 投資家向け包括的レポート"
+language: ja
+theme: gaia
+size: 16:9
+paginate: true
+
+style: |
+  section {
+    font-size: 28px;
+  }
+  section h1 {
+    font-size: 48px;
+    font-weight: bold;
+  }
+  section h2 {
+    font-size: 40px;
+    border-bottom: 3px solid #0066cc;
+    padding-bottom: 10px;
+  }
+  section pre code {
+    font-size: 0.6em;
+    line-height: 1.4;
+  }
+  section table {
+    font-size: 0.85em;
+  }
+  section ul, section ol {
+    font-size: 0.9em;
+  }
+  .chart-note {
+    font-size: 0.7em;
+    color: #666;
+    font-style: italic;
+  }
+
+header: ""
+footer: "© 2026 為替動向分析レポート"
