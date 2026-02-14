@@ -4,6 +4,7 @@
 	"type": "module",
 	"scripts": {
 		"slides": "bun run src/index.ts",
+		"validate": "bun run scripts/validate-slides-schema.ts",
 		"split": "python3 scripts/split-code-diagrams.py --all",
 		"fix-mermaid": "python3 scripts/update-mermaid-styles.py",
 		"rebuild": "./scripts/rebuild-all-slides.sh",

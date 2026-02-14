@@ -9,6 +9,51 @@ description: 対話型でスライドを企画・設計・生成・エクスポ�
 
 ---
 
+## Phase 0: Pre-flight Checks
+
+**すべてのフェーズの前に実行する準備ステップ**
+
+### 0-1. スキーマ定義の読み込み
+
+```bash
+# Schema file を読む
+Read src/generate/slide-schema.ts
+```
+
+**確認項目:**
+- ✅ 有効なフィールド名: `title`, `content`, `layout` (必須)
+- ✅ オプショナル: `code`, `codeLanguage`, `mermaid`, `speakerNotes`
+- ✅ `layout` enum 値: `"default" | "center" | "section"`
+- ❌ 存在しないフィールド: `bullets` (これは間違い、`content` を使う)
+
+### 0-2. 出力構造ルールの確認
+
+```bash
+# Directory structure rules を読む
+Read .claude/rules/output-structure.md
+```
+
+**確認項目:**
+- ✅ `output.dir` はフルパス: `"docs/<timestamp>_<slug>"`
+- ❌ 相対パス `"."` は禁止
+- ✅ Export 成果物は `dist/` サブディレクトリ
+
+### 0-3. タイムスタンプ生成
+
+現在時刻から timestamp を生成:
+
+```javascript
+const timestamp = new Date().toISOString()
+  .replace(/[-:T]/g, '')
+  .slice(0, 14); // yyyymmddhhmmss
+
+// Example: "20260214153045"
+```
+
+**このタイムスタンプを Phase 3 (config生成) で使用**
+
+---
+
 ## Phase 1: ヒアリング
 
 以下を **1項目ずつ** 質問する（複数の質問をまとめて投げない。1つの質問→回答→次の質問のサイクルで進める）。ユーザーが既に情報を提供している場合はスキップ。
@@ -118,24 +163,34 @@ output:
 
 ---
 
-## Phase 4: スライドデータ生成
+## Phase 4: スライドデータ生成 (検証付き)
 
-アウトラインに基づいてスライドデータJSONを生成する。
+### 4-1. JSON生成前の確認
 
-各スライドの `slides[]` エントリ:
+**Phase 0 で読み込んだスキーマを参照:**
+
+- [ ] フィールド名が正しいか (`content` not `bullets`)
+- [ ] `layout` 値が enum に含まれるか
+- [ ] 必須フィールドが全て含まれるか
+
+### 4-2. JSON生成
+
+アウトラインに基づいて slides-data.json を生成する。
+
+**各スライドの構造:**
 ```json
 {
   "title": "スライドタイトル",
-  "content": ["箇条書き（最大5つ）"],
-  "code": "コードブロック（任意）",
+  "content": ["箇条書き項目"],  // ← "bullets" ではない
+  "layout": "default",          // ← enum 値のみ: "default" | "center" | "section"
+  "code": "コード例 (optional)",
   "codeLanguage": "typescript",
-  "mermaid": "graph TD; A-->B（任意）",
-  "speakerNotes": "発表者向けノート（任意）",
-  "layout": "default | center | section"
+  "mermaid": "graph TD; A-->B (optional)",
+  "speakerNotes": "ノート (optional)"
 }
 ```
 
-### コンテンツ品質ルール
+### 4-3. コンテンツ品質ルール
 
 - 1スライド1メッセージ。情報を詰め込みすぎない
 - 箇条書きは `bulletPointsMax` 以下（デフォルト5）
@@ -150,7 +205,45 @@ output:
 - タイトルスライドとまとめスライドは `layout: "center"`
 - セクション区切りは `layout: "section"`
 
-JSONを `docs/slides-data.json` に書き出す。
+### 4-4. 自動検証ループ
+
+**JSON をメモリ内で検証:**
+
+```typescript
+// Pseudo-code for validation logic
+for (let attempt = 0; attempt < 3; attempt++) {
+  const isValid = validateAgainstSchema(generatedJSON);
+
+  if (isValid) {
+    break; // 検証通過、次へ
+  }
+
+  // エラーを特定して修正
+  fixValidationErrors(generatedJSON);
+}
+
+if (!isValid) {
+  reportToUser("Validation failed after 3 attempts");
+  stopProcess();
+}
+```
+
+**一般的なエラーと修正:**
+
+| エラー | 修正 |
+|--------|------|
+| Field `bullets` found | Rename to `content` |
+| Invalid layout value | Use only: `default`, `center`, `section` |
+| Missing required field | Add `title` and `layout` |
+
+### 4-5. ファイル書き込み
+
+検証通過後のみ、`docs/<timestamp>_<slug>/slides-data.json` に書き出す。
+
+**書き込み前の最終確認:**
+- [ ] JSON が valid である
+- [ ] ディレクトリが存在する
+- [ ] ファイルパスが正しい
 
 ---
 

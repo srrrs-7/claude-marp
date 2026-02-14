@@ -22,7 +22,7 @@ bun run slides init                     # Create slides.config.yaml template
 bun run slides render --in data.json    # Render slide data JSON to Marp markdown
 bun run slides export -f html --in FILE # Export Marp markdown to HTML
 bun run split                           # Split code/diagrams from content to prevent overflow (all presentations)
-bun run fix-mermaid                     # Add CSS to fit Mermaid diagrams within slide dimensions (all configs)
+bun run fix-mermaid                     # (Legacy) Add CSS to fit Mermaid diagrams within slide dimensions
 bun run rebuild                         # Re-render & re-export all presentations in docs/
 bun run rebuild:render                  # Re-render only (skip export)
 bun run rebuild:export                  # Re-export only (skip render)
@@ -42,6 +42,61 @@ bun run slides export -c docs/<dir>/slides.config.yaml -f html --in docs/<dir>/f
 ```
 
 No test framework yet. When adding tests, use `bun:test`.
+
+## Pre-flight Validation Protocol
+
+**すべてのスライド生成タスクで実行:**
+
+### 1. Schema Loading (最優先)
+
+**slides-data.json 生成前に必ず実行:**
+
+- Read `src/generate/slide-schema.ts`
+- 有効なフィールド名を確認: `content` (not `bullets`)
+- `layout` の enum 値を確認: `"default" | "center" | "section"`
+- オプショナルフィールドを理解: `code`, `codeLanguage`, `mermaid`, `speakerNotes`
+
+### 2. Directory Structure Validation
+
+**slides.config.yaml 生成時に必ず確認:**
+
+- `output.dir` は**必ず**フルパス: `"docs/<timestamp>_<slug>"`
+- 相対パス `"."` や `"./"` は禁止（実行ディレクトリ基準で解決される）
+- タイムスタンプ形式: `yyyymmddhhmmss` (14桁)
+
+### 3. Post-Generation Validation
+
+**JSON 書き込み前に:**
+
+- 生成した JSON をスキーマと照合
+- エラーがあれば修正して再検証
+- 3回失敗したら停止してユーザーに報告
+
+### 4. Common Mistakes to Avoid
+
+- ❌ Using `'bullets'` field → ✅ Use `'content'`
+- ❌ Invalid layout values → ✅ Use only: `"default"`, `"center"`, `"section"`
+- ❌ Relative paths in output.dir → ✅ Use full path: `"docs/<timestamp>_<slug>"`
+- ❌ Missing timestamp prefix → ✅ Use `yyyymmddhhmmss_slug` format
+- ❌ CLI flag `--dangerous` → ✅ Use `--dangerously-skip-permissions`
+
+## Marp-Specific Constraints
+
+**Mermaid diagrams:**
+
+- Marp uses `<marp-pre>` custom elements, not standard `<pre>`
+- If Mermaid doesn't render, pre-render with `mmdc` and use image reference
+
+**SVG images:**
+
+- Use relative paths for image references
+- Cannot embed raw SVG code in markdown
+- Verify image paths are correct
+
+**Themes:**
+
+- Always use the theme specified in config
+- Don't guess or assume a different theme
 
 ## Architecture
 
@@ -85,7 +140,7 @@ docs/20260214073222_example/
 
 `markdown.ts`:
 - Build front-matter (`marp: true`, theme, directives, **custom styles**)
-- Render slides (title, bullets, code, mermaid, speaker notes as HTML comments)
+- Render slides (title, bullets, code, speaker notes as HTML comments). Diagrams use inline SVG in rendered markdown
 - Insert `---` separators **between slides only** (not after front-matter, to avoid blank slides)
 
 **Critical rendering rule:** Front-matter and first slide are joined with `\n\n` only. Slide separators (`\n\n---\n\n`) are used between slides, never after front-matter.
@@ -116,7 +171,7 @@ style: |
 - **Code + bullets**: 7-10 lines code → max 2 bullets; 11-12 lines code → max 1 bullet
 - **Never create blank slides** (page number placeholders, etc.)
 
-**Mermaid diagrams:** Use for visualizing flows, architecture, timelines. Complex diagrams (8+ nodes) should be alone on slide.
+**Diagrams: Use inline SVG (not Mermaid) for all visualizations** — flows, architecture, timelines, etc. SVG provides full control over color, layout, and legends. Always include `viewBox` and `style="max-height:70vh;width:auto;display:block;margin:0 auto;"`. Complex diagrams (8+ nodes) should be alone on slide.
 
 **References and citations:**
 - Use Markdown link format: `[Title](URL)`
@@ -136,7 +191,7 @@ style: |
 - **rules/** — Path-scoped rules auto-loaded when editing matching files:
   - `schemas.md` — Schema change checklist (triggers when editing `src/config/schema.ts` or `src/generate/slide-schema.ts`)
   - `marp.md` — Marp format rules, code overflow prevention
-  - `slide-design.md` — Cognitive load theory, Google best practices, content constraints, **Mermaid-first policy (use SVG only for unsupported diagrams like Venn)**
+  - `slide-design.md` — Cognitive load theory, Google best practices, content constraints, **SVG-only policy (all diagrams must use inline SVG, not Mermaid)**
   - `output-structure.md` — Directory structure and file placement rules for presentations
 - **agents/** — `slide-creator` (interactive 8-phase slide creation), `marp-customizer` (theme & CSS customization)
 - **skills/** — Each skill is a directory with `SKILL.md`:
@@ -161,10 +216,7 @@ style: |
 ## Automation Workflow
 
 **Preventing content overflow:**
-Run `bun run split` to automatically separate code blocks and Mermaid diagrams from bullet content across all presentations. This prevents slides from overflowing by creating dedicated diagram/code slides.
-
-**Fixing Mermaid diagram sizing:**
-Run `bun run fix-mermaid` to add CSS that constrains Mermaid diagrams to slide dimensions (max-height: 70vh) in all config files.
+Run `bun run split` to automatically separate code blocks and SVG diagrams from bullet content across all presentations. This prevents slides from overflowing by creating dedicated diagram/code slides.
 
 **Rebuilding all presentations:**
 After structural changes (schema updates, template modifications), use:
