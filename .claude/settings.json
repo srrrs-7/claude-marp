@@ -1,5 +1,48 @@
 {
 	"env": {
 		"CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+	},
+	"hooks": {
+		"PostToolUse": [
+			{
+				"matcher": "Write.*slides-data\\.json",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bun run validate",
+						"statusMessage": "Validating slides schema..."
+					}
+				]
+			},
+			{
+				"matcher": "Write|Edit",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bun run format",
+						"statusMessage": "Formatting code...",
+						"async": true
+					},
+					{
+						"type": "command",
+						"command": "bun run typecheck",
+						"statusMessage": "Type checking...",
+						"async": true
+					}
+				]
+			}
+		],
+		"SessionEnd": [
+			{
+				"hooks": [
+					{
+						"type": "prompt",
+						"prompt": "If this was a long conversation (20+ messages), remind the user to run /compact to reduce context size. Keep it brief and friendly.",
+						"statusMessage": "Checking session length...",
+						"async": true
+					}
+				]
+			}
+		]
 	}
 }

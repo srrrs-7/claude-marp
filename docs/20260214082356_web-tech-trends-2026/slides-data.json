@@ -1,514 +1,567 @@
 {
-  "slides": [
-    {
-      "title": "2026年のWeb技術トレンド予測",
-      "content": [
-        "開発者・エンジニアのための完全ガイド",
-        "フロントエンド / ランタイム / WebAPI / AI統合開発"
-      ]
-    },
-    {
-      "title": "本日のアジェンダ",
-      "content": [
-        "**1. フロントエンドフレームワーク** - React 19, Vue 4, Svelte 5の最新動向",
-        "**2. ランタイム・ビルドツール** - Bun, Deno, Vite 6のパフォーマンス革命",
-        "**3. WebプラットフォームAPI** - View Transitions, Popoverなどネイティブ機能の充実",
-        "**4. AI統合開発** - GitHub Copilot, Cursor, Claude Codeが変える開発フロー"
-      ]
-    },
-    {
-      "title": "2026年のWeb開発を取り巻く状況",
-      "content": [
-        "**エコシステムの成熟**: 主要ツールが安定版に到達、選択肢が明確化",
-        "**パフォーマンス競争**: Rust製ツールの台頭で10倍以上の高速化",
-        "**標準化の加速**: Webプラットフォーム標準APIがフレームワーク機能を代替",
-        "**AI統合の日常化**: コード生成・レビューがワークフローの一部に",
-        "**開発者体験の重視**: DX向上がツール選定の最優先事項"
-      ]
-    },
-    {
-      "title": "このプレゼンテーションの使い方",
-      "content": [
-        "**自己ペースで学習**: 各セクション独立、興味ある部分から読める",
-        "**実践的な情報**: コード例、ベンチマーク、選定基準を豊富に掲載",
-        "**参考資料完備**: 公式ドキュメント、記事へのリンクで深掘り可能",
-        "**チーム共有に最適**: 技術選定会議や勉強会の資料として活用"
-      ]
-    },
-    {
-      "title": "フロントエンドフレームワークの潮流",
-      "content": [
-        "**React**: 依然として最大シェア、Server Componentsで新時代へ",
-        "**Vue**: 安定と革新のバランス、Vapor Modeで性能向上",
-        "**Svelte**: Runes導入でリアクティビティを再定義",
-        "**新興勢力**: Solid.js（Signals）、Qwik（Resumability）が注目",
-        "**選定の鍵**: チーム習熟度 > 最新トレンド"
-      ]
-    },
-    {
-      "title": "React 19: 新機能概要",
-      "content": [
-        "**Server Components**: サーバーサイドレンダリングの新標準",
-        "**Server Actions**: フォーム処理・データ更新の簡素化",
-        "**React Compiler**: 自動メモ化でuseMemo/useCallback不要に",
-        "**use() Hook**: Promise/Contextを統一的に扱う新API",
-        "**Suspense強化**: データフェッチングとの完全統合"
-      ],
-      "speakerNotes": "React 19は2025年Q4にRC版リリース、2026年Q1に正式版を予定"
-    },
-    {
-      "title": "React 19: Server Components詳解",
-      "content": [
-        "サーバーで実行、バンドルサイズゼロ",
-        "直接DBアクセス可能、シークレット使用OK"
-      ]
-    },
-    {
-      "title": "React 19: Server Components詳解（コード例）",
-      "content": [],
-      "code": "// Server Component（デフォルト）\nexport default async function ProductList() {\n  const products = await db.products.findMany()\n  return (\n    <div>\n      {products.map(p => <ProductCard key={p.id} product={p} />)}\n    </div>\n  )\n}\n\n// Client Component（'use client'で明示）\n'use client'\nexport function AddToCartButton({ productId }) {\n  return <button onClick={() => addToCart(productId)}>カートに追加</button>\n}",
-      "codeLanguage": "tsx"
-    },
-    {
-      "title": "React 19: React Compiler",
-      "content": [
-        "**自動最適化**: コンポーネントとHookを自動でメモ化",
-        "**useMemo/useCallback削減**: 手動最適化がほぼ不要に",
-        "**段階的導入**: ファイル・ディレクトリ単位で有効化可能"
-      ]
-    },
-    {
-      "title": "React 19: React Compiler（コード例）",
-      "content": [],
-      "code": "// Before: 手動メモ化が必要\nconst val = useMemo(() => expensiveCalc(a, b), [a, b])\n\n// After: Compilerが自動で最適化\nconst val = expensiveCalc(a, b)",
-      "codeLanguage": "javascript"
-    },
-    {
-      "title": "Vue 4への道のり",
-      "content": [
-        "**Vapor Mode**: コンパイル時最適化でVirtual DOM削減",
-        "**パフォーマンス向上**: 初期レンダリング最大50%高速化",
-        "**後方互換性**: Vue 3コードがそのまま動作",
-        "**リリース時期**: 2026年Q2-Q3を予定"
-      ]
-    },
-    {
-      "title": "Svelte 5とRunes",
-      "content": [
-        "**Runes**: 新しいリアクティビティプリミティブ（$state, $derived, $effect）",
-        "**明示的リアクティビティ**: 変数の「どこが」リアクティブか一目瞭然",
-        "**TypeScript統合強化**: 型推論が大幅改善",
-        "**2024年12月正式リリース**: 既に本番利用可能"
-      ]
-    },
-    {
-      "title": "Svelte 5: コード比較",
-      "content": [
-        "可読性向上: リアクティブな値が明確",
-        "デバッグ容易: 依存関係が追跡しやすい"
-      ]
-    },
-    {
-      "title": "Svelte 5: コード比較（コード例）",
-      "content": [],
-      "code": "// Svelte 4: 暗黙的リアクティビティ\nlet count = 0\n$: doubled = count * 2\n\n// Svelte 5: Runes（明示的）\nlet count = $state(0)\nlet doubled = $derived(count * 2)",
-      "codeLanguage": "javascript"
-    },
-    {
-      "title": "Solid.js: Signals-first設計",
-      "content": [
-        "**細粒度リアクティビティ**: Virtual DOMなし、直接DOM更新",
-        "**Signals API**: createSignal, createEffect, createMemoの3つが核",
-        "**React風文法**: JSXでReact開発者が学習容易",
-        "**超高速**: ベンチマークでReact/Vueを上回る性能"
-      ]
-    },
-    {
-      "title": "Solid.js: Signals-first設計（コード例）",
-      "content": [],
-      "code": "import { createSignal } from 'solid-js'\n\nfunction Counter() {\n  const [count, setCount] = createSignal(0)\n  return <button onClick={() => setCount(count() + 1)}>{count()}</button>\n}",
-      "codeLanguage": "javascript"
-    },
-    {
-      "title": "Qwik: Resumability革命",
-      "content": [
-        "**Hydrationゼロ**: サーバーで実行状態をシリアライズ、クライアントで復元",
-        "**遅延実行**: ユーザー操作まで一切JSを実行しない",
-        "**初期表示最速**: TTI（Time to Interactive）が劇的に改善",
-        "**Qwik City**: メタフレームワークで実用レベル"
-      ]
-    },
-    {
-      "title": "フレームワーク性能比較",
-      "content": [
-        "**JS-Framework-Benchmark結果（2026年1月）**:",
-        "- Solid.js: スコア 1.08（最速）",
-        "- Svelte 5: スコア 1.12 / Vue 3: スコア 1.28 / React 18: スコア 1.52",
-        "**バンドルサイズ**: Svelte 2.5KB / Solid 7KB / Vue 34KB / React 42KB"
-      ]
-    },
-    {
-      "title": "フレームワーク選定フローチャート",
-      "content": [
-        "プロジェクト特性とチームスキルに応じた選定フロー"
-      ]
-    },
-    {
-      "title": "フレームワーク選定フローチャート（図解）",
-      "content": [],
-      "mermaid": "graph TD\n    A[新規プロジェクト] --> B{チームスキル}\n    B -->|React経験| C[React 19]\n    B -->|Vue経験| D[Vue 3/4]\n    B -->|新規学習OK| E{規模}\n    E -->|大規模| C\n    E -->|中小規模| F[Svelte/Solid]"
-    },
-    {
-      "title": "メタフレームワークの進化",
-      "content": [
-        "**Next.js 15**: React 19対応、Turbopack安定化",
-        "**Nuxt 4**: Vue 3.5統合、Nitro 2エンジン",
-        "**SvelteKit 2**: Vite 5ベース、型安全ルーティング"
-      ]
-    },
-    {
-      "title": "Islands Architecture",
-      "content": [
-        "**コンセプト**: ページ全体ではなく「島」だけをハイドレーション",
-        "**Astro**: マルチフレームワーク対応",
-        "**JS削減効果**: 通常のSPAより90%以上削減も可能"
-      ]
-    },
-    {
-      "title": "フロントエンドFW: まとめ",
-      "content": [
-        "**React 19**: エコシステム最強、Server Componentsで新時代",
-        "**Vue 3/4**: 安定性と革新のバランス",
-        "**Svelte 5**: 学習曲線緩やか、中小規模に最適",
-        "**選定の鉄則**: チーム > トレンド > 性能"
-      ]
-    },
-    {
-      "title": "ランタイム戦争の現在地",
-      "content": [
-        "**Node.js**: 依然デファクトスタンダード、安定進化",
-        "**Bun**: 2024年9月に1.0到達、全方位高速化",
-        "**Deno**: 2.0でNode互換完成、セキュリティファースト",
-        "**2026年の状況**: 3つが共存、プロジェクト特性で使い分け"
-      ]
-    },
-    {
-      "title": "Bun 2.x: 全方位高速化",
-      "content": [
-        "**インストール速度**: npm比20-30倍高速",
-        "**起動速度**: Node.js比4倍高速（Zig + JavaScriptCore）",
-        "**TypeScript実行**: トランスパイル不要で直接実行",
-        "**組み込みツール**: テスト・バンドラ・トランスパイラ内蔵"
-      ]
-    },
-    {
-      "title": "Bun: 組み込みツール群",
-      "content": [
-        "外部ツール不要、セットアップ簡単",
-        "統一されたDX"
-      ]
-    },
-    {
-      "title": "Bun: 組み込みツール群（コード例）",
-      "content": [],
-      "code": "# テストランナー（Jest互換）\nbun test\n\n# バンドラー\nbun build ./index.ts --outdir ./dist\n\n# TypeScript実行\nbun run index.ts\n\n# パッケージインストール\nbun install",
-      "codeLanguage": "bash"
-    },
-    {
-      "title": "Deno 2.x: Node互換の完成",
-      "content": [
-        "**Node.js互換**: package.json、node_modules、npm完全サポート",
-        "**セキュリティモデル**: デフォルトでネットワーク・ファイルアクセス禁止",
-        "**TypeScript標準**: 追加設定なしでTS実行"
-      ]
-    },
-    {
-      "title": "Node.js 22-24: 安定進化",
-      "content": [
-        "**Node.js 22 LTS**: V8 12.4、性能向上",
-        "**Node.js 24**: ESM完全デフォルト化予定",
-        "**エコシステム**: 最大最強、ほぼ全npmパッケージ対応"
-      ]
-    },
-    {
-      "title": "ランタイム性能比較",
-      "content": [
-        "**起動時間**: Bun 8ms / Deno 18ms / Node.js 35ms",
-        "**インストール速度**: Bun 1.2s / pnpm 3.5s / npm 24s",
-        "**HTTP throughput**: Bun 145k / Deno 98k / Node.js 82k req/sec"
-      ]
-    },
-    {
-      "title": "Vite 6: 次世代ビルドツール",
-      "content": [
-        "**Rollup 4統合**: プラグインエコシステム強化",
-        "**Environment API**: SSR・MPA対応の抽象化",
-        "**高速HMR**: 大規模プロジェクトでも即座に反映",
-        "**2025年12月リリース**: 既に主流ツールの地位確立"
-      ]
-    },
-    {
-      "title": "Turbopack: Vercelの秘密兵器",
-      "content": [
-        "**Rustベース**: webpackより10倍高速",
-        "**増分コンピューティング**: 変更差分のみ再計算",
-        "**Next.js 15統合**: `next dev --turbo`で有効化"
-      ]
-    },
-    {
-      "title": "ビルドツール速度比較",
-      "content": [
-        "**開発ビルド（1000モジュール）**:",
-        "Turbopack 1.2s / Vite 2.8s / esbuild 3.1s / webpack 12.5s",
-        "**本番ビルド**:",
-        "esbuild 3.8s / Vite 8.2s / webpack 35s"
-      ]
-    },
-    {
-      "title": "パッケージマネージャー比較",
-      "content": [
-        "**npm**: 安定、広く使われる、やや遅い",
-        "**pnpm**: ハードリンクで高速・省スペース、モノレポ対応",
-        "**bun**: 最速、ただしエコシステム発展中",
-        "**2026年推奨**: pnpm（バランス良）、Bun（速度重視）"
-      ]
-    },
-    {
-      "title": "ランタイム・ビルド: まとめ",
-      "content": [
-        "**Node.js**: 安定性・エコシステム重視なら鉄板",
-        "**Bun**: 開発速度・DX重視の新規プロジェクトで挑戦",
-        "**Vite**: フレームワーク問わず開発ビルドツールのデファクト"
-      ]
-    },
-    {
-      "title": "WebプラットフォームAPIの充実",
-      "content": [
-        "**トレンド**: ブラウザネイティブ機能がフレームワーク機能を代替",
-        "**メリット**: バンドルサイズ削減、標準化、長期安定性",
-        "**2026年の注目API**: View Transitions、Popover、Speculation Rules"
-      ]
-    },
-    {
-      "title": "View Transitions API",
-      "content": [
-        "**機能**: ページ遷移時に滑らかなアニメーション",
-        "**対応**: Chrome/Edge 111+、Safari 18+（2026年全ブラウザ対応）",
-        "**SPA風体験**: MPAでもスムーズ遷移"
-      ]
-    },
-    {
-      "title": "View Transitions: 実装例",
-      "content": [
-        "JavaScriptは最小限",
-        "CSSでアニメーション制御"
-      ]
-    },
-    {
-      "title": "View Transitions: 実装例（コード例）",
-      "content": [],
-      "code": "// ページ遷移をアニメーション化\ndocument.startViewTransition(() => {\n  document.body.innerHTML = newPageHTML\n})\n\n// CSS（カスタムアニメーション）\n@keyframes fade-in { from { opacity: 0 } }\n::view-transition-new(root) {\n  animation: 300ms ease-out fade-in\n}",
-      "codeLanguage": "javascript"
-    },
-    {
-      "title": "Popover API",
-      "content": [
-        "**機能**: ネイティブのポップオーバー・ダイアログ",
-        "**対応**: Chrome/Edge 114+、Safari 17+",
-        "**メリット**: z-index管理不要、アクセシビリティ対応自動"
-      ]
-    },
-    {
-      "title": "Popover API: 実装パターン",
-      "content": [
-        "JavaScript不要でアクセシビリティ対応",
-        "ESCキーで自動的に閉じる"
-      ]
-    },
-    {
-      "title": "Popover API: 実装パターン（コード例）",
-      "content": [],
-      "code": "<button popovertarget=\"menu\">開く</button>\n\n<div id=\"menu\" popover>\n  <p>コンテンツ</p>\n  <button popovertarget=\"menu\" popovertargetaction=\"hide\">閉じる</button>\n</div>",
-      "codeLanguage": "html"
-    },
-    {
-      "title": "Speculation Rules API",
-      "content": [
-        "**機能**: 投機的なプリレンダリング・プリフェッチ",
-        "**対応**: Chrome/Edge 121+",
-        "**高速化**: 次ページを事前レンダリング、遷移が瞬時に"
-      ]
-    },
-    {
-      "title": "Container Queries",
-      "content": [
-        "**機能**: 親要素サイズに応じたレスポンシブデザイン",
-        "**対応**: 全ブラウザ対応",
-        "**革新性**: メディアクエリ→コンテナクエリ"
-      ]
-    },
-    {
-      "title": ":has()セレクタの威力",
-      "content": [
-        "**機能**: 「子要素を持つ親」を選択（親セレクタ）",
-        "**対応**: 全ブラウザ対応",
-        "**革新性**: CSSだけで親要素をスタイリング可能"
-      ]
-    },
-    {
-      "title": ":has()セレクタの威力（コード例）",
-      "content": [],
-      "code": "/* エラーを含むフォームを赤枠に */\nform:has(.error) { border: 2px solid red; }\n\n/* 画像を含むカードを特別スタイル */\n.card:has(img) { grid-column: span 2; }",
-      "codeLanguage": "css"
-    },
-    {
-      "title": "WebプラットフォームAPI: まとめ",
-      "content": [
-        "**View Transitions**: ページ遷移UX向上",
-        "**Popover**: アクセシビリティ対応が楽に",
-        "**Container Queries**: 真のコンポーネント指向CSS",
-        "**戦略**: 新機能を積極採用→バンドルサイズ削減"
-      ]
-    },
-    {
-      "title": "AI統合開発の現状",
-      "content": [
-        "**2026年の当たり前**: コード補完・生成・レビューにAI利用",
-        "**主要ツール**: GitHub Copilot、Cursor、Claude Code",
-        "**生産性向上**: 調査では20-40%の効率化報告",
-        "**役割変化**: コード書き→設計・レビュー・テスト重視へ"
-      ]
-    },
-    {
-      "title": "GitHub Copilot: 進化の軌跡",
-      "content": [
-        "**2021年**: コード補完として登場",
-        "**2023年**: Copilot Chat（対話型）、CLI",
-        "**2024-25年**: Workspace、PR要約、セキュリティスキャン",
-        "**2026年**: エージェント機能強化",
-        "**普及率**: Fortune 500の50%以上が導入"
-      ]
-    },
-    {
-      "title": "Cursor: AI-firstエディタ",
-      "content": [
-        "**Composer Mode**: 複数ファイルを一括生成・編集",
-        "**Agent Mode**: タスクを指示すると自律的に実装",
-        "**Codebase理解**: プロジェクト全体をインデックス化",
-        "**VSCode互換**: 拡張機能・設定をそのまま移行可能"
-      ]
-    },
-    {
-      "title": "Claude Code: CLIエージェント",
-      "content": [
-        "**CLI統合**: ターミナルから自然言語で操作",
-        "**ファイル操作**: 読み取り、編集、作成を自動化",
-        "**Git連携**: コミット、PR作成を支援"
-      ]
-    },
-    {
-      "title": "Claude Code: CLIエージェント（コード例）",
-      "content": [],
-      "code": "# 自然言語でタスク指示\nclaude \"すべてのTODOコメントを抽出してissue化\"\n\n# 複数ファイル横断\nclaude \"認証ロジックをミドルウェアに分離\"",
-      "codeLanguage": "bash"
-    },
-    {
-      "title": "AI駆動開発フロー",
-      "content": [
-        "人間とAIの役割分担を明確化した開発プロセス"
-      ]
-    },
-    {
-      "title": "AI駆動開発フロー（図解）",
-      "content": [],
-      "mermaid": "graph LR\n    A[要件定義] --> B[AI設計案]\n    B --> C[人間レビュー]\n    C --> D[AI実装]\n    D --> E[AIテスト]\n    E --> F[人間テスト]\n    F --> G{合格?}\n    G -->|No| D\n    G -->|Yes| H[マージ]"
-    },
-    {
-      "title": "AI活用の生産性データ",
-      "content": [
-        "**GitHub調査（2024）**: Copilot利用で実装速度55%向上",
-        "**実測例**:",
-        "- ボイラープレートコード: 80%時間削減",
-        "- テストコード作成: 60%削減",
-        "**注意**: 複雑なアーキテクチャ設計では効果限定的"
-      ]
-    },
-    {
-      "title": "AIペアプログラミングのコツ",
-      "content": [
-        "**明確な指示**: 曖昧な要求→期待外れ。具体的に型・仕様を指定",
-        "**段階的生成**: 一度に全部→複雑すぎてミス。小さく作って積み上げ",
-        "**コンテキスト提供**: 関連ファイル・型定義をAIに見せる",
-        "**レビュー必須**: AIコードを無批判に受け入れない"
-      ]
-    },
-    {
-      "title": "AIコード生成のリスク",
-      "content": [
-        "**セキュリティ脆弱性**: SQL injection、XSSなどを見逃す可能性",
-        "**ライセンス問題**: 学習データ由来のコード",
-        "**品質ばらつき**: テストなしで本番投入は危険",
-        "**対策**: 自動テスト、セキュリティスキャン、人間レビューの徹底"
-      ]
-    },
-    {
-      "title": "AI時代のコードレビュー",
-      "content": [
-        "**人間がチェックすべき項目**:",
-        "- アーキテクチャ設計の妥当性",
-        "- セキュリティ脆弱性（OWASP Top 10）",
-        "- エッジケース・エラーハンドリング",
-        "**AIに任せられる**: 文法、スタイル、単純なバグ検出"
-      ]
-    },
-    {
-      "title": "AI統合開発: まとめ",
-      "content": [
-        "**GitHub Copilot**: 最も成熟、大企業に安心",
-        "**Cursor**: スピード重視、スタートアップ向け",
-        "**Claude Code**: CLI特化、自動化好きに最適",
-        "**開発者の役割**: 設計・判断・レビューにシフト"
-      ]
-    },
-    {
-      "title": "2026 Web技術トレンド総括",
-      "content": [
-        "**フロントエンドFW**: React 19、Vue 4、Svelte 5が主流",
-        "**ランタイム**: Bunの高速化が魅力、Node.js安定性も重要",
-        "**WebAPI**: ネイティブ機能充実でフレームワーク依存度低下",
-        "**AI開発**: 補完・生成が当たり前に",
-        "**全体傾向**: パフォーマンス・DX・標準化が三大テーマ"
-      ]
-    },
-    {
-      "title": "あなたの学習ロードマップ",
-      "content": [
-        "**Phase 1（3ヶ月）**: 現在のフレームワークを深掘り",
-        "**Phase 2（3ヶ月）**: Vite/Bunなどビルドツール刷新",
-        "**Phase 3（3ヶ月）**: WebプラットフォームAPI試用",
-        "**Phase 4（3ヶ月）**: AI開発ツール導入",
-        "**継続**: 週次でトレンドチェック"
-      ]
-    },
-    {
-      "title": "参考資料・リンク集",
-      "content": [
-        "**公式ドキュメント**:",
-        "- [React 19](https://react.dev) / [Vue 3](https://vuejs.org)",
-        "**ベンチマーク**: [JS Framework Benchmark](https://krausest.github.io/js-framework-benchmark)",
-        "**AI開発**: [GitHub Copilot](https://github.com/features/copilot) / [Cursor](https://cursor.sh)"
-      ]
-    },
-    {
-      "title": "Thank You & 次のアクション",
-      "content": [
-        "**今日から始められること**:",
-        "1. 現プロジェクトのビルド時間を計測",
-        "2. AI開発ツールのトライアルを試す",
-        "3. View Transitions APIを小規模プロジェクトで実験",
-        "4. チームで技術選定会議を開催",
-        "**質問・フィードバック歓迎**: Web技術は常に進化、継続学習が鍵"
-      ]
-    }
-  ]
+	"slides": [
+		{
+			"title": "2026年のWeb技術トレンド予測",
+			"content": [
+				"開発者・エンジニアのための完全ガイド",
+				"フロントエンド / ランタイム / WebAPI / AI統合開発"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "本日のアジェンダ",
+			"content": [
+				"**1. フロントエンドフレームワーク** - React 19, Vue 4, Svelte 5の最新動向",
+				"**2. ランタイム・ビルドツール** - Bun, Deno, Vite 6のパフォーマンス革命",
+				"**3. WebプラットフォームAPI** - View Transitions, Popoverなどネイティブ機能の充実",
+				"**4. AI統合開発** - GitHub Copilot, Cursor, Claude Codeが変える開発フロー"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "2026年のWeb開発を取り巻く状況",
+			"content": [
+				"**エコシステムの成熟**: 主要ツールが安定版に到達、選択肢が明確化",
+				"**パフォーマンス競争**: Rust製ツールの台頭で10倍以上の高速化",
+				"**標準化の加速**: Webプラットフォーム標準APIがフレームワーク機能を代替",
+				"**AI統合の日常化**: コード生成・レビューがワークフローの一部に",
+				"**開発者体験の重視**: DX向上がツール選定の最優先事項"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "このプレゼンテーションの使い方",
+			"content": [
+				"**自己ペースで学習**: 各セクション独立、興味ある部分から読める",
+				"**実践的な情報**: コード例、ベンチマーク、選定基準を豊富に掲載",
+				"**参考資料完備**: 公式ドキュメント、記事へのリンクで深掘り可能",
+				"**チーム共有に最適**: 技術選定会議や勉強会の資料として活用"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "フロントエンドフレームワークの潮流",
+			"content": [
+				"**React**: 依然として最大シェア、Server Componentsで新時代へ",
+				"**Vue**: 安定と革新のバランス、Vapor Modeで性能向上",
+				"**Svelte**: Runes導入でリアクティビティを再定義",
+				"**新興勢力**: Solid.js（Signals）、Qwik（Resumability）が注目",
+				"**選定の鍵**: チーム習熟度 > 最新トレンド"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "React 19: 新機能概要",
+			"content": [
+				"**Server Components**: サーバーサイドレンダリングの新標準",
+				"**Server Actions**: フォーム処理・データ更新の簡素化",
+				"**React Compiler**: 自動メモ化でuseMemo/useCallback不要に",
+				"**use() Hook**: Promise/Contextを統一的に扱う新API",
+				"**Suspense強化**: データフェッチングとの完全統合"
+			],
+			"speakerNotes": "React 19は2025年Q4にRC版リリース、2026年Q1に正式版を予定",
+			"layout": "default"
+		},
+		{
+			"title": "React 19: Server Components詳解",
+			"content": [
+				"サーバーで実行、バンドルサイズゼロ",
+				"直接DBアクセス可能、シークレット使用OK"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "React 19: Server Components詳解（コード例）",
+			"content": [],
+			"code": "// Server Component（デフォルト）\nexport default async function ProductList() {\n  const products = await db.products.findMany()\n  return (\n    <div>\n      {products.map(p => <ProductCard key={p.id} product={p} />)}\n    </div>\n  )\n}\n\n// Client Component（'use client'で明示）\n'use client'\nexport function AddToCartButton({ productId }) {\n  return <button onClick={() => addToCart(productId)}>カートに追加</button>\n}",
+			"codeLanguage": "tsx",
+			"layout": "default"
+		},
+		{
+			"title": "React 19: React Compiler",
+			"content": [
+				"**自動最適化**: コンポーネントとHookを自動でメモ化",
+				"**useMemo/useCallback削減**: 手動最適化がほぼ不要に",
+				"**段階的導入**: ファイル・ディレクトリ単位で有効化可能"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "React 19: React Compiler（コード例）",
+			"content": [],
+			"code": "// Before: 手動メモ化が必要\nconst val = useMemo(() => expensiveCalc(a, b), [a, b])\n\n// After: Compilerが自動で最適化\nconst val = expensiveCalc(a, b)",
+			"codeLanguage": "javascript",
+			"layout": "default"
+		},
+		{
+			"title": "Vue 4への道のり",
+			"content": [
+				"**Vapor Mode**: コンパイル時最適化でVirtual DOM削減",
+				"**パフォーマンス向上**: 初期レンダリング最大50%高速化",
+				"**後方互換性**: Vue 3コードがそのまま動作",
+				"**リリース時期**: 2026年Q2-Q3を予定"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Svelte 5とRunes",
+			"content": [
+				"**Runes**: 新しいリアクティビティプリミティブ（$state, $derived, $effect）",
+				"**明示的リアクティビティ**: 変数の「どこが」リアクティブか一目瞭然",
+				"**TypeScript統合強化**: 型推論が大幅改善",
+				"**2024年12月正式リリース**: 既に本番利用可能"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Svelte 5: コード比較",
+			"content": [
+				"可読性向上: リアクティブな値が明確",
+				"デバッグ容易: 依存関係が追跡しやすい"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Svelte 5: コード比較（コード例）",
+			"content": [],
+			"code": "// Svelte 4: 暗黙的リアクティビティ\nlet count = 0\n$: doubled = count * 2\n\n// Svelte 5: Runes（明示的）\nlet count = $state(0)\nlet doubled = $derived(count * 2)",
+			"codeLanguage": "javascript",
+			"layout": "default"
+		},
+		{
+			"title": "Solid.js: Signals-first設計",
+			"content": [
+				"**細粒度リアクティビティ**: Virtual DOMなし、直接DOM更新",
+				"**Signals API**: createSignal, createEffect, createMemoの3つが核",
+				"**React風文法**: JSXでReact開発者が学習容易",
+				"**超高速**: ベンチマークでReact/Vueを上回る性能"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Solid.js: Signals-first設計（コード例）",
+			"content": [],
+			"code": "import { createSignal } from 'solid-js'\n\nfunction Counter() {\n  const [count, setCount] = createSignal(0)\n  return <button onClick={() => setCount(count() + 1)}>{count()}</button>\n}",
+			"codeLanguage": "javascript",
+			"layout": "default"
+		},
+		{
+			"title": "Qwik: Resumability革命",
+			"content": [
+				"**Hydrationゼロ**: サーバーで実行状態をシリアライズ、クライアントで復元",
+				"**遅延実行**: ユーザー操作まで一切JSを実行しない",
+				"**初期表示最速**: TTI（Time to Interactive）が劇的に改善",
+				"**Qwik City**: メタフレームワークで実用レベル"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "フレームワーク性能比較",
+			"content": [
+				"**JS-Framework-Benchmark結果（2026年1月）**:",
+				"- Solid.js: スコア 1.08（最速）",
+				"- Svelte 5: スコア 1.12 / Vue 3: スコア 1.28 / React 18: スコア 1.52",
+				"**バンドルサイズ**: Svelte 2.5KB / Solid 7KB / Vue 34KB / React 42KB"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "フレームワーク選定フローチャート",
+			"content": ["プロジェクト特性とチームスキルに応じた選定フロー"],
+			"layout": "default"
+		},
+		{
+			"title": "フレームワーク選定フローチャート（図解）",
+			"content": [],
+			"mermaid": "graph TD\n    A[新規プロジェクト] --> B{チームスキル}\n    B -->|React経験| C[React 19]\n    B -->|Vue経験| D[Vue 3/4]\n    B -->|新規学習OK| E{規模}\n    E -->|大規模| C\n    E -->|中小規模| F[Svelte/Solid]",
+			"layout": "default"
+		},
+		{
+			"title": "メタフレームワークの進化",
+			"content": [
+				"**Next.js 15**: React 19対応、Turbopack安定化",
+				"**Nuxt 4**: Vue 3.5統合、Nitro 2エンジン",
+				"**SvelteKit 2**: Vite 5ベース、型安全ルーティング"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Islands Architecture",
+			"content": [
+				"**コンセプト**: ページ全体ではなく「島」だけをハイドレーション",
+				"**Astro**: マルチフレームワーク対応",
+				"**JS削減効果**: 通常のSPAより90%以上削減も可能"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "フロントエンドFW: まとめ",
+			"content": [
+				"**React 19**: エコシステム最強、Server Componentsで新時代",
+				"**Vue 3/4**: 安定性と革新のバランス",
+				"**Svelte 5**: 学習曲線緩やか、中小規模に最適",
+				"**選定の鉄則**: チーム > トレンド > 性能"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "ランタイム戦争の現在地",
+			"content": [
+				"**Node.js**: 依然デファクトスタンダード、安定進化",
+				"**Bun**: 2024年9月に1.0到達、全方位高速化",
+				"**Deno**: 2.0でNode互換完成、セキュリティファースト",
+				"**2026年の状況**: 3つが共存、プロジェクト特性で使い分け"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Bun 2.x: 全方位高速化",
+			"content": [
+				"**インストール速度**: npm比20-30倍高速",
+				"**起動速度**: Node.js比4倍高速（Zig + JavaScriptCore）",
+				"**TypeScript実行**: トランスパイル不要で直接実行",
+				"**組み込みツール**: テスト・バンドラ・トランスパイラ内蔵"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Bun: 組み込みツール群",
+			"content": ["外部ツール不要、セットアップ簡単", "統一されたDX"],
+			"layout": "default"
+		},
+		{
+			"title": "Bun: 組み込みツール群（コード例）",
+			"content": [],
+			"code": "# テストランナー（Jest互換）\nbun test\n\n# バンドラー\nbun build ./index.ts --outdir ./dist\n\n# TypeScript実行\nbun run index.ts\n\n# パッケージインストール\nbun install",
+			"codeLanguage": "bash",
+			"layout": "default"
+		},
+		{
+			"title": "Deno 2.x: Node互換の完成",
+			"content": [
+				"**Node.js互換**: package.json、node_modules、npm完全サポート",
+				"**セキュリティモデル**: デフォルトでネットワーク・ファイルアクセス禁止",
+				"**TypeScript標準**: 追加設定なしでTS実行"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Node.js 22-24: 安定進化",
+			"content": [
+				"**Node.js 22 LTS**: V8 12.4、性能向上",
+				"**Node.js 24**: ESM完全デフォルト化予定",
+				"**エコシステム**: 最大最強、ほぼ全npmパッケージ対応"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "ランタイム性能比較",
+			"content": [
+				"**起動時間**: Bun 8ms / Deno 18ms / Node.js 35ms",
+				"**インストール速度**: Bun 1.2s / pnpm 3.5s / npm 24s",
+				"**HTTP throughput**: Bun 145k / Deno 98k / Node.js 82k req/sec"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Vite 6: 次世代ビルドツール",
+			"content": [
+				"**Rollup 4統合**: プラグインエコシステム強化",
+				"**Environment API**: SSR・MPA対応の抽象化",
+				"**高速HMR**: 大規模プロジェクトでも即座に反映",
+				"**2025年12月リリース**: 既に主流ツールの地位確立"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Turbopack: Vercelの秘密兵器",
+			"content": [
+				"**Rustベース**: webpackより10倍高速",
+				"**増分コンピューティング**: 変更差分のみ再計算",
+				"**Next.js 15統合**: `next dev --turbo`で有効化"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "ビルドツール速度比較",
+			"content": [
+				"**開発ビルド（1000モジュール）**:",
+				"Turbopack 1.2s / Vite 2.8s / esbuild 3.1s / webpack 12.5s",
+				"**本番ビルド**:",
+				"esbuild 3.8s / Vite 8.2s / webpack 35s"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "パッケージマネージャー比較",
+			"content": [
+				"**npm**: 安定、広く使われる、やや遅い",
+				"**pnpm**: ハードリンクで高速・省スペース、モノレポ対応",
+				"**bun**: 最速、ただしエコシステム発展中",
+				"**2026年推奨**: pnpm（バランス良）、Bun（速度重視）"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "ランタイム・ビルド: まとめ",
+			"content": [
+				"**Node.js**: 安定性・エコシステム重視なら鉄板",
+				"**Bun**: 開発速度・DX重視の新規プロジェクトで挑戦",
+				"**Vite**: フレームワーク問わず開発ビルドツールのデファクト"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "WebプラットフォームAPIの充実",
+			"content": [
+				"**トレンド**: ブラウザネイティブ機能がフレームワーク機能を代替",
+				"**メリット**: バンドルサイズ削減、標準化、長期安定性",
+				"**2026年の注目API**: View Transitions、Popover、Speculation Rules"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "View Transitions API",
+			"content": [
+				"**機能**: ページ遷移時に滑らかなアニメーション",
+				"**対応**: Chrome/Edge 111+、Safari 18+（2026年全ブラウザ対応）",
+				"**SPA風体験**: MPAでもスムーズ遷移"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "View Transitions: 実装例",
+			"content": ["JavaScriptは最小限", "CSSでアニメーション制御"],
+			"layout": "default"
+		},
+		{
+			"title": "View Transitions: 実装例（コード例）",
+			"content": [],
+			"code": "// ページ遷移をアニメーション化\ndocument.startViewTransition(() => {\n  document.body.innerHTML = newPageHTML\n})\n\n// CSS（カスタムアニメーション）\n@keyframes fade-in { from { opacity: 0 } }\n::view-transition-new(root) {\n  animation: 300ms ease-out fade-in\n}",
+			"codeLanguage": "javascript",
+			"layout": "default"
+		},
+		{
+			"title": "Popover API",
+			"content": [
+				"**機能**: ネイティブのポップオーバー・ダイアログ",
+				"**対応**: Chrome/Edge 114+、Safari 17+",
+				"**メリット**: z-index管理不要、アクセシビリティ対応自動"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Popover API: 実装パターン",
+			"content": [
+				"JavaScript不要でアクセシビリティ対応",
+				"ESCキーで自動的に閉じる"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Popover API: 実装パターン（コード例）",
+			"content": [],
+			"code": "<button popovertarget=\"menu\">開く</button>\n\n<div id=\"menu\" popover>\n  <p>コンテンツ</p>\n  <button popovertarget=\"menu\" popovertargetaction=\"hide\">閉じる</button>\n</div>",
+			"codeLanguage": "html",
+			"layout": "default"
+		},
+		{
+			"title": "Speculation Rules API",
+			"content": [
+				"**機能**: 投機的なプリレンダリング・プリフェッチ",
+				"**対応**: Chrome/Edge 121+",
+				"**高速化**: 次ページを事前レンダリング、遷移が瞬時に"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Container Queries",
+			"content": [
+				"**機能**: 親要素サイズに応じたレスポンシブデザイン",
+				"**対応**: 全ブラウザ対応",
+				"**革新性**: メディアクエリ→コンテナクエリ"
+			],
+			"layout": "default"
+		},
+		{
+			"title": ":has()セレクタの威力",
+			"content": [
+				"**機能**: 「子要素を持つ親」を選択（親セレクタ）",
+				"**対応**: 全ブラウザ対応",
+				"**革新性**: CSSだけで親要素をスタイリング可能"
+			],
+			"layout": "default"
+		},
+		{
+			"title": ":has()セレクタの威力（コード例）",
+			"content": [],
+			"code": "/* エラーを含むフォームを赤枠に */\nform:has(.error) { border: 2px solid red; }\n\n/* 画像を含むカードを特別スタイル */\n.card:has(img) { grid-column: span 2; }",
+			"codeLanguage": "css",
+			"layout": "default"
+		},
+		{
+			"title": "WebプラットフォームAPI: まとめ",
+			"content": [
+				"**View Transitions**: ページ遷移UX向上",
+				"**Popover**: アクセシビリティ対応が楽に",
+				"**Container Queries**: 真のコンポーネント指向CSS",
+				"**戦略**: 新機能を積極採用→バンドルサイズ削減"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "AI統合開発の現状",
+			"content": [
+				"**2026年の当たり前**: コード補完・生成・レビューにAI利用",
+				"**主要ツール**: GitHub Copilot、Cursor、Claude Code",
+				"**生産性向上**: 調査では20-40%の効率化報告",
+				"**役割変化**: コード書き→設計・レビュー・テスト重視へ"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "GitHub Copilot: 進化の軌跡",
+			"content": [
+				"**2021年**: コード補完として登場",
+				"**2023年**: Copilot Chat（対話型）、CLI",
+				"**2024-25年**: Workspace、PR要約、セキュリティスキャン",
+				"**2026年**: エージェント機能強化",
+				"**普及率**: Fortune 500の50%以上が導入"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Cursor: AI-firstエディタ",
+			"content": [
+				"**Composer Mode**: 複数ファイルを一括生成・編集",
+				"**Agent Mode**: タスクを指示すると自律的に実装",
+				"**Codebase理解**: プロジェクト全体をインデックス化",
+				"**VSCode互換**: 拡張機能・設定をそのまま移行可能"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Claude Code: CLIエージェント",
+			"content": [
+				"**CLI統合**: ターミナルから自然言語で操作",
+				"**ファイル操作**: 読み取り、編集、作成を自動化",
+				"**Git連携**: コミット、PR作成を支援"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Claude Code: CLIエージェント（コード例）",
+			"content": [],
+			"code": "# 自然言語でタスク指示\nclaude \"すべてのTODOコメントを抽出してissue化\"\n\n# 複数ファイル横断\nclaude \"認証ロジックをミドルウェアに分離\"",
+			"codeLanguage": "bash",
+			"layout": "default"
+		},
+		{
+			"title": "AI駆動開発フロー",
+			"content": ["人間とAIの役割分担を明確化した開発プロセス"],
+			"layout": "default"
+		},
+		{
+			"title": "AI駆動開発フロー（図解）",
+			"content": [],
+			"mermaid": "graph LR\n    A[要件定義] --> B[AI設計案]\n    B --> C[人間レビュー]\n    C --> D[AI実装]\n    D --> E[AIテスト]\n    E --> F[人間テスト]\n    F --> G{合格?}\n    G -->|No| D\n    G -->|Yes| H[マージ]",
+			"layout": "default"
+		},
+		{
+			"title": "AI活用の生産性データ",
+			"content": [
+				"**GitHub調査（2024）**: Copilot利用で実装速度55%向上",
+				"**実測例**:",
+				"- ボイラープレートコード: 80%時間削減",
+				"- テストコード作成: 60%削減",
+				"**注意**: 複雑なアーキテクチャ設計では効果限定的"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "AIペアプログラミングのコツ",
+			"content": [
+				"**明確な指示**: 曖昧な要求→期待外れ。具体的に型・仕様を指定",
+				"**段階的生成**: 一度に全部→複雑すぎてミス。小さく作って積み上げ",
+				"**コンテキスト提供**: 関連ファイル・型定義をAIに見せる",
+				"**レビュー必須**: AIコードを無批判に受け入れない"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "AIコード生成のリスク",
+			"content": [
+				"**セキュリティ脆弱性**: SQL injection、XSSなどを見逃す可能性",
+				"**ライセンス問題**: 学習データ由来のコード",
+				"**品質ばらつき**: テストなしで本番投入は危険",
+				"**対策**: 自動テスト、セキュリティスキャン、人間レビューの徹底"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "AI時代のコードレビュー",
+			"content": [
+				"**人間がチェックすべき項目**:",
+				"- アーキテクチャ設計の妥当性",
+				"- セキュリティ脆弱性（OWASP Top 10）",
+				"- エッジケース・エラーハンドリング",
+				"**AIに任せられる**: 文法、スタイル、単純なバグ検出"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "AI統合開発: まとめ",
+			"content": [
+				"**GitHub Copilot**: 最も成熟、大企業に安心",
+				"**Cursor**: スピード重視、スタートアップ向け",
+				"**Claude Code**: CLI特化、自動化好きに最適",
+				"**開発者の役割**: 設計・判断・レビューにシフト"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "2026 Web技術トレンド総括",
+			"content": [
+				"**フロントエンドFW**: React 19、Vue 4、Svelte 5が主流",
+				"**ランタイム**: Bunの高速化が魅力、Node.js安定性も重要",
+				"**WebAPI**: ネイティブ機能充実でフレームワーク依存度低下",
+				"**AI開発**: 補完・生成が当たり前に",
+				"**全体傾向**: パフォーマンス・DX・標準化が三大テーマ"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "あなたの学習ロードマップ",
+			"content": [
+				"**Phase 1（3ヶ月）**: 現在のフレームワークを深掘り",
+				"**Phase 2（3ヶ月）**: Vite/Bunなどビルドツール刷新",
+				"**Phase 3（3ヶ月）**: WebプラットフォームAPI試用",
+				"**Phase 4（3ヶ月）**: AI開発ツール導入",
+				"**継続**: 週次でトレンドチェック"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "参考資料・リンク集",
+			"content": [
+				"**公式ドキュメント**:",
+				"- [React 19](https://react.dev) / [Vue 3](https://vuejs.org)",
+				"**ベンチマーク**: [JS Framework Benchmark](https://krausest.github.io/js-framework-benchmark)",
+				"**AI開発**: [GitHub Copilot](https://github.com/features/copilot) / [Cursor](https://cursor.sh)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Thank You & 次のアクション",
+			"content": [
+				"**今日から始められること**:",
+				"1. 現プロジェクトのビルド時間を計測",
+				"2. AI開発ツールのトライアルを試す",
+				"3. View Transitions APIを小規模プロジェクトで実験",
+				"4. チームで技術選定会議を開催",
+				"**質問・フィードバック歓迎**: Web技術は常に進化、継続学習が鍵"
+			],
+			"layout": "default"
+		}
+	]
 }
