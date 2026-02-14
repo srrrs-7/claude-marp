@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     jq \
     dnsutils \
     aggregate \
+    tmux \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Codex CLI
