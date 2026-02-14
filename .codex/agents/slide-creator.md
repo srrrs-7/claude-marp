@@ -65,7 +65,7 @@ description: 対話型でスライドを企画・設計・生成・エクスポ�
 
 各スライドについて:
 - コード例が必要か（言語指定）
-- Mermaidダイアグラムが必要か
+- 図解（SVG/表）が必要か
 - スピーカーノートのポイント
 
 **ユーザーの承認を得てから次に進む。修正があれば反映。**
@@ -105,7 +105,6 @@ marp:
 content:
   codeBlocks: （true/false）
   codeLanguage: "（指定言語）"
-  mermaidDiagrams: （true/false）
   bulletPointsMax: 5
   speakerNotes: true
 
@@ -129,7 +128,6 @@ output:
   "content": ["箇条書き（最大5つ）"],
   "code": "コードブロック（任意）",
   "codeLanguage": "typescript",
-  "mermaid": "graph TD; A-->B（任意）",
   "speakerNotes": "発表者向けノート（任意）",
   "layout": "default | center | section"
 }
@@ -145,7 +143,7 @@ output:
   - コード11-12行の場合 → 箇条書き最大1項目
   - 12行を超える場合は必ず分割
 - **空白スライドは作らない**: すべてのスライドに実質的なコンテンツを配置
-- Mermaid図はシンプルに。複雑な図（8+ノード）は簡略化または単独スライド化
+- 図解が複雑な場合は簡略化するか単独スライド化
 - スピーカーノートは箇条書きの補足説明（単なる繰り返しにしない）
 - タイトルスライドとまとめスライドは `layout: "center"`
 - セクション区切りは `layout: "section"`

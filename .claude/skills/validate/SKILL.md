@@ -73,7 +73,7 @@ docs/20260214090000_broken/slides-data.json:
 
 **Missing required fields:**
 - Every slide must have: `title`, `layout`
-- Optional fields: `content`, `code`, `codeLanguage`, `mermaid`, `speakerNotes`
+- Optional fields: `content`, `code`, `codeLanguage`, `speakerNotes`
 
 ## Auto-fix Suggestions
 

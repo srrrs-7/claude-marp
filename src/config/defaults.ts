@@ -22,27 +22,24 @@ marp:
       font-size: 0.6em;
       line-height: 1.4;
     }
-
-    /* Mermaid図解をスライドに収める */
-    section .mermaid {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    /* SVGがスライド枠からはみ出さないように制約する */
+    section svg {
       max-height: 70vh;
       max-width: 100%;
+      display: block;
+      margin: 0 auto;
     }
-
-    section .mermaid svg {
-      max-width: 100%;
+    section img[src$=".svg"] {
       max-height: 70vh;
-      height: auto;
-      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
     }
 
 content:
   codeBlocks: true
   codeLanguage: "typescript"
-  mermaidDiagrams: true
   bulletPointsMax: 5
   speakerNotes: true
 

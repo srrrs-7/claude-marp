@@ -7,7 +7,7 @@
 		"validate": "bun run scripts/validate-slides-schema.ts",
 		"fix": "bun run scripts/auto-fix-slides-schema.ts",
 		"split": "python3 scripts/split-code-diagrams.py --all",
-		"fix-mermaid": "python3 scripts/update-mermaid-styles.py",
+		"fix-svg": "bun run scripts/fix-svg-overflow.ts",
 		"rebuild": "./scripts/rebuild-all-slides.sh",
 		"rebuild:render": "./scripts/rebuild-all-slides.sh render",
 		"rebuild:export": "./scripts/rebuild-all-slides.sh export",

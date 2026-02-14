@@ -10,10 +10,6 @@ export const slideContentSchema = z.object({
 		.string()
 		.optional()
 		.describe("Programming language for the code block"),
-	mermaid: z
-		.string()
-		.optional()
-		.describe("Optional mermaid diagram definition"),
 	speakerNotes: z.string().optional().describe("Speaker notes for this slide"),
 	layout: z
 		.enum(["default", "center", "section"])

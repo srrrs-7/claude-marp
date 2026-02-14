@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-Split Code and Diagram Slides
+Split Code Slides
 -------------------------------
-Separates code blocks and Mermaid diagrams from bullet points
+Separates code blocks from bullet points
 to prevent slide overflow.
 
 Usage:
     python3 scripts/split-code-diagrams.py <path/to/slides-data.json>
     python3 scripts/split-code-diagrams.py --all  # Process all presentations
 
-For each slide with both content and code/diagram:
+For each slide with both content and code:
 - Slide A: Title + bullet points (explanation)
-- Slide B: Title + "(コード例)" or "(図解)" + code/diagram only
+- Slide B: Title + "(コード例)" + code only
 """
 
 import json
@@ -20,17 +20,16 @@ from pathlib import Path
 
 
 def split_slide_content(slides):
-    """Split slides with both content and code/diagram into separate slides."""
+    """Split slides with both content and code into separate slides."""
     new_slides = []
     split_count = 0
 
     for slide in slides:
-        has_mermaid = 'mermaid' in slide and slide.get('mermaid')
         has_code = 'code' in slide and slide.get('code')
         has_content = 'content' in slide and len(slide.get('content', [])) > 0
 
-        # If slide has code/diagram AND content, split it
-        if (has_mermaid or has_code) and has_content:
+        # If slide has code AND content, split it
+        if has_code and has_content:
             split_count += 1
 
             # Slide 1: Explanation only
@@ -40,22 +39,13 @@ def split_slide_content(slides):
             }
             new_slides.append(slide1)
 
-            # Slide 2: Code/diagram only
-            if has_mermaid:
-                # Mermaid diagram
-                slide2 = {
-                    "title": slide['title'] + "（図解）",
-                    "content": [],
-                    "mermaid": slide['mermaid']
-                }
-            elif has_code:
-                # Code block
-                slide2 = {
-                    "title": slide['title'] + "（コード例）",
-                    "content": [],
-                    "code": slide['code'],
-                    "codeLanguage": slide.get('codeLanguage', 'text')
-                }
+            # Slide 2: Code block only
+            slide2 = {
+                "title": slide['title'] + "（コード例）",
+                "content": [],
+                "code": slide['code'],
+                "codeLanguage": slide.get('codeLanguage', 'text')
+            }
 
             new_slides.append(slide2)
         else:

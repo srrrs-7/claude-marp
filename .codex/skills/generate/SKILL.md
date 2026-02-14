@@ -17,7 +17,6 @@ user_invocable: true
     "content": ["箇条書き1", "箇条書き2"],
     "code": "コード（任意）",
     "codeLanguage": "typescript",
-    "mermaid": "mermaid定義（任意）",
     "speakerNotes": "ノート（任意）",
     "layout": "default | center | section"
   }]

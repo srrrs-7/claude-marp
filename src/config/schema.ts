@@ -27,7 +27,6 @@ export const slidesConfigSchema = z.object({
 		.object({
 			codeBlocks: z.boolean().default(true),
 			codeLanguage: z.string().default("typescript"),
-			mermaidDiagrams: z.boolean().default(true),
 			bulletPointsMax: z.number().int().min(1).max(10).default(5),
 			speakerNotes: z.boolean().default(true),
 		})

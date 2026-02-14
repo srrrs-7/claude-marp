@@ -21,8 +21,7 @@ When creating `slides.config.yaml` for new presentations:
 bun run slides init                     # Create slides.config.yaml template
 bun run slides render --in data.json    # Render slide data JSON to Marp markdown
 bun run slides export -f html --in FILE # Export Marp markdown to HTML
-bun run split                           # Split code/diagrams from content to prevent overflow (all presentations)
-bun run fix-mermaid                     # (Legacy) Add CSS to fit Mermaid diagrams within slide dimensions
+bun run split                           # Split code from content to prevent overflow (all presentations)
 bun run rebuild                         # Re-render & re-export all presentations in docs/
 bun run rebuild:render                  # Re-render only (skip export)
 bun run rebuild:export                  # Re-export only (skip render)
@@ -54,7 +53,7 @@ No test framework yet. When adding tests, use `bun:test`.
 - Read `src/generate/slide-schema.ts`
 - 有効なフィールド名を確認: `content` (not `bullets`)
 - `layout` の enum 値を確認: `"default" | "center" | "section"`
-- オプショナルフィールドを理解: `code`, `codeLanguage`, `mermaid`, `speakerNotes`
+- オプショナルフィールドを理解: `code`, `codeLanguage`, `speakerNotes`
 
 ### 2. Directory Structure Validation
 
@@ -81,11 +80,6 @@ No test framework yet. When adding tests, use `bun:test`.
 - ❌ CLI flag `--dangerous` → ✅ Use `--dangerously-skip-permissions`
 
 ## Marp-Specific Constraints
-
-**Mermaid diagrams:**
-
-- Marp uses `<marp-pre>` custom elements, not standard `<pre>`
-- If Mermaid doesn't render, pre-render with `mmdc` and use image reference
 
 **SVG images:**
 

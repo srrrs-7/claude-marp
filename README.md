@@ -55,8 +55,7 @@ docs/
 | `bun run slides init` | `slides.config.yaml` テンプレートを生成 |
 | `bun run slides render --in <data.json>` | JSONからMarpマークダウンをレンダリング |
 | `bun run slides export -f <html\|pdf\|pptx> --in <file.md>` | マークダウンをエクスポート |
-| `bun run split` | コード・図解をコンテンツから分離してはみ出しを防止（全プレゼンテーション） |
-| `bun run fix-mermaid` | Mermaid図解をスライドに収めるCSSを追加（全設定ファイル） |
+| `bun run split` | コードをコンテンツから分離してはみ出しを防止（全プレゼンテーション） |
 | `bun run rebuild` | `docs/` 配下の全プレゼンテーションを再レンダリング・再エクスポート |
 | `bun run rebuild:render` | 全プレゼンテーションを再レンダリングのみ（エクスポートスキップ） |
 | `bun run rebuild:export` | 全プレゼンテーションを再エクスポートのみ（レンダリングスキップ） |
@@ -87,7 +86,6 @@ docs/
       "content": ["コンポーネントA", "コンポーネントB"],
       "code": "const server = Bun.serve({ port: 3000 })",
       "codeLanguage": "typescript",
-      "mermaid": "graph TD\n  Client-->API\n  API-->DB",
       "speakerNotes": "ここで構成の全体像を説明する",
       "layout": "default"
     },
@@ -107,7 +105,6 @@ docs/
 | `layout` | No | `"default"` / `"center"` (タイトル/まとめ) / `"section"` (セクション見出し) |
 | `code` | No | コードブロック |
 | `codeLanguage` | No | コードの言語（デフォルト: config値） |
-| `mermaid` | No | Mermaidダイアグラム定義 |
 | `speakerNotes` | No | 発表者ノート（HTMLコメントとして出力） |
 
 ## 設定 (slides.config.yaml)
@@ -135,7 +132,6 @@ marp:
 content:
   codeBlocks: true                 # コードブロック有効
   codeLanguage: "typescript"       # デフォルト言語
-  mermaidDiagrams: true            # Mermaid図有効
   bulletPointsMax: 5               # 箇条書き上限
   speakerNotes: true               # スピーカーノート有効
 

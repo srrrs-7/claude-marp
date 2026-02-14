@@ -1,6 +1,41 @@
 import type { SlidesConfig } from "../config/schema.js";
 import type { GenerationResult, SlideContent } from "./slide-schema.js";
 
+const SVG_CONTAINMENT_STYLE =
+	"max-height:70vh;max-width:100%;display:block;margin:0 auto;";
+
+/**
+ * Normalize inline SVGs to prevent overflow from slide boundaries.
+ * - Removes hardcoded width/height attributes (CSS handles sizing)
+ * - Adds containment style if missing or incomplete
+ */
+export function normalizeSvg(svg: string): string {
+	return svg.replace(/<svg([^>]*)>/g, (_match, attrs: string) => {
+		// Remove hardcoded width/height attributes (let CSS control sizing)
+		let cleaned = attrs
+			.replace(/\s+width\s*=\s*"[^"]*"/g, "")
+			.replace(/\s+height\s*=\s*"[^"]*"/g, "");
+
+		// Check for existing style attribute
+		const styleMatch = cleaned.match(/\s+style\s*=\s*"([^"]*)"/);
+		if (styleMatch) {
+			const existing = styleMatch[1];
+			// Only replace if it doesn't already contain containment rules
+			if (!existing.includes("max-height") || !existing.includes("max-width")) {
+				cleaned = cleaned.replace(
+					/\s+style\s*=\s*"[^"]*"/,
+					` style="${SVG_CONTAINMENT_STYLE}"`,
+				);
+			}
+		} else {
+			// No style attribute — add containment style
+			cleaned += ` style="${SVG_CONTAINMENT_STYLE}"`;
+		}
+
+		return `<svg${cleaned}>`;
+	});
+}
+
 function buildFrontMatter(config: SlidesConfig): string {
 	const lines: string[] = ["---", "marp: true"];
 
@@ -58,13 +93,6 @@ function renderSlide(slide: SlideContent): string {
 		parts.push("");
 	}
 
-	if (slide.mermaid) {
-		parts.push("```mermaid");
-		parts.push(slide.mermaid);
-		parts.push("```");
-		parts.push("");
-	}
-
 	if (slide.speakerNotes) {
 		parts.push("<!--");
 		parts.push(slide.speakerNotes);
@@ -85,5 +113,6 @@ export function renderMarpMarkdown(
 		slides.push(renderSlide(slide));
 	}
 
-	return `${frontMatter}\n\n${slides.join("\n\n---\n\n")}\n`;
+	const markdown = `${frontMatter}\n\n${slides.join("\n\n---\n\n")}\n`;
+	return normalizeSvg(markdown);
 }

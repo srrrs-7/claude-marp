@@ -10,7 +10,6 @@ esnext
 frontmatter
 gaia
 marp
-mermaid
 noEmit
 Noto
 omittable
