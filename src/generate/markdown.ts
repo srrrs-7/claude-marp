@@ -78,11 +78,12 @@ export function renderMarpMarkdown(
 	result: GenerationResult,
 	config: SlidesConfig,
 ): string {
-	const sections: string[] = [buildFrontMatter(config)];
+	const frontMatter = buildFrontMatter(config);
+	const slides: string[] = [];
 
 	for (const slide of result.slides) {
-		sections.push(renderSlide(slide));
+		slides.push(renderSlide(slide));
 	}
 
-	return `${sections.join("\n\n---\n\n")}\n`;
+	return `${frontMatter}\n\n${slides.join("\n\n---\n\n")}\n`;
 }

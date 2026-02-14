@@ -12,12 +12,14 @@ user_invocable: true
 
 1. **ヒアリング** — トピック、対象者、形式、持ち時間、コンテンツ要件、デザインの好みを質問
 2. **構成設計** — スライドアウトライン表を提示 → ユーザー承認
-3. **config生成** — `slides.config.yaml` を作成
-4. **データ生成** — slide schema に従ったJSON作成 → `docs/slides-data.json`
-5. **レンダリング** — `bun run slides render --in docs/slides-data.json`
+3. **config生成** — `slides.config.yaml` を作成（`docs/<timestamp>_<title>/` に専用ディレクトリ）
+4. **データ生成** — slide schema に従ったJSON作成 → `docs/<timestamp>_<title>/slides-data.json`
+5. **レンダリング** — `bun run slides render --in <path>/slides-data.json`
 6. **レビューループ** — フィードバック → 修正 → 再レンダリング（OKまで繰り返し）
 7. **デザイン調整** — テーマ・CSS・ディレクティブの微調整
-8. **エクスポート** — `bun run slides export -f html --in docs/<name>.md`
+8. **エクスポート** — `bun run slides export -f html --in <path>/<name>.md`
+
+**出力先:** すべてのファイルは `docs/<yyyymmddhhmmss>_<title>/` 配下に集約される
 
 ## 重要
 

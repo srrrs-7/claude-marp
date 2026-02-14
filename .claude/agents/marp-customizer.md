@@ -16,10 +16,18 @@ description: Marpテーマ・スタイルのカスタマイズ
 `slides.config.yaml` の `marp.style` またはマークダウン内 `<style>`:
 
 ```css
+/* コードブロックのフォントサイズ調整（デフォルト推奨）*/
+section pre code {
+  font-size: 0.6em;
+  line-height: 1.4;
+}
+
+/* その他のカスタマイズ例 */
 section { font-family: 'Noto Sans JP', sans-serif; }
-section pre { font-size: 0.8em; }
 section.split { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
 ```
+
+**コードブロック overflow 防止:** `font-size: 0.6em` がデフォルト推奨。これにより12行までのコードがスライド枠内に収まる
 
 ## スライド単位ディレクティブ
 

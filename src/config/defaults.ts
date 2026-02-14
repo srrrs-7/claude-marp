@@ -16,7 +16,12 @@ marp:
   paginate: true
   header: ""
   footer: ""
-  style: ""               # Custom CSS
+  style: |
+    /* コードブロックのフォントサイズを縮小してはみ出しを防ぐ */
+    section pre code {
+      font-size: 0.6em;
+      line-height: 1.4;
+    }
 
 content:
   codeBlocks: true

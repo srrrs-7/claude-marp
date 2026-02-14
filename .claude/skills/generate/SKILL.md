@@ -24,6 +24,13 @@ user_invocable: true
 }
 ```
 
-4. `docs/slides-data.json` に保存
-5. `bun run slides render --in docs/slides-data.json`
-6. 必要に応じてエクスポート: `bun run slides export -f html --in docs/<name>.md`
+**コンテンツ制約:**
+- コードブロック: **8行推奨**、12行最大
+- コード + 箇条書きの組み合わせに注意（7-10行なら箇条書き2項目まで）
+- 空白スライドを作らない
+
+4. `docs/<timestamp>_<title>/slides-data.json` に保存
+5. `bun run slides render --in <path>/slides-data.json`
+6. 必要に応じてエクスポート: `bun run slides export -f html --in <path>/<name>.md`
+
+**出力先:** すべてのファイルは `docs/<yyyymmddhhmmss>_<title>/` 配下に集約される

@@ -14,7 +14,7 @@ marp:
   size: "16:9"
   paginate: true
   header: ""
-  footer: "2026-02-14"
+  footer: ""
   style: |
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
     section {
@@ -31,6 +31,11 @@ marp:
     }
     section code {
       background-color: #fff3e0;
+    }
+    /* コードブロックのフォントサイズを縮小してはみ出しを防ぐ */
+    section pre code {
+      font-size: 0.6em;
+      line-height: 1.4;
     }
 
 content:
