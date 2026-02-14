@@ -299,15 +299,42 @@ section.lead h1 {
 }
 ;" data-marpit-pagination-total="38" data-size="16:9">
 <h1 id="%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88-vs-agent-teams">シングルエージェント vs Agent Teams</h1>
-<ul>
-<li>| 観点 | シングル / サブエージェント | Agent Teams |</li>
-<li>|------|--------------------------|-------------|</li>
-<li>| コンテキスト | 共有（結果が呼び出し元に返る） | 各自独立 |</li>
-<li>| 通信 | メインエージェント経由のみ | 直接メッセージ可能 |</li>
-<li>| 並列性 | 限定的（バックグラウンド実行） | 完全並列実行 |</li>
-<li>| 最適用途 | 結果のみ必要な集中タスク | 議論・協調が必要な複雑タスク |</li>
-<li>| トークンコスト | 低（結果を要約して返却） | 高（各自が独立インスタンス） |</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>観点</th>
+<th>シングル / サブエージェント</th>
+<th>Agent Teams</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>コンテキスト</td>
+<td>共有（結果が呼び出し元に返る）</td>
+<td>各自独立</td>
+</tr>
+<tr>
+<td>通信</td>
+<td>メインエージェント経由のみ</td>
+<td>直接メッセージ可能</td>
+</tr>
+<tr>
+<td>並列性</td>
+<td>限定的（バックグラウンド実行）</td>
+<td>完全並列実行</td>
+</tr>
+<tr>
+<td>最適用途</td>
+<td>結果のみ必要な集中タスク</td>
+<td>議論・協調が必要な複雑タスク</td>
+</tr>
+<tr>
+<td>トークンコスト</td>
+<td>低（結果を要約して返却）</td>
+<td>高（各自が独立インスタンス）</td>
+</tr>
+</tbody>
+</table>
 <footer>Claude Code Agent Teams Workshop</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-footer="Claude Code Agent Teams Workshop" data-class="lead" data-theme="gaia" data-style="section pre code {
@@ -359,70 +386,56 @@ section.lead h1 {
 }
 ;" data-marpit-pagination-total="38" data-size="16:9">
 <h1 id="%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E6%A6%82%E8%A6%81">アーキテクチャ概要</h1>
-<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;">
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
   
   <rect width="800" height="500" fill="#f8f9fa" />
-  <g id="lead">
-    <rect x="320" y="30" width="160" height="80" rx="8" fill="#FF6B6B" stroke="#C92A2A" stroke-width="2" />
-    <text x="400" y="60" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">Team Lead</text>
-    <text x="400" y="85" text-anchor="middle" font-family="Arial" font-size="13" fill="white">(メインセッション)</text>
-  </g>
-  <g id="task-list">
-    <rect x="120" y="210" width="180" height="80" rx="8" fill="#4ECDC4" stroke="#0E7C74" stroke-width="2" />
-    <text x="210" y="240" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">Task List</text>
-    <text x="210" y="265" text-anchor="middle" font-family="Arial" font-size="13" fill="white">(共有タスクリスト)</text>
-  </g>
-  <g id="mailbox">
-    <rect x="500" y="210" width="180" height="80" rx="8" fill="#95E1D3" stroke="#38B2AC" stroke-width="2" />
-    <text x="590" y="240" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">Mailbox</text>
-    <text x="590" y="265" text-anchor="middle" font-family="Arial" font-size="13" fill="white">(メッセージング)</text>
-  </g>
-  <g id="teammates">
-    <rect x="80" y="390" width="140" height="70" rx="8" fill="#A8DADC" stroke="#457B9D" stroke-width="2" />
-    <text x="150" y="415" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#1D3557">Teammate 1</text>
-    <text x="150" y="438" text-anchor="middle" font-family="Arial" font-size="11" fill="#1D3557">(独立セッション)</text>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;rect x=&quot;330&quot; y=&quot;390&quot; width=&quot;140&quot; height=&quot;70&quot; rx=&quot;8&quot; fill=&quot;#A8DADC&quot; stroke=&quot;#457B9D&quot; stroke-width=&quot;2&quot;/&gt;
-&lt;text x=&quot;400&quot; y=&quot;415&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot; fill=&quot;#1D3557&quot;&gt;Teammate 2&lt;/text&gt;
-&lt;text x=&quot;400&quot; y=&quot;438&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#1D3557&quot;&gt;(独立セッション)&lt;/text&gt;
+  <rect x="320" y="30" width="160" height="80" rx="8" fill="#FF6B6B" stroke="#C92A2A" stroke-width="2" />
+  <text x="400" y="60" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="white">Team Lead</text>
+  <text x="400" y="85" text-anchor="middle" font-family="sans-serif" font-size="13" fill="white">(メインセッション)</text>
+  <rect x="120" y="210" width="180" height="80" rx="8" fill="#4ECDC4" stroke="#0E7C74" stroke-width="2" />
+  <text x="210" y="240" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="white">Task List</text>
+  <text x="210" y="265" text-anchor="middle" font-family="sans-serif" font-size="13" fill="white">(共有タスクリスト)</text>
+  <rect x="500" y="210" width="180" height="80" rx="8" fill="#95E1D3" stroke="#38B2AC" stroke-width="2" />
+  <text x="590" y="240" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="white">Mailbox</text>
+  <text x="590" y="265" text-anchor="middle" font-family="sans-serif" font-size="13" fill="white">(メッセージング)</text>
+  <rect x="80" y="390" width="140" height="70" rx="8" fill="#A8DADC" stroke="#457B9D" stroke-width="2" />
+  <text x="150" y="415" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1D3557">Teammate 1</text>
+  <text x="150" y="438" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1D3557">(独立セッション)</text>
+  <rect x="330" y="390" width="140" height="70" rx="8" fill="#A8DADC" stroke="#457B9D" stroke-width="2" />
+  <text x="400" y="415" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1D3557">Teammate 2</text>
+  <text x="400" y="438" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1D3557">(独立セッション)</text>
+  <rect x="580" y="390" width="140" height="70" rx="8" fill="#A8DADC" stroke="#457B9D" stroke-width="2" />
+  <text x="650" y="415" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1D3557">Teammate 3</text>
+  <text x="650" y="438" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1D3557">(独立セッション)</text>
+  <line x1="340" y1="110" x2="255" y2="205" stroke="#C92A2A" stroke-width="2.5" />
+  <polygon points="248,200 255,215 262,204" fill="#C92A2A" />
+  <text x="280" y="155" font-family="sans-serif" font-size="11" fill="#C92A2A" font-weight="bold">作成・管理</text>
+  <line x1="460" y1="110" x2="545" y2="205" stroke="#C92A2A" stroke-width="2.5" />
+  <polygon points="538,204 545,215 552,200" fill="#C92A2A" />
+  <text x="490" y="155" font-family="sans-serif" font-size="11" fill="#C92A2A" font-weight="bold">指示・調整</text>
+  <line x1="155" y1="390" x2="193" y2="295" stroke="#457B9D" stroke-width="2" />
+  <polygon points="186,297 195,285 200,298" fill="#457B9D" />
+  <text x="155" y="340" font-family="sans-serif" font-size="10" fill="#457B9D">タスク取得・更新</text>
+  <line x1="370" y1="390" x2="245" y2="295" stroke="#457B9D" stroke-width="2" />
+  <polygon points="238,297 247,285 252,298" fill="#457B9D" />
+  <line x1="420" y1="390" x2="555" y2="295" stroke="#38B2AC" stroke-width="2" />
+  <polygon points="548,297 557,285 562,298" fill="#38B2AC" />
+  <line x1="570" y1="290" x2="430" y2="388" stroke="#38B2AC" stroke-width="2" />
+  <polygon points="424,383 428,397 437,386" fill="#38B2AC" />
+  <line x1="645" y1="390" x2="618" y2="295" stroke="#38B2AC" stroke-width="2" />
+  <polygon points="611,297 620,285 625,298" fill="#38B2AC" />
+  <line x1="610" y1="290" x2="638" y2="388" stroke="#38B2AC" stroke-width="2" />
+  <polygon points="631,386 636,397 644,383" fill="#38B2AC" />
+<p><text x="600" y="340" font-family="sans-serif" font-size="10" fill="#38B2AC"></text></p>
 
-&lt;rect x=&quot;580&quot; y=&quot;390&quot; width=&quot;140&quot; height=&quot;70&quot; rx=&quot;8&quot; fill=&quot;#A8DADC&quot; stroke=&quot;#457B9D&quot; stroke-width=&quot;2&quot;/&gt;
-&lt;text x=&quot;650&quot; y=&quot;415&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot; fill=&quot;#1D3557&quot;&gt;Teammate 3&lt;/text&gt;
-&lt;text x=&quot;650&quot; y=&quot;438&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#1D3557&quot;&gt;(独立セッション)&lt;/text&gt;
-</code></pre>
-  </g>
-  <defs>
-    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#C92A2A" />
-    </marker>
-    <marker id="arrowTeal" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#457B9D" />
-    </marker>
-    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#38B2AC" />
-    </marker>
-  </defs>
-  <path d="M 340 110 L 250 210" stroke="#C92A2A" stroke-width="2.5" fill="none" marker-end="url(#arrowRed)" />
-  <text x="280" y="155" font-family="Arial" font-size="11" fill="#C92A2A" font-weight="bold">作成・管理</text>
-  <path d="M 460 110 L 550 210" stroke="#C92A2A" stroke-width="2.5" fill="none" marker-end="url(#arrowRed)" />
-  <text x="490" y="155" font-family="Arial" font-size="11" fill="#C92A2A" font-weight="bold">指示・調整</text>
-  <path d="M 150 390 L 190 290" stroke="#457B9D" stroke-width="2" fill="none" marker-end="url(#arrowTeal)" />
-  <text x="155" y="335" font-family="Arial" font-size="10" fill="#457B9D">タスク取得・更新</text>
-  <path d="M 370 390 L 240 290" stroke="#457B9D" stroke-width="2" fill="none" marker-end="url(#arrowTeal)" />
-  <path d="M 400 390 L 560 290" stroke="#38B2AC" stroke-width="2" fill="none" marker-end="url(#arrowGreen)" />
-  <path d="M 570 290 L 410 390" stroke="#38B2AC" stroke-width="2" fill="none" marker-end="url(#arrowGreen)" />
-  <path d="M 650 390 L 620 290" stroke="#38B2AC" stroke-width="2" fill="none" marker-end="url(#arrowGreen)" />
-  <path d="M 610 290 L 640 390" stroke="#38B2AC" stroke-width="2" fill="none" marker-end="url(#arrowGreen)" />
-  <text x="510" y="335" font-family="Arial" font-size="10" fill="#38B2AC">メッセージ</text>
-  <g id="legend">
-    <text x="20" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="#333">凡例:</text>
-    <rect x="20" y="40" width="50" height="20" rx="4" fill="#FF6B6B" stroke="#C92A2A" stroke-width="1" />
-    <text x="75" y="54" font-family="Arial" font-size="11" fill="#333">リーダー</text>
-    <rect x="20" y="65" width="50" height="20" rx="4" fill="#4ECDC4" stroke="#0E7C74" stroke-width="1" />
-    <text x="75" y="79" font-family="Arial" font-size="11" fill="#333">共有リソース</text>
-    <rect x="20" y="90" width="50" height="20" rx="4" fill="#A8DADC" stroke="#457B9D" stroke-width="1" />
-    <text x="75" y="104" font-family="Arial" font-size="11" fill="#333">チームメイト</text>
-  </g>
-</svg>
+<p><text x="20" y="30" font-family="sans-serif" font-size="12" font-weight="bold" fill="#333">凡例:</text><br />
+<rect x="20" y="40" width="50" height="20" rx="4" fill="#FF6B6B" stroke="#C92A2A" stroke-width="1" /><br />
+<text x="75" y="54" font-family="sans-serif" font-size="11" fill="#333">リーダー</text><br />
+<rect x="20" y="65" width="50" height="20" rx="4" fill="#4ECDC4" stroke="#0E7C74" stroke-width="1" /><br />
+<text x="75" y="79" font-family="sans-serif" font-size="11" fill="#333">共有リソース</text><br />
+<rect x="20" y="90" width="50" height="20" rx="4" fill="#A8DADC" stroke="#457B9D" stroke-width="1" /><br />
+<text x="75" y="104" font-family="sans-serif" font-size="11" fill="#333">チームメイト</text><br />
+</svg></p>
 <footer>Claude Code Agent Teams Workshop</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-footer="Claude Code Agent Teams Workshop" data-theme="gaia" data-style="section pre code {
@@ -514,17 +527,44 @@ section.lead h1 {
 }
 ;" data-marpit-pagination-total="38" data-size="16:9">
 <h1 id="7%E3%81%A4%E3%81%AE%E5%9F%BA%E6%9C%AC%E3%83%97%E3%83%AA%E3%83%9F%E3%83%86%E3%82%A3%E3%83%96-%E4%B8%80%E8%A6%A7">7つの基本プリミティブ 一覧</h1>
-<ul>
-<li>| プリミティブ | 役割 |</li>
-<li>|-------------|------|</li>
-<li>| <strong>TeamCreate</strong> | チームの作成・初期化 |</li>
-<li>| <strong>TeamDelete</strong> | チームの削除・クリーンアップ |</li>
-<li>| <strong>TaskCreate</strong> | タスクの作成 |</li>
-<li>| <strong>TaskGet</strong> | タスク詳細の取得 |</li>
-<li>| <strong>TaskUpdate</strong> | タスクの更新・ステータス変更 |</li>
-<li>| <strong>TaskList</strong> | タスク一覧の取得 |</li>
-<li>| <strong>SendMessage</strong> | エージェント間メッセージング |</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>プリミティブ</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TeamCreate</strong></td>
+<td>チームの作成・初期化</td>
+</tr>
+<tr>
+<td><strong>TeamDelete</strong></td>
+<td>チームの削除・クリーンアップ</td>
+</tr>
+<tr>
+<td><strong>TaskCreate</strong></td>
+<td>タスクの作成</td>
+</tr>
+<tr>
+<td><strong>TaskGet</strong></td>
+<td>タスク詳細の取得</td>
+</tr>
+<tr>
+<td><strong>TaskUpdate</strong></td>
+<td>タスクの更新・ステータス変更</td>
+</tr>
+<tr>
+<td><strong>TaskList</strong></td>
+<td>タスク一覧の取得</td>
+</tr>
+<tr>
+<td><strong>SendMessage</strong></td>
+<td>エージェント間メッセージング</td>
+</tr>
+</tbody>
+</table>
 <footer>Claude Code Agent Teams Workshop</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-footer="Claude Code Agent Teams Workshop" data-theme="gaia" data-style="section pre code {
@@ -693,14 +733,37 @@ section.lead h1 {
 }
 ;" data-marpit-pagination-total="38" data-size="16:9">
 <h1 id="sendmessage--5%E3%81%A4%E3%81%AE%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8%E3%82%BF%E3%82%A4%E3%83%97">SendMessage — 5つのメッセージタイプ</h1>
+<table>
+<thead>
+<tr>
+<th>タイプ</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>message</code></td>
+<td>特定のチームメイトへの直接メッセージ</td>
+</tr>
+<tr>
+<td><code>broadcast</code></td>
+<td>全メンバーへの一斉送信（高コスト）</td>
+</tr>
+<tr>
+<td><code>shutdown_request</code></td>
+<td>シャットダウン要求</td>
+</tr>
+<tr>
+<td><code>shutdown_response</code></td>
+<td>シャットダウン承認/拒否</td>
+</tr>
+<tr>
+<td><code>plan_approval_response</code></td>
+<td>計画の承認/却下</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li>| タイプ | 用途 |</li>
-<li>|--------|------|</li>
-<li>| <code>message</code> | 特定のチームメイトへの直接メッセージ |</li>
-<li>| <code>broadcast</code> | 全メンバーへの一斉送信（高コスト） |</li>
-<li>| <code>shutdown_request</code> | シャットダウン要求 |</li>
-<li>| <code>shutdown_response</code> | シャットダウン承認/拒否 |</li>
-<li>| <code>plan_approval_response</code> | 計画の承認/却下 |</li>
 <li></li>
 <li><strong>注意:</strong> <code>broadcast</code>はN人×Nメッセージ配信 → 通常は<code>message</code>を使用</li>
 </ul>
@@ -755,13 +818,43 @@ section.lead h1 {
 }
 ;" data-marpit-pagination-total="38" data-size="16:9">
 <h1 id="%E3%83%93%E3%83%AB%E3%83%88%E3%82%A4%E3%83%B3%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%82%BF%E3%82%A4%E3%83%97">ビルトインエージェントタイプ</h1>
+<table>
+<thead>
+<tr>
+<th>タイプ</th>
+<th>モデル</th>
+<th>ツール</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Explore</strong></td>
+<td>Haiku（高速）</td>
+<td>読み取り専用</td>
+<td>コード検索・調査</td>
+</tr>
+<tr>
+<td><strong>Plan</strong></td>
+<td>継承</td>
+<td>読み取り専用</td>
+<td>設計・計画立案</td>
+</tr>
+<tr>
+<td><strong>General-purpose</strong></td>
+<td>継承</td>
+<td>全ツール</td>
+<td>実装・複雑なタスク</td>
+</tr>
+<tr>
+<td><strong>Bash</strong></td>
+<td>継承</td>
+<td>ターミナル</td>
+<td>コマンド実行</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li>| タイプ | モデル | ツール | 用途 |</li>
-<li>|--------|--------|--------|------|</li>
-<li>| <strong>Explore</strong> | Haiku（高速） | 読み取り専用 | コード検索・調査 |</li>
-<li>| <strong>Plan</strong> | 継承 | 読み取り専用 | 設計・計画立案 |</li>
-<li>| <strong>General-purpose</strong> | 継承 | 全ツール | 実装・複雑なタスク |</li>
-<li>| <strong>Bash</strong> | 継承 | ターミナル | コマンド実行 |</li>
 <li></li>
 <li><strong>読み取り専用エージェントに実装タスクを割り当てない</strong>こと</li>
 </ul>
@@ -880,94 +973,68 @@ section.lead h1 {
 }
 ;" data-marpit-pagination-total="38" data-size="16:9">
 <h1 id="3%E3%83%95%E3%82%A7%E3%83%BC%E3%82%BA%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB">3フェーズライフサイクル</h1>
-<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;">
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
   
   <rect width="900" height="400" fill="#f8f9fa" />
-  <g id="phase1">
-    <rect x="20" y="80" width="240" height="280" rx="12" fill="#E3F2FD" stroke="#1976D2" stroke-width="3" stroke-dasharray="5,5" />
-    <text x="140" y="60" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#1565C0">Phase 1: Setup</text>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;rect x=&quot;60&quot; y=&quot;120&quot; width=&quot;160&quot; height=&quot;50&quot; rx=&quot;8&quot; fill=&quot;#42A5F5&quot; stroke=&quot;#1565C0&quot; stroke-width=&quot;2&quot;/&gt;
-&lt;text x=&quot;140&quot; y=&quot;150&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;TeamCreate&lt;/text&gt;
 
-&lt;rect x=&quot;60&quot; y=&quot;200&quot; width=&quot;160&quot; height=&quot;50&quot; rx=&quot;8&quot; fill=&quot;#42A5F5&quot; stroke=&quot;#1565C0&quot; stroke-width=&quot;2&quot;/&gt;
-&lt;text x=&quot;140&quot; y=&quot;230&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;TaskCreate&lt;/text&gt;
-
-&lt;rect x=&quot;60&quot; y=&quot;280&quot; width=&quot;160&quot; height=&quot;50&quot; rx=&quot;8&quot; fill=&quot;#42A5F5&quot; stroke=&quot;#1565C0&quot; stroke-width=&quot;2&quot;/&gt;
-&lt;text x=&quot;140&quot; y=&quot;305&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;Spawn&lt;/text&gt;
-&lt;text x=&quot;140&quot; y=&quot;322&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;12&quot; fill=&quot;white&quot;&gt;Teammates&lt;/text&gt;
-
-&lt;!-- Arrows within Phase 1 --&gt;
-&lt;defs&gt;
-  &lt;marker id=&quot;arrowBlue&quot; markerWidth=&quot;10&quot; markerHeight=&quot;10&quot; refX=&quot;9&quot; refY=&quot;3&quot; orient=&quot;auto&quot; markerUnits=&quot;strokeWidth&quot;&gt;
-    &lt;path d=&quot;M0,0 L0,6 L9,3 z&quot; fill=&quot;#1565C0&quot;/&gt;
-  &lt;/marker&gt;
-  &lt;marker id=&quot;arrowGreen&quot; markerWidth=&quot;10&quot; markerHeight=&quot;10&quot; refX=&quot;9&quot; refY=&quot;3&quot; orient=&quot;auto&quot; markerUnits=&quot;strokeWidth&quot;&gt;
-    &lt;path d=&quot;M0,0 L0,6 L9,3 z&quot; fill=&quot;#2E7D32&quot;/&gt;
-  &lt;/marker&gt;
-  &lt;marker id=&quot;arrowOrange&quot; markerWidth=&quot;10&quot; markerHeight=&quot;10&quot; refX=&quot;9&quot; refY=&quot;3&quot; orient=&quot;auto&quot; markerUnits=&quot;strokeWidth&quot;&gt;
-    &lt;path d=&quot;M0,0 L0,6 L9,3 z&quot; fill=&quot;#E65100&quot;/&gt;
-  &lt;/marker&gt;
-  &lt;marker id=&quot;arrowPurple&quot; markerWidth=&quot;10&quot; markerHeight=&quot;10&quot; refX=&quot;9&quot; refY=&quot;3&quot; orient=&quot;auto&quot; markerUnits=&quot;strokeWidth&quot;&gt;
-    &lt;path d=&quot;M0,0 L0,6 L9,3 z&quot; fill=&quot;#6A1B9A&quot;/&gt;
-  &lt;/marker&gt;
-&lt;/defs&gt;
-&lt;path d=&quot;M 140 170 L 140 200&quot; stroke=&quot;#1565C0&quot; stroke-width=&quot;3&quot; fill=&quot;none&quot; marker-end=&quot;url(#arrowBlue)&quot;/&gt;
-&lt;path d=&quot;M 140 250 L 140 280&quot; stroke=&quot;#1565C0&quot; stroke-width=&quot;3&quot; fill=&quot;none&quot; marker-end=&quot;url(#arrowBlue)&quot;/&gt;
-</code></pre>
-  </g>
-  <g id="phase2">
-    <rect x="300" y="80" width="340" height="280" rx="12" fill="#E8F5E9" stroke="#388E3C" stroke-width="3" stroke-dasharray="5,5" />
-    <text x="470" y="60" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#2E7D32">Phase 2: Execution</text>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;!-- Circular flow --&gt;
-&lt;ellipse cx=&quot;470&quot; cy=&quot;210&quot; rx=&quot;120&quot; ry=&quot;100&quot; fill=&quot;none&quot; stroke=&quot;#66BB6A&quot; stroke-width=&quot;2&quot; stroke-dasharray=&quot;8,4&quot;/&gt;
-
-&lt;rect x=&quot;390&quot; y=&quot;120&quot; width=&quot;160&quot; height=&quot;40&quot; rx=&quot;8&quot; fill=&quot;#66BB6A&quot; stroke=&quot;#2E7D32&quot; stroke-width=&quot;2&quot;/&gt;
-&lt;text x=&quot;470&quot; y=&quot;145&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;TaskList&lt;/text&gt;
-
-&lt;rect x=&quot;560&quot; y=&quot;180&quot; width=&quot;160&quot; height=&quot;40&quot; rx=&quot;8&quot; fill=&quot;#66BB6A&quot; stroke=&quot;#2E7D32&quot; stroke-width=&quot;2&quot;/&gt;
-&lt;text x=&quot;640&quot; y=&quot;205&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;Claim Task&lt;/text&gt;
-
-&lt;rect x=&quot;560&quot; y=&quot;250&quot; width=&quot;160&quot; height=&quot;40&quot; rx=&quot;8&quot; fill=&quot;#66BB6A&quot; stroke=&quot;#2E7D32&quot; stroke-width=&quot;2&quot;/&gt;
-&lt;text x=&quot;640&quot; y=&quot;275&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;Execute&lt;/text&gt;
-
-&lt;rect x=&quot;390&quot; y=&quot;300&quot; width=&quot;160&quot; height=&quot;40&quot; rx=&quot;8&quot; fill=&quot;#66BB6A&quot; stroke=&quot;#2E7D32&quot; stroke-width=&quot;2&quot;/&gt;
-&lt;text x=&quot;470&quot; y=&quot;325&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;TaskUpdate&lt;/text&gt;
-
-&lt;rect x=&quot;180&quot; y=&quot;240&quot; width=&quot;160&quot; height=&quot;40&quot; rx=&quot;8&quot; fill=&quot;#66BB6A&quot; stroke=&quot;#2E7D32&quot; stroke-width=&quot;2&quot;/&gt;
-&lt;text x=&quot;260&quot; y=&quot;265&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;SendMessage&lt;/text&gt;
-
-&lt;!-- Flow arrows --&gt;
-&lt;path d=&quot;M 470 160 L 560 190&quot; stroke=&quot;#2E7D32&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot; marker-end=&quot;url(#arrowGreen)&quot;/&gt;
-&lt;path d=&quot;M 640 220 L 640 250&quot; stroke=&quot;#2E7D32&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot; marker-end=&quot;url(#arrowGreen)&quot;/&gt;
-&lt;path d=&quot;M 560 270 L 470 300&quot; stroke=&quot;#2E7D32&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot; marker-end=&quot;url(#arrowGreen)&quot;/&gt;
-&lt;path d=&quot;M 390 320 L 260 280&quot; stroke=&quot;#2E7D32&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot; marker-end=&quot;url(#arrowGreen)&quot;/&gt;
-&lt;path d=&quot;M 260 240 L 390 150&quot; stroke=&quot;#2E7D32&quot; stroke-width=&quot;2.5&quot; fill=&quot;none&quot; marker-end=&quot;url(#arrowGreen)&quot;/&gt;
-</code></pre>
-  </g>
-  <g id="phase3">
-    <rect x="680" y="80" width="200" height="280" rx="12" fill="#FFF3E0" stroke="#F57C00" stroke-width="3" stroke-dasharray="5,5" />
-    <text x="780" y="60" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#E65100">Phase 3: Teardown</text>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;rect x=&quot;710&quot; y=&quot;150&quot; width=&quot;140&quot; height=&quot;40&quot; rx=&quot;8&quot; fill=&quot;#FF9800&quot; stroke=&quot;#E65100&quot; stroke-width=&quot;2&quot;/&gt;
-&lt;text x=&quot;780&quot; y=&quot;170&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;13&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;shutdown&lt;/text&gt;
-&lt;text x=&quot;780&quot; y=&quot;185&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;white&quot;&gt;_request&lt;/text&gt;
-
-&lt;rect x=&quot;710&quot; y=&quot;220&quot; width=&quot;140&quot; height=&quot;40&quot; rx=&quot;8&quot; fill=&quot;#FF9800&quot; stroke=&quot;#E65100&quot; stroke-width=&quot;2&quot;/&gt;
-&lt;text x=&quot;780&quot; y=&quot;240&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;13&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;shutdown&lt;/text&gt;
-&lt;text x=&quot;780&quot; y=&quot;255&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;white&quot;&gt;_response&lt;/text&gt;
-
-&lt;rect x=&quot;710&quot; y=&quot;290&quot; width=&quot;140&quot; height=&quot;40&quot; rx=&quot;8&quot; fill=&quot;#FF9800&quot; stroke=&quot;#E65100&quot; stroke-width=&quot;2&quot;/&gt;
-&lt;text x=&quot;780&quot; y=&quot;315&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;TeamDelete&lt;/text&gt;
-
-&lt;!-- Arrows within Phase 3 --&gt;
-&lt;path d=&quot;M 780 190 L 780 220&quot; stroke=&quot;#E65100&quot; stroke-width=&quot;3&quot; fill=&quot;none&quot; marker-end=&quot;url(#arrowOrange)&quot;/&gt;
-&lt;path d=&quot;M 780 260 L 780 290&quot; stroke=&quot;#E65100&quot; stroke-width=&quot;3&quot; fill=&quot;none&quot; marker-end=&quot;url(#arrowOrange)&quot;/&gt;
-</code></pre>
-  </g>
-  <path d="M 260 210 L 300 210" stroke="#6A1B9A" stroke-width="4" fill="none" marker-end="url(#arrowPurple)" />
-  <path d="M 640 210 L 680 210" stroke="#6A1B9A" stroke-width="4" fill="none" marker-end="url(#arrowPurple)" />
-
-<p><text x="450" y="20" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">Claude Code Agent Teams — ライフサイクル</text><br />
-</svg></p>
+<p><text x="450" y="20" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#333">Claude Code Agent Teams — ライフサイクル</text></p>
+  <rect x="20" y="80" width="240" height="280" rx="12" fill="#E3F2FD" stroke="#1976D2" stroke-width="3" stroke-dasharray="5,5" />
+  <text x="140" y="60" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1565C0">Phase 1: Setup</text>
+  <rect x="60" y="120" width="160" height="50" rx="8" fill="#42A5F5" stroke="#1565C0" stroke-width="2" />
+  <text x="140" y="150" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">TeamCreate</text>
+  <rect x="60" y="200" width="160" height="50" rx="8" fill="#42A5F5" stroke="#1565C0" stroke-width="2" />
+  <text x="140" y="230" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">TaskCreate</text>
+  <rect x="60" y="280" width="160" height="50" rx="8" fill="#42A5F5" stroke="#1565C0" stroke-width="2" />
+  <text x="140" y="305" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">Spawn</text>
+  <text x="140" y="322" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white">Teammates</text>
+  <line x1="140" y1="170" x2="140" y2="195" stroke="#1565C0" stroke-width="3" />
+  <polygon points="134,193 140,203 146,193" fill="#1565C0" />
+  <line x1="140" y1="250" x2="140" y2="275" stroke="#1565C0" stroke-width="3" />
+  <polygon points="134,273 140,283 146,273" fill="#1565C0" />
+  <rect x="300" y="80" width="340" height="280" rx="12" fill="#E8F5E9" stroke="#388E3C" stroke-width="3" stroke-dasharray="5,5" />
+  <text x="470" y="60" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#2E7D32">Phase 2: Execution</text>
+  <ellipse cx="470" cy="210" rx="120" ry="100" fill="none" stroke="#66BB6A" stroke-width="2" stroke-dasharray="8,4" />
+  <rect x="390" y="120" width="160" height="40" rx="8" fill="#66BB6A" stroke="#2E7D32" stroke-width="2" />
+  <text x="470" y="145" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">TaskList</text>
+  <rect x="560" y="180" width="160" height="40" rx="8" fill="#66BB6A" stroke="#2E7D32" stroke-width="2" />
+  <text x="640" y="205" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">Claim Task</text>
+  <rect x="560" y="250" width="160" height="40" rx="8" fill="#66BB6A" stroke="#2E7D32" stroke-width="2" />
+  <text x="640" y="275" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">Execute</text>
+  <rect x="390" y="300" width="160" height="40" rx="8" fill="#66BB6A" stroke="#2E7D32" stroke-width="2" />
+  <text x="470" y="325" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">TaskUpdate</text>
+  <rect x="180" y="240" width="160" height="40" rx="8" fill="#66BB6A" stroke="#2E7D32" stroke-width="2" />
+  <text x="260" y="265" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">SendMessage</text>
+  <line x1="475" y1="160" x2="555" y2="185" stroke="#2E7D32" stroke-width="2.5" />
+  <polygon points="550,180 562,186 554,192" fill="#2E7D32" />
+  
+  <line x1="640" y1="220" x2="640" y2="247" stroke="#2E7D32" stroke-width="2.5" />
+  <polygon points="634,245 640,255 646,245" fill="#2E7D32" />
+  
+  <line x1="560" y1="272" x2="475" y2="298" stroke="#2E7D32" stroke-width="2.5" />
+  <polygon points="470,292 472,305 482,296" fill="#2E7D32" />
+  
+  <line x1="390" y1="322" x2="265" y2="282" stroke="#2E7D32" stroke-width="2.5" />
+  <polygon points="260,276 262,289 272,280" fill="#2E7D32" />
+  
+  <line x1="265" y1="240" x2="388" y2="150" stroke="#2E7D32" stroke-width="2.5" />
+  <polygon points="384,143 395,148 388,157" fill="#2E7D32" />
+  <rect x="680" y="80" width="200" height="280" rx="12" fill="#FFF3E0" stroke="#F57C00" stroke-width="3" stroke-dasharray="5,5" />
+  <text x="780" y="60" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#E65100">Phase 3: Teardown</text>
+  <rect x="710" y="150" width="140" height="40" rx="8" fill="#FF9800" stroke="#E65100" stroke-width="2" />
+  <text x="780" y="175" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="white">shutdown_request</text>
+  <rect x="710" y="220" width="140" height="40" rx="8" fill="#FF9800" stroke="#E65100" stroke-width="2" />
+  <text x="780" y="245" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="white">shutdown_response</text>
+  <rect x="710" y="290" width="140" height="40" rx="8" fill="#FF9800" stroke="#E65100" stroke-width="2" />
+  <text x="780" y="315" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">TeamDelete</text>
+  <line x1="780" y1="190" x2="780" y2="217" stroke="#E65100" stroke-width="3" />
+  <polygon points="774,215 780,225 786,215" fill="#E65100" />
+  <line x1="780" y1="260" x2="780" y2="287" stroke="#E65100" stroke-width="3" />
+  <polygon points="774,285 780,295 786,285" fill="#E65100" />
+  <line x1="260" y1="210" x2="297" y2="210" stroke="#6A1B9A" stroke-width="4" />
+  <polygon points="295,204 305,210 295,216" fill="#6A1B9A" />
+  <line x1="640" y1="210" x2="677" y2="210" stroke="#6A1B9A" stroke-width="4" />
+  <polygon points="675,204 685,210 675,216" fill="#6A1B9A" />
+</svg>
 <footer>Claude Code Agent Teams Workshop</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-footer="Claude Code Agent Teams Workshop" data-theme="gaia" data-style="section pre code {
@@ -992,104 +1059,75 @@ section.lead h1 {
 }
 ;" data-marpit-pagination-total="38" data-size="16:9">
 <h1 id="%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB-%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9%E5%9B%B3">ライフサイクル シーケンス図</h1>
-<svg viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;">
+<svg viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
   
   <rect width="900" height="700" fill="#f8f9fa" />
 
-<p><text x="450" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">Agent Teams ワークフローシーケンス</text></p>
-  <g id="participants">
-    <rect x="50" y="60" width="140" height="50" rx="8" fill="#FF6B6B" stroke="#C92A2A" stroke-width="2" />
-    <text x="120" y="90" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">Team Lead</text>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;rect x=&quot;260&quot; y=&quot;60&quot; width=&quot;140&quot; height=&quot;50&quot; rx=&quot;8&quot; fill=&quot;#A8DADC&quot; stroke=&quot;#457B9D&quot; stroke-width=&quot;2&quot;/&gt;
-&lt;text x=&quot;330&quot; y=&quot;90&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot; fill=&quot;#1D3557&quot;&gt;Teammate 1&lt;/text&gt;
-
-&lt;rect x=&quot;470&quot; y=&quot;60&quot; width=&quot;140&quot; height=&quot;50&quot; rx=&quot;8&quot; fill=&quot;#A8DADC&quot; stroke=&quot;#457B9D&quot; stroke-width=&quot;2&quot;/&gt;
-&lt;text x=&quot;540&quot; y=&quot;90&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot; fill=&quot;#1D3557&quot;&gt;Teammate 2&lt;/text&gt;
-
-&lt;rect x=&quot;680&quot; y=&quot;60&quot; width=&quot;140&quot; height=&quot;50&quot; rx=&quot;8&quot; fill=&quot;#4ECDC4&quot; stroke=&quot;#0E7C74&quot; stroke-width=&quot;2&quot;/&gt;
-&lt;text x=&quot;750&quot; y=&quot;90&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;Task List&lt;/text&gt;
-</code></pre>
-  </g>
+<p><text x="450" y="30" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#333">Agent Teams ワークフローシーケンス</text></p>
+  <rect x="50" y="60" width="140" height="50" rx="8" fill="#FF6B6B" stroke="#C92A2A" stroke-width="2" />
+  <text x="120" y="90" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">Team Lead</text>
+  <rect x="260" y="60" width="140" height="50" rx="8" fill="#A8DADC" stroke="#457B9D" stroke-width="2" />
+  <text x="330" y="90" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1D3557">Teammate 1</text>
+  <rect x="470" y="60" width="140" height="50" rx="8" fill="#A8DADC" stroke="#457B9D" stroke-width="2" />
+  <text x="540" y="90" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1D3557">Teammate 2</text>
+  <rect x="680" y="60" width="140" height="50" rx="8" fill="#4ECDC4" stroke="#0E7C74" stroke-width="2" />
+  <text x="750" y="90" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">Task List</text>
   <line x1="120" y1="110" x2="120" y2="660" stroke="#999" stroke-width="2" stroke-dasharray="5,5" />
   <line x1="330" y1="110" x2="330" y2="660" stroke="#999" stroke-width="2" stroke-dasharray="5,5" />
   <line x1="540" y1="110" x2="540" y2="660" stroke="#999" stroke-width="2" stroke-dasharray="5,5" />
   <line x1="750" y1="110" x2="750" y2="660" stroke="#999" stroke-width="2" stroke-dasharray="5,5" />
-  <defs>
-    <marker id="arrowSeq" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#333" />
-    </marker>
-  </defs>
-  <g id="interactions">
-    
-    <line x1="120" y1="140" x2="750" y2="140" stroke="#333" stroke-width="2" marker-end="url(#arrowSeq)" />
-    <text x="430" y="135" font-family="Arial" font-size="12" fill="#333">TaskCreate(A, B, C)</text>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;!-- Spawn T1 --&gt;
-&lt;line x1=&quot;120&quot; y1=&quot;170&quot; x2=&quot;330&quot; y2=&quot;170&quot; stroke=&quot;#FF6B6B&quot; stroke-width=&quot;2&quot; marker-end=&quot;url(#arrowSeq)&quot;/&gt;
-&lt;text x=&quot;200&quot; y=&quot;165&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#FF6B6B&quot;&gt;Spawn&lt;/text&gt;
-
-&lt;!-- Spawn T2 --&gt;
-&lt;line x1=&quot;120&quot; y1=&quot;200&quot; x2=&quot;540&quot; y2=&quot;200&quot; stroke=&quot;#FF6B6B&quot; stroke-width=&quot;2&quot; marker-end=&quot;url(#arrowSeq)&quot;/&gt;
-&lt;text x=&quot;305&quot; y=&quot;195&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#FF6B6B&quot;&gt;Spawn&lt;/text&gt;
-
-&lt;!-- T1 TaskList --&gt;
-&lt;line x1=&quot;330&quot; y1=&quot;230&quot; x2=&quot;750&quot; y2=&quot;230&quot; stroke=&quot;#457B9D&quot; stroke-width=&quot;2&quot; marker-end=&quot;url(#arrowSeq)&quot;/&gt;
-&lt;text x=&quot;520&quot; y=&quot;225&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#457B9D&quot;&gt;TaskList()&lt;/text&gt;
-
-&lt;!-- T1 Claim A --&gt;
-&lt;line x1=&quot;330&quot; y1=&quot;260&quot; x2=&quot;750&quot; y2=&quot;260&quot; stroke=&quot;#457B9D&quot; stroke-width=&quot;2&quot; marker-end=&quot;url(#arrowSeq)&quot;/&gt;
-&lt;text x=&quot;520&quot; y=&quot;255&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#457B9D&quot;&gt;Claim タスクA&lt;/text&gt;
-
-&lt;!-- T2 TaskList --&gt;
-&lt;line x1=&quot;540&quot; y1=&quot;290&quot; x2=&quot;750&quot; y2=&quot;290&quot; stroke=&quot;#457B9D&quot; stroke-width=&quot;2&quot; marker-end=&quot;url(#arrowSeq)&quot;/&gt;
-&lt;text x=&quot;630&quot; y=&quot;285&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#457B9D&quot;&gt;TaskList()&lt;/text&gt;
-
-&lt;!-- T2 Claim B --&gt;
-&lt;line x1=&quot;540&quot; y1=&quot;320&quot; x2=&quot;750&quot; y2=&quot;320&quot; stroke=&quot;#457B9D&quot; stroke-width=&quot;2&quot; marker-end=&quot;url(#arrowSeq)&quot;/&gt;
-&lt;text x=&quot;630&quot; y=&quot;315&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#457B9D&quot;&gt;Claim タスクB&lt;/text&gt;
-
-&lt;!-- Execution phase label --&gt;
-&lt;rect x=&quot;10&quot; y=&quot;340&quot; width=&quot;880&quot; height=&quot;120&quot; fill=&quot;#E8F5E9&quot; opacity=&quot;0.3&quot; rx=&quot;8&quot;/&gt;
-&lt;text x=&quot;20&quot; y=&quot;360&quot; font-family=&quot;Arial&quot; font-size=&quot;12&quot; font-weight=&quot;bold&quot; fill=&quot;#2E7D32&quot;&gt;<img class="emoji" draggable="false" alt="⚙" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2699.svg" data-marp-twemoji=""/> 並列実行フェーズ&lt;/text&gt;
-
-&lt;!-- T1 Complete A --&gt;
-&lt;line x1=&quot;330&quot; y1=&quot;380&quot; x2=&quot;750&quot; y2=&quot;380&quot; stroke=&quot;#2E7D32&quot; stroke-width=&quot;2.5&quot; marker-end=&quot;url(#arrowSeq)&quot;/&gt;
-&lt;text x=&quot;520&quot; y=&quot;375&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; font-weight=&quot;bold&quot; fill=&quot;#2E7D32&quot;&gt;Complete タスクA&lt;/text&gt;
-
-&lt;!-- T1 -&gt; Lead message --&gt;
-&lt;line x1=&quot;330&quot; y1=&quot;410&quot; x2=&quot;120&quot; y2=&quot;410&quot; stroke=&quot;#2E7D32&quot; stroke-width=&quot;2&quot; marker-end=&quot;url(#arrowSeq)&quot;/&gt;
-&lt;text x=&quot;200&quot; y=&quot;405&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#2E7D32&quot;&gt;完了報告&lt;/text&gt;
-
-&lt;!-- T1 Claim C --&gt;
-&lt;line x1=&quot;330&quot; y1=&quot;440&quot; x2=&quot;750&quot; y2=&quot;440&quot; stroke=&quot;#457B9D&quot; stroke-width=&quot;2&quot; marker-end=&quot;url(#arrowSeq)&quot;/&gt;
-&lt;text x=&quot;520&quot; y=&quot;435&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#457B9D&quot;&gt;Claim タスクC&lt;/text&gt;
-
-&lt;!-- T2 Complete B --&gt;
-&lt;line x1=&quot;540&quot; y1=&quot;470&quot; x2=&quot;750&quot; y2=&quot;470&quot; stroke=&quot;#2E7D32&quot; stroke-width=&quot;2.5&quot; marker-end=&quot;url(#arrowSeq)&quot;/&gt;
-&lt;text x=&quot;630&quot; y=&quot;465&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; font-weight=&quot;bold&quot; fill=&quot;#2E7D32&quot;&gt;Complete タスクB&lt;/text&gt;
-
-&lt;!-- T2 -&gt; Lead message --&gt;
-&lt;line x1=&quot;540&quot; y1=&quot;500&quot; x2=&quot;120&quot; y2=&quot;500&quot; stroke=&quot;#2E7D32&quot; stroke-width=&quot;2&quot; marker-end=&quot;url(#arrowSeq)&quot;/&gt;
-&lt;text x=&quot;305&quot; y=&quot;495&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#2E7D32&quot;&gt;完了報告&lt;/text&gt;
-
-&lt;!-- Teardown phase --&gt;
-&lt;rect x=&quot;10&quot; y=&quot;520&quot; width=&quot;880&quot; height=&quot;130&quot; fill=&quot;#FFF3E0&quot; opacity=&quot;0.3&quot; rx=&quot;8&quot;/&gt;
-&lt;text x=&quot;20&quot; y=&quot;540&quot; font-family=&quot;Arial&quot; font-size=&quot;12&quot; font-weight=&quot;bold&quot; fill=&quot;#E65100&quot;&gt;<img class="emoji" draggable="false" alt="🔚" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f51a.svg" data-marp-twemoji=""/> シャットダウンフェーズ&lt;/text&gt;
-
-&lt;!-- Shutdown requests --&gt;
-&lt;line x1=&quot;120&quot; y1=&quot;560&quot; x2=&quot;330&quot; y2=&quot;560&quot; stroke=&quot;#E65100&quot; stroke-width=&quot;2&quot; marker-end=&quot;url(#arrowSeq)&quot;/&gt;
-&lt;text x=&quot;190&quot; y=&quot;555&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#E65100&quot;&gt;shutdown_request&lt;/text&gt;
-
-&lt;line x1=&quot;120&quot; y1=&quot;590&quot; x2=&quot;540&quot; y2=&quot;590&quot; stroke=&quot;#E65100&quot; stroke-width=&quot;2&quot; marker-end=&quot;url(#arrowSeq)&quot;/&gt;
-&lt;text x=&quot;295&quot; y=&quot;585&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#E65100&quot;&gt;shutdown_request&lt;/text&gt;
-
-&lt;!-- Shutdown responses --&gt;
-&lt;line x1=&quot;330&quot; y1=&quot;615&quot; x2=&quot;120&quot; y2=&quot;615&quot; stroke=&quot;#388E3C&quot; stroke-width=&quot;2&quot; marker-end=&quot;url(#arrowSeq)&quot;/&gt;
-&lt;text x=&quot;180&quot; y=&quot;610&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#388E3C&quot;&gt;approve&lt;/text&gt;
-
-&lt;line x1=&quot;540&quot; y1=&quot;640&quot; x2=&quot;120&quot; y2=&quot;640&quot; stroke=&quot;#388E3C&quot; stroke-width=&quot;2&quot; marker-end=&quot;url(#arrowSeq)&quot;/&gt;
-&lt;text x=&quot;290&quot; y=&quot;635&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#388E3C&quot;&gt;approve&lt;/text&gt;
-</code></pre>
-  </g>
+  <line x1="120" y1="140" x2="740" y2="140" stroke="#333" stroke-width="2" />
+  <polygon points="738,135 748,140 738,145" fill="#333" />
+  <text x="430" y="135" font-family="sans-serif" font-size="12" fill="#333">TaskCreate(A, B, C)</text>
+  <line x1="120" y1="170" x2="320" y2="170" stroke="#FF6B6B" stroke-width="2" />
+  <polygon points="318,165 328,170 318,175" fill="#FF6B6B" />
+  <text x="200" y="165" font-family="sans-serif" font-size="11" fill="#FF6B6B">Spawn</text>
+  <line x1="120" y1="200" x2="530" y2="200" stroke="#FF6B6B" stroke-width="2" />
+  <polygon points="528,195 538,200 528,205" fill="#FF6B6B" />
+  <text x="305" y="195" font-family="sans-serif" font-size="11" fill="#FF6B6B">Spawn</text>
+  <line x1="330" y1="230" x2="740" y2="230" stroke="#457B9D" stroke-width="2" />
+  <polygon points="738,225 748,230 738,235" fill="#457B9D" />
+  <text x="520" y="225" font-family="sans-serif" font-size="11" fill="#457B9D">TaskList()</text>
+  <line x1="330" y1="260" x2="740" y2="260" stroke="#457B9D" stroke-width="2" />
+  <polygon points="738,255 748,260 738,265" fill="#457B9D" />
+  <text x="520" y="255" font-family="sans-serif" font-size="11" fill="#457B9D">Claim タスクA</text>
+  <line x1="540" y1="290" x2="740" y2="290" stroke="#457B9D" stroke-width="2" />
+  <polygon points="738,285 748,290 738,295" fill="#457B9D" />
+  <text x="630" y="285" font-family="sans-serif" font-size="11" fill="#457B9D">TaskList()</text>
+  <line x1="540" y1="320" x2="740" y2="320" stroke="#457B9D" stroke-width="2" />
+  <polygon points="738,315 748,320 738,325" fill="#457B9D" />
+  <text x="630" y="315" font-family="sans-serif" font-size="11" fill="#457B9D">Claim タスクB</text>
+  <rect x="10" y="340" width="880" height="120" fill="#E8F5E9" opacity="0.3" rx="8" />
+  <text x="20" y="360" font-family="sans-serif" font-size="12" font-weight="bold" fill="#2E7D32">並列実行フェーズ</text>
+  <line x1="330" y1="380" x2="740" y2="380" stroke="#2E7D32" stroke-width="2.5" />
+  <polygon points="738,375 748,380 738,385" fill="#2E7D32" />
+  <text x="520" y="375" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2E7D32">Complete タスクA</text>
+  <line x1="330" y1="410" x2="130" y2="410" stroke="#2E7D32" stroke-width="2" />
+  <polygon points="132,405 122,410 132,415" fill="#2E7D32" />
+  <text x="200" y="405" font-family="sans-serif" font-size="11" fill="#2E7D32">完了報告</text>
+  <line x1="330" y1="440" x2="740" y2="440" stroke="#457B9D" stroke-width="2" />
+  <polygon points="738,435 748,440 738,445" fill="#457B9D" />
+  <text x="520" y="435" font-family="sans-serif" font-size="11" fill="#457B9D">Claim タスクC</text>
+  <line x1="540" y1="470" x2="740" y2="470" stroke="#2E7D32" stroke-width="2.5" />
+  <polygon points="738,465 748,470 738,475" fill="#2E7D32" />
+  <text x="630" y="465" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2E7D32">Complete タスクB</text>
+  <line x1="540" y1="500" x2="130" y2="500" stroke="#2E7D32" stroke-width="2" />
+  <polygon points="132,495 122,500 132,505" fill="#2E7D32" />
+  <text x="305" y="495" font-family="sans-serif" font-size="11" fill="#2E7D32">完了報告</text>
+  <rect x="10" y="520" width="880" height="130" fill="#FFF3E0" opacity="0.3" rx="8" />
+  <text x="20" y="540" font-family="sans-serif" font-size="12" font-weight="bold" fill="#E65100">シャットダウンフェーズ</text>
+  <line x1="120" y1="560" x2="320" y2="560" stroke="#E65100" stroke-width="2" />
+  <polygon points="318,555 328,560 318,565" fill="#E65100" />
+  <text x="190" y="555" font-family="sans-serif" font-size="11" fill="#E65100">shutdown_request</text>
+  <line x1="120" y1="590" x2="530" y2="590" stroke="#E65100" stroke-width="2" />
+  <polygon points="528,585 538,590 528,595" fill="#E65100" />
+  <text x="295" y="585" font-family="sans-serif" font-size="11" fill="#E65100">shutdown_request</text>
+  <line x1="330" y1="615" x2="130" y2="615" stroke="#388E3C" stroke-width="2" />
+  <polygon points="132,610 122,615 132,620" fill="#388E3C" />
+  <text x="180" y="610" font-family="sans-serif" font-size="11" fill="#388E3C">approve</text>
+  <line x1="540" y1="640" x2="130" y2="640" stroke="#388E3C" stroke-width="2" />
+  <polygon points="132,635 122,640 132,645" fill="#388E3C" />
+  <text x="290" y="635" font-family="sans-serif" font-size="11" fill="#388E3C">approve</text>
 </svg>
 <footer>Claude Code Agent Teams Workshop</footer>
 </section>
@@ -1174,7 +1212,9 @@ section.lead h1 {
 ;" data-marpit-pagination-total="38" data-size="16:9">
 <h1 id="%E3%82%BF%E3%82%B9%E3%82%AF%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%A8%E6%B3%A2%E7%8A%B6%E5%AE%9F%E8%A1%8C">タスク依存関係と波状実行</h1>
 <ul>
-<li><strong>依存関係の定義:</strong></li>
+<li>
+<p><strong>依存関係の定義:</strong></p>
+</li>
 <li>
 <ul>
 <li><code>addBlocks</code>: このタスクが完了するまで他タスクをブロック</li>
@@ -1182,78 +1222,61 @@ section.lead h1 {
 </li>
 <li>
 <ul>
-<li><code>addBlockedBy</code>: 他タスクの完了を待ってから開始</li>
+<li><code>addBlockedBy</code>: 他タスクの完了を待ってから開始<br />
+<svg viewBox="0 0 900 450" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0"></li>
 </ul>
+<rect width="900" height="450" fill="#f8f9fa" />
+
+<p><text x="450" y="35" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#333">タスク依存関係による波状実行パターン</text></p>
+<rect x="50" y="80" width="200" height="320" rx="12" fill="#E8F5E9" stroke="#4CAF50" stroke-width="3" opacity="0.3" />
+<text x="150" y="70" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#2E7D32">Wave 1</text>
+<text x="150" y="420" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#2E7D32">初期フェーズ</text>
+<rect x="320" y="80" width="280" height="320" rx="12" fill="#E3F2FD" stroke="#2196F3" stroke-width="3" opacity="0.3" />
+<text x="460" y="70" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1565C0">Wave 2</text>
+<text x="460" y="420" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1565C0">並列実行フェーズ</text>
+<rect x="670" y="80" width="200" height="320" rx="12" fill="#FFF3E0" stroke="#FF9800" stroke-width="3" opacity="0.3" />
+<text x="770" y="70" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#E65100">Wave 3</text>
+<text x="770" y="420" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#E65100">統合フェーズ</text>
+<rect x="90" y="180" width="120" height="100" rx="10" fill="#4CAF50" stroke="#2E7D32" stroke-width="3" />
+<text x="150" y="215" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="white">タスク A</text>
+<text x="150" y="240" text-anchor="middle" font-family="sans-serif" font-size="13" fill="white">DB設計</text>
+<circle cx="105" cy="195" r="8" fill="#FFD700" stroke="#FFA000" stroke-width="2" />
+<text x="105" y="199" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#333">1</text>
+<rect x="360" y="140" width="120" height="90" rx="10" fill="#2196F3" stroke="#1565C0" stroke-width="3" />
+<text x="420" y="172" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="white">タスク B</text>
+<text x="420" y="195" text-anchor="middle" font-family="sans-serif" font-size="13" fill="white">API実装</text>
+<circle cx="375" cy="155" r="8" fill="#FFD700" stroke="#FFA000" stroke-width="2" />
+<text x="375" y="159" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#333">2</text>
+<rect x="360" y="260" width="120" height="90" rx="10" fill="#2196F3" stroke="#1565C0" stroke-width="3" />
+<text x="420" y="292" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="white">タスク C</text>
+<text x="420" y="315" text-anchor="middle" font-family="sans-serif" font-size="13" fill="white">モデル実装</text>
+<circle cx="375" cy="275" r="8" fill="#FFD700" stroke="#FFA000" stroke-width="2" />
+<text x="375" y="279" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#333">3</text>
+<rect x="710" y="180" width="120" height="100" rx="10" fill="#FF9800" stroke="#E65100" stroke-width="3" />
+<text x="770" y="215" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="white">タスク D</text>
+<text x="770" y="240" text-anchor="middle" font-family="sans-serif" font-size="13" fill="white">結合テスト</text>
+<circle cx="725" cy="195" r="8" fill="#FFD700" stroke="#FFA000" stroke-width="2" />
+<text x="725" y="199" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#333">4</text>
+<path d="M 210 210 Q 280 165 355 175" stroke="#333" stroke-width="3" fill="none" />
+<polygon points="352,168 362,175 354,182" fill="#333" />
+<text x="275" y="165" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">blocks</text>
+<path d="M 210 250 Q 280 275 355 290" stroke="#333" stroke-width="3" fill="none" />
+<polygon points="352,283 362,290 354,297" fill="#333" />
+<text x="275" y="295" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">blocks</text>
+<path d="M 480 175 Q 580 165 705 205" stroke="#333" stroke-width="3" fill="none" />
+<polygon points="702,198 712,205 704,212" fill="#333" />
+<text x="580" y="160" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">blocks</text>
+<path d="M 480 295 Q 580 280 705 255" stroke="#333" stroke-width="3" fill="none" />
+<polygon points="702,248 712,255 704,262" fill="#333" />
+<text x="580" y="300" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">blocks</text>
+
+<p><text x="490" y="225" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1565C0">‖</text><br />
+<text x="510" y="225" font-family="sans-serif" font-size="12" fill="#1565C0">並列</text></p>
+<rect x="20" y="20" width="140" height="30" rx="5" fill="white" stroke="#ddd" stroke-width="1" />
+<circle cx="35" cy="35" r="6" fill="#FFD700" stroke="#FFA000" stroke-width="1" />
+<text x="48" y="39" font-family="sans-serif" font-size="11" fill="#333">実行順序番号</text>
 </li>
 </ul>
-<svg viewBox="0 0 900 450" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;">
-  
-  <rect width="900" height="450" fill="#f8f9fa" />
-
-<p><text x="450" y="35" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">タスク依存関係による波状実行パターン</text></p>
-  <g id="waves">
-    <rect x="50" y="80" width="200" height="320" rx="12" fill="#E8F5E9" stroke="#4CAF50" stroke-width="3" opacity="0.3" />
-    <text x="150" y="70" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#2E7D32">Wave 1</text>
-    <text x="150" y="420" text-anchor="middle" font-family="Arial" font-size="13" fill="#2E7D32">初期フェーズ</text>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;rect x=&quot;320&quot; y=&quot;80&quot; width=&quot;280&quot; height=&quot;320&quot; rx=&quot;12&quot; fill=&quot;#E3F2FD&quot; stroke=&quot;#2196F3&quot; stroke-width=&quot;3&quot; opacity=&quot;0.3&quot;/&gt;
-&lt;text x=&quot;460&quot; y=&quot;70&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot; fill=&quot;#1565C0&quot;&gt;Wave 2&lt;/text&gt;
-&lt;text x=&quot;460&quot; y=&quot;420&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;13&quot; fill=&quot;#1565C0&quot;&gt;並列実行フェーズ&lt;/text&gt;
-
-&lt;rect x=&quot;670&quot; y=&quot;80&quot; width=&quot;200&quot; height=&quot;320&quot; rx=&quot;12&quot; fill=&quot;#FFF3E0&quot; stroke=&quot;#FF9800&quot; stroke-width=&quot;3&quot; opacity=&quot;0.3&quot;/&gt;
-&lt;text x=&quot;770&quot; y=&quot;70&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot; fill=&quot;#E65100&quot;&gt;Wave 3&lt;/text&gt;
-&lt;text x=&quot;770&quot; y=&quot;420&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;13&quot; fill=&quot;#E65100&quot;&gt;統合フェーズ&lt;/text&gt;
-</code></pre>
-  </g>
-  <g id="taskA">
-    <rect x="90" y="180" width="120" height="100" rx="10" fill="#4CAF50" stroke="#2E7D32" stroke-width="3" />
-    <text x="150" y="215" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">タスク A</text>
-    <text x="150" y="240" text-anchor="middle" font-family="Arial" font-size="13" fill="white">DB設計</text>
-    <circle cx="105" cy="195" r="8" fill="#FFD700" stroke="#FFA000" stroke-width="2" />
-    <text x="105" y="199" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#333">1</text>
-  </g>
-  <g id="taskB">
-    <rect x="360" y="140" width="120" height="90" rx="10" fill="#2196F3" stroke="#1565C0" stroke-width="3" />
-    <text x="420" y="172" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">タスク B</text>
-    <text x="420" y="195" text-anchor="middle" font-family="Arial" font-size="13" fill="white">API実装</text>
-    <circle cx="375" cy="155" r="8" fill="#FFD700" stroke="#FFA000" stroke-width="2" />
-    <text x="375" y="159" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#333">2</text>
-  </g>
-  <g id="taskC">
-    <rect x="360" y="260" width="120" height="90" rx="10" fill="#2196F3" stroke="#1565C0" stroke-width="3" />
-    <text x="420" y="292" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">タスク C</text>
-    <text x="420" y="315" text-anchor="middle" font-family="Arial" font-size="13" fill="white">モデル実装</text>
-    <circle cx="375" cy="275" r="8" fill="#FFD700" stroke="#FFA000" stroke-width="2" />
-    <text x="375" y="279" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#333">3</text>
-  </g>
-  <g id="taskD">
-    <rect x="710" y="180" width="120" height="100" rx="10" fill="#FF9800" stroke="#E65100" stroke-width="3" />
-    <text x="770" y="215" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">タスク D</text>
-    <text x="770" y="240" text-anchor="middle" font-family="Arial" font-size="13" fill="white">結合テスト</text>
-    <circle cx="725" cy="195" r="8" fill="#FFD700" stroke="#FFA000" stroke-width="2" />
-    <text x="725" y="199" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#333">4</text>
-  </g>
-  <defs>
-    <marker id="arrowDep" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#333" />
-    </marker>
-  </defs>
-  <path d="M 210 210 Q 280 165 360 175" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowDep)" />
-  <text x="275" y="165" font-family="Arial" font-size="11" fill="#333" font-weight="bold">blocks</text>
-  <path d="M 210 250 Q 280 275 360 290" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowDep)" />
-  <text x="275" y="295" font-family="Arial" font-size="11" fill="#333" font-weight="bold">blocks</text>
-  <path d="M 480 175 Q 580 165 710 205" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowDep)" />
-  <text x="580" y="160" font-family="Arial" font-size="11" fill="#333" font-weight="bold">blocks</text>
-  <path d="M 480 295 Q 580 280 710 255" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowDep)" />
-  <text x="580" y="300" font-family="Arial" font-size="11" fill="#333" font-weight="bold">blocks</text>
-  <g id="legend">
-    <rect x="20" y="20" width="140" height="30" rx="5" fill="white" stroke="#ddd" stroke-width="1" />
-    <circle cx="35" cy="35" r="6" fill="#FFD700" stroke="#FFA000" stroke-width="1" />
-    <text x="48" y="39" font-family="Arial" font-size="11" fill="#333">実行順序番号</text>
-  </g>
-  <path d="M 420 120 L 420 100" stroke="#1565C0" stroke-width="2" fill="none" marker-end="url(#arrowDep)" />
-  <path d="M 420 360 L 420 380" stroke="#1565C0" stroke-width="2" fill="none" marker-end="url(#arrowDep)" />
-  <text x="490" y="225" font-family="Arial" font-size="14" font-weight="bold" fill="#1565C0">‖</text>
-  <text x="510" y="225" font-family="Arial" font-size="12" fill="#1565C0">並列</text>
 </svg>
 <footer>Claude Code Agent Teams Workshop</footer>
 </section>
@@ -1454,12 +1477,33 @@ section.lead h1 {
 }
 ;" data-marpit-pagination-total="38" data-size="16:9">
 <h1 id="%E8%A1%A8%E7%A4%BA%E3%83%A2%E3%83%BC%E3%83%89%E3%81%A8%E8%A8%AD%E5%AE%9A%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3">表示モードと設定オプション</h1>
+<table>
+<thead>
+<tr>
+<th>モード</th>
+<th>説明</th>
+<th>要件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>in-process</strong></td>
+<td>1つのターミナルに統合</td>
+<td>どのターミナルでもOK</td>
+</tr>
+<tr>
+<td><strong>split pane</strong></td>
+<td>チームメイトごとに別ペイン</td>
+<td>tmux / iTerm2</td>
+</tr>
+<tr>
+<td><strong>auto</strong>（デフォルト）</td>
+<td>tmux内ならsplit、それ以外はin-process</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li>| モード | 説明 | 要件 |</li>
-<li>|--------|------|------|</li>
-<li>| <strong>in-process</strong> | 1つのターミナルに統合 | どのターミナルでもOK |</li>
-<li>| <strong>split pane</strong> | チームメイトごとに別ペイン | tmux / iTerm2 |</li>
-<li>| <strong>auto</strong>（デフォルト） | tmux内ならsplit、それ以外はin-process | — |</li>
 <li></li>
 <li><strong>権限:</strong> チームメイトはリーダーの権限設定を継承</li>
 <li><strong>モデル:</strong> リーダーをOpus、チームメイトをSonnetが推奨</li>
@@ -1744,11 +1788,11 @@ section.lead h1 {
 ;" data-marpit-pagination-total="38" data-size="16:9">
 <h1 id="%E3%82%B3%E3%82%B9%E3%83%88%E8%80%83%E6%85%AE%E4%BA%8B%E9%A0%85">コスト考慮事項</h1>
 <ul>
-<li><strong>トークン消費量の目安</strong></li>
-<li>| 構成 | トークン消費 | 倍率 |</li>
-<li>|------|-------------|------|</li>
-<li>| ソロセッション | ~200kトークン | 1x |</li>
-<li>| 3人チーム（Sonnet） | ~800kトークン | 4x |</li>
+<li><strong>トークン消費量の目安</strong><br />
+| 構成 | トークン消費 | 倍率 |<br />
+|------|-------------|------|<br />
+| ソロセッション | ~200kトークン | 1x |<br />
+| 3人チーム（Sonnet） | ~800kトークン | 4x |</li>
 <li></li>
 <li><strong>コスト最適化のポイント:</strong></li>
 <li>
@@ -1791,16 +1835,40 @@ section.lead h1 {
 }
 ;" data-marpit-pagination-total="38" data-size="16:9">
 <h1 id="%E5%88%B6%E9%99%90%E4%BA%8B%E9%A0%85">制限事項</h1>
-<ul>
-<li>| 制限 | 詳細 |</li>
-<li>|------|------|</li>
-<li>| セッション復元不可 | <code>/resume</code> でチームメイトは復元されない |</li>
-<li>| 1セッション1チーム | 複数チームの同時管理は不可 |</li>
-<li>| ネスト不可 | チームメイトが自身のチームを作成できない |</li>
-<li>| リーダー固定 | リーダーシップの移譲・昇格は不可 |</li>
-<li>| Split pane制限 | VS Code統合ターミナル等では未対応 |</li>
-<li>| 実験的機能 | 環境変数による明示的な有効化が必要 |</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>制限</th>
+<th>詳細</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>セッション復元不可</td>
+<td><code>/resume</code> でチームメイトは復元されない</td>
+</tr>
+<tr>
+<td>1セッション1チーム</td>
+<td>複数チームの同時管理は不可</td>
+</tr>
+<tr>
+<td>ネスト不可</td>
+<td>チームメイトが自身のチームを作成できない</td>
+</tr>
+<tr>
+<td>リーダー固定</td>
+<td>リーダーシップの移譲・昇格は不可</td>
+</tr>
+<tr>
+<td>Split pane制限</td>
+<td>VS Code統合ターミナル等では未対応</td>
+</tr>
+<tr>
+<td>実験的機能</td>
+<td>環境変数による明示的な有効化が必要</td>
+</tr>
+</tbody>
+</table>
 <footer>Claude Code Agent Teams Workshop</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-paginate="true" data-footer="Claude Code Agent Teams Workshop" data-theme="gaia" data-style="section pre code {
@@ -1856,5 +1924,5 @@ section.lead h1 {
 <footer>Claude Code Agent Teams Workshop</footer>
 </section>
 <script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{container;containerSize;containerObserver;svg;svgComputedStyle;svgPreserveAspectRatio="xMinYMid meet";wrapper;wrapperSize;wrapperObserver;constructor(){super();const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=this.shadowRoot.querySelector(`div[${e}]`)??void 0;const t=this.svg;this.svg=this.wrapper?.querySelector(`svg[${i}]`)??void 0,this.svg!==t&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=this.svg?.querySelector(`span[${n}]`)??void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame(()=>{t.style.display=""}))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){let t=Math.ceil(this.containerSize?.width??0);const e=Math.ceil(this.containerSize?.height??0);void 0!==this.dataset.downscaleOnly&&(t=Math.max(t,this.wrapperSize?.width??0));const i=this.svg?.querySelector(":scope > foreignObject");if(i?.setAttribute("width",`${t}`),i?.setAttribute("height",`${e}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${t} ${e}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=t<=0||e<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const r=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this._shadow()}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_shadow(){if(!this.shadowRoot)try{this.attachShadow({mode:"open"})}catch(t){if(!(t instanceof Error&&"NotSupportedError"===t.name))throw t}return this.shadowRoot}_update(){const t=this._shadow();if(t){const e=i?`<style>:host { ${i} }</style>`:"";let n="<slot></slot>";const{autoScaling:s}=this.dataset;if(void 0!==s){n=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===s?"data-downscale-only":""}>${n}</marp-auto-scaling>`}t.innerHTML=e+n}}};let o;const a=Symbol(),l=()=>o??(o=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is"),o);let c;const d="marpitSVGPolyfill:setZoomFactor,",h=Symbol(),g=Symbol();const p=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[v]:[],i={then:e=>(t?(async()=>{if(void 0===c){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise(t=>{i.addEventListener("load",()=>t())});i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),c=e.getImageData(5,5,1,1).data[3]<128}return c})().then(t=>{null==e||e(t?[v]:[])}):null==e||e([]),i)};return Object.assign(e,i)};let m,u;function v(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(d)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(u=i)}}catch(t){console.error(t)}}));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),t=>{var e,s,r,o;t.style.transform||(t.style.transform="translateZ(0)");const a=i||u||t.currentScale||1;m!==a&&(m=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(o=null===(r=n.y)||void 0===r?void 0:r.baseVal.value)&&void 0!==o?o:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}}),!1!==n&&Array.from(e.querySelectorAll("iframe"),({contentWindow:t})=>{null==t||t.postMessage(`${d}${n}`,"null"===window.origin?"*":window.origin)})}function w({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[h])return t[h];let e=!0;const i=()=>{e=!1,delete t[h]};Object.defineProperty(t,h,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await p()}finally{s=!0}})();const r=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(r)};return r(),i}(e);return t?(i(),()=>{}):i}m=1,u=void 0;const b=Symbol(),y=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,o=t[n].proto();l()&&o!==HTMLElement?i||customElements.define(s,r(o,{style:t[n].style}),{extends:n}):(i||customElements.define(s,r(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach(t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)}))}window[a]=!0})(e),e[b])return e[b];const i=w({target:e}),n=()=>{i(),delete e[b]},o=Object.assign(n,{cleanup:n,update:()=>y(e)});return Object.defineProperty(e,b,{configurable:!0,value:o}),o},f=document.currentScript;y(f?f.getRootNode():document)}();
-</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="0" tabindex="0"><p>本日はClaude Code Agent Teamsについて、概念からベストプラクティスまで網羅的にカバーします。45分のワークショップ形式で進めます。</p></div><div class="bespoke-marp-note" data-index="1" tabindex="0"><p>前半は基本概念とアーキテクチャ、ツールの詳細を扱います。</p></div><div class="bespoke-marp-note" data-index="2" tabindex="0"><p>後半は実践的な内容に焦点を当て、導入判断に必要な情報を提供します。</p></div><div class="bespoke-marp-note" data-index="3" tabindex="0"><p>まず、なぜマルチエージェントが必要なのかを整理します。</p></div><div class="bespoke-marp-note" data-index="4" tabindex="0"><p>シングルエージェントでは、フロントエンド・バックエンド・テストなど異なる領域を1つのコンテキストで処理する必要があります。Agent Teamsはこの制約を解消します。</p></div><div class="bespoke-marp-note" data-index="5" tabindex="0"><p>Agent Teamsは実験的機能として環境変数で有効化します。各エージェントは完全に独立したセッションとして動作します。</p></div><div class="bespoke-marp-note" data-index="6" tabindex="0"><p>サブエージェントは結果を返すだけですが、Agent Teamsのチームメイトは相互にコミュニケーションでき、独立して作業を続けます。</p></div><div class="bespoke-marp-note" data-index="7" tabindex="0"><p>Agent Teamsのアーキテクチャを4つのコンポーネントに分けて解説します。</p></div><div class="bespoke-marp-note" data-index="8" tabindex="0"><p>Team Lead</p><p>Core Components</p><p>Teammates</p><p>Arrows: Lead to Task List</p><p>Lead → Task List</p><p>Lead → Mailbox</p><p>Teammates → Task List</p><p>Teammates ↔ Mailbox</p><p>Legend</p><p>Team Leadがチーム全体を管理し、Teammatesは共有タスクリストとメールボックスを通じて協調します。各コンポーネントはローカルディスク上のファイルとして管理されます。</p></div><div class="bespoke-marp-note" data-index="9" tabindex="0"><p>チーム設定はconfig.jsonに、タスクは個別のJSONファイルとして管理されます。チームメイトはconfig.jsonを読んで他のメンバーを発見できます。</p></div><div class="bespoke-marp-note" data-index="10" tabindex="0"><p>Agent Teamsは7つの基本ツールで構成されています。それぞれの役割を見ていきましょう。</p></div><div class="bespoke-marp-note" data-index="11" tabindex="0"><p>これら7つのプリミティブがAgent Teamsの全機能を提供します。シンプルですが、組み合わせにより柔軟な協調パターンを実現できます。</p></div><div class="bespoke-marp-note" data-index="12" tabindex="0"><p>TeamCreateでチームを作り、全作業完了後にTeamDeleteでクリーンアップします。TeamDeleteはアクティブなメンバーがいると安全のため失敗します。</p></div><div class="bespoke-marp-note" data-index="13" tabindex="0"><p>TaskCreateでタスクを作成する際、subjectは命令形、activeFormは進行形で記述します。descriptionには他のエージェントが理解できる十分な詳細を含めます。TaskGetでタスクの全詳細（依存関係含む）を取得できます。</p></div><div class="bespoke-marp-note" data-index="14" tabindex="0"><p>TaskUpdateはタスクの状態遷移と依存関係管理を担います。ファイルロックにより、複数のチームメイトが同時にタスクを取り合っても安全です。</p></div><div class="bespoke-marp-note" data-index="15" tabindex="0"><p>SendMessageの5つのタイプを使い分けます。broadcastはコストが高いため、クリティカルな全体通知のみに使用します。通常のやりとりはmessageで十分です。</p></div><div class="bespoke-marp-note" data-index="16" tabindex="0"><p>チームメイトとして使えるエージェントタイプを見ていきます。</p></div><div class="bespoke-marp-note" data-index="17" tabindex="0"><p>Exploreは高速なHaikuモデルを使い、コードベースの調査に特化しています。実装が必要なタスクにはGeneral-purposeを使います。エージェントタイプの選択はタスクの性質に合わせて行います。</p></div><div class="bespoke-marp-note" data-index="18" tabindex="0"><p>カスタムエージェントにより、チーム特有の役割（セキュリティレビュアー、テストエンジニア等）を定義できます。YAML frontmatterで設定を行います。</p></div><div class="bespoke-marp-note" data-index="19" tabindex="0"><p>Agent Teamsの具体的なワークフローパターンを見ていきます。</p></div><div class="bespoke-marp-note" data-index="20" tabindex="0"><p>Phase 1: Setup</p><p>Phase 2: Execution</p><p>Phase 3: Teardown</p><p>Inter-phase transitions</p><p>Labels</p><p>Setup→Execution→Teardownの3フェーズです。ExecutionフェーズではチームメイトがTaskList→Claim→Execute→Update→Messageのループを自律的に回します。</p></div><div class="bespoke-marp-note" data-index="21" tabindex="0"><p>Title</p><p>Participants</p><p>Lifelines</p><p>Arrow markers</p><p>Interactions</p><p>Leadがタスクを作成しチームメイトをSpawnすると、各チームメイトが自律的にタスクを取得・実行・完了報告します。全タスク完了後にシャットダウンを要求します。</p></div><div class="bespoke-marp-note" data-index="22" tabindex="0"><p>チームメイトはリーダーの会話履歴を持ちませんが、CLAUDE.mdやMCPサーバーの設定は自動的にロードされます。idle状態は正常な動作であり、エラーではありません。</p></div><div class="bespoke-marp-note" data-index="23" tabindex="0"><p>Title</p><p>Wave zones</p><p>Task A</p><p>Task B</p><p>Task C</p><p>Task D</p><p>Dependencies arrows</p><p>A -&gt; B</p><p>A -&gt; C</p><p>B -&gt; D</p><p>C -&gt; D</p><p>Legend</p><p>Parallelism indicator</p><p>Wave 1でタスクAが実行され、完了するとWave 2でB・Cが並列実行、両方完了するとWave 3でDが実行されます。依存関係の自動解決により手動の調整は不要です。</p></div><div class="bespoke-marp-note" data-index="24" tabindex="0"><p>Plan Approvalにより、重要な変更を加える前にリーダーがレビューできます。チームメイトは承認されるまで読み取り専用モードで動作し、安全性を確保します。</p></div><div class="bespoke-marp-note" data-index="25" tabindex="0"><p>Delegateモードは、リーダーが誤って自分でタスクを実装してしまうのを防ぎます。大規模チームでは特に有効で、リーダーがオーケストレーションに集中できます。</p></div><div class="bespoke-marp-note" data-index="26" tabindex="0"><p>Agent Teamsを使い始めるための設定方法を説明します。</p></div><div class="bespoke-marp-note" data-index="27" tabindex="0"><p>Agent Teamsはデフォルト無効です。settings.jsonまたは環境変数で明示的に有効化する必要があります。</p></div><div class="bespoke-marp-note" data-index="28" tabindex="0"><p>in-processモードではShift+Up/Downでチームメイトを切り替えます。split paneモードでは各チームメイトの作業をリアルタイムで確認できます。VS Code統合ターミナルではsplit paneは未対応です。</p></div><div class="bespoke-marp-note" data-index="29" tabindex="0"><p>Agent Teamsが特に効果を発揮するユースケースを紹介します。</p></div><div class="bespoke-marp-note" data-index="30" tabindex="0"><p>EMとしては、チームの開発プロセスにAgent Teamsをどう組み込むかが重要です。特にリサーチ＆レビューは導入のハードルが低く、最初のユースケースとしておすすめです。</p></div><div class="bespoke-marp-note" data-index="31" tabindex="0"><p>この事例はAgent Teamsの可能性を示す象徴的なプロジェクトです。16のエージェントがそれぞれ異なるコンパイラコンポーネントを担当し、大規模なソフトウェアを協調して構築しました。</p></div><div class="bespoke-marp-note" data-index="32" tabindex="0"><p>Agent Teamsを効果的に使うためのベストプラクティスを紹介します。</p></div><div class="bespoke-marp-note" data-index="33" tabindex="0"><p>最も重要なのはコンテキストの提供です。チームメイトはリーダーの会話を知らないため、タスクの背景と目的を明確に伝える必要があります。</p></div><div class="bespoke-marp-note" data-index="34" tabindex="0"><p>Plan Firstアプローチにより、高コストな実行フェーズに入る前に方針を確認できます。リーダーをOpus、チームメイトをSonnetにする構成が推奨されています。</p></div><div class="bespoke-marp-note" data-index="35" tabindex="0"><p>コストは約4倍になりますが、時間短縮と品質向上を考慮するとROIは十分に見合う場合が多いです。まずはリサーチ系タスクで試すことを推奨します。</p></div><div class="bespoke-marp-note" data-index="36" tabindex="0"><p>現時点での制限事項を把握しておくことが重要です。特にセッション復元不可は長時間の作業で注意が必要です。実験的機能のため、今後のアップデートで改善される可能性があります。</p></div><div class="bespoke-marp-note" data-index="37" tabindex="0"><p>Agent Teamsはまだ実験的機能ですが、複雑なタスクの並列処理において大きな可能性を持っています。まずはリスクの低いリサーチタスクから試し、チームの開発プロセスへの組み込みを検討してください。</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@4.2.3/lib/bespoke.js.LICENSE.txt */
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="0" tabindex="0"><p>本日はClaude Code Agent Teamsについて、概念からベストプラクティスまで網羅的にカバーします。45分のワークショップ形式で進めます。</p></div><div class="bespoke-marp-note" data-index="1" tabindex="0"><p>前半は基本概念とアーキテクチャ、ツールの詳細を扱います。</p></div><div class="bespoke-marp-note" data-index="2" tabindex="0"><p>後半は実践的な内容に焦点を当て、導入判断に必要な情報を提供します。</p></div><div class="bespoke-marp-note" data-index="3" tabindex="0"><p>まず、なぜマルチエージェントが必要なのかを整理します。</p></div><div class="bespoke-marp-note" data-index="4" tabindex="0"><p>シングルエージェントでは、フロントエンド・バックエンド・テストなど異なる領域を1つのコンテキストで処理する必要があります。Agent Teamsはこの制約を解消します。</p></div><div class="bespoke-marp-note" data-index="5" tabindex="0"><p>Agent Teamsは実験的機能として環境変数で有効化します。各エージェントは完全に独立したセッションとして動作します。</p></div><div class="bespoke-marp-note" data-index="6" tabindex="0"><p>サブエージェントは結果を返すだけですが、Agent Teamsのチームメイトは相互にコミュニケーションでき、独立して作業を続けます。</p></div><div class="bespoke-marp-note" data-index="7" tabindex="0"><p>Agent Teamsのアーキテクチャを4つのコンポーネントに分けて解説します。</p></div><div class="bespoke-marp-note" data-index="8" tabindex="0"><p>Team Lead</p><p>Core Components</p><p>Teammates</p><p>Lead → Task List</p><p>Lead → Mailbox</p><p>Teammate 1 → Task List</p><p>Teammate 2 → Task List</p><p>Teammate 2 → Mailbox</p><p>Mailbox → Teammate 2</p><p>Teammate 3 → Mailbox</p><p>Mailbox → Teammate 3</p><p>Legend</p><p>Team Leadがチーム全体を管理し、Teammatesは共有タスクリストとメールボックスを通じて協調します。各コンポーネントはローカルディスク上のファイルとして管理されます。</p></div><div class="bespoke-marp-note" data-index="9" tabindex="0"><p>チーム設定はconfig.jsonに、タスクは個別のJSONファイルとして管理されます。チームメイトはconfig.jsonを読んで他のメンバーを発見できます。</p></div><div class="bespoke-marp-note" data-index="10" tabindex="0"><p>Agent Teamsは7つの基本ツールで構成されています。それぞれの役割を見ていきましょう。</p></div><div class="bespoke-marp-note" data-index="11" tabindex="0"><p>これら7つのプリミティブがAgent Teamsの全機能を提供します。シンプルですが、組み合わせにより柔軟な協調パターンを実現できます。</p></div><div class="bespoke-marp-note" data-index="12" tabindex="0"><p>TeamCreateでチームを作り、全作業完了後にTeamDeleteでクリーンアップします。TeamDeleteはアクティブなメンバーがいると安全のため失敗します。</p></div><div class="bespoke-marp-note" data-index="13" tabindex="0"><p>TaskCreateでタスクを作成する際、subjectは命令形、activeFormは進行形で記述します。descriptionには他のエージェントが理解できる十分な詳細を含めます。TaskGetでタスクの全詳細（依存関係含む）を取得できます。</p></div><div class="bespoke-marp-note" data-index="14" tabindex="0"><p>TaskUpdateはタスクの状態遷移と依存関係管理を担います。ファイルロックにより、複数のチームメイトが同時にタスクを取り合っても安全です。</p></div><div class="bespoke-marp-note" data-index="15" tabindex="0"><p>SendMessageの5つのタイプを使い分けます。broadcastはコストが高いため、クリティカルな全体通知のみに使用します。通常のやりとりはmessageで十分です。</p></div><div class="bespoke-marp-note" data-index="16" tabindex="0"><p>チームメイトとして使えるエージェントタイプを見ていきます。</p></div><div class="bespoke-marp-note" data-index="17" tabindex="0"><p>Exploreは高速なHaikuモデルを使い、コードベースの調査に特化しています。実装が必要なタスクにはGeneral-purposeを使います。エージェントタイプの選択はタスクの性質に合わせて行います。</p></div><div class="bespoke-marp-note" data-index="18" tabindex="0"><p>カスタムエージェントにより、チーム特有の役割（セキュリティレビュアー、テストエンジニア等）を定義できます。YAML frontmatterで設定を行います。</p></div><div class="bespoke-marp-note" data-index="19" tabindex="0"><p>Agent Teamsの具体的なワークフローパターンを見ていきます。</p></div><div class="bespoke-marp-note" data-index="20" tabindex="0"><p>Title</p><p>Phase 1: Setup</p><p>Phase 1 arrows (vertical down)</p><p>Phase 2: Execution</p><p>Circular flow</p><p>Flow arrows within Phase 2</p><p>TaskList → Claim Task</p><p>Phase 3: Teardown</p><p>Phase 3 arrows</p><p>Inter-phase transitions</p><p>Setup→Execution→Teardownの3フェーズです。ExecutionフェーズではチームメイトがTaskList→Claim→Execute→Update→Messageのループを自律的に回します。</p></div><div class="bespoke-marp-note" data-index="21" tabindex="0"><p>Title</p><p>Participants</p><p>Lifelines</p><p>TaskCreate: Lead → TaskList</p><p>Spawn T1</p><p>Spawn T2</p><p>T1 TaskList</p><p>T1 Claim A</p><p>T2 TaskList</p><p>T2 Claim B</p><p>Execution phase</p><p>T1 Complete A</p><p>T1 → Lead 完了報告</p><p>T1 Claim C</p><p>T2 Complete B</p><p>T2 → Lead 完了報告</p><p>Teardown phase</p><p>Shutdown T1</p><p>Shutdown T2</p><p>T1 approve</p><p>T2 approve</p><p>Leadがタスクを作成しチームメイトをSpawnすると、各チームメイトが自律的にタスクを取得・実行・完了報告します。全タスク完了後にシャットダウンを要求します。</p></div><div class="bespoke-marp-note" data-index="22" tabindex="0"><p>チームメイトはリーダーの会話履歴を持ちませんが、CLAUDE.mdやMCPサーバーの設定は自動的にロードされます。idle状態は正常な動作であり、エラーではありません。</p></div><div class="bespoke-marp-note" data-index="23" tabindex="0"><p>Background</p><p>Title</p><p>Wave zones</p><p>Task A</p><p>Task B</p><p>Task C</p><p>Task D</p><p>A → B</p><p>A → C</p><p>B → D</p><p>C → D</p><p>Parallelism indicator</p><p>Legend</p><p>Wave 1でタスクAが実行され、完了するとWave 2でB・Cが並列実行、両方完了するとWave 3でDが実行されます。依存関係の自動解決により手動の調整は不要です。</p></div><div class="bespoke-marp-note" data-index="24" tabindex="0"><p>Plan Approvalにより、重要な変更を加える前にリーダーがレビューできます。チームメイトは承認されるまで読み取り専用モードで動作し、安全性を確保します。</p></div><div class="bespoke-marp-note" data-index="25" tabindex="0"><p>Delegateモードは、リーダーが誤って自分でタスクを実装してしまうのを防ぎます。大規模チームでは特に有効で、リーダーがオーケストレーションに集中できます。</p></div><div class="bespoke-marp-note" data-index="26" tabindex="0"><p>Agent Teamsを使い始めるための設定方法を説明します。</p></div><div class="bespoke-marp-note" data-index="27" tabindex="0"><p>Agent Teamsはデフォルト無効です。settings.jsonまたは環境変数で明示的に有効化する必要があります。</p></div><div class="bespoke-marp-note" data-index="28" tabindex="0"><p>in-processモードではShift+Up/Downでチームメイトを切り替えます。split paneモードでは各チームメイトの作業をリアルタイムで確認できます。VS Code統合ターミナルではsplit paneは未対応です。</p></div><div class="bespoke-marp-note" data-index="29" tabindex="0"><p>Agent Teamsが特に効果を発揮するユースケースを紹介します。</p></div><div class="bespoke-marp-note" data-index="30" tabindex="0"><p>EMとしては、チームの開発プロセスにAgent Teamsをどう組み込むかが重要です。特にリサーチ＆レビューは導入のハードルが低く、最初のユースケースとしておすすめです。</p></div><div class="bespoke-marp-note" data-index="31" tabindex="0"><p>この事例はAgent Teamsの可能性を示す象徴的なプロジェクトです。16のエージェントがそれぞれ異なるコンパイラコンポーネントを担当し、大規模なソフトウェアを協調して構築しました。</p></div><div class="bespoke-marp-note" data-index="32" tabindex="0"><p>Agent Teamsを効果的に使うためのベストプラクティスを紹介します。</p></div><div class="bespoke-marp-note" data-index="33" tabindex="0"><p>最も重要なのはコンテキストの提供です。チームメイトはリーダーの会話を知らないため、タスクの背景と目的を明確に伝える必要があります。</p></div><div class="bespoke-marp-note" data-index="34" tabindex="0"><p>Plan Firstアプローチにより、高コストな実行フェーズに入る前に方針を確認できます。リーダーをOpus、チームメイトをSonnetにする構成が推奨されています。</p></div><div class="bespoke-marp-note" data-index="35" tabindex="0"><p>コストは約4倍になりますが、時間短縮と品質向上を考慮するとROIは十分に見合う場合が多いです。まずはリサーチ系タスクで試すことを推奨します。</p></div><div class="bespoke-marp-note" data-index="36" tabindex="0"><p>現時点での制限事項を把握しておくことが重要です。特にセッション復元不可は長時間の作業で注意が必要です。実験的機能のため、今後のアップデートで改善される可能性があります。</p></div><div class="bespoke-marp-note" data-index="37" tabindex="0"><p>Agent Teamsはまだ実験的機能ですが、複雑なタスクの並列処理において大きな可能性を持っています。まずはリスクの低いリサーチタスクから試し、チームの開発プロセスへの組み込みを検討してください。</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@4.2.3/lib/bespoke.js.LICENSE.txt */
 !function(){"use strict";function e(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var t,n,r=(n||(n=1,t={from:function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),o=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,function(e){return"SCRIPT"!==e.nodeName}),a={},i=function(e,t){return(t=t||{}).index=o.indexOf(e),t.slide=e,t},s=function(e,t){a[e]=(a[e]||[]).filter(function(e){return e!==t})},c=function(e,t){return(a[e]||[]).reduce(function(e,n){return e&&!1!==n(t)},!0)},l=function(e,t){o[e]&&(n&&c("deactivate",i(n,t)),n=o[e],c("activate",i(n,t)))},d=function(e,t){var r=o.indexOf(n)+e;c(e>0?"next":"prev",i(n,t))&&l(r,t)},u={off:s,on:function(e,t){return(a[e]||(a[e]=[])).push(t),s.bind(null,e,t)},fire:c,slide:function(e,t){if(!arguments.length)return o.indexOf(n);c("slide",i(o[e],t))&&l(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:o,destroy:function(e){c("destroy",i(n,e)),a={}}};return(t||[]).forEach(function(e){e(u)}),n||l(0),u}}),t),o=e(r);const a=document.body,i=(...e)=>history.replaceState(...e),s="",c="presenter",l="next",d=["",c,l],u="bespoke-marp-",f=`data-${u}`,m=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},g=()=>a.dataset.bespokeView,p=e=>new URLSearchParams(location.search).get(e),v=(e,t={})=>{const n={location,setter:i,...t},r=new URLSearchParams(n.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?r.set(t,n):r.delete(t)}try{n.setter({...window.history.state??{}},"",m(r,n.location))}catch(e){console.error(e)}},h=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch{return!1}})(),y=e=>{try{return localStorage.getItem(e)}catch{return null}},b=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch{return!1}},w=e=>{try{return localStorage.removeItem(e),!0}catch{return!1}},x=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},k=e=>{e.parent.classList.add(`${u}parent`),e.slides.forEach(e=>e.classList.add(`${u}slide`)),e.on("activate",t=>{const n=`${u}active`,r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach(e=>{e.classList.remove(n),x(e,!0)}),o.add(n),x(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}})},$=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=o;e.setAttribute(`${f}fragment`,(a?"":"in")+"active");const i=`${f}current-fragment`;t===r&&n===o?e.setAttribute(i,"current"):e.removeAttribute(i)})}),e.fragmentIndex=o;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",a)};e.on("next",({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}}),e.on("prev",({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)}),o(0,0)},E=document,L=()=>!(!E.fullscreenEnabled&&!E.webkitFullscreenEnabled),S=()=>!(!E.fullscreenElement&&!E.webkitFullscreenElement),P=e=>{e.fullscreen=()=>{L()&&(async()=>{S()?(E.exitFullscreen||E.webkitExitFullscreen)?.call(E):((e=E.body)=>{(e.requestFullscreen||e.webkitRequestFullscreen)?.call(e)})()})()},document.addEventListener("keydown",t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!L()||(e.fullscreen(),t.preventDefault())})},_=`${u}inactive`,T=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout(()=>{r.add(_),o()},e),r.contains(_)&&(r.remove(_),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},I=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],M=e=>{e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(I.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})},O=e=>{window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("marp-auto-scaling, [data-auto-scaling], [data-marp-fitting]");t.setAttribute(`${f}load`,e?"":"hideable")}})},A=({interval:e=250}={})=>t=>{document.addEventListener("keydown",e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()});let n,r,o=0;t.parent.addEventListener("wheel",a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),e?.parentElement&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const c=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<12)return;r&&clearTimeout(r),r=setTimeout(()=>{n=0},e);const l=Date.now()-o<e,d=c<=n;if(n=c,l||d)return;let u;(a.deltaX>0||a.deltaY>0)&&(u="next"),(a.deltaX<0||a.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())})},C=(e=`.${u}osc`)=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${f}osc=${JSON.stringify(e)}]`).forEach(n)};return L()||n("fullscreen",e=>e.style.display="none"),h||n("presenter",e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."}),e=>{t.addEventListener("click",t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?e?.fullscreen():"presenter"===n&&e.openPresenterView()}}),e.parent.appendChild(t),e.on("activate",({index:t})=>{n("page",n=>n.textContent=`Page ${t+1} of ${e.slides.length}`)}),e.on("fragment",({index:t,fragments:r,fragmentIndex:o})=>{n("prev",e=>e.disabled=0===t&&0===o),n("next",n=>n.disabled=t===e.slides.length-1&&o===r.length-1)}),e.on("marp-active",()=>x(t,!1)),e.on("marp-inactive",()=>x(t,!0)),L()&&(e=>{for(const t of["","webkit"])E.addEventListener(t+"fullscreenchange",e)})(()=>n("fullscreen",e=>e.classList.toggle("exit",L()&&S())))}},D=e=>{window.addEventListener("message",t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}})};var N,B,q,K,F,j,V,U={exports:{}},X=(N||(N=1,U.exports=(B=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"],q=function(e){return String(e).replace(/[&<>"']/g,function(e){return"&"+K[e]+";"})},K={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},F="dangerouslySetInnerHTML",j={className:"class",htmlFor:"for"},V={},function(e,t){var n=[],r="";t=t||{};for(var o=arguments.length;o-- >2;)n.push(arguments[o]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(var a in t)!1!==t[a]&&null!=t[a]&&a!==F&&(r+=" "+(j[a]?j[a]:q(a))+'="'+q(t[a])+'"');r+=">"}if(-1===B.indexOf(e)){if(t[F])r+=t[F].__html;else for(;n.length;){var i=n.pop();if(i)if(i.pop)for(var s=i.length;s--;)n.push(i[s]);else r+=!0===V[i]?i:q(i)}r+=e?"</"+e+">":""}return V[r]=!0,r})),U.exports),H=e(X);const R=({children:e})=>H(null,null,...e),W=`${u}presenter-`,J={container:`${W}container`,dragbar:`${W}dragbar-container`,next:`${W}next`,nextContainer:`${W}next-container`,noteContainer:`${W}note-container`,noteWrapper:`${W}note-wrapper`,noteButtons:`${W}note-buttons`,infoContainer:`${W}info-container`,infoPage:`${W}info-page`,infoPageText:`${W}info-page-text`,infoPagePrev:`${W}info-page-prev`,infoPageNext:`${W}info-page-next`,noteButtonsBigger:`${W}note-bigger`,noteButtonsSmaller:`${W}note-smaller`,infoTime:`${W}info-time`,infoTimer:`${W}info-timer`},Y=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=J.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",H(R,null,H("div",{class:J.nextContainer},H("iframe",{class:J.next,src:"?view=next"})),H("div",{class:J.dragbar}),H("div",{class:J.noteContainer},H("div",{class:J.noteWrapper}),H("div",{class:J.noteButtons},H("button",{class:J.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),H("button",{class:J.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),H("div",{class:J.infoContainer},H("div",{class:J.infoPage},H("button",{class:J.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),H("span",{class:J.infoPageText}),H("button",{class:J.infoPageNext,tabindex:"-1",title:"Next"},"Next")),H("time",{class:J.infoTime,title:"Current time"}),H("time",{class:J.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(J.dragbar).addEventListener("mousedown",()=>{t=!0,r(J.dragbar).classList.add("active")}),window.addEventListener("mouseup",()=>{t=!1,r(J.dragbar).classList.remove("active")}),window.addEventListener("mousemove",e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(J.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)}),r(J.nextContainer).addEventListener("click",()=>e.next());const n=r(J.next),o=(a=n,(e,t)=>a.contentWindow?.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin));var a;n.addEventListener("load",()=>{r(J.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",({index:e,fragmentIndex:t})=>o(e,t))});const i=document.querySelectorAll(".bespoke-marp-note");i.forEach(e=>{e.addEventListener("keydown",e=>e.stopPropagation()),r(J.noteWrapper).appendChild(e)}),e.on("activate",()=>i.forEach(t=>t.classList.toggle("active",t.dataset.index==e.slide())));let s=0;const c=e=>{s=Math.max(-5,s+e),r(J.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},l=()=>c(1),d=()=>c(-1),u=r(J.noteButtonsBigger),f=r(J.noteButtonsSmaller);u.addEventListener("click",()=>{u.blur(),l()}),f.addEventListener("click",()=>{f.blur(),d()}),document.addEventListener("keydown",e=>{"+"===e.key&&l(),"-"===e.key&&d()},!0),e.on("activate",({index:t})=>{r(J.infoPageText).textContent=`${t+1} / ${e.slides.length}`});const m=r(J.infoPagePrev),g=r(J.infoPageNext);m.addEventListener("click",t=>{m.blur(),e.prev({fragment:!t.shiftKey})}),g.addEventListener("click",t=>{g.blur(),e.next({fragment:!t.shiftKey})}),e.on("fragment",({index:t,fragments:n,fragmentIndex:r})=>{m.disabled=0===t&&0===r,g.disabled=t===e.slides.length-1&&r===n.length-1});let p=new Date;const v=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-p.getTime(),o=t(n/1e3%60),a=t(n/1e3/60%60),i=t(n/36e5%24);r(J.infoTime).textContent=e.toLocaleTimeString(),r(J.infoTimer).textContent=`${i}:${a}:${o}`};v(),setInterval(v,250),r(J.infoTimer).addEventListener("click",()=>{p=new Date})})(e)},z=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:G},presenterUrl:{enumerable:!0,get:Q}}),h&&document.addEventListener("keydown",t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())})};function G(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,W+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function Q(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),m(e)}const Z=e=>{const t=g();return t===l&&e.appendChild(document.createElement("span")),{[s]:z,[c]:Y,[l]:D}[t]},ee=e=>{e.on("activate",t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach(n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"})})},te=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},ne=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{let n=t.fragment?te(p("f")||""):null;((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),c=o(0,r(n||0,a[s].length-1));s===e.slide()&&c===e.fragmentIndex||e.slide(s,{fragment:c})})((()=>{if(location.hash){const[t]=location.hash.slice(1).split(":~:");if(/^\d+$/.test(t))return(te(t)??1)-1;const r=document.getElementById(t)||document.querySelector(`a[name="${CSS.escape(t)}"]`);if(r){const{length:t}=e.slides;for(let o=0;o<t;o+=1)if(e.slides[o].contains(r)){const t=e.fragments?.[o],a=r.closest("[data-marpit-fragment]");if(t&&a){const e=t.indexOf(a);e>=0&&(n=e)}return o}}}return 0})(),n)};e.on("fragment",({index:e,fragmentIndex:r})=>{n||v({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})}),setTimeout(()=>{o(),window.addEventListener("hashchange",()=>r(()=>{o({fragment:!1}),v({f:void 0})})),window.addEventListener("popstate",()=>{n||r(()=>o())}),n=!1},0)}},re=(e={})=>{const t=e.key||window.history.state?.marpBespokeSyncKey||Math.random().toString(36).slice(2),n=`bespoke-marp-sync-${t}`;var r;r={marpBespokeSyncKey:t},v({},{setter:(e,...t)=>i({...e,...r},...t)});const o=()=>{const e=y(n);return e?JSON.parse(e):Object.create(null)},a=e=>{const t=o(),r={...t,...e(t)};return b(n,JSON.stringify(r)),r},s=()=>{window.removeEventListener("pageshow",s),a(e=>({reference:(e.reference||0)+1}))};return e=>{s(),Object.defineProperty(e,"syncKey",{value:t,enumerable:!0});let r=!0;setTimeout(()=>{e.on("fragment",e=>{r&&a(()=>({index:e.index,fragmentIndex:e.fragmentIndex}))})},0),window.addEventListener("storage",t=>{if(t.key===n&&t.oldValue&&t.newValue){const n=JSON.parse(t.oldValue),o=JSON.parse(t.newValue);if(n.index!==o.index||n.fragmentIndex!==o.fragmentIndex)try{r=!1,e.slide(o.index,{fragment:o.fragmentIndex,forSync:!0})}finally{r=!0}}});const i=()=>{const{reference:e}=o();void 0===e||e<=1?w(n):a(()=>({reference:e-1}))};window.addEventListener("pagehide",e=>{e.persisted&&window.addEventListener("pageshow",s),i()}),e.on("destroy",i)}},{PI:oe,abs:ae,sqrt:ie,atan2:se}=Math,ce={passive:!0},le=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",({touches:e})=>{r=1===e.length?a(e[0]):void 0},ce),o.addEventListener("touchmove",e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=ie(ae(n)**2+ae(o)**2),r.radian=se(n,o)}else r=void 0}),o.addEventListener("touchend",o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+oe)%(2*oe)-oe;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}},ce)},de=new Map;de.clear(),de.set("none",{backward:{both:void 0,incoming:void 0,outgoing:void 0},forward:{both:void 0,incoming:void 0,outgoing:void 0}});const ue={both:"",outgoing:"outgoing-",incoming:"incoming-"},fe={forward:"",backward:"-backward"},me=e=>`--marp-bespoke-transition-animation-${e}`,ge=e=>`--marp-transition-${e}`,pe=me("name"),ve=me("duration"),he=e=>new Promise(t=>{const n={},r=document.createElement("div"),o=e=>{r.remove(),t(e)};r.addEventListener("animationstart",()=>o(n)),Object.assign(r.style,{animationName:e,animationDuration:"1s",animationFillMode:"both",animationPlayState:"paused",position:"absolute",pointerEvents:"none"}),document.body.appendChild(r);const a=getComputedStyle(r).getPropertyValue(ge("duration"));a&&Number.parseFloat(a)>=0&&(n.defaultDuration=a),((e,t)=>{requestAnimationFrame(()=>{e.style.animationPlayState="running",requestAnimationFrame(()=>t(void 0))})})(r,o)}),ye=async e=>de.has(e)?de.get(e):(e=>{const t={},n=[];for(const[r,o]of Object.entries(ue))for(const[a,i]of Object.entries(fe)){const s=`marp-${o}transition${i}-${e}`;n.push(he(s).then(e=>{t[a]=t[a]||{},t[a][r]=e?{...e,name:s}:void 0}))}return Promise.all(n).then(()=>t)})(e).then(t=>(de.set(e,t),t)),be=e=>Object.values(e).flatMap(Object.values).every(e=>!e),we=(e,{type:t,backward:n})=>{const r=e[n?"backward":"forward"],o=(()=>{const e=r[t],n=e=>({[pe]:e.name});if(e)return n(e);if(r.both){const e=n(r.both);return"incoming"===t&&(e[me("direction")]="reverse"),e}})();return!o&&n?we(e,{type:t,backward:!1}):o||{[pe]:"__bespoke_marp_transition_no_animation__"}},xe=e=>{if(e)try{const t=JSON.parse(e);if((e=>{if("object"!=typeof e)return!1;const t=e;return"string"==typeof t.name&&(void 0===t.duration||"string"==typeof t.duration)})(t))return t}catch{}},ke="_tSId",$e="_tA",Ee="bespoke-marp-transition-warming-up",Le=window.matchMedia("(prefers-reduced-motion: reduce)"),Se="__bespoke_marp_transition_reduced_outgoing__",Pe="__bespoke_marp_transition_reduced_incoming__",_e={forward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}},backward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}}},Te=e=>{if(!document.startViewTransition)return;const t=t=>(void 0!==t&&(e._tD=t),e._tD);let n;t(!1),((...e)=>{CSS.registerProperty({name:ge("duration"),syntax:"<time>",inherits:!0,initialValue:"-1s"});const t=[...new Set(e).values()];return Promise.all(t.map(e=>ye(e))).then()})(...Array.from(document.querySelectorAll("section[data-transition], section[data-transition-back]")).flatMap(e=>[e.dataset.transition,e.dataset.transitionBack].flatMap(e=>{const t=xe(e);return[t?.name,t?.builtinFallback?`__builtin__${t.name}`:void 0]}).filter(e=>!!e))).then(()=>{document.querySelectorAll("style").forEach(e=>{e.innerHTML=e.innerHTML.replace(/--marp-transition-duration:[^;}]*[;}]/g,e=>e.slice(0,-1)+"!important"+e.slice(-1))})});const r=(n,{back:r,cond:o})=>a=>{const i=t();if(i)return!!a[$e]||!("object"!=typeof i||(i.skipTransition(),!a.forSync));if(!o(a))return!0;const s=e.slides[e.slide()],c=()=>a.back??r,l="data-transition"+(c()?"-back":""),d=s.querySelector(`section[${l}]`);if(!d)return!0;const u=xe(d.getAttribute(l)??void 0);return!u||((async(e,{builtinFallback:t=!0}={})=>{let n=await ye(e);if(be(n)){if(!t)return;return n=await ye(`__builtin__${e}`),be(n)?void 0:n}return n})(u.name,{builtinFallback:u.builtinFallback}).then(e=>{if(!e){t(!0);try{n(a)}finally{t(!1)}return}let r=e;Le.matches&&(console.warn("Use a constant animation to transition because preferring reduced motion by viewer has detected."),r=_e);const o=document.getElementById(ke);o&&o.remove();const i=document.createElement("style");i.id=ke,document.head.appendChild(i),((e,t)=>{const n=[`:root{${ge("direction")}:${t.backward?-1:1};}`,":root:has(.bespoke-marp-inactive){cursor:none;}"],r=t=>{const n=e[t].both?.defaultDuration||e[t].outgoing?.defaultDuration||e[t].incoming?.defaultDuration;return"forward"===t?n:n||r("forward")},o=t.duration||r(t.backward?"backward":"forward");void 0!==o&&n.push(`::view-transition-group(*){${ve}:${o};}`);const a=e=>Object.entries(e).map(([e,t])=>`${e}:${t};`).join("");return n.push(`::view-transition-old(root){${a(we(e,{...t,type:"outgoing"}))}}`,`::view-transition-new(root){${a(we(e,{...t,type:"incoming"}))}}`),n})(r,{backward:c(),duration:u.duration}).forEach(e=>i.sheet?.insertRule(e));const s=document.documentElement.classList;s.add(Ee);let l=!1;const d=()=>{l||(n(a),l=!0,s.remove(Ee))},f=()=>{t(!1),i.remove(),s.remove(Ee)};try{t(!0);const e=document.startViewTransition(d);t(e),e.finished.finally(f)}catch(e){console.error(e),d(),f()}}),!1)};e.on("prev",r(t=>e.prev({...t,[$e]:!0}),{back:!0,cond:e=>e.index>0&&!((e.fragment??1)&&n.fragmentIndex>0)})),e.on("next",r(t=>e.next({...t,[$e]:!0}),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout(()=>{e.on("slide",r(t=>e.slide(t.index,{...t,[$e]:!0}),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))},0),e.on("fragment",e=>{n=e})};let Ie;const Me=()=>(void 0===Ie&&(Ie="wakeLock"in navigator&&navigator.wakeLock),Ie),Oe=async()=>{const e=Me();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},Ae=async()=>{if(!Me())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&Oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await Oe(),e};((e=document.getElementById(":$p"))=>{(()=>{const e=p("view");a.dataset.bespokeView=e===l||e===c?e:""})();const t=(e=>{const t=p(e);return v({[e]:void 0}),t})("sync")||void 0;o.from(e,((...e)=>{const t=d.findIndex(e=>g()===e);return e.map(([e,n])=>e[t]&&n).filter(e=>e)})([[1,1,0],re({key:t})],[[1,1,1],Z(e)],[[1,1,0],M],[[1,1,1],k],[[1,0,0],T()],[[1,1,1],O],[[1,1,1],ne({history:!1})],[[1,1,0],A()],[[1,1,0],P],[[1,0,0],ee],[[1,1,0],le()],[[1,0,0],C()],[[1,0,0],Te],[[1,1,1],$],[[1,1,0],Ae]))})()}();</script></body></html>

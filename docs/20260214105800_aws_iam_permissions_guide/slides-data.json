@@ -42,8 +42,7 @@
 		},
 		{
 			"title": "IAMの全体像（図解）",
-			"content": [],
-			"mermaid": "graph LR\n    A[Principal<br/>ユーザー/ロール] -->|リクエスト| B[評価エンジン]\n    C[IAMポリシー] --> B\n    D[リソースポリシー] --> B\n    E[SCP] --> B\n    B -->|許可/拒否| F[AWSリソース]",
+			"content": ["![w:800 center](assets/iam-overview.svg)"],
 			"layout": "default"
 		},
 		{
@@ -105,8 +104,7 @@
 		},
 		{
 			"title": "ポリシー評価ロジック - 明示的Deny優先（図解）",
-			"content": [],
-			"mermaid": "graph TD\n    A[リクエスト] --> B{明示的Deny?}\n    B -->|Yes| C[拒否]\n    B -->|No| D{明示的Allow?}\n    D -->|Yes| E[許可]\n    D -->|No| F[拒否<br/>デフォルトDeny]",
+			"content": ["![w:800 center](assets/policy-evaluation.svg)"],
 			"layout": "default"
 		},
 		{
@@ -228,8 +226,7 @@
 		},
 		{
 			"title": "AssumeRoleの仕組み（図解）",
-			"content": [],
-			"mermaid": "sequenceDiagram\n    participant U as IAMユーザー/ロール\n    participant S as AWS STS\n    participant R as ターゲットロール\n    participant A as AWSサービス\n    U->>S: AssumeRole(RoleArn)\n    S->>R: トラストポリシー確認\n    R-->>S: 許可\n    S-->>U: 一時認証情報<br/>(AccessKey, SecretKey, Token)\n    U->>A: API呼び出し<br/>(一時認証情報を使用)\n    A-->>U: レスポンス",
+			"content": ["![w:800 center](assets/assumerole-flow.svg)"],
 			"layout": "default"
 		},
 		{
@@ -379,8 +376,7 @@
 		},
 		{
 			"title": "ポリシー評価フロー - 全体像（図解）",
-			"content": [],
-			"mermaid": "graph TD\n    A[リクエスト] --> B{同一アカウント?}\n    B -->|Yes| C[アイデンティティベース<br/>ポリシー評価]\n    B -->|No| D[アイデンティティベース<br/>+ リソースベース評価]\n    C --> E{明示的Deny?}\n    D --> E\n    E -->|Yes| F[拒否]\n    E -->|No| G{明示的Allow?}\n    G -->|Yes| H[許可]\n    G -->|No| I[拒否<br/>デフォルトDeny]",
+			"content": ["![w:800 center](assets/evaluation-flow.svg)"],
 			"layout": "default"
 		},
 		{
@@ -409,8 +405,7 @@
 		},
 		{
 			"title": "Permission Boundariesの効果範囲（図解）",
-			"content": [],
-			"mermaid": "graph LR\n    A[アイデンティティベース<br/>ポリシー] --> C[実際の権限]\n    B[Permission<br/>Boundary] --> C\n    C --> D[許可される操作:<br/>A AND B の交差部分]\n    style C fill:#90EE90",
+			"content": ["![w:800 center](assets/permission-boundary-venn.svg)"],
 			"layout": "default"
 		},
 		{
@@ -466,8 +461,7 @@
 		},
 		{
 			"title": "SCPとIAMポリシーの関係（図解）",
-			"content": [],
-			"mermaid": "graph TD\n    A[SCP<br/>組織レベルの上限] --> D\n    B[Permission Boundary<br/>ユーザー/ロールの上限] --> D\n    C[アイデンティティベース<br/>ポリシー] --> D\n    D[実際の権限<br/>A AND B AND C]\n    style D fill:#FFB6C1",
+			"content": ["![w:800 center](assets/scp-iam-relation.svg)"],
 			"layout": "default"
 		},
 		{

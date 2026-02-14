@@ -1,6 +1,5 @@
-<svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
-  <defs><filter id="fd1"><feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.2"/></filter></defs>
-  <circle cx="190" cy="150" r="110" fill="none" stroke="#81c784" stroke-width="50" stroke-dasharray="345.58 345.58" stroke-dashoffset="0" filter="url(#fd1)"/>
+<svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+    <circle cx="190" cy="150" r="110" fill="none" stroke="#81c784" stroke-width="50" stroke-dasharray="345.58 345.58" stroke-dashoffset="0" style="filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2))"/>
   <circle cx="190" cy="150" r="110" fill="none" stroke="#4fc3f7" stroke-width="50" stroke-dasharray="57.6 633.5" stroke-dashoffset="-345.58"/>
   <circle cx="190" cy="150" r="110" fill="none" stroke="#ffb74d" stroke-width="50" stroke-dasharray="172.79 518.31" stroke-dashoffset="-403.18"/>
   <circle cx="190" cy="150" r="110" fill="none" stroke="#ce93d8" stroke-width="50" stroke-dasharray="115.19 575.9" stroke-dashoffset="-575.97"/>

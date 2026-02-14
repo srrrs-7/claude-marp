@@ -1,97 +1,91 @@
-<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
   <!-- Background -->
   <rect width="900" height="400" fill="#f8f9fa"/>
 
+  <!-- Title -->
+  <text x="450" y="20" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#333">Claude Code Agent Teams — ライフサイクル</text>
+
   <!-- Phase 1: Setup -->
-  <g id="phase1">
-    <rect x="20" y="80" width="240" height="280" rx="12" fill="#E3F2FD" stroke="#1976D2" stroke-width="3" stroke-dasharray="5,5"/>
-    <text x="140" y="60" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#1565C0">Phase 1: Setup</text>
+  <rect x="20" y="80" width="240" height="280" rx="12" fill="#E3F2FD" stroke="#1976D2" stroke-width="3" stroke-dasharray="5,5"/>
+  <text x="140" y="60" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1565C0">Phase 1: Setup</text>
 
-    <rect x="60" y="120" width="160" height="50" rx="8" fill="#42A5F5" stroke="#1565C0" stroke-width="2"/>
-    <text x="140" y="150" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">TeamCreate</text>
+  <rect x="60" y="120" width="160" height="50" rx="8" fill="#42A5F5" stroke="#1565C0" stroke-width="2"/>
+  <text x="140" y="150" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">TeamCreate</text>
 
-    <rect x="60" y="200" width="160" height="50" rx="8" fill="#42A5F5" stroke="#1565C0" stroke-width="2"/>
-    <text x="140" y="230" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">TaskCreate</text>
+  <rect x="60" y="200" width="160" height="50" rx="8" fill="#42A5F5" stroke="#1565C0" stroke-width="2"/>
+  <text x="140" y="230" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">TaskCreate</text>
 
-    <rect x="60" y="280" width="160" height="50" rx="8" fill="#42A5F5" stroke="#1565C0" stroke-width="2"/>
-    <text x="140" y="305" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">Spawn</text>
-    <text x="140" y="322" text-anchor="middle" font-family="Arial" font-size="12" fill="white">Teammates</text>
+  <rect x="60" y="280" width="160" height="50" rx="8" fill="#42A5F5" stroke="#1565C0" stroke-width="2"/>
+  <text x="140" y="305" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">Spawn</text>
+  <text x="140" y="322" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white">Teammates</text>
 
-    <!-- Arrows within Phase 1 -->
-    <defs>
-      <marker id="arrowBlue-lifecycle" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-        <path d="M0,0 L0,6 L9,3 z" fill="#1565C0"/>
-      </marker>
-      <marker id="arrowGreen-lifecycle" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-        <path d="M0,0 L0,6 L9,3 z" fill="#2E7D32"/>
-      </marker>
-      <marker id="arrowOrange-lifecycle" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-        <path d="M0,0 L0,6 L9,3 z" fill="#E65100"/>
-      </marker>
-      <marker id="arrowPurple-lifecycle" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-        <path d="M0,0 L0,6 L9,3 z" fill="#6A1B9A"/>
-      </marker>
-    </defs>
-    <path d="M 140 170 L 140 200" stroke="#1565C0" stroke-width="3" fill="none" marker-end="url(#arrowBlue-lifecycle)"/>
-    <path d="M 140 250 L 140 280" stroke="#1565C0" stroke-width="3" fill="none" marker-end="url(#arrowBlue-lifecycle)"/>
-  </g>
+  <!-- Phase 1 arrows (vertical down) -->
+  <line x1="140" y1="170" x2="140" y2="195" stroke="#1565C0" stroke-width="3"/>
+  <polygon points="134,193 140,203 146,193" fill="#1565C0"/>
+  <line x1="140" y1="250" x2="140" y2="275" stroke="#1565C0" stroke-width="3"/>
+  <polygon points="134,273 140,283 146,273" fill="#1565C0"/>
 
   <!-- Phase 2: Execution -->
-  <g id="phase2">
-    <rect x="300" y="80" width="340" height="280" rx="12" fill="#E8F5E9" stroke="#388E3C" stroke-width="3" stroke-dasharray="5,5"/>
-    <text x="470" y="60" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#2E7D32">Phase 2: Execution</text>
+  <rect x="300" y="80" width="340" height="280" rx="12" fill="#E8F5E9" stroke="#388E3C" stroke-width="3" stroke-dasharray="5,5"/>
+  <text x="470" y="60" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#2E7D32">Phase 2: Execution</text>
 
-    <!-- Circular flow -->
-    <ellipse cx="470" cy="210" rx="120" ry="100" fill="none" stroke="#66BB6A" stroke-width="2" stroke-dasharray="8,4"/>
+  <!-- Circular flow -->
+  <ellipse cx="470" cy="210" rx="120" ry="100" fill="none" stroke="#66BB6A" stroke-width="2" stroke-dasharray="8,4"/>
 
-    <rect x="390" y="120" width="160" height="40" rx="8" fill="#66BB6A" stroke="#2E7D32" stroke-width="2"/>
-    <text x="470" y="145" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">TaskList</text>
+  <rect x="390" y="120" width="160" height="40" rx="8" fill="#66BB6A" stroke="#2E7D32" stroke-width="2"/>
+  <text x="470" y="145" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">TaskList</text>
 
-    <rect x="560" y="180" width="160" height="40" rx="8" fill="#66BB6A" stroke="#2E7D32" stroke-width="2"/>
-    <text x="640" y="205" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">Claim Task</text>
+  <rect x="560" y="180" width="160" height="40" rx="8" fill="#66BB6A" stroke="#2E7D32" stroke-width="2"/>
+  <text x="640" y="205" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">Claim Task</text>
 
-    <rect x="560" y="250" width="160" height="40" rx="8" fill="#66BB6A" stroke="#2E7D32" stroke-width="2"/>
-    <text x="640" y="275" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">Execute</text>
+  <rect x="560" y="250" width="160" height="40" rx="8" fill="#66BB6A" stroke="#2E7D32" stroke-width="2"/>
+  <text x="640" y="275" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">Execute</text>
 
-    <rect x="390" y="300" width="160" height="40" rx="8" fill="#66BB6A" stroke="#2E7D32" stroke-width="2"/>
-    <text x="470" y="325" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">TaskUpdate</text>
+  <rect x="390" y="300" width="160" height="40" rx="8" fill="#66BB6A" stroke="#2E7D32" stroke-width="2"/>
+  <text x="470" y="325" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">TaskUpdate</text>
 
-    <rect x="180" y="240" width="160" height="40" rx="8" fill="#66BB6A" stroke="#2E7D32" stroke-width="2"/>
-    <text x="260" y="265" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">SendMessage</text>
+  <rect x="180" y="240" width="160" height="40" rx="8" fill="#66BB6A" stroke="#2E7D32" stroke-width="2"/>
+  <text x="260" y="265" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">SendMessage</text>
 
-    <!-- Flow arrows -->
-    <path d="M 470 160 L 560 190" stroke="#2E7D32" stroke-width="2.5" fill="none" marker-end="url(#arrowGreen-lifecycle)"/>
-    <path d="M 640 220 L 640 250" stroke="#2E7D32" stroke-width="2.5" fill="none" marker-end="url(#arrowGreen-lifecycle)"/>
-    <path d="M 560 270 L 470 300" stroke="#2E7D32" stroke-width="2.5" fill="none" marker-end="url(#arrowGreen-lifecycle)"/>
-    <path d="M 390 320 L 260 280" stroke="#2E7D32" stroke-width="2.5" fill="none" marker-end="url(#arrowGreen-lifecycle)"/>
-    <path d="M 260 240 L 390 150" stroke="#2E7D32" stroke-width="2.5" fill="none" marker-end="url(#arrowGreen-lifecycle)"/>
-  </g>
+  <!-- Flow arrows within Phase 2 -->
+  <!-- TaskList → Claim Task -->
+  <line x1="475" y1="160" x2="555" y2="185" stroke="#2E7D32" stroke-width="2.5"/>
+  <polygon points="550,180 562,186 554,192" fill="#2E7D32"/>
+  <!-- Claim → Execute -->
+  <line x1="640" y1="220" x2="640" y2="247" stroke="#2E7D32" stroke-width="2.5"/>
+  <polygon points="634,245 640,255 646,245" fill="#2E7D32"/>
+  <!-- Execute → TaskUpdate -->
+  <line x1="560" y1="272" x2="475" y2="298" stroke="#2E7D32" stroke-width="2.5"/>
+  <polygon points="470,292 472,305 482,296" fill="#2E7D32"/>
+  <!-- TaskUpdate → SendMessage -->
+  <line x1="390" y1="322" x2="265" y2="282" stroke="#2E7D32" stroke-width="2.5"/>
+  <polygon points="260,276 262,289 272,280" fill="#2E7D32"/>
+  <!-- SendMessage → TaskList -->
+  <line x1="265" y1="240" x2="388" y2="150" stroke="#2E7D32" stroke-width="2.5"/>
+  <polygon points="384,143 395,148 388,157" fill="#2E7D32"/>
 
   <!-- Phase 3: Teardown -->
-  <g id="phase3">
-    <rect x="680" y="80" width="200" height="280" rx="12" fill="#FFF3E0" stroke="#F57C00" stroke-width="3" stroke-dasharray="5,5"/>
-    <text x="780" y="60" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#E65100">Phase 3: Teardown</text>
+  <rect x="680" y="80" width="200" height="280" rx="12" fill="#FFF3E0" stroke="#F57C00" stroke-width="3" stroke-dasharray="5,5"/>
+  <text x="780" y="60" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#E65100">Phase 3: Teardown</text>
 
-    <rect x="710" y="150" width="140" height="40" rx="8" fill="#FF9800" stroke="#E65100" stroke-width="2"/>
-    <text x="780" y="170" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">shutdown</text>
-    <text x="780" y="185" text-anchor="middle" font-family="Arial" font-size="11" fill="white">_request</text>
+  <rect x="710" y="150" width="140" height="40" rx="8" fill="#FF9800" stroke="#E65100" stroke-width="2"/>
+  <text x="780" y="175" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="white">shutdown_request</text>
 
-    <rect x="710" y="220" width="140" height="40" rx="8" fill="#FF9800" stroke="#E65100" stroke-width="2"/>
-    <text x="780" y="240" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">shutdown</text>
-    <text x="780" y="255" text-anchor="middle" font-family="Arial" font-size="11" fill="white">_response</text>
+  <rect x="710" y="220" width="140" height="40" rx="8" fill="#FF9800" stroke="#E65100" stroke-width="2"/>
+  <text x="780" y="245" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="white">shutdown_response</text>
 
-    <rect x="710" y="290" width="140" height="40" rx="8" fill="#FF9800" stroke="#E65100" stroke-width="2"/>
-    <text x="780" y="315" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">TeamDelete</text>
+  <rect x="710" y="290" width="140" height="40" rx="8" fill="#FF9800" stroke="#E65100" stroke-width="2"/>
+  <text x="780" y="315" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">TeamDelete</text>
 
-    <!-- Arrows within Phase 3 -->
-    <path d="M 780 190 L 780 220" stroke="#E65100" stroke-width="3" fill="none" marker-end="url(#arrowOrange-lifecycle)"/>
-    <path d="M 780 260 L 780 290" stroke="#E65100" stroke-width="3" fill="none" marker-end="url(#arrowOrange-lifecycle)"/>
-  </g>
+  <!-- Phase 3 arrows -->
+  <line x1="780" y1="190" x2="780" y2="217" stroke="#E65100" stroke-width="3"/>
+  <polygon points="774,215 780,225 786,215" fill="#E65100"/>
+  <line x1="780" y1="260" x2="780" y2="287" stroke="#E65100" stroke-width="3"/>
+  <polygon points="774,285 780,295 786,285" fill="#E65100"/>
 
   <!-- Inter-phase transitions -->
-  <path d="M 260 210 L 300 210" stroke="#6A1B9A" stroke-width="4" fill="none" marker-end="url(#arrowPurple-lifecycle)"/>
-  <path d="M 640 210 L 680 210" stroke="#6A1B9A" stroke-width="4" fill="none" marker-end="url(#arrowPurple-lifecycle)"/>
-
-  <!-- Labels -->
-  <text x="450" y="20" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">Claude Code Agent Teams — ライフサイクル</text>
+  <line x1="260" y1="210" x2="297" y2="210" stroke="#6A1B9A" stroke-width="4"/>
+  <polygon points="295,204 305,210 295,216" fill="#6A1B9A"/>
+  <line x1="640" y1="210" x2="677" y2="210" stroke="#6A1B9A" stroke-width="4"/>
+  <polygon points="675,204 685,210 675,216" fill="#6A1B9A"/>
 </svg>

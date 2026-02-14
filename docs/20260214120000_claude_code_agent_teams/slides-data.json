@@ -89,8 +89,7 @@
 		},
 		{
 			"title": "アーキテクチャ概要",
-			"content": [],
-			"mermaid": "graph TB\n    Lead[\"Team Lead\\n(メインセッション)\"]\n    TL[\"Task List\\n(共有タスクリスト)\"]\n    MB[\"Mailbox\\n(メッセージング)\"]\n    T1[\"Teammate 1\\n(独立セッション)\"]\n    T2[\"Teammate 2\\n(独立セッション)\"]\n    T3[\"Teammate 3\\n(独立セッション)\"]\n    Lead -->|作成・管理| TL\n    Lead -->|指示・調整| MB\n    T1 -->|タスク取得・更新| TL\n    T2 -->|タスク取得・更新| TL\n    T3 -->|タスク取得・更新| TL\n    T1 <-->|メッセージ| MB\n    T2 <-->|メッセージ| MB\n    T3 <-->|メッセージ| MB",
+			"content": ["![w:800 center](assets/architecture.svg)"],
 			"speakerNotes": "Team Leadがチーム全体を管理し、Teammatesは共有タスクリストとメールボックスを通じて協調します。各コンポーネントはローカルディスク上のファイルとして管理されます。",
 			"layout": "default"
 		},
@@ -222,15 +221,13 @@
 		},
 		{
 			"title": "3フェーズライフサイクル",
-			"content": [],
-			"mermaid": "graph LR\n    subgraph Phase1[\"Phase 1: Setup\"]\n        TC[TeamCreate] --> TK[TaskCreate]\n        TK --> SP[Spawn Teammates]\n    end\n    subgraph Phase2[\"Phase 2: Execution\"]\n        TL[TaskList] --> CL[Claim Task]\n        CL --> EX[Execute]\n        EX --> TU[TaskUpdate]\n        TU --> SM[SendMessage]\n        SM --> TL\n    end\n    subgraph Phase3[\"Phase 3: Teardown\"]\n        SR[shutdown_request] --> SS[shutdown_response]\n        SS --> TD[TeamDelete]\n    end\n    Phase1 --> Phase2\n    Phase2 --> Phase3",
+			"content": ["![w:800 center](assets/lifecycle.svg)"],
 			"speakerNotes": "Setup→Execution→Teardownの3フェーズです。ExecutionフェーズではチームメイトがTaskList→Claim→Execute→Update→Messageのループを自律的に回します。",
 			"layout": "default"
 		},
 		{
 			"title": "ライフサイクル シーケンス図",
-			"content": [],
-			"mermaid": "sequenceDiagram\n    participant L as Team Lead\n    participant T1 as Teammate 1\n    participant T2 as Teammate 2\n    participant TL as Task List\n    L->>TL: TaskCreate(タスクA, B, C)\n    L->>T1: Spawn\n    L->>T2: Spawn\n    T1->>TL: TaskList()\n    T1->>TL: Claim タスクA\n    T2->>TL: TaskList()\n    T2->>TL: Claim タスクB\n    T1->>TL: Complete タスクA\n    T1->>L: SendMessage(完了報告)\n    T1->>TL: Claim タスクC\n    T2->>TL: Complete タスクB\n    T2->>L: SendMessage(完了報告)\n    L->>T1: shutdown_request\n    L->>T2: shutdown_request\n    T1->>L: shutdown_response(approve)\n    T2->>L: shutdown_response(approve)",
+			"content": ["![w:800 center](assets/sequence.svg)"],
 			"speakerNotes": "Leadがタスクを作成しチームメイトをSpawnすると、各チームメイトが自律的にタスクを取得・実行・完了報告します。全タスク完了後にシャットダウンを要求します。",
 			"layout": "default"
 		},
@@ -254,9 +251,9 @@
 			"content": [
 				"**依存関係の定義:**",
 				"- `addBlocks`: このタスクが完了するまで他タスクをブロック",
-				"- `addBlockedBy`: 他タスクの完了を待ってから開始"
+				"- `addBlockedBy`: 他タスクの完了を待ってから開始",
+				"![w:800 center](assets/task-dependencies.svg)"
 			],
-			"mermaid": "graph LR\n    A[\"タスクA\\nDB設計\"] --> B[\"タスクB\\nAPI実装\"]\n    A --> C[\"タスクC\\nモデル実装\"]\n    B --> D[\"タスクD\\n結合テスト\"]\n    C --> D\n    style A fill:#4CAF50,color:#fff\n    style B fill:#2196F3,color:#fff\n    style C fill:#2196F3,color:#fff\n    style D fill:#FF9800,color:#fff",
 			"speakerNotes": "Wave 1でタスクAが実行され、完了するとWave 2でB・Cが並列実行、両方完了するとWave 3でDが実行されます。依存関係の自動解決により手動の調整は不要です。",
 			"layout": "default"
 		},

@@ -74,6 +74,11 @@ React 19は2025年Q4にRC版リリース、2026年Q1に正式版を予定
 - サーバーで実行、バンドルサイズゼロ
 - 直接DBアクセス可能、シークレット使用OK
 
+
+---
+
+# React 19: Server Components詳解（コード例）
+
 ```tsx
 // Server Component（デフォルト）
 export default async function ProductList() {
@@ -100,6 +105,11 @@ export function AddToCartButton({ productId }) {
 - **自動最適化**: コンポーネントとHookを自動でメモ化
 - **useMemo/useCallback削減**: 手動最適化がほぼ不要に
 - **段階的導入**: ファイル・ディレクトリ単位で有効化可能
+
+
+---
+
+# React 19: React Compiler（コード例）
 
 ```javascript
 // Before: 手動メモ化が必要
@@ -137,6 +147,11 @@ const val = expensiveCalc(a, b)
 - 可読性向上: リアクティブな値が明確
 - デバッグ容易: 依存関係が追跡しやすい
 
+
+---
+
+# Svelte 5: コード比較（コード例）
+
 ```javascript
 // Svelte 4: 暗黙的リアクティビティ
 let count = 0
@@ -156,6 +171,11 @@ let doubled = $derived(count * 2)
 - **Signals API**: createSignal, createEffect, createMemoの3つが核
 - **React風文法**: JSXでReact開発者が学習容易
 - **超高速**: ベンチマークでReact/Vueを上回る性能
+
+
+---
+
+# Solid.js: Signals-first設計（コード例）
 
 ```javascript
 import { createSignal } from 'solid-js'
@@ -193,63 +213,10 @@ function Counter() {
 
 - プロジェクト特性とチームスキルに応じた選定フロー
 
-<svg viewBox="0 0 700 520" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
-    <!-- Start: 新規プロジェクト -->
-  <rect x="250" y="15" width="200" height="48" rx="10" fill="#37474F" style="filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.15))"/>
-  <text x="350" y="45" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="16" font-weight="bold">新規プロジェクト</text>
-  <!-- Arrow A→B -->
-  <line x1="350" y1="63" x2="350" y2="105" stroke="#546E7A" stroke-width="2"/>
-  <polygon points="350,105 353.5,97 346.5,97" fill="#546E7A"/>
-  <!-- Decision: チームスキル -->
-  <polygon points="350,110 470,170 350,230 230,170" fill="#FF9800" style="filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.15))"/>
-  <text x="350" y="175" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">チームスキル</text>
-  <!-- Branch left: React経験 -->
-  <line x1="230" y1="170" x2="145" y2="170" stroke="#546E7A" stroke-width="2"/>
-  <line x1="145" y1="170" x2="145" y2="285" stroke="#546E7A" stroke-width="2"/>
-  <polygon points="145,285 148.5,277 141.5,277" fill="#546E7A"/>
-  <text x="175" y="158" text-anchor="middle" fill="#455A64" font-family="sans-serif" font-size="12">React経験</text>
-  <!-- React 19 -->
-  <rect x="60" y="290" width="170" height="48" rx="10" fill="#1565C0" style="filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.15))"/>
-  <text x="145" y="320" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="16" font-weight="bold">React 19</text>
-  <!-- Branch center: Vue経験 -->
-  <line x1="350" y1="230" x2="350" y2="285" stroke="#546E7A" stroke-width="2"/>
-  <polygon points="350,285 353.5,277 346.5,277" fill="#546E7A"/>
-  <text x="390" y="260" text-anchor="start" fill="#455A64" font-family="sans-serif" font-size="12">Vue経験</text>
-  <!-- Vue 3/4 -->
-  <rect x="265" y="290" width="170" height="48" rx="10" fill="#2E7D32" style="filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.15))"/>
-  <text x="350" y="320" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="16" font-weight="bold">Vue 3/4</text>
-  <!-- Branch right: 新規学習OK -->
-  <line x1="470" y1="170" x2="555" y2="170" stroke="#546E7A" stroke-width="2"/>
-  <line x1="555" y1="170" x2="555" y2="270" stroke="#546E7A" stroke-width="2"/>
-  <polygon points="555,270 558.5,262 551.5,262" fill="#546E7A"/>
-  <text x="525" y="158" text-anchor="middle" fill="#455A64" font-family="sans-serif" font-size="12">新規学習OK</text>
-  <!-- Decision: 規模 -->
-  <polygon points="555,275 645,320 555,365 465,320" fill="#FF9800" style="filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.15))"/>
-  <text x="555" y="325" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">規模</text>
-  <!-- 大規模 → React 19 (dashed) -->
-  <line x1="465" y1="320" x2="230" y2="320" stroke="#546E7A" stroke-width="2" stroke-dasharray="6,3"/>
-  <polygon points="230,320 238,323.5 238,316.5" fill="#546E7A"/>
-  <text x="345" y="350" text-anchor="middle" fill="#455A64" font-family="sans-serif" font-size="12">大規模</text>
-  <!-- 中小規模 → Svelte/Solid -->
-  <line x1="555" y1="365" x2="555" y2="405" stroke="#546E7A" stroke-width="2"/>
-  <polygon points="555,405 558.5,397 551.5,397" fill="#546E7A"/>
-  <text x="610" y="392" text-anchor="start" fill="#455A64" font-family="sans-serif" font-size="12">中小規模</text>
-  <!-- Svelte/Solid -->
-  <rect x="470" y="410" width="170" height="48" rx="10" fill="#7B1FA2" style="filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.15))"/>
-  <text x="555" y="440" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="16" font-weight="bold">Svelte / Solid</text>
-  <!-- Legend -->
-  <rect x="90" y="480" width="520" height="30" rx="5" fill="#F5F5F5" stroke="#E0E0E0"/>
-  <rect x="110" y="487" width="14" height="14" rx="3" fill="#37474F"/>
-  <text x="130" y="499" fill="#37474F" font-family="sans-serif" font-size="11">起点</text>
-  <rect x="185" y="487" width="14" height="14" rx="3" fill="#FF9800"/>
-  <text x="205" y="499" fill="#37474F" font-family="sans-serif" font-size="11">判定</text>
-  <rect x="260" y="487" width="14" height="14" rx="3" fill="#1565C0"/>
-  <text x="280" y="499" fill="#37474F" font-family="sans-serif" font-size="11">React</text>
-  <rect x="340" y="487" width="14" height="14" rx="3" fill="#2E7D32"/>
-  <text x="360" y="499" fill="#37474F" font-family="sans-serif" font-size="11">Vue</text>
-  <rect x="410" y="487" width="14" height="14" rx="3" fill="#7B1FA2"/>
-  <text x="430" y="499" fill="#37474F" font-family="sans-serif" font-size="11">Svelte/Solid</text>
-</svg>
+
+---
+
+# フレームワーク選定フローチャート（図解）
 
 
 ---
@@ -306,6 +273,11 @@ function Counter() {
 
 - 外部ツール不要、セットアップ簡単
 - 統一されたDX
+
+
+---
+
+# Bun: 組み込みツール群（コード例）
 
 ```bash
 # テストランナー（Jest互換）
@@ -422,6 +394,11 @@ bun install
 - JavaScriptは最小限
 - CSSでアニメーション制御
 
+
+---
+
+# View Transitions: 実装例（コード例）
+
 ```javascript
 // ページ遷移をアニメーション化
 document.startViewTransition(() => {
@@ -451,6 +428,11 @@ document.startViewTransition(() => {
 
 - JavaScript不要でアクセシビリティ対応
 - ESCキーで自動的に閉じる
+
+
+---
+
+# Popover API: 実装パターン（コード例）
 
 ```html
 <button popovertarget="menu">開く</button>
@@ -487,6 +469,11 @@ document.startViewTransition(() => {
 - **機能**: 「子要素を持つ親」を選択（親セレクタ）
 - **対応**: 全ブラウザ対応
 - **革新性**: CSSだけで親要素をスタイリング可能
+
+
+---
+
+# :has()セレクタの威力（コード例）
 
 ```css
 /* エラーを含むフォームを赤枠に */
@@ -546,6 +533,11 @@ form:has(.error) { border: 2px solid red; }
 - **ファイル操作**: 読み取り、編集、作成を自動化
 - **Git連携**: コミット、PR作成を支援
 
+
+---
+
+# Claude Code: CLIエージェント（コード例）
+
 ```bash
 # 自然言語でタスク指示
 claude "すべてのTODOコメントを抽出してissue化"
@@ -561,62 +553,10 @@ claude "認証ロジックをミドルウェアに分離"
 
 - 人間とAIの役割分担を明確化した開発プロセス
 
-<svg viewBox="0 0 750 330" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
-    <!-- Row 1: 要件定義 → AI設計案 → 人間レビュー → AI実装 -->
-  <rect x="20" y="25" width="130" height="45" rx="8" fill="#1565C0" style="filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.15))"/>
-  <text x="85" y="53" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">要件定義</text>
-  <line x1="150" y1="47" x2="188" y2="47" stroke="#546E7A" stroke-width="2"/>
-  <polygon points="188,47 180,43.5 180,50.5" fill="#546E7A"/>
-  <rect x="195" y="25" width="130" height="45" rx="8" fill="#4CAF50" style="filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.15))"/>
-  <text x="260" y="53" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">AI設計案</text>
-  <line x1="325" y1="47" x2="363" y2="47" stroke="#546E7A" stroke-width="2"/>
-  <polygon points="363,47 355,43.5 355,50.5" fill="#546E7A"/>
-  <rect x="370" y="25" width="150" height="45" rx="8" fill="#1565C0" style="filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.15))"/>
-  <text x="445" y="53" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">人間レビュー</text>
-  <line x1="520" y1="47" x2="568" y2="47" stroke="#546E7A" stroke-width="2"/>
-  <polygon points="568,47 560,43.5 560,50.5" fill="#546E7A"/>
-  <rect x="575" y="25" width="120" height="45" rx="8" fill="#4CAF50" style="filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.15))"/>
-  <text x="635" y="53" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">AI実装</text>
-  <!-- Arrow down -->
-  <line x1="635" y1="70" x2="635" y2="140" stroke="#546E7A" stroke-width="2"/>
-  <polygon points="635,140 638.5,132 631.5,132" fill="#546E7A"/>
-  <!-- Row 2: AIテスト → 人間テスト → 合格? → マージ -->
-  <rect x="575" y="150" width="120" height="45" rx="8" fill="#4CAF50" style="filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.15))"/>
-  <text x="635" y="178" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">AIテスト</text>
-  <line x1="575" y1="172" x2="527" y2="172" stroke="#546E7A" stroke-width="2"/>
-  <polygon points="527,172 535,175.5 535,168.5" fill="#546E7A"/>
-  <rect x="370" y="150" width="150" height="45" rx="8" fill="#1565C0" style="filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.15))"/>
-  <text x="445" y="178" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">人間テスト</text>
-  <line x1="370" y1="172" x2="312" y2="172" stroke="#546E7A" stroke-width="2"/>
-  <polygon points="312,172 320,175.5 320,168.5" fill="#546E7A"/>
-  <!-- Decision: 合格? -->
-  <polygon points="250,172 310,142 250,112 190,142" fill="#FF9800" style="filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.15))"/>
-  <text x="250" y="147" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">合格?</text>
-  <!-- Yes → マージ -->
-  <line x1="190" y1="142" x2="148" y2="142" stroke="#546E7A" stroke-width="2"/>
-  <polygon points="148,142 156,145.5 156,138.5" fill="#546E7A"/>
-  <text x="170" y="133" text-anchor="middle" fill="#2E7D32" font-family="sans-serif" font-size="12" font-weight="bold">Yes</text>
-  <rect x="20" y="120" width="120" height="45" rx="8" fill="#E65100" style="filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.15))"/>
-  <text x="80" y="148" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">マージ</text>
-  <!-- No → AI実装 (dashed loop) -->
-  <line x1="250" y1="112" x2="250" y2="15" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3"/>
-  <line x1="250" y1="15" x2="635" y2="15" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3"/>
-  <line x1="635" y1="15" x2="635" y2="20" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3"/>
-  <polygon points="635,20 638.5,12 631.5,12" fill="#546E7A"/>
-  <text x="440" y="10" text-anchor="middle" fill="#E53935" font-family="sans-serif" font-size="12" font-weight="bold">No（修正）</text>
-  <!-- Legend -->
-  <rect x="100" y="220" width="550" height="28" rx="5" fill="#F5F5F5" stroke="#E0E0E0"/>
-  <rect x="120" y="226" width="14" height="14" rx="3" fill="#1565C0"/>
-  <text x="140" y="238" fill="#37474F" font-family="sans-serif" font-size="11">人間タスク</text>
-  <rect x="230" y="226" width="14" height="14" rx="3" fill="#4CAF50"/>
-  <text x="250" y="238" fill="#37474F" font-family="sans-serif" font-size="11">AIタスク</text>
-  <rect x="330" y="226" width="14" height="14" rx="3" fill="#FF9800"/>
-  <text x="350" y="238" fill="#37474F" font-family="sans-serif" font-size="11">判定</text>
-  <rect x="410" y="226" width="14" height="14" rx="3" fill="#E65100"/>
-  <text x="430" y="238" fill="#37474F" font-family="sans-serif" font-size="11">完了</text>
-  <line x1="490" y1="233" x2="520" y2="233" stroke="#E53935" stroke-width="2" stroke-dasharray="4,2"/>
-  <text x="530" y="238" fill="#37474F" font-family="sans-serif" font-size="11">修正ループ</text>
-</svg>
+
+---
+
+# AI駆動開発フロー（図解）
 
 
 ---

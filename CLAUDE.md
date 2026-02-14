@@ -21,7 +21,10 @@ When creating `slides.config.yaml` for new presentations:
 bun run slides init                     # Create slides.config.yaml template
 bun run slides render --in data.json    # Render slide data JSON to Marp markdown
 bun run slides export -f html --in FILE # Export Marp markdown to HTML
-bun run split                           # Split code from content to prevent overflow (all presentations)
+bun run validate                        # Validate slides-data.json against Zod schema
+bun run fix                             # Auto-fix common schema issues in slides-data.json
+bun run split                           # Split code/diagrams from content to prevent overflow (all presentations)
+bun run fix-svg                         # Fix SVG overflow issues in markdown files
 bun run rebuild                         # Re-render & re-export all presentations in docs/
 bun run rebuild:render                  # Re-render only (skip export)
 bun run rebuild:export                  # Re-export only (skip render)
@@ -53,7 +56,7 @@ No test framework yet. When adding tests, use `bun:test`.
 - Read `src/generate/slide-schema.ts`
 - 有効なフィールド名を確認: `content` (not `bullets`)
 - `layout` の enum 値を確認: `"default" | "center" | "section"`
-- オプショナルフィールドを理解: `code`, `codeLanguage`, `speakerNotes`
+- オプショナルフィールドを理解: `code`, `codeLanguage`, `speakerNotes`, `layout`
 
 ### 2. Directory Structure Validation
 
@@ -78,14 +81,46 @@ No test framework yet. When adding tests, use `bun:test`.
 - ❌ Relative paths in output.dir → ✅ Use full path: `"docs/<timestamp>_<slug>"`
 - ❌ Missing timestamp prefix → ✅ Use `yyyymmddhhmmss_slug` format
 - ❌ CLI flag `--dangerous` → ✅ Use `--dangerously-skip-permissions`
+- ❌ Using `mermaid` field in slides-data.json → ✅ Create SVG in `assets/` and reference via `![alt](assets/file.svg)` in `content`
+
+### 5. SVG url(#id) Prohibition — Applies to ALL SVG Files
+
+**This applies to both inline SVGs in markdown AND standalone `.svg` files in `assets/`.**
+
+Marp CLI inlines external SVGs during HTML export, so standalone SVG files end up inside Marp's nested `<svg><foreignObject>` context. Any `url(#id)` references (`filter`, `marker-end`, `clip-path`, `fill` with `linearGradient`) will **silently break** — elements render without shadows, arrows, or gradients.
+
+**After creating or editing any SVG file, verify:**
+1. No `url(#` appears anywhere in the file (search with `grep -r "url(#" docs/**/*.svg`)
+2. Use CSS `style="filter: drop-shadow(...)"` instead of `<filter>` + `filter="url(#...)"`
+3. Use explicit `<polygon>` shapes instead of `<marker>` + `marker-end="url(#...)"`
+4. Add `letter-spacing:0` to the root `<svg style="...">` attribute
+
+**Auto-fix:** Run `bun run scripts/fix-svg-url-refs.ts` to scan all `.md` and `.svg` files under `docs/` and auto-replace `url(#id)` references.
 
 ## Marp-Specific Constraints
 
-**SVG images:**
+**Inline SVG — `url(#id)` references are PROHIBITED:**
 
-- Standalone SVG files go in `assets/` directory, referenced as `![alt](assets/filename.svg)`
-- Marp CLI inlines SVGs during HTML export — `dist/` HTML is self-contained
-- Use relative paths from the markdown file (e.g., `assets/diagram.svg`)
+Marp wraps each slide in `<svg data-marpit-svg><foreignObject><section>`, creating a nested SVG context. SVG `url(#id)` fragment references (`filter`, `marker-end`, `clip-path`) **fail to resolve** in this context (Chromium browser bug).
+
+| Prohibited (breaks in HTML) | Required (works everywhere) |
+|---|---|
+| `<filter id="s1">` + `filter="url(#s1)"` | `style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"` |
+| `<marker id="a1">` + `marker-end="url(#a1)"` | Explicit `<polygon points="..." fill="..."/>` at line endpoint |
+
+Also add `letter-spacing:0` to each `<svg style="...">` to prevent Gaia theme's `letter-spacing: 1.25px` from being inherited by SVG `<text>` elements.
+
+Run `bun run scripts/fix-svg-url-refs.ts` to auto-fix existing SVGs.
+
+**SVG images (standalone files):**
+
+- Standalone SVG files go in `assets/` directory
+- **Always use Marp image directive for sizing:** `![w:800 center](assets/filename.svg)`
+  - `w:800` sets width to 800px (slide width is 1280px, so ~62%)
+  - `center` centers the image horizontally
+  - Do NOT use bare `![alt](assets/filename.svg)` without sizing — SVGs may overflow the slide
+- In `slides-data.json`, use the same format in `content` arrays: `"![w:800 center](assets/filename.svg)"`
+- The render pipeline or `bun run split` inlines SVG content into the markdown for HTML export
 
 **Themes:**
 
@@ -167,7 +202,7 @@ style: |
 - **Code + bullets**: 7-10 lines code → max 2 bullets; 11-12 lines code → max 1 bullet
 - **Never create blank slides** (page number placeholders, etc.)
 
-**Diagrams: Use inline SVG (not Mermaid) for all visualizations** — flows, architecture, timelines, etc. SVG provides full control over color, layout, and legends. Always include `viewBox` and `style="max-height:70vh;width:auto;display:block;margin:0 auto;"`. Complex diagrams (8+ nodes) should be alone on slide.
+**Diagrams: Use inline SVG (not Mermaid) for all visualizations** — flows, architecture, timelines, etc. SVG provides full control over color, layout, and legends. Always include `viewBox` and `style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0"`. Complex diagrams (8+ nodes) should be alone on slide. Never use `url(#id)` references — see "Marp-Specific Constraints" above.
 
 **References and citations:**
 - Use Markdown link format: `[Title](URL)`
@@ -214,6 +249,9 @@ style: |
 **Preventing content overflow:**
 Run `bun run split` to automatically separate code blocks and SVG diagrams from bullet content across all presentations. This prevents slides from overflowing by creating dedicated diagram/code slides.
 
+**Fixing SVG `url(#)` references:**
+Run `bun run scripts/fix-svg-url-refs.ts` to replace broken `url(#id)` references (filter, marker, clip-path, gradient fill) with CSS `drop-shadow()` and explicit `<polygon>` arrows across all `.md` and `.svg` files under `docs/`. This covers both inline SVGs in markdown and standalone SVG files in `assets/` directories.
+
 **Rebuilding all presentations:**
 After structural changes (schema updates, template modifications), use:
 - `bun run rebuild` — re-render + re-export all presentations
@@ -225,3 +263,5 @@ After structural changes (schema updates, template modifications), use:
 **Wrong output location:** If files render to wrong directory, verify `output.dir` in config uses full path from project root: `"docs/<timestamp>_<title>"` not relative path `"."`
 
 **Preview:** View exported HTML in browser. VSCode Marp extension (`marp-team.marp-vscode`) can preview `.md` files but HTML export is recommended for final presentation.
+
+**SVG not rendering in HTML export:** If SVG shadows/arrows are missing, the SVG likely uses `url(#id)` references which break inside Marp's foreignObject wrapper. Run `bun run scripts/fix-svg-url-refs.ts` to auto-fix, then re-export.

@@ -1,4 +1,4 @@
-<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
   <!-- Background -->
   <rect width="900" height="600" fill="#f8f9fa"/>
 
@@ -30,22 +30,16 @@
   <line x1="750" y1="120" x2="750" y2="560" stroke="#999" stroke-width="2" stroke-dasharray="5,5"/>
 
   <!-- Arrows -->
-  <defs>
-    <marker id="arrowSeq" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
-    </marker>
-    <marker id="arrowReturn" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M9,0 L9,6 L0,3 z" fill="#48BB78"/>
-    </marker>
-  </defs>
-
+  
   <!-- Step 1: AssumeRole request -->
-  <line x1="120" y1="160" x2="330" y2="160" stroke="#333" stroke-width="2.5" marker-end="url(#arrowSeq)"/>
+  <line x1="120" y1="160" x2="330" y2="160" stroke="#333" stroke-width="2.5"/>
+  <polygon points="330,160 322,156.5 322,163.5" fill="#333"/>
   <text x="200" y="150" font-family="Arial" font-size="12" fill="#333">① AssumeRole</text>
   <text x="200" y="168" font-family="Arial" font-size="11" fill="#666">(RoleArn)</text>
 
   <!-- Step 2: Trust policy check -->
-  <line x1="330" y1="220" x2="540" y2="220" stroke="#333" stroke-width="2.5" marker-end="url(#arrowSeq)"/>
+  <line x1="330" y1="220" x2="540" y2="220" stroke="#333" stroke-width="2.5"/>
+  <polygon points="540,220 532,216.5 532,223.5" fill="#333"/>
   <text x="410" y="210" font-family="Arial" font-size="12" fill="#333">② トラストポリシー</text>
   <text x="410" y="228" font-family="Arial" font-size="11" fill="#666">確認</text>
 
@@ -56,11 +50,13 @@
   <text x="615" y="298" text-anchor="middle" font-family="Arial" font-size="10" fill="#D68910">Condition満たす?</text>
 
   <!-- Step 3: Approval -->
-  <line x1="540" y1="340" x2="330" y2="340" stroke="#48BB78" stroke-width="2.5" stroke-dasharray="5,5" marker-end="url(#arrowReturn)"/>
+  <line x1="540" y1="340" x2="330" y2="340" stroke="#48BB78" stroke-width="2.5" stroke-dasharray="5,5"/>
+  <polygon points="330,340 338,343.5 338,336.5" fill="#48BB78"/>
   <text x="410" y="330" font-family="Arial" font-size="12" fill="#38A169" font-weight="bold">③ 許可</text>
 
   <!-- Step 4: Temporary credentials -->
-  <line x1="330" y1="400" x2="120" y2="400" stroke="#48BB78" stroke-width="2.5" stroke-dasharray="5,5" marker-end="url(#arrowReturn)"/>
+  <line x1="330" y1="400" x2="120" y2="400" stroke="#48BB78" stroke-width="2.5" stroke-dasharray="5,5"/>
+  <polygon points="120,400 128,403.5 128,396.5" fill="#48BB78"/>
   <rect x="135" y="415" width="180" height="70" rx="5" fill="#E6FFFA" stroke="#319795" stroke-width="1"/>
   <text x="225" y="435" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#234E52">④ 一時認証情報:</text>
   <text x="225" y="453" text-anchor="middle" font-family="Arial" font-size="10" fill="#234E52">• AccessKeyId (ASIA...)</text>
@@ -68,11 +64,13 @@
   <text x="225" y="483" text-anchor="middle" font-family="Arial" font-size="10" fill="#234E52">• SessionToken</text>
 
   <!-- Step 5: API call with temp credentials -->
-  <line x1="120" y1="520" x2="750" y2="520" stroke="#333" stroke-width="2.5" marker-end="url(#arrowSeq)"/>
+  <line x1="120" y1="520" x2="750" y2="520" stroke="#333" stroke-width="2.5"/>
+  <polygon points="750,520 742,516.5 742,523.5" fill="#333"/>
   <text x="410" y="510" font-family="Arial" font-size="12" fill="#333">⑤ API呼び出し (一時認証情報)</text>
 
   <!-- Step 6: Response -->
-  <line x1="750" y1="550" x2="120" y2="550" stroke="#48BB78" stroke-width="2.5" stroke-dasharray="5,5" marker-end="url(#arrowReturn)"/>
+  <line x1="750" y1="550" x2="120" y2="550" stroke="#48BB78" stroke-width="2.5" stroke-dasharray="5,5"/>
+  <polygon points="120,550 128,553.5 128,546.5" fill="#48BB78"/>
   <text x="410" y="565" font-family="Arial" font-size="12" fill="#38A169" font-weight="bold">⑥ レスポンス</text>
 
   <!-- Legend -->

@@ -56,8 +56,7 @@
 		},
 		{
 			"title": "AIツールの進化史（図解）",
-			"content": [],
-			"mermaid": "timeline\n  2021 : GitHub Copilot\n  2023 : ChatGPT統合\n  2024 : Claude Code\n  2025 : エージェント型",
+			"content": ["![w:800 center](assets/ai-tool-evolution.svg)"],
 			"layout": "default"
 		},
 		{
@@ -158,8 +157,7 @@
 		},
 		{
 			"title": "AI協働の開発フロー（図解）",
-			"content": [],
-			"mermaid": "graph LR\n  A[要件定義・設計] --> B[AIが実装]\n  B --> C[人間がレビュー]\n  C -->|修正指示| B\n  C -->|承認| D[マージ]",
+			"content": ["![w:800 center](assets/ai-dev-flow.svg)"],
 			"layout": "default"
 		},
 		{
@@ -291,8 +289,7 @@
 		},
 		{
 			"title": "効率的なレビューフロー",
-			"content": [],
-			"mermaid": "graph TD\n  A[AI生成PR] --> B{自動チェック}\n  B -->|Pass| C{リスク判定}\n  B -->|Fail| Z[修正]\n  C -->|HIGH| D[人間が精査]\n  C -->|MID| E[AIレビュー+人間確認]\n  C -->|LOW| F[AIレビューのみ]\n  D --> G[承認]\n  E --> G\n  F --> G",
+			"content": ["![w:800 center](assets/review-flow.svg)"],
 			"layout": "default",
 			"speakerNotes": "自動化とリスク判定を組み合わせたフロー。効率と品質を両立。"
 		},

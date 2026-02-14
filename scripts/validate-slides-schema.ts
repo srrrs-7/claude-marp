@@ -1,8 +1,8 @@
 #!/usr/bin/env bun
 
+import { Glob } from "bun";
 import { z } from "zod";
 import { generationResultSchema } from "../src/generate/slide-schema.js";
-import { Glob } from "bun";
 
 interface ValidationError {
 	file: string;

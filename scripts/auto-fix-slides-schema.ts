@@ -1,8 +1,8 @@
 #!/usr/bin/env bun
 
+import { Glob } from "bun";
 import { z } from "zod";
 import { generationResultSchema } from "../src/generate/slide-schema.js";
-import { Glob } from "bun";
 
 interface Fix {
 	type: string;
@@ -27,7 +27,7 @@ async function autoFixSlides() {
 	for (const file of files) {
 		try {
 			const originalData = await Bun.file(file).json();
-			let data = JSON.parse(JSON.stringify(originalData));
+			const data = JSON.parse(JSON.stringify(originalData));
 			const fixes: Fix[] = [];
 
 			// Fix: Rename 'bullets' to 'content'
@@ -35,7 +35,7 @@ async function autoFixSlides() {
 				for (const slide of data.slides) {
 					if ("bullets" in slide && !("content" in slide)) {
 						slide.content = slide.bullets;
-						delete slide.bullets;
+						slide.bullets = undefined;
 						const fix = fixes.find((f) => f.type === "rename_bullets");
 						if (fix) {
 							fix.count++;

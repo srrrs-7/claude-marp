@@ -1,12 +1,11 @@
-<svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg">
-  <defs><filter id="fs1"><feDropShadow dx="1" dy="1" stdDeviation="1.5" flood-opacity="0.2"/></filter></defs>
-  <text x="10" y="45" fill="#b0bec5" font-size="14" font-family="sans-serif">生産性向上</text>
-  <rect x="130" y="28" width="250" height="28" rx="4" fill="#4fc3f7" filter="url(#fs1)"/>
+<svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+    <text x="10" y="45" fill="#b0bec5" font-size="14" font-family="sans-serif">生産性向上</text>
+  <rect x="130" y="28" width="250" height="28" rx="4" fill="#4fc3f7" style="filter: drop-shadow(1px 1px 1.5px rgba(0,0,0,0.2))"/>
   <text x="390" y="48" fill="#fff" font-size="16" font-weight="bold" font-family="sans-serif">50%（Google）</text>
   <text x="10" y="110" fill="#b0bec5" font-size="14" font-family="sans-serif">エンゲージメント</text>
-  <rect x="130" y="93" width="350" height="28" rx="4" fill="#81c784" filter="url(#fs1)"/>
+  <rect x="130" y="93" width="350" height="28" rx="4" fill="#81c784" style="filter: drop-shadow(1px 1px 1.5px rgba(0,0,0,0.2))"/>
   <text x="490" y="113" fill="#fff" font-size="16" font-weight="bold" font-family="sans-serif">70%（Gallup）</text>
   <text x="10" y="175" fill="#b0bec5" font-size="14" font-family="sans-serif">離職理由</text>
-  <rect x="130" y="158" width="375" height="28" rx="4" fill="#ffb74d" filter="url(#fs1)"/>
+  <rect x="130" y="158" width="375" height="28" rx="4" fill="#ffb74d" style="filter: drop-shadow(1px 1px 1.5px rgba(0,0,0,0.2))"/>
   <text x="515" y="178" fill="#fff" font-size="16" font-weight="bold" font-family="sans-serif">75%（SHRM）</text>
 </svg>

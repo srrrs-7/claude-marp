@@ -54,27 +54,26 @@ style: |
 - 地域: 同職種でも市場単価が大きく異なる
 - 通貨: 円建て生活者は為替の影響を強く受ける
 
-<svg viewBox="0 0 520 260" style="max-height:70vh;width:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="shadow1b"><feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter>
-    <marker id="arrow1b" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#546E7A"/></marker>
-  </defs>
-  <!-- 職種 -->
-  <rect x="20" y="30" width="140" height="50" rx="10" fill="#2196F3" filter="url(#shadow1b)"/>
+<svg viewBox="0 0 520 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+    <!-- 職種 -->
+  <rect x="20" y="30" width="140" height="50" rx="10" fill="#2196F3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="90" y="62" text-anchor="middle" fill="white" font-size="18" font-family="sans-serif" font-weight="bold">職種</text>
   <!-- 地域 -->
-  <rect x="20" y="105" width="140" height="50" rx="10" fill="#4CAF50" filter="url(#shadow1b)"/>
+  <rect x="20" y="105" width="140" height="50" rx="10" fill="#4CAF50" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="90" y="137" text-anchor="middle" fill="white" font-size="18" font-family="sans-serif" font-weight="bold">地域</text>
   <!-- 通貨 -->
-  <rect x="20" y="180" width="140" height="50" rx="10" fill="#FF9800" filter="url(#shadow1b)"/>
+  <rect x="20" y="180" width="140" height="50" rx="10" fill="#FF9800" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="90" y="212" text-anchor="middle" fill="white" font-size="18" font-family="sans-serif" font-weight="bold">通貨</text>
   <!-- 年収 -->
-  <rect x="340" y="90" width="150" height="70" rx="10" fill="#E65100" filter="url(#shadow1b)"/>
+  <rect x="340" y="90" width="150" height="70" rx="10" fill="#E65100" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="415" y="133" text-anchor="middle" fill="white" font-size="20" font-family="sans-serif" font-weight="bold">年収</text>
   <!-- Arrows -->
-  <line x1="160" y1="55" x2="334" y2="115" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow1b)"/>
-  <line x1="160" y1="130" x2="334" y2="125" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow1b)"/>
-  <line x1="160" y1="205" x2="334" y2="140" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow1b)"/>
+  <line x1="160" y1="55" x2="334" y2="115" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="334,115 327.6,109.1 325.3,115.7" fill="#546E7A"/>
+  <line x1="160" y1="130" x2="334" y2="125" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="334,125 325.9,121.7 326.1,128.7" fill="#546E7A"/>
+  <line x1="160" y1="205" x2="334" y2="140" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="334,140 325.3,139.5 327.7,146.1" fill="#546E7A"/>
   <!-- Legend -->
   <rect x="20" y="245" width="480" height="2" rx="1" fill="#B0BEC5"/>
 </svg>
@@ -116,31 +115,31 @@ style: |
 - 国内給与のみだと実質購買力の防衛が難しい
 - 通貨分散はキャリア戦略そのもの
 
-<svg viewBox="0 0 560 340" style="max-height:70vh;width:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="shadow2b"><feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter>
-    <marker id="arrow2b" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#546E7A"/></marker>
-  </defs>
-  <!-- 円安進行 -->
-  <rect x="190" y="10" width="180" height="50" rx="10" fill="#E65100" filter="url(#shadow2b)"/>
+<svg viewBox="0 0 560 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+    <!-- 円安進行 -->
+  <rect x="190" y="10" width="180" height="50" rx="10" fill="#E65100" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="280" y="42" text-anchor="middle" fill="white" font-size="18" font-family="sans-serif" font-weight="bold">円安進行</text>
   <!-- 輸入コスト上昇 -->
-  <rect x="20" y="110" width="220" height="50" rx="10" fill="#D32F2F" filter="url(#shadow2b)"/>
+  <rect x="20" y="110" width="220" height="50" rx="10" fill="#D32F2F" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="130" y="142" text-anchor="middle" fill="white" font-size="16" font-family="sans-serif" font-weight="bold">輸入コスト上昇</text>
   <!-- 外貨収入の円換算増 -->
-  <rect x="300" y="110" width="240" height="50" rx="10" fill="#2196F3" filter="url(#shadow2b)"/>
+  <rect x="300" y="110" width="240" height="50" rx="10" fill="#2196F3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="420" y="142" text-anchor="middle" fill="white" font-size="16" font-family="sans-serif" font-weight="bold">外貨収入の円換算増</text>
   <!-- 国内生活コスト圧力 -->
-  <rect x="10" y="220" width="240" height="50" rx="10" fill="#F44336" filter="url(#shadow2b)"/>
+  <rect x="10" y="220" width="240" height="50" rx="10" fill="#F44336" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="130" y="252" text-anchor="middle" fill="white" font-size="16" font-family="sans-serif" font-weight="bold">国内生活コスト圧力</text>
   <!-- 手取り防衛 -->
-  <rect x="320" y="220" width="200" height="50" rx="10" fill="#4CAF50" filter="url(#shadow2b)"/>
+  <rect x="320" y="220" width="200" height="50" rx="10" fill="#4CAF50" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="420" y="252" text-anchor="middle" fill="white" font-size="18" font-family="sans-serif" font-weight="bold">手取り防衛</text>
   <!-- Arrows -->
-  <line x1="235" y1="60" x2="145" y2="104" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow2b)"/>
-  <line x1="325" y1="60" x2="405" y2="104" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow2b)"/>
-  <line x1="130" y1="160" x2="130" y2="214" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow2b)"/>
-  <line x1="420" y1="160" x2="420" y2="214" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow2b)"/>
+  <line x1="235" y1="60" x2="145" y2="104" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="145,104 153.7,103.6 150.6,97.3" fill="#546E7A"/>
+  <line x1="325" y1="60" x2="405" y2="104" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="405,104 399.7,97.1 396.3,103.2" fill="#546E7A"/>
+  <line x1="130" y1="160" x2="130" y2="214" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="130,214 133.5,206 126.5,206" fill="#546E7A"/>
+  <line x1="420" y1="160" x2="420" y2="214" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="420,214 423.5,206 416.5,206" fill="#546E7A"/>
   <!-- Legend -->
   <rect x="20" y="290" width="12" height="12" rx="3" fill="#D32F2F"/>
   <text x="38" y="301" font-size="12" font-family="sans-serif" fill="#37474F">リスク</text>
@@ -200,28 +199,27 @@ style: |
 - 2本目: 高単価隣接領域を追加する
 - 横軸: 英語・設計・ビジネス理解で橋渡しする
 
-<svg viewBox="0 0 700 140" style="max-height:70vh;width:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="shadow3b"><feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter>
-    <marker id="arrow3b" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#546E7A"/></marker>
-  </defs>
-  <!-- T字 -->
-  <rect x="10" y="30" width="110" height="50" rx="10" fill="#78909C" filter="url(#shadow3b)"/>
+<svg viewBox="0 0 700 140" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+    <!-- T字 -->
+  <rect x="10" y="30" width="110" height="50" rx="10" fill="#78909C" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="65" y="62" text-anchor="middle" fill="white" font-size="20" font-family="sans-serif" font-weight="bold">T字</text>
   <!-- π字 -->
-  <rect x="185" y="30" width="110" height="50" rx="10" fill="#2196F3" filter="url(#shadow3b)"/>
+  <rect x="185" y="30" width="110" height="50" rx="10" fill="#2196F3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="240" y="62" text-anchor="middle" fill="white" font-size="20" font-family="sans-serif" font-weight="bold">π字</text>
   <!-- 高単価ロール適合 -->
-  <rect x="360" y="30" width="170" height="50" rx="10" fill="#4CAF50" filter="url(#shadow3b)"/>
+  <rect x="360" y="30" width="170" height="50" rx="10" fill="#4CAF50" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="445" y="62" text-anchor="middle" fill="white" font-size="16" font-family="sans-serif" font-weight="bold">高単価ロール適合</text>
   <!-- 年収上限拡大 -->
-  <rect x="595" y="30" width="90" height="50" rx="10" fill="#E65100" filter="url(#shadow3b)"/>
+  <rect x="595" y="30" width="90" height="50" rx="10" fill="#E65100" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="640" y="55" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">年収上限</text>
   <text x="640" y="72" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">拡大</text>
   <!-- Arrows -->
-  <line x1="120" y1="55" x2="179" y2="55" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow3b)"/>
-  <line x1="295" y1="55" x2="354" y2="55" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow3b)"/>
-  <line x1="530" y1="55" x2="589" y2="55" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow3b)"/>
+  <line x1="120" y1="55" x2="179" y2="55" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="179,55 171,51.5 171,58.5" fill="#546E7A"/>
+  <line x1="295" y1="55" x2="354" y2="55" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="354,55 346,51.5 346,58.5" fill="#546E7A"/>
+  <line x1="530" y1="55" x2="589" y2="55" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="589,55 581,51.5 581,58.5" fill="#546E7A"/>
   <!-- Legend -->
   <rect x="10" y="105" width="680" height="2" rx="1" fill="#B0BEC5"/>
   <text x="10" y="125" font-size="12" font-family="sans-serif" fill="#78909C">スキルスタック進化: 単一専門 → 複合専門 → 高付加価値</text>
@@ -282,11 +280,8 @@ style: |
 - 回収: 希望職種への到達確率
 - 流動性: 国・企業を跨いで通用するか
 
-<svg viewBox="0 0 500 440" style="max-height:70vh;width:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="shadow4b"><feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter>
-  </defs>
-  <!-- Title -->
+<svg viewBox="0 0 500 440" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+    <!-- Title -->
   <text x="250" y="28" text-anchor="middle" font-size="18" font-family="sans-serif" font-weight="bold" fill="#37474F">資格投資の優先度</text>
   <!-- Quadrant backgrounds -->
   <rect x="60" y="45" width="200" height="170" fill="#FFEBEE"/>
@@ -307,12 +302,12 @@ style: |
   <text x="42" y="380" font-size="13" font-family="sans-serif" fill="#78909C" transform="rotate(-90 42 380)">← 低労力</text>
   <text x="42" y="110" font-size="13" font-family="sans-serif" fill="#78909C" transform="rotate(-90 42 110)">高労力 →</text>
   <!-- Data points -->
-  <circle cx="372" cy="174" r="22" fill="#4CAF50" filter="url(#shadow4b)" opacity="0.9"/>
+  <circle cx="372" cy="174" r="22" fill="#4CAF50" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))" opacity="0.9"/>
   <text x="372" y="170" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">AWS/</text>
   <text x="372" y="184" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">Security</text>
-  <circle cx="304" cy="198" r="20" fill="#2196F3" filter="url(#shadow4b)" opacity="0.9"/>
+  <circle cx="304" cy="198" r="20" fill="#2196F3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))" opacity="0.9"/>
   <text x="304" y="203" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif" font-weight="bold">PM系</text>
-  <circle cx="200" cy="147" r="20" fill="#FF9800" filter="url(#shadow4b)" opacity="0.9"/>
+  <circle cx="200" cy="147" r="20" fill="#FF9800" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))" opacity="0.9"/>
   <text x="200" y="152" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">niche</text>
   <!-- Legend bar -->
   <rect x="60" y="420" width="400" height="2" rx="1" fill="#B0BEC5"/>
@@ -366,40 +361,42 @@ style: |
 - Architect: 横断影響力で希少性を獲得
 - 自分の強みに合う分岐を選ぶ
 
-<svg viewBox="0 0 600 320" style="max-height:70vh;width:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="shadow5b"><feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter>
-    <marker id="arrow5b" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#546E7A"/></marker>
-  </defs>
-  <!-- 現在地 -->
-  <rect x="230" y="10" width="140" height="50" rx="10" fill="#37474F" filter="url(#shadow5b)"/>
+<svg viewBox="0 0 600 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+    <!-- 現在地 -->
+  <rect x="230" y="10" width="140" height="50" rx="10" fill="#37474F" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="300" y="42" text-anchor="middle" fill="white" font-size="18" font-family="sans-serif" font-weight="bold">現在地</text>
   <!-- IC -->
-  <rect x="20" y="120" width="120" height="50" rx="10" fill="#2196F3" filter="url(#shadow5b)"/>
+  <rect x="20" y="120" width="120" height="50" rx="10" fill="#2196F3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="80" y="152" text-anchor="middle" fill="white" font-size="20" font-family="sans-serif" font-weight="bold">IC</text>
   <!-- EM -->
-  <rect x="240" y="120" width="120" height="50" rx="10" fill="#4CAF50" filter="url(#shadow5b)"/>
+  <rect x="240" y="120" width="120" height="50" rx="10" fill="#4CAF50" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="300" y="152" text-anchor="middle" fill="white" font-size="20" font-family="sans-serif" font-weight="bold">EM</text>
   <!-- Architect -->
-  <rect x="460" y="120" width="120" height="50" rx="10" fill="#FF9800" filter="url(#shadow5b)"/>
+  <rect x="460" y="120" width="120" height="50" rx="10" fill="#FF9800" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="520" y="152" text-anchor="middle" fill="white" font-size="18" font-family="sans-serif" font-weight="bold">Architect</text>
   <!-- 専門性プレミアム -->
-  <rect x="5" y="230" width="150" height="50" rx="10" fill="#1565C0" filter="url(#shadow5b)"/>
+  <rect x="5" y="230" width="150" height="50" rx="10" fill="#1565C0" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="80" y="260" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">専門性プレミアム</text>
   <!-- 組織責任プレミアム -->
-  <rect x="220" y="230" width="160" height="50" rx="10" fill="#2E7D32" filter="url(#shadow5b)"/>
+  <rect x="220" y="230" width="160" height="50" rx="10" fill="#2E7D32" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="300" y="260" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">組織責任プレミアム</text>
   <!-- 横断設計プレミアム -->
-  <rect x="440" y="230" width="155" height="50" rx="10" fill="#E65100" filter="url(#shadow5b)"/>
+  <rect x="440" y="230" width="155" height="50" rx="10" fill="#E65100" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="517" y="260" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">横断設計プレミアム</text>
   <!-- Arrows from 現在地 -->
-  <line x1="265" y1="60" x2="95" y2="114" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow5b)"/>
-  <line x1="300" y1="60" x2="300" y2="114" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow5b)"/>
-  <line x1="335" y1="60" x2="505" y2="114" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow5b)"/>
+  <line x1="265" y1="60" x2="95" y2="114" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="95,114 103.7,114.9 101.6,108.2" fill="#546E7A"/>
+  <line x1="300" y1="60" x2="300" y2="114" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="300,114 303.5,106 296.5,106" fill="#546E7A"/>
+  <line x1="335" y1="60" x2="505" y2="114" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="505,114 498.4,108.2 496.3,114.9" fill="#546E7A"/>
   <!-- Arrows to premiums -->
-  <line x1="80" y1="170" x2="80" y2="224" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow5b)"/>
-  <line x1="300" y1="170" x2="300" y2="224" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow5b)"/>
-  <line x1="520" y1="170" x2="517" y2="224" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow5b)"/>
+  <line x1="80" y1="170" x2="80" y2="224" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="80,224 83.5,216 76.5,216" fill="#546E7A"/>
+  <line x1="300" y1="170" x2="300" y2="224" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="300,224 303.5,216 296.5,216" fill="#546E7A"/>
+  <line x1="520" y1="170" x2="517" y2="224" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="517,224 520.9,216.2 513.9,215.8" fill="#546E7A"/>
   <!-- Legend -->
   <rect x="20" y="300" width="12" height="12" rx="3" fill="#2196F3"/>
   <text x="38" y="311" font-size="12" font-family="sans-serif" fill="#37474F">IC</text>
@@ -435,36 +432,38 @@ style: |
 - 税率・社会保険・生活費・為替を同時に評価する
 - 通貨の受取比率を戦略的に設計する
 
-<svg viewBox="0 0 600 300" style="max-height:70vh;width:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="shadow6b"><feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter>
-    <marker id="arrow6b" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#546E7A"/></marker>
-  </defs>
-  <!-- Gross Pay -->
-  <rect x="10" y="100" width="140" height="55" rx="10" fill="#2196F3" filter="url(#shadow6b)"/>
+<svg viewBox="0 0 600 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+    <!-- Gross Pay -->
+  <rect x="10" y="100" width="140" height="55" rx="10" fill="#2196F3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="80" y="134" text-anchor="middle" fill="white" font-size="17" font-family="sans-serif" font-weight="bold">Gross Pay</text>
   <!-- Tax -->
-  <rect x="220" y="15" width="140" height="50" rx="10" fill="#D32F2F" filter="url(#shadow6b)"/>
+  <rect x="220" y="15" width="140" height="50" rx="10" fill="#D32F2F" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="290" y="47" text-anchor="middle" fill="white" font-size="17" font-family="sans-serif" font-weight="bold">Tax</text>
   <!-- Social Insurance -->
-  <rect x="220" y="100" width="160" height="55" rx="10" fill="#FF9800" filter="url(#shadow6b)"/>
+  <rect x="220" y="100" width="160" height="55" rx="10" fill="#FF9800" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="300" y="120" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">Social</text>
   <text x="300" y="140" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">Insurance</text>
   <!-- RSU/Bonus -->
-  <rect x="220" y="190" width="140" height="50" rx="10" fill="#7B1FA2" filter="url(#shadow6b)"/>
+  <rect x="220" y="190" width="140" height="50" rx="10" fill="#7B1FA2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="290" y="222" text-anchor="middle" fill="white" font-size="16" font-family="sans-serif" font-weight="bold">RSU/Bonus</text>
   <!-- Net Disposable -->
-  <rect x="440" y="90" width="150" height="70" rx="10" fill="#4CAF50" filter="url(#shadow6b)"/>
+  <rect x="440" y="90" width="150" height="70" rx="10" fill="#4CAF50" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="515" y="118" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">Net</text>
   <text x="515" y="140" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">Disposable</text>
   <!-- Arrows from Gross Pay -->
-  <line x1="150" y1="115" x2="214" y2="50" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow6b)"/>
-  <line x1="150" y1="127" x2="214" y2="127" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow6b)"/>
-  <line x1="150" y1="140" x2="214" y2="205" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow6b)"/>
+  <line x1="150" y1="115" x2="214" y2="50" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="214,50 205.9,53.2 210.9,58.2" fill="#546E7A"/>
+  <line x1="150" y1="127" x2="214" y2="127" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="214,127 206,123.5 206,130.5" fill="#546E7A"/>
+  <line x1="150" y1="140" x2="214" y2="205" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="214,205 210.9,196.8 205.9,201.8" fill="#546E7A"/>
   <!-- Arrows to Net Disposable -->
-  <line x1="360" y1="40" x2="434" y2="105" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow6b)"/>
-  <line x1="380" y1="127" x2="434" y2="125" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow6b)"/>
-  <line x1="360" y1="215" x2="434" y2="145" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow6b)"/>
+  <line x1="360" y1="40" x2="434" y2="105" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="434,105 430.3,97.1 425.7,102.4" fill="#546E7A"/>
+  <line x1="380" y1="127" x2="434" y2="125" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="434,125 425.9,121.8 426.1,128.8" fill="#546E7A"/>
+  <line x1="360" y1="215" x2="434" y2="145" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="434,145 425.8,148 430.6,153" fill="#546E7A"/>
   <!-- Legend -->
   <rect x="10" y="265" width="12" height="12" rx="3" fill="#D32F2F"/>
   <text x="28" y="276" font-size="12" font-family="sans-serif" fill="#37474F">控除</text>
@@ -556,33 +555,29 @@ style: |
 - 英語業務遂行力が基準を超えるか
 - 制度リスクを受容できるか
 
-<svg viewBox="0 0 620 460" style="max-height:70vh;width:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="shadow7b"><feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter>
-    <marker id="arrow7b" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#546E7A"/></marker>
-  </defs>
-  <!-- 意思決定開始 -->
-  <rect x="210" y="10" width="180" height="50" rx="10" fill="#37474F" filter="url(#shadow7b)"/>
+<svg viewBox="0 0 620 460" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+    <!-- 意思決定開始 -->
+  <rect x="210" y="10" width="180" height="50" rx="10" fill="#37474F" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="300" y="42" text-anchor="middle" fill="white" font-size="16" font-family="sans-serif" font-weight="bold">意思決定開始</text>
   <!-- 年収最大化が最優先? (diamond) -->
-  <polygon points="300,90 450,145 300,200 150,145" fill="#FF9800" filter="url(#shadow7b)"/>
+  <polygon points="300,90 450,145 300,200 150,145" fill="#FF9800" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="300" y="140" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">年収最大化が</text>
   <text x="300" y="158" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">最優先?</text>
   <!-- 国内ハイレンジ転職 -->
-  <rect x="470" y="120" width="140" height="50" rx="10" fill="#78909C" filter="url(#shadow7b)"/>
+  <rect x="470" y="120" width="140" height="50" rx="10" fill="#78909C" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="540" y="142" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif" font-weight="bold">国内ハイレンジ</text>
   <text x="540" y="158" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif" font-weight="bold">転職</text>
   <!-- 移住可能? (diamond) -->
-  <polygon points="300,230 420,275 300,320 180,275" fill="#2196F3" filter="url(#shadow7b)"/>
+  <polygon points="300,230 420,275 300,320 180,275" fill="#2196F3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="300" y="280" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">移住可能?</text>
   <!-- 現地雇用を優先検討 -->
-  <rect x="40" y="340" width="180" height="50" rx="10" fill="#4CAF50" filter="url(#shadow7b)"/>
+  <rect x="40" y="340" width="180" height="50" rx="10" fill="#4CAF50" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="130" y="370" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">現地雇用を優先検討</text>
   <!-- 海外リモート/契約 -->
-  <rect x="380" y="340" width="190" height="50" rx="10" fill="#7B1FA2" filter="url(#shadow7b)"/>
+  <rect x="380" y="340" width="190" height="50" rx="10" fill="#7B1FA2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="475" y="370" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">海外リモート/契約</text>
   <!-- ビザ・税務確認 -->
-  <rect x="210" y="420" width="180" height="50" rx="8" fill="#E65100" filter="url(#shadow7b)"/>
+  <rect x="210" y="420" width="180" height="50" rx="8" fill="#E65100" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="300" y="450" text-anchor="middle" fill="white" font-size="15" font-family="sans-serif" font-weight="bold">ビザ・税務確認</text>
   <!-- Labels -->
   <text x="460" y="118" font-size="14" font-family="sans-serif" fill="#D32F2F" font-weight="bold">No</text>
@@ -590,13 +585,20 @@ style: |
   <text x="168" y="330" font-size="14" font-family="sans-serif" fill="#2E7D32" font-weight="bold">Yes</text>
   <text x="410" y="330" font-size="14" font-family="sans-serif" fill="#D32F2F" font-weight="bold">No</text>
   <!-- Arrows -->
-  <line x1="300" y1="60" x2="300" y2="90" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow7b)"/>
-  <line x1="450" y1="145" x2="464" y2="145" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow7b)"/>
-  <line x1="300" y1="200" x2="300" y2="230" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow7b)"/>
-  <line x1="210" y1="290" x2="145" y2="334" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow7b)"/>
-  <line x1="390" y1="290" x2="460" y2="334" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow7b)"/>
-  <line x1="130" y1="390" x2="225" y2="420" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow7b)"/>
-  <line x1="475" y1="390" x2="375" y2="420" stroke="#546E7A" stroke-width="2.5" marker-end="url(#arrow7b)"/>
+  <line x1="300" y1="60" x2="300" y2="90" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="300,90 303.5,82 296.5,82" fill="#546E7A"/>
+  <line x1="450" y1="145" x2="464" y2="145" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="464,145 456,141.5 456,148.5" fill="#546E7A"/>
+  <line x1="300" y1="200" x2="300" y2="230" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="300,230 303.5,222 296.5,222" fill="#546E7A"/>
+  <line x1="210" y1="290" x2="145" y2="334" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="145,334 153.6,332.4 149.7,326.6" fill="#546E7A"/>
+  <line x1="390" y1="290" x2="460" y2="334" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="460,334 455.1,326.8 451.4,332.7" fill="#546E7A"/>
+  <line x1="130" y1="390" x2="225" y2="420" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="225,420 218.4,414.3 216.3,420.9" fill="#546E7A"/>
+  <line x1="475" y1="390" x2="375" y2="420" stroke="#546E7A" stroke-width="2.5"/>
+  <polygon points="375,420 383.7,421.1 381.7,414.3" fill="#546E7A"/>
 </svg>
 
 
@@ -657,22 +659,19 @@ style: |
 - 地理・通貨・契約形態の分散を実装する
 - 資産形成とキャリア戦略を統合する
 
-<svg viewBox="0 0 720 280" style="max-height:70vh;width:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="shadow8b"><feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter>
-  </defs>
-  <!-- Title -->
+<svg viewBox="0 0 720 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+    <!-- Title -->
   <text x="360" y="28" text-anchor="middle" font-size="18" font-family="sans-serif" font-weight="bold" fill="#37474F">3年ロードマップ</text>
   <!-- Timeline bar -->
   <rect x="40" y="95" width="640" height="8" rx="4" fill="#B0BEC5"/>
   <!-- Phase circles -->
-  <circle cx="120" cy="99" r="14" fill="#2196F3" filter="url(#shadow8b)"/>
+  <circle cx="120" cy="99" r="14" fill="#2196F3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="120" y="104" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">1</text>
-  <circle cx="290" cy="99" r="14" fill="#4CAF50" filter="url(#shadow8b)"/>
+  <circle cx="290" cy="99" r="14" fill="#4CAF50" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="290" y="104" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">2</text>
-  <circle cx="460" cy="99" r="14" fill="#FF9800" filter="url(#shadow8b)"/>
+  <circle cx="460" cy="99" r="14" fill="#FF9800" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="460" y="104" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">3</text>
-  <circle cx="620" cy="99" r="14" fill="#E65100" filter="url(#shadow8b)"/>
+  <circle cx="620" cy="99" r="14" fill="#E65100" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="620" y="104" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">4</text>
   <!-- Phase labels (top) -->
   <text x="120" y="65" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="bold" fill="#2196F3">0-6ヶ月</text>
@@ -680,18 +679,18 @@ style: |
   <text x="460" y="65" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="bold" fill="#FF9800">1-2年</text>
   <text x="620" y="65" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="bold" fill="#E65100">2-3年</text>
   <!-- Phase cards -->
-  <rect x="40" y="130" width="150" height="80" rx="8" fill="#E3F2FD" filter="url(#shadow8b)"/>
+  <rect x="40" y="130" width="150" height="80" rx="8" fill="#E3F2FD" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="115" y="152" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#1565C0">要件分析</text>
   <text x="115" y="170" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#1565C0">CV再構築</text>
   <text x="115" y="188" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#1565C0">初回応募</text>
-  <rect x="210" y="130" width="160" height="80" rx="8" fill="#E8F5E9" filter="url(#shadow8b)"/>
+  <rect x="210" y="130" width="160" height="80" rx="8" fill="#E8F5E9" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="290" y="152" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#2E7D32">資格取得</text>
   <text x="290" y="170" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#2E7D32">英語実戦</text>
   <text x="290" y="188" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#2E7D32">報酬交渉</text>
-  <rect x="385" y="130" width="150" height="80" rx="8" fill="#FFF3E0" filter="url(#shadow8b)"/>
+  <rect x="385" y="130" width="150" height="80" rx="8" fill="#FFF3E0" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="460" y="155" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#E65100">職務転換</text>
   <text x="460" y="175" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#E65100">外貨収入拡大</text>
-  <rect x="545" y="130" width="150" height="80" rx="8" fill="#FBE9E7" filter="url(#shadow8b)"/>
+  <rect x="545" y="130" width="150" height="80" rx="8" fill="#FBE9E7" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
   <text x="620" y="155" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#BF360C">市場分散</text>
   <text x="620" y="175" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#BF360C">上位ロール定着</text>
   <!-- Legend -->

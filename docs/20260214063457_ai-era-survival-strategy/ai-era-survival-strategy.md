@@ -1,5 +1,5 @@
 ---
-marp: false
+marp: true
 theme: gaia
 size: 16:9
 paginate: true
@@ -24,6 +24,21 @@ style: |
   section pre code {
     font-size: 0.6em;
     line-height: 1.4;
+  }
+  /* Mermaid図解をスライドに収める */
+  section .mermaid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 70vh;
+    max-width: 100%;
+  }
+  
+  section .mermaid svg {
+    max-width: 100%;
+    max-height: 70vh;
+    height: auto;
+    width: auto;
   }
   
 ---
@@ -91,49 +106,72 @@ style: |
 - 2024年: Claude Code / Cursor — マルチファイル編集
 - 2025年: エージェント型、自律的なタスク実行
 
-<svg viewBox="0 0 750 200" style="max-height:70vh;width:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="ft1"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.15"/></filter>
-  </defs>
-  <!-- Timeline axis -->
-  <line x1="60" y1="100" x2="690" y2="100" stroke="#B0BEC5" stroke-width="3"/>
-  <!-- 2021 -->
-  <circle cx="120" cy="100" r="18" fill="#1565C0" filter="url(#ft1)"/>
-  <text x="120" y="106" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold">&#39;21</text>
-  <text x="120" y="70" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="13" font-weight="bold">GitHub Copilot</text>
-  <text x="120" y="145" text-anchor="middle" fill="#78909C" font-family="sans-serif" font-size="11">補完ベース</text>
-  <!-- 2023 -->
-  <circle cx="310" cy="100" r="18" fill="#2E7D32" filter="url(#ft1)"/>
-  <text x="310" y="106" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold">&#39;23</text>
-  <text x="310" y="70" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="13" font-weight="bold">ChatGPT統合</text>
-  <text x="310" y="145" text-anchor="middle" fill="#78909C" font-family="sans-serif" font-size="11">会話型へ進化</text>
-  <!-- 2024 -->
-  <circle cx="500" cy="100" r="18" fill="#E65100" filter="url(#ft1)"/>
-  <text x="500" y="106" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold">&#39;24</text>
-  <text x="500" y="70" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="13" font-weight="bold">Claude Code</text>
-  <text x="500" y="145" text-anchor="middle" fill="#78909C" font-family="sans-serif" font-size="11">マルチファイル編集</text>
-  <!-- 2025 -->
-  <circle cx="630" cy="100" r="18" fill="#7B1FA2" filter="url(#ft1)"/>
-  <text x="630" y="106" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold">&#39;25</text>
-  <text x="630" y="70" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="13" font-weight="bold">エージェント型</text>
-  <text x="630" y="145" text-anchor="middle" fill="#78909C" font-family="sans-serif" font-size="11">自律的タスク実行</text>
-  <!-- Progress arrow -->
-  <polygon points="695,100 685,92 685,108" fill="#B0BEC5"/>
-  <!-- Legend -->
-  <rect x="150" y="170" width="450" height="25" rx="5" fill="#F5F5F5" stroke="#E0E0E0"/>
-  <circle cx="185" cy="182" r="6" fill="#1565C0"/>
-  <text x="197" y="187" fill="#37474F" font-family="sans-serif" font-size="10">補完</text>
-  <circle cx="260" cy="182" r="6" fill="#2E7D32"/>
-  <text x="272" y="187" fill="#37474F" font-family="sans-serif" font-size="10">会話型</text>
-  <circle cx="345" cy="182" r="6" fill="#E65100"/>
-  <text x="357" y="187" fill="#37474F" font-family="sans-serif" font-size="10">マルチファイル</text>
-  <circle cx="460" cy="182" r="6" fill="#7B1FA2"/>
-  <text x="472" y="187" fill="#37474F" font-family="sans-serif" font-size="10">エージェント</text>
-</svg>
 
-<!--
-わずか4年で劇的な進化。単一行補完から自律エージェントへ。
--->
+---
+
+# AIツールの進化史（図解）
+
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="400" fill="#f8f9fa" rx="12"/>
+
+  <!-- Timeline line -->
+  <line x1="80" y1="200" x2="740" y2="200" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="8,4"/>
+
+  <!-- 2021 - Copilot -->
+  <circle cx="140" cy="200" r="28" fill="#3b82f6" opacity="0.9"/>
+  <text x="140" y="206" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">2021</text>
+  <rect x="85" y="100" width="110" height="60" rx="8" fill="#3b82f6" opacity="0.15"/>
+  <text x="140" y="122" text-anchor="middle" fill="#1e40af" font-size="12" font-weight="bold" font-family="sans-serif">GitHub Copilot</text>
+  <text x="140" y="140" text-anchor="middle" fill="#475569" font-size="10" font-family="sans-serif">コード補完ベース</text>
+  <line x1="140" y1="160" x2="140" y2="172" stroke="#3b82f6" stroke-width="2"/>
+
+  <!-- Arrow from 2021 to 2023 -->
+  <line x1="168" y1="200" x2="282" y2="200" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="282,195 292,200 282,205" fill="#94a3b8"/>
+
+  <!-- 2023 - ChatGPT Integration -->
+  <circle cx="340" cy="200" r="28" fill="#8b5cf6" opacity="0.9"/>
+  <text x="340" y="206" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">2023</text>
+  <rect x="275" y="240" width="130" height="60" rx="8" fill="#8b5cf6" opacity="0.15"/>
+  <text x="340" y="262" text-anchor="middle" fill="#5b21b6" font-size="12" font-weight="bold" font-family="sans-serif">ChatGPT統合</text>
+  <text x="340" y="280" text-anchor="middle" fill="#475569" font-size="10" font-family="sans-serif">会話型プログラミング</text>
+  <line x1="340" y1="228" x2="340" y2="240" stroke="#8b5cf6" stroke-width="2"/>
+
+  <!-- Arrow from 2023 to 2024 -->
+  <line x1="368" y1="200" x2="482" y2="200" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="482,195 492,200 482,205" fill="#94a3b8"/>
+
+  <!-- 2024 - Claude Code / Cursor -->
+  <circle cx="530" cy="200" r="28" fill="#f59e0b" opacity="0.9"/>
+  <text x="530" y="206" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">2024</text>
+  <rect x="457" y="100" width="146" height="60" rx="8" fill="#f59e0b" opacity="0.15"/>
+  <text x="530" y="122" text-anchor="middle" fill="#92400e" font-size="12" font-weight="bold" font-family="sans-serif">Claude Code / Cursor</text>
+  <text x="530" y="140" text-anchor="middle" fill="#475569" font-size="10" font-family="sans-serif">マルチファイル編集</text>
+  <line x1="530" y1="160" x2="530" y2="172" stroke="#f59e0b" stroke-width="2"/>
+
+  <!-- Arrow from 2024 to 2025 -->
+  <line x1="558" y1="200" x2="662" y2="200" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="662,195 672,200 662,205" fill="#94a3b8"/>
+
+  <!-- 2025 - Agent Type -->
+  <circle cx="710" cy="200" r="32" fill="#ef4444" opacity="0.9" stroke="#ef4444" stroke-width="2"/>
+  <text x="710" y="206" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">2025</text>
+  <rect x="640" y="240" width="140" height="60" rx="8" fill="#ef4444" opacity="0.15"/>
+  <text x="710" y="262" text-anchor="middle" fill="#991b1b" font-size="12" font-weight="bold" font-family="sans-serif">エージェント型AI</text>
+  <text x="710" y="280" text-anchor="middle" fill="#475569" font-size="10" font-family="sans-serif">自律的タスク実行</text>
+  <line x1="710" y1="232" x2="710" y2="240" stroke="#ef4444" stroke-width="2"/>
+
+  <!-- Capability scale label -->
+  <text x="80" y="360" fill="#94a3b8" font-size="10" font-family="sans-serif">補完</text>
+  <text x="740" y="360" text-anchor="end" fill="#94a3b8" font-size="10" font-family="sans-serif">自律</text>
+  <line x1="100" y1="355" x2="720" y2="355" stroke="#e2e8f0" stroke-width="1"/>
+  <!-- Gradient bar for capability (no url(#id) - use individual colored segments) -->
+  <rect x="100" y="350" width="155" height="6" rx="3" fill="#3b82f6" opacity="0.4"/>
+  <rect x="255" y="350" width="155" height="6" fill="#7c6ecc" opacity="0.4"/>
+  <rect x="410" y="350" width="155" height="6" fill="#c27c28" opacity="0.4"/>
+  <rect x="565" y="350" width="155" height="6" rx="3" fill="#ef4444" opacity="0.4"/>
+</svg>
 
 ---
 
@@ -246,47 +284,77 @@ style: |
 - 生成→レビュー→修正のイテレーションを高速に回す
 - AIは「ドラフト生成器」、人間は「品質ゲートキーパー」
 
-<svg viewBox="0 0 700 260" style="max-height:70vh;width:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="fc1"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.15"/></filter>
-    <marker id="ac1" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#546E7A"/>
-    </marker>
-  </defs>
-  <!-- A: 要件定義・設計 (Human) -->
-  <rect x="30" y="60" width="160" height="50" rx="10" fill="#1565C0" filter="url(#fc1)"/>
-  <text x="110" y="91" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">要件定義・設計</text>
-  <line x1="190" y1="85" x2="238" y2="85" stroke="#546E7A" stroke-width="2" marker-end="url(#ac1)"/>
-  <!-- B: AIが実装 (AI) -->
-  <rect x="245" y="60" width="150" height="50" rx="10" fill="#4CAF50" filter="url(#fc1)"/>
-  <text x="320" y="91" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">AIが実装</text>
-  <line x1="395" y1="85" x2="438" y2="85" stroke="#546E7A" stroke-width="2" marker-end="url(#ac1)"/>
-  <!-- C: 人間がレビュー (Human) -->
-  <rect x="445" y="60" width="170" height="50" rx="10" fill="#1565C0" filter="url(#fc1)"/>
-  <text x="530" y="91" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">人間がレビュー</text>
-  <!-- 承認 → D: マージ -->
-  <line x1="530" y1="110" x2="530" y2="155" stroke="#546E7A" stroke-width="2" marker-end="url(#ac1)"/>
-  <text x="555" y="138" text-anchor="start" fill="#2E7D32" font-family="sans-serif" font-size="12" font-weight="bold">承認</text>
-  <rect x="460" y="165" width="140" height="50" rx="10" fill="#E65100" filter="url(#fc1)"/>
-  <text x="530" y="196" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="15" font-weight="bold">マージ</text>
-  <!-- 修正指示 loop (dashed) back to B -->
-  <path d="M 445,95 Q 420,95 420,130 Q 420,160 320,160 Q 280,160 280,115" fill="none" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#ac1)"/>
-  <text x="360" y="155" text-anchor="middle" fill="#E53935" font-family="sans-serif" font-size="12" font-weight="bold">修正指示</text>
-  <!-- Legend -->
-  <rect x="100" y="230" width="500" height="25" rx="5" fill="#F5F5F5" stroke="#E0E0E0"/>
-  <rect x="120" y="235" width="14" height="14" rx="3" fill="#1565C0"/>
-  <text x="140" y="247" fill="#37474F" font-family="sans-serif" font-size="11">人間タスク</text>
-  <rect x="230" y="235" width="14" height="14" rx="3" fill="#4CAF50"/>
-  <text x="250" y="247" fill="#37474F" font-family="sans-serif" font-size="11">AIタスク</text>
-  <rect x="330" y="235" width="14" height="14" rx="3" fill="#E65100"/>
-  <text x="350" y="247" fill="#37474F" font-family="sans-serif" font-size="11">完了</text>
-  <line x1="420" y1="242" x2="450" y2="242" stroke="#E53935" stroke-width="2" stroke-dasharray="4,2"/>
-  <text x="460" y="247" fill="#37474F" font-family="sans-serif" font-size="11">修正ループ</text>
-</svg>
 
-<!--
-基本的なフロー。従来との違いは実装フェーズがAIに移り、人間は設計とレビューに集中。
--->
+---
+
+# AI協働の開発フロー（図解）
+
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="360" fill="#f8f9fa" rx="12"/>
+
+  <!-- Step 1: 要件定義・設計 -->
+  <rect x="30" y="120" width="150" height="70" rx="10" fill="#3b82f6" opacity="0.9"/>
+  <text x="105" y="150" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">要件定義・設計</text>
+  <text x="105" y="170" text-anchor="middle" fill="#dbeafe" font-size="10" font-family="sans-serif">人間が主導</text>
+  <!-- Human icon -->
+  <circle cx="105" cy="95" r="14" fill="#3b82f6" opacity="0.2"/>
+  <text x="105" y="100" text-anchor="middle" fill="#1e40af" font-size="16" font-family="sans-serif">👤</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="180" y1="155" x2="225" y2="155" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="225,150 235,155 225,160" fill="#94a3b8"/>
+
+  <!-- Step 2: AIが実装 -->
+  <rect x="235" y="120" width="150" height="70" rx="10" fill="#8b5cf6" opacity="0.9"/>
+  <text x="310" y="150" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">AIが実装</text>
+  <text x="310" y="170" text-anchor="middle" fill="#ede9fe" font-size="10" font-family="sans-serif">コード生成・編集</text>
+  <!-- AI icon -->
+  <circle cx="310" cy="95" r="14" fill="#8b5cf6" opacity="0.2"/>
+  <text x="310" y="100" text-anchor="middle" fill="#5b21b6" font-size="16" font-family="sans-serif">🤖</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="385" y1="155" x2="430" y2="155" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="430,150 440,155 430,160" fill="#94a3b8"/>
+
+  <!-- Step 3: 人間がレビュー -->
+  <rect x="440" y="120" width="150" height="70" rx="10" fill="#f59e0b" opacity="0.9"/>
+  <text x="515" y="150" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">人間がレビュー</text>
+  <text x="515" y="170" text-anchor="middle" fill="#fef3c7" font-size="10" font-family="sans-serif">品質・設計を確認</text>
+  <!-- Human icon -->
+  <circle cx="515" cy="95" r="14" fill="#f59e0b" opacity="0.2"/>
+  <text x="515" y="100" text-anchor="middle" fill="#92400e" font-size="16" font-family="sans-serif">👤</text>
+
+  <!-- Branch: 修正指示 (loop back) -->
+  <line x1="515" y1="190" x2="515" y2="260" stroke="#ef4444" stroke-width="2"/>
+  <line x1="515" y1="260" x2="310" y2="260" stroke="#ef4444" stroke-width="2"/>
+  <line x1="310" y1="260" x2="310" y2="195" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="305,195 310,185 315,195" fill="#ef4444"/>
+  <rect x="370" y="245" width="80" height="22" rx="4" fill="#fef2f2"/>
+  <text x="410" y="260" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold" font-family="sans-serif">修正指示</text>
+
+  <!-- Branch: 承認 → マージ -->
+  <line x1="590" y1="155" x2="635" y2="155" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="635,150 645,155 635,160" fill="#22c55e"/>
+  <rect x="392" y="130" width="46" height="18" rx="4" fill="white" opacity="0.3"/>
+  <text x="567" y="143" text-anchor="middle" fill="#16a34a" font-size="9" font-weight="bold" font-family="sans-serif">承認</text>
+
+  <!-- Step 4: マージ -->
+  <rect x="645" y="120" width="130" height="70" rx="10" fill="#22c55e" opacity="0.9"/>
+  <text x="710" y="150" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">マージ</text>
+  <text x="710" y="170" text-anchor="middle" fill="#dcfce7" font-size="10" font-family="sans-serif">本番反映</text>
+  <!-- Check icon -->
+  <circle cx="710" cy="95" r="14" fill="#22c55e" opacity="0.2"/>
+  <text x="710" y="100" text-anchor="middle" fill="#166534" font-size="16" font-family="sans-serif">✅</text>
+
+  <!-- Legend -->
+  <rect x="30" y="310" width="12" height="12" rx="2" fill="#3b82f6" opacity="0.6"/>
+  <text x="48" y="321" fill="#475569" font-size="10" font-family="sans-serif">人間の作業</text>
+  <rect x="130" y="310" width="12" height="12" rx="2" fill="#8b5cf6" opacity="0.6"/>
+  <text x="148" y="321" fill="#475569" font-size="10" font-family="sans-serif">AIの作業</text>
+  <rect x="230" y="310" width="12" height="12" rx="2" fill="#ef4444" opacity="0.6"/>
+  <text x="248" y="321" fill="#475569" font-size="10" font-family="sans-serif">フィードバックループ</text>
+</svg>
 
 ---
 
@@ -322,6 +390,11 @@ style: |
 - 禁止事項（使わないライブラリ、避けるパターン）
 - 自動的にコンテキストとして読み込まれる
 
+
+---
+
+# CLAUDE.md / .cursorrules 活用（コード例）
+
 ```markdown
 # CLAUDE.md
 ## Tech Stack
@@ -332,9 +405,6 @@ style: |
 - Max 8 lines per code block in slides
 ```
 
-<!--
-プロジェクトルールの文書化。一度書けば繰り返し指示不要。
--->
 
 ---
 
@@ -355,6 +425,11 @@ style: |
 - AIの得意分野: 定型的なスキーマ定義
 - 人間の役割: ビジネスルールの検証
 
+
+---
+
+# コード例: 型定義とバリデーション（コード例）
+
 ```typescript
 // AIに任せる: Zodスキーマ
 const userSchema = z.object({
@@ -366,9 +441,6 @@ const userSchema = z.object({
 const canVote = (user) => user.age >= 18;
 ```
 
-<!--
-具体的なTS例で分担を可視化。型定義はAI、判断は人間。
--->
 
 ---
 
@@ -390,15 +462,17 @@ const canVote = (user) => user.age >= 18;
 - 統合テスト: APIエンドポイントから正常系・異常系を生成
 - カバレッジ: AIで80%達成、人間がエッジケースを追加
 
+
+---
+
+# テスト自動生成（コード例）
+
 ```typescript
 // プロンプト例
 "divide関数の単体テストをJestで生成。
 ゼロ除算、負数、小数のケースを含めて"
 ```
 
-<!--
-テスト作成はAIの得意分野。人間はテストケースの網羅性を確認。
--->
 
 ---
 
@@ -449,58 +523,76 @@ const canVote = (user) => user.age >= 18;
 
 # 効率的なレビューフロー
 
-<svg viewBox="0 0 720 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="fr1"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.15"/></filter>
-    <marker id="ar1" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#546E7A"/>
-    </marker>
-  </defs>
-  <!-- A: AI生成PR -->
-  <rect x="275" y="10" width="170" height="45" rx="10" fill="#37474F" filter="url(#fr1)"/>
-  <text x="360" y="38" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">AI生成PR</text>
-  <line x1="360" y1="55" x2="360" y2="80" stroke="#546E7A" stroke-width="2" marker-end="url(#ar1)"/>
-  <!-- B: 自動チェック (Decision) -->
-  <polygon points="360,90 460,135 360,180 260,135" fill="#FF9800" filter="url(#fr1)"/>
-  <text x="360" y="140" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">自動チェック</text>
-  <!-- Fail → Z: 修正 -->
-  <line x1="460" y1="135" x2="578" y2="135" stroke="#546E7A" stroke-width="2" marker-end="url(#ar1)"/>
-  <text x="510" y="128" text-anchor="middle" fill="#E53935" font-family="sans-serif" font-size="12" font-weight="bold">Fail</text>
-  <rect x="585" y="112" width="110" height="45" rx="8" fill="#E53935" filter="url(#fr1)"/>
-  <text x="640" y="140" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">修正</text>
-  <!-- Pass → C: リスク判定 -->
-  <line x1="360" y1="180" x2="360" y2="210" stroke="#546E7A" stroke-width="2" marker-end="url(#ar1)"/>
-  <text x="385" y="200" text-anchor="start" fill="#2E7D32" font-family="sans-serif" font-size="12" font-weight="bold">Pass</text>
-  <!-- C: リスク判定 (Decision) -->
-  <polygon points="360,220 460,265 360,310 260,265" fill="#FF9800" filter="url(#fr1)"/>
-  <text x="360" y="270" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">リスク判定</text>
-  <!-- HIGH → D: 人間が精査 -->
-  <line x1="260" y1="265" x2="178" y2="265" stroke="#546E7A" stroke-width="2"/>
-  <line x1="110" y1="265" x2="110" y2="345" stroke="#546E7A" stroke-width="2" marker-end="url(#ar1)"/>
-  <line x1="178" y1="265" x2="110" y2="265" stroke="#546E7A" stroke-width="2"/>
-  <text x="210" y="255" text-anchor="middle" fill="#D32F2F" font-family="sans-serif" font-size="12" font-weight="bold">HIGH</text>
-  <rect x="30" y="350" width="160" height="45" rx="8" fill="#D32F2F" filter="url(#fr1)"/>
-  <text x="110" y="378" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">人間が精査</text>
-  <!-- MID → E: AIレビュー+人間確認 -->
-  <line x1="360" y1="310" x2="360" y2="345" stroke="#546E7A" stroke-width="2" marker-end="url(#ar1)"/>
-  <text x="385" y="332" text-anchor="start" fill="#F57C00" font-family="sans-serif" font-size="12" font-weight="bold">MID</text>
-  <rect x="260" y="350" width="200" height="45" rx="8" fill="#F57C00" filter="url(#fr1)"/>
-  <text x="360" y="378" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold">AIレビュー+人間確認</text>
-  <!-- LOW → F: AIレビューのみ -->
-  <line x1="460" y1="265" x2="610" y2="265" stroke="#546E7A" stroke-width="2"/>
-  <line x1="610" y1="265" x2="610" y2="345" stroke="#546E7A" stroke-width="2" marker-end="url(#ar1)"/>
-  <text x="530" y="255" text-anchor="middle" fill="#2E7D32" font-family="sans-serif" font-size="12" font-weight="bold">LOW</text>
-  <rect x="530" y="350" width="160" height="45" rx="8" fill="#2E7D32" filter="url(#fr1)"/>
-  <text x="610" y="378" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">AIレビューのみ</text>
-  <!-- All → G: 承認 -->
-  <line x1="110" y1="395" x2="110" y2="425" stroke="#546E7A" stroke-width="2"/>
-  <line x1="110" y1="425" x2="310" y2="425" stroke="#546E7A" stroke-width="2"/>
-  <line x1="360" y1="395" x2="360" y2="425" stroke="#546E7A" stroke-width="2"/>
-  <line x1="610" y1="395" x2="610" y2="425" stroke="#546E7A" stroke-width="2"/>
-  <line x1="610" y1="425" x2="410" y2="425" stroke="#546E7A" stroke-width="2"/>
-  <line x1="360" y1="425" x2="360" y2="440" stroke="#546E7A" stroke-width="2" marker-end="url(#ar1)"/>
-  <rect x="290" y="448" width="140" height="45" rx="10" fill="#1565C0" filter="url(#fr1)"/>
-  <text x="360" y="477" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="15" font-weight="bold">承認</text>
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#f8f9fa" rx="12"/>
+
+  <!-- Step 1: AI生成PR -->
+  <rect x="310" y="20" width="180" height="50" rx="10" fill="#3b82f6" opacity="0.9"/>
+  <text x="400" y="50" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">AI生成PR</text>
+
+  <!-- Arrow down -->
+  <line x1="400" y1="70" x2="400" y2="95" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="395,95 400,105 405,95" fill="#94a3b8"/>
+
+  <!-- Step 2: 自動チェック (diamond) -->
+  <polygon points="400,105 480,145 400,185 320,145" fill="#f59e0b" opacity="0.9"/>
+  <text x="400" y="142" text-anchor="middle" fill="white" font-size="12" font-weight="bold" font-family="sans-serif">自動チェック</text>
+  <text x="400" y="155" text-anchor="middle" fill="#fef3c7" font-size="9" font-family="sans-serif">lint / test / type</text>
+
+  <!-- Fail branch (left) -->
+  <line x1="320" y1="145" x2="200" y2="145" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="200,140 190,145 200,150" fill="#ef4444"/>
+  <text x="260" y="138" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold" font-family="sans-serif">Fail</text>
+  <rect x="100" y="120" width="90" height="50" rx="8" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="145" y="148" text-anchor="middle" fill="#dc2626" font-size="12" font-weight="bold" font-family="sans-serif">修正</text>
+
+  <!-- Pass arrow down -->
+  <line x1="400" y1="185" x2="400" y2="210" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="395,210 400,220 405,210" fill="#22c55e"/>
+  <text x="415" y="200" fill="#16a34a" font-size="10" font-weight="bold" font-family="sans-serif">Pass</text>
+
+  <!-- Step 3: リスク判定 (diamond) -->
+  <polygon points="400,220 480,260 400,300 320,260" fill="#8b5cf6" opacity="0.9"/>
+  <text x="400" y="258" text-anchor="middle" fill="white" font-size="12" font-weight="bold" font-family="sans-serif">リスク判定</text>
+
+  <!-- HIGH branch (left) -->
+  <line x1="320" y1="260" x2="160" y2="260" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="160,255 150,260 160,265" fill="#ef4444"/>
+  <text x="240" y="253" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold" font-family="sans-serif">HIGH</text>
+  <rect x="30" y="235" width="120" height="50" rx="8" fill="#ef4444" opacity="0.12" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="90" y="257" text-anchor="middle" fill="#dc2626" font-size="11" font-weight="bold" font-family="sans-serif">人間が精査</text>
+  <text x="90" y="273" text-anchor="middle" fill="#6b7280" font-size="9" font-family="sans-serif">設計・セキュリティ</text>
+
+  <!-- MID branch (center-down) -->
+  <line x1="400" y1="300" x2="400" y2="325" stroke="#f59e0b" stroke-width="2"/>
+  <polygon points="395,325 400,335 405,325" fill="#f59e0b"/>
+  <text x="430" y="315" fill="#d97706" font-size="10" font-weight="bold" font-family="sans-serif">MID</text>
+  <rect x="310" y="335" width="180" height="50" rx="8" fill="#f59e0b" opacity="0.12" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="400" y="358" text-anchor="middle" fill="#b45309" font-size="11" font-weight="bold" font-family="sans-serif">AIレビュー+人間確認</text>
+  <text x="400" y="374" text-anchor="middle" fill="#6b7280" font-size="9" font-family="sans-serif">AIが要約→人間が最終判断</text>
+
+  <!-- LOW branch (right) -->
+  <line x1="480" y1="260" x2="620" y2="260" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="620,255 630,260 620,265" fill="#22c55e"/>
+  <text x="550" y="253" text-anchor="middle" fill="#16a34a" font-size="10" font-weight="bold" font-family="sans-serif">LOW</text>
+  <rect x="630" y="235" width="140" height="50" rx="8" fill="#22c55e" opacity="0.12" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="700" y="257" text-anchor="middle" fill="#166534" font-size="11" font-weight="bold" font-family="sans-serif">AIレビューのみ</text>
+  <text x="700" y="273" text-anchor="middle" fill="#6b7280" font-size="9" font-family="sans-serif">定型・低リスク変更</text>
+
+  <!-- All converge to 承認 -->
+  <!-- HIGH → 承認 -->
+  <line x1="90" y1="285" x2="90" y2="415" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="90" y1="415" x2="340" y2="415" stroke="#94a3b8" stroke-width="1.5"/>
+  <!-- MID → 承認 -->
+  <line x1="400" y1="385" x2="400" y2="400" stroke="#94a3b8" stroke-width="1.5"/>
+  <!-- LOW → 承認 -->
+  <line x1="700" y1="285" x2="700" y2="415" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="700" y1="415" x2="460" y2="415" stroke="#94a3b8" stroke-width="1.5"/>
+
+  <!-- 承認 box -->
+  <rect x="340" y="400" width="120" height="36" rx="8" fill="#22c55e" opacity="0.9"/>
+  <text x="400" y="423" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">承認 ✓</text>
 </svg>
 
 <!--
@@ -529,6 +621,11 @@ const canVote = (user) => user.age >= 18;
 - 限界: ビジネスロジックの妥当性は判断できない
 - 活用法: 第一次レビューをAI、最終判断は人間
 
+
+---
+
+# AIレビュアーの活用（コード例）
+
 ```markdown
 # プロンプト例
 "以下のPRをレビューして。
@@ -536,9 +633,6 @@ const canVote = (user) => user.age >= 18;
 パフォーマンス問題に注目"
 ```
 
-<!--
-AIでAI生成コードをレビュー。ただし最終判断は人間が必須。
--->
 
 ---
 

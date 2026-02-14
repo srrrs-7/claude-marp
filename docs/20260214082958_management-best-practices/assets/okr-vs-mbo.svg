@@ -1,6 +1,5 @@
-<svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
-  <defs><filter id="fom"><feDropShadow dx="1" dy="1" stdDeviation="1.5" flood-opacity="0.2"/></filter></defs>
-  <!-- Headers -->
+<svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+    <!-- Headers -->
   <rect x="160" y="10" width="240" height="40" rx="6" fill="rgba(79,195,247,0.2)" stroke="#4fc3f7" stroke-width="2"/>
   <text x="280" y="36" text-anchor="middle" fill="#4fc3f7" font-size="18" font-weight="bold" font-family="sans-serif">OKR</text>
   <rect x="420" y="10" width="240" height="40" rx="6" fill="rgba(255,183,77,0.2)" stroke="#ffb74d" stroke-width="2"/>
@@ -11,22 +10,22 @@
   <text x="80" y="210" text-anchor="middle" fill="#b0bec5" font-size="13" font-family="sans-serif">報酬連動</text>
   <text x="80" y="270" text-anchor="middle" fill="#b0bec5" font-size="13" font-family="sans-serif">適用場面</text>
   <!-- OKR values -->
-  <rect x="160" y="65" width="240" height="40" rx="4" fill="rgba(79,195,247,0.08)" filter="url(#fom)"/>
+  <rect x="160" y="65" width="240" height="40" rx="4" fill="rgba(79,195,247,0.08)" style="filter: drop-shadow(1px 1px 1.5px rgba(0,0,0,0.2))"/>
   <text x="280" y="90" text-anchor="middle" fill="#fff" font-size="13" font-family="sans-serif">野心的（60-70%で成功）</text>
-  <rect x="160" y="125" width="240" height="40" rx="4" fill="rgba(79,195,247,0.08)" filter="url(#fom)"/>
+  <rect x="160" y="125" width="240" height="40" rx="4" fill="rgba(79,195,247,0.08)" style="filter: drop-shadow(1px 1px 1.5px rgba(0,0,0,0.2))"/>
   <text x="280" y="150" text-anchor="middle" fill="#fff" font-size="13" font-family="sans-serif">四半期ごと</text>
-  <rect x="160" y="185" width="240" height="40" rx="4" fill="rgba(79,195,247,0.08)" filter="url(#fom)"/>
+  <rect x="160" y="185" width="240" height="40" rx="4" fill="rgba(79,195,247,0.08)" style="filter: drop-shadow(1px 1px 1.5px rgba(0,0,0,0.2))"/>
   <text x="280" y="210" text-anchor="middle" fill="#fff" font-size="13" font-family="sans-serif">なし（切り離す）</text>
-  <rect x="160" y="245" width="240" height="40" rx="4" fill="rgba(79,195,247,0.08)" filter="url(#fom)"/>
+  <rect x="160" y="245" width="240" height="40" rx="4" fill="rgba(79,195,247,0.08)" style="filter: drop-shadow(1px 1px 1.5px rgba(0,0,0,0.2))"/>
   <text x="280" y="270" text-anchor="middle" fill="#fff" font-size="13" font-family="sans-serif">イノベーション・成長企業</text>
   <!-- MBO values -->
-  <rect x="420" y="65" width="240" height="40" rx="4" fill="rgba(255,183,77,0.08)" filter="url(#fom)"/>
+  <rect x="420" y="65" width="240" height="40" rx="4" fill="rgba(255,183,77,0.08)" style="filter: drop-shadow(1px 1px 1.5px rgba(0,0,0,0.2))"/>
   <text x="540" y="90" text-anchor="middle" fill="#fff" font-size="13" font-family="sans-serif">達成可能（100%期待）</text>
-  <rect x="420" y="125" width="240" height="40" rx="4" fill="rgba(255,183,77,0.08)" filter="url(#fom)"/>
+  <rect x="420" y="125" width="240" height="40" rx="4" fill="rgba(255,183,77,0.08)" style="filter: drop-shadow(1px 1px 1.5px rgba(0,0,0,0.2))"/>
   <text x="540" y="150" text-anchor="middle" fill="#fff" font-size="13" font-family="sans-serif">年次</text>
-  <rect x="420" y="185" width="240" height="40" rx="4" fill="rgba(255,183,77,0.08)" filter="url(#fom)"/>
+  <rect x="420" y="185" width="240" height="40" rx="4" fill="rgba(255,183,77,0.08)" style="filter: drop-shadow(1px 1px 1.5px rgba(0,0,0,0.2))"/>
   <text x="540" y="210" text-anchor="middle" fill="#fff" font-size="13" font-family="sans-serif">あり</text>
-  <rect x="420" y="245" width="240" height="40" rx="4" fill="rgba(255,183,77,0.08)" filter="url(#fom)"/>
+  <rect x="420" y="245" width="240" height="40" rx="4" fill="rgba(255,183,77,0.08)" style="filter: drop-shadow(1px 1px 1.5px rgba(0,0,0,0.2))"/>
   <text x="540" y="270" text-anchor="middle" fill="#fff" font-size="13" font-family="sans-serif">安定業務・大企業</text>
   <!-- Divider lines -->
   <line x1="155" y1="55" x2="665" y2="55" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>

@@ -72,7 +72,92 @@ style: |
 
 # IAMの全体像（図解）
 
-![IAMの全体像](assets/iam-overview.svg)
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="400" fill="#f8f9fa"/>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">IAM権限評価の全体像</text>
+
+  <!-- Principal -->
+  <g id="principal">
+    <rect x="50" y="150" width="140" height="100" rx="12" fill="#667EEA" stroke="#5A67D8" stroke-width="3"/>
+    <text x="120" y="185" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">Principal</text>
+    <text x="120" y="210" text-anchor="middle" font-family="Arial" font-size="13" fill="white">ユーザー/</text>
+    <text x="120" y="230" text-anchor="middle" font-family="Arial" font-size="13" fill="white">ロール</text>
+  </g>
+
+  <!-- Evaluation Engine -->
+  <g id="engine">
+    <rect x="380" y="120" width="180" height="160" rx="12" fill="#FC8181" stroke="#E53E3E" stroke-width="3"/>
+    <text x="470" y="155" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="white">評価エンジン</text>
+
+    <!-- Inputs to engine -->
+    <rect x="395" y="180" width="150" height="30" rx="5" fill="white" opacity="0.9"/>
+    <text x="470" y="200" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">IAMポリシー</text>
+
+    <rect x="395" y="215" width="150" height="30" rx="5" fill="white" opacity="0.9"/>
+    <text x="470" y="235" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">リソースポリシー</text>
+
+    <rect x="395" y="250" width="150" height="30" rx="5" fill="white" opacity="0.9"/>
+    <text x="470" y="270" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">SCP</text>
+  </g>
+
+  <!-- AWS Resource -->
+  <g id="resource">
+    <rect x="710" y="150" width="140" height="100" rx="12" fill="#48BB78" stroke="#38A169" stroke-width="3"/>
+    <text x="780" y="185" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">AWS</text>
+    <text x="780" y="210" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">リソース</text>
+    <text x="780" y="235" text-anchor="middle" font-family="Arial" font-size="12" fill="white">(S3/EC2/Lambda)</text>
+  </g>
+
+  <!-- Policy Sources (Left side) -->
+  <g id="policies">
+    <rect x="230" y="50" width="120" height="50" rx="8" fill="#63B3ED" stroke="#3182CE" stroke-width="2"/>
+    <text x="290" y="70" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">IAM</text>
+    <text x="290" y="88" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">ポリシー</text>
+
+    <rect x="230" y="175" width="120" height="50" rx="8" fill="#90CDF4" stroke="#4299E1" stroke-width="2"/>
+    <text x="290" y="195" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">リソース</text>
+    <text x="290" y="213" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">ポリシー</text>
+
+    <rect x="230" y="300" width="120" height="50" rx="8" fill="#BEE3F8" stroke="#63B3ED" stroke-width="2"/>
+    <text x="290" y="330" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">SCP</text>
+  </g>
+
+  <!-- Arrows -->
+  
+  <!-- Principal -> Engine -->
+  <path d="M 190 200 L 380 200" stroke="#5A67D8" stroke-width="3" fill="none"/>
+  <polygon points="380,200 372,196.5 372,203.5" fill="#5A67D8"/>
+  <text x="270" y="190" font-family="Arial" font-size="12" font-weight="bold" fill="#5A67D8">リクエスト</text>
+
+  <!-- Policies -> Engine -->
+  <path d="M 350 75 L 410 140" stroke="#3182CE" stroke-width="2.5" fill="none"/>
+  <polygon points="410,140 407.1,131.7 402,136.5" fill="#E53E3E"/>
+  <path d="M 350 200 L 380 200" stroke="#4299E1" stroke-width="2.5" fill="none"/>
+  <polygon points="380,200 372,196.5 372,203.5" fill="#E53E3E"/>
+  <path d="M 350 325 L 410 260" stroke="#63B3ED" stroke-width="2.5" fill="none"/>
+  <polygon points="410,260 402,263.5 407.1,268.3" fill="#E53E3E"/>
+
+  <!-- Engine -> Resource -->
+  <path d="M 560 200 L 710 200" stroke="#E53E3E" stroke-width="3" fill="none"/>
+  <polygon points="710,200 702,196.5 702,203.5" fill="#38A169"/>
+  <text x="620" y="190" font-family="Arial" font-size="12" font-weight="bold" fill="#E53E3E">許可/拒否</text>
+
+  <!-- Legend -->
+  <g id="legend">
+    <rect x="20" y="20" width="180" height="60" rx="8" fill="white" stroke="#ddd" stroke-width="2"/>
+    <circle cx="35" cy="40" r="5" fill="#667EEA"/>
+    <text x="48" y="44" font-family="Arial" font-size="11" fill="#333">プリンシパル</text>
+    <circle cx="35" cy="60" r="5" fill="#FC8181"/>
+    <text x="48" y="64" font-family="Arial" font-size="11" fill="#333">ポリシー評価</text>
+    <circle cx="110" cy="40" r="5" fill="#48BB78"/>
+    <text x="123" y="44" font-family="Arial" font-size="11" fill="#333">リソース</text>
+    <circle cx="110" cy="60" r="5" fill="#63B3ED"/>
+    <text x="123" y="64" font-family="Arial" font-size="11" fill="#333">ポリシー入力</text>
+  </g>
+</svg>
 
 
 ---
@@ -151,7 +236,83 @@ style: |
 
 # ポリシー評価ロジック - 明示的Deny優先（図解）
 
-![ポリシー評価ロジック](assets/policy-evaluation.svg)
+<svg viewBox="0 0 700 450" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="700" height="450" fill="#f8f9fa"/>
+
+  <!-- Title -->
+  <text x="350" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">IAMポリシー評価ロジック</text>
+
+  <!-- Request -->
+  <g id="request">
+    <rect x="280" y="60" width="140" height="60" rx="10" fill="#667EEA" stroke="#5A67D8" stroke-width="3"/>
+    <text x="350" y="95" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">リクエスト</text>
+  </g>
+
+  <!-- Decision 1: Explicit Deny? -->
+  <g id="decision1">
+    <path d="M 350 180 L 420 230 L 350 280 L 280 230 Z" fill="#FED7D7" stroke="#FC8181" stroke-width="3"/>
+    <text x="350" y="220" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#C53030">明示的</text>
+    <text x="350" y="240" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#C53030">Deny?</text>
+  </g>
+
+  <!-- Deny Result -->
+  <g id="deny1">
+    <rect x="520" y="200" width="120" height="60" rx="10" fill="#FC8181" stroke="#C53030" stroke-width="3"/>
+    <text x="580" y="235" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">拒否</text>
+  </g>
+
+  <!-- Decision 2: Explicit Allow? -->
+  <g id="decision2">
+    <path d="M 350 350 L 420 400 L 350 450 L 280 400 Z" fill="#C6F6D5" stroke="#48BB78" stroke-width="3"/>
+    <text x="350" y="390" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#276749">明示的</text>
+    <text x="350" y="410" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#276749">Allow?</text>
+  </g>
+
+  <!-- Allow Result -->
+  <g id="allow">
+    <rect x="520" y="370" width="120" height="60" rx="10" fill="#48BB78" stroke="#38A169" stroke-width="3"/>
+    <text x="580" y="405" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">許可</text>
+  </g>
+
+  <!-- Default Deny -->
+  <g id="deny2">
+    <rect x="60" y="370" width="140" height="60" rx="10" fill="#FC8181" stroke="#C53030" stroke-width="3"/>
+    <text x="130" y="395" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="white">拒否</text>
+    <text x="130" y="415" text-anchor="middle" font-family="Arial" font-size="12" fill="white">(デフォルト)</text>
+  </g>
+
+  <!-- Arrows -->
+  
+  <!-- Request -> Decision1 -->
+  <path d="M 350 120 L 350 180" stroke="#333" stroke-width="3" fill="none"/>
+  <polygon points="350,180 353.5,172 346.5,172" fill="#333"/>
+
+  <!-- Decision1 -> Deny (Yes) -->
+  <path d="M 420 230 L 520 230" stroke="#FC8181" stroke-width="3" fill="none"/>
+  <polygon points="520,230 512,226.5 512,233.5" fill="#333"/>
+  <text x="455" y="220" font-family="Arial" font-size="13" font-weight="bold" fill="#C53030">Yes</text>
+
+  <!-- Decision1 -> Decision2 (No) -->
+  <path d="M 350 280 L 350 350" stroke="#333" stroke-width="3" fill="none"/>
+  <polygon points="350,350 353.5,342 346.5,342" fill="#333"/>
+  <text x="360" y="320" font-family="Arial" font-size="13" font-weight="bold" fill="#333">No</text>
+
+  <!-- Decision2 -> Allow (Yes) -->
+  <path d="M 420 400 L 520 400" stroke="#48BB78" stroke-width="3" fill="none"/>
+  <polygon points="520,400 512,396.5 512,403.5" fill="#333"/>
+  <text x="455" y="390" font-family="Arial" font-size="13" font-weight="bold" fill="#38A169">Yes</text>
+
+  <!-- Decision2 -> Default Deny (No) -->
+  <path d="M 280 400 L 200 400" stroke="#FC8181" stroke-width="3" fill="none"/>
+  <polygon points="200,400 208,403.5 208,396.5" fill="#333"/>
+  <text x="225" y="390" font-family="Arial" font-size="13" font-weight="bold" fill="#C53030">No</text>
+
+  <!-- Key Point -->
+  <rect x="20" y="20" width="220" height="50" rx="8" fill="#FEF5E7" stroke="#F39C12" stroke-width="2"/>
+  <text x="130" y="42" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#D68910">重要原則:</text>
+  <text x="130" y="60" text-anchor="middle" font-family="Arial" font-size="12" fill="#D68910">Denyは常にAllowを上書き</text>
+</svg>
 
 
 ---
@@ -239,6 +400,90 @@ style: |
 - **リソースタグ** - S3、EC2等のリソースにタグを付与
 - **ポリシーで比較** - `aws:PrincipalTag` と `リソースタグ` を照合
 - **スケーラビリティ**: 新しいリソースを追加してもポリシー変更不要
+- **例**: `Project=Alpha` タグを持つユーザーは、同じタグのリソースのみアクセス可
+
+
+---
+
+# ABAC実装例
+
+- プリンシパルの `Project` と `CostCenter` タグが一致するEC2のみ操作可
+- 新規プロジェクト追加時もポリシー変更不要
+- タグ管理が鍵: 命名規則、必須タグの強制
+
+
+---
+
+# ABAC実装例（コード例）
+
+```json
+{
+  "Effect": "Allow",
+  "Action": ["ec2:StartInstances", "ec2:StopInstances"],
+  "Resource": "*",
+  "Condition": {
+    "StringEquals": {
+      "ec2:ResourceTag/Project": "${aws:PrincipalTag/Project}",
+      "ec2:ResourceTag/CostCenter": "${aws:PrincipalTag/CostCenter}"
+    }
+  }
+}
+```
+
+
+---
+
+# IAMロールの概念
+
+- **一時的な権限** - 長期認証情報を持たない
+- **AssumeRole** - ロールを引き受けて一時認証情報を取得
+- **セッショントークン** - AccessKeyId, SecretAccessKey, SessionToken
+- **有効期限** - デフォルト1時間、最大12時間
+- **ユースケース**:
+-   - EC2インスタンスからのAWSサービスアクセス
+-   - クロスアカウントアクセス
+-   - フェデレーション (SAML/OIDC)
+
+
+---
+
+# トラストポリシーの構造
+
+- **Principal** - 誰がAssumeRoleできるか
+- **Action** - 通常は `sts:AssumeRole`
+- **Condition** - 追加の制約 (ExternalId等)
+- **重要**: トラストポリシーはロール側で定義
+
+
+---
+
+# トラストポリシーの構造（コード例）
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::123456789012:root"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": {
+        "StringEquals": {
+          "sts:ExternalId": "unique-external-id"
+        }
+      }
+    }
+  ]
+}
+```
+
+
+---
+
+# AssumeRoleの仕組み
+
 - **STS (Security Token Service)** - 一時認証情報を発行
 - **トラストポリシー** - AssumeRoleの可否を判定
 - **権限ポリシー** - ロールの権限を定義
@@ -249,8 +494,259 @@ style: |
 
 # AssumeRoleの仕組み（図解）
 
-![AssumeRoleの仕組み](assets/assumerole-flow.svg)
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="600" fill="#f8f9fa"/>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">AssumeRole フロー詳細</text>
+
+  <!-- Participants -->
+  <g id="participants">
+    <rect x="50" y="60" width="140" height="60" rx="8" fill="#667EEA" stroke="#5A67D8" stroke-width="2"/>
+    <text x="120" y="85" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">IAMユーザー/</text>
+    <text x="120" y="103" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">ロール</text>
+
+    <rect x="260" y="60" width="140" height="60" rx="8" fill="#F6AD55" stroke="#DD6B20" stroke-width="2"/>
+    <text x="330" y="95" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">AWS STS</text>
+
+    <rect x="470" y="60" width="140" height="60" rx="8" fill="#9F7AEA" stroke="#6B46C1" stroke-width="2"/>
+    <text x="540" y="85" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">ターゲット</text>
+    <text x="540" y="103" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">ロール</text>
+
+    <rect x="680" y="60" width="140" height="60" rx="8" fill="#48BB78" stroke="#38A169" stroke-width="2"/>
+    <text x="750" y="85" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">AWS</text>
+    <text x="750" y="103" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">サービス</text>
+  </g>
+
+  <!-- Lifelines -->
+  <line x1="120" y1="120" x2="120" y2="560" stroke="#999" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="330" y1="120" x2="330" y2="560" stroke="#999" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="540" y1="120" x2="540" y2="560" stroke="#999" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="750" y1="120" x2="750" y2="560" stroke="#999" stroke-width="2" stroke-dasharray="5,5"/>
+
+  <!-- Arrows -->
+  
+  <!-- Step 1: AssumeRole request -->
+  <line x1="120" y1="160" x2="330" y2="160" stroke="#333" stroke-width="2.5"/>
+  <polygon points="330,160 322,156.5 322,163.5" fill="#333"/>
+  <text x="200" y="150" font-family="Arial" font-size="12" fill="#333">① AssumeRole</text>
+  <text x="200" y="168" font-family="Arial" font-size="11" fill="#666">(RoleArn)</text>
+
+  <!-- Step 2: Trust policy check -->
+  <line x1="330" y1="220" x2="540" y2="220" stroke="#333" stroke-width="2.5"/>
+  <polygon points="540,220 532,216.5 532,223.5" fill="#333"/>
+  <text x="410" y="210" font-family="Arial" font-size="12" fill="#333">② トラストポリシー</text>
+  <text x="410" y="228" font-family="Arial" font-size="11" fill="#666">確認</text>
+
+  <!-- Evaluation box -->
+  <rect x="545" y="240" width="140" height="70" rx="8" fill="#FEF5E7" stroke="#F39C12" stroke-width="2"/>
+  <text x="615" y="265" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#D68910">評価:</text>
+  <text x="615" y="283" text-anchor="middle" font-family="Arial" font-size="10" fill="#D68910">Principal一致?</text>
+  <text x="615" y="298" text-anchor="middle" font-family="Arial" font-size="10" fill="#D68910">Condition満たす?</text>
+
+  <!-- Step 3: Approval -->
+  <line x1="540" y1="340" x2="330" y2="340" stroke="#48BB78" stroke-width="2.5" stroke-dasharray="5,5"/>
+  <polygon points="330,340 338,343.5 338,336.5" fill="#48BB78"/>
+  <text x="410" y="330" font-family="Arial" font-size="12" fill="#38A169" font-weight="bold">③ 許可</text>
+
+  <!-- Step 4: Temporary credentials -->
+  <line x1="330" y1="400" x2="120" y2="400" stroke="#48BB78" stroke-width="2.5" stroke-dasharray="5,5"/>
+  <polygon points="120,400 128,403.5 128,396.5" fill="#48BB78"/>
+  <rect x="135" y="415" width="180" height="70" rx="5" fill="#E6FFFA" stroke="#319795" stroke-width="1"/>
+  <text x="225" y="435" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#234E52">④ 一時認証情報:</text>
+  <text x="225" y="453" text-anchor="middle" font-family="Arial" font-size="10" fill="#234E52">• AccessKeyId (ASIA...)</text>
+  <text x="225" y="468" text-anchor="middle" font-family="Arial" font-size="10" fill="#234E52">• SecretAccessKey</text>
+  <text x="225" y="483" text-anchor="middle" font-family="Arial" font-size="10" fill="#234E52">• SessionToken</text>
+
+  <!-- Step 5: API call with temp credentials -->
+  <line x1="120" y1="520" x2="750" y2="520" stroke="#333" stroke-width="2.5"/>
+  <polygon points="750,520 742,516.5 742,523.5" fill="#333"/>
+  <text x="410" y="510" font-family="Arial" font-size="12" fill="#333">⑤ API呼び出し (一時認証情報)</text>
+
+  <!-- Step 6: Response -->
+  <line x1="750" y1="550" x2="120" y2="550" stroke="#48BB78" stroke-width="2.5" stroke-dasharray="5,5"/>
+  <polygon points="120,550 128,553.5 128,546.5" fill="#48BB78"/>
+  <text x="410" y="565" font-family="Arial" font-size="12" fill="#38A169" font-weight="bold">⑥ レスポンス</text>
+
+  <!-- Legend -->
+  <rect x="20" y="20" width="180" height="30" rx="5" fill="white" stroke="#ddd" stroke-width="1"/>
+  <line x1="30" y1="35" x2="60" y2="35" stroke="#333" stroke-width="2"/>
+  <text x="65" y="39" font-family="Arial" font-size="10" fill="#333">リクエスト</text>
+  <line x1="115" y1="35" x2="145" y2="35" stroke="#48BB78" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="150" y="39" font-family="Arial" font-size="10" fill="#333">レスポンス</text>
+</svg>
+
+
+---
+
+# 一時認証情報の詳細
+
+- **構成要素**:
+-   - `AccessKeyId` - ASIA... で始まる (一時的の証)
+-   - `SecretAccessKey`
+-   - `SessionToken` - 必須、これがないと認証失敗
+- **有効期限**:
+-   - `Expiration` - ISO8601形式のタイムスタンプ
+-   - 期限切れ前に再度AssumeRoleが必要
+- **セキュリティ**: 短命なので漏洩リスクが低い
+
+
+---
+
+# クロスアカウントアクセス
+
+- **両側で許可が必要**: トラストポリシー + AssumeRole権限
+- **外部ID**: 混乱した代理問題の対策 (後述)
+- **監査**: CloudTrailで両アカウントの操作を追跡
+
+
+---
+
+# クロスアカウントアクセス（コード例）
+
+```json
+// アカウントBのロールのトラストポリシー
+{
+  "Effect": "Allow",
+  "Principal": {
+    "AWS": "arn:aws:iam::111111111111:root"
+  },
+  "Action": "sts:AssumeRole"
+}
+
+// アカウントAのユーザーポリシー
+{
+  "Effect": "Allow",
+  "Action": "sts:AssumeRole",
+  "Resource": "arn:aws:iam::222222222222:role/CrossAccountRole"
+}
+```
+
+
+---
+
+# サービスロール
+
+- **AWSサービスがAssumeRoleする**
+-   - EC2インスタンスプロファイル
+-   - Lambda実行ロール
+-   - ECSタスクロール
+- **トラストポリシーのPrincipal**:
+-   - `"Service": "ec2.amazonaws.com"`
+-   - `"Service": "lambda.amazonaws.com"`
+- **ベストプラクティス**: サービスごとに専用ロールを作成
+- **最小権限**: 必要なアクションのみ許可
+
+
+---
+
+# サービスリンクロール
+
+- **AWSサービスが自動作成・管理するロール**
+-   - 例: `AWSServiceRoleForAutoScaling`
+- **特徴**:
+-   - 名前が `AWSServiceRoleFor...` で始まる
+-   - ポリシーは AWS が管理 (変更不可)
+-   - サービスが必要に応じて自動作成
+- **削除**: サービスのリソースがすべて削除された後のみ可能
+- **用途**: サービスが他のAWSサービスを呼び出すための権限
+
+
+---
+
+# リソースベースポリシーとは
+
+- **リソース側で定義する権限**
+-   - S3バケットポリシー
+-   - Lambda関数ポリシー
+-   - SNSトピックポリシー
+-   - SQSキューポリシー
+- **アイデンティティベースとの違い**:
+-   - アイデンティティ: 「誰が何をできるか」 (プリンシパル側)
+-   - リソース: 「誰にアクセスを許可するか」 (リソース側)
+- **両方が必要な場合と不要な場合がある**
+
+
+---
+
+# リソースポリシーの構造
+
+- **Principal要素** - 誰に許可するか (アイデンティティベースにはない)
+- **Resource** - このポリシーが適用されるリソース
+- **クロスアカウント**: Principalに他アカウントのARNを指定可
+
+
+---
+
+# リソースポリシーの構造（コード例）
+
+```json
+{
   "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowCrossAccountAccess",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::123456789012:root"
+      },
+      "Action": ["s3:GetObject", "s3:PutObject"],
+      "Resource": "arn:aws:s3:::my-bucket/*"
+    }
+  ]
+}
+```
+
+
+---
+
+# アイデンティティベース vs リソースベース
+
+- **同一アカウント内**:
+-   - アイデンティティベースのみでOK
+-   - 例: IAMロール → S3バケット
+- **クロスアカウント**:
+-   - 両方が必要 (双方向の許可)
+-   - 例外: リソースベースで完結する場合もある (S3→Lambda呼び出し等)
+- **匿名アクセス**:
+-   - リソースベースのみで制御 (Principal: "*")
+
+
+---
+
+# S3バケットポリシーの例
+
+- CloudFrontからのアクセスのみ許可
+- 特定のディストリビューションに限定 (SourceArn)
+- **よくあるミス**: Principalを "*" にしてConditionなし → 全公開
+
+
+---
+
+# S3バケットポリシーの例（コード例）
+
+```json
+{
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {"Service": "cloudfront.amazonaws.com"},
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::my-bucket/*",
+      "Condition": {
+        "StringEquals": {
+          "AWS:SourceArn": "arn:aws:cloudfront::123456789012:distribution/E1234"
+        }
+      }
+    }
+  ]
+}
+```
+
+
+---
+
 # Lambda関数ポリシーの例
 
 - S3バケットがLambda関数を呼び出す権限
@@ -294,7 +790,118 @@ style: |
 
 # ポリシー評価フロー - 全体像（図解）
 
-![ポリシー評価フロー](assets/evaluation-flow.svg)
+<svg viewBox="0 0 850 650" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="850" height="650" fill="#f8f9fa"/>
+
+  <!-- Title -->
+  <text x="425" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">クロスアカウント考慮の評価フロー</text>
+
+  <!-- Request -->
+  <g id="request">
+    <rect x="340" y="60" width="170" height="60" rx="10" fill="#667EEA" stroke="#5A67D8" stroke-width="3"/>
+    <text x="425" y="95" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">リクエスト</text>
+  </g>
+
+  <!-- Decision 1: Same Account? -->
+  <g id="decision1">
+    <path d="M 425 180 L 515 230 L 425 280 L 335 230 Z" fill="#E6FFFA" stroke="#319795" stroke-width="3"/>
+    <text x="425" y="220" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#234E52">同一</text>
+    <text x="425" y="240" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#234E52">アカウント?</text>
+  </g>
+
+  <!-- Same Account Path -->
+  <g id="sameAccount">
+    <rect x="580" y="190" width="180" height="80" rx="10" fill="#BEE3F8" stroke="#3182CE" stroke-width="2"/>
+    <text x="670" y="215" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#2C5282">アイデンティティ</text>
+    <text x="670" y="233" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#2C5282">ベース</text>
+    <text x="670" y="253" text-anchor="middle" font-family="Arial" font-size="12" fill="#2C5282">ポリシー評価</text>
+  </g>
+
+  <!-- Cross Account Path -->
+  <g id="crossAccount">
+    <rect x="90" y="190" width="180" height="80" rx="10" fill="#FED7E2" stroke="#D53F8C" stroke-width="2"/>
+    <text x="180" y="210" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#702459">アイデンティティベース</text>
+    <text x="180" y="228" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#702459">+</text>
+    <text x="180" y="246" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#702459">リソースベース</text>
+    <text x="180" y="264" text-anchor="middle" font-family="Arial" font-size="11" fill="#702459">評価</text>
+  </g>
+
+  <!-- Decision 2: Explicit Deny? -->
+  <g id="decision2">
+    <path d="M 425 380 L 515 430 L 425 480 L 335 430 Z" fill="#FED7D7" stroke="#FC8181" stroke-width="3"/>
+    <text x="425" y="420" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#C53030">明示的</text>
+    <text x="425" y="440" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#C53030">Deny?</text>
+  </g>
+
+  <!-- Deny Result 1 -->
+  <g id="deny1">
+    <rect x="610" y="400" width="120" height="60" rx="10" fill="#FC8181" stroke="#C53030" stroke-width="3"/>
+    <text x="670" y="435" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">拒否</text>
+  </g>
+
+  <!-- Decision 3: Explicit Allow? -->
+  <g id="decision3">
+    <path d="M 425 550 L 515 600 L 425 650 L 335 600 Z" fill="#C6F6D5" stroke="#48BB78" stroke-width="3"/>
+    <text x="425" y="590" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#276749">明示的</text>
+    <text x="425" y="610" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#276749">Allow?</text>
+  </g>
+
+  <!-- Allow Result -->
+  <g id="allow">
+    <rect x="610" y="570" width="120" height="60" rx="10" fill="#48BB78" stroke="#38A169" stroke-width="3"/>
+    <text x="670" y="605" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">許可</text>
+  </g>
+
+  <!-- Default Deny -->
+  <g id="deny2">
+    <rect x="120" y="570" width="140" height="60" rx="10" fill="#FC8181" stroke="#C53030" stroke-width="3"/>
+    <text x="190" y="595" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="white">拒否</text>
+    <text x="190" y="615" text-anchor="middle" font-family="Arial" font-size="12" fill="white">(デフォルト)</text>
+  </g>
+
+  <!-- Arrows -->
+  
+  <!-- Request -> Decision1 -->
+  <path d="M 425 120 L 425 180" stroke="#333" stroke-width="3" fill="none"/>
+  <polygon points="425,180 428.5,172 421.5,172" fill="#333"/>
+
+  <!-- Decision1 -> Same Account (Yes) -->
+  <path d="M 515 230 L 580 230" stroke="#3182CE" stroke-width="3" fill="none"/>
+  <polygon points="580,230 572,226.5 572,233.5" fill="#333"/>
+  <text x="535" y="220" font-family="Arial" font-size="13" font-weight="bold" fill="#2C5282">Yes</text>
+
+  <!-- Decision1 -> Cross Account (No) -->
+  <path d="M 335 230 L 270 230" stroke="#D53F8C" stroke-width="3" fill="none"/>
+  <polygon points="270,230 278,233.5 278,226.5" fill="#333"/>
+  <text x="295" y="220" font-family="Arial" font-size="13" font-weight="bold" fill="#702459">No</text>
+
+  <!-- Both paths -> Decision2 -->
+  <path d="M 670 270 L 670 350 L 470 350 L 470 380" stroke="#333" stroke-width="2.5" fill="none"/>
+  <polygon points="470,380 473.5,372 466.5,372" fill="#333"/>
+  <path d="M 180 270 L 180 350 L 380 350 L 380 380" stroke="#333" stroke-width="2.5" fill="none"/>
+  <polygon points="380,380 383.5,372 376.5,372" fill="#333"/>
+
+  <!-- Decision2 -> Deny (Yes) -->
+  <path d="M 515 430 L 610 430" stroke="#FC8181" stroke-width="3" fill="none"/>
+  <polygon points="610,430 602,426.5 602,433.5" fill="#333"/>
+  <text x="545" y="420" font-family="Arial" font-size="13" font-weight="bold" fill="#C53030">Yes</text>
+
+  <!-- Decision2 -> Decision3 (No) -->
+  <path d="M 425 480 L 425 550" stroke="#333" stroke-width="3" fill="none"/>
+  <polygon points="425,550 428.5,542 421.5,542" fill="#333"/>
+  <text x="435" y="520" font-family="Arial" font-size="13" font-weight="bold" fill="#333">No</text>
+
+  <!-- Decision3 -> Allow (Yes) -->
+  <path d="M 515 600 L 610 600" stroke="#48BB78" stroke-width="3" fill="none"/>
+  <polygon points="610,600 602,596.5 602,603.5" fill="#333"/>
+  <text x="545" y="590" font-family="Arial" font-size="13" font-weight="bold" fill="#38A169">Yes</text>
+
+  <!-- Decision3 -> Default Deny (No) -->
+  <path d="M 335 600 L 260 600" stroke="#FC8181" stroke-width="3" fill="none"/>
+  <polygon points="260,600 268,603.5 268,596.5" fill="#333"/>
+  <text x="285" y="590" font-family="Arial" font-size="13" font-weight="bold" fill="#C53030">No</text>
+</svg>
 
 
 ---
@@ -324,7 +931,40 @@ style: |
 ---
 
 # Permission Boundariesの効果範囲（図解）
-![Permission Boundariesの効果範囲](assets/permission-boundaries.svg)
+
+<svg viewBox="0 0 650 340" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+  
+  <!-- Left Circle: Identity-based Policy (blue) -->
+  <circle cx="240" cy="170" r="110" fill="#6B9BD1" fill-opacity="0.6" stroke="#2E5C8A" stroke-width="2.5"/>
+
+  <!-- Right Circle: Permission Boundary (orange) -->
+  <circle cx="410" cy="170" r="110" fill="#F4A460" fill-opacity="0.6" stroke="#C4722E" stroke-width="2.5"/>
+
+  <!-- Intersection (green) - clip right circle with left circle boundary -->
+  <circle cx="410" cy="170" r="110" fill="#90EE90" fill-opacity="0.85"/>
+
+  <!-- Left side label -->
+  <text x="180" y="110" font-size="15" font-weight="bold" fill="#1E3A5F" text-anchor="middle">アイデンティティ</text>
+  <text x="180" y="130" font-size="15" font-weight="bold" fill="#1E3A5F" text-anchor="middle">ベースポリシー</text>
+  <text x="180" y="200" font-size="13" fill="#333" text-anchor="middle">例: s3:*</text>
+  <text x="180" y="220" font-size="12" fill="#666" text-anchor="middle">（全S3操作）</text>
+
+  <!-- Right side label -->
+  <text x="470" y="110" font-size="15" font-weight="bold" fill="#A0522D" text-anchor="middle">Permission</text>
+  <text x="470" y="130" font-size="15" font-weight="bold" fill="#A0522D" text-anchor="middle">Boundary</text>
+  <text x="470" y="200" font-size="13" fill="#333" text-anchor="middle">例: s3:GetObject</text>
+  <text x="470" y="220" font-size="12" fill="#666" text-anchor="middle">（読み取りのみ）</text>
+
+  <!-- Center intersection label -->
+  <text x="325" y="160" font-size="16" font-weight="bold" fill="#1A4D2E" text-anchor="middle">実際の権限</text>
+  <text x="325" y="180" font-size="15" fill="#1A4D2E" text-anchor="middle">A ∩ B</text>
+  <text x="325" y="200" font-size="12" fill="#2D5016" text-anchor="middle">s3:GetObject</text>
+
+  <!-- Bottom legend -->
+  <rect x="150" y="290" width="350" height="40" fill="#F9F9F9" stroke="#CCC" stroke-width="1" rx="5"/>
+  <text x="325" y="308" font-size="13" fill="#333" text-anchor="middle" font-weight="bold">積集合（AND条件）</text>
+  <text x="325" y="325" font-size="12" fill="#666" text-anchor="middle">両方で許可された操作のみ実行可能</text>
+</svg>
 
 
 ---
@@ -405,7 +1045,76 @@ style: |
 
 # SCPとIAMポリシーの関係（図解）
 
-![SCPとIAMポリシーの関係](assets/scp-iam-relation.svg)
+<svg viewBox="0 0 800 550" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <!-- Background -->
+  <rect width="800" height="550" fill="#f8f9fa"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">3層の権限制御 — SCP/Boundary/IAMポリシー</text>
+
+  <!-- Layer 1: SCP (Largest) -->
+  <g id="scp">
+    <ellipse cx="400" cy="300" rx="350" ry="200" fill="#E0E7FF" opacity="0.6" stroke="#667EEA" stroke-width="4"/>
+    <text x="400" y="120" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#5A67D8">SCP (Service Control Policy)</text>
+    <text x="400" y="145" text-anchor="middle" font-family="Arial" font-size="14" fill="#5A67D8">組織レベルの上限</text>
+    <text x="400" y="165" text-anchor="middle" font-family="Arial" font-size="12" fill="#667EEA">すべてのアカウント・ユーザー・ロールに適用</text>
+  </g>
+
+  <!-- Layer 2: Permission Boundary (Medium) -->
+  <g id="boundary">
+    <ellipse cx="400" cy="310" rx="240" ry="130" fill="#FED7E2" opacity="0.7" stroke="#D53F8C" stroke-width="3"/>
+    <text x="400" y="220" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#97266D">Permission Boundary</text>
+    <text x="400" y="242" text-anchor="middle" font-family="Arial" font-size="13" fill="#97266D">ユーザー/ロールの上限</text>
+  </g>
+
+  <!-- Layer 3: Identity-based Policy (Smallest) -->
+  <g id="identity">
+    <ellipse cx="400" cy="320" rx="130" ry="75" fill="#C6F6D5" opacity="0.8" stroke="#38A169" stroke-width="3"/>
+    <text x="400" y="305" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#276749">アイデンティティ</text>
+    <text x="400" y="325" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#276749">ベースポリシー</text>
+    <text x="400" y="345" text-anchor="middle" font-family="Arial" font-size="12" fill="#2F855A">実際の権限</text>
+  </g>
+
+  <!-- Center result -->
+  <g id="result">
+    <circle cx="400" cy="330" r="30" fill="#FC8181" opacity="0.9" stroke="#C53030" stroke-width="3"/>
+    <text x="400" y="338" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">最終</text>
+    <text x="400" y="355" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="white">権限</text>
+  </g>
+
+  <!-- Explanation boxes -->
+  <g id="explanations">
+    <!-- SCP example -->
+    <rect x="20" y="230" width="160" height="80" rx="8" fill="white" stroke="#667EEA" stroke-width="2"/>
+    <text x="100" y="250" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#5A67D8">SCP例:</text>
+    <text x="100" y="268" text-anchor="middle" font-family="Arial" font-size="9" fill="#667EEA">• 特定リージョン禁止</text>
+    <text x="100" y="283" text-anchor="middle" font-family="Arial" font-size="9" fill="#667EEA">• 高額サービス禁止</text>
+    <text x="100" y="298" text-anchor="middle" font-family="Arial" font-size="9" fill="#667EEA">• ルートユーザーにも</text>
+
+    <!-- Boundary example -->
+    <rect x="620" y="250" width="160" height="70" rx="8" fill="white" stroke="#D53F8C" stroke-width="2"/>
+    <text x="700" y="270" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#97266D">Boundary例:</text>
+    <text x="700" y="288" text-anchor="middle" font-family="Arial" font-size="9" fill="#D53F8C">• 開発者用制限</text>
+    <text x="700" y="303" text-anchor="middle" font-family="Arial" font-size="9" fill="#D53F8C">• S3/Lambda/DDB</text>
+    <text x="700" y="318" text-anchor="middle" font-family="Arial" font-size="9" fill="#D53F8C">  のみ許可</text>
+
+    <!-- IAM Policy example -->
+    <rect x="320" y="420" width="160" height="70" rx="8" fill="white" stroke="#38A169" stroke-width="2"/>
+    <text x="400" y="440" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#276749">IAMポリシー例:</text>
+    <text x="400" y="458" text-anchor="middle" font-family="Arial" font-size="9" fill="#38A169">• s3:GetObject</text>
+    <text x="400" y="473" text-anchor="middle" font-family="Arial" font-size="9" fill="#38A169">• s3:PutObject</text>
+    <text x="400" y="488" text-anchor="middle" font-family="Arial" font-size="9" fill="#38A169">• lambda:InvokeFunction</text>
+  </g>
+
+  <!-- Formula -->
+  <rect x="150" y="510" width="500" height="30" rx="8" fill="#E6FFFA" stroke="#319795" stroke-width="2"/>
+  <text x="400" y="530" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#234E52">実効権限 = SCP ∩ Permission Boundary ∩ IAMポリシー</text>
+
+  <!-- Key insight -->
+  <rect x="570" y="20" width="210" height="50" rx="8" fill="#FEF5E7" stroke="#F39C12" stroke-width="2"/>
+  <text x="675" y="42" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#D68910">重要: 3つすべてにAllowが必要</text>
+  <text x="675" y="60" text-anchor="middle" font-family="Arial" font-size="10" fill="#D68910">1つでもDenyがあれば拒否</text>
+</svg>
 
 
 ---

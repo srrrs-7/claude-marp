@@ -1,16 +1,9 @@
-<svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+<svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
   <!-- Title -->
   <text x="250" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">2026年 通貨強弱ランキング</text>
 
   <!-- Gradient bar on right side -->
-  <defs>
-    <linearGradient id="strengthGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#2e7d32"/>
-      <stop offset="50%" stop-color="#78909c"/>
-      <stop offset="100%" stop-color="#c62828"/>
-    </linearGradient>
-  </defs>
-  <rect x="420" y="50" width="16" height="320" rx="8" fill="url(#strengthGrad)" opacity="0.3"/>
+    <rect x="420" y="50" width="16" height="320" rx="8" fill="#ccc" opacity="0.3"/>
   <text x="448" y="65" font-size="9" fill="#2e7d32" font-weight="600">強い</text>
   <text x="448" y="375" font-size="9" fill="#c62828" font-weight="600">弱い</text>
 
