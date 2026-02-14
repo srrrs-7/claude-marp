@@ -193,15 +193,63 @@ function Counter() {
 
 - プロジェクト特性とチームスキルに応じた選定フロー
 
-```mermaid
-graph TD
-    A[新規プロジェクト] --> B{チームスキル}
-    B -->|React経験| C[React 19]
-    B -->|Vue経験| D[Vue 3/4]
-    B -->|新規学習OK| E{規模}
-    E -->|大規模| C
-    E -->|中小規模| F[Svelte/Solid]
-```
+<svg viewBox="0 0 700 520" style="max-height:70vh;width:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="fs1"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.15"/></filter>
+    <marker id="fa1" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#546E7A"/>
+    </marker>
+  </defs>
+  <!-- Start: 新規プロジェクト -->
+  <rect x="250" y="15" width="200" height="48" rx="10" fill="#37474F" filter="url(#fs1)"/>
+  <text x="350" y="45" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="16" font-weight="bold">新規プロジェクト</text>
+  <!-- Arrow A→B -->
+  <line x1="350" y1="63" x2="350" y2="105" stroke="#546E7A" stroke-width="2" marker-end="url(#fa1)"/>
+  <!-- Decision: チームスキル -->
+  <polygon points="350,110 470,170 350,230 230,170" fill="#FF9800" filter="url(#fs1)"/>
+  <text x="350" y="175" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">チームスキル</text>
+  <!-- Branch left: React経験 -->
+  <line x1="230" y1="170" x2="145" y2="170" stroke="#546E7A" stroke-width="2"/>
+  <line x1="145" y1="170" x2="145" y2="285" stroke="#546E7A" stroke-width="2" marker-end="url(#fa1)"/>
+  <text x="175" y="158" text-anchor="middle" fill="#455A64" font-family="sans-serif" font-size="12">React経験</text>
+  <!-- React 19 -->
+  <rect x="60" y="290" width="170" height="48" rx="10" fill="#1565C0" filter="url(#fs1)"/>
+  <text x="145" y="320" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="16" font-weight="bold">React 19</text>
+  <!-- Branch center: Vue経験 -->
+  <line x1="350" y1="230" x2="350" y2="285" stroke="#546E7A" stroke-width="2" marker-end="url(#fa1)"/>
+  <text x="390" y="260" text-anchor="start" fill="#455A64" font-family="sans-serif" font-size="12">Vue経験</text>
+  <!-- Vue 3/4 -->
+  <rect x="265" y="290" width="170" height="48" rx="10" fill="#2E7D32" filter="url(#fs1)"/>
+  <text x="350" y="320" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="16" font-weight="bold">Vue 3/4</text>
+  <!-- Branch right: 新規学習OK -->
+  <line x1="470" y1="170" x2="555" y2="170" stroke="#546E7A" stroke-width="2"/>
+  <line x1="555" y1="170" x2="555" y2="270" stroke="#546E7A" stroke-width="2" marker-end="url(#fa1)"/>
+  <text x="525" y="158" text-anchor="middle" fill="#455A64" font-family="sans-serif" font-size="12">新規学習OK</text>
+  <!-- Decision: 規模 -->
+  <polygon points="555,275 645,320 555,365 465,320" fill="#FF9800" filter="url(#fs1)"/>
+  <text x="555" y="325" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">規模</text>
+  <!-- 大規模 → React 19 (dashed) -->
+  <line x1="465" y1="320" x2="230" y2="320" stroke="#546E7A" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#fa1)"/>
+  <text x="345" y="350" text-anchor="middle" fill="#455A64" font-family="sans-serif" font-size="12">大規模</text>
+  <!-- 中小規模 → Svelte/Solid -->
+  <line x1="555" y1="365" x2="555" y2="405" stroke="#546E7A" stroke-width="2" marker-end="url(#fa1)"/>
+  <text x="610" y="392" text-anchor="start" fill="#455A64" font-family="sans-serif" font-size="12">中小規模</text>
+  <!-- Svelte/Solid -->
+  <rect x="470" y="410" width="170" height="48" rx="10" fill="#7B1FA2" filter="url(#fs1)"/>
+  <text x="555" y="440" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="16" font-weight="bold">Svelte / Solid</text>
+  <!-- Legend -->
+  <rect x="90" y="480" width="520" height="30" rx="5" fill="#F5F5F5" stroke="#E0E0E0"/>
+  <rect x="110" y="487" width="14" height="14" rx="3" fill="#37474F"/>
+  <text x="130" y="499" fill="#37474F" font-family="sans-serif" font-size="11">起点</text>
+  <rect x="185" y="487" width="14" height="14" rx="3" fill="#FF9800"/>
+  <text x="205" y="499" fill="#37474F" font-family="sans-serif" font-size="11">判定</text>
+  <rect x="260" y="487" width="14" height="14" rx="3" fill="#1565C0"/>
+  <text x="280" y="499" fill="#37474F" font-family="sans-serif" font-size="11">React</text>
+  <rect x="340" y="487" width="14" height="14" rx="3" fill="#2E7D32"/>
+  <text x="360" y="499" fill="#37474F" font-family="sans-serif" font-size="11">Vue</text>
+  <rect x="410" y="487" width="14" height="14" rx="3" fill="#7B1FA2"/>
+  <text x="430" y="499" fill="#37474F" font-family="sans-serif" font-size="11">Svelte/Solid</text>
+</svg>
 
 
 ---
@@ -513,17 +561,60 @@ claude "認証ロジックをミドルウェアに分離"
 
 - 人間とAIの役割分担を明確化した開発プロセス
 
-```mermaid
-graph LR
-    A[要件定義] --> B[AI設計案]
-    B --> C[人間レビュー]
-    C --> D[AI実装]
-    D --> E[AIテスト]
-    E --> F[人間テスト]
-    F --> G{合格?}
-    G -->|No| D
-    G -->|Yes| H[マージ]
-```
+<svg viewBox="0 0 750 330" style="max-height:70vh;width:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="fs2"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.15"/></filter>
+    <marker id="fa2" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#546E7A"/>
+    </marker>
+  </defs>
+  <!-- Row 1: 要件定義 → AI設計案 → 人間レビュー → AI実装 -->
+  <rect x="20" y="25" width="130" height="45" rx="8" fill="#1565C0" filter="url(#fs2)"/>
+  <text x="85" y="53" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">要件定義</text>
+  <line x1="150" y1="47" x2="188" y2="47" stroke="#546E7A" stroke-width="2" marker-end="url(#fa2)"/>
+  <rect x="195" y="25" width="130" height="45" rx="8" fill="#4CAF50" filter="url(#fs2)"/>
+  <text x="260" y="53" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">AI設計案</text>
+  <line x1="325" y1="47" x2="363" y2="47" stroke="#546E7A" stroke-width="2" marker-end="url(#fa2)"/>
+  <rect x="370" y="25" width="150" height="45" rx="8" fill="#1565C0" filter="url(#fs2)"/>
+  <text x="445" y="53" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">人間レビュー</text>
+  <line x1="520" y1="47" x2="568" y2="47" stroke="#546E7A" stroke-width="2" marker-end="url(#fa2)"/>
+  <rect x="575" y="25" width="120" height="45" rx="8" fill="#4CAF50" filter="url(#fs2)"/>
+  <text x="635" y="53" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">AI実装</text>
+  <!-- Arrow down -->
+  <line x1="635" y1="70" x2="635" y2="140" stroke="#546E7A" stroke-width="2" marker-end="url(#fa2)"/>
+  <!-- Row 2: AIテスト → 人間テスト → 合格? → マージ -->
+  <rect x="575" y="150" width="120" height="45" rx="8" fill="#4CAF50" filter="url(#fs2)"/>
+  <text x="635" y="178" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">AIテスト</text>
+  <line x1="575" y1="172" x2="527" y2="172" stroke="#546E7A" stroke-width="2" marker-end="url(#fa2)"/>
+  <rect x="370" y="150" width="150" height="45" rx="8" fill="#1565C0" filter="url(#fs2)"/>
+  <text x="445" y="178" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">人間テスト</text>
+  <line x1="370" y1="172" x2="312" y2="172" stroke="#546E7A" stroke-width="2" marker-end="url(#fa2)"/>
+  <!-- Decision: 合格? -->
+  <polygon points="250,172 310,142 250,112 190,142" fill="#FF9800" filter="url(#fs2)"/>
+  <text x="250" y="147" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">合格?</text>
+  <!-- Yes → マージ -->
+  <line x1="190" y1="142" x2="148" y2="142" stroke="#546E7A" stroke-width="2" marker-end="url(#fa2)"/>
+  <text x="170" y="133" text-anchor="middle" fill="#2E7D32" font-family="sans-serif" font-size="12" font-weight="bold">Yes</text>
+  <rect x="20" y="120" width="120" height="45" rx="8" fill="#E65100" filter="url(#fs2)"/>
+  <text x="80" y="148" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">マージ</text>
+  <!-- No → AI実装 (dashed loop) -->
+  <line x1="250" y1="112" x2="250" y2="15" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3"/>
+  <line x1="250" y1="15" x2="635" y2="15" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3"/>
+  <line x1="635" y1="15" x2="635" y2="20" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#fa2)"/>
+  <text x="440" y="10" text-anchor="middle" fill="#E53935" font-family="sans-serif" font-size="12" font-weight="bold">No（修正）</text>
+  <!-- Legend -->
+  <rect x="100" y="220" width="550" height="28" rx="5" fill="#F5F5F5" stroke="#E0E0E0"/>
+  <rect x="120" y="226" width="14" height="14" rx="3" fill="#1565C0"/>
+  <text x="140" y="238" fill="#37474F" font-family="sans-serif" font-size="11">人間タスク</text>
+  <rect x="230" y="226" width="14" height="14" rx="3" fill="#4CAF50"/>
+  <text x="250" y="238" fill="#37474F" font-family="sans-serif" font-size="11">AIタスク</text>
+  <rect x="330" y="226" width="14" height="14" rx="3" fill="#FF9800"/>
+  <text x="350" y="238" fill="#37474F" font-family="sans-serif" font-size="11">判定</text>
+  <rect x="410" y="226" width="14" height="14" rx="3" fill="#E65100"/>
+  <text x="430" y="238" fill="#37474F" font-family="sans-serif" font-size="11">完了</text>
+  <line x1="490" y1="233" x2="520" y2="233" stroke="#E53935" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="530" y="238" fill="#37474F" font-family="sans-serif" font-size="11">修正ループ</text>
+</svg>
 
 
 ---

@@ -1,0 +1,33 @@
+<svg viewBox="0 0 750 250" xmlns="http://www.w3.org/2000/svg">
+  <defs><filter id="fgt"><feDropShadow dx="1" dy="1" stdDeviation="1.5" flood-opacity="0.2"/></filter></defs>
+  <!-- Timeline line -->
+  <line x1="30" y1="120" x2="720" y2="120" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+  <!-- Boomer -->
+  <circle cx="120" cy="120" r="8" fill="#ce93d8" filter="url(#fgt)"/>
+  <rect x="50" y="30" width="140" height="70" rx="8" fill="rgba(206,147,216,0.15)" stroke="#ce93d8" stroke-width="1.5"/>
+  <text x="120" y="52" text-anchor="middle" fill="#ce93d8" font-size="13" font-weight="bold" font-family="sans-serif">ベビーブーマー</text>
+  <text x="120" y="72" text-anchor="middle" fill="#b0bec5" font-size="11" font-family="sans-serif">1946-1964</text>
+  <text x="120" y="90" text-anchor="middle" fill="#fff" font-size="10" font-family="sans-serif">仕事中心・忠誠心</text>
+  <line x1="120" y1="100" x2="120" y2="112" stroke="#ce93d8" stroke-width="1"/>
+  <!-- Gen X -->
+  <circle cx="300" cy="120" r="8" fill="#4fc3f7" filter="url(#fgt)"/>
+  <rect x="230" y="140" width="140" height="70" rx="8" fill="rgba(79,195,247,0.15)" stroke="#4fc3f7" stroke-width="1.5"/>
+  <text x="300" y="162" text-anchor="middle" fill="#4fc3f7" font-size="13" font-weight="bold" font-family="sans-serif">X世代</text>
+  <text x="300" y="182" text-anchor="middle" fill="#b0bec5" font-size="11" font-family="sans-serif">1965-1980</text>
+  <text x="300" y="200" text-anchor="middle" fill="#fff" font-size="10" font-family="sans-serif">自律性・実用主義</text>
+  <line x1="300" y1="128" x2="300" y2="140" stroke="#4fc3f7" stroke-width="1"/>
+  <!-- Millennial -->
+  <circle cx="480" cy="120" r="8" fill="#81c784" filter="url(#fgt)"/>
+  <rect x="410" y="30" width="140" height="70" rx="8" fill="rgba(129,199,132,0.15)" stroke="#81c784" stroke-width="1.5"/>
+  <text x="480" y="52" text-anchor="middle" fill="#81c784" font-size="13" font-weight="bold" font-family="sans-serif">ミレニアル</text>
+  <text x="480" y="72" text-anchor="middle" fill="#b0bec5" font-size="11" font-family="sans-serif">1981-1996</text>
+  <text x="480" y="90" text-anchor="middle" fill="#fff" font-size="10" font-family="sans-serif">WLB・目的意識</text>
+  <line x1="480" y1="100" x2="480" y2="112" stroke="#81c784" stroke-width="1"/>
+  <!-- Gen Z -->
+  <circle cx="650" cy="120" r="8" fill="#ffb74d" filter="url(#fgt)"/>
+  <rect x="580" y="140" width="140" height="70" rx="8" fill="rgba(255,183,77,0.15)" stroke="#ffb74d" stroke-width="1.5"/>
+  <text x="650" y="162" text-anchor="middle" fill="#ffb74d" font-size="13" font-weight="bold" font-family="sans-serif">Z世代</text>
+  <text x="650" y="182" text-anchor="middle" fill="#b0bec5" font-size="11" font-family="sans-serif">1997-2012</text>
+  <text x="650" y="200" text-anchor="middle" fill="#fff" font-size="10" font-family="sans-serif">デジタルネイティブ</text>
+  <line x1="650" y1="128" x2="650" y2="140" stroke="#ffb74d" stroke-width="1"/>
+</svg>

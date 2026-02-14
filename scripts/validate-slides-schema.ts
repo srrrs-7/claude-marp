@@ -41,8 +41,7 @@ async function validateAllSlides() {
 					fileErrors.push(errorMsg);
 				}
 			} else {
-				const errorMsg =
-					error instanceof Error ? error.message : String(error);
+				const errorMsg = error instanceof Error ? error.message : String(error);
 				console.log(`   - ${errorMsg}`);
 				fileErrors.push(errorMsg);
 			}

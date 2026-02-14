@@ -1,0 +1,108 @@
+<svg viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;">
+  <!-- Background -->
+  <rect width="900" height="700" fill="#f8f9fa"/>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">Agent Teams ワークフローシーケンス</text>
+
+  <!-- Participants -->
+  <g id="participants">
+    <rect x="50" y="60" width="140" height="50" rx="8" fill="#FF6B6B" stroke="#C92A2A" stroke-width="2"/>
+    <text x="120" y="90" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">Team Lead</text>
+
+    <rect x="260" y="60" width="140" height="50" rx="8" fill="#A8DADC" stroke="#457B9D" stroke-width="2"/>
+    <text x="330" y="90" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#1D3557">Teammate 1</text>
+
+    <rect x="470" y="60" width="140" height="50" rx="8" fill="#A8DADC" stroke="#457B9D" stroke-width="2"/>
+    <text x="540" y="90" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#1D3557">Teammate 2</text>
+
+    <rect x="680" y="60" width="140" height="50" rx="8" fill="#4ECDC4" stroke="#0E7C74" stroke-width="2"/>
+    <text x="750" y="90" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">Task List</text>
+  </g>
+
+  <!-- Lifelines -->
+  <line x1="120" y1="110" x2="120" y2="660" stroke="#999" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="330" y1="110" x2="330" y2="660" stroke="#999" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="540" y1="110" x2="540" y2="660" stroke="#999" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="750" y1="110" x2="750" y2="660" stroke="#999" stroke-width="2" stroke-dasharray="5,5"/>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowSeq-sequence" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- Interactions -->
+  <g id="interactions">
+    <!-- TaskCreate -->
+    <line x1="120" y1="140" x2="750" y2="140" stroke="#333" stroke-width="2" marker-end="url(#arrowSeq-sequence)"/>
+    <text x="430" y="135" font-family="Arial" font-size="12" fill="#333">TaskCreate(A, B, C)</text>
+
+    <!-- Spawn T1 -->
+    <line x1="120" y1="170" x2="330" y2="170" stroke="#FF6B6B" stroke-width="2" marker-end="url(#arrowSeq-sequence)"/>
+    <text x="200" y="165" font-family="Arial" font-size="11" fill="#FF6B6B">Spawn</text>
+
+    <!-- Spawn T2 -->
+    <line x1="120" y1="200" x2="540" y2="200" stroke="#FF6B6B" stroke-width="2" marker-end="url(#arrowSeq-sequence)"/>
+    <text x="305" y="195" font-family="Arial" font-size="11" fill="#FF6B6B">Spawn</text>
+
+    <!-- T1 TaskList -->
+    <line x1="330" y1="230" x2="750" y2="230" stroke="#457B9D" stroke-width="2" marker-end="url(#arrowSeq-sequence)"/>
+    <text x="520" y="225" font-family="Arial" font-size="11" fill="#457B9D">TaskList()</text>
+
+    <!-- T1 Claim A -->
+    <line x1="330" y1="260" x2="750" y2="260" stroke="#457B9D" stroke-width="2" marker-end="url(#arrowSeq-sequence)"/>
+    <text x="520" y="255" font-family="Arial" font-size="11" fill="#457B9D">Claim タスクA</text>
+
+    <!-- T2 TaskList -->
+    <line x1="540" y1="290" x2="750" y2="290" stroke="#457B9D" stroke-width="2" marker-end="url(#arrowSeq-sequence)"/>
+    <text x="630" y="285" font-family="Arial" font-size="11" fill="#457B9D">TaskList()</text>
+
+    <!-- T2 Claim B -->
+    <line x1="540" y1="320" x2="750" y2="320" stroke="#457B9D" stroke-width="2" marker-end="url(#arrowSeq-sequence)"/>
+    <text x="630" y="315" font-family="Arial" font-size="11" fill="#457B9D">Claim タスクB</text>
+
+    <!-- Execution phase label -->
+    <rect x="10" y="340" width="880" height="120" fill="#E8F5E9" opacity="0.3" rx="8"/>
+    <text x="20" y="360" font-family="Arial" font-size="12" font-weight="bold" fill="#2E7D32">⚙ 並列実行フェーズ</text>
+
+    <!-- T1 Complete A -->
+    <line x1="330" y1="380" x2="750" y2="380" stroke="#2E7D32" stroke-width="2.5" marker-end="url(#arrowSeq-sequence)"/>
+    <text x="520" y="375" font-family="Arial" font-size="11" font-weight="bold" fill="#2E7D32">Complete タスクA</text>
+
+    <!-- T1 -> Lead message -->
+    <line x1="330" y1="410" x2="120" y2="410" stroke="#2E7D32" stroke-width="2" marker-end="url(#arrowSeq-sequence)"/>
+    <text x="200" y="405" font-family="Arial" font-size="11" fill="#2E7D32">完了報告</text>
+
+    <!-- T1 Claim C -->
+    <line x1="330" y1="440" x2="750" y2="440" stroke="#457B9D" stroke-width="2" marker-end="url(#arrowSeq-sequence)"/>
+    <text x="520" y="435" font-family="Arial" font-size="11" fill="#457B9D">Claim タスクC</text>
+
+    <!-- T2 Complete B -->
+    <line x1="540" y1="470" x2="750" y2="470" stroke="#2E7D32" stroke-width="2.5" marker-end="url(#arrowSeq-sequence)"/>
+    <text x="630" y="465" font-family="Arial" font-size="11" font-weight="bold" fill="#2E7D32">Complete タスクB</text>
+
+    <!-- T2 -> Lead message -->
+    <line x1="540" y1="500" x2="120" y2="500" stroke="#2E7D32" stroke-width="2" marker-end="url(#arrowSeq-sequence)"/>
+    <text x="305" y="495" font-family="Arial" font-size="11" fill="#2E7D32">完了報告</text>
+
+    <!-- Teardown phase -->
+    <rect x="10" y="520" width="880" height="130" fill="#FFF3E0" opacity="0.3" rx="8"/>
+    <text x="20" y="540" font-family="Arial" font-size="12" font-weight="bold" fill="#E65100">🔚 シャットダウンフェーズ</text>
+
+    <!-- Shutdown requests -->
+    <line x1="120" y1="560" x2="330" y2="560" stroke="#E65100" stroke-width="2" marker-end="url(#arrowSeq-sequence)"/>
+    <text x="190" y="555" font-family="Arial" font-size="11" fill="#E65100">shutdown_request</text>
+
+    <line x1="120" y1="590" x2="540" y2="590" stroke="#E65100" stroke-width="2" marker-end="url(#arrowSeq-sequence)"/>
+    <text x="295" y="585" font-family="Arial" font-size="11" fill="#E65100">shutdown_request</text>
+
+    <!-- Shutdown responses -->
+    <line x1="330" y1="615" x2="120" y2="615" stroke="#388E3C" stroke-width="2" marker-end="url(#arrowSeq-sequence)"/>
+    <text x="180" y="610" font-family="Arial" font-size="11" fill="#388E3C">approve</text>
+
+    <line x1="540" y1="640" x2="120" y2="640" stroke="#388E3C" stroke-width="2" marker-end="url(#arrowSeq-sequence)"/>
+    <text x="290" y="635" font-family="Arial" font-size="11" fill="#388E3C">approve</text>
+  </g>
+</svg>

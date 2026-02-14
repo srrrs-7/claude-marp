@@ -1,0 +1,72 @@
+<svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+  <!-- Title -->
+  <text x="250" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">2026年 通貨強弱ランキング</text>
+
+  <!-- Gradient bar on right side -->
+  <defs>
+    <linearGradient id="strengthGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2e7d32"/>
+      <stop offset="50%" stop-color="#78909c"/>
+      <stop offset="100%" stop-color="#c62828"/>
+    </linearGradient>
+  </defs>
+  <rect x="420" y="50" width="16" height="320" rx="8" fill="url(#strengthGrad)" opacity="0.3"/>
+  <text x="448" y="65" font-size="9" fill="#2e7d32" font-weight="600">強い</text>
+  <text x="448" y="375" font-size="9" fill="#c62828" font-weight="600">弱い</text>
+
+  <!-- Tier 1: Strongest - JPY -->
+  <rect x="80" y="50" width="310" height="42" rx="8" fill="rgba(46,125,50,0.1)" stroke="#2e7d32" stroke-width="2"/>
+  <circle cx="105" cy="71" r="13" fill="#2e7d32"/>
+  <text x="105" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="white">1</text>
+  <text x="130" y="67" font-size="14" font-weight="bold" fill="#2e7d32">JPY</text>
+  <text x="130" y="83" font-size="10" fill="#455a64">金利正常化 + 円安修正</text>
+  <rect x="310" y="60" width="60" height="22" rx="4" fill="#2e7d32" opacity="0.15"/>
+  <text x="340" y="76" text-anchor="middle" font-size="10" font-weight="600" fill="#2e7d32">最強</text>
+
+  <!-- Tier 2: Strong - TWD, USD -->
+  <rect x="80" y="104" width="310" height="42" rx="8" fill="rgba(25,118,210,0.08)" stroke="#1976d2" stroke-width="1.5"/>
+  <circle cx="105" cy="125" r="13" fill="#1976d2"/>
+  <text x="105" y="129" text-anchor="middle" font-size="9" font-weight="bold" fill="white">2</text>
+  <text x="130" y="121" font-size="14" font-weight="bold" fill="#1976d2">TWD / USD</text>
+  <text x="130" y="137" font-size="10" fill="#455a64">半導体需要 / 基軸通貨の底力</text>
+  <rect x="310" y="114" width="60" height="22" rx="4" fill="#1976d2" opacity="0.12"/>
+  <text x="340" y="130" text-anchor="middle" font-size="10" font-weight="600" fill="#1976d2">強い</text>
+
+  <!-- Tier 3: Neutral - CHF, EUR -->
+  <rect x="80" y="158" width="310" height="42" rx="8" fill="rgba(120,144,156,0.08)" stroke="#78909c" stroke-width="1.5"/>
+  <circle cx="105" cy="179" r="13" fill="#78909c"/>
+  <text x="105" y="183" text-anchor="middle" font-size="9" font-weight="bold" fill="white">3</text>
+  <text x="130" y="175" font-size="14" font-weight="bold" fill="#78909c">CHF / EUR</text>
+  <text x="130" y="191" font-size="10" fill="#455a64">安全資産需要 / ECB緩和</text>
+  <rect x="310" y="168" width="60" height="22" rx="4" fill="#78909c" opacity="0.12"/>
+  <text x="340" y="184" text-anchor="middle" font-size="10" font-weight="600" fill="#78909c">中立</text>
+
+  <!-- Tier 4: Weak - GBP, CNY -->
+  <rect x="80" y="212" width="310" height="42" rx="8" fill="rgba(230,81,0,0.08)" stroke="#e65100" stroke-width="1.5"/>
+  <circle cx="105" cy="233" r="13" fill="#e65100"/>
+  <text x="105" y="237" text-anchor="middle" font-size="9" font-weight="bold" fill="white">4</text>
+  <text x="130" y="229" font-size="14" font-weight="bold" fill="#e65100">GBP / CNY</text>
+  <text x="130" y="245" font-size="10" fill="#455a64">英経済停滞 / 中国景気減速</text>
+  <rect x="310" y="222" width="60" height="22" rx="4" fill="#e65100" opacity="0.12"/>
+  <text x="340" y="238" text-anchor="middle" font-size="10" font-weight="600" fill="#e65100">弱い</text>
+
+  <!-- Tier 5: Weakest - AUD, BRL -->
+  <rect x="80" y="266" width="310" height="42" rx="8" fill="rgba(198,40,40,0.08)" stroke="#c62828" stroke-width="1.5"/>
+  <circle cx="105" cy="287" r="13" fill="#c62828"/>
+  <text x="105" y="291" text-anchor="middle" font-size="9" font-weight="bold" fill="white">5</text>
+  <text x="130" y="283" font-size="14" font-weight="bold" fill="#c62828">AUD / BRL</text>
+  <text x="130" y="299" font-size="10" fill="#455a64">資源価格低迷 / 新興国リスク</text>
+  <rect x="310" y="276" width="60" height="22" rx="4" fill="#c62828" opacity="0.12"/>
+  <text x="340" y="292" text-anchor="middle" font-size="10" font-weight="600" fill="#c62828">最弱</text>
+
+  <!-- Connecting lines on left -->
+  <line x1="60" y1="71" x2="60" y2="287" stroke="#e0e0e0" stroke-width="2"/>
+  <circle cx="60" cy="71" r="4" fill="#2e7d32"/>
+  <circle cx="60" cy="125" r="4" fill="#1976d2"/>
+  <circle cx="60" cy="179" r="4" fill="#78909c"/>
+  <circle cx="60" cy="233" r="4" fill="#e65100"/>
+  <circle cx="60" cy="287" r="4" fill="#c62828"/>
+
+  <!-- Footer note -->
+  <text x="250" y="340" text-anchor="middle" font-size="9" fill="#78909c" font-style="italic">※ 2026年年初時点の相対的な通貨強弱予想</text>
+</svg>

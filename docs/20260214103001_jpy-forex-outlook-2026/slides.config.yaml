@@ -1,54 +1,20 @@
 topic: "日本円為替の今後の動向分析 - 投資家向け包括的レポート"
 language: ja
-theme: gaia
-size: 16:9
-paginate: true
-
-style: |
-  section {
-    font-size: 28px;
-  }
-  section h1 {
-    font-size: 48px;
-    font-weight: bold;
-  }
-  section h2 {
-    font-size: 40px;
-    border-bottom: 3px solid #0066cc;
-    padding-bottom: 10px;
-  }
-  section pre code {
-    font-size: 0.6em;
-    line-height: 1.4;
-  }
-  section table {
-    font-size: 0.85em;
-  }
-  section ul, section ol {
-    font-size: 0.9em;
-  }
-  .chart-note {
-    font-size: 0.7em;
-    color: #666;
-    font-style: italic;
-  }
-    /* Mermaid図解をスライドに収める */
-    section .mermaid {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      max-height: 70vh;
-      max-width: 100%;
-    }
-
-    section .mermaid svg {
-      max-width: 100%;
-      max-height: 70vh;
-      height: auto;
-      width: auto;
-    }
-header: ""
-footer: "© 2026 為替動向分析レポート"
-
+marp:
+  theme: "gaia"
+  size: "16:9"
+  paginate: true
+  header: ""
+  footer: "© 2026 為替動向分析レポート"
+  style: |
+    section { font-size: 28px; }
+    section h1 { font-size: 48px; font-weight: bold; }
+    section h2 { font-size: 40px; margin-bottom: 0.5em; }
+    section pre code { font-size: 0.6em; line-height: 1.4; }
+    section table { font-size: 0.85em; }
+    section ul, section ol { font-size: 24px; }
+    section.lead { text-align: center; }
+    section svg { max-width: 100%; max-height: 70vh; display: block; margin: 0 auto; }
 output:
   dir: "docs/20260214103001_jpy-forex-outlook-2026"
+  baseName: "jpy-forex-outlook-2026"

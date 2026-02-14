@@ -1,0 +1,56 @@
+<svg viewBox="0 0 650 300" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+  <!-- Title -->
+  <text x="325" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">主要国 政策金利比較（%）</text>
+
+  <!-- Y-axis gridlines -->
+  <line x1="80" y1="250" x2="610" y2="250" stroke="#bdbdbd" stroke-width="1"/>
+  <line x1="80" y1="210" x2="610" y2="210" stroke="#e0e0e0" stroke-width="0.5" stroke-dasharray="3,3"/>
+  <line x1="80" y1="170" x2="610" y2="170" stroke="#e0e0e0" stroke-width="0.5" stroke-dasharray="3,3"/>
+  <line x1="80" y1="130" x2="610" y2="130" stroke="#e0e0e0" stroke-width="0.5" stroke-dasharray="3,3"/>
+  <line x1="80" y1="90" x2="610" y2="90" stroke="#e0e0e0" stroke-width="0.5" stroke-dasharray="3,3"/>
+  <line x1="80" y1="50" x2="610" y2="50" stroke="#e0e0e0" stroke-width="0.5" stroke-dasharray="3,3"/>
+
+  <!-- Y-axis labels (0% to 5%, each 1% = 40px, base at y=250) -->
+  <text x="72" y="254" text-anchor="end" font-size="10" fill="#78909c">0%</text>
+  <text x="72" y="214" text-anchor="end" font-size="10" fill="#78909c">1%</text>
+  <text x="72" y="174" text-anchor="end" font-size="10" fill="#78909c">2%</text>
+  <text x="72" y="134" text-anchor="end" font-size="10" fill="#78909c">3%</text>
+  <text x="72" y="94" text-anchor="end" font-size="10" fill="#78909c">4%</text>
+  <text x="72" y="54" text-anchor="end" font-size="10" fill="#78909c">5%</text>
+
+  <!-- Japan reference line at 0.25% (y = 250 - 0.25*40 = 240) -->
+  <line x1="80" y1="240" x2="610" y2="240" stroke="#c62828" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="614" y="237" font-size="9" fill="#c62828" font-weight="600">日本 0.25%</text>
+
+  <!-- Bars: center positions at 145, 255, 365, 475, 585; width=70 -->
+
+  <!-- Japan: 0.25% (height = 0.25*40 = 10) -->
+  <rect x="110" y="240" width="70" height="10" rx="3" fill="#c62828"/>
+  <text x="145" y="234" text-anchor="middle" font-size="12" font-weight="bold" fill="#c62828">0.25%</text>
+  <text x="145" y="270" text-anchor="middle" font-size="12" font-weight="600" fill="#455a64">日本</text>
+  <text x="145" y="284" text-anchor="middle" font-size="10" fill="#78909c">BOJ</text>
+
+  <!-- US: 4.50% (height = 4.5*40 = 180, y = 250-180 = 70) -->
+  <rect x="220" y="70" width="70" height="180" rx="3" fill="#1976d2"/>
+  <text x="255" y="63" text-anchor="middle" font-size="12" font-weight="bold" fill="#1976d2">4.50%</text>
+  <text x="255" y="270" text-anchor="middle" font-size="12" font-weight="600" fill="#455a64">米国</text>
+  <text x="255" y="284" text-anchor="middle" font-size="10" fill="#78909c">FRB</text>
+
+  <!-- EU: 3.25% (height = 3.25*40 = 130, y = 250-130 = 120) -->
+  <rect x="330" y="120" width="70" height="130" rx="3" fill="#2e7d32"/>
+  <text x="365" y="113" text-anchor="middle" font-size="12" font-weight="bold" fill="#2e7d32">3.25%</text>
+  <text x="365" y="270" text-anchor="middle" font-size="12" font-weight="600" fill="#455a64">EU</text>
+  <text x="365" y="284" text-anchor="middle" font-size="10" fill="#78909c">ECB</text>
+
+  <!-- UK: 4.75% (height = 4.75*40 = 190, y = 250-190 = 60) -->
+  <rect x="440" y="60" width="70" height="190" rx="3" fill="#7b1fa2"/>
+  <text x="475" y="53" text-anchor="middle" font-size="12" font-weight="bold" fill="#7b1fa2">4.75%</text>
+  <text x="475" y="270" text-anchor="middle" font-size="12" font-weight="600" fill="#455a64">英国</text>
+  <text x="475" y="284" text-anchor="middle" font-size="10" fill="#78909c">BOE</text>
+
+  <!-- Australia: 3.85% (height = 3.85*40 = 154, y = 250-154 = 96) -->
+  <rect x="550" y="96" width="70" height="154" rx="3" fill="#e65100"/>
+  <text x="585" y="89" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">3.85%</text>
+  <text x="585" y="270" text-anchor="middle" font-size="12" font-weight="600" fill="#455a64">豪州</text>
+  <text x="585" y="284" text-anchor="middle" font-size="10" fill="#78909c">RBA</text>
+</svg>

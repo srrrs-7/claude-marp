@@ -1,0 +1,41 @@
+<svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+  <!-- Title -->
+  <text x="300" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">購買力平価からの乖離率</text>
+  <text x="300" y="46" text-anchor="middle" font-size="11" fill="#78909c">実勢レートがPPPに対してどれだけ割高か（%）</text>
+
+  <!-- Gridlines -->
+  <line x1="150" y1="65" x2="150" y2="220" stroke="#bdbdbd" stroke-width="1"/>
+  <line x1="260" y1="65" x2="260" y2="220" stroke="#e0e0e0" stroke-width="0.5" stroke-dasharray="3,3"/>
+  <line x1="370" y1="65" x2="370" y2="220" stroke="#e0e0e0" stroke-width="0.5" stroke-dasharray="3,3"/>
+  <line x1="480" y1="65" x2="480" y2="220" stroke="#e0e0e0" stroke-width="0.5" stroke-dasharray="3,3"/>
+  <line x1="570" y1="65" x2="570" y2="220" stroke="#e0e0e0" stroke-width="0.5" stroke-dasharray="3,3"/>
+
+  <!-- Scale labels: 0% at x=150, each 10% = ~96px (to fit 45% in ~420px => ~9.33px per %) -->
+  <!-- Simpler: 0% at 150, +10% at 243, +20% at 336, +30% at 429, +40% at 522 -->
+  <text x="150" y="237" text-anchor="middle" font-size="10" fill="#78909c">0%</text>
+  <text x="260" y="237" text-anchor="middle" font-size="10" fill="#78909c">+10%</text>
+  <text x="370" y="237" text-anchor="middle" font-size="10" fill="#78909c">+20%</text>
+  <text x="480" y="237" text-anchor="middle" font-size="10" fill="#78909c">+30%</text>
+  <text x="570" y="237" text-anchor="middle" font-size="10" fill="#78909c">+40%</text>
+
+  <!-- Scale: per 1% = (570-150)/40 = 10.5px -->
+
+  <!-- USD/JPY: +41.4% overvalued (width = 41.4 * 10.5 = 434.7) -->
+  <text x="140" y="96" text-anchor="end" font-size="14" font-weight="600" fill="#455a64">USD/JPY</text>
+  <rect x="150" y="78" width="435" height="28" rx="4" fill="#c62828" opacity="0.85"/>
+  <text x="570" y="97" font-size="13" font-weight="bold" fill="white" text-anchor="end" dx="-8">+41.4%</text>
+  <text x="170" y="97" font-size="10" fill="white" opacity="0.9">大幅に割高</text>
+
+  <!-- EUR/JPY: +18.7% (width = 18.7 * 10.5 = 196.35) -->
+  <text x="140" y="146" text-anchor="end" font-size="14" font-weight="600" fill="#455a64">EUR/JPY</text>
+  <rect x="150" y="128" width="196" height="28" rx="4" fill="#e65100" opacity="0.85"/>
+  <text x="354" y="147" font-size="13" font-weight="bold" fill="#e65100" dx="6">+18.7%</text>
+
+  <!-- GBP/JPY: +15.9% (width = 15.9 * 10.5 = 166.95) -->
+  <text x="140" y="196" text-anchor="end" font-size="14" font-weight="600" fill="#455a64">GBP/JPY</text>
+  <rect x="150" y="178" width="167" height="28" rx="4" fill="#e65100" opacity="0.7"/>
+  <text x="325" y="197" font-size="13" font-weight="bold" fill="#e65100" dx="6">+15.9%</text>
+
+  <!-- Annotation -->
+  <text x="570" y="212" text-anchor="end" font-size="9" fill="#78909c" font-style="italic">※ PPP: OECD購買力平価ベース</text>
+</svg>

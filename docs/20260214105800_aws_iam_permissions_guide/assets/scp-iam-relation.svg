@@ -1,0 +1,70 @@
+<svg viewBox="0 0 800 550" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;">
+  <!-- Background -->
+  <rect width="800" height="550" fill="#f8f9fa"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">3層の権限制御 — SCP/Boundary/IAMポリシー</text>
+
+  <!-- Layer 1: SCP (Largest) -->
+  <g id="scp">
+    <ellipse cx="400" cy="300" rx="350" ry="200" fill="#E0E7FF" opacity="0.6" stroke="#667EEA" stroke-width="4"/>
+    <text x="400" y="120" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#5A67D8">SCP (Service Control Policy)</text>
+    <text x="400" y="145" text-anchor="middle" font-family="Arial" font-size="14" fill="#5A67D8">組織レベルの上限</text>
+    <text x="400" y="165" text-anchor="middle" font-family="Arial" font-size="12" fill="#667EEA">すべてのアカウント・ユーザー・ロールに適用</text>
+  </g>
+
+  <!-- Layer 2: Permission Boundary (Medium) -->
+  <g id="boundary">
+    <ellipse cx="400" cy="310" rx="240" ry="130" fill="#FED7E2" opacity="0.7" stroke="#D53F8C" stroke-width="3"/>
+    <text x="400" y="220" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#97266D">Permission Boundary</text>
+    <text x="400" y="242" text-anchor="middle" font-family="Arial" font-size="13" fill="#97266D">ユーザー/ロールの上限</text>
+  </g>
+
+  <!-- Layer 3: Identity-based Policy (Smallest) -->
+  <g id="identity">
+    <ellipse cx="400" cy="320" rx="130" ry="75" fill="#C6F6D5" opacity="0.8" stroke="#38A169" stroke-width="3"/>
+    <text x="400" y="305" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#276749">アイデンティティ</text>
+    <text x="400" y="325" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#276749">ベースポリシー</text>
+    <text x="400" y="345" text-anchor="middle" font-family="Arial" font-size="12" fill="#2F855A">実際の権限</text>
+  </g>
+
+  <!-- Center result -->
+  <g id="result">
+    <circle cx="400" cy="330" r="30" fill="#FC8181" opacity="0.9" stroke="#C53030" stroke-width="3"/>
+    <text x="400" y="338" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">最終</text>
+    <text x="400" y="355" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="white">権限</text>
+  </g>
+
+  <!-- Explanation boxes -->
+  <g id="explanations">
+    <!-- SCP example -->
+    <rect x="20" y="230" width="160" height="80" rx="8" fill="white" stroke="#667EEA" stroke-width="2"/>
+    <text x="100" y="250" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#5A67D8">SCP例:</text>
+    <text x="100" y="268" text-anchor="middle" font-family="Arial" font-size="9" fill="#667EEA">• 特定リージョン禁止</text>
+    <text x="100" y="283" text-anchor="middle" font-family="Arial" font-size="9" fill="#667EEA">• 高額サービス禁止</text>
+    <text x="100" y="298" text-anchor="middle" font-family="Arial" font-size="9" fill="#667EEA">• ルートユーザーにも</text>
+
+    <!-- Boundary example -->
+    <rect x="620" y="250" width="160" height="70" rx="8" fill="white" stroke="#D53F8C" stroke-width="2"/>
+    <text x="700" y="270" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#97266D">Boundary例:</text>
+    <text x="700" y="288" text-anchor="middle" font-family="Arial" font-size="9" fill="#D53F8C">• 開発者用制限</text>
+    <text x="700" y="303" text-anchor="middle" font-family="Arial" font-size="9" fill="#D53F8C">• S3/Lambda/DDB</text>
+    <text x="700" y="318" text-anchor="middle" font-family="Arial" font-size="9" fill="#D53F8C">  のみ許可</text>
+
+    <!-- IAM Policy example -->
+    <rect x="320" y="420" width="160" height="70" rx="8" fill="white" stroke="#38A169" stroke-width="2"/>
+    <text x="400" y="440" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#276749">IAMポリシー例:</text>
+    <text x="400" y="458" text-anchor="middle" font-family="Arial" font-size="9" fill="#38A169">• s3:GetObject</text>
+    <text x="400" y="473" text-anchor="middle" font-family="Arial" font-size="9" fill="#38A169">• s3:PutObject</text>
+    <text x="400" y="488" text-anchor="middle" font-family="Arial" font-size="9" fill="#38A169">• lambda:InvokeFunction</text>
+  </g>
+
+  <!-- Formula -->
+  <rect x="150" y="510" width="500" height="30" rx="8" fill="#E6FFFA" stroke="#319795" stroke-width="2"/>
+  <text x="400" y="530" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#234E52">実効権限 = SCP ∩ Permission Boundary ∩ IAMポリシー</text>
+
+  <!-- Key insight -->
+  <rect x="570" y="20" width="210" height="50" rx="8" fill="#FEF5E7" stroke="#F39C12" stroke-width="2"/>
+  <text x="675" y="42" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#D68910">重要: 3つすべてにAllowが必要</text>
+  <text x="675" y="60" text-anchor="middle" font-family="Arial" font-size="10" fill="#D68910">1つでもDenyがあれば拒否</text>
+</svg>

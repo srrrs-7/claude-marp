@@ -1,0 +1,24 @@
+<svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="fga"><feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.2"/></filter>
+    <filter id="glow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <!-- Pyramid layers (top = most important, visually dominant) -->
+  <!-- Level 1: 心理的安全性 (top, highlighted) -->
+  <polygon points="300,20 420,100 180,100" fill="rgba(79,195,247,0.3)" stroke="#4fc3f7" stroke-width="3" filter="url(#glow)"/>
+  <text x="300" y="75" text-anchor="middle" fill="#4fc3f7" font-size="16" font-weight="bold" font-family="sans-serif">心理的安全性</text>
+  <!-- Level 2: 相互信頼 -->
+  <polygon points="180,105 420,105 460,160 140,160" fill="rgba(129,199,132,0.2)" stroke="#81c784" stroke-width="2" filter="url(#fga)"/>
+  <text x="300" y="140" text-anchor="middle" fill="#81c784" font-size="14" font-weight="bold" font-family="sans-serif">相互信頼</text>
+  <!-- Level 3: 構造と明確性 -->
+  <polygon points="140,165 460,165 500,220 100,220" fill="rgba(255,183,77,0.15)" stroke="#ffb74d" stroke-width="2" filter="url(#fga)"/>
+  <text x="300" y="200" text-anchor="middle" fill="#ffb74d" font-size="14" font-weight="bold" font-family="sans-serif">構造と明確性</text>
+  <!-- Level 4: 仕事の意味 -->
+  <polygon points="100,225 500,225 540,280 60,280" fill="rgba(206,147,216,0.12)" stroke="#ce93d8" stroke-width="1.5" filter="url(#fga)"/>
+  <text x="300" y="260" text-anchor="middle" fill="#ce93d8" font-size="14" font-weight="bold" font-family="sans-serif">仕事の意味</text>
+  <!-- Level 5: インパクト -->
+  <polygon points="60,285 540,285 580,340 20,340" fill="rgba(176,190,197,0.1)" stroke="#b0bec5" stroke-width="1.5" filter="url(#fga)"/>
+  <text x="300" y="320" text-anchor="middle" fill="#b0bec5" font-size="14" font-weight="bold" font-family="sans-serif">インパクト</text>
+  <!-- Annotation -->
+  <text x="300" y="370" text-anchor="middle" fill="#b0bec5" font-size="11" font-family="sans-serif">5年間・180チーム調査（Google Project Aristotle）</text>
+</svg>

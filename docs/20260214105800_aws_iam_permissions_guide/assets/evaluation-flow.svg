@@ -1,0 +1,108 @@
+<svg viewBox="0 0 850 650" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;">
+  <!-- Background -->
+  <rect width="850" height="650" fill="#f8f9fa"/>
+
+  <!-- Title -->
+  <text x="425" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">クロスアカウント考慮の評価フロー</text>
+
+  <!-- Request -->
+  <g id="request">
+    <rect x="340" y="60" width="170" height="60" rx="10" fill="#667EEA" stroke="#5A67D8" stroke-width="3"/>
+    <text x="425" y="95" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">リクエスト</text>
+  </g>
+
+  <!-- Decision 1: Same Account? -->
+  <g id="decision1">
+    <path d="M 425 180 L 515 230 L 425 280 L 335 230 Z" fill="#E6FFFA" stroke="#319795" stroke-width="3"/>
+    <text x="425" y="220" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#234E52">同一</text>
+    <text x="425" y="240" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#234E52">アカウント?</text>
+  </g>
+
+  <!-- Same Account Path -->
+  <g id="sameAccount">
+    <rect x="580" y="190" width="180" height="80" rx="10" fill="#BEE3F8" stroke="#3182CE" stroke-width="2"/>
+    <text x="670" y="215" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#2C5282">アイデンティティ</text>
+    <text x="670" y="233" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#2C5282">ベース</text>
+    <text x="670" y="253" text-anchor="middle" font-family="Arial" font-size="12" fill="#2C5282">ポリシー評価</text>
+  </g>
+
+  <!-- Cross Account Path -->
+  <g id="crossAccount">
+    <rect x="90" y="190" width="180" height="80" rx="10" fill="#FED7E2" stroke="#D53F8C" stroke-width="2"/>
+    <text x="180" y="210" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#702459">アイデンティティベース</text>
+    <text x="180" y="228" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#702459">+</text>
+    <text x="180" y="246" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#702459">リソースベース</text>
+    <text x="180" y="264" text-anchor="middle" font-family="Arial" font-size="11" fill="#702459">評価</text>
+  </g>
+
+  <!-- Decision 2: Explicit Deny? -->
+  <g id="decision2">
+    <path d="M 425 380 L 515 430 L 425 480 L 335 430 Z" fill="#FED7D7" stroke="#FC8181" stroke-width="3"/>
+    <text x="425" y="420" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#C53030">明示的</text>
+    <text x="425" y="440" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#C53030">Deny?</text>
+  </g>
+
+  <!-- Deny Result 1 -->
+  <g id="deny1">
+    <rect x="610" y="400" width="120" height="60" rx="10" fill="#FC8181" stroke="#C53030" stroke-width="3"/>
+    <text x="670" y="435" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">拒否</text>
+  </g>
+
+  <!-- Decision 3: Explicit Allow? -->
+  <g id="decision3">
+    <path d="M 425 550 L 515 600 L 425 650 L 335 600 Z" fill="#C6F6D5" stroke="#48BB78" stroke-width="3"/>
+    <text x="425" y="590" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#276749">明示的</text>
+    <text x="425" y="610" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#276749">Allow?</text>
+  </g>
+
+  <!-- Allow Result -->
+  <g id="allow">
+    <rect x="610" y="570" width="120" height="60" rx="10" fill="#48BB78" stroke="#38A169" stroke-width="3"/>
+    <text x="670" y="605" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">許可</text>
+  </g>
+
+  <!-- Default Deny -->
+  <g id="deny2">
+    <rect x="120" y="570" width="140" height="60" rx="10" fill="#FC8181" stroke="#C53030" stroke-width="3"/>
+    <text x="190" y="595" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="white">拒否</text>
+    <text x="190" y="615" text-anchor="middle" font-family="Arial" font-size="12" fill="white">(デフォルト)</text>
+  </g>
+
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrowFlow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- Request -> Decision1 -->
+  <path d="M 425 120 L 425 180" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowFlow)"/>
+
+  <!-- Decision1 -> Same Account (Yes) -->
+  <path d="M 515 230 L 580 230" stroke="#3182CE" stroke-width="3" fill="none" marker-end="url(#arrowFlow)"/>
+  <text x="535" y="220" font-family="Arial" font-size="13" font-weight="bold" fill="#2C5282">Yes</text>
+
+  <!-- Decision1 -> Cross Account (No) -->
+  <path d="M 335 230 L 270 230" stroke="#D53F8C" stroke-width="3" fill="none" marker-end="url(#arrowFlow)"/>
+  <text x="295" y="220" font-family="Arial" font-size="13" font-weight="bold" fill="#702459">No</text>
+
+  <!-- Both paths -> Decision2 -->
+  <path d="M 670 270 L 670 350 L 470 350 L 470 380" stroke="#333" stroke-width="2.5" fill="none" marker-end="url(#arrowFlow)"/>
+  <path d="M 180 270 L 180 350 L 380 350 L 380 380" stroke="#333" stroke-width="2.5" fill="none" marker-end="url(#arrowFlow)"/>
+
+  <!-- Decision2 -> Deny (Yes) -->
+  <path d="M 515 430 L 610 430" stroke="#FC8181" stroke-width="3" fill="none" marker-end="url(#arrowFlow)"/>
+  <text x="545" y="420" font-family="Arial" font-size="13" font-weight="bold" fill="#C53030">Yes</text>
+
+  <!-- Decision2 -> Decision3 (No) -->
+  <path d="M 425 480 L 425 550" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowFlow)"/>
+  <text x="435" y="520" font-family="Arial" font-size="13" font-weight="bold" fill="#333">No</text>
+
+  <!-- Decision3 -> Allow (Yes) -->
+  <path d="M 515 600 L 610 600" stroke="#48BB78" stroke-width="3" fill="none" marker-end="url(#arrowFlow)"/>
+  <text x="545" y="590" font-family="Arial" font-size="13" font-weight="bold" fill="#38A169">Yes</text>
+
+  <!-- Decision3 -> Default Deny (No) -->
+  <path d="M 335 600 L 260 600" stroke="#FC8181" stroke-width="3" fill="none" marker-end="url(#arrowFlow)"/>
+  <text x="285" y="590" font-family="Arial" font-size="13" font-weight="bold" fill="#C53030">No</text>
+</svg>

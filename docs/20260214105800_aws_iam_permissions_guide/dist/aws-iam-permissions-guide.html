@@ -58,7 +58,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="aws-iam%E3%81%AE%E6%A8%A9%E9%99%90%E7%AE%A1%E7%90%86">AWS IAMの権限管理</h1>
 <p>完全ガイド</p>
 <ul>
@@ -110,7 +110,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%82%A2%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%80-12">アジェンダ (1/2)</h1>
 <ul>
 <li><strong>IAM基礎</strong> - 認証・認可の概念整理</li>
@@ -164,7 +164,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%82%A2%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%80-22">アジェンダ (2/2)</h1>
 <ul>
 <li><strong>SCP</strong> - Organizationsとの統合、評価順序</li>
@@ -217,7 +217,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="iam%E3%81%AE%E5%85%A8%E4%BD%93%E5%83%8F">IAMの全体像</h1>
 <ul>
 <li><strong>Identity and Access Management (IAM)</strong> - AWSリソースへのアクセスを安全に制御</li>
@@ -271,15 +271,81 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="iam%E3%81%AE%E5%85%A8%E4%BD%93%E5%83%8F%E5%9B%B3%E8%A7%A3">IAMの全体像（図解）</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-mermaid">graph LR
-    A[Principal&lt;br/&gt;ユーザー/ロール] --&gt;|リクエスト| B[評価エンジン]
-    C[IAMポリシー] --&gt; B
-    D[リソースポリシー] --&gt; B
-    E[SCP] --&gt; B
-    B --&gt;|許可/拒否| F[AWSリソース]
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;">
+  
+  <rect width="900" height="400" fill="#f8f9fa" />
+
+<p><text x="450" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">IAM権限評価の全体像</text></p>
+  <g id="principal">
+    <rect x="50" y="150" width="140" height="100" rx="12" fill="#667EEA" stroke="#5A67D8" stroke-width="3" />
+    <text x="120" y="185" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">Principal</text>
+    <text x="120" y="210" text-anchor="middle" font-family="Arial" font-size="13" fill="white">ユーザー/</text>
+    <text x="120" y="230" text-anchor="middle" font-family="Arial" font-size="13" fill="white">ロール</text>
+  </g>
+  <g id="engine">
+    <rect x="380" y="120" width="180" height="160" rx="12" fill="#FC8181" stroke="#E53E3E" stroke-width="3" />
+    <text x="470" y="155" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="white">評価エンジン</text>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;!-- Inputs to engine --&gt;
+&lt;rect x=&quot;395&quot; y=&quot;180&quot; width=&quot;150&quot; height=&quot;30&quot; rx=&quot;5&quot; fill=&quot;white&quot; opacity=&quot;0.9&quot;/&gt;
+&lt;text x=&quot;470&quot; y=&quot;200&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#333&quot;&gt;IAMポリシー&lt;/text&gt;
+
+&lt;rect x=&quot;395&quot; y=&quot;215&quot; width=&quot;150&quot; height=&quot;30&quot; rx=&quot;5&quot; fill=&quot;white&quot; opacity=&quot;0.9&quot;/&gt;
+&lt;text x=&quot;470&quot; y=&quot;235&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#333&quot;&gt;リソースポリシー&lt;/text&gt;
+
+&lt;rect x=&quot;395&quot; y=&quot;250&quot; width=&quot;150&quot; height=&quot;30&quot; rx=&quot;5&quot; fill=&quot;white&quot; opacity=&quot;0.9&quot;/&gt;
+&lt;text x=&quot;470&quot; y=&quot;270&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;#333&quot;&gt;SCP&lt;/text&gt;
 </code></pre>
+  </g>
+  <g id="resource">
+    <rect x="710" y="150" width="140" height="100" rx="12" fill="#48BB78" stroke="#38A169" stroke-width="3" />
+    <text x="780" y="185" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">AWS</text>
+    <text x="780" y="210" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">リソース</text>
+    <text x="780" y="235" text-anchor="middle" font-family="Arial" font-size="12" fill="white">(S3/EC2/Lambda)</text>
+  </g>
+  <g id="policies">
+    <rect x="230" y="50" width="120" height="50" rx="8" fill="#63B3ED" stroke="#3182CE" stroke-width="2" />
+    <text x="290" y="70" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">IAM</text>
+    <text x="290" y="88" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">ポリシー</text>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;rect x=&quot;230&quot; y=&quot;175&quot; width=&quot;120&quot; height=&quot;50&quot; rx=&quot;8&quot; fill=&quot;#90CDF4&quot; stroke=&quot;#4299E1&quot; stroke-width=&quot;2&quot;/&gt;
+&lt;text x=&quot;290&quot; y=&quot;195&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;13&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;リソース&lt;/text&gt;
+&lt;text x=&quot;290&quot; y=&quot;213&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;13&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;ポリシー&lt;/text&gt;
+
+&lt;rect x=&quot;230&quot; y=&quot;300&quot; width=&quot;120&quot; height=&quot;50&quot; rx=&quot;8&quot; fill=&quot;#BEE3F8&quot; stroke=&quot;#63B3ED&quot; stroke-width=&quot;2&quot;/&gt;
+&lt;text x=&quot;290&quot; y=&quot;330&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;13&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;SCP&lt;/text&gt;
+</code></pre>
+  </g>
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#5A67D8" />
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#E53E3E" />
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#38A169" />
+    </marker>
+  </defs>
+  <path d="M 190 200 L 380 200" stroke="#5A67D8" stroke-width="3" fill="none" marker-end="url(#arrowBlue)" />
+  <text x="270" y="190" font-family="Arial" font-size="12" font-weight="bold" fill="#5A67D8">リクエスト</text>
+  <path d="M 350 75 L 410 140" stroke="#3182CE" stroke-width="2.5" fill="none" marker-end="url(#arrowRed)" />
+  <path d="M 350 200 L 380 200" stroke="#4299E1" stroke-width="2.5" fill="none" marker-end="url(#arrowRed)" />
+  <path d="M 350 325 L 410 260" stroke="#63B3ED" stroke-width="2.5" fill="none" marker-end="url(#arrowRed)" />
+  <path d="M 560 200 L 710 200" stroke="#E53E3E" stroke-width="3" fill="none" marker-end="url(#arrowGreen)" />
+  <text x="620" y="190" font-family="Arial" font-size="12" font-weight="bold" fill="#E53E3E">許可/拒否</text>
+  <g id="legend">
+    <rect x="20" y="20" width="180" height="60" rx="8" fill="white" stroke="#ddd" stroke-width="2" />
+    <circle cx="35" cy="40" r="5" fill="#667EEA" />
+    <text x="48" y="44" font-family="Arial" font-size="11" fill="#333">プリンシパル</text>
+    <circle cx="35" cy="60" r="5" fill="#FC8181" />
+    <text x="48" y="64" font-family="Arial" font-size="11" fill="#333">ポリシー評価</text>
+    <circle cx="110" cy="40" r="5" fill="#48BB78" />
+    <text x="123" y="44" font-family="Arial" font-size="11" fill="#333">リソース</text>
+    <circle cx="110" cy="60" r="5" fill="#63B3ED" />
+    <text x="123" y="64" font-family="Arial" font-size="11" fill="#333">ポリシー入力</text>
+  </g>
+</svg>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-theme="gaia" data-style="section {
   font-size: 28px;
@@ -325,7 +391,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E8%AA%8D%E8%A8%BC-vs-%E8%AA%8D%E5%8F%AF">認証 vs 認可</h1>
 <ul>
 <li><strong>認証 (Authentication)</strong> - 「あなたは誰か？」</li>
@@ -397,7 +463,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%83%97%E3%83%AA%E3%83%B3%E3%82%B7%E3%83%91%E3%83%AB%E3%81%A8%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9">プリンシパルとリソース</h1>
 <ul>
 <li><strong>プリンシパル</strong> - リクエストを行う主体</li>
@@ -478,7 +544,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="iam%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E3%81%AE%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0">IAMポリシーの基本構造</h1>
 <ul>
 <li><strong>Version</strong> - 常に <code>2012-10-17</code> を使用</li>
@@ -533,7 +599,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="iam%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E3%81%AE%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">IAMポリシーの基本構造（コード例）</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">&quot;Version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2012-10-17&quot;</span><span class="hljs-punctuation">,</span>
@@ -595,7 +661,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E8%A9%95%E4%BE%A1%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF---%E6%98%8E%E7%A4%BA%E7%9A%84deny%E5%84%AA%E5%85%88">ポリシー評価ロジック - 明示的Deny優先</h1>
 <ul>
 <li><strong>1. デフォルト: Deny</strong> - 何も許可されていない状態からスタート</li>
@@ -649,15 +715,58 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E8%A9%95%E4%BE%A1%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF---%E6%98%8E%E7%A4%BA%E7%9A%84deny%E5%84%AA%E5%85%88%E5%9B%B3%E8%A7%A3">ポリシー評価ロジック - 明示的Deny優先（図解）</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-mermaid">graph TD
-    A[リクエスト] --&gt; B{明示的Deny?}
-    B --&gt;|Yes| C[拒否]
-    B --&gt;|No| D{明示的Allow?}
-    D --&gt;|Yes| E[許可]
-    D --&gt;|No| F[拒否&lt;br/&gt;デフォルトDeny]
-</code></pre>
+<svg viewBox="0 0 700 450" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;">
+  
+  <rect width="700" height="450" fill="#f8f9fa" />
+
+<p><text x="350" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">IAMポリシー評価ロジック</text></p>
+  <g id="request">
+    <rect x="280" y="60" width="140" height="60" rx="10" fill="#667EEA" stroke="#5A67D8" stroke-width="3" />
+    <text x="350" y="95" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">リクエスト</text>
+  </g>
+  <g id="decision1">
+    <path d="M 350 180 L 420 230 L 350 280 L 280 230 Z" fill="#FED7D7" stroke="#FC8181" stroke-width="3" />
+    <text x="350" y="220" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#C53030">明示的</text>
+    <text x="350" y="240" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#C53030">Deny?</text>
+  </g>
+  <g id="deny1">
+    <rect x="520" y="200" width="120" height="60" rx="10" fill="#FC8181" stroke="#C53030" stroke-width="3" />
+    <text x="580" y="235" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">拒否</text>
+  </g>
+  <g id="decision2">
+    <path d="M 350 350 L 420 400 L 350 450 L 280 400 Z" fill="#C6F6D5" stroke="#48BB78" stroke-width="3" />
+    <text x="350" y="390" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#276749">明示的</text>
+    <text x="350" y="410" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#276749">Allow?</text>
+  </g>
+  <g id="allow">
+    <rect x="520" y="370" width="120" height="60" rx="10" fill="#48BB78" stroke="#38A169" stroke-width="3" />
+    <text x="580" y="405" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">許可</text>
+  </g>
+  <g id="deny2">
+    <rect x="60" y="370" width="140" height="60" rx="10" fill="#FC8181" stroke="#C53030" stroke-width="3" />
+    <text x="130" y="395" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="white">拒否</text>
+    <text x="130" y="415" text-anchor="middle" font-family="Arial" font-size="12" fill="white">(デフォルト)</text>
+  </g>
+  <defs>
+    <marker id="arrowFlow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#333" />
+    </marker>
+  </defs>
+  <path d="M 350 120 L 350 180" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowFlow)" />
+  <path d="M 420 230 L 520 230" stroke="#FC8181" stroke-width="3" fill="none" marker-end="url(#arrowFlow)" />
+  <text x="455" y="220" font-family="Arial" font-size="13" font-weight="bold" fill="#C53030">Yes</text>
+  <path d="M 350 280 L 350 350" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowFlow)" />
+  <text x="360" y="320" font-family="Arial" font-size="13" font-weight="bold" fill="#333">No</text>
+  <path d="M 420 400 L 520 400" stroke="#48BB78" stroke-width="3" fill="none" marker-end="url(#arrowFlow)" />
+  <text x="455" y="390" font-family="Arial" font-size="13" font-weight="bold" fill="#38A169">Yes</text>
+  <path d="M 280 400 L 200 400" stroke="#FC8181" stroke-width="3" fill="none" marker-end="url(#arrowFlow)" />
+  <text x="225" y="390" font-family="Arial" font-size="13" font-weight="bold" fill="#C53030">No</text>
+  <rect x="20" y="20" width="220" height="50" rx="8" fill="#FEF5E7" stroke="#F39C12" stroke-width="2" />
+  <text x="130" y="42" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#D68910">重要原則:</text>
+  <text x="130" y="60" text-anchor="middle" font-family="Arial" font-size="12" fill="#D68910">Denyは常にAllowを上書き</text>
+</svg>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-theme="gaia" data-style="section {
   font-size: 28px;
@@ -703,7 +812,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E7%AE%A1%E7%90%86%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC-vs-%E3%82%A4%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC">管理ポリシー vs インラインポリシー</h1>
 <ul>
 <li><strong>管理ポリシー (Managed Policy)</strong></li>
@@ -780,7 +889,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E5%A4%89%E6%95%B0---%E5%8B%95%E7%9A%84%E3%81%AA%E6%A8%A9%E9%99%90%E5%88%B6%E5%BE%A1">ポリシー変数 - 動的な権限制御</h1>
 <ul>
 <li><strong>${aws:username}</strong> - IAMユーザー名</li>
@@ -834,7 +943,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E5%A4%89%E6%95%B0---%E5%8B%95%E7%9A%84%E3%81%AA%E6%A8%A9%E9%99%90%E5%88%B6%E5%BE%A1%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">ポリシー変数 - 動的な権限制御（コード例）</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">&quot;Effect&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Allow&quot;</span><span class="hljs-punctuation">,</span>
@@ -892,7 +1001,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="condition%E3%82%AD%E3%83%BC---%E8%A9%B3%E7%B4%B0%E3%81%AA%E6%9D%A1%E4%BB%B6%E5%88%B6%E5%BE%A1">Conditionキー - 詳細な条件制御</h1>
 <ul>
 <li><strong>グローバル条件キー</strong>: SourceIp, CurrentTime, SecureTransport等</li>
@@ -944,7 +1053,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="condition%E3%82%AD%E3%83%BC---%E8%A9%B3%E7%B4%B0%E3%81%AA%E6%9D%A1%E4%BB%B6%E5%88%B6%E5%BE%A1%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">Conditionキー - 詳細な条件制御（コード例）</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">&quot;Condition&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
@@ -1008,7 +1117,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%82%BF%E3%82%B0%E3%83%99%E3%83%BC%E3%82%B9%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E5%BE%A1-abac">タグベースアクセス制御 (ABAC)</h1>
 <ul>
 <li><strong>Attribute-Based Access Control</strong> - 属性に基づく動的な権限管理</li>
@@ -1063,7 +1172,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="abac%E5%AE%9F%E8%A3%85%E4%BE%8B">ABAC実装例</h1>
 <ul>
 <li>プリンシパルの <code>Project</code> と <code>CostCenter</code> タグが一致するEC2のみ操作可</li>
@@ -1115,7 +1224,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="abac%E5%AE%9F%E8%A3%85%E4%BE%8B%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">ABAC実装例（コード例）</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">&quot;Effect&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Allow&quot;</span><span class="hljs-punctuation">,</span>
@@ -1174,7 +1283,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="iam%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%AE%E6%A6%82%E5%BF%B5">IAMロールの概念</h1>
 <ul>
 <li><strong>一時的な権限</strong> - 長期認証情報を持たない</li>
@@ -1243,7 +1352,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%83%88%E3%83%A9%E3%82%B9%E3%83%88%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E3%81%AE%E6%A7%8B%E9%80%A0">トラストポリシーの構造</h1>
 <ul>
 <li><strong>Principal</strong> - 誰がAssumeRoleできるか</li>
@@ -1296,7 +1405,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%83%88%E3%83%A9%E3%82%B9%E3%83%88%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E3%81%AE%E6%A7%8B%E9%80%A0%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">トラストポリシーの構造（コード例）</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">&quot;Version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2012-10-17&quot;</span><span class="hljs-punctuation">,</span>
@@ -1361,7 +1470,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="assumerole%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF">AssumeRoleの仕組み</h1>
 <ul>
 <li><strong>STS (Security Token Service)</strong> - 一時認証情報を発行</li>
@@ -1414,20 +1523,69 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="assumerole%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF%E5%9B%B3%E8%A7%A3">AssumeRoleの仕組み（図解）</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-mermaid">sequenceDiagram
-    participant U as IAMユーザー/ロール
-    participant S as AWS STS
-    participant R as ターゲットロール
-    participant A as AWSサービス
-    U-&gt;&gt;S: AssumeRole(RoleArn)
-    S-&gt;&gt;R: トラストポリシー確認
-    R--&gt;&gt;S: 許可
-    S--&gt;&gt;U: 一時認証情報&lt;br/&gt;(AccessKey, SecretKey, Token)
-    U-&gt;&gt;A: API呼び出し&lt;br/&gt;(一時認証情報を使用)
-    A--&gt;&gt;U: レスポンス
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;">
+  
+  <rect width="900" height="600" fill="#f8f9fa" />
+
+<p><text x="450" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">AssumeRole フロー詳細</text></p>
+  <g id="participants">
+    <rect x="50" y="60" width="140" height="60" rx="8" fill="#667EEA" stroke="#5A67D8" stroke-width="2" />
+    <text x="120" y="85" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">IAMユーザー/</text>
+    <text x="120" y="103" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">ロール</text>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;rect x=&quot;260&quot; y=&quot;60&quot; width=&quot;140&quot; height=&quot;60&quot; rx=&quot;8&quot; fill=&quot;#F6AD55&quot; stroke=&quot;#DD6B20&quot; stroke-width=&quot;2&quot;/&gt;
+&lt;text x=&quot;330&quot; y=&quot;95&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;AWS STS&lt;/text&gt;
+
+&lt;rect x=&quot;470&quot; y=&quot;60&quot; width=&quot;140&quot; height=&quot;60&quot; rx=&quot;8&quot; fill=&quot;#9F7AEA&quot; stroke=&quot;#6B46C1&quot; stroke-width=&quot;2&quot;/&gt;
+&lt;text x=&quot;540&quot; y=&quot;85&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;13&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;ターゲット&lt;/text&gt;
+&lt;text x=&quot;540&quot; y=&quot;103&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;13&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;ロール&lt;/text&gt;
+
+&lt;rect x=&quot;680&quot; y=&quot;60&quot; width=&quot;140&quot; height=&quot;60&quot; rx=&quot;8&quot; fill=&quot;#48BB78&quot; stroke=&quot;#38A169&quot; stroke-width=&quot;2&quot;/&gt;
+&lt;text x=&quot;750&quot; y=&quot;85&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;13&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;AWS&lt;/text&gt;
+&lt;text x=&quot;750&quot; y=&quot;103&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;13&quot; font-weight=&quot;bold&quot; fill=&quot;white&quot;&gt;サービス&lt;/text&gt;
 </code></pre>
+  </g>
+  <line x1="120" y1="120" x2="120" y2="560" stroke="#999" stroke-width="2" stroke-dasharray="5,5" />
+  <line x1="330" y1="120" x2="330" y2="560" stroke="#999" stroke-width="2" stroke-dasharray="5,5" />
+  <line x1="540" y1="120" x2="540" y2="560" stroke="#999" stroke-width="2" stroke-dasharray="5,5" />
+  <line x1="750" y1="120" x2="750" y2="560" stroke="#999" stroke-width="2" stroke-dasharray="5,5" />
+  <defs>
+    <marker id="arrowSeq" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#333" />
+    </marker>
+    <marker id="arrowReturn" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M9,0 L9,6 L0,3 z" fill="#48BB78" />
+    </marker>
+  </defs>
+  <line x1="120" y1="160" x2="330" y2="160" stroke="#333" stroke-width="2.5" marker-end="url(#arrowSeq)" />
+  <text x="200" y="150" font-family="Arial" font-size="12" fill="#333">① AssumeRole</text>
+  <text x="200" y="168" font-family="Arial" font-size="11" fill="#666">(RoleArn)</text>
+  <line x1="330" y1="220" x2="540" y2="220" stroke="#333" stroke-width="2.5" marker-end="url(#arrowSeq)" />
+  <text x="410" y="210" font-family="Arial" font-size="12" fill="#333">② トラストポリシー</text>
+  <text x="410" y="228" font-family="Arial" font-size="11" fill="#666">確認</text>
+  <rect x="545" y="240" width="140" height="70" rx="8" fill="#FEF5E7" stroke="#F39C12" stroke-width="2" />
+  <text x="615" y="265" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#D68910">評価:</text>
+  <text x="615" y="283" text-anchor="middle" font-family="Arial" font-size="10" fill="#D68910">Principal一致?</text>
+  <text x="615" y="298" text-anchor="middle" font-family="Arial" font-size="10" fill="#D68910">Condition満たす?</text>
+  <line x1="540" y1="340" x2="330" y2="340" stroke="#48BB78" stroke-width="2.5" stroke-dasharray="5,5" marker-end="url(#arrowReturn)" />
+  <text x="410" y="330" font-family="Arial" font-size="12" fill="#38A169" font-weight="bold">③ 許可</text>
+  <line x1="330" y1="400" x2="120" y2="400" stroke="#48BB78" stroke-width="2.5" stroke-dasharray="5,5" marker-end="url(#arrowReturn)" />
+  <rect x="135" y="415" width="180" height="70" rx="5" fill="#E6FFFA" stroke="#319795" stroke-width="1" />
+  <text x="225" y="435" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#234E52">④ 一時認証情報:</text>
+  <text x="225" y="453" text-anchor="middle" font-family="Arial" font-size="10" fill="#234E52">• AccessKeyId (ASIA...)</text>
+  <text x="225" y="468" text-anchor="middle" font-family="Arial" font-size="10" fill="#234E52">• SecretAccessKey</text>
+  <text x="225" y="483" text-anchor="middle" font-family="Arial" font-size="10" fill="#234E52">• SessionToken</text>
+  <line x1="120" y1="520" x2="750" y2="520" stroke="#333" stroke-width="2.5" marker-end="url(#arrowSeq)" />
+  <text x="410" y="510" font-family="Arial" font-size="12" fill="#333">⑤ API呼び出し (一時認証情報)</text>
+  <line x1="750" y1="550" x2="120" y2="550" stroke="#48BB78" stroke-width="2.5" stroke-dasharray="5,5" marker-end="url(#arrowReturn)" />
+  <text x="410" y="565" font-family="Arial" font-size="12" fill="#38A169" font-weight="bold">⑥ レスポンス</text>
+  <rect x="20" y="20" width="180" height="30" rx="5" fill="white" stroke="#ddd" stroke-width="1" />
+  <line x1="30" y1="35" x2="60" y2="35" stroke="#333" stroke-width="2" />
+  <text x="65" y="39" font-family="Arial" font-size="10" fill="#333">リクエスト</text>
+  <line x1="115" y1="35" x2="145" y2="35" stroke="#48BB78" stroke-width="2" stroke-dasharray="5,5" />
+  <text x="150" y="39" font-family="Arial" font-size="10" fill="#333">レスポンス</text>
+</svg>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-theme="gaia" data-style="section {
   font-size: 28px;
@@ -1473,7 +1631,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E4%B8%80%E6%99%82%E8%AA%8D%E8%A8%BC%E6%83%85%E5%A0%B1%E3%81%AE%E8%A9%B3%E7%B4%B0">一時認証情報の詳細</h1>
 <ul>
 <li><strong>構成要素</strong>:</li>
@@ -1550,7 +1708,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%82%AF%E3%83%AD%E3%82%B9%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9">クロスアカウントアクセス</h1>
 <ul>
 <li><strong>両側で許可が必要</strong>: トラストポリシー + AssumeRole権限</li>
@@ -1602,7 +1760,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%82%AF%E3%83%AD%E3%82%B9%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">クロスアカウントアクセス（コード例）</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-json"><span class="hljs-comment">// アカウントBのロールのトラストポリシー</span>
 <span class="hljs-punctuation">{</span>
@@ -1665,7 +1823,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%83%AD%E3%83%BC%E3%83%AB">サービスロール</h1>
 <ul>
 <li><strong>AWSサービスがAssumeRoleする</strong></li>
@@ -1743,7 +1901,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%83%AA%E3%83%B3%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%AB">サービスリンクロール</h1>
 <ul>
 <li><strong>AWSサービスが自動作成・管理するロール</strong></li>
@@ -1816,7 +1974,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%83%99%E3%83%BC%E3%82%B9%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E3%81%A8%E3%81%AF">リソースベースポリシーとは</h1>
 <ul>
 <li><strong>リソース側で定義する権限</strong></li>
@@ -1898,7 +2056,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E3%81%AE%E6%A7%8B%E9%80%A0">リソースポリシーの構造</h1>
 <ul>
 <li><strong>Principal要素</strong> - 誰に許可するか (アイデンティティベースにはない)</li>
@@ -1950,7 +2108,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E3%81%AE%E6%A7%8B%E9%80%A0%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">リソースポリシーの構造（コード例）</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">&quot;Version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2012-10-17&quot;</span><span class="hljs-punctuation">,</span>
@@ -2012,7 +2170,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%82%A2%E3%82%A4%E3%83%87%E3%83%B3%E3%83%86%E3%82%A3%E3%83%86%E3%82%A3%E3%83%99%E3%83%BC%E3%82%B9-vs-%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%83%99%E3%83%BC%E3%82%B9">アイデンティティベース vs リソースベース</h1>
 <ul>
 <li><strong>同一アカウント内</strong>:</li>
@@ -2089,7 +2247,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="s3%E3%83%90%E3%82%B1%E3%83%83%E3%83%88%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E3%81%AE%E4%BE%8B">S3バケットポリシーの例</h1>
 <ul>
 <li>CloudFrontからのアクセスのみ許可</li>
@@ -2141,7 +2299,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="s3%E3%83%90%E3%82%B1%E3%83%83%E3%83%88%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E3%81%AE%E4%BE%8B%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">S3バケットポリシーの例（コード例）</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">&quot;Statement&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
@@ -2204,7 +2362,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="lambda%E9%96%A2%E6%95%B0%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E3%81%AE%E4%BE%8B">Lambda関数ポリシーの例</h1>
 <ul>
 <li>S3バケットがLambda関数を呼び出す権限</li>
@@ -2256,7 +2414,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="lambda%E9%96%A2%E6%95%B0%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E3%81%AE%E4%BE%8B%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">Lambda関数ポリシーの例（コード例）</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">&quot;Statement&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
@@ -2319,7 +2477,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E8%A9%95%E4%BE%A1%E3%83%95%E3%83%AD%E3%83%BC---%E5%85%A8%E4%BD%93%E5%83%8F">ポリシー評価フロー - 全体像</h1>
 <ul>
 <li><strong>同一アカウント</strong>: アイデンティティベースのみで判定可</li>
@@ -2371,19 +2529,79 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E8%A9%95%E4%BE%A1%E3%83%95%E3%83%AD%E3%83%BC---%E5%85%A8%E4%BD%93%E5%83%8F%E5%9B%B3%E8%A7%A3">ポリシー評価フロー - 全体像（図解）</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-mermaid">graph TD
-    A[リクエスト] --&gt; B{同一アカウント?}
-    B --&gt;|Yes| C[アイデンティティベース&lt;br/&gt;ポリシー評価]
-    B --&gt;|No| D[アイデンティティベース&lt;br/&gt;+ リソースベース評価]
-    C --&gt; E{明示的Deny?}
-    D --&gt; E
-    E --&gt;|Yes| F[拒否]
-    E --&gt;|No| G{明示的Allow?}
-    G --&gt;|Yes| H[許可]
-    G --&gt;|No| I[拒否&lt;br/&gt;デフォルトDeny]
-</code></pre>
+<svg viewBox="0 0 850 650" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;">
+  
+  <rect width="850" height="650" fill="#f8f9fa" />
+
+<p><text x="425" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">クロスアカウント考慮の評価フロー</text></p>
+  <g id="request">
+    <rect x="340" y="60" width="170" height="60" rx="10" fill="#667EEA" stroke="#5A67D8" stroke-width="3" />
+    <text x="425" y="95" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">リクエスト</text>
+  </g>
+  <g id="decision1">
+    <path d="M 425 180 L 515 230 L 425 280 L 335 230 Z" fill="#E6FFFA" stroke="#319795" stroke-width="3" />
+    <text x="425" y="220" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#234E52">同一</text>
+    <text x="425" y="240" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#234E52">アカウント?</text>
+  </g>
+  <g id="sameAccount">
+    <rect x="580" y="190" width="180" height="80" rx="10" fill="#BEE3F8" stroke="#3182CE" stroke-width="2" />
+    <text x="670" y="215" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#2C5282">アイデンティティ</text>
+    <text x="670" y="233" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#2C5282">ベース</text>
+    <text x="670" y="253" text-anchor="middle" font-family="Arial" font-size="12" fill="#2C5282">ポリシー評価</text>
+  </g>
+  <g id="crossAccount">
+    <rect x="90" y="190" width="180" height="80" rx="10" fill="#FED7E2" stroke="#D53F8C" stroke-width="2" />
+    <text x="180" y="210" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#702459">アイデンティティベース</text>
+    <text x="180" y="228" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#702459">+</text>
+    <text x="180" y="246" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#702459">リソースベース</text>
+    <text x="180" y="264" text-anchor="middle" font-family="Arial" font-size="11" fill="#702459">評価</text>
+  </g>
+  <g id="decision2">
+    <path d="M 425 380 L 515 430 L 425 480 L 335 430 Z" fill="#FED7D7" stroke="#FC8181" stroke-width="3" />
+    <text x="425" y="420" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#C53030">明示的</text>
+    <text x="425" y="440" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#C53030">Deny?</text>
+  </g>
+  <g id="deny1">
+    <rect x="610" y="400" width="120" height="60" rx="10" fill="#FC8181" stroke="#C53030" stroke-width="3" />
+    <text x="670" y="435" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">拒否</text>
+  </g>
+  <g id="decision3">
+    <path d="M 425 550 L 515 600 L 425 650 L 335 600 Z" fill="#C6F6D5" stroke="#48BB78" stroke-width="3" />
+    <text x="425" y="590" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#276749">明示的</text>
+    <text x="425" y="610" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#276749">Allow?</text>
+  </g>
+  <g id="allow">
+    <rect x="610" y="570" width="120" height="60" rx="10" fill="#48BB78" stroke="#38A169" stroke-width="3" />
+    <text x="670" y="605" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">許可</text>
+  </g>
+  <g id="deny2">
+    <rect x="120" y="570" width="140" height="60" rx="10" fill="#FC8181" stroke="#C53030" stroke-width="3" />
+    <text x="190" y="595" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="white">拒否</text>
+    <text x="190" y="615" text-anchor="middle" font-family="Arial" font-size="12" fill="white">(デフォルト)</text>
+  </g>
+  <defs>
+    <marker id="arrowFlow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#333" />
+    </marker>
+  </defs>
+  <path d="M 425 120 L 425 180" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowFlow)" />
+  <path d="M 515 230 L 580 230" stroke="#3182CE" stroke-width="3" fill="none" marker-end="url(#arrowFlow)" />
+  <text x="535" y="220" font-family="Arial" font-size="13" font-weight="bold" fill="#2C5282">Yes</text>
+  <path d="M 335 230 L 270 230" stroke="#D53F8C" stroke-width="3" fill="none" marker-end="url(#arrowFlow)" />
+  <text x="295" y="220" font-family="Arial" font-size="13" font-weight="bold" fill="#702459">No</text>
+  <path d="M 670 270 L 670 350 L 470 350 L 470 380" stroke="#333" stroke-width="2.5" fill="none" marker-end="url(#arrowFlow)" />
+  <path d="M 180 270 L 180 350 L 380 350 L 380 380" stroke="#333" stroke-width="2.5" fill="none" marker-end="url(#arrowFlow)" />
+  <path d="M 515 430 L 610 430" stroke="#FC8181" stroke-width="3" fill="none" marker-end="url(#arrowFlow)" />
+  <text x="545" y="420" font-family="Arial" font-size="13" font-weight="bold" fill="#C53030">Yes</text>
+  <path d="M 425 480 L 425 550" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowFlow)" />
+  <text x="435" y="520" font-family="Arial" font-size="13" font-weight="bold" fill="#333">No</text>
+  <path d="M 515 600 L 610 600" stroke="#48BB78" stroke-width="3" fill="none" marker-end="url(#arrowFlow)" />
+  <text x="545" y="590" font-family="Arial" font-size="13" font-weight="bold" fill="#38A169">Yes</text>
+  <path d="M 335 600 L 260 600" stroke="#FC8181" stroke-width="3" fill="none" marker-end="url(#arrowFlow)" />
+  <text x="285" y="590" font-family="Arial" font-size="13" font-weight="bold" fill="#C53030">No</text>
+</svg>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-paginate="true" data-theme="gaia" data-style="section {
   font-size: 28px;
@@ -2429,7 +2647,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="permission-boundaries---%E6%A6%82%E5%BF%B5">Permission Boundaries - 概念</h1>
 <ul>
 <li><strong>権限の上限を設定</strong> - これ以上の権限は付与できない</li>
@@ -2502,7 +2720,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="permission-boundaries%E3%81%AE%E5%8A%B9%E6%9E%9C%E7%AF%84%E5%9B%B2">Permission Boundariesの効果範囲</h1>
 <ul>
 <li><strong>積集合</strong>: 両方にAllowがある操作のみ実行可</li>
@@ -2555,9 +2773,55 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="permission-boundaries%E3%81%AE%E5%8A%B9%E6%9E%9C%E7%AF%84%E5%9B%B2%E5%9B%B3%E8%A7%A3">Permission Boundariesの効果範囲（図解）</h1>
-<p><img src="./permission-boundary-venn.svg" alt="Permission Boundary ベン図" /></p>
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;">
+  
+  <rect width="800" height="500" fill="#f8f9fa" />
+
+<p><text x="400" y="35" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">Permission Boundaries — 積集合による権限制限</text></p>
+  <circle cx="280" cy="250" r="140" fill="#63B3ED" opacity="0.5" stroke="#3182CE" stroke-width="3" />
+  <circle cx="520" cy="250" r="140" fill="#F6AD55" opacity="0.5" stroke="#DD6B20" stroke-width="3" />
+  <path d="M 400 110 A 140 140 0 0 1 400 390 A 140 140 0 0 1 400 110 Z" fill="#48BB78" opacity="0.7" stroke="#2F855A" stroke-width="3" />
+
+<p><text x="220" y="150" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#2C5282">アイデンティティ</text><br />
+<text x="220" y="170" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#2C5282">ベースポリシー</text><br />
+<text x="220" y="195" text-anchor="middle" font-family="Arial" font-size="11" fill="#2C5282">(IAMポリシー)</text></p>
+<p><text x="580" y="150" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#9C4221">Permission</text><br />
+<text x="580" y="170" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#9C4221">Boundary</text><br />
+<text x="580" y="195" text-anchor="middle" font-family="Arial" font-size="11" fill="#9C4221">(権限の上限)</text></p>
+
+<p><text x="400" y="240" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">実際の権限</text><br />
+<text x="400" y="265" text-anchor="middle" font-family="Arial" font-size="13" fill="white">(A AND B)</text></p>
+  <g id="examples">
+    
+    <rect x="140" y="270" width="110" height="80" rx="5" fill="white" opacity="0.9" stroke="#3182CE" stroke-width="1" />
+    <text x="195" y="290" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#2C5282">許可されない:</text>
+    <text x="195" y="307" text-anchor="middle" font-family="Arial" font-size="9" fill="#2C5282">• ec2:*</text>
+    <text x="195" y="322" text-anchor="middle" font-family="Arial" font-size="9" fill="#2C5282">• rds:*</text>
+    <text x="195" y="337" text-anchor="middle" font-family="Arial" font-size="9" fill="#2C5282">(Boundaryで</text>
+    <text x="195" y="350" text-anchor="middle" font-family="Arial" font-size="9" fill="#2C5282">制限)</text>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;!-- Intersection area --&gt;
+&lt;rect x=&quot;345&quot; y=&quot;290&quot; width=&quot;110&quot; height=&quot;70&quot; rx=&quot;5&quot; fill=&quot;white&quot; opacity=&quot;0.95&quot; stroke=&quot;#2F855A&quot; stroke-width=&quot;2&quot;/&gt;
+&lt;text x=&quot;400&quot; y=&quot;310&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;10&quot; font-weight=&quot;bold&quot; fill=&quot;#276749&quot;&gt;許可される:&lt;/text&gt;
+&lt;text x=&quot;400&quot; y=&quot;327&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;9&quot; fill=&quot;#276749&quot;&gt;• s3:GetObject&lt;/text&gt;
+&lt;text x=&quot;400&quot; y=&quot;342&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;9&quot; fill=&quot;#276749&quot;&gt;• s3:PutObject&lt;/text&gt;
+&lt;text x=&quot;400&quot; y=&quot;357&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;9&quot; fill=&quot;#276749&quot;&gt;• dynamodb:*&lt;/text&gt;
+
+&lt;!-- Right only area --&gt;
+&lt;rect x=&quot;550&quot; y=&quot;270&quot; width=&quot;110&quot; height=&quot;80&quot; rx=&quot;5&quot; fill=&quot;white&quot; opacity=&quot;0.9&quot; stroke=&quot;#DD6B20&quot; stroke-width=&quot;1&quot;/&gt;
+&lt;text x=&quot;605&quot; y=&quot;290&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;10&quot; font-weight=&quot;bold&quot; fill=&quot;#9C4221&quot;&gt;許可されない:&lt;/text&gt;
+&lt;text x=&quot;605&quot; y=&quot;307&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;9&quot; fill=&quot;#9C4221&quot;&gt;• lambda:*&lt;/text&gt;
+&lt;text x=&quot;605&quot; y=&quot;322&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;9&quot; fill=&quot;#9C4221&quot;&gt;(ポリシーに&lt;/text&gt;
+&lt;text x=&quot;605&quot; y=&quot;337&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;9&quot; fill=&quot;#9C4221&quot;&gt;定義なし)&lt;/text&gt;
+</code></pre>
+  </g>
+  <rect x="200" y="430" width="400" height="50" rx="10" fill="#E6FFFA" stroke="#319795" stroke-width="2" />
+  <text x="400" y="455" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#234E52">実効権限 = (IAMポリシー) ∩ (Permission Boundary)</text>
+  <rect x="20" y="20" width="230" height="50" rx="8" fill="#FEF5E7" stroke="#F39C12" stroke-width="2" />
+  <text x="135" y="42" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#D68910">重要: 両方にAllowが必要</text>
+  <text x="135" y="60" text-anchor="middle" font-family="Arial" font-size="11" fill="#D68910">どちらか一方だけでは不十分</text>
+</svg>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-paginate="true" data-theme="gaia" data-style="section {
   font-size: 28px;
@@ -2603,7 +2867,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="permission-boundaries%E5%AE%9F%E8%A3%85%E4%BE%8B">Permission Boundaries実装例</h1>
 <ul>
 <li>開発者は自由にロールを作成可</li>
@@ -2655,7 +2919,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="permission-boundaries%E5%AE%9F%E8%A3%85%E4%BE%8B%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">Permission Boundaries実装例（コード例）</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-json"><span class="hljs-comment">// Permission Boundary ポリシー</span>
 <span class="hljs-punctuation">{</span>
@@ -2725,7 +2989,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E5%A7%94%E4%BB%BB%E7%AE%A1%E7%90%86%E3%81%AE%E3%83%A6%E3%83%BC%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%B9">委任管理のユースケース</h1>
 <ul>
 <li><strong>シナリオ</strong>: 開発チームに権限管理を委任したい</li>
@@ -2793,7 +3057,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="service-control-policies-scp">Service Control Policies (SCP)</h1>
 <ul>
 <li><strong>AWS Organizationsの機能</strong> - 組織レベルでの権限制御</li>
@@ -2853,7 +3117,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="scp%E3%81%A8iam%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E3%81%AE%E9%96%A2%E4%BF%82">SCPとIAMポリシーの関係</h1>
 <ul>
 <li><strong>3つの積集合</strong>: すべてにAllowがある操作のみ実行可</li>
@@ -2905,15 +3169,63 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="scp%E3%81%A8iam%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E3%81%AE%E9%96%A2%E4%BF%82%E5%9B%B3%E8%A7%A3">SCPとIAMポリシーの関係（図解）</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-mermaid">graph TD
-    A[SCP&lt;br/&gt;組織レベルの上限] --&gt; D
-    B[Permission Boundary&lt;br/&gt;ユーザー/ロールの上限] --&gt; D
-    C[アイデンティティベース&lt;br/&gt;ポリシー] --&gt; D
-    D[実際の権限&lt;br/&gt;A AND B AND C]
-    style D fill:#FFB6C1
+<svg viewBox="0 0 800 550" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;">
+  
+  <rect width="800" height="550" fill="#f8f9fa" />
+
+<p><text x="400" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">3層の権限制御 — SCP/Boundary/IAMポリシー</text></p>
+  <g id="scp">
+    <ellipse cx="400" cy="300" rx="350" ry="200" fill="#E0E7FF" opacity="0.6" stroke="#667EEA" stroke-width="4" />
+    <text x="400" y="120" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#5A67D8">SCP (Service Control Policy)</text>
+    <text x="400" y="145" text-anchor="middle" font-family="Arial" font-size="14" fill="#5A67D8">組織レベルの上限</text>
+    <text x="400" y="165" text-anchor="middle" font-family="Arial" font-size="12" fill="#667EEA">すべてのアカウント・ユーザー・ロールに適用</text>
+  </g>
+  <g id="boundary">
+    <ellipse cx="400" cy="310" rx="240" ry="130" fill="#FED7E2" opacity="0.7" stroke="#D53F8C" stroke-width="3" />
+    <text x="400" y="220" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#97266D">Permission Boundary</text>
+    <text x="400" y="242" text-anchor="middle" font-family="Arial" font-size="13" fill="#97266D">ユーザー/ロールの上限</text>
+  </g>
+  <g id="identity">
+    <ellipse cx="400" cy="320" rx="130" ry="75" fill="#C6F6D5" opacity="0.8" stroke="#38A169" stroke-width="3" />
+    <text x="400" y="305" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#276749">アイデンティティ</text>
+    <text x="400" y="325" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#276749">ベースポリシー</text>
+    <text x="400" y="345" text-anchor="middle" font-family="Arial" font-size="12" fill="#2F855A">実際の権限</text>
+  </g>
+  <g id="result">
+    <circle cx="400" cy="330" r="30" fill="#FC8181" opacity="0.9" stroke="#C53030" stroke-width="3" />
+    <text x="400" y="338" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="white">最終</text>
+    <text x="400" y="355" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="white">権限</text>
+  </g>
+  <g id="explanations">
+    
+    <rect x="20" y="230" width="160" height="80" rx="8" fill="white" stroke="#667EEA" stroke-width="2" />
+    <text x="100" y="250" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#5A67D8">SCP例:</text>
+    <text x="100" y="268" text-anchor="middle" font-family="Arial" font-size="9" fill="#667EEA">• 特定リージョン禁止</text>
+    <text x="100" y="283" text-anchor="middle" font-family="Arial" font-size="9" fill="#667EEA">• 高額サービス禁止</text>
+    <text x="100" y="298" text-anchor="middle" font-family="Arial" font-size="9" fill="#667EEA">• ルートユーザーにも</text>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;!-- Boundary example --&gt;
+&lt;rect x=&quot;620&quot; y=&quot;250&quot; width=&quot;160&quot; height=&quot;70&quot; rx=&quot;8&quot; fill=&quot;white&quot; stroke=&quot;#D53F8C&quot; stroke-width=&quot;2&quot;/&gt;
+&lt;text x=&quot;700&quot; y=&quot;270&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; font-weight=&quot;bold&quot; fill=&quot;#97266D&quot;&gt;Boundary例:&lt;/text&gt;
+&lt;text x=&quot;700&quot; y=&quot;288&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;9&quot; fill=&quot;#D53F8C&quot;&gt;• 開発者用制限&lt;/text&gt;
+&lt;text x=&quot;700&quot; y=&quot;303&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;9&quot; fill=&quot;#D53F8C&quot;&gt;• S3/Lambda/DDB&lt;/text&gt;
+&lt;text x=&quot;700&quot; y=&quot;318&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;9&quot; fill=&quot;#D53F8C&quot;&gt;  のみ許可&lt;/text&gt;
+
+&lt;!-- IAM Policy example --&gt;
+&lt;rect x=&quot;320&quot; y=&quot;420&quot; width=&quot;160&quot; height=&quot;70&quot; rx=&quot;8&quot; fill=&quot;white&quot; stroke=&quot;#38A169&quot; stroke-width=&quot;2&quot;/&gt;
+&lt;text x=&quot;400&quot; y=&quot;440&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; font-weight=&quot;bold&quot; fill=&quot;#276749&quot;&gt;IAMポリシー例:&lt;/text&gt;
+&lt;text x=&quot;400&quot; y=&quot;458&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;9&quot; fill=&quot;#38A169&quot;&gt;• s3:GetObject&lt;/text&gt;
+&lt;text x=&quot;400&quot; y=&quot;473&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;9&quot; fill=&quot;#38A169&quot;&gt;• s3:PutObject&lt;/text&gt;
+&lt;text x=&quot;400&quot; y=&quot;488&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial&quot; font-size=&quot;9&quot; fill=&quot;#38A169&quot;&gt;• lambda:InvokeFunction&lt;/text&gt;
 </code></pre>
+  </g>
+  <rect x="150" y="510" width="500" height="30" rx="8" fill="#E6FFFA" stroke="#319795" stroke-width="2" />
+  <text x="400" y="530" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#234E52">実効権限 = SCP ∩ Permission Boundary ∩ IAMポリシー</text>
+  <rect x="570" y="20" width="210" height="50" rx="8" fill="#FEF5E7" stroke="#F39C12" stroke-width="2" />
+  <text x="675" y="42" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#D68910">重要: 3つすべてにAllowが必要</text>
+  <text x="675" y="60" text-anchor="middle" font-family="Arial" font-size="10" fill="#D68910">1つでもDenyがあれば拒否</text>
+</svg>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-paginate="true" data-theme="gaia" data-style="section {
   font-size: 28px;
@@ -2959,7 +3271,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E8%A9%95%E4%BE%A1%E3%81%AE%E5%85%A8%E4%BD%93%E5%83%8F">ポリシー評価の全体像</h1>
 <ul>
 <li><strong>評価順序</strong> (すべてANDで結合):</li>
@@ -3036,7 +3348,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="assumerolewithsaml">AssumeRoleWithSAML</h1>
 <ul>
 <li><strong>SAML 2.0フェデレーション</strong> - 企業のIdP (Okta, Azure AD等) と連携</li>
@@ -3109,39 +3421,34 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="assumerolewithsaml-%E3%83%95%E3%83%AD%E3%83%BC%E8%A9%B3%E7%B4%B0">AssumeRoleWithSAML フロー（詳細）</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-mermaid">sequenceDiagram
-    participant User as ユーザー
-    participant Browser as ブラウザ
-    participant IdP as 企業IdP&lt;br/&gt;(Okta/Azure AD)
-    participant STS as AWS STS
-    participant IAM as AWS IAM
-    participant S3 as AWS サービス&lt;br/&gt;(S3等)
-
-    User-&gt;&gt;Browser: 1. AWSリソースにアクセス要求
-    Browser-&gt;&gt;IdP: 2. ログインページにリダイレクト
-    User-&gt;&gt;IdP: 3. 認証情報を入力（ユーザー名/パスワード）
-    IdP-&gt;&gt;IdP: 4. ユーザー認証
-    IdP-&gt;&gt;Browser: 5. SAML Assertion発行（署名済みXML）
-
-    Browser-&gt;&gt;STS: 6. AssumeRoleWithSAML&lt;br/&gt;(SAML Assertion, RoleArn, PrincipalArn)
-
-    STS-&gt;&gt;IAM: 7. SAML Providerの検証
-    IAM--&gt;&gt;STS: 8. Provider有効
-
-    STS-&gt;&gt;IAM: 9. ロールのトラストポリシー確認&lt;br/&gt;(Federated Principal許可?)
-    IAM--&gt;&gt;STS: 10. 信頼関係OK
-
-    STS-&gt;&gt;STS: 11. SAML Assertionの署名検証
-    STS-&gt;&gt;Browser: 12. 一時認証情報発行&lt;br/&gt;(AccessKeyId, SecretAccessKey, SessionToken)
-
-    Browser-&gt;&gt;S3: 13. APIリクエスト（一時認証情報を使用）
-    S3-&gt;&gt;IAM: 14. ロールのポリシー評価
-    IAM--&gt;&gt;S3: 15. 許可
-    S3--&gt;&gt;Browser: 16. レスポンス
-    Browser--&gt;&gt;User: 17. AWSリソースへのアクセス成功
-</code></pre>
+;" data-marpit-pagination-total="65" data-size="16:9">
+<h1 id="assumerolewithwebidentity">AssumeRoleWithWebIdentity</h1>
+<ul>
+<li><strong>OIDCフェデレーション</strong> - Google, Facebook, Amazon Cognito等</li>
+<li><strong>モバイルアプリのユースケース</strong>:</li>
+<li>
+<ul>
+<li>アプリユーザーがGoogleでログイン</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>IDトークンを取得</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>sts:AssumeRoleWithWebIdentity</code> で一時認証情報</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>S3にファイルアップロード等</li>
+</ul>
+</li>
+<li><strong>Amazon Cognito推奨</strong>: 複数IdPの統合、ユーザープール管理</li>
+<li><strong>トラストポリシー</strong>: <code>&quot;Principal&quot;: {&quot;Federated&quot;: &quot;cognito-identity.amazonaws.com&quot;}</code></li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="52" data-paginate="true" data-theme="gaia" data-style="section {
   font-size: 28px;
@@ -3187,33 +3494,42 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="assumerolewithwebidentity">AssumeRoleWithWebIdentity</h1>
+;" data-marpit-pagination-total="65" data-size="16:9">
+<h1 id="%E5%A4%96%E9%83%A8id%E3%81%AB%E3%82%88%E3%82%8B%E6%B7%B7%E4%B9%B1%E3%81%97%E3%81%9F%E4%BB%A3%E7%90%86%E5%95%8F%E9%A1%8C%E5%AF%BE%E7%AD%96">外部IDによる混乱した代理問題対策</h1>
 <ul>
-<li><strong>OIDCフェデレーション</strong> - Google, Facebook, Amazon Cognito等</li>
-<li><strong>モバイルアプリのユースケース</strong>:</li>
+<li><strong>混乱した代理問題 (Confused Deputy)</strong>:</li>
 <li>
 <ul>
-<li>アプリユーザーがGoogleでログイン</li>
+<li>サードパーティがあなたのロールを不正にAssumeRoleする</li>
 </ul>
 </li>
 <li>
 <ul>
-<li>IDトークンを取得</li>
+<li>例: SaaSベンダーのアカウントIDをトラストポリシーに追加</li>
 </ul>
 </li>
 <li>
 <ul>
-<li><code>sts:AssumeRoleWithWebIdentity</code> で一時認証情報</li>
+<li>別の顧客があなたのロールARNを推測して使用</li>
+</ul>
+</li>
+<li><strong>対策: 外部ID (ExternalId)</strong></li>
+<li>
+<ul>
+<li>顧客ごとに一意のランダム文字列</li>
 </ul>
 </li>
 <li>
 <ul>
-<li>S3にファイルアップロード等</li>
+<li>トラストポリシーの条件に追加</li>
 </ul>
 </li>
-<li><strong>Amazon Cognito推奨</strong>: 複数IdPの統合、ユーザープール管理</li>
-<li><strong>トラストポリシー</strong>: <code>&quot;Principal&quot;: {&quot;Federated&quot;: &quot;cognito-identity.amazonaws.com&quot;}</code></li>
+<li>
+<ul>
+<li>AssumeRole時に外部IDも提供が必要</li>
+</ul>
+</li>
+<li><strong>重要</strong>: 外部IDは秘密ではない、一意性が重要</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="53" data-paginate="true" data-theme="gaia" data-style="section {
@@ -3260,42 +3576,11 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="%E5%A4%96%E9%83%A8id%E3%81%AB%E3%82%88%E3%82%8B%E6%B7%B7%E4%B9%B1%E3%81%97%E3%81%9F%E4%BB%A3%E7%90%86%E5%95%8F%E9%A1%8C%E5%AF%BE%E7%AD%96">外部IDによる混乱した代理問題対策</h1>
+;" data-marpit-pagination-total="65" data-size="16:9">
+<h1 id="%E5%A4%96%E9%83%A8id%E5%AE%9F%E8%A3%85%E4%BE%8B">外部ID実装例</h1>
 <ul>
-<li><strong>混乱した代理問題 (Confused Deputy)</strong>:</li>
-<li>
-<ul>
-<li>サードパーティがあなたのロールを不正にAssumeRoleする</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>例: SaaSベンダーのアカウントIDをトラストポリシーに追加</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>別の顧客があなたのロールARNを推測して使用</li>
-</ul>
-</li>
-<li><strong>対策: 外部ID (ExternalId)</strong></li>
-<li>
-<ul>
-<li>顧客ごとに一意のランダム文字列</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>トラストポリシーの条件に追加</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>AssumeRole時に外部IDも提供が必要</li>
-</ul>
-</li>
-<li><strong>重要</strong>: 外部IDは秘密ではない、一意性が重要</li>
+<li>他の顧客の外部IDでは AssumeRole 失敗</li>
+<li>推測攻撃を防止</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="54" data-paginate="true" data-theme="gaia" data-style="section {
@@ -3342,12 +3627,28 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="%E5%A4%96%E9%83%A8id%E5%AE%9F%E8%A3%85%E4%BE%8B">外部ID実装例</h1>
-<ul>
-<li>他の顧客の外部IDでは AssumeRole 失敗</li>
-<li>推測攻撃を防止</li>
-</ul>
+;" data-marpit-pagination-total="65" data-size="16:9">
+<h1 id="%E5%A4%96%E9%83%A8id%E5%AE%9F%E8%A3%85%E4%BE%8B%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">外部ID実装例（コード例）</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">// あなたのAWSアカウントのロールのトラストポリシー
+{
+  <span class="hljs-string">&quot;Effect&quot;</span>: <span class="hljs-string">&quot;Allow&quot;</span>,
+  <span class="hljs-string">&quot;Principal&quot;</span>: {
+    <span class="hljs-string">&quot;AWS&quot;</span>: <span class="hljs-string">&quot;arn:aws:iam::123456789012:root&quot;</span>
+  },
+  <span class="hljs-string">&quot;Action&quot;</span>: <span class="hljs-string">&quot;sts:AssumeRole&quot;</span>,
+  <span class="hljs-string">&quot;Condition&quot;</span>: {
+    <span class="hljs-string">&quot;StringEquals&quot;</span>: {
+      <span class="hljs-string">&quot;sts:ExternalId&quot;</span>: <span class="hljs-string">&quot;unique-customer-id-abc123&quot;</span>
+    }
+  }
+}
+
+// サードパーティのAssumeRole呼び出し
+sts.assume_role(
+  RoleArn=<span class="hljs-string">&#x27;arn:aws:iam::999999999999:role/YourRole&#x27;</span>,
+  ExternalId=<span class="hljs-string">&#x27;unique-customer-id-abc123&#x27;</span>
+)
+</code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="55" data-paginate="true" data-theme="gaia" data-style="section {
   font-size: 28px;
@@ -3393,28 +3694,30 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="%E5%A4%96%E9%83%A8id%E5%AE%9F%E8%A3%85%E4%BE%8B%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">外部ID実装例（コード例）</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">// あなたのAWSアカウントのロールのトラストポリシー
-{
-  <span class="hljs-string">&quot;Effect&quot;</span>: <span class="hljs-string">&quot;Allow&quot;</span>,
-  <span class="hljs-string">&quot;Principal&quot;</span>: {
-    <span class="hljs-string">&quot;AWS&quot;</span>: <span class="hljs-string">&quot;arn:aws:iam::123456789012:root&quot;</span>
-  },
-  <span class="hljs-string">&quot;Action&quot;</span>: <span class="hljs-string">&quot;sts:AssumeRole&quot;</span>,
-  <span class="hljs-string">&quot;Condition&quot;</span>: {
-    <span class="hljs-string">&quot;StringEquals&quot;</span>: {
-      <span class="hljs-string">&quot;sts:ExternalId&quot;</span>: <span class="hljs-string">&quot;unique-customer-id-abc123&quot;</span>
-    }
-  }
-}
-
-// サードパーティのAssumeRole呼び出し
-sts.assume_role(
-  RoleArn=<span class="hljs-string">&#x27;arn:aws:iam::999999999999:role/YourRole&#x27;</span>,
-  ExternalId=<span class="hljs-string">&#x27;unique-customer-id-abc123&#x27;</span>
-)
-</code></pre>
+;" data-marpit-pagination-total="65" data-size="16:9">
+<h1 id="%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC">セッションポリシー</h1>
+<ul>
+<li><strong>AssumeRole時に追加の制限を適用</strong></li>
+<li>
+<ul>
+<li><code>--policy</code> パラメータでインラインポリシーを渡す</li>
+</ul>
+</li>
+<li><strong>効果</strong>: ロールの権限をさらに制限 (拡張は不可)</li>
+<li><strong>ユースケース</strong>:</li>
+<li>
+<ul>
+<li>一時的にスコープを絞る (特定のS3バケットのみ)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>トークンを外部に渡す際のリスク軽減</li>
+</ul>
+</li>
+<li><strong>制限</strong>: 最大2048文字</li>
+<li><strong>評価</strong>: (ロールのポリシー) AND (セッションポリシー)</li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="56" data-paginate="true" data-theme="gaia" data-style="section {
   font-size: 28px;
@@ -3460,29 +3763,42 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC">セッションポリシー</h1>
+;" data-marpit-pagination-total="65" data-size="16:9">
+<h1 id="%E6%9C%80%E5%B0%8F%E6%A8%A9%E9%99%90%E3%81%AE%E5%8E%9F%E5%89%87">最小権限の原則</h1>
 <ul>
-<li><strong>AssumeRole時に追加の制限を適用</strong></li>
+<li><strong>必要最小限の権限のみ付与</strong> - 過剰な権限は攻撃対象を増やす</li>
+<li><strong>アプローチ</strong>:</li>
 <li>
-<ul>
-<li><code>--policy</code> パラメータでインラインポリシーを渡す</li>
-</ul>
-</li>
-<li><strong>効果</strong>: ロールの権限をさらに制限 (拡張は不可)</li>
-<li><strong>ユースケース</strong>:</li>
-<li>
-<ul>
-<li>一時的にスコープを絞る (特定のS3バケットのみ)</li>
-</ul>
+<ol>
+<li>広い権限で開始 (例: <code>s3:*</code>)</li>
+</ol>
 </li>
 <li>
+<ol start="2">
+<li>CloudTrailで実際に使用されたアクションを確認</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>使用されたアクションのみに絞り込む</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>定期的にレビュー、不要な権限を削除</li>
+</ol>
+</li>
+<li><strong>ツール</strong>:</li>
+<li>
 <ul>
-<li>トークンを外部に渡す際のリスク軽減</li>
+<li><strong>IAM Access Analyzer</strong> - 未使用の権限を検出</li>
 </ul>
 </li>
-<li><strong>制限</strong>: 最大2048文字</li>
-<li><strong>評価</strong>: (ロールのポリシー) AND (セッションポリシー)</li>
+<li>
+<ul>
+<li><strong>Access Advisor</strong> - 最終使用日時を確認</li>
+</ul>
+</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="57" data-paginate="true" data-theme="gaia" data-style="section {
@@ -3529,40 +3845,37 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="%E6%9C%80%E5%B0%8F%E6%A8%A9%E9%99%90%E3%81%AE%E5%8E%9F%E5%89%87">最小権限の原則</h1>
+;" data-marpit-pagination-total="65" data-size="16:9">
+<h1 id="%E3%83%AD%E3%83%BC%E3%83%AB%E8%A8%AD%E8%A8%88%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">ロール設計パターン</h1>
 <ul>
-<li><strong>必要最小限の権限のみ付与</strong> - 過剰な権限は攻撃対象を増やす</li>
-<li><strong>アプローチ</strong>:</li>
-<li>
-<ol>
-<li>広い権限で開始 (例: <code>s3:*</code>)</li>
-</ol>
-</li>
-<li>
-<ol start="2">
-<li>CloudTrailで実際に使用されたアクションを確認</li>
-</ol>
-</li>
-<li>
-<ol start="3">
-<li>使用されたアクションのみに絞り込む</li>
-</ol>
-</li>
-<li>
-<ol start="4">
-<li>定期的にレビュー、不要な権限を削除</li>
-</ol>
-</li>
-<li><strong>ツール</strong>:</li>
+<li><strong>1. サービスごとに専用ロール</strong></li>
 <li>
 <ul>
-<li><strong>IAM Access Analyzer</strong> - 未使用の権限を検出</li>
+<li>Lambda用、ECS用、EC2用を分離</li>
 </ul>
 </li>
+<li><strong>2. 環境ごとに分離</strong></li>
 <li>
 <ul>
-<li><strong>Access Advisor</strong> - 最終使用日時を確認</li>
+<li>Dev/Staging/Prod で別ロール</li>
+</ul>
+</li>
+<li><strong>3. チームごとに分離</strong></li>
+<li>
+<ul>
+<li>Team-A-Developers, Team-B-Operators</li>
+</ul>
+</li>
+<li><strong>4. クロスアカウント用の中継ロール</strong></li>
+<li>
+<ul>
+<li>アカウントAのユーザー → 中継ロール → アカウントBのリソース</li>
+</ul>
+</li>
+<li><strong>5. ブレイクグラス用の緊急ロール</strong></li>
+<li>
+<ul>
+<li>通常は使用禁止、緊急時のみ (CloudTrail監視必須)</li>
 </ul>
 </li>
 </ul>
@@ -3611,39 +3924,15 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="%E3%83%AD%E3%83%BC%E3%83%AB%E8%A8%AD%E8%A8%88%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">ロール設計パターン</h1>
+;" data-marpit-pagination-total="65" data-size="16:9">
+<h1 id="%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E8%A8%AD%E8%A8%88%E3%83%9F%E3%82%B9">よくある設計ミス</h1>
 <ul>
-<li><strong>1. サービスごとに専用ロール</strong></li>
-<li>
-<ul>
-<li>Lambda用、ECS用、EC2用を分離</li>
-</ul>
-</li>
-<li><strong>2. 環境ごとに分離</strong></li>
-<li>
-<ul>
-<li>Dev/Staging/Prod で別ロール</li>
-</ul>
-</li>
-<li><strong>3. チームごとに分離</strong></li>
-<li>
-<ul>
-<li>Team-A-Developers, Team-B-Operators</li>
-</ul>
-</li>
-<li><strong>4. クロスアカウント用の中継ロール</strong></li>
-<li>
-<ul>
-<li>アカウントAのユーザー → 中継ロール → アカウントBのリソース</li>
-</ul>
-</li>
-<li><strong>5. ブレイクグラス用の緊急ロール</strong></li>
-<li>
-<ul>
-<li>通常は使用禁止、緊急時のみ (CloudTrail監視必須)</li>
-</ul>
-</li>
+<li><strong>1. ワイルドカード乱用</strong>: <code>Resource: &quot;*&quot;</code> は本当に必要か？</li>
+<li><strong>2. 管理ポリシーの過剰付与</strong>: <code>AdministratorAccess</code> を安易に使わない</li>
+<li><strong>3. 長期認証情報の放置</strong>: IAMユーザーのアクセスキーをローテーション</li>
+<li><strong>4. トラストポリシーの緩さ</strong>: <code>Principal: &quot;*&quot;</code> は危険</li>
+<li><strong>5. インラインポリシーの濫用</strong>: 管理が煩雑になる</li>
+<li><strong>6. 権限レビューの欠如</strong>: 定期的な棚卸しを実施</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="59" data-paginate="true" data-theme="gaia" data-style="section {
@@ -3690,15 +3979,19 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E8%A8%AD%E8%A8%88%E3%83%9F%E3%82%B9">よくある設計ミス</h1>
+;" data-marpit-pagination-total="65" data-size="16:9">
+<h1 id="iam-access-analyzer">IAM Access Analyzer</h1>
 <ul>
-<li><strong>1. ワイルドカード乱用</strong>: <code>Resource: &quot;*&quot;</code> は本当に必要か？</li>
-<li><strong>2. 管理ポリシーの過剰付与</strong>: <code>AdministratorAccess</code> を安易に使わない</li>
-<li><strong>3. 長期認証情報の放置</strong>: IAMユーザーのアクセスキーをローテーション</li>
-<li><strong>4. トラストポリシーの緩さ</strong>: <code>Principal: &quot;*&quot;</code> は危険</li>
-<li><strong>5. インラインポリシーの濫用</strong>: 管理が煩雑になる</li>
-<li><strong>6. 権限レビューの欠如</strong>: 定期的な棚卸しを実施</li>
+<li><strong>外部アクセスの検出</strong> - 組織外からアクセス可能なリソースを特定</li>
+<li>
+<ul>
+<li>S3バケット、IAMロール、KMSキー、Lambda関数等</li>
+</ul>
+</li>
+<li><strong>未使用権限の検出</strong> - 過去90日間使用されていないアクションを報告</li>
+<li><strong>ポリシー検証</strong> - JSON構文エラー、ベストプラクティス違反を検出</li>
+<li><strong>継続的モニタリング</strong> - 新しいリソースを自動スキャン</li>
+<li><strong>アクション</strong>: FindingsをSNS/EventBridgeで通知、自動修復</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="60" data-paginate="true" data-theme="gaia" data-style="section {
@@ -3745,19 +4038,47 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="iam-access-analyzer">IAM Access Analyzer</h1>
+;" data-marpit-pagination-total="65" data-size="16:9">
+<h1 id="cloudtrail%E3%81%AB%E3%82%88%E3%82%8B%E7%9B%A3%E6%9F%BB">CloudTrailによる監査</h1>
 <ul>
-<li><strong>外部アクセスの検出</strong> - 組織外からアクセス可能なリソースを特定</li>
+<li><strong>すべてのAPI呼び出しをログ記録</strong></li>
 <li>
 <ul>
-<li>S3バケット、IAMロール、KMSキー、Lambda関数等</li>
+<li>誰が (userIdentity)</li>
 </ul>
 </li>
-<li><strong>未使用権限の検出</strong> - 過去90日間使用されていないアクションを報告</li>
-<li><strong>ポリシー検証</strong> - JSON構文エラー、ベストプラクティス違反を検出</li>
-<li><strong>継続的モニタリング</strong> - 新しいリソースを自動スキャン</li>
-<li><strong>アクション</strong>: FindingsをSNS/EventBridgeで通知、自動修復</li>
+<li>
+<ul>
+<li>いつ (eventTime)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>何を (eventName, requestParameters)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>どこから (sourceIPAddress)</li>
+</ul>
+</li>
+<li><strong>重要なイベント</strong>:</li>
+<li>
+<ul>
+<li><code>AssumeRole</code> - ロールの引き受け</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>CreatePolicy</code>, <code>AttachRolePolicy</code> - 権限変更</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>AccessDenied</code> - 失敗したリクエスト</li>
+</ul>
+</li>
+<li><strong>ベストプラクティス</strong>: S3に長期保存、Athenaで分析</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="61" data-paginate="true" data-theme="gaia" data-style="section {
@@ -3804,47 +4125,43 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="cloudtrail%E3%81%AB%E3%82%88%E3%82%8B%E7%9B%A3%E6%9F%BB">CloudTrailによる監査</h1>
+;" data-marpit-pagination-total="65" data-size="16:9">
+<h1 id="%E6%A8%A9%E9%99%90%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%AE%E8%A8%BA%E6%96%AD%E6%89%8B%E9%A0%86">権限エラーの診断手順</h1>
 <ul>
-<li><strong>すべてのAPI呼び出しをログ記録</strong></li>
+<li><strong>1. エラーメッセージを確認</strong></li>
 <li>
 <ul>
-<li>誰が (userIdentity)</li>
+<li><code>AccessDenied</code>: 権限不足</li>
 </ul>
 </li>
 <li>
 <ul>
-<li>いつ (eventTime)</li>
+<li><code>InvalidClientTokenId</code>: 認証情報が無効</li>
 </ul>
 </li>
 <li>
 <ul>
-<li>何を (eventName, requestParameters)</li>
+<li><code>SignatureDoesNotMatch</code>: 認証情報の設定ミス</li>
 </ul>
 </li>
+<li><strong>2. CloudTrailでイベントを確認</strong></li>
 <li>
 <ul>
-<li>どこから (sourceIPAddress)</li>
+<li><code>errorCode</code> と <code>errorMessage</code> をチェック</li>
 </ul>
 </li>
-<li><strong>重要なイベント</strong>:</li>
+<li><strong>3. ポリシーシミュレーターで検証</strong></li>
 <li>
 <ul>
-<li><code>AssumeRole</code> - ロールの引き受け</li>
+<li>実際の権限を可視化</li>
 </ul>
 </li>
+<li><strong>4. SCP/Permission Boundaryを確認</strong></li>
 <li>
 <ul>
-<li><code>CreatePolicy</code>, <code>AttachRolePolicy</code> - 権限変更</li>
+<li>意図しない制限がないか</li>
 </ul>
 </li>
-<li>
-<ul>
-<li><code>AccessDenied</code> - 失敗したリクエスト</li>
-</ul>
-</li>
-<li><strong>ベストプラクティス</strong>: S3に長期保存、Athenaで分析</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="62" data-paginate="true" data-theme="gaia" data-style="section {
@@ -3891,43 +4208,29 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="%E6%A8%A9%E9%99%90%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%AE%E8%A8%BA%E6%96%AD%E6%89%8B%E9%A0%86">権限エラーの診断手順</h1>
+;" data-marpit-pagination-total="65" data-size="16:9">
+<h1 id="iam%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E3%82%B7%E3%83%9F%E3%83%A5%E3%83%AC%E3%83%BC%E3%82%BF%E3%83%BC">IAMポリシーシミュレーター</h1>
 <ul>
-<li><strong>1. エラーメッセージを確認</strong></li>
+<li><strong>機能</strong>: 特定のアクションが許可されるかテスト</li>
+<li><strong>使い方</strong>:</li>
 <li>
-<ul>
-<li><code>AccessDenied</code>: 権限不足</li>
-</ul>
+<ol>
+<li>プリンシパルを選択 (ユーザー/ロール)</li>
+</ol>
 </li>
 <li>
-<ul>
-<li><code>InvalidClientTokenId</code>: 認証情報が無効</li>
-</ul>
+<ol start="2">
+<li>テストしたいアクション・リソースを指定</li>
+</ol>
 </li>
 <li>
-<ul>
-<li><code>SignatureDoesNotMatch</code>: 認証情報の設定ミス</li>
-</ul>
+<ol start="3">
+<li>結果を確認 (Allow/Deny、理由を表示)</li>
+</ol>
 </li>
-<li><strong>2. CloudTrailでイベントを確認</strong></li>
-<li>
-<ul>
-<li><code>errorCode</code> と <code>errorMessage</code> をチェック</li>
-</ul>
-</li>
-<li><strong>3. ポリシーシミュレーターで検証</strong></li>
-<li>
-<ul>
-<li>実際の権限を可視化</li>
-</ul>
-</li>
-<li><strong>4. SCP/Permission Boundaryを確認</strong></li>
-<li>
-<ul>
-<li>意図しない制限がないか</li>
-</ul>
-</li>
+<li><strong>メリット</strong>: 実際に実行せずに検証可能</li>
+<li><strong>制限</strong>: SCPは反映されない (組織設定は別途確認が必要)</li>
+<li><strong>アクセス</strong>: AWS Management Console または CLI (<code>aws iam simulate-principal-policy</code>)</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="63" data-paginate="true" data-theme="gaia" data-style="section {
@@ -3974,29 +4277,19 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="iam%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E3%82%B7%E3%83%9F%E3%83%A5%E3%83%AC%E3%83%BC%E3%82%BF%E3%83%BC">IAMポリシーシミュレーター</h1>
+;" data-marpit-pagination-total="65" data-size="16:9">
+<h1 id="%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%A8%E5%AF%BE%E7%AD%96">よくあるエラーと対策</h1>
 <ul>
-<li><strong>機能</strong>: 特定のアクションが許可されるかテスト</li>
-<li><strong>使い方</strong>:</li>
-<li>
-<ol>
-<li>プリンシパルを選択 (ユーザー/ロール)</li>
-</ol>
-</li>
-<li>
-<ol start="2">
-<li>テストしたいアクション・リソースを指定</li>
-</ol>
-</li>
-<li>
-<ol start="3">
-<li>結果を確認 (Allow/Deny、理由を表示)</li>
-</ol>
-</li>
-<li><strong>メリット</strong>: 実際に実行せずに検証可能</li>
-<li><strong>制限</strong>: SCPは反映されない (組織設定は別途確認が必要)</li>
-<li><strong>アクセス</strong>: AWS Management Console または CLI (<code>aws iam simulate-principal-policy</code>)</li>
+<li><strong>AssumeRoleが失敗</strong></li>
+<li>→ トラストポリシーを確認、ExternalIdが正しいか</li>
+<li><strong>一時認証情報で認証エラー</strong></li>
+<li>→ SessionTokenを渡しているか、有効期限切れでないか</li>
+<li><strong>クロスアカウントで拒否</strong></li>
+<li>→ 両側のポリシーで許可されているか</li>
+<li><strong>Resource: &quot;*&quot; でも拒否</strong></li>
+<li>→ SCP, Permission Boundaryでブロックされていないか</li>
+<li><strong>ルートユーザーでも拒否</strong></li>
+<li>→ SCPで制限されている (一部操作は例外)</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="64" data-paginate="true" data-theme="gaia" data-style="section {
@@ -4043,19 +4336,16 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%A8%E5%AF%BE%E7%AD%96">よくあるエラーと対策</h1>
+;" data-marpit-pagination-total="65" data-size="16:9">
+<h1 id="%E3%81%BE%E3%81%A8%E3%82%81---%E9%87%8D%E8%A6%81%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88">まとめ - 重要ポイント</h1>
 <ul>
-<li><strong>AssumeRoleが失敗</strong></li>
-<li>→ トラストポリシーを確認、ExternalIdが正しいか</li>
-<li><strong>一時認証情報で認証エラー</strong></li>
-<li>→ SessionTokenを渡しているか、有効期限切れでないか</li>
-<li><strong>クロスアカウントで拒否</strong></li>
-<li>→ 両側のポリシーで許可されているか</li>
-<li><strong>Resource: &quot;*&quot; でも拒否</strong></li>
-<li>→ SCP, Permission Boundaryでブロックされていないか</li>
-<li><strong>ルートユーザーでも拒否</strong></li>
-<li>→ SCPで制限されている (一部操作は例外)</li>
+<li><strong>ポリシー評価</strong>: 明示的Deny &gt; 明示的Allow &gt; デフォルトDeny</li>
+<li><strong>ロール</strong>: 一時認証情報、AssumeRoleで取得、トラストポリシーが鍵</li>
+<li><strong>リソースポリシー</strong>: クロスアカウント・サービス連携で必須</li>
+<li><strong>Permission Boundary</strong>: 権限の上限設定、委任管理に有効</li>
+<li><strong>SCP</strong>: 組織レベルのガバナンス、ルートユーザーにも適用</li>
+<li><strong>最小権限</strong>: 定期的なレビュー、IAM Access Analyzerで検出</li>
+<li><strong>監査</strong>: CloudTrail + Athena で継続的モニタリング</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="65" data-paginate="true" data-theme="gaia" data-style="section {
@@ -4102,63 +4392,7 @@ section .mermaid svg {
   height: auto;
   width: auto;
 }
-;" data-marpit-pagination-total="66" data-size="16:9">
-<h1 id="%E3%81%BE%E3%81%A8%E3%82%81---%E9%87%8D%E8%A6%81%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88">まとめ - 重要ポイント</h1>
-<ul>
-<li><strong>ポリシー評価</strong>: 明示的Deny &gt; 明示的Allow &gt; デフォルトDeny</li>
-<li><strong>ロール</strong>: 一時認証情報、AssumeRoleで取得、トラストポリシーが鍵</li>
-<li><strong>リソースポリシー</strong>: クロスアカウント・サービス連携で必須</li>
-<li><strong>Permission Boundary</strong>: 権限の上限設定、委任管理に有効</li>
-<li><strong>SCP</strong>: 組織レベルのガバナンス、ルートユーザーにも適用</li>
-<li><strong>最小権限</strong>: 定期的なレビュー、IAM Access Analyzerで検出</li>
-<li><strong>監査</strong>: CloudTrail + Athena で継続的モニタリング</li>
-</ul>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="66" data-paginate="true" data-theme="gaia" data-style="section {
-  font-size: 28px;
-}
-section pre code {
-  font-size: 0.6em;
-  line-height: 1.4;
-}
-/* Mermaid図解をスライドに収める */
-section .mermaid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-height: 70vh;
-  max-width: 100%;
-}
-
-section .mermaid svg {
-  max-width: 100%;
-  max-height: 70vh;
-  height: auto;
-  width: auto;
-}
-" lang="en-US" data-marpit-pagination="66" style="--paginate:true;--theme:gaia;--style:section {
-  font-size: 28px;
-}
-section pre code {
-  font-size: 0.6em;
-  line-height: 1.4;
-}
-/* Mermaid図解をスライドに収める */
-section .mermaid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-height: 70vh;
-  max-width: 100%;
-}
-
-section .mermaid svg {
-  max-width: 100%;
-  max-height: 70vh;
-  height: auto;
-  width: auto;
-}
-;" data-marpit-pagination-total="66" data-size="16:9">
+;" data-marpit-pagination-total="65" data-size="16:9">
 <h1 id="%E5%8F%82%E8%80%83%E8%B3%87%E6%96%99">参考資料</h1>
 <ul>
 <li><strong>公式ドキュメント:</strong></li>
@@ -4191,70 +4425,5 @@ section .mermaid svg {
 </ul>
 </section>
 <script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{container;containerSize;containerObserver;svg;svgComputedStyle;svgPreserveAspectRatio="xMinYMid meet";wrapper;wrapperSize;wrapperObserver;constructor(){super();const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=this.shadowRoot.querySelector(`div[${e}]`)??void 0;const t=this.svg;this.svg=this.wrapper?.querySelector(`svg[${i}]`)??void 0,this.svg!==t&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=this.svg?.querySelector(`span[${n}]`)??void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame(()=>{t.style.display=""}))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){let t=Math.ceil(this.containerSize?.width??0);const e=Math.ceil(this.containerSize?.height??0);void 0!==this.dataset.downscaleOnly&&(t=Math.max(t,this.wrapperSize?.width??0));const i=this.svg?.querySelector(":scope > foreignObject");if(i?.setAttribute("width",`${t}`),i?.setAttribute("height",`${e}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${t} ${e}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=t<=0||e<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const r=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this._shadow()}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_shadow(){if(!this.shadowRoot)try{this.attachShadow({mode:"open"})}catch(t){if(!(t instanceof Error&&"NotSupportedError"===t.name))throw t}return this.shadowRoot}_update(){const t=this._shadow();if(t){const e=i?`<style>:host { ${i} }</style>`:"";let n="<slot></slot>";const{autoScaling:s}=this.dataset;if(void 0!==s){n=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===s?"data-downscale-only":""}>${n}</marp-auto-scaling>`}t.innerHTML=e+n}}};let o;const a=Symbol(),l=()=>o??(o=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is"),o);let c;const d="marpitSVGPolyfill:setZoomFactor,",h=Symbol(),g=Symbol();const p=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[v]:[],i={then:e=>(t?(async()=>{if(void 0===c){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise(t=>{i.addEventListener("load",()=>t())});i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),c=e.getImageData(5,5,1,1).data[3]<128}return c})().then(t=>{null==e||e(t?[v]:[])}):null==e||e([]),i)};return Object.assign(e,i)};let m,u;function v(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(d)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(u=i)}}catch(t){console.error(t)}}));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),t=>{var e,s,r,o;t.style.transform||(t.style.transform="translateZ(0)");const a=i||u||t.currentScale||1;m!==a&&(m=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(o=null===(r=n.y)||void 0===r?void 0:r.baseVal.value)&&void 0!==o?o:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}}),!1!==n&&Array.from(e.querySelectorAll("iframe"),({contentWindow:t})=>{null==t||t.postMessage(`${d}${n}`,"null"===window.origin?"*":window.origin)})}function w({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[h])return t[h];let e=!0;const i=()=>{e=!1,delete t[h]};Object.defineProperty(t,h,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await p()}finally{s=!0}})();const r=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(r)};return r(),i}(e);return t?(i(),()=>{}):i}m=1,u=void 0;const b=Symbol(),y=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,o=t[n].proto();l()&&o!==HTMLElement?i||customElements.define(s,r(o,{style:t[n].style}),{extends:n}):(i||customElements.define(s,r(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach(t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)}))}window[a]=!0})(e),e[b])return e[b];const i=w({target:e}),n=()=>{i(),delete e[b]},o=Object.assign(n,{cleanup:n,update:()=>y(e)});return Object.defineProperty(e,b,{configurable:!0,value:o}),o},f=document.currentScript;y(f?f.getRootNode():document)}();
-</script></foreignObject></svg></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@4.2.3/lib/bespoke.js.LICENSE.txt */
-!function(){"use strict";function e(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var t,n,r=(n||(n=1,t={from:function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),o=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,function(e){return"SCRIPT"!==e.nodeName}),a={},i=function(e,t){return(t=t||{}).index=o.indexOf(e),t.slide=e,t},s=function(e,t){a[e]=(a[e]||[]).filter(function(e){return e!==t})},c=function(e,t){return(a[e]||[]).reduce(function(e,n){return e&&!1!==n(t)},!0)},l=function(e,t){o[e]&&(n&&c("deactivate",i(n,t)),n=o[e],c("activate",i(n,t)))},d=function(e,t){var r=o.indexOf(n)+e;c(e>0?"next":"prev",i(n,t))&&l(r,t)},u={off:s,on:function(e,t){return(a[e]||(a[e]=[])).push(t),s.bind(null,e,t)},fire:c,slide:function(e,t){if(!arguments.length)return o.indexOf(n);c("slide",i(o[e],t))&&l(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:o,destroy:function(e){c("destroy",i(n,e)),a={}}};return(t||[]).forEach(function(e){e(u)}),n||l(0),u}}),t),o=e(r);const a=document.body,i=(...e)=>history.replaceState(...e),s="",c="presenter",l="next",d=["",c,l],u="bespoke-marp-",f=`data-${u}`,m=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},g=()=>a.dataset.bespokeView,p=e=>new URLSearchParams(location.search).get(e),v=(e,t={})=>{const n={location,setter:i,...t},r=new URLSearchParams(n.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?r.set(t,n):r.delete(t)}try{n.setter({...window.history.state??{}},"",m(r,n.location))}catch(e){console.error(e)}},h=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch{return!1}})(),y=e=>{try{return localStorage.getItem(e)}catch{return null}},b=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch{return!1}},w=e=>{try{return localStorage.removeItem(e),!0}catch{return!1}},x=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},k=e=>{e.parent.classList.add(`${u}parent`),e.slides.forEach(e=>e.classList.add(`${u}slide`)),e.on("activate",t=>{const n=`${u}active`,r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach(e=>{e.classList.remove(n),x(e,!0)}),o.add(n),x(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}})},$=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=o;e.setAttribute(`${f}fragment`,(a?"":"in")+"active");const i=`${f}current-fragment`;t===r&&n===o?e.setAttribute(i,"current"):e.removeAttribute(i)})}),e.fragmentIndex=o;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",a)};e.on("next",({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}}),e.on("prev",({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)}),o(0,0)},E=document,L=()=>!(!E.fullscreenEnabled&&!E.webkitFullscreenEnabled),S=()=>!(!E.fullscreenElement&&!E.webkitFullscreenElement),P=e=>{e.fullscreen=()=>{L()&&(async()=>{S()?(E.exitFullscreen||E.webkitExitFullscreen)?.call(E):((e=E.body)=>{(e.requestFullscreen||e.webkitRequestFullscreen)?.call(e)})()})()},document.addEventListener("keydown",t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!L()||(e.fullscreen(),t.preventDefault())})},_=`${u}inactive`,T=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout(()=>{r.add(_),o()},e),r.contains(_)&&(r.remove(_),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},I=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],M=e=>{e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(I.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})},O=e=>{window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("marp-auto-scaling, [data-auto-scaling], [data-marp-fitting]");t.setAttribute(`${f}load`,e?"":"hideable")}})},A=({interval:e=250}={})=>t=>{document.addEventListener("keydown",e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()});let n,r,o=0;t.parent.addEventListener("wheel",a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),e?.parentElement&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const c=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<12)return;r&&clearTimeout(r),r=setTimeout(()=>{n=0},e);const l=Date.now()-o<e,d=c<=n;if(n=c,l||d)return;let u;(a.deltaX>0||a.deltaY>0)&&(u="next"),(a.deltaX<0||a.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())})},C=(e=`.${u}osc`)=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${f}osc=${JSON.stringify(e)}]`).forEach(n)};return L()||n("fullscreen",e=>e.style.display="none"),h||n("presenter",e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."}),e=>{t.addEventListener("click",t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?e?.fullscreen():"presenter"===n&&e.openPresenterView()}}),e.parent.appendChild(t),e.on("activate",({index:t})=>{n("page",n=>n.textContent=`Page ${t+1} of ${e.slides.length}`)}),e.on("fragment",({index:t,fragments:r,fragmentIndex:o})=>{n("prev",e=>e.disabled=0===t&&0===o),n("next",n=>n.disabled=t===e.slides.length-1&&o===r.length-1)}),e.on("marp-active",()=>x(t,!1)),e.on("marp-inactive",()=>x(t,!0)),L()&&(e=>{for(const t of["","webkit"])E.addEventListener(t+"fullscreenchange",e)})(()=>n("fullscreen",e=>e.classList.toggle("exit",L()&&S())))}},D=e=>{window.addEventListener("message",t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}})};var N,B,q,K,F,j,V,U={exports:{}},X=(N||(N=1,U.exports=(B=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"],q=function(e){return String(e).replace(/[&<>"']/g,function(e){return"&"+K[e]+";"})},K={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},F="dangerouslySetInnerHTML",j={className:"class",htmlFor:"for"},V={},function(e,t){var n=[],r="";t=t||{};for(var o=arguments.length;o-- >2;)n.push(arguments[o]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(var a in t)!1!==t[a]&&null!=t[a]&&a!==F&&(r+=" "+(j[a]?j[a]:q(a))+'="'+q(t[a])+'"');r+=">"}if(-1===B.indexOf(e)){if(t[F])r+=t[F].__html;else for(;n.length;){var i=n.pop();if(i)if(i.pop)for(var s=i.length;s--;)n.push(i[s]);else r+=!0===V[i]?i:q(i)}r+=e?"</"+e+">":""}return V[r]=!0,r})),U.exports),H=e(X);const R=({children:e})=>H(null,null,...e),W=`${u}presenter-`,J={container:`${W}container`,dragbar:`${W}dragbar-container`,next:`${W}next`,nextContainer:`${W}next-container`,noteContainer:`${W}note-container`,noteWrapper:`${W}note-wrapper`,noteButtons:`${W}note-buttons`,infoContainer:`${W}info-container`,infoPage:`${W}info-page`,infoPageText:`${W}info-page-text`,infoPagePrev:`${W}info-page-prev`,infoPageNext:`${W}info-page-next`,noteButtonsBigger:`${W}note-bigger`,noteButtonsSmaller:`${W}note-smaller`,infoTime:`${W}info-time`,infoTimer:`${W}info-timer`},Y=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=J.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",H(R,null,H("div",{class:J.nextContainer},H("iframe",{class:J.next,src:"?view=next"})),H("div",{class:J.dragbar}),H("div",{class:J.noteContainer},H("div",{class:J.noteWrapper}),H("div",{class:J.noteButtons},H("button",{class:J.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),H("button",{class:J.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),H("div",{class:J.infoContainer},H("div",{class:J.infoPage},H("button",{class:J.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),H("span",{class:J.infoPageText}),H("button",{class:J.infoPageNext,tabindex:"-1",title:"Next"},"Next")),H("time",{class:J.infoTime,title:"Current time"}),H("time",{class:J.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(J.dragbar).addEventListener("mousedown",()=>{t=!0,r(J.dragbar).classList.add("active")}),window.addEventListener("mouseup",()=>{t=!1,r(J.dragbar).classList.remove("active")}),window.addEventListener("mousemove",e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(J.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)}),r(J.nextContainer).addEventListener("click",()=>e.next());const n=r(J.next),o=(a=n,(e,t)=>a.contentWindow?.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin));var a;n.addEventListener("load",()=>{r(J.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",({index:e,fragmentIndex:t})=>o(e,t))});const i=document.querySelectorAll(".bespoke-marp-note");i.forEach(e=>{e.addEventListener("keydown",e=>e.stopPropagation()),r(J.noteWrapper).appendChild(e)}),e.on("activate",()=>i.forEach(t=>t.classList.toggle("active",t.dataset.index==e.slide())));let s=0;const c=e=>{s=Math.max(-5,s+e),r(J.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},l=()=>c(1),d=()=>c(-1),u=r(J.noteButtonsBigger),f=r(J.noteButtonsSmaller);u.addEventListener("click",()=>{u.blur(),l()}),f.addEventListener("click",()=>{f.blur(),d()}),document.addEventListener("keydown",e=>{"+"===e.key&&l(),"-"===e.key&&d()},!0),e.on("activate",({index:t})=>{r(J.infoPageText).textContent=`${t+1} / ${e.slides.length}`});const m=r(J.infoPagePrev),g=r(J.infoPageNext);m.addEventListener("click",t=>{m.blur(),e.prev({fragment:!t.shiftKey})}),g.addEventListener("click",t=>{g.blur(),e.next({fragment:!t.shiftKey})}),e.on("fragment",({index:t,fragments:n,fragmentIndex:r})=>{m.disabled=0===t&&0===r,g.disabled=t===e.slides.length-1&&r===n.length-1});let p=new Date;const v=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-p.getTime(),o=t(n/1e3%60),a=t(n/1e3/60%60),i=t(n/36e5%24);r(J.infoTime).textContent=e.toLocaleTimeString(),r(J.infoTimer).textContent=`${i}:${a}:${o}`};v(),setInterval(v,250),r(J.infoTimer).addEventListener("click",()=>{p=new Date})})(e)},z=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:G},presenterUrl:{enumerable:!0,get:Q}}),h&&document.addEventListener("keydown",t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())})};function G(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,W+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function Q(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),m(e)}const Z=e=>{const t=g();return t===l&&e.appendChild(document.createElement("span")),{[s]:z,[c]:Y,[l]:D}[t]},ee=e=>{e.on("activate",t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach(n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"})})},te=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},ne=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{let n=t.fragment?te(p("f")||""):null;((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),c=o(0,r(n||0,a[s].length-1));s===e.slide()&&c===e.fragmentIndex||e.slide(s,{fragment:c})})((()=>{if(location.hash){const[t]=location.hash.slice(1).split(":~:");if(/^\d+$/.test(t))return(te(t)??1)-1;const r=document.getElementById(t)||document.querySelector(`a[name="${CSS.escape(t)}"]`);if(r){const{length:t}=e.slides;for(let o=0;o<t;o+=1)if(e.slides[o].contains(r)){const t=e.fragments?.[o],a=r.closest("[data-marpit-fragment]");if(t&&a){const e=t.indexOf(a);e>=0&&(n=e)}return o}}}return 0})(),n)};e.on("fragment",({index:e,fragmentIndex:r})=>{n||v({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})}),setTimeout(()=>{o(),window.addEventListener("hashchange",()=>r(()=>{o({fragment:!1}),v({f:void 0})})),window.addEventListener("popstate",()=>{n||r(()=>o())}),n=!1},0)}},re=(e={})=>{const t=e.key||window.history.state?.marpBespokeSyncKey||Math.random().toString(36).slice(2),n=`bespoke-marp-sync-${t}`;var r;r={marpBespokeSyncKey:t},v({},{setter:(e,...t)=>i({...e,...r},...t)});const o=()=>{const e=y(n);return e?JSON.parse(e):Object.create(null)},a=e=>{const t=o(),r={...t,...e(t)};return b(n,JSON.stringify(r)),r},s=()=>{window.removeEventListener("pageshow",s),a(e=>({reference:(e.reference||0)+1}))};return e=>{s(),Object.defineProperty(e,"syncKey",{value:t,enumerable:!0});let r=!0;setTimeout(()=>{e.on("fragment",e=>{r&&a(()=>({index:e.index,fragmentIndex:e.fragmentIndex}))})},0),window.addEventListener("storage",t=>{if(t.key===n&&t.oldValue&&t.newValue){const n=JSON.parse(t.oldValue),o=JSON.parse(t.newValue);if(n.index!==o.index||n.fragmentIndex!==o.fragmentIndex)try{r=!1,e.slide(o.index,{fragment:o.fragmentIndex,forSync:!0})}finally{r=!0}}});const i=()=>{const{reference:e}=o();void 0===e||e<=1?w(n):a(()=>({reference:e-1}))};window.addEventListener("pagehide",e=>{e.persisted&&window.addEventListener("pageshow",s),i()}),e.on("destroy",i)}},{PI:oe,abs:ae,sqrt:ie,atan2:se}=Math,ce={passive:!0},le=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",({touches:e})=>{r=1===e.length?a(e[0]):void 0},ce),o.addEventListener("touchmove",e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=ie(ae(n)**2+ae(o)**2),r.radian=se(n,o)}else r=void 0}),o.addEventListener("touchend",o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+oe)%(2*oe)-oe;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}},ce)},de=new Map;de.clear(),de.set("none",{backward:{both:void 0,incoming:void 0,outgoing:void 0},forward:{both:void 0,incoming:void 0,outgoing:void 0}});const ue={both:"",outgoing:"outgoing-",incoming:"incoming-"},fe={forward:"",backward:"-backward"},me=e=>`--marp-bespoke-transition-animation-${e}`,ge=e=>`--marp-transition-${e}`,pe=me("name"),ve=me("duration"),he=e=>new Promise(t=>{const n={},r=document.createElement("div"),o=e=>{r.remove(),t(e)};r.addEventListener("animationstart",()=>o(n)),Object.assign(r.style,{animationName:e,animationDuration:"1s",animationFillMode:"both",animationPlayState:"paused",position:"absolute",pointerEvents:"none"}),document.body.appendChild(r);const a=getComputedStyle(r).getPropertyValue(ge("duration"));a&&Number.parseFloat(a)>=0&&(n.defaultDuration=a),((e,t)=>{requestAnimationFrame(()=>{e.style.animationPlayState="running",requestAnimationFrame(()=>t(void 0))})})(r,o)}),ye=async e=>de.has(e)?de.get(e):(e=>{const t={},n=[];for(const[r,o]of Object.entries(ue))for(const[a,i]of Object.entries(fe)){const s=`marp-${o}transition${i}-${e}`;n.push(he(s).then(e=>{t[a]=t[a]||{},t[a][r]=e?{...e,name:s}:void 0}))}return Promise.all(n).then(()=>t)})(e).then(t=>(de.set(e,t),t)),be=e=>Object.values(e).flatMap(Object.values).every(e=>!e),we=(e,{type:t,backward:n})=>{const r=e[n?"backward":"forward"],o=(()=>{const e=r[t],n=e=>({[pe]:e.name});if(e)return n(e);if(r.both){const e=n(r.both);return"incoming"===t&&(e[me("direction")]="reverse"),e}})();return!o&&n?we(e,{type:t,backward:!1}):o||{[pe]:"__bespoke_marp_transition_no_animation__"}},xe=e=>{if(e)try{const t=JSON.parse(e);if((e=>{if("object"!=typeof e)return!1;const t=e;return"string"==typeof t.name&&(void 0===t.duration||"string"==typeof t.duration)})(t))return t}catch{}},ke="_tSId",$e="_tA",Ee="bespoke-marp-transition-warming-up",Le=window.matchMedia("(prefers-reduced-motion: reduce)"),Se="__bespoke_marp_transition_reduced_outgoing__",Pe="__bespoke_marp_transition_reduced_incoming__",_e={forward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}},backward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}}},Te=e=>{if(!document.startViewTransition)return;const t=t=>(void 0!==t&&(e._tD=t),e._tD);let n;t(!1),((...e)=>{CSS.registerProperty({name:ge("duration"),syntax:"<time>",inherits:!0,initialValue:"-1s"});const t=[...new Set(e).values()];return Promise.all(t.map(e=>ye(e))).then()})(...Array.from(document.querySelectorAll("section[data-transition], section[data-transition-back]")).flatMap(e=>[e.dataset.transition,e.dataset.transitionBack].flatMap(e=>{const t=xe(e);return[t?.name,t?.builtinFallback?`__builtin__${t.name}`:void 0]}).filter(e=>!!e))).then(()=>{document.querySelectorAll("style").forEach(e=>{e.innerHTML=e.innerHTML.replace(/--marp-transition-duration:[^;}]*[;}]/g,e=>e.slice(0,-1)+"!important"+e.slice(-1))})});const r=(n,{back:r,cond:o})=>a=>{const i=t();if(i)return!!a[$e]||!("object"!=typeof i||(i.skipTransition(),!a.forSync));if(!o(a))return!0;const s=e.slides[e.slide()],c=()=>a.back??r,l="data-transition"+(c()?"-back":""),d=s.querySelector(`section[${l}]`);if(!d)return!0;const u=xe(d.getAttribute(l)??void 0);return!u||((async(e,{builtinFallback:t=!0}={})=>{let n=await ye(e);if(be(n)){if(!t)return;return n=await ye(`__builtin__${e}`),be(n)?void 0:n}return n})(u.name,{builtinFallback:u.builtinFallback}).then(e=>{if(!e){t(!0);try{n(a)}finally{t(!1)}return}let r=e;Le.matches&&(console.warn("Use a constant animation to transition because preferring reduced motion by viewer has detected."),r=_e);const o=document.getElementById(ke);o&&o.remove();const i=document.createElement("style");i.id=ke,document.head.appendChild(i),((e,t)=>{const n=[`:root{${ge("direction")}:${t.backward?-1:1};}`,":root:has(.bespoke-marp-inactive){cursor:none;}"],r=t=>{const n=e[t].both?.defaultDuration||e[t].outgoing?.defaultDuration||e[t].incoming?.defaultDuration;return"forward"===t?n:n||r("forward")},o=t.duration||r(t.backward?"backward":"forward");void 0!==o&&n.push(`::view-transition-group(*){${ve}:${o};}`);const a=e=>Object.entries(e).map(([e,t])=>`${e}:${t};`).join("");return n.push(`::view-transition-old(root){${a(we(e,{...t,type:"outgoing"}))}}`,`::view-transition-new(root){${a(we(e,{...t,type:"incoming"}))}}`),n})(r,{backward:c(),duration:u.duration}).forEach(e=>i.sheet?.insertRule(e));const s=document.documentElement.classList;s.add(Ee);let l=!1;const d=()=>{l||(n(a),l=!0,s.remove(Ee))},f=()=>{t(!1),i.remove(),s.remove(Ee)};try{t(!0);const e=document.startViewTransition(d);t(e),e.finished.finally(f)}catch(e){console.error(e),d(),f()}}),!1)};e.on("prev",r(t=>e.prev({...t,[$e]:!0}),{back:!0,cond:e=>e.index>0&&!((e.fragment??1)&&n.fragmentIndex>0)})),e.on("next",r(t=>e.next({...t,[$e]:!0}),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout(()=>{e.on("slide",r(t=>e.slide(t.index,{...t,[$e]:!0}),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))},0),e.on("fragment",e=>{n=e})};let Ie;const Me=()=>(void 0===Ie&&(Ie="wakeLock"in navigator&&navigator.wakeLock),Ie),Oe=async()=>{const e=Me();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},Ae=async()=>{if(!Me())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&Oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await Oe(),e};((e=document.getElementById(":$p"))=>{(()=>{const e=p("view");a.dataset.bespokeView=e===l||e===c?e:""})();const t=(e=>{const t=p(e);return v({[e]:void 0}),t})("sync")||void 0;o.from(e,((...e)=>{const t=d.findIndex(e=>g()===e);return e.map(([e,n])=>e[t]&&n).filter(e=>e)})([[1,1,0],re({key:t})],[[1,1,1],Z(e)],[[1,1,0],M],[[1,1,1],k],[[1,0,0],T()],[[1,1,1],O],[[1,1,1],ne({history:!1})],[[1,1,0],A()],[[1,1,0],P],[[1,0,0],ee],[[1,1,0],le()],[[1,0,0],C()],[[1,0,0],Te],[[1,1,1],$],[[1,1,0],Ae]))})()}();</script><script data-codex-mermaid-bootstrap="1">
-(function () {
-  // Try multiple selectors for robustness
-  let codeBlocks = Array.from(document.querySelectorAll("pre > code.language-mermaid"));
-  if (codeBlocks.length === 0) {
-    codeBlocks = Array.from(document.querySelectorAll('code[class*="language-mermaid"]'));
-  }
-  if (codeBlocks.length === 0) {
-    codeBlocks = Array.from(document.querySelectorAll("code.language-mermaid"));
-  }
-
-  for (const code of codeBlocks) {
-
-    const pre = code.parentElement;  // Changed from closest("pre") to parentElement
-    // Accept both PRE and MARP-PRE (Marp uses custom elements)
-    if (!pre || (pre.tagName !== "PRE" && pre.tagName !== "MARP-PRE")) {
-      console.warn("[Mermaid] No PRE/MARP-PRE parent element found for code block");
-      continue;
-    }
-
-    const wrapper = document.createElement("div");
-    wrapper.className = "mermaid";
-    wrapper.textContent = code.textContent || "";
-
-    try {
-      // Use parentNode.replaceChild for better compatibility
-      if (pre.parentNode) {
-        pre.parentNode.replaceChild(wrapper, pre);
-      } else {
-        console.error("[Mermaid] No parent node found");
-      }
-    } catch (e) {
-      console.error("[Mermaid] Failed to replace:", e);
-    }
-  }
-
-  const mermaidDivs = document.querySelectorAll(".mermaid");
-
-  if (!document.querySelector(".mermaid")) {
-    console.warn("[Mermaid] No mermaid divs found, exiting");
-    return;
-  }
-
-  const run = () => {
-    if (!window.mermaid) {
-      console.error("[Mermaid] window.mermaid not found!");
-      return;
-    }
-    window.mermaid.initialize({ startOnLoad: false, securityLevel: "loose" });
-    window.mermaid.run({ querySelector: ".mermaid" });
-  };
-
-  if (window.mermaid) {
-    run();
-    return;
-  }
-
-  const s = document.createElement("script");
-  s.src = "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js";
-  s.onload = () => {
-    run();
-  };
-  s.onerror = (e) => console.error("[Mermaid] Failed to load library:", e);
-  document.head.appendChild(s);
-})();
-</script></body></html>
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="4" tabindex="0"><p>Title</p><p>Principal</p><p>Evaluation Engine</p><p>AWS Resource</p><p>Policy Sources (Left side)</p><p>Arrows</p><p>Principal -&gt; Engine</p><p>Policies -&gt; Engine</p><p>Engine -&gt; Resource</p><p>Legend</p></div><div class="bespoke-marp-note" data-index="10" tabindex="0"><p>Title</p><p>Request</p><p>Decision 1: Explicit Deny?</p><p>Deny Result</p><p>Decision 2: Explicit Allow?</p><p>Allow Result</p><p>Default Deny</p><p>Arrows</p><p>Request -&gt; Decision1</p><p>Decision1 -&gt; Deny (Yes)</p><p>Decision1 -&gt; Decision2 (No)</p><p>Decision2 -&gt; Allow (Yes)</p><p>Decision2 -&gt; Default Deny (No)</p><p>Key Point</p></div><div class="bespoke-marp-note" data-index="23" tabindex="0"><p>Title</p><p>Participants</p><p>Lifelines</p><p>Arrows</p><p>Step 1: AssumeRole request</p><p>Step 2: Trust policy check</p><p>Evaluation box</p><p>Step 3: Approval</p><p>Step 4: Temporary credentials</p><p>Step 5: API call with temp credentials</p><p>Step 6: Response</p><p>Legend</p></div><div class="bespoke-marp-note" data-index="38" tabindex="0"><p>Title</p><p>Request</p><p>Decision 1: Same Account?</p><p>Same Account Path</p><p>Cross Account Path</p><p>Decision 2: Explicit Deny?</p><p>Deny Result 1</p><p>Decision 3: Explicit Allow?</p><p>Allow Result</p><p>Default Deny</p><p>Arrows</p><p>Request -&gt; Decision1</p><p>Decision1 -&gt; Same Account (Yes)</p><p>Decision1 -&gt; Cross Account (No)</p><p>Both paths -&gt; Decision2</p><p>Decision2 -&gt; Deny (Yes)</p><p>Decision2 -&gt; Decision3 (No)</p><p>Decision3 -&gt; Allow (Yes)</p><p>Decision3 -&gt; Default Deny (No)</p></div><div class="bespoke-marp-note" data-index="41" tabindex="0"><p>Title</p><p>Venn Diagram - Left Circle (Identity-based Policy)</p><p>Venn Diagram - Right Circle (Permission Boundary)</p><p>Intersection (actual permissions)</p><p>Labels for circles</p><p>Intersection label</p><p>Example permissions</p><p>Formula</p><p>Key insight</p></div><div class="bespoke-marp-note" data-index="47" tabindex="0"><p>Title</p><p>Layer 1: SCP (Largest)</p><p>Layer 2: Permission Boundary (Medium)</p><p>Layer 3: Identity-based Policy (Smallest)</p><p>Center result</p><p>Explanation boxes</p><p>Formula</p><p>Key insight</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@4.2.3/lib/bespoke.js.LICENSE.txt */
+!function(){"use strict";function e(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var t,n,r=(n||(n=1,t={from:function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),o=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,function(e){return"SCRIPT"!==e.nodeName}),a={},i=function(e,t){return(t=t||{}).index=o.indexOf(e),t.slide=e,t},s=function(e,t){a[e]=(a[e]||[]).filter(function(e){return e!==t})},c=function(e,t){return(a[e]||[]).reduce(function(e,n){return e&&!1!==n(t)},!0)},l=function(e,t){o[e]&&(n&&c("deactivate",i(n,t)),n=o[e],c("activate",i(n,t)))},d=function(e,t){var r=o.indexOf(n)+e;c(e>0?"next":"prev",i(n,t))&&l(r,t)},u={off:s,on:function(e,t){return(a[e]||(a[e]=[])).push(t),s.bind(null,e,t)},fire:c,slide:function(e,t){if(!arguments.length)return o.indexOf(n);c("slide",i(o[e],t))&&l(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:o,destroy:function(e){c("destroy",i(n,e)),a={}}};return(t||[]).forEach(function(e){e(u)}),n||l(0),u}}),t),o=e(r);const a=document.body,i=(...e)=>history.replaceState(...e),s="",c="presenter",l="next",d=["",c,l],u="bespoke-marp-",f=`data-${u}`,m=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},g=()=>a.dataset.bespokeView,p=e=>new URLSearchParams(location.search).get(e),v=(e,t={})=>{const n={location,setter:i,...t},r=new URLSearchParams(n.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?r.set(t,n):r.delete(t)}try{n.setter({...window.history.state??{}},"",m(r,n.location))}catch(e){console.error(e)}},h=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch{return!1}})(),y=e=>{try{return localStorage.getItem(e)}catch{return null}},b=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch{return!1}},w=e=>{try{return localStorage.removeItem(e),!0}catch{return!1}},x=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},k=e=>{e.parent.classList.add(`${u}parent`),e.slides.forEach(e=>e.classList.add(`${u}slide`)),e.on("activate",t=>{const n=`${u}active`,r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach(e=>{e.classList.remove(n),x(e,!0)}),o.add(n),x(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}})},$=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=o;e.setAttribute(`${f}fragment`,(a?"":"in")+"active");const i=`${f}current-fragment`;t===r&&n===o?e.setAttribute(i,"current"):e.removeAttribute(i)})}),e.fragmentIndex=o;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",a)};e.on("next",({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}}),e.on("prev",({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)}),o(0,0)},E=document,L=()=>!(!E.fullscreenEnabled&&!E.webkitFullscreenEnabled),S=()=>!(!E.fullscreenElement&&!E.webkitFullscreenElement),P=e=>{e.fullscreen=()=>{L()&&(async()=>{S()?(E.exitFullscreen||E.webkitExitFullscreen)?.call(E):((e=E.body)=>{(e.requestFullscreen||e.webkitRequestFullscreen)?.call(e)})()})()},document.addEventListener("keydown",t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!L()||(e.fullscreen(),t.preventDefault())})},_=`${u}inactive`,T=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout(()=>{r.add(_),o()},e),r.contains(_)&&(r.remove(_),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},I=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],M=e=>{e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(I.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})},O=e=>{window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("marp-auto-scaling, [data-auto-scaling], [data-marp-fitting]");t.setAttribute(`${f}load`,e?"":"hideable")}})},A=({interval:e=250}={})=>t=>{document.addEventListener("keydown",e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()});let n,r,o=0;t.parent.addEventListener("wheel",a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),e?.parentElement&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const c=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<12)return;r&&clearTimeout(r),r=setTimeout(()=>{n=0},e);const l=Date.now()-o<e,d=c<=n;if(n=c,l||d)return;let u;(a.deltaX>0||a.deltaY>0)&&(u="next"),(a.deltaX<0||a.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())})},C=(e=`.${u}osc`)=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${f}osc=${JSON.stringify(e)}]`).forEach(n)};return L()||n("fullscreen",e=>e.style.display="none"),h||n("presenter",e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."}),e=>{t.addEventListener("click",t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?e?.fullscreen():"presenter"===n&&e.openPresenterView()}}),e.parent.appendChild(t),e.on("activate",({index:t})=>{n("page",n=>n.textContent=`Page ${t+1} of ${e.slides.length}`)}),e.on("fragment",({index:t,fragments:r,fragmentIndex:o})=>{n("prev",e=>e.disabled=0===t&&0===o),n("next",n=>n.disabled=t===e.slides.length-1&&o===r.length-1)}),e.on("marp-active",()=>x(t,!1)),e.on("marp-inactive",()=>x(t,!0)),L()&&(e=>{for(const t of["","webkit"])E.addEventListener(t+"fullscreenchange",e)})(()=>n("fullscreen",e=>e.classList.toggle("exit",L()&&S())))}},D=e=>{window.addEventListener("message",t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}})};var N,B,q,K,F,j,V,U={exports:{}},X=(N||(N=1,U.exports=(B=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"],q=function(e){return String(e).replace(/[&<>"']/g,function(e){return"&"+K[e]+";"})},K={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},F="dangerouslySetInnerHTML",j={className:"class",htmlFor:"for"},V={},function(e,t){var n=[],r="";t=t||{};for(var o=arguments.length;o-- >2;)n.push(arguments[o]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(var a in t)!1!==t[a]&&null!=t[a]&&a!==F&&(r+=" "+(j[a]?j[a]:q(a))+'="'+q(t[a])+'"');r+=">"}if(-1===B.indexOf(e)){if(t[F])r+=t[F].__html;else for(;n.length;){var i=n.pop();if(i)if(i.pop)for(var s=i.length;s--;)n.push(i[s]);else r+=!0===V[i]?i:q(i)}r+=e?"</"+e+">":""}return V[r]=!0,r})),U.exports),H=e(X);const R=({children:e})=>H(null,null,...e),W=`${u}presenter-`,J={container:`${W}container`,dragbar:`${W}dragbar-container`,next:`${W}next`,nextContainer:`${W}next-container`,noteContainer:`${W}note-container`,noteWrapper:`${W}note-wrapper`,noteButtons:`${W}note-buttons`,infoContainer:`${W}info-container`,infoPage:`${W}info-page`,infoPageText:`${W}info-page-text`,infoPagePrev:`${W}info-page-prev`,infoPageNext:`${W}info-page-next`,noteButtonsBigger:`${W}note-bigger`,noteButtonsSmaller:`${W}note-smaller`,infoTime:`${W}info-time`,infoTimer:`${W}info-timer`},Y=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=J.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",H(R,null,H("div",{class:J.nextContainer},H("iframe",{class:J.next,src:"?view=next"})),H("div",{class:J.dragbar}),H("div",{class:J.noteContainer},H("div",{class:J.noteWrapper}),H("div",{class:J.noteButtons},H("button",{class:J.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),H("button",{class:J.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),H("div",{class:J.infoContainer},H("div",{class:J.infoPage},H("button",{class:J.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),H("span",{class:J.infoPageText}),H("button",{class:J.infoPageNext,tabindex:"-1",title:"Next"},"Next")),H("time",{class:J.infoTime,title:"Current time"}),H("time",{class:J.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(J.dragbar).addEventListener("mousedown",()=>{t=!0,r(J.dragbar).classList.add("active")}),window.addEventListener("mouseup",()=>{t=!1,r(J.dragbar).classList.remove("active")}),window.addEventListener("mousemove",e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(J.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)}),r(J.nextContainer).addEventListener("click",()=>e.next());const n=r(J.next),o=(a=n,(e,t)=>a.contentWindow?.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin));var a;n.addEventListener("load",()=>{r(J.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",({index:e,fragmentIndex:t})=>o(e,t))});const i=document.querySelectorAll(".bespoke-marp-note");i.forEach(e=>{e.addEventListener("keydown",e=>e.stopPropagation()),r(J.noteWrapper).appendChild(e)}),e.on("activate",()=>i.forEach(t=>t.classList.toggle("active",t.dataset.index==e.slide())));let s=0;const c=e=>{s=Math.max(-5,s+e),r(J.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},l=()=>c(1),d=()=>c(-1),u=r(J.noteButtonsBigger),f=r(J.noteButtonsSmaller);u.addEventListener("click",()=>{u.blur(),l()}),f.addEventListener("click",()=>{f.blur(),d()}),document.addEventListener("keydown",e=>{"+"===e.key&&l(),"-"===e.key&&d()},!0),e.on("activate",({index:t})=>{r(J.infoPageText).textContent=`${t+1} / ${e.slides.length}`});const m=r(J.infoPagePrev),g=r(J.infoPageNext);m.addEventListener("click",t=>{m.blur(),e.prev({fragment:!t.shiftKey})}),g.addEventListener("click",t=>{g.blur(),e.next({fragment:!t.shiftKey})}),e.on("fragment",({index:t,fragments:n,fragmentIndex:r})=>{m.disabled=0===t&&0===r,g.disabled=t===e.slides.length-1&&r===n.length-1});let p=new Date;const v=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-p.getTime(),o=t(n/1e3%60),a=t(n/1e3/60%60),i=t(n/36e5%24);r(J.infoTime).textContent=e.toLocaleTimeString(),r(J.infoTimer).textContent=`${i}:${a}:${o}`};v(),setInterval(v,250),r(J.infoTimer).addEventListener("click",()=>{p=new Date})})(e)},z=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:G},presenterUrl:{enumerable:!0,get:Q}}),h&&document.addEventListener("keydown",t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())})};function G(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,W+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function Q(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),m(e)}const Z=e=>{const t=g();return t===l&&e.appendChild(document.createElement("span")),{[s]:z,[c]:Y,[l]:D}[t]},ee=e=>{e.on("activate",t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach(n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"})})},te=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},ne=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{let n=t.fragment?te(p("f")||""):null;((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),c=o(0,r(n||0,a[s].length-1));s===e.slide()&&c===e.fragmentIndex||e.slide(s,{fragment:c})})((()=>{if(location.hash){const[t]=location.hash.slice(1).split(":~:");if(/^\d+$/.test(t))return(te(t)??1)-1;const r=document.getElementById(t)||document.querySelector(`a[name="${CSS.escape(t)}"]`);if(r){const{length:t}=e.slides;for(let o=0;o<t;o+=1)if(e.slides[o].contains(r)){const t=e.fragments?.[o],a=r.closest("[data-marpit-fragment]");if(t&&a){const e=t.indexOf(a);e>=0&&(n=e)}return o}}}return 0})(),n)};e.on("fragment",({index:e,fragmentIndex:r})=>{n||v({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})}),setTimeout(()=>{o(),window.addEventListener("hashchange",()=>r(()=>{o({fragment:!1}),v({f:void 0})})),window.addEventListener("popstate",()=>{n||r(()=>o())}),n=!1},0)}},re=(e={})=>{const t=e.key||window.history.state?.marpBespokeSyncKey||Math.random().toString(36).slice(2),n=`bespoke-marp-sync-${t}`;var r;r={marpBespokeSyncKey:t},v({},{setter:(e,...t)=>i({...e,...r},...t)});const o=()=>{const e=y(n);return e?JSON.parse(e):Object.create(null)},a=e=>{const t=o(),r={...t,...e(t)};return b(n,JSON.stringify(r)),r},s=()=>{window.removeEventListener("pageshow",s),a(e=>({reference:(e.reference||0)+1}))};return e=>{s(),Object.defineProperty(e,"syncKey",{value:t,enumerable:!0});let r=!0;setTimeout(()=>{e.on("fragment",e=>{r&&a(()=>({index:e.index,fragmentIndex:e.fragmentIndex}))})},0),window.addEventListener("storage",t=>{if(t.key===n&&t.oldValue&&t.newValue){const n=JSON.parse(t.oldValue),o=JSON.parse(t.newValue);if(n.index!==o.index||n.fragmentIndex!==o.fragmentIndex)try{r=!1,e.slide(o.index,{fragment:o.fragmentIndex,forSync:!0})}finally{r=!0}}});const i=()=>{const{reference:e}=o();void 0===e||e<=1?w(n):a(()=>({reference:e-1}))};window.addEventListener("pagehide",e=>{e.persisted&&window.addEventListener("pageshow",s),i()}),e.on("destroy",i)}},{PI:oe,abs:ae,sqrt:ie,atan2:se}=Math,ce={passive:!0},le=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",({touches:e})=>{r=1===e.length?a(e[0]):void 0},ce),o.addEventListener("touchmove",e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=ie(ae(n)**2+ae(o)**2),r.radian=se(n,o)}else r=void 0}),o.addEventListener("touchend",o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+oe)%(2*oe)-oe;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}},ce)},de=new Map;de.clear(),de.set("none",{backward:{both:void 0,incoming:void 0,outgoing:void 0},forward:{both:void 0,incoming:void 0,outgoing:void 0}});const ue={both:"",outgoing:"outgoing-",incoming:"incoming-"},fe={forward:"",backward:"-backward"},me=e=>`--marp-bespoke-transition-animation-${e}`,ge=e=>`--marp-transition-${e}`,pe=me("name"),ve=me("duration"),he=e=>new Promise(t=>{const n={},r=document.createElement("div"),o=e=>{r.remove(),t(e)};r.addEventListener("animationstart",()=>o(n)),Object.assign(r.style,{animationName:e,animationDuration:"1s",animationFillMode:"both",animationPlayState:"paused",position:"absolute",pointerEvents:"none"}),document.body.appendChild(r);const a=getComputedStyle(r).getPropertyValue(ge("duration"));a&&Number.parseFloat(a)>=0&&(n.defaultDuration=a),((e,t)=>{requestAnimationFrame(()=>{e.style.animationPlayState="running",requestAnimationFrame(()=>t(void 0))})})(r,o)}),ye=async e=>de.has(e)?de.get(e):(e=>{const t={},n=[];for(const[r,o]of Object.entries(ue))for(const[a,i]of Object.entries(fe)){const s=`marp-${o}transition${i}-${e}`;n.push(he(s).then(e=>{t[a]=t[a]||{},t[a][r]=e?{...e,name:s}:void 0}))}return Promise.all(n).then(()=>t)})(e).then(t=>(de.set(e,t),t)),be=e=>Object.values(e).flatMap(Object.values).every(e=>!e),we=(e,{type:t,backward:n})=>{const r=e[n?"backward":"forward"],o=(()=>{const e=r[t],n=e=>({[pe]:e.name});if(e)return n(e);if(r.both){const e=n(r.both);return"incoming"===t&&(e[me("direction")]="reverse"),e}})();return!o&&n?we(e,{type:t,backward:!1}):o||{[pe]:"__bespoke_marp_transition_no_animation__"}},xe=e=>{if(e)try{const t=JSON.parse(e);if((e=>{if("object"!=typeof e)return!1;const t=e;return"string"==typeof t.name&&(void 0===t.duration||"string"==typeof t.duration)})(t))return t}catch{}},ke="_tSId",$e="_tA",Ee="bespoke-marp-transition-warming-up",Le=window.matchMedia("(prefers-reduced-motion: reduce)"),Se="__bespoke_marp_transition_reduced_outgoing__",Pe="__bespoke_marp_transition_reduced_incoming__",_e={forward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}},backward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}}},Te=e=>{if(!document.startViewTransition)return;const t=t=>(void 0!==t&&(e._tD=t),e._tD);let n;t(!1),((...e)=>{CSS.registerProperty({name:ge("duration"),syntax:"<time>",inherits:!0,initialValue:"-1s"});const t=[...new Set(e).values()];return Promise.all(t.map(e=>ye(e))).then()})(...Array.from(document.querySelectorAll("section[data-transition], section[data-transition-back]")).flatMap(e=>[e.dataset.transition,e.dataset.transitionBack].flatMap(e=>{const t=xe(e);return[t?.name,t?.builtinFallback?`__builtin__${t.name}`:void 0]}).filter(e=>!!e))).then(()=>{document.querySelectorAll("style").forEach(e=>{e.innerHTML=e.innerHTML.replace(/--marp-transition-duration:[^;}]*[;}]/g,e=>e.slice(0,-1)+"!important"+e.slice(-1))})});const r=(n,{back:r,cond:o})=>a=>{const i=t();if(i)return!!a[$e]||!("object"!=typeof i||(i.skipTransition(),!a.forSync));if(!o(a))return!0;const s=e.slides[e.slide()],c=()=>a.back??r,l="data-transition"+(c()?"-back":""),d=s.querySelector(`section[${l}]`);if(!d)return!0;const u=xe(d.getAttribute(l)??void 0);return!u||((async(e,{builtinFallback:t=!0}={})=>{let n=await ye(e);if(be(n)){if(!t)return;return n=await ye(`__builtin__${e}`),be(n)?void 0:n}return n})(u.name,{builtinFallback:u.builtinFallback}).then(e=>{if(!e){t(!0);try{n(a)}finally{t(!1)}return}let r=e;Le.matches&&(console.warn("Use a constant animation to transition because preferring reduced motion by viewer has detected."),r=_e);const o=document.getElementById(ke);o&&o.remove();const i=document.createElement("style");i.id=ke,document.head.appendChild(i),((e,t)=>{const n=[`:root{${ge("direction")}:${t.backward?-1:1};}`,":root:has(.bespoke-marp-inactive){cursor:none;}"],r=t=>{const n=e[t].both?.defaultDuration||e[t].outgoing?.defaultDuration||e[t].incoming?.defaultDuration;return"forward"===t?n:n||r("forward")},o=t.duration||r(t.backward?"backward":"forward");void 0!==o&&n.push(`::view-transition-group(*){${ve}:${o};}`);const a=e=>Object.entries(e).map(([e,t])=>`${e}:${t};`).join("");return n.push(`::view-transition-old(root){${a(we(e,{...t,type:"outgoing"}))}}`,`::view-transition-new(root){${a(we(e,{...t,type:"incoming"}))}}`),n})(r,{backward:c(),duration:u.duration}).forEach(e=>i.sheet?.insertRule(e));const s=document.documentElement.classList;s.add(Ee);let l=!1;const d=()=>{l||(n(a),l=!0,s.remove(Ee))},f=()=>{t(!1),i.remove(),s.remove(Ee)};try{t(!0);const e=document.startViewTransition(d);t(e),e.finished.finally(f)}catch(e){console.error(e),d(),f()}}),!1)};e.on("prev",r(t=>e.prev({...t,[$e]:!0}),{back:!0,cond:e=>e.index>0&&!((e.fragment??1)&&n.fragmentIndex>0)})),e.on("next",r(t=>e.next({...t,[$e]:!0}),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout(()=>{e.on("slide",r(t=>e.slide(t.index,{...t,[$e]:!0}),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))},0),e.on("fragment",e=>{n=e})};let Ie;const Me=()=>(void 0===Ie&&(Ie="wakeLock"in navigator&&navigator.wakeLock),Ie),Oe=async()=>{const e=Me();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},Ae=async()=>{if(!Me())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&Oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await Oe(),e};((e=document.getElementById(":$p"))=>{(()=>{const e=p("view");a.dataset.bespokeView=e===l||e===c?e:""})();const t=(e=>{const t=p(e);return v({[e]:void 0}),t})("sync")||void 0;o.from(e,((...e)=>{const t=d.findIndex(e=>g()===e);return e.map(([e,n])=>e[t]&&n).filter(e=>e)})([[1,1,0],re({key:t})],[[1,1,1],Z(e)],[[1,1,0],M],[[1,1,1],k],[[1,0,0],T()],[[1,1,1],O],[[1,1,1],ne({history:!1})],[[1,1,0],A()],[[1,1,0],P],[[1,0,0],ee],[[1,1,0],le()],[[1,0,0],C()],[[1,0,0],Te],[[1,1,1],$],[[1,1,0],Ae]))})()}();</script></body></html>

@@ -1,0 +1,77 @@
+<svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+  <!-- Title -->
+  <text x="350" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">USD/JPY シナリオ分布（確率分布）</text>
+
+  <!-- X-axis scale: 128 to 156 => range 28 -->
+  <!-- x mapping: x = 80 + ((value - 128) / 28) * 560 -->
+  <!-- 128 -> 80, 135 -> 220, 142 -> 360, 149 -> 500, 156 -> 640 -->
+
+  <!-- 95% confidence zone (full range 128-156) - lightest fill -->
+  <path d="M80,230 Q80,228 120,210 Q200,160 260,120 Q320,75 360,60 Q400,75 440,120 Q500,160 580,210 Q620,228 640,230 Z" fill="rgba(25,118,210,0.06)" stroke="none"/>
+
+  <!-- 68% confidence zone (135-149) - medium fill -->
+  <path d="M220,230 Q230,220 270,180 Q310,110 340,80 Q355,65 360,60 Q365,65 380,80 Q410,110 450,180 Q490,220 500,230 Z" fill="rgba(25,118,210,0.12)" stroke="none"/>
+
+  <!-- Left tail: 128-135 bearish (red) -->
+  <path d="M80,230 Q80,228 120,210 Q160,185 200,160 Q215,145 220,136 L220,230 Z" fill="rgba(198,40,40,0.15)" stroke="none"/>
+
+  <!-- Right tail: 149-156 bullish (green) -->
+  <path d="M500,230 Q500,136 505,145 Q520,160 560,185 Q600,210 620,228 Q640,230 640,230 L500,230 Z" fill="rgba(46,125,50,0.15)" stroke="none"/>
+
+  <!-- Bell curve outline -->
+  <path d="M80,230 Q80,228 120,210 Q200,160 260,120 Q320,75 360,60 Q400,75 440,120 Q500,160 580,210 Q620,228 640,230" fill="none" stroke="#1976d2" stroke-width="2.5"/>
+
+  <!-- X-axis -->
+  <line x1="60" y1="230" x2="660" y2="230" stroke="#455a64" stroke-width="1.5"/>
+
+  <!-- X-axis tick marks and labels -->
+  <line x1="80" y1="230" x2="80" y2="236" stroke="#455a64" stroke-width="1"/>
+  <text x="80" y="250" text-anchor="middle" font-size="11" fill="#455a64">128</text>
+
+  <line x1="220" y1="230" x2="220" y2="236" stroke="#455a64" stroke-width="1"/>
+  <text x="220" y="250" text-anchor="middle" font-size="11" fill="#455a64">135</text>
+
+  <line x1="360" y1="230" x2="360" y2="236" stroke="#455a64" stroke-width="1"/>
+  <text x="360" y="250" text-anchor="middle" font-size="11" font-weight="bold" fill="#1976d2">142</text>
+
+  <line x1="500" y1="230" x2="500" y2="236" stroke="#455a64" stroke-width="1"/>
+  <text x="500" y="250" text-anchor="middle" font-size="11" fill="#455a64">149</text>
+
+  <line x1="640" y1="230" x2="640" y2="236" stroke="#455a64" stroke-width="1"/>
+  <text x="640" y="250" text-anchor="middle" font-size="11" fill="#455a64">156</text>
+
+  <!-- Center line at 142 -->
+  <line x1="360" y1="55" x2="360" y2="230" stroke="#1976d2" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- 68% bracket -->
+  <line x1="220" y1="136" x2="220" y2="205" stroke="#1976d2" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="500" y1="136" x2="500" y2="205" stroke="#1976d2" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="222" y1="195" x2="498" y2="195" stroke="#1976d2" stroke-width="1"/>
+  <text x="360" y="192" text-anchor="middle" font-size="10" fill="#1976d2" font-weight="600">68% 信頼区間: 135-149円</text>
+
+  <!-- 95% bracket -->
+  <line x1="82" y1="218" x2="638" y2="218" stroke="#78909c" stroke-width="0.8"/>
+  <text x="360" y="216" text-anchor="middle" font-size="9" fill="#78909c">95% 信頼区間: 128-156円</text>
+
+  <!-- Labels for scenarios -->
+  <!-- Center: Base scenario -->
+  <rect x="310" y="35" width="100" height="22" rx="4" fill="#1976d2"/>
+  <text x="360" y="51" text-anchor="middle" font-size="11" font-weight="bold" fill="white">ベース 50%</text>
+
+  <!-- Left: Bearish -->
+  <rect x="105" y="155" width="90" height="36" rx="4" fill="rgba(198,40,40,0.1)" stroke="#c62828" stroke-width="1"/>
+  <text x="150" y="172" text-anchor="middle" font-size="10" font-weight="600" fill="#c62828">弱気シナリオ</text>
+  <text x="150" y="186" text-anchor="middle" font-size="10" fill="#c62828">25%</text>
+
+  <!-- Right: Bullish -->
+  <rect x="525" y="155" width="90" height="36" rx="4" fill="rgba(46,125,50,0.1)" stroke="#2e7d32" stroke-width="1"/>
+  <text x="570" y="172" text-anchor="middle" font-size="10" font-weight="600" fill="#2e7d32">強気シナリオ</text>
+  <text x="570" y="186" text-anchor="middle" font-size="10" fill="#2e7d32">25%</text>
+
+  <!-- Unit label -->
+  <text x="660" y="250" text-anchor="start" font-size="10" fill="#78909c">円</text>
+
+  <!-- Note: bearish = yen strengthens (lower number), bullish = yen weakens (higher number) -->
+  <text x="150" y="265" text-anchor="middle" font-size="9" fill="#c62828">128-135円（円高）</text>
+  <text x="570" y="265" text-anchor="middle" font-size="9" fill="#2e7d32">149-156円（円安）</text>
+</svg>

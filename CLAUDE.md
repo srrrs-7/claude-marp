@@ -89,9 +89,9 @@ No test framework yet. When adding tests, use `bun:test`.
 
 **SVG images:**
 
-- Use relative paths for image references
-- Cannot embed raw SVG code in markdown
-- Verify image paths are correct
+- Standalone SVG files go in `assets/` directory, referenced as `![alt](assets/filename.svg)`
+- Marp CLI inlines SVGs during HTML export — `dist/` HTML is self-contained
+- Use relative paths from the markdown file (e.g., `assets/diagram.svg`)
 
 **Themes:**
 
@@ -104,13 +104,15 @@ Bun 1.3.5 + TypeScript CLI tool for rendering structured slide data into Marp-fo
 
 **Pipeline:** Slide data JSON (Zod-validated) + YAML config → Marp markdown → HTML/PDF export via Marp CLI.
 
-**Output structure:** Each presentation gets a dedicated directory under `docs/<yyyymmddhhmmss>_<title>/`. Markdown is rendered directly in this directory. Exports (HTML/PDF/PPTX) go in `dist/` subdirectory. See `.claude/rules/output-structure.md` for details.
+**Output structure:** Each presentation gets a dedicated directory under `docs/<yyyymmddhhmmss>_<slug>/`. Markdown is rendered directly in this directory. Exports (HTML/PDF/PPTX) go in `dist/` subdirectory. Standalone SVG diagrams go in `assets/`. See `.claude/rules/output-structure.md` for details.
 
 ```
 docs/20260214073222_example/
 ├── slides.config.yaml
 ├── slides-data.json
-├── example.md              # render output
+├── example.md              # render output (baseName from config)
+├── assets/                 # standalone SVG diagrams (optional)
+│   └── diagram.svg
 └── dist/
     └── example.html        # export output
 ```

@@ -1,5 +1,5 @@
 ---
-marp: true
+marp: false
 theme: gaia
 size: 16:9
 paginate: true
@@ -24,21 +24,6 @@ style: |
   section pre code {
     font-size: 0.6em;
     line-height: 1.4;
-  }
-  /* Mermaid図解をスライドに収める */
-  section .mermaid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-height: 70vh;
-    max-width: 100%;
-  }
-  
-  section .mermaid svg {
-    max-width: 100%;
-    max-height: 70vh;
-    height: auto;
-    width: auto;
   }
   
 ---
@@ -106,19 +91,49 @@ style: |
 - 2024年: Claude Code / Cursor — マルチファイル編集
 - 2025年: エージェント型、自律的なタスク実行
 
+<svg viewBox="0 0 750 200" style="max-height:70vh;width:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="ft1"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.15"/></filter>
+  </defs>
+  <!-- Timeline axis -->
+  <line x1="60" y1="100" x2="690" y2="100" stroke="#B0BEC5" stroke-width="3"/>
+  <!-- 2021 -->
+  <circle cx="120" cy="100" r="18" fill="#1565C0" filter="url(#ft1)"/>
+  <text x="120" y="106" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold">&#39;21</text>
+  <text x="120" y="70" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="13" font-weight="bold">GitHub Copilot</text>
+  <text x="120" y="145" text-anchor="middle" fill="#78909C" font-family="sans-serif" font-size="11">補完ベース</text>
+  <!-- 2023 -->
+  <circle cx="310" cy="100" r="18" fill="#2E7D32" filter="url(#ft1)"/>
+  <text x="310" y="106" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold">&#39;23</text>
+  <text x="310" y="70" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="13" font-weight="bold">ChatGPT統合</text>
+  <text x="310" y="145" text-anchor="middle" fill="#78909C" font-family="sans-serif" font-size="11">会話型へ進化</text>
+  <!-- 2024 -->
+  <circle cx="500" cy="100" r="18" fill="#E65100" filter="url(#ft1)"/>
+  <text x="500" y="106" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold">&#39;24</text>
+  <text x="500" y="70" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="13" font-weight="bold">Claude Code</text>
+  <text x="500" y="145" text-anchor="middle" fill="#78909C" font-family="sans-serif" font-size="11">マルチファイル編集</text>
+  <!-- 2025 -->
+  <circle cx="630" cy="100" r="18" fill="#7B1FA2" filter="url(#ft1)"/>
+  <text x="630" y="106" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold">&#39;25</text>
+  <text x="630" y="70" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="13" font-weight="bold">エージェント型</text>
+  <text x="630" y="145" text-anchor="middle" fill="#78909C" font-family="sans-serif" font-size="11">自律的タスク実行</text>
+  <!-- Progress arrow -->
+  <polygon points="695,100 685,92 685,108" fill="#B0BEC5"/>
+  <!-- Legend -->
+  <rect x="150" y="170" width="450" height="25" rx="5" fill="#F5F5F5" stroke="#E0E0E0"/>
+  <circle cx="185" cy="182" r="6" fill="#1565C0"/>
+  <text x="197" y="187" fill="#37474F" font-family="sans-serif" font-size="10">補完</text>
+  <circle cx="260" cy="182" r="6" fill="#2E7D32"/>
+  <text x="272" y="187" fill="#37474F" font-family="sans-serif" font-size="10">会話型</text>
+  <circle cx="345" cy="182" r="6" fill="#E65100"/>
+  <text x="357" y="187" fill="#37474F" font-family="sans-serif" font-size="10">マルチファイル</text>
+  <circle cx="460" cy="182" r="6" fill="#7B1FA2"/>
+  <text x="472" y="187" fill="#37474F" font-family="sans-serif" font-size="10">エージェント</text>
+</svg>
 
----
-
-# AIツールの進化史（図解）
-
-```mermaid
-timeline
-  2021 : GitHub Copilot
-  2023 : ChatGPT統合
-  2024 : Claude Code
-  2025 : エージェント型
-```
-
+<!--
+わずか4年で劇的な進化。単一行補完から自律エージェントへ。
+-->
 
 ---
 
@@ -231,19 +246,47 @@ timeline
 - 生成→レビュー→修正のイテレーションを高速に回す
 - AIは「ドラフト生成器」、人間は「品質ゲートキーパー」
 
+<svg viewBox="0 0 700 260" style="max-height:70vh;width:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="fc1"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.15"/></filter>
+    <marker id="ac1" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#546E7A"/>
+    </marker>
+  </defs>
+  <!-- A: 要件定義・設計 (Human) -->
+  <rect x="30" y="60" width="160" height="50" rx="10" fill="#1565C0" filter="url(#fc1)"/>
+  <text x="110" y="91" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">要件定義・設計</text>
+  <line x1="190" y1="85" x2="238" y2="85" stroke="#546E7A" stroke-width="2" marker-end="url(#ac1)"/>
+  <!-- B: AIが実装 (AI) -->
+  <rect x="245" y="60" width="150" height="50" rx="10" fill="#4CAF50" filter="url(#fc1)"/>
+  <text x="320" y="91" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">AIが実装</text>
+  <line x1="395" y1="85" x2="438" y2="85" stroke="#546E7A" stroke-width="2" marker-end="url(#ac1)"/>
+  <!-- C: 人間がレビュー (Human) -->
+  <rect x="445" y="60" width="170" height="50" rx="10" fill="#1565C0" filter="url(#fc1)"/>
+  <text x="530" y="91" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">人間がレビュー</text>
+  <!-- 承認 → D: マージ -->
+  <line x1="530" y1="110" x2="530" y2="155" stroke="#546E7A" stroke-width="2" marker-end="url(#ac1)"/>
+  <text x="555" y="138" text-anchor="start" fill="#2E7D32" font-family="sans-serif" font-size="12" font-weight="bold">承認</text>
+  <rect x="460" y="165" width="140" height="50" rx="10" fill="#E65100" filter="url(#fc1)"/>
+  <text x="530" y="196" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="15" font-weight="bold">マージ</text>
+  <!-- 修正指示 loop (dashed) back to B -->
+  <path d="M 445,95 Q 420,95 420,130 Q 420,160 320,160 Q 280,160 280,115" fill="none" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#ac1)"/>
+  <text x="360" y="155" text-anchor="middle" fill="#E53935" font-family="sans-serif" font-size="12" font-weight="bold">修正指示</text>
+  <!-- Legend -->
+  <rect x="100" y="230" width="500" height="25" rx="5" fill="#F5F5F5" stroke="#E0E0E0"/>
+  <rect x="120" y="235" width="14" height="14" rx="3" fill="#1565C0"/>
+  <text x="140" y="247" fill="#37474F" font-family="sans-serif" font-size="11">人間タスク</text>
+  <rect x="230" y="235" width="14" height="14" rx="3" fill="#4CAF50"/>
+  <text x="250" y="247" fill="#37474F" font-family="sans-serif" font-size="11">AIタスク</text>
+  <rect x="330" y="235" width="14" height="14" rx="3" fill="#E65100"/>
+  <text x="350" y="247" fill="#37474F" font-family="sans-serif" font-size="11">完了</text>
+  <line x1="420" y1="242" x2="450" y2="242" stroke="#E53935" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="460" y="247" fill="#37474F" font-family="sans-serif" font-size="11">修正ループ</text>
+</svg>
 
----
-
-# AI協働の開発フロー（図解）
-
-```mermaid
-graph LR
-  A[要件定義・設計] --> B[AIが実装]
-  B --> C[人間がレビュー]
-  C -->|修正指示| B
-  C -->|承認| D[マージ]
-```
-
+<!--
+基本的なフロー。従来との違いは実装フェーズがAIに移り、人間は設計とレビューに集中。
+-->
 
 ---
 
@@ -279,11 +322,6 @@ graph LR
 - 禁止事項（使わないライブラリ、避けるパターン）
 - 自動的にコンテキストとして読み込まれる
 
-
----
-
-# CLAUDE.md / .cursorrules 活用（コード例）
-
 ```markdown
 # CLAUDE.md
 ## Tech Stack
@@ -294,6 +332,9 @@ graph LR
 - Max 8 lines per code block in slides
 ```
 
+<!--
+プロジェクトルールの文書化。一度書けば繰り返し指示不要。
+-->
 
 ---
 
@@ -314,11 +355,6 @@ graph LR
 - AIの得意分野: 定型的なスキーマ定義
 - 人間の役割: ビジネスルールの検証
 
-
----
-
-# コード例: 型定義とバリデーション（コード例）
-
 ```typescript
 // AIに任せる: Zodスキーマ
 const userSchema = z.object({
@@ -330,6 +366,9 @@ const userSchema = z.object({
 const canVote = (user) => user.age >= 18;
 ```
 
+<!--
+具体的なTS例で分担を可視化。型定義はAI、判断は人間。
+-->
 
 ---
 
@@ -351,17 +390,15 @@ const canVote = (user) => user.age >= 18;
 - 統合テスト: APIエンドポイントから正常系・異常系を生成
 - カバレッジ: AIで80%達成、人間がエッジケースを追加
 
-
----
-
-# テスト自動生成（コード例）
-
 ```typescript
 // プロンプト例
 "divide関数の単体テストをJestで生成。
 ゼロ除算、負数、小数のケースを含めて"
 ```
 
+<!--
+テスト作成はAIの得意分野。人間はテストケースの網羅性を確認。
+-->
 
 ---
 
@@ -412,18 +449,59 @@ const canVote = (user) => user.age >= 18;
 
 # 効率的なレビューフロー
 
-```mermaid
-graph TD
-  A[AI生成PR] --> B{自動チェック}
-  B -->|Pass| C{リスク判定}
-  B -->|Fail| Z[修正]
-  C -->|HIGH| D[人間が精査]
-  C -->|MID| E[AIレビュー+人間確認]
-  C -->|LOW| F[AIレビューのみ]
-  D --> G[承認]
-  E --> G
-  F --> G
-```
+<svg viewBox="0 0 720 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="fr1"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.15"/></filter>
+    <marker id="ar1" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#546E7A"/>
+    </marker>
+  </defs>
+  <!-- A: AI生成PR -->
+  <rect x="275" y="10" width="170" height="45" rx="10" fill="#37474F" filter="url(#fr1)"/>
+  <text x="360" y="38" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">AI生成PR</text>
+  <line x1="360" y1="55" x2="360" y2="80" stroke="#546E7A" stroke-width="2" marker-end="url(#ar1)"/>
+  <!-- B: 自動チェック (Decision) -->
+  <polygon points="360,90 460,135 360,180 260,135" fill="#FF9800" filter="url(#fr1)"/>
+  <text x="360" y="140" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">自動チェック</text>
+  <!-- Fail → Z: 修正 -->
+  <line x1="460" y1="135" x2="578" y2="135" stroke="#546E7A" stroke-width="2" marker-end="url(#ar1)"/>
+  <text x="510" y="128" text-anchor="middle" fill="#E53935" font-family="sans-serif" font-size="12" font-weight="bold">Fail</text>
+  <rect x="585" y="112" width="110" height="45" rx="8" fill="#E53935" filter="url(#fr1)"/>
+  <text x="640" y="140" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">修正</text>
+  <!-- Pass → C: リスク判定 -->
+  <line x1="360" y1="180" x2="360" y2="210" stroke="#546E7A" stroke-width="2" marker-end="url(#ar1)"/>
+  <text x="385" y="200" text-anchor="start" fill="#2E7D32" font-family="sans-serif" font-size="12" font-weight="bold">Pass</text>
+  <!-- C: リスク判定 (Decision) -->
+  <polygon points="360,220 460,265 360,310 260,265" fill="#FF9800" filter="url(#fr1)"/>
+  <text x="360" y="270" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">リスク判定</text>
+  <!-- HIGH → D: 人間が精査 -->
+  <line x1="260" y1="265" x2="178" y2="265" stroke="#546E7A" stroke-width="2"/>
+  <line x1="110" y1="265" x2="110" y2="345" stroke="#546E7A" stroke-width="2" marker-end="url(#ar1)"/>
+  <line x1="178" y1="265" x2="110" y2="265" stroke="#546E7A" stroke-width="2"/>
+  <text x="210" y="255" text-anchor="middle" fill="#D32F2F" font-family="sans-serif" font-size="12" font-weight="bold">HIGH</text>
+  <rect x="30" y="350" width="160" height="45" rx="8" fill="#D32F2F" filter="url(#fr1)"/>
+  <text x="110" y="378" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">人間が精査</text>
+  <!-- MID → E: AIレビュー+人間確認 -->
+  <line x1="360" y1="310" x2="360" y2="345" stroke="#546E7A" stroke-width="2" marker-end="url(#ar1)"/>
+  <text x="385" y="332" text-anchor="start" fill="#F57C00" font-family="sans-serif" font-size="12" font-weight="bold">MID</text>
+  <rect x="260" y="350" width="200" height="45" rx="8" fill="#F57C00" filter="url(#fr1)"/>
+  <text x="360" y="378" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold">AIレビュー+人間確認</text>
+  <!-- LOW → F: AIレビューのみ -->
+  <line x1="460" y1="265" x2="610" y2="265" stroke="#546E7A" stroke-width="2"/>
+  <line x1="610" y1="265" x2="610" y2="345" stroke="#546E7A" stroke-width="2" marker-end="url(#ar1)"/>
+  <text x="530" y="255" text-anchor="middle" fill="#2E7D32" font-family="sans-serif" font-size="12" font-weight="bold">LOW</text>
+  <rect x="530" y="350" width="160" height="45" rx="8" fill="#2E7D32" filter="url(#fr1)"/>
+  <text x="610" y="378" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">AIレビューのみ</text>
+  <!-- All → G: 承認 -->
+  <line x1="110" y1="395" x2="110" y2="425" stroke="#546E7A" stroke-width="2"/>
+  <line x1="110" y1="425" x2="310" y2="425" stroke="#546E7A" stroke-width="2"/>
+  <line x1="360" y1="395" x2="360" y2="425" stroke="#546E7A" stroke-width="2"/>
+  <line x1="610" y1="395" x2="610" y2="425" stroke="#546E7A" stroke-width="2"/>
+  <line x1="610" y1="425" x2="410" y2="425" stroke="#546E7A" stroke-width="2"/>
+  <line x1="360" y1="425" x2="360" y2="440" stroke="#546E7A" stroke-width="2" marker-end="url(#ar1)"/>
+  <rect x="290" y="448" width="140" height="45" rx="10" fill="#1565C0" filter="url(#fr1)"/>
+  <text x="360" y="477" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="15" font-weight="bold">承認</text>
+</svg>
 
 <!--
 自動化とリスク判定を組み合わせたフロー。効率と品質を両立。
@@ -451,11 +529,6 @@ graph TD
 - 限界: ビジネスロジックの妥当性は判断できない
 - 活用法: 第一次レビューをAI、最終判断は人間
 
-
----
-
-# AIレビュアーの活用（コード例）
-
 ```markdown
 # プロンプト例
 "以下のPRをレビューして。
@@ -463,6 +536,9 @@ graph TD
 パフォーマンス問題に注目"
 ```
 
+<!--
+AIでAI生成コードをレビュー。ただし最終判断は人間が必須。
+-->
 
 ---
 

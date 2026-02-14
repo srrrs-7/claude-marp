@@ -1,0 +1,63 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f8f9fa"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">Permission Boundaries — 積集合による権限制限</text>
+
+  <!-- Venn Diagram - Left Circle (Identity-based Policy) -->
+  <circle cx="280" cy="250" r="140" fill="#63B3ED" opacity="0.5" stroke="#3182CE" stroke-width="3"/>
+
+  <!-- Venn Diagram - Right Circle (Permission Boundary) -->
+  <circle cx="520" cy="250" r="140" fill="#F6AD55" opacity="0.5" stroke="#DD6B20" stroke-width="3"/>
+
+  <!-- Intersection (actual permissions) -->
+  <path d="M 400 110 A 140 140 0 0 1 400 390 A 140 140 0 0 1 400 110 Z" fill="#48BB78" opacity="0.7" stroke="#2F855A" stroke-width="3"/>
+
+  <!-- Labels for circles -->
+  <text x="220" y="150" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#2C5282">アイデンティティ</text>
+  <text x="220" y="170" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#2C5282">ベースポリシー</text>
+  <text x="220" y="195" text-anchor="middle" font-family="Arial" font-size="11" fill="#2C5282">(IAMポリシー)</text>
+
+  <text x="580" y="150" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#9C4221">Permission</text>
+  <text x="580" y="170" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#9C4221">Boundary</text>
+  <text x="580" y="195" text-anchor="middle" font-family="Arial" font-size="11" fill="#9C4221">(権限の上限)</text>
+
+  <!-- Intersection label -->
+  <text x="400" y="240" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">実際の権限</text>
+  <text x="400" y="265" text-anchor="middle" font-family="Arial" font-size="13" fill="white">(A AND B)</text>
+
+  <!-- Example permissions -->
+  <g id="examples">
+    <!-- Left only area -->
+    <rect x="140" y="270" width="110" height="80" rx="5" fill="white" opacity="0.9" stroke="#3182CE" stroke-width="1"/>
+    <text x="195" y="290" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#2C5282">許可されない:</text>
+    <text x="195" y="307" text-anchor="middle" font-family="Arial" font-size="9" fill="#2C5282">• ec2:*</text>
+    <text x="195" y="322" text-anchor="middle" font-family="Arial" font-size="9" fill="#2C5282">• rds:*</text>
+    <text x="195" y="337" text-anchor="middle" font-family="Arial" font-size="9" fill="#2C5282">(Boundaryで</text>
+    <text x="195" y="350" text-anchor="middle" font-family="Arial" font-size="9" fill="#2C5282">制限)</text>
+
+    <!-- Intersection area -->
+    <rect x="345" y="290" width="110" height="70" rx="5" fill="white" opacity="0.95" stroke="#2F855A" stroke-width="2"/>
+    <text x="400" y="310" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#276749">許可される:</text>
+    <text x="400" y="327" text-anchor="middle" font-family="Arial" font-size="9" fill="#276749">• s3:GetObject</text>
+    <text x="400" y="342" text-anchor="middle" font-family="Arial" font-size="9" fill="#276749">• s3:PutObject</text>
+    <text x="400" y="357" text-anchor="middle" font-family="Arial" font-size="9" fill="#276749">• dynamodb:*</text>
+
+    <!-- Right only area -->
+    <rect x="550" y="270" width="110" height="80" rx="5" fill="white" opacity="0.9" stroke="#DD6B20" stroke-width="1"/>
+    <text x="605" y="290" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#9C4221">許可されない:</text>
+    <text x="605" y="307" text-anchor="middle" font-family="Arial" font-size="9" fill="#9C4221">• lambda:*</text>
+    <text x="605" y="322" text-anchor="middle" font-family="Arial" font-size="9" fill="#9C4221">(ポリシーに</text>
+    <text x="605" y="337" text-anchor="middle" font-family="Arial" font-size="9" fill="#9C4221">定義なし)</text>
+  </g>
+
+  <!-- Formula -->
+  <rect x="200" y="430" width="400" height="50" rx="10" fill="#E6FFFA" stroke="#319795" stroke-width="2"/>
+  <text x="400" y="455" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#234E52">実効権限 = (IAMポリシー) ∩ (Permission Boundary)</text>
+
+  <!-- Key insight -->
+  <rect x="20" y="20" width="230" height="50" rx="8" fill="#FEF5E7" stroke="#F39C12" stroke-width="2"/>
+  <text x="135" y="42" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#D68910">重要: 両方にAllowが必要</text>
+  <text x="135" y="60" text-anchor="middle" font-family="Arial" font-size="11" fill="#D68910">どちらか一方だけでは不十分</text>
+</svg>
