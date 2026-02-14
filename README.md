@@ -55,6 +55,11 @@ docs/
 | `bun run slides init` | `slides.config.yaml` テンプレートを生成 |
 | `bun run slides render --in <data.json>` | JSONからMarpマークダウンをレンダリング |
 | `bun run slides export -f <html\|pdf\|pptx> --in <file.md>` | マークダウンをエクスポート |
+| `bun run split` | コード・図解をコンテンツから分離してはみ出しを防止（全プレゼンテーション） |
+| `bun run fix-mermaid` | Mermaid図解をスライドに収めるCSSを追加（全設定ファイル） |
+| `bun run rebuild` | `docs/` 配下の全プレゼンテーションを再レンダリング・再エクスポート |
+| `bun run rebuild:render` | 全プレゼンテーションを再レンダリングのみ（エクスポートスキップ） |
+| `bun run rebuild:export` | 全プレゼンテーションを再エクスポートのみ（レンダリングスキップ） |
 
 共通オプション: `-c <config.yaml>` / `--config <config.yaml>` で設定ファイルを指定（デフォルト: `slides.config.yaml`）
 

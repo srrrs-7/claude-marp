@@ -1,14 +1,5 @@
-topic: "世界年収アップ戦略と円安下の海外就業意思決定"
-audience: "engineering managers and senior engineers"
-goal: "転職/海外就職の意思決定ができる"
+topic: "AWS IAMの権限管理 完全ガイド"
 language: "ja"
-
-slides:
-  count: 40
-  includeTableOfContents: true
-  includeTitleSlide: true
-  includeSummarySlide: true
-
 marp:
   theme: "gaia"
   size: "16:9"
@@ -16,6 +7,9 @@ marp:
   header: ""
   footer: ""
   style: |
+    section {
+      font-size: 28px;
+    }
     section pre code {
       font-size: 0.6em;
       line-height: 1.4;
@@ -35,13 +29,6 @@ marp:
       height: auto;
       width: auto;
     }
-content:
-  codeBlocks: false
-  codeLanguage: "text"
-  mermaidDiagrams: true
-  bulletPointsMax: 5
-  speakerNotes: true
-
 output:
-  dir: "./docs/20260214081826_global-career-strategy"
-  baseName: "global-career-strategy-2026"
+  dir: "docs/20260214105800_aws_iam_permissions_guide"
+  baseName: "aws-iam-permissions-guide"

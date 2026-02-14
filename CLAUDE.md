@@ -8,12 +8,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 For manual workflow or modifications, see Commands section below.
 
+### Output Path Configuration
+
+When creating `slides.config.yaml` for new presentations:
+- Set `output.dir: "docs/<timestamp>_<title>"` (full path from project root)
+- Avoid relative paths like `"."` — they resolve from execution directory, not config file location
+- The `/create-slides` skill handles this automatically
+
 ## Commands
 
 ```bash
 bun run slides init                     # Create slides.config.yaml template
 bun run slides render --in data.json    # Render slide data JSON to Marp markdown
 bun run slides export -f html --in FILE # Export Marp markdown to HTML
+bun run split                           # Split code/diagrams from content to prevent overflow (all presentations)
+bun run fix-mermaid                     # Add CSS to fit Mermaid diagrams within slide dimensions (all configs)
+bun run rebuild                         # Re-render & re-export all presentations in docs/
+bun run rebuild:render                  # Re-render only (skip export)
+bun run rebuild:export                  # Re-export only (skip render)
 bun run typecheck                       # Type checking via tsgo (native TS compiler)
 bun run check                           # Biome lint + format check
 bun run format                          # Auto-format with Biome
@@ -118,14 +130,6 @@ style: |
   - [GitHub Copilot](https://github.com/features/copilot)
   ```
 
-## Slide Expansion Best Practices
-
-When expanding presentations (e.g., 12 → 38 slides):
-- Add concrete examples: tool comparisons, code samples, checklists
-- Include real data: research findings (with citations), case studies
-- Balance sections: intro (3), main content (30), conclusion (5)
-- One slide per key concept; avoid information overload
-- Add "Today's Action Items" slide for practical takeaways
 
 ## .claude Directory
 
@@ -154,44 +158,22 @@ When expanding presentations (e.g., 12 → 38 slides):
 - **PDF export:** Requires Chromium. HTML is the primary format.
 - **No blank slides:** Every slide must have content (title + bullets/code/diagram)
 
-## Maintenance & Fixes
+## Automation Workflow
 
-**Fixing content overflow issues:**
-When slides have too many bullets (8+ items on agenda/TOC):
-1. Edit markdown: Split into 2 slides with "(1/2)" and "(2/2)" suffixes
-2. Re-export to HTML:
-   ```bash
-   bun run slides export -c docs/<dir>/slides.config.yaml -f html --in docs/<dir>/<file>.md
-   ```
+**Preventing content overflow:**
+Run `bun run split` to automatically separate code blocks and Mermaid diagrams from bullet content across all presentations. This prevents slides from overflowing by creating dedicated diagram/code slides.
 
-**Bulk re-export after fixes:**
-```bash
-# Re-export specific presentations
-for dir in docs/20260214073222_* docs/20260214082958_*; do
-  bun run slides export -c $dir/slides.config.yaml -f html --in $dir/*.md
-done
-```
+**Fixing Mermaid diagram sizing:**
+Run `bun run fix-mermaid` to add CSS that constrains Mermaid diagrams to slide dimensions (max-height: 70vh) in all config files.
 
-**Finding presentations with overflow issues:**
-Use the Explore agent to search for agenda/TOC slides with 8+ items, then fix and re-export.
+**Rebuilding all presentations:**
+After structural changes (schema updates, template modifications), use:
+- `bun run rebuild` — re-render + re-export all presentations
+- `bun run rebuild:render` — re-render only (faster, skips export)
+- `bun run rebuild:export` — re-export only (markdown already correct)
 
 ## Troubleshooting
 
-**Nested directory structure after export:**
-If `docs/<timestamp>_<title>/docs/` is created (nested `docs/`), remove it:
-```bash
-rm -rf docs/<timestamp>_<title>/docs
-```
-Correct structure should be:
-```
-docs/<timestamp>_<title>/
-├── slides-data.json
-├── slides.config.yaml
-├── <name>.md
-└── dist/
-    └── <name>.html
-```
+**Wrong output location:** If files render to wrong directory, verify `output.dir` in config uses full path from project root: `"docs/<timestamp>_<title>"` not relative path `"."`
 
-**VSCode Marp preview not working:**
-- Install "Marp for VS Code" extension, OR
-- View exported HTML in browser (recommended for final presentation)
+**Preview:** View exported HTML in browser. VSCode Marp extension (`marp-team.marp-vscode`) can preview `.md` files but HTML export is recommended for final presentation.

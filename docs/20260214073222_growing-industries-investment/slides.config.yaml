@@ -27,7 +27,21 @@ style: |
   section table {
     font-size: 0.85em;
   }
+    /* Mermaid図解をスライドに収める */
+    section .mermaid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-height: 70vh;
+      max-width: 100%;
+    }
 
+    section .mermaid svg {
+      max-width: 100%;
+      max-height: 70vh;
+      height: auto;
+      width: auto;
+    }
 directives: {}
 
 output:

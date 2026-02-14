@@ -29,3 +29,4 @@ user_invocable: true
 - **選択肢がある質問は `AskUserQuestion` ツールで選択式にする**（自由記述が必要な質問はテキストで問いかける）
 - アウトライン承認前にデータ生成しない
 - レビューループは何度でも回す
+- **【重要】config生成時**: `slides.config.yaml` の `output.dir` は **必ず** `"docs/<timestamp>_<title>"` のフルパスを指定（相対パス `"."` は実行ディレクトリ基準で解決されるため不可）

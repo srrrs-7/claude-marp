@@ -60,14 +60,32 @@ docs/<yyyymmddhhmmss>_<slug>/
 
 ## レンダリング・エクスポートの動作
 
+### ⚠️ 重要: output.dir 設定
+
+**`slides.config.yaml` の `output.dir` は必ずプロジェクトルートからのフルパスを指定:**
+
+```yaml
+output:
+  dir: "docs/20260214073222_example"  # ✅ 正しい（フルパス）
+  baseName: "example"
+```
+
+```yaml
+output:
+  dir: "."                            # ❌ 間違い（相対パス）
+  baseName: "example"
+```
+
+**理由**: 相対パス `"."` は**実行ディレクトリ**（通常 `/workspace/main`）を基準に解決されるため、設定ファイルと異なる場所に出力されてしまう。
+
 ### render コマンド
 
 ```bash
 bun run slides render --in slides-data.json
 ```
 
-**出力先**: プレゼンテーションディレクトリ直下に `<name>.md` を生成
-- `slides-data.json` と同じディレクトリに出力
+**出力先**: `output.dir` で指定したディレクトリに `<name>.md` を生成
+- `slides.config.yaml` の `output.dir` 設定に従う
 - **余計なサブディレクトリを作らない**
 
 ### export コマンド
@@ -126,8 +144,12 @@ docs/20260214073222_growing-industries-investment/
 
 ## チェックリスト
 
+**slides.config.yaml 生成時（/create-slides 等）:**
+- [ ] `output.dir` は **必ず** プロジェクトルートからのフルパスを指定（例: `"docs/20260214073222_example"`）
+- [ ] 相対パス `"."` や `"./docs"` は使用しない（実行ディレクトリ基準で解決されるため）
+
 render コマンド実装・修正時:
-- [ ] マークダウンは `slides-data.json` と同じディレクトリに出力
+- [ ] マークダウンは `output.dir` で指定したディレクトリに出力
 - [ ] 余計なサブディレクトリ（`docs/` など）を作らない
 
 export コマンド実装・修正時:
@@ -137,3 +159,4 @@ export コマンド実装・修正時:
 スライド作成スキル（`/create-slides` など）実装時:
 - [ ] 上記の構造に従ってファイルを配置
 - [ ] ユーザーに正しいパスを提示
+- [ ] `output.dir` がフルパスで設定されていることを確認

@@ -4,6 +4,11 @@
 	"type": "module",
 	"scripts": {
 		"slides": "bun run src/index.ts",
+		"split": "python3 scripts/split-code-diagrams.py --all",
+		"fix-mermaid": "python3 scripts/update-mermaid-styles.py",
+		"rebuild": "./scripts/rebuild-all-slides.sh",
+		"rebuild:render": "./scripts/rebuild-all-slides.sh render",
+		"rebuild:export": "./scripts/rebuild-all-slides.sh export",
 		"typecheck": "tsgo --noEmit",
 		"check": "biome check .",
 		"format": "biome format --write .",
