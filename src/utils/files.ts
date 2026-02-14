@@ -9,7 +9,7 @@ export function slugify(text: string): string {
 		.slice(0, 60);
 }
 
-export async function ensureDir(dirPath: string): Promise<void> {
+export function ensureDir(dirPath: string): void {
 	if (!existsSync(dirPath)) {
 		mkdirSync(dirPath, { recursive: true });
 	}

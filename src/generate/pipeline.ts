@@ -23,7 +23,7 @@ export async function renderSlides(
 
 	const baseName = config.output.baseName || `${slugify(config.topic)}-slides`;
 	const outputDir = resolve(config.output.dir);
-	await ensureDir(outputDir);
+	ensureDir(outputDir);
 
 	const outputPath = resolve(outputDir, `${baseName}.md`);
 	await Bun.write(outputPath, markdown);

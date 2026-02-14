@@ -1,4 +1,4 @@
-import { resolve } from "node:path";
+import { basename, resolve } from "node:path";
 import type { SlidesConfig } from "../config/schema.js";
 import { ensureDir } from "../utils/files.js";
 
@@ -8,12 +8,10 @@ export async function exportSlides(
 	config: SlidesConfig,
 ): Promise<string> {
 	const distDir = resolve(config.output.dir, "dist");
-	await ensureDir(distDir);
+	ensureDir(distDir);
 
-	const ext = format === "pptx" ? "pptx" : format;
-	const baseName = resolve(inputPath).replace(/\.md$/, "");
-	const fileName = baseName.split("/").pop();
-	const outputPath = resolve(distDir, `${fileName}.${ext}`);
+	const fileName = basename(inputPath, ".md");
+	const outputPath = resolve(distDir, `${fileName}.${format}`);
 
 	const args = [
 		"bunx",

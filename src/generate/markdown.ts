@@ -68,9 +68,7 @@ function buildFrontMatter(config: SlidesConfig): string {
 function renderSlide(slide: SlideContent): string {
 	const parts: string[] = [];
 
-	if (slide.layout === "center") {
-		parts.push("<!-- _class: lead -->");
-	} else if (slide.layout === "section") {
+	if (slide.layout === "center" || slide.layout === "section") {
 		parts.push("<!-- _class: lead -->");
 	}
 
@@ -78,7 +76,12 @@ function renderSlide(slide: SlideContent): string {
 	parts.push("");
 
 	for (const item of slide.content) {
-		parts.push(`- ${item}`);
+		// Table rows (starting with |) and separator lines must not be prefixed
+		if (item.startsWith("|") || item.startsWith("![")) {
+			parts.push(item);
+		} else {
+			parts.push(`- ${item}`);
+		}
 	}
 
 	if (slide.content.length > 0) {
@@ -107,12 +110,7 @@ export function renderMarpMarkdown(
 	config: SlidesConfig,
 ): string {
 	const frontMatter = buildFrontMatter(config);
-	const slides: string[] = [];
-
-	for (const slide of result.slides) {
-		slides.push(renderSlide(slide));
-	}
-
+	const slides = result.slides.map(renderSlide);
 	const markdown = `${frontMatter}\n\n${slides.join("\n\n---\n\n")}\n`;
 	return normalizeSvg(markdown);
 }
