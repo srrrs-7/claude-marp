@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 430" style="font-family:'Segoe UI',Arial,sans-serif;letter-spacing:0;background:#1B2638">
+  <text x="400" y="30" text-anchor="middle" fill="#FFFFFF" font-size="17" font-weight="bold">Identity Pool Architecture</text>
+  <!-- Left: Token Sources -->
+  <text x="80" y="62" text-anchor="middle" fill="#FF9900" font-size="13" font-weight="bold">Token Sources</text>
+  <rect x="15" y="75" width="130" height="42" rx="6" fill="#253649" stroke="#7B68EE" stroke-width="1.5"/>
+  <text x="80" y="100" text-anchor="middle" fill="#FFFFFF" font-size="11">Cognito User Pool</text>
+  <rect x="15" y="127" width="130" height="42" rx="6" fill="#253649" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="80" y="152" text-anchor="middle" fill="#FFFFFF" font-size="11">Social IdP Token</text>
+  <rect x="15" y="179" width="130" height="42" rx="6" fill="#253649" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="80" y="204" text-anchor="middle" fill="#FFFFFF" font-size="11">SAML Assertion</text>
+  <rect x="15" y="231" width="130" height="42" rx="6" fill="#253649" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="80" y="256" text-anchor="middle" fill="#FFFFFF" font-size="11">OIDC Token</text>
+  <rect x="15" y="283" width="130" height="42" rx="6" fill="#253649" stroke="#4A6A85" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="80" y="308" text-anchor="middle" fill="#B8C9DB" font-size="11">Unauthenticated</text>
+  <!-- Arrows from sources to Identity Pool -->
+  <line x1="145" y1="96" x2="240" y2="180" stroke="#6B8DA6" stroke-width="1.5"/>
+  <polygon points="238,174 246,180 236,183" fill="#6B8DA6"/>
+  <line x1="145" y1="148" x2="240" y2="180" stroke="#6B8DA6" stroke-width="1.5"/>
+  <polygon points="238,174 246,180 236,183" fill="#6B8DA6"/>
+  <line x1="145" y1="200" x2="240" y2="195" stroke="#6B8DA6" stroke-width="1.5"/>
+  <polygon points="240,190 250,195 240,200" fill="#6B8DA6"/>
+  <line x1="145" y1="252" x2="240" y2="210" stroke="#6B8DA6" stroke-width="1.5"/>
+  <polygon points="238,205 246,210 236,215" fill="#6B8DA6"/>
+  <line x1="145" y1="304" x2="240" y2="220" stroke="#6B8DA6" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="238,215 246,220 236,225" fill="#6B8DA6"/>
+  <!-- Center: Identity Pool -->
+  <rect x="245" y="130" width="160" height="120" rx="12" fill="#7B68EE" style="filter:drop-shadow(3px 3px 8px rgba(0,0,0,0.5))"/>
+  <text x="325" y="175" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="bold">Identity Pool</text>
+  <text x="325" y="198" text-anchor="middle" fill="#E0D8FF" font-size="11">Federated</text>
+  <text x="325" y="215" text-anchor="middle" fill="#E0D8FF" font-size="11">Identities</text>
+  <!-- Arrow to STS -->
+  <line x1="405" y1="190" x2="445" y2="190" stroke="#527FFF" stroke-width="2"/>
+  <polygon points="445,185 455,190 445,195" fill="#527FFF"/>
+  <!-- STS -->
+  <rect x="460" y="155" width="100" height="70" rx="10" fill="#253649" stroke="#527FFF" stroke-width="2"/>
+  <text x="510" y="183" text-anchor="middle" fill="#527FFF" font-size="13" font-weight="bold">AWS STS</text>
+  <text x="510" y="203" text-anchor="middle" fill="#B8C9DB" font-size="10">AssumeRole</text>
+  <text x="510" y="217" text-anchor="middle" fill="#B8C9DB" font-size="10">WithWebIdentity</text>
+  <!-- Arrow to IAM Roles -->
+  <line x1="560" y1="190" x2="600" y2="190" stroke="#527FFF" stroke-width="2"/>
+  <polygon points="600,185 610,190 600,195" fill="#527FFF"/>
+  <!-- IAM Roles -->
+  <rect x="615" y="80" width="165" height="60" rx="8" fill="#253649" stroke="#00C49A" stroke-width="1.5"/>
+  <text x="697" y="105" text-anchor="middle" fill="#00C49A" font-size="12" font-weight="bold">Authenticated Role</text>
+  <text x="697" y="125" text-anchor="middle" fill="#B8C9DB" font-size="10">Full access by policy</text>
+  <rect x="615" y="155" width="165" height="60" rx="8" fill="#253649" stroke="#4A6A85" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="697" y="180" text-anchor="middle" fill="#B8C9DB" font-size="12" font-weight="bold">Unauthenticated Role</text>
+  <text x="697" y="200" text-anchor="middle" fill="#B8C9DB" font-size="10">Limited access</text>
+  <rect x="615" y="230" width="165" height="60" rx="8" fill="#253649" stroke="#E8A838" stroke-width="1.5"/>
+  <text x="697" y="255" text-anchor="middle" fill="#E8A838" font-size="12" font-weight="bold">Rule-Based Roles</text>
+  <text x="697" y="275" text-anchor="middle" fill="#B8C9DB" font-size="10">Token claim matching</text>
+  <!-- Right: AWS Resources (bottom) -->
+  <text x="400" y="355" text-anchor="middle" fill="#527FFF" font-size="13" font-weight="bold">AWS Resources (Temporary Credentials)</text>
+  <rect x="80" y="370" width="120" height="42" rx="6" fill="#253649" stroke="#527FFF" stroke-width="1.5"/>
+  <text x="140" y="395" text-anchor="middle" fill="#FFFFFF" font-size="11">Amazon S3</text>
+  <rect x="230" y="370" width="120" height="42" rx="6" fill="#253649" stroke="#527FFF" stroke-width="1.5"/>
+  <text x="290" y="395" text-anchor="middle" fill="#FFFFFF" font-size="11">DynamoDB</text>
+  <rect x="380" y="370" width="120" height="42" rx="6" fill="#253649" stroke="#527FFF" stroke-width="1.5"/>
+  <text x="440" y="395" text-anchor="middle" fill="#FFFFFF" font-size="11">Lambda</text>
+  <rect x="530" y="370" width="120" height="42" rx="6" fill="#253649" stroke="#527FFF" stroke-width="1.5"/>
+  <text x="590" y="395" text-anchor="middle" fill="#FFFFFF" font-size="11">API Gateway</text>
+  <!-- Arrows from roles to resources -->
+  <line x1="697" y1="290" x2="697" y2="330" stroke="#527FFF" stroke-width="1.5"/>
+  <line x1="697" y1="330" x2="400" y2="330" stroke="#527FFF" stroke-width="1.5"/>
+  <line x1="400" y1="330" x2="400" y2="365" stroke="#527FFF" stroke-width="1.5"/>
+  <polygon points="395,365 400,375 405,365" fill="#527FFF"/>
+</svg>

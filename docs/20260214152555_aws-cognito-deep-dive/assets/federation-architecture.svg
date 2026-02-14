@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 430" style="font-family:'Segoe UI',Arial,sans-serif;letter-spacing:0;background:#1B2638">
+  <text x="400" y="30" text-anchor="middle" fill="#FFFFFF" font-size="17" font-weight="bold">Federation Architecture</text>
+  <!-- Left: External IdPs -->
+  <text x="95" y="60" text-anchor="middle" fill="#FF9900" font-size="13" font-weight="bold">External Identity Providers</text>
+  <!-- Social -->
+  <rect x="15" y="75" width="160" height="90" rx="8" fill="#253649" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="95" y="97" text-anchor="middle" fill="#FF9900" font-size="12" font-weight="bold">Social IdPs</text>
+  <text x="95" y="117" text-anchor="middle" fill="#B8C9DB" font-size="10">Google</text>
+  <text x="95" y="133" text-anchor="middle" fill="#B8C9DB" font-size="10">Apple</text>
+  <text x="95" y="149" text-anchor="middle" fill="#B8C9DB" font-size="10">Facebook / Amazon</text>
+  <!-- SAML -->
+  <rect x="15" y="180" width="160" height="90" rx="8" fill="#253649" stroke="#E8A838" stroke-width="1.5"/>
+  <text x="95" y="202" text-anchor="middle" fill="#E8A838" font-size="12" font-weight="bold">SAML 2.0</text>
+  <text x="95" y="222" text-anchor="middle" fill="#B8C9DB" font-size="10">Azure AD / Entra ID</text>
+  <text x="95" y="238" text-anchor="middle" fill="#B8C9DB" font-size="10">Okta / ADFS</text>
+  <text x="95" y="254" text-anchor="middle" fill="#B8C9DB" font-size="10">Google Workspace</text>
+  <!-- OIDC -->
+  <rect x="15" y="285" width="160" height="70" rx="8" fill="#253649" stroke="#527FFF" stroke-width="1.5"/>
+  <text x="95" y="307" text-anchor="middle" fill="#527FFF" font-size="12" font-weight="bold">OIDC Providers</text>
+  <text x="95" y="327" text-anchor="middle" fill="#B8C9DB" font-size="10">Salesforce / Auth0</text>
+  <text x="95" y="343" text-anchor="middle" fill="#B8C9DB" font-size="10">Custom OIDC</text>
+  <!-- Arrows to Cognito -->
+  <line x1="175" y1="120" x2="255" y2="180" stroke="#FF9900" stroke-width="1.5"/>
+  <polygon points="253,175 261,182 251,184" fill="#FF9900"/>
+  <line x1="175" y1="225" x2="255" y2="210" stroke="#E8A838" stroke-width="1.5"/>
+  <polygon points="255,205 265,210 255,215" fill="#E8A838"/>
+  <line x1="175" y1="320" x2="255" y2="240" stroke="#527FFF" stroke-width="1.5"/>
+  <polygon points="253,235 261,240 253,245" fill="#527FFF"/>
+  <!-- Center: Cognito User Pool -->
+  <rect x="260" y="100" width="200" height="230" rx="12" fill="#1E2D42" stroke="#7B68EE" stroke-width="2.5" style="filter:drop-shadow(3px 3px 8px rgba(0,0,0,0.4))"/>
+  <text x="360" y="128" text-anchor="middle" fill="#7B68EE" font-size="14" font-weight="bold">Cognito User Pool</text>
+  <text x="360" y="146" text-anchor="middle" fill="#B8C9DB" font-size="10">(Service Provider)</text>
+  <!-- Sub-components -->
+  <rect x="278" y="160" width="164" height="38" rx="6" fill="#253649" stroke="#FF9900" stroke-width="1"/>
+  <text x="360" y="184" text-anchor="middle" fill="#FFFFFF" font-size="11">Attribute Mapping</text>
+  <rect x="278" y="208" width="164" height="38" rx="6" fill="#253649" stroke="#00C49A" stroke-width="1"/>
+  <text x="360" y="226" text-anchor="middle" fill="#FFFFFF" font-size="11">Inbound Federation</text>
+  <text x="360" y="240" text-anchor="middle" fill="#00C49A" font-size="9">Lambda Trigger (2026)</text>
+  <rect x="278" y="256" width="164" height="38" rx="6" fill="#253649" stroke="#7B68EE" stroke-width="1"/>
+  <text x="360" y="280" text-anchor="middle" fill="#FFFFFF" font-size="11">Token Issuance</text>
+  <!-- SAML features callout -->
+  <rect x="200" y="370" width="270" height="48" rx="6" fill="#253649" stroke="#E8A838" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="335" y="390" text-anchor="middle" fill="#E8A838" font-size="10" font-weight="bold">SAML Enhancements (2024)</text>
+  <text x="335" y="406" text-anchor="middle" fill="#B8C9DB" font-size="9">Request Signing | Response Encryption | IdP-Initiated SSO</text>
+  <!-- Arrow to Application -->
+  <line x1="460" y1="210" x2="520" y2="210" stroke="#7B68EE" stroke-width="2"/>
+  <polygon points="520,205 530,210 520,215" fill="#7B68EE"/>
+  <!-- Right: Application -->
+  <rect x="535" y="80" width="180" height="130" rx="10" fill="#253649" stroke="#00C49A" stroke-width="2"/>
+  <text x="625" y="108" text-anchor="middle" fill="#00C49A" font-size="13" font-weight="bold">Application</text>
+  <rect x="555" y="120" width="140" height="32" rx="6" fill="#1E2D42" stroke="#4A6A85" stroke-width="1"/>
+  <text x="625" y="140" text-anchor="middle" fill="#FFFFFF" font-size="10">ID Token (user info)</text>
+  <rect x="555" y="160" width="140" height="32" rx="6" fill="#1E2D42" stroke="#4A6A85" stroke-width="1"/>
+  <text x="625" y="180" text-anchor="middle" fill="#FFFFFF" font-size="10">Access Token (authz)</text>
+  <!-- Right: User Profile -->
+  <rect x="535" y="240" width="180" height="80" rx="10" fill="#253649" stroke="#527FFF" stroke-width="1.5"/>
+  <text x="625" y="268" text-anchor="middle" fill="#527FFF" font-size="12" font-weight="bold">Unified User Profile</text>
+  <text x="625" y="288" text-anchor="middle" fill="#B8C9DB" font-size="10">Mapped attributes</text>
+  <text x="625" y="304" text-anchor="middle" fill="#B8C9DB" font-size="10">Cognito groups</text>
+  <!-- Arrow from Cognito to User Profile -->
+  <line x1="460" y1="270" x2="530" y2="270" stroke="#527FFF" stroke-width="1.5"/>
+  <polygon points="530,265 540,270 530,275" fill="#527FFF"/>
+  <!-- Flow labels -->
+  <text x="220" y="145" text-anchor="middle" fill="#FF9900" font-size="9">OAuth 2.0</text>
+  <text x="220" y="212" text-anchor="middle" fill="#E8A838" font-size="9">SAML 2.0</text>
+  <text x="215" y="275" text-anchor="middle" fill="#527FFF" font-size="9">OIDC</text>
+  <text x="495" y="200" text-anchor="middle" fill="#7B68EE" font-size="9">JWT</text>
+</svg>

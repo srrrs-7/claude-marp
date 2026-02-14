@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" style="font-family:'Segoe UI',Arial,sans-serif;letter-spacing:0;background:#1B2638">
+  <text x="400" y="30" text-anchor="middle" fill="#FFFFFF" font-size="17" font-weight="bold">User Pool Architecture</text>
+  <!-- Left: Users & Clients -->
+  <rect x="20" y="120" width="130" height="55" rx="8" fill="#253649" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="85" y="145" text-anchor="middle" fill="#FF9900" font-size="12" font-weight="bold">End Users</text>
+  <text x="85" y="163" text-anchor="middle" fill="#B8C9DB" font-size="10">Sign Up / Sign In</text>
+  <rect x="20" y="200" width="130" height="55" rx="8" fill="#253649" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="85" y="225" text-anchor="middle" fill="#FF9900" font-size="12" font-weight="bold">App Clients</text>
+  <text x="85" y="243" text-anchor="middle" fill="#B8C9DB" font-size="10">Public / Confidential</text>
+  <rect x="20" y="280" width="130" height="55" rx="8" fill="#253649" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="85" y="305" text-anchor="middle" fill="#FF9900" font-size="12" font-weight="bold">External IdPs</text>
+  <text x="85" y="323" text-anchor="middle" fill="#B8C9DB" font-size="10">Social / SAML / OIDC</text>
+  <!-- Arrows from left to center -->
+  <line x1="150" y1="147" x2="195" y2="200" stroke="#6B8DA6" stroke-width="1.5"/>
+  <polygon points="193,195 200,202 191,202" fill="#6B8DA6"/>
+  <line x1="150" y1="227" x2="195" y2="227" stroke="#6B8DA6" stroke-width="1.5"/>
+  <polygon points="195,222 205,227 195,232" fill="#6B8DA6"/>
+  <line x1="150" y1="307" x2="195" y2="258" stroke="#6B8DA6" stroke-width="1.5"/>
+  <polygon points="191,253 200,253 193,261" fill="#6B8DA6"/>
+  <!-- Center: User Pool (large box) -->
+  <rect x="200" y="55" width="370" height="360" rx="12" fill="#1E2D42" stroke="#7B68EE" stroke-width="2.5" style="filter:drop-shadow(3px 3px 8px rgba(0,0,0,0.4))"/>
+  <text x="385" y="82" text-anchor="middle" fill="#7B68EE" font-size="15" font-weight="bold">Cognito User Pool</text>
+  <!-- Sub: User Directory -->
+  <rect x="220" y="100" width="155" height="65" rx="8" fill="#253649" stroke="#527FFF" stroke-width="1.5"/>
+  <text x="297" y="125" text-anchor="middle" fill="#527FFF" font-size="12" font-weight="bold">User Directory</text>
+  <text x="297" y="143" text-anchor="middle" fill="#B8C9DB" font-size="10">Attributes &amp; Schema</text>
+  <text x="297" y="157" text-anchor="middle" fill="#B8C9DB" font-size="10">Groups &amp; Aliases</text>
+  <!-- Sub: Auth Engine -->
+  <rect x="395" y="100" width="155" height="65" rx="8" fill="#253649" stroke="#527FFF" stroke-width="1.5"/>
+  <text x="472" y="125" text-anchor="middle" fill="#527FFF" font-size="12" font-weight="bold">Auth Engine</text>
+  <text x="472" y="143" text-anchor="middle" fill="#B8C9DB" font-size="10">SRP / Password / Custom</text>
+  <text x="472" y="157" text-anchor="middle" fill="#B8C9DB" font-size="10">Passwordless (Passkeys)</text>
+  <!-- Sub: Lambda Triggers -->
+  <rect x="220" y="185" width="155" height="65" rx="8" fill="#253649" stroke="#00C49A" stroke-width="1.5"/>
+  <text x="297" y="210" text-anchor="middle" fill="#00C49A" font-size="12" font-weight="bold">Lambda Triggers</text>
+  <text x="297" y="228" text-anchor="middle" fill="#B8C9DB" font-size="10">Pre/Post Auth</text>
+  <text x="297" y="242" text-anchor="middle" fill="#B8C9DB" font-size="10">Custom Challenge</text>
+  <!-- Sub: MFA -->
+  <rect x="395" y="185" width="155" height="65" rx="8" fill="#253649" stroke="#00C49A" stroke-width="1.5"/>
+  <text x="472" y="210" text-anchor="middle" fill="#00C49A" font-size="12" font-weight="bold">MFA</text>
+  <text x="472" y="228" text-anchor="middle" fill="#B8C9DB" font-size="10">SMS / TOTP / Email</text>
+  <text x="472" y="242" text-anchor="middle" fill="#B8C9DB" font-size="10">Adaptive (Plus tier)</text>
+  <!-- Sub: Managed Login -->
+  <rect x="220" y="270" width="155" height="55" rx="8" fill="#253649" stroke="#E8A838" stroke-width="1.5"/>
+  <text x="297" y="293" text-anchor="middle" fill="#E8A838" font-size="12" font-weight="bold">Managed Login</text>
+  <text x="297" y="311" text-anchor="middle" fill="#B8C9DB" font-size="10">Branding / WAF</text>
+  <!-- Sub: OAuth 2.0 -->
+  <rect x="395" y="270" width="155" height="55" rx="8" fill="#253649" stroke="#E8A838" stroke-width="1.5"/>
+  <text x="472" y="293" text-anchor="middle" fill="#E8A838" font-size="12" font-weight="bold">OAuth 2.0 / OIDC</text>
+  <text x="472" y="311" text-anchor="middle" fill="#B8C9DB" font-size="10">/authorize /token /revoke</text>
+  <!-- Sub: Token Generation -->
+  <rect x="280" y="345" width="210" height="50" rx="8" fill="#253649" stroke="#7B68EE" stroke-width="1.5"/>
+  <text x="385" y="368" text-anchor="middle" fill="#7B68EE" font-size="12" font-weight="bold">Pre Token Generation Trigger</text>
+  <text x="385" y="385" text-anchor="middle" fill="#B8C9DB" font-size="10">Claim customization (v1/v2/v3)</text>
+  <!-- Right: Token Output -->
+  <rect x="620" y="100" width="160" height="60" rx="8" fill="#253649" stroke="#7B68EE" stroke-width="2"/>
+  <text x="700" y="125" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">ID Token</text>
+  <text x="700" y="143" text-anchor="middle" fill="#B8C9DB" font-size="10">User attributes</text>
+  <rect x="620" y="180" width="160" height="60" rx="8" fill="#253649" stroke="#7B68EE" stroke-width="2"/>
+  <text x="700" y="205" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">Access Token</text>
+  <text x="700" y="223" text-anchor="middle" fill="#B8C9DB" font-size="10">Scopes &amp; claims</text>
+  <rect x="620" y="260" width="160" height="60" rx="8" fill="#253649" stroke="#7B68EE" stroke-width="2"/>
+  <text x="700" y="285" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">Refresh Token</text>
+  <text x="700" y="303" text-anchor="middle" fill="#B8C9DB" font-size="10">Long-lived, rotatable</text>
+  <!-- Arrows from center to right -->
+  <line x1="575" y1="130" x2="615" y2="130" stroke="#7B68EE" stroke-width="2"/>
+  <polygon points="615,125 625,130 615,135" fill="#7B68EE"/>
+  <line x1="575" y1="210" x2="615" y2="210" stroke="#7B68EE" stroke-width="2"/>
+  <polygon points="615,205 625,210 615,215" fill="#7B68EE"/>
+  <line x1="575" y1="290" x2="615" y2="290" stroke="#7B68EE" stroke-width="2"/>
+  <polygon points="615,285 625,290 615,295" fill="#7B68EE"/>
+  <!-- JWT label -->
+  <text x="700" y="345" text-anchor="middle" fill="#7B68EE" font-size="14" font-weight="bold">JWT Tokens</text>
+  <!-- Legend -->
+  <rect x="620" y="375" width="10" height="10" rx="2" fill="#527FFF"/>
+  <text x="635" y="385" fill="#B8C9DB" font-size="10">Core Components</text>
+  <rect x="620" y="395" width="10" height="10" rx="2" fill="#00C49A"/>
+  <text x="635" y="405" fill="#B8C9DB" font-size="10">Security &amp; Triggers</text>
+  <rect x="620" y="415" width="10" height="10" rx="2" fill="#E8A838"/>
+  <text x="635" y="425" fill="#B8C9DB" font-size="10">Frontend &amp; Protocols</text>
+</svg>

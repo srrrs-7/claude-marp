@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" style="font-family:'Segoe UI',Arial,sans-serif;letter-spacing:0;background:#1B2638">
+  <text x="400" y="30" text-anchor="middle" fill="#FFFFFF" font-size="17" font-weight="bold">AWS Service Integration Patterns</text>
+  <!-- Pattern 1: REST API + Cognito Authorizer -->
+  <rect x="15" y="50" width="770" height="105" rx="8" fill="#1E2D42" stroke="#3A5068" stroke-width="1"/>
+  <text x="35" y="72" fill="#527FFF" font-size="13" font-weight="bold">Pattern 1: REST API + Cognito User Pool Authorizer</text>
+  <rect x="35" y="85" width="100" height="50" rx="8" fill="#253649" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="85" y="107" text-anchor="middle" fill="#FFFFFF" font-size="11">Client</text>
+  <text x="85" y="123" text-anchor="middle" fill="#FF9900" font-size="9">JWT Bearer</text>
+  <line x1="135" y1="110" x2="195" y2="110" stroke="#527FFF" stroke-width="1.5"/>
+  <polygon points="195,105 205,110 195,115" fill="#527FFF"/>
+  <rect x="205" y="85" width="140" height="50" rx="8" fill="#253649" stroke="#527FFF" stroke-width="2"/>
+  <text x="275" y="107" text-anchor="middle" fill="#527FFF" font-size="11" font-weight="bold">API Gateway</text>
+  <text x="275" y="123" text-anchor="middle" fill="#B8C9DB" font-size="9">REST API</text>
+  <line x1="345" y1="110" x2="395" y2="110" stroke="#7B68EE" stroke-width="1.5"/>
+  <polygon points="395,105 405,110 395,115" fill="#7B68EE"/>
+  <rect x="405" y="85" width="140" height="50" rx="8" fill="#7B68EE" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="475" y="107" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="bold">Cognito</text>
+  <text x="475" y="123" text-anchor="middle" fill="#E0D8FF" font-size="9">Validate JWT + Scopes</text>
+  <line x1="545" y1="110" x2="610" y2="110" stroke="#00C49A" stroke-width="1.5"/>
+  <text x="578" y="103" text-anchor="middle" fill="#00C49A" font-size="8">Authorized</text>
+  <polygon points="610,105 620,110 610,115" fill="#00C49A"/>
+  <rect x="620" y="85" width="140" height="50" rx="8" fill="#253649" stroke="#00C49A" stroke-width="1.5"/>
+  <text x="690" y="107" text-anchor="middle" fill="#00C49A" font-size="11" font-weight="bold">Backend</text>
+  <text x="690" y="123" text-anchor="middle" fill="#B8C9DB" font-size="9">Lambda / HTTP</text>
+  <!-- Pattern 2: HTTP API + JWT Authorizer -->
+  <rect x="15" y="170" width="770" height="105" rx="8" fill="#1E2D42" stroke="#3A5068" stroke-width="1"/>
+  <text x="35" y="192" fill="#E8A838" font-size="13" font-weight="bold">Pattern 2: HTTP API + JWT Authorizer</text>
+  <rect x="35" y="205" width="100" height="50" rx="8" fill="#253649" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="85" y="227" text-anchor="middle" fill="#FFFFFF" font-size="11">Client</text>
+  <text x="85" y="243" text-anchor="middle" fill="#FF9900" font-size="9">JWT Bearer</text>
+  <line x1="135" y1="230" x2="195" y2="230" stroke="#E8A838" stroke-width="1.5"/>
+  <polygon points="195,225 205,230 195,235" fill="#E8A838"/>
+  <rect x="205" y="205" width="250" height="50" rx="8" fill="#253649" stroke="#E8A838" stroke-width="2"/>
+  <text x="330" y="224" text-anchor="middle" fill="#E8A838" font-size="11" font-weight="bold">API Gateway (HTTP API)</text>
+  <text x="330" y="243" text-anchor="middle" fill="#B8C9DB" font-size="9">Built-in JWT validation (issuer + audience check)</text>
+  <line x1="455" y1="230" x2="610" y2="230" stroke="#00C49A" stroke-width="1.5"/>
+  <text x="530" y="222" text-anchor="middle" fill="#00C49A" font-size="8">No separate Cognito call</text>
+  <polygon points="610,225 620,230 610,235" fill="#00C49A"/>
+  <rect x="620" y="205" width="140" height="50" rx="8" fill="#253649" stroke="#00C49A" stroke-width="1.5"/>
+  <text x="690" y="227" text-anchor="middle" fill="#00C49A" font-size="11" font-weight="bold">Backend</text>
+  <text x="690" y="243" text-anchor="middle" fill="#B8C9DB" font-size="9">Lambda / HTTP</text>
+  <!-- Pattern 3: ALB + OIDC Authentication -->
+  <rect x="15" y="290" width="770" height="105" rx="8" fill="#1E2D42" stroke="#3A5068" stroke-width="1"/>
+  <text x="35" y="312" fill="#00C49A" font-size="13" font-weight="bold">Pattern 3: ALB + OIDC Authentication</text>
+  <rect x="35" y="325" width="100" height="50" rx="8" fill="#253649" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="85" y="347" text-anchor="middle" fill="#FFFFFF" font-size="11">Browser</text>
+  <text x="85" y="363" text-anchor="middle" fill="#FF9900" font-size="9">HTTPS</text>
+  <line x1="135" y1="350" x2="195" y2="350" stroke="#00C49A" stroke-width="1.5"/>
+  <polygon points="195,345 205,350 195,355" fill="#00C49A"/>
+  <rect x="205" y="325" width="140" height="50" rx="8" fill="#253649" stroke="#00C49A" stroke-width="2"/>
+  <text x="275" y="347" text-anchor="middle" fill="#00C49A" font-size="11" font-weight="bold">ALB</text>
+  <text x="275" y="363" text-anchor="middle" fill="#B8C9DB" font-size="9">OIDC Auth Action</text>
+  <line x1="345" y1="340" x2="395" y2="340" stroke="#7B68EE" stroke-width="1.5"/>
+  <polygon points="395,335 405,340 395,345" fill="#7B68EE"/>
+  <line x1="395" y1="360" x2="345" y2="360" stroke="#7B68EE" stroke-width="1.5"/>
+  <polygon points="345,355 335,360 345,365" fill="#7B68EE"/>
+  <rect x="405" y="325" width="140" height="50" rx="8" fill="#7B68EE" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="475" y="347" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="bold">Cognito</text>
+  <text x="475" y="363" text-anchor="middle" fill="#E0D8FF" font-size="9">Managed Login</text>
+  <text x="370" y="333" text-anchor="middle" fill="#7B68EE" font-size="8">redirect</text>
+  <text x="370" y="373" text-anchor="middle" fill="#7B68EE" font-size="8">tokens</text>
+  <line x1="275" y1="375" x2="275" y2="385" stroke="#00C49A" stroke-width="1.5"/>
+  <line x1="275" y1="385" x2="690" y2="385" stroke="#00C49A" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="485" y="398" text-anchor="middle" fill="#B8C9DB" font-size="9">Forward authenticated request with user claims in headers</text>
+  <rect x="620" y="325" width="140" height="50" rx="8" fill="#253649" stroke="#00C49A" stroke-width="1.5"/>
+  <text x="690" y="347" text-anchor="middle" fill="#00C49A" font-size="11" font-weight="bold">Target Group</text>
+  <text x="690" y="363" text-anchor="middle" fill="#B8C9DB" font-size="9">EC2 / ECS / Lambda</text>
+</svg>

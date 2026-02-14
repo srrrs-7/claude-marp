@@ -1,0 +1,507 @@
+{
+  "slides": [
+    {
+      "title": "Amazon Cognito 詳細レポート",
+      "content": [
+        "AWS 認証・認可サービスの包括的技術ガイド",
+        "2026年2月"
+      ],
+      "layout": "center"
+    },
+    {
+      "title": "アジェンダ (1/2)",
+      "content": [
+        "1. **Cognito Overview** — サービス概要と全体像",
+        "2. **User Pool Deep Dive** — 認証エンジンの内部構造",
+        "3. **Authentication Flows** — 認証フロー設計と選択指針",
+        "4. **Identity Pool** — AWS リソースへの認可",
+        "5. **Federation** — 外部 IdP 連携",
+        "6. **Token Management** — JWT の構造・カスタマイズ・ローテーション"
+      ]
+    },
+    {
+      "title": "アジェンダ (2/2)",
+      "content": [
+        "7. **Security & Compliance** — MFA・WAF・脅威保護・認証取得",
+        "8. **AWS Service Integrations** — API Gateway / ALB / Lambda 連携",
+        "9. **Operations & Monitoring** — 運用・監視・移行",
+        "10. **Pricing** — 料金ティアとコスト最適化",
+        "11. **Best Practices** — 設計指針・アンチパターン",
+        "12. **Summary** — まとめ・参考リソース"
+      ]
+    },
+    {
+      "title": "Cognito Overview",
+      "content": [
+        "Amazon Cognitoの全体像と位置づけ"
+      ],
+      "layout": "section"
+    },
+    {
+      "title": "Amazon Cognitoとは",
+      "content": [
+        "**AWS が提供するフルマネージド認証・認可サービス**",
+        "Web・モバイル・サーバーアプリにユーザー認証機能を迅速に追加",
+        "**User Pool**: ユーザーディレクトリ + 認証エンジン（JWT 発行）",
+        "**Identity Pool**: 認証済みユーザーに AWS 一時認証情報を付与",
+        "OAuth 2.0 / OpenID Connect 完全準拠の認可サーバー",
+        "数百万ユーザーまでスケール — サーバーレス・従量課金"
+      ]
+    },
+    {
+      "title": "AWSエコシステムにおけるCognito",
+      "content": [
+        "![w:800 center](assets/cognito-ecosystem.svg)"
+      ]
+    },
+    {
+      "title": "User Pool vs Identity Pool",
+      "content": [
+        "**User Pool（認証 / Authentication）**",
+        "ユーザーディレクトリ + 認証エンジン → JWT トークン発行",
+        "サインアップ・ログイン・MFA・パスワードリセットを管理",
+        "**Identity Pool（認可 / Authorization）**",
+        "JWT を AWS 一時認証情報（STS）に変換",
+        "IAM ロールで S3 / DynamoDB 等へのアクセスを制御",
+        "**両者を組み合わせて認証→認可の完全なパイプラインを構築**"
+      ]
+    },
+    {
+      "title": "User Pool Deep Dive",
+      "content": [
+        "認証エンジンの内部アーキテクチャ"
+      ],
+      "layout": "section"
+    },
+    {
+      "title": "User Pool アーキテクチャ",
+      "content": [
+        "![w:800 center](assets/user-pool-architecture.svg)"
+      ]
+    },
+    {
+      "title": "ユーザー属性とスキーマ",
+      "content": [
+        "**標準属性**: email, phone_number, name, address 等（OIDC 準拠）",
+        "**カスタム属性**: `custom:` プレフィックスで定義（作成後の削除不可）",
+        "属性の **必須/オプション** 設定 — サインアップ時の検証ルール",
+        "**エイリアス属性**: email / phone_number をユーザー名として使用可能",
+        "属性マッピング: 外部 IdP の属性を Cognito 属性に自動変換",
+        "スキーマは **作成後に変更不可** — 設計段階での慎重な計画が重要"
+      ]
+    },
+    {
+      "title": "App Clients & OAuth 2.0 エンドポイント",
+      "content": [
+        "**App Client**: アプリケーションごとの認証設定単位",
+        "Public Client（SPA/モバイル）: シークレットなし + **PKCE 必須**",
+        "Confidential Client（バックエンド）: シークレットあり",
+        "**OAuth 2.0 エンドポイント**:",
+        "`/authorize` → `/token` → `/userInfo` → `/revoke`",
+        "M2M 認証: Client Credentials Grant でサービス間通信"
+      ]
+    },
+    {
+      "title": "Managed Login（旧 Hosted UI）",
+      "content": [
+        "**2024年11月リリース** — Hosted UI の後継となるモダン UI",
+        "レスポンシブデザイン + ノーコードブランディングエディタ",
+        "**Passwordless 対応**: パスキー / Email OTP / SMS OTP",
+        "利用規約・プライバシーポリシーリンクの表示（2025年10月〜）",
+        "AWS WAF 統合でボット・攻撃対策（2025年6月〜）",
+        "**Essentials / Plus ティアで利用可能**（Lite は従来の Hosted UI のみ）"
+      ]
+    },
+    {
+      "title": "Authentication Flows",
+      "content": [
+        "認証フロー設計と選択指針"
+      ],
+      "layout": "section"
+    },
+    {
+      "title": "認証フロー全体像",
+      "content": [
+        "![w:800 center](assets/auth-flows.svg)"
+      ]
+    },
+    {
+      "title": "SRP & Password Authentication",
+      "content": [
+        "**USER_SRP_AUTH（推奨）**",
+        "Secure Remote Password プロトコルで認証",
+        "パスワードがネットワーク上を **一切流れない** — 暗号ハッシュのみ交換",
+        "**USER_PASSWORD_AUTH**",
+        "ユーザー名 + パスワードを直接送信（HTTPS 必須）",
+        "**ADMIN_USER_PASSWORD_AUTH**: サーバーサイド専用（AdminInitiateAuth API）"
+      ]
+    },
+    {
+      "title": "Custom Auth & Lambda Triggers",
+      "content": [
+        "**CUSTOM_AUTH**: Lambda 駆動のチャレンジ/レスポンス認証",
+        "**DefineAuthChallenge**: 次のチャレンジを決定するステートマシン",
+        "**CreateAuthChallenge**: チャレンジパラメータを生成",
+        "**VerifyAuthChallengeResponse**: ユーザーの回答を検証",
+        "CAPTCHA・セキュリティ質問・外部 MFA など任意の認証ステップ",
+        "SRP / パスワード認証との **組み合わせ** も可能"
+      ]
+    },
+    {
+      "title": "Passwordless: パスキー & OTP",
+      "content": [
+        "**USER_AUTH（Choice-Based）フロー** で Passwordless を実現",
+        "**WebAuthn / FIDO2 パスキー**: 指紋・顔認証・セキュリティキー",
+        "フィッシング耐性 — リライングパーティオリジンにバインド",
+        "**Email OTP**: メール経由のワンタイムパスワード",
+        "**SMS OTP**: SMS 経由のワンタイムパスワード",
+        "Passwordless 認証では追加 MFA は **不要**（単一の強力な認証要素）"
+      ]
+    },
+    {
+      "title": "Identity Pool Deep Dive",
+      "content": [
+        "AWS リソースへの認可メカニズム"
+      ],
+      "layout": "section"
+    },
+    {
+      "title": "Identity Pool アーキテクチャ",
+      "content": [
+        "![w:800 center](assets/identity-pool-architecture.svg)"
+      ]
+    },
+    {
+      "title": "Authenticated vs Unauthenticated アクセス",
+      "content": [
+        "**Authenticated（認証済み）アクセス**",
+        "User Pool / Social / SAML / OIDC トークンで ID を確立",
+        "IAM ロールに基づく権限で AWS リソースにアクセス",
+        "**Unauthenticated（未認証 / ゲスト）アクセス**",
+        "ログイン不要で限定的な AWS リソースにアクセス許可",
+        "ゲスト → 認証ユーザーへの **シームレスな移行** をサポート"
+      ]
+    },
+    {
+      "title": "IAM Role Mapping",
+      "content": [
+        "**デフォルトロール**: 認証済み / 未認証それぞれに IAM ロールを割り当て",
+        "**ルールベースマッピング**: トークンクレームに基づくロール選択",
+        "例: `cognito:groups` = \"admin\" → AdminRole を付与",
+        "**トークンベースマッピング**: IdP トークンのロールクレームを使用",
+        "**細粒度アクセス制御**: IAM ポリシー変数でユーザー固有リソースに制限",
+        "S3 プレフィックス / DynamoDB パーティションキーでデータ分離"
+      ]
+    },
+    {
+      "title": "Federation",
+      "content": [
+        "外部 IdP 連携アーキテクチャ"
+      ],
+      "layout": "section"
+    },
+    {
+      "title": "フェデレーション全体像",
+      "content": [
+        "![w:800 center](assets/federation-architecture.svg)"
+      ]
+    },
+    {
+      "title": "Social / SAML / OIDC フェデレーション",
+      "content": [
+        "**Social IdP（組み込みサポート）**: Google / Apple / Facebook / Amazon",
+        "**SAML 2.0**: Azure AD / Okta / ADFS / Google Workspace 等と連携",
+        "SAML リクエスト署名 + レスポンス暗号化（2024年2月〜）",
+        "IdP-Initiated SSO サポート（2024年2月〜）",
+        "**OIDC**: 任意の OpenID Connect 準拠 IdP（Salesforce / Auth0 等）",
+        "属性マッピングで外部 IdP の属性を Cognito ユーザー属性に変換"
+      ]
+    },
+    {
+      "title": "Inbound Federation Lambda Trigger（2026年1月〜）",
+      "content": [
+        "**最新機能**: 外部 IdP からの属性を認証フロー中に変換",
+        "SAML / OIDC プロバイダーからの属性を **リアルタイムで正規化**",
+        "ユーザープロファイル作成/更新前に属性を加工可能",
+        "**ユースケース:**",
+        "複数 IdP からの属性フォーマット統一",
+        "外部属性に基づく Cognito グループの動的割り当て"
+      ]
+    },
+    {
+      "title": "Token Management",
+      "content": [
+        "JWT の構造・カスタマイズ・セキュリティ"
+      ],
+      "layout": "section"
+    },
+    {
+      "title": "JWT トークン構造",
+      "content": [
+        "![w:800 center](assets/token-lifecycle.svg)"
+      ]
+    },
+    {
+      "title": "トークンカスタマイズ",
+      "content": [
+        "**Pre Token Generation Lambda Trigger** でクレームをカスタマイズ",
+        "**v1**: ID トークンのクレーム追加・抑制",
+        "**v2**: アクセストークンのスコープ・クレームカスタマイズ（Essentials〜）",
+        "**v3**: M2M Client Credentials のアクセストークン対応（2025年3月〜）",
+        "複合オブジェクト（配列・JSON）のクレーム追加（2024年5月〜）",
+        "**Resource Indicators（RFC 8707）**: オーディエンス限定トークン（2025年10月〜）"
+      ]
+    },
+    {
+      "title": "トークンリボケーション & ローテーション",
+      "content": [
+        "**Refresh Token Revocation**: `/revoke` エンドポイントで無効化",
+        "リフレッシュトークン無効化で後続の ID / Access トークン発行を停止",
+        "**Refresh Token Rotation**（2025年4月〜）: リフレッシュごとに新トークン発行",
+        "旧リフレッシュトークンを自動無効化 — リプレイ攻撃リスクを低減",
+        "**注意**: ID / Access トークンは有効期限まで有効（サーバー側の追加検証推奨）",
+        "**推奨**: Access Token の有効期限を短く設定（15〜60分）"
+      ]
+    },
+    {
+      "title": "Security & Compliance",
+      "content": [
+        "多層防御とコンプライアンス"
+      ],
+      "layout": "section"
+    },
+    {
+      "title": "MFA オプション",
+      "content": [
+        "**SMS MFA**: Amazon SNS 経由の OTP 配信",
+        "**TOTP MFA**: Google Authenticator / Authy 等の認証アプリ",
+        "**Email MFA**: Amazon SES 経由の OTP 配信（2024年9月〜、Essentials 以上）",
+        "**MFA 設定モード**: Required（全ユーザー必須）/ Optional / Off",
+        "Passwordless サインイン（パスキー）は追加 MFA 不要",
+        "**推奨**: TOTP を第一選択 — コスト低・SMS ポンピング詐欺リスクなし"
+      ]
+    },
+    {
+      "title": "Advanced Security Features（Plus ティア）",
+      "content": [
+        "**リスクベース適応認証**: デバイス・IP・位置情報でリスクスコアを算出",
+        "リスクレベルに応じて: 許可 / MFA 要求 / ブロック を自動判定",
+        "**不可能旅行検出**: 地理的に不可能なログインを検知（2024年8月〜）",
+        "**漏洩クレデンシャル検出**: 公開済みの侵害リストと照合",
+        "**ユーザーアクティビティログ**: S3 / CloudWatch / Firehose にエクスポート",
+        "**Custom Auth 脅威保護**: カスタム認証フローにも脅威検知を拡張"
+      ]
+    },
+    {
+      "title": "AWS WAF 統合",
+      "content": [
+        "**AWS WAF Web ACL** を Cognito User Pool エンドポイントに適用",
+        "**Bot 対策**: Bot Control マネージドルールで自動化攻撃をブロック",
+        "**レート制限**: IP ベースのリクエストレート制限でブルートフォース防御",
+        "**地理的フィルタリング**: 特定の国・地域からのアクセスを制御",
+        "**SMS ポンピング対策**: 不正な SMS 送信要求を WAF で遮断",
+        "**Managed Login にも WAF 適用可能**（2025年6月〜）"
+      ]
+    },
+    {
+      "title": "コンプライアンス認証",
+      "content": [
+        "**SOC 1 / SOC 2 / SOC 3**: システム・組織統制レポート",
+        "**HIPAA**: 医療情報保護 — BAA（事業提携契約）対象サービス",
+        "**PCI DSS**: クレジットカード業界データセキュリティ基準",
+        "**ISO 27001 / 27017 / 27018 / 9001**: 情報セキュリティ管理",
+        "**FedRAMP / FIPS 140-3**: 米国連邦政府セキュリティ基準",
+        "**GDPR** 準拠 + 各国基準（IRAP / MTCS / C5 / ENS）"
+      ]
+    },
+    {
+      "title": "AWS Service Integrations",
+      "content": [
+        "主要 AWS サービスとの統合パターン"
+      ],
+      "layout": "section"
+    },
+    {
+      "title": "API Gateway + Cognito 統合パターン",
+      "content": [
+        "![w:800 center](assets/api-gateway-integration.svg)"
+      ]
+    },
+    {
+      "title": "ALB & AppSync 統合",
+      "content": [
+        "**Application Load Balancer（ALB）認証**",
+        "リスナールールで OIDC 認証をオフロード",
+        "アプリケーション側の認証実装が不要 — ALB が JWT を検証",
+        "**AWS AppSync 統合**",
+        "`AMAZON_COGNITO_USER_POOLS` 認可モード",
+        "`@auth` ディレクティブで Cognito グループベースのフィールドレベル認可"
+      ]
+    },
+    {
+      "title": "Lambda Triggers 一覧",
+      "content": [
+        "**サインアップ**: Pre Sign-up / Post Confirmation",
+        "**認証**: Pre Authentication / Post Authentication",
+        "**カスタム認証**: Define / Create / Verify Auth Challenge",
+        "**トークン**: Pre Token Generation（v1 / v2 / v3）",
+        "**フェデレーション**: Inbound Federation（2026年1月〜）",
+        "**メッセージ**: Custom Message / Email Sender / SMS Sender",
+        "**移行**: Migrate User — 初回ログイン時にオンデマンド移行"
+      ]
+    },
+    {
+      "title": "S3 / DynamoDB アクセス制御",
+      "content": [
+        "**Identity Pool 経由のリソースアクセス**",
+        "Cognito JWT → Identity Pool → STS 一時認証情報 → AWS リソース",
+        "**S3 ユーザー固有プレフィックス制御:**",
+        "IAM ポリシー変数 `${cognito-identity.amazonaws.com:sub}` で専用フォルダ",
+        "**DynamoDB 行レベルアクセス制御:**",
+        "パーティションキー条件で自分のデータのみ読み書き可能"
+      ]
+    },
+    {
+      "title": "PrivateLink & Verified Permissions",
+      "content": [
+        "**AWS PrivateLink for User Pools**（2025年11月〜）",
+        "VPC エンドポイント経由でパブリックインターネットを経由せず認証",
+        "**AWS PrivateLink for Identity Pools**（2025年12月〜）",
+        "クレデンシャル取得もプライベート接続で完結",
+        "**Amazon Verified Permissions 統合**（2024年5月〜）",
+        "Cedar ポリシー言語で細粒度認可 — Cognito トークンクレームを直接評価"
+      ]
+    },
+    {
+      "title": "Operations & Monitoring",
+      "content": [
+        "運用・監視・移行戦略"
+      ],
+      "layout": "section"
+    },
+    {
+      "title": "モニタリング & 監査",
+      "content": [
+        "**CloudWatch Metrics**: SignUpSuccesses / SignInSuccesses / TokenRefreshSuccesses",
+        "認証エラー率・スロットリング発生率のアラーム設定",
+        "**CloudTrail**: 全 API コール（CreateUserPool / AdminCreateUser 等）を記録",
+        "セキュリティ監査・インシデント調査のための証跡",
+        "**脅威保護ログエクスポート**（Plus ティア）:",
+        "S3 / CloudWatch Logs / Amazon Data Firehose への配信"
+      ]
+    },
+    {
+      "title": "クォータ・制限 & ユーザー移行",
+      "content": [
+        "**主要クォータ**: User Pools / リージョンあたり 1,000（引き上げ可能）",
+        "API リクエストレート: カテゴリごとに RPS 制限（有料引き上げ可、2024年1月〜）",
+        "カスタム属性: ユーザープールあたり最大 50 個",
+        "**ユーザー移行戦略:**",
+        "**Migrate User Trigger**: 初回ログイン時にオンデマンドで移行（推奨）",
+        "**CSV 一括インポート**: CloudWatch ジョブで既存ユーザーを一括登録"
+      ]
+    },
+    {
+      "title": "Pricing",
+      "content": [
+        "料金モデルとコスト最適化"
+      ],
+      "layout": "section"
+    },
+    {
+      "title": "料金ティア比較（Lite / Essentials / Plus）",
+      "content": [
+        "**Lite**: 〜$0.0025/MAU（従量制、10,000 MAU 無料）",
+        "**Essentials**: $0.015/MAU（10,000 MAU 無料、Managed Login・Passwordless 含む）",
+        "**Plus**: $0.020/MAU（無料枠なし、脅威保護・適応認証を含む）",
+        "**SAML/OIDC Federation**: $0.015/MAU（50 MAU 無料）",
+        "**無料枠は 12 か月制限なし** — 恒久的に 10,000 MAU 無料",
+        "追加コスト: SMS（SNS）/ Email（SES）/ PrivateLink エンドポイント料金"
+      ]
+    },
+    {
+      "title": "コスト最適化戦略",
+      "content": [
+        "**ティア選択の指針**: 開発環境は Lite、本番は Essentials 以上",
+        "**MAU 定義を理解**: サインイン・トークンリフレッシュ・Admin 操作でカウント",
+        "リフレッシュトークンの長寿命化で不要な MAU カウントを削減",
+        "**SMS コスト削減**: TOTP MFA を優先、SMS は代替手段に",
+        "**M2M 最適化**: Client Credentials のトークンキャッシュで API コール削減",
+        "**Plus ティア**: 脅威保護が必要な場合のみ — Essentials で十分なケースが多い"
+      ]
+    },
+    {
+      "title": "Best Practices",
+      "content": [
+        "設計指針とアンチパターン"
+      ],
+      "layout": "section"
+    },
+    {
+      "title": "アーキテクチャベストプラクティス",
+      "content": [
+        "**SRP 認証を標準に**: パスワードがネットワーク上を流れない安全な方式",
+        "**Passwordless 推進**: パスキー（WebAuthn）でフィッシング耐性を確保",
+        "**Refresh Token Rotation を有効化**: リプレイ攻撃リスクを低減",
+        "**Resource Indicators（RFC 8707）**: アクセストークンをリソース限定で発行",
+        "**Pre Token Generation Trigger**: アプリ固有クレーム追加で過剰な属性取得を回避",
+        "**PrivateLink 活用**: 機密ワークロードでは認証トラフィックをプライベートに"
+      ]
+    },
+    {
+      "title": "セキュリティベストプラクティス",
+      "content": [
+        "**MFA を必須化**: TOTP を推奨、SMS は代替手段として設定",
+        "**WAF を必ず適用**: ブルートフォース・Bot・SMS ポンピング対策",
+        "**トークンの有効期限を短く**: Access Token は 15〜60 分に設定",
+        "**サーバーサイド検証**: JWT の署名・issuer・audience を必ず検証",
+        "**Public Client は PKCE 必須**: Authorization Code + PKCE でトークン窃取を防止",
+        "**エラーメッセージを汎用化**: ユーザー存在の漏洩を防ぐ"
+      ]
+    },
+    {
+      "title": "アンチパターン（避けるべき実装）",
+      "content": [
+        "**Client Secret をフロントエンドに埋め込む** → Public Client + PKCE を使用",
+        "**ID Token で API 認可** → Access Token + スコープで認可すべき",
+        "**トークン検証を省略** → 必ずサーバーサイドで JWT 署名を検証",
+        "**USER_PASSWORD_AUTH をクライアントで使用** → USER_SRP_AUTH に切り替え",
+        "**Cognito エラーをそのまま表示** → 汎用エラーメッセージに変換",
+        "**単一リージョン構成で全世界展開** → マルチリージョン戦略を検討"
+      ]
+    },
+    {
+      "title": "Key Takeaways",
+      "content": [
+        "Cognito は **認証（User Pool）+ 認可（Identity Pool）** の統合サービス",
+        "**Passwordless / パスキー** 対応で次世代認証を実現（2024年11月〜）",
+        "**3 ティア構成**（Lite / Essentials / Plus）で段階的にセキュリティ強化",
+        "**2024-2026 の大幅アップデート**: Managed Login / PrivateLink / Token Rotation",
+        "アーキテクトの選定ポイント: **ティア選択 × MFA 戦略 × 統合パターン**"
+      ],
+      "layout": "center"
+    },
+    {
+      "title": "参考リンク (1/2)",
+      "content": [
+        "**公式ドキュメント:**",
+        "[Amazon Cognito Developer Guide](https://docs.aws.amazon.com/cognito/latest/developerguide/)",
+        "[Amazon Cognito API Reference](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/)",
+        "**料金・機能:**",
+        "[Amazon Cognito Pricing](https://aws.amazon.com/cognito/pricing/)",
+        "[Amazon Cognito Features](https://aws.amazon.com/cognito/features/)"
+      ]
+    },
+    {
+      "title": "参考リンク (2/2)",
+      "content": [
+        "**AWS ブログ:**",
+        "[Improve your app authentication workflow](https://aws.amazon.com/blogs/aws/improve-your-app-authentication-workflow-with-new-amazon-cognito-features/)",
+        "[How to customize access tokens](https://aws.amazon.com/blogs/security/how-to-customize-access-tokens-in-amazon-cognito-user-pools/)",
+        "[Implement passwordless with WebAuthn](https://aws.amazon.com/blogs/security/how-to-implement-password-less-authentication-with-amazon-cognito-and-webauthn/)",
+        "**セキュリティ:**",
+        "[Security best practices](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-security-best-practices.html)"
+      ]
+    }
+  ]
+}

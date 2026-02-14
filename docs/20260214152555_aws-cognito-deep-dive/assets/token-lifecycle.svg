@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" style="font-family:'Segoe UI',Arial,sans-serif;letter-spacing:0;background:#1B2638">
+  <text x="400" y="30" text-anchor="middle" fill="#FFFFFF" font-size="17" font-weight="bold">JWT Token Structure &amp; Lifecycle</text>
+  <!-- Three token types -->
+  <text x="140" y="60" text-anchor="middle" fill="#7B68EE" font-size="14" font-weight="bold">Token Types</text>
+  <!-- ID Token -->
+  <rect x="20" y="75" width="240" height="120" rx="10" fill="#253649" stroke="#527FFF" stroke-width="2"/>
+  <text x="140" y="100" text-anchor="middle" fill="#527FFF" font-size="13" font-weight="bold">ID Token</text>
+  <line x1="40" y1="110" x2="240" y2="110" stroke="#3A5068" stroke-width="1"/>
+  <text x="140" y="128" text-anchor="middle" fill="#FFFFFF" font-size="10">sub, email, name, phone</text>
+  <text x="140" y="145" text-anchor="middle" fill="#B8C9DB" font-size="10">cognito:groups</text>
+  <text x="140" y="162" text-anchor="middle" fill="#B8C9DB" font-size="10">custom:* attributes</text>
+  <text x="140" y="182" text-anchor="middle" fill="#527FFF" font-size="9">For: Client-side user context</text>
+  <!-- Access Token -->
+  <rect x="280" y="75" width="240" height="120" rx="10" fill="#253649" stroke="#00C49A" stroke-width="2"/>
+  <text x="400" y="100" text-anchor="middle" fill="#00C49A" font-size="13" font-weight="bold">Access Token</text>
+  <line x1="300" y1="110" x2="500" y2="110" stroke="#3A5068" stroke-width="1"/>
+  <text x="400" y="128" text-anchor="middle" fill="#FFFFFF" font-size="10">scope, client_id, token_use</text>
+  <text x="400" y="145" text-anchor="middle" fill="#B8C9DB" font-size="10">Custom claims (v2/v3)</text>
+  <text x="400" y="162" text-anchor="middle" fill="#B8C9DB" font-size="10">Resource indicators (aud)</text>
+  <text x="400" y="182" text-anchor="middle" fill="#00C49A" font-size="9">For: API authorization</text>
+  <!-- Refresh Token -->
+  <rect x="540" y="75" width="240" height="120" rx="10" fill="#253649" stroke="#E8A838" stroke-width="2"/>
+  <text x="660" y="100" text-anchor="middle" fill="#E8A838" font-size="13" font-weight="bold">Refresh Token</text>
+  <line x1="560" y1="110" x2="760" y2="110" stroke="#3A5068" stroke-width="1"/>
+  <text x="660" y="128" text-anchor="middle" fill="#FFFFFF" font-size="10">Opaque (not JWT)</text>
+  <text x="660" y="145" text-anchor="middle" fill="#B8C9DB" font-size="10">TTL: 1 hour - 3,650 days</text>
+  <text x="660" y="162" text-anchor="middle" fill="#B8C9DB" font-size="10">Rotation enabled (2025)</text>
+  <text x="660" y="182" text-anchor="middle" fill="#E8A838" font-size="9">For: Silent token renewal</text>
+  <!-- Lifecycle flow -->
+  <text x="400" y="230" text-anchor="middle" fill="#7B68EE" font-size="14" font-weight="bold">Token Lifecycle</text>
+  <!-- Step 1: Authenticate -->
+  <rect x="30" y="250" width="130" height="55" rx="8" fill="#7B68EE" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="95" y="274" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">1. Authenticate</text>
+  <text x="95" y="294" text-anchor="middle" fill="#E0D8FF" font-size="9">SRP / Passkey / OTP</text>
+  <line x1="160" y1="277" x2="195" y2="277" stroke="#527FFF" stroke-width="1.5"/>
+  <polygon points="195,272 205,277 195,282" fill="#527FFF"/>
+  <!-- Step 2: Issue -->
+  <rect x="205" y="250" width="120" height="55" rx="8" fill="#253649" stroke="#527FFF" stroke-width="2"/>
+  <text x="265" y="274" text-anchor="middle" fill="#527FFF" font-size="12" font-weight="bold">2. Issue</text>
+  <text x="265" y="294" text-anchor="middle" fill="#B8C9DB" font-size="9">ID + Access + Refresh</text>
+  <line x1="325" y1="277" x2="355" y2="277" stroke="#00C49A" stroke-width="1.5"/>
+  <polygon points="355,272 365,277 355,282" fill="#00C49A"/>
+  <!-- Step 3: Use -->
+  <rect x="365" y="250" width="120" height="55" rx="8" fill="#253649" stroke="#00C49A" stroke-width="2"/>
+  <text x="425" y="274" text-anchor="middle" fill="#00C49A" font-size="12" font-weight="bold">3. Use</text>
+  <text x="425" y="294" text-anchor="middle" fill="#B8C9DB" font-size="9">API calls with JWT</text>
+  <line x1="485" y1="277" x2="515" y2="277" stroke="#E8A838" stroke-width="1.5"/>
+  <polygon points="515,272 525,277 515,282" fill="#E8A838"/>
+  <!-- Step 4: Refresh -->
+  <rect x="525" y="250" width="120" height="55" rx="8" fill="#253649" stroke="#E8A838" stroke-width="2"/>
+  <text x="585" y="274" text-anchor="middle" fill="#E8A838" font-size="12" font-weight="bold">4. Refresh</text>
+  <text x="585" y="294" text-anchor="middle" fill="#B8C9DB" font-size="9">New tokens issued</text>
+  <line x1="645" y1="277" x2="665" y2="277" stroke="#FF6B6B" stroke-width="1.5"/>
+  <polygon points="665,272 675,277 665,282" fill="#FF6B6B"/>
+  <!-- Step 5: Revoke -->
+  <rect x="675" y="250" width="105" height="55" rx="8" fill="#253649" stroke="#FF6B6B" stroke-width="2"/>
+  <text x="727" y="274" text-anchor="middle" fill="#FF6B6B" font-size="12" font-weight="bold">5. Revoke</text>
+  <text x="727" y="294" text-anchor="middle" fill="#B8C9DB" font-size="9">/revoke endpoint</text>
+  <!-- Refresh loop arrow (back from Step 4 to Step 3) -->
+  <path d="M 585 305 L 585 325 L 425 325 L 425 305" fill="none" stroke="#E8A838" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="420,310 425,300 430,310" fill="#E8A838"/>
+  <text x="505" y="338" text-anchor="middle" fill="#E8A838" font-size="9">Rotation: old token invalidated</text>
+  <!-- Customization callout -->
+  <rect x="100" y="365" width="260" height="65" rx="8" fill="#253649" stroke="#7B68EE" stroke-width="1.5"/>
+  <text x="230" y="388" text-anchor="middle" fill="#7B68EE" font-size="12" font-weight="bold">Token Customization</text>
+  <text x="230" y="406" text-anchor="middle" fill="#B8C9DB" font-size="10">Pre Token Generation Lambda</text>
+  <text x="230" y="422" text-anchor="middle" fill="#B8C9DB" font-size="10">v1 (ID) / v2 (Access) / v3 (M2M)</text>
+  <!-- Verification callout -->
+  <rect x="440" y="365" width="260" height="65" rx="8" fill="#253649" stroke="#00C49A" stroke-width="1.5"/>
+  <text x="570" y="388" text-anchor="middle" fill="#00C49A" font-size="12" font-weight="bold">Server-Side Verification</text>
+  <text x="570" y="406" text-anchor="middle" fill="#B8C9DB" font-size="10">Signature (RS256) + Expiry + Issuer</text>
+  <text x="570" y="422" text-anchor="middle" fill="#B8C9DB" font-size="10">JWKS: /.well-known/jwks.json</text>
+  <!-- TTL info -->
+  <text x="265" y="462" fill="#B8C9DB" font-size="9">ID/Access: 5min - 1day (default 60min)</text>
+  <text x="540" y="462" fill="#B8C9DB" font-size="9">Refresh: 1hr - 3,650days (default 30days)</text>
+</svg>

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="font-family:'Segoe UI',Arial,sans-serif;letter-spacing:0;background:#1B2638">
+  <text x="400" y="32" text-anchor="middle" fill="#FFFFFF" font-size="17" font-weight="bold">Amazon Cognito in AWS Ecosystem</text>
+  <!-- Center: Cognito -->
+  <rect x="295" y="195" width="210" height="80" rx="14" fill="#7B68EE" style="filter:drop-shadow(3px 3px 8px rgba(0,0,0,0.5))"/>
+  <text x="400" y="228" text-anchor="middle" fill="#FFFFFF" font-size="16" font-weight="bold">Amazon Cognito</text>
+  <text x="400" y="252" text-anchor="middle" fill="#E0D8FF" font-size="12">Authentication &amp; Authorization</text>
+  <!-- Top: Client Apps -->
+  <rect x="100" y="55" width="140" height="52" rx="8" fill="#253649" stroke="#4A6A85" stroke-width="1.5"/>
+  <text x="170" y="78" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">Web App</text>
+  <text x="170" y="96" text-anchor="middle" fill="#B8C9DB" font-size="10">SPA / SSR</text>
+  <rect x="330" y="55" width="140" height="52" rx="8" fill="#253649" stroke="#4A6A85" stroke-width="1.5"/>
+  <text x="400" y="78" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">Mobile App</text>
+  <text x="400" y="96" text-anchor="middle" fill="#B8C9DB" font-size="10">iOS / Android</text>
+  <rect x="560" y="55" width="140" height="52" rx="8" fill="#253649" stroke="#4A6A85" stroke-width="1.5"/>
+  <text x="630" y="78" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">Backend / M2M</text>
+  <text x="630" y="96" text-anchor="middle" fill="#B8C9DB" font-size="10">Server-to-Server</text>
+  <!-- Lines: Clients to Cognito -->
+  <line x1="170" y1="107" x2="340" y2="195" stroke="#6B8DA6" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="400" y1="107" x2="400" y2="195" stroke="#6B8DA6" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="630" y1="107" x2="460" y2="195" stroke="#6B8DA6" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <!-- Left: External IdPs -->
+  <rect x="15" y="170" width="210" height="130" rx="10" fill="#253649" stroke="#FF9900" stroke-width="2"/>
+  <text x="120" y="195" text-anchor="middle" fill="#FF9900" font-size="13" font-weight="bold">External Identity Providers</text>
+  <text x="120" y="218" text-anchor="middle" fill="#B8C9DB" font-size="11">Google / Apple / Facebook</text>
+  <text x="120" y="238" text-anchor="middle" fill="#B8C9DB" font-size="11">SAML 2.0 (Azure AD, Okta)</text>
+  <text x="120" y="258" text-anchor="middle" fill="#B8C9DB" font-size="11">OIDC Providers</text>
+  <text x="120" y="278" text-anchor="middle" fill="#B8C9DB" font-size="11">Developer Authenticated</text>
+  <line x1="225" y1="235" x2="290" y2="235" stroke="#FF9900" stroke-width="2"/>
+  <polygon points="290,230 300,235 290,240" fill="#FF9900"/>
+  <!-- Right: AWS Services -->
+  <rect x="575" y="155" width="210" height="160" rx="10" fill="#253649" stroke="#527FFF" stroke-width="2"/>
+  <text x="680" y="180" text-anchor="middle" fill="#527FFF" font-size="13" font-weight="bold">AWS Services</text>
+  <text x="680" y="203" text-anchor="middle" fill="#B8C9DB" font-size="11">API Gateway</text>
+  <text x="680" y="223" text-anchor="middle" fill="#B8C9DB" font-size="11">Lambda / ALB</text>
+  <text x="680" y="243" text-anchor="middle" fill="#B8C9DB" font-size="11">AppSync</text>
+  <text x="680" y="263" text-anchor="middle" fill="#B8C9DB" font-size="11">S3 / DynamoDB</text>
+  <text x="680" y="283" text-anchor="middle" fill="#B8C9DB" font-size="11">Verified Permissions</text>
+  <text x="680" y="303" text-anchor="middle" fill="#B8C9DB" font-size="11">PrivateLink</text>
+  <line x1="510" y1="235" x2="570" y2="235" stroke="#527FFF" stroke-width="2"/>
+  <polygon points="570,230 580,235 570,240" fill="#527FFF"/>
+  <!-- Bottom Left: Security -->
+  <rect x="130" y="350" width="220" height="100" rx="10" fill="#253649" stroke="#00C49A" stroke-width="2"/>
+  <text x="240" y="375" text-anchor="middle" fill="#00C49A" font-size="13" font-weight="bold">Security</text>
+  <text x="240" y="398" text-anchor="middle" fill="#B8C9DB" font-size="11">MFA (SMS / TOTP / Email)</text>
+  <text x="240" y="418" text-anchor="middle" fill="#B8C9DB" font-size="11">AWS WAF Integration</text>
+  <text x="240" y="438" text-anchor="middle" fill="#B8C9DB" font-size="11">Advanced Security / Threat Protection</text>
+  <!-- Bottom Right: Monitoring -->
+  <rect x="450" y="350" width="220" height="100" rx="10" fill="#253649" stroke="#00C49A" stroke-width="2"/>
+  <text x="560" y="375" text-anchor="middle" fill="#00C49A" font-size="13" font-weight="bold">Monitoring</text>
+  <text x="560" y="398" text-anchor="middle" fill="#B8C9DB" font-size="11">CloudWatch Metrics</text>
+  <text x="560" y="418" text-anchor="middle" fill="#B8C9DB" font-size="11">CloudTrail Audit Logs</text>
+  <text x="560" y="438" text-anchor="middle" fill="#B8C9DB" font-size="11">Threat Protection Log Export</text>
+  <!-- Lines: Cognito to bottom -->
+  <line x1="350" y1="275" x2="260" y2="350" stroke="#00C49A" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="450" y1="275" x2="540" y2="350" stroke="#00C49A" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <!-- Legend -->
+  <rect x="25" y="477" width="10" height="10" rx="2" fill="#FF9900"/>
+  <text x="40" y="487" fill="#B8C9DB" font-size="10">External IdPs</text>
+  <rect x="145" y="477" width="10" height="10" rx="2" fill="#527FFF"/>
+  <text x="160" y="487" fill="#B8C9DB" font-size="10">AWS Services</text>
+  <rect x="260" y="477" width="10" height="10" rx="2" fill="#00C49A"/>
+  <text x="275" y="487" fill="#B8C9DB" font-size="10">Security &amp; Monitoring</text>
+  <rect x="410" y="477" width="10" height="10" rx="2" fill="#7B68EE"/>
+  <text x="425" y="487" fill="#B8C9DB" font-size="10">Amazon Cognito</text>
+</svg>
