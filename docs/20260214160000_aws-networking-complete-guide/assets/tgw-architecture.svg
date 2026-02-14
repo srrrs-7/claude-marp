@@ -1,0 +1,168 @@
+<svg viewBox="0 0 950 600" xmlns="http://www.w3.org/2000/svg" style="letter-spacing:0;font-family:'Segoe UI',Arial,sans-serif">
+
+  <!-- Title -->
+  <text x="475" y="30" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">Transit Gateway - Comprehensive Architecture</text>
+  <text x="475" y="50" text-anchor="middle" fill="#aaaaaa" font-size="11">All Attachment Types and Connectivity Options</text>
+
+  <!-- ===== CENTRAL: Transit Gateway ===== -->
+  <rect x="340" y="220" width="270" height="160" rx="14" fill="#1a1a2e" stroke="#3B48CC" stroke-width="3" style="filter: drop-shadow(3px 3px 8px rgba(0,0,0,0.5))"/>
+  <!-- Header bar -->
+  <rect x="340" y="220" width="270" height="38" rx="14" fill="#3B48CC"/>
+  <rect x="340" y="244" width="270" height="14" fill="#3B48CC"/>
+  <text x="475" y="245" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">Transit Gateway</text>
+
+  <!-- Route Table inside TGW -->
+  <rect x="370" y="270" width="210" height="95" rx="6" fill="rgba(121,134,203,0.1)" stroke="#7986CB" stroke-width="1"/>
+  <text x="475" y="290" text-anchor="middle" fill="#B0BEC5" font-size="11" font-weight="bold">TGW Route Table</text>
+  <line x1="380" y1="298" x2="570" y2="298" stroke="#7986CB" stroke-width="0.5"/>
+  <text x="390" y="314" fill="#90A4AE" font-size="9">Destination</text>
+  <text x="520" y="314" fill="#90A4AE" font-size="9">Attachment</text>
+  <line x1="380" y1="320" x2="570" y2="320" stroke="#7986CB" stroke-width="0.5"/>
+  <text x="390" y="335" fill="#B0BEC5" font-size="9">10.0.0.0/8</text>
+  <text x="520" y="335" fill="#B0BEC5" font-size="9">VPC Attach</text>
+  <text x="390" y="350" fill="#B0BEC5" font-size="9">172.16.0.0/12</text>
+  <text x="520" y="350" fill="#B0BEC5" font-size="9">VPN Attach</text>
+  <text x="390" y="365" fill="#B0BEC5" font-size="9">192.168.0.0/16</text>
+  <text x="520" y="365" fill="#B0BEC5" font-size="9">DX Attach</text>
+
+  <!-- ===== TOP-LEFT: VPCs (VPC Attachments) ===== -->
+  <!-- VPC A -->
+  <rect x="40" y="70" width="105" height="55" rx="8" fill="#1a1a2e" stroke="#1a73e8" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="92" y="95" text-anchor="middle" fill="#1a73e8" font-size="13" font-weight="bold">VPC A</text>
+  <text x="92" y="112" text-anchor="middle" fill="#aaaaaa" font-size="8">10.1.0.0/16</text>
+  <!-- VPC B -->
+  <rect x="160" y="70" width="105" height="55" rx="8" fill="#1a1a2e" stroke="#1a73e8" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="212" y="95" text-anchor="middle" fill="#1a73e8" font-size="13" font-weight="bold">VPC B</text>
+  <text x="212" y="112" text-anchor="middle" fill="#aaaaaa" font-size="8">10.2.0.0/16</text>
+  <!-- VPC C -->
+  <rect x="280" y="70" width="105" height="55" rx="8" fill="#1a1a2e" stroke="#1a73e8" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="332" y="95" text-anchor="middle" fill="#1a73e8" font-size="13" font-weight="bold">VPC C</text>
+  <text x="332" y="112" text-anchor="middle" fill="#aaaaaa" font-size="8">10.3.0.0/16</text>
+
+  <!-- VPC Attachment lines -->
+  <line x1="92" y1="125" x2="380" y2="220" stroke="#1a73e8" stroke-width="2"/>
+  <polygon points="380,220 370,213 374,223" fill="#1a73e8"/>
+  <line x1="212" y1="125" x2="430" y2="220" stroke="#1a73e8" stroke-width="2"/>
+  <polygon points="430,220 421,212 425,222" fill="#1a73e8"/>
+  <line x1="332" y1="125" x2="475" y2="220" stroke="#1a73e8" stroke-width="2"/>
+  <polygon points="475,220 467,212 472,222" fill="#1a73e8"/>
+
+  <!-- VPC Attachment label -->
+  <rect x="100" y="155" width="115" height="20" rx="4" fill="rgba(26,115,232,0.15)" stroke="none"/>
+  <text x="157" y="169" text-anchor="middle" fill="#1a73e8" font-size="10" font-weight="bold">VPC Attachment</text>
+
+  <!-- ===== TOP-RIGHT: Direct Connect Path ===== -->
+  <!-- DX Gateway -->
+  <rect x="630" y="70" width="120" height="55" rx="8" fill="#1a1a2e" stroke="#FF9900" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="690" y="93" text-anchor="middle" fill="#FF9900" font-size="12" font-weight="bold">DX Gateway</text>
+  <text x="690" y="112" text-anchor="middle" fill="#aaaaaa" font-size="9">Transit VIF</text>
+
+  <!-- Direct Connect -->
+  <rect x="785" y="70" width="130" height="55" rx="8" fill="#1a1a2e" stroke="#FF9900" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="850" y="93" text-anchor="middle" fill="#FF9900" font-size="12" font-weight="bold">Direct Connect</text>
+  <text x="850" y="112" text-anchor="middle" fill="#aaaaaa" font-size="9">Dedicated / Hosted</text>
+
+  <!-- On-Prem (DX) -->
+  <rect x="800" y="0" width="120" height="48" rx="8" fill="#1a1a2e" stroke="#e0e0e0" stroke-width="1.5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="860" y="22" text-anchor="middle" fill="#e0e0e0" font-size="11" font-weight="bold">オンプレミス</text>
+  <text x="860" y="38" text-anchor="middle" fill="#aaaaaa" font-size="9">Data Center</text>
+
+  <!-- DX path lines -->
+  <line x1="560" y1="220" x2="660" y2="125" stroke="#FF9900" stroke-width="2"/>
+  <polygon points="660,125 650,127 655,136" fill="#FF9900"/>
+  <line x1="750" y1="97" x2="785" y2="97" stroke="#FF9900" stroke-width="2"/>
+  <polygon points="785,97 776,91 776,103" fill="#FF9900"/>
+  <line x1="860" y1="70" x2="860" y2="48" stroke="#e0e0e0" stroke-width="1.5"/>
+  <polygon points="860,48 854,57 866,57" fill="#e0e0e0"/>
+
+  <!-- DX Attachment label -->
+  <rect x="575" y="148" width="110" height="20" rx="4" fill="rgba(255,153,0,0.15)" stroke="none"/>
+  <text x="630" y="162" text-anchor="middle" fill="#FF9900" font-size="10" font-weight="bold">DX Attachment</text>
+
+  <!-- ===== BOTTOM-LEFT: VPN Connection ===== -->
+  <!-- VPN -->
+  <rect x="30" y="420" width="130" height="60" rx="8" fill="#1a1a2e" stroke="#ea4335" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="95" y="446" text-anchor="middle" fill="#ea4335" font-size="12" font-weight="bold">VPN 接続</text>
+  <text x="95" y="464" text-anchor="middle" fill="#aaaaaa" font-size="9">IPsec x2 tunnels</text>
+
+  <!-- CGW -->
+  <rect x="30" y="510" width="130" height="50" rx="8" fill="#1a1a2e" stroke="#e0e0e0" stroke-width="1.5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="95" y="533" text-anchor="middle" fill="#e0e0e0" font-size="11" font-weight="bold">CGW</text>
+  <text x="95" y="549" text-anchor="middle" fill="#aaaaaa" font-size="9">オンプレミス拠点</text>
+
+  <!-- VPN to CGW -->
+  <line x1="95" y1="480" x2="95" y2="510" stroke="#e0e0e0" stroke-width="1.5"/>
+  <polygon points="95,510 89,501 101,501" fill="#e0e0e0"/>
+
+  <!-- VPN ECMP lines to TGW (multiple lines for ECMP) -->
+  <line x1="160" y1="435" x2="370" y2="380" stroke="#ea4335" stroke-width="1.8"/>
+  <polygon points="370,380 360,378 362,388" fill="#ea4335"/>
+  <line x1="160" y1="450" x2="370" y2="375" stroke="#ea4335" stroke-width="1.8" stroke-dasharray="6,4"/>
+  <line x1="160" y1="465" x2="370" y2="370" stroke="#ea4335" stroke-width="1.8" stroke-dasharray="3,3"/>
+
+  <!-- ECMP label -->
+  <rect x="200" y="410" width="90" height="18" rx="4" fill="rgba(234,67,53,0.15)" stroke="none"/>
+  <text x="245" y="423" text-anchor="middle" fill="#ea4335" font-size="9" font-weight="bold">ECMP (x4 VPN)</text>
+
+  <!-- VPN Attachment label -->
+  <rect x="180" y="380" width="120" height="20" rx="4" fill="rgba(234,67,53,0.15)" stroke="none"/>
+  <text x="240" y="394" text-anchor="middle" fill="#ea4335" font-size="10" font-weight="bold">VPN Attachment</text>
+
+  <!-- ===== BOTTOM-RIGHT: TGW Peering ===== -->
+  <!-- Peering TGW -->
+  <rect x="690" y="480" width="160" height="65" rx="10" fill="#1a1a2e" stroke="#9c27b0" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="770" y="505" text-anchor="middle" fill="#9c27b0" font-size="12" font-weight="bold">TGW Peering</text>
+  <text x="770" y="525" text-anchor="middle" fill="#e0e0e0" font-size="10">TGW (別リージョン)</text>
+  <text x="770" y="540" text-anchor="middle" fill="#aaaaaa" font-size="9">Inter-Region / Account</text>
+
+  <!-- Peering line -->
+  <line x1="560" y1="380" x2="710" y2="480" stroke="#9c27b0" stroke-width="2"/>
+  <polygon points="710,480 700,476 704,486" fill="#9c27b0"/>
+
+  <!-- Peering Attachment label -->
+  <rect x="585" y="430" width="135" height="20" rx="4" fill="rgba(156,39,176,0.15)" stroke="none"/>
+  <text x="652" y="444" text-anchor="middle" fill="#9c27b0" font-size="10" font-weight="bold">Peering Attachment</text>
+
+  <!-- ===== RIGHT: TGW Connect (GRE) ===== -->
+  <!-- SD-WAN box -->
+  <rect x="780" y="270" width="140" height="65" rx="8" fill="#1a1a2e" stroke="#34a853" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="850" y="295" text-anchor="middle" fill="#34a853" font-size="12" font-weight="bold">SD-WAN / NVA</text>
+  <text x="850" y="315" text-anchor="middle" fill="#aaaaaa" font-size="9">GRE + BGP</text>
+  <text x="850" y="328" text-anchor="middle" fill="#aaaaaa" font-size="8">Max 20 Gbps (4 peers)</text>
+
+  <!-- Connect line (dashed for GRE) -->
+  <line x1="610" y1="300" x2="780" y2="300" stroke="#34a853" stroke-width="2" stroke-dasharray="8,5"/>
+  <polygon points="780,300 770,294 770,306" fill="#34a853"/>
+
+  <!-- Connect Attachment label -->
+  <rect x="635" y="270" width="125" height="20" rx="4" fill="rgba(52,168,83,0.15)" stroke="none"/>
+  <text x="697" y="284" text-anchor="middle" fill="#34a853" font-size="10" font-weight="bold">Connect Attachment</text>
+
+  <!-- ===== LEGEND ===== -->
+  <rect x="25" y="560" width="900" height="32" rx="6" fill="rgba(255,255,255,0.03)" stroke="#444444" stroke-width="0.5"/>
+
+  <!-- VPC Attachment -->
+  <line x1="40" y1="576" x2="65" y2="576" stroke="#1a73e8" stroke-width="2"/>
+  <text x="72" y="580" fill="#e0e0e0" font-size="9">VPC</text>
+
+  <!-- DX Attachment -->
+  <line x1="125" y1="576" x2="150" y2="576" stroke="#FF9900" stroke-width="2"/>
+  <text x="157" y="580" fill="#e0e0e0" font-size="9">Direct Connect</text>
+
+  <!-- VPN Attachment -->
+  <line x1="270" y1="576" x2="295" y2="576" stroke="#ea4335" stroke-width="2"/>
+  <text x="302" y="580" fill="#e0e0e0" font-size="9">VPN (ECMP)</text>
+
+  <!-- Peering -->
+  <line x1="400" y1="576" x2="425" y2="576" stroke="#9c27b0" stroke-width="2"/>
+  <text x="432" y="580" fill="#e0e0e0" font-size="9">Peering</text>
+
+  <!-- Connect (GRE) -->
+  <line x1="510" y1="576" x2="535" y2="576" stroke="#34a853" stroke-width="2" stroke-dasharray="8,5"/>
+  <text x="542" y="580" fill="#e0e0e0" font-size="9">Connect (GRE)</text>
+
+  <!-- On-Prem -->
+  <line x1="650" y1="576" x2="675" y2="576" stroke="#e0e0e0" stroke-width="1.5"/>
+  <text x="682" y="580" fill="#e0e0e0" font-size="9">On-Premises</text>
+
+</svg>

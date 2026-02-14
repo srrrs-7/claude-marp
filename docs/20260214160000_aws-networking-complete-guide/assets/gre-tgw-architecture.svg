@@ -1,0 +1,93 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="letter-spacing:0;font-family:'Segoe UI',Arial,sans-serif">
+
+  <!-- SD-WAN / NVA Box (Left) -->
+  <rect x="30" y="160" width="180" height="180" rx="10" fill="#1a1a2e" stroke="#FF9900" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="120" y="205" text-anchor="middle" fill="#FF9900" font-size="15" font-weight="bold">SD-WAN / NVA</text>
+  <rect x="55" y="220" width="130" height="50" rx="6" fill="none" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="120" y="240" text-anchor="middle" fill="#e0e0e0" font-size="11">Network</text>
+  <text x="120" y="258" text-anchor="middle" fill="#e0e0e0" font-size="11">Appliance</text>
+  <text x="120" y="310" text-anchor="middle" fill="#aaaaaa" font-size="10">(VPC or On-Prem)</text>
+
+  <!-- Transport Layer (underlying) -->
+  <rect x="220" y="370" width="280" height="45" rx="8" fill="#1a1a2e" stroke="#666666" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="360" y="398" text-anchor="middle" fill="#aaaaaa" font-size="11">Transport: VPC Attachment or Direct Connect</text>
+
+  <!-- TGW Connect Attachment area -->
+  <rect x="235" y="195" width="250" height="110" rx="10" fill="rgba(52,168,83,0.08)" stroke="#34a853" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="360" y="215" text-anchor="middle" fill="#34a853" font-size="12" font-weight="bold">TGW Connect Attachment</text>
+
+  <!-- GRE Tunnel (dashed green line) -->
+  <line x1="210" y1="250" x2="490" y2="250" stroke="#34a853" stroke-width="2.5" stroke-dasharray="8,5"/>
+  <!-- Arrowhead for GRE tunnel -->
+  <polygon points="490,250 480,244 480,256" fill="#34a853"/>
+
+  <!-- BGP label on GRE tunnel -->
+  <rect x="295" y="230" width="130" height="22" rx="4" fill="#1a1a2e" stroke="#34a853" stroke-width="1"/>
+  <text x="360" y="245" text-anchor="middle" fill="#34a853" font-size="11">GRE + BGP Peering</text>
+
+  <!-- TGW Connect Peer specs -->
+  <rect x="250" y="268" width="220" height="30" rx="5" fill="rgba(52,168,83,0.12)" stroke="none"/>
+  <text x="360" y="280" text-anchor="middle" fill="#e0e0e0" font-size="10" font-weight="bold">TGW Connect Peer</text>
+  <text x="360" y="293" text-anchor="middle" fill="#aaaaaa" font-size="9.5">Max 5 Gbps/peer, 4 peers = 20 Gbps</text>
+
+  <!-- Dashed line from transport to connect -->
+  <line x1="360" y1="305" x2="360" y2="370" stroke="#666666" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="360" y="345" text-anchor="middle" fill="#888888" font-size="9">Underlying</text>
+  <text x="360" y="358" text-anchor="middle" fill="#888888" font-size="9">Transport</text>
+
+  <!-- Transit Gateway (Center) -->
+  <rect x="510" y="130" width="180" height="240" rx="12" fill="#1a1a2e" stroke="#3B48CC" stroke-width="2.5" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/>
+  <rect x="530" y="145" width="140" height="30" rx="6" fill="#3B48CC"/>
+  <text x="600" y="165" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Transit Gateway</text>
+  <!-- Route table icon -->
+  <rect x="550" y="190" width="100" height="60" rx="4" fill="none" stroke="#7986CB" stroke-width="1"/>
+  <line x1="550" y1="210" x2="650" y2="210" stroke="#7986CB" stroke-width="1"/>
+  <line x1="550" y1="230" x2="650" y2="230" stroke="#7986CB" stroke-width="1"/>
+  <text x="600" y="206" text-anchor="middle" fill="#B0BEC5" font-size="9">Route Table</text>
+  <text x="600" y="224" text-anchor="middle" fill="#B0BEC5" font-size="8">10.0.0.0/8 -> VPC</text>
+  <text x="600" y="242" text-anchor="middle" fill="#B0BEC5" font-size="8">172.16.0.0/12 -> NVA</text>
+
+  <!-- VPC Attachments label -->
+  <text x="600" y="275" text-anchor="middle" fill="#aaaaaa" font-size="10">VPC Attachments</text>
+
+  <!-- Lines from TGW to VPCs -->
+  <!-- To VPC A -->
+  <line x1="690" y1="200" x2="760" y2="120" stroke="#1a73e8" stroke-width="2"/>
+  <polygon points="760,120 749,121 753,131" fill="#1a73e8"/>
+  <!-- To VPC B -->
+  <line x1="690" y1="250" x2="760" y2="250" stroke="#1a73e8" stroke-width="2"/>
+  <polygon points="760,250 750,244 750,256" fill="#1a73e8"/>
+  <!-- To VPC C -->
+  <line x1="690" y1="300" x2="760" y2="380" stroke="#1a73e8" stroke-width="2"/>
+  <polygon points="760,380 749,374 753,383" fill="#1a73e8"/>
+
+  <!-- VPC A -->
+  <rect x="770" y="70" width="110" height="70" rx="8" fill="#1a1a2e" stroke="#1a73e8" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="825" y="100" text-anchor="middle" fill="#1a73e8" font-size="13" font-weight="bold">VPC A</text>
+  <text x="825" y="118" text-anchor="middle" fill="#aaaaaa" font-size="9">10.1.0.0/16</text>
+
+  <!-- VPC B -->
+  <rect x="770" y="210" width="110" height="70" rx="8" fill="#1a1a2e" stroke="#1a73e8" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="825" y="240" text-anchor="middle" fill="#1a73e8" font-size="13" font-weight="bold">VPC B</text>
+  <text x="825" y="258" text-anchor="middle" fill="#aaaaaa" font-size="9">10.2.0.0/16</text>
+
+  <!-- VPC C -->
+  <rect x="770" y="350" width="110" height="70" rx="8" fill="#1a1a2e" stroke="#1a73e8" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="825" y="380" text-anchor="middle" fill="#1a73e8" font-size="13" font-weight="bold">VPC C</text>
+  <text x="825" y="398" text-anchor="middle" fill="#aaaaaa" font-size="9">10.3.0.0/16</text>
+
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">GRE + Transit Gateway Connect Architecture</text>
+  <text x="450" y="62" text-anchor="middle" fill="#aaaaaa" font-size="12">Dynamic Routing via GRE Tunnels with BGP</text>
+
+  <!-- Legend -->
+  <line x1="30" y1="465" x2="65" y2="465" stroke="#34a853" stroke-width="2.5" stroke-dasharray="8,5"/>
+  <text x="72" y="469" fill="#e0e0e0" font-size="10">GRE Tunnel (BGP)</text>
+
+  <line x1="210" y1="465" x2="245" y2="465" stroke="#1a73e8" stroke-width="2"/>
+  <text x="252" y="469" fill="#e0e0e0" font-size="10">VPC Attachment</text>
+
+  <line x1="390" y1="465" x2="425" y2="465" stroke="#666666" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="432" y="469" fill="#e0e0e0" font-size="10">Transport Layer</text>
+
+</svg>

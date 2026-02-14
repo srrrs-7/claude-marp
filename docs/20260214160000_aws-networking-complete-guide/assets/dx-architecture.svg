@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 550" style="letter-spacing:0">
+  <!-- AWS Direct Connect Architecture Diagram -->
+
+  <!-- ========== On-Premises (Left) ========== -->
+  <rect x="20" y="100" width="180" height="380" rx="10" fill="none" stroke="#e0e0e0" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="110" y="130" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="15" font-weight="bold">オンプレミス</text>
+  <text x="110" y="148" text-anchor="middle" fill="#e0e0e0" font-family="Arial, sans-serif" font-size="11">(On-Premises)</text>
+
+  <!-- Customer Router -->
+  <rect x="45" y="250" width="130" height="56" rx="8" fill="#546e7a" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="110" y="274" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Customer</text>
+  <text x="110" y="294" text-anchor="middle" fill="#e0e0e0" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Router</text>
+
+  <!-- ========== DX Location (Center-Left) ========== -->
+  <rect x="240" y="100" width="160" height="380" rx="10" fill="none" stroke="#FF9900" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="320" y="130" text-anchor="middle" fill="#FF9900" font-family="Arial, sans-serif" font-size="14" font-weight="bold">DXロケーション</text>
+  <text x="320" y="148" text-anchor="middle" fill="#e0e0e0" font-family="Arial, sans-serif" font-size="11">(DX Location)</text>
+
+  <!-- Cross Connect -->
+  <rect x="260" y="250" width="120" height="56" rx="8" fill="#FF9900" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="320" y="274" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Cross</text>
+  <text x="320" y="294" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Connect</text>
+
+  <!-- Physical Connection: On-prem → DX Location -->
+  <line x1="175" y1="278" x2="258" y2="278" stroke="#FF9900" stroke-width="4"/>
+  <polygon points="254,272 254,284 262,278" fill="#FF9900"/>
+  <text x="216" y="266" text-anchor="middle" fill="#FF9900" font-family="Arial, sans-serif" font-size="10" font-weight="bold">物理接続</text>
+  <text x="216" y="298" text-anchor="middle" fill="#e0e0e0" font-family="Arial, sans-serif" font-size="9">1/10/100 Gbps</text>
+
+  <!-- ========== AWS Cloud (Right) ========== -->
+  <rect x="440" y="20" width="500" height="520" rx="14" fill="none" stroke="#3B48CC" stroke-width="2"/>
+  <text x="690" y="48" text-anchor="middle" fill="#3B48CC" font-family="Arial, sans-serif" font-size="16" font-weight="bold">AWS Cloud</text>
+
+  <!-- DX Gateway (Central Hub) -->
+  <rect x="470" y="238" width="140" height="56" rx="10" fill="#3B48CC" style="filter: drop-shadow(3px 3px 4px rgba(0,0,0,0.4))"/>
+  <text x="540" y="262" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="13" font-weight="bold">DX Gateway</text>
+  <text x="540" y="282" text-anchor="middle" fill="#e0e0e0" font-family="Arial, sans-serif" font-size="10">グローバルリソース</text>
+
+  <!-- Connection: DX Location → DX Gateway -->
+  <line x1="380" y1="278" x2="468" y2="266" stroke="#FF9900" stroke-width="3"/>
+  <polygon points="464,260 464,272 472,266" fill="#FF9900"/>
+
+  <!-- ========== Private VIF Path (Top) ========== -->
+  <!-- Private VIF label -->
+  <rect x="460" y="164" width="110" height="28" rx="5" fill="#34a853" opacity="0.9"/>
+  <text x="515" y="183" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Private VIF</text>
+
+  <!-- Arrow: DX GW → VGW -->
+  <line x1="540" y1="238" x2="540" y2="194" stroke="#34a853" stroke-width="2"/>
+  <polygon points="535,198 545,198 540,190" fill="#34a853"/>
+
+  <!-- Line from Private VIF to VGW -->
+  <line x1="570" y1="178" x2="660" y2="120" stroke="#34a853" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="655,115 660,125 664,116" fill="#34a853"/>
+
+  <!-- VGW -->
+  <rect x="660" y="86" width="100" height="44" rx="6" fill="#34a853" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="710" y="106" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">VGW</text>
+  <text x="710" y="122" text-anchor="middle" fill="#e0e0e0" font-family="Arial, sans-serif" font-size="9">Virtual GW</text>
+
+  <!-- VPC A -->
+  <rect x="800" y="70" width="120" height="76" rx="8" fill="none" stroke="#34a853" stroke-width="1.5"/>
+  <text x="860" y="95" text-anchor="middle" fill="#34a853" font-family="Arial, sans-serif" font-size="13" font-weight="bold">VPC A</text>
+  <text x="860" y="112" text-anchor="middle" fill="#e0e0e0" font-family="Arial, sans-serif" font-size="10">10.0.0.0/16</text>
+  <text x="860" y="128" text-anchor="middle" fill="#e0e0e0" font-family="Arial, sans-serif" font-size="10">Region 1</text>
+
+  <!-- Arrow: VGW → VPC A -->
+  <line x1="760" y1="108" x2="798" y2="108" stroke="#34a853" stroke-width="2"/>
+  <polygon points="794,103 794,113 802,108" fill="#34a853"/>
+
+  <!-- ========== Transit VIF Path (Middle) ========== -->
+  <!-- Transit VIF label -->
+  <rect x="460" y="300" width="110" height="28" rx="5" fill="#1a73e8" opacity="0.9"/>
+  <text x="515" y="319" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Transit VIF</text>
+
+  <!-- Arrow: DX GW → Transit VIF -->
+  <line x1="540" y1="294" x2="540" y2="328" stroke="#1a73e8" stroke-width="2"/>
+
+  <!-- Line from Transit VIF to TGW -->
+  <line x1="570" y1="314" x2="660" y2="314" stroke="#1a73e8" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="656,309 656,319 664,314" fill="#1a73e8"/>
+
+  <!-- TGW -->
+  <rect x="666" y="290" width="100" height="48" rx="6" fill="#1a73e8" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="716" y="311" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">TGW</text>
+  <text x="716" y="328" text-anchor="middle" fill="#e0e0e0" font-family="Arial, sans-serif" font-size="9">Transit GW</text>
+
+  <!-- VPC B -->
+  <rect x="810" y="260" width="120" height="44" rx="8" fill="none" stroke="#1a73e8" stroke-width="1.5"/>
+  <text x="870" y="278" text-anchor="middle" fill="#1a73e8" font-family="Arial, sans-serif" font-size="12" font-weight="bold">VPC B</text>
+  <text x="870" y="294" text-anchor="middle" fill="#e0e0e0" font-family="Arial, sans-serif" font-size="10">10.1.0.0/16</text>
+
+  <!-- VPC C -->
+  <rect x="810" y="316" width="120" height="44" rx="8" fill="none" stroke="#1a73e8" stroke-width="1.5"/>
+  <text x="870" y="334" text-anchor="middle" fill="#1a73e8" font-family="Arial, sans-serif" font-size="12" font-weight="bold">VPC C</text>
+  <text x="870" y="350" text-anchor="middle" fill="#e0e0e0" font-family="Arial, sans-serif" font-size="10">10.2.0.0/16</text>
+
+  <!-- Region 2 label -->
+  <text x="870" y="376" text-anchor="middle" fill="#e0e0e0" font-family="Arial, sans-serif" font-size="10">Region 2</text>
+
+  <!-- Arrow: TGW → VPC B -->
+  <line x1="766" y1="304" x2="808" y2="282" stroke="#1a73e8" stroke-width="2"/>
+  <polygon points="803,277 808,287 812,278" fill="#1a73e8"/>
+
+  <!-- Arrow: TGW → VPC C -->
+  <line x1="766" y1="324" x2="808" y2="338" stroke="#1a73e8" stroke-width="2"/>
+  <polygon points="803,343 808,333 812,342" fill="#1a73e8"/>
+
+  <!-- ========== Public VIF Path (Bottom) ========== -->
+  <!-- Public VIF label -->
+  <rect x="460" y="390" width="110" height="28" rx="5" fill="#ea4335" opacity="0.9"/>
+  <text x="515" y="409" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Public VIF</text>
+
+  <!-- Arrow from DX GW down to Public VIF -->
+  <line x1="510" y1="294" x2="510" y2="388" stroke="#ea4335" stroke-width="2"/>
+  <polygon points="505,384 515,384 510,392" fill="#ea4335"/>
+
+  <!-- Line from Public VIF to AWS Public Services -->
+  <line x1="570" y1="404" x2="660" y2="460" stroke="#ea4335" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="655,455 660,465 664,456" fill="#ea4335"/>
+
+  <!-- AWS Public Services -->
+  <rect x="660" y="440" width="140" height="76" rx="8" fill="none" stroke="#ea4335" stroke-width="1.5"/>
+  <text x="730" y="462" text-anchor="middle" fill="#ea4335" font-family="Arial, sans-serif" font-size="12" font-weight="bold">AWS Public</text>
+  <text x="730" y="480" text-anchor="middle" fill="#ea4335" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Services</text>
+  <text x="730" y="500" text-anchor="middle" fill="#e0e0e0" font-family="Arial, sans-serif" font-size="10">S3, CloudFront, etc.</text>
+
+  <!-- ========== Legend ========== -->
+  <rect x="20" y="20" width="180" height="68" rx="6" fill="rgba(255,255,255,0.06)" stroke="#e0e0e0" stroke-width="0.5"/>
+  <text x="30" y="38" fill="#ffffff" font-family="Arial, sans-serif" font-size="11" font-weight="bold">VIF タイプ</text>
+  <line x1="30" y1="50" x2="60" y2="50" stroke="#34a853" stroke-width="3"/>
+  <text x="68" y="54" fill="#34a853" font-family="Arial, sans-serif" font-size="10">Private VIF</text>
+  <line x1="30" y1="64" x2="60" y2="64" stroke="#1a73e8" stroke-width="3"/>
+  <text x="68" y="68" fill="#1a73e8" font-family="Arial, sans-serif" font-size="10">Transit VIF</text>
+  <line x1="30" y1="78" x2="60" y2="78" stroke="#ea4335" stroke-width="3"/>
+  <text x="68" y="82" fill="#ea4335" font-family="Arial, sans-serif" font-size="10">Public VIF</text>
+</svg>

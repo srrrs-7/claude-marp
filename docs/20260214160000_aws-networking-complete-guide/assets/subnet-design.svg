@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="letter-spacing:0;font-family:'Segoe UI',Arial,sans-serif">
+  <!-- Internet Cloud -->
+  <rect x="340" y="8" width="220" height="36" rx="18" ry="18" fill="#1a73e8" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="450" y="31" fill="white" font-size="13" text-anchor="middle" font-weight="bold">Internet</text>
+
+  <!-- Arrow: Internet to IGW -->
+  <line x1="450" y1="44" x2="450" y2="72" stroke="#e0e0e0" stroke-width="2"/>
+  <polygon points="444,70 456,70 450,78" fill="#e0e0e0"/>
+  <text x="470" y="62" fill="#b0b0b0" font-size="8">Inbound / Outbound</text>
+
+  <!-- Internet Gateway -->
+  <rect x="370" y="78" width="160" height="36" rx="8" ry="8" fill="#FF9900" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="450" y="101" fill="white" font-size="12" text-anchor="middle" font-weight="bold">Internet Gateway (IGW)</text>
+
+  <!-- VPC Boundary -->
+  <rect x="50" y="130" width="800" height="360" rx="12" ry="12" fill="none" stroke="#FF9900" stroke-width="2.5" stroke-dasharray="8 4"/>
+  <text x="70" y="152" fill="#FF9900" font-size="13" font-weight="bold">VPC: 10.0.0.0/16</text>
+
+  <!-- Arrow: IGW into VPC -->
+  <line x1="450" y1="114" x2="450" y2="130" stroke="#e0e0e0" stroke-width="1.5"/>
+
+  <!-- === AZ-a === -->
+  <rect x="70" y="165" width="370" height="310" rx="8" ry="8" fill="rgba(82,127,255,0.06)" stroke="#527FFF" stroke-width="1" stroke-dasharray="5 3"/>
+  <text x="255" y="184" fill="#527FFF" font-size="11" text-anchor="middle" font-weight="bold">Availability Zone a</text>
+
+  <!-- === AZ-b === -->
+  <rect x="460" y="165" width="370" height="310" rx="8" ry="8" fill="rgba(82,127,255,0.06)" stroke="#527FFF" stroke-width="1" stroke-dasharray="5 3"/>
+  <text x="645" y="184" fill="#527FFF" font-size="11" text-anchor="middle" font-weight="bold">Availability Zone b</text>
+
+  <!-- ====== AZ-a Public Subnet ====== -->
+  <rect x="90" y="195" width="330" height="115" rx="6" ry="6" fill="rgba(52,168,83,0.10)" stroke="#34a853" stroke-width="1.5"/>
+  <text x="105" y="213" fill="#34a853" font-size="10" font-weight="bold">Public Subnet 10.0.1.0/24</text>
+
+  <!-- Web Server in AZ-a Public -->
+  <rect x="105" y="222" width="95" height="36" rx="6" ry="6" fill="#1a73e8" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="152" y="237" fill="white" font-size="9" text-anchor="middle" font-weight="bold">EC2</text>
+  <text x="152" y="250" fill="#cce0ff" font-size="8" text-anchor="middle">Web Server</text>
+
+  <!-- NAT Gateway in AZ-a Public -->
+  <rect x="215" y="222" width="95" height="36" rx="6" ry="6" fill="#34a853" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="262" y="237" fill="white" font-size="9" text-anchor="middle" font-weight="bold">NAT Gateway</text>
+  <text x="262" y="250" fill="#c8e6c9" font-size="8" text-anchor="middle">Elastic IP</text>
+
+  <!-- Route Table: AZ-a Public -->
+  <rect x="105" y="266" width="200" height="36" rx="4" ry="4" fill="rgba(255,255,255,0.07)" stroke="#e0e0e0" stroke-width="0.8"/>
+  <text x="115" y="279" fill="#e0e0e0" font-size="8" font-weight="bold">Route Table (Public)</text>
+  <line x1="110" y1="283" x2="300" y2="283" stroke="#555" stroke-width="0.5"/>
+  <text x="115" y="295" fill="#34a853" font-size="8" font-weight="bold">0.0.0.0/0</text>
+  <text x="195" y="295" fill="#b0b0b0" font-size="8">-></text>
+  <text x="215" y="295" fill="#FF9900" font-size="8" font-weight="bold">igw-xxxxxx</text>
+
+  <!-- ====== AZ-a Private Subnet ====== -->
+  <rect x="90" y="320" width="330" height="140" rx="6" ry="6" fill="rgba(234,67,53,0.07)" stroke="#ea4335" stroke-width="1.5"/>
+  <text x="105" y="338" fill="#ea4335" font-size="10" font-weight="bold">Private Subnet 10.0.2.0/24</text>
+
+  <!-- App Server in AZ-a Private -->
+  <rect x="105" y="348" width="95" height="36" rx="6" ry="6" fill="#5c6bc0" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="152" y="363" fill="white" font-size="9" text-anchor="middle" font-weight="bold">EC2</text>
+  <text x="152" y="376" fill="#c5cae9" font-size="8" text-anchor="middle">App Server</text>
+
+  <!-- DB in AZ-a Private -->
+  <rect x="215" y="348" width="95" height="36" rx="6" ry="6" fill="#7b1fa2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="262" y="363" fill="white" font-size="9" text-anchor="middle" font-weight="bold">RDS</text>
+  <text x="262" y="376" fill="#e1bee7" font-size="8" text-anchor="middle">Database</text>
+
+  <!-- Route Table: AZ-a Private -->
+  <rect x="105" y="395" width="200" height="36" rx="4" ry="4" fill="rgba(255,255,255,0.07)" stroke="#e0e0e0" stroke-width="0.8"/>
+  <text x="115" y="408" fill="#e0e0e0" font-size="8" font-weight="bold">Route Table (Private)</text>
+  <line x1="110" y1="412" x2="300" y2="412" stroke="#555" stroke-width="0.5"/>
+  <text x="115" y="424" fill="#34a853" font-size="8" font-weight="bold">0.0.0.0/0</text>
+  <text x="195" y="424" fill="#b0b0b0" font-size="8">-></text>
+  <text x="215" y="424" fill="#34a853" font-size="8" font-weight="bold">nat-xxxxxx</text>
+
+  <!-- ====== AZ-b Public Subnet ====== -->
+  <rect x="480" y="195" width="330" height="115" rx="6" ry="6" fill="rgba(52,168,83,0.10)" stroke="#34a853" stroke-width="1.5"/>
+  <text x="495" y="213" fill="#34a853" font-size="10" font-weight="bold">Public Subnet 10.0.3.0/24</text>
+
+  <!-- Web Server in AZ-b Public -->
+  <rect x="495" y="222" width="95" height="36" rx="6" ry="6" fill="#1a73e8" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="542" y="237" fill="white" font-size="9" text-anchor="middle" font-weight="bold">EC2</text>
+  <text x="542" y="250" fill="#cce0ff" font-size="8" text-anchor="middle">Web Server</text>
+
+  <!-- NAT Gateway in AZ-b Public -->
+  <rect x="605" y="222" width="95" height="36" rx="6" ry="6" fill="#34a853" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="652" y="237" fill="white" font-size="9" text-anchor="middle" font-weight="bold">NAT Gateway</text>
+  <text x="652" y="250" fill="#c8e6c9" font-size="8" text-anchor="middle">Elastic IP</text>
+
+  <!-- Route Table: AZ-b Public -->
+  <rect x="495" y="266" width="200" height="36" rx="4" ry="4" fill="rgba(255,255,255,0.07)" stroke="#e0e0e0" stroke-width="0.8"/>
+  <text x="505" y="279" fill="#e0e0e0" font-size="8" font-weight="bold">Route Table (Public)</text>
+  <line x1="500" y1="283" x2="690" y2="283" stroke="#555" stroke-width="0.5"/>
+  <text x="505" y="295" fill="#34a853" font-size="8" font-weight="bold">0.0.0.0/0</text>
+  <text x="585" y="295" fill="#b0b0b0" font-size="8">-></text>
+  <text x="605" y="295" fill="#FF9900" font-size="8" font-weight="bold">igw-xxxxxx</text>
+
+  <!-- ====== AZ-b Private Subnet ====== -->
+  <rect x="480" y="320" width="330" height="140" rx="6" ry="6" fill="rgba(234,67,53,0.07)" stroke="#ea4335" stroke-width="1.5"/>
+  <text x="495" y="338" fill="#ea4335" font-size="10" font-weight="bold">Private Subnet 10.0.4.0/24</text>
+
+  <!-- App Server in AZ-b Private -->
+  <rect x="495" y="348" width="95" height="36" rx="6" ry="6" fill="#5c6bc0" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="542" y="363" fill="white" font-size="9" text-anchor="middle" font-weight="bold">EC2</text>
+  <text x="542" y="376" fill="#c5cae9" font-size="8" text-anchor="middle">App Server</text>
+
+  <!-- DB in AZ-b Private -->
+  <rect x="605" y="348" width="95" height="36" rx="6" ry="6" fill="#7b1fa2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="652" y="363" fill="white" font-size="9" text-anchor="middle" font-weight="bold">RDS</text>
+  <text x="652" y="376" fill="#e1bee7" font-size="8" text-anchor="middle">Database</text>
+
+  <!-- Route Table: AZ-b Private -->
+  <rect x="495" y="395" width="200" height="36" rx="4" ry="4" fill="rgba(255,255,255,0.07)" stroke="#e0e0e0" stroke-width="0.8"/>
+  <text x="505" y="408" fill="#e0e0e0" font-size="8" font-weight="bold">Route Table (Private)</text>
+  <line x1="500" y1="412" x2="690" y2="412" stroke="#555" stroke-width="0.5"/>
+  <text x="505" y="424" fill="#34a853" font-size="8" font-weight="bold">0.0.0.0/0</text>
+  <text x="585" y="424" fill="#b0b0b0" font-size="8">-></text>
+  <text x="605" y="424" fill="#34a853" font-size="8" font-weight="bold">nat-xxxxxx</text>
+
+  <!-- ====== Traffic Flow Arrows ====== -->
+
+  <!-- IGW to AZ-a Public Subnet (inbound) -->
+  <line x1="400" y1="114" x2="255" y2="195" stroke="#34a853" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <polygon points="250,191 260,192 254,199" fill="#34a853"/>
+  <text x="290" y="155" fill="#34a853" font-size="8" transform="rotate(-20 290 155)">Inbound</text>
+
+  <!-- IGW to AZ-b Public Subnet (inbound) -->
+  <line x1="500" y1="114" x2="645" y2="195" stroke="#34a853" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <polygon points="641,191 651,192 646,199" fill="#34a853"/>
+  <text x="590" y="155" fill="#34a853" font-size="8" transform="rotate(20 590 155)">Inbound</text>
+
+  <!-- AZ-a: App Server to NAT GW (private outbound) -->
+  <line x1="175" y1="348" x2="250" y2="258" stroke="#ea4335" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <polygon points="246,262 254,256 252,264" fill="#ea4335"/>
+  <text x="185" y="300" fill="#ea4335" font-size="7" transform="rotate(-65 185 300)">Outbound</text>
+
+  <!-- AZ-a: NAT GW to IGW (outbound via IGW) -->
+  <line x1="262" y1="222" x2="410" y2="114" stroke="#FF9900" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <polygon points="406,118 414,112 412,120" fill="#FF9900"/>
+
+  <!-- AZ-b: App Server to NAT GW (private outbound) -->
+  <line x1="565" y1="348" x2="640" y2="258" stroke="#ea4335" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <polygon points="636,262 644,256 642,264" fill="#ea4335"/>
+
+  <!-- AZ-b: NAT GW to IGW (outbound via IGW) -->
+  <line x1="652" y1="222" x2="490" y2="114" stroke="#FF9900" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <polygon points="487,118 493,112 495,120" fill="#FF9900"/>
+
+  <!-- Legend -->
+  <line x1="80" y1="487" x2="100" y2="487" stroke="#34a853" stroke-width="2" stroke-dasharray="4 2"/>
+  <text x="106" y="490" fill="#b0b0b0" font-size="9">Inbound (Internet -> IGW -> Subnet)</text>
+
+  <line x1="370" y1="487" x2="390" y2="487" stroke="#ea4335" stroke-width="2" stroke-dasharray="3 2"/>
+  <text x="396" y="490" fill="#b0b0b0" font-size="9">Private Outbound (Instance -> NAT GW)</text>
+
+  <line x1="640" y1="487" x2="660" y2="487" stroke="#FF9900" stroke-width="2" stroke-dasharray="3 2"/>
+  <text x="666" y="490" fill="#b0b0b0" font-size="9">NAT -> IGW -> Internet</text>
+</svg>

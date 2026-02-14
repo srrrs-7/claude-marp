@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" style="letter-spacing:0">
+  <!-- Title -->
+  <text x="450" y="28" text-anchor="middle" fill="#FF9900" font-family="Arial,sans-serif" font-size="18" font-weight="bold">ECMP: Equal Cost Multi-Path Routing</text>
+  <text x="450" y="48" text-anchor="middle" fill="#b0bec5" font-family="Arial,sans-serif" font-size="12">VPN bandwidth scaling with multiple tunnels via Transit Gateway</text>
+
+  <!-- ====== LEFT: On-Premises ====== -->
+  <rect x="30" y="90" width="180" height="350" rx="12" fill="rgba(156,39,176,0.06)" stroke="#9c27b0" stroke-width="2" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="120" y="115" text-anchor="middle" fill="#9c27b0" font-family="Arial,sans-serif" font-size="14" font-weight="bold">On-Premises</text>
+
+  <!-- CGW box -->
+  <rect x="55" y="135" width="130" height="55" rx="8" fill="rgba(156,39,176,0.1)" stroke="#9c27b0" stroke-width="1.5"/>
+  <text x="120" y="158" text-anchor="middle" fill="#ffffff" font-family="Arial,sans-serif" font-size="12" font-weight="bold">CGW</text>
+  <text x="120" y="175" text-anchor="middle" fill="#e0e0e0" font-family="Arial,sans-serif" font-size="9">Customer Gateway</text>
+
+  <!-- Router icon representation -->
+  <rect x="70" y="210" width="100" height="35" rx="5" fill="rgba(156,39,176,0.08)" stroke="#9c27b0" stroke-width="1"/>
+  <text x="120" y="232" text-anchor="middle" fill="#e0e0e0" font-family="Arial,sans-serif" font-size="10">BGP Router</text>
+
+  <!-- BGP note -->
+  <rect x="55" y="265" width="130" height="45" rx="5" fill="rgba(0,188,212,0.08)" stroke="#00bcd4" stroke-width="1"/>
+  <text x="120" y="283" text-anchor="middle" fill="#00bcd4" font-family="Arial,sans-serif" font-size="9" font-weight="bold">BGP Advertise</text>
+  <text x="120" y="298" text-anchor="middle" fill="#e0e0e0" font-family="Arial,sans-serif" font-size="9">Same prefix</text>
+
+  <!-- AS Path note -->
+  <rect x="55" y="320" width="130" height="45" rx="5" fill="rgba(0,188,212,0.08)" stroke="#00bcd4" stroke-width="1"/>
+  <text x="120" y="338" text-anchor="middle" fill="#00bcd4" font-family="Arial,sans-serif" font-size="9" font-weight="bold">AS Path Length</text>
+  <text x="120" y="353" text-anchor="middle" fill="#e0e0e0" font-family="Arial,sans-serif" font-size="9">Must be equal</text>
+
+  <!-- Performance note on left -->
+  <text x="120" y="395" text-anchor="middle" fill="#b0bec5" font-family="Arial,sans-serif" font-size="9">Per tunnel:</text>
+  <text x="120" y="410" text-anchor="middle" fill="#FF9900" font-family="Arial,sans-serif" font-size="11" font-weight="bold">1.25 Gbps</text>
+  <text x="120" y="425" text-anchor="middle" fill="#b0bec5" font-family="Arial,sans-serif" font-size="8">(max throughput)</text>
+
+  <!-- ====== RIGHT: Transit Gateway ====== -->
+  <rect x="610" y="90" width="270" height="350" rx="12" fill="rgba(255,153,0,0.04)" stroke="#FF9900" stroke-width="2" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="745" y="115" text-anchor="middle" fill="#FF9900" font-family="Arial,sans-serif" font-size="14" font-weight="bold">AWS Cloud</text>
+
+  <!-- Transit Gateway box -->
+  <rect x="635" y="135" width="220" height="60" rx="8" fill="rgba(255,153,0,0.1)" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="745" y="160" text-anchor="middle" fill="#FF9900" font-family="Arial,sans-serif" font-size="13" font-weight="bold">Transit Gateway</text>
+  <text x="745" y="178" text-anchor="middle" fill="#e0e0e0" font-family="Arial,sans-serif" font-size="9">ECMP enabled (default for VPN)</text>
+
+  <!-- VPC 1 -->
+  <rect x="635" y="215" width="100" height="40" rx="6" fill="rgba(26,115,232,0.1)" stroke="#1a73e8" stroke-width="1.2"/>
+  <text x="685" y="232" text-anchor="middle" fill="#1a73e8" font-family="Arial,sans-serif" font-size="10" font-weight="bold">VPC-A</text>
+  <text x="685" y="247" text-anchor="middle" fill="#b0bec5" font-family="Arial,sans-serif" font-size="8">10.1.0.0/16</text>
+
+  <!-- VPC 2 -->
+  <rect x="755" y="215" width="100" height="40" rx="6" fill="rgba(52,168,83,0.1)" stroke="#34a853" stroke-width="1.2"/>
+  <text x="805" y="232" text-anchor="middle" fill="#34a853" font-family="Arial,sans-serif" font-size="10" font-weight="bold">VPC-B</text>
+  <text x="805" y="247" text-anchor="middle" fill="#b0bec5" font-family="Arial,sans-serif" font-size="8">10.2.0.0/16</text>
+
+  <!-- VPC 3 -->
+  <rect x="695" y="270" width="100" height="40" rx="6" fill="rgba(234,67,53,0.1)" stroke="#ea4335" stroke-width="1.2"/>
+  <text x="745" y="287" text-anchor="middle" fill="#ea4335" font-family="Arial,sans-serif" font-size="10" font-weight="bold">VPC-C</text>
+  <text x="745" y="302" text-anchor="middle" fill="#b0bec5" font-family="Arial,sans-serif" font-size="8">10.3.0.0/16</text>
+
+  <!-- TGW to VPC connectors -->
+  <line x1="685" y1="195" x2="685" y2="215" stroke="#1a73e8" stroke-width="1.2"/>
+  <line x1="805" y1="195" x2="805" y2="215" stroke="#34a853" stroke-width="1.2"/>
+  <line x1="745" y1="195" x2="745" y2="270" stroke="#ea4335" stroke-width="1.2"/>
+
+  <!-- ====== CENTER: VPN Connections Scaling ====== -->
+
+  <!-- Row 1: 1 VPN (2 tunnels) = 2.5 Gbps -->
+  <rect x="240" y="100" width="350" height="90" rx="8" fill="rgba(255,153,0,0.04)" stroke="#FF9900" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="260" y="120" fill="#FF9900" font-family="Arial,sans-serif" font-size="11" font-weight="bold">1 VPN Connection</text>
+
+  <!-- Tunnel pair 1 -->
+  <line x1="260" y1="140" x2="555" y2="140" stroke="#00bcd4" stroke-width="2.5"/>
+  <polygon points="555,136 563,140 555,144" fill="#00bcd4"/>
+  <text x="410" y="137" text-anchor="middle" fill="#ffffff" font-family="Arial,sans-serif" font-size="8" font-weight="bold">IPsec Tunnel 1 (1.25 Gbps)</text>
+
+  <line x1="260" y1="162" x2="555" y2="162" stroke="#1a73e8" stroke-width="2.5"/>
+  <polygon points="555,158 563,162 555,166" fill="#1a73e8"/>
+  <text x="410" y="159" text-anchor="middle" fill="#ffffff" font-family="Arial,sans-serif" font-size="8" font-weight="bold">IPsec Tunnel 2 (1.25 Gbps)</text>
+
+  <!-- Bandwidth label row 1 -->
+  <rect x="556" y="138" width="40" height="28" rx="4" fill="rgba(52,168,83,0.15)" stroke="#34a853" stroke-width="1"/>
+  <text x="576" y="157" text-anchor="middle" fill="#34a853" font-family="Arial,sans-serif" font-size="10" font-weight="bold">2.5G</text>
+
+  <!-- Connector from on-prem to row1 -->
+  <line x1="210" y1="165" x2="260" y2="150" stroke="#9c27b0" stroke-width="1.5"/>
+  <polygon points="257,145 265,149 258,154" fill="#9c27b0"/>
+
+  <!-- Row 2: 2 VPN (4 tunnels) = 5.0 Gbps -->
+  <rect x="240" y="205" width="350" height="115" rx="8" fill="rgba(255,153,0,0.06)" stroke="#FF9900" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="260" y="225" fill="#FF9900" font-family="Arial,sans-serif" font-size="11" font-weight="bold">2 VPN Connections</text>
+
+  <!-- VPN Connection A -->
+  <line x1="260" y1="245" x2="555" y2="245" stroke="#00bcd4" stroke-width="2"/>
+  <polygon points="555,241 563,245 555,249" fill="#00bcd4"/>
+  <line x1="260" y1="258" x2="555" y2="258" stroke="#1a73e8" stroke-width="2"/>
+  <polygon points="555,254 563,258 555,262" fill="#1a73e8"/>
+  <text x="410" y="243" text-anchor="middle" fill="#e0e0e0" font-family="Arial,sans-serif" font-size="7">VPN-1: T1 + T2</text>
+
+  <!-- VPN Connection B -->
+  <line x1="260" y1="280" x2="555" y2="280" stroke="#00bcd4" stroke-width="2"/>
+  <polygon points="555,276 563,280 555,284" fill="#00bcd4"/>
+  <line x1="260" y1="293" x2="555" y2="293" stroke="#1a73e8" stroke-width="2"/>
+  <polygon points="555,289 563,293 555,297" fill="#1a73e8"/>
+  <text x="410" y="278" text-anchor="middle" fill="#e0e0e0" font-family="Arial,sans-serif" font-size="7">VPN-2: T3 + T4</text>
+
+  <!-- Bandwidth label row 2 -->
+  <rect x="556" y="256" width="40" height="28" rx="4" fill="rgba(52,168,83,0.2)" stroke="#34a853" stroke-width="1"/>
+  <text x="576" y="275" text-anchor="middle" fill="#34a853" font-family="Arial,sans-serif" font-size="10" font-weight="bold">5.0G</text>
+
+  <!-- Connector from on-prem to row2 -->
+  <line x1="210" y1="200" x2="260" y2="260" stroke="#9c27b0" stroke-width="1.5"/>
+  <polygon points="257,256 265,260 258,265" fill="#9c27b0"/>
+
+  <!-- Row 3: 4 VPN (8 tunnels) = 10.0 Gbps -->
+  <rect x="240" y="335" width="350" height="135" rx="8" fill="rgba(255,153,0,0.08)" stroke="#FF9900" stroke-width="1.2" stroke-opacity="0.7"/>
+  <text x="260" y="355" fill="#FF9900" font-family="Arial,sans-serif" font-size="11" font-weight="bold">4 VPN Connections</text>
+
+  <!-- 4 VPN pairs condensed -->
+  <!-- VPN 1 -->
+  <line x1="260" y1="370" x2="555" y2="370" stroke="#00bcd4" stroke-width="1.8"/>
+  <polygon points="555,367 561,370 555,373" fill="#00bcd4"/>
+  <line x1="260" y1="381" x2="555" y2="381" stroke="#1a73e8" stroke-width="1.8"/>
+  <polygon points="555,378 561,381 555,384" fill="#1a73e8"/>
+
+  <!-- VPN 2 -->
+  <line x1="260" y1="394" x2="555" y2="394" stroke="#00bcd4" stroke-width="1.8"/>
+  <polygon points="555,391 561,394 555,397" fill="#00bcd4"/>
+  <line x1="260" y1="405" x2="555" y2="405" stroke="#1a73e8" stroke-width="1.8"/>
+  <polygon points="555,402 561,405 555,408" fill="#1a73e8"/>
+
+  <!-- VPN 3 -->
+  <line x1="260" y1="418" x2="555" y2="418" stroke="#00bcd4" stroke-width="1.8"/>
+  <polygon points="555,415 561,418 555,421" fill="#00bcd4"/>
+  <line x1="260" y1="429" x2="555" y2="429" stroke="#1a73e8" stroke-width="1.8"/>
+  <polygon points="555,426 561,429 555,432" fill="#1a73e8"/>
+
+  <!-- VPN 4 -->
+  <line x1="260" y1="442" x2="555" y2="442" stroke="#00bcd4" stroke-width="1.8"/>
+  <polygon points="555,439 561,442 555,445" fill="#00bcd4"/>
+  <line x1="260" y1="453" x2="555" y2="453" stroke="#1a73e8" stroke-width="1.8"/>
+  <polygon points="555,450 561,453 555,456" fill="#1a73e8"/>
+
+  <!-- Tunnel labels for row 3 -->
+  <text x="410" y="368" text-anchor="middle" fill="#e0e0e0" font-family="Arial,sans-serif" font-size="7">VPN-1</text>
+  <text x="410" y="393" text-anchor="middle" fill="#e0e0e0" font-family="Arial,sans-serif" font-size="7">VPN-2</text>
+  <text x="410" y="417" text-anchor="middle" fill="#e0e0e0" font-family="Arial,sans-serif" font-size="7">VPN-3</text>
+  <text x="410" y="441" text-anchor="middle" fill="#e0e0e0" font-family="Arial,sans-serif" font-size="7">VPN-4</text>
+
+  <!-- 8 tunnels label -->
+  <text x="310" y="468" text-anchor="middle" fill="#b0bec5" font-family="Arial,sans-serif" font-size="8">8 IPsec tunnels total</text>
+
+  <!-- Bandwidth label row 3 -->
+  <rect x="556" y="398" width="45" height="30" rx="4" fill="rgba(52,168,83,0.25)" stroke="#34a853" stroke-width="1.5"/>
+  <text x="578" y="418" text-anchor="middle" fill="#34a853" font-family="Arial,sans-serif" font-size="11" font-weight="bold">10G</text>
+
+  <!-- Connector from on-prem to row3 -->
+  <line x1="210" y1="230" x2="260" y2="400" stroke="#9c27b0" stroke-width="1.5"/>
+  <polygon points="257,396 265,400 258,405" fill="#9c27b0"/>
+
+  <!-- Scaling arrow on right side -->
+  <line x1="598" y1="152" x2="598" y2="413" stroke="#34a853" stroke-width="2"/>
+  <!-- Top arrowhead -->
+  <polygon points="594,158 598,148 602,158" fill="#34a853"/>
+  <!-- Bottom arrowhead -->
+  <polygon points="594,407 598,417 602,407" fill="#34a853"/>
+  <text x="604" y="285" fill="#34a853" font-family="Arial,sans-serif" font-size="10" font-weight="bold" transform="rotate(90,604,285)">Bandwidth Scale-Up</text>
+
+  <!-- TGW route table note -->
+  <rect x="635" y="330" width="220" height="90" rx="6" fill="rgba(255,153,0,0.06)" stroke="#FF9900" stroke-width="1"/>
+  <text x="745" y="350" text-anchor="middle" fill="#FF9900" font-family="Arial,sans-serif" font-size="10" font-weight="bold">TGW Route Table</text>
+  <text x="745" y="368" text-anchor="middle" fill="#e0e0e0" font-family="Arial,sans-serif" font-size="9">10.0.0.0/8 -> VPN Attachment</text>
+  <text x="745" y="384" text-anchor="middle" fill="#e0e0e0" font-family="Arial,sans-serif" font-size="9">ECMP distributes flows</text>
+  <text x="745" y="400" text-anchor="middle" fill="#e0e0e0" font-family="Arial,sans-serif" font-size="9">across all active tunnels</text>
+  <text x="745" y="416" text-anchor="middle" fill="#b0bec5" font-family="Arial,sans-serif" font-size="8">(per-flow, not per-packet)</text>
+
+  <!-- Bottom note -->
+  <rect x="180" y="485" width="540" height="28" rx="5" fill="rgba(234,67,53,0.08)" stroke="#ea4335" stroke-width="1"/>
+  <text x="450" y="504" text-anchor="middle" fill="#ea4335" font-family="Arial,sans-serif" font-size="11" font-weight="bold">Requirement: BGP dynamic routing - same prefix, same AS path length</text>
+</svg>

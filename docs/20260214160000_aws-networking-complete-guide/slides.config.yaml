@@ -1,0 +1,22 @@
+topic: "AWSネットワーキング完全ガイド — 認定試験対策"
+language: "ja"
+
+output:
+  dir: "docs/20260214160000_aws-networking-complete-guide"
+  baseName: "aws-networking-complete-guide"
+
+theme:
+  name: "gaia"
+  class: "invert"
+
+style: |
+  section pre code {
+    font-size: 0.6em;
+    line-height: 1.4;
+  }
+  section table {
+    font-size: 0.7em;
+  }
+  section {
+    font-size: 28px;
+  }

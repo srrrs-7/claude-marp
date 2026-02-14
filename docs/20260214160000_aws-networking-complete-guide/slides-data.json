@@ -1,0 +1,697 @@
+{
+	"slides": [
+		{
+			"title": "AWSネットワーキング完全ガイド",
+			"content": [
+				"— AWS認定試験対策 —",
+				"",
+				"VPC / Subnet / Direct Connect / VPN / Transit Gateway",
+				"",
+				"2026年版"
+			],
+			"layout": "center"
+		},
+		{
+			"title": "アジェンダ (1/2)",
+			"content": [
+				"1. **VPC基礎** — CIDR設計・主要コンポーネント",
+				"2. **サブネット設計** — Public/Private・ルートテーブル・IGW/NAT",
+				"3. **VPCセキュリティ** — セキュリティグループ・NACL",
+				"4. **VPC接続オプション** — Peering・Endpoints",
+				"5. **Direct Connect (DX)** — VIF・DX Gateway・冗長構成",
+				"6. **BGP** — AS番号・ルート伝搬・コミュニティタグ"
+			]
+		},
+		{
+			"title": "アジェンダ (2/2)",
+			"content": [
+				"7. **Site-to-Site VPN** — IPsec・CGW/VGW・Accelerated VPN",
+				"8. **Client VPN** — リモートアクセス・認証方式",
+				"9. **Transit Gateway** — ルーティング・ECMP・GRE",
+				"10. **ハイブリッドアーキテクチャ設計** — DX vs VPN・HA構成",
+				"11. **試験対策まとめ** — キーポイント・シナリオパターン"
+			]
+		},
+		{
+			"title": "VPC基礎",
+			"content": ["Amazon Virtual Private Cloud"],
+			"layout": "section"
+		},
+		{
+			"title": "VPCとは — 概要とCIDR設計",
+			"content": [
+				"**VPC (Virtual Private Cloud)** = AWS内の論理的に分離された仮想ネットワーク",
+				"リージョン単位で作成、複数AZにまたがる",
+				"**CIDRブロック**: /16（65,536 IP）〜 /28（16 IP）",
+				"セカンダリCIDRの追加が可能（最大5個、拡張申請で増加）",
+				"**RFC 1918 推奨範囲:**",
+				"　10.0.0.0/8 / 172.16.0.0/12 / 192.168.0.0/16",
+				"デフォルトVPCは各リージョンに自動作成（172.31.0.0/16）"
+			]
+		},
+		{
+			"title": "VPCの主要コンポーネント",
+			"content": [
+				"**サブネット** — AZ内のIPアドレス範囲",
+				"**ルートテーブル** — トラフィックの転送先を決定",
+				"**Internet Gateway (IGW)** — VPCとインターネット間の接続",
+				"**NAT Gateway** — プライベートサブネットからの外向き通信",
+				"**セキュリティグループ** — インスタンスレベルのファイアウォール",
+				"**ネットワークACL** — サブネットレベルのファイアウォール",
+				"**VPCエンドポイント** — AWSサービスへのプライベート接続"
+			]
+		},
+		{
+			"title": "VPCアーキテクチャ全体図",
+			"content": ["![w:800 center](assets/vpc-architecture.svg)"]
+		},
+		{
+			"title": "サブネット設計",
+			"content": ["Public / Private Subnet & Routing"],
+			"layout": "section"
+		},
+		{
+			"title": "パブリック vs プライベートサブネット",
+			"content": [
+				"**パブリックサブネット**",
+				"　ルートテーブルにIGW（0.0.0.0/0 → igw-xxx）を持つ",
+				"　パブリックIPまたはElastic IPが必要",
+				"　用途: ALB、Bastion Host、NAT Gateway",
+				"**プライベートサブネット**",
+				"　IGWへのルートを持たない",
+				"　外向き通信はNAT Gateway経由",
+				"　用途: アプリケーションサーバー、DB、内部サービス"
+			]
+		},
+		{
+			"title": "ルートテーブルの仕組み",
+			"content": [
+				"各サブネットに1つのルートテーブルを関連付け",
+				"**ローカルルート**: VPC CIDR内は自動ルーティング（削除不可）",
+				"**最長プレフィックス一致** でルートを評価"
+			],
+			"code": "# パブリックサブネットのルートテーブル\n10.0.0.0/16  →  local\n0.0.0.0/0    →  igw-xxxxxxxx\n\n# プライベートサブネットのルートテーブル\n10.0.0.0/16  →  local\n0.0.0.0/0    →  nat-xxxxxxxx",
+			"codeLanguage": "text"
+		},
+		{
+			"title": "Internet Gateway & NAT Gateway",
+			"content": [
+				"**Internet Gateway (IGW)**",
+				"　VPCに1つだけアタッチ可能",
+				"　水平スケール・冗長・高可用性（AWS管理）",
+				"　パブリックIPとプライベートIPの1:1 NAT",
+				"**NAT Gateway**",
+				"　AZ単位でデプロイ（HAにはマルチAZ配置が必要）",
+				"　最大 100 Gbps のバースト帯域",
+				"　Elastic IPを1つ割り当て"
+			]
+		},
+		{
+			"title": "サブネット構成図",
+			"content": ["![w:800 center](assets/subnet-design.svg)"]
+		},
+		{
+			"title": "VPCセキュリティ",
+			"content": ["Security Groups & Network ACLs"],
+			"layout": "section"
+		},
+		{
+			"title": "セキュリティグループ vs NACL",
+			"content": [
+				"**セキュリティグループ (SG)**",
+				"　インスタンス（ENI）レベルで適用",
+				"　**ステートフル**: 戻りトラフィックは自動許可",
+				"　許可ルールのみ（暗黙のDeny All）",
+				"　他のSGをソースに指定可能",
+				"**ネットワークACL (NACL)**",
+				"　サブネットレベルで適用",
+				"　**ステートレス**: 戻りトラフィックも明示的に許可が必要",
+				"　許可 & 拒否ルール、番号順に評価"
+			]
+		},
+		{
+			"title": "SG / NACL 比較表",
+			"content": [
+				"| 項目 | セキュリティグループ | NACL |",
+				"|---|---|---|",
+				"| 適用レベル | ENI（インスタンス） | サブネット |",
+				"| ステート | ステートフル | ステートレス |",
+				"| ルール | 許可のみ | 許可 & 拒否 |",
+				"| 評価順 | 全ルール評価 | 番号順（最初の一致） |",
+				"| デフォルト | 全アウトバウンド許可 | 全トラフィック許可 |",
+				"| 適用数 | 1 ENIに複数SG | 1サブネットに1 NACL |"
+			]
+		},
+		{
+			"title": "VPC接続オプション",
+			"content": ["VPC Peering & Endpoints"],
+			"layout": "section"
+		},
+		{
+			"title": "VPC Peering",
+			"content": [
+				"2つのVPC間をプライベートIPで直接接続",
+				"同一リージョン・クロスリージョン・クロスアカウント対応",
+				"**制約:**",
+				"　CIDRが重複するVPC間では不可",
+				"　**推移的ピアリング不可**（A↔B, B↔C でも A↔C は不可）",
+				"　フルメッシュ構成が必要 → VPC数が多い場合はTGWを検討",
+				"帯域制限なし（同一AZ間は無料）"
+			]
+		},
+		{
+			"title": "VPC Endpoints — Gateway型 & Interface型",
+			"content": [
+				"**Gateway Endpoint**",
+				"　対象: **S3** と **DynamoDB** のみ",
+				"　ルートテーブルにエントリ追加で動作",
+				"　無料、VPC内からのみアクセス可",
+				"**Interface Endpoint (PrivateLink)**",
+				"　対象: 多数のAWSサービス + サードパーティ",
+				"　サブネット内にENI（プライベートIP）を作成",
+				"　プライベートDNS対応",
+				"　時間課金 + データ処理課金"
+			]
+		},
+		{
+			"title": "VPC接続の選択フロー",
+			"content": ["![w:800 center](assets/vpc-connectivity-flow.svg)"]
+		},
+		{
+			"title": "AWS Direct Connect (DX)",
+			"content": ["Dedicated Network Connection"],
+			"layout": "section"
+		},
+		{
+			"title": "Direct Connect 概要",
+			"content": [
+				"オンプレミス ↔ AWS 間の**専用線接続**",
+				"**メリット:**",
+				"　安定した低レイテンシ・高帯域",
+				"　インターネットを経由しない（セキュリティ向上）",
+				"　データ転送コスト削減（VPN比で安価）",
+				"**帯域オプション:** 1Gbps / 10Gbps / 100Gbps（専用接続）",
+				"**ホスト型接続:** 50Mbps〜10Gbps（パートナー経由）",
+				"物理接続のプロビジョニングに**数週間〜数ヶ月**かかる"
+			]
+		},
+		{
+			"title": "DXの物理構成とコンポーネント",
+			"content": [
+				"**DXロケーション**: AWS Direct Connectポイントオブプレゼンス",
+				"**接続 (Connection)**: 物理ポートの割り当て",
+				"**LOA-CFA**: Letter of Authorization — 接続許可証",
+				"**クロスコネクト**: DXロケーション内の物理ケーブル",
+				"**構成の流れ:**",
+				"　1. AWS ConsoleでDX接続をリクエスト",
+				"　2. LOA-CFAをダウンロード",
+				"　3. DXロケーションでクロスコネクトを手配",
+				"　4. Virtual Interface (VIF) を作成"
+			]
+		},
+		{
+			"title": "Virtual Interface (VIF) の種類",
+			"content": [
+				"**Private VIF**",
+				"　VPC内のリソースにプライベートIPでアクセス",
+				"　VGWまたはDX Gatewayに接続",
+				"**Public VIF**",
+				"　AWSパブリックサービス（S3等）にパブリックIPでアクセス",
+				"　インターネット経由ではなくDX経由",
+				"**Transit VIF**",
+				"　Transit Gatewayに接続",
+				"　1つのVIFで複数VPCへアクセス可能",
+				"　DX Gatewayが必須"
+			]
+		},
+		{
+			"title": "Private VIF / Public VIF / Transit VIF 比較",
+			"content": [
+				"| 項目 | Private VIF | Public VIF | Transit VIF |",
+				"|---|---|---|---|",
+				"| 接続先 | VPC (VGW) | AWSパブリックサービス | Transit GW |",
+				"| IP | プライベートIP | パブリックIP | プライベートIP |",
+				"| BGP | 必須 | 必須 | 必須 |",
+				"| DX GW | 任意 | 不要 | **必須** |",
+				"| VPC数 | 1 VGW | N/A | 複数 |",
+				"| MTU | 9001 (Jumbo) | 1500 | 8500 |"
+			]
+		},
+		{
+			"title": "DX Gateway",
+			"content": [
+				"**DX Gateway** = グローバルリソース（リージョン非依存）",
+				"1つのDX接続から複数リージョンのVPCへアクセス",
+				"**接続パターン:**",
+				"　Private VIF → DX Gateway → 複数VGW（最大10）",
+				"　Transit VIF → DX Gateway → Transit Gateway",
+				"**制約:**",
+				"　DX Gateway経由ではVPC間通信不可（折り返し通信不可）",
+				"　VPC CIDRの重複は不可",
+				"　クロスアカウント共有が可能"
+			]
+		},
+		{
+			"title": "DXアーキテクチャ図",
+			"content": ["![w:800 center](assets/dx-architecture.svg)"]
+		},
+		{
+			"title": "DX冗長構成パターン",
+			"content": [
+				"**開発/テスト（非クリティカル）:**",
+				"　1 DX接続 + バックアップ VPN",
+				"**本番（高可用性）:**",
+				"　2 DX接続 @ 異なるDXロケーション",
+				"**最大回復性 (Maximum Resiliency):**",
+				"　2 DXロケーション × 各2接続 = 計4接続",
+				"**ポイント:**",
+				"　LAG (Link Aggregation Group) で帯域集約可能",
+				"　BFD (Bidirectional Forwarding Detection) で障害検知を高速化"
+			]
+		},
+		{
+			"title": "BGP (Border Gateway Protocol)",
+			"content": ["Dynamic Routing for AWS Hybrid"],
+			"layout": "section"
+		},
+		{
+			"title": "BGPの基礎知識",
+			"content": [
+				"**BGP** = インターネットの経路制御に使われるルーティングプロトコル",
+				"**パスベクトル型**: AS（自律システム）単位で経路情報を交換",
+				"**eBGP**: 異なるAS間の経路交換",
+				"**iBGP**: 同一AS内の経路交換",
+				"**AWSでの必須シーン:**",
+				"　Direct Connect — 全VIFでBGP必須",
+				"　Site-to-Site VPN — 動的ルーティング時にBGP使用",
+				"　Transit Gateway — BGPによるルート伝搬"
+			]
+		},
+		{
+			"title": "ASN (Autonomous System Number)",
+			"content": [
+				"**ASN** = BGPで各ネットワークを識別する番号",
+				"**パブリックASN**: IANAが割り当て（1〜64495）",
+				"**プライベートASN**: 内部利用（64512〜65534）",
+				"**AWSのデフォルトASN:**",
+				"　VGW: 64512（変更可能）",
+				"　DX: 7224（AWS側、変更不可）",
+				"　TGW: 64512（作成時に指定可能）",
+				"**カスタマー側**: 任意のプライベートASNまたはパブリックASN"
+			]
+		},
+		{
+			"title": "AWSにおけるBGPルート伝搬",
+			"content": [
+				"**ルート伝搬 (Route Propagation)**",
+				"　VGW/TGWで学習したBGPルートをルートテーブルに自動追加",
+				"　ルートテーブルで伝搬の有効化が必要",
+				"**経路選択の優先順位:**",
+				"　1. 最長プレフィックス一致（より具体的なルート優先）",
+				"　2. 静的ルート > 伝搬ルート",
+				"　3. DXルート > VPNルート",
+				"**AS Path Prepending**: パス長を人為的に増やして経路の優先度を下げる"
+			]
+		},
+		{
+			"title": "BGP設定のポイント",
+			"content": [
+				"**BGPコミュニティタグ（DX）:**",
+				"　`7224:8100` — 同一リージョン内で優先ルート",
+				"　`7224:8200` — 同一大陸内で優先ルート",
+				"　`7224:9100` — ローカルリージョンのみ伝搬",
+				"**DXのBGP設定:**",
+				"　MD5認証キーの設定（推奨）",
+				"　BFD (Bidirectional Forwarding Detection) の有効化",
+				"**試験ポイント:**",
+				"　DXとVPN両方がある場合 → **DXが優先**される",
+				"　AS Path Prependingで経路制御が可能"
+			]
+		},
+		{
+			"title": "Site-to-Site VPN",
+			"content": ["IPsec Encrypted Tunnel"],
+			"layout": "section"
+		},
+		{
+			"title": "Site-to-Site VPN 概要",
+			"content": [
+				"オンプレミス ↔ AWS 間を**インターネット経由の暗号化トンネル**で接続",
+				"**構成要素:**",
+				"　**Customer Gateway (CGW)** — オンプレ側VPN機器の設定情報",
+				"　**Virtual Private Gateway (VGW)** — AWS側VPNエンドポイント",
+				"　または **Transit Gateway** をVPN終端として使用",
+				"**特徴:**",
+				"　数分〜数時間でセットアップ可能（DXより迅速）",
+				"　2本のIPsecトンネル（冗長構成）",
+				"　帯域: 最大 1.25 Gbps / トンネル"
+			]
+		},
+		{
+			"title": "IPsecトンネルの仕組み",
+			"content": [
+				"**IPsec** = IP層でのセキュリティプロトコルスイート",
+				"**Phase 1 (IKE):**",
+				"　IKEv1 or IKEv2 でセキュリティアソシエーション確立",
+				"　認証: Pre-Shared Key (PSK) or 証明書",
+				"**Phase 2 (IPsec):**",
+				"　ESP (Encapsulating Security Payload) でデータ暗号化",
+				"　AES-128/256-GCM 対応",
+				"**トンネル構成:**",
+				"　各VPN接続に2本のトンネル（異なるAZの終端）",
+				"　**Dead Peer Detection (DPD)** でトンネル障害を検知"
+			]
+		},
+		{
+			"title": "Customer Gateway & Virtual Private Gateway",
+			"content": [
+				"**Customer Gateway (CGW)**",
+				"　オンプレのVPN機器情報をAWSに登録したリソース",
+				"　固定パブリックIP or NAT-T対応の場合はNAT背後も可",
+				"　BGP ASNの指定（動的ルーティング時）",
+				"**Virtual Private Gateway (VGW)**",
+				"　1つのVPCにアタッチするAWS側のVPN終端",
+				"　複数VPN接続・DX接続を受け入れ可能",
+				"　BGP ASN指定可能（デフォルト: 64512）",
+				"　ルートテーブルへの経路伝搬を有効化"
+			]
+		},
+		{
+			"title": "VPN接続アーキテクチャ図",
+			"content": ["![w:800 center](assets/vpn-architecture.svg)"]
+		},
+		{
+			"title": "Accelerated Site-to-Site VPN",
+			"content": [
+				"**AWS Global Accelerator** を利用してVPNパフォーマンスを向上",
+				"**仕組み:**",
+				"　オンプレ → 最寄りのAWSエッジロケーション → AWSバックボーン → VPC",
+				"　パブリックインターネットの経路を最小化",
+				"**メリット:**",
+				"　レイテンシの削減・安定化",
+				"　パケットロスの低減",
+				"**制約:**",
+				"　TGW接続時のみ使用可能（VGW接続では不可）",
+				"　追加のGlobal Accelerator料金が発生"
+			]
+		},
+		{
+			"title": "AWS Client VPN",
+			"content": ["Managed Remote Access VPN"],
+			"layout": "section"
+		},
+		{
+			"title": "Client VPN 概要 — リモートアクセスVPN",
+			"content": [
+				"**AWS Client VPN** = フルマネージドのリモートアクセスVPNサービス",
+				"**OpenVPNベース**: 標準的なOpenVPNクライアントで接続可能",
+				"**ユースケース:**",
+				"　リモートワーカーからVPC内リソースへの安全なアクセス",
+				"　オンプレミスネットワークへのリモートアクセス（VPC経由）",
+				"**スプリットトンネル:**",
+				"　有効: AWSトラフィックのみVPN経由",
+				"　無効: 全トラフィックをVPN経由（デフォルト）",
+				"接続数に応じて自動スケール"
+			]
+		},
+		{
+			"title": "Client VPN の認証方式",
+			"content": [
+				"**1. Active Directory 認証**",
+				"　AWS Directory Service または オンプレADと連携",
+				"　ユーザー名/パスワードベース",
+				"**2. 相互証明書認証 (Mutual TLS)**",
+				"　サーバー証明書 + クライアント証明書",
+				"　ACM (Certificate Manager) で管理",
+				"**3. SAML 2.0 フェデレーション認証**",
+				"　IdP（Okta, Azure AD等）と連携しSSO",
+				"**組み合わせ**: 相互認証 + AD/SAMLの二重認証も可能"
+			]
+		},
+		{
+			"title": "Client VPN ネットワーク構成",
+			"content": ["![w:800 center](assets/client-vpn-architecture.svg)"]
+		},
+		{
+			"title": "Site-to-Site VPN vs Client VPN 比較表",
+			"content": [
+				"| 項目 | Site-to-Site VPN | Client VPN |",
+				"|---|---|---|",
+				"| 用途 | 拠点間の常時接続 | 個人のリモートアクセス |",
+				"| プロトコル | IPsec | OpenVPN (TLS) |",
+				"| 接続元 | VPN機器（ルーター等） | PC・スマートフォン |",
+				"| AWS側終端 | VGW or TGW | Client VPN Endpoint |",
+				"| 帯域 | 1.25 Gbps/トンネル | 接続数に応じてスケール |",
+				"| 認証 | PSK or 証明書 | AD / 証明書 / SAML |",
+				"| スプリットトンネル | N/A | 対応 |"
+			]
+		},
+		{
+			"title": "Transit Gateway",
+			"content": ["Hub-and-Spoke Network Architecture"],
+			"layout": "section"
+		},
+		{
+			"title": "Transit Gateway 概要",
+			"content": [
+				"**Transit Gateway (TGW)** = リージョナルなネットワークハブ",
+				"**ハブ&スポーク型**: 複数VPC・VPN・DXを一元管理",
+				"**主なメリット:**",
+				"　VPCフルメッシュ不要（N×(N-1)/2 → N 接続で済む）",
+				"　推移的ルーティング対応（VPC Peeringでは不可）",
+				"　一元的なルーティングポリシー管理",
+				"**アタッチメント:**",
+				"　VPC / VPN / DX Gateway / Peering / Connect (GRE)"
+			]
+		},
+		{
+			"title": "TGWルーティングとルートテーブル",
+			"content": [
+				"**TGWルートテーブル** でアタッチメント間のルーティングを制御",
+				"**アソシエーション**: アタッチメントを1つのルートテーブルに紐付け",
+				"**プロパゲーション**: アタッチメントのルートをルートテーブルに伝搬",
+				"**設計パターン:**",
+				"　**フラットルーティング**: 全アタッチメントが1つのルートテーブル",
+				"　**セグメント分離**: 本番/開発/共有サービスを分離",
+				"**ブラックホールルート**: 特定CIDRへの通信を破棄（セキュリティ用）"
+			]
+		},
+		{
+			"title": "TGW + VPN接続",
+			"content": [
+				"**VGWの代わりにTGWをVPN終端として使用**",
+				"**メリット:**",
+				"　1つのVPN接続で複数VPCへアクセス可能",
+				"　Accelerated VPN対応",
+				"　ECMP対応で帯域スケーリング",
+				"**構成:**",
+				"　CGW → VPN接続 → TGWアタッチメント → TGWルートテーブル",
+				"**ECMPによるスケーリング:**",
+				"　複数VPN接続でトラフィックを分散（最大50 Gbps）"
+			]
+		},
+		{
+			"title": "TGW + Direct Connect",
+			"content": [
+				"**Transit VIF** → **DX Gateway** → **TGW** の接続パス",
+				"**メリット:**",
+				"　1つのDX接続で複数リージョンの複数VPCへアクセス",
+				"　VPC個別のPrivate VIFが不要",
+				"**構成:**",
+				"　オンプレ → DX → Transit VIF → DX Gateway → TGW → VPC",
+				"**制約:**",
+				"　DX GatewayあたりTGW最大3（同一アカウント）",
+				"　Transit VIFのMTUは 8500（Private VIFの9001より小さい）",
+				"　DX経由のTGW接続ではECMP非対応"
+			]
+		},
+		{
+			"title": "TGWピアリング（リージョン間）",
+			"content": [
+				"**TGW Peering** = 異なるリージョン間のTGWを接続",
+				"**クロスリージョン通信:**",
+				"　AWSバックボーン経由の暗号化通信",
+				"　グローバルネットワーク構築に活用",
+				"**特徴:**",
+				"　スタティックルーティング（BGP伝搬なし）",
+				"　帯域制限なし",
+				"　クロスアカウント対応",
+				"**制約:**",
+				"　推移的ルーティングは不可（TGW A ↔ B ↔ C で A→C 不可）",
+				"　各リージョンのルートテーブルに手動でルート追加が必要"
+			]
+		},
+		{
+			"title": "ECMP (Equal Cost Multi-Path) とは",
+			"content": [
+				"**ECMP** = 同一コストの複数経路にトラフィックを分散するルーティング技術",
+				"**仕組み:**",
+				"　BGPで同一プレフィックス・同一AS Path長のルートを受信",
+				"　フローベースのハッシュでトラフィックを均等分散",
+				"**フローの識別 (5-tuple):**",
+				"　送信元IP / 宛先IP / プロトコル / 送信元ポート / 宛先ポート",
+				"**AWSでのサポート:**",
+				"　Transit Gateway + VPN: **ECMP対応**",
+				"　VGW: ECMP非対応（1経路のみ選択）",
+				"　DX: ECMP非対応"
+			]
+		},
+		{
+			"title": "TGW + VPN ECMP構成",
+			"content": [
+				"**TGWのECMP設定**: 作成時に有効化（デフォルト: 有効）",
+				"**帯域スケーリング:**",
+				"　1 VPN接続 = 2トンネル × 1.25 Gbps = **2.5 Gbps**",
+				"　2 VPN接続 = 4トンネル = **5 Gbps**",
+				"　N VPN接続 = 2N トンネル = **N × 2.5 Gbps**",
+				"**要件:**",
+				"　BGP必須（静的ルーティングではECMP不可）",
+				"　全トンネルから同一プレフィックスをBGP広告",
+				"　同一AS Path長で広告",
+				"　CGWに異なるパブリックIPを使用"
+			]
+		},
+		{
+			"title": "ECMP帯域幅スケーリング",
+			"content": ["![w:800 center](assets/ecmp-scaling.svg)"]
+		},
+		{
+			"title": "ECMP設計の注意点と制限事項",
+			"content": [
+				"**フローベース分散の特性:**",
+				"　単一フロー（単一TCP接続）は1トンネルに固定",
+				"　大容量の単一フローはスケールしない",
+				"**非対称ルーティング:**",
+				"　行き帰りで異なるトンネルを通る可能性あり",
+				"　ステートフルファイアウォールに注意",
+				"**制限事項:**",
+				"　DX経由のTGW接続ではECMP非対応",
+				"　VGWではECMP非対応",
+				"**試験ポイント:** VPN帯域を上げたい → TGW + ECMP"
+			]
+		},
+		{
+			"title": "GREトンネルとは — IPsecとの比較",
+			"content": [
+				"**GRE (Generic Routing Encapsulation)**",
+				"　カプセル化プロトコル（暗号化なし）",
+				"　低オーバーヘッドで高スループット",
+				"| 項目 | GRE | IPsec |",
+				"|---|---|---|",
+				"| 暗号化 | なし | あり（AES等） |",
+				"| オーバーヘッド | 小（24バイト） | 大（50-70バイト） |",
+				"| ユースケース | アプライアンス接続 | 拠点間VPN |",
+				"| マルチキャスト | 対応 | 非対応 |",
+				"**GRE over IPsec**: GREの柔軟性 + IPsecの暗号化を組み合わせ"
+			]
+		},
+		{
+			"title": "TGW GREアタッチメント",
+			"content": [
+				"**TGW Connect** = GREトンネル用のアタッチメントタイプ",
+				"**ユースケース:**",
+				"　SD-WANアプライアンス（Cisco, Palo Alto等）との接続",
+				"　VPC内のネットワーク仮想アプライアンス (NVA)",
+				"**構成:**",
+				"　TGW Connect アタッチメント（トランスポート: VPCまたはDX）",
+				"　TGW Connect Peer: GREトンネル + BGPピアリング",
+				"**帯域:** Connect Peerあたり最大 **5 Gbps**",
+				"**ピア数:** Connectあたり最大4 Peer = **20 Gbps**",
+				"BGPによる動的ルーティング必須"
+			]
+		},
+		{
+			"title": "GRE + TGW 構成図",
+			"content": ["![w:800 center](assets/gre-tgw-architecture.svg)"]
+		},
+		{
+			"title": "Transit Gateway アーキテクチャ全体図",
+			"content": ["![w:800 center](assets/tgw-architecture.svg)"]
+		},
+		{
+			"title": "ハイブリッドアーキテクチャ設計",
+			"content": ["Design Patterns for Hybrid Cloud"],
+			"layout": "section"
+		},
+		{
+			"title": "DX vs VPN 比較表",
+			"content": [
+				"| 項目 | Direct Connect | Site-to-Site VPN |",
+				"|---|---|---|",
+				"| 接続方式 | 専用線 | インターネット経由IPsec |",
+				"| 帯域 | 1/10/100 Gbps | 1.25 Gbps/トンネル |",
+				"| レイテンシ | 低（一定） | 変動あり |",
+				"| 暗号化 | デフォルトなし（MACsec可） | IPsecで暗号化 |",
+				"| セットアップ | 数週間〜数ヶ月 | 数分〜数時間 |",
+				"| コスト | ポート時間 + データ転送 | 接続時間 + データ転送 |",
+				"| 冗長性 | 手動設計が必要 | 自動2トンネル |",
+				"| SLA | 99.99%（冗長構成時） | インターネット品質依存 |"
+			]
+		},
+		{
+			"title": "高可用性設計パターン",
+			"content": ["![w:800 center](assets/ha-design-patterns.svg)"]
+		},
+		{
+			"title": "ハイブリッド接続のベストプラクティス",
+			"content": [
+				"**1. DX + VPN バックアップ構成**",
+				"　メイン: DX / バックアップ: VPN（BGPで自動フェイルオーバー）",
+				"**2. デュアルDX高可用性構成**",
+				"　異なるDXロケーション × 2接続以上",
+				"**3. Transit Gatewayで集約**",
+				"　大規模環境ではTGWにDX/VPNを集約",
+				"**4. 暗号化が必要な場合**",
+				"　DX + Site-to-Site VPN（DX上にVPNオーバーレイ）",
+				"　またはDX + MACsec（Layer 2暗号化）"
+			]
+		},
+		{
+			"title": "試験対策まとめ",
+			"content": ["Key Points for AWS Certification"],
+			"layout": "section"
+		},
+		{
+			"title": "試験で問われるキーポイント",
+			"content": [
+				"**ルーティング優先順位:**",
+				"　1. 最長プレフィックス一致（最優先）",
+				"　2. 静的ルート > 伝搬ルート",
+				"　3. DX (BGP) > VPN (BGP)",
+				"**VPC Peeringの制約:** 推移的ルーティング不可 → TGWで解決",
+				"**ECMP:** TGW + VPNのみ対応（DX/VGWは非対応）",
+				"**DX暗号化:** デフォルトなし → MACsec or VPNオーバーレイ",
+				"**Gateway Endpoint:** S3 & DynamoDBのみ（無料）",
+				"**Transit VIF:** DX Gateway経由でTGW接続（DX GW必須）"
+			]
+		},
+		{
+			"title": "よく出るシナリオ問題パターン",
+			"content": [
+				"**Q: VPN帯域を増やしたい**",
+				"　→ TGW + ECMP（複数VPN接続で帯域集約）",
+				"**Q: DXの冗長性を最大化したい**",
+				"　→ 2 DXロケーション × 各2接続 = 4接続",
+				"**Q: DX上で暗号化通信したい**",
+				"　→ DX + VPN overlay or MACsec",
+				"**Q: 100以上のVPCを接続したい**",
+				"　→ Transit Gateway（Peeringはフルメッシュで非現実的）",
+				"**Q: リモートワーカーからVPCにアクセス**",
+				"　→ AWS Client VPN（OpenVPNベース）"
+			]
+		},
+		{
+			"title": "参考リソース",
+			"content": [
+				"**AWS公式ドキュメント:**",
+				"- [Amazon VPC User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/)",
+				"- [AWS Direct Connect User Guide](https://docs.aws.amazon.com/directconnect/latest/UserGuide/)",
+				"- [AWS Site-to-Site VPN User Guide](https://docs.aws.amazon.com/vpn/latest/s2svpn/)",
+				"- [Transit Gateway Guide](https://docs.aws.amazon.com/vpc/latest/tgw/)",
+				"**学習リソース:**",
+				"- [AWS Skill Builder](https://skillbuilder.aws/)",
+				"- [AWS Well-Architected — Reliability Pillar](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/)"
+			]
+		}
+	]
+}
