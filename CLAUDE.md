@@ -98,9 +98,11 @@ style: |
 ```
 
 **Content limits** (see `.claude/rules/slide-design.md` Section 8):
-- Code blocks: **8 lines recommended**, 12 lines max
-- Code + bullets: 7-10 lines code → max 2 bullets; 11-12 lines code → max 1 bullet
-- Never create blank slides (page number placeholders, etc.)
+- **Bullet points**: max 6-7 items per slide (split 8+ items into 2 slides)
+- **Agenda/TOC**: if 8+ sections, split into multiple slides (e.g., "(1/2)" and "(2/2)")
+- **Code blocks**: 8 lines recommended, 12 lines max
+- **Code + bullets**: 7-10 lines code → max 2 bullets; 11-12 lines code → max 1 bullet
+- **Never create blank slides** (page number placeholders, etc.)
 
 **Mermaid diagrams:** Use for visualizing flows, architecture, timelines. Complex diagrams (8+ nodes) should be alone on slide.
 
@@ -151,6 +153,27 @@ When expanding presentations (e.g., 12 → 38 slides):
 
 - **PDF export:** Requires Chromium. HTML is the primary format.
 - **No blank slides:** Every slide must have content (title + bullets/code/diagram)
+
+## Maintenance & Fixes
+
+**Fixing content overflow issues:**
+When slides have too many bullets (8+ items on agenda/TOC):
+1. Edit markdown: Split into 2 slides with "(1/2)" and "(2/2)" suffixes
+2. Re-export to HTML:
+   ```bash
+   bun run slides export -c docs/<dir>/slides.config.yaml -f html --in docs/<dir>/<file>.md
+   ```
+
+**Bulk re-export after fixes:**
+```bash
+# Re-export specific presentations
+for dir in docs/20260214073222_* docs/20260214082958_*; do
+  bun run slides export -c $dir/slides.config.yaml -f html --in $dir/*.md
+done
+```
+
+**Finding presentations with overflow issues:**
+Use the Explore agent to search for agenda/TOC slides with 8+ items, then fix and re-export.
 
 ## Troubleshooting
 
