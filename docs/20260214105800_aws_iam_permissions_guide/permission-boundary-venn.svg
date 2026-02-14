@@ -1,0 +1,42 @@
+<svg width="650" height="340" viewBox="0 0 650 340" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Define clip paths for intersection -->
+    <clipPath id="leftCircle">
+      <circle cx="240" cy="170" r="110"/>
+    </clipPath>
+    <clipPath id="rightCircle">
+      <circle cx="410" cy="170" r="110"/>
+    </clipPath>
+  </defs>
+
+  <!-- Left Circle: Identity-based Policy (blue) -->
+  <circle cx="240" cy="170" r="110" fill="#6B9BD1" fill-opacity="0.6" stroke="#2E5C8A" stroke-width="2.5"/>
+
+  <!-- Right Circle: Permission Boundary (orange) -->
+  <circle cx="410" cy="170" r="110" fill="#F4A460" fill-opacity="0.6" stroke="#C4722E" stroke-width="2.5"/>
+
+  <!-- Intersection (green) - clip right circle with left circle boundary -->
+  <circle cx="410" cy="170" r="110" fill="#90EE90" fill-opacity="0.85" clip-path="url(#leftCircle)"/>
+
+  <!-- Left side label -->
+  <text x="180" y="110" font-size="15" font-weight="bold" fill="#1E3A5F" text-anchor="middle">アイデンティティ</text>
+  <text x="180" y="130" font-size="15" font-weight="bold" fill="#1E3A5F" text-anchor="middle">ベースポリシー</text>
+  <text x="180" y="200" font-size="13" fill="#333" text-anchor="middle">例: s3:*</text>
+  <text x="180" y="220" font-size="12" fill="#666" text-anchor="middle">（全S3操作）</text>
+
+  <!-- Right side label -->
+  <text x="470" y="110" font-size="15" font-weight="bold" fill="#A0522D" text-anchor="middle">Permission</text>
+  <text x="470" y="130" font-size="15" font-weight="bold" fill="#A0522D" text-anchor="middle">Boundary</text>
+  <text x="470" y="200" font-size="13" fill="#333" text-anchor="middle">例: s3:GetObject</text>
+  <text x="470" y="220" font-size="12" fill="#666" text-anchor="middle">（読み取りのみ）</text>
+
+  <!-- Center intersection label -->
+  <text x="325" y="160" font-size="16" font-weight="bold" fill="#1A4D2E" text-anchor="middle">実際の権限</text>
+  <text x="325" y="180" font-size="15" fill="#1A4D2E" text-anchor="middle">A ∩ B</text>
+  <text x="325" y="200" font-size="12" fill="#2D5016" text-anchor="middle">s3:GetObject</text>
+
+  <!-- Bottom legend -->
+  <rect x="150" y="290" width="350" height="40" fill="#F9F9F9" stroke="#CCC" stroke-width="1" rx="5"/>
+  <text x="325" y="308" font-size="13" fill="#333" text-anchor="middle" font-weight="bold">積集合（AND条件）</text>
+  <text x="325" y="325" font-size="12" fill="#666" text-anchor="middle">両方で許可された操作のみ実行可能</text>
+</svg>

@@ -616,13 +616,7 @@ graph TD
 
 # Permission Boundariesの効果範囲（図解）
 
-```mermaid
-graph LR
-    A[アイデンティティベース<br/>ポリシー] --> C[実際の権限]
-    B[Permission<br/>Boundary] --> C
-    C --> D[許可される操作:<br/>A AND B の交差部分]
-    style C fill:#90EE90
-```
+![Permission Boundary ベン図](./permission-boundary-venn.svg)
 
 
 ---

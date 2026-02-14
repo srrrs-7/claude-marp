@@ -136,7 +136,7 @@ style: |
 - **rules/** — Path-scoped rules auto-loaded when editing matching files:
   - `schemas.md` — Schema change checklist (triggers when editing `src/config/schema.ts` or `src/generate/slide-schema.ts`)
   - `marp.md` — Marp format rules, code overflow prevention
-  - `slide-design.md` — Cognitive load theory, Google best practices, content constraints
+  - `slide-design.md` — Cognitive load theory, Google best practices, content constraints, **Mermaid-first policy (use SVG only for unsupported diagrams like Venn)**
   - `output-structure.md` — Directory structure and file placement rules for presentations
 - **agents/** — `slide-creator` (interactive 8-phase slide creation), `marp-customizer` (theme & CSS customization)
 - **skills/** — Each skill is a directory with `SKILL.md`:
