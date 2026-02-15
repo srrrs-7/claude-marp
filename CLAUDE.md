@@ -4,9 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Recommended Workflow
 
-**Use `/create-slides` skill for interactive slide creation** (8-phase workflow: hearing → planning → generation → review → export). This is the recommended approach for new presentations.
-
-For manual workflow or modifications, see Commands section below.
+| Goal | Approach |
+|------|----------|
+| New presentation | `/create-slides` skill (8-phase: hearing → planning → generation → review → export) |
+| Parallel multi-task work | `/agent-teams` skill (tmux-based Claude Code + Codex parallel execution) |
+| Manual render/export | See Commands section below |
 
 ### Output Path Configuration
 
@@ -32,6 +34,15 @@ bun run typecheck                       # Type checking via tsgo (native TS comp
 bun run check                           # Biome lint + format check
 bun run format                          # Auto-format with Biome
 bun run spellcheck                      # Spell check via cspell
+bun run test                            # Run regression test suite (bun:test)
+bun run generate:index                  # Auto-generate index for GitHub Pages
+```
+
+**Agent Teams:**
+```bash
+bun run team <session-id> <workspace> [impl-count] [review-count]  # Setup tmux agent team
+bun run team:status <session-id>                                    # Check team status
+bun run team:status <session-id> --watch                            # Auto-refresh every 3s
 ```
 
 CLI supports `-c | --config <path>` to specify config file (default: `slides.config.yaml`).
@@ -41,10 +52,6 @@ When operating on files in `docs/<timestamp>_<title>/`, always specify the confi
 ```bash
 bun run slides render -c docs/<dir>/slides.config.yaml --in docs/<dir>/slides-data.json
 bun run slides export -c docs/<dir>/slides.config.yaml -f html --in docs/<dir>/file.md
-```
-
-```bash
-bun run test                            # Run regression test suite (bun:test)
 ```
 
 ## Pre-flight Validation Protocol
@@ -178,6 +185,63 @@ docs/20260214073222_example/
 
 **Critical rendering rule:** Front-matter and first slide are joined with `\n\n` only. Slide separators (`\n\n---\n\n`) are used between slides, never after front-matter.
 
+## Agent Teams
+
+tmux分割ペインで複数AIエージェントを並列起動し、**Claude Code（実装）** と **Codex（レビュー）** の高速サイクルを回す仕組み。
+
+**Use `/agent-teams` skill** for the interactive 6-phase workflow, or run scripts directly:
+
+```bash
+bash scripts/setup-agent-team.sh <session-id> <workspace> [impl-count] [review-count]
+bash scripts/agent-team-status.sh <session-id> [--watch]
+```
+
+### tmux Layout
+
+```
+┌──────────────────────────────────────────┐
+│            Leader (pane 0)                │
+├───────────────────┬──────────────────────┤
+│  Impl-1 (pane 1)  │  Impl-2 (pane 2)    │
+│  Claude Code       │  Claude Code         │
+├───────────────────┼──────────────────────┤
+│ Review-1 (pane 3) │ Review-2 (pane 4)    │
+│  Codex             │  Codex               │
+└───────────────────┴──────────────────────┘
+```
+
+### Task Lifecycle
+
+```
+pending → in_progress → impl_done → in_review → review_done → completed
+                                         ↓
+                                    needs_revision → in_progress (cycle++)
+```
+
+- **Max cycles**: 3 (prevents infinite revision loops)
+- **Review verdict**: `approved` → completed | `needs_revision` → back to impl
+- **Shutdown**: `touch .agent-teams/<session-id>/shutdown`
+
+### File-Based Communication
+
+Workspace: `.agent-teams/<session-id>/` (gitignored)
+
+```
+.agent-teams/<session-id>/
+├── team.json              # Team config metadata
+├── tasks/task-NNN.json    # Task definitions + status
+├── status/<agent-id>.json # Worker state + heartbeat
+├── reviews/task-NNN-review.json  # Review results
+└── log/<agent-id>.log     # Activity logs
+```
+
+### Key Design Decisions
+
+- **One-shot execution**: Each AI invocation uses `-p` (prompt) mode for a single task; shell wrappers manage the loop
+- **`CLAUDECODE=` env clear**: Prevents nested Claude Code sessions when Claude spawns Claude
+- **File conflict avoidance**: Each task operates on independent file sets; Leader ensures no overlap
+- **2-second polling**: Workers poll task directories every 2s (inotifywait not available)
+
 ## Conventions
 
 - **Runtime:** Bun 1.3.5. Use `Bun.file()`, `Bun.write()`, `Bun.spawn()`. Use `node:` prefix for compat modules.
@@ -222,16 +286,41 @@ style: |
 ## .claude Directory
 
 - **rules/** — Path-scoped rules auto-loaded when editing matching files:
-  - `schemas.md` — Schema change checklist (triggers when editing `src/config/schema.ts` or `src/generate/slide-schema.ts`)
+  - `schemas.md` — Schema change checklist (triggers on `src/config/schema.ts` or `src/generate/slide-schema.ts`)
   - `marp.md` — Marp format rules, code overflow prevention
-  - `slide-design.md` — Cognitive load theory, Google best practices, content constraints, **SVG-only policy (all diagrams must use inline SVG, not Mermaid)**
+  - `slide-design.md` — Cognitive load theory, Google best practices, content constraints, **SVG-only policy**
   - `output-structure.md` — Directory structure and file placement rules for presentations
-- **agents/** — `slide-creator` (interactive 8-phase slide creation), `marp-customizer` (theme & CSS customization)
+  - `validation.md` — Pre-flight validation checklist (triggers on `slides-data.json` or `slides.config.yaml`)
+  - `agent-teams.md` — Workflow templates for batch slide operations (triggers on `docs/**/*`)
+- **agents/**:
+  - `slide-creator` — Interactive 8-phase slide creation
+  - `marp-customizer` — Theme & CSS customization
+  - `team-leader` — Agent team task decomposition, assignment, progress management
+  - `impl-worker` — Implementation worker (Claude Code prompt-mode execution)
+  - `review-worker` — Review worker (Codex full-auto review with JSON verdict)
 - **skills/** — Each skill is a directory with `SKILL.md`:
   - `/create-slides` — Interactive creation (recommended)
   - `/generate` — JSON → render → export
   - `/review-slides` — Review & improvement
   - `/ship` — Git commit & push in one command
+  - `/agent-teams` — Parallel multi-agent task execution via tmux
+  - `/validate` — Schema validation for slide data and config
+
+## Codex Integration
+
+Skill source is versioned in `.codex/skills/` (mirrored from `.claude/skills/`). Install with `bash .codex/install-skills.sh`. Rules and agents in `.codex/rules/` and `.codex/agents/` follow the same patterns as their `.claude/` counterparts.
+
+## PostToolUse Hooks
+
+Safety guardrails configured in `.claude/settings.json` that run automatically:
+
+| Trigger | Action |
+|---------|--------|
+| Write `slides-data.json` | `bun run validate` — schema validation |
+| Any Write/Edit | `bun run format` + `bun run typecheck` (async) |
+| HTML export | Check for broken `src="assets/"` paths in `dist/*.html` |
+| Write/Edit `.svg` | Check for prohibited `url(#id)` references |
+| Write/Edit `docs/**/*.md` | Check for unconverted `` ```mermaid `` blocks |
 
 ## Theme Selection
 

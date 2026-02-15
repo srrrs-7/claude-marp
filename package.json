@@ -16,7 +16,9 @@
 		"format": "biome format --write .",
 		"spellcheck": "cspell lint --no-progress --show-suggestions .",
 		"test": "bun test scripts/test-slides.test.ts",
-		"generate:index": "bun run scripts/generate-index.ts"
+		"generate:index": "bun run scripts/generate-index.ts",
+		"team": "bash scripts/setup-agent-team.sh",
+		"team:status": "bash scripts/agent-team-status.sh"
 	},
 	"dependencies": {
 		"@marp-team/marp-cli": "^4.1.2",

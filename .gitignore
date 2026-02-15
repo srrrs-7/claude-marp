@@ -7,6 +7,9 @@ bun.lock
 .env
 .env.local
 
+# Agent team workspaces (transient)
+.agent-teams/
+
 # OS
 .DS_Store
 Thumbs.db
