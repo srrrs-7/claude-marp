@@ -15,7 +15,8 @@
 		"check": "biome check .",
 		"format": "biome format --write .",
 		"spellcheck": "cspell lint --no-progress --show-suggestions .",
-		"test": "bun test scripts/test-slides.test.ts"
+		"test": "bun test scripts/test-slides.test.ts",
+		"generate:index": "bun run scripts/generate-index.ts"
 	},
 	"dependencies": {
 		"@marp-team/marp-cli": "^4.1.2",

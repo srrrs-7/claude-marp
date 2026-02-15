@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide Deck Collection</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#f8f9fa;--surface:#fff;--text:#1a1a2e;--text-sub:#555;
+    --accent:#2563eb;--accent-hover:#1d4ed8;
+    --border:#e2e8f0;--shadow:0 1px 3px rgba(0,0,0,.08);
+    --shadow-hover:0 8px 25px rgba(0,0,0,.12);
+    --radius:12px;--tag-bg:#f1f5f9;--tag-text:#475569;
+  }
+  @media(prefers-color-scheme:dark){
+    :root{
+      --bg:#0f172a;--surface:#1e293b;--text:#e2e8f0;--text-sub:#94a3b8;
+      --accent:#60a5fa;--accent-hover:#93bbfd;
+      --border:#334155;--shadow:0 1px 3px rgba(0,0,0,.3);
+      --shadow-hover:0 8px 25px rgba(0,0,0,.4);
+      --tag-bg:#334155;--tag-text:#94a3b8;
+    }
+  }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.6;
+    min-height:100vh;
+  }
+
+  /* Hero */
+  .hero{
+    text-align:center;padding:4rem 1.5rem 3rem;
+    background:linear-gradient(135deg,#1e293b 0%,#0f172a 100%);
+    color:#e2e8f0;
+  }
+  .hero h1{font-size:2rem;font-weight:700;letter-spacing:-.02em}
+  .hero p{margin-top:.5rem;color:#94a3b8;font-size:1rem}
+  .hero .stats{
+    display:flex;justify-content:center;gap:2rem;margin-top:1.5rem;flex-wrap:wrap;
+  }
+  .hero .stat{text-align:center}
+  .hero .stat-num{font-size:1.75rem;font-weight:700;color:#60a5fa}
+  .hero .stat-label{font-size:.8rem;color:#94a3b8;margin-top:.1rem}
+
+  /* Filter */
+  .filter-bar{
+    display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;
+    padding:1.5rem 1rem;max-width:900px;margin:0 auto;
+  }
+  .filter-btn{
+    padding:.4rem 1rem;border:1px solid var(--border);border-radius:99px;
+    background:var(--surface);color:var(--text-sub);cursor:pointer;
+    font-size:.85rem;transition:all .15s;
+  }
+  .filter-btn:hover,.filter-btn.active{
+    background:var(--accent);color:#fff;border-color:var(--accent);
+  }
+
+  /* Grid */
+  .container{max-width:1100px;margin:0 auto;padding:0 1.5rem 4rem}
+  .section-title{
+    font-size:1.15rem;font-weight:600;margin:2rem 0 1rem;
+    padding-left:.25rem;border-left:3px solid var(--accent);padding-left:.75rem;
+    color:var(--text);
+  }
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.25rem}
+
+  /* Card */
+  .card{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:1.5rem;box-shadow:var(--shadow);
+    transition:box-shadow .2s,transform .2s;
+    display:flex;flex-direction:column;position:relative;
+  }
+  .card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+  .card-category{
+    font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;
+    color:var(--accent);margin-bottom:.5rem;
+  }
+  .card h3{font-size:1.05rem;font-weight:600;line-height:1.4;margin-bottom:.75rem}
+  .card-meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+  .tag{
+    display:inline-flex;align-items:center;gap:.3rem;
+    padding:.2rem .6rem;border-radius:99px;
+    background:var(--tag-bg);color:var(--tag-text);font-size:.75rem;
+  }
+  .tag svg{width:14px;height:14px;flex-shrink:0}
+  .card-actions{margin-top:auto;padding-top:1rem}
+  .btn{
+    display:inline-flex;align-items:center;gap:.4rem;
+    padding:.55rem 1.25rem;border-radius:8px;font-size:.85rem;font-weight:500;
+    text-decoration:none;transition:all .15s;
+    background:var(--accent);color:#fff;
+  }
+  .btn:hover{background:var(--accent-hover)}
+  .btn svg{width:16px;height:16px}
+
+  /* Footer */
+  footer{
+    text-align:center;padding:2rem 1rem;color:var(--text-sub);
+    font-size:.8rem;border-top:1px solid var(--border);
+  }
+  footer a{color:var(--accent);text-decoration:none}
+
+  @media(max-width:600px){
+    .hero{padding:2.5rem 1rem 2rem}
+    .hero h1{font-size:1.5rem}
+    .grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>Slide Deck Collection</h1>
+  <p>Marp-powered presentations generated with Claude Code</p>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">11</div>
+      <div class="stat-label">Presentations</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">610</div>
+      <div class="stat-label">Total Slides</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Categories</div>
+    </div>
+  </div>
+</header>
+
+<nav class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="ai">AI &amp; Technology</button>
+  <button class="filter-btn" data-filter="investment">Investment &amp; Finance</button>
+  <button class="filter-btn" data-filter="career">Career &amp; Management</button>
+  <button class="filter-btn" data-filter="aws">AWS</button>
+</nav>
+
+<main class="container">
+
+  <h2 class="section-title" data-section="ai">AI &amp; Technology</h2>
+  <div class="grid">
+
+    <div class="card" data-category="ai">
+      <div class="card-category">AI &amp; Technology</div>
+      <h3>AI時代のソフトウェアエンジニアの生存戦略</h3>
+      <div class="card-meta">
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          46 slides
+        </span>
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          gaia
+        </span>
+      </div>
+      <div class="card-actions">
+        <a class="btn" href="20260214063457_ai-era-survival-strategy/dist/ai-era-survival-strategy.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          View Slides
+        </a>
+      </div>
+    </div>
+
+    <div class="card" data-category="ai">
+      <div class="card-category">AI &amp; Technology</div>
+      <h3>2026年のWeb技術トレンド予測</h3>
+      <div class="card-meta">
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          63 slides
+        </span>
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          default
+        </span>
+      </div>
+      <div class="card-actions">
+        <a class="btn" href="20260214082356_web-tech-trends-2026/dist/web-tech-trends-2026.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          View Slides
+        </a>
+      </div>
+    </div>
+
+    <div class="card" data-category="ai">
+      <div class="card-category">AI &amp; Technology</div>
+      <h3>AIを使用したアプリケーションで今後伸びる可能性が高いもの</h3>
+      <div class="card-meta">
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          55 slides
+        </span>
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          gaia
+        </span>
+      </div>
+      <div class="card-actions">
+        <a class="btn" href="20260214103000_ai-growth-apps-investment/dist/ai-growth-apps-investment.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          View Slides
+        </a>
+      </div>
+    </div>
+
+    <div class="card" data-category="ai">
+      <div class="card-category">AI &amp; Technology</div>
+      <h3>Claude Code Agent Teams</h3>
+      <div class="card-meta">
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          42 slides
+        </span>
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          gaia
+        </span>
+      </div>
+      <div class="card-actions">
+        <a class="btn" href="20260214120000_claude_code_agent_teams/dist/claude-code-agent-teams.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          View Slides
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="section-title" data-section="investment">Investment &amp; Finance</h2>
+  <div class="grid">
+
+    <div class="card" data-category="investment">
+      <div class="card-category">Investment &amp; Finance</div>
+      <h3>成長産業投資分析レポート 2026</h3>
+      <div class="card-meta">
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          50 slides
+        </span>
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          default
+        </span>
+      </div>
+      <div class="card-actions">
+        <a class="btn" href="20260214073222_growing-industries-investment/dist/growing-industries-investment.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          View Slides
+        </a>
+      </div>
+    </div>
+
+    <div class="card" data-category="investment">
+      <div class="card-category">Investment &amp; Finance</div>
+      <h3>日本円為替の今後の動向分析 - 投資家向け包括的レポート</h3>
+      <div class="card-meta">
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          69 slides
+        </span>
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          gaia
+        </span>
+      </div>
+      <div class="card-actions">
+        <a class="btn" href="20260214103001_jpy-forex-outlook-2026/dist/jpy-forex-outlook-2026.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          View Slides
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="section-title" data-section="career">Career &amp; Management</h2>
+  <div class="grid">
+
+    <div class="card" data-category="career">
+      <div class="card-category">Career &amp; Management</div>
+      <h3>世界年収アップ戦略と円安下の海外就業意思決定</h3>
+      <div class="card-meta">
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          51 slides
+        </span>
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          gaia
+        </span>
+      </div>
+      <div class="card-actions">
+        <a class="btn" href="20260214081826_global-career-strategy/dist/global-career-strategy-2026.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          View Slides
+        </a>
+      </div>
+    </div>
+
+    <div class="card" data-category="career">
+      <div class="card-category">Career &amp; Management</div>
+      <h3>部下のマネージメント：経営層のための包括ガイド</h3>
+      <div class="card-meta">
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          51 slides
+        </span>
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          gaia
+        </span>
+      </div>
+      <div class="card-actions">
+        <a class="btn" href="20260214082958_management-best-practices/dist/management-best-practices.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          View Slides
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="section-title" data-section="aws">AWS</h2>
+  <div class="grid">
+
+    <div class="card" data-category="aws">
+      <div class="card-category">AWS</div>
+      <h3>AWS IAMの権限管理 完全ガイド</h3>
+      <div class="card-meta">
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          65 slides
+        </span>
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          gaia
+        </span>
+      </div>
+      <div class="card-actions">
+        <a class="btn" href="20260214105800_aws_iam_permissions_guide/dist/aws-iam-permissions-guide.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          View Slides
+        </a>
+      </div>
+    </div>
+
+    <div class="card" data-category="aws">
+      <div class="card-category">AWS</div>
+      <h3>Amazon Cognito 詳細レポート</h3>
+      <div class="card-meta">
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          53 slides
+        </span>
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          gaia + invert
+        </span>
+      </div>
+      <div class="card-actions">
+        <a class="btn" href="20260214152555_aws-cognito-deep-dive/dist/aws-cognito-deep-dive.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          View Slides
+        </a>
+      </div>
+    </div>
+
+    <div class="card" data-category="aws">
+      <div class="card-category">AWS</div>
+      <h3>AWSネットワーキング完全ガイド — 認定試験対策</h3>
+      <div class="card-meta">
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          65 slides
+        </span>
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          gaia + invert
+        </span>
+      </div>
+      <div class="card-actions">
+        <a class="btn" href="20260214160000_aws-networking-complete-guide/dist/aws-networking-complete-guide.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          View Slides
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <p>Built with <a href="https://marp.app" target="_blank" rel="noopener">Marp</a> + <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a></p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const btns=document.querySelectorAll('.filter-btn');
+  const cards=document.querySelectorAll('.card');
+  const sections=document.querySelectorAll('.section-title');
+
+  btns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      btns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f=btn.dataset.filter;
+
+      if(f==='all'){
+        cards.forEach(c=>c.style.display='');
+        sections.forEach(s=>{s.style.display='';s.nextElementSibling.style.display='';});
+      }else{
+        cards.forEach(c=>{
+          c.style.display=c.dataset.category===f?'':'none';
+        });
+        sections.forEach(s=>{
+          const grid=s.nextElementSibling;
+          const hasVisible=[...grid.children].some(c=>c.style.display!=='none');
+          s.style.display=hasVisible?'':'none';
+          grid.style.display=hasVisible?'':'none';
+        });
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
