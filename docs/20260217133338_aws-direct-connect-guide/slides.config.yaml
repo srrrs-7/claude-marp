@@ -1,0 +1,16 @@
+topic: "AWS Direct Connect 完全ガイド — VIF・Gateway・冗長化設計"
+language: "ja"
+theme:
+  name: "gaia"
+  directives:
+    class: ""
+    backgroundColor: ""
+    color: ""
+output:
+  dir: "docs/20260217133338_aws-direct-connect-guide"
+  baseName: "aws-direct-connect-guide"
+style: |
+  section pre code {
+    font-size: 0.6em;
+    line-height: 1.4;
+  }

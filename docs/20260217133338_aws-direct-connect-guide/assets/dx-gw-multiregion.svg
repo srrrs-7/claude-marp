@@ -1,0 +1,116 @@
+<svg viewBox="0 0 950 500" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif;letter-spacing:0;background:#fff">
+  <!-- Title -->
+  <text x="475" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">DX Gateway 経由マルチリージョン接続</text>
+
+  <!-- ===== On-Premises ===== -->
+  <rect x="20" y="195" width="130" height="80" rx="8" fill="#2E7D32" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="85" y="228" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">On-Premises</text>
+  <text x="85" y="248" text-anchor="middle" font-size="11" fill="#C8E6C9">データセンター</text>
+
+  <!-- Arrow: On-Prem -> DX connection -->
+  <line x1="150" y1="235" x2="218" y2="235" stroke="#455A64" stroke-width="3"/>
+  <polygon points="218,230 228,235 218,240" fill="#455A64"/>
+  <text x="189" y="225" text-anchor="middle" font-size="10" fill="#666">DX</text>
+
+  <!-- Private VIF label on connection -->
+  <rect x="230" y="210" width="105" height="22" rx="4" fill="#1565C0" style="filter:drop-shadow(1px 1px 2px rgba(0,0,0,0.1))"/>
+  <text x="282" y="225" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">Private VIF</text>
+
+  <!-- Line from VIF to DX GW -->
+  <line x1="335" y1="235" x2="388" y2="235" stroke="#1565C0" stroke-width="2"/>
+  <polygon points="388,230 398,235 388,240" fill="#1565C0"/>
+
+  <!-- ===== DX Gateway (large, central) ===== -->
+  <rect x="402" y="160" width="160" height="150" rx="10" fill="#E65100" style="filter:drop-shadow(3px 3px 5px rgba(0,0,0,0.2))"/>
+  <text x="482" y="200" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">DX Gateway</text>
+  <!-- Global resource label -->
+  <rect x="422" y="215" width="120" height="26" rx="5" fill="rgba(255,255,255,0.2)"/>
+  <text x="482" y="233" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFE0B2">グローバル</text>
+  <text x="482" y="250" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFE0B2">リソース</text>
+  <!-- Globe icon simplified -->
+  <circle cx="482" cy="280" r="16" fill="none" stroke="#FFE0B2" stroke-width="1.5"/>
+  <ellipse cx="482" cy="280" rx="8" ry="16" fill="none" stroke="#FFE0B2" stroke-width="1"/>
+  <line x1="466" y1="280" x2="498" y2="280" stroke="#FFE0B2" stroke-width="1"/>
+
+  <!-- ============================================= -->
+  <!-- ===== Tokyo Region (top right) ===== -->
+  <!-- ============================================= -->
+  <rect x="630" y="50" width="300" height="100" rx="8" fill="none" stroke="#1565C0" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="780" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">東京リージョン (ap-northeast-1)</text>
+
+  <!-- Arrow: DX GW -> Tokyo VGW -->
+  <line x1="562" y1="200" x2="628" y2="115" stroke="#E65100" stroke-width="1.5"/>
+  <polygon points="625,110 636,112 628,120" fill="#E65100"/>
+
+  <!-- VGW Tokyo -->
+  <rect x="645" y="85" width="70" height="44" rx="6" fill="#7B1FA2" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="680" y="112" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">VGW</text>
+
+  <!-- Arrow: VGW -> VPC Tokyo -->
+  <line x1="715" y1="107" x2="768" y2="107" stroke="#7B1FA2" stroke-width="1.5"/>
+  <polygon points="768,102 778,107 768,112" fill="#7B1FA2"/>
+
+  <!-- VPC Tokyo -->
+  <rect x="782" y="85" width="130" height="44" rx="6" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="847" y="104" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">VPC-Tokyo</text>
+  <text x="847" y="120" text-anchor="middle" font-size="10" fill="#1565C0">10.1.0.0/16</text>
+
+  <!-- ============================================= -->
+  <!-- ===== Osaka Region (middle right) ===== -->
+  <!-- ============================================= -->
+  <rect x="630" y="190" width="300" height="100" rx="8" fill="none" stroke="#1565C0" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="780" y="212" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">大阪リージョン (ap-northeast-3)</text>
+
+  <!-- Arrow: DX GW -> Osaka VGW -->
+  <line x1="562" y1="235" x2="638" y2="248" stroke="#E65100" stroke-width="1.5"/>
+  <polygon points="638,243 648,248 638,253" fill="#E65100"/>
+
+  <!-- VGW Osaka -->
+  <rect x="645" y="225" width="70" height="44" rx="6" fill="#7B1FA2" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="680" y="252" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">VGW</text>
+
+  <!-- Arrow: VGW -> VPC Osaka -->
+  <line x1="715" y1="247" x2="768" y2="247" stroke="#7B1FA2" stroke-width="1.5"/>
+  <polygon points="768,242 778,247 768,252" fill="#7B1FA2"/>
+
+  <!-- VPC Osaka -->
+  <rect x="782" y="225" width="130" height="44" rx="6" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="847" y="244" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">VPC-Osaka</text>
+  <text x="847" y="260" text-anchor="middle" font-size="10" fill="#1565C0">10.2.0.0/16</text>
+
+  <!-- ============================================= -->
+  <!-- ===== Singapore Region (bottom right) ===== -->
+  <!-- ============================================= -->
+  <rect x="630" y="330" width="300" height="100" rx="8" fill="none" stroke="#1565C0" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="780" y="352" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">シンガポールリージョン (ap-southeast-1)</text>
+
+  <!-- Arrow: DX GW -> Singapore VGW -->
+  <line x1="562" y1="270" x2="628" y2="380" stroke="#E65100" stroke-width="1.5"/>
+  <polygon points="626,385 636,382 628,375" fill="#E65100"/>
+
+  <!-- VGW Singapore -->
+  <rect x="645" y="365" width="70" height="44" rx="6" fill="#7B1FA2" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="680" y="392" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">VGW</text>
+
+  <!-- Arrow: VGW -> VPC Singapore -->
+  <line x1="715" y1="387" x2="768" y2="387" stroke="#7B1FA2" stroke-width="1.5"/>
+  <polygon points="768,382 778,387 768,392" fill="#7B1FA2"/>
+
+  <!-- VPC Singapore -->
+  <rect x="782" y="365" width="130" height="44" rx="6" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="847" y="384" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">VPC-Singapore</text>
+  <text x="847" y="400" text-anchor="middle" font-size="10" fill="#1565C0">10.3.0.0/16</text>
+
+  <!-- ===== Annotations ===== -->
+  <!-- Key benefit callout -->
+  <rect x="20" y="420" width="380" height="55" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="1.5" style="filter:drop-shadow(1px 1px 2px rgba(0,0,0,0.1))"/>
+  <text x="210" y="443" text-anchor="middle" font-size="12" font-weight="bold" fill="#E65100">1 つの DX 接続 + 1 つの Private VIF で</text>
+  <text x="210" y="462" text-anchor="middle" font-size="12" font-weight="bold" fill="#E65100">複数リージョンの VPC にアクセス可能</text>
+
+  <!-- Note: same account -->
+  <rect x="430" y="430" width="250" height="36" rx="6" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="555" y="452" text-anchor="middle" font-size="10" fill="#666">同一 AWS アカウントまたはクロスアカウント対応</text>
+
+  <!-- Border -->
+  <rect x="5" y="5" width="940" height="490" rx="8" fill="none" stroke="#E0E0E0" stroke-width="1"/>
+</svg>

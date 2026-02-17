@@ -1,0 +1,85 @@
+<svg viewBox="0 0 950 450" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif;letter-spacing:0;background:#fff">
+  <!-- Title -->
+  <text x="475" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Transit VIF アーキテクチャ</text>
+
+  <!-- ===== On-Premises ===== -->
+  <rect x="20" y="160" width="140" height="80" rx="8" fill="#2E7D32" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="90" y="193" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">On-Premises</text>
+  <text x="90" y="213" text-anchor="middle" font-size="11" fill="#C8E6C9">BGP Router</text>
+  <text x="90" y="228" text-anchor="middle" font-size="10" fill="#C8E6C9">10.0.0.0/8</text>
+
+  <!-- DX physical line -->
+  <line x1="160" y1="200" x2="215" y2="200" stroke="#455A64" stroke-width="3"/>
+  <polygon points="215,195 225,200 215,205" fill="#455A64"/>
+  <text x="192" y="190" text-anchor="middle" font-size="10" fill="#666">DX</text>
+
+  <!-- ===== Transit VIF line segment ===== -->
+  <line x1="228" y1="200" x2="368" y2="200" stroke="#C62828" stroke-width="3" stroke-dasharray="8,4"/>
+  <polygon points="368,195 378,200 368,205" fill="#C62828"/>
+  <!-- Transit VIF label -->
+  <rect x="258" y="170" width="100" height="22" rx="4" fill="#C62828" style="filter:drop-shadow(1px 1px 2px rgba(0,0,0,0.1))"/>
+  <text x="308" y="185" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">Transit VIF</text>
+
+  <!-- ===== DX Gateway ===== -->
+  <rect x="385" y="160" width="150" height="80" rx="8" fill="#E65100" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="460" y="195" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">DX Gateway</text>
+  <text x="460" y="215" text-anchor="middle" font-size="10" fill="#FFE0B2">Allowed Prefixes</text>
+  <text x="460" y="228" text-anchor="middle" font-size="10" fill="#FFE0B2">10.0.0.0/8</text>
+
+  <!-- Arrow: DX GW -> TGW -->
+  <line x1="535" y1="200" x2="608" y2="200" stroke="#E65100" stroke-width="2"/>
+  <polygon points="608,195 618,200 608,205" fill="#E65100"/>
+
+  <!-- ===== Transit Gateway ===== -->
+  <rect x="622" y="150" width="130" height="100" rx="8" fill="#C62828" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="687" y="185" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">Transit</text>
+  <text x="687" y="203" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">Gateway</text>
+  <!-- ECMP label -->
+  <rect x="647" y="215" width="80" height="22" rx="4" fill="rgba(255,255,255,0.2)"/>
+  <text x="687" y="231" text-anchor="middle" font-size="10" font-weight="bold" fill="#FFCDD2">ECMP 対応</text>
+
+  <!-- ===== VPCs ===== -->
+  <!-- Arrow: TGW -> VPC-A -->
+  <line x1="752" y1="180" x2="818" y2="110" stroke="#C62828" stroke-width="1.5"/>
+  <polygon points="816,105 826,108 818,115" fill="#C62828"/>
+
+  <!-- Arrow: TGW -> VPC-B -->
+  <line x1="752" y1="200" x2="818" y2="200" stroke="#C62828" stroke-width="1.5"/>
+  <polygon points="818,195 828,200 818,205" fill="#C62828"/>
+
+  <!-- Arrow: TGW -> VPC-C -->
+  <line x1="752" y1="220" x2="818" y2="290" stroke="#C62828" stroke-width="1.5"/>
+  <polygon points="816,295 826,292 818,285" fill="#C62828"/>
+
+  <!-- VPC-A -->
+  <rect x="830" y="75" width="100" height="60" rx="6" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="880" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565C0">VPC-A</text>
+  <text x="880" y="118" text-anchor="middle" font-size="10" fill="#1565C0">10.1.0.0/16</text>
+
+  <!-- VPC-B -->
+  <rect x="830" y="170" width="100" height="60" rx="6" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="880" y="195" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565C0">VPC-B</text>
+  <text x="880" y="213" text-anchor="middle" font-size="10" fill="#1565C0">10.2.0.0/16</text>
+
+  <!-- VPC-C -->
+  <rect x="830" y="265" width="100" height="60" rx="6" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="880" y="290" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565C0">VPC-C</text>
+  <text x="880" y="308" text-anchor="middle" font-size="10" fill="#1565C0">10.3.0.0/16</text>
+
+  <!-- Annotation: 1 VIF で複数 VPC -->
+  <rect x="340" y="380" width="270" height="36" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="1.5" style="filter:drop-shadow(1px 1px 2px rgba(0,0,0,0.1))"/>
+  <text x="475" y="403" text-anchor="middle" font-size="13" font-weight="bold" fill="#E65100">1 Transit VIF で複数 VPC に接続可能</text>
+
+  <!-- Flow annotation at bottom -->
+  <text x="90" y="310" text-anchor="middle" font-size="10" fill="#666">オンプレミス</text>
+  <text x="308" y="310" text-anchor="middle" font-size="10" fill="#C62828">Transit VIF</text>
+  <text x="460" y="310" text-anchor="middle" font-size="10" fill="#E65100">DX Gateway</text>
+  <text x="687" y="310" text-anchor="middle" font-size="10" fill="#C62828">Transit GW</text>
+  <text x="880" y="350" text-anchor="middle" font-size="10" fill="#1565C0">複数 VPC</text>
+
+  <!-- Bidirectional note -->
+  <text x="475" y="435" text-anchor="middle" font-size="10" fill="#888">BGP でルート交換 / 双方向通信</text>
+
+  <!-- Border -->
+  <rect x="5" y="5" width="940" height="440" rx="8" fill="none" stroke="#E0E0E0" stroke-width="1"/>
+</svg>

@@ -1,0 +1,98 @@
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif;letter-spacing:0;background:#fff">
+  <!-- Title -->
+  <text x="450" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#212121">VIF 選定フローチャート</text>
+
+  <!-- ============ START ============ -->
+  <rect x="340" y="48" width="220" height="40" rx="20" fill="#455A64" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="450" y="73" text-anchor="middle" font-size="13" fill="#fff" font-weight="bold">Start: 接続要件は？</text>
+
+  <!-- Arrow Start to Decision 1 -->
+  <line x1="450" y1="88" x2="450" y2="113" stroke="#455A64" stroke-width="2"/>
+  <polygon points="445,111 450,121 455,111" fill="#455A64"/>
+
+  <!-- ============ DECISION 1: パブリックサービスアクセス？ ============ -->
+  <polygon points="450,122 610,180 450,238 290,180" fill="#FFF3E0" stroke="#E65100" stroke-width="2" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.12))"/>
+  <text x="450" y="172" text-anchor="middle" font-size="11" fill="#E65100" font-weight="bold">AWS パブリックサービス</text>
+  <text x="450" y="188" text-anchor="middle" font-size="11" fill="#E65100" font-weight="bold">へのアクセスが必要？</text>
+
+  <!-- Yes arrow to Public VIF (right) -->
+  <line x1="610" y1="180" x2="720" y2="180" stroke="#2E7D32" stroke-width="2"/>
+  <polygon points="718,175 728,180 718,185" fill="#2E7D32"/>
+  <text x="660" y="172" font-size="12" fill="#2E7D32" font-weight="bold">Yes</text>
+
+  <!-- PUBLIC VIF result -->
+  <rect x="730" y="155" width="150" height="50" rx="8" fill="#2E7D32" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.18))"/>
+  <text x="805" y="177" text-anchor="middle" font-size="13" fill="#fff" font-weight="bold">Public VIF</text>
+  <text x="805" y="195" text-anchor="middle" font-size="10" fill="#C8E6C9">S3, DynamoDB 等</text>
+
+  <!-- No arrow to Decision 2 (down) -->
+  <line x1="450" y1="238" x2="450" y2="265" stroke="#C62828" stroke-width="2"/>
+  <polygon points="445,263 450,273 455,263" fill="#C62828"/>
+  <text x="462" y="256" font-size="12" fill="#C62828" font-weight="bold">No</text>
+
+  <!-- ============ DECISION 2: 複数VPC？ ============ -->
+  <polygon points="450,274 590,322 450,370 310,322" fill="#FFF3E0" stroke="#E65100" stroke-width="2" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.12))"/>
+  <text x="450" y="318" text-anchor="middle" font-size="11" fill="#E65100" font-weight="bold">接続する VPC は</text>
+  <text x="450" y="334" text-anchor="middle" font-size="11" fill="#E65100" font-weight="bold">複数？</text>
+
+  <!-- No arrow (left) to Private VIF + VGW -->
+  <line x1="310" y1="322" x2="195" y2="322" stroke="#C62828" stroke-width="2"/>
+  <polygon points="197,317 187,322 197,327" fill="#C62828"/>
+  <text x="256" y="314" font-size="12" fill="#C62828" font-weight="bold">No</text>
+
+  <!-- PRIVATE VIF + VGW result -->
+  <rect x="20" y="297" width="170" height="50" rx="8" fill="#1565C0" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.18))"/>
+  <text x="105" y="319" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">Private VIF + VGW</text>
+  <text x="105" y="337" text-anchor="middle" font-size="10" fill="#BBDEFB">単一 VPC 接続</text>
+
+  <!-- Yes arrow (down) to Decision 3 -->
+  <line x1="450" y1="370" x2="450" y2="397" stroke="#2E7D32" stroke-width="2"/>
+  <polygon points="445,395 450,405 455,395" fill="#2E7D32"/>
+  <text x="462" y="390" font-size="12" fill="#2E7D32" font-weight="bold">Yes</text>
+
+  <!-- ============ DECISION 3: VPC間通信が必要？ ============ -->
+  <polygon points="450,406 590,454 450,502 310,454" fill="#FFF3E0" stroke="#E65100" stroke-width="2" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.12))"/>
+  <text x="450" y="450" text-anchor="middle" font-size="11" fill="#E65100" font-weight="bold">VPC 間通信が</text>
+  <text x="450" y="466" text-anchor="middle" font-size="11" fill="#E65100" font-weight="bold">必要？</text>
+
+  <!-- No arrow (left) to Private VIF + DX GW -->
+  <line x1="310" y1="454" x2="195" y2="454" stroke="#C62828" stroke-width="2"/>
+  <polygon points="197,449 187,454 197,459" fill="#C62828"/>
+  <text x="256" y="446" font-size="12" fill="#C62828" font-weight="bold">No</text>
+
+  <!-- PRIVATE VIF + DX GW result -->
+  <rect x="20" y="429" width="170" height="50" rx="8" fill="#1565C0" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.18))"/>
+  <text x="105" y="448" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">Private VIF</text>
+  <text x="105" y="463" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">+ DX Gateway</text>
+  <text x="105" y="476" text-anchor="middle" font-size="9" fill="#BBDEFB">マルチ VPC (通信不要)</text>
+
+  <!-- Yes arrow (down) to Decision 4 -->
+  <line x1="450" y1="502" x2="450" y2="522" stroke="#2E7D32" stroke-width="2"/>
+  <polygon points="445,520 450,530 455,520" fill="#2E7D32"/>
+  <text x="462" y="518" font-size="12" fill="#2E7D32" font-weight="bold">Yes</text>
+
+  <!-- ============ DECISION 4: ECMP / 大規模ルーティング？ ============ -->
+  <polygon points="450,530 610,570 450,610 290,570" fill="#FFF3E0" stroke="#E65100" stroke-width="1.5" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.12))"/>
+  <text x="450" y="566" text-anchor="middle" font-size="10" fill="#E65100" font-weight="bold">ECMP / 大規模</text>
+  <text x="450" y="580" text-anchor="middle" font-size="10" fill="#E65100" font-weight="bold">ルーティングが必要？</text>
+
+  <!-- No arrow (left) to Transit VIF + TGW (推奨) -->
+  <line x1="290" y1="570" x2="195" y2="570" stroke="#C62828" stroke-width="2"/>
+  <polygon points="197,565 187,570 197,575" fill="#C62828"/>
+  <text x="244" y="562" font-size="12" fill="#C62828" font-weight="bold">No</text>
+
+  <!-- Transit VIF + TGW (推奨) result -->
+  <rect x="20" y="545" width="170" height="50" rx="8" fill="#C62828" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.18))"/>
+  <text x="105" y="564" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">Transit VIF + TGW</text>
+  <text x="105" y="582" text-anchor="middle" font-size="11" fill="#FFCDD2">★ 推奨</text>
+
+  <!-- Yes arrow (right) to Transit VIF + TGW (必須) -->
+  <line x1="610" y1="570" x2="720" y2="570" stroke="#2E7D32" stroke-width="2"/>
+  <polygon points="718,565 728,570 718,575" fill="#2E7D32"/>
+  <text x="660" y="562" font-size="12" fill="#2E7D32" font-weight="bold">Yes</text>
+
+  <!-- Transit VIF + TGW (必須) result -->
+  <rect x="730" y="545" width="150" height="50" rx="8" fill="#C62828" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.18))"/>
+  <text x="805" y="564" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">Transit VIF + TGW</text>
+  <text x="805" y="582" text-anchor="middle" font-size="11" fill="#FFCDD2">★ 必須 (ECMP)</text>
+</svg>

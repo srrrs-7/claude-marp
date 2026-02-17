@@ -1,0 +1,74 @@
+<svg viewBox="0 0 950 450" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif;letter-spacing:0;background:#fff">
+  <!-- Title -->
+  <text x="475" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#212121">High Resiliency（高回復性）</text>
+  <rect x="395" y="45" width="160" height="28" rx="4" fill="#E65100"/>
+  <text x="475" y="65" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">SLA 99.9%</text>
+
+  <!-- On-Premises (left) -->
+  <rect x="30" y="175" width="160" height="80" rx="8" fill="#2E7D32" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="110" y="208" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">オンプレミス</text>
+  <text x="110" y="228" text-anchor="middle" font-size="11" fill="#E8F5E9">データセンター</text>
+
+  <!-- DX Location A (top-center) -->
+  <rect x="340" y="105" width="200" height="70" rx="8" fill="#FF8F00" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="440" y="133" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">DX ロケーション A</text>
+  <rect x="360" y="145" width="160" height="22" rx="3" fill="#FFB300" opacity="0.6"/>
+  <text x="440" y="161" text-anchor="middle" font-size="10" fill="#fff">DX Connection 1</text>
+
+  <!-- DX Location B (bottom-center) -->
+  <rect x="340" y="255" width="200" height="70" rx="8" fill="#FF8F00" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="440" y="283" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">DX ロケーション B</text>
+  <rect x="360" y="295" width="160" height="22" rx="3" fill="#FFB300" opacity="0.6"/>
+  <text x="440" y="311" text-anchor="middle" font-size="10" fill="#fff">DX Connection 2</text>
+
+  <!-- AWS Cloud (right) -->
+  <rect x="660" y="120" width="260" height="220" rx="12" fill="none" stroke="#1565C0" stroke-width="3"/>
+  <text x="790" y="148" text-anchor="middle" font-size="15" font-weight="bold" fill="#1565C0">AWS Cloud</text>
+
+  <!-- VGW box inside AWS -->
+  <rect x="695" y="195" width="110" height="55" rx="6" fill="#7B1FA2" style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="750" y="218" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">VGW</text>
+  <text x="750" y="236" text-anchor="middle" font-size="10" fill="#E1BEE7">/ TGW</text>
+
+  <!-- VPC box -->
+  <rect x="835" y="200" width="70" height="44" rx="5" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5"/>
+  <text x="870" y="227" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">VPC</text>
+
+  <!-- === Connection Lines === -->
+
+  <!-- On-Premises to DX Location A (primary, solid blue) -->
+  <line x1="190" y1="200" x2="335" y2="145" stroke="#1565C0" stroke-width="3"/>
+  <polygon points="332,139 342,144 333,150" fill="#1565C0"/>
+
+  <!-- On-Premises to DX Location B (secondary, dashed amber) -->
+  <line x1="190" y1="230" x2="335" y2="285" stroke="#FF8F00" stroke-width="2.5" stroke-dasharray="8,4"/>
+  <polygon points="332,280 342,285 333,291" fill="#FF8F00"/>
+
+  <!-- DX Location A to VGW -->
+  <line x1="540" y1="140" x2="690" y2="210" stroke="#1565C0" stroke-width="2.5"/>
+  <polygon points="688,205 698,210 688,215" fill="#1565C0"/>
+
+  <!-- DX Location B to VGW -->
+  <line x1="540" y1="290" x2="690" y2="230" stroke="#1565C0" stroke-width="2.5"/>
+  <polygon points="688,225 698,230 688,235" fill="#1565C0"/>
+
+  <!-- VGW to VPC -->
+  <line x1="805" y1="222" x2="830" y2="222" stroke="#455A64" stroke-width="2"/>
+  <polygon points="830,217 840,222 830,227" fill="#455A64"/>
+
+  <!-- Labels on paths -->
+  <text x="240" y="155" text-anchor="middle" font-size="10" fill="#1565C0" font-weight="bold">プライマリ</text>
+  <text x="240" y="285" text-anchor="middle" font-size="10" fill="#FF8F00" font-weight="bold">セカンダリ</text>
+
+  <!-- Annotation box -->
+  <rect x="30" y="380" width="520" height="55" rx="6" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="45" y="402" font-size="12" font-weight="bold" fill="#424242">ロケーション障害に耐性あり</text>
+  <text x="45" y="422" font-size="11" fill="#616161">2 つの DX ロケーション x 各 1 接続 = 合計 2 接続（デバイス障害には非対応）</text>
+
+  <!-- Legend -->
+  <rect x="590" y="380" width="330" height="55" rx="6" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="1"/>
+  <line x1="605" y1="405" x2="645" y2="405" stroke="#1565C0" stroke-width="3"/>
+  <text x="652" y="409" font-size="11" fill="#424242">プライマリ接続</text>
+  <line x1="605" y1="425" x2="645" y2="425" stroke="#FF8F00" stroke-width="2.5" stroke-dasharray="8,4"/>
+  <text x="652" y="429" font-size="11" fill="#424242">セカンダリ接続</text>
+</svg>

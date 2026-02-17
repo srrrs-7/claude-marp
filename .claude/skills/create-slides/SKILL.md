@@ -20,6 +20,7 @@ user_invocable: true
 7. **デザイン調整** — テーマ・CSS・ディレクティブの微調整
 8. **エクスポート** — `bun run slides export -f html --in <path>/<name>.md`
 9. **セルフヒーリング検証** — エクスポート後に自動検証し、問題があれば修正→再エクスポート
+10. **インデックス更新** — `bun run generate:index` で `docs/index.html` を再生成
 
 **出力先:** すべてのファイルは `docs/<yyyymmddhhmmss>_<title>/` 配下に集約される
 
@@ -132,3 +133,18 @@ grep -rn '^```mermaid' docs/<dir>/*.md              # Mermaid 残存
    - テスト: 全パス
    - 問題検出: なし（or 自動修正済み: ～を修正）
 ```
+
+## Phase 10: インデックス更新
+
+**エクスポート・検証完了後に自動実行:**
+
+新しいプレゼンテーションを `docs/index.html` の一覧に反映する。
+
+```bash
+bun run generate:index
+```
+
+- `docs/` 配下の全プレゼンテーションをスキャンし、`docs/index.html` を再生成
+- `slides.config.yaml` の `topic` やテーマ情報を読み取ってカテゴリ分類・一覧表示
+- GitHub Pages で公開されるトップページが自動更新される
+- **このステップはユーザー確認不要**（セルフヒーリング検証と同様に自動実行）
