@@ -1,0 +1,1697 @@
+<!DOCTYPE html><html lang="en-US"><head><title>LLMアプリ設計パターン完全ガイド</title><meta property="og:title" content="LLMアプリ設計パターン完全ガイド"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{appearance:none;background-color:initial;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear;-webkit-tap-highlight-color:transparent}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNNDAgNzBIMjBWNTBtMjAgMEwyMCA3MG00MC00MGgyMHYyMG0tMjAgMCAyMC0yMCIgY2xhc3M9ImEiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNMjAgNTBoMjB2MjBtLTIwIDAgMjAtMjBtNDAgMEg2MFYzMG0yMCAwTDYwIDUwIiBjbGFzcz0iYSIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODBNNTIgOTBWMTAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}@keyframes __bespoke_marp_transition_reduced_outgoing__{0%{opacity:1}to{opacity:0}}@keyframes __bespoke_marp_transition_reduced_incoming__{0%{mix-blend-mode:plus-lighter;opacity:0}to{mix-blend-mode:plus-lighter;opacity:1}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{::view-transition-group(*){animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-timing-function:ease}::view-transition-new(*),::view-transition-old(*){animation-delay:0s;animation-direction:var(--marp-bespoke-transition-animation-direction,normal);animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-fill-mode:both;animation-name:var(--marp-bespoke-transition-animation-name,var(--marp-bespoke-transition-animation-name-fallback,__bespoke_marp_transition_no_animation__));mix-blend-mode:normal}::view-transition-old(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_outgoing__;animation-timing-function:ease}::view-transition-new(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_incoming__;animation-timing-function:ease}::view-transition-new(root),::view-transition-old(root){animation-timing-function:linear}::view-transition-new(__bespoke_marp_transition_osc__),::view-transition-old(__bespoke_marp_transition_osc__){animation-duration:0s!important;animation-name:__bespoke_marp_transition_osc__!important}::view-transition-new(__bespoke_marp_transition_osc__){opacity:0!important}.bespoke-marp-transition-warming-up::view-transition-group(*),.bespoke-marp-transition-warming-up::view-transition-new(*),.bespoke-marp-transition-warming-up::view-transition-old(*){animation-play-state:paused!important}body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide:not(.bespoke-marp-active) *{view-transition-name:none!important}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}}@media screen and (prefers-reduced-motion:reduce){svg.bespoke-marp-slide *{view-transition-name:none!important}}@media screen{[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{inset:0;position:absolute}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{background:#000000a6;border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1;view-transition-name:__bespoke_marp_transition_osc__}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:#0000}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:#0000;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{display:block;inset:0;position:absolute}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:#000000a6;border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;white-space:pre-wrap;width:calc(100% - 40px);word-wrap:break-word;scrollbar-color:#eeeeee80 #0000;scrollbar-width:thin}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:#0000}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:#eeeeee80;border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>@charset "UTF-8";@import "https://fonts.bunny.net/css?family=Lato:400,900|Roboto+Mono:400,700&display=swap";div#\:\$p > svg > foreignObject > section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center;-webkit-text-size-adjust:100%;text-size-adjust:100%}div#\:\$p > svg > foreignObject > section::after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#\:\$p > svg > foreignObject > section:not([data-marpit-pagination])::after{display:none}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:2em;margin-block:0.67em}div#\:\$p > svg > foreignObject > section video::-webkit-media-controls{will-change:transform}@page {size:1280px 720px;margin:0}@media print{html, body{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#\:\$p > svg > foreignObject > section{page-break-before:always;break-before:page}div#\:\$p > svg > foreignObject > section, div#\:\$p > svg > foreignObject > section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;print-color-adjust:exact!important;transition:none!important}div#\:\$p > svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#\:\$p > svg > foreignObject > :where(section){container-type:size}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"]{direction:ltr}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"] > svg{overflow:visible;min-height:1px;min-width:1px}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"] > svg a{fill:blue;stroke:blue}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"][display="true"]{display:block;text-align:center;margin:1em 0}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"][display="true"][width="full"]{display:flex}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"][justify="left"]{text-align:left}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"][justify="right"]{text-align:right}div#\:\$p > svg > foreignObject > section g[data-mml-node="merror"] > g{fill:red;stroke:red}div#\:\$p > svg > foreignObject > section g[data-mml-node="merror"] > rect[data-background]{fill:yellow;stroke:none}div#\:\$p > svg > foreignObject > section g[data-mml-node="mtable"] > line[data-line], div#\:\$p > svg > foreignObject > section svg[data-table] > g > line[data-line]{stroke-width:70px;fill:none}div#\:\$p > svg > foreignObject > section g[data-mml-node="mtable"] > rect[data-frame], div#\:\$p > svg > foreignObject > section svg[data-table] > g > rect[data-frame]{stroke-width:70px;fill:none}div#\:\$p > svg > foreignObject > section g[data-mml-node="mtable"] > .mjx-dashed, div#\:\$p > svg > foreignObject > section svg[data-table] > g > .mjx-dashed{stroke-dasharray:140}div#\:\$p > svg > foreignObject > section g[data-mml-node="mtable"] > .mjx-dotted, div#\:\$p > svg > foreignObject > section svg[data-table] > g > .mjx-dotted{stroke-linecap:round;stroke-dasharray:0,140}div#\:\$p > svg > foreignObject > section g[data-mml-node="mtable"] > g > svg{overflow:visible}div#\:\$p > svg > foreignObject > section [jax="SVG"] mjx-tool{display:inline-block;position:relative;width:0;height:0}div#\:\$p > svg > foreignObject > section [jax="SVG"] mjx-tool > mjx-tip{position:absolute;top:0;left:0}div#\:\$p > svg > foreignObject > section mjx-tool > mjx-tip{display:inline-block;padding:.2em;border:1px solid #888;font-size:70%;background-color:#F8F8F8;color:black;box-shadow:2px 2px 5px #AAAAAA}div#\:\$p > svg > foreignObject > section g[data-mml-node="maction"][data-toggle]{cursor:pointer}div#\:\$p > svg > foreignObject > section mjx-status{display:block;position:fixed;left:1em;bottom:1em;min-width:25%;padding:.2em .4em;border:1px solid #888;font-size:90%;background-color:#F8F8F8;color:black}div#\:\$p > svg > foreignObject > section foreignObject[data-mjx-xml]{font-family:initial;line-height:normal;overflow:visible}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"] path[data-c], div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"] use[data-c]{stroke-width:3}@media print{div#\:\$p > svg > foreignObject > section mjx-container[jax=SVG] path[data-c],div#\:\$p > svg > foreignObject > section mjx-container[jax=SVG] use[data-c]{stroke-width:0}}div#\:\$p > svg > foreignObject > section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}/*!
+ * Marp / Marpit Gaia theme.
+ *
+ * @theme gaia
+ * @author Yuki Hattori
+ *
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ * @size 4:3 960px 720px
+ */div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code.hljs{display:block;overflow-x:auto;padding:1em}div#\:\$p > svg > foreignObject > section code.hljs{padding:3px 5px}div#\:\$p > svg > foreignObject > section .hljs{background:#000;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-comment,div#\:\$p > svg > foreignObject > section .hljs-quote{color:#aeaeae;font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-keyword,div#\:\$p > svg > foreignObject > section .hljs-selector-tag,div#\:\$p > svg > foreignObject > section .hljs-type{color:#e28964}div#\:\$p > svg > foreignObject > section .hljs-string{color:#65b042}div#\:\$p > svg > foreignObject > section .hljs-subst{color:#daefa3}div#\:\$p > svg > foreignObject > section .hljs-link,div#\:\$p > svg > foreignObject > section .hljs-regexp{color:#e9c062}div#\:\$p > svg > foreignObject > section .hljs-name,div#\:\$p > svg > foreignObject > section .hljs-section,div#\:\$p > svg > foreignObject > section .hljs-tag,div#\:\$p > svg > foreignObject > section .hljs-title{color:#89bdff}div#\:\$p > svg > foreignObject > section .hljs-class .hljs-title,div#\:\$p > svg > foreignObject > section .hljs-doctag,div#\:\$p > svg > foreignObject > section .hljs-title.class_{text-decoration:underline}div#\:\$p > svg > foreignObject > section .hljs-bullet,div#\:\$p > svg > foreignObject > section .hljs-number,div#\:\$p > svg > foreignObject > section .hljs-symbol{color:#3387cc}div#\:\$p > svg > foreignObject > section .hljs-params,div#\:\$p > svg > foreignObject > section .hljs-template-variable,div#\:\$p > svg > foreignObject > section .hljs-variable{color:#3e87e3}div#\:\$p > svg > foreignObject > section .hljs-attribute{color:#cda869}div#\:\$p > svg > foreignObject > section .hljs-meta{color:#8996a8}div#\:\$p > svg > foreignObject > section .hljs-formula{background-color:#0e2231;color:#f8f8f8;font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-addition{background-color:#253b22;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-deletion{background-color:#420e09;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-selector-class{color:#9b703f}div#\:\$p > svg > foreignObject > section .hljs-selector-id{color:#8b98ab}div#\:\$p > svg > foreignObject > section .hljs-emphasis{font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-strong{font-weight:700}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){margin:.5em 0 0}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{font-weight:inherit}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6)::part(auto-scaling){max-height:580px}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:1.8em}div#\:\$p > svg > foreignObject > section :is(h2, marp-h2){font-size:1.5em}div#\:\$p > svg > foreignObject > section :is(h3, marp-h3){font-size:1.3em}div#\:\$p > svg > foreignObject > section :is(h4, marp-h4){font-size:1.1em}div#\:\$p > svg > foreignObject > section :is(h5, marp-h5){font-size:1em}div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){font-size:.9em}div#\:\$p > svg > foreignObject > section blockquote,div#\:\$p > svg > foreignObject > section p{margin:1em 0 0}div#\:\$p > svg > foreignObject > section ol>li,div#\:\$p > svg > foreignObject > section ul>li{margin:.3em 0 0}div#\:\$p > svg > foreignObject > section ol>li>p,div#\:\$p > svg > foreignObject > section ul>li>p{margin:.6em 0 0}div#\:\$p > svg > foreignObject > section code{display:inline-block;font-family:Roboto Mono,monospace;font-size:.8em;letter-spacing:0;margin:-.1em .15em;padding:.1em .2em;vertical-align:baseline}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){display:block;margin:1em 0 0;overflow:visible}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{box-sizing:border-box;font-size:.7em;margin:0;min-width:100%;padding:.5em}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)::part(auto-scaling){max-height:calc(580px - 1em)}div#\:\$p > svg > foreignObject > section blockquote{margin:1em 0 0;padding:0 1em;position:relative}div#\:\$p > svg > foreignObject > section blockquote:after,div#\:\$p > svg > foreignObject > section blockquote:before{content:"“";display:block;font-family:Times New Roman,serif;font-weight:700;position:absolute}div#\:\$p > svg > foreignObject > section blockquote:before{left:0;top:0}div#\:\$p > svg > foreignObject > section blockquote:after{bottom:0;right:0;transform:rotate(180deg)}div#\:\$p > svg > foreignObject > section blockquote>:first-child{margin-top:0}div#\:\$p > svg > foreignObject > section mark{background:transparent}div#\:\$p > svg > foreignObject > section table{border-collapse:collapse;border-spacing:0;margin:1em 0 0}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{border-style:solid;border-width:1px;padding:.2em .4em}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header,div#\:\$p > svg > foreignObject > section:after{box-sizing:border-box;font-size:66%;height:70px;line-height:50px;overflow:hidden;padding:10px 25px;position:absolute}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:66%}div#\:\$p > svg > foreignObject > section header{top:0}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header{left:0;right:0}div#\:\$p > svg > foreignObject > section footer{bottom:0}div#\:\$p > svg > foreignObject > section{--color-background:light-dark(#fff8e1, #455a64);--color-background-stripe:light-dark(
+    rgba(69,90,100,.1),
+    rgba(255,248,225,.1)
+  );--color-foreground:light-dark(#455a64, #fff8e1);--color-dimmed:light-dark(
+    #6a7a7d,
+    #dad8c8
+  );--color-highlight:light-dark(#0288d1, #81d4fa);background-color:var(--color-background);background-image:linear-gradient(135deg, hsla(0,0%,53%,0), hsla(0,0%,53%,.02) 50%, hsla(0,0%,100%,0) 0, hsla(0,0%,100%,.05));color:var(--color-foreground);color-scheme:light;font-family:Lato,Avenir Next,Avenir,Trebuchet MS,Segoe UI,sans-serif;font-size:35px;height:720px;letter-spacing:1.25px;line-height:1.35;overflow-wrap:break-word;padding:70px;width:1280px}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size:35px}div#\:\$p > svg > foreignObject > section:after{bottom:0;font-size:80%;right:0}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:80%}div#\:\$p > svg > foreignObject > section a,div#\:\$p > svg > foreignObject > section mark{color:var(--color-highlight)}div#\:\$p > svg > foreignObject > section code{background:var(--color-dimmed);color:var(--color-background)}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{color:var(--color-highlight)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){background:var(--color-foreground)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)>code{background:transparent}div#\:\$p > svg > foreignObject > section blockquote:after,div#\:\$p > svg > foreignObject > section blockquote:before,div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header,div#\:\$p > svg > foreignObject > section section:after{color:var(--color-dimmed)}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{border-color:var(--color-foreground)}div#\:\$p > svg > foreignObject > section table thead th{background:var(--color-foreground);color:var(--color-background)}div#\:\$p > svg > foreignObject > section table tbody>tr:nth-child(odd) td,div#\:\$p > svg > foreignObject > section table tbody>tr:nth-child(odd) th{background:var(--color-background-stripe, transparent)}div#\:\$p > svg > foreignObject > section>:first-child,div#\:\$p > svg > foreignObject > section>header:first-child+*{margin-top:0}div#\:\$p > svg > foreignObject > section:where(.invert){color-scheme:dark}div#\:\$p > svg > foreignObject > section:where(.gaia){--color-background:#0288d1;--color-background-stripe:rgba(255,248,225,.1);--color-foreground:#fff8e1;--color-dimmed:#cce2de;--color-highlight:#81d4fa;}div#\:\$p > svg > foreignObject > section:where(.lead){align-items:stretch;flex-flow:column nowrap;place-content:safe center center}div#\:\$p > svg > foreignObject > section:where(.lead) :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h6, marp-h6){text-align:center}div#\:\$p > svg > foreignObject > section:where(.lead) p{text-align:center}div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h1, marp-h1),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h2, marp-h2),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h3, marp-h3),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h4, marp-h4),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h5, marp-h5),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h6, marp-h6),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>p{text-align:left}div#\:\$p > svg > foreignObject > section:where(.lead) ol>li>p,div#\:\$p > svg > foreignObject > section:where(.lead) ul>li>p{text-align:left}div#\:\$p > svg > foreignObject > section:where(.lead) table{margin-left:auto;margin-right:auto}div#\:\$p > svg > foreignObject > section{width:1280px;height:720px}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]{columns:initial!important;display:block!important;padding:0!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::after, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::after{display:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction="vertical"]{flex-direction:column}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split] > div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split, 50%)}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split="right"] > div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure > figcaption{position:absolute;border:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;white-space:nowrap;width:1px}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"], div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"]{background:transparent!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"], div#\:\$p > svg[data-marpit-svg] > foreignObject[data-marpit-advanced-background="pseudo"]{pointer-events:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background-split]{width:100%;height:100%}
+</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id=":$p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-paginate="true" data-class="lead" data-theme="gaia" lang="en-US" class="lead" data-marpit-pagination="1" style="--paginate:true;--class:lead;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="llm%E3%82%A2%E3%83%97%E3%83%AA%E8%A8%AD%E8%A8%88%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E5%AE%8C%E5%85%A8%E3%82%AC%E3%82%A4%E3%83%89">LLMアプリ設計パターン完全ガイド</h1>
+<ul>
+<li>RAG・Fine-tuning・Agents・評価フレームワーク</li>
+<li>アーキテクト・テックリード向け実践ガイド</li>
+<li>2026年版</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="2" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%A2%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%8012">アジェンダ（1/2）</h1>
+<ul>
+<li><strong>Section 1:</strong> LLMアプリの基礎と技術選定</li>
+<li><strong>Section 2:</strong> プロンプトエンジニアリング</li>
+<li><strong>Section 3:</strong> RAG設計パターン（16スライド）</li>
+<li><strong>Section 4:</strong> Fine-tuning（13スライド）</li>
+<li><strong>Section 5:</strong> AIエージェント設計（17スライド）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="3" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%A2%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%8022">アジェンダ（2/2）</h1>
+<ul>
+<li><strong>Section 6:</strong> 評価フレームワーク（12スライド）</li>
+<li><strong>Section 7:</strong> プロダクション設計パターン（14スライド）</li>
+<li><strong>Section 8:</strong> 設計選択ガイド・まとめ（8スライド）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="4" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<ul>
+<li>全100スライド・所要時間：約60分</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="5" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="llm%E3%82%A2%E3%83%97%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AE%E7%8F%BE%E5%9C%A8%E5%9C%B0">LLMアプリ開発の現在地</h1>
+<ul>
+<li><strong>なぜ設計パターンが必要か</strong></li>
+<li>LLMは強力だが「万能ツール」ではない — 使い方を間違えると高コスト・低品質・セキュリティリスク</li>
+<li><strong>3つの現実的課題</strong></li>
+<li>① ハルシネーション — 事実と異なる回答を自信を持って返す</li>
+<li>② 知識カットオフ — 最新情報・内部データにアクセスできない</li>
+<li>③ コスト爆発 — 非効率な実装は月数十万円のAPI費用に</li>
+<li><strong>本ガイドのゴール</strong></li>
+<li>「どのパターンをいつ使うか」の意思決定フレームワークを提供</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-class="lead" data-theme="gaia" lang="en-US" class="lead" data-marpit-pagination="6" style="--paginate:true;--class:lead;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="section-1-llm%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E5%9F%BA%E7%A4%8E">Section 1: LLMアプリの基礎</h1>
+<ul>
+<li>技術選定・アーキテクチャ・トレードオフ</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="7" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="llm%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF%E3%81%A8%E9%99%90%E7%95%8C">LLMの仕組みと限界</h1>
+<ul>
+<li><strong>LLMの本質</strong>: 次のトークンを確率的に予測するニューラルネットワーク</li>
+<li><strong>強み</strong></li>
+<li>自然言語理解・生成、コード生成、推論、要約、翻訳</li>
+<li><strong>根本的な限界</strong></li>
+<li>ハルシネーション（確率的生成のため「それらしい嘘」を生成）</li>
+<li>知識カットオフ（学習データの日付で知識が固定）</li>
+<li>コンテキスト制限（入力長に上限 — GPT-4o: 128K、Claude 3.5: 200K）</li>
+<li>決定論的でない（同じ入力でも毎回異なる出力）</li>
+<li>内部状態なし（ステートレス — セッション間で記憶を保持しない）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="8" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="4%E3%81%A4%E3%81%AE%E4%B8%BB%E8%A6%81%E3%82%A2%E3%83%97%E3%83%AD%E3%83%BC%E3%83%81%E6%A6%82%E8%A6%B3">4つの主要アプローチ概観</h1>
+<ul>
+<li><strong>① プロンプトエンジニアリング</strong> — モデルを変えずに指示を工夫</li>
+<li>適用場面: ほぼすべてのタスク。最初に試すべきアプローチ</li>
+<li><strong>② RAG（検索拡張生成）</strong> — 外部知識をリアルタイムで注入</li>
+<li>適用場面: 最新情報・社内文書・大規模知識ベース</li>
+<li><strong>③ Fine-tuning</strong> — モデルの重みを特定タスク向けに更新</li>
+<li>適用場面: 特定スタイル・ドメイン特化・プロンプトでは達成困難な品質</li>
+<li><strong>④ AIエージェント</strong> — ツールを使い複数ステップで自律実行</li>
+<li>適用場面: 複雑な推論・外部API連携・繰り返し作業の自動化</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="9" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%81%AE%E5%85%B1%E9%80%9A%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88">アーキテクチャの共通コンポーネント</h1>
+<ul>
+<li><strong>入力層</strong>: ユーザー入力の受付・バリデーション・サニタイズ</li>
+<li><strong>プロンプト構築層</strong>: テンプレート管理・コンテキスト注入・Few-shot例</li>
+<li><strong>LLM呼び出し層</strong>: モデル選択・パラメータ管理・リトライ・フォールバック</li>
+<li><strong>後処理層</strong>: 出力パース・バリデーション・フィルタリング</li>
+<li><strong>観測可能性層</strong>: ログ・トレース・コスト追跡・評価メトリクス</li>
+<li><strong>キャッシュ層</strong>: セマンティックキャッシュ・レスポンスキャッシュ</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="10" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%B3%E3%82%B9%E3%83%88%E3%83%BB%E3%83%AC%E3%82%A4%E3%83%86%E3%83%B3%E3%82%B7%E3%83%BB%E5%93%81%E8%B3%AA%E3%81%AE%E3%83%88%E3%83%AC%E3%83%BC%E3%83%89%E3%82%AA%E3%83%95">コスト・レイテンシ・品質のトレードオフ</h1>
+<ul>
+<li><strong>プロンプトエンジニアリング</strong>: コスト○ レイテンシ○ 品質△（上限あり）</li>
+<li><strong>RAG</strong>: コスト△（ベクターDB費用追加） レイテンシ△（検索時間） 品質○</li>
+<li><strong>Fine-tuning</strong>: コスト✗（学習費用高） レイテンシ○（小モデル可） 品質◎</li>
+<li><strong>エージェント</strong>: コスト✗（多回呼び出し） レイテンシ✗（秒〜分） 品質◎</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="11" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<ul>
+<li><strong>鉄則</strong>: 複雑なアプローチを先に採用しない</li>
+<li>Prompt → RAG → Fine-tuning → Agents の順で評価</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="12" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E6%8A%80%E8%A1%93%E9%81%B8%E5%AE%9A%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF">技術選定フレームワーク</h1>
+<ul>
+<li><strong>Step 1: プロンプトエンジニアリングで解けるか？</strong></li>
+<li>→ Few-shot / CoT / システムプロンプトで80%の品質が出るなら採用</li>
+<li><strong>Step 2: 最新情報・社内データが必要か？</strong></li>
+<li>→ Yes → RAG を検討</li>
+<li><strong>Step 3: 特定のスタイル・形式・ドメイン知識が必要か？</strong></li>
+<li>→ プロンプトで達成困難 → Fine-tuning を検討</li>
+<li><strong>Step 4: 複数ステップの推論・外部ツール実行が必要か？</strong></li>
+<li>→ Yes → エージェントを検討</li>
+<li><strong>Step 5: 複数のアプローチの組み合わせ</strong></li>
+<li>→ RAG + Fine-tuning、RAG + エージェント など組み合わせも有効</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="13" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%99%E3%83%BC%E3%82%B9%E3%83%A2%E3%83%87%E3%83%AB%E9%81%B8%E6%8A%9E2026%E5%B9%B4%E7%89%88">ベースモデル選択（2026年版）</h1>
+<ul>
+<li><strong>クローズドモデル（API）</strong></li>
+<li>GPT-4o — OpenAI。コーディング・推論に強み。Function Calling成熟</li>
+<li>Claude 3.5 Sonnet — Anthropic。長文コンテキスト・安全性。コードに優秀</li>
+<li>Gemini 1.5 Pro — Google。1Mコンテキスト。マルチモーダル強み</li>
+<li><strong>オープンモデル（セルフホスト）</strong></li>
+<li>Llama 3.1 70B — Meta。商用利用可。高品質でコスト効率良</li>
+<li>Mistral Large — 欧州産。多言語・コーディング。Apache 2.0</li>
+<li>Qwen 2.5 72B — Alibaba。日本語・中国語に強み</li>
+<li><strong>選択基準</strong>: データ主権、コスト上限、レイテンシ要件、言語サポート</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="14" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E8%A6%81%E4%BB%B6%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%88">プロダクション要件チェックリスト</h1>
+<ul>
+<li><strong>機能要件</strong></li>
+<li>□ 精度・品質の定義（どのメトリクスで何%以上か）</li>
+<li>□ レイテンシ要件（P50/P95/P99）</li>
+<li>□ スループット要件（同時リクエスト数）</li>
+<li><strong>非機能要件</strong></li>
+<li>□ コスト上限（月間APIコスト予算）</li>
+<li>□ データ主権・プライバシー規制（GDPR等）</li>
+<li>□ 可用性要件（SLA）</li>
+<li>□ セキュリティ要件（データの機密分類）</li>
+<li>□ 観測可能性（ログ・トレース・アラート）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-class="lead" data-theme="gaia" lang="en-US" class="lead" data-marpit-pagination="15" style="--paginate:true;--class:lead;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="section-2-%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0">Section 2: プロンプトエンジニアリング</h1>
+<ul>
+<li>設計の基礎 — すべてのアプローチの土台</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="16" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%AE%E5%9F%BA%E7%A4%8E">プロンプトエンジニアリングの基礎</h1>
+<ul>
+<li><strong>構造化プロンプトの4要素</strong></li>
+<li>① <strong>Role（役割）</strong>: 「あなたはシニアソフトウェアエンジニアです」</li>
+<li>② <strong>Task（タスク）</strong>: 明確で具体的な指示。動詞で始める</li>
+<li>③ <strong>Context（文脈）</strong>: 背景情報・制約・対象者</li>
+<li>④ <strong>Format（形式）</strong>: 出力形式の明示（JSON、箇条書き、N文字以内）</li>
+<li><strong>効果的なプロンプトの原則</strong></li>
+<li>具体的であること（「良い文章を書いて」→「技術ブログ記事を500字で」）</li>
+<li>例を示すこと（Few-shot）</li>
+<li>段階的思考を促すこと（CoT）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="17" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="cot%E3%83%BBtot%E3%83%BBgot%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">CoT・ToT・GoTパターン</h1>
+<ul>
+<li><strong>Chain-of-Thought（CoT）</strong></li>
+<li>「ステップバイステップで考えてください」で推論精度が大幅向上</li>
+<li>数学・論理・コード生成に特に有効</li>
+<li><strong>Tree-of-Thought（ToT）</strong></li>
+<li>複数の推論パスを探索し最良を選択</li>
+<li>複雑な問題解決・計画立案に有効。コスト↑</li>
+<li><strong>Graph-of-Thought（GoT）</strong></li>
+<li>推論を有向グラフで表現。関係性の複雑なタスクに適合</li>
+<li><strong>Self-Consistency</strong></li>
+<li>同じ質問を複数回実行し多数決。精度↑コスト↑</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="18" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="few-shot--zero-shot-%E6%88%A6%E7%95%A5">Few-shot / Zero-shot 戦略</h1>
+<ul>
+<li><strong>Zero-shot</strong>: 例なしで直接指示</li>
+<li>「以下のレビューを Positive/Negative/Neutral に分類してください」</li>
+<li>→ シンプルなタスクに有効。プロンプトが短い</li>
+<li><strong>One-shot</strong>: 例を1つ提示</li>
+<li>→ 出力形式の統一に有効</li>
+<li><strong>Few-shot</strong>: 例を3〜8個提示</li>
+<li>→ 複雑なタスク・ドメイン特化に有効</li>
+<li><strong>選択ガイド</strong></li>
+<li>まずZero-shotで試す → 品質不足 → Few-shot追加</li>
+<li>例の品質が結果に直結（悪い例はむしろ有害）</li>
+<li>例は多様性を確保（同じパターンの繰り返し不可）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="19" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E8%A8%AD%E8%A8%88">システムプロンプト設計</h1>
+<ul>
+<li><strong>システムプロンプトの役割</strong></li>
+<li>モデルの「人格・役割・制約」を定義。ユーザー入力より優先度高</li>
+<li><strong>設計パターン</strong></li>
+<li>① ペルソナ定義: 「あなたは〇〇社の製品サポートエキスパートです」</li>
+<li>② 制約明示: 「製品以外のトピックには応じないでください」</li>
+<li>③ 出力フォーマット指定: 「必ずJSON形式で返答してください」</li>
+<li>④ 安全ガードレール: 「有害・違法なコンテンツを生成しないでください」</li>
+<li><strong>ベストプラクティス</strong></li>
+<li>短く明確に（長すぎると重要指示が埋もれる）</li>
+<li>バージョン管理必須（Git + プロンプトレジストリ）</li>
+<li>プロンプトインジェクション対策を組み込む</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="20" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E7%AE%A1%E7%90%86">プロンプトテンプレート管理</h1>
+<ul>
+<li><strong>なぜプロンプトのバージョン管理が必要か</strong></li>
+<li>プロンプト変更がモデル更新と同等の本番影響を持つ</li>
+<li>A/Bテストなしの変更は品質劣化リスク</li>
+<li><strong>管理方法</strong></li>
+<li>① Git管理: プロンプトをコードと同様にコミット</li>
+<li>② プロンプトレジストリ: LangSmith / Promptfoo / 独自DB</li>
+<li>③ セマンティックバージョニング: v1.2.3 形式</li>
+<li><strong>デプロイ戦略</strong></li>
+<li>カナリアリリース（5%のトラフィックで新プロンプトを検証）</li>
+<li>フィーチャーフラグによる即時ロールバック機能</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="21" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E6%A7%8B%E9%80%A0%E5%8C%96%E5%87%BA%E5%8A%9Bjson-mode%E3%83%BBfunction-calling">構造化出力（JSON mode・Function Calling）</h1>
+<ul>
+<li>LLMの出力を型安全に扱う手法</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="22" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E6%A7%8B%E9%80%A0%E5%8C%96%E5%87%BA%E5%8A%9Bjson-mode%E3%83%BBfunction-calling%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">構造化出力（JSON mode・Function Calling）（コード例）</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-comment"># OpenAI JSON mode + Pydantic</span>
+<span class="hljs-keyword">from</span> pydantic <span class="hljs-keyword">import</span> BaseModel
+<span class="hljs-keyword">from</span> openai <span class="hljs-keyword">import</span> OpenAI
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ProductReview</span>(<span class="hljs-title class_ inherited__">BaseModel</span>):
+    sentiment: <span class="hljs-type">Literal</span>[<span class="hljs-string">&quot;positive&quot;</span>, <span class="hljs-string">&quot;negative&quot;</span>, <span class="hljs-string">&quot;neutral&quot;</span>]
+    score: <span class="hljs-built_in">float</span>  <span class="hljs-comment"># 0.0 - 1.0</span>
+    key_points: <span class="hljs-built_in">list</span>[<span class="hljs-built_in">str</span>]
+
+client = OpenAI()
+response = client.beta.chat.completions.parse(
+    model=<span class="hljs-string">&quot;gpt-4o&quot;</span>,
+    messages=[{<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">f&quot;レビュー分析: <span class="hljs-subst">{review_text}</span>&quot;</span>}],
+    response_format=ProductReview,  <span class="hljs-comment"># 型安全な出力</span>
+)
+result = response.choices[<span class="hljs-number">0</span>].message.parsed
+<span class="hljs-built_in">print</span>(result.sentiment, result.score)
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="23" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%AE%E9%99%90%E7%95%8C">プロンプトエンジニアリングの限界</h1>
+<ul>
+<li><strong>プロンプトだけでは解決できない問題</strong></li>
+<li>① 知識の鮮度 — 学習データ以降の情報は取得不可 → RAGが必要</li>
+<li>② 大規模知識ベース — コンテキスト長を超える文書群 → RAGが必要</li>
+<li>③ 一貫したスタイル — 大量のFew-shotは非効率 → Fine-tuningが必要</li>
+<li>④ 複数ステップの外部操作 — DB更新・API呼び出し → エージェントが必要</li>
+<li>⑤ ドメイン専門用語 — 特殊な語彙・フォーマット → Fine-tuningが必要</li>
+<li><strong>次のステップ</strong>: 上記に当てはまる場合、他のアプローチを検討</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-class="lead" data-theme="gaia" lang="en-US" class="lead" data-marpit-pagination="24" style="--paginate:true;--class:lead;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="section-3-rag%E8%A8%AD%E8%A8%88%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">Section 3: RAG設計パターン</h1>
+<ul>
+<li>Retrieval-Augmented Generation — 検索拡張生成</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="25" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="rag%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3naive-rag">RAGアーキテクチャ（Naive RAG）</h1>
+<ul>
+<li><strong>RAGの基本フロー</strong></li>
+<li>① Indexing: 文書 → チャンキング → Embedding → ベクターDB保存</li>
+<li>② Retrieval: クエリ → Embedding → 類似度検索 → Top-K文書取得</li>
+<li>③ Generation: クエリ + 取得文書 → プロンプト構築 → LLM生成</li>
+<li><strong>RAGが解決する問題</strong></li>
+<li>知識カットオフ → 常に最新文書を参照</li>
+<li>ハルシネーション低減 → 根拠となるソースを提供</li>
+<li>大規模知識ベース → 文書全体をコンテキストに入れる必要なし</li>
+<li><strong>Naive RAGの課題</strong></li>
+<li>低品質なチャンキング、検索精度の限界、長文への対応困難</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="26" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="embedding--vector-db%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF">Embedding + Vector DBの仕組み</h1>
+<ul>
+<li><strong>Embeddingとは</strong></li>
+<li>テキストを意味を保ったまま数値ベクトル（例: 1536次元）に変換</li>
+<li>意味的に近いテキストは高次元空間で近い位置に配置</li>
+<li><strong>類似度検索</strong></li>
+<li>コサイン類似度 / ドット積 / ユークリッド距離</li>
+<li>k-NN（完全探索）vs ANN（近似最近傍）— HNSW, IVF-PQ</li>
+<li><strong>インデックス構造</strong></li>
+<li>HNSW（Hierarchical Navigable Small World）: 高速・高精度。メモリ大</li>
+<li>IVF-PQ: メモリ効率良。精度トレードオフあり</li>
+<li><strong>次元数の注意点</strong></li>
+<li>次元数↑ = 精度↑ コスト↑ 次元の呪いに注意</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="27" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%81%E3%83%A3%E3%83%B3%E3%82%AD%E3%83%B3%E3%82%B0%E6%88%A6%E7%95%A5">チャンキング戦略</h1>
+<ul>
+<li><strong>Fixed-size Chunking</strong></li>
+<li>固定文字数（例: 512トークン）でオーバーラップ付き分割</li>
+<li>実装簡単。意味の分断リスクあり</li>
+<li><strong>Semantic Chunking</strong></li>
+<li>意味の境界（段落・文章の転換点）で分割</li>
+<li>品質↑ 実装複雑↑</li>
+<li><strong>Hierarchical Chunking（Parent-Child）</strong></li>
+<li>大きなチャンク（Summary）と小さなチャンク（Detail）を二重インデックス</li>
+<li>検索は小チャンク → 提供は大チャンク</li>
+<li><strong>Sentence-Window Chunking</strong></li>
+<li>文単位でインデックス → 周辺N文をコンテキストとして提供</li>
+<li><strong>推奨</strong>: まずFixed-size（512/128 overlap）から始め、品質不足で改善</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="28" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="embedding%E3%83%A2%E3%83%87%E3%83%AB%E6%AF%94%E8%BC%83">Embeddingモデル比較</h1>
+<ul>
+<li><strong>OpenAI text-embedding-3-large</strong></li>
+<li>次元: 3072（削減可能）、MTEB 64.6、コスト: $0.13/1M tokens</li>
+<li>バランス良。OpenAI API利用中なら第一選択</li>
+<li><strong>Cohere embed-v3</strong></li>
+<li>多言語対応（100言語）、Reranking APIが優秀</li>
+<li><strong>BGE-M3（BAAI、オープン）</strong></li>
+<li>多言語・マルチ機能（Dense+Sparse+ColBERT）、セルフホスト可</li>
+<li><strong>E5-mistral-7b（オープン）</strong></li>
+<li>LLMベースEmbedding。高品質。推論コスト高</li>
+<li><strong>日本語特化</strong></li>
+<li>ruri-large（cl-nagoya）: 日本語MTEBでトップクラス</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="29" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%99%E3%82%AF%E3%82%BF%E3%83%BCdb%E6%AF%94%E8%BC%83">ベクターDB比較</h1>
+<ul>
+<li><strong>Pinecone</strong> — フルマネージド。スケール簡単。コスト高。ベンダーロック</li>
+<li><strong>Weaviate</strong> — OSS+マネージド。GraphQLクエリ。マルチモーダル対応</li>
+<li><strong>Qdrant</strong> — OSS。Rust製で高速。フィルタリング強力。セルフホスト最有力</li>
+<li><strong>pgvector（PostgreSQL拡張）</strong> — 既存PGインフラ活用。スケール限界あり</li>
+<li><strong>ChromaDB</strong> — 開発・プロトタイプ向け。ローカル起動が容易</li>
+<li><strong>Milvus</strong> — 大規模（10億ベクター）対応。Zilliz Cloud版あり</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="30" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<ul>
+<li><strong>選択基準</strong>: 既存インフラ → pgvector / 新規フルマネージド → Pinecone / セルフホスト本番 → Qdrant</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="31" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E9%AB%98%E5%BA%A6%E3%81%AA%E6%A4%9C%E7%B4%A2%E6%8A%80%E8%A1%93">高度な検索技術</h1>
+<ul>
+<li><strong>HyDE（Hypothetical Document Embeddings）</strong></li>
+<li>クエリ → LLMで仮想的な回答文を生成 → その文をEmbeddingして検索</li>
+<li>短いクエリの検索精度が大幅改善。レイテンシ・コスト増</li>
+<li><strong>Reranking</strong></li>
+<li>初回検索（Top-50）→ 再順序付け（Cross-encoder）→ Top-5を採用</li>
+<li>Cohere Rerank / BGE-Reranker が高精度</li>
+<li><strong>MMR（Maximal Marginal Relevance）</strong></li>
+<li>関連性と多様性のバランスを保った検索結果を返す</li>
+<li>類似した文書の重複取得を防ぐ</li>
+<li><strong>Self-Query Retrieval</strong></li>
+<li>LLMがクエリを解析し、メタデータフィルター付き検索クエリを生成</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="32" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="hybrid-searchdense--sparse">Hybrid Search（Dense + Sparse）</h1>
+<ul>
+<li><strong>Dense Search（ベクター検索）の弱点</strong></li>
+<li>新語・固有名詞・専門用語に弱い（学習データにない単語）</li>
+<li>例: 「AWS re:Invent 2025」「GPT-5o」などの新用語</li>
+<li><strong>Sparse Search（BM25キーワード検索）</strong></li>
+<li>TF-IDFベースの古典的全文検索。新語・固有名詞に強い</li>
+<li>意味的類似性を考慮しない</li>
+<li><strong>Hybrid Searchの仕組み</strong></li>
+<li>Dense スコア + Sparse スコア を RRF（Reciprocal Rank Fusion）で統合</li>
+<li>実装: Qdrant Hybrid / Weaviate Hybrid / Elasticsearch ELSER</li>
+<li><strong>推奨構成</strong></li>
+<li>プロダクションでは Hybrid Search をデフォルトに設定</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="33" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="advanced-rag%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3">Advanced RAGアーキテクチャ</h1>
+<ul>
+<li><strong>Modular RAG（モジュラーRAG）</strong></li>
+<li>Pre-Retrieval → Retrieval → Post-Retrieval → Generation の各段階を独立モジュール化</li>
+<li><strong>Pre-Retrieval改善</strong></li>
+<li>クエリ書き換え（Query Rewriting）</li>
+<li>クエリ分解（Sub-question Decomposition）</li>
+<li>HyDE</li>
+<li><strong>Post-Retrieval改善</strong></li>
+<li>Reranking（再順位付け）</li>
+<li>コンテキスト圧縮（LLMLingua — 重要部分のみ抽出）</li>
+<li><strong>Agentic RAG</strong></li>
+<li>RAGをエージェントのツールとして使用。必要に応じて反復検索</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="34" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="graphrag">GraphRAG</h1>
+<ul>
+<li><strong>GraphRAGとは</strong></li>
+<li>文書をチャンクではなく「知識グラフ（エンティティと関係）」として表現</li>
+<li>Microsoft Research が2024年に発表</li>
+<li><strong>通常RAGとの違い</strong></li>
+<li>通常RAG: 局所的な類似チャンクを検索</li>
+<li>GraphRAG: エンティティ間の関係・コミュニティサマリーを活用</li>
+<li><strong>強み</strong></li>
+<li>「全体像を要約して」などのグローバルクエリに強い</li>
+<li>複数文書にまたがる関係の推論が可能</li>
+<li><strong>弱み・注意点</strong></li>
+<li>インデックス構築コストが高い（GPT-4を大量使用）</li>
+<li>小規模文書セットには過剰</li>
+<li>適用場面: 研究論文・法律文書・複雑な技術文書</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="35" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%9E%E3%83%AB%E3%83%81%E3%83%A2%E3%83%BC%E3%83%80%E3%83%ABrag">マルチモーダルRAG</h1>
+<ul>
+<li><strong>マルチモーダルRAGとは</strong></li>
+<li>テキスト・画像・表・PDFの混合文書を統合的に検索・活用</li>
+<li><strong>実装アプローチ</strong></li>
+<li>① テキスト抽出: OCR（Tesseract/AWS Textract）でテキスト化してRAG</li>
+<li>② キャプション生成: LLMで画像/表をテキスト説明に変換してインデックス</li>
+<li>③ マルチベクター: テキスト・画像それぞれをEmbeddingして別々にインデックス</li>
+<li><strong>ColPali（推奨）</strong></li>
+<li>PDF/スキャン文書のページ全体をVision Embeddingで直接インデックス</li>
+<li>OCR不要。レイアウト情報を保持</li>
+<li><strong>ユースケース</strong></li>
+<li>技術マニュアル（図解含む）、財務報告書（表含む）、スライドセット</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="36" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="rag%E3%83%91%E3%82%A4%E3%83%97%E3%83%A9%E3%82%A4%E3%83%B3%E5%AE%9F%E8%A3%85">RAGパイプライン実装</h1>
+<ul>
+<li>LlamaIndexを使ったシンプルなRAGパイプライン</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="37" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="rag%E3%83%91%E3%82%A4%E3%83%97%E3%83%A9%E3%82%A4%E3%83%B3%E5%AE%9F%E8%A3%85%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">RAGパイプライン実装（コード例）</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">from</span> llama_index.core <span class="hljs-keyword">import</span> VectorStoreIndex, SimpleDirectoryReader
+<span class="hljs-keyword">from</span> llama_index.core.node_parser <span class="hljs-keyword">import</span> SentenceWindowNodeParser
+<span class="hljs-keyword">from</span> llama_index.embeddings.openai <span class="hljs-keyword">import</span> OpenAIEmbedding
+<span class="hljs-keyword">from</span> llama_index.llms.openai <span class="hljs-keyword">import</span> OpenAI
+
+<span class="hljs-comment"># 文書読み込み + Sentence-Window チャンキング</span>
+documents = SimpleDirectoryReader(<span class="hljs-string">&quot;./docs&quot;</span>).load_data()
+node_parser = SentenceWindowNodeParser.from_defaults(
+    window_size=<span class="hljs-number">3</span>,  <span class="hljs-comment"># 前後3文をコンテキストとして付与</span>
+    window_metadata_key=<span class="hljs-string">&quot;window&quot;</span>,
+)
+<span class="hljs-comment"># インデックス構築（Embedding + ベクターDB）</span>
+index = VectorStoreIndex.from_documents(
+    documents,
+    transformations=[node_parser],
+    embed_model=OpenAIEmbedding(model=<span class="hljs-string">&quot;text-embedding-3-large&quot;</span>),
+)
+<span class="hljs-comment"># クエリエンジン（Reranking付き）</span>
+query_engine = index.as_query_engine(
+    similarity_top_k=<span class="hljs-number">10</span>,   <span class="hljs-comment"># まず10件取得</span>
+    node_postprocessors=[CohereRerank(top_n=<span class="hljs-number">3</span>)],  <span class="hljs-comment"># 3件に絞る</span>
+)
+response = query_engine.query(<span class="hljs-string">&quot;LLMの評価指標は？&quot;</span>)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="38" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="rag%E8%A9%95%E4%BE%A1%E6%8C%87%E6%A8%99ragas">RAG評価指標（RAGAS）</h1>
+<ul>
+<li><strong>RAGAS（RAG Assessment）の4指標</strong></li>
+<li>① <strong>Faithfulness（忠実性）</strong>: 回答が取得文書の内容に基づいているか</li>
+<li>ハルシネーション検出の主要指標。高いほど良い（目標: 0.8以上）</li>
+<li>② <strong>Answer Relevancy（回答関連性）</strong>: 回答がクエリに関連しているか</li>
+<li>③ <strong>Context Precision（文脈精度）</strong>: 取得文書にどれだけ関連コンテキストが含まれるか</li>
+<li>④ <strong>Context Recall（文脈再現率）</strong>: 正解に必要なコンテキストをどれだけ取得できたか</li>
+<li><strong>実装</strong></li>
+<li>from ragas import evaluate → 自動評価パイプライン</li>
+<li>LLM-as-a-Judgeを活用（GPT-4oで各指標を評価）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="39" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="rag%E3%81%AE%E3%83%87%E3%83%90%E3%83%83%E3%82%B0%E3%83%BB%E6%94%B9%E5%96%84%E3%83%AB%E3%83%BC%E3%83%97">RAGのデバッグ・改善ループ</h1>
+<ul>
+<li><strong>問題診断フロー</strong></li>
+<li>品質が低い → Faithfulness低い？ → 検索は合ってるが生成が失敗 → プロンプト改善</li>
+<li>品質が低い → Context Recall低い？ → 必要な文書が取得できていない → チャンキング/検索改善</li>
+<li><strong>よくある原因と対策</strong></li>
+<li>チャンクサイズが大きすぎる → サイズを128〜256に縮小</li>
+<li>Embeddingモデルが不適切 → ドメイン特化モデルへ変更</li>
+<li>検索上位K件が少ない → Top-Kを増やしてRerankで絞る</li>
+<li>クエリが短い → HyDEで拡張</li>
+<li><strong>デバッグツール</strong>: LangSmith / Arize Phoenix でトレース可視化</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="40" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="rag%E3%82%A2%E3%83%B3%E3%83%81%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">RAGアンチパターン</h1>
+<ul>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>チャンクサイズを考えずに固定</strong>: 文書タイプによって最適サイズが異なる</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>Top-K=3で固定</strong>: クエリの複雑さに応じて動的に変更すべき</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>Embeddingモデルを変えずにデータ再利用</strong>: モデル変更時はインデックス再構築必須</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>検索結果を評価しない</strong>: Retrievalの品質を単体でモニタリングすべき</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>全文書を同じ優先度で扱う</strong>: ドキュメントの信頼性・鮮度に重み付けを</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>メタデータフィルターを使わない</strong>: 日付・部門・バージョンでフィルタリングが効果的</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>RAGだけで機密情報管理</strong>: アクセス制御（ABAC）を必ずRAGに組み込む</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="41" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="rag-%E3%81%84%E3%81%A4%E4%BD%BF%E3%81%86%E3%81%B9%E3%81%8D%E3%81%8B">RAG いつ使うべきか</h1>
+<ul>
+<li><strong>RAGが適している場面</strong></li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 最新情報が必要（ニュース・製品情報・法規制）</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 社内文書・ナレッジベースへの質問応答</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 根拠・ソースの提示が必要なユースケース</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 数百〜数百万文書の大規模知識ベース</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 知識が頻繁に更新される（再インデックスのみで対応可）</li>
+<li><strong>RAGが不適切な場面</strong></li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> 特定のスタイル・口調・形式の習得（→ Fine-tuning）</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> ドメイン専門用語の解釈（→ Fine-tuning）</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> 文書が存在しない純粋な推論タスク（→ プロンプト）</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> リアルタイム行動が必要（→ エージェント）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-paginate="true" data-class="lead" data-theme="gaia" lang="en-US" class="lead" data-marpit-pagination="42" style="--paginate:true;--class:lead;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="section-4-fine-tuning">Section 4: Fine-tuning</h1>
+<ul>
+<li>モデルの重みを更新してドメイン適応</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="43" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="fine-tuning%E3%81%A8%E3%81%AF%E3%83%BB%E3%81%AA%E3%81%9C%E5%BF%85%E8%A6%81%E3%81%8B">Fine-tuningとは・なぜ必要か</h1>
+<ul>
+<li><strong>Fine-tuningの定義</strong></li>
+<li>事前学習済みモデルの重みを、特定タスクのデータで追加学習すること</li>
+<li><strong>RAGでは解決できない問題</strong></li>
+<li>① 特定のトーン・スタイルの習得（企業ブランドボイス）</li>
+<li>② ドメイン専門用語の正確な解釈（医療・法律・金融）</li>
+<li>③ 特定のフォーマットへの一貫した出力</li>
+<li>④ 推論時にコンテキストを注入せずに知識を内包させたい</li>
+<li><strong>Fine-tuningの効果</strong></li>
+<li>小型モデル（7B）でGPT-4レベルの特定タスク精度を実現可能</li>
+<li>推論コスト削減（大型モデルから小型特化モデルへ）</li>
+<li>レイテンシ改善</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="44" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="fine-tuning%E3%81%AE%E7%A8%AE%E9%A1%9E">Fine-tuningの種類</h1>
+<ul>
+<li><strong>Full Fine-tuning</strong></li>
+<li>全パラメータを更新。最高精度。GPU要件が高く費用大</li>
+<li>GPT-3 175B → A100 80GB × 8台 × 数日</li>
+<li><strong>LoRA（Low-Rank Adaptation）</strong></li>
+<li>重みの変分を低ランク行列で近似。パラメータの1〜10%のみ更新</li>
+<li>A100 × 1台で7Bモデルをファインチューニング可能</li>
+<li><strong>QLoRA（Quantized LoRA）</strong></li>
+<li>4bit量子化 + LoRA。VRAM使用量をさらに削減</li>
+<li>24GB GPU（RTX 3090）で13Bモデルが可能</li>
+<li><strong>Adapter Tuning</strong></li>
+<li>モデルのレイヤー間に小さなアダプタ層を追加。モデル本体は凍結</li>
+<li><strong>推奨</strong>: ほぼ全ての用途でQLoRAから始める</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="45" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="lora%E8%A9%B3%E8%A7%A3">LoRA詳解</h1>
+<ul>
+<li><strong>LoRAの数学的仕組み</strong></li>
+<li>通常の重み更新: W → W + ΔW（ΔWは同じサイズ）</li>
+<li>LoRA: ΔW ≈ A × B（低ランク行列の積で近似）</li>
+<li>A: (d × r)、B: (r × k)、r &lt;&lt; d,k（典型的なr=4〜64）</li>
+<li><strong>パラメータ削減例（LLama-2 7B、r=8）</strong></li>
+<li>Full Fine-tuning: 7B パラメータ更新</li>
+<li>LoRA: 約8M パラメータのみ更新（約0.1%）</li>
+<li><strong>ハイパーパラメータ</strong></li>
+<li>rank（r）: 低いほど高速・省メモリ。高いほど表現力↑</li>
+<li>alpha（スケーリング係数）: 通常はrの2倍が出発点</li>
+<li>target_modules: attention層（q_proj, v_proj）が基本</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="46" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E8%A8%AD%E8%A8%88">データセット設計</h1>
+<ul>
+<li><strong>データ量の目安（Instruction Tuning）</strong></li>
+<li>最小: 100〜500サンプル（特定タスクの形式学習）</li>
+<li>推奨: 1,000〜10,000サンプル（品質のある多様なデータ）</li>
+<li>大規模: 100K+ サンプル（RLHF・汎用ファインチューニング）</li>
+<li><strong>データ品質が最重要</strong></li>
+<li>1,000件の高品質データ &gt; 10,000件の低品質データ</li>
+<li><strong>フォーマット（Instruction Following形式）</strong></li>
+<li>{&quot;instruction&quot;: &quot;〇〇してください&quot;, &quot;input&quot;: &quot;入力データ&quot;, &quot;output&quot;: &quot;期待される出力&quot;}</li>
+<li><strong>データソース</strong></li>
+<li>社内ログ・既存QA・専門家によるアノテーション・合成データ（GPT-4で生成）</li>
+<li><strong>注意点</strong>: テストデータは必ず分離（汚染防止）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="47" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="instruction-tuning-vs-rlhf-vs-dpo">Instruction Tuning vs RLHF vs DPO</h1>
+<ul>
+<li><strong>Instruction Tuning（SFT）</strong></li>
+<li>高品質なInstruction-Responseペアで教師あり学習</li>
+<li>最もシンプル。データ準備が鍵</li>
+<li><strong>RLHF（人間のフィードバックからの強化学習）</strong></li>
+<li>人間の選好データ → Reward Model学習 → PPOで最適化</li>
+<li>GPT-4・Claude・Llamaで採用。コスト・実装複雑度が高い</li>
+<li><strong>DPO（Direct Preference Optimization）</strong></li>
+<li>RLHFの簡略版。選好ペア（chosen/rejected）で直接最適化</li>
+<li>Reward Modelが不要。RLHFと同等の品質でシンプル</li>
+<li>→ <strong>現在の主流</strong>: SFT → DPO の2段階が標準的</li>
+<li><strong>ORPO / SimPO</strong>: DPOの後継。参照モデル不要でさらにシンプル</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="48" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="fine-tuning%E5%AE%9F%E8%A3%85qlora">Fine-tuning実装（QLoRA）</h1>
+<ul>
+<li>Hugging Face TRL + QLoRAによる実装例</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="49" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="fine-tuning%E5%AE%9F%E8%A3%85qlora%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">Fine-tuning実装（QLoRA）（コード例）</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> AutoModelForCausalLM, BitsAndBytesConfig
+<span class="hljs-keyword">from</span> peft <span class="hljs-keyword">import</span> LoraConfig, get_peft_model
+<span class="hljs-keyword">from</span> trl <span class="hljs-keyword">import</span> SFTTrainer, SFTConfig
+
+<span class="hljs-comment"># 4bit量子化でモデルをロード</span>
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=<span class="hljs-literal">True</span>,
+    bnb_4bit_quant_type=<span class="hljs-string">&quot;nf4&quot;</span>,
+    bnb_4bit_compute_dtype=torch.bfloat16,
+)
+model = AutoModelForCausalLM.from_pretrained(
+    <span class="hljs-string">&quot;meta-llama/Llama-3.1-8B&quot;</span>,
+    quantization_config=bnb_config,
+)
+<span class="hljs-comment"># LoRA設定</span>
+lora_config = LoraConfig(
+    r=<span class="hljs-number">16</span>, lora_alpha=<span class="hljs-number">32</span>,
+    target_modules=[<span class="hljs-string">&quot;q_proj&quot;</span>, <span class="hljs-string">&quot;v_proj&quot;</span>],
+    lora_dropout=<span class="hljs-number">0.05</span>,
+)
+model = get_peft_model(model, lora_config)
+<span class="hljs-comment"># 学習</span>
+trainer = SFTTrainer(
+    model=model,
+    train_dataset=dataset,
+    args=SFTConfig(output_dir=<span class="hljs-string">&quot;./output&quot;</span>, num_train_epochs=<span class="hljs-number">3</span>),
+)
+trainer.train()
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="50" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="50" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%A2%E3%83%87%E3%83%AB%E8%A9%95%E4%BE%A1%E3%81%A8%E9%81%8E%E5%AD%A6%E7%BF%92%E3%81%AE%E6%A4%9C%E5%87%BA">モデル評価と過学習の検出</h1>
+<ul>
+<li><strong>評価セットの重要性</strong></li>
+<li>学習データとは独立した評価セット（20%程度）を必ず用意</li>
+<li><strong>過学習のサイン</strong></li>
+<li>Train Loss↓ / Eval Loss↑ の乖離が広がる</li>
+<li>学習データと同じ表現しか生成しなくなる</li>
+<li><strong>過学習の対策</strong></li>
+<li>Early Stopping（Eval Lossが改善しなくなったら学習停止）</li>
+<li>Weight Decay（正則化）</li>
+<li>Dropout（LoRAのlora_dropout）</li>
+<li>データ拡張</li>
+<li><strong>評価メトリクス</strong></li>
+<li>生成タスク: ROUGE / BLEU / BERTScore</li>
+<li>分類タスク: Accuracy / F1</li>
+<li>ドメイン特化: LLM-as-a-Judge でカスタム評価</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="51" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="51" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E9%87%8F%E5%AD%90%E5%8C%96%E3%83%BB%E6%9C%80%E9%81%A9%E5%8C%96">量子化・最適化</h1>
+<ul>
+<li><strong>なぜ量子化するか</strong></li>
+<li>モデルサイズ・VRAM削減、推論速度向上</li>
+<li><strong>量子化手法比較</strong></li>
+<li>FP16（16bit）: 精度高。標準的。7B = 14GB VRAM</li>
+<li>GPTQ（4bit/8bit）: 高精度量子化。GPU推論向け</li>
+<li>AWQ（4bit）: 活性化を考慮した量子化。GPTQより高精度</li>
+<li>GGUF（旧GGML）: CPU/GPU混合推論。llama.cpp対応</li>
+<li><strong>VRAM早見表（7Bモデル）</strong></li>
+<li>FP16: 14GB / INT8: 7GB / INT4: 4GB</li>
+<li><strong>プロダクション推奨</strong></li>
+<li>GPU専有: AWQ 4bit / CPU含む: GGUF Q4_K_M</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="52" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="52" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E5%B1%95%E9%96%8B">プロダクション展開</h1>
+<ul>
+<li><strong>vLLM（推奨・GPU）</strong></li>
+<li>PagedAttentionによる高スループット推論サーバー</li>
+<li>OpenAI互換API。バッチ処理で最大スループット最大化</li>
+<li>Llama 3.1 8B: A100 1枚で〜2000 tokens/sec</li>
+<li><strong>TGI（Text Generation Inference）</strong></li>
+<li>Hugging Face製。Kubernetes対応。マネージドクラウドあり</li>
+<li><strong>Ollama</strong></li>
+<li>ローカル・開発環境向け。GGUF形式を簡単実行</li>
+<li><strong>クラウドマネージド</strong></li>
+<li>AWS SageMaker JumpStart / Bedrock Custom Model</li>
+<li>Google Vertex AI Fine-tuning</li>
+<li><strong>コスト考慮事項</strong></li>
+<li>専用GPU vs サーバーレス推論（AWS Lambda + GGUF）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="53" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="53" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="fine-tuning%E3%82%B3%E3%82%B9%E3%83%88%E8%A8%88%E7%AE%97">Fine-tuningコスト計算</h1>
+<ul>
+<li><strong>学習コスト（A100 80GB）</strong></li>
+<li>Llama-3.1 8B QLoRA（10K samples, 3 epoch）: 〜$5〜20</li>
+<li>Llama-3.1 70B QLoRA（10K samples）: 〜$50〜200</li>
+<li><strong>クラウドサービス比較</strong></li>
+<li>OpenAI Fine-tuning（GPT-3.5）: $8/1M training tokens</li>
+<li>AWS Bedrock（Titan）: $0.008/1K training tokens</li>
+<li>Modal.com / RunPod: $2〜4/h（A100）</li>
+<li><strong>推論コスト比較</strong></li>
+<li>GPT-4o: $5/1M input tokens</li>
+<li>Fine-tuned Llama-3.1 8B (vLLM): 〜$0.1/1M tokens（自社GPU）</li>
+<li><strong>ROI計算</strong>: 月間1B tokens → GPT-4o: $5000 / Llama-tuned: $100</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="54" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="54" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="rag-vs-fine-tuning-%E3%81%AE%E9%81%B8%E6%8A%9E%E5%9F%BA%E6%BA%96">RAG vs Fine-tuning の選択基準</h1>
+<ul>
+<li><strong>RAGを選ぶ場合</strong></li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 知識が頻繁に更新される（週次・日次）</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 情報のソース・根拠を提示する必要がある</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 大規模文書コーパス（100K+ ページ）</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> プロトタイプを素早く作りたい</li>
+<li><strong>Fine-tuningを選ぶ場合</strong></li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 特定スタイル・トーン・フォーマットの一貫性</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> ドメイン専門用語・略語の正確な解釈</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 知識が比較的静的（月次更新以下）</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 推論コストを長期的に削減したい</li>
+<li><strong>両方使う（推奨パターン）</strong></li>
+<li>Fine-tuned モデル + RAG = 最高品質</li>
+<li>例: カスタマイズされた医療モデル + 最新ガイドライン検索</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="55" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="55" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="fine-tuning%E3%82%A2%E3%83%B3%E3%83%81%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">Fine-tuningアンチパターン</h1>
+<ul>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>プロンプトで解決できる問題をFine-tuning</strong>: まずプロンプト改善を試みる</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>少量・低品質データでのFine-tuning</strong>: 100件の粗悪データは有害</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>評価データなしのFine-tuning</strong>: ベースラインとの比較なしでは効果測定不可</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>知識注入目的のFine-tuning</strong>: 知識は RAG で注入、Fine-tuningは挙動変更用</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>過学習を無視</strong>: Eval Lossを監視せずにエポック数を増やし続ける</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>Fine-tuning後に元モデルを廃棄</strong>: LoRAアダプタのみ保存し元モデルは再利用</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>セキュリティ考慮なし</strong>: 訓練データにPII・機密情報が含まれていないか確認必須</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="56" data-paginate="true" data-class="lead" data-theme="gaia" lang="en-US" class="lead" data-marpit-pagination="56" style="--paginate:true;--class:lead;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="section-5-ai%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E8%A8%AD%E8%A8%88">Section 5: AIエージェント設計</h1>
+<ul>
+<li>自律的推論とツール実行による複雑タスクの解決</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="57" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="57" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="ai%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%A8%E3%81%AF%E3%83%BB%E3%82%B3%E3%82%A2%E3%82%B3%E3%83%B3%E3%82%BB%E3%83%97%E3%83%88">AIエージェントとは・コアコンセプト</h1>
+<ul>
+<li><strong>AIエージェントの定義</strong></li>
+<li>目標を達成するために、ツールを使いながら複数ステップを自律的に実行するLLMシステム</li>
+<li><strong>エージェントの4つのコアコンポーネント</strong></li>
+<li>① <strong>LLM（Brain）</strong>: 推論・計画・意思決定の中枢</li>
+<li>② <strong>Tools（Hands）</strong>: 外部API・DB・コード実行・Web検索など</li>
+<li>③ <strong>Memory（Memory）</strong>: 短期（コンテキスト）+ 長期（外部ストレージ）</li>
+<li>④ <strong>Planner（Planning）</strong>: タスク分解・実行順序の決定</li>
+<li><strong>エージェントが必要な場面</strong></li>
+<li>単一のLLM呼び出しでは解決できない複雑なマルチステップタスク</li>
+<li>外部システム（DB・API・ファイルシステム）との連携が必要なタスク</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="58" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="58" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="react%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E8%A9%B3%E8%A7%A3">ReActパターン詳解</h1>
+<ul>
+<li><strong>ReAct（Reasoning + Acting）</strong></li>
+<li>思考（Thought）→ 行動（Action）→ 観察（Observation）のループ</li>
+<li>Yao et al., 2023 が提唱。最も広く使われるエージェントパターン</li>
+<li><strong>実行フロー例</strong>（「東京の天気は？」）</li>
+<li>Thought: 天気情報が必要。天気APIを呼ぶべきか</li>
+<li>Action: weather_tool(location='Tokyo')</li>
+<li>Observation: {'temp': 12, 'condition': 'Cloudy'}</li>
+<li>Thought: 取得できた。回答を生成できる</li>
+<li>Answer: 東京は12度で曇りです</li>
+<li><strong>強み</strong>: 推論過程が透明。デバッグしやすい</li>
+<li><strong>弱み</strong>: ステップ数に比例してコスト・レイテンシが増加</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="59" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="59" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="plan-and-execute%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">Plan-and-Executeパターン</h1>
+<ul>
+<li><strong>Plan-and-Executeとは</strong></li>
+<li>最初に全体計画を立て、各ステップを順次実行するパターン</li>
+<li>ReActとの違い: 事前に計画を立ててからアクション</li>
+<li><strong>フロー</strong></li>
+<li>① Planner LLM: タスクをN個のサブタスクに分解</li>
+<li>② Executor: 各サブタスクをツールで実行</li>
+<li>③ Replanner: 実行結果を見て計画を動的に修正</li>
+<li><strong>適用場面</strong></li>
+<li>長期的・複雑なタスク（レポート作成・コードリファクタリング）</li>
+<li>事前に全体像を把握する必要があるタスク</li>
+<li><strong>LangGraph実装</strong>: StateGraph + Plan node + Execute node</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="60" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="60" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="reflexion%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">Reflexionパターン</h1>
+<ul>
+<li><strong>Reflexionとは</strong></li>
+<li>実行結果を振り返り、自己評価・改善を繰り返すパターン</li>
+<li>Shinn et al., 2023 が提唱</li>
+<li><strong>フロー</strong></li>
+<li>① タスク実行（ReActベース）</li>
+<li>② Evaluator: 結果が目標を達成したか判定</li>
+<li>③ Reflector: 失敗原因の言語化（反省文の生成）</li>
+<li>④ 反省を踏まえて再実行</li>
+<li><strong>強み</strong></li>
+<li>初回失敗からの回復能力。品質↑</li>
+<li>コーディングタスク・推論問題で特に有効</li>
+<li><strong>弱み</strong></li>
+<li>反省ループが無限に続く可能性（最大試行回数の設定が必須）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="61" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="61" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="tool-use--function-calling%E8%A8%AD%E8%A8%88">Tool use / Function Calling設計</h1>
+<ul>
+<li><strong>Function Callingとは</strong></li>
+<li>LLMが自然言語の意図を解析し、適切な関数を選択・引数を生成する機能</li>
+<li>OpenAI / Anthropic / Gemini が標準でサポート</li>
+<li><strong>ツール定義の原則</strong></li>
+<li>① 単一責任: 1ツール = 1機能。複数の機能を詰め込まない</li>
+<li>② 明確な説明: ツールの目的・引数・戻り値を明確に記述</li>
+<li>③ エラー処理: ツールは必ずエラー状態を返せるよう設計</li>
+<li>④ 冪等性: 同じ引数での複数回実行が安全</li>
+<li><strong>ツールカテゴリ</strong></li>
+<li>読み取り専用（検索・取得）/ 副作用あり（書き込み・送信・実行）</li>
+<li>副作用ありツールは承認フローを組み込む</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="62" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="62" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%84%E3%83%BC%E3%83%AB%E8%A8%AD%E8%A8%88%E3%81%AE%E3%83%99%E3%82%B9%E3%83%88%E3%83%97%E3%83%A9%E3%82%AF%E3%83%86%E3%82%A3%E3%82%B9">ツール設計のベストプラクティス</h1>
+<ul>
+<li>Claude / OpenAI Function Callingのツール定義例</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="63" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="63" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%84%E3%83%BC%E3%83%AB%E8%A8%AD%E8%A8%88%E3%81%AE%E3%83%99%E3%82%B9%E3%83%88%E3%83%97%E3%83%A9%E3%82%AF%E3%83%86%E3%82%A3%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">ツール設計のベストプラクティス（コード例）</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-comment"># Anthropic Tool use 定義</span>
+tools = [
+    {
+        <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;search_documents&quot;</span>,
+        <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;社内ナレッジベースから関連文書を検索します。&quot;</span>
+                       <span class="hljs-string">&quot;最新の製品仕様・手順書・FAQの検索に使用してください。&quot;</span>,
+        <span class="hljs-string">&quot;input_schema&quot;</span>: {
+            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+            <span class="hljs-string">&quot;properties&quot;</span>: {
+                <span class="hljs-string">&quot;query&quot;</span>: {
+                    <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+                    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;検索クエリ。自然言語で記述&quot;</span>
+                },
+                <span class="hljs-string">&quot;top_k&quot;</span>: {
+                    <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+                    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;取得する文書数（1-10）&quot;</span>,
+                    <span class="hljs-string">&quot;default&quot;</span>: <span class="hljs-number">5</span>
+                }
+            },
+            <span class="hljs-string">&quot;required&quot;</span>: [<span class="hljs-string">&quot;query&quot;</span>]
+        }
+    }
+]
+<span class="hljs-comment"># エージェント呼び出し</span>
+response = client.messages.create(
+    model=<span class="hljs-string">&quot;claude-sonnet-4-6&quot;</span>,
+    tools=tools,
+    messages=[{<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;最新の返品ポリシーを教えて&quot;</span>}]
+)
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="64" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="64" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF%E6%AF%94%E8%BC%83">エージェントフレームワーク比較</h1>
+<ul>
+<li><strong>LangGraph（推奨・本番向け）</strong></li>
+<li>グラフベースのステートフルエージェント。Human-in-the-loop対応</li>
+<li>状態管理・分岐・ループが明示的。デバッグ・テストが容易</li>
+<li><strong>CrewAI</strong></li>
+<li>マルチエージェントフレームワーク。役割ベースのエージェント設計</li>
+<li>直感的API。プロトタイプ・小規模本番に適する</li>
+<li><strong>AutoGen（Microsoft）</strong></li>
+<li>マルチエージェント会話フレームワーク。コーディングエージェントに強み</li>
+<li><strong>Swarm（OpenAI）</strong></li>
+<li>シンプルなハンドオフベースマルチエージェント。軽量</li>
+<li><strong>選択基準</strong></li>
+<li>本番・複雑なフロー → LangGraph / プロトタイプ → CrewAI</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="65" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="65" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88-vs-%E3%83%9E%E3%83%AB%E3%83%81%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88">シングルエージェント vs マルチエージェント</h1>
+<ul>
+<li><strong>シングルエージェント</strong></li>
+<li>1つのLLMが全ツールにアクセスして全タスクを処理</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> シンプル・低コスト・デバッグ容易</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> ツール数↑でコンテキスト肥大・精度低下</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> 複雑なタスクを1エージェントで処理すると品質限界</li>
+<li><strong>マルチエージェント</strong></li>
+<li>専門化された複数エージェントが協調して問題を解決</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 複雑なタスクの並列処理・専門化</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 各エージェントのコンテキストを最小化</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> オーケストレーション複雑・コスト増・デバッグ難</li>
+<li><strong>判断基準</strong></li>
+<li>まずシングルエージェントで試す。限界に達したらマルチへ</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="66" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="66" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%9E%E3%83%AB%E3%83%81%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">マルチエージェントパターン</h1>
+<ul>
+<li><strong>Supervisorパターン（推奨）</strong></li>
+<li>Supervisor LLMが専門エージェントにタスクを割り当て・集約</li>
+<li>実装: LangGraph Supervisor、CrewAI Manager</li>
+<li><strong>Hierarchicalパターン</strong></li>
+<li>複数レベルのSupervisor（部門→チーム→個人）</li>
+<li>大規模・複雑なタスクに適合</li>
+<li><strong>Peer-to-Peerパターン</strong></li>
+<li>エージェント同士が直接通信・協調</li>
+<li>Blackboard: 共有状態を介してコミュニケーション</li>
+<li><strong>Specialistパターン</strong></li>
+<li>Research Agent / Writer Agent / Critic Agent を役割分担</li>
+<li>各エージェントは専門ツールセットのみ持つ（最小権限）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="67" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="67" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%A1%E3%83%A2%E3%83%AA%E7%AE%A1%E7%90%86">メモリ管理</h1>
+<ul>
+<li><strong>短期メモリ（コンテキストウィンドウ）</strong></li>
+<li>会話履歴をそのままコンテキストに格納</li>
+<li>制限: モデルのコンテキスト上限（128K〜200K tokens）</li>
+<li>対策: Message Summarization（古い会話を要約して圧縮）</li>
+<li><strong>長期メモリ（外部ストレージ）</strong></li>
+<li>エピソード記憶: 過去の会話・出来事（ベクターDB）</li>
+<li>セマンティック記憶: 事実・知識（RAG）</li>
+<li>手続き記憶: スキル・ルール（プロンプト or Fine-tuning）</li>
+<li><strong>メモリアーキテクチャ（MemGPT / Letta）</strong></li>
+<li>コア記憶（常時コンテキスト）+ 外部記憶（検索で取得）</li>
+<li>重要情報を自動的にコア記憶に書き込む</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="68" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="68" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%8F%E3%83%B3%E3%83%89%E3%83%AA%E3%83%B3%E3%82%B0%E3%83%BB%E3%83%AA%E3%83%88%E3%83%A9%E3%82%A4%E3%83%BB%E3%83%95%E3%82%A9%E3%83%BC%E3%83%AB%E3%83%90%E3%83%83%E3%82%AF">エラーハンドリング・リトライ・フォールバック</h1>
+<ul>
+<li><strong>エージェントで発生する主なエラー</strong></li>
+<li>ツール実行失敗（タイムアウト・API制限・権限エラー）</li>
+<li>LLM出力のパースエラー（不正なJSON・不正な引数）</li>
+<li>無限ループ（目標を達成できず繰り返す）</li>
+<li><strong>リトライ戦略</strong></li>
+<li>Exponential Backoff（1s → 2s → 4s → 8s）</li>
+<li>最大リトライ回数の設定（3回）</li>
+<li><strong>フォールバック</strong></li>
+<li>ツール失敗 → 代替ツール or ユーザーに確認</li>
+<li>精度不足 → より強力なモデルにフォールバック</li>
+<li><strong>無限ループ防止</strong></li>
+<li>最大ステップ数の強制終了（max_iterations=20）</li>
+<li>目標達成の明示的な終了条件</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="69" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="69" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3">エージェントのセキュリティ</h1>
+<ul>
+<li><strong>主要なセキュリティリスク</strong></li>
+<li>① <strong>Prompt Injection</strong>: 外部コンテンツが悪意ある指示を注入</li>
+<li>例: Webページの内容に「全ファイルを削除して」が埋め込まれている</li>
+<li>② <strong>権限昇格</strong>: エージェントが意図以上の権限でアクションを実行</li>
+<li>③ <strong>データ漏洩</strong>: 機密データをLLMのコンテキストに無防備に入れる</li>
+<li><strong>対策</strong></li>
+<li>最小権限の原則: 必要なツールのみ提供</li>
+<li>Human-in-the-loop: 副作用のある操作は人間の承認を要求</li>
+<li>入力サニタイズ: 外部コンテンツをコンテキストに入れる前に検証</li>
+<li>サンドボックス: コード実行はコンテナで隔離（gVisor / Docker）</li>
+<li>監査ログ: 全ツール呼び出しを記録・監視</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="70" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="70" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E8%A6%B3%E6%B8%AC%E5%8F%AF%E8%83%BD%E6%80%A7">エージェントの観測可能性</h1>
+<ul>
+<li><strong>エージェント観測可能性の重要性</strong></li>
+<li>「なぜその判断をしたか」がブラックボックスになりがち</li>
+<li>デバッグ・改善・コスト管理に不可欠</li>
+<li><strong>計測すべきメトリクス</strong></li>
+<li>推論ステップ数（steps per task）</li>
+<li>ツール呼び出し回数・成功率</li>
+<li>トークン使用量・コスト（step毎・task毎）</li>
+<li>タスク完了率・失敗分類</li>
+<li>エンドツーエンドレイテンシ</li>
+<li><strong>トレーシングツール</strong></li>
+<li>LangSmith: LangChain/LangGraph専用。ビジュアルトレース</li>
+<li>Langfuse: OSS。マルチフレームワーク対応</li>
+<li>Arize Phoenix: OSS。Jupyter統合・評価機能</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="71" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="71" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E5%AE%9F%E8%A3%85%E4%BE%8Blanggraph">エージェント実装例（LangGraph）</h1>
+<ul>
+<li>LangGraphによるReActエージェント実装</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="72" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="72" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E5%AE%9F%E8%A3%85%E4%BE%8Blanggraph%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">エージェント実装例（LangGraph）（コード例）</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">from</span> langgraph.graph <span class="hljs-keyword">import</span> StateGraph, END
+<span class="hljs-keyword">from</span> langgraph.prebuilt <span class="hljs-keyword">import</span> create_react_agent
+<span class="hljs-keyword">from</span> langchain_anthropic <span class="hljs-keyword">import</span> ChatAnthropic
+<span class="hljs-keyword">from</span> langchain_core.tools <span class="hljs-keyword">import</span> tool
+
+<span class="hljs-meta">@tool</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">search_web</span>(<span class="hljs-params">query: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">str</span>:
+    <span class="hljs-string">&quot;&quot;&quot;Web検索を実行して最新情報を取得します&quot;&quot;&quot;</span>
+    <span class="hljs-keyword">return</span> web_search_api(query)
+
+<span class="hljs-meta">@tool</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">run_python</span>(<span class="hljs-params">code: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">str</span>:
+    <span class="hljs-string">&quot;&quot;&quot;Pythonコードをサンドボックスで実行します&quot;&quot;&quot;</span>
+    <span class="hljs-keyword">return</span> sandbox.execute(code)
+
+llm = ChatAnthropic(model=<span class="hljs-string">&quot;claude-sonnet-4-6&quot;</span>)
+tools = [search_web, run_python]
+
+<span class="hljs-comment"># ReActエージェント生成</span>
+agent = create_react_agent(
+    model=llm,
+    tools=tools,
+    checkpointer=MemorySaver(),  <span class="hljs-comment"># 会話メモリ</span>
+)
+
+<span class="hljs-comment"># 実行</span>
+config = {<span class="hljs-string">&quot;configurable&quot;</span>: {<span class="hljs-string">&quot;thread_id&quot;</span>: <span class="hljs-string">&quot;session-1&quot;</span>}}
+<span class="hljs-keyword">for</span> chunk <span class="hljs-keyword">in</span> agent.stream(
+    {<span class="hljs-string">&quot;messages&quot;</span>: [{<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;Pythonの最新バージョンを調べてprint&quot;</span>}]},
+    config=config
+):
+    <span class="hljs-built_in">print</span>(chunk)
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="73" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="73" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E6%9C%80%E9%81%A9%E5%8C%96">エージェントのコスト最適化</h1>
+<ul>
+<li><strong>コスト増加の主な原因</strong></li>
+<li>不必要に強力なモデルを全ステップで使用</li>
+<li>ツール呼び出しの冗長なループ</li>
+<li>大量のコンテキスト（全履歴をそのまま渡す）</li>
+<li><strong>最適化戦略</strong></li>
+<li>① モデルルーティング: 簡単なステップは小型モデル（Haiku）、重要判断は大型モデル</li>
+<li>② コンテキスト圧縮: LLMLingua で履歴を圧縮（50〜80%削減）</li>
+<li>③ 早期終了: 目標達成を検出したら即座に終了</li>
+<li>④ キャッシュ: 同一ツール呼び出しのキャッシュ（TTL付き）</li>
+<li>⑤ バッチ処理: 独立したツール呼び出しを並列実行</li>
+<li><strong>目安</strong>: エージェントの平均コストを単一LLM呼び出しの5〜10倍以内に</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="74" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="74" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88-%E3%81%84%E3%81%A4%E4%BD%BF%E3%81%86%E3%81%B9%E3%81%8D%E3%81%8B">エージェント いつ使うべきか</h1>
+<ul>
+<li><strong>エージェントが適している場面</strong></li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 複数のツール・APIを組み合わせる必要がある</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 実行順序が事前に決定できない（動的な計画が必要）</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 繰り返し実行・自律的なサイクルが必要</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> コードの生成・実行・デバッグのサイクル</li>
+<li><strong>エージェントが不適切な場面</strong></li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> 単純なQ&amp;A → 通常のLLM呼び出し</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> 決まった手順のワークフロー → パイプラインで代替</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> レイテンシが厳しい（&lt;1秒）→ 事前キャッシュ・パイプライン</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> 高信頼性が要求（金融・医療判断）→ Human-in-the-loop必須</li>
+<li><strong>鉄則</strong>: エージェントはコストが高い。まず他の手段を試す</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="75" data-paginate="true" data-class="lead" data-theme="gaia" lang="en-US" class="lead" data-marpit-pagination="75" style="--paginate:true;--class:lead;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="section-6-%E8%A9%95%E4%BE%A1%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF">Section 6: 評価フレームワーク</h1>
+<ul>
+<li>「動いている」と「良い」は別物 — 測定なき改善はない</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="76" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="76" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="llm%E3%82%A2%E3%83%97%E3%83%AA%E8%A9%95%E4%BE%A1%E3%81%AE%E5%85%A8%E4%BD%93%E5%83%8F">LLMアプリ評価の全体像</h1>
+<ul>
+<li><strong>なぜ評価が難しいか</strong></li>
+<li>LLMの出力は確率的 → 同じ入力で毎回異なる出力</li>
+<li>正解が一意でない（自然言語の多様性）</li>
+<li><strong>評価の4次元</strong></li>
+<li>① <strong>Correctness（正確性）</strong>: 回答が事実として正しいか</li>
+<li>② <strong>Faithfulness（忠実性）</strong>: ソースに基づいているか（RAG）</li>
+<li>③ <strong>Relevance（関連性）</strong>: 質問に答えているか</li>
+<li>④ <strong>Safety（安全性）</strong>: 有害・偏見のある内容がないか</li>
+<li><strong>評価の分類</strong></li>
+<li>オフライン評価（開発・CI）vs オンライン評価（プロダクション）</li>
+<li>自動評価（LLM-as-a-Judge）vs 人間評価</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="77" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="77" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%AA%E3%83%95%E3%83%A9%E3%82%A4%E3%83%B3%E8%A9%95%E4%BE%A1-vs-%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E8%A9%95%E4%BE%A1">オフライン評価 vs オンライン評価</h1>
+<ul>
+<li><strong>オフライン評価（開発フェーズ）</strong></li>
+<li>目的: デプロイ前の品質チェック</li>
+<li>手法: ゴールデンデータセット（Q&amp;Aペア）を使った自動評価</li>
+<li>実装: pytest + LLM-as-a-Judge / RAGAS</li>
+<li>タイミング: CI/CDパイプラインに組み込み（PR毎に実行）</li>
+<li><strong>オンライン評価（プロダクション）</strong></li>
+<li>目的: 実ユーザーのインタラクションから品質を継続モニタリング</li>
+<li>手法: ユーザーフィードバック（<img class="emoji" draggable="false" alt="👍" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f44d.svg" data-marp-twemoji=""/><img class="emoji" draggable="false" alt="👎" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f44e.svg" data-marp-twemoji=""/>）、暗黙的シグナル（再質問率）</li>
+<li>実装: Langfuse / LangSmith でトレース + 非同期評価</li>
+<li><strong>統合アプローチ</strong></li>
+<li>オフライン（CI）でベースライン確保 + オンライン（本番）で継続改善</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="78" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="78" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="rag%E8%A9%95%E4%BE%A1ragas%E8%A9%B3%E8%A7%A3">RAG評価（RAGAS詳解）</h1>
+<ul>
+<li><strong>RAGAS フレームワークの4指標</strong></li>
+<li><strong>① Faithfulness</strong>: 回答内の各クレームが取得文書に裏付けられるか</li>
+<li>実装: LLM-as-a-Judge で「文書に書いてあるか？」を判定</li>
+<li>目標: 0.8以上（1.0が最高）</li>
+<li><strong>② Answer Relevancy</strong>: 回答がクエリの意図に沿っているか</li>
+<li>逆算評価: 回答から疑似クエリを生成し元クエリとの類似度を測定</li>
+<li><strong>③ Context Precision</strong>: Top-K文書中の関連文書の割合</li>
+<li>高い = 不要な文書が少ない（ノイズが少ない）</li>
+<li><strong>④ Context Recall</strong>: 正解に必要な情報が取得できているか</li>
+<li>低い = 重要な文書を取り逃がしている</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="79" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="79" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="llm-as-a-judge">LLM-as-a-Judge</h1>
+<ul>
+<li><strong>LLM-as-a-Judgeとは</strong></li>
+<li>評価者としてLLMを使い、別のLLMの出力を自動スコアリング</li>
+<li>人間評価の代替として急速に普及</li>
+<li><strong>実装パターン</strong></li>
+<li>① Single-model Judge: GPT-4oが「1〜5点で評価してください」</li>
+<li>② Reference-based: 正解例と比較して評価</li>
+<li>③ Pairwise: A vs B どちらが良いかをLLMに選ばせる</li>
+<li><strong>メリット</strong></li>
+<li>スケーラブル・低コスト・速い（人間比）</li>
+<li><strong>バイアスと落とし穴</strong></li>
+<li>Position Bias（順序で結果が変わる）</li>
+<li>Self-Enhancement Bias（自社モデルを高く評価する傾向）</li>
+<li>Verbosity Bias（長い回答を高評価する傾向）</li>
+<li>対策: 複数モデルでクロス評価</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="80" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="80" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E4%BA%BA%E9%96%93%E8%A9%95%E4%BE%A1%E3%81%AE%E3%83%99%E3%82%B9%E3%83%88%E3%83%97%E3%83%A9%E3%82%AF%E3%83%86%E3%82%A3%E3%82%B9">人間評価のベストプラクティス</h1>
+<ul>
+<li><strong>人間評価が必要な場面</strong></li>
+<li>安全性・倫理・文化的センシティビティ</li>
+<li>LLM評価の校正（Ground Truth構築）</li>
+<li>ビジネス要件への適合（ブランドボイス等）</li>
+<li><strong>評価設計原則</strong></li>
+<li>① 明確なルーブリック: 採点基準を数値化・例示付きで定義</li>
+<li>② ブラインド評価: 評価者がモデル名を知らない状態で評価</li>
+<li>③ Inter-annotator Agreement: 複数評価者の一致率を測定（Cohen's κ）</li>
+<li>④ サンプルの多様性: エッジケース・エラーケースを意図的に含める</li>
+<li><strong>ツール</strong></li>
+<li>Label Studio / Argilla（OSS）</li>
+<li>Scale AI / Toloka（外部アノテーション）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="81" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="81" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%B3%E3%83%BC%E3%83%89%E7%94%9F%E6%88%90%E8%A9%95%E4%BE%A1">コード生成評価</h1>
+<ul>
+<li><strong>HumanEval / MBPP</strong></li>
+<li>OpenAIのベンチマーク。Pythonコーディング問題164件</li>
+<li>評価: pass@k（k回試行のうち1回でも正解するか）</li>
+<li><strong>pass@k計算</strong></li>
+<li>pass@1: コードが1回で正解するか（品質）</li>
+<li>pass@10: 10回試行のうち1回でも正解するか（カバレッジ）</li>
+<li><strong>SWE-bench</strong></li>
+<li>実際のGitHubイシューを解決する能力を評価</li>
+<li>より実践的なベンチマーク。Claude 3.5が49.0%（2025年）</li>
+<li><strong>カスタム評価</strong></li>
+<li>ユニットテストの実行率 / Lint通過率 / セキュリティスキャン</li>
+<li>CI統合: 生成コードを実際にテストスイートで実行</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="82" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="82" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E8%A9%95%E4%BE%A1%E3%83%91%E3%82%A4%E3%83%97%E3%83%A9%E3%82%A4%E3%83%B3%E5%AE%9F%E8%A3%85">評価パイプライン実装</h1>
+<ul>
+<li>RAGAS + LangSmith による自動評価パイプライン</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="83" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="83" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E8%A9%95%E4%BE%A1%E3%83%91%E3%82%A4%E3%83%97%E3%83%A9%E3%82%A4%E3%83%B3%E5%AE%9F%E8%A3%85%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">評価パイプライン実装（コード例）</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">from</span> ragas <span class="hljs-keyword">import</span> evaluate
+<span class="hljs-keyword">from</span> ragas.metrics <span class="hljs-keyword">import</span> faithfulness, answer_relevancy, context_recall
+<span class="hljs-keyword">from</span> datasets <span class="hljs-keyword">import</span> Dataset
+<span class="hljs-keyword">from</span> langsmith <span class="hljs-keyword">import</span> Client
+
+<span class="hljs-comment"># 評価データセット</span>
+test_cases = [
+    {
+        <span class="hljs-string">&quot;question&quot;</span>: <span class="hljs-string">&quot;RAGとは何ですか？&quot;</span>,
+        <span class="hljs-string">&quot;answer&quot;</span>: rag_pipeline.query(<span class="hljs-string">&quot;RAGとは何ですか？&quot;</span>),
+        <span class="hljs-string">&quot;contexts&quot;</span>: rag_pipeline.retrieve(<span class="hljs-string">&quot;RAGとは何ですか？&quot;</span>),
+        <span class="hljs-string">&quot;ground_truth&quot;</span>: <span class="hljs-string">&quot;Retrieval-Augmented Generationの略で...&quot;</span>
+    },
+    <span class="hljs-comment"># ... 100件の評価ケース</span>
+]
+dataset = Dataset.from_list(test_cases)
+
+<span class="hljs-comment"># RAGAS 評価実行</span>
+result = evaluate(
+    dataset=dataset,
+    metrics=[faithfulness, answer_relevancy, context_recall],
+    llm=ChatOpenAI(model=<span class="hljs-string">&quot;gpt-4o&quot;</span>),  <span class="hljs-comment"># Judge LLM</span>
+)
+<span class="hljs-built_in">print</span>(result)
+<span class="hljs-comment"># {&#x27;faithfulness&#x27;: 0.83, &#x27;answer_relevancy&#x27;: 0.91, &#x27;context_recall&#x27;: 0.76}</span>
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="84" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="84" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E8%A9%95%E4%BE%A1%E3%83%84%E3%83%BC%E3%83%AB%E6%AF%94%E8%BC%83">評価ツール比較</h1>
+<ul>
+<li><strong>LangSmith（LangChain）</strong></li>
+<li>LangChain/LangGraph専用。ビジュアルトレース・プロンプト管理</li>
+<li>Datasets・Experiments機能でA/Bテストが容易</li>
+<li><strong>Braintrust</strong></li>
+<li>フレームワーク非依存。CI統合が得意</li>
+<li>GitHub Actions でPR毎に自動評価</li>
+<li><strong>Promptfoo</strong></li>
+<li>OSS。プロンプト評価・比較に特化</li>
+<li>YAML設定でシンプルに評価を定義</li>
+<li><strong>Langfuse（OSS、推奨）</strong></li>
+<li>OSS/セルフホスト可。マルチフレームワーク</li>
+<li>観測可能性 + 評価 + プロンプト管理を統合</li>
+<li><strong>選択基準</strong></li>
+<li>LangChain使用中 → LangSmith / OSS優先 → Langfuse</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="85" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="85" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="ab%E3%83%86%E3%82%B9%E3%83%88%E8%A8%AD%E8%A8%88">A/Bテスト設計</h1>
+<ul>
+<li><strong>LLMアプリのA/Bテスト</strong></li>
+<li>プロンプト変更・モデル変更・RAG設定変更の効果測定</li>
+<li><strong>設計原則</strong></li>
+<li>① 1変数ずつ変更（複数変更は効果が分離できない）</li>
+<li>② 統計的検定（t検定 / Mann-Whitney U）で有意差を確認</li>
+<li>③ サンプルサイズ計算（効果量・検出力から必要サンプル数を算出）</li>
+<li><strong>LLMアプリ特有の注意事項</strong></li>
+<li>ユーザーグループのランダム分割（Cookie/UserIDベース）</li>
+<li>評価メトリクスの事前定義（何をもって「良い」とするか）</li>
+<li>ロールバック計画（悪化した場合の即座の切り戻し）</li>
+<li><strong>シャドウテスト（推奨）</strong></li>
+<li>本番トラフィックを新旧両方に流し、ユーザーには既存版を返す</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="86" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="86" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E7%B6%99%E7%B6%9A%E7%9A%84%E8%A9%95%E4%BE%A1%E3%83%BB%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%A2%E3%83%8B%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0">継続的評価・プロダクションモニタリング</h1>
+<ul>
+<li><strong>モニタリングすべきKPI</strong></li>
+<li>品質メトリクス: Faithfulness / Relevancy（LLM-as-a-Judge）</li>
+<li>ユーザーシグナル: <img class="emoji" draggable="false" alt="👍" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f44d.svg" data-marp-twemoji=""/><img class="emoji" draggable="false" alt="👎" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f44e.svg" data-marp-twemoji=""/>率 / 再質問率 / セッション離脱率</li>
+<li>パフォーマンス: レイテンシ（P50/P95） / トークン使用量</li>
+<li>安全性: Toxicity / PII漏洩 / ポリシー違反率</li>
+<li><strong>アラート設定</strong></li>
+<li>Faithfulness &lt; 0.7 → Slack通知</li>
+<li>P95レイテンシ &gt; 5秒 → PagerDuty</li>
+<li>コスト急増（前日比150%超）→ 自動制限</li>
+<li><strong>改善サイクル</strong></li>
+<li>問題のあるトレースを自動サンプリング → 人間レビュー → ゴールデンセットに追加 → 評価で改善確認</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="87" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="87" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E8%A9%95%E4%BE%A1%E3%82%A2%E3%83%B3%E3%83%81%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">評価アンチパターン</h1>
+<ul>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>「なんとなく動いてる」で評価なしにリリース</strong>: 必ずベースラインを測定</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>評価データセットが小さすぎる（10件）</strong>: 最低100件、理想は1000件以上</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>Train/Testの汚染</strong>: 評価データを学習・プロンプト改善に使い回す</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>単一メトリクスへの過集中</strong>: Faithfulness高くてもRelevancy低い場合がある</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>LLM Judgeの結果を盲信</strong>: バイアスを理解した上でキャリブレーション</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>プロダクション後に評価しない</strong>: デプロイ後も継続的なモニタリングが必須</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>ベンチマークのGameplay</strong>: 評価セットを直接最適化するとオーバーフィット</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="88" data-paginate="true" data-class="lead" data-theme="gaia" lang="en-US" class="lead" data-marpit-pagination="88" style="--paginate:true;--class:lead;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="section-7-%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E8%A8%AD%E8%A8%88%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">Section 7: プロダクション設計パターン</h1>
+<ul>
+<li>本番環境で信頼性・スケーラビリティ・コスト効率を実現する</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="89" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="89" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="llm%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3">LLMアプリのシステムアーキテクチャ</h1>
+<ul>
+<li><strong>レイヤー構成</strong></li>
+<li>① <strong>クライアント層</strong>: Web/Mobile UI、API消費者</li>
+<li>② <strong>ゲートウェイ層</strong>: 認証・レート制限・ルーティング・ロギング</li>
+<li>③ <strong>オーケストレーション層</strong>: RAG/エージェントパイプライン</li>
+<li>④ <strong>LLM層</strong>: モデルAPI / セルフホストモデル</li>
+<li>⑤ <strong>データ層</strong>: ベクターDB・キャッシュ・永続ストレージ</li>
+<li>⑥ <strong>観測可能性層</strong>: ログ・メトリクス・トレース</li>
+<li><strong>設計原則</strong></li>
+<li>各層の責務を明確に分離</li>
+<li>LLM呼び出しを薄いラッパーで抽象化（モデル切り替えを容易に）</li>
+<li>全LLM呼び出しをログ・追跡（コスト管理・デバッグ）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="90" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="90" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="llm%E3%82%B2%E3%83%BC%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A4%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">LLMゲートウェイパターン</h1>
+<ul>
+<li><strong>LLMゲートウェイとは</strong></li>
+<li>アプリケーションとLLMプロバイダーの間に置く共通レイヤー</li>
+<li><strong>主な機能</strong></li>
+<li>① モデルルーティング: タスク種別で最適モデルへ自動振り分け</li>
+<li>簡単な分類 → Haiku($0.25/1M) / 複雑な推論 → Opus($15/1M)</li>
+<li>② プロバイダーフォールバック: OpenAI障害時にAnthropic/Geminiへ</li>
+<li>③ レート制限: ユーザー毎・チーム毎のクォータ管理</li>
+<li>④ 統合ログ: 全LLM呼び出しを一元記録</li>
+<li>⑤ コスト帰属: プロジェクト・チーム毎にコスト集計</li>
+<li><strong>実装選択肢</strong></li>
+<li>LiteLLM（OSS）/ Portkey / Helicone / Kong AI Gateway</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="91" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="91" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%BB%E3%83%9E%E3%83%B3%E3%83%86%E3%82%A3%E3%83%83%E3%82%AF%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%B3%E3%82%B0">セマンティックキャッシング</h1>
+<ul>
+<li><strong>通常のキャッシュ（完全一致）の限界</strong></li>
+<li>「東京の天気は？」と「東京の現在の気温は？」は意味が同じだが別クエリ</li>
+<li><strong>セマンティックキャッシュ</strong></li>
+<li>クエリをEmbeddingし、意味的に類似した過去のクエリ（コサイン距離 &gt; 閾値）があればキャッシュを返す</li>
+<li><strong>実装</strong></li>
+<li>GPTCache（OSS）/ LangChain CacheBackedEmbeddings</li>
+<li>Redis + pgvector でカスタム実装も可</li>
+<li><strong>効果・注意点</strong></li>
+<li>キャッシュヒット率30〜70%（同一ユーザーの繰り返し質問が多いドメイン）</li>
+<li>類似度閾値の設定が重要（高すぎると誤ヒット、低すぎるとヒット率低下）</li>
+<li>TTL設定でキャッシュの鮮度管理（時事情報は短いTTL）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="92" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="92" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B9%E8%A8%AD%E8%A8%88">ストリーミングレスポンス設計</h1>
+<ul>
+<li><strong>なぜストリーミングか</strong></li>
+<li>LLMは全文生成まで数秒〜数十秒かかる</li>
+<li>非ストリーミング: ユーザーが完成まで待つ（UX悪化）</li>
+<li>ストリーミング: 生成と同時にトークンを表示（体感速度↑）</li>
+<li><strong>実装方式</strong></li>
+<li>Server-Sent Events (SSE): シンプル・単方向。HTTP対応</li>
+<li>WebSocket: 双方向通信が必要な場合</li>
+<li><strong>バックエンド実装（FastAPI + SSE）</strong></li>
+<li>async for chunk in client.messages.stream(): yield chunk</li>
+<li><strong>フロントエンド</strong></li>
+<li>EventSource API または fetch with ReadableStream</li>
+<li><strong>注意点</strong></li>
+<li>ストリーミング中のエラーハンドリング（途中でコネクション切断）</li>
+<li>途中でコンテンツフィルタに引っかかった場合の処理</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="93" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="93" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%AC%E3%83%BC%E3%83%88%E5%88%B6%E9%99%90%E3%83%BB%E3%82%B3%E3%82%B9%E3%83%88%E7%AE%A1%E7%90%86">レート制限・コスト管理</h1>
+<ul>
+<li><strong>APIレート制限の種類</strong></li>
+<li>RPM（Requests Per Minute）/ TPM（Tokens Per Minute）/ RPD（Requests Per Day）</li>
+<li><strong>対策</strong></li>
+<li>Exponential Backoff: 429エラー時に指数的待機</li>
+<li>リトライキュー: 失敗リクエストをキューに戻し後で再試行</li>
+<li>バッチ処理: リアルタイム不要なタスクは夜間バッチに</li>
+<li><strong>コスト管理</strong></li>
+<li>プロンプトキャッシング（Anthropic）: 同じシステムプロンプトを繰り返す場合90%削減</li>
+<li>入力の圧縮: 不要なホワイトスペース・HTMLタグの除去</li>
+<li>モデルの格下げ: プロダクションで実際に必要なモデルサイズを測定</li>
+<li><strong>アラート</strong></li>
+<li>CloudWatch / Datadog でコスト閾値アラートを設定</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="94" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="94" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%95%E3%82%A9%E3%83%BC%E3%83%AB%E3%83%90%E3%83%83%E3%82%AF%E3%83%BB%E3%82%B5%E3%83%BC%E3%82%AD%E3%83%83%E3%83%88%E3%83%96%E3%83%AC%E3%83%BC%E3%82%AB%E3%83%BC">フォールバック・サーキットブレーカー</h1>
+<ul>
+<li><strong>LLM APIの可用性</strong></li>
+<li>主要プロバイダーでも月間SLA 99.9%（年間9時間の障害が許容される）</li>
+<li>マルチプロバイダー戦略が本番では必須</li>
+<li><strong>フォールバック戦略</strong></li>
+<li>Primary: GPT-4o → Fallback: Claude 3.5 Sonnet → Final: Gemini 1.5 Pro</li>
+<li>実装: LiteLLM の fallback設定で自動切り替え</li>
+<li><strong>サーキットブレーカーパターン</strong></li>
+<li>Closed（正常） → エラー率↑ → Open（全リクエストをフォールバックへ）</li>
+<li>→ Half-Open（定期的に回復テスト） → Closed（回復）</li>
+<li><strong>実装</strong>: tenacity（Python）/ circuitbreaker ライブラリ</li>
+<li>エラー閾値: 5回連続失敗でCircuit Open</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="95" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="95" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E7%AE%A1%E7%90%86">プロンプトバージョン管理</h1>
+<ul>
+<li><strong>プロンプトをGitで管理する</strong></li>
+<li>プロンプト変更 = コード変更と同等の影響範囲</li>
+<li>変更履歴・差分・ロールバックが必要</li>
+<li><strong>管理ツール</strong></li>
+<li>LangSmith Hub: LangChain統合。プル型で実行時に最新版取得</li>
+<li>Promptfoo: YAML定義 + Git管理 + CI評価</li>
+<li>Langfuse Prompt Management: バージョン管理 + 本番での使用率追跡</li>
+<li><strong>デプロイフロー</strong></li>
+<li>PR作成 → 自動評価（Promptfoo CI）→ レビュー → マージ → 段階ロールアウト</li>
+<li><strong>プロダクション取得パターン</strong></li>
+<li>実行時にレジストリから最新プロンプトを取得（コードデプロイ不要）</li>
+<li>フィーチャーフラグで即時ロールバック</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="96" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="96" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E8%A6%B3%E6%B8%AC%E5%8F%AF%E8%83%BD%E6%80%A7%E3%82%B9%E3%82%BF%E3%83%83%E3%82%AF">観測可能性スタック</h1>
+<ul>
+<li><strong>LLM観測可能性の3本柱</strong></li>
+<li><strong>① ログ（Logs）</strong></li>
+<li>全LLM呼び出しの入力・出力・レイテンシ・コストを記録</li>
+<li>構造化ログ（JSON）でクエリ・集計を容易に</li>
+<li><strong>② メトリクス（Metrics）</strong></li>
+<li>リクエスト数・エラー率・レイテンシ分布・コスト推移</li>
+<li>Prometheus + Grafana / Datadog</li>
+<li><strong>③ トレース（Traces）</strong></li>
+<li>エージェント・RAGパイプラインの各ステップを可視化</li>
+<li>Langfuse / LangSmith / OpenTelemetry</li>
+<li><strong>推奨スタック</strong></li>
+<li>Langfuse（OSS）+ Prometheus + Grafana</li>
+<li>または LangSmith（マネージド）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="97" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="97" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E6%88%A6%E7%95%A5">スケーリング戦略</h1>
+<ul>
+<li><strong>水平スケール</strong></li>
+<li>ステートレスなLLMオーケストレーション層はそのまま水平スケール可</li>
+<li>Kubernetes HPA（CPU/カスタムメトリクス）で自動スケール</li>
+<li><strong>非同期・バッチ処理</strong></li>
+<li>リアルタイム性不要なタスク（レポート生成・一括翻訳）は非同期キューへ</li>
+<li>Celery / AWS SQS + Lambda / Cloud Run Jobs</li>
+<li><strong>LLM推論のスケール（セルフホスト）</strong></li>
+<li>vLLM の Continuous Batching: 複数リクエストを効率的にバッチ処理</li>
+<li>Ray Serve: モデルのレプリカ管理・負荷分散</li>
+<li><strong>プロンプトキャッシュ（Anthropic）</strong></li>
+<li>同一システムプロンプトの繰り返し呼び出しで90%トークン削減</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="98" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="98" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3">セキュリティ</h1>
+<ul>
+<li><strong>入力バリデーション</strong></li>
+<li>最大トークン長の強制（コスト爆発防止）</li>
+<li>不正なJSON・特殊文字のサニタイズ</li>
+<li>Prompt Injection検出（LLMGuard / Rebuff）</li>
+<li><strong>出力フィルタリング</strong></li>
+<li>PII検出・マスキング（AWS Comprehend / Microsoft Presidio）</li>
+<li>コンテンツモデレーション（OpenAI Moderation API）</li>
+<li>構造化出力バリデーション（型チェック・範囲チェック）</li>
+<li><strong>認証・認可</strong></li>
+<li>API KeyのローテーションはSecret Manager（AWS Secrets Manager）</li>
+<li>ユーザー毎のRAGアクセス制御（ABAC）</li>
+<li><strong>監査</strong></li>
+<li>全LLM呼び出しをコンプライアンス目的で90日保持</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="99" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="99" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%B3%E3%82%B9%E3%83%88%E6%9C%80%E9%81%A9%E5%8C%96">コスト最適化</h1>
+<ul>
+<li><strong>モデル選択の最適化</strong></li>
+<li>タスク複雑度に応じたモデルルーティング（前述）</li>
+<li>週次でモデル別コスト対品質の再評価</li>
+<li><strong>プロンプト最適化</strong></li>
+<li>Anthropic プロンプトキャッシング: 繰り返しシステムプロンプトを90%削減</li>
+<li>入力の最小化: 余分なコンテキストを除去</li>
+<li>Few-shot例の最適化: 3〜5例で品質が飽和することが多い</li>
+<li><strong>インフラ最適化</strong></li>
+<li>セマンティックキャッシュ（30〜70%ヒット率で大幅削減）</li>
+<li>バッチ処理（OpenAI Batch API: 50%割引）</li>
+<li><strong>モニタリング</strong></li>
+<li>コスト異常検知アラート（前日比150%超で通知）</li>
+<li>ユーザー毎・機能毎のコスト帰属</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="100" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="100" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="llmops%E3%83%91%E3%82%A4%E3%83%97%E3%83%A9%E3%82%A4%E3%83%B3">LLMOpsパイプライン</h1>
+<ul>
+<li><strong>LLMOpsとは</strong></li>
+<li>LLMアプリの開発・デプロイ・監視の継続的なオペレーション</li>
+<li>MLOpsのLLM特化版</li>
+<li><strong>CI/CDパイプライン</strong></li>
+<li>① Pull Request → プロンプト変更の自動評価（Promptfoo）</li>
+<li>② マージ → コンテナビルド → ステージング自動デプロイ</li>
+<li>③ ステージングでの統合テスト → 品質ゲート通過で本番デプロイ</li>
+<li><strong>品質ゲート例</strong></li>
+<li>Faithfulness &gt; 0.75 / Latency P95 &lt; 3s / コスト増加率 &lt; 20%</li>
+<li><strong>プロンプト改善サイクル</strong></li>
+<li>本番ログ → 問題トレース特定 → プロンプト修正 → オフライン評価 → PRマージ → デプロイ</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="101" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="101" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E6%AF%94%E8%BC%83">デプロイパターン比較</h1>
+<ul>
+<li><strong>API（クラウドLLM）</strong></li>
+<li>ゼロインフラ管理。スケール自動。コストが高くなりやすい</li>
+<li>最初の選択肢。プロトタイプ〜中規模本番に適する</li>
+<li><strong>コンテナ（Kubernetes + vLLM）</strong></li>
+<li>セルフホスト。GPU管理が必要。大規模トラフィックでコスト効率が良い</li>
+<li>EKS/GKE + Karpenter でGPUノードの自動スケール</li>
+<li><strong>サーバーレス推論</strong></li>
+<li>AWS Lambda + Llama.cpp（GGUF）</li>
+<li>低トラフィック・バースト的な利用に最適</li>
+<li>コールドスタートに注意（Provisioned Concurrencyで緩和）</li>
+<li><strong>マネージドMLサービス</strong></li>
+<li>AWS SageMaker / Google Vertex AI Endpoints</li>
+<li>GPUインフラ管理をアウトソース。中間的なコスト</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="102" data-paginate="true" data-class="lead" data-theme="gaia" lang="en-US" class="lead" data-marpit-pagination="102" style="--paginate:true;--class:lead;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="section-8-%E8%A8%AD%E8%A8%88%E9%81%B8%E6%8A%9E%E3%82%AC%E3%82%A4%E3%83%89">Section 8: 設計選択ガイド</h1>
+<ul>
+<li>意思決定フレームワーク・まとめ</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="103" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="103" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%83%A6%E3%83%BC%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%B9%E5%88%A5%E3%82%A2%E3%83%97%E3%83%AD%E3%83%BC%E3%83%81%E6%AF%94%E8%BC%83%E3%83%9E%E3%83%88%E3%83%AA%E3%82%AF%E3%82%B9">ユースケース別アプローチ比較マトリクス</h1>
+<table>
+<thead>
+<tr>
+<th>ユースケース</th>
+<th>Prompt</th>
+<th>RAG</th>
+<th>Fine-tune</th>
+<th>Agent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>カスタマーサポートQ&amp;A</td>
+<td>○</td>
+<td>◎</td>
+<td>△</td>
+<td>△</td>
+</tr>
+<tr>
+<td>コード生成</td>
+<td>◎</td>
+<td>○</td>
+<td>◎</td>
+<td>○</td>
+</tr>
+<tr>
+<td>社内文書検索</td>
+<td>△</td>
+<td>◎</td>
+<td>✗</td>
+<td>○</td>
+</tr>
+<tr>
+<td>データ分析・レポート</td>
+<td>△</td>
+<td>○</td>
+<td>△</td>
+<td>◎</td>
+</tr>
+<tr>
+<td>特定スタイルの文章生成</td>
+<td>○</td>
+<td>△</td>
+<td>◎</td>
+<td>△</td>
+</tr>
+<tr>
+<td>複数APIの自動オーケストレーション</td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+<td>◎</td>
+</tr>
+<tr>
+<td>リアルタイムニュース要約</td>
+<td>✗</td>
+<td>◎</td>
+<td>✗</td>
+<td>○</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>◎=最適 ○=有効 △=限定的 ✗=不向き</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="104" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="104" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E6%AE%B5%E9%9A%8E%E7%9A%84%E5%AE%9F%E8%A3%85%E6%88%A6%E7%95%A5">段階的実装戦略</h1>
+<ul>
+<li><strong>フェーズ1: プロンプトエンジニアリング（Week 1〜2）</strong></li>
+<li>ゼロコストで品質を最大化。基礎評価セットを構築</li>
+<li>目標品質の60〜70%をここで達成</li>
+<li><strong>フェーズ2: RAG追加（Week 3〜6）</strong></li>
+<li>外部知識が必要な場合に追加。Naive RAGから開始</li>
+<li>評価メトリクス（RAGAS）を導入</li>
+<li><strong>フェーズ3: Fine-tuning検討（Month 2〜3）</strong></li>
+<li>プロンプト+RAGで品質目標に達しない場合のみ</li>
+<li>QLoRAで小規模実験 → 効果確認 → 本番化</li>
+<li><strong>フェーズ4: エージェント化（Month 3〜6）</strong></li>
+<li>複数ステップ・ツール連携が必要になった時点で検討</li>
+<li>シングルエージェントから開始</li>
+<li><strong>原則</strong>: 必要性が明確になってから次フェーズへ</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="105" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="105" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%B3%E3%82%B9%E3%83%88%E3%83%BB%E8%A4%87%E9%9B%91%E3%81%95%E3%83%BB%E6%80%A7%E8%83%BD%E3%81%AE%E7%B7%8F%E5%90%88%E6%AF%94%E8%BC%83">コスト・複雑さ・性能の総合比較</h1>
+<ul>
+<li><strong>実装コスト（開発工数）</strong></li>
+<li>Prompt &lt; RAG &lt; Fine-tuning &lt; Agent</li>
+<li>Prompt: 1〜2日 / RAG: 1〜2週 / Fine-tuning: 2〜4週 / Agent: 4〜8週</li>
+<li><strong>運用コスト（月次）</strong></li>
+<li>Prompt: 低 / RAG: 中（ベクターDB） / Fine-tuning: 中（推論インフラ） / Agent: 高（多回呼び出し）</li>
+<li><strong>性能ポテンシャル</strong></li>
+<li>特定タスク最高性能: Fine-tuning + RAG の組み合わせ</li>
+<li>最も広い適用範囲: Agent</li>
+<li><strong>デバッグ難易度</strong></li>
+<li>Prompt &lt; Fine-tuning &lt; RAG &lt; Agent</li>
+<li><strong>スケーリング容易性</strong></li>
+<li>Prompt &gt; RAG &gt; Fine-tuning &gt; Agent</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="106" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="106" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E5%A4%B1%E6%95%97%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">よくある失敗パターン</h1>
+<ul>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>評価なしでエージェント化</strong>: 単純なRAGで解ける問題にエージェントを使う</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>初日からFine-tuning</strong>: プロンプト改善を試みずに学習を始める</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>RAGの品質を測定しない</strong>: RAGAS等での定量評価なしに本番化</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>モノリシックエージェント</strong>: 全機能を1エージェントに詰め込む</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>セキュリティ後回し</strong>: Prompt Injectionやデータ漏洩を設計段階で考慮しない</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>コスト上限なし</strong>: Agentのループでコスト爆発（月$10K超の事故も）</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>プロンプトのハードコーディング</strong>: バージョン管理・実験なしで本番変更</li>
+<li><img class="emoji" draggable="false" alt="❌" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" data-marp-twemoji=""/> <strong>1つのLLMプロバイダーへの依存</strong>: フォールバックなしで可用性リスク</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="107" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="107" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E6%8A%80%E8%A1%93%E3%82%B9%E3%82%BF%E3%83%83%E3%82%AF%E9%81%B8%E6%8A%9E%E3%82%AC%E3%82%A4%E3%83%892026%E5%B9%B4%E7%89%88">技術スタック選択ガイド（2026年版）</h1>
+<ul>
+<li><strong>オーケストレーション</strong></li>
+<li>本番フロー: LangGraph / プロトタイプ: LangChain / マルチエージェント: CrewAI</li>
+<li><strong>RAG</strong></li>
+<li>フルマネージド: LlamaIndex Cloud / セルフホスト: LlamaIndex + Qdrant</li>
+<li><strong>ベクターDB</strong></li>
+<li>新規スタート: Qdrant（OSS） / PostgreSQL既存: pgvector</li>
+<li><strong>観測可能性</strong></li>
+<li>OSS優先: Langfuse / LangChain使用中: LangSmith</li>
+<li><strong>LLMゲートウェイ</strong></li>
+<li>OSS: LiteLLM / マネージド: Portkey</li>
+<li><strong>評価</strong></li>
+<li>CI統合: Promptfoo / 包括的: RAGAS + Langfuse</li>
+<li><strong>推論（セルフホスト）</strong></li>
+<li>本番GPU: vLLM / ローカル開発: Ollama</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="108" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="108" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E8%A8%AD%E8%A8%88%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%88">設計レビューチェックリスト</h1>
+<ul>
+<li><strong>アーキテクチャ</strong></li>
+<li>□ なぜこのアプローチを選んだか（他との比較）が文書化されている</li>
+<li>□ フォールバック戦略（LLM障害時）が定義されている</li>
+<li>□ コスト上限とアラートが設定されている</li>
+<li><strong>品質</strong></li>
+<li>□ 評価メトリクスと目標値が定義されている</li>
+<li>□ ゴールデンデータセット（100件以上）が用意されている</li>
+<li>□ CI/CDに自動評価が組み込まれている</li>
+<li><strong>セキュリティ</strong></li>
+<li>□ 入力バリデーション・サニタイズが実装されている</li>
+<li>□ 副作用のあるツールにHuman-in-the-loopが組み込まれている</li>
+<li>□ PII・機密データの扱いがレビューされている</li>
+<li><strong>観測可能性</strong></li>
+<li>□ 全LLM呼び出しのログ・トレースが取れている</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="109" data-paginate="true" data-theme="gaia" lang="en-US" data-marpit-pagination="109" style="--paginate:true;--theme:gaia;" data-marpit-pagination-total="109" data-size="16:9">
+<h1 id="%E5%8F%82%E8%80%83%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9">参考リソース</h1>
+<ul>
+<li><strong>フレームワーク・ツール</strong></li>
+<li><a href="https://langchain-ai.github.io/langgraph/">LangGraph</a> — ステートフルエージェント</li>
+<li><a href="https://docs.llamaindex.ai/">LlamaIndex</a> — RAGフレームワーク</li>
+<li><a href="https://langfuse.com/">Langfuse</a> — LLMオブザーバビリティ（OSS）</li>
+<li><a href="https://docs.ragas.io/">RAGAS</a> — RAG評価フレームワーク</li>
+<li><strong>学習リソース</strong></li>
+<li><a href="https://www.deeplearning.ai/courses/llmops/">Deep Learning AI — LLMOps</a></li>
+<li><a href="https://huggingface.co/docs/transformers/training">Hugging Face — Fine-tuning Guide</a></li>
+<li><a href="https://langchain-ai.github.io/langgraph/tutorials/">LangGraph チュートリアル</a></li>
+<li><strong>論文・レポート</strong></li>
+<li>RAGSurvey (Gao et al., 2023) / ReAct (Yao et al., 2023)</li>
+<li>LoRA (Hu et al., 2021) / GraphRAG (Edge et al., 2024)</li>
+</ul>
+</section>
+<script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{container;containerSize;containerObserver;svg;svgComputedStyle;svgPreserveAspectRatio="xMinYMid meet";wrapper;wrapperSize;wrapperObserver;constructor(){super();const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=this.shadowRoot.querySelector(`div[${e}]`)??void 0;const t=this.svg;this.svg=this.wrapper?.querySelector(`svg[${i}]`)??void 0,this.svg!==t&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=this.svg?.querySelector(`span[${n}]`)??void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame(()=>{t.style.display=""}))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){let t=Math.ceil(this.containerSize?.width??0);const e=Math.ceil(this.containerSize?.height??0);void 0!==this.dataset.downscaleOnly&&(t=Math.max(t,this.wrapperSize?.width??0));const i=this.svg?.querySelector(":scope > foreignObject");if(i?.setAttribute("width",`${t}`),i?.setAttribute("height",`${e}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${t} ${e}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=t<=0||e<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const r=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this._shadow()}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_shadow(){if(!this.shadowRoot)try{this.attachShadow({mode:"open"})}catch(t){if(!(t instanceof Error&&"NotSupportedError"===t.name))throw t}return this.shadowRoot}_update(){const t=this._shadow();if(t){const e=i?`<style>:host { ${i} }</style>`:"";let n="<slot></slot>";const{autoScaling:s}=this.dataset;if(void 0!==s){n=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===s?"data-downscale-only":""}>${n}</marp-auto-scaling>`}t.innerHTML=e+n}}};let o;const a=Symbol(),l=()=>o??(o=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is"),o);let c;const d="marpitSVGPolyfill:setZoomFactor,",h=Symbol(),g=Symbol();const p=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[v]:[],i={then:e=>(t?(async()=>{if(void 0===c){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise(t=>{i.addEventListener("load",()=>t())});i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),c=e.getImageData(5,5,1,1).data[3]<128}return c})().then(t=>{null==e||e(t?[v]:[])}):null==e||e([]),i)};return Object.assign(e,i)};let m,u;function v(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(d)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(u=i)}}catch(t){console.error(t)}}));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),t=>{var e,s,r,o;t.style.transform||(t.style.transform="translateZ(0)");const a=i||u||t.currentScale||1;m!==a&&(m=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(o=null===(r=n.y)||void 0===r?void 0:r.baseVal.value)&&void 0!==o?o:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}}),!1!==n&&Array.from(e.querySelectorAll("iframe"),({contentWindow:t})=>{null==t||t.postMessage(`${d}${n}`,"null"===window.origin?"*":window.origin)})}function w({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[h])return t[h];let e=!0;const i=()=>{e=!1,delete t[h]};Object.defineProperty(t,h,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await p()}finally{s=!0}})();const r=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(r)};return r(),i}(e);return t?(i(),()=>{}):i}m=1,u=void 0;const b=Symbol(),y=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,o=t[n].proto();l()&&o!==HTMLElement?i||customElements.define(s,r(o,{style:t[n].style}),{extends:n}):(i||customElements.define(s,r(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach(t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)}))}window[a]=!0})(e),e[b])return e[b];const i=w({target:e}),n=()=>{i(),delete e[b]},o=Object.assign(n,{cleanup:n,update:()=>y(e)});return Object.defineProperty(e,b,{configurable:!0,value:o}),o},f=document.currentScript;y(f?f.getRootNode():document)}();
+</script></foreignObject></svg></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@4.2.3/lib/bespoke.js.LICENSE.txt */
+!function(){"use strict";function e(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var t,n,r=(n||(n=1,t={from:function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),o=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,function(e){return"SCRIPT"!==e.nodeName}),a={},i=function(e,t){return(t=t||{}).index=o.indexOf(e),t.slide=e,t},s=function(e,t){a[e]=(a[e]||[]).filter(function(e){return e!==t})},c=function(e,t){return(a[e]||[]).reduce(function(e,n){return e&&!1!==n(t)},!0)},l=function(e,t){o[e]&&(n&&c("deactivate",i(n,t)),n=o[e],c("activate",i(n,t)))},d=function(e,t){var r=o.indexOf(n)+e;c(e>0?"next":"prev",i(n,t))&&l(r,t)},u={off:s,on:function(e,t){return(a[e]||(a[e]=[])).push(t),s.bind(null,e,t)},fire:c,slide:function(e,t){if(!arguments.length)return o.indexOf(n);c("slide",i(o[e],t))&&l(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:o,destroy:function(e){c("destroy",i(n,e)),a={}}};return(t||[]).forEach(function(e){e(u)}),n||l(0),u}}),t),o=e(r);const a=document.body,i=(...e)=>history.replaceState(...e),s="",c="presenter",l="next",d=["",c,l],u="bespoke-marp-",f=`data-${u}`,m=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},g=()=>a.dataset.bespokeView,p=e=>new URLSearchParams(location.search).get(e),v=(e,t={})=>{const n={location,setter:i,...t},r=new URLSearchParams(n.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?r.set(t,n):r.delete(t)}try{n.setter({...window.history.state??{}},"",m(r,n.location))}catch(e){console.error(e)}},h=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch{return!1}})(),y=e=>{try{return localStorage.getItem(e)}catch{return null}},b=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch{return!1}},w=e=>{try{return localStorage.removeItem(e),!0}catch{return!1}},x=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},k=e=>{e.parent.classList.add(`${u}parent`),e.slides.forEach(e=>e.classList.add(`${u}slide`)),e.on("activate",t=>{const n=`${u}active`,r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach(e=>{e.classList.remove(n),x(e,!0)}),o.add(n),x(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}})},$=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=o;e.setAttribute(`${f}fragment`,(a?"":"in")+"active");const i=`${f}current-fragment`;t===r&&n===o?e.setAttribute(i,"current"):e.removeAttribute(i)})}),e.fragmentIndex=o;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",a)};e.on("next",({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}}),e.on("prev",({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)}),o(0,0)},E=document,L=()=>!(!E.fullscreenEnabled&&!E.webkitFullscreenEnabled),S=()=>!(!E.fullscreenElement&&!E.webkitFullscreenElement),P=e=>{e.fullscreen=()=>{L()&&(async()=>{S()?(E.exitFullscreen||E.webkitExitFullscreen)?.call(E):((e=E.body)=>{(e.requestFullscreen||e.webkitRequestFullscreen)?.call(e)})()})()},document.addEventListener("keydown",t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!L()||(e.fullscreen(),t.preventDefault())})},_=`${u}inactive`,T=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout(()=>{r.add(_),o()},e),r.contains(_)&&(r.remove(_),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},I=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],M=e=>{e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(I.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})},O=e=>{window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("marp-auto-scaling, [data-auto-scaling], [data-marp-fitting]");t.setAttribute(`${f}load`,e?"":"hideable")}})},A=({interval:e=250}={})=>t=>{document.addEventListener("keydown",e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()});let n,r,o=0;t.parent.addEventListener("wheel",a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),e?.parentElement&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const c=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<12)return;r&&clearTimeout(r),r=setTimeout(()=>{n=0},e);const l=Date.now()-o<e,d=c<=n;if(n=c,l||d)return;let u;(a.deltaX>0||a.deltaY>0)&&(u="next"),(a.deltaX<0||a.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())})},C=(e=`.${u}osc`)=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${f}osc=${JSON.stringify(e)}]`).forEach(n)};return L()||n("fullscreen",e=>e.style.display="none"),h||n("presenter",e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."}),e=>{t.addEventListener("click",t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?e?.fullscreen():"presenter"===n&&e.openPresenterView()}}),e.parent.appendChild(t),e.on("activate",({index:t})=>{n("page",n=>n.textContent=`Page ${t+1} of ${e.slides.length}`)}),e.on("fragment",({index:t,fragments:r,fragmentIndex:o})=>{n("prev",e=>e.disabled=0===t&&0===o),n("next",n=>n.disabled=t===e.slides.length-1&&o===r.length-1)}),e.on("marp-active",()=>x(t,!1)),e.on("marp-inactive",()=>x(t,!0)),L()&&(e=>{for(const t of["","webkit"])E.addEventListener(t+"fullscreenchange",e)})(()=>n("fullscreen",e=>e.classList.toggle("exit",L()&&S())))}},D=e=>{window.addEventListener("message",t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}})};var N,B,q,K,F,j,V,U={exports:{}},X=(N||(N=1,U.exports=(B=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"],q=function(e){return String(e).replace(/[&<>"']/g,function(e){return"&"+K[e]+";"})},K={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},F="dangerouslySetInnerHTML",j={className:"class",htmlFor:"for"},V={},function(e,t){var n=[],r="";t=t||{};for(var o=arguments.length;o-- >2;)n.push(arguments[o]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(var a in t)!1!==t[a]&&null!=t[a]&&a!==F&&(r+=" "+(j[a]?j[a]:q(a))+'="'+q(t[a])+'"');r+=">"}if(-1===B.indexOf(e)){if(t[F])r+=t[F].__html;else for(;n.length;){var i=n.pop();if(i)if(i.pop)for(var s=i.length;s--;)n.push(i[s]);else r+=!0===V[i]?i:q(i)}r+=e?"</"+e+">":""}return V[r]=!0,r})),U.exports),H=e(X);const R=({children:e})=>H(null,null,...e),W=`${u}presenter-`,J={container:`${W}container`,dragbar:`${W}dragbar-container`,next:`${W}next`,nextContainer:`${W}next-container`,noteContainer:`${W}note-container`,noteWrapper:`${W}note-wrapper`,noteButtons:`${W}note-buttons`,infoContainer:`${W}info-container`,infoPage:`${W}info-page`,infoPageText:`${W}info-page-text`,infoPagePrev:`${W}info-page-prev`,infoPageNext:`${W}info-page-next`,noteButtonsBigger:`${W}note-bigger`,noteButtonsSmaller:`${W}note-smaller`,infoTime:`${W}info-time`,infoTimer:`${W}info-timer`},Y=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=J.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",H(R,null,H("div",{class:J.nextContainer},H("iframe",{class:J.next,src:"?view=next"})),H("div",{class:J.dragbar}),H("div",{class:J.noteContainer},H("div",{class:J.noteWrapper}),H("div",{class:J.noteButtons},H("button",{class:J.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),H("button",{class:J.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),H("div",{class:J.infoContainer},H("div",{class:J.infoPage},H("button",{class:J.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),H("span",{class:J.infoPageText}),H("button",{class:J.infoPageNext,tabindex:"-1",title:"Next"},"Next")),H("time",{class:J.infoTime,title:"Current time"}),H("time",{class:J.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(J.dragbar).addEventListener("mousedown",()=>{t=!0,r(J.dragbar).classList.add("active")}),window.addEventListener("mouseup",()=>{t=!1,r(J.dragbar).classList.remove("active")}),window.addEventListener("mousemove",e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(J.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)}),r(J.nextContainer).addEventListener("click",()=>e.next());const n=r(J.next),o=(a=n,(e,t)=>a.contentWindow?.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin));var a;n.addEventListener("load",()=>{r(J.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",({index:e,fragmentIndex:t})=>o(e,t))});const i=document.querySelectorAll(".bespoke-marp-note");i.forEach(e=>{e.addEventListener("keydown",e=>e.stopPropagation()),r(J.noteWrapper).appendChild(e)}),e.on("activate",()=>i.forEach(t=>t.classList.toggle("active",t.dataset.index==e.slide())));let s=0;const c=e=>{s=Math.max(-5,s+e),r(J.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},l=()=>c(1),d=()=>c(-1),u=r(J.noteButtonsBigger),f=r(J.noteButtonsSmaller);u.addEventListener("click",()=>{u.blur(),l()}),f.addEventListener("click",()=>{f.blur(),d()}),document.addEventListener("keydown",e=>{"+"===e.key&&l(),"-"===e.key&&d()},!0),e.on("activate",({index:t})=>{r(J.infoPageText).textContent=`${t+1} / ${e.slides.length}`});const m=r(J.infoPagePrev),g=r(J.infoPageNext);m.addEventListener("click",t=>{m.blur(),e.prev({fragment:!t.shiftKey})}),g.addEventListener("click",t=>{g.blur(),e.next({fragment:!t.shiftKey})}),e.on("fragment",({index:t,fragments:n,fragmentIndex:r})=>{m.disabled=0===t&&0===r,g.disabled=t===e.slides.length-1&&r===n.length-1});let p=new Date;const v=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-p.getTime(),o=t(n/1e3%60),a=t(n/1e3/60%60),i=t(n/36e5%24);r(J.infoTime).textContent=e.toLocaleTimeString(),r(J.infoTimer).textContent=`${i}:${a}:${o}`};v(),setInterval(v,250),r(J.infoTimer).addEventListener("click",()=>{p=new Date})})(e)},z=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:G},presenterUrl:{enumerable:!0,get:Q}}),h&&document.addEventListener("keydown",t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())})};function G(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,W+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function Q(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),m(e)}const Z=e=>{const t=g();return t===l&&e.appendChild(document.createElement("span")),{[s]:z,[c]:Y,[l]:D}[t]},ee=e=>{e.on("activate",t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach(n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"})})},te=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},ne=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{let n=t.fragment?te(p("f")||""):null;((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),c=o(0,r(n||0,a[s].length-1));s===e.slide()&&c===e.fragmentIndex||e.slide(s,{fragment:c})})((()=>{if(location.hash){const[t]=location.hash.slice(1).split(":~:");if(/^\d+$/.test(t))return(te(t)??1)-1;const r=document.getElementById(t)||document.querySelector(`a[name="${CSS.escape(t)}"]`);if(r){const{length:t}=e.slides;for(let o=0;o<t;o+=1)if(e.slides[o].contains(r)){const t=e.fragments?.[o],a=r.closest("[data-marpit-fragment]");if(t&&a){const e=t.indexOf(a);e>=0&&(n=e)}return o}}}return 0})(),n)};e.on("fragment",({index:e,fragmentIndex:r})=>{n||v({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})}),setTimeout(()=>{o(),window.addEventListener("hashchange",()=>r(()=>{o({fragment:!1}),v({f:void 0})})),window.addEventListener("popstate",()=>{n||r(()=>o())}),n=!1},0)}},re=(e={})=>{const t=e.key||window.history.state?.marpBespokeSyncKey||Math.random().toString(36).slice(2),n=`bespoke-marp-sync-${t}`;var r;r={marpBespokeSyncKey:t},v({},{setter:(e,...t)=>i({...e,...r},...t)});const o=()=>{const e=y(n);return e?JSON.parse(e):Object.create(null)},a=e=>{const t=o(),r={...t,...e(t)};return b(n,JSON.stringify(r)),r},s=()=>{window.removeEventListener("pageshow",s),a(e=>({reference:(e.reference||0)+1}))};return e=>{s(),Object.defineProperty(e,"syncKey",{value:t,enumerable:!0});let r=!0;setTimeout(()=>{e.on("fragment",e=>{r&&a(()=>({index:e.index,fragmentIndex:e.fragmentIndex}))})},0),window.addEventListener("storage",t=>{if(t.key===n&&t.oldValue&&t.newValue){const n=JSON.parse(t.oldValue),o=JSON.parse(t.newValue);if(n.index!==o.index||n.fragmentIndex!==o.fragmentIndex)try{r=!1,e.slide(o.index,{fragment:o.fragmentIndex,forSync:!0})}finally{r=!0}}});const i=()=>{const{reference:e}=o();void 0===e||e<=1?w(n):a(()=>({reference:e-1}))};window.addEventListener("pagehide",e=>{e.persisted&&window.addEventListener("pageshow",s),i()}),e.on("destroy",i)}},{PI:oe,abs:ae,sqrt:ie,atan2:se}=Math,ce={passive:!0},le=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",({touches:e})=>{r=1===e.length?a(e[0]):void 0},ce),o.addEventListener("touchmove",e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=ie(ae(n)**2+ae(o)**2),r.radian=se(n,o)}else r=void 0}),o.addEventListener("touchend",o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+oe)%(2*oe)-oe;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}},ce)},de=new Map;de.clear(),de.set("none",{backward:{both:void 0,incoming:void 0,outgoing:void 0},forward:{both:void 0,incoming:void 0,outgoing:void 0}});const ue={both:"",outgoing:"outgoing-",incoming:"incoming-"},fe={forward:"",backward:"-backward"},me=e=>`--marp-bespoke-transition-animation-${e}`,ge=e=>`--marp-transition-${e}`,pe=me("name"),ve=me("duration"),he=e=>new Promise(t=>{const n={},r=document.createElement("div"),o=e=>{r.remove(),t(e)};r.addEventListener("animationstart",()=>o(n)),Object.assign(r.style,{animationName:e,animationDuration:"1s",animationFillMode:"both",animationPlayState:"paused",position:"absolute",pointerEvents:"none"}),document.body.appendChild(r);const a=getComputedStyle(r).getPropertyValue(ge("duration"));a&&Number.parseFloat(a)>=0&&(n.defaultDuration=a),((e,t)=>{requestAnimationFrame(()=>{e.style.animationPlayState="running",requestAnimationFrame(()=>t(void 0))})})(r,o)}),ye=async e=>de.has(e)?de.get(e):(e=>{const t={},n=[];for(const[r,o]of Object.entries(ue))for(const[a,i]of Object.entries(fe)){const s=`marp-${o}transition${i}-${e}`;n.push(he(s).then(e=>{t[a]=t[a]||{},t[a][r]=e?{...e,name:s}:void 0}))}return Promise.all(n).then(()=>t)})(e).then(t=>(de.set(e,t),t)),be=e=>Object.values(e).flatMap(Object.values).every(e=>!e),we=(e,{type:t,backward:n})=>{const r=e[n?"backward":"forward"],o=(()=>{const e=r[t],n=e=>({[pe]:e.name});if(e)return n(e);if(r.both){const e=n(r.both);return"incoming"===t&&(e[me("direction")]="reverse"),e}})();return!o&&n?we(e,{type:t,backward:!1}):o||{[pe]:"__bespoke_marp_transition_no_animation__"}},xe=e=>{if(e)try{const t=JSON.parse(e);if((e=>{if("object"!=typeof e)return!1;const t=e;return"string"==typeof t.name&&(void 0===t.duration||"string"==typeof t.duration)})(t))return t}catch{}},ke="_tSId",$e="_tA",Ee="bespoke-marp-transition-warming-up",Le=window.matchMedia("(prefers-reduced-motion: reduce)"),Se="__bespoke_marp_transition_reduced_outgoing__",Pe="__bespoke_marp_transition_reduced_incoming__",_e={forward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}},backward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}}},Te=e=>{if(!document.startViewTransition)return;const t=t=>(void 0!==t&&(e._tD=t),e._tD);let n;t(!1),((...e)=>{CSS.registerProperty({name:ge("duration"),syntax:"<time>",inherits:!0,initialValue:"-1s"});const t=[...new Set(e).values()];return Promise.all(t.map(e=>ye(e))).then()})(...Array.from(document.querySelectorAll("section[data-transition], section[data-transition-back]")).flatMap(e=>[e.dataset.transition,e.dataset.transitionBack].flatMap(e=>{const t=xe(e);return[t?.name,t?.builtinFallback?`__builtin__${t.name}`:void 0]}).filter(e=>!!e))).then(()=>{document.querySelectorAll("style").forEach(e=>{e.innerHTML=e.innerHTML.replace(/--marp-transition-duration:[^;}]*[;}]/g,e=>e.slice(0,-1)+"!important"+e.slice(-1))})});const r=(n,{back:r,cond:o})=>a=>{const i=t();if(i)return!!a[$e]||!("object"!=typeof i||(i.skipTransition(),!a.forSync));if(!o(a))return!0;const s=e.slides[e.slide()],c=()=>a.back??r,l="data-transition"+(c()?"-back":""),d=s.querySelector(`section[${l}]`);if(!d)return!0;const u=xe(d.getAttribute(l)??void 0);return!u||((async(e,{builtinFallback:t=!0}={})=>{let n=await ye(e);if(be(n)){if(!t)return;return n=await ye(`__builtin__${e}`),be(n)?void 0:n}return n})(u.name,{builtinFallback:u.builtinFallback}).then(e=>{if(!e){t(!0);try{n(a)}finally{t(!1)}return}let r=e;Le.matches&&(console.warn("Use a constant animation to transition because preferring reduced motion by viewer has detected."),r=_e);const o=document.getElementById(ke);o&&o.remove();const i=document.createElement("style");i.id=ke,document.head.appendChild(i),((e,t)=>{const n=[`:root{${ge("direction")}:${t.backward?-1:1};}`,":root:has(.bespoke-marp-inactive){cursor:none;}"],r=t=>{const n=e[t].both?.defaultDuration||e[t].outgoing?.defaultDuration||e[t].incoming?.defaultDuration;return"forward"===t?n:n||r("forward")},o=t.duration||r(t.backward?"backward":"forward");void 0!==o&&n.push(`::view-transition-group(*){${ve}:${o};}`);const a=e=>Object.entries(e).map(([e,t])=>`${e}:${t};`).join("");return n.push(`::view-transition-old(root){${a(we(e,{...t,type:"outgoing"}))}}`,`::view-transition-new(root){${a(we(e,{...t,type:"incoming"}))}}`),n})(r,{backward:c(),duration:u.duration}).forEach(e=>i.sheet?.insertRule(e));const s=document.documentElement.classList;s.add(Ee);let l=!1;const d=()=>{l||(n(a),l=!0,s.remove(Ee))},f=()=>{t(!1),i.remove(),s.remove(Ee)};try{t(!0);const e=document.startViewTransition(d);t(e),e.finished.finally(f)}catch(e){console.error(e),d(),f()}}),!1)};e.on("prev",r(t=>e.prev({...t,[$e]:!0}),{back:!0,cond:e=>e.index>0&&!((e.fragment??1)&&n.fragmentIndex>0)})),e.on("next",r(t=>e.next({...t,[$e]:!0}),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout(()=>{e.on("slide",r(t=>e.slide(t.index,{...t,[$e]:!0}),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))},0),e.on("fragment",e=>{n=e})};let Ie;const Me=()=>(void 0===Ie&&(Ie="wakeLock"in navigator&&navigator.wakeLock),Ie),Oe=async()=>{const e=Me();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},Ae=async()=>{if(!Me())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&Oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await Oe(),e};((e=document.getElementById(":$p"))=>{(()=>{const e=p("view");a.dataset.bespokeView=e===l||e===c?e:""})();const t=(e=>{const t=p(e);return v({[e]:void 0}),t})("sync")||void 0;o.from(e,((...e)=>{const t=d.findIndex(e=>g()===e);return e.map(([e,n])=>e[t]&&n).filter(e=>e)})([[1,1,0],re({key:t})],[[1,1,1],Z(e)],[[1,1,0],M],[[1,1,1],k],[[1,0,0],T()],[[1,1,1],O],[[1,1,1],ne({history:!1})],[[1,1,0],A()],[[1,1,0],P],[[1,0,0],ee],[[1,1,0],le()],[[1,0,0],C()],[[1,0,0],Te],[[1,1,1],$],[[1,1,0],Ae]))})()}();</script></body></html>

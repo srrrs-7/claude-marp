@@ -124,10 +124,13 @@
 				"**publicAccessCidrs**: 特定IPのみ許可（例: `[\"203.0.113.0/24\"]`）",
 				"**試験TIP**: プライベートエンドポイントのみ設定 → kubectl実行にはVPC内踏み台が必要",
 				"→ 侵害時のブラストラジウスを最小化するためプライベートエンドポイント推奨"
-			],
+			]
+		},
+		{
+			"title": "EKS APIエンドポイントのアクセス制御（コード例）",
+			"content": [],
 			"code": "# エンドポイントをプライベートのみに変更\naws eks update-cluster-config \\\n  --name my-cluster \\\n  --resources-vpc-config \\\n    endpointPublicAccess=false,\\\n    endpointPrivateAccess=true",
-			"codeLanguage": "bash",
-			"layout": "default"
+			"codeLanguage": "bash"
 		},
 		{
 			"title": "マネージドノードグループ vs Fargate",
@@ -142,10 +145,13 @@
 		},
 		{
 			"title": "クラスター作成のセキュリティ設定",
-			"content": ["eksctlを使った最小権限・セキュアなクラスター作成の例"],
+			"content": ["eksctlを使った最小権限・セキュアなクラスター作成の例"]
+		},
+		{
+			"title": "クラスター作成のセキュリティ設定（コード例）",
+			"content": [],
 			"code": "# eksctl cluster config (secure)\napiVersion: eksctl.io/v1alpha5\nkind: ClusterConfig\nmetadata:\n  name: secure-cluster\n  region: ap-northeast-1\nvpc:\n  clusterEndpoints:\n    privateAccess: true\n    publicAccess: false\nsecretsEncryption:\n  keyARN: arn:aws:kms:...\nmanagedNodeGroups:\n  - name: ng-1\n    instanceType: m5.large\n    privateNetworking: true",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "EKS バージョン管理とパッチ戦略",
@@ -228,10 +234,13 @@
 		},
 		{
 			"title": "aws-auth ConfigMap 設定例",
-			"content": ["IAMロールをK8s グループにマッピングする設定"],
+			"content": ["IAMロールをK8s グループにマッピングする設定"]
+		},
+		{
+			"title": "aws-auth ConfigMap 設定例（コード例）",
+			"content": [],
 			"code": "# kubectl edit configmap aws-auth -n kube-system\napiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: aws-auth\n  namespace: kube-system\ndata:\n  mapRoles: |\n    - rolearn: arn:aws:iam::123:role/EKSNodeRole\n      username: system:node:{{EC2PrivateDNSName}}\n      groups:\n        - system:bootstrappers\n        - system:nodes\n    - rolearn: arn:aws:iam::123:role/DevOpsRole\n      username: devops-user\n      groups:\n        - developers",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "Kubernetes RBAC 概要",
@@ -247,17 +256,23 @@
 		},
 		{
 			"title": "Role・ClusterRole 設定例",
-			"content": ["Podの読み取り専用ロールとClusterRoleの例"],
+			"content": ["Podの読み取り専用ロールとClusterRoleの例"]
+		},
+		{
+			"title": "Role・ClusterRole 設定例（コード例）",
+			"content": [],
 			"code": "# Namespace限定のRole\napiVersion: rbac.authorization.k8s.io/v1\nkind: Role\nmetadata:\n  name: pod-reader\n  namespace: production\nrules:\n- apiGroups: [\"\"]\n  resources: [\"pods\", \"pods/log\"]\n  verbs: [\"get\", \"list\", \"watch\"]\n---\n# クラスター全体のClusterRole\napiVersion: rbac.authorization.k8s.io/v1\nkind: ClusterRole\nmetadata:\n  name: node-reader\nrules:\n- apiGroups: [\"\"]\n  resources: [\"nodes\"]\n  verbs: [\"get\", \"list\", \"watch\"]",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "RoleBinding・ClusterRoleBinding",
-			"content": ["ユーザー・グループ・ServiceAccountへのロール紐付け"],
+			"content": ["ユーザー・グループ・ServiceAccountへのロール紐付け"]
+		},
+		{
+			"title": "RoleBinding・ClusterRoleBinding（コード例）",
+			"content": [],
 			"code": "# RoleBinding: Namespace内でRoleを紐付け\napiVersion: rbac.authorization.k8s.io/v1\nkind: RoleBinding\nmetadata:\n  name: pod-reader-binding\n  namespace: production\nsubjects:\n- kind: User\n  name: alice          # aws-authのusernameに対応\n  apiGroup: rbac.authorization.k8s.io\n- kind: Group\n  name: developers     # aws-authのgroupsに対応\n  apiGroup: rbac.authorization.k8s.io\nroleRef:\n  kind: Role\n  name: pod-reader\n  apiGroup: rbac.authorization.k8s.io",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "RBAC 設計パターン — 最小権限の原則",
@@ -273,10 +288,13 @@
 		},
 		{
 			"title": "RBAC Audit — 権限の確認と検証",
-			"content": ["現在のユーザーが実行できる操作を確認する方法"],
+			"content": ["現在のユーザーが実行できる操作を確認する方法"]
+		},
+		{
+			"title": "RBAC Audit — 権限の確認と検証（コード例）",
+			"content": [],
 			"code": "# 現在のユーザーの権限を一覧表示\nkubectl auth can-i --list\n\n# 特定ユーザーとして権限確認 (管理者が実行)\nkubectl auth can-i get pods \\\n  --as=alice --namespace=production\n\n# グループとしての権限確認\nkubectl auth can-i create deployments \\\n  --as-group=developers --namespace=staging\n\n# RBAC設定の全体確認\nkubectl get clusterrolebindings \\\n  -o wide | grep cluster-admin",
-			"codeLanguage": "bash",
-			"layout": "default"
+			"codeLanguage": "bash"
 		},
 		{
 			"title": "IRSA（IAM Roles for Service Accounts）の仕組み",
@@ -299,17 +317,23 @@
 			"title": "IRSA セットアップ手順",
 			"content": [
 				"OIDCプロバイダー設定からServiceAccountアノテーションまでの完全手順"
-			],
+			]
+		},
+		{
+			"title": "IRSA セットアップ手順（コード例）",
+			"content": [],
 			"code": "# Step1: OIDCプロバイダーを関連付け\neksctl utils associate-iam-oidc-provider \\\n  --cluster my-cluster --approve\n\n# Step2: IAMサービスアカウントを作成\neksctl create iamserviceaccount \\\n  --name s3-reader \\\n  --namespace production \\\n  --cluster my-cluster \\\n  --attach-policy-arn \\\n    arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess \\\n  --approve",
-			"codeLanguage": "bash",
-			"layout": "default"
+			"codeLanguage": "bash"
 		},
 		{
 			"title": "IRSA 設定例 — ServiceAccountのアノテーション",
-			"content": ["IRSAで自動作成されるServiceAccountとPodでの使い方"],
+			"content": ["IRSAで自動作成されるServiceAccountとPodでの使い方"]
+		},
+		{
+			"title": "IRSA 設定例 — ServiceAccountのアノテーション（コード例）",
+			"content": [],
 			"code": "# 自動作成されるServiceAccount\napiVersion: v1\nkind: ServiceAccount\nmetadata:\n  name: s3-reader\n  namespace: production\n  annotations:\n    eks.amazonaws.com/role-arn: |\n      arn:aws:iam::123456:role/s3-reader\n---\n# PodでServiceAccountを指定\nspec:\n  serviceAccountName: s3-reader\n  containers:\n  - name: app\n    image: myapp:latest\n    # AWS_WEB_IDENTITY_TOKEN_FILE が自動設定\n    # AWS_ROLE_ARN が自動設定",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "EKS Pod Identity（新機能）",
@@ -325,10 +349,13 @@
 		},
 		{
 			"title": "Pod Identity 設定例",
-			"content": ["Pod Identity Associationの作成（OIDCプロバイダー設定不要）"],
+			"content": ["Pod Identity Associationの作成（OIDCプロバイダー設定不要）"]
+		},
+		{
+			"title": "Pod Identity 設定例（コード例）",
+			"content": [],
 			"code": "# Pod Identity Add-onを有効化\naws eks create-addon \\\n  --cluster-name my-cluster \\\n  --addon-name eks-pod-identity-agent\n\n# Pod Identity Associationを作成\naws eks create-pod-identity-association \\\n  --cluster-name my-cluster \\\n  --namespace production \\\n  --service-account s3-reader \\\n  --role-arn arn:aws:iam::123:role/s3-reader\n\n# IAMロール信頼ポリシー\n# Principal: {\"Service\": \"pods.eks.amazonaws.com\"}",
-			"codeLanguage": "bash",
-			"layout": "default"
+			"codeLanguage": "bash"
 		},
 		{
 			"title": "Pod Identity vs IRSA 比較",
@@ -345,10 +372,13 @@
 		},
 		{
 			"title": "OIDC IdP 設定と確認",
-			"content": ["OIDCプロバイダーの設定確認とIAMロール信頼ポリシーの構造"],
+			"content": ["OIDCプロバイダーの設定確認とIAMロール信頼ポリシーの構造"]
+		},
+		{
+			"title": "OIDC IdP 設定と確認（コード例）",
+			"content": [],
 			"code": "# OIDCプロバイダーのURLを確認\naws eks describe-cluster \\\n  --name my-cluster \\\n  --query 'cluster.identity.oidc.issuer'\n\n# IAMロール信頼ポリシー（IRSA用）\n# \"Condition\": {\n#   \"StringEquals\": {\n#     \"<OIDC_URL>:sub\":\n#       \"system:serviceaccount:prod:s3-reader\",\n#     \"<OIDC_URL>:aud\": \"sts.amazonaws.com\"\n#   }\n# }",
-			"codeLanguage": "bash",
-			"layout": "default"
+			"codeLanguage": "bash"
 		},
 		{
 			"title": "AWS SSO と EKS 統合",
@@ -457,10 +487,13 @@
 		},
 		{
 			"title": "ECR ライフサイクルポリシー",
-			"content": ["古いイメージを自動削除してリポジトリを管理するポリシー設定"],
+			"content": ["古いイメージを自動削除してリポジトリを管理するポリシー設定"]
+		},
+		{
+			"title": "ECR ライフサイクルポリシー（コード例）",
+			"content": [],
 			"code": "# ECRライフサイクルポリシー例\n{\n  \"rules\": [\n    {\n      \"rulePriority\": 1,\n      \"description\": \"最新10イメージのみ保持\",\n      \"selection\": {\n        \"tagStatus\": \"tagged\",\n        \"tagPrefixList\": [\"prod-\"],\n        \"countType\": \"imageCountMoreThan\",\n        \"countNumber\": 10\n      },\n      \"action\": {\"type\": \"expire\"}\n    }\n  ]\n}",
-			"codeLanguage": "json",
-			"layout": "default"
+			"codeLanguage": "json"
 		},
 		{
 			"title": "ECR 基本スキャン vs 拡張スキャン",
@@ -477,10 +510,13 @@
 		},
 		{
 			"title": "ECR 拡張スキャン（Inspector V2）設定",
-			"content": ["Inspector V2を有効化してECR継続スキャンを設定する"],
+			"content": ["Inspector V2を有効化してECR継続スキャンを設定する"]
+		},
+		{
+			"title": "ECR 拡張スキャン（Inspector V2）設定（コード例）",
+			"content": [],
 			"code": "# Inspector V2を有効化（ECR拡張スキャン）\naws inspector2 enable \\\n  --resource-types ECR \\\n  --region ap-northeast-1\n\n# ECRリポジトリのスキャン設定を確認\naws ecr describe-repositories \\\n  --query 'repositories[*].imageScanningConfiguration'\n\n# スキャン結果の取得\naws ecr describe-image-scan-findings \\\n  --repository-name my-app \\\n  --image-id imageTag=latest",
-			"codeLanguage": "bash",
-			"layout": "default"
+			"codeLanguage": "bash"
 		},
 		{
 			"title": "スキャン結果の解釈と優先度付け",
@@ -532,10 +568,13 @@
 		},
 		{
 			"title": "Kyverno Policy 設定例",
-			"content": ["署名済みイメージのみデプロイを許可するKyvernoポリシー"],
+			"content": ["署名済みイメージのみデプロイを許可するKyvernoポリシー"]
+		},
+		{
+			"title": "Kyverno Policy 設定例（コード例）",
+			"content": [],
 			"code": "# 署名されたECRイメージのみ許可\napiVersion: kyverno.io/v1\nkind: ClusterPolicy\nmetadata:\n  name: verify-image-signature\nspec:\n  validationFailureAction: Enforce\n  rules:\n  - name: verify-signature\n    match:\n      resources:\n        kinds: [Pod]\n    verifyImages:\n    - imageReferences:\n      - \"123456.dkr.ecr.ap-northeast-1.amazonaws.com/*\"\n      attestors:\n      - entries:\n        - keys:\n            kms: awskms:///arn:aws:kms:...",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "ベースイメージのセキュリティ戦略",
@@ -551,10 +590,13 @@
 		},
 		{
 			"title": "マルチステージビルドのベストプラクティス",
-			"content": ["ビルド環境と実行環境を分離して最小イメージを作成する例"],
+			"content": ["ビルド環境と実行環境を分離して最小イメージを作成する例"]
+		},
+		{
+			"title": "マルチステージビルドのベストプラクティス（コード例）",
+			"content": [],
 			"code": "# マルチステージビルド例（Go）\nFROM golang:1.22 AS builder\nWORKDIR /app\nCOPY . .\n# ビルド: CGO無効、静的バイナリ生成\nRUN CGO_ENABLED=0 go build -o server .\n\n# 実行ステージ: Distrolessを使用\nFROM gcr.io/distroless/static:nonroot\nWORKDIR /app\nCOPY --from=builder /app/server .\n# rootで実行しない\nUSER nonroot:nonroot\nCMD [\"/app/server\"]",
-			"codeLanguage": "dockerfile",
-			"layout": "default"
+			"codeLanguage": "dockerfile"
 		},
 		{
 			"title": "CI/CDパイプラインへのスキャン統合",
@@ -563,10 +605,13 @@
 		},
 		{
 			"title": "ECR クロスアカウントアクセス",
-			"content": ["別AWSアカウントからECRのイメージをプルする設定"],
+			"content": ["別AWSアカウントからECRのイメージをプルする設定"]
+		},
+		{
+			"title": "ECR クロスアカウントアクセス（コード例）",
+			"content": [],
 			"code": "# ECRリポジトリポリシー（アカウントB からのプルを許可）\n{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"AWS\": \"arn:aws:iam::ACCOUNT_B_ID:root\"\n      },\n      \"Action\": [\n        \"ecr:GetDownloadUrlForLayer\",\n        \"ecr:BatchGetImage\",\n        \"ecr:BatchCheckLayerAvailability\"\n      ]\n    }\n  ]\n}",
-			"codeLanguage": "json",
-			"layout": "default"
+			"codeLanguage": "json"
 		},
 		{
 			"title": "イメージセキュリティ 試験頻出ポイント",
@@ -609,10 +654,13 @@
 			"title": "Fargate プロファイル設定",
 			"content": [
 				"どのPodをFargateで実行するかを定義するFargateプロファイルの設定"
-			],
+			]
+		},
+		{
+			"title": "Fargate プロファイル設定（コード例）",
+			"content": [],
 			"code": "# eksctlでFargateプロファイルを作成\nexsctl create fargateprofile \\\n  --cluster my-cluster \\\n  --name fp-production \\\n  --namespace production \\\n  --labels env=prod\n\n# FargateプロファイルYAML定義\napiVersion: eksctl.io/v1alpha5\nfargateProfiles:\n  - name: fp-production\n    selectors:\n      - namespace: production\n        labels:\n          workload: serverless\n    subnets:\n      - subnet-private-1a\n      - subnet-private-1c",
-			"codeLanguage": "bash",
-			"layout": "default"
+			"codeLanguage": "bash"
 		},
 		{
 			"title": "Pod実行ロール（Fargate Pod Execution Role）",
@@ -622,10 +670,13 @@
 				"**ユーザーのアプリ権限**: IRSAまたはPod IdentityでServiceAccountに別途付与",
 				"**試験注意点**: Pod Execution Role ≠ アプリのIAM権限（混同しやすい）",
 				"→ Pod Execution Role はFargate基盤用、アプリはIRSAで別管理"
-			],
+			]
+		},
+		{
+			"title": "Pod実行ロール（Fargate Pod Execution Role）（コード例）",
+			"content": [],
 			"code": "# 最小のPod Execution Roleポリシー\n# AmazonEKSFargatePodExecutionRolePolicy が必要\n# 含まれる権限:\n# ecr:GetAuthorizationToken\n# ecr:BatchCheckLayerAvailability\n# ecr:GetDownloadUrlForLayer\n# ecr:BatchGetImage\n# logs:CreateLogStream\n# logs:CreateLogGroup\n# logs:PutLogEvents",
-			"codeLanguage": "bash",
-			"layout": "default"
+			"codeLanguage": "bash"
 		},
 		{
 			"title": "Fargate ENI 分離（1 Pod = 1 ENI）",
@@ -654,10 +705,13 @@
 			"title": "Seccomp プロファイル（Fargate）",
 			"content": [
 				"FargateのPodにSeccompプロファイルを適用してシステムコールを制限する"
-			],
+			]
+		},
+		{
+			"title": "Seccomp プロファイル（Fargate）（コード例）",
+			"content": [],
 			"code": "# FargateでSeccompを設定（RuntimeDefault推奨）\napiVersion: v1\nkind: Pod\nmetadata:\n  name: secure-pod\nspec:\n  securityContext:\n    seccompProfile:\n      type: RuntimeDefault  # Fargate推奨\n  containers:\n  - name: app\n    image: myapp:1.0.0\n    securityContext:\n      runAsNonRoot: true\n      runAsUser: 1000\n      allowPrivilegeEscalation: false\n      readOnlyRootFilesystem: true",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "Fargate のリソース制限",
@@ -687,10 +741,13 @@
 			"title": "Fargate ログ設定（FireLens）",
 			"content": [
 				"FireLensサイドカーでFargateのコンテナログをCloudWatch/S3/Firehoseに転送"
-			],
+			]
+		},
+		{
+			"title": "Fargate ログ設定（FireLens）（コード例）",
+			"content": [],
 			"code": "# FargateでFireLensを使ったログ設定\nspec:\n  containers:\n  - name: app\n    image: myapp:1.0.0\n    logConfiguration:\n      logDriver: awsfirelens\n      options:\n        Name: cloudwatch_logs\n        region: ap-northeast-1\n        log_group_name: /eks/fargate/app\n  - name: log-router\n    image: public.ecr.aws/aws-observability/aws-for-fluent-bit:latest\n    firelensConfiguration:\n      type: fluentbit",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "Fargate 試験頻出ポイント",
@@ -765,10 +822,13 @@
 			"title": "Network Policy 設定例",
 			"content": [
 				"バックエンドAPIへのアクセスをフロントエンドNamespaceのみに制限する例"
-			],
+			]
+		},
+		{
+			"title": "Network Policy 設定例（コード例）",
+			"content": [],
 			"code": "# backend NSへのIngress制限\napiVersion: networking.k8s.io/v1\nkind: NetworkPolicy\nmetadata:\n  name: allow-frontend-only\n  namespace: backend\nspec:\n  podSelector:\n    matchLabels:\n      app: api\n  policyTypes:\n  - Ingress\n  - Egress\n  ingress:\n  - from:\n    - namespaceSelector:\n        matchLabels:\n          name: frontend\n  egress:\n  - to:\n    - ipBlock:\n        cidr: 10.0.1.0/24  # DBサブネットのみ",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "Security Groups for Pods（SGP）",
@@ -784,10 +844,13 @@
 		},
 		{
 			"title": "SGP 設定例",
-			"content": ["PodにSecurity Groupを付与してRDSへのアクセスを制御する設定"],
+			"content": ["PodにSecurity Groupを付与してRDSへのアクセスを制御する設定"]
+		},
+		{
+			"title": "SGP 設定例（コード例）",
+			"content": [],
 			"code": "# ENI Config (per AZ)\napiVersion: crd.k8s.amazonaws.com/v1alpha1\nkind: ENIConfig\nmetadata:\n  name: ap-northeast-1a\nspec:\n  securityGroups:\n    - sg-pod-sg-id  # Pod専用のSG\n  subnet: subnet-private-1a\n---\n# Podのアノテーションでマニフェスト指定\nmetadata:\n  annotations:\n    vpc.amazonaws.com/pod-eni: \"true\"\nspec:\n  securityGroupPolicy:\n    groupIds:\n      - sg-pod-sg-id",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "SGP vs Network Policy — 使い分け",
@@ -806,10 +869,13 @@
 			"title": "EKS プライベートエンドポイント設定",
 			"content": [
 				"EKS APIServerをプライベートのみにして外部からのアクセスを遮断する"
-			],
+			]
+		},
+		{
+			"title": "EKS プライベートエンドポイント設定（コード例）",
+			"content": [],
 			"code": "# プライベートエンドポイントのみに変更\naws eks update-cluster-config \\\n  --name my-cluster \\\n  --resources-vpc-config \\\n    endpointPublicAccess=false,\\\n    endpointPrivateAccess=true\n\n# VPN/Bastion経由でkubectl実行\naws eks update-kubeconfig \\\n  --name my-cluster \\\n  --region ap-northeast-1\n\n# プライベートエンドポイントのDNS確認\nnslookup <cluster-id>.gr7.ap-northeast-1.eks.amazonaws.com",
-			"codeLanguage": "bash",
-			"layout": "default"
+			"codeLanguage": "bash"
 		},
 		{
 			"title": "AWS PrivateLink と EKS",
@@ -826,10 +892,13 @@
 			"title": "ALB Ingress Controller + WAF 設定",
 			"content": [
 				"EKSのIngressにALBとWAFを統合して外部トラフィックを保護する設定"
-			],
+			]
+		},
+		{
+			"title": "ALB Ingress Controller + WAF 設定（コード例）",
+			"content": [],
 			"code": "# WAF統合のIngress設定\napiVersion: networking.k8s.io/v1\nkind: Ingress\nmetadata:\n  name: my-app-ingress\n  annotations:\n    kubernetes.io/ingress.class: alb\n    alb.ingress.kubernetes.io/scheme: internet-facing\n    alb.ingress.kubernetes.io/target-type: ip\n    alb.ingress.kubernetes.io/wafv2-acl-arn: |\n      arn:aws:wafv2:ap-northeast-1:123:...\n    alb.ingress.kubernetes.io/ssl-redirect: '443'\n    alb.ingress.kubernetes.io/listen-ports: |\n      '[{\"HTTPS\":443}]'",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "NLB 設定とセキュリティ",
@@ -917,24 +986,33 @@
 		},
 		{
 			"title": "Pod Security Admission（PSA）設定",
-			"content": ["Namespaceのラベルで強制・警告・監査の各モードを設定する"],
+			"content": ["Namespaceのラベルで強制・警告・監査の各モードを設定する"]
+		},
+		{
+			"title": "Pod Security Admission（PSA）設定（コード例）",
+			"content": [],
 			"code": "# Namespaceにrestrictedモードを適用\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: production\n  labels:\n    # enforce: ポリシー違反のPodを拒否\n    pod-security.kubernetes.io/enforce: restricted\n    pod-security.kubernetes.io/enforce-version: latest\n    # warn: ポリシー違反を警告（作成は可能）\n    pod-security.kubernetes.io/warn: restricted\n    # audit: 監査ログに記録\n    pod-security.kubernetes.io/audit: restricted",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "SecurityContext 設定",
-			"content": ["コンテナセキュリティを高める SecurityContext の必須設定例"],
+			"content": ["コンテナセキュリティを高める SecurityContext の必須設定例"]
+		},
+		{
+			"title": "SecurityContext 設定（コード例）",
+			"content": [],
 			"code": "apiVersion: v1\nkind: Pod\nspec:\n  securityContext:\n    runAsNonRoot: true      # root以外で実行\n    runAsUser: 1000\n    fsGroup: 2000\n    seccompProfile:\n      type: RuntimeDefault  # システムコール制限\n  containers:\n  - name: app\n    image: myapp:1.0.0\n    securityContext:\n      allowPrivilegeEscalation: false  # 昇格禁止\n      readOnlyRootFilesystem: true     # FS読み取り専用\n      capabilities:\n        drop: [\"ALL\"]      # 全Capabilityを削除",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "Linux Capabilities 管理",
-			"content": ["デフォルトCapabilityを全削除し、必要なものだけ追加する例"],
+			"content": ["デフォルトCapabilityを全削除し、必要なものだけ追加する例"]
+		},
+		{
+			"title": "Linux Capabilities 管理（コード例）",
+			"content": [],
 			"code": "# 全Capabilityを削除し必要なものだけ追加\nsecurityContext:\n  capabilities:\n    drop:\n      - ALL          # 全て削除\n    add:\n      - NET_BIND_SERVICE  # 1024以下ポートバインド\n\n# 危険なCapabilities（絶対に付与しない）:\n# SYS_ADMIN  - システム管理（コンテナ脱出可能）\n# NET_ADMIN  - ネットワーク設定変更\n# SYS_PTRACE - プロセストレース\n# DAC_OVERRIDE - ファイル権限バイパス",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "Secrets 管理（AWS Secrets Manager 統合）",
@@ -952,35 +1030,47 @@
 			"title": "External Secrets Operator 設定",
 			"content": [
 				"Secrets ManagerのシークレットをK8s Secretとして自動同期する設定"
-			],
+			]
+		},
+		{
+			"title": "External Secrets Operator 設定（コード例）",
+			"content": [],
 			"code": "# ExternalSecretでSecrets ManagerをK8s Secretに同期\napiVersion: external-secrets.io/v1beta1\nkind: ExternalSecret\nmetadata:\n  name: db-credentials\n  namespace: production\nspec:\n  refreshInterval: 1h  # 1時間ごとに同期\n  secretStoreRef:\n    name: aws-secrets-manager\n    kind: ClusterSecretStore\n  target:\n    name: db-secret  # 生成するK8s Secret名\n  data:\n  - secretKey: password\n    remoteRef:\n      key: prod/db/password",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "CSI Secrets Store Driver 設定",
 			"content": [
 				"Secrets ManagerをCSI経由でPodにファイルとしてマウントする設定"
-			],
+			]
+		},
+		{
+			"title": "CSI Secrets Store Driver 設定（コード例）",
+			"content": [],
 			"code": "# SecretProviderClass設定\napiVersion: secrets-store.csi.x-k8s.io/v1\nkind: SecretProviderClass\nmetadata:\n  name: aws-secrets\nspec:\n  provider: aws\n  parameters:\n    objects: |\n      - objectName: \"prod/db/password\"\n        objectType: \"secretsmanager\"\n---\n# PodでCSIボリュームとしてマウント\nvolumes:\n- name: secrets\n  csi:\n    driver: secrets-store.csi.k8s.io\n    readOnly: true\n    volumeAttributes:\n      secretProviderClass: aws-secrets",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "OPA Gatekeeper ConstraintTemplate 例",
 			"content": [
 				"Latestタグのイメージ使用を禁止するConstraintTemplateとConstraintの例"
-			],
+			]
+		},
+		{
+			"title": "OPA Gatekeeper ConstraintTemplate 例（コード例）",
+			"content": [],
 			"code": "apiVersion: templates.gatekeeper.sh/v1\nkind: ConstraintTemplate\nmetadata:\n  name: k8sdeniedtags\nspec:\n  crd:\n    spec:\n      names:\n        kind: K8sDeniedTags\n      validation:\n        properties:\n          tags:\n            type: array\n            items: {type: string}\n  targets:\n  - target: admission.k8s.gatekeeper.sh\n    rego: |\n      package k8sdeniedtags\n      violation[{\"msg\": msg}] {\n        img := input.review.object.spec.containers[_].image\n        endswith(img, \":latest\")\n        msg := \"latest tag is not allowed\"\n      }",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "ResourceQuota / LimitRange",
-			"content": ["NamespaceレベルとPodレベルのリソース制限を設定する例"],
+			"content": ["NamespaceレベルとPodレベルのリソース制限を設定する例"]
+		},
+		{
+			"title": "ResourceQuota / LimitRange（コード例）",
+			"content": [],
 			"code": "# Namespace全体のResourceQuota\napiVersion: v1\nkind: ResourceQuota\nmetadata:\n  name: production-quota\n  namespace: production\nspec:\n  hard:\n    requests.cpu: \"10\"\n    requests.memory: 20Gi\n    limits.cpu: \"20\"\n    limits.memory: 40Gi\n    pods: \"50\"\n---\n# PodのデフォルトリソースLimitRange\napiVersion: v1\nkind: LimitRange\nmetadata:\n  name: default-limits\nspec:\n  limits:\n  - type: Container\n    default:\n      cpu: 500m\n      memory: 512Mi\n    defaultRequest:\n      cpu: 100m\n      memory: 128Mi",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "Pod・ワークロードセキュリティ チェックリスト",
@@ -1016,10 +1106,13 @@
 		},
 		{
 			"title": "EKS Control Plane ログ（CloudWatch）",
-			"content": ["EKS Control PlaneのログをCloudWatch Logsに送信する設定"],
+			"content": ["EKS Control PlaneのログをCloudWatch Logsに送信する設定"]
+		},
+		{
+			"title": "EKS Control Plane ログ（CloudWatch）（コード例）",
+			"content": [],
 			"code": "# EKS Control Plane ログを有効化\naws eks update-cluster-config \\\n  --name my-cluster \\\n  --logging \\\n    '{\n      \"clusterLogging\": [\n        {\n          \"types\": [\n            \"api\",        # API Serverリクエスト\n            \"audit\",      # 全APIコールの監査ログ\n            \"authenticator\",# IAM認証ログ\n            \"controllerManager\",\n            \"scheduler\"\n          ],\n          \"enabled\": true\n        }\n      ]\n    }'",
-			"codeLanguage": "bash",
-			"layout": "default"
+			"codeLanguage": "bash"
 		},
 		{
 			"title": "GuardDuty EKS Protection 概要",
@@ -1066,19 +1159,25 @@
 			"title": "Falco ルール設定例",
 			"content": [
 				"コンテナ内でのシェル起動とパスワードファイルアクセスを検知するFalcoルール"
-			],
+			]
+		},
+		{
+			"title": "Falco ルール設定例（コード例）",
+			"content": [],
 			"code": "# Falco カスタムルール例\n- rule: Shell spawned in container\n  desc: コンテナ内でシェルが起動された\n  condition: >\n    spawned_process\n    and container\n    and not container.image.repository in (trusted_images)\n    and proc.name in (shell_binaries)\n  output: >\n    Shell spawned (user=%user.name container=%container.name\n    image=%container.image.repository)\n  priority: WARNING\n  tags: [container, shell, mitre_execution]\n\n- rule: Read sensitive file in container\n  condition: open_read and container\n    and fd.name in (sensitive_files)\n  output: \"Sensitive file read: %fd.name\"\n  priority: ERROR",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "kube-bench（CIS Benchmark 自動チェック）",
 			"content": [
 				"kube-benchをJobとして実行してEKSのCIS Benchmark準拠を確認する"
-			],
+			]
+		},
+		{
+			"title": "kube-bench（CIS Benchmark 自動チェック）（コード例）",
+			"content": [],
 			"code": "# kube-benchをJobとして実行\napiVersion: batch/v1\nkind: Job\nmetadata:\n  name: kube-bench\nspec:\n  template:\n    spec:\n      hostPID: true\n      containers:\n      - name: kube-bench\n        image: aquasec/kube-bench:latest\n        command: [\"kube-bench\", \"--benchmark\", \"eks-1.4.0\"]\n        volumeMounts:\n        - name: var-lib-kubelet\n          mountPath: /var/lib/kubelet\n          readOnly: true\n      restartPolicy: Never",
-			"codeLanguage": "yaml",
-			"layout": "default"
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "SIEM 統合（Security Hub 連携）",

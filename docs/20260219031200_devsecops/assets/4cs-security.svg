@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:Arial,sans-serif;">
+
+  <!-- Background -->
+  <rect width="820" height="600" fill="#F8F9FA" rx="8"/>
+
+  <!-- Title -->
+  <text x="410" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#0D47A1">クラウドネイティブセキュリティ — 4C's</text>
+
+  <!-- ===== CONCENTRIC SQUARES (outer to inner) ===== -->
+
+  <!-- Cloud layer (outermost) — lightest blue #BBDEFB -->
+  <rect x="30" y="50" width="760" height="520" rx="16" fill="#E3F2FD" stroke="#1565C0" stroke-width="3" style="filter:drop-shadow(2px 4px 8px rgba(0,0,0,0.15))"/>
+
+  <!-- Cluster layer — #90CAF9 -->
+  <rect x="105" y="125" width="610" height="390" rx="14" fill="#BBDEFB" stroke="#1565C0" stroke-width="2.5" style="filter:drop-shadow(1px 3px 6px rgba(0,0,0,0.12))"/>
+
+  <!-- Container layer — #42A5F5 -->
+  <rect x="185" y="205" width="450" height="255" rx="12" fill="#64B5F6" stroke="#0D47A1" stroke-width="2.5" style="filter:drop-shadow(1px 2px 5px rgba(0,0,0,0.12))"/>
+
+  <!-- Code layer (innermost) — #1565C0 -->
+  <rect x="265" y="285" width="290" height="135" rx="10" fill="#1565C0" stroke="#0A2F70" stroke-width="2.5" style="filter:drop-shadow(1px 2px 4px rgba(0,0,0,0.2))"/>
+
+  <!-- ===== LABELS: centered on each layer's top edge ===== -->
+
+  <!-- Cloud label -->
+  <rect x="358" y="54" width="104" height="26" rx="6" fill="#1565C0"/>
+  <text x="410" y="71" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Cloud</text>
+
+  <!-- Cluster label -->
+  <rect x="350" y="130" width="120" height="26" rx="6" fill="#1565C0"/>
+  <text x="410" y="147" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Cluster</text>
+
+  <!-- Container label -->
+  <rect x="340" y="210" width="140" height="26" rx="6" fill="#0D47A1"/>
+  <text x="410" y="227" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Container</text>
+
+  <!-- Code label -->
+  <rect x="352" y="290" width="116" height="26" rx="6" fill="#0A2F70"/>
+  <text x="410" y="307" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Code</text>
+
+  <!-- ===== CLOUD LAYER CONTENT (corners) ===== -->
+  <!-- Top-left -->
+  <text x="50" y="100" font-size="11" font-weight="bold" fill="#0D47A1">IAM / 最小権限</text>
+  <text x="50" y="114" font-size="10" fill="#1565C0">• AWS IAM / GCP IAM</text>
+
+  <!-- Top-right -->
+  <text x="590" y="100" font-size="11" font-weight="bold" fill="#0D47A1">VPC / ネットワーク分離</text>
+  <text x="590" y="114" font-size="10" fill="#1565C0">• Security Group / NACL</text>
+
+  <!-- Bottom-left -->
+  <text x="50" y="540" font-size="11" font-weight="bold" fill="#0D47A1">CSPM監視</text>
+  <text x="50" y="554" font-size="10" fill="#1565C0">• Prisma Cloud / Wiz</text>
+
+  <!-- Bottom-right -->
+  <text x="580" y="540" font-size="11" font-weight="bold" fill="#0D47A1">コンプライアンス</text>
+  <text x="580" y="554" font-size="10" fill="#1565C0">• CIS Benchmark / SOC2</text>
+
+  <!-- ===== CLUSTER LAYER CONTENT ===== -->
+  <!-- Left side -->
+  <text x="118" y="180" font-size="11" font-weight="bold" fill="#0D47A1">RBAC</text>
+  <text x="118" y="194" font-size="10" fill="#0D47A1">• Role / ClusterRole</text>
+  <text x="118" y="207" font-size="10" fill="#0D47A1">• ServiceAccount制限</text>
+
+  <!-- Right side -->
+  <text x="600" y="180" font-size="11" font-weight="bold" fill="#0D47A1">NetworkPolicy</text>
+  <text x="600" y="194" font-size="10" fill="#0D47A1">• Calico / Cilium</text>
+  <text x="600" y="207" font-size="10" fill="#0D47A1">• PodSecurity Admission</text>
+
+  <!-- Bottom cluster -->
+  <text x="200" y="492" font-size="11" font-weight="bold" fill="#0D47A1">Audit Logging</text>
+  <text x="200" y="506" font-size="10" fill="#0D47A1">• kube-apiserver監査ログ</text>
+
+  <text x="500" y="492" font-size="11" font-weight="bold" fill="#0D47A1">etcd暗号化</text>
+  <text x="500" y="506" font-size="10" fill="#0D47A1">• Encryption at rest</text>
+
+  <!-- ===== CONTAINER LAYER CONTENT ===== -->
+  <!-- Left -->
+  <text x="200" y="270" font-size="11" font-weight="bold" fill="#0D47A1">イメージスキャン</text>
+  <text x="200" y="284" font-size="10" fill="#0D47A1">• Trivy / Grype</text>
+
+  <!-- Right -->
+  <text x="510" y="270" font-size="11" font-weight="bold" fill="#0D47A1">read-only FS</text>
+  <text x="510" y="284" font-size="10" fill="#0D47A1">• 非root実行 (runAsUser)</text>
+
+  <!-- Bottom container -->
+  <text x="200" y="440" font-size="11" font-weight="bold" fill="#0D47A1">Distroless / Alpine</text>
+  <text x="200" y="454" font-size="10" fill="#0D47A1">• 最小ベースイメージ</text>
+
+  <text x="510" y="440" font-size="11" font-weight="bold" fill="#0D47A1">Cosign署名</text>
+  <text x="510" y="454" font-size="10" fill="#0D47A1">• イメージ改ざん防止</text>
+
+  <!-- ===== CODE LAYER CONTENT (innermost) ===== -->
+  <text x="410" y="328" text-anchor="middle" font-size="11" font-weight="bold" fill="white">SAST / DAST</text>
+  <text x="410" y="344" text-anchor="middle" font-size="10" fill="#BBDEFB">• Semgrep / Snyk Code</text>
+  <text x="410" y="360" text-anchor="middle" font-size="11" font-weight="bold" fill="white">依存性スキャン</text>
+  <text x="410" y="376" text-anchor="middle" font-size="10" fill="#BBDEFB">• Dependabot / OWASP DC</text>
+  <text x="410" y="392" text-anchor="middle" font-size="11" font-weight="bold" fill="white">シークレット管理</text>
+  <text x="410" y="408" text-anchor="middle" font-size="10" fill="#BBDEFB">• HashiCorp Vault / AWS SM</text>
+
+  <!-- ===== LEGEND / NOTE at bottom ===== -->
+  <rect x="30" y="570" width="760" height="25" rx="5" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1"/>
+  <text x="410" y="587" text-anchor="middle" font-size="11" fill="#0D47A1">内側の層ほど攻撃面が直接的 — 全4層を多層防御(Defense in Depth)で保護する</text>
+
+</svg>

@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:Arial,sans-serif;">
+
+  <!-- Header -->
+  <rect x="0" y="0" width="900" height="64" rx="8" ry="8" fill="#232F3E"/>
+  <text x="450" y="40" text-anchor="middle" fill="#FF9800" font-size="24" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">SASTツール比較</text>
+
+  <!-- Table container with shadow -->
+  <rect x="20" y="78" width="860" height="330" rx="8" ry="8" fill="#fff" style="filter:drop-shadow(2px 4px 10px rgba(0,0,0,0.15))"/>
+
+  <!-- Column header background -->
+  <rect x="20" y="78" width="860" height="44" rx="8" ry="8" fill="#232F3E"/>
+  <rect x="20" y="100" width="860" height="22" fill="#232F3E"/>
+
+  <!-- Column headers -->
+  <!-- Col positions: ツール名=20-190(170), 対応言語=190-330(140), GitHub統合=330-470(140), カスタムルール=470-620(150), ライセンス=620-880(260) -->
+  <text x="105" y="105" text-anchor="middle" fill="#FF9800" font-size="14" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">ツール名</text>
+  <text x="278" y="105" text-anchor="middle" fill="#FF9800" font-size="14" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">対応言語数</text>
+  <text x="432" y="105" text-anchor="middle" fill="#FF9800" font-size="14" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">GitHub統合</text>
+  <text x="576" y="105" text-anchor="middle" fill="#FF9800" font-size="14" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">カスタムルール</text>
+  <text x="750" y="105" text-anchor="middle" fill="#FF9800" font-size="14" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">ライセンス</text>
+
+  <!-- Column dividers in header -->
+  <line x1="190" y1="78" x2="190" y2="122" stroke="#444" stroke-width="1"/>
+  <line x1="365" y1="78" x2="365" y2="122" stroke="#444" stroke-width="1"/>
+  <line x1="500" y1="78" x2="500" y2="122" stroke="#444" stroke-width="1"/>
+  <line x1="650" y1="78" x2="650" y2="122" stroke="#444" stroke-width="1"/>
+
+  <!-- Row 1: SonarQube (alternate #E8F5E9) -->
+  <rect x="20" y="122" width="860" height="52" fill="#E8F5E9"/>
+  <!-- Logo color bar -->
+  <rect x="20" y="122" width="6" height="52" fill="#4CAF50"/>
+  <text x="105" y="148" text-anchor="middle" fill="#1B5E20" font-size="16" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">SonarQube</text>
+  <text x="105" y="164" text-anchor="middle" fill="#388E3C" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">定番SAST</text>
+  <text x="278" y="153" text-anchor="middle" fill="#333" font-size="15" font-family="Arial,sans-serif" letter-spacing="0">30+ 言語</text>
+  <!-- GitHub check mark -->
+  <circle cx="432" cy="150" r="14" fill="#4CAF50"/>
+  <text x="432" y="155" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">✓</text>
+  <text x="432" y="168" text-anchor="middle" fill="#555" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">Actions対応</text>
+  <!-- Custom rules check -->
+  <circle cx="576" cy="150" r="14" fill="#4CAF50"/>
+  <text x="576" y="155" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">✓</text>
+  <text x="576" y="168" text-anchor="middle" fill="#555" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">プラグイン形式</text>
+  <!-- License -->
+  <rect x="665" y="131" width="80" height="24" rx="4" fill="#4CAF50"/>
+  <text x="705" y="148" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">OSS</text>
+  <rect x="755" y="131" width="80" height="24" rx="4" fill="#FF9800"/>
+  <text x="795" y="148" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">有償</text>
+  <text x="750" y="168" text-anchor="middle" fill="#555" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">Community / Enterprise</text>
+
+  <!-- Row dividers -->
+  <line x1="20" y1="174" x2="880" y2="174" stroke="#C8E6C9" stroke-width="1"/>
+  <line x1="190" y1="122" x2="190" y2="408" stroke="#ddd" stroke-width="1"/>
+  <line x1="365" y1="122" x2="365" y2="408" stroke="#ddd" stroke-width="1"/>
+  <line x1="500" y1="122" x2="500" y2="408" stroke="#ddd" stroke-width="1"/>
+  <line x1="650" y1="122" x2="650" y2="408" stroke="#ddd" stroke-width="1"/>
+
+  <!-- Row 2: Semgrep (alternate #F5F5F5) -->
+  <rect x="20" y="174" width="860" height="52" fill="#F5F5F5"/>
+  <rect x="20" y="174" width="6" height="52" fill="#2196F3"/>
+  <text x="105" y="200" text-anchor="middle" fill="#0D47A1" font-size="16" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">Semgrep</text>
+  <text x="105" y="216" text-anchor="middle" fill="#1565C0" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">高速・軽量</text>
+  <text x="278" y="205" text-anchor="middle" fill="#333" font-size="15" font-family="Arial,sans-serif" letter-spacing="0">30+ 言語</text>
+  <circle cx="432" cy="202" r="14" fill="#4CAF50"/>
+  <text x="432" y="207" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">✓</text>
+  <text x="432" y="220" text-anchor="middle" fill="#555" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">Actions公式</text>
+  <!-- Double check for custom rules (excellent) -->
+  <circle cx="576" cy="202" r="14" fill="#1B5E20"/>
+  <text x="576" y="207" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">✓✓</text>
+  <text x="576" y="220" text-anchor="middle" fill="#555" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">YAMLルール</text>
+  <rect x="665" y="183" width="80" height="24" rx="4" fill="#4CAF50"/>
+  <text x="705" y="200" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">OSS</text>
+  <rect x="755" y="183" width="80" height="24" rx="4" fill="#FF9800"/>
+  <text x="795" y="200" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">有償</text>
+  <text x="750" y="220" text-anchor="middle" fill="#555" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">OSS / Pro / Enterprise</text>
+  <line x1="20" y1="226" x2="880" y2="226" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Row 3: CodeQL (alternate #E8F5E9) -->
+  <rect x="20" y="226" width="860" height="52" fill="#E8F5E9"/>
+  <rect x="20" y="226" width="6" height="52" fill="#6A1B9A"/>
+  <text x="105" y="252" text-anchor="middle" fill="#4A148C" font-size="16" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">CodeQL</text>
+  <text x="105" y="268" text-anchor="middle" fill="#6A1B9A" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">GitHub純正</text>
+  <text x="278" y="257" text-anchor="middle" fill="#333" font-size="15" font-family="Arial,sans-serif" letter-spacing="0">10 言語</text>
+  <!-- Double check for GitHub integration (native) -->
+  <circle cx="432" cy="254" r="14" fill="#1B5E20"/>
+  <text x="432" y="259" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">✓✓</text>
+  <text x="432" y="272" text-anchor="middle" fill="#555" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">ネイティブ統合</text>
+  <circle cx="576" cy="254" r="14" fill="#4CAF50"/>
+  <text x="576" y="259" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">✓</text>
+  <text x="576" y="272" text-anchor="middle" fill="#555" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">QL言語</text>
+  <!-- Free license -->
+  <rect x="680" y="235" width="160" height="24" rx="4" fill="#4CAF50"/>
+  <text x="760" y="252" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">無償 (GitHub)</text>
+  <text x="750" y="272" text-anchor="middle" fill="#555" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">GHEC/GHES同梱</text>
+  <line x1="20" y1="278" x2="880" y2="278" stroke="#C8E6C9" stroke-width="1"/>
+
+  <!-- Row 4: Checkmarx (alternate #F5F5F5) -->
+  <rect x="20" y="278" width="860" height="52" fill="#F5F5F5"/>
+  <rect x="20" y="278" width="6" height="52" fill="#E53935"/>
+  <text x="105" y="304" text-anchor="middle" fill="#B71C1C" font-size="16" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">Checkmarx</text>
+  <text x="105" y="320" text-anchor="middle" fill="#C62828" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">エンタープライズ</text>
+  <text x="278" y="309" text-anchor="middle" fill="#333" font-size="15" font-family="Arial,sans-serif" letter-spacing="0">25+ 言語</text>
+  <circle cx="432" cy="306" r="14" fill="#4CAF50"/>
+  <text x="432" y="311" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">✓</text>
+  <text x="432" y="324" text-anchor="middle" fill="#555" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">Actions対応</text>
+  <circle cx="576" cy="306" r="14" fill="#4CAF50"/>
+  <text x="576" y="311" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">✓</text>
+  <text x="576" y="324" text-anchor="middle" fill="#555" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">CxQL</text>
+  <rect x="680" y="287" width="160" height="24" rx="4" fill="#E53935"/>
+  <text x="760" y="304" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">有償のみ</text>
+  <text x="750" y="324" text-anchor="middle" fill="#555" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">One / SAST専用</text>
+  <line x1="20" y1="330" x2="880" y2="330" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Bottom note / recommendation -->
+  <rect x="20" y="335" width="860" height="73" rx="0" ry="0" fill="#FFF8E1"/>
+  <rect x="20" y="335" width="860" height="73" rx="0" ry="0" fill="none" stroke="#FFC107" stroke-width="0"/>
+  <!-- bottom corners rounded -->
+  <rect x="20" y="401" width="860" height="7" rx="0" ry="0" fill="#FFF8E1"/>
+  <rect x="20" y="335" width="860" height="73" rx="8" ry="8" fill="#FFF8E1"/>
+  <rect x="20" y="335" width="860" height="30" fill="#FFF8E1"/>
+  <text x="36" y="356" fill="#E65100" font-size="13" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">推奨アプローチ:</text>
+  <text x="150" y="356" fill="#555" font-size="13" font-family="Arial,sans-serif" letter-spacing="0">Semgrep (OSS) + CodeQL (GitHub Actions) でゼロコスト基盤を構築</text>
+  <text x="36" y="376" fill="#555" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">→ 大規模組織・コンプライアンス要件がある場合は SonarQube Enterprise / Checkmarx を検討</text>
+  <text x="36" y="396" fill="#555" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">→ ✓✓ = ネイティブ統合またはカスタムルール能力が特に優れていることを示す</text>
+
+</svg>

@@ -1,0 +1,78 @@
+<svg viewBox="0 0 960 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="500" fill="#0f172a" rx="12"/>
+  <text x="480" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#FF9900">Amazon CloudWatch — サービス構成マップ</text>
+
+  <!-- Center: CloudWatch core -->
+  <rect x="380" y="195" width="200" height="70" rx="12" fill="#d97706"/>
+  <text x="480" y="225" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Amazon</text>
+  <text x="480" y="243" text-anchor="middle" font-size="14" font-weight="bold" fill="white">CloudWatch</text>
+  <text x="480" y="258" text-anchor="middle" font-size="10" fill="#fef3c7">Unified Monitoring</text>
+
+  <!-- Logs (top-left) -->
+  <rect x="30" y="50" width="180" height="80" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="120" y="74" text-anchor="middle" font-size="12" font-weight="bold" fill="#22c55e">CloudWatch Logs</text>
+  <text x="120" y="92" text-anchor="middle" font-size="10" fill="#86efac">• ロググループ / ストリーム</text>
+  <text x="120" y="108" text-anchor="middle" font-size="10" fill="#86efac">• Logs Insights クエリ</text>
+  <text x="120" y="122" text-anchor="middle" font-size="10" fill="#64748b">Infrequent Access: 50%安</text>
+  <line x1="210" y1="105" x2="380" y2="220" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Metrics (top-center) -->
+  <rect x="390" y="50" width="180" height="80" rx="8" fill="#1e293b" stroke="#FF9900" stroke-width="2"/>
+  <text x="480" y="74" text-anchor="middle" font-size="12" font-weight="bold" fill="#FF9900">CloudWatch Metrics</text>
+  <text x="480" y="92" text-anchor="middle" font-size="10" fill="#fcd34d">• 標準 / 高解像度</text>
+  <text x="480" y="108" text-anchor="middle" font-size="10" fill="#fcd34d">• カスタムメトリクス (EMF)</text>
+  <text x="480" y="122" text-anchor="middle" font-size="10" fill="#64748b">高解像度は10倍コスト</text>
+  <line x1="480" y1="130" x2="480" y2="195" stroke="#FF9900" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Alarms (top-right) -->
+  <rect x="750" y="50" width="180" height="80" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <text x="840" y="74" text-anchor="middle" font-size="12" font-weight="bold" fill="#ef4444">CloudWatch Alarms</text>
+  <text x="840" y="92" text-anchor="middle" font-size="10" fill="#fca5a5">• 単一 / 複合アラーム</text>
+  <text x="840" y="108" text-anchor="middle" font-size="10" fill="#fca5a5">• Anomaly Detection</text>
+  <text x="840" y="122" text-anchor="middle" font-size="10" fill="#64748b">→ SNS / Auto Scaling</text>
+  <line x1="750" y1="105" x2="580" y2="220" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Dashboards (left) -->
+  <rect x="30" y="210" width="180" height="80" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <text x="120" y="234" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa">CW Dashboards</text>
+  <text x="120" y="252" text-anchor="middle" font-size="10" fill="#c4b5fd">• ウィジェット設計</text>
+  <text x="120" y="268" text-anchor="middle" font-size="10" fill="#c4b5fd">• クロスアカウント表示</text>
+  <text x="120" y="284" text-anchor="middle" font-size="10" fill="#64748b">3ダッシュ無料 / 以降$3/月</text>
+  <line x1="210" y1="250" x2="380" y2="250" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- ServiceLens (right) -->
+  <rect x="750" y="210" width="180" height="80" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="840" y="234" text-anchor="middle" font-size="12" font-weight="bold" fill="#f97316">ServiceLens</text>
+  <text x="840" y="252" text-anchor="middle" font-size="10" fill="#fdba74">• X-Ray + Metrics統合</text>
+  <text x="840" y="268" text-anchor="middle" font-size="10" fill="#fdba74">• Service Map可視化</text>
+  <text x="840" y="284" text-anchor="middle" font-size="10" fill="#64748b">トレースとメトリクス連携</text>
+  <line x1="750" y1="250" x2="580" y2="250" stroke="#f97316" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Synthetics (bottom-left) -->
+  <rect x="30" y="370" width="180" height="80" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <text x="120" y="394" text-anchor="middle" font-size="12" font-weight="bold" fill="#38bdf8">CW Synthetics</text>
+  <text x="120" y="412" text-anchor="middle" font-size="10" fill="#7dd3fc">• Canary（Node.js/Python）</text>
+  <text x="120" y="428" text-anchor="middle" font-size="10" fill="#7dd3fc">• API / UI / Heartbeat</text>
+  <text x="120" y="444" text-anchor="middle" font-size="10" fill="#64748b">0.0012$/実行</text>
+  <line x1="210" y1="390" x2="380" y2="285" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- RUM (bottom-center) -->
+  <rect x="390" y="370" width="180" height="80" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="2"/>
+  <text x="480" y="394" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">CloudWatch RUM</text>
+  <text x="480" y="412" text-anchor="middle" font-size="10" fill="#6ee7b7">• リアルユーザー監視</text>
+  <text x="480" y="428" text-anchor="middle" font-size="10" fill="#6ee7b7">• Core Web Vitals</text>
+  <text x="480" y="444" text-anchor="middle" font-size="10" fill="#64748b">$1/100Kイベント</text>
+  <line x1="480" y1="370" x2="480" y2="265" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Container/Lambda Insights (bottom-right) -->
+  <rect x="750" y="370" width="180" height="80" rx="8" fill="#1e293b" stroke="#e879f9" stroke-width="2"/>
+  <text x="840" y="394" text-anchor="middle" font-size="12" font-weight="bold" fill="#e879f9">Container/λ Insights</text>
+  <text x="840" y="412" text-anchor="middle" font-size="10" fill="#f0abfc">• EKS/ECS詳細メトリクス</text>
+  <text x="840" y="428" text-anchor="middle" font-size="10" fill="#f0abfc">• Lambda拡張メトリクス</text>
+  <text x="840" y="444" text-anchor="middle" font-size="10" fill="#64748b">$0.50/GB処理</text>
+  <line x1="750" y1="390" x2="580" y2="285" stroke="#e879f9" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Bottom note -->
+  <rect x="20" y="462" width="920" height="30" rx="6" fill="#1e293b"/>
+  <text x="480" y="481" text-anchor="middle" font-size="11" fill="#94a3b8">CloudWatch Logs Insights: $0.005/GBスキャン　|　カスタムメトリクス: $0.30/メトリクス/月（最初10,000個）　|　Alarms: $0.10/アラーム/月</text>
+</svg>

@@ -1,0 +1,93 @@
+<svg viewBox="0 0 960 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="500" fill="#0f172a" rx="12"/>
+  <text x="480" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#FF9900">EKS Observability Stack — ADOT + AMP + AMG</text>
+
+  <!-- EKS Cluster box -->
+  <rect x="20" y="50" width="580" height="350" rx="12" fill="#0d1b2a" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="40" y="74" font-size="12" font-weight="bold" fill="#3b82f6">EKS Cluster</text>
+
+  <!-- Application Pods -->
+  <rect x="40" y="88" width="160" height="140" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="120" y="110" text-anchor="middle" font-size="11" font-weight="bold" fill="#22c55e">Application Pods</text>
+  <text x="56" y="132" font-size="10" fill="#86efac">OTel SDK (Java/Node/Py)</text>
+  <text x="56" y="150" font-size="10" fill="#64748b">gRPC OTLP → localhost</text>
+  <text x="56" y="168" font-size="10" fill="#86efac">Prometheus /metrics</text>
+  <text x="56" y="186" font-size="10" fill="#64748b">Scrape port: 8080</text>
+  <text x="56" y="204" font-size="10" fill="#86efac">Structured Logs</text>
+  <text x="56" y="220" font-size="10" fill="#64748b">stdout (Fluent Bit)</text>
+
+  <!-- ADOT Collector DaemonSet -->
+  <rect x="220" y="88" width="180" height="140" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+  <text x="310" y="110" text-anchor="middle" font-size="11" font-weight="bold" fill="#f59e0b">ADOT Collector</text>
+  <text x="236" y="128" font-size="10" fill="#fcd34d">(DaemonSet)</text>
+  <text x="236" y="148" font-size="10" fill="#94a3b8">Recv: OTLP gRPC/HTTP</text>
+  <text x="236" y="164" font-size="10" fill="#94a3b8">Recv: Prometheus scrape</text>
+  <text x="236" y="180" font-size="10" fill="#94a3b8">Proc: resourcedetection</text>
+  <text x="236" y="196" font-size="10" fill="#94a3b8">       batch / filter</text>
+  <text x="236" y="212" font-size="10" fill="#fcd34d">Exp: X-Ray / AMP / CW</text>
+
+  <!-- Fluent Bit DaemonSet -->
+  <rect x="420" y="88" width="160" height="140" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="500" y="110" text-anchor="middle" font-size="11" font-weight="bold" fill="#38bdf8">Fluent Bit</text>
+  <text x="436" y="128" font-size="10" fill="#7dd3fc">(DaemonSet)</text>
+  <text x="436" y="148" font-size="10" fill="#94a3b8">Input: tail /var/log</text>
+  <text x="436" y="164" font-size="10" fill="#94a3b8">Filter: Kubernetes</text>
+  <text x="436" y="180" font-size="10" fill="#94a3b8">       multiline</text>
+  <text x="436" y="196" font-size="10" fill="#38bdf8">Output: CloudWatch</text>
+  <text x="436" y="212" font-size="10" fill="#64748b">/aws/containerinsights/</text>
+
+  <!-- ADOT Operator (control plane) -->
+  <rect x="40" y="250" width="360" height="70" rx="8" fill="#1e293b" stroke="#e879f9" stroke-width="1.5"/>
+  <text x="220" y="273" text-anchor="middle" font-size="11" font-weight="bold" fill="#e879f9">ADOT Operator (Control Plane)</text>
+  <text x="56" y="293" font-size="10" fill="#94a3b8">OpenTelemetryCollector CRD → Collector管理</text>
+  <text x="56" y="309" font-size="10" fill="#94a3b8">Instrumentation CRD → Auto-instrumentation（Javaagent自動注入）</text>
+
+  <!-- Kube-state-metrics + node-exporter -->
+  <rect x="420" y="250" width="160" height="70" rx="8" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+  <text x="500" y="273" text-anchor="middle" font-size="10" font-weight="bold" fill="#94a3b8">kube-state-metrics</text>
+  <text x="436" y="291" font-size="9" fill="#64748b">Node/Pod/Deployment</text>
+  <text x="436" y="307" font-size="9" fill="#64748b">メトリクス → AMP</text>
+
+  <!-- EKS Control Plane Logs -->
+  <rect x="40" y="336" width="540" height="52" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+  <text x="310" y="358" text-anchor="middle" font-size="11" font-weight="bold" fill="#3b82f6">EKS Control Plane Logs → CloudWatch /aws/eks/&lt;cluster&gt;/cluster</text>
+  <text x="310" y="376" text-anchor="middle" font-size="10" fill="#64748b">api / audit / authenticator / controllerManager / scheduler (5種類)</text>
+
+  <!-- Right: AWS Managed Services -->
+  <rect x="620" y="50" width="320" height="350" rx="12" fill="#0f1f35" stroke="#FF9900" stroke-width="2"/>
+  <text x="780" y="76" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">AWS Managed Services</text>
+
+  <rect x="636" y="90" width="288" height="70" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="780" y="114" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa">AWS X-Ray</text>
+  <text x="652" y="134" font-size="10" fill="#c4b5fd">EKS Service Map / Traces</text>
+  <text x="652" y="150" font-size="10" fill="#64748b">→ ServiceLens統合</text>
+
+  <rect x="636" y="172" width="288" height="70" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="780" y="196" text-anchor="middle" font-size="12" font-weight="bold" fill="#f97316">Amazon Managed Prometheus</text>
+  <text x="652" y="216" font-size="10" fill="#fdba74">Remote Write ingestion</text>
+  <text x="652" y="232" font-size="10" fill="#64748b">$0.90/GiB ingested</text>
+
+  <rect x="636" y="254" width="288" height="70" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="1.5"/>
+  <text x="780" y="278" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">Amazon Managed Grafana</text>
+  <text x="652" y="298" font-size="10" fill="#6ee7b7">Data sources: AMP + CW + X-Ray</text>
+  <text x="652" y="314" font-size="10" fill="#64748b">$9/active editor/month</text>
+
+  <rect x="636" y="336" width="288" height="52" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="780" y="359" text-anchor="middle" font-size="12" font-weight="bold" fill="#22c55e">CloudWatch</text>
+  <text x="652" y="377" font-size="10" fill="#94a3b8">Container Insights / Logs / Alarms</text>
+
+  <!-- Arrows from EKS to AWS services -->
+  <line x1="400" y1="158" x2="636" y2="242" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="636,242 629,234 635,244" fill="#a78bfa"/>
+  <line x1="400" y1="158" x2="636" y2="214" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="636,214 629,208 634,217" fill="#f97316"/>
+  <line x1="580" y1="200" x2="636" y2="280" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="636,280 630,271 635,281" fill="#22c55e"/>
+
+  <!-- Bottom: Alerting row -->
+  <rect x="20" y="413" width="920" height="74" rx="8" fill="#1e293b"/>
+  <text x="480" y="433" text-anchor="middle" font-size="12" font-weight="bold" fill="#FF9900">EKS監視セットアップ手順</text>
+  <text x="40" y="453" font-size="10" fill="#e2e8f0">1. helm install adot-operator / kubectl apply -f collector.yaml（OpenTelemetryCollector CR作成）</text>
+  <text x="40" y="469" font-size="10" fill="#e2e8f0">2. amp create-workspace → remote_write URL取得 / 3. amg create-workspace（SSO統合）→ AMP/CW/X-Rayデータソース追加</text>
+  <text x="40" y="485" font-size="10" fill="#64748b">IRSA設定: adot-collector-sa → aps:RemoteWrite + xray:PutTraceSegments + logs:PutLogEvents</text>
+</svg>

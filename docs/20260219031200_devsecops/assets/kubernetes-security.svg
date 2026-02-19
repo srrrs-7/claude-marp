@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 560" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:Arial,sans-serif;">
+
+  <!-- Background -->
+  <rect width="860" height="560" fill="#F0F4F8" rx="8"/>
+
+  <!-- Title -->
+  <text x="430" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#1A237E">Kubernetesセキュリティ全体像</text>
+
+  <!-- ===== GRID HEADER ===== -->
+  <!-- Category header -->
+  <rect x="20" y="50" width="185" height="36" rx="6" fill="#1A237E"/>
+  <text x="112" y="73" text-anchor="middle" font-size="12" font-weight="bold" fill="white">セキュリティ領域</text>
+  <!-- Tools header -->
+  <rect x="215" y="50" width="625" height="36" rx="6" fill="#283593"/>
+  <text x="527" y="73" text-anchor="middle" font-size="12" font-weight="bold" fill="white">主要ツール・技術・設定</text>
+
+  <!-- ===== ROW COLORS ===== -->
+  <!-- Row heights: 5 rows, each 86px, starting at y=95 -->
+
+  <!-- Row 1: 認証・認可 -->
+  <rect x="20" y="95" width="185" height="80" rx="5" fill="#1565C0" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.15))"/>
+  <text x="112" y="128" text-anchor="middle" font-size="12" font-weight="bold" fill="white">認証・認可</text>
+  <text x="112" y="144" text-anchor="middle" font-size="10" fill="#BBDEFB">Authentication &amp; Authorization</text>
+  <text x="112" y="160" text-anchor="middle" font-size="10" fill="#90CAF9">🔑 Identity &amp; Access</text>
+
+  <rect x="215" y="95" width="625" height="80" rx="5" fill="white" stroke="#BBDEFB" stroke-width="1"/>
+  <!-- Tool boxes row 1 -->
+  <rect x="228" y="108" width="120" height="52" rx="5" fill="#E3F2FD" stroke="#1565C0" stroke-width="1"/>
+  <text x="288" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#0D47A1">RBAC</text>
+  <text x="288" y="140" text-anchor="middle" font-size="9" fill="#37474F">Role / ClusterRole</text>
+  <text x="288" y="153" text-anchor="middle" font-size="9" fill="#37474F">RoleBinding</text>
+
+  <rect x="360" y="108" width="120" height="52" rx="5" fill="#E3F2FD" stroke="#1565C0" stroke-width="1"/>
+  <text x="420" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#0D47A1">OIDC統合</text>
+  <text x="420" y="140" text-anchor="middle" font-size="9" fill="#37474F">Dex / Keycloak</text>
+  <text x="420" y="153" text-anchor="middle" font-size="9" fill="#37474F">Azure AD / Okta</text>
+
+  <rect x="492" y="108" width="130" height="52" rx="5" fill="#E3F2FD" stroke="#1565C0" stroke-width="1"/>
+  <text x="557" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#0D47A1">ServiceAccount</text>
+  <text x="557" y="140" text-anchor="middle" font-size="9" fill="#37474F">最小権限付与</text>
+  <text x="557" y="153" text-anchor="middle" font-size="9" fill="#37474F">automountToken: false</text>
+
+  <rect x="634" y="108" width="120" height="52" rx="5" fill="#E3F2FD" stroke="#1565C0" stroke-width="1"/>
+  <text x="694" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#0D47A1">監査ログ</text>
+  <text x="694" y="140" text-anchor="middle" font-size="9" fill="#37474F">Audit Policy</text>
+  <text x="694" y="153" text-anchor="middle" font-size="9" fill="#37474F">Falco + SIEM連携</text>
+
+  <!-- Row 2: ネットワーク -->
+  <rect x="20" y="185" width="185" height="80" rx="5" fill="#00695C" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.15))"/>
+  <text x="112" y="218" text-anchor="middle" font-size="12" font-weight="bold" fill="white">ネットワーク</text>
+  <text x="112" y="234" text-anchor="middle" font-size="10" fill="#B2DFDB">Network Security</text>
+  <text x="112" y="250" text-anchor="middle" font-size="10" fill="#80CBC4">🌐 Zero Trust Network</text>
+
+  <rect x="215" y="185" width="625" height="80" rx="5" fill="white" stroke="#B2DFDB" stroke-width="1"/>
+  <rect x="228" y="198" width="120" height="52" rx="5" fill="#E0F2F1" stroke="#00695C" stroke-width="1"/>
+  <text x="288" y="215" text-anchor="middle" font-size="11" font-weight="bold" fill="#004D40">NetworkPolicy</text>
+  <text x="288" y="230" text-anchor="middle" font-size="9" fill="#37474F">Ingress / Egress</text>
+  <text x="288" y="243" text-anchor="middle" font-size="9" fill="#37474F">Calico / Cilium</text>
+
+  <rect x="360" y="198" width="120" height="52" rx="5" fill="#E0F2F1" stroke="#00695C" stroke-width="1"/>
+  <text x="420" y="215" text-anchor="middle" font-size="11" font-weight="bold" fill="#004D40">Istio mTLS</text>
+  <text x="420" y="230" text-anchor="middle" font-size="9" fill="#37474F">サービスメッシュ</text>
+  <text x="420" y="243" text-anchor="middle" font-size="9" fill="#37474F">相互TLS認証</text>
+
+  <rect x="492" y="198" width="120" height="52" rx="5" fill="#E0F2F1" stroke="#00695C" stroke-width="1"/>
+  <text x="552" y="215" text-anchor="middle" font-size="11" font-weight="bold" fill="#004D40">Ingress TLS</text>
+  <text x="552" y="230" text-anchor="middle" font-size="9" fill="#37474F">cert-manager</text>
+  <text x="552" y="243" text-anchor="middle" font-size="9" fill="#37474F">Let's Encrypt</text>
+
+  <rect x="624" y="198" width="130" height="52" rx="5" fill="#E0F2F1" stroke="#00695C" stroke-width="1"/>
+  <text x="689" y="215" text-anchor="middle" font-size="11" font-weight="bold" fill="#004D40">Egress制御</text>
+  <text x="689" y="230" text-anchor="middle" font-size="9" fill="#37474F">外部通信ホワイトリスト</text>
+  <text x="689" y="243" text-anchor="middle" font-size="9" fill="#37474F">Firewall / NAT GW</text>
+
+  <!-- Row 3: ワークロード -->
+  <rect x="20" y="275" width="185" height="80" rx="5" fill="#6A1B9A" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.15))"/>
+  <text x="112" y="308" text-anchor="middle" font-size="12" font-weight="bold" fill="white">ワークロード</text>
+  <text x="112" y="324" text-anchor="middle" font-size="10" fill="#E1BEE7">Workload Security</text>
+  <text x="112" y="340" text-anchor="middle" font-size="10" fill="#CE93D8">🔧 Runtime Security</text>
+
+  <rect x="215" y="275" width="625" height="80" rx="5" fill="white" stroke="#E1BEE7" stroke-width="1"/>
+  <rect x="228" y="288" width="130" height="52" rx="5" fill="#F3E5F5" stroke="#6A1B9A" stroke-width="1"/>
+  <text x="293" y="305" text-anchor="middle" font-size="11" font-weight="bold" fill="#4A148C">PodSecurity</text>
+  <text x="293" y="320" text-anchor="middle" font-size="9" fill="#37474F">Admission Webhook</text>
+  <text x="293" y="333" text-anchor="middle" font-size="9" fill="#37474F">privileged禁止</text>
+
+  <rect x="370" y="288" width="140" height="52" rx="5" fill="#F3E5F5" stroke="#6A1B9A" stroke-width="1"/>
+  <text x="440" y="305" text-anchor="middle" font-size="11" font-weight="bold" fill="#4A148C">OPA/Gatekeeper</text>
+  <text x="440" y="320" text-anchor="middle" font-size="9" fill="#37474F">Policy as Code (Rego)</text>
+  <text x="440" y="333" text-anchor="middle" font-size="9" fill="#37474F">カスタムポリシー強制</text>
+
+  <rect x="522" y="288" width="110" height="52" rx="5" fill="#F3E5F5" stroke="#6A1B9A" stroke-width="1"/>
+  <text x="577" y="305" text-anchor="middle" font-size="11" font-weight="bold" fill="#4A148C">Falco</text>
+  <text x="577" y="320" text-anchor="middle" font-size="9" fill="#37474F">ランタイム異常検知</text>
+  <text x="577" y="333" text-anchor="middle" font-size="9" fill="#37474F">syscall監視</text>
+
+  <rect x="644" y="288" width="120" height="52" rx="5" fill="#F3E5F5" stroke="#6A1B9A" stroke-width="1"/>
+  <text x="704" y="305" text-anchor="middle" font-size="11" font-weight="bold" fill="#4A148C">リソース制限</text>
+  <text x="704" y="320" text-anchor="middle" font-size="9" fill="#37474F">LimitRange</text>
+  <text x="704" y="333" text-anchor="middle" font-size="9" fill="#37474F">ResourceQuota</text>
+
+  <!-- Row 4: イメージ -->
+  <rect x="20" y="365" width="185" height="80" rx="5" fill="#E65100" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.15))"/>
+  <text x="112" y="398" text-anchor="middle" font-size="12" font-weight="bold" fill="white">イメージ</text>
+  <text x="112" y="414" text-anchor="middle" font-size="10" fill="#FFE0B2">Image Security</text>
+  <text x="112" y="430" text-anchor="middle" font-size="10" fill="#FFCC80">🐳 Supply Chain</text>
+
+  <rect x="215" y="365" width="625" height="80" rx="5" fill="white" stroke="#FFE0B2" stroke-width="1"/>
+  <rect x="228" y="378" width="120" height="52" rx="5" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="288" y="395" text-anchor="middle" font-size="11" font-weight="bold" fill="#BF360C">Trivyスキャン</text>
+  <text x="288" y="410" text-anchor="middle" font-size="9" fill="#37474F">CVE脆弱性検出</text>
+  <text x="288" y="423" text-anchor="middle" font-size="9" fill="#37474F">CI/CDパイプライン統合</text>
+
+  <rect x="360" y="378" width="120" height="52" rx="5" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="420" y="395" text-anchor="middle" font-size="11" font-weight="bold" fill="#BF360C">Cosign署名</text>
+  <text x="420" y="410" text-anchor="middle" font-size="9" fill="#37474F">SLSA準拠</text>
+  <text x="420" y="423" text-anchor="middle" font-size="9" fill="#37474F">改ざん検証</text>
+
+  <rect x="492" y="378" width="130" height="52" rx="5" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="557" y="395" text-anchor="middle" font-size="11" font-weight="bold" fill="#BF360C">Private Registry</text>
+  <text x="557" y="410" text-anchor="middle" font-size="9" fill="#37474F">ECR / GAR / Harbor</text>
+  <text x="557" y="423" text-anchor="middle" font-size="9" fill="#37474F">アクセス制御</text>
+
+  <rect x="634" y="378" width="120" height="52" rx="5" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="694" y="395" text-anchor="middle" font-size="11" font-weight="bold" fill="#BF360C">Distroless</text>
+  <text x="694" y="410" text-anchor="middle" font-size="9" fill="#37474F">最小イメージ</text>
+  <text x="694" y="423" text-anchor="middle" font-size="9" fill="#37474F">攻撃面の最小化</text>
+
+  <!-- Row 5: シークレット -->
+  <rect x="20" y="455" width="185" height="80" rx="5" fill="#C62828" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.15))"/>
+  <text x="112" y="488" text-anchor="middle" font-size="12" font-weight="bold" fill="white">シークレット</text>
+  <text x="112" y="504" text-anchor="middle" font-size="10" fill="#FFCDD2">Secrets Management</text>
+  <text x="112" y="520" text-anchor="middle" font-size="10" fill="#EF9A9A">🔐 Key Management</text>
+
+  <rect x="215" y="455" width="625" height="80" rx="5" fill="white" stroke="#FFCDD2" stroke-width="1"/>
+  <rect x="228" y="468" width="120" height="52" rx="5" fill="#FFEBEE" stroke="#C62828" stroke-width="1"/>
+  <text x="288" y="485" text-anchor="middle" font-size="11" font-weight="bold" fill="#B71C1C">HashiCorp Vault</text>
+  <text x="288" y="500" text-anchor="middle" font-size="9" fill="#37474F">動的シークレット</text>
+  <text x="288" y="513" text-anchor="middle" font-size="9" fill="#37474F">自動ローテーション</text>
+
+  <rect x="360" y="468" width="120" height="52" rx="5" fill="#FFEBEE" stroke="#C62828" stroke-width="1"/>
+  <text x="420" y="485" text-anchor="middle" font-size="11" font-weight="bold" fill="#B71C1C">Sealed Secrets</text>
+  <text x="420" y="500" text-anchor="middle" font-size="9" fill="#37474F">GitOps安全管理</text>
+  <text x="420" y="513" text-anchor="middle" font-size="9" fill="#37474F">Bitnami製</text>
+
+  <rect x="492" y="468" width="120" height="52" rx="5" fill="#FFEBEE" stroke="#C62828" stroke-width="1"/>
+  <text x="552" y="485" text-anchor="middle" font-size="11" font-weight="bold" fill="#B71C1C">ESO</text>
+  <text x="552" y="500" text-anchor="middle" font-size="9" fill="#37474F">External Secrets Op.</text>
+  <text x="552" y="513" text-anchor="middle" font-size="9" fill="#37474F">AWS SM / GCP SM連携</text>
+
+  <rect x="624" y="468" width="130" height="52" rx="5" fill="#FFEBEE" stroke="#C62828" stroke-width="1"/>
+  <text x="689" y="485" text-anchor="middle" font-size="11" font-weight="bold" fill="#B71C1C">etcd暗号化</text>
+  <text x="689" y="500" text-anchor="middle" font-size="9" fill="#37474F">EncryptionConfig</text>
+  <text x="689" y="513" text-anchor="middle" font-size="9" fill="#37474F">KMS Provider統合</text>
+
+  <!-- Bottom note -->
+  <text x="430" y="548" text-anchor="middle" font-size="10" fill="#546E7A">CIS Kubernetes Benchmark準拠 | CNCF Security Whitepaper参照 | NSA/CISA Kubernetes Hardening Guide</text>
+
+</svg>

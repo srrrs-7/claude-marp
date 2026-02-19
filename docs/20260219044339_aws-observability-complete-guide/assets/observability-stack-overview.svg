@@ -1,0 +1,112 @@
+<svg viewBox="0 0 960 520" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="520" fill="#0f172a" rx="12"/>
+  <text x="480" y="34" text-anchor="middle" font-size="18" font-weight="bold" fill="#FF9900">AWS Observability フルスタック</text>
+
+  <!-- Data Sources row -->
+  <text x="480" y="62" text-anchor="middle" font-size="11" fill="#94a3b8">── Data Sources ──</text>
+  <rect x="20" y="72" width="110" height="50" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="75" y="94" text-anchor="middle" font-size="11" font-weight="bold" fill="#93c5fd">Lambda</text>
+  <text x="75" y="110" text-anchor="middle" font-size="10" fill="#64748b">Serverless</text>
+
+  <rect x="145" y="72" width="110" height="50" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="200" y="94" text-anchor="middle" font-size="11" font-weight="bold" fill="#93c5fd">EKS / ECS</text>
+  <text x="200" y="110" text-anchor="middle" font-size="10" fill="#64748b">Container</text>
+
+  <rect x="270" y="72" width="110" height="50" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="325" y="94" text-anchor="middle" font-size="11" font-weight="bold" fill="#93c5fd">EC2 / App</text>
+  <text x="325" y="110" text-anchor="middle" font-size="10" fill="#64748b">Traditional</text>
+
+  <rect x="395" y="72" width="110" height="50" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="450" y="94" text-anchor="middle" font-size="11" font-weight="bold" fill="#93c5fd">API Gateway</text>
+  <text x="450" y="110" text-anchor="middle" font-size="10" fill="#64748b">Edge</text>
+
+  <rect x="520" y="72" width="110" height="50" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="575" y="94" text-anchor="middle" font-size="11" font-weight="bold" fill="#93c5fd">RDS / DDB</text>
+  <text x="575" y="110" text-anchor="middle" font-size="10" fill="#64748b">Database</text>
+
+  <rect x="645" y="72" width="110" height="50" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="700" y="94" text-anchor="middle" font-size="11" font-weight="bold" fill="#93c5fd">Browser / Mobile</text>
+  <text x="700" y="108" text-anchor="middle" font-size="10" fill="#64748b">RUM</text>
+
+  <rect x="770" y="72" width="110" height="50" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="825" y="94" text-anchor="middle" font-size="11" font-weight="bold" fill="#93c5fd">Synthetics</text>
+  <text x="825" y="110" text-anchor="middle" font-size="10" fill="#64748b">Canary</text>
+
+  <!-- ADOT Collector layer -->
+  <rect x="20" y="145" width="920" height="50" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+  <text x="480" y="165" text-anchor="middle" font-size="12" font-weight="bold" fill="#f59e0b">AWS Distro for OpenTelemetry (ADOT) Collector</text>
+  <text x="480" y="183" text-anchor="middle" font-size="10" fill="#94a3b8">Receivers (OTLP / Prometheus / Zipkin) → Processors (Filter / Batch / Attribute) → Exporters</text>
+
+  <!-- Arrows down from sources to ADOT -->
+  <line x1="75" y1="122" x2="75" y2="145" stroke="#3b82f6" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="200" y1="122" x2="200" y2="145" stroke="#3b82f6" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="325" y1="122" x2="325" y2="145" stroke="#3b82f6" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="450" y1="122" x2="450" y2="145" stroke="#3b82f6" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="575" y1="122" x2="575" y2="145" stroke="#3b82f6" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="700" y1="122" x2="700" y2="145" stroke="#3b82f6" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="825" y1="122" x2="825" y2="145" stroke="#3b82f6" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- Three pillars -->
+  <text x="480" y="220" text-anchor="middle" font-size="11" fill="#94a3b8">── 三本柱 ──</text>
+
+  <!-- Logs pillar -->
+  <rect x="20" y="230" width="290" height="130" rx="10" fill="#0f2027" stroke="#22c55e" stroke-width="2"/>
+  <rect x="20" y="230" width="290" height="36" rx="10" fill="#16a34a"/>
+  <text x="165" y="253" text-anchor="middle" font-size="13" font-weight="bold" fill="white">LOGS</text>
+  <text x="40" y="284" font-size="11" fill="#86efac">• CloudWatch Logs</text>
+  <text x="40" y="300" font-size="11" fill="#86efac">• Logs Insights クエリ</text>
+  <text x="40" y="316" font-size="11" fill="#86efac">• S3 + Athena（コールドストレージ）</text>
+  <text x="40" y="332" font-size="11" fill="#86efac">• Firehose → S3 エクスポート</text>
+  <text x="40" y="348" font-size="11" fill="#4ade80">→ 保存期間・フィルターでコスト制御</text>
+
+  <!-- Metrics pillar -->
+  <rect x="335" y="230" width="290" height="130" rx="10" fill="#0f2027" stroke="#FF9900" stroke-width="2"/>
+  <rect x="335" y="230" width="290" height="36" rx="10" fill="#d97706"/>
+  <text x="480" y="253" text-anchor="middle" font-size="13" font-weight="bold" fill="white">METRICS</text>
+  <text x="355" y="284" font-size="11" fill="#fcd34d">• CloudWatch Metrics（標準 + カスタム）</text>
+  <text x="355" y="300" font-size="11" fill="#fcd34d">• EMF (Embedded Metric Format)</text>
+  <text x="355" y="316" font-size="11" fill="#fcd34d">• Amazon Managed Prometheus (AMP)</text>
+  <text x="355" y="332" font-size="11" fill="#fcd34d">• Anomaly Detection / Alarms</text>
+  <text x="355" y="348" font-size="11" fill="#fbbf24">→ 高解像度 vs 標準でコスト差10倍</text>
+
+  <!-- Traces pillar -->
+  <rect x="650" y="230" width="290" height="130" rx="10" fill="#0f2027" stroke="#a78bfa" stroke-width="2"/>
+  <rect x="650" y="230" width="290" height="36" rx="10" fill="#7c3aed"/>
+  <text x="795" y="253" text-anchor="middle" font-size="13" font-weight="bold" fill="white">TRACES</text>
+  <text x="670" y="284" font-size="11" fill="#c4b5fd">• AWS X-Ray（Segment/Subsegment）</text>
+  <text x="670" y="300" font-size="11" fill="#c4b5fd">• OpenTelemetry SDK（OTLP）</text>
+  <text x="670" y="316" font-size="11" fill="#c4b5fd">• ServiceLens（Trace × Metrics統合）</text>
+  <text x="670" y="332" font-size="11" fill="#c4b5fd">• X-Ray Groups / Insights</text>
+  <text x="670" y="348" font-size="11" fill="#a78bfa">→ サンプリング率でコスト最適化</text>
+
+  <!-- Arrows from ADOT to pillars -->
+  <line x1="165" y1="195" x2="165" y2="230" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="165,230 160,221 170,221" fill="#22c55e"/>
+  <line x1="480" y1="195" x2="480" y2="230" stroke="#FF9900" stroke-width="1.5"/>
+  <polygon points="480,230 475,221 485,221" fill="#FF9900"/>
+  <line x1="795" y1="195" x2="795" y2="230" stroke="#a78bfa" stroke-width="1.5"/>
+  <polygon points="795,230 790,221 800,221" fill="#a78bfa"/>
+
+  <!-- Visualization layer -->
+  <text x="480" y="382" text-anchor="middle" font-size="11" fill="#94a3b8">── 可視化・アクション ──</text>
+  <rect x="20" y="390" width="220" height="60" rx="8" fill="#1e293b" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="130" y="414" text-anchor="middle" font-size="12" font-weight="bold" fill="#FF9900">CloudWatch</text>
+  <text x="130" y="432" text-anchor="middle" font-size="10" fill="#94a3b8">Dashboards / ServiceLens / RUM</text>
+
+  <rect x="255" y="390" width="220" height="60" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="365" y="414" text-anchor="middle" font-size="12" font-weight="bold" fill="#f97316">Amazon Managed Grafana</text>
+  <text x="365" y="432" text-anchor="middle" font-size="10" fill="#94a3b8">Unified Dashboards / SLO / Alerting</text>
+
+  <rect x="490" y="390" width="220" height="60" rx="8" fill="#1e293b" stroke="#ec4899" stroke-width="1.5"/>
+  <text x="600" y="414" text-anchor="middle" font-size="12" font-weight="bold" fill="#ec4899">Alarms / EventBridge</text>
+  <text x="600" y="432" text-anchor="middle" font-size="10" fill="#94a3b8">SNS / PagerDuty / OpsGenie</text>
+
+  <rect x="725" y="390" width="215" height="60" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="1.5"/>
+  <text x="832" y="414" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">AWS Health / Insights</text>
+  <text x="832" y="432" text-anchor="middle" font-size="10" fill="#94a3b8">Anomaly / Contributor Insights</text>
+
+  <!-- Bottom cost bar -->
+  <rect x="20" y="465" width="920" height="44" rx="8" fill="#1e293b" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="480" y="485" text-anchor="middle" font-size="12" font-weight="bold" fill="#FF9900">コスト最適化ポイント</text>
+  <text x="480" y="501" text-anchor="middle" font-size="10" fill="#94a3b8">ログ保持期間設定 / カスタムメトリクス集約 / X-Rayサンプリング率 / AMP メトリクス数削減 / S3コールドストレージ移行</text>
+</svg>

@@ -338,7 +338,11 @@
 				"Top-k件の retrieval_results リストで返却",
 				"scoreThreshold 指定で低スコア結果を除外可能",
 				"filter パラメータでメタデータ条件を追加"
-			],
+			]
+		},
+		{
+			"title": "Retrieve API — 検索のみ（LLM生成なし）（コード例）",
+			"content": [],
 			"code": "response = bedrock_agent_runtime.retrieve(\n    knowledgeBaseId='KB_ID',\n    retrievalQuery={'text': 'クエリテキスト'},\n    retrievalConfiguration={\n        'vectorSearchConfiguration': {\n            'numberOfResults': 5,\n            'searchType': 'HYBRID',\n            'filter': {\n                'equals': {'key': 'dept', 'value': 'eng'}\n            }\n        }\n    }\n)",
 			"codeLanguage": "python"
 		},
@@ -356,7 +360,11 @@
 				"| orchestrationConfiguration | リランキングモデル指定 |",
 				"レスポンス: output.text（生成回答）+ citations（引用元リスト）",
 				"citations: retrievedReferences（ソースチャンク+URI+メタデータ）が含まれる"
-			],
+			]
+		},
+		{
+			"title": "RetrieveAndGenerate API — 検索+LLM生成（コード例）",
+			"content": [],
 			"code": "response = bedrock_agent_runtime.retrieve_and_generate(\n    input={'text': 'AWSの料金体系は？'},\n    retrieveAndGenerateConfiguration={\n        'type': 'KNOWLEDGE_BASE',\n        'knowledgeBaseConfiguration': {\n            'knowledgeBaseId': 'KB_ID',\n            'modelArn': 'arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-5-sonnet',\n            'retrievalConfiguration': {\n                'vectorSearchConfiguration': {\n                    'numberOfResults': 5,\n                    'searchType': 'HYBRID'\n                }\n            }\n        }\n    }\n)",
 			"codeLanguage": "python"
 		},
@@ -475,7 +483,11 @@
 				"| bedrock:StartIngestionJob | データ同期開始 |",
 				"| bedrock:GetIngestionJob | ジョブ状態確認 |",
 				"| bedrock:CreateKnowledgeBase | KB作成 |"
-			],
+			]
+		},
+		{
+			"title": "KBのIAMポリシー設計（コード例）",
+			"content": [],
 			"code": "# KBへのRetrieve権限ポリシー例\n{\n  \"Effect\": \"Allow\",\n  \"Action\": [\n    \"bedrock:Retrieve\",\n    \"bedrock:RetrieveAndGenerate\"\n  ],\n  \"Resource\": \"arn:aws:bedrock:us-east-1:123456789:knowledge-base/KB_ID\"\n}",
 			"codeLanguage": "json"
 		},
@@ -681,7 +693,11 @@
 				"| engine | faiss / nmslib / lucene |",
 				"| ef_construction | インデックス精度（デフォルト512） |",
 				"| m | 隣接ノード数（デフォルト16） |"
-			],
+			]
+		},
+		{
+			"title": "OpenSearch インデックス設計（コード例）",
+			"content": [],
 			"code": "PUT /my-vector-index\n{\n  \"settings\": {\"index\": {\"knn\": true}},\n  \"mappings\": {\n    \"properties\": {\n      \"embedding\": {\n        \"type\": \"knn_vector\",\n        \"dimension\": 1024,\n        \"method\": {\n          \"name\": \"hnsw\",\n          \"space_type\": \"cosinesimil\",\n          \"engine\": \"nmslib\",\n          \"parameters\": {\"ef_construction\": 512, \"m\": 16}\n        }\n      }\n    }\n  }\n}",
 			"codeLanguage": "json"
 		},
@@ -868,7 +884,11 @@
 				"| ③ データ挿入 | INSERT INTO t(text, emb) VALUES ('...', '[0.1, 0.2, ...]'); |",
 				"| ④ インデックス作成 | CREATE INDEX ON t USING ivfflat(emb); |",
 				"| ⑤ 類似検索 | SELECT * FROM t ORDER BY emb <=> query_vec LIMIT 5; |"
-			],
+			]
+		},
+		{
+			"title": "pgvector — Aurora PostgreSQL 有効化（コード例）",
+			"content": [],
 			"code": "-- pgvector 有効化\nCREATE EXTENSION IF NOT EXISTS vector;\n\n-- テーブル作成（1024次元ベクトル）\nCREATE TABLE documents (\n  id SERIAL PRIMARY KEY,\n  content TEXT,\n  embedding vector(1024),\n  metadata JSONB\n);\n\n-- コサイン類似度検索\nSELECT id, content, 1 - (embedding <=> '[0.1,0.2,...]') AS similarity\nFROM documents\nORDER BY embedding <=> '[0.1,0.2,...]'\nLIMIT 5;",
 			"codeLanguage": "sql"
 		},

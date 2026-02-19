@@ -1,0 +1,1254 @@
+{
+	"slides": [
+		{
+			"title": "AWS セキュリティ完全版",
+			"layout": "center",
+			"content": [
+				"IAM / KMS / GuardDuty / WAF / Network Security",
+				"AWS Certified Security – Specialty 完全対策",
+				"2026年版 | 全80枚"
+			]
+		},
+		{
+			"title": "学習ロードマップ",
+			"layout": "default",
+			"content": [
+				"| フェーズ | テーマ | スライド | 重要度 |",
+				"| --- | --- | --- | --- |",
+				"| 1 | IAM深掘り（ポリシー評価・SCP・ABAC） | 4–16 | ★★★ |",
+				"| 2 | データ保護・暗号化（KMS・Secrets・S3） | 17–30 | ★★★ |",
+				"| 3 | ネットワークセキュリティ（WAF・NF・SG） | 31–43 | ★★★ |",
+				"| 4 | 脅威検知・監視（GuardDuty・Security Hub） | 44–56 | ★★★ |",
+				"| 5 | 脆弱性管理・コンプライアンス | 57–64 | ★★ |",
+				"| 6 | インシデントレスポンス | 65–71 | ★★ |",
+				"| 7 | 試験直前まとめ | 72–80 | ★★★ |"
+			]
+		},
+		{
+			"title": "Security Specialty 試験概要・出題分布",
+			"layout": "default",
+			"content": [
+				"| ドメイン | 出題割合 | 主要サービス |",
+				"| --- | --- | --- |",
+				"| 脅威検知・インシデント対応 | 14% | GuardDuty / Security Hub / Detective |",
+				"| セキュリティロギング・監視 | 18% | CloudTrail / Config / CloudWatch |",
+				"| インフラセキュリティ | 20% | VPC / WAF / Network Firewall |",
+				"| IAM・アクセス管理 | 16% | IAM / SCP / Organizations |",
+				"| データ保護 | 18% | KMS / Secrets Manager / Macie |",
+				"| 脆弱性管理 | 14% | Inspector v2 / Patch Manager |",
+				"| **試験形式** | **65問** | **合格スコア: 750/1000** |"
+			]
+		},
+		{
+			"title": "Section 1: IAM深掘り",
+			"layout": "section",
+			"content": [
+				"ポリシー評価ロジック / SCP / Permission Boundary / ABAC",
+				"スライド 5–16"
+			]
+		},
+		{
+			"title": "IAM概要・エンティティ",
+			"layout": "default",
+			"content": [
+				"| エンティティ | 説明 | 用途 |",
+				"| --- | --- | --- |",
+				"| IAM User | 永続的な認証情報 | 人間ユーザー・旧来の用途 |",
+				"| IAM Group | ユーザーの論理グループ | ポリシー一括管理 |",
+				"| IAM Role | 一時認証情報（STS） | EC2・Lambda・Cross-Account |",
+				"| IAM Policy | 許可・拒否の定義 | インラインvsマネージド |",
+				"| Service Principal | AWSサービス | EC2がS3にアクセス等 |",
+				"| **ベストプラクティス** | ルートユーザー使用禁止 | MFA必須・最小権限の原則 |"
+			]
+		},
+		{
+			"title": "IAMポリシー種類と評価ロジック",
+			"layout": "default",
+			"content": [
+				"| ポリシー種類 | 適用対象 | 説明 |",
+				"| --- | --- | --- |",
+				"| Identity-based | User/Group/Role | Allow/Deny アクション定義 |",
+				"| Resource-based | S3/KMS/SQS等 | プリンシパルを直接指定 |",
+				"| Permission Boundary | User/Role | 最大権限の上限設定 |",
+				"| SCP (Service Control Policy) | OU/Account | Organizations全体ガードレール |",
+				"| Session Policy | 一時セッション | AssumeRole時に追加制限 |",
+				"| ACL (Access Control List) | S3/VPC等 | クロスアカウントのみ |",
+				"| **評価順序** | 明示的Deny優先 | Denyなし→全Allow交差→デフォルトDeny |"
+			]
+		},
+		{
+			"title": "ポリシー評価フロー詳細",
+			"layout": "default",
+			"content": [
+				"**判定ステップ（順に評価）:**",
+				"1. **明示的 Deny** — どのポリシーにもDenyがあれば即 DENIED",
+				"2. **SCP チェック** — Organizations SCPが Allowしていないアクションは DENIED",
+				"3. **Resource-based ポリシー** — リソース側がAllowならOK（クロスアカウント時は両側必要）",
+				"4. **Permission Boundary** — バウンダリーが許可しないアクションは DENIED",
+				"5. **Session Policy** — 一時認証の場合、セッションポリシーの交差",
+				"6. **Identity-based ポリシー** — 最終的にAllowがあれば ALLOWED",
+				"7. **デフォルト Deny** — どのAllowもなければ DENIED",
+				"**キーポイント**: Condition、NotAction、DenyWithConditionに注意"
+			]
+		},
+		{
+			"title": "Permission Boundary",
+			"content": [
+				"**概要**: IAM User / Role に設定できる「最大権限の上限」",
+				"- Identity-based Policy と Permission Boundary の**交差（AND）**が実効権限",
+				"- Boundary外のアクションはIDポリシーで許可していても無効",
+				"**ユースケース:**",
+				"- 開発者に IAM管理権限を委任しつつ、自分より強い権限付与を防ぐ",
+				"- 最小権限の原則を組織的に強制"
+			]
+		},
+		{
+			"title": "Permission Boundary（コード例）",
+			"content": [],
+			"code": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [{\n    \"Effect\": \"Allow\",\n    \"Action\": [\"s3:*\", \"ec2:*\"],\n    \"Resource\": \"*\"\n  }]\n}\n// Boundaryなので「s3:*とec2:*まで」という上限\n// IDポリシーがEC2のみなら実効はEC2のみ",
+			"codeLanguage": "json"
+		},
+		{
+			"title": "Service Control Policy (SCP)",
+			"layout": "default",
+			"content": [
+				"| 項目 | 内容 |",
+				"| --- | --- |",
+				"| 適用範囲 | Organizations の OU / Account |",
+				"| 効果 | 許可の上限（最大権限ガードレール） |",
+				"| ルートアカウント | SCPの影響を**受ける** |",
+				"| 管理アカウント | SCPの影響を**受けない** |",
+				"| デフォルト | FullAWSAccess（全許可） |",
+				"| 継承 | 親OU → 子OU → Account の順に継承 |",
+				"**典型的な使い方:**",
+				"- リージョン制限: ap-northeast-1のみ許可",
+				"- 危険操作防止: CloudTrail削除・GuardDuty停止を Deny",
+				"- コスト制限: 高コストサービスのDeny"
+			]
+		},
+		{
+			"title": "Organizations SCP vs Permission Boundary比較",
+			"layout": "default",
+			"content": [
+				"| 比較項目 | SCP | Permission Boundary |",
+				"| --- | --- | --- |",
+				"| 設定主体 | Organizations管理者 | IAM管理者 |",
+				"| 適用対象 | OU / AWS Account全体 | 個別User / Role |",
+				"| 粒度 | アカウント単位 | エンティティ単位 |",
+				"| 目的 | 組織全体ガードレール | 権限昇格防止 |",
+				"| 管理アカウント適用 | × | ○ |",
+				"| リソースベースポリシー制限 | × | × |",
+				"| 組み合わせ | 両方設定で二重ガードレール | — |"
+			]
+		},
+		{
+			"title": "IAM Identity Center (SSO)",
+			"layout": "default",
+			"content": [
+				"**概要**: 複数AWSアカウントへのシングルサインオン（旧: AWS SSO）",
+				"**主要機能:**",
+				"- Permission Set: アカウントへの権限テンプレート（IAM Roleとして展開）",
+				"- IdP連携: Active Directory / Okta / Azure AD（SAML2.0 / OIDC）",
+				"- SCIM: ユーザー/グループの自動プロビジョニング",
+				"- MFA: TOTP / FIDO2（WebAuthn）対応",
+				"**試験ポイント:**",
+				"- CLI: `aws configure sso` で認証 → 一時認証情報を自動管理",
+				"- ログ: CloudTrailに `sso.amazonaws.com` で記録",
+				"- ABAC: タグベースでアカウント横断アクセス制御可能"
+			]
+		},
+		{
+			"title": "IAM Roles: AssumeRole / Cross-Account",
+			"content": [
+				"**AssumeRoleフロー**: STS（Security Token Service）が一時認証情報を発行",
+				"- `aws sts assume-role` → AccessKeyId / SecretAccessKey / SessionToken（最大12h）",
+				"**Cross-Account アクセス:**",
+				"- 信頼ポリシー（Trust Policy）: どのアカウント・エンティティがRoleを引き受けられるか",
+				"- 許可ポリシー（Permission Policy）: Roleが何をできるか"
+			]
+		},
+		{
+			"title": "IAM Roles: AssumeRole / Cross-Account（コード例）",
+			"content": [],
+			"code": "// Trust Policy（Account Bのロールを Account Aが使う）\n{\n  \"Statement\": [{\n    \"Effect\": \"Allow\",\n    \"Principal\": {\"AWS\": \"arn:aws:iam::123456789012:root\"},\n    \"Action\": \"sts:AssumeRole\",\n    \"Condition\": {\"StringEquals\": {\"sts:ExternalId\": \"unique-id\"}}\n  }]\n}",
+			"codeLanguage": "json"
+		},
+		{
+			"title": "ABAC（属性ベースアクセス制御）",
+			"layout": "default",
+			"content": [
+				"**概要**: タグを使った動的アクセス制御（Attribute-Based Access Control）",
+				"| 項目 | RBAC（従来） | ABAC |",
+				"| --- | --- | --- |",
+				"| 制御基準 | ロール/グループ | リソース・プリンシパルタグ |",
+				"| スケール | ポリシー数が増加 | タグルール1つで管理 |",
+				"| 柔軟性 | 低い | 高い |",
+				"| 設定例 | 部署ごとにポリシー | `dept`タグ一致のみ許可 |",
+				"**Conditionキー例:**",
+				"- `aws:ResourceTag/dept` = `${aws:PrincipalTag/dept}`",
+				"- `aws:RequestTag/env` ∈ [dev, staging]"
+			]
+		},
+		{
+			"title": "IAM Access Analyzer",
+			"layout": "default",
+			"content": [
+				"**機能1: 外部アクセス分析**",
+				"- S3 / IAM Role / KMS / Lambda / SQS / Secrets Manager が外部公開されていないか検出",
+				"- ゾーン・オブ・トラスト（信頼ゾーン）外からのアクセスを Findingとして報告",
+				"**機能2: 未使用アクセス分析**",
+				"- 90日間使用されていない権限・ロール・アクセスキーを検出",
+				"- 最小権限実施のための推奨ポリシー生成",
+				"**機能3: ポリシー検証**",
+				"- `ValidatePolicy` API: 文法チェック + セキュリティ警告",
+				"- `CheckAccessNotGranted`: 特定アクションが許可されないことを確認",
+				"**統合**: Security Hub へ Findingを自動送信"
+			]
+		},
+		{
+			"title": "IAMセキュリティベストプラクティス",
+			"layout": "default",
+			"content": [
+				"| カテゴリ | ベストプラクティス |",
+				"| --- | --- |",
+				"| ルートユーザー | MFA必須・アクセスキー削除・日常使用禁止 |",
+				"| アクセスキー | 90日ローテーション・未使用は削除 |",
+				"| MFA | 全IAMユーザーに仮想/ハードウェアMFA |",
+				"| 最小権限 | Access Analyzerで定期レビュー |",
+				"| クロスアカウント | ExternalId条件付きAssumeRole |",
+				"| サービス | EC2インスタンスプロファイル（キー不要） |",
+				"| 監査 | CloudTrailでAPIコールを全記録 |",
+				"| 緊急時 | Break-Glass Role + 強固な通知設定 |"
+			]
+		},
+		{
+			"title": "IAM試験ポイントまとめ10選",
+			"layout": "default",
+			"content": [
+				"| # | 試験ポイント | キーワード |",
+				"| --- | --- | --- |",
+				"| 1 | 評価順序: 明示Deny → SCP → RBP → Boundary → Session → Identity | Deny優先 |",
+				"| 2 | SCPは管理アカウントに適用されない | 管理アカウント |",
+				"| 3 | Permission BoundaryはIdentityポリシーとの交差 | 最大権限上限 |",
+				"| 4 | Cross-AccountはExternalIdで混乱代理人攻撃を防ぐ | Confused Deputy |",
+				"| 5 | Access AnalyzerはZone of Trust外を検出 | 外部公開 |",
+				"| 6 | ABACは`aws:PrincipalTag`と`aws:ResourceTag`の一致 | タグ条件 |",
+				"| 7 | Identity Centerのログは`sso.amazonaws.com` | CloudTrail |",
+				"| 8 | 一時認証情報はSTSが発行（最大12時間） | AssumeRole |",
+				"| 9 | Resource-basedポリシーは同一アカウントならIDポリシー不要 | 同一アカウント |",
+				"| 10 | NotActionは列挙外すべてにマッチ（Denyと組み合わせ注意） | NotAction |"
+			]
+		},
+		{
+			"title": "Section 2: データ保護・暗号化",
+			"layout": "section",
+			"content": ["KMS / Secrets Manager / S3暗号化 / Macie", "スライド 18–30"]
+		},
+		{
+			"title": "Envelope暗号化の仕組み",
+			"layout": "default",
+			"content": [
+				"**Envelope暗号化**: 大容量データを効率的に暗号化する2層構造",
+				"**ステップ:**",
+				"1. KMSに **データキー（DEK）** 生成をリクエスト",
+				"2. KMSは「平文DEK」と「暗号化DEK」を返す",
+				"3. 平文DEKでデータをローカル暗号化（AES-256）",
+				"4. 平文DEKはメモリから消去・暗号化DEKをデータと一緒に保存",
+				"5. 復号時: 暗号化DEKをKMSに送りCMKで復号 → 平文DEKを取得 → データ復号",
+				"**利点:**",
+				"- KMSにデータを送らないためスループット向上",
+				"- CMK一つで大量データキーを管理"
+			]
+		},
+		{
+			"title": "KMS概要・キー種類",
+			"layout": "default",
+			"content": [
+				"| キー種類 | 管理主体 | 説明 | コスト |",
+				"| --- | --- | --- | --- |",
+				"| AWS Managed Key | AWS | AWSサービス用（`aws/s3`等） | 無料 |",
+				"| Customer Managed Key (CMK) | お客様 | 完全管理・ローテーション設定可 | $1/月 |",
+				"| Customer Provided Key | お客様 | CloudHSMで管理・KMS外部キーストア | 別途 |",
+				"| データキー (DEK) | アプリ | GenerateDataKeyで生成・KMSに保存されない | — |",
+				"**対称 vs 非対称:**",
+				"| 対称 (AES-256) | 非対称 (RSA/ECC) |",
+				"| --- | --- |",
+				"| Encrypt/Decrypt | 署名/検証・公開鍵暗号 |",
+				"| AWSサービス統合の標準 | 外部システムとの連携 |"
+			]
+		},
+		{
+			"title": "CMK管理（対称/非対称/HMAC）",
+			"layout": "default",
+			"content": [
+				"| CMK種別 | アルゴリズム | 用途 |",
+				"| --- | --- | --- |",
+				"| 対称 | AES-256-GCM | 暗号化/復号（AWSサービス連携） |",
+				"| 非対称RSA | RSA 2048/3072/4096 | 暗号化/復号・デジタル署名 |",
+				"| 非対称ECC | NIST P-256/P-384/P-521 | デジタル署名のみ |",
+				"| SM2（中国） | SM2 | 中国リージョン向け |",
+				"| HMAC | HMAC-SHA-256〜512 | メッセージ認証コード生成 |",
+				"**キーローテーション:**",
+				"- 自動ローテーション: 365日（または1〜2560日でカスタマイズ可）",
+				"- 旧キーマテリアル保持で過去データ復号は継続可能",
+				"- 手動ローテーション（エイリアス切替）: 非対称・HMAC・インポートキー"
+			]
+		},
+		{
+			"title": "KMSマルチリージョンキー",
+			"layout": "default",
+			"content": [
+				"**概要**: 複数リージョンで同じキーマテリアルを共有（レプリカキー）",
+				"| 特性 | 内容 |",
+				"| --- | --- |",
+				"| キーID | 全リージョンで同一のキーID（`mrk-`プレフィックス） |",
+				"| 用途 | DRシナリオでの復号・グローバルDynamoDB暗号化 |",
+				"| 独立管理 | 各リージョンのレプリカは独立して管理・削除可能 |",
+				"| 自動ローテーション | プライマリキーのみ設定（レプリカは自動同期） |",
+				"**ユースケース:**",
+				"- RDS Global Databaseの暗号化（同一CMKで複数リージョン復号）",
+				"- S3レプリケーション先リージョンでの暗号化継続",
+				"- クロスリージョンDR: 通常のCMKでは復号不可"
+			]
+		},
+		{
+			"title": "KMSキーポリシー vs IAMポリシー",
+			"layout": "default",
+			"content": [
+				"| 比較項目 | キーポリシー | IAMポリシー |",
+				"| --- | --- | --- |",
+				"| 設定場所 | KMSキー側（Resource-based） | IAMユーザー/ロール側 |",
+				"| 必須性 | **必須**（デフォルト許可なし） | キーポリシーが許可している場合のみ有効 |",
+				"| 粒度 | キー単位 | アクション・リソース単位 |",
+				"| クロスアカウント | キーポリシーで外部アカウント指定 | 外部アカウントのIAMでも許可必要 |",
+				"**デフォルトキーポリシー:**",
+				"- アカウントのルートユーザーに完全アクセス許可",
+				"- IAMポリシーによるキーアクセス管理を有効化",
+				"**ベストプラクティス**: キーポリシーで管理者と使用者を分離"
+			]
+		},
+		{
+			"title": "Secrets Manager詳細",
+			"content": [
+				"**概要**: パスワード・APIキー・DBクレデンシャルの安全な管理・自動ローテーション",
+				"**主要機能:**",
+				"- 自動ローテーション: Lambda関数で定期更新（RDS/Redshift/DocumentDB組み込み対応）",
+				"- バージョン管理: AWSCURRENT / AWSPENDING / AWSPREVIOUS",
+				"- クロスアカウント: リソースベースポリシーで共有",
+				"- VPC Endpoint: インターネット経由なし"
+			]
+		},
+		{
+			"title": "Secrets Manager詳細（コード例）",
+			"content": [],
+			"code": "import boto3\nclient = boto3.client('secretsmanager')\n\n# シークレット取得\nresponse = client.get_secret_value(\n    SecretId='prod/db/password'\n)\nsecret = response['SecretString']  # or SecretBinary\n\n# ローテーション設定\nclient.rotate_secret(\n    SecretId='prod/db/password',\n    RotationLambdaARN='arn:aws:lambda:...',\n    RotationRules={'AutomaticallyAfterDays': 30}\n)",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "SSM Parameter Store詳細",
+			"layout": "default",
+			"content": [
+				"| 機能 | Standard | Advanced |",
+				"| --- | --- | --- |",
+				"| パラメータ数 | 10,000 | 100,000 |",
+				"| 値サイズ | 4KB | 8KB |",
+				"| ポリシー | なし | 有効期限・通知設定可 |",
+				"| コスト | 無料 | $0.05/パラメータ/月 |",
+				"| SecureString | KMS暗号化 | KMS暗号化 |",
+				"**パラメータ種類:**",
+				"- String: プレーンテキスト",
+				"- StringList: カンマ区切りリスト",
+				"- SecureString: KMS暗号化（CMK指定可）",
+				"**階層構造**: `/app/prod/db/password` 形式でGetParametersByPath"
+			]
+		},
+		{
+			"title": "Secrets Manager vs Parameter Store比較",
+			"layout": "default",
+			"content": [
+				"| 比較項目 | Secrets Manager | Parameter Store |",
+				"| --- | --- | --- |",
+				"| 主な用途 | DBパスワード・APIキー | 設定値・機密情報 |",
+				"| 自動ローテーション | ○（Lambda統合） | × |",
+				"| コスト | $0.40/シークレット/月 | 無料（Standard） |",
+				"| クロスアカウント共有 | ○ | △（同一アカウント推奨） |",
+				"| バージョン管理 | ○（CURRENT/PENDING/PREV） | ○（バージョン番号） |",
+				"| CloudFormation統合 | ○ | ○（`{{resolve:ssm:}}`） |",
+				"| 選択基準 | ローテーション必須 or 多機能 | シンプルな設定管理・コスト重視 |"
+			]
+		},
+		{
+			"title": "S3暗号化（SSE-S3/SSE-KMS/SSE-C/CSE）",
+			"layout": "default",
+			"content": [
+				"| 暗号化種別 | キー管理 | 特徴 |",
+				"| --- | --- | --- |",
+				"| SSE-S3 | AWS管理（AES-256） | 最もシンプル・無料 |",
+				"| SSE-KMS | KMS CMK | CloudTrail記録・クロスアカウント可 |",
+				"| DSSE-KMS | KMS CMK（2層） | 二重暗号化・規制準拠 |",
+				"| SSE-C | お客様提供キー | リクエストごとにキー提供 |",
+				"| CSE-KMS | KMS（クライアント側） | S3到達前に暗号化 |",
+				"| CSE-C | お客様ローカルキー | 完全自己管理 |",
+				"**試験ポイント:**",
+				"- デフォルト暗号化: バケット設定でSSE-S3またはSSE-KMSを強制",
+				"- `aws:SecureTransport` Conditionでhttps必須化"
+			]
+		},
+		{
+			"title": "ACM（Certificate Manager）",
+			"layout": "default",
+			"content": [
+				"**概要**: SSL/TLSサーバー証明書の無料発行・管理・自動更新",
+				"**発行方法:**",
+				"- DNS検証: Route53自動設定（推奨・自動更新対応）",
+				"- メール検証: ドメイン管理者宛て確認メール",
+				"**利用できるサービス:**",
+				"- ALB / NLB / CloudFront / API Gateway / Cognito",
+				"- EC2への直接インストールは**不可**（証明書のエクスポート不可）",
+				"**Private CA:**",
+				"- ACM Private CA: 内部サービス用プライベート証明書",
+				"- マイクロサービス間TLS・コード署名に対応",
+				"**コスト**: パブリック証明書は**無料**、Private CAは$400/月〜"
+			]
+		},
+		{
+			"title": "CloudHSM",
+			"layout": "default",
+			"content": [
+				"**概要**: 専用ハードウェアセキュリティモジュール（FIPS 140-2 Level 3）",
+				"| 項目 | KMS | CloudHSM |",
+				"| --- | --- | --- |",
+				"| 管理 | AWS管理（マネージド） | お客様管理 |",
+				"| FIPS認定 | Level 3 | Level 3 |",
+				"| API | AWS SDK統合 | PKCS#11 / JCE / CNG |",
+				"| 可用性 | 自動冗長化 | クラスター構成（お客様責任） |",
+				"| コスト | $0.03/10,000 API calls | $1.60/時間〜 |",
+				"| 用途 | 汎用暗号化 | 規制準拠・独自キー管理 |",
+				"**ユースケース**: Oracle TDE・SSL/TLSオフロード・コード署名"
+			]
+		},
+		{
+			"title": "Amazon Macie v2",
+			"layout": "default",
+			"content": [
+				"**概要**: S3内のPII（個人識別情報）・機密データを機械学習で自動検出",
+				"**検出できるデータ種別:**",
+				"- クレジットカード番号・銀行口座番号",
+				"- 氏名・住所・電話番号・メールアドレス",
+				"- パスワード・シークレットキー・アクセストークン",
+				"- 国固有の識別番号（マイナンバー・SSN等）",
+				"**主要機能:**",
+				"- 自動S3スキャン: バケット作成時に自動検出ジョブ",
+				"- カスタムデータ識別子: 独自の正規表現パターン定義",
+				"- Security Hub統合: Findingを自動送信",
+				"**コスト**: バケットメタデータ評価 $0.10/バケット + オブジェクトスキャン $1/GB"
+			]
+		},
+		{
+			"title": "データ保護試験ポイントまとめ10選",
+			"layout": "default",
+			"content": [
+				"| # | 試験ポイント | キーワード |",
+				"| --- | --- | --- |",
+				"| 1 | Envelope暗号化: DEKでデータ暗号化、CMKでDEK暗号化 | 2層構造 |",
+				"| 2 | CMK自動ローテーション: 1〜2560日（デフォルト365日） | ローテーション |",
+				"| 3 | マルチリージョンキー: 同一キーIDをDRに使用 | mrk-プレフィックス |",
+				"| 4 | キーポリシーは必須（IAMポリシー単独では不可） | Resource-based必須 |",
+				"| 5 | Secrets Managerはローテーション必須要件で選択 | $0.40/月 |",
+				"| 6 | Parameter Store SecureStringはKMSで暗号化 | SecureString |",
+				"| 7 | SSE-KMSはCloudTrailでキー使用ログ記録 | 監査証跡 |",
+				"| 8 | ACM証明書はEC2に直接インストール不可 | エクスポート不可 |",
+				"| 9 | CloudHSM: FIPS 140-2 Level 3・お客様が完全管理 | HSM |",
+				"| 10 | MacieはS3のPII検出・Security Hub送信 | PII |"
+			]
+		},
+		{
+			"title": "Section 3: ネットワークセキュリティ",
+			"layout": "section",
+			"content": [
+				"WAF / Shield / Network Firewall / VPC Security",
+				"スライド 32–43"
+			]
+		},
+		{
+			"title": "Security Group vs NACL詳細比較",
+			"layout": "default",
+			"content": [
+				"| 比較項目 | Security Group | NACL |",
+				"| --- | --- | --- |",
+				"| 適用レベル | インスタンス（ENI） | サブネット |",
+				"| ステートフル | ○（戻りトラフィック自動許可） | ×（インバウンド/アウトバウンド独立） |",
+				"| ルール種類 | Allowのみ | Allow + Deny |",
+				"| 評価方式 | 全ルール評価後判断 | 番号順（最初にマッチ） |",
+				"| デフォルト | 全インバウンドDeny / 全アウトバウンドAllow | 全Allow（デフォルトNACL） |",
+				"| 変更反映 | 即時 | 即時 |",
+				"**使い分け**: SGで精密制御 / NACLで特定IPの即時ブロック（Denyが必要な場合）"
+			]
+		},
+		{
+			"title": "VPC Flow Logs",
+			"layout": "default",
+			"content": [
+				"**概要**: VPC内のネットワークトラフィック（IPフロー情報）を記録",
+				"**キャプチャレベル:** VPC / サブネット / ENI",
+				"**出力先:** CloudWatch Logs / S3 / Kinesis Data Firehose",
+				"**記録フィールド（v2）:**",
+				"- srcaddr, dstaddr, srcport, dstport, protocol",
+				"- bytes, packets, start, end, action（ACCEPT/REJECT）",
+				"**拡張フィールド（v5）:**",
+				"- flow-direction（ingress/egress）",
+				"- traffic-path（IGW/VGW/TGW等）",
+				"**試験ポイント:**",
+				"- 拒否トラフィックも記録（SGやNACLによるReject含む）",
+				"- DNS解決トラフィックはキャプチャされない"
+			]
+		},
+		{
+			"title": "VPC Endpoints（Interface/Gateway）",
+			"layout": "default",
+			"content": [
+				"| 種類 | 対象サービス | 仕組み | コスト |",
+				"| --- | --- | --- | --- |",
+				"| Gateway Endpoint | S3・DynamoDB | ルートテーブルエントリ追加 | 無料 |",
+				"| Interface Endpoint | 100以上のサービス | ENI（PrivateLink） | $0.01/時 + データ |",
+				"| Gateway Load Balancer EP | アプライアンス | トラフィック透過転送 | 別途 |",
+				"**Interface Endpointのセキュリティ:**",
+				"- エンドポイントポリシー: アクセスできるアクション・リソースを制限",
+				"- 例: `aws:sourceVpc` Conditionで特定VPCからのみ許可",
+				"**試験ポイント:**",
+				"- Gateway Endpointはルートテーブルのみ → SGなし",
+				"- Interface EndpointはSG適用可能"
+			]
+		},
+		{
+			"title": "AWS WAF v2",
+			"layout": "default",
+			"content": [
+				"| 項目 | 内容 |",
+				"| --- | --- |",
+				"| 適用先 | ALB / CloudFront / API Gateway / AppSync / Cognito |",
+				"| ルール種類 | マネージドルール / カスタムルール / IPセット / 正規表現パターン |",
+				"| アクション | Allow / Block / Count / CAPTCHA / Challenge |",
+				"| レート制限 | IPベース / ヘッダー/クエリベース（5分間のリクエスト数） |",
+				"| ログ | CloudWatch Logs / S3 / Kinesis Firehose |",
+				"**マネージドルールグループ（AMR）:**",
+				"- Core Rule Set（CRS）: OWASP Top 10対策",
+				"- SQLインジェクション / XSS / Bot Control / Fraud Control",
+				"- AWSによる定期更新（バージョン管理）"
+			]
+		},
+		{
+			"title": "Shield Standard vs Advanced",
+			"layout": "default",
+			"content": [
+				"| 比較項目 | Shield Standard | Shield Advanced |",
+				"| --- | --- | --- |",
+				"| コスト | 無料（全顧客） | $3,000/月 + データ転送費 |",
+				"| 保護対象 | EC2/ELB/CloudFront/Route53 | 同左＋高度な保護 |",
+				"| DDoS保護 | L3/L4 自動保護 | L3/L4/L7 高度保護 |",
+				"| DRT | なし | Shield Response Team（24/7） |",
+				"| コスト保護 | なし | DDoS起因のスケールアップ費用補填 |",
+				"| WAF統合 | なし | 自動WAFルール作成 |",
+				"| 検知・通知 | なし | CloudWatch + 詳細テレメトリ |",
+				"**推奨場面**: 金融・メディア・EC サイト等 SLA 重要サービス"
+			]
+		},
+		{
+			"title": "CloudFront + WAF統合パターン",
+			"layout": "default",
+			"content": [
+				"**WAF + CloudFrontの組み合わせパターン:**",
+				"- CloudFrontにWAFを直接アタッチ（グローバルルール）",
+				"- ALBにもWAFをアタッチ（リージョナルルール）",
+				"**CloudFrontセキュリティ機能:**",
+				"- Origin Access Control（OAC）: S3をCloudFront経由のみに制限",
+				"- HTTPS強制: Viewer/Origin 両方でTLS1.2以上",
+				"- Geo Restriction: 国単位でアクセス制限",
+				"- Field-level Encryption: 特定フィールドをCloudFrontで暗号化",
+				"**試験ポイント:**",
+				"- WAFはus-east-1リージョンで管理（CloudFront用）",
+				"- OACはOAI（旧）の後継・Lambdaオリジンにも対応"
+			]
+		},
+		{
+			"title": "AWS Network Firewall",
+			"layout": "default",
+			"content": [
+				"**概要**: VPC内の詳細なステートフルL3-L7フィルタリング",
+				"**特徴:**",
+				"- ステートレス + ステートフルルールエンジン",
+				"- Suricataルール互換（OSSのIDS/IPSルール流用可）",
+				"- ドメインリスト: FQDN/ワイルドカードによるDNSフィルタリング",
+				"- TLSインスペクション: SNI（ホスト名）ベースのHTTPS検査",
+				"**デプロイ構成:**",
+				"- 検査VPC: トランジットゲートウェイ経由で集中管理",
+				"- 各VPCサブネット: ルートテーブルでNetwork Firewallエンドポイント経由",
+				"**ログ**: Flow / Alert / TLS → CloudWatch / S3 / Firehose"
+			]
+		},
+		{
+			"title": "AWS Firewall Manager",
+			"layout": "default",
+			"content": [
+				"**概要**: Organizations全体のセキュリティポリシーを一元管理",
+				"**管理できるポリシー種類:**",
+				"- WAF v2: ALB/CloudFront/API Gatewayへ自動適用",
+				"- Shield Advanced: 保護リソースの一元登録",
+				"- Security Group: 共通SGの強制適用",
+				"- Network Firewall: VPCへ自動デプロイ",
+				"- Route53 Resolver DNS Firewall",
+				"**要件:**",
+				"- AWS Organizations有効化が必要",
+				"- 管理アカウントまたは委任管理者アカウントから設定",
+				"**試験ポイント**: 新規アカウント・リソースへの自動適用が特徴"
+			]
+		},
+		{
+			"title": "Route53 Resolver DNS Firewall",
+			"layout": "default",
+			"content": [
+				"**概要**: VPC内のDNSクエリをフィルタリング（アウトバウンドDNS保護）",
+				"**機能:**",
+				"- ドメインリスト: マネージドリスト（マルウェア・ボットネット）+ カスタムリスト",
+				"- アクション: ALLOW / BLOCK / ALERT（Countのみ）",
+				"- フェイルオープン/フェイルクローズ: Firewallが応答不能時の動作選択",
+				"**マネージドドメインリスト（AWSが管理）:**",
+				"- AWSManagedDomainsMalwareDomainList",
+				"- AWSManagedDomainsBotnetCommandandControl",
+				"**統合**: Firewall Manager で組織全体に一括適用可能",
+				"**試験ポイント**: DNSレイヤーでのC2（コマンド&コントロール）通信遮断"
+			]
+		},
+		{
+			"title": "AWS PrivateLink",
+			"layout": "default",
+			"content": [
+				"**概要**: VPCピアリング不要でサービスを安全にプライベート接続",
+				"**仕組み:**",
+				"- サービスプロバイダ: NLBをエンドポイントサービスとして公開",
+				"- サービスコンシューマ: Interface VPC Endpointで接続",
+				"- トラフィックはAWSネットワーク内（インターネット不通過）",
+				"**VPCピアリングとの比較:**",
+				"| 項目 | PrivateLink | VPCピアリング |",
+				"| --- | --- | --- |",
+				"| ルーティング | エンドポイントのみ | CIDR全体 |",
+				"| CIDRオーバーラップ | 問題なし | 不可 |",
+				"| 推移的接続 | なし | なし |",
+				"**ユースケース**: SaaSサービス提供・共有サービスVPC設計"
+			]
+		},
+		{
+			"title": "Transit Gateway + セグメンテーション",
+			"layout": "default",
+			"content": [
+				"**セキュリティのためのTGW設計パターン:**",
+				"| パターン | 説明 | 使途 |",
+				"| --- | --- | --- |",
+				"| 集中検査 | 全トラフィックをFirewall VPCへ | Network Firewall統合 |",
+				"| セグメンテーション | ルートテーブルで通信分離 | 本番/開発/共有サービス |",
+				"| ブラックホールルート | 不要通信を即破棄 | IPブロック |",
+				"**TGWルートテーブル分離:**",
+				"- 本番VPC → 共有サービスVPCのみ通信許可",
+				"- 本番VPC ↔ 開発VPC は通信不可",
+				"- 全アウトバウンドをFirewall VPC経由に強制",
+				"**試験ポイント**: TGWアタッチメントごとにルートテーブルを割り当て"
+			]
+		},
+		{
+			"title": "ネットワークセキュリティ試験ポイントまとめ",
+			"layout": "default",
+			"content": [
+				"| # | 試験ポイント | キーワード |",
+				"| --- | --- | --- |",
+				"| 1 | SGはステートフル・NACLはステートレス（戻り通信の扱い） | ステートフル |",
+				"| 2 | NACLはルール番号順評価（最初にマッチしたルールが優先） | 番号順 |",
+				"| 3 | WAFはus-east-1で管理（CloudFront用） | グローバル |",
+				"| 4 | Shield Advancedのみ DRT + L7保護 + コスト補填 | $3,000/月 |",
+				"| 5 | Network FirewallはSuricataルール互換 | IDS/IPS |",
+				"| 6 | Firewall ManagerはOrganizations必須 | 一元管理 |",
+				"| 7 | Gateway EndpointはS3/DynamoDBのみ（無料） | ルートテーブル |",
+				"| 8 | PrivateLinkはCIDRオーバーラップ問題なし | NLBベース |",
+				"| 9 | DNS FirewallはVPC内DNSクエリをフィルタ | C2遮断 |",
+				"| 10 | TGWルートテーブルでVPC間セグメンテーション | 通信分離 |"
+			]
+		},
+		{
+			"title": "Section 4: 脅威検知・監視",
+			"layout": "section",
+			"content": [
+				"GuardDuty / Security Hub / CloudTrail / Config",
+				"スライド 45–56"
+			]
+		},
+		{
+			"title": "GuardDuty概要・検知カテゴリ",
+			"layout": "default",
+			"content": [
+				"**概要**: 機械学習・脅威インテリジェンスを使ったAWSアカウントの脅威検知",
+				"**データソース:**",
+				"- CloudTrail管理イベント / S3データイベント",
+				"- VPC Flow Logs / DNS Logs",
+				"- EKS監査ログ / ECS / Lambda / RDS / S3 Malware Protection",
+				"**検知カテゴリ:**",
+				"| カテゴリ | 例 |",
+				"| --- | --- |",
+				"| Backdoor | EC2からC2サーバーへ通信 |",
+				"| CryptoCurrency | マイニング活動の検知 |",
+				"| Trojan | DNSリクエストのDGA（ドメイン生成アルゴリズム） |",
+				"| UnauthorizedAccess | 匿名プロキシからのAPI呼び出し |",
+				"| Recon | 異常なポートスキャン |"
+			]
+		},
+		{
+			"title": "GuardDuty Findings詳細",
+			"layout": "default",
+			"content": [
+				"| Finding種別 | 深刻度 | 内容 |",
+				"| --- | --- | --- |",
+				"| UnauthorizedAccess:EC2/SSHBruteForce | 中 | SSHブルートフォース攻撃 |",
+				"| Recon:IAMUser/MaliciousIPCaller | 中 | 悪意IPからのAPI呼び出し |",
+				"| Backdoor:EC2/C&CActivity.B!DNS | 高 | DNSでC2通信 |",
+				"| CryptoCurrency:EC2/BitcoinTool.B | 高 | ビットコインマイニング |",
+				"| CredentialAccess:IAMUser/AnomalousBehavior | 高 | 異常な認証情報使用 |",
+				"| Exfiltration:S3/MaliciousIPCaller | 高 | 悪意IPからS3アクセス |",
+				"**Finding抑制**: ホワイトリストによるFalse Positiveの除外",
+				"**自動修復**: EventBridge → Lambda → 修復アクション"
+			]
+		},
+		{
+			"title": "Security Hub概要",
+			"layout": "default",
+			"content": [
+				"**概要**: セキュリティ Findingの集約・優先順位付け・自動修復の統合ハブ",
+				"**連携サービス（Findingを送信）:**",
+				"- GuardDuty / Macie / Inspector v2 / IAM Access Analyzer",
+				"- Firewall Manager / Config / ChatBot / サードパーティ",
+				"**主要機能:**",
+				"- ASFF（AWS Security Finding Format）: 標準形式で統合",
+				"- セキュリティスコア: コントロールごとの準拠状況を0-100でスコア化",
+				"- 自動修復: Security Hub Automation Rulesで条件付き自動アクション",
+				"- クロスリージョン集約: メインリージョンへの集約",
+				"**Organizations統合**: 全アカウントのFindingを管理アカウントで一元管理"
+			]
+		},
+		{
+			"title": "Security Hub Standards",
+			"layout": "default",
+			"content": [
+				"| スタンダード | 概要 | コントロール数 |",
+				"| --- | --- | --- |",
+				"| AWS Foundational Security Best Practices | AWSセキュリティベストプラクティス | 200+ |",
+				"| CIS AWS Foundations Benchmark v1.4 | CIS標準 | 60+ |",
+				"| CIS AWS Foundations Benchmark v3.0 | 最新CIS標準 | 56 |",
+				"| PCI DSS v3.2.1 | クレジットカード業界標準 | 30+ |",
+				"| NIST SP 800-53 Rev. 5 | 米国政府標準 | 300+ |",
+				"**コントロール例（FSBP）:**",
+				"- [IAM.1] IAMポリシーはルートユーザーに直接アタッチしない",
+				"- [S3.1] S3バケットのパブリックアクセスをブロック",
+				"- [KMS.4] CMKのキーローテーションを有効化"
+			]
+		},
+		{
+			"title": "Amazon Detective",
+			"layout": "default",
+			"content": [
+				"**概要**: セキュリティインシデントの根本原因調査に特化したサービス",
+				"**GuardDuty / Security Hubとの違い:**",
+				"| サービス | 役割 |",
+				"| --- | --- |",
+				"| GuardDuty | 脅威**検知**（何が起きたか） |",
+				"| Security Hub | Finding**集約・優先順位付け** |",
+				"| Detective | 根本原因**調査**（なぜ起きたか） |",
+				"**機能:**",
+				"- グラフモデル: エンティティ（IP/ロール/リソース）間の関係を可視化",
+				"- 時系列分析: 不審な行動パターンをタイムライン表示",
+				"- GuardDuty Findingからワンクリックで詳細調査",
+				"**データソース**: CloudTrail / VPC Flow Logs / GuardDuty Findings（90日間保持）"
+			]
+		},
+		{
+			"title": "CloudTrail詳細（Management/Data/Insights）",
+			"layout": "default",
+			"content": [
+				"| イベント種別 | 内容 | デフォルト |",
+				"| --- | --- | --- |",
+				"| 管理イベント | APIコール・コンソール操作 | 有効（無料） |",
+				"| データイベント | S3オブジェクト操作・Lambda実行 | 無効（有料） |",
+				"| Insightsイベント | 異常なAPI活動パターン | 無効（有料） |",
+				"| ネットワーク活動 | VPC Endpointへの接続 | 無効（有料） |",
+				"**重要設定:**",
+				"- マルチリージョントレイル: 全リージョンの証跡を一か所に集約",
+				"- S3バケット: バージョニング + MFA Delete + Object Lock推奨",
+				"- CloudWatch Logs連携: メトリクスフィルタで異常をアラート",
+				"**試験ポイント**: 証跡はデフォルトで管理コンソールに表示されるがS3保存は要設定"
+			]
+		},
+		{
+			"title": "CloudWatch Logs Insights（セキュリティ）",
+			"layout": "default",
+			"content": ["**CloudTrailのセキュリティ監視クエリ例:**"],
+			"code": "# ルートユーザーAPIコール検索\nfields @timestamp, userIdentity.type, eventName\n| filter userIdentity.type = \"Root\"\n| sort @timestamp desc\n| limit 20\n\n# 失敗したAPI呼び出し（AccessDenied）\nfields @timestamp, eventName, errorCode\n| filter errorCode like /AccessDenied/\n| stats count() by eventName\n\n# 大量S3削除検知\nfields @timestamp, requestParameters.bucketName\n| filter eventName = \"DeleteObject\"\n| stats count() as cnt by bin(5m)\n| sort cnt desc",
+			"codeLanguage": "sql"
+		},
+		{
+			"title": "AWS Config + Conformance Packs",
+			"layout": "default",
+			"content": [
+				"**AWS Config**: リソース設定の記録・変更追跡・コンプライアンス評価",
+				"| マネージドルール | 評価内容 |",
+				"| --- | --- |",
+				"| s3-bucket-public-read-prohibited | S3公開読み取り禁止 |",
+				"| mfa-enabled-for-iam-console-access | IAMコンソールMFA有効化 |",
+				"| encrypted-volumes | EBSボリューム暗号化チェック |",
+				"| cloudtrail-enabled | CloudTrail有効化確認 |",
+				"| guardduty-enabled-centralized | GuardDuty有効化確認 |",
+				"**Remediation（自動修復）:**",
+				"- SSM Automation Documentでノンコンプライアンスを自動修正",
+				"**Conformance Packs**: ルールセットを一括デプロイ（PCI DSS / HIPAA / CIS等）"
+			]
+		},
+		{
+			"title": "EventBridge セキュリティ自動化",
+			"layout": "default",
+			"content": ["**セキュリティイベントの自動対応パターン:**"],
+			"code": "# GuardDuty 高深刻度 → EC2隔離\n{\n  \"source\": [\"aws.guardduty\"],\n  \"detail-type\": [\"GuardDuty Finding\"],\n  \"detail\": {\n    \"severity\": [{\"numeric\": [\">=\", 7]}]\n  }\n}\n// → Lambda: EC2のSGを隔離SG（全通信拒否）に変更\n\n// Config非準拠 → 自動修復\n{\n  \"source\": [\"aws.config\"],\n  \"detail\": {\"newEvaluationResult\":\n    {\"complianceType\": [\"NON_COMPLIANT\"]}}\n}\n// → SSM Automation Document で自動修復実行",
+			"codeLanguage": "json"
+		},
+		{
+			"title": "Trusted Advisor（セキュリティチェック）",
+			"layout": "default",
+			"content": [
+				"| チェック項目 | 重要度 |",
+				"| --- | --- |",
+				"| S3バケット公開アクセス | 赤 |",
+				"| SGポート22/3389を0.0.0.0/0に開放 | 赤 |",
+				"| IAMアクセスキー90日以上未使用 | 赤 |",
+				"| ルートアカウントMFA未設定 | 赤 |",
+				"| EBSスナップショット公開 | 赤 |",
+				"| RDSスナップショット公開 | 赤 |",
+				"| MFAなしIAMユーザー | 黄 |",
+				"| CloudTrail未有効 | 赤 |",
+				"**プラン別:**",
+				"- Basic/Developer: 赤カテゴリのコアチェックのみ",
+				"- Business/Enterprise: 全200+チェック + API + Jira/Slack連携"
+			]
+		},
+		{
+			"title": "AWS Audit Manager",
+			"layout": "default",
+			"content": [
+				"**概要**: コンプライアンス監査の証拠収集・レポート生成を自動化",
+				"| 機能 | 内容 |",
+				"| --- | --- |",
+				"| 組み込みフレームワーク | PCI DSS / SOC 2 / HIPAA / GDPR / CIS / NIST |",
+				"| 証拠自動収集 | Config / CloudTrail / Security Hub から自動取得 |",
+				"| カスタムフレームワーク | 独自の監査基準を定義可能 |",
+				"| レポート出力 | 監査人向けPDFレポート生成 |",
+				"**Security Hubとの違い:**",
+				"| Audit Manager | Security Hub |",
+				"| --- | --- |",
+				"| 監査証拠収集・整理（過去分析） | セキュリティFinding集約（現状） |",
+				"| 監査人向けレポート | セキュリティチーム向けダッシュボード |"
+			]
+		},
+		{
+			"title": "脅威検知試験ポイントまとめ10選",
+			"layout": "default",
+			"content": [
+				"| # | 試験ポイント | キーワード |",
+				"| --- | --- | --- |",
+				"| 1 | GuardDutyはCloudTrail/VPC FL/DNS Logsがデータソース | 機械学習 |",
+				"| 2 | Security HubはASFF形式でFindingを統合 | 集約ハブ |",
+				"| 3 | DetectiveはGuardDutyから根本原因調査（90日保持） | グラフモデル |",
+				"| 4 | CloudTrailデータイベント/Insightsはデフォルト無効 | 追加設定 |",
+				"| 5 | CloudTrailのS3バケットにMFA Delete推奨 | 改ざん防止 |",
+				"| 6 | Config Conformance PackでPCI DSS等を一括適用 | 準拠管理 |",
+				"| 7 | EventBridge→LambdaでGuardDuty高深刻度を自動修復 | 自動対応 |",
+				"| 8 | Trusted Advisor Business以上でセキュリティ全チェック | プラン差 |",
+				"| 9 | Audit ManagerはPCI DSS等の証拠収集を自動化 | 監査証拠 |",
+				"| 10 | Security Hub Organizations統合で全アカウント集約 | 一元管理 |"
+			]
+		},
+		{
+			"title": "Section 5: 脆弱性管理・コンプライアンス",
+			"layout": "section",
+			"content": [
+				"Inspector v2 / Patch Manager / Well-Architected",
+				"スライド 58–64"
+			]
+		},
+		{
+			"title": "Amazon Inspector v2",
+			"layout": "default",
+			"content": [
+				"| 機能 | Inspector v1 | Inspector v2 |",
+				"| --- | --- | --- |",
+				"| スキャン方式 | エージェント（手動） | 継続的自動スキャン |",
+				"| 対象 | EC2のみ | EC2 / Lambda / ECRイメージ |",
+				"| CISベンチマーク | ○ | × |",
+				"| Organizations統合 | なし | あり（委任管理者） |",
+				"| Security Hub連携 | なし | あり（Finding自動送信） |",
+				"| スコアリング | CVSS | CVSS + Reachability Context |",
+				"**Reachability Context**: ネットワーク到達可能性・悪用可能性でCVSSに重み付け",
+				"**試験ポイント**: Inspector v2はCISベンチマーク評価機能なし（v1のみ）"
+			]
+		},
+		{
+			"title": "SSM Patch Manager",
+			"layout": "default",
+			"content": [
+				"**主要コンポーネント:**",
+				"- Patch Baseline: 承認パッチの定義（重要度・承認遅延日数）",
+				"- Patch Group: タグ（`Patch Group`）でインスタンスをグルーピング",
+				"- Maintenance Window: スケジュール定義（cron/rate）",
+				"| OS | デフォルト自動承認条件 |",
+				"| --- | --- |",
+				"| Windows | Critical + Important → 7日後自動承認 |",
+				"| Amazon Linux 2 | Security + Bugfix → 7日後自動承認 |",
+				"| Ubuntu Server | Security → 7日後自動承認 |",
+				"**コンプライアンスレポート**: Config + SSM Inventoryで準拠状況を可視化",
+				"**試験ポイント**: Amazon Linux 2にはSSM Agentがプリインストール済み"
+			]
+		},
+		{
+			"title": "AWS Organizations + Compliance管理",
+			"layout": "default",
+			"content": [
+				"**推奨アカウント構成（AWS Control Tower準拠）:**",
+				"| アカウント | 役割 |",
+				"| --- | --- |",
+				"| Management | OU管理・SCP設定のみ |",
+				"| Security Tooling | Security Hub / GuardDuty / Detective 集約 |",
+				"| Log Archive | 全ログの長期保存（S3 Object Lock WORM） |",
+				"| 各ワークロード | 本番/開発/テスト分離 |",
+				"**組織レベルの自動設定:**",
+				"- CloudTrail組織証跡: 全アカウントのAPIログを一元管理",
+				"- GuardDuty Organization: 新規アカウントも自動保護",
+				"- Config Aggregator: 全アカウントのリソース設定を集中管理"
+			]
+		},
+		{
+			"title": "AWS Artifact + Compliance Reports",
+			"layout": "default",
+			"content": [
+				"**AWS Artifact**: AWSのコンプライアンスレポートへのオンデマンド無料アクセス",
+				"| レポート種別 | 内容 |",
+				"| --- | --- |",
+				"| SOC 1/2/3 Type II | 内部統制・セキュリティ保証報告書 |",
+				"| PCI DSS AOC | クレジットカード業界準拠証明 |",
+				"| ISO 27001/27017/27018 | 情報セキュリティ認証書 |",
+				"| FedRAMP | 米国政府クラウドセキュリティ認可 |",
+				"| HIPAA BAA | 医療情報保護の業務提携契約 |",
+				"**Agreements機能**: HIPAA BAAをオンラインで締結・組織レベル管理可能",
+				"**試験ポイント**: コンプライアンス証明書の取得 = AWS Artifact"
+			]
+		},
+		{
+			"title": "Well-Architected Security Pillar",
+			"layout": "default",
+			"content": [
+				"| 設計原則 | 内容 |",
+				"| --- | --- |",
+				"| 強固なアイデンティティ基盤 | 最小権限・一時認証・STS |",
+				"| トレーサビリティ確保 | CloudTrail / Config / CloudWatch統合 |",
+				"| 全レイヤーへのセキュリティ | エッジ〜アプリ〜DBまで多層防御 |",
+				"| セキュリティの自動化 | IaC + Config Rules + 自動修復 |",
+				"| 転送中・保存中データ保護 | TLS / KMS / ACM |",
+				"| 人手によるデータアクセス排除 | 自動化・匿名化・環境分離 |",
+				"| インシデントへの備え | IR計画・GameDay・実行基盤 |",
+				"**Well-Architected Tool**: コンソールからセキュリティワークロードを自己評価"
+			]
+		},
+		{
+			"title": "共有責任モデル詳細",
+			"layout": "default",
+			"content": [
+				"| レイヤー | AWSの責任 | お客様の責任 |",
+				"| --- | --- | --- |",
+				"| 物理 | DC・ネットワーク・ハードウェア | — |",
+				"| ハイパーバイザー | VM分離 | — |",
+				"| OS | マネージドサービスのパッチ | EC2のOS管理 |",
+				"| ネットワーク | AWSネットワーク保護 | VPC・SG・NACL設定 |",
+				"| アプリ | — | コード・脆弱性管理 |",
+				"| データ | — | 暗号化・分類・バックアップ |",
+				"| IAM | サービス認証基盤 | ポリシー設計・MFA |",
+				"**サービス種別の違い:**",
+				"- EC2（IaaS）: OS以上はお客様責任",
+				"- RDS（PaaS）: OS/DBパッチはAWS責任・データはお客様"
+			]
+		},
+		{
+			"title": "コンプライアンス試験ポイントまとめ",
+			"layout": "default",
+			"content": [
+				"| # | 試験ポイント | キーワード |",
+				"| --- | --- | --- |",
+				"| 1 | Inspector v2はCISベンチマーク評価なし（v1のみ） | v2の制限 |",
+				"| 2 | Inspector v2: CVSS+Reachability Contextでスコアリング | 到達可能性 |",
+				"| 3 | Patch Manager: デフォルト7日後に重要パッチ自動承認 | 承認遅延 |",
+				"| 4 | Log ArchiveアカウントはS3 Object Lock（WORM）推奨 | 改ざん防止 |",
+				"| 5 | AWS ArtifactでSOC/ISO/PCI DSSレポートを無料取得 | 証明書取得 |",
+				"| 6 | HIPAA BAA はAWS Artifact Agreementsで締結 | BAA |",
+				"| 7 | Well-ArchitectedのSecurityは7つの設計原則 | 設計原則 |",
+				"| 8 | Audit ManagerはPCI DSS等の証拠を自動収集 | 証拠自動化 |"
+			]
+		},
+		{
+			"title": "Section 6: インシデントレスポンス",
+			"layout": "section",
+			"content": ["IR フレームワーク / 自動修復 / Forensics", "スライド 66–71"]
+		},
+		{
+			"title": "AWS IRフレームワーク",
+			"layout": "default",
+			"content": [
+				"| フェーズ | 主要AWSサービス |",
+				"| --- | --- |",
+				"| 準備 | IR Runbook・IAM Break-Glass Role・GameDay訓練 |",
+				"| 検知・分析 | GuardDuty / Security Hub / CloudTrail / Detective |",
+				"| 封じ込め | SG変更・IAMポリシーDeny追加・EC2隔離 |",
+				"| 根絶 | マルウェア除去・脆弱性修正・パスワードリセット |",
+				"| 復旧 | AMIからの再デプロイ・RDSリストア・バックアップ復元 |",
+				"| 事後活動 | ポストモーテム・CloudTrail分析・Detective調査 |",
+				"**試験ポイント:**",
+				"- EC2フォレンジック: SSM Session Managerで操作（キーペア不要）",
+				"- IAMキー侵害: 即時無効化→CloudTrailで影響確認→全パスワードリセット"
+			]
+		},
+		{
+			"title": "自動修復（Lambda / SSM Automation）",
+			"layout": "default",
+			"content": ["**EC2侵害時の自動隔離パターン:**"],
+			"code": "def isolate_ec2_handler(event, context):\n    ec2 = boto3.client('ec2')\n    # GuardDuty FindingからインスタンスIDを取得\n    instance_id = (\n        event['detail']['resource']\n            ['instanceDetails']['instanceId']\n    )\n    # 1. 隔離SG（全通信拒否）に切り替え\n    ec2.modify_instance_attribute(\n        InstanceId=instance_id,\n        Groups=['sg-quarantine-00000000']\n    )\n    # 2. EBSスナップショット（証拠保全）\n    ec2.create_snapshot(\n        VolumeId=get_volume_id(instance_id),\n        Description=f'Forensic-{instance_id}'\n    )",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "Forensics on AWS",
+			"layout": "default",
+			"content": [
+				"**デジタルフォレンジックス手順:**",
+				"1. **証拠保全**: EBSスナップショット取得（変更前に即時実行）",
+				"2. **隔離環境**: フォレンジックVPCにスナップショットをコピー",
+				"3. **ディスク解析**: フォレンジックEC2にEBSアタッチして解析",
+				"4. **メモリ解析**: SSM Run Commandでメモリダンプ取得",
+				"5. **ログ収集**: CloudTrail / VPC Flow Logs をS3に集約",
+				"6. **タイムライン再構築**: Amazon Detectiveでグラフ分析",
+				"**SSM Session Managerのメリット:**",
+				"- キーペア/踏み台不要でEC2アクセス",
+				"- セッションログをS3/CloudWatch Logsに自動保存"
+			]
+		},
+		{
+			"title": "Backup & Recovery戦略",
+			"layout": "default",
+			"content": [
+				"| 対象 | バックアップ手段 | RPO目標 |",
+				"| --- | --- | --- |",
+				"| EC2 / EBS | AWS Backup / EBSスナップショット | 24時間 |",
+				"| RDS / Aurora | 自動バックアップ（1〜35日）+ PITR | 5分〜 |",
+				"| S3 | Versioning / Replication / Object Lock | 0（バージョン保持） |",
+				"| DynamoDB | オンデマンドバックアップ / PITR（35日） | 秒単位 |",
+				"| EFS | AWS Backup / EFSレプリケーション | 1時間〜 |",
+				"**AWS Backup Vault Lock（WORM）:**",
+				"- バックアップの削除・変更を防止",
+				"- クロスアカウントバックアップ: Log Archiveアカウントへコピーで改ざん防止"
+			]
+		},
+		{
+			"title": "Post-Incident Analysis",
+			"layout": "default",
+			"content": [
+				"**ポストモーテムのベストプラクティス:**",
+				"- Blameless（非難しない）: 個人でなくプロセス・システムを改善",
+				"- 5 Whys: 根本原因まで掘り下げる",
+				"- タイムライン再構築: CloudTrail + Detective",
+				"| 発見事項 | 改善策 |",
+				"| --- | --- |",
+				"| 検知が遅れた | GuardDuty感度向上・Security Hubアラート設定 |",
+				"| 対応手順が不明 | Runbook更新・GameDayで訓練 |",
+				"| 影響範囲が広かった | 最小権限・VPCセグメンテーション強化 |",
+				"| 証拠が不足 | CloudTrailデータイベント有効化 |"
+			]
+		},
+		{
+			"title": "IR試験ポイントまとめ",
+			"layout": "default",
+			"content": [
+				"**インシデントレスポンスの重要ポイント:**",
+				"- **封じ込め最優先**: SGを隔離SG（全通信拒否）に変更して即時隔離",
+				"- **証拠保全**: EBSスナップショットをフォレンジック前に取得",
+				"- **IAMキー侵害**: 即時無効化→CloudTrailで影響確認→全パスワードリセット",
+				"- **SSM Session Manager**: キーペア不要でEC2操作・セッションログ保存",
+				"- **Detective**: GuardDuty Findingから直接調査（90日間データ保持）",
+				"- **GameDay**: 定期訓練でRunbookと対応能力を検証"
+			]
+		},
+		{
+			"title": "Section 7: 試験直前まとめ",
+			"layout": "section",
+			"content": [
+				"数値リファレンス / キーワード索引 / 総まとめ",
+				"スライド 73–80"
+			]
+		},
+		{
+			"title": "数値リファレンス（試験頻出）",
+			"layout": "default",
+			"content": [
+				"| サービス | 数値 | 内容 |",
+				"| --- | --- | --- |",
+				"| STS | 最大12時間 | AssumeRoleの一時認証有効期間 |",
+				"| IAM | 90日 | アクセスキーローテーション推奨 |",
+				"| KMS CMK | $1/月 | キー1つのコスト |",
+				"| KMS | 1〜2560日 | CMKローテーション周期 |",
+				"| Secrets Manager | $0.40/月 | シークレット1件のコスト |",
+				"| Secrets Manager | 30日 | 削除後の復元可能期間 |",
+				"| Detective | 90日 | データ保持期間 |",
+				"| Config | 7年 | S3での設定履歴保存期間 |",
+				"| Shield Advanced | $3,000/月 | 最低コスト（1年コミット） |",
+				"| CloudHSM | $1.60/時 | HSMクラスターコスト |",
+				"| GuardDuty | 無料30日 | 初回有効化トライアル |",
+				"| Inspector v2 | 継続スキャン | エージェントレス自動評価 |"
+			]
+		},
+		{
+			"title": "サービス選択フローチャート",
+			"layout": "default",
+			"content": [
+				"| 要件 | 選択サービス |",
+				"| --- | --- |",
+				"| パスワードの自動ローテーション | Secrets Manager |",
+				"| アプリ設定値（ローテーション不要） | Parameter Store |",
+				"| S3のPII（個人情報）を検出 | Amazon Macie |",
+				"| EC2/Lambda/ECRの脆弱性スキャン | Inspector v2 |",
+				"| 全アカウントのFindingを集約 | Security Hub |",
+				"| GuardDuty Findingの根本原因調査 | Amazon Detective |",
+				"| WAFルールを組織全体に適用 | Firewall Manager |",
+				"| FIPS 140-2 Level 3 HSM | CloudHSM |",
+				"| 監査証拠の自動収集・レポート | Audit Manager |",
+				"| コンプライアンス証明書の取得 | AWS Artifact |",
+				"| DNSクエリでマルウェア通信をブロック | DNS Firewall |",
+				"| DDoS L7保護 + コスト補填 | Shield Advanced |"
+			]
+		},
+		{
+			"title": "キーワード索引 A–K",
+			"layout": "default",
+			"content": [
+				"| キーワード | サービス/概念 |",
+				"| --- | --- |",
+				"| ABAC | IAMタグベースアクセス制御 |",
+				"| ACM | SSL/TLS証明書管理（無料） |",
+				"| ASFF | Security Hub Finding標準形式 |",
+				"| Audit Manager | コンプライアンス証拠自動収集 |",
+				"| BAA | HIPAA業務提携契約（AWS Artifact） |",
+				"| CloudHSM | FIPS 140-2 Level 3 HSM |",
+				"| Conformance Pack | Config複数ルール一括デプロイ |",
+				"| DRT | Shield Advanced専任対応チーム |",
+				"| DEK | データ暗号化キー（Envelope暗号化） |",
+				"| Detective | 根本原因調査（グラフモデル・90日保持） |",
+				"| DNS Firewall | VPC内DNSクエリフィルタ |",
+				"| ExternalId | Confused Deputy攻撃防止 |",
+				"| FSBP | AWS基本セキュリティベストプラクティス |",
+				"| GuardDuty | ML脅威検知（検知のみ・ブロックなし） |",
+				"| Inspector v2 | 継続的脆弱性スキャン（CISベンチマークなし） |",
+				"| KMS CMK | お客様管理の暗号化マスターキー |"
+			]
+		},
+		{
+			"title": "キーワード索引 L–Z",
+			"layout": "default",
+			"content": [
+				"| キーワード | サービス/概念 |",
+				"| --- | --- |",
+				"| Macie | S3のPII機械学習検出 |",
+				"| MFA Delete | S3バージョン削除に追加認証必要 |",
+				"| NACL | サブネットレベルのステートレスFW |",
+				"| Network Firewall | VPC L3-L7 Suricataベースフィルタ |",
+				"| NotAction | 列挙外すべてにマッチするポリシー要素 |",
+				"| OAC | CloudFront Origin Access Control |",
+				"| Permission Boundary | IAM最大権限の上限（Allowのみ） |",
+				"| PrivateLink | NLBベースのサービス公開 |",
+				"| Reachability Context | Inspector v2のCVSS重み付け |",
+				"| SCP | Organizations全体ガードレール（管理アカウント除外） |",
+				"| Security Hub | Finding集約・スコア・自動修復ルール |",
+				"| SSE-KMS | S3のKMS暗号化（CloudTrailに復号ログ記録） |",
+				"| STS | 一時認証情報発行（AssumeRole・最大12時間） |",
+				"| Trusted Advisor | ベストプラクティスチェック（Business以上で全件） |",
+				"| WAF | L7ウェブアプリFW（ALB/CF/APIGW） |",
+				"| Zone of Trust | Access Analyzerの信頼ゾーン境界 |"
+			]
+		},
+		{
+			"title": "よくある引っかけ問題",
+			"layout": "default",
+			"content": [
+				"| 引っかけパターン | 正解 |",
+				"| --- | --- |",
+				"| 「SCPはすべてのアカウントに適用される」 | × 管理アカウントには適用されない |",
+				"| 「Permission BoundaryはDeny設定できる」 | × Allowのみ（Deny不要） |",
+				"| 「KMSキーは1リージョンのみ」 | △ マルチリージョンキー（mrk-）あり |",
+				"| 「CloudTrailはデフォルトでS3に保存」 | × デフォルトは90日間のコンソール表示のみ |",
+				"| 「Inspector v2はCISベンチマーク評価可」 | × v1のみ（v2では廃止） |",
+				"| 「ACM証明書はEC2に直接インストール可」 | × エクスポート不可 |",
+				"| 「Shield StandardはL7保護あり」 | × AdvancedのみL7+DRT+コスト補填 |",
+				"| 「GuardDutyは自動でトラフィックをブロック」 | × 検知のみ（WAF/SG等で別途対応） |",
+				"| 「Gateway EndpointにSGを設定できる」 | × Interface Endpointのみ |",
+				"| 「Detectiveはリアルタイム検知サービス」 | × 調査専用ツール |"
+			]
+		},
+		{
+			"title": "試験ポイント総まとめ①",
+			"layout": "default",
+			"content": [
+				"| # | セクション | 最重要ポイント |",
+				"| --- | --- | --- |",
+				"| 1 | IAM | 評価順: 明示Deny→SCP→RBP→Boundary→Session→Identity |",
+				"| 2 | IAM | SCP管理アカウント不適用・Permission BoundaryはAllow上限 |",
+				"| 3 | IAM | ExternalIdでConfused Deputy攻撃を防ぐ |",
+				"| 4 | KMS | Envelope暗号化: CMK→DEK→データの2層構造 |",
+				"| 5 | KMS | キーポリシーは必須（IAMポリシー単独では不可） |",
+				"| 6 | KMS | マルチリージョンキー（mrk-）でDR対応 |",
+				"| 7 | Secrets | 自動ローテーション必須→Secrets Manager |",
+				"| 8 | S3 | SSE-KMSはCloudTrailに復号ログが残る |",
+				"| 9 | Network | SGはステートフル・NACLはステートレス |",
+				"| 10 | WAF | CloudFront用WAFはus-east-1で管理 |"
+			]
+		},
+		{
+			"title": "試験ポイント総まとめ②",
+			"layout": "default",
+			"content": [
+				"| # | セクション | 最重要ポイント |",
+				"| --- | --- | --- |",
+				"| 11 | Network | Shield AdvancedのみDRT+L7+コスト補填（$3,000/月） |",
+				"| 12 | Network | Network FirewallはSuricataルール互換 |",
+				"| 13 | GuardDuty | 検知のみ（ブロックはEventBridge→Lambdaで自動化） |",
+				"| 14 | Security Hub | ASFF形式でFinding統合・スコア化 |",
+				"| 15 | Detective | GuardDutyから直接根本原因調査（90日保持） |",
+				"| 16 | CloudTrail | データイベント/Insightsはデフォルト無効 |",
+				"| 17 | Inspector | v2はCISベンチマーク評価なし（v1のみ） |",
+				"| 18 | Inspector | CVSSスコア+Reachability Contextで優先度付け |",
+				"| 19 | Artifact | SOC/ISO/PCI DSSレポートを無料取得 |",
+				"| 20 | IR | EC2侵害: SG隔離→EBSスナップショット→フォレンジック |"
+			]
+		},
+		{
+			"title": "直前チェックリスト・クロージング",
+			"layout": "default",
+			"content": [
+				"**試験直前チェックリスト:**",
+				"- [ ] IAMポリシー評価順序（6ステップ）を暗記",
+				"- [ ] KMS Envelope暗号化の2層構造を説明できる",
+				"- [ ] Secrets Manager vs Parameter Storeの選択基準を言える",
+				"- [ ] GuardDuty / Security Hub / Detective の役割の違いを説明できる",
+				"- [ ] Shield Standard vs Advanced の違い（コスト・機能・DRT）",
+				"- [ ] CloudTrailのイベント種別（デフォルト有無）を把握",
+				"- [ ] Inspector v1 vs v2 の違い（CISベンチマーク有無）",
+				"- [ ] 引っかけ問題10選を復習",
+				"**本資料カバー範囲**: 全7セクション・80スライド",
+				"Security Specialty 合格を目指して頑張ってください！"
+			]
+		}
+	]
+}

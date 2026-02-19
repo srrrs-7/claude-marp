@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:Arial,sans-serif">
+  <!-- Background -->
+  <rect x="0" y="0" width="1000" height="580" fill="#1C2833"/>
+
+  <!-- Title -->
+  <rect x="0" y="0" width="1000" height="50" fill="#17202A"/>
+  <text x="500" y="33" text-anchor="middle" font-size="22" font-weight="bold" fill="white" font-family="Arial,sans-serif">DevSecOpsツールエコシステム</text>
+
+  <!-- ===== ROW 1 ===== -->
+
+  <!-- Cell 1: コード解析 #E53935 -->
+  <rect x="14" y="60" width="228" height="118" rx="10" fill="#C62828"/>
+  <rect x="14" y="60" width="228" height="36" rx="10" fill="#E53935"/>
+  <rect x="14" y="82" width="228" height="14" fill="#E53935"/>
+  <text x="128" y="84" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="Arial,sans-serif">コード解析 (SAST)</text>
+  <text x="128" y="107" text-anchor="middle" font-size="12" fill="#FFCDD2" font-family="Arial,sans-serif">Semgrep</text>
+  <text x="128" y="124" text-anchor="middle" font-size="12" fill="#FFCDD2" font-family="Arial,sans-serif">SonarQube</text>
+  <text x="128" y="141" text-anchor="middle" font-size="12" fill="#FFCDD2" font-family="Arial,sans-serif">CodeQL</text>
+  <text x="128" y="158" text-anchor="middle" font-size="12" fill="#FFCDD2" font-family="Arial,sans-serif">Checkmarx</text>
+
+  <!-- Cell 2: 依存性管理 #F57C00 -->
+  <rect x="254" y="60" width="228" height="118" rx="10" fill="#E65100"/>
+  <rect x="254" y="60" width="228" height="36" rx="10" fill="#F57C00"/>
+  <rect x="254" y="82" width="228" height="14" fill="#F57C00"/>
+  <text x="368" y="84" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="Arial,sans-serif">依存性管理 (SCA)</text>
+  <text x="368" y="107" text-anchor="middle" font-size="12" fill="#FFE0B2" font-family="Arial,sans-serif">Dependabot</text>
+  <text x="368" y="124" text-anchor="middle" font-size="12" fill="#FFE0B2" font-family="Arial,sans-serif">Snyk</text>
+  <text x="368" y="141" text-anchor="middle" font-size="12" fill="#FFE0B2" font-family="Arial,sans-serif">OWASP Dependency-Check</text>
+  <text x="368" y="158" text-anchor="middle" font-size="12" fill="#FFE0B2" font-family="Arial,sans-serif">Renovate</text>
+
+  <!-- Cell 3: シークレット #558B2F -->
+  <rect x="494" y="60" width="228" height="118" rx="10" fill="#33691E"/>
+  <rect x="494" y="60" width="228" height="36" rx="10" fill="#558B2F"/>
+  <rect x="494" y="82" width="228" height="14" fill="#558B2F"/>
+  <text x="608" y="84" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="Arial,sans-serif">シークレット管理</text>
+  <text x="608" y="107" text-anchor="middle" font-size="12" fill="#DCEDC8" font-family="Arial,sans-serif">Gitleaks</text>
+  <text x="608" y="124" text-anchor="middle" font-size="12" fill="#DCEDC8" font-family="Arial,sans-serif">TruffleHog</text>
+  <text x="608" y="141" text-anchor="middle" font-size="12" fill="#DCEDC8" font-family="Arial,sans-serif">HashiCorp Vault</text>
+  <text x="608" y="158" text-anchor="middle" font-size="12" fill="#DCEDC8" font-family="Arial,sans-serif">AWS Secrets Manager</text>
+
+  <!-- Cell 4: コンテナ #1565C0 -->
+  <rect x="734" y="60" width="252" height="118" rx="10" fill="#0D47A1"/>
+  <rect x="734" y="60" width="252" height="36" rx="10" fill="#1565C0"/>
+  <rect x="734" y="82" width="252" height="14" fill="#1565C0"/>
+  <text x="860" y="84" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="Arial,sans-serif">コンテナセキュリティ</text>
+  <text x="860" y="107" text-anchor="middle" font-size="12" fill="#BBDEFB" font-family="Arial,sans-serif">Trivy</text>
+  <text x="860" y="124" text-anchor="middle" font-size="12" fill="#BBDEFB" font-family="Arial,sans-serif">Grype</text>
+  <text x="860" y="141" text-anchor="middle" font-size="12" fill="#BBDEFB" font-family="Arial,sans-serif">Cosign (署名検証)</text>
+  <text x="860" y="158" text-anchor="middle" font-size="12" fill="#BBDEFB" font-family="Arial,sans-serif">Falco (ランタイム)</text>
+
+  <!-- ===== ROW 2 ===== -->
+
+  <!-- Cell 5: K8sポリシー #6A1B9A -->
+  <rect x="14" y="192" width="228" height="106" rx="10" fill="#4A148C"/>
+  <rect x="14" y="192" width="228" height="36" rx="10" fill="#6A1B9A"/>
+  <rect x="14" y="214" width="228" height="14" fill="#6A1B9A"/>
+  <text x="128" y="216" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="Arial,sans-serif">K8sポリシー管理</text>
+  <text x="128" y="239" text-anchor="middle" font-size="12" fill="#E1BEE7" font-family="Arial,sans-serif">OPA / Gatekeeper</text>
+  <text x="128" y="256" text-anchor="middle" font-size="12" fill="#E1BEE7" font-family="Arial,sans-serif">Kyverno</text>
+  <text x="128" y="273" text-anchor="middle" font-size="12" fill="#E1BEE7" font-family="Arial,sans-serif">Polaris</text>
+
+  <!-- Cell 6: CSPM #00838F -->
+  <rect x="254" y="192" width="228" height="106" rx="10" fill="#006064"/>
+  <rect x="254" y="192" width="228" height="36" rx="10" fill="#00838F"/>
+  <rect x="254" y="214" width="228" height="14" fill="#00838F"/>
+  <text x="368" y="216" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="Arial,sans-serif">CSPM (クラウド設定)</text>
+  <text x="368" y="239" text-anchor="middle" font-size="12" fill="#B2EBF2" font-family="Arial,sans-serif">Wiz</text>
+  <text x="368" y="256" text-anchor="middle" font-size="12" fill="#B2EBF2" font-family="Arial,sans-serif">Prisma Cloud</text>
+  <text x="368" y="273" text-anchor="middle" font-size="12" fill="#B2EBF2" font-family="Arial,sans-serif">AWS SecurityHub</text>
+
+  <!-- Cell 7: DAST #37474F -->
+  <rect x="494" y="192" width="228" height="106" rx="10" fill="#263238"/>
+  <rect x="494" y="192" width="228" height="36" rx="10" fill="#37474F"/>
+  <rect x="494" y="214" width="228" height="14" fill="#37474F"/>
+  <text x="608" y="216" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="Arial,sans-serif">DAST (動的解析)</text>
+  <text x="608" y="239" text-anchor="middle" font-size="12" fill="#CFD8DC" font-family="Arial,sans-serif">OWASP ZAP</text>
+  <text x="608" y="256" text-anchor="middle" font-size="12" fill="#CFD8DC" font-family="Arial,sans-serif">Burp Suite</text>
+  <text x="608" y="273" text-anchor="middle" font-size="12" fill="#CFD8DC" font-family="Arial,sans-serif">Nuclei</text>
+
+  <!-- Cell 8: ID管理 #AD1457 -->
+  <rect x="734" y="192" width="252" height="106" rx="10" fill="#880E4F"/>
+  <rect x="734" y="192" width="252" height="36" rx="10" fill="#AD1457"/>
+  <rect x="734" y="214" width="252" height="14" fill="#AD1457"/>
+  <text x="860" y="216" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="Arial,sans-serif">ID・アクセス管理</text>
+  <text x="860" y="239" text-anchor="middle" font-size="12" fill="#FCE4EC" font-family="Arial,sans-serif">SPIFFE / SPIRE</text>
+  <text x="860" y="256" text-anchor="middle" font-size="12" fill="#FCE4EC" font-family="Arial,sans-serif">Keycloak</text>
+  <text x="860" y="273" text-anchor="middle" font-size="12" fill="#FCE4EC" font-family="Arial,sans-serif">AWS IAM / IAM Identity Center</text>
+
+  <!-- ===== CI/CD Pipeline Flow ===== -->
+  <rect x="14" y="316" width="972" height="196" rx="12" fill="#212F3C"/>
+  <text x="500" y="340" text-anchor="middle" font-size="15" font-weight="bold" fill="#F0B27A" font-family="Arial,sans-serif">CI/CDパイプライン統合フロー</text>
+
+  <!-- Pipeline stages -->
+  <!-- Stage 1 -->
+  <rect x="30" y="352" width="130" height="60" rx="8" fill="#C62828"/>
+  <text x="95" y="376" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="Arial,sans-serif">コードコミット</text>
+  <text x="95" y="392" text-anchor="middle" font-size="10" fill="#FFCDD2" font-family="Arial,sans-serif">SAST / Secret Scan</text>
+  <text x="95" y="404" text-anchor="middle" font-size="9" fill="#EF9A9A" font-family="Arial,sans-serif">Semgrep, Gitleaks</text>
+
+  <!-- Arrow -->
+  <line x1="160" y1="382" x2="186" y2="382" stroke="#90A4AE" stroke-width="2"/>
+  <polygon points="186,382 178,377 178,387" fill="#90A4AE"/>
+
+  <!-- Stage 2 -->
+  <rect x="188" y="352" width="130" height="60" rx="8" fill="#E65100"/>
+  <text x="253" y="376" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="Arial,sans-serif">ビルド</text>
+  <text x="253" y="392" text-anchor="middle" font-size="10" fill="#FFE0B2" font-family="Arial,sans-serif">依存性スキャン</text>
+  <text x="253" y="404" text-anchor="middle" font-size="9" fill="#FFCC80" font-family="Arial,sans-serif">Snyk, Trivy</text>
+
+  <!-- Arrow -->
+  <line x1="318" y1="382" x2="344" y2="382" stroke="#90A4AE" stroke-width="2"/>
+  <polygon points="344,382 336,377 336,387" fill="#90A4AE"/>
+
+  <!-- Stage 3 -->
+  <rect x="346" y="352" width="130" height="60" rx="8" fill="#33691E"/>
+  <text x="411" y="376" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="Arial,sans-serif">テスト</text>
+  <text x="411" y="392" text-anchor="middle" font-size="10" fill="#DCEDC8" font-family="Arial,sans-serif">DAST / SBOM</text>
+  <text x="411" y="404" text-anchor="middle" font-size="9" fill="#AED581" font-family="Arial,sans-serif">ZAP, Syft</text>
+
+  <!-- Arrow -->
+  <line x1="476" y1="382" x2="502" y2="382" stroke="#90A4AE" stroke-width="2"/>
+  <polygon points="502,382 494,377 494,387" fill="#90A4AE"/>
+
+  <!-- Stage 4 -->
+  <rect x="504" y="352" width="130" height="60" rx="8" fill="#0D47A1"/>
+  <text x="569" y="376" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="Arial,sans-serif">イメージ署名</text>
+  <text x="569" y="392" text-anchor="middle" font-size="10" fill="#BBDEFB" font-family="Arial,sans-serif">コンテナ検証</text>
+  <text x="569" y="404" text-anchor="middle" font-size="9" fill="#90CAF9" font-family="Arial,sans-serif">Cosign, Grype</text>
+
+  <!-- Arrow -->
+  <line x1="634" y1="382" x2="660" y2="382" stroke="#90A4AE" stroke-width="2"/>
+  <polygon points="660,382 652,377 652,387" fill="#90A4AE"/>
+
+  <!-- Stage 5 -->
+  <rect x="662" y="352" width="130" height="60" rx="8" fill="#4A148C"/>
+  <text x="727" y="376" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="Arial,sans-serif">ポリシーGating</text>
+  <text x="727" y="392" text-anchor="middle" font-size="10" fill="#E1BEE7" font-family="Arial,sans-serif">K8s/クラウド検証</text>
+  <text x="727" y="404" text-anchor="middle" font-size="9" fill="#CE93D8" font-family="Arial,sans-serif">OPA, Kyverno</text>
+
+  <!-- Arrow -->
+  <line x1="792" y1="382" x2="818" y2="382" stroke="#90A4AE" stroke-width="2"/>
+  <polygon points="818,382 810,377 810,387" fill="#90A4AE"/>
+
+  <!-- Stage 6 -->
+  <rect x="820" y="352" width="148" height="60" rx="8" fill="#006064"/>
+  <text x="894" y="376" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="Arial,sans-serif">本番デプロイ</text>
+  <text x="894" y="392" text-anchor="middle" font-size="10" fill="#B2EBF2" font-family="Arial,sans-serif">CSPM / 監視</text>
+  <text x="894" y="404" text-anchor="middle" font-size="9" fill="#80DEEA" font-family="Arial,sans-serif">Wiz, Falco, SIEM</text>
+
+  <!-- Feedback arrow (bottom) -->
+  <path d="M 894 412 Q 894 460 500 460 Q 106 460 95 412" fill="none" stroke="#546E7A" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="95,412 90,424 100,424" fill="#546E7A"/>
+  <text x="500" y="456" text-anchor="middle" font-size="11" fill="#78909C" font-family="Arial,sans-serif">継続的フィードバック・改善サイクル</text>
+
+  <text x="500" y="490" text-anchor="middle" font-size="11" fill="#546E7A" font-family="Arial,sans-serif">* 各ステージでセキュリティチェックを自動化し、問題を早期発見・修正するシフトレフトを実現</text>
+</svg>

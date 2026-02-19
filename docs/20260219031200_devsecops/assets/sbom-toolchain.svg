@@ -69,7 +69,6 @@
 
   <!-- Gradient flow bar -->
   <defs>
-    <!-- No url(#) usage: use inline style instead -->
   </defs>
   <rect x="30" y="228" width="944" height="12" fill="#CFD8DC" rx="6"/>
   <rect x="30" y="228" width="944" height="12" fill="none" rx="6" stroke="#90A4AE" stroke-width="1"/>

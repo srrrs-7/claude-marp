@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540"
+     style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:Arial,sans-serif;">
+
+  <!-- Background -->
+  <rect width="1000" height="540" fill="#F4F6F9" rx="12"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="1000" height="52" fill="#232F3E" rx="12"/>
+  <rect x="0" y="40" width="1000" height="12" fill="#232F3E"/>
+  <text x="500" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="white" font-family="Arial,sans-serif">STRIDE脅威モデル — 6カテゴリ</text>
+
+  <!-- ====================== Row 1 ====================== -->
+
+  <!-- S: Spoofing -->
+  <rect x="24" y="68" width="304" height="190" fill="white" rx="10" style="filter:drop-shadow(2px 3px 6px rgba(0,0,0,0.12))"/>
+  <rect x="24" y="68" width="304" height="48" fill="#1565C0" rx="10"/>
+  <rect x="24" y="104" width="304" height="12" fill="#1565C0"/>
+  <text x="44" y="96" font-size="22" font-weight="bold" fill="#90CAF9" font-family="Arial,sans-serif">S</text>
+  <text x="80" y="88" font-size="16" font-weight="bold" fill="white" font-family="Arial,sans-serif">Spoofing（なりすまし）</text>
+  <text x="80" y="108" font-size="12" fill="#BBDEFB" font-family="Arial,sans-serif">身元の偽装による不正アクセス</text>
+  <text x="36" y="138" font-size="12" font-weight="bold" fill="#455A64" font-family="Arial,sans-serif">例:</text>
+  <text x="36" y="156" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">・認証バイパス / セッションハイジャック</text>
+  <text x="36" y="174" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">・フィッシングによるクレデンシャル窃取</text>
+  <line x1="24" y1="190" x2="328" y2="190" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="36" y="210" font-size="12" font-weight="bold" fill="#1565C0" font-family="Arial,sans-serif">対策:</text>
+  <text x="36" y="228" font-size="12" fill="#37474F" font-family="Arial,sans-serif">強認証 / MFA / OIDC / 証明書ピン</text>
+  <text x="36" y="246" font-size="12" fill="#37474F" font-family="Arial,sans-serif">ニング</text>
+
+  <!-- T: Tampering -->
+  <rect x="348" y="68" width="304" height="190" fill="white" rx="10" style="filter:drop-shadow(2px 3px 6px rgba(0,0,0,0.12))"/>
+  <rect x="348" y="68" width="304" height="48" fill="#6A1B9A" rx="10"/>
+  <rect x="348" y="104" width="304" height="12" fill="#6A1B9A"/>
+  <text x="368" y="96" font-size="22" font-weight="bold" fill="#CE93D8" font-family="Arial,sans-serif">T</text>
+  <text x="404" y="88" font-size="16" font-weight="bold" fill="white" font-family="Arial,sans-serif">Tampering（改ざん）</text>
+  <text x="404" y="108" font-size="12" fill="#E1BEE7" font-family="Arial,sans-serif">データやコードの不正変更</text>
+  <text x="360" y="138" font-size="12" font-weight="bold" fill="#455A64" font-family="Arial,sans-serif">例:</text>
+  <text x="360" y="156" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">・転送中データの改変 / SQLインジェクション</text>
+  <text x="360" y="174" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">・ビルド成果物の改ざん</text>
+  <line x1="348" y1="190" x2="652" y2="190" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="360" y="210" font-size="12" font-weight="bold" fill="#6A1B9A" font-family="Arial,sans-serif">対策:</text>
+  <text x="360" y="228" font-size="12" fill="#37474F" font-family="Arial,sans-serif">デジタル署名 / 整合性検証 / TLS /</text>
+  <text x="360" y="246" font-size="12" fill="#37474F" font-family="Arial,sans-serif">SLSA / コード署名</text>
+
+  <!-- R: Repudiation -->
+  <rect x="672" y="68" width="304" height="190" fill="white" rx="10" style="filter:drop-shadow(2px 3px 6px rgba(0,0,0,0.12))"/>
+  <rect x="672" y="68" width="304" height="48" fill="#00695C" rx="10"/>
+  <rect x="672" y="104" width="304" height="12" fill="#00695C"/>
+  <text x="692" y="96" font-size="22" font-weight="bold" fill="#80CBC4" font-family="Arial,sans-serif">R</text>
+  <text x="728" y="88" font-size="16" font-weight="bold" fill="white" font-family="Arial,sans-serif">Repudiation（否認）</text>
+  <text x="728" y="108" font-size="12" fill="#B2DFDB" font-family="Arial,sans-serif">行為の否定・ログ改ざん</text>
+  <text x="684" y="138" font-size="12" font-weight="bold" fill="#455A64" font-family="Arial,sans-serif">例:</text>
+  <text x="684" y="156" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">・ログ削除 / タイムスタンプ改ざん</text>
+  <text x="684" y="174" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">・操作履歴の否定</text>
+  <line x1="672" y1="190" x2="976" y2="190" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="684" y="210" font-size="12" font-weight="bold" fill="#00695C" font-family="Arial,sans-serif">対策:</text>
+  <text x="684" y="228" font-size="12" fill="#37474F" font-family="Arial,sans-serif">監査ログ / ログ署名 / SIEM /</text>
+  <text x="684" y="246" font-size="12" fill="#37474F" font-family="Arial,sans-serif">改ざん検知 / CloudTrail</text>
+
+  <!-- ====================== Row 2 ====================== -->
+
+  <!-- I: Information Disclosure -->
+  <rect x="24" y="278" width="304" height="190" fill="white" rx="10" style="filter:drop-shadow(2px 3px 6px rgba(0,0,0,0.12))"/>
+  <rect x="24" y="278" width="304" height="48" fill="#E65100" rx="10"/>
+  <rect x="24" y="314" width="304" height="12" fill="#E65100"/>
+  <text x="44" y="306" font-size="22" font-weight="bold" fill="#FFCC80" font-family="Arial,sans-serif">I</text>
+  <text x="80" y="298" font-size="16" font-weight="bold" fill="white" font-family="Arial,sans-serif">Information Disclosure</text>
+  <text x="80" y="318" font-size="12" fill="#FFE0B2" font-family="Arial,sans-serif">情報漏洩 — 機密データの露出</text>
+  <text x="36" y="348" font-size="12" font-weight="bold" fill="#455A64" font-family="Arial,sans-serif">例:</text>
+  <text x="36" y="366" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">・暗号化不備 / エラーメッセージ漏洩</text>
+  <text x="36" y="384" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">・S3バケット公開設定ミス</text>
+  <line x1="24" y1="400" x2="328" y2="400" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="36" y="420" font-size="12" font-weight="bold" fill="#E65100" font-family="Arial,sans-serif">対策:</text>
+  <text x="36" y="438" font-size="12" fill="#37474F" font-family="Arial,sans-serif">暗号化 (保存・転送) / アクセス制御</text>
+  <text x="36" y="456" font-size="12" fill="#37474F" font-family="Arial,sans-serif">/ シークレット管理 / DLP</text>
+
+  <!-- D: Denial of Service -->
+  <rect x="348" y="278" width="304" height="190" fill="white" rx="10" style="filter:drop-shadow(2px 3px 6px rgba(0,0,0,0.12))"/>
+  <rect x="348" y="278" width="304" height="48" fill="#C62828" rx="10"/>
+  <rect x="348" y="314" width="304" height="12" fill="#C62828"/>
+  <text x="368" y="306" font-size="22" font-weight="bold" fill="#FFCDD2" font-family="Arial,sans-serif">D</text>
+  <text x="404" y="298" font-size="16" font-weight="bold" fill="white" font-family="Arial,sans-serif">Denial of Service</text>
+  <text x="404" y="318" font-size="12" fill="#FFCDD2" font-family="Arial,sans-serif">サービス拒否 — 可用性の破壊</text>
+  <text x="360" y="348" font-size="12" font-weight="bold" fill="#455A64" font-family="Arial,sans-serif">例:</text>
+  <text x="360" y="366" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">・リソース枯渇 / DDoS攻撃</text>
+  <text x="360" y="384" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">・アプリケーション層ループ</text>
+  <line x1="348" y1="400" x2="652" y2="400" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="360" y="420" font-size="12" font-weight="bold" fill="#C62828" font-family="Arial,sans-serif">対策:</text>
+  <text x="360" y="438" font-size="12" fill="#37474F" font-family="Arial,sans-serif">レート制限 / WAF / CDN /</text>
+  <text x="360" y="456" font-size="12" fill="#37474F" font-family="Arial,sans-serif">オートスケール / Shield</text>
+
+  <!-- E: Elevation of Privilege -->
+  <rect x="672" y="278" width="304" height="190" fill="white" rx="10" style="filter:drop-shadow(2px 3px 6px rgba(0,0,0,0.12))"/>
+  <rect x="672" y="278" width="304" height="48" fill="#4E342E" rx="10"/>
+  <rect x="672" y="314" width="304" height="12" fill="#4E342E"/>
+  <text x="692" y="306" font-size="22" font-weight="bold" fill="#FFCCBC" font-family="Arial,sans-serif">E</text>
+  <text x="728" y="298" font-size="16" font-weight="bold" fill="white" font-family="Arial,sans-serif">Elevation of Privilege</text>
+  <text x="728" y="318" font-size="12" fill="#FFCCBC" font-family="Arial,sans-serif">権限昇格 — 不正な権限取得</text>
+  <text x="684" y="348" font-size="12" font-weight="bold" fill="#455A64" font-family="Arial,sans-serif">例:</text>
+  <text x="684" y="366" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">・水平移動 / sudo権限悪用</text>
+  <text x="684" y="384" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">・コンテナ脱出 / IAM昇格</text>
+  <line x1="672" y1="400" x2="976" y2="400" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="684" y="420" font-size="12" font-weight="bold" fill="#4E342E" font-family="Arial,sans-serif">対策:</text>
+  <text x="684" y="438" font-size="12" fill="#37474F" font-family="Arial,sans-serif">最小権限原則 / RBAC / PAM /</text>
+  <text x="684" y="456" font-size="12" fill="#37474F" font-family="Arial,sans-serif">Just-in-Time アクセス</text>
+
+  <!-- Footer -->
+  <rect x="24" y="482" width="952" height="38" fill="#ECEFF1" rx="8"/>
+  <text x="500" y="499" text-anchor="middle" font-size="12" font-weight="bold" fill="#455A64" font-family="Arial,sans-serif">STRIDE = Spoofing / Tampering / Repudiation / Information Disclosure / Denial of Service / Elevation of Privilege</text>
+  <text x="500" y="515" text-anchor="middle" font-size="12" fill="#78909C" font-family="Arial,sans-serif">Microsoft提案 (1999) — 脅威モデリングの標準フレームワーク</text>
+</svg>

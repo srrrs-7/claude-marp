@@ -91,6 +91,7 @@ bun run slides export -c docs/<dir>/slides.config.yaml -f html --in docs/<dir>/f
 - ❌ Missing timestamp prefix → ✅ Use `yyyymmddhhmmss_slug` format
 - ❌ CLI flag `--dangerous` → ✅ Use `--dangerously-skip-permissions`
 - ❌ Using `mermaid` field in slides-data.json → ✅ Create SVG in `assets/` and reference via `![alt](assets/file.svg)` in `content`
+- ❌ Top-level `class:` / `header:` / `footer:` / `style:` in config → ✅ See "slides.config.yaml Format" below
 
 ### 5. SVG url(#id) Prohibition — Applies to ALL SVG Files
 
@@ -104,7 +105,62 @@ Marp CLI inlines external SVGs during HTML export, so standalone SVG files end u
 3. Use explicit `<polygon>` shapes instead of `<marker>` + `marker-end="url(#...)"`
 4. Add `letter-spacing:0` to the root `<svg style="...">` attribute
 
-**Auto-fix:** Run `bun run scripts/fix-svg-url-refs.ts` to scan all `.md` and `.svg` files under `docs/` and auto-replace `url(#id)` references.
+**Auto-fix:** Run `bun scripts/fix-svg-url-refs.ts` to scan all `.md` and `.svg` files under `docs/` and auto-replace `url(#id)` references.
+
+## slides.config.yaml Format
+
+The config schema (`src/config/schema.ts`) expects Marp options **nested under `marp:`**. Top-level `theme:`, `header:`, `footer:`, `style:`, `paginate:` are stripped by Zod and have no effect.
+
+**Correct format:**
+```yaml
+topic: "Presentation Title"
+language: "ja"
+
+output:
+  dir: "docs/20260219120000_my-topic"   # full path, required
+  baseName: "my-topic"
+
+marp:
+  theme: gaia           # gaia | default | uncover
+  paginate: true
+  header: "My Header"
+  footer: "© 2026"
+  style: |
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+```
+
+**`class` is not in the config schema.** The `class: invert` directive (dark mode) cannot be set via config — it must be manually added to the rendered `.md` front matter (see Post-Render Edits below).
+
+## Post-Render Front Matter Edits
+
+**`bun run slides render` does NOT output `class:` because it is absent from the config schema.**
+
+After every `bun run slides render`, manually edit the generated `.md` front matter if dark mode or custom directives are needed:
+
+```yaml
+---
+marp: true
+theme: gaia
+class: invert      # ← add manually for dark mode (gaia invert)
+size: 16:9
+paginate: true
+header: "My Presentation"   # ← add manually if not in marp.header config
+footer: "© 2026"            # ← add manually if not in marp.footer config
+style: |                    # ← add manually if not in marp.style config
+  section {
+    font-size: 1.05em;
+  }
+  section pre code {
+    font-size: 0.58em;
+    line-height: 1.4;
+  }
+---
+```
+
+If `marp.header`, `marp.footer`, and `marp.style` are correctly set in `slides.config.yaml` under the `marp:` key, they are rendered automatically. Only `class:` always requires a manual edit.
 
 ## Marp-Specific Constraints
 
@@ -119,7 +175,7 @@ Marp wraps each slide in `<svg data-marpit-svg><foreignObject><section>`, creati
 
 Also add `letter-spacing:0` to each `<svg style="...">` to prevent Gaia theme's `letter-spacing: 1.25px` from being inherited by SVG `<text>` elements.
 
-Run `bun run scripts/fix-svg-url-refs.ts` to auto-fix existing SVGs.
+Run `bun scripts/fix-svg-url-refs.ts` to auto-fix existing SVGs.
 
 **SVG images (standalone files):**
 
@@ -166,7 +222,7 @@ docs/20260214073222_example/
 
 ### Two-Layer Zod Schema Design
 
-- **Config schema** (`src/config/schema.ts`): Validates `slides.config.yaml`. Every field except `topic` has `.default()`. Nested objects use `.default({})` so partial YAML works.
+- **Config schema** (`src/config/schema.ts`): Validates `slides.config.yaml`. Every field except `topic` has `.default()`. Nested objects use `.default({})` so partial YAML works. **Unknown top-level keys are stripped** (Zod default behavior — no `.passthrough()`).
 - **Slide schema** (`src/generate/slide-schema.ts`): Defines slide data structure. Uses `.describe()` for documentation and `.optional()` for omittable fields.
 
 **Schema change workflow:**
@@ -179,7 +235,8 @@ docs/20260214073222_example/
 `pipeline.ts`: read JSON → validate with Zod → render Marp markdown via `markdown.ts` → write file.
 
 `markdown.ts`:
-- Build front-matter (`marp: true`, theme, directives, **custom styles**)
+- Build front-matter from `config.marp.*` fields only: `marp: true`, `theme`, `size`, `paginate`, `header`, `footer`, `style`
+- `class:` directive is **not in the schema** and is never emitted by the render pipeline
 - Render slides (title, bullets, code, speaker notes as HTML comments). Diagrams use inline SVG in rendered markdown
 - Insert `---` separators **between slides only** (not after front-matter, to avoid blank slides)
 
@@ -251,15 +308,6 @@ Workspace: `.agent-teams/<session-id>/` (gitignored)
 - **Language:** Code/comments in English. Default slide output is Japanese (`language: "ja"`).
 
 ## Slide Content Constraints
-
-**Code block overflow prevention** (enforced in `slides.config.yaml` default style):
-```yaml
-style: |
-  section pre code {
-    font-size: 0.6em;
-    line-height: 1.4;
-  }
-```
 
 **Content limits** (see `.claude/rules/slide-design.md` Section 8):
 - **Bullet points**: max 6-7 items per slide (split 8+ items into 2 slides)
@@ -342,7 +390,7 @@ Safety guardrails configured in `.claude/settings.json` that run automatically:
 Run `bun run split` to automatically separate code blocks and SVG diagrams from bullet content across all presentations. This prevents slides from overflowing by creating dedicated diagram/code slides.
 
 **Fixing SVG `url(#)` references:**
-Run `bun run scripts/fix-svg-url-refs.ts` to replace broken `url(#id)` references (filter, marker, clip-path, gradient fill) with CSS `drop-shadow()` and explicit `<polygon>` arrows across all `.md` and `.svg` files under `docs/`. This covers both inline SVGs in markdown and standalone SVG files in `assets/` directories.
+Run `bun scripts/fix-svg-url-refs.ts` to replace broken `url(#id)` references (filter, marker, clip-path, gradient fill) with CSS `drop-shadow()` and explicit `<polygon>` arrows across all `.md` and `.svg` files under `docs/`. This covers both inline SVGs in markdown and standalone SVG files in `assets/` directories.
 
 **Rebuilding all presentations:**
 After structural changes (schema updates, template modifications), use:
@@ -352,11 +400,15 @@ After structural changes (schema updates, template modifications), use:
 
 ## Troubleshooting
 
+**Dark mode / `class: invert` not applied after render:** The `class:` directive is absent from `src/config/schema.ts` and is never written by `buildFrontMatter()`. After `bun run slides render`, manually add `class: invert` to the `.md` front matter before exporting. See "Post-Render Front Matter Edits" section above.
+
+**Header/footer/style not rendered:** These fields only work when placed under the `marp:` key in `slides.config.yaml`, not at the top level. Top-level keys are stripped by Zod schema parsing. See "slides.config.yaml Format" section above.
+
 **Wrong output location:** If files render to wrong directory, verify `output.dir` in config uses full path from project root: `"docs/<timestamp>_<title>"` not relative path `"."`
 
 **Preview:** View exported HTML in browser. VSCode Marp extension (`marp-team.marp-vscode`) can preview `.md` files but HTML export is recommended for final presentation.
 
-**SVG not rendering in HTML export:** If SVG shadows/arrows are missing, the SVG likely uses `url(#id)` references which break inside Marp's foreignObject wrapper. Run `bun run scripts/fix-svg-url-refs.ts` to auto-fix, then re-export.
+**SVG not rendering in HTML export:** If SVG shadows/arrows are missing, the SVG likely uses `url(#id)` references which break inside Marp's foreignObject wrapper. Run `bun scripts/fix-svg-url-refs.ts` to auto-fix, then re-export.
 
 **SVG images not showing in dist/ HTML:** Marp CLI does NOT inline external `<img src="assets/...">` references in HTML output. The export pipeline (`src/export/marp.ts`) automatically rewrites `src="assets/..."` to `src="../assets/..."` in HTML output so that `dist/` files can resolve the relative path. If images still don't show, verify the `assets/` directory exists at the presentation level and re-export.
 

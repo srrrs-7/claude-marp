@@ -1,0 +1,844 @@
+{
+	"slides": [
+		{
+			"title": "DevSecOps実践ガイド",
+			"layout": "center",
+			"content": [
+				"セキュリティエンジニア向け 完全実践ガイド",
+				"シフトレフト・SBOM・脅威モデリング・クラウドネイティブセキュリティ",
+				"2026年版"
+			]
+		},
+		{
+			"title": "アジェンダ (1/2)",
+			"content": [
+				"**Chapter 1:** DevSecOpsとは（定義・背景・成熟度）",
+				"**Chapter 2:** シフトレフト戦略（SAST・SCA・シークレットスキャン・DAST）",
+				"**Chapter 3:** SBOM・サプライチェーンセキュリティ",
+				"**Chapter 4:** 脅威モデリング・STRIDE"
+			]
+		},
+		{
+			"title": "アジェンダ (2/2)",
+			"content": [
+				"**Chapter 5:** クラウドネイティブセキュリティ（4C's・Falco・OPA・CSPM）",
+				"**Chapter 6:** ゼロトラスト・ID管理",
+				"**Chapter 7:** 実践ロードマップ・まとめ"
+			]
+		},
+		{
+			"title": "Chapter 1: DevSecOpsとは",
+			"layout": "section",
+			"content": ["定義・背景・成熟度モデル・ロードマップ"]
+		},
+		{
+			"title": "DevSecOpsの定義と3本柱",
+			"content": ["![w:860 center](assets/devsecops-overview.svg)"]
+		},
+		{
+			"title": "セキュリティ侵害のコスト",
+			"content": [
+				"**2023年データ侵害の平均コスト: $4.45M**（IBM報告）",
+				"侵害発見までの平均日数: **197日**（発見→封じ込め: +73日）",
+				"サプライチェーン攻撃: 前年比 **742%増**（2021年）",
+				"開発段階で発見した場合の修正コスト: 本番の **1/100**",
+				"セキュリティインシデントの **82%** は人的ミスが起因"
+			]
+		},
+		{
+			"title": "DevOps vs DevSecOps",
+			"content": [
+				"| 観点 | DevOps | DevSecOps |",
+				"|------|--------|-----------|",
+				"| セキュリティ投入時期 | 開発完了後 | 設計から全フェーズ |",
+				"| セキュリティ担当者 | セキュリティチームのみ | 全エンジニア |",
+				"| テスト方式 | ペネトレーションテスト（年次）| 自動スキャン（毎コミット）|",
+				"| 脆弱性対応 | リリース後パッチ | CI/CDゲートでブロック |"
+			]
+		},
+		{
+			"title": "DevSecOps成熟度モデル",
+			"content": ["![w:860 center](assets/devsecops-maturity.svg)"]
+		},
+		{
+			"title": "本資料のロードマップ",
+			"content": [
+				"**このガイドで学べること:**",
+				"シフトレフト: CI/CDに自動セキュリティゲートを組み込む",
+				"SBOM管理: ソフトウェアサプライチェーンを可視化・保護",
+				"脅威モデリング: 設計段階で攻撃者視点を取り入れる",
+				"クラウドネイティブ: コンテナ・K8s・クラウドの多層防御",
+				"ゼロトラスト: 「信頼しない、常に検証」アーキテクチャ"
+			]
+		},
+		{
+			"title": "Chapter 2: シフトレフト戦略",
+			"layout": "section",
+			"content": ["SAST・SCA・シークレットスキャン・DAST・セキュリティゲート"]
+		},
+		{
+			"title": "フェーズ別修正コスト",
+			"content": ["![w:860 center](assets/shiftleft-cost.svg)"]
+		},
+		{
+			"title": "シフトレフトの5原則",
+			"content": [
+				"① **早期発見**: コードレビュー時にセキュリティ問題を検出",
+				"② **自動化**: すべてのセキュリティチェックをCI/CDに統合",
+				"③ **開発者ファースト**: 修正方法を明示し、学習機会に変える",
+				"④ **段階的導入**: まず高リスク項目から自動化を開始",
+				"⑤ **継続的計測**: MTTRやfalse positive率でKPIを管理"
+			]
+		},
+		{
+			"title": "CI/CDセキュリティパイプライン",
+			"content": ["![w:860 center](assets/cicd-pipeline.svg)"]
+		},
+		{
+			"title": "SAST（静的解析）",
+			"layout": "section",
+			"content": ["コードを実行せず脆弱性を検出するホワイトボックステスト手法"]
+		},
+		{
+			"title": "SASTとは — 検出できる脆弱性",
+			"content": [
+				"**SAST（Static Application Security Testing）**",
+				"SQLインジェクション / コマンドインジェクション",
+				"クロスサイトスクリプティング（XSS）",
+				"安全でない暗号化・ハードコードされたシークレット",
+				"バッファオーバーフロー・メモリリーク",
+				"安全でないデシリアライゼーション"
+			]
+		},
+		{
+			"title": "SASTツール比較",
+			"content": ["![w:860 center](assets/sast-comparison.svg)"]
+		},
+		{
+			"title": "Semgrep実践 — カスタムルール",
+			"code": "rules:\n  - id: hardcoded-secret\n    patterns:\n      - pattern: $SECRET = \"...\"\n      - metavariable-regex:\n          metavariable: $SECRET\n          regex: '(?i)(password|secret|token|key)'\n    message: ハードコードされたシークレットを検出\n    languages: [python, javascript, typescript]\n    severity: ERROR",
+			"codeLanguage": "yaml",
+			"content": [
+				"**Semgrep**: パターンマッチングで独自ルールを記述",
+				"公式レジストリに2,000+のルールが公開済み",
+				"CI/CD: `semgrep --config=auto --error`"
+			]
+		},
+		{
+			"title": "CodeQL — GitHub Actions連携",
+			"code": "name: CodeQL Analysis\non: [push, pull_request]\njobs:\n  analyze:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: github/codeql-action/init@v3\n        with:\n          languages: javascript, python\n      - uses: github/codeql-action/autobuild@v3\n      - uses: github/codeql-action/analyze@v3",
+			"codeLanguage": "yaml",
+			"content": [
+				"**CodeQL**: GitHubネイティブ統合、PRにインラインコメント",
+				"クエリ言語でカスタム脆弱性検出ルールを定義可能"
+			]
+		},
+		{
+			"title": "SCA・依存性管理",
+			"layout": "section",
+			"content": ["オープンソースコンポーネントの脆弱性とライセンスを管理"]
+		},
+		{
+			"title": "SCA（Software Composition Analysis）とは",
+			"content": [
+				"**SCA**: 使用している OSS の脆弱性・ライセンスを自動スキャン",
+				"| ツール | 特徴 | 価格 |",
+				"|--------|------|------|",
+				"| Dependabot | GitHub統合、自動PR | 無料 |",
+				"| Snyk | 開発者向けUI、修正提案 | Free/有償 |",
+				"| OWASP Dep-Check | エンタープライズ対応 | 無料 |",
+				"| Renovate | 柔軟な自動更新設定 | OSS |"
+			]
+		},
+		{
+			"title": "OSSライセンスリスク",
+			"content": [
+				"| ライセンス | 商用利用 | コピーレフト | リスク |",
+				"|------------|---------|-------------|--------|",
+				"| MIT / Apache 2.0 | ✓ | なし | 低 |",
+				"| LGPL | ✓（条件付き）| 弱い | 中 |",
+				"| GPL v2/v3 | ✓（条件付き）| 強い | 高 |",
+				"| AGPL | ✓（条件付き）| 最強 | 高 |",
+				"**対策**: SCA + ライセンス承認ポリシーを定義"
+			]
+		},
+		{
+			"title": "Dependabot設定例",
+			"code": "# .github/dependabot.yml\nversion: 2\nupdates:\n  - package-ecosystem: npm\n    directory: \"/\"\n    schedule:\n      interval: weekly\n    open-pull-requests-limit: 10\n    groups:\n      production-dependencies:\n        dependency-type: production\n        update-types:\n          - minor\n          - patch",
+			"codeLanguage": "yaml",
+			"content": ["週次自動PR + グルーピングで更新コストを削減"]
+		},
+		{
+			"title": "シークレットスキャン",
+			"layout": "section",
+			"content": ["コードリポジトリへの誤ったシークレット混入を検出・防止"]
+		},
+		{
+			"title": "シークレットスキャンとは",
+			"content": [
+				"**問題**: APIキー・パスワードをGitにコミットする事故が年間数千件",
+				"**被害**: クレデンシャルの悪用→不正アクセス→データ漏洩",
+				"**検出対象**: AWS/GCP APIキー・DBパスワード・JWTシークレット・OAuthトークン",
+				"**3層防御**: pre-commit フック → CI/CDスキャン → リポジトリ監視"
+			]
+		},
+		{
+			"title": "シークレットスキャンツール比較",
+			"content": [
+				"| ツール | 実行タイミング | 精度 | カスタムパターン |",
+				"|--------|--------------|------|----------------|",
+				"| GitLeaks | pre-commit/CI | 高 | ✓ |",
+				"| TruffleHog v3 | CI/GitHubActions | 最高 | ✓ |",
+				"| GitHub Secret Scanning | Push時 | 高（パートナー）| 限定 |",
+				"| detect-secrets | pre-commit | 中 | ✓ |",
+				"**推奨**: TruffleHog v3（エントロピー検出） + GitHub Secret Scanning"
+			]
+		},
+		{
+			"title": "pre-commitフック設定",
+			"code": "# .pre-commit-config.yaml\nrepos:\n  - repo: https://github.com/gitleaks/gitleaks\n    rev: v8.18.4\n    hooks:\n      - id: gitleaks\n  - repo: https://github.com/Yelp/detect-secrets\n    rev: v1.4.0\n    hooks:\n      - id: detect-secrets\n        args: ['--baseline', '.secrets.baseline']",
+			"codeLanguage": "yaml",
+			"content": ["`pre-commit install` で自動的にフックを登録"]
+		},
+		{
+			"title": "HashiCorp Vault — CI/CD連携",
+			"code": "# GitHub Actions: Vault動的シークレット取得\n- name: Retrieve secrets from Vault\n  uses: hashicorp/vault-action@v3\n  with:\n    url: https://vault.example.com\n    method: jwt\n    jwtGithubAudience: vault.example.com\n    secrets: |\n      secret/data/app/prod db_password | DB_PASSWORD ;\n      aws/creds/my-role access_key | AWS_ACCESS_KEY_ID",
+			"codeLanguage": "yaml",
+			"content": [
+				"JWT認証で環境変数にシークレットを注入",
+				"ハードコード不要・有効期限付き動的シークレット"
+			]
+		},
+		{
+			"title": "DAST（動的解析）",
+			"layout": "section",
+			"content": ["実行中のアプリケーションに対する外部攻撃シミュレーション"]
+		},
+		{
+			"title": "DASTとは — SAST vs DAST",
+			"content": [
+				"| 観点 | SAST | DAST |",
+				"|------|------|------|",
+				"| テスト対象 | ソースコード | 実行中アプリ |",
+				"| 実行タイミング | ビルド前 | テスト/ステージング環境 |",
+				"| 検出できる問題 | 実装レベルの欠陥 | ランタイム脆弱性・設定ミス |",
+				"| False Positive | 高め | 低め |",
+				"**主なツール**: OWASP ZAP, Burp Suite, Nuclei, nikto"
+			]
+		},
+		{
+			"title": "OWASP ZAP自動化",
+			"code": "# GitHub Actions: ZAP Scan\n- name: ZAP Baseline Scan\n  uses: zaproxy/action-baseline@v0.10.0\n  with:\n    target: 'https://staging.example.com'\n    rules_file_name: '.zap/rules.tsv'\n    cmd_options: '-a'\n  env:\n    ZAP_AUTH_HEADER: \"Authorization\"\n    ZAP_AUTH_HEADER_VALUE: ${{ secrets.STAGING_TOKEN }}",
+			"codeLanguage": "yaml",
+			"content": [
+				"Baselineスキャン: パッシブのみ（安全）",
+				"Full Scan: アクティブ攻撃シミュレーション（ステージングのみ）"
+			]
+		},
+		{
+			"title": "セキュリティゲート設計",
+			"layout": "section",
+			"content": ["CI/CDパイプラインで自動的に品質基準を強制する"]
+		},
+		{
+			"title": "Gatingポリシー設計",
+			"content": [
+				"**ゲート1 — コミット時**: シークレットスキャン（違反でブロック）",
+				"**ゲート2 — PR時**: SAST（高・重大脆弱性でブロック）、SCA（CVSSスコア9.0+でブロック）",
+				"**ゲート3 — ビルド時**: コンテナイメージスキャン（CRITICAL CVEでブロック）",
+				"**ゲート4 — デプロイ前**: DAST・ペネトレーション（ステージング）",
+				"**例外管理**: セキュリティチームによる承認フロー"
+			]
+		},
+		{
+			"title": "セキュリティKPI・メトリクス",
+			"content": [
+				"| KPI | 目標値 | 計測ツール |",
+				"|-----|--------|-----------|",
+				"| MTTR（平均修復時間）| < 7日 | Jira/GitHub |",
+				"| 脆弱性密度 | < 0.5/KLOC | SonarQube |",
+				"| False Positive率 | < 10% | SAST設定 |",
+				"| クリティカル未修正数 | 0件 | SecurityHub |",
+				"| SLAコンプライアンス | > 95% | ダッシュボード |"
+			]
+		},
+		{
+			"title": "Chapter 3: SBOM・サプライチェーンセキュリティ",
+			"layout": "section",
+			"content": ["SolarWinds型攻撃への対策・SBOM・SLSA・Sigstore"]
+		},
+		{
+			"title": "SolarWinds攻撃 タイムライン",
+			"content": ["![w:860 center](assets/solarwinds-timeline.svg)"]
+		},
+		{
+			"title": "サプライチェーン攻撃の4パターン",
+			"content": [
+				"① **ビルドシステム侵害**: ビルドサーバーにバックドアを挿入（SolarWinds型）",
+				"② **依存パッケージ汚染**: 正規パッケージへのマルウェア混入（event-stream型）",
+				"③ **タイポスクワッティング**: 類似名パッケージで騙す（lodash → l0dash）",
+				"④ **依存関係コンフュージョン**: プライベートパッケージ名を公開リポジトリで奪う",
+				"**共通対策**: SBOM生成・署名・SLSA準拠のビルドパイプライン"
+			]
+		},
+		{
+			"title": "SBOMとは（Software Bill of Materials）",
+			"content": [
+				"**SBOM**: ソフトウェアに含まれる全コンポーネントの「部品表」",
+				"記録内容: コンポーネント名・バージョン・ライセンス・依存関係・ハッシュ値",
+				"**活用場面**: 脆弱性CVE照合・ライセンスコンプライアンス・規制対応",
+				"**米国大統領令 EO 14028（2021）**: 政府調達ソフトウェアはSBOM提出必須",
+				"**生成タイミング**: CIビルド時に毎回自動生成し署名して保存"
+			]
+		},
+		{
+			"title": "SBOM形式比較 — SPDX vs CycloneDX",
+			"content": ["![w:860 center](assets/sbom-formats.svg)"]
+		},
+		{
+			"title": "SBOMツールチェーン",
+			"content": ["![w:860 center](assets/sbom-toolchain.svg)"]
+		},
+		{
+			"title": "Syft/Trivyによる SBOM生成",
+			"code": "# Syft: コンテナイメージからSBOM生成\nsyft myapp:latest -o cyclonedx-json > sbom.json\n\n# Trivy: ファイルシステムスキャン + SBOM\ntrivy fs --format cyclonedx --output sbom.cdx.json .\n\n# Grype: SBOMから脆弱性照合\ngrype sbom:sbom.json --fail-on high",
+			"codeLanguage": "bash",
+			"content": ["CycloneDXフォーマットで出力 → Grypeで脆弱性照合"]
+		},
+		{
+			"title": "SLSA Framework",
+			"content": ["![w:860 center](assets/slsa-framework.svg)"]
+		},
+		{
+			"title": "Sigstore — コード署名の民主化",
+			"content": [
+				"**Sigstore**: メールアドレスで誰でも無料でコード署名できるPKI基盤",
+				"**3つのコンポーネント**: Cosign（署名）・Fulcio（証明書発行）・Rekor（透明性ログ）",
+				"**特徴**: 鍵管理不要（OIDC/GitHub ActionsのIDで署名）",
+				"**用途**: コンテナイメージ・SBOM・バイナリへの署名",
+				"**採用例**: Kubernetes本体・Distrolessイメージ・PyPIパッケージ"
+			]
+		},
+		{
+			"title": "cosign署名・検証",
+			"code": "# GitHub Actionsからキーレス署名\ncosign sign \\\n  --identity-token=$(cat $ACTIONS_ID_TOKEN_REQUEST_TOKEN) \\\n  ghcr.io/myorg/myapp:v1.0.0\n\n# 検証（署名チェーン確認）\ncosign verify \\\n  --certificate-identity=\"https://github.com/myorg/myapp/.github/workflows/build.yml@refs/heads/main\"\\\n  --certificate-oidc-issuer=\"https://token.actions.githubusercontent.com\"\\\n  ghcr.io/myorg/myapp:v1.0.0",
+			"codeLanguage": "bash",
+			"content": ["キーレス署名: GitHub ActionsのOIDCトークンを使用"]
+		},
+		{
+			"title": "GitHub dependency-review-action",
+			"code": "# .github/workflows/dependency-review.yml\nname: Dependency Review\non: pull_request\njobs:\n  dependency-review:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/dependency-review-action@v4\n        with:\n          fail-on-severity: high\n          deny-licenses: GPL-2.0, AGPL-3.0",
+			"codeLanguage": "yaml",
+			"content": ["PRマージ前に新規依存性の CVE + ライセンスを自動チェック"]
+		},
+		{
+			"title": "SBOM運用フロー",
+			"content": [
+				"**Step 1 — 生成**: ビルドCI実行時にSBOMを自動生成（Syft/Trivy）",
+				"**Step 2 — 署名**: Cosignでビルド証明書を添付",
+				"**Step 3 — 保存**: OCI Artifactストアまたは DependencyTrack へアップロード",
+				"**Step 4 — 照合**: 新規CVE公開時に既存SBOMに対して自動スキャン",
+				"**Step 5 — 通知**: 影響を受けるバージョン一覧をSlack/Jiraに通知"
+			]
+		},
+		{
+			"title": "規制・コンプライアンス対応",
+			"content": [
+				"**EO 14028（2021）**: 米政府調達ソフトウェアにSBOM必須",
+				"**NTIA最小要素**: サプライヤー名・コンポーネント名・バージョン・依存関係・タイムスタンプ",
+				"**EU Cyber Resilience Act**: デジタル製品のCEマーキングにSBOM必須（2025年〜）",
+				"**NIS2指令**: 重要インフラのサプライチェーンリスク管理義務",
+				"**PCI DSS v4.0**: ソフトウェア部品表による依存性管理の強化"
+			]
+		},
+		{
+			"title": "サプライチェーンセキュリティ成熟度",
+			"content": [
+				"| レベル | 状態 | 実施内容 |",
+				"|--------|------|---------|",
+				"| L0 | 対策なし | 依存性管理なし |",
+				"| L1 | 可視化 | SCA・ライセンス確認 |",
+				"| L2 | SBOM生成 | 毎ビルドSBOM・CVE照合 |",
+				"| L3 | 署名・証明 | Cosign署名・SLSA 2 |",
+				"| L4 | 完全追跡性 | SLSA 3+ ・再現可能ビルド |"
+			]
+		},
+		{
+			"title": "DependencyTrack導入",
+			"code": "# Docker Composeで起動\ndocker run -d -m 4096m \\\n  -p 8080:8080 \\\n  -v /opt/dependency-track:/data \\\n  dependencytrack/bundled\n\n# SBOM をAPIでアップロード\ncurl -X PUT https://dt.example.com/api/v1/bom \\\n  -H 'X-API-Key: YOUR_API_KEY' \\\n  -F 'projectName=myapp' \\\n  -F 'bom=@sbom.cdx.json'",
+			"codeLanguage": "bash",
+			"content": ["継続的なSBOM管理・脆弱性ダッシュボード・Slack通知連携"]
+		},
+		{
+			"title": "Chapter 4: 脅威モデリング・STRIDE",
+			"layout": "section",
+			"content": ["設計フェーズにセキュリティを組み込む実践手法"]
+		},
+		{
+			"title": "脅威モデリングとは",
+			"content": [
+				"**定義**: システムに対する潜在的な脅威を体系的に特定・優先度付けするプロセス",
+				"**4つの質問（Adam Shostack）**: 何を作っているか？何が問題か？どう対処するか？正しく対処できたか？",
+				"**効果**: 設計段階での修正コストは本番の1/100以下",
+				"**頻度**: 新機能追加ごと・四半期ごとに実施（継続的TM）",
+				"**チーム**: 開発者・セキュリティエンジニア・アーキテクト合同で実施"
+			]
+		},
+		{
+			"title": "4つの脅威モデリング手法",
+			"content": [
+				"| 手法 | 特徴 | 向いている場面 |",
+				"|------|------|--------------|",
+				"| **STRIDE** | Microsoftが開発、6カテゴリ | Webアプリ・API設計 |",
+				"| **PASTA** | リスクベース、9ステップ | エンタープライズ |",
+				"| **LINDDUN** | プライバシー特化 | GDPRコンプライアンス |",
+				"| **TRIKE** | リスク許容ベース | 金融・重要インフラ |",
+				"**スタートアップ推奨**: STRIDEがシンプルで学習コスト低"
+			]
+		},
+		{
+			"title": "なぜ設計フェーズか — 修正コスト比較",
+			"content": [
+				"**IBM NIST研究**: バグ修正コストはフェーズが進むほど指数的に増加",
+				"要件定義での発見: **$1**（基準）",
+				"設計での発見: **$6**",
+				"コーディングでの発見: **$25**",
+				"テストでの発見: **$100**",
+				"本番リリース後の発見: **$600〜$6,000**"
+			]
+		},
+		{
+			"title": "STRIDE概要 — 6カテゴリ",
+			"content": ["![w:860 center](assets/stride-overview.svg)"]
+		},
+		{
+			"title": "S: Spoofing（なりすまし）詳解",
+			"content": [
+				"**定義**: 正規ユーザーや別のシステムになりすます攻撃",
+				"**事例**: 偽のログインページ・JWTトークン偽造・IPスプーフィング",
+				"**対策リスト:**",
+				"強力な認証（MFA・パスキー）の強制",
+				"HTTPS証明書ピンニング",
+				"CSRF対策トークン / リクエスト署名（HMACまたはJWT）"
+			]
+		},
+		{
+			"title": "T: Tampering（改ざん）詳解",
+			"content": [
+				"**定義**: データやコードを不正に変更する攻撃",
+				"**事例**: DBデータの改ざん・メモリ改ざん・ネットワークパケット書き換え",
+				"**対策リスト:**",
+				"入力値検証・サニタイゼーション",
+				"データベース整合性チェック（チェックサム）",
+				"読み取り専用マウント（コンテナ）/ デジタル署名によるコード完全性検証"
+			]
+		},
+		{
+			"title": "R: Repudiation（否認）詳解",
+			"content": [
+				"**定義**: 実行した行動を否定・証拠を改ざんする攻撃",
+				"**事例**: トランザクションログの削除・監査証跡の改ざん",
+				"**対策リスト:**",
+				"改ざん不可能な監査ログ（append-only）",
+				"構造化ログ + ログ署名",
+				"デジタル署名トランザクション / CloudTrail・AWS CloudWatch Logs Insights"
+			]
+		},
+		{
+			"title": "I: Information Disclosure（情報漏洩）詳解",
+			"content": [
+				"**定義**: 権限外のユーザーへの機密情報漏洩",
+				"**事例**: エラーメッセージにスタックトレース・HTTPレスポンスヘッダー暴露",
+				"**対策リスト:**",
+				"最小権限アクセス（RBAC/ABAC）",
+				"機密データの暗号化（保存時・転送時）",
+				"エラーメッセージの情報最小化 / APIレスポンスのデータマスキング"
+			]
+		},
+		{
+			"title": "D: Denial of Service（サービス拒否）詳解",
+			"content": [
+				"**定義**: 正規ユーザーのサービス利用を妨害する攻撃",
+				"**事例**: フラッド攻撃・リソース枯渇・アルゴリズム複雑性攻撃",
+				"**対策リスト:**",
+				"レート制限（API Gateway・WAF）",
+				"自動スケーリング（HPA/KEDA）/ 入力値サイズ上限の設定",
+				"DDoS保護（AWS Shield / Cloudflare）"
+			]
+		},
+		{
+			"title": "E: Elevation of Privilege（権限昇格）詳解",
+			"content": [
+				"**定義**: 低権限ユーザーが高権限を取得する攻撃",
+				"**事例**: SQLインジェクション→DBA権限・コンテナエスケープ→root",
+				"**対策リスト:**",
+				"最小権限原則（Least Privilege）の徹底",
+				"コンテナ: non-root + read-only FS",
+				"RBACの定期棚卸し（IAM Access Analyzer）/ 入力値検証による SQLi/RCE 防止"
+			]
+		},
+		{
+			"title": "DFD（データフロー図）— 実践例",
+			"content": ["![w:860 center](assets/threat-model-dfd.svg)"]
+		},
+		{
+			"title": "DFDの描き方ルール",
+			"content": [
+				"**4つの要素:**",
+				"□ **プロセス**: データを処理するコンポーネント（円または角丸四角）",
+				"→ **データフロー**: データの流れ（矢印） / = **データストア**: データの保存先（平行線）",
+				"[ **外部エンティティ**: システム境界外の存在（四角）",
+				"**トラストバウンダリー**: 信頼レベルが変わる境界を点線で囲む",
+				"**各フローにSTRIDEを適用して脅威をリストアップ**"
+			]
+		},
+		{
+			"title": "攻撃ツリー分析",
+			"content": ["![w:860 center](assets/attack-tree.svg)"]
+		},
+		{
+			"title": "DREADスコアリング",
+			"content": [
+				"| 要素 | 意味 | スコア（1-3）|",
+				"|------|------|------------|",
+				"| **D**amage | 被害の大きさ | 軽微→重大 |",
+				"| **R**eproducibility | 再現性の高さ | 困難→容易 |",
+				"| **E**xploitability | 悪用の容易さ | 専門知識→スクリプト |",
+				"| **A**ffected users | 影響ユーザー数 | 少数→全員 |",
+				"| **D**iscoverability | 発見されやすさ | 困難→公開情報 |"
+			]
+		},
+		{
+			"title": "Microsoft Threat Modeling Tool",
+			"content": [
+				"**Microsoft Threat Modeling Tool 2016 (無料)**",
+				"DFDを描くと自動でSTRIDE脅威を列挙",
+				"各脅威にステータス管理・レポート出力",
+				"**代替ツール:**",
+				"OWASP Threat Dragon（Web版・OSS）",
+				"IriusRisk（エンタープライズ・有償）/ Threagile（YAML定義・K8s向け・OSS）"
+			]
+		},
+		{
+			"title": "継続的脅威モデリング（Agile TM）",
+			"content": [
+				"**従来**: 大規模な脅威モデリングセッションを年に1回",
+				"**Agile TM**: スプリントごとに小さな脅威モデリングを繰り返す",
+				"**実践方法:**",
+				"新機能のDFDをPRに添付する文化を作る",
+				"脅威チェックリストをPRテンプレートに組み込む",
+				"セキュリティチャンピオンがレビュー担当 / 発見された脅威はバックログに追加して管理"
+			]
+		},
+		{
+			"title": "APIへの脅威モデリング実践例",
+			"content": [
+				"**対象**: RESTful API + JWT認証 + RDS",
+				"**識別した主要脅威:**",
+				"S: JWTトークン窃取によるなりすまし → 対策: 短い有効期限 + Refresh Token Rotation",
+				"T: SQLインジェクションによるDB改ざん → 対策: ORM + パラメータバインディング",
+				"I: エラーレスポンスでのDB情報漏洩 → 対策: 汎用エラーメッセージ",
+				"E: IDOR（水平権限昇格）→ 対策: リソース所有者チェック"
+			]
+		},
+		{
+			"title": "マイクロサービスへの脅威モデリング適用",
+			"content": [
+				"**追加で考慮すべき脅威面:**",
+				"サービス間認証: mTLSなし→なりすまし（S）",
+				"サービスメッシュ未導入→横断的な盗聴（I）",
+				"過剰なサービス権限→侵害時の横移動被害拡大（E）",
+				"**対策パターン:**",
+				"SPIFFE/SPIREによるワークロードID / Istio/Linkerdでmtls強制 / ゼロトラスト: 同一クラスタ内でも認証・認可"
+			]
+		},
+		{
+			"title": "Chapter 5: クラウドネイティブセキュリティ",
+			"layout": "section",
+			"content": ["4C's・コンテナ・Kubernetes・OPA・CSPM・eBPF"]
+		},
+		{
+			"title": "4C's of Cloud Native Security",
+			"content": ["![w:860 center](assets/4cs-security.svg)"]
+		},
+		{
+			"title": "コンテナセキュリティの全体像",
+			"content": [
+				"**4つのレイヤー:**",
+				"① イメージセキュリティ: 脆弱なベースイメージの検出・署名",
+				"② ランタイムセキュリティ: 異常な振る舞いの検出・遮断",
+				"③ レジストリセキュリティ: アクセス制御・スキャン",
+				"④ オーケストレーション: K8s設定の強化・ポリシー強制",
+				"**原則**: イミュータブルインフラ + 最小イメージ（Distroless）"
+			]
+		},
+		{
+			"title": "Dockerイメージスキャン",
+			"content": [
+				"**Trivy（推奨）**: 高速・精度高・SBOM生成対応",
+				"**Snyk Container**: 開発者向けUIが優秀・修正提案あり",
+				"**Grype**: SBOMからの脆弱性照合に特化",
+				"**スキャン対象**: CVE・設定ミス・シークレット・ライセンス",
+				"**CI/CDへの統合**: レジストリプッシュ前に自動スキャン+CRITICAL拒否"
+			]
+		},
+		{
+			"title": "Trivy実践 — イメージスキャン",
+			"code": "# イメージスキャン（Critical/Highのみ表示）\ntrivy image --severity CRITICAL,HIGH \\\n  --format table \\\n  myapp:latest\n\n# CriticalCVEがあれば終了コード1でCIをブロック\ntrivy image --exit-code 1 \\\n  --severity CRITICAL \\\n  myapp:latest\n\n# SBOM付きスキャン\ntrivy image --format cyclonedx \\\n  --output sbom.json myapp:latest",
+			"codeLanguage": "bash",
+			"content": ["`--exit-code 1` でCI/CDゲートとして機能"]
+		},
+		{
+			"title": "Dockerfileベストプラクティス",
+			"code": "# ❌ 危険な例\nFROM ubuntu:latest\nRUN apt-get install -y curl wget\nCOPY . /app\nRUN npm install\nCMD [\"node\", \"server.js\"]\n\n# ✅ 安全な例\nFROM node:20-alpine AS builder\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --only=production\n\nFROM gcr.io/distroless/nodejs20\nCOPY --from=builder /app /app\nUSER nonroot\nCMD [\"/app/server.js\"]",
+			"codeLanguage": "dockerfile",
+			"content": [
+				"Distroless: シェル・パッケージマネージャーなし → 攻撃面を最小化"
+			]
+		},
+		{
+			"title": "コンテナランタイムセキュリティ — Falco",
+			"content": [
+				"**Falco（CNCF Graduated）**: カーネルシステムコールを監視し異常を検出",
+				"**検出例:**",
+				"コンテナ内でのシェル実行（/bin/bash）",
+				"機密ファイルへのアクセス（/etc/passwd）",
+				"予期しないネットワーク接続 / 特権昇格の試み",
+				"**対応**: Slack/PagerDuty通知 + 自動Pod隔離"
+			]
+		},
+		{
+			"title": "Falcoルール作成例",
+			"code": "# /etc/falco/rules.d/custom.yaml\n- rule: Shell in container\n  desc: コンテナ内でシェルを実行\n  condition: >\n    spawned_process and container\n    and proc.name in (shell_binaries)\n  output: >\n    シェル実行検出 (user=%user.name\n    container=%container.name\n    cmd=%proc.cmdline)\n  priority: WARNING\n  tags: [container, shell, mitre_execution]",
+			"codeLanguage": "yaml",
+			"content": ["MITREタグ付きで攻撃フェーズを分類"]
+		},
+		{
+			"title": "Kubernetesセキュリティ全体像",
+			"content": ["![w:860 center](assets/kubernetes-security.svg)"]
+		},
+		{
+			"title": "PodSecurityAdmission（PSA）設定",
+			"code": "# Namespaceラベルでポリシーを適用\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: production\n  labels:\n    pod-security.kubernetes.io/enforce: restricted\n    pod-security.kubernetes.io/audit: restricted\n    pod-security.kubernetes.io/warn: restricted\n---\n# restrictedポリシー: root禁止・seccomp必須・capabilities DROP ALL",
+			"codeLanguage": "yaml",
+			"content": ["**3段階**: privileged → baseline → restricted"]
+		},
+		{
+			"title": "NetworkPolicy — ゼロトラスト通信",
+			"code": "# デフォルト全拒否\napiVersion: networking.k8s.io/v1\nkind: NetworkPolicy\nmetadata:\n  name: default-deny-all\nspec:\n  podSelector: {}\n  policyTypes: [Ingress, Egress]\n---\n# バックエンドからDBへの許可のみ\nspec:\n  podSelector:\n    matchLabels: {role: db}\n  ingress:\n    - from:\n      - podSelector:\n          matchLabels: {role: backend}\n      ports: [{port: 5432}]",
+			"codeLanguage": "yaml",
+			"content": ["明示的許可リストで最小通信に制限"]
+		},
+		{
+			"title": "RBAC最小権限設計",
+			"code": "# ❌ 過剰な権限（よくある間違い）\nrules:\n- apiGroups: [\"*\"]\n  resources: [\"*\"]\n  verbs: [\"*\"]\n\n# ✅ 最小権限の例\nrules:\n- apiGroups: [\"\"] # core\n  resources: [\"pods\"]\n  verbs: [\"get\", \"list\", \"watch\"]\n- apiGroups: [\"apps\"]\n  resources: [\"deployments\"]\n  verbs: [\"get\", \"list\"]",
+			"codeLanguage": "yaml",
+			"content": ["ツール: `kubectl-who-can`・`rakkess`でRBACを可視化"]
+		},
+		{
+			"title": "OPA / Gatekeeper",
+			"content": ["![w:860 center](assets/opa-gatekeeper.svg)"]
+		},
+		{
+			"title": "Regoポリシー記述例",
+			"code": "# ConstraintTemplate: 必須ラベルチェック\npackage requiredlabels\n\nviolation[{\"msg\": msg}] {\n  provided := {label | input.review.object.metadata.labels[label]}\n  required := {label | label := input.parameters.labels[_]}\n  missing := required - provided\n  count(missing) > 0\n  msg := sprintf(\"必須ラベルがありません: %v\", [missing])\n}",
+			"codeLanguage": "rego",
+			"content": [
+				"**Constraint**: `labels: [\"team\", \"env\", \"owner\"]` のように指定"
+			]
+		},
+		{
+			"title": "Kyverno — K8sネイティブポリシーエンジン",
+			"code": "# Kyverno: root実行禁止ポリシー\napiVersion: kyverno.io/v1\nkind: ClusterPolicy\nmetadata:\n  name: disallow-root-user\nspec:\n  rules:\n    - name: check-runAsNonRoot\n      match:\n        resources:\n          kinds: [Pod]\n      validate:\n        message: \"root実行は禁止\"\n        pattern:\n          spec:\n            securityContext:\n              runAsNonRoot: true",
+			"codeLanguage": "yaml",
+			"content": ["OPA/Gatekeeper比: Rego不要・YAML記述・Mutate/Generateも対応"]
+		},
+		{
+			"title": "CSPMとは",
+			"content": [
+				"**CSPM（Cloud Security Posture Management）**",
+				"クラウド環境の設定ミスを継続的にスキャンし修正提案",
+				"**検出する問題例:**",
+				"S3バケットのパブリックアクセス許可",
+				"セキュリティグループの0.0.0.0/0開放 / MFA未設定のIAMユーザー",
+				"暗号化されていないEBSボリューム / **ROI**: クラウド侵害の **99%** が設定ミスに起因（Gartner）"
+			]
+		},
+		{
+			"title": "CSPMツール比較",
+			"content": ["![w:860 center](assets/cspm-comparison.svg)"]
+		},
+		{
+			"title": "AWS SecurityHub × Organizations",
+			"content": [
+				"**AWS SecurityHub**: AWSネイティブCSPM（追加費用最小）",
+				"Organizations連携: 全アカウントのセキュリティを一元管理",
+				"**統合されるサービス:**",
+				"GuardDuty（脅威検知）/ Inspector（脆弱性スキャン）",
+				"Macie（機密データ検出）/ Config（設定コンプライアンス）",
+				"**ASFF（セキュリティ統一フォーマット）**で全知見を集約"
+			]
+		},
+		{
+			"title": "eBPFランタイムセキュリティ",
+			"content": [
+				"**eBPF**: カーネルを改変せずにLinux内部を観測する革命的技術",
+				"**セキュリティ活用:**",
+				"すべてのシステムコールをゼロオーバーヘッドで観測",
+				"カーネルレベルの不正なメモリアクセスを検出",
+				"ネットワークパケットをカーネルでフィルタリング",
+				"**主要ツール**: Falco（eBPFモード）・Tetragon・Cilium"
+			]
+		},
+		{
+			"title": "Tetragon設定例",
+			"code": "# Tetragon: /etc/passwdアクセスを監視\napiVersion: cilium.io/v1alpha1\nkind: TracingPolicy\nmetadata:\n  name: monitor-passwd\nspec:\n  kprobes:\n    - call: \"security_file_permission\"\n      syscall: false\n      args:\n        - index: 0\n          type: \"file\"\n      selectors:\n        - matchArgs:\n            - index: 0\n              operator: \"Prefix\"\n              values: [\"/etc/passwd\"]",
+			"codeLanguage": "yaml",
+			"content": ["Cilium/Hubbleと連携して観測性を向上"]
+		},
+		{
+			"title": "サービスメッシュ — Istio mTLS",
+			"content": [
+				"**Istio mTLS**: サービス間通信をすべて相互TLSで暗号化",
+				"| モード | 説明 | 推奨 |",
+				"|--------|------|------|",
+				"| DISABLE | TLSなし | ❌ |",
+				"| PERMISSIVE | TLS/平文両対応 | 移行期のみ |",
+				"| STRICT | mTLSのみ | ✅ 本番 |",
+				"**証明書管理**: Istio CAが自動でSVID証明書をローテーション"
+			]
+		},
+		{
+			"title": "Chapter 6: ゼロトラスト・ID管理",
+			"layout": "section",
+			"content": ["NIST SP 800-207 / SPIFFE・SPIRE / Vault / IAM最小権限"]
+		},
+		{
+			"title": "ゼロトラストアーキテクチャ",
+			"content": ["![w:860 center](assets/zero-trust.svg)"]
+		},
+		{
+			"title": "ゼロトラストの7原則（NIST SP 800-207）",
+			"content": [
+				"① 全てのデータソース・コンピューティングをリソースとみなす",
+				"② ネットワーク上の場所に関わらず全通信を保護する",
+				"③ 個別リソースへのアクセスはセッション単位で付与する",
+				"④ アクセスポリシーは動的に決定し常に再評価する",
+				"⑤ 全資産の整合性・セキュリティ状態を監視・測定する",
+				"⑥ 全ての認証・認可は動的に実施し厳格に強制する"
+			]
+		},
+		{
+			"title": "SPIFFE / SPIRE — ワークロードID",
+			"content": [
+				"**SPIFFE（Secure Production Identity Framework For Everyone）**",
+				"マイクロサービス・コンテナに暗号的に証明されたIDを付与",
+				"**SVID（SPIFFE Verifiable Identity Document）**: X.509証明書またはJWT形式",
+				"有効期限付き（ローテーション自動）",
+				"**SPIRE**: SPIFFEの参照実装（CNCF Graduated）",
+				"**用途**: Vault認証・Istio証明書・サービス間認証"
+			]
+		},
+		{
+			"title": "SPIRE設定例",
+			"code": "# SPIRE Server設定\nserver:\n  bind_address: 0.0.0.0\n  bind_port: 8081\n  trust_domain: example.org\n  data_dir: /opt/spire/data/server\n  log_level: INFO\n  ca_ttl: 12h\n  default_svid_ttl: 1h\n\n# WorkloadRegistrationEntry\nspire-server entry create \\\n  -spiffeID spiffe://example.org/backend \\\n  -parentID spiffe://example.org/spire-agent \\\n  -selector k8s:ns:production \\\n  -selector k8s:sa:backend-sa",
+			"codeLanguage": "yaml",
+			"content": ["K8sのNamespace+ServiceAccountでIDを自動付与"]
+		},
+		{
+			"title": "HashiCorp Vault — シークレット管理",
+			"content": [
+				"**Vault**: 動的シークレット・暗号化・PKIの統合管理プラットフォーム",
+				"**主要機能:**",
+				"動的シークレット: DBパスワードを都度生成（有効期限付き）",
+				"暗号化as a Service: データの暗号化/復号をAPIで提供",
+				"PKI: 証明書の自動発行・ローテーション",
+				"Kubernetes統合: `vault-agent`でサイドカーとして自動注入"
+			]
+		},
+		{
+			"title": "Vault Dynamic Secrets",
+			"code": "# PostgreSQL動的シークレット設定\nvault secrets enable database\nvault write database/config/my-postgresql \\\n  plugin_name=postgresql-database-plugin \\\n  connection_url=\"postgresql://{{username}}:{{password}}@db:5432/mydb\" \\\n  allowed_roles=\"readonly\"\n\nvault write database/roles/readonly \\\n  db_name=my-postgresql \\\n  default_ttl=\"1h\" max_ttl=\"24h\" \\\n  creation_statements=\"CREATE USER '{{name}}' WITH PASSWORD '{{password}}'\"\n\n# 動的シークレット取得\nvault read database/creds/readonly",
+			"codeLanguage": "bash",
+			"content": ["1時間で失効するDBユーザーを都度生成"]
+		},
+		{
+			"title": "AWS IAM最小権限設計",
+			"content": [
+				"**原則**: デフォルト拒否 + 必要なアクション・リソースのみ明示的許可",
+				"**ツール活用:**",
+				"IAM Access Analyzer: 過剰権限のポリシーを自動検出",
+				"CloudTrail → Athena: 実際に使ったAPIを分析し最小化",
+				"AWS Policy Generator: ビジュアルでポリシー作成",
+				"**SCP（Service Control Policy）**: 組織レベルで強制制限"
+			]
+		},
+		{
+			"title": "IAM Access Analyzer活用",
+			"code": "# 外部アクセス可能なリソースを検出\naws accessanalyzer list-findings \\\n  --analyzer-arn arn:aws:access-analyzer:ap-northeast-1:123:analyzer/MyAnalyzer \\\n  --filter '{\"resourceType\": {\"eq\": [\"AWS::S3::Bucket\"]}}'\n\n# 未使用IAMロールの検出（最終使用日）\naws iam generate-service-last-accessed-details \\\n  --arn arn:aws:iam::123456789:role/MyRole\n\n# Pythonで一括棚卸し: boto3でフィルタリング",
+			"codeLanguage": "bash",
+			"content": ["年次ではなく継続的（月次）でIAM棚卸しを実施"]
+		},
+		{
+			"title": "SSO / MFA / OIDC設計",
+			"content": [
+				"**MFA戦略（リスクベース）:**",
+				"FIDO2 / パスキー（最強・フィッシング耐性）: 全管理者に必須",
+				"TOTP（Authenticator App）: 全開発者に必須",
+				"SMS OTP（非推奨）: SIMスワップ攻撃に脆弱",
+				"**OIDC / OAuth 2.0 ベストプラクティス:**",
+				"PKCE必須（Authorization Code Flow）/ Implicit Flow廃止（RFC 9700）"
+			]
+		},
+		{
+			"title": "Chapter 7: 実践ロードマップ・まとめ",
+			"layout": "section",
+			"content": ["導入ロードマップ・失敗パターン・KPI・ツール全景"]
+		},
+		{
+			"title": "DevSecOps導入ロードマップ",
+			"content": ["![w:860 center](assets/devsecops-roadmap.svg)"]
+		},
+		{
+			"title": "よくある失敗パターンと対策",
+			"content": [
+				"| 失敗パターン | 原因 | 対策 |",
+				"|------------|------|------|",
+				"| セキュリティが開発の障壁に | False Positive過多 | チューニング + 段階的導入 |",
+				"| ツールだらけで運用不能 | 技術先行 | プロセス設計先行 |",
+				"| セキュリティサイロ | 組織分断 | セキュリティチャンピオン制度 |",
+				"| SBOMを生成するだけ | 活用フロー未設計 | DependencyTrack連携 |"
+			]
+		},
+		{
+			"title": "セキュリティチャンピオン制度",
+			"content": [
+				"**セキュリティチャンピオン**: 各開発チームに1人、セキュリティ推進役を配置",
+				"**役割:**",
+				"チーム内でのセキュリティレビュー実施",
+				"脅威モデリングのファシリテーター",
+				"セキュリティツールの導入・運用サポート",
+				"**育成:** 月次トレーニング + CTF参加 + 報奨金制度"
+			]
+		},
+		{
+			"title": "ツールエコシステム全体図",
+			"content": ["![w:860 center](assets/tool-ecosystem.svg)"]
+		},
+		{
+			"title": "参考リソース",
+			"content": [
+				"**公式ドキュメント・標準:**",
+				"[OWASP DevSecOps Guideline](https://owasp.org/www-project-devsecops-guideline/)",
+				"[NIST SP 800-207 Zero Trust](https://csrc.nist.gov/publications/detail/sp/800-207/final)",
+				"[SLSA Framework](https://slsa.dev/) / [Sigstore Documentation](https://docs.sigstore.dev/)",
+				"**学習リソース:**",
+				"[OWASP Top 10](https://owasp.org/www-project-top-ten/) / [CNCF Security Whitepaper](https://github.com/cncf/tag-security) / [Falco Rules Reference](https://falco.org/docs/rules/) / [HashiCorp Vault Tutorials](https://developer.hashicorp.com/vault/tutorials)"
+			]
+		},
+		{
+			"title": "DevSecOps 黄金律",
+			"content": ["![w:860 center](assets/devsecops-golden-rules.svg)"]
+		}
+	]
+}

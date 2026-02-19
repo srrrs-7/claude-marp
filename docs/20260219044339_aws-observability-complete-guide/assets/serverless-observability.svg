@@ -1,0 +1,106 @@
+<svg viewBox="0 0 960 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="500" fill="#0f172a" rx="12"/>
+  <text x="480" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#FF9900">Serverless Observability — Lambda完全監視アーキテクチャ</text>
+
+  <!-- User request flow (top) -->
+  <rect x="20" y="50" width="90" height="50" rx="8" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+  <text x="65" y="73" text-anchor="middle" font-size="11" fill="#94a3b8">Client</text>
+  <text x="65" y="89" text-anchor="middle" font-size="10" fill="#64748b">Browser/App</text>
+
+  <line x1="110" y1="75" x2="148" y2="75" stroke="#64748b" stroke-width="2"/>
+  <polygon points="148,75 140,70 140,80" fill="#64748b"/>
+
+  <rect x="148" y="50" width="110" height="50" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="203" y="73" text-anchor="middle" font-size="11" font-weight="bold" fill="#f97316">API Gateway</text>
+  <text x="203" y="89" text-anchor="middle" font-size="10" fill="#64748b">X-Ray有効化</text>
+
+  <line x1="258" y1="75" x2="296" y2="75" stroke="#64748b" stroke-width="2"/>
+  <polygon points="296,75 288,70 288,80" fill="#64748b"/>
+
+  <!-- Lambda main -->
+  <rect x="296" y="40" width="200" height="230" rx="10" fill="#1e293b" stroke="#FF9900" stroke-width="2.5"/>
+  <rect x="296" y="40" width="200" height="36" rx="10" fill="#d97706"/>
+  <text x="396" y="63" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Lambda Function</text>
+
+  <rect x="312" y="86" width="168" height="48" rx="6" fill="#0f172a"/>
+  <text x="396" y="105" text-anchor="middle" font-size="10" font-weight="bold" fill="#fcd34d">Lambda Powertools</text>
+  <text x="396" y="120" text-anchor="middle" font-size="10" fill="#94a3b8">Logger / Tracer / Metrics</text>
+
+  <rect x="312" y="144" width="168" height="32" rx="6" fill="#0f172a"/>
+  <text x="396" y="162" text-anchor="middle" font-size="10" fill="#86efac">@logger.inject_lambda_context</text>
+
+  <rect x="312" y="184" width="168" height="32" rx="6" fill="#0f172a"/>
+  <text x="396" y="202" text-anchor="middle" font-size="10" fill="#c4b5fd">@tracer.capture_lambda_handler</text>
+
+  <rect x="312" y="224" width="168" height="32" rx="6" fill="#0f172a"/>
+  <text x="396" y="242" text-anchor="middle" font-size="10" fill="#fcd34d">metrics.add_metric("Success")</text>
+
+  <!-- ADOT Extension layer -->
+  <rect x="312" y="210" width="168" height="44" rx="6" fill="#1e3a5f" stroke="#f59e0b" stroke-width="1"/>
+  <text x="396" y="230" text-anchor="middle" font-size="10" font-weight="bold" fill="#f59e0b">ADOT Layer (Extension)</text>
+  <text x="396" y="244" text-anchor="middle" font-size="9" fill="#64748b">OTel Collector in-process</text>
+  <text x="396" y="256" text-anchor="middle" font-size="9" fill="#64748b">gRPC 4317 (localhost)</text>
+
+  <!-- Right side: X-Ray -->
+  <rect x="546" y="50" width="140" height="80" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <text x="616" y="74" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa">AWS X-Ray</text>
+  <text x="616" y="92" text-anchor="middle" font-size="10" fill="#c4b5fd">Segments / Subsegments</text>
+  <text x="616" y="108" text-anchor="middle" font-size="10" fill="#c4b5fd">ServiceMap / Insights</text>
+  <text x="616" y="122" text-anchor="middle" font-size="9" fill="#64748b">$5/1M トレース記録</text>
+
+  <line x1="496" y1="90" x2="546" y2="90" stroke="#a78bfa" stroke-width="1.5"/>
+  <polygon points="546,90 538,85 538,95" fill="#a78bfa"/>
+
+  <!-- CloudWatch Logs -->
+  <rect x="546" y="148" width="140" height="80" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="616" y="172" text-anchor="middle" font-size="12" font-weight="bold" fill="#22c55e">CW Logs</text>
+  <text x="616" y="190" text-anchor="middle" font-size="10" fill="#86efac">/aws/lambda/&lt;name&gt;</text>
+  <text x="616" y="206" text-anchor="middle" font-size="10" fill="#86efac">JSON構造化ログ</text>
+  <text x="616" y="220" text-anchor="middle" font-size="9" fill="#64748b">$0.50/GB ingested</text>
+
+  <line x1="496" y1="188" x2="546" y2="188" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="546,188 538,183 538,193" fill="#22c55e"/>
+
+  <!-- CW Metrics (EMF) -->
+  <rect x="546" y="246" width="140" height="80" rx="8" fill="#1e293b" stroke="#FF9900" stroke-width="2"/>
+  <text x="616" y="270" text-anchor="middle" font-size="12" font-weight="bold" fill="#FF9900">CW Metrics (EMF)</text>
+  <text x="616" y="288" text-anchor="middle" font-size="10" fill="#fcd34d">BusinessKPI / Errors</text>
+  <text x="616" y="304" text-anchor="middle" font-size="10" fill="#fcd34d">Duration / ColdStart</text>
+  <text x="616" y="318" text-anchor="middle" font-size="9" fill="#64748b">$0.30/メトリクス/月</text>
+
+  <line x1="496" y1="260" x2="546" y2="283" stroke="#FF9900" stroke-width="1.5"/>
+  <polygon points="546,283 538,278 540,287" fill="#FF9900"/>
+
+  <!-- Lambda Insights -->
+  <rect x="706" y="50" width="235" height="276" rx="10" fill="#0f1f35" stroke="#e879f9" stroke-width="2"/>
+  <text x="823" y="74" text-anchor="middle" font-size="12" font-weight="bold" fill="#e879f9">Lambda Insights</text>
+  <text x="706" y="98" font-size="10" fill="#f0abfc">  (拡張メトリクス)</text>
+  <text x="726" y="118" font-size="11" fill="#e2e8f0">• init_duration (コールドスタート)</text>
+  <text x="726" y="136" font-size="11" fill="#e2e8f0">• total_memory / used_memory</text>
+  <text x="726" y="154" font-size="11" fill="#e2e8f0">• cpu_total_time</text>
+  <text x="726" y="172" font-size="11" fill="#e2e8f0">• rx_bytes / tx_bytes</text>
+  <text x="726" y="190" font-size="11" fill="#e2e8f0">• fd_max / fd_use</text>
+
+  <rect x="720" y="200" width="208" height="48" rx="6" fill="#1e293b"/>
+  <text x="824" y="220" text-anchor="middle" font-size="10" font-weight="bold" fill="#e879f9">有効化方法</text>
+  <text x="724" y="236" font-size="9" fill="#64748b">aws lambda update-function-config</text>
+  <text x="724" y="250" font-size="9" fill="#64748b">  --layers arn:aws:...LambdaInsights</text>
+
+  <rect x="720" y="258" width="208" height="56" rx="6" fill="#1e293b"/>
+  <text x="824" y="278" text-anchor="middle" font-size="10" font-weight="bold" fill="#e879f9">ServiceLens連携</text>
+  <text x="724" y="296" font-size="9" fill="#94a3b8">Lambda Insights + X-Ray で</text>
+  <text x="724" y="310" font-size="9" fill="#94a3b8">エンドツーエンドのMap生成</text>
+
+  <!-- DLQ / EventBridge (bottom) -->
+  <rect x="20" y="310" width="540" height="100" rx="10" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <text x="290" y="333" text-anchor="middle" font-size="13" font-weight="bold" fill="#ef4444">エラーハンドリングと可観測性</text>
+  <text x="40" y="357" font-size="11" fill="#e2e8f0">• DLQ (Dead Letter Queue): 失敗イベントをSQS/SNSに送信 → CloudWatchアラーム</text>
+  <text x="40" y="375" font-size="11" fill="#e2e8f0">• Destinations: 成功/失敗をEventBridgeへ → Step Functions / Lambda再処理</text>
+  <text x="40" y="393" font-size="11" fill="#e2e8f0">• Concurrency Metrics: ConcurrentExecutions / Throttles アラーム設定</text>
+
+  <!-- Bottom bar -->
+  <rect x="20" y="423" width="920" height="64" rx="8" fill="#1e293b"/>
+  <text x="480" y="443" text-anchor="middle" font-size="12" font-weight="bold" fill="#FF9900">Lambda Powertools — 3つのデコレータ</text>
+  <text x="60" y="463" font-size="11" fill="#e2e8f0">@logger.inject_lambda_context → リクエストID・コールドスタート情報を自動付与</text>
+  <text x="60" y="479" font-size="11" fill="#e2e8f0">@tracer.capture_lambda_handler → X-Ray Segment自動生成　|　metrics.add_dimension → EMFメトリクス構造化</text>
+</svg>

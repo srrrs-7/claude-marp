@@ -1,0 +1,105 @@
+<svg viewBox="0 0 960 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="500" fill="#0f172a" rx="12"/>
+  <text x="480" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#FF9900">AWS Observability — ツール選択チートシート</text>
+
+  <!-- Column headers -->
+  <rect x="20" y="44" width="180" height="36" rx="6" fill="#1e40af"/>
+  <text x="110" y="67" text-anchor="middle" font-size="12" font-weight="bold" fill="white">要件 / シナリオ</text>
+  <rect x="212" y="44" width="180" height="36" rx="6" fill="#166534"/>
+  <text x="302" y="67" text-anchor="middle" font-size="12" font-weight="bold" fill="white">推奨ツール</text>
+  <rect x="404" y="44" width="260" height="36" rx="6" fill="#7c3aed"/>
+  <text x="534" y="67" text-anchor="middle" font-size="12" font-weight="bold" fill="white">設定のポイント</text>
+  <rect x="676" y="44" width="264" height="36" rx="6" fill="#b45309"/>
+  <text x="808" y="67" text-anchor="middle" font-size="12" font-weight="bold" fill="white">コスト目安</text>
+
+  <!-- Row 1 -->
+  <rect x="20" y="90" width="920" height="46" rx="4" fill="#1e293b"/>
+  <line x1="210" y1="90" x2="210" y2="136" stroke="#334155" stroke-width="1"/>
+  <line x1="402" y1="90" x2="402" y2="136" stroke="#334155" stroke-width="1"/>
+  <line x1="674" y1="90" x2="674" y2="136" stroke="#334155" stroke-width="1"/>
+  <text x="36" y="110" font-size="10" fill="#e2e8f0">Lambdaの実行時間・</text>
+  <text x="36" y="126" font-size="10" fill="#e2e8f0">エラー率を監視したい</text>
+  <text x="228" y="110" font-size="11" font-weight="bold" fill="#22c55e">Lambda Insights</text>
+  <text x="228" y="126" font-size="10" fill="#86efac">+ Lambda Powertools</text>
+  <text x="420" y="110" font-size="10" fill="#c4b5fd">Lambda Layer追加 + IAM</text>
+  <text x="420" y="126" font-size="10" fill="#64748b">logs:CreateLogGroup 等</text>
+  <text x="692" y="110" font-size="10" fill="#fcd34d">$0.50/GB (Insights)</text>
+  <text x="692" y="126" font-size="10" fill="#64748b">Powertools: 無料</text>
+
+  <!-- Row 2 -->
+  <rect x="20" y="140" width="920" height="46" rx="4" fill="#172033"/>
+  <line x1="210" y1="140" x2="210" y2="186" stroke="#334155" stroke-width="1"/>
+  <line x1="402" y1="140" x2="402" y2="186" stroke="#334155" stroke-width="1"/>
+  <line x1="674" y1="140" x2="674" y2="186" stroke="#334155" stroke-width="1"/>
+  <text x="36" y="160" font-size="10" fill="#e2e8f0">マイクロサービス間の</text>
+  <text x="36" y="176" font-size="10" fill="#e2e8f0">レイテンシを追跡したい</text>
+  <text x="228" y="160" font-size="11" font-weight="bold" fill="#a78bfa">X-Ray + ServiceLens</text>
+  <text x="228" y="176" font-size="10" fill="#c4b5fd">+ ADOT (OTLP)</text>
+  <text x="420" y="160" font-size="10" fill="#c4b5fd">Active Tracing有効化</text>
+  <text x="420" y="176" font-size="10" fill="#64748b">サンプリングルール設定</text>
+  <text x="692" y="160" font-size="10" fill="#fcd34d">$5/1Mトレース</text>
+  <text x="692" y="176" font-size="10" fill="#64748b">サンプリングで制御</text>
+
+  <!-- Row 3 -->
+  <rect x="20" y="190" width="920" height="46" rx="4" fill="#1e293b"/>
+  <line x1="210" y1="190" x2="210" y2="236" stroke="#334155" stroke-width="1"/>
+  <line x1="402" y1="190" x2="402" y2="236" stroke="#334155" stroke-width="1"/>
+  <line x1="674" y1="190" x2="674" y2="236" stroke="#334155" stroke-width="1"/>
+  <text x="36" y="210" font-size="10" fill="#e2e8f0">EKS Pod/Nodeの</text>
+  <text x="36" y="226" font-size="10" fill="#e2e8f0">メトリクスをGrafanaで見たい</text>
+  <text x="228" y="210" font-size="11" font-weight="bold" fill="#f97316">ADOT + AMP + AMG</text>
+  <text x="228" y="226" font-size="10" fill="#fdba74">Container Insights補助</text>
+  <text x="420" y="210" font-size="10" fill="#c4b5fd">ADOT Operator + CRD</text>
+  <text x="420" y="226" font-size="10" fill="#64748b">IRSA: aps:RemoteWrite</text>
+  <text x="692" y="210" font-size="10" fill="#fcd34d">AMP $0.90/GiB + AMG $9/editor</text>
+  <text x="692" y="226" font-size="10" fill="#64748b">recording rulesで削減</text>
+
+  <!-- Row 4 -->
+  <rect x="20" y="240" width="920" height="46" rx="4" fill="#172033"/>
+  <line x1="210" y1="240" x2="210" y2="286" stroke="#334155" stroke-width="1"/>
+  <line x1="402" y1="240" x2="402" y2="286" stroke="#334155" stroke-width="1"/>
+  <line x1="674" y1="240" x2="674" y2="286" stroke="#334155" stroke-width="1"/>
+  <text x="36" y="260" font-size="10" fill="#e2e8f0">ブラウザのCore Web</text>
+  <text x="36" y="276" font-size="10" fill="#e2e8f0">Vitalsを監視したい</text>
+  <text x="228" y="260" font-size="11" font-weight="bold" fill="#34d399">CloudWatch RUM</text>
+  <text x="228" y="276" font-size="10" fill="#6ee7b7">+ Synthetics (E2E)</text>
+  <text x="420" y="260" font-size="10" fill="#c4b5fd">JSスニペット埋め込み</text>
+  <text x="420" y="276" font-size="10" fill="#64748b">AppMonitor作成</text>
+  <text x="692" y="260" font-size="10" fill="#fcd34d">$1/100Kイベント</text>
+  <text x="692" y="276" font-size="10" fill="#64748b">Synthetics: $0.0012/実行</text>
+
+  <!-- Row 5 -->
+  <rect x="20" y="290" width="920" height="46" rx="4" fill="#1e293b"/>
+  <line x1="210" y1="290" x2="210" y2="336" stroke="#334155" stroke-width="1"/>
+  <line x1="402" y1="290" x2="402" y2="336" stroke="#334155" stroke-width="1"/>
+  <line x1="674" y1="290" x2="674" y2="336" stroke="#334155" stroke-width="1"/>
+  <text x="36" y="310" font-size="10" fill="#e2e8f0">ログを長期保存コスト</text>
+  <text x="36" y="326" font-size="10" fill="#e2e8f0">最小でアーカイブしたい</text>
+  <text x="228" y="310" font-size="11" font-weight="bold" fill="#38bdf8">Firehose → S3</text>
+  <text x="228" y="326" font-size="10" fill="#7dd3fc">+ Athena / Glacier</text>
+  <text x="420" y="310" font-size="10" fill="#c4b5fd">CW Logs Subscription</text>
+  <text x="420" y="326" font-size="10" fill="#64748b">Firehose → S3 → Glacier</text>
+  <text x="692" y="310" font-size="10" fill="#fcd34d">S3: $0.023/GB/月</text>
+  <text x="692" y="326" font-size="10" fill="#64748b">Glacier: $0.004/GB/月</text>
+
+  <!-- Row 6 -->
+  <rect x="20" y="340" width="920" height="46" rx="4" fill="#172033"/>
+  <line x1="210" y1="340" x2="210" y2="386" stroke="#334155" stroke-width="1"/>
+  <line x1="402" y1="340" x2="402" y2="386" stroke="#334155" stroke-width="1"/>
+  <line x1="674" y1="340" x2="674" y2="386" stroke="#334155" stroke-width="1"/>
+  <text x="36" y="360" font-size="10" fill="#e2e8f0">マルチアカウントで</text>
+  <text x="36" y="376" font-size="10" fill="#e2e8f0">一元監視したい</text>
+  <text x="228" y="360" font-size="11" font-weight="bold" fill="#e879f9">CW Cross-account</text>
+  <text x="228" y="376" font-size="10" fill="#f0abfc">+ Organizations統合</text>
+  <text x="420" y="360" font-size="10" fill="#c4b5fd">Monitoring Account設定</text>
+  <text x="420" y="376" font-size="10" fill="#64748b">CloudFormation StackSets</text>
+  <text x="692" y="360" font-size="10" fill="#fcd34d">追加コストなし</text>
+  <text x="692" y="376" font-size="10" fill="#64748b">AMGでも同様に可能</text>
+
+  <!-- Bottom decision guide -->
+  <rect x="20" y="400" width="920" height="90" rx="8" fill="#1e293b" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="480" y="420" text-anchor="middle" font-size="12" font-weight="bold" fill="#FF9900">クイック判断フロー</text>
+  <text x="40" y="440" font-size="11" fill="#e2e8f0">トレース必要？ → X-Ray + ADOT　|　Prometheus互換？ → AMP + AMG　|　Kubernetes？ → ADOT Operator + Container Insights</text>
+  <text x="40" y="458" font-size="11" fill="#e2e8f0">ブラウザ監視？ → RUM + Synthetics　|　サーバーレス中心？ → Lambda Powertools + Lambda Insights</text>
+  <text x="40" y="476" font-size="11" fill="#fcd34d">コスト最優先？ → CW標準メトリクス + IA Logs + X-Rayサンプリング1%　|　統合ダッシュボード？ → Managed Grafana</text>
+</svg>

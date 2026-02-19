@@ -1,0 +1,1026 @@
+{
+	"slides": [
+		{
+			"title": "AWS Lambda / Serverless Deep Dive",
+			"layout": "center",
+			"content": [
+				"パフォーマンス最適化と実践アーキテクチャパターン",
+				"",
+				"対象: バックエンド開発者",
+				"難易度: 中〜上級",
+				"所要時間: 120分"
+			]
+		},
+		{
+			"title": "目次",
+			"layout": "default",
+			"content": [
+				"**Part 1** — Lambda基礎・内部アーキテクチャ",
+				"**Part 2** — コールドスタート・パフォーマンス最適化",
+				"**Part 3** — サーバーレスアーキテクチャパターン",
+				"**Part 4** — オブザーバビリティ",
+				"**Part 5** — セキュリティ・CI/CD",
+				"**まとめ** — 決定マトリクス・参考リソース"
+			]
+		},
+		{
+			"title": "このセッションの学習目標",
+			"layout": "default",
+			"content": [
+				"Lambda内部の実行モデルと制約を理解する",
+				"コールドスタートのメカニズムと最適化手法をマスター",
+				"本番レベルのサーバーレスアーキテクチャパターンを習得",
+				"X-Ray・Lambda Powertoolsによるオブザーバビリティ実装",
+				"セキュリティ・コスト最適化のベストプラクティスを実践"
+			]
+		},
+		{
+			"title": "なぜ今サーバーレスなのか",
+			"layout": "default",
+			"content": [
+				"**インフラ管理ゼロ** — OS・パッチ・スケーリングはAWS管理",
+				"**使った分だけ課金** — アイドル時間のコストなし",
+				"**自動スケーリング** — リクエスト数に応じて瞬時に拡張",
+				"**高可用性** — 複数AZで自動的に冗長化",
+				"**イベント駆動** — 非同期処理・マイクロサービス親和性",
+				"Lambda 月間1億リクエストまで無料枠あり"
+			]
+		},
+		{
+			"title": "Part 1: Lambda基礎・内部アーキテクチャ",
+			"layout": "section",
+			"content": ["実行環境の仕組みを深く理解する"]
+		},
+		{
+			"title": "AWS Lambdaとは",
+			"layout": "default",
+			"content": [
+				"**Function as a Service (FaaS)** — コードをデプロイするだけで実行可能",
+				"リクエストに応じてコンテナを起動、処理後に停止",
+				"**最大実行時間**: 15分（タイムアウト設定可能）",
+				"**最大メモリ**: 10,240 MB（vCPUはメモリに比例）",
+				"**最大パッケージサイズ**: 250MB (ZIP展開後) / 10GB (コンテナ)",
+				"サポートランタイム: Node.js, Python, Java, Go, .NET, Ruby, カスタム"
+			]
+		},
+		{
+			"title": "Lambda実行環境の構造",
+			"layout": "default",
+			"content": [
+				"**ホストEC2** → **Firecracker MicroVM** → **実行環境**",
+				"実行環境は1関数インスタンス専用（マルチテナント共有なし）",
+				"**Init フェーズ**: ランタイム起動 + 初期化コード実行",
+				"**Invoke フェーズ**: ハンドラー関数実行",
+				"**Shutdown フェーズ**: クリーンアップ処理",
+				"ウォームコンテナ再利用 → グローバル変数・DB接続が保持される"
+			]
+		},
+		{
+			"title": "Firecracker MicroVM",
+			"layout": "default",
+			"content": [
+				"AWSが開発したオープンソースの軽量仮想化技術",
+				"**KVM**ベースで起動時間 **125ms以下**を実現",
+				"最小限のデバイスモデル（セキュリティサーフェスを最小化）",
+				"Lambda・Fargate両方で採用",
+				"各実行環境は独立したMicroVM → 他テナントからの隔離保証",
+				"メモリオーバーヘッド最小（VMよりも軽量）"
+			]
+		},
+		{
+			"title": "Lambda ライフサイクル詳解",
+			"layout": "default",
+			"content": [
+				"**1. INIT** (コールドスタート時のみ)",
+				"  - Extension init → Runtime init → Function init",
+				"**2. INVOKE**",
+				"  - Lambda サービスからイベントを受信",
+				"  - ハンドラー実行 → レスポンス返却",
+				"**3. SHUTDOWN** (コンテナ停止時)",
+				"  - Extensions に SHUTDOWN シグナル送信"
+			]
+		},
+		{
+			"title": "イベントソースとInvoke種別",
+			"layout": "default",
+			"content": [
+				"**同期 (RequestResponse)**: API Gateway, ALB, Lambda URL",
+				"  - 呼び出し元がレスポンスを待機",
+				"**非同期 (Event)**: S3, SNS, EventBridge",
+				"  - 内部キューでバッファリング → 最大2回リトライ",
+				"**ポーリング (Stream)**: SQS, Kinesis, DynamoDB Streams",
+				"  - Lambda側でポーリング → バッチ処理"
+			]
+		},
+		{
+			"title": "対応ランタイム一覧 (2026)",
+			"layout": "default",
+			"content": [
+				"| ランタイム | バージョン | SnapStart |",
+				"|-----------|-----------|-----------|",
+				"| Node.js | 20.x, 22.x | - |",
+				"| Python | 3.12, 3.13 | - |",
+				"| Java | 21 (Corretto) | ✅ |",
+				"| .NET | 8 | ✅ |",
+				"| カスタム (provided.al2023) | any | - |"
+			]
+		},
+		{
+			"title": "メモリ・CPU・タイムアウト設定",
+			"layout": "default",
+			"content": [
+				"**メモリ**: 128MB〜10,240MB（1MB単位で設定）",
+				"**vCPU**: メモリに比例して割り当て（1,769MB = 1vCPU）",
+				"**タイムアウト**: 1秒〜15分（デフォルト3秒）",
+				"**エフェメラルストレージ**: 512MB〜10,240MB (/tmp)",
+				"メモリ増加 = CPU増加 = 処理速度向上（コスト効率が改善することも）",
+				"→ Lambda Power Tuningで最適値を計測すべき"
+			]
+		},
+		{
+			"title": "Lambda権限モデル",
+			"layout": "default",
+			"content": [
+				"**実行ロール (Execution Role)**",
+				"  - Lambdaが他AWSサービスを呼び出すための権限",
+				"  - AWSLambdaBasicExecutionRole（最低限必要）",
+				"**リソースポリシー (Resource Policy)**",
+				"  - 誰がこの関数を呼び出せるかを制御",
+				"  - API Gateway, S3, EventBridgeからのInvokeを許可",
+				"最小権限の原則: 各関数に専用ロールを作成"
+			]
+		},
+		{
+			"title": "Lambda Layer",
+			"content": [
+				"共通ライブラリを複数関数で共有する仕組み",
+				"**最大5レイヤー**を1関数に付与可能",
+				"展開後の合計サイズ上限: **250MB**",
+				"AWS提供レイヤー: Lambda Insights Extension など",
+				"ユースケース: AWS SDK、共通ユーティリティ、ML モデル",
+				"デプロイ速度向上（関数本体を小さく保てる）"
+			]
+		},
+		{
+			"title": "Lambda Layer（コード例）",
+			"content": [],
+			"code": "# LayerのZIP構造（Pythonの例）\npython/\n└── lib/\n    └── python3.12/\n        └── site-packages/\n            ├── boto3/\n            └── requests/",
+			"codeLanguage": "bash"
+		},
+		{
+			"title": "Lambda Extensions",
+			"layout": "default",
+			"content": [
+				"関数の実行環境に追加プロセスを起動する機能",
+				"**内部Extension**: 関数と同じプロセス内で動作",
+				"**外部Extension**: 独立プロセスとして並列動作",
+				"ユースケース: APM エージェント、ログ転送、セキュリティスキャン",
+				"DataDog, Dynatrace, New Relic などが対応",
+				"注意: 実行時間・メモリをExtensionも消費する"
+			]
+		},
+		{
+			"title": "Lambda SnapStart (Java/DotNET)",
+			"layout": "default",
+			"content": [
+				"JVM初期化の時間を短縮するスナップショット機能",
+				"**仕組み**: デプロイ時にInit完了状態をスナップショット化",
+				"呼び出し時はスナップショットから再開 → Init不要",
+				"**効果**: コールドスタートを最大90%削減",
+				"対応: Java 11/17/21 (Corretto), .NET 8",
+				"**注意**: ユニークID/乱数はスナップショット後に再生成が必要"
+			]
+		},
+		{
+			"title": "ARM64 (Graviton2) vs x86_64",
+			"layout": "default",
+			"content": [
+				"| 比較項目 | Graviton2 (arm64) | x86_64 |",
+				"|---------|-------------------|--------|",
+				"| コスト | **20%安い** | 基準 |",
+				"| パフォーマンス | 同等〜最大34%高速 | 基準 |",
+				"| 対応ランタイム | Node.js, Python, Java, Go, .NET | 全て |",
+				"| ネイティブバイナリ | arm64ビルドが必要 | x86_64 |",
+				"新規プロジェクトはGraviton2を推奨（コスト・性能ともに優位）"
+			]
+		},
+		{
+			"title": "コンテナイメージデプロイ",
+			"content": [
+				"最大10GBのDockerイメージをLambdaにデプロイ可能",
+				"AWS提供ベースイメージ (public.ecr.aws/lambda/*) を推奨",
+				"**Lambda Runtime Interface Client (RIC)** が必要",
+				"ECRにpush → Lambda関数のイメージURIを更新",
+				"コールドスタートはZIPより若干長い傾向",
+				"大きなML モデル・複雑な依存関係に有効"
+			]
+		},
+		{
+			"title": "コンテナイメージデプロイ（コード例）",
+			"content": [],
+			"code": "FROM public.ecr.aws/lambda/python:3.12\nCOPY requirements.txt .\nRUN pip install -r requirements.txt\nCOPY app.py .\nCMD [\"app.handler\"]",
+			"codeLanguage": "dockerfile"
+		},
+		{
+			"title": "バージョン管理とエイリアス",
+			"content": [
+				"**バージョン**: `$LATEST` + 不変バージョン番号 (1, 2, 3...)",
+				"**エイリアス**: バージョンに付ける名前 (prod, staging, v2)",
+				"**トラフィック分割**: エイリアスで2バージョンに重み付け配信",
+				"カナリアデプロイ: 10%を新バージョンへ → 問題なければ100%",
+				"API Gatewayのステージとエイリアスをマッピングするパターンが定番"
+			]
+		},
+		{
+			"title": "バージョン管理とエイリアス（コード例）",
+			"content": [],
+			"code": "aws lambda update-alias \\\n  --function-name my-function \\\n  --name prod \\\n  --function-version 5 \\\n  --routing-config \\\n    AdditionalVersionWeights={\"4\"=0.1}",
+			"codeLanguage": "bash"
+		},
+		{
+			"title": "同時実行数とスロットリング",
+			"layout": "default",
+			"content": [
+				"**同時実行上限**: デフォルト1,000（アカウントリージョン単位）",
+				"**予約同時実行 (Reserved)**: 特定関数に上限を確保・制限",
+				"**プロビジョニング済み同時実行**: ウォームインスタンスを事前確保",
+				"スロットリング発生時: 同期→429エラー、非同期→リトライ",
+				"重要関数には Reserved Concurrency で下限確保",
+				"バースト制限: 最初の1分間は+500〜3,000インスタンス/分"
+			]
+		},
+		{
+			"title": "Part 2: コールドスタート・パフォーマンス最適化",
+			"layout": "section",
+			"content": ["レイテンシを制する者がサーバーレスを制す"]
+		},
+		{
+			"title": "コールドスタートとウォームスタートの違い",
+			"layout": "default",
+			"content": [
+				"**コールドスタート**: 新しいコンテナの起動が必要な場合",
+				"  Init: ランタイム起動 + 初期化コード → **数百ms〜数秒**",
+				"**ウォームスタート**: 既存コンテナを再利用",
+				"  ハンドラーのみ実行 → **数ms〜数十ms**",
+				"コンテナは最後の呼び出しから約**5〜15分**で廃棄",
+				"並列リクエスト増加時も新コンテナが起動（コールドスタート）"
+			]
+		},
+		{
+			"title": "コールドスタートの構成要素",
+			"layout": "default",
+			"content": [
+				"**1. MicroVM起動** (~50ms) — Firecrackerが処理",
+				"**2. ランタイム初期化** (~数百ms) — JVMは特に長い",
+				"**3. 関数初期化コード** (可変) — import, DB接続, 設定読み込み",
+				"CloudWatch Logsで `Init Duration` として計測可能",
+				"例: Python 128MB → ~200ms / Java 512MB → ~1-3s",
+				"VPC内Lambdaは追加でENI付与時間が発生 (※2019以降改善)"
+			]
+		},
+		{
+			"title": "ランタイム別コールドスタート比較",
+			"layout": "default",
+			"content": [
+				"| ランタイム | コールドスタート (目安) | 対策 |",
+				"|-----------|----------------------|------|",
+				"| Python | 200-500ms | 軽量、最速クラス |",
+				"| Node.js | 200-500ms | esbuildでバンドル最小化 |",
+				"| Java | 1-5s | SnapStart / GraalVM |",
+				"| .NET | 500ms-2s | SnapStart |",
+				"| Go / Rust | 100-200ms | ネイティブバイナリ |",
+				"メモリ増加でInit Durationも短縮される傾向あり"
+			]
+		},
+		{
+			"title": "Provisioned Concurrencyとは",
+			"layout": "default",
+			"content": [
+				"事前にウォームアップしたインスタンスを常時確保する機能",
+				"コールドスタートを**ほぼ完全に排除**できる",
+				"**コスト**: 通常の実行コスト + 確保時間分の追加料金",
+				"**適用先**: 関数バージョン or エイリアス",
+				"Application Auto Scalingで自動スケールも可能",
+				"用途: レイテンシ要件が厳しいAPI、ビジネスクリティカル処理"
+			]
+		},
+		{
+			"title": "Provisioned Concurrency — 設定例",
+			"content": [
+				"Auto Scaling で時間帯に応じてスケール",
+				"業務時間帯 (9-18時) に10インスタンス確保",
+				"夜間は最小1に削減してコスト節約"
+			]
+		},
+		{
+			"title": "Provisioned Concurrency — 設定例（コード例）",
+			"content": [],
+			"code": "# Application Auto Scalingで動的スケール\naws application-autoscaling register-scalable-target \\\n  --service-namespace lambda \\\n  --resource-id function:my-func:prod \\\n  --scalable-dimension \\\n    lambda:function:ProvisionedConcurrency \\\n  --min-capacity 1 \\\n  --max-capacity 10",
+			"codeLanguage": "bash"
+		},
+		{
+			"title": "SnapStartの仕組み",
+			"layout": "default",
+			"content": [
+				"**デプロイ時**: 関数バージョン公開 → Init完了状態をスナップショット",
+				"**呼び出し時**: スナップショットから復元 → Invoke直接実行",
+				"JVM起動時間を完全バイパス → **コールドスタート ~1ms**",
+				"**CRaC (Coordinated Restore at Checkpoint)** プロトコル対応",
+				"注意事項: ネットワーク接続・乱数・時刻はリストア後に再取得すること",
+				"Hooks: `@SnapshotHook` でリストア後処理を記述可能"
+			]
+		},
+		{
+			"title": "コールドスタート軽減パターン集",
+			"layout": "default",
+			"content": [
+				"**1. SnapStart** — Java/.NETでほぼゼロに",
+				"**2. Provisioned Concurrency** — 常時ウォーム確保",
+				"**3. Keep-Warm (EventBridge Ping)** — 5分毎に関数呼び出し",
+				"**4. 軽量ランタイム選択** — Python/Go/Rust優先",
+				"**5. バンドル最小化** — tree-shaking、不要依存削除",
+				"**6. 初期化コード最適化** — ハンドラー外に重い処理を移動"
+			]
+		},
+		{
+			"title": "メモリ最適化とパフォーマンス",
+			"layout": "default",
+			"content": [
+				"メモリ増加 → vCPU比例増加 → 処理速度向上",
+				"料金: GB・秒単位 → メモリ2倍でも処理が2倍速なら同コスト",
+				"**実験例**: 128MB → 256MB で処理時間半減 → コスト同等",
+				"CPU集約処理（画像変換、暗号化）は高メモリ設定が有利",
+				"I/O集約処理（DB待ち）はメモリ増加の恩恵が薄い",
+				"→ Power Tuningで実測して最適値を決める"
+			]
+		},
+		{
+			"title": "AWS Lambda Power Tuning",
+			"content": [
+				"最適メモリ設定を自動探索するOSSツール (Step Functions)",
+				"**GitHub**: alexcasalboni/aws-lambda-power-tuning",
+				"複数のメモリ設定で関数を並列実行し、コスト・速度を計測",
+				"Strategy: `cost` / `speed` / `balanced` から選択",
+				"出力: コストと速度のトレードオフグラフ",
+				"本番デプロイ前の必須ステップとして CI/CD に組み込み推奨"
+			]
+		},
+		{
+			"title": "AWS Lambda Power Tuning（コード例）",
+			"content": [],
+			"code": "{\n  \"lambdaARN\": \"arn:aws:lambda:...:function:my-func\",\n  \"powerValues\": [128,256,512,1024,2048,3008],\n  \"num\": 50,\n  \"payload\": {\"key\": \"value\"},\n  \"parallelInvocation\": true,\n  \"strategy\": \"balanced\"\n}",
+			"codeLanguage": "json"
+		},
+		{
+			"title": "接続プーリング: RDS Proxy",
+			"layout": "default",
+			"content": [
+				"**問題**: Lambda スケールアウト → DB接続数が爆発的に増加",
+				"RDS の最大接続数を超えてエラー発生",
+				"**解決**: RDS Proxy がコネクションプールを管理",
+				"LambdaはProxyに接続、ProxyがRDSへ多重化（1/10以下に削減）",
+				"IAM認証対応（パスワード管理不要）",
+				"レイテンシ追加: ~数ms（許容範囲）"
+			]
+		},
+		{
+			"title": "ElastiCache接続最適化",
+			"content": [
+				"Lambdaのグローバルスコープで接続を再利用",
+				"VPC内LambdaからElastiCacheに直接接続",
+				"**接続数管理**: 同時実行数 × 接続数 = 総接続数",
+				"ElastiCache Serverlessで接続制限を緩和可能"
+			]
+		},
+		{
+			"title": "ElastiCache接続最適化（コード例）",
+			"content": [],
+			"code": "import redis\n# ハンドラー外で初期化（コンテナ再利用時に再接続不要）\nredis_client = redis.Redis(\n    host=os.environ['REDIS_HOST'],\n    port=6379,\n    decode_responses=True,\n    socket_keepalive=True\n)\n\ndef handler(event, context):\n    result = redis_client.get(event['key'])\n    return {'value': result}",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "依存パッケージ最適化",
+			"content": [
+				"**不要な依存を削除**: `devDependencies` をデプロイに含めない",
+				"**Tree shaking**: esbuild/webpack で未使用コードを除去",
+				"**AWS SDK v3**: モジュール別インポートでサイズ削減",
+				"Pythonは `pip install --no-deps` で依存チェーン制御",
+				"Dockerコンテナビルドで最終イメージサイズを計測",
+				"目標: ZIPで10MB以下（コールドスタート短縮）"
+			]
+		},
+		{
+			"title": "依存パッケージ最適化（コード例）",
+			"content": [],
+			"code": "// AWS SDK v3 — 必要なクライアントのみインポート\nimport { DynamoDBClient } from \"@aws-sdk/client-dynamodb\";\nimport { GetCommand } from \"@aws-sdk/lib-dynamodb\";\n// v2の全部入りSDKではなく個別インポートで軽量化",
+			"codeLanguage": "typescript"
+		},
+		{
+			"title": "初期化コードの最適化",
+			"content": [
+				"ハンドラー外（グローバルスコープ）に重い処理を置く",
+				"コンテナ再利用時はグローバルスコープがキャッシュされる",
+				"**避けるべきパターン**: ハンドラー内でのSDKクライアント生成",
+				"**推奨**: DB接続・設定読み込みはグローバルスコープで1回のみ",
+				"遅延初期化: 必要になるまで初期化を遅らせるパターンも有効"
+			]
+		},
+		{
+			"title": "初期化コードの最適化（コード例）",
+			"content": [],
+			"code": "// ハンドラー外（グローバル）で初期化\nconst dynamo = new DynamoDBDocumentClient(\n  new DynamoDBClient({})\n);\nlet config: Config | null = null;\n\nexport async function handler(event: APIGatewayEvent) {\n  // 設定は一度だけ読み込み（ウォームリクエストでスキップ）\n  config ??= await loadConfig();\n  return process(event, dynamo, config);\n}",
+			"codeLanguage": "typescript"
+		},
+		{
+			"title": "Lambda Throttling対策",
+			"layout": "default",
+			"content": [
+				"**スロットリング発生条件**: 同時実行数がアカウント上限or予約上限を超過",
+				"**検出**: CloudWatch `Throttles` メトリクス / HTTP 429",
+				"**対策1**: SQSキューを挟んで非同期化（スパイク吸収）",
+				"**対策2**: Reserved Concurrencyで重要関数の枠を確保",
+				"**対策3**: 上限緩和申請（AWS Supportにリクエスト）",
+				"**対策4**: バッチサイズ調整で1回の処理量を最大化"
+			]
+		},
+		{
+			"title": "コストとパフォーマンスのバランス",
+			"layout": "default",
+			"content": [
+				"Lambda料金 = (リクエスト数 × $0.0000002) + (GB・秒 × $0.0000166667)",
+				"無料枠: 100万リクエスト + 400,000 GB・秒/月",
+				"**コスト削減**: Graviton2(arm64)で20%削減",
+				"**コスト削減**: メモリを最適化（Power Tuning活用）",
+				"**コスト削減**: 非同期処理でProvisioned Concurrency使用を最小化",
+				"Compute Savings Plansでさらに最大17%割引"
+			]
+		},
+		{
+			"title": "コールドスタート計測方法",
+			"content": [
+				"CloudWatch Logs の `REPORT` 行で `Init Duration` を確認",
+				"`Init Duration` フィールドが存在するログ = コールドスタート発生",
+				"**CloudWatch Logs Insights** でまとめて分析",
+				"Lambda Insights で `init_duration` カスタムメトリクス取得",
+				"X-Ray サービスマップでEnd-to-Endのレイテンシを可視化"
+			]
+		},
+		{
+			"title": "コールドスタート計測方法（コード例）",
+			"content": [],
+			"code": "# CloudWatch Logs Insightsクエリ例\nfields @timestamp, @initDuration, @duration\n| filter @type = \"REPORT\"\n| filter @initDuration > 0\n| stats\n    avg(@initDuration) as avgInit,\n    max(@initDuration) as maxInit,\n    count() as coldStarts\n  by bin(5min)",
+			"codeLanguage": "sql"
+		},
+		{
+			"title": "Part 3: サーバーレスアーキテクチャパターン",
+			"layout": "section",
+			"content": ["実践で使えるパターンを網羅する"]
+		},
+		{
+			"title": "サーバーレス設計原則",
+			"layout": "default",
+			"content": [
+				"**1. ステートレスに設計する** — 状態はDynamoDB/S3に永続化",
+				"**2. イベント駆動を活用** — 疎結合なサービス連携",
+				"**3. 関数を小さく単一責任に** — テスト・デプロイが容易",
+				"**4. 冪等性を保証** — 重複実行されても安全に設計",
+				"**5. 失敗を前提に設計** — DLQ・リトライ・タイムアウト設定",
+				"**6. オブザーバビリティ優先** — ログ・メトリクス・トレース"
+			]
+		},
+		{
+			"title": "API Gateway + Lambda パターン",
+			"layout": "default",
+			"content": [
+				"最もよく使われるサーバーレスパターン",
+				"**REST API**: 機能が豊富（キャッシュ、認証、変換）",
+				"**HTTP API**: シンプル・高速・低コスト（REST比70%安）",
+				"**Lambda URL**: API GW不要で直接HTTPSエンドポイント",
+				"冪等性キー: `X-Amz-Client-Context` でリトライ制御",
+				"ALB → Lambda も選択肢（コンテナとの共存が容易）"
+			]
+		},
+		{
+			"title": "HTTP API vs REST API 選択基準",
+			"layout": "default",
+			"content": [
+				"| 機能 | HTTP API | REST API |",
+				"|------|----------|----------|",
+				"| コスト | ◎ 低コスト | △ 高コスト |",
+				"| レイテンシ | ◎ 低 | ○ 普通 |",
+				"| キャッシュ | × なし | ✅ あり |",
+				"| API Key管理 | × | ✅ |",
+				"| リクエスト変換 | × | ✅ |",
+				"新規はHTTP APIを基本に、必要な機能があればREST APIを検討"
+			]
+		},
+		{
+			"title": "SQS + Lambda イベント駆動パターン",
+			"content": [
+				"**SQS Standard**: At-Least-Onceデリバリー、スループット無制限",
+				"**SQS FIFO**: Exactly-Once処理、順序保証（300TPS上限）",
+				"バッチサイズ: 1〜10,000メッセージ（コスト最適化に重要）",
+				"**バッチウィンドウ**: 最大300秒まとめて受信（コスト削減）",
+				"失敗処理: メッセージ個別の成功/失敗報告が可能",
+				"DLQ設定で処理失敗メッセージを別キューに退避"
+			]
+		},
+		{
+			"title": "SQS + Lambda イベント駆動パターン（コード例）",
+			"content": [],
+			"code": "def handler(event, context):\n    batch_item_failures = []\n    for record in event['Records']:\n        try:\n            process(json.loads(record['body']))\n        except Exception:\n            batch_item_failures.append(\n                {'itemIdentifier': record['messageId']}\n            )\n    return {'batchItemFailures': batch_item_failures}",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "EventBridge + Lambda",
+			"content": [
+				"**イベントバス**: デフォルト / カスタム / パートナーイベントバス",
+				"ルールで特定イベントパターンを Lambda にルーティング",
+				"**スケジュール実行**: EventBridge Scheduler (cron/rate)",
+				"クロスアカウント・クロスリージョンのイベント連携",
+				"ユースケース: マイクロサービス間通知、定時バッチ、ワークフロー"
+			]
+		},
+		{
+			"title": "EventBridge + Lambda（コード例）",
+			"content": [],
+			"code": "# イベントパターン例（S3オブジェクト作成）\n{\n  \"source\": [\"aws.s3\"],\n  \"detail-type\": [\"Object Created\"],\n  \"detail\": {\n    \"bucket\": { \"name\": [\"my-data-bucket\"] },\n    \"object\": { \"key\": [{\"suffix\": \".csv\"}] }\n  }\n}",
+			"codeLanguage": "json"
+		},
+		{
+			"title": "DynamoDB Streams + Lambda",
+			"layout": "default",
+			"content": [
+				"DynamoDBへの変更（INSERT/MODIFY/REMOVE）をリアルタイム処理",
+				"**用途**: キャッシュ無効化、検索インデックス更新、監査ログ",
+				"ストリームレコードに新旧両方の値（`NewImage`, `OldImage`）",
+				"シャード単位で順序保証（アイテムキー単位の順序は保証）",
+				"バッチサイズ: 1〜1,000 / バッチウィンドウ: 0〜300秒",
+				"並列化係数: 1〜10（シャード内の並列処理数）"
+			]
+		},
+		{
+			"title": "Step Functions オーケストレーション",
+			"layout": "default",
+			"content": [
+				"複数Lambda関数のワークフローを視覚的に定義・実行",
+				"**Standard**: 長時間ワークフロー（最大1年）、Exactly-Once",
+				"**Express**: 高スループット（秒間100k）、At-Least-Once",
+				"組み込みエラーハンドリング: Retry / Catch / TimeoutSeconds",
+				"サービス統合: Lambda以外にDynamoDB, SQS, ECSも直接呼び出し",
+				"状態マシン = コードではなくJSON/YAMLで定義"
+			]
+		},
+		{
+			"title": "Fan-out パターン",
+			"layout": "default",
+			"content": [
+				"1つのイベントを複数のワーカーLambdaに並列配信",
+				"**SNS → 複数SQS → 各Lambda**: 確実なデリバリー保証",
+				"**EventBridge → 複数ルール**: フィルタリングしながら配信",
+				"**Step Functions Map状態**: 配列要素を並列処理",
+				"ユースケース: 注文処理（在庫/通知/請求を並列）",
+				"考慮点: 各Lambdaの同時実行数の合計がアカウント上限内に収まること"
+			]
+		},
+		{
+			"title": "Sagaパターン (分散トランザクション)",
+			"layout": "default",
+			"content": [
+				"マイクロサービス間でのトランザクション整合性を保証",
+				"各ステップに補償トランザクション（ロールバック処理）を定義",
+				"**コレオグラフィ型**: イベントで各サービスが自律的に動作",
+				"**オーケストレーション型**: Step Functionsが中央制御",
+				"Step Functionsの `Catch` でエラー時に補償処理を実行",
+				"ユースケース: 注文→在庫確保→決済→配送の各ステップ"
+			]
+		},
+		{
+			"title": "Circuit Breaker in Serverless",
+			"layout": "default",
+			"content": [
+				"外部サービス障害時に連鎖失敗を防ぐパターン",
+				"**状態**: CLOSED（正常）→ OPEN（遮断）→ HALF-OPEN（試験）",
+				"DynamoDBにサーキット状態を保存（Lambda間で共有）",
+				"ElastiCacheで高速な状態確認（低レイテンシ要件）",
+				"AWS Lambda Powertools の `@circuit_breaker` デコレーター活用",
+				"ウォームコンテナのグローバル変数ではなく**共有ストア**に状態を持つ"
+			]
+		},
+		{
+			"title": "サーバーレス CQRS パターン",
+			"layout": "default",
+			"content": [
+				"Command（書き込み）とQuery（読み取り）を分離",
+				"**Write側**: API GW → Lambda → DynamoDB（正規化データ）",
+				"**Read側**: DynamoDB Streams → Lambda → OpenSearch/Aurora",
+				"読み取り専用のデータストアを別途最適化",
+				"EventBridgeでドメインイベントを発行・購読",
+				"スケールが独立: 読み取りと書き込みで個別にスケール"
+			]
+		},
+		{
+			"title": "GraphQL with AppSync + Lambda",
+			"layout": "default",
+			"content": [
+				"AppSyncはマネージドGraphQL APIサービス",
+				"リゾルバーにLambdaを指定してカスタムロジックを実装",
+				"**Direct Lambda Resolver**: Lambda関数をリゾルバーとして直接指定",
+				"サブスクリプションはWebSocketで自動管理（Lambdaは不要）",
+				"N+1問題はBatchingとDataLoaderで解決",
+				"AppSync + Cognito でフィールドレベルの認可制御"
+			]
+		},
+		{
+			"title": "レスポンスストリーミング",
+			"content": [
+				"Lambda関数が結果をストリームで段階的に返す機能 (2023〜)",
+				"**用途**: LLMトークンストリーミング、大ファイルダウンロード",
+				"Lambda URL または API GW HTTP APIで利用可能",
+				"通常のResponse: 全データ生成後に返却（タイムアウトリスク）",
+				"ストリーミング: 最初のバイトから返却 → TTFB短縮",
+				"最大レスポンスサイズ: 20MB（ストリーミング時）"
+			]
+		},
+		{
+			"title": "レスポンスストリーミング（コード例）",
+			"content": [],
+			"code": "import { streamifyResponse, HttpResponseStream }\n  from 'lambda-stream';\n\nexport const handler = streamifyResponse(\n  async (event, responseStream) => {\n    const metadata = { statusCode: 200,\n      headers: { 'Content-Type': 'text/event-stream' } };\n    responseStream = HttpResponseStream.from(\n      responseStream, metadata);\n    for await (const chunk of generateTokens(event)) {\n      responseStream.write(chunk);\n    }\n    responseStream.end();\n  }\n);",
+			"codeLanguage": "typescript"
+		},
+		{
+			"title": "Lambda + DynamoDB Single Table設計",
+			"layout": "default",
+			"content": [
+				"すべてのエンティティを1テーブルに格納するパターン",
+				"**PK**: エンティティタイプ + ID（例: `USER#u123`）",
+				"**SK**: 関係やソートに使用（例: `ORDER#2026-01`）",
+				"GSIでアクセスパターンに応じたクエリを実現",
+				"Lambda + DynamoDB DocumentClient でシンプルにアクセス",
+				"設計時にアクセスパターンをすべて列挙することが必須"
+			]
+		},
+		{
+			"title": "イベントソーシングパターン",
+			"layout": "default",
+			"content": [
+				"データの状態ではなく「変更イベント」の履歴を永続化",
+				"**Command Handler Lambda**: コマンド受信 → イベント生成 → EventStore保存",
+				"**Projection Lambda**: イベントを読み取りモデルに変換",
+				"DynamoDB Streamsでイベントをリアルタイムにプロジェクション",
+				"完全な監査ログ・タイムトラベルクエリが可能",
+				"複雑性が高いため、複雑なドメインロジックに限定して適用"
+			]
+		},
+		{
+			"title": "サーバーレスマイクロサービス",
+			"layout": "default",
+			"content": [
+				"各マイクロサービスが独自のLambda関数群 + データストアを持つ",
+				"**API GW + Lambda**: サービスごとにエンドポイントを分離",
+				"**EventBridge**: サービス間の非同期イベント交換",
+				"**SAM / CDK**: IaCでサービスごとにスタックを管理",
+				"独立デプロイ: サービス間の変更が影響しない",
+				"トレードオフ: ネットワーク呼び出し増加・分散トレーシングが複雑"
+			]
+		},
+		{
+			"title": "サーバーレス vs コンテナ — 選択基準",
+			"layout": "default",
+			"content": [
+				"| 観点 | Lambda | ECS/Fargate |",
+				"|------|--------|-------------|",
+				"| 実行時間 | 最大15分 | 無制限 |",
+				"| コールドスタート | あり | 起動に数十秒 |",
+				"| トラフィック | バースト対応 | 予測可能 |",
+				"| コスト | 従量課金 | 常時起動コスト |",
+				"| 状態管理 | ステートレス | ステートフル可 |",
+				"**Lambda向き**: イベント駆動、バースト、短時間処理 / **コンテナ向き**: 長時間、複雑な依存、WebSocket"
+			]
+		},
+		{
+			"title": "アーキテクチャパターン選択フロー",
+			"layout": "default",
+			"content": [
+				"**リアルタイムAPI** → API GW HTTP API + Lambda + DynamoDB",
+				"**非同期ジョブキュー** → SQS + Lambda + DLQ",
+				"**複雑なワークフロー** → Step Functions + Lambda",
+				"**スケジューリング** → EventBridge Scheduler + Lambda",
+				"**ストリーム処理** → Kinesis/DynamoDB Streams + Lambda",
+				"**イベント連携** → EventBridge + Lambda（疎結合）",
+				"**大量並列処理** → SNS Fan-out + SQS + Lambda"
+			]
+		},
+		{
+			"title": "Part 4: オブザーバビリティ",
+			"layout": "section",
+			"content": ["見えないものは改善できない"]
+		},
+		{
+			"title": "サーバーレスオブザーバビリティの課題",
+			"layout": "default",
+			"content": [
+				"**短命なプロセス**: コンテナが頻繁に廃棄される",
+				"**分散処理**: 複数Lambda + 複数サービスをまたぐリクエスト",
+				"**コールドスタート**: 実際のビジネス処理とInit処理の混在",
+				"**非同期処理**: SQS/EventBridge経由でリクエストIDが途切れる",
+				"**コスト**: ログ・トレースの収集・保存コストが大きい",
+				"→ 3本柱: **Metrics（何が起きたか）/ Logs（詳細）/ Traces（どこで起きたか）**"
+			]
+		},
+		{
+			"title": "CloudWatch Lambda Insights",
+			"layout": "default",
+			"content": [
+				"Lambda専用の詳細パフォーマンスモニタリング",
+				"Lambda Extensionとして実行環境に自動組み込み",
+				"**収集メトリクス**: cpu_total_time, memory_utilization, init_duration",
+				"**収集メトリクス**: rx_bytes, tx_bytes（VPC Lambdaのみ）",
+				"CloudWatch Dashboardで自動可視化",
+				"有効化: Lambda設定からワンクリックまたはCFnで"
+			]
+		},
+		{
+			"title": "重要CloudWatchメトリクス",
+			"layout": "default",
+			"content": [
+				"| メトリクス | 意味 | アラーム閾値例 |",
+				"|-----------|------|--------------|",
+				"| Duration | 実行時間 | タイムアウト値の80% |",
+				"| Errors | エラー数 | > 0（即時アラート）|",
+				"| Throttles | スロットリング回数 | > 0 |",
+				"| ConcurrentExecutions | 同時実行数 | 上限の80% |",
+				"| IteratorAge | Streamの遅延 | > 60,000ms |",
+				"| DeadLetterErrors | DLQ書き込み失敗 | > 0 |"
+			]
+		},
+		{
+			"title": "X-Ray トレーシング概要",
+			"layout": "default",
+			"content": [
+				"分散リクエストのEnd-to-Endトレースを収集・可視化",
+				"**Trace**: リクエスト全体のライフサイクル",
+				"**Segment**: 各サービス（Lambda, DynamoDB, etc.）の処理",
+				"**Subsegment**: 関数内の特定処理区間",
+				"Lambda関数のアクティブトレーシングを有効化するだけで自動計装",
+				"サービスマップでサービス間の依存関係と遅延を可視化"
+			]
+		},
+		{
+			"title": "X-Ray カスタムサブセグメント",
+			"content": [
+				"外部API呼び出し・重要ビジネスロジックをサブセグメントで計装",
+				"エラー・フォルト・スロットリングの自動分類",
+				"アノテーション（インデックス付き）とメタデータで情報付加"
+			]
+		},
+		{
+			"title": "X-Ray カスタムサブセグメント（コード例）",
+			"content": [],
+			"code": "import boto3\nfrom aws_xray_sdk.core import xray_recorder\n\n@xray_recorder.capture('process_order')\ndef process_order(order_id: str):\n    with xray_recorder.in_subsegment('validate') as sub:\n        sub.put_annotation('order_id', order_id)\n        result = validate_order(order_id)\n    with xray_recorder.in_subsegment('db_write'):\n        save_order(result)\n    return result",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "Lambda Powertools for Python/TypeScript",
+			"layout": "default",
+			"content": [
+				"AWS公式のサーバーレスベストプラクティスライブラリ",
+				"**Logger**: 構造化ログ（JSON）+ コンテキスト自動注入",
+				"**Tracer**: X-Rayラッパー（カスタムセグメント簡易化）",
+				"**Metrics**: EMF形式でカスタムCloudWatchメトリクス送信",
+				"**Event Handler**: API GW, SQS, S3 イベントの型安全なパース",
+				"**Idempotency**: べき等性保証（DynamoDBベース）"
+			]
+		},
+		{
+			"title": "Powertools Logger",
+			"content": [
+				"JSON構造化ログ + Lambda コンテキスト自動付加",
+				"`correlation_id` でリクエストをトレース可能",
+				"ログレベル: DEBUG/INFO/WARNING/ERROR/CRITICAL"
+			]
+		},
+		{
+			"title": "Powertools Logger（コード例）",
+			"content": [],
+			"code": "from aws_lambda_powertools import Logger\nfrom aws_lambda_powertools.utilities.typing import LambdaContext\n\nlogger = Logger(service=\"order-service\")\n\n@logger.inject_lambda_context(correlation_id_path=\"headers.x-request-id\")\ndef handler(event: dict, context: LambdaContext):\n    logger.info(\"Processing order\",\n        extra={\"order_id\": event[\"orderId\"],\n               \"user_id\": event[\"userId\"]})\n    # 出力: {\"service\":\"order-service\",\n    #        \"level\":\"INFO\",\"order_id\":\"...\"}",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "Powertools Metrics",
+			"content": [
+				"EMF (Embedded Metrics Format) でCloudWatchカスタムメトリクスを送信",
+				"CloudWatchへの追加API呼び出し不要（ログに埋め込み）",
+				"ディメンション・名前空間・単位を指定"
+			]
+		},
+		{
+			"title": "Powertools Metrics（コード例）",
+			"content": [],
+			"code": "from aws_lambda_powertools import Metrics\nfrom aws_lambda_powertools.metrics import MetricUnit\n\nmetrics = Metrics(namespace=\"OrderService\",\n                  service=\"order-processor\")\n\n@metrics.log_metrics(capture_cold_start_metric=True)\ndef handler(event, context):\n    # ビジネスメトリクスの記録\n    metrics.add_metric(name=\"OrdersProcessed\",\n                       unit=MetricUnit.Count,\n                       value=len(event[\"orders\"]))\n    metrics.add_dimension(name=\"Environment\",\n                          value=\"production\")",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "CloudWatch Logs Insights 活用",
+			"content": [
+				"Lambda構造化ログをリアルタイムにクエリ分析",
+				"エラーパターンの調査・パフォーマンス分析に活用",
+				"定期実行でメトリクスフィルターの代替も可能"
+			]
+		},
+		{
+			"title": "CloudWatch Logs Insights 活用（コード例）",
+			"content": [],
+			"code": "# エラー率の高い関数を特定\nfields @timestamp, @message, @logStream\n| filter @type = \"REPORT\"\n| parse @message\n    \"Duration: * ms\" as duration\n| filter ispresent(@initDuration)\n| stats\n    avg(duration) as avgDuration,\n    count() as invocations\n  by @logStream\n| sort avgDuration desc\n| limit 10",
+			"codeLanguage": "sql"
+		},
+		{
+			"title": "アラーム設計パターン",
+			"layout": "default",
+			"content": [
+				"**エラー率アラーム**: Errors / Invocations > 1% で警告",
+				"**P99レイテンシ**: Duration P99 > タイムアウトの75%",
+				"**コールドスタート率**: InitDuration のある件数 / 全件",
+				"**同時実行数**: ConcurrentExecutions > 上限の80%",
+				"Composite Alarm: 複数条件をAND/ORで組み合わせ",
+				"SNS → PagerDuty/Slack 連携で即時通知"
+			]
+		},
+		{
+			"title": "コスト可視化と最適化",
+			"layout": "default",
+			"content": [
+				"**AWS Cost Explorer**: Lambda のコストを日次/月次で可視化",
+				"**コストタグ**: 関数ごとにタグを付けてサービス別コスト追跡",
+				"**CloudWatch Metric Math**: GB・秒を計算してコスト予測",
+				"トップ10の高コスト関数を特定して最適化優先順位付け",
+				"Compute Savings Plans: コミットメントで最大17%削減",
+				"Graviton2移行: 20%コスト削減（+性能向上）"
+			]
+		},
+		{
+			"title": "サーバーレスコスト計算式",
+			"layout": "default",
+			"content": [
+				"**リクエスト料金**: $0.0000002 / リクエスト",
+				"**GB・秒料金**: $0.0000166667 / GB・秒 (x86) / $0.0000133334 (arm64)",
+				"例: 1秒 × 512MB × 100万回/月 = 500,000 GB・秒",
+				"= 500,000 × $0.0000166667 = **$8.33/月**",
+				"無料枠: 100万リクエスト + 400,000 GB・秒/月",
+				"**重要**: メモリ最適化で実行時間が半減 → コストも半減"
+			]
+		},
+		{
+			"title": "Part 5: セキュリティ・CI/CD",
+			"layout": "section",
+			"content": ["本番環境を安全に運用するための必須知識"]
+		},
+		{
+			"title": "Lambdaセキュリティベストプラクティス",
+			"layout": "default",
+			"content": [
+				"**最小権限の原則**: 関数ごとに専用IAMロール作成",
+				"**環境変数の暗号化**: KMSカスタムキーで暗号化",
+				"**シークレット管理**: ハードコードせずSecrets Manager使用",
+				"**依存パッケージ監査**: npm audit / pip-audit で脆弱性スキャン",
+				"**コードスキャン**: Amazon CodeGuru / Snyk を CI/CDに組み込み",
+				"**関数URLのCORS設定**: 許可オリジンを明示的に指定"
+			]
+		},
+		{
+			"title": "IAM 最小権限の実装",
+			"content": [
+				"関数が必要とするサービスのみにアクセス許可",
+				"ワイルドカード (`*`) の使用を最小限に",
+				"IAM Access Analyzerでポリシーの過剰権限を検出"
+			]
+		},
+		{
+			"title": "IAM 最小権限の実装（コード例）",
+			"content": [],
+			"code": "# 最小権限ポリシーの例 (SAM)\nResources:\n  MyFunction:\n    Type: AWS::Serverless::Function\n    Properties:\n      Policies:\n        - DynamoDBCrudPolicy:\n            TableName: !Ref OrdersTable\n        - SSMParameterReadPolicy:\n            ParameterName: /prod/db-config\n      # AmazonDynamoDBFullAccess などの広すぎるポリシーは使わない",
+			"codeLanguage": "yaml"
+		},
+		{
+			"title": "シークレット管理",
+			"content": [
+				"**AWS Secrets Manager**: DB認証情報・APIキーの自動ローテーション",
+				"**AWS SSM Parameter Store**: 設定値の階層管理（SecureString）",
+				"キャッシュ: Lambda Extensionがローカルにキャッシュ（API呼び出し削減）",
+				"Secrets Manager Extension: TTL付きローカルキャッシュを自動管理"
+			]
+		},
+		{
+			"title": "シークレット管理（コード例）",
+			"content": [],
+			"code": "import boto3\nfrom aws_lambda_powertools.utilities import parameters\n\n# Powertools でSecrets Managerから取得（キャッシュ付き）\n# max_age: キャッシュTTL（秒）\ndb_secret = parameters.get_secret(\n    \"/prod/db-credentials\",\n    max_age=300,\n    transform=\"json\"\n)\nconnection = create_connection(\n    host=db_secret[\"host\"],\n    password=db_secret[\"password\"]\n)",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "VPC Lambda の設計",
+			"layout": "default",
+			"content": [
+				"VPC内のプライベートリソース（RDS, ElastiCache）にアクセス",
+				"**必要なもの**: プライベートサブネット + セキュリティグループ",
+				"**インターネットアクセス**: NAT Gateway 経由（コスト注意）",
+				"**AWSサービスアクセス**: VPC Endpoint 経由（DynamoDB, S3, etc.）",
+				"ENI: VPC Lambda はENIを使用（2019年以降は起動遅延大幅改善）",
+				"推奨: 本当にVPCが必要なケースのみ適用（コスト・複雑性増加）"
+			]
+		},
+		{
+			"title": "AWS SAM による CI/CD",
+			"content": [
+				"SAM (Serverless Application Model): CFnの拡張IaC",
+				"`sam build` → `sam package` → `sam deploy` のシンプルなフロー",
+				"**SAM Pipeline**: CodePipeline + CodeBuild を自動設定",
+				"カナリアデプロイ: `DeploymentPreference` でTraffic Shiftを設定",
+				"Pre/Post Traffic Hooks: デプロイ前後にテスト Lambda を自動実行"
+			]
+		},
+		{
+			"title": "AWS SAM による CI/CD（コード例）",
+			"content": [],
+			"code": "# SAM テンプレート（カナリアデプロイ）\nMyFunction:\n  Type: AWS::Serverless::Function\n  Properties:\n    AutoPublishAlias: live\n    DeploymentPreference:\n      Type: Canary10Percent5Minutes\n      Alarms:\n        - !Ref MyFunctionErrorAlarm\n      Hooks:\n        PreTraffic: !Ref PreTrafficTestFunction",
+			"codeLanguage": "yaml"
+		},
+		{
+			"title": "AWS CDK による Lambda 管理",
+			"content": [
+				"TypeScript/PythonコードでLambdaインフラを定義",
+				"型安全なIaC: IDEの補完・リファクタリングが活用可能",
+				"**NodejsFunction**: esbuildで自動バンドル・最小化",
+				"**PythonFunction**: Poetry/pipでパッケージ管理",
+				"Constructs: 再利用可能なインフラコンポーネントをライブラリ化",
+				"cdk-nag: セキュリティベストプラクティス違反を自動検出"
+			]
+		},
+		{
+			"title": "AWS CDK による Lambda 管理（コード例）",
+			"content": [],
+			"code": "const fn = new NodejsFunction(this, 'OrderHandler', {\n  entry: 'src/handlers/order.ts',\n  handler: 'handler',\n  runtime: Runtime.NODEJS_22_X,\n  architecture: Architecture.ARM_64,\n  memorySize: 512,\n  timeout: Duration.seconds(30),\n  environment: { TABLE_NAME: table.tableName },\n  bundling: { minify: true, sourceMap: true },\n});",
+			"codeLanguage": "typescript"
+		},
+		{
+			"title": "まとめ: キーテイクアウェイ",
+			"layout": "default",
+			"content": [
+				"**コールドスタート**: SnapStart / Provisioned Concurrency / 軽量ランタイムで対策",
+				"**パフォーマンス**: Power Tuningで最適メモリを計測・初期化コードをグローバルスコープへ",
+				"**アーキテクチャ**: イベント駆動 + SQS/EventBridge + Step Functions で疎結合に",
+				"**オブザーバビリティ**: Lambda Powertools (Logger/Tracer/Metrics) を必ず導入",
+				"**セキュリティ**: 最小権限 + Secrets Manager + VPC設計",
+				"**コスト**: Graviton2 + メモリ最適化 + Savings Plans"
+			]
+		},
+		{
+			"title": "アーキテクチャ決定マトリクス",
+			"layout": "default",
+			"content": [
+				"| ユースケース | 推奨構成 | 注意点 |",
+				"|------------|---------|--------|",
+				"| REST API | HTTP API + Lambda + DynamoDB | N+1クエリ回避 |",
+				"| バッチ処理 | SQS + Lambda + DLQ | 冪等性保証 |",
+				"| ワークフロー | Step Functions Standard | コスト（状態遷移単価）|",
+				"| ストリーム | Kinesis + Lambda | シャード数設計 |",
+				"| スケジュール | EventBridge Scheduler | タイムゾーン考慮 |",
+				"| 15分超処理 | Fargate/ECS + SQS | Lambda上限超え |"
+			]
+		},
+		{
+			"title": "参考リソース",
+			"layout": "default",
+			"content": [
+				"**公式ドキュメント:**",
+				"- [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)",
+				"- [Serverless Land Patterns](https://serverlessland.com/patterns)",
+				"**ツール:**",
+				"- [AWS Lambda Power Tuning](https://github.com/alexcasalboni/aws-lambda-power-tuning)",
+				"- [Lambda Powertools (Python/TS)](https://powertools.aws.dev/)"
+			]
+		},
+		{
+			"title": "参考リソース (2/2)",
+			"layout": "default",
+			"content": [
+				"**ガイド・ブログ:**",
+				"- [Serverless Best Practices (AWS Well-Architected)](https://docs.aws.amazon.com/wellarchitected/latest/serverless-applications-lens/welcome.html)",
+				"- [The Burning Monk Blog (Yan Cui)](https://theburningmonk.com/)",
+				"**コース:**",
+				"- [Production-Ready Serverless (Manning)](https://productionreadyserverless.com/)",
+				"- AWS Skill Builder — Serverless Learning Plan"
+			]
+		},
+		{
+			"title": "Q & A",
+			"layout": "center",
+			"content": [
+				"ご質問をどうぞ",
+				"",
+				"スライド資料: docs/20260219200000_aws-lambda-serverless-deep-dive/dist/",
+				"Lambda Powertools: powertools.aws.dev",
+				"Serverless Land: serverlessland.com"
+			]
+		}
+	]
+}

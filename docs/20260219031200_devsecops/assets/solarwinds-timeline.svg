@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440"
+     style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:Arial,sans-serif;">
+
+  <!-- Background -->
+  <rect width="1000" height="440" fill="#1A1A2E" rx="12"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="1000" height="52" fill="#16213E" rx="12"/>
+  <rect x="0" y="40" width="1000" height="12" fill="#16213E"/>
+  <text x="500" y="34" text-anchor="middle" font-size="21" font-weight="bold" fill="#FF6B6B" font-family="Arial,sans-serif">SolarWinds攻撃 タイムライン（2020）</text>
+
+  <!-- Timeline spine -->
+  <line x1="60" y1="200" x2="940" y2="200" stroke="#444466" stroke-width="3"/>
+
+  <!-- Phase data: 6 events -->
+  <!-- x positions: 80, 225, 370, 515, 700, 880 -->
+
+  <!-- Event 1: 2019年10月 — attack (red) -->
+  <circle cx="80" cy="200" r="14" fill="#C62828" stroke="#EF9A9A" stroke-width="2.5"/>
+  <text x="80" y="204" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="Arial,sans-serif">1</text>
+  <!-- Connector up -->
+  <line x1="80" y1="186" x2="80" y2="148" stroke="#EF9A9A" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="8" y="88" width="144" height="58" fill="#B71C1C" rx="6"/>
+  <text x="80" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFCDD2" font-family="Arial,sans-serif">2019年10月</text>
+  <text x="80" y="128" text-anchor="middle" font-size="11" fill="white" font-family="Arial,sans-serif">Orionソースコード</text>
+  <text x="80" y="144" text-anchor="middle" font-size="11" fill="white" font-family="Arial,sans-serif">侵害</text>
+
+  <!-- Event 2: 2020年2月 — attack (red) -->
+  <circle cx="225" cy="200" r="14" fill="#C62828" stroke="#EF9A9A" stroke-width="2.5"/>
+  <text x="225" y="204" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="Arial,sans-serif">2</text>
+  <line x1="225" y1="214" x2="225" y2="256" stroke="#EF9A9A" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="153" y="258" width="144" height="58" fill="#B71C1C" rx="6"/>
+  <text x="225" y="278" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFCDD2" font-family="Arial,sans-serif">2020年2月</text>
+  <text x="225" y="296" text-anchor="middle" font-size="11" fill="white" font-family="Arial,sans-serif">バックドア(SUNBURST)</text>
+  <text x="225" y="312" text-anchor="middle" font-size="11" fill="white" font-family="Arial,sans-serif">挿入</text>
+
+  <!-- Event 3: 2020年3月 — attack (red) -->
+  <circle cx="380" cy="200" r="14" fill="#C62828" stroke="#EF9A9A" stroke-width="2.5"/>
+  <text x="380" y="204" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="Arial,sans-serif">3</text>
+  <line x1="380" y1="186" x2="380" y2="148" stroke="#EF9A9A" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="308" y="88" width="144" height="58" fill="#AD1457" rx="6"/>
+  <text x="380" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#FCE4EC" font-family="Arial,sans-serif">2020年3月</text>
+  <text x="380" y="128" text-anchor="middle" font-size="11" fill="white" font-family="Arial,sans-serif">汚染ビルド</text>
+  <text x="380" y="144" text-anchor="middle" font-size="11" fill="white" font-family="Arial,sans-serif">配布開始</text>
+
+  <!-- Event 4: 2020年6月 — attack (deep red) -->
+  <circle cx="535" cy="200" r="14" fill="#6A1429" stroke="#EF9A9A" stroke-width="2.5"/>
+  <text x="535" y="204" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="Arial,sans-serif">4</text>
+  <line x1="535" y1="214" x2="535" y2="256" stroke="#EF9A9A" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="463" y="258" width="144" height="68" fill="#6A1429" rx="6"/>
+  <text x="535" y="278" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFCDD2" font-family="Arial,sans-serif">2020年6月</text>
+  <text x="535" y="296" text-anchor="middle" font-size="11" fill="white" font-family="Arial,sans-serif">18,000組織へ</text>
+  <text x="535" y="312" text-anchor="middle" font-size="11" fill="white" font-family="Arial,sans-serif">配布完了</text>
+  <text x="535" y="326" text-anchor="middle" font-size="10" fill="#FFAB91" font-family="Arial,sans-serif">政府機関含む</text>
+
+  <!-- Event 5: 2020年12月 — discovery (orange) -->
+  <circle cx="720" cy="200" r="14" fill="#E65100" stroke="#FFCC80" stroke-width="2.5"/>
+  <text x="720" y="204" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="Arial,sans-serif">5</text>
+  <line x1="720" y1="186" x2="720" y2="148" stroke="#FFCC80" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="648" y="88" width="144" height="58" fill="#E65100" rx="6"/>
+  <text x="720" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFF3E0" font-family="Arial,sans-serif">2020年12月</text>
+  <text x="720" y="128" text-anchor="middle" font-size="11" fill="white" font-family="Arial,sans-serif">FireEyeが発見・</text>
+  <text x="720" y="144" text-anchor="middle" font-size="11" fill="white" font-family="Arial,sans-serif">公表</text>
+
+  <!-- Event 6: 2021年1月 — resolution (teal) -->
+  <circle cx="900" cy="200" r="14" fill="#00695C" stroke="#80CBC4" stroke-width="2.5"/>
+  <text x="900" y="204" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="Arial,sans-serif">6</text>
+  <line x1="900" y1="214" x2="900" y2="256" stroke="#80CBC4" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="828" y="258" width="144" height="58" fill="#00695C" rx="6"/>
+  <text x="900" y="278" text-anchor="middle" font-size="12" font-weight="bold" fill="#E0F2F1" font-family="Arial,sans-serif">2021年1月</text>
+  <text x="900" y="296" text-anchor="middle" font-size="11" fill="white" font-family="Arial,sans-serif">全容解明</text>
+  <text x="900" y="312" text-anchor="middle" font-size="11" fill="white" font-family="Arial,sans-serif">対策策定</text>
+
+  <!-- Duration annotation: attack phase -->
+  <line x1="80" y1="175" x2="535" y2="175" stroke="#C62828" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <!-- Arrow caps on duration line -->
+  <polygon points="80,175 92,170 92,180" fill="#C62828"/>
+  <polygon points="535,175 523,170 523,180" fill="#C62828"/>
+  <rect x="255" y="162" width="120" height="22" fill="#1A1A2E"/>
+  <text x="307" y="177" text-anchor="middle" font-size="11" fill="#EF9A9A" font-family="Arial,sans-serif">攻撃段階（14ヶ月）</text>
+
+  <!-- Legend -->
+  <rect x="30" y="352" width="560" height="62" fill="#16213E" rx="8"/>
+  <rect x="46" y="368" width="14" height="14" fill="#C62828" rx="2"/>
+  <text x="66" y="380" font-size="12" fill="#FFCDD2" font-family="Arial,sans-serif">攻撃フェーズ</text>
+  <rect x="166" y="368" width="14" height="14" fill="#E65100" rx="2"/>
+  <text x="186" y="380" font-size="12" fill="#FFCC80" font-family="Arial,sans-serif">発見フェーズ</text>
+  <rect x="286" y="368" width="14" height="14" fill="#00695C" rx="2"/>
+  <text x="306" y="380" font-size="12" fill="#80CBC4" font-family="Arial,sans-serif">解決フェーズ</text>
+  <text x="46" y="402" font-size="11" fill="#78909C" font-family="Arial,sans-serif">被害: 米国政府機関・Fortune 500企業・セキュリティ企業 計18,000組織以上</text>
+
+  <!-- Impact callout -->
+  <rect x="620" y="352" width="350" height="62" fill="#3E1A1A" rx="8"/>
+  <text x="795" y="374" text-anchor="middle" font-size="12" font-weight="bold" fill="#FF6B6B" font-family="Arial,sans-serif">教訓: ソフトウェアサプライチェーン攻撃</text>
+  <text x="795" y="392" text-anchor="middle" font-size="11" fill="#FFAB91" font-family="Arial,sans-serif">SBOMとビルド整合性検証が</text>
+  <text x="795" y="408" text-anchor="middle" font-size="11" fill="#FFAB91" font-family="Arial,sans-serif">早期検出に有効</text>
+</svg>

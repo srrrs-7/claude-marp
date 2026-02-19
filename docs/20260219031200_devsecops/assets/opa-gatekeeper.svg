@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:Arial,sans-serif;">
+
+  <!-- Background -->
+  <rect width="900" height="540" fill="#F0F4F8" rx="8"/>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#0D47A1">OPA / Gatekeeper — Policy as Code</text>
+
+  <!-- ===== LEFT SIDE: Flow ===== -->
+
+  <!-- kubectl apply -->
+  <rect x="20" y="55" width="120" height="52" rx="8" fill="#37474F" stroke="#263238" stroke-width="2" style="filter:drop-shadow(1px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="80" y="77" text-anchor="middle" font-size="12" font-weight="bold" fill="white">kubectl</text>
+  <text x="80" y="93" text-anchor="middle" font-size="12" font-weight="bold" fill="#90A4AE">apply</text>
+
+  <!-- arrow: kubectl → K8s API Server -->
+  <line x1="141" y1="81" x2="187" y2="81" stroke="#546E7A" stroke-width="2"/>
+  <polygon points="187,76 199,81 187,86" fill="#546E7A"/>
+  <text x="164" y="72" text-anchor="middle" font-size="9" fill="#546E7A">YAML送信</text>
+
+  <!-- K8s API Server -->
+  <rect x="200" y="55" width="140" height="52" rx="8" fill="#1565C0" stroke="#0D47A1" stroke-width="2" style="filter:drop-shadow(1px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="270" y="76" text-anchor="middle" font-size="12" font-weight="bold" fill="white">K8s API</text>
+  <text x="270" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#BBDEFB">Server</text>
+
+  <!-- arrow: API Server → Admission Controller -->
+  <line x1="341" y1="81" x2="387" y2="81" stroke="#546E7A" stroke-width="2"/>
+  <polygon points="387,76 399,81 387,86" fill="#546E7A"/>
+  <text x="364" y="72" text-anchor="middle" font-size="9" fill="#546E7A">Webhook</text>
+
+  <!-- Gatekeeper box (large) -->
+  <rect x="400" y="42" width="330" height="240" rx="10" fill="#E8EAF6" stroke="#3949AB" stroke-width="2.5" style="filter:drop-shadow(2px 3px 6px rgba(0,0,0,0.15))"/>
+  <text x="565" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#1A237E">Admission Controller</text>
+  <text x="565" y="78" text-anchor="middle" font-size="11" fill="#3F51B5">(Gatekeeper)</text>
+
+  <!-- ConstraintTemplate sub-box -->
+  <rect x="415" y="90" width="140" height="80" rx="7" fill="#3F51B5" stroke="#283593" stroke-width="2"/>
+  <text x="485" y="112" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Constraint</text>
+  <text x="485" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Template</text>
+  <text x="485" y="147" text-anchor="middle" font-size="9" fill="#C5CAE9">Rego Policy定義</text>
+  <text x="485" y="161" text-anchor="middle" font-size="9" fill="#C5CAE9">CRD as Template</text>
+
+  <!-- Constraint sub-box -->
+  <rect x="570" y="90" width="140" height="80" rx="7" fill="#5C6BC0" stroke="#3949AB" stroke-width="2"/>
+  <text x="640" y="115" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Constraint</text>
+  <text x="640" y="132" text-anchor="middle" font-size="11" font-weight="bold" fill="white">(Instance)</text>
+  <text x="640" y="151" text-anchor="middle" font-size="9" fill="#E8EAF6">パラメータ設定</text>
+  <text x="640" y="165" text-anchor="middle" font-size="9" fill="#E8EAF6">対象リソース指定</text>
+
+  <!-- connector between two sub-boxes -->
+  <line x1="555" y1="130" x2="569" y2="130" stroke="#9FA8DA" stroke-width="1.5" stroke-dasharray="4,2"/>
+
+  <!-- OPA evaluate box -->
+  <rect x="455" y="188" width="220" height="52" rx="7" fill="#1A237E" stroke="#0D1642" stroke-width="2"/>
+  <text x="565" y="210" text-anchor="middle" font-size="12" font-weight="bold" fill="white">OPA エンジン</text>
+  <text x="565" y="227" text-anchor="middle" font-size="10" fill="#9FA8DA">Regoポリシー評価</text>
+
+  <!-- arrows from sub-boxes to OPA -->
+  <line x1="485" y1="170" x2="530" y2="188" stroke="#7986CB" stroke-width="1.5"/>
+  <polygon points="525,184 533,193 537,183" fill="#7986CB"/>
+  <line x1="640" y1="170" x2="600" y2="188" stroke="#7986CB" stroke-width="1.5"/>
+  <polygon points="605,183 597,193 605,193" fill="#7986CB"/>
+
+  <!-- ===== DECISION DIAMOND below Gatekeeper ===== -->
+  <!-- Decision polygon: Allow / Deny -->
+  <polygon points="565,306 620,338 565,370 510,338" fill="#FF8F00" stroke="#E65100" stroke-width="2" style="filter:drop-shadow(1px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="565" y="333" text-anchor="middle" font-size="11" font-weight="bold" fill="white">判定</text>
+  <text x="565" y="349" text-anchor="middle" font-size="10" fill="white">Allow/Deny</text>
+
+  <!-- Arrow from OPA to decision -->
+  <line x1="565" y1="282" x2="565" y2="306" stroke="#546E7A" stroke-width="2"/>
+  <polygon points="560,306 565,318 570,306" fill="#546E7A"/>
+
+  <!-- Allow branch (left) -->
+  <line x1="510" y1="338" x2="440" y2="338" stroke="#2E7D32" stroke-width="2"/>
+  <polygon points="440,333 428,338 440,343" fill="#2E7D32"/>
+  <rect x="310" y="314" width="117" height="48" rx="7" fill="#2E7D32" stroke="#1B5E20" stroke-width="2"/>
+  <text x="369" y="335" text-anchor="middle" font-size="12" font-weight="bold" fill="white">ALLOW</text>
+  <text x="369" y="352" text-anchor="middle" font-size="10" fill="#C8E6C9">リソース作成許可</text>
+  <text x="459" y="328" text-anchor="middle" font-size="10" fill="#2E7D32">許可</text>
+
+  <!-- Allow → etcd -->
+  <line x1="310" y1="338" x2="240" y2="338" stroke="#2E7D32" stroke-width="2"/>
+  <polygon points="240,333 228,338 240,343" fill="#2E7D32"/>
+  <rect x="160" y="316" width="78" height="44" rx="6" fill="#4CAF50" stroke="#2E7D32" stroke-width="2"/>
+  <text x="199" y="337" text-anchor="middle" font-size="11" font-weight="bold" fill="white">etcd</text>
+  <text x="199" y="352" text-anchor="middle" font-size="9" fill="white">保存</text>
+
+  <!-- Allow → back to developer (kubectl response ok) -->
+  <line x1="199" y1="360" x2="199" y2="410" stroke="#2E7D32" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="80" y1="410" x2="199" y2="410" stroke="#2E7D32" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="80" y1="410" x2="80" y2="108" stroke="#2E7D32" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="75,108 80,96 85,108" fill="#2E7D32"/>
+  <text x="60" y="300" font-size="9" fill="#2E7D32" transform="rotate(-90,60,300)">作成成功レスポンス</text>
+
+  <!-- Deny branch (right) -->
+  <line x1="620" y1="338" x2="680" y2="338" stroke="#C62828" stroke-width="2"/>
+  <polygon points="680,333 692,338 680,343" fill="#C62828"/>
+  <rect x="693" y="314" width="110" height="48" rx="7" fill="#C62828" stroke="#B71C1C" stroke-width="2"/>
+  <text x="748" y="335" text-anchor="middle" font-size="12" font-weight="bold" fill="white">DENY</text>
+  <text x="748" y="352" text-anchor="middle" font-size="10" fill="#FFCDD2">リクエスト拒否</text>
+  <text x="655" y="328" text-anchor="middle" font-size="10" fill="#C62828">拒否</text>
+
+  <!-- Deny → error response to developer -->
+  <line x1="803" y1="338" x2="840" y2="338" stroke="#C62828" stroke-width="2"/>
+  <line x1="840" y1="338" x2="840" y2="81" stroke="#C62828" stroke-width="2"/>
+  <line x1="840" y1="81" x2="807" y2="81" stroke="#C62828" stroke-width="2"/>
+  <polygon points="807,76 795,81 807,86" fill="#C62828"/>
+
+  <!-- Error bubble -->
+  <rect x="700" y="390" width="175" height="62" rx="7" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="1.5"/>
+  <text x="788" y="408" text-anchor="middle" font-size="10" font-weight="bold" fill="#B71C1C">違反メッセージ例:</text>
+  <text x="788" y="424" text-anchor="middle" font-size="9" fill="#C62828">"root実行は禁止です"</text>
+  <text x="788" y="438" text-anchor="middle" font-size="9" fill="#C62828">Error: policy violation</text>
+  <!-- Arrow from deny to error bubble -->
+  <line x1="748" y1="362" x2="748" y2="389" stroke="#C62828" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="743,389 748,401 753,389" fill="#C62828"/>
+
+  <!-- ===== RIGHT PANEL: Rego example ===== -->
+  <rect x="16" y="455" width="868" height="77" rx="8" fill="#263238" stroke="#37474F" stroke-width="2" style="filter:drop-shadow(1px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="430" y="474" text-anchor="middle" font-size="11" font-weight="bold" fill="#80CBC4">Rego Policy 例 (ConstraintTemplate)</text>
+  <text x="30" y="492" font-size="10" fill="#A5D6A7" font-family="Courier New,monospace">deny[msg] {</text>
+  <text x="30" y="507" font-size="10" fill="#80DEEA" font-family="Courier New,monospace">  input.request.kind.kind == "Pod"</text>
+  <text x="30" y="522" font-size="10" fill="#80DEEA" font-family="Courier New,monospace">  not input.request.object.spec.securityContext.runAsNonRoot</text>
+  <text x="460" y="492" font-size="10" fill="#FFCC80" font-family="Courier New,monospace">msg := "root実行は禁止: runAsNonRoot: true を設定してください"</text>
+  <text x="460" y="507" font-size="10" fill="#B0BEC5" font-family="Courier New,monospace">}</text>
+  <text x="460" y="522" font-size="10" fill="#78909C" font-family="Courier New,monospace">// OPA Rego言語 — 宣言型ポリシー記述</text>
+
+</svg>

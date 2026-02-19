@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:Arial,sans-serif;">
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1000" height="64" rx="8" ry="8" fill="#232F3E"/>
+  <text x="500" y="40" text-anchor="middle" fill="#FF9800" font-size="22" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">CI/CDセキュリティパイプライン</text>
+
+  <!-- Legend -->
+  <rect x="680" y="74" width="16" height="16" rx="3" fill="#1565C0"/>
+  <text x="700" y="87" fill="#333" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">通常ステージ</text>
+  <rect x="800" y="74" width="16" height="16" rx="3" fill="#E53935"/>
+  <text x="820" y="87" fill="#333" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">セキュリティゲート</text>
+
+  <!--
+    9 stages, each box ~90px wide, 20px gap + arrow
+    Stage positions (center x): 
+      Code=55, SAST=165, Build=280, SCA=390, Test=500, DAST=615, Stage=725, Sign=840, Deploy=955
+    Box: width=90, height=90, top y=110
+    Regular: #1565C0  Security gate: #E53935/#B71C1C header
+  -->
+
+  <!-- Helper: box top-left x = cx - 45, y=110, w=90, h=90 -->
+
+  <!-- 1. Code (regular) cx=55 -->
+  <rect x="10" y="110" width="90" height="90" rx="8" ry="8" fill="#1565C0" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="10" y="110" width="90" height="30" rx="8" ry="8" fill="#0D47A1"/>
+  <rect x="10" y="128" width="90" height="12" fill="#0D47A1"/>
+  <text x="55" y="130" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">Code</text>
+  <text x="55" y="155" text-anchor="middle" fill="#BBDEFB" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">コード</text>
+  <text x="55" y="170" text-anchor="middle" fill="#BBDEFB" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">プッシュ</text>
+  <text x="55" y="185" text-anchor="middle" fill="#BBDEFB" font-size="10" font-family="Arial,sans-serif" letter-spacing="0">Git/PR</text>
+  <!-- Arrow right -->
+  <line x1="100" y1="155" x2="114" y2="155" stroke="#555" stroke-width="2"/>
+  <polygon points="114,155 106,150 106,160" fill="#555"/>
+
+  <!-- 2. SAST/Secrets Scan (security gate) cx=165 -->
+  <rect x="115" y="110" width="100" height="90" rx="8" ry="8" fill="#E53935" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="115" y="110" width="100" height="30" rx="8" ry="8" fill="#B71C1C"/>
+  <rect x="115" y="128" width="100" height="12" fill="#B71C1C"/>
+  <text x="165" y="130" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">SAST</text>
+  <text x="165" y="152" text-anchor="middle" fill="#FFCDD2" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">静的解析</text>
+  <text x="165" y="167" text-anchor="middle" fill="#FFCDD2" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">Secrets Scan</text>
+  <text x="165" y="182" text-anchor="middle" fill="#FFCDD2" font-size="10" font-family="Arial,sans-serif" letter-spacing="0">Semgrep/Gitleaks</text>
+  <!-- Security badge -->
+  <text x="165" y="196" text-anchor="middle" fill="#FF8A80" font-size="10" font-family="Arial,sans-serif" letter-spacing="0">🔒 ゲート</text>
+  <!-- Arrow right -->
+  <line x1="215" y1="155" x2="229" y2="155" stroke="#555" stroke-width="2"/>
+  <polygon points="229,155 221,150 221,160" fill="#555"/>
+
+  <!-- 3. Build (regular) cx=285 -->
+  <rect x="230" y="110" width="90" height="90" rx="8" ry="8" fill="#1565C0" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="230" y="110" width="90" height="30" rx="8" ry="8" fill="#0D47A1"/>
+  <rect x="230" y="128" width="90" height="12" fill="#0D47A1"/>
+  <text x="275" y="130" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">Build</text>
+  <text x="275" y="155" text-anchor="middle" fill="#BBDEFB" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">ビルド</text>
+  <text x="275" y="170" text-anchor="middle" fill="#BBDEFB" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">コンテナ化</text>
+  <text x="275" y="185" text-anchor="middle" fill="#BBDEFB" font-size="10" font-family="Arial,sans-serif" letter-spacing="0">Docker/OCI</text>
+  <line x1="320" y1="155" x2="334" y2="155" stroke="#555" stroke-width="2"/>
+  <polygon points="334,155 326,150 326,160" fill="#555"/>
+
+  <!-- 4. SCA/SBOM (security gate) cx=390 -->
+  <rect x="335" y="110" width="100" height="90" rx="8" ry="8" fill="#E53935" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="335" y="110" width="100" height="30" rx="8" ry="8" fill="#B71C1C"/>
+  <rect x="335" y="128" width="100" height="12" fill="#B71C1C"/>
+  <text x="385" y="130" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">SCA/SBOM</text>
+  <text x="385" y="152" text-anchor="middle" fill="#FFCDD2" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">依存関係解析</text>
+  <text x="385" y="167" text-anchor="middle" fill="#FFCDD2" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">SBOM生成</text>
+  <text x="385" y="182" text-anchor="middle" fill="#FFCDD2" font-size="10" font-family="Arial,sans-serif" letter-spacing="0">Trivy/Grype</text>
+  <text x="385" y="196" text-anchor="middle" fill="#FF8A80" font-size="10" font-family="Arial,sans-serif" letter-spacing="0">🔒 ゲート</text>
+  <line x1="435" y1="155" x2="449" y2="155" stroke="#555" stroke-width="2"/>
+  <polygon points="449,155 441,150 441,160" fill="#555"/>
+
+  <!-- 5. Test (regular) cx=505 -->
+  <rect x="450" y="110" width="90" height="90" rx="8" ry="8" fill="#1565C0" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="450" y="110" width="90" height="30" rx="8" ry="8" fill="#0D47A1"/>
+  <rect x="450" y="128" width="90" height="12" fill="#0D47A1"/>
+  <text x="495" y="130" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">Test</text>
+  <text x="495" y="155" text-anchor="middle" fill="#BBDEFB" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">自動テスト</text>
+  <text x="495" y="170" text-anchor="middle" fill="#BBDEFB" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">統合テスト</text>
+  <text x="495" y="185" text-anchor="middle" fill="#BBDEFB" font-size="10" font-family="Arial,sans-serif" letter-spacing="0">Jest/pytest</text>
+  <line x1="540" y1="155" x2="554" y2="155" stroke="#555" stroke-width="2"/>
+  <polygon points="554,155 546,150 546,160" fill="#555"/>
+
+  <!-- 6. DAST (security gate) cx=615 -->
+  <rect x="555" y="110" width="100" height="90" rx="8" ry="8" fill="#E53935" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="555" y="110" width="100" height="30" rx="8" ry="8" fill="#B71C1C"/>
+  <rect x="555" y="128" width="100" height="12" fill="#B71C1C"/>
+  <text x="605" y="130" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">DAST</text>
+  <text x="605" y="152" text-anchor="middle" fill="#FFCDD2" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">動的解析</text>
+  <text x="605" y="167" text-anchor="middle" fill="#FFCDD2" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">ペネトレーション</text>
+  <text x="605" y="182" text-anchor="middle" fill="#FFCDD2" font-size="10" font-family="Arial,sans-serif" letter-spacing="0">OWASP ZAP</text>
+  <text x="605" y="196" text-anchor="middle" fill="#FF8A80" font-size="10" font-family="Arial,sans-serif" letter-spacing="0">🔒 ゲート</text>
+  <line x1="655" y1="155" x2="669" y2="155" stroke="#555" stroke-width="2"/>
+  <polygon points="669,155 661,150 661,160" fill="#555"/>
+
+  <!-- 7. Stage (regular) cx=725 -->
+  <rect x="670" y="110" width="90" height="90" rx="8" ry="8" fill="#1565C0" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="670" y="110" width="90" height="30" rx="8" ry="8" fill="#0D47A1"/>
+  <rect x="670" y="128" width="90" height="12" fill="#0D47A1"/>
+  <text x="715" y="130" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">Stage</text>
+  <text x="715" y="155" text-anchor="middle" fill="#BBDEFB" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">ステージング</text>
+  <text x="715" y="170" text-anchor="middle" fill="#BBDEFB" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">本番同等環境</text>
+  <text x="715" y="185" text-anchor="middle" fill="#BBDEFB" font-size="10" font-family="Arial,sans-serif" letter-spacing="0">k8s/Helm</text>
+  <line x1="760" y1="155" x2="774" y2="155" stroke="#555" stroke-width="2"/>
+  <polygon points="774,155 766,150 766,160" fill="#555"/>
+
+  <!-- 8. Sign/Attest (security gate) cx=840 -->
+  <rect x="775" y="110" width="105" height="90" rx="8" ry="8" fill="#E53935" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="775" y="110" width="105" height="30" rx="8" ry="8" fill="#B71C1C"/>
+  <rect x="775" y="128" width="105" height="12" fill="#B71C1C"/>
+  <text x="827" y="130" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">Sign/Attest</text>
+  <text x="827" y="152" text-anchor="middle" fill="#FFCDD2" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">署名・証明</text>
+  <text x="827" y="167" text-anchor="middle" fill="#FFCDD2" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">サプライチェーン</text>
+  <text x="827" y="182" text-anchor="middle" fill="#FFCDD2" font-size="10" font-family="Arial,sans-serif" letter-spacing="0">Cosign/SLSA</text>
+  <text x="827" y="196" text-anchor="middle" fill="#FF8A80" font-size="10" font-family="Arial,sans-serif" letter-spacing="0">🔒 ゲート</text>
+  <line x1="880" y1="155" x2="894" y2="155" stroke="#555" stroke-width="2"/>
+  <polygon points="894,155 886,150 886,160" fill="#555"/>
+
+  <!-- 9. Deploy (regular) cx=950 -->
+  <rect x="895" y="110" width="90" height="90" rx="8" ry="8" fill="#1565C0" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="895" y="110" width="90" height="30" rx="8" ry="8" fill="#0D47A1"/>
+  <rect x="895" y="128" width="90" height="12" fill="#0D47A1"/>
+  <text x="940" y="130" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">Deploy</text>
+  <text x="940" y="155" text-anchor="middle" fill="#BBDEFB" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">本番</text>
+  <text x="940" y="170" text-anchor="middle" fill="#BBDEFB" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">デプロイ</text>
+  <text x="940" y="185" text-anchor="middle" fill="#BBDEFB" font-size="10" font-family="Arial,sans-serif" letter-spacing="0">ArgoCD/Flux</text>
+
+  <!-- Continuous monitoring bar below -->
+  <rect x="10" y="220" width="975" height="36" rx="6" ry="6" fill="#37474F"/>
+  <text x="500" y="243" text-anchor="middle" fill="#80CBC4" font-size="13" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">継続的モニタリング: CloudTrail / Falco / SIEM / アラート</text>
+
+  <!-- Flow description -->
+  <text x="500" y="290" text-anchor="middle" fill="#555" font-size="13" font-family="Arial,sans-serif" letter-spacing="0">各セキュリティゲートで問題検出時はパイプラインを自動停止 → 開発者にフィードバック</text>
+  <text x="500" y="312" text-anchor="middle" fill="#555" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">セキュリティポリシーはコードで管理 (Policy as Code) — OPA / Conftest</text>
+
+  <!-- Phase labels below pipeline -->
+  <line x1="10" y1="275" x2="225" y2="275" stroke="#1565C0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="117" y="295" text-anchor="middle" fill="#1565C0" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">ソース管理フェーズ</text>
+  <line x1="230" y1="275" x2="540" y2="275" stroke="#388E3C" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="385" y="295" text-anchor="middle" fill="#388E3C" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">ビルド・テストフェーズ</text>
+  <line x1="545" y1="275" x2="985" y2="275" stroke="#6A1B9A" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="765" y="295" text-anchor="middle" fill="#6A1B9A" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">デプロイメントフェーズ</text>
+
+</svg>

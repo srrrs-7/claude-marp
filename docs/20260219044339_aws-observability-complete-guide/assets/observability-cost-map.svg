@@ -1,0 +1,62 @@
+<svg viewBox="0 0 960 510" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="510" fill="#0f172a" rx="12"/>
+  <text x="480" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#FF9900">AWS Observability コスト構造 ＆ 削減戦略</text>
+
+  <!-- Section headers -->
+  <text x="160" y="58" text-anchor="middle" font-size="12" font-weight="bold" fill="#94a3b8">サービス別コスト</text>
+  <text x="560" y="58" text-anchor="middle" font-size="12" font-weight="bold" fill="#94a3b8">削減戦略</text>
+
+  <!-- CW Logs row -->
+  <rect x="20" y="66" width="460" height="74" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="36" y="86" font-size="12" font-weight="bold" fill="#22c55e">CloudWatch Logs</text>
+  <text x="36" y="104" font-size="10" fill="#94a3b8">収集: $0.50/GB　保存: $0.03/GB/月</text>
+  <text x="36" y="120" font-size="10" fill="#94a3b8">Insights: $0.005/GBスキャン　IA: $0.25/GB収集</text>
+
+  <rect x="500" y="66" width="440" height="74" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="516" y="86" font-size="11" fill="#86efac">① 保持期間設定: Never Expire → 30日に変更</text>
+  <text x="516" y="104" font-size="11" fill="#86efac">② IA (Infrequent Access) クラスに変更（50%削減）</text>
+  <text x="516" y="120" font-size="11" fill="#86efac">③ Subscription Filter → S3 + Glacier移行（長期保存）</text>
+
+  <!-- CW Metrics row -->
+  <rect x="20" y="152" width="460" height="74" rx="8" fill="#1e293b" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="36" y="172" font-size="12" font-weight="bold" fill="#FF9900">CloudWatch Metrics</text>
+  <text x="36" y="190" font-size="10" fill="#94a3b8">標準: $0.30/メトリクス/月（最初10,000無料）</text>
+  <text x="36" y="206" font-size="10" fill="#94a3b8">高解像度: $0.30/メトリクス（10倍コスト！）</text>
+
+  <rect x="500" y="152" width="440" height="74" rx="8" fill="#1e293b" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="516" y="172" font-size="11" fill="#fcd34d">① 不要カスタムメトリクスを削除（AWS Namespace は無料）</text>
+  <text x="516" y="190" font-size="11" fill="#fcd34d">② EMFで複数メトリクスを1 PutLogEvents に集約</text>
+  <text x="516" y="206" font-size="11" fill="#fcd34d">③ 高解像度メトリクスは本当に必要なKPIのみに絞る</text>
+
+  <!-- X-Ray row -->
+  <rect x="20" y="238" width="460" height="74" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="36" y="258" font-size="12" font-weight="bold" fill="#a78bfa">AWS X-Ray</text>
+  <text x="36" y="276" font-size="10" fill="#94a3b8">記録: $5/1Mトレース　取得: $0.50/1Mトレース</text>
+  <text x="36" y="292" font-size="10" fill="#94a3b8">スキャン: $0.50/1Mセグメント</text>
+
+  <rect x="500" y="238" width="440" height="74" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="516" y="258" font-size="11" fill="#c4b5fd">① サンプリング率を下げる（デフォルト5%、本番1%等）</text>
+  <text x="516" y="276" font-size="11" fill="#c4b5fd">② カスタムルール: 重要APIは100%、ヘルスチェックは0%</text>
+  <text x="516" y="292" font-size="11" fill="#c4b5fd">③ X-Ray Groups でフィルタ → 不要トレース取得を減らす</text>
+
+  <!-- AMP/AMG row -->
+  <rect x="20" y="324" width="460" height="74" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="36" y="344" font-size="12" font-weight="bold" fill="#f97316">AMP + AMG</text>
+  <text x="36" y="362" font-size="10" fill="#94a3b8">AMP: $0.90/GiB ingested, $0.03/GiB stored/month</text>
+  <text x="36" y="378" font-size="10" fill="#94a3b8">AMG: $9/active editor/月, $5/active viewer/月</text>
+
+  <rect x="500" y="324" width="440" height="74" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="516" y="344" font-size="11" fill="#fdba74">① recording rules でダウンサンプリング（高頻度 → 5分集計）</text>
+  <text x="516" y="362" font-size="11" fill="#fdba74">② label dropping: 不要ラベルを削除してカーディナリティ削減</text>
+  <text x="516" y="378" font-size="11" fill="#fdba74">③ viewer只読ユーザーを減らす / ダッシュボード公開機能活用</text>
+
+  <!-- Separator line -->
+  <line x1="480" y1="66" x2="480" y2="398" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Bottom: ROI calculation -->
+  <rect x="20" y="413" width="920" height="82" rx="8" fill="#1e293b" stroke="#FF9900" stroke-width="1.5"/>
+  <text x="480" y="433" text-anchor="middle" font-size="12" font-weight="bold" fill="#FF9900">ROI計算 — Observabilityのコスト正当化</text>
+  <text x="40" y="453" font-size="11" fill="#e2e8f0">月次コスト例: CW Logs $200 + Metrics $150 + X-Ray $80 + AMP $120 + AMG $45 = 約 $595/月</text>
+  <text x="40" y="471" font-size="11" fill="#e2e8f0">MTTR短縮: 障害対応2h → 20分（-83%）× 月2回 × エンジニア単価 $100/h = $280節約/月</text>
+  <text x="40" y="489" font-size="11" fill="#6ee7b7">予防効果: 本番障害1件回避 = 売上損失$1,000〜$10,000相当 → 観測コストの10〜100倍リターン</text>
+</svg>
