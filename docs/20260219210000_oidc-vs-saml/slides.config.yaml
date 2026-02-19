@@ -1,0 +1,23 @@
+topic: "OIDC vs SAML: アーキテクトの選択ガイド"
+language: "ja"
+
+output:
+  dir: "docs/20260219210000_oidc-vs-saml"
+  baseName: "oidc-vs-saml"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "OIDC vs SAML"
+  footer: "© 2026 — アーキテクトの選択ガイド"
+  style: |
+    section {
+      font-size: 1.0em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+    section table {
+      font-size: 0.75em;
+    }

@@ -1,0 +1,101 @@
+<svg viewBox="0 0 1050 480" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="1050" height="480" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="525" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9e2af" font-family="sans-serif">JWT ID Token 構造</text>
+
+  <!-- JWT token string representation -->
+  <rect x="20" y="38" width="1010" height="42" fill="#181825" stroke="#45475a" rx="6"/>
+  <text x="30" y="57" font-size="11" font-weight="bold" fill="#f38ba8" font-family="monospace">eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9</text>
+  <text x="407" y="57" font-size="12" font-weight="bold" fill="#45475a" font-family="monospace">.</text>
+  <text x="415" y="57" font-size="11" font-weight="bold" fill="#a6e3a1" font-family="monospace">eyJzdWIiOiJ1c2VyMTIzIiwiaXNzIjoiaHR0cHMuLi4ifQ</text>
+  <text x="698" y="57" font-size="12" font-weight="bold" fill="#45475a" font-family="monospace">.</text>
+  <text x="706" y="57" font-size="11" font-weight="bold" fill="#89b4fa" font-family="monospace">SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQ</text>
+  <text x="30" y="73" font-size="10" fill="#6c7086" font-family="sans-serif">↑ ピリオド(.)で3つのBase64URLエンコードされた部分に分割</text>
+
+  <!-- Three columns -->
+  <!-- Header column -->
+  <rect x="20" y="90" width="325" height="280" fill="#2a1a1a" stroke="#f38ba8" stroke-width="2" rx="8"/>
+  <rect x="20" y="90" width="325" height="38" fill="#f38ba8" stroke="none" rx="8"/>
+  <rect x="20" y="110" width="325" height="18" fill="#f38ba8" stroke="none"/>
+  <text x="182" y="113" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e1e2e" font-family="sans-serif">HEADER</text>
+  <text x="182" y="140" text-anchor="middle" font-size="11" fill="#f38ba8" font-family="sans-serif">アルゴリズム情報</text>
+
+  <!-- Header content -->
+  <rect x="35" y="155" width="295" height="100" fill="#181825" stroke="#45475a" rx="4"/>
+  <text x="50" y="175" font-size="11" fill="#6c7086" font-family="monospace">{</text>
+  <text x="65" y="193" font-size="11" fill="#cba6f7" font-family="monospace">"alg":</text>
+  <text x="115" y="193" font-size="11" fill="#a6e3a1" font-family="monospace">"RS256",</text>
+  <text x="65" y="211" font-size="11" fill="#cba6f7" font-family="monospace">"typ":</text>
+  <text x="115" y="211" font-size="11" fill="#a6e3a1" font-family="monospace">"JWT",</text>
+  <text x="65" y="229" font-size="11" fill="#cba6f7" font-family="monospace">"kid":</text>
+  <text x="115" y="229" font-size="11" fill="#a6e3a1" font-family="monospace">"key-id-2024"</text>
+  <text x="50" y="247" font-size="11" fill="#6c7086" font-family="monospace">}</text>
+
+  <!-- Header fields description -->
+  <text x="35" y="275" font-size="10" fill="#a6adc8" font-family="sans-serif">alg: 署名アルゴリズム (RS256 推奨)</text>
+  <text x="35" y="290" font-size="10" fill="#a6adc8" font-family="sans-serif">typ: トークンタイプ (JWT)</text>
+  <text x="35" y="305" font-size="10" fill="#a6adc8" font-family="sans-serif">kid: 検証に使う公開鍵のID (JWKS)</text>
+  <text x="35" y="325" font-size="10" fill="#6c7086" font-family="sans-serif">Base64URL エンコード（署名対象）</text>
+  <text x="35" y="340" font-size="10" fill="#6c7086" font-family="sans-serif">サイズ: 〜100 bytes</text>
+
+  <!-- Payload column -->
+  <rect x="362" y="90" width="325" height="280" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="2" rx="8"/>
+  <rect x="362" y="90" width="325" height="38" fill="#a6e3a1" stroke="none" rx="8"/>
+  <rect x="362" y="110" width="325" height="18" fill="#a6e3a1" stroke="none"/>
+  <text x="524" y="113" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e1e2e" font-family="sans-serif">PAYLOAD (Claims)</text>
+  <text x="524" y="140" text-anchor="middle" font-size="11" fill="#a6e3a1" font-family="sans-serif">ユーザー情報・メタデータ</text>
+
+  <!-- Payload content -->
+  <rect x="377" y="155" width="295" height="145" fill="#181825" stroke="#45475a" rx="4"/>
+  <text x="392" y="175" font-size="11" fill="#6c7086" font-family="monospace">{</text>
+  <text x="407" y="192" font-size="10" fill="#cba6f7" font-family="monospace">"iss": "https://op.example.com",</text>
+  <text x="407" y="208" font-size="10" fill="#cba6f7" font-family="monospace">"sub": "user123",</text>
+  <text x="407" y="224" font-size="10" fill="#cba6f7" font-family="monospace">"aud": "client-app-id",</text>
+  <text x="407" y="240" font-size="10" fill="#f9e2af" font-family="monospace">"exp": 1708394000,</text>
+  <text x="407" y="256" font-size="10" fill="#f9e2af" font-family="monospace">"iat": 1708390400,</text>
+  <text x="407" y="272" font-size="10" fill="#f9e2af" font-family="monospace">"nonce": "n-0S6_WzA2Mj",</text>
+  <text x="407" y="288" font-size="10" fill="#a6e3a1" font-family="monospace">"email": "user@example.com"</text>
+  <text x="392" y="296" font-size="11" fill="#6c7086" font-family="monospace">}</text>
+
+  <!-- Payload labels -->
+  <text x="377" y="315" font-size="10" fill="#cba6f7" font-family="sans-serif">iss/sub/aud: 標準クレーム (必須)</text>
+  <text x="377" y="330" font-size="10" fill="#f9e2af" font-family="sans-serif">exp/iat/nonce: タイムスタンプ系</text>
+  <text x="377" y="345" font-size="10" fill="#a6e3a1" font-family="sans-serif">email/name 等: 追加クレーム</text>
+  <text x="377" y="360" font-size="10" fill="#6c7086" font-family="sans-serif">サイズ: 〜300-500 bytes（可変）</text>
+
+  <!-- Signature column -->
+  <rect x="704" y="90" width="325" height="280" fill="#1a1a2a" stroke="#89b4fa" stroke-width="2" rx="8"/>
+  <rect x="704" y="90" width="325" height="38" fill="#89b4fa" stroke="none" rx="8"/>
+  <rect x="704" y="110" width="325" height="18" fill="#89b4fa" stroke="none"/>
+  <text x="866" y="113" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e1e2e" font-family="sans-serif">SIGNATURE</text>
+  <text x="866" y="140" text-anchor="middle" font-size="11" fill="#89b4fa" font-family="sans-serif">改ざん検知・発行者確認</text>
+
+  <!-- Signature formula -->
+  <rect x="719" y="155" width="295" height="110" fill="#181825" stroke="#45475a" rx="4"/>
+  <text x="866" y="178" text-anchor="middle" font-size="11" fill="#89b4fa" font-family="sans-serif">RS256(</text>
+  <text x="866" y="198" text-anchor="middle" font-size="10" fill="#cdd6f4" font-family="monospace">BASE64URL(header)</text>
+  <text x="866" y="214" text-anchor="middle" font-size="10" fill="#cdd6f4" font-family="monospace">+ "." +</text>
+  <text x="866" y="230" text-anchor="middle" font-size="10" fill="#cdd6f4" font-family="monospace">BASE64URL(payload),</text>
+  <text x="866" y="246" text-anchor="middle" font-size="10" fill="#f38ba8" font-family="monospace">IdP_PrivateKey</text>
+  <text x="866" y="260" text-anchor="middle" font-size="11" fill="#89b4fa" font-family="sans-serif">)</text>
+
+  <!-- Signature description -->
+  <text x="719" y="282" font-size="10" fill="#a6adc8" font-family="sans-serif">IdP の秘密鍵で署名</text>
+  <text x="719" y="297" font-size="10" fill="#a6adc8" font-family="sans-serif">クライアントは JWKS エンドポイントから</text>
+  <text x="719" y="312" font-size="10" fill="#a6adc8" font-family="sans-serif">公開鍵を取得して検証</text>
+  <text x="719" y="328" font-size="10" fill="#89b4fa" font-family="sans-serif">✓ 改ざん不能 (サーバー間も不要)</text>
+  <text x="719" y="345" font-size="10" fill="#6c7086" font-family="sans-serif">サイズ: 〜342 bytes (RS256)</text>
+  <text x="719" y="360" font-size="10" fill="#6c7086" font-family="sans-serif">HS256 (共有秘密鍵) は非推奨</text>
+
+  <!-- Bottom bar: total size comparison -->
+  <rect x="20" y="382" width="1010" height="80" fill="#181825" stroke="#45475a" stroke-width="1" rx="6"/>
+  <text x="525" y="400" text-anchor="middle" font-size="12" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">JWT vs SAML Assertion — サイズ比較</text>
+  <!-- JWT bar -->
+  <rect x="30" y="408" width="450" height="20" fill="#a6e3a1" rx="3"/>
+  <text x="490" y="423" font-size="11" fill="#a6e3a1" font-family="sans-serif">JWT ID Token: 〜500 bytes</text>
+  <!-- SAML bar -->
+  <rect x="30" y="434" width="850" height="20" fill="#f38ba8" rx="3"/>
+  <text x="892" y="449" font-size="11" fill="#f38ba8" font-family="sans-serif">SAML Assertion: 〜5-20 KB</text>
+  <text x="525" y="470" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">SAML はエンタープライズ属性を多く含むため大きくなりがち。Header/Cookie サイズ制限に注意</text>
+</svg>

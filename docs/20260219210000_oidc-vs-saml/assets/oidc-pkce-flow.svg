@@ -1,0 +1,77 @@
+<svg viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="1000" height="560" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="500" y="22" text-anchor="middle" font-size="15" font-weight="bold" fill="#94e2d5" font-family="sans-serif">PKCE (Proof Key for Code Exchange) — RFC 7636</text>
+  <text x="500" y="38" text-anchor="middle" font-size="11" fill="#6c7086" font-family="sans-serif">Secret 不要。SPA・モバイルアプリでの認可コードフロー保護</text>
+
+  <!-- Actor positions: NativeApp=150, AuthServer=700 -->
+  <rect x="40" y="52" width="220" height="50" fill="#313244" stroke="#a6e3a1" stroke-width="2" rx="8"/>
+  <text x="150" y="76" text-anchor="middle" font-size="13" font-weight="bold" fill="#a6e3a1" font-family="sans-serif">Native / SPA Client</text>
+  <text x="150" y="94" text-anchor="middle" font-size="11" fill="#a6adc8" font-family="sans-serif">client_secret なし</text>
+
+  <rect x="590" y="52" width="220" height="50" fill="#313244" stroke="#cba6f7" stroke-width="2" rx="8"/>
+  <text x="700" y="76" text-anchor="middle" font-size="13" font-weight="bold" fill="#cba6f7" font-family="sans-serif">Authorization Server</text>
+  <text x="700" y="94" text-anchor="middle" font-size="11" fill="#a6adc8" font-family="sans-serif">OIDC Provider</text>
+
+  <!-- Lifelines -->
+  <line x1="150" y1="102" x2="150" y2="525" stroke="#45475a" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="700" y1="102" x2="700" y2="525" stroke="#45475a" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- PKCE Generation box -->
+  <rect x="30" y="115" width="240" height="70" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="1.5" rx="6"/>
+  <text x="150" y="132" text-anchor="middle" font-size="11" font-weight="bold" fill="#a6e3a1" font-family="sans-serif">① PKCE パラメータ生成</text>
+  <text x="150" y="150" text-anchor="middle" font-size="10" fill="#cdd6f4" font-family="sans-serif">code_verifier = random(43-128 chars)</text>
+  <text x="150" y="165" text-anchor="middle" font-size="10" fill="#cdd6f4" font-family="sans-serif">code_challenge = BASE64URL(SHA256(verifier))</text>
+  <text x="150" y="180" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">(S256 method)</text>
+
+  <!-- Step 2: Client → AuthServer (with code_challenge) -->
+  <line x1="150" y1="202" x2="690" y2="202" stroke="#89b4fa" stroke-width="1.5"/>
+  <polygon points="690,197 700,202 690,207" fill="#89b4fa"/>
+  <text x="420" y="195" text-anchor="middle" font-size="11" fill="#f9e2af" font-family="sans-serif">② GET /authorize?code_challenge=&lt;hash&gt;&amp;code_challenge_method=S256</text>
+
+  <!-- Auth Server stores challenge box -->
+  <rect x="590" y="212" width="220" height="35" fill="#2a1a2e" stroke="#cba6f7" stroke-width="1" rx="4"/>
+  <text x="700" y="228" text-anchor="middle" font-size="10" fill="#cba6f7" font-family="sans-serif">AuthServer stores code_challenge</text>
+  <text x="700" y="242" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">associated with auth session</text>
+
+  <!-- Step 3: AuthServer → Client (auth code) -->
+  <line x1="700" y1="262" x2="160" y2="262" stroke="#a6e3a1" stroke-width="1.5" stroke-dasharray="8,3"/>
+  <polygon points="160,257 150,262 160,267" fill="#a6e3a1"/>
+  <text x="420" y="255" text-anchor="middle" font-size="11" fill="#f9e2af" font-family="sans-serif">③ 302: redirect_uri?code=AUTH_CODE</text>
+
+  <!-- Step 4: Client → AuthServer (token with code_verifier) -->
+  <line x1="150" y1="302" x2="690" y2="302" stroke="#fab387" stroke-width="2"/>
+  <polygon points="690,297 700,302 690,307" fill="#fab387"/>
+  <!-- Highlight -->
+  <rect x="165" y="282" width="520" height="32" fill="#2a1a0e" stroke="#fab387" stroke-width="1" rx="4"/>
+  <text x="425" y="296" text-anchor="middle" font-size="11" fill="#fab387" font-family="sans-serif">④ POST /token: code=AUTH_CODE + code_verifier=&lt;original verifier&gt;</text>
+  <text x="425" y="310" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">[Back-channel: client_secret 不要]</text>
+
+  <!-- Auth Server verification box -->
+  <rect x="590" y="325" width="220" height="50" fill="#2a1a2e" stroke="#f9e2af" stroke-width="1.5" rx="4"/>
+  <text x="700" y="342" text-anchor="middle" font-size="11" font-weight="bold" fill="#f9e2af" font-family="sans-serif">⑤ 検証</text>
+  <text x="700" y="358" text-anchor="middle" font-size="10" fill="#cdd6f4" font-family="sans-serif">SHA256(code_verifier) == code_challenge?</text>
+  <text x="700" y="372" text-anchor="middle" font-size="10" fill="#a6e3a1" font-family="sans-serif">✓ Match → Issue tokens</text>
+
+  <!-- Step 5: AuthServer → Client (tokens) -->
+  <line x1="700" y1="388" x2="160" y2="388" stroke="#fab387" stroke-width="2" stroke-dasharray="8,3"/>
+  <polygon points="160,383 150,388 160,393" fill="#fab387"/>
+  <text x="420" y="381" text-anchor="middle" font-size="11" fill="#fab387" font-family="sans-serif">⑥ access_token + id_token (+ refresh_token)</text>
+
+  <!-- Security comparison -->
+  <rect x="30" y="415" width="940" height="100" fill="#181825" stroke="#45475a" stroke-width="1" rx="8"/>
+  <text x="500" y="432" text-anchor="middle" font-size="12" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">なぜ PKCE が必要か？</text>
+  <!-- Without PKCE -->
+  <rect x="45" y="440" width="430" height="62" fill="#2a1a1a" stroke="#f38ba8" stroke-width="1" rx="4"/>
+  <text x="260" y="457" text-anchor="middle" font-size="11" font-weight="bold" fill="#f38ba8" font-family="sans-serif">PKCE なし（危険）</text>
+  <text x="260" y="473" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">認可コードが傍受された場合 →</text>
+  <text x="260" y="489" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">攻撃者が /token に直接コードを送信してトークン取得可能</text>
+  <text x="260" y="503" text-anchor="middle" font-size="10" fill="#f38ba8" font-family="sans-serif">（client_secret なしのパブリッククライアントで深刻）</text>
+  <!-- With PKCE -->
+  <rect x="490" y="440" width="465" height="62" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="1" rx="4"/>
+  <text x="722" y="457" text-anchor="middle" font-size="11" font-weight="bold" fill="#a6e3a1" font-family="sans-serif">PKCE あり（安全）</text>
+  <text x="722" y="473" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">コードが傍受されても code_verifier がなければ無効</text>
+  <text x="722" y="489" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">code_verifier はメモリ内のみ保持（送信しない）</text>
+  <text x="722" y="503" text-anchor="middle" font-size="10" fill="#a6e3a1" font-family="sans-serif">→ 認可コード傍受攻撃（CSRF含む）を防御</text>
+</svg>

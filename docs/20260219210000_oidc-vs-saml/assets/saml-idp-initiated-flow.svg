@@ -1,0 +1,74 @@
+<svg viewBox="0 0 1000 460" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="1000" height="460" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="500" y="22" text-anchor="middle" font-size="15" font-weight="bold" fill="#89b4fa" font-family="sans-serif">SAML IdP-Initiated SSO フロー</text>
+  <text x="500" y="40" text-anchor="middle" font-size="11" fill="#6c7086" font-family="sans-serif">ユーザーが IdP のポータルから SP を選択するパターン</text>
+
+  <!-- Actor positions: User=130, IdP=500, SP=870 -->
+  <rect x="30" y="52" width="200" height="50" fill="#313244" stroke="#89b4fa" stroke-width="2" rx="8"/>
+  <text x="130" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#89b4fa" font-family="sans-serif">User / Browser</text>
+  <text x="130" y="94" text-anchor="middle" font-size="11" fill="#a6adc8" font-family="sans-serif">End User</text>
+
+  <rect x="400" y="52" width="200" height="50" fill="#313244" stroke="#cba6f7" stroke-width="2" rx="8"/>
+  <text x="500" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#cba6f7" font-family="sans-serif">Identity Provider</text>
+  <text x="500" y="94" text-anchor="middle" font-size="11" fill="#a6adc8" font-family="sans-serif">ADFS / Azure AD / Okta</text>
+
+  <rect x="770" y="52" width="200" height="50" fill="#313244" stroke="#f38ba8" stroke-width="2" rx="8"/>
+  <text x="870" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#f38ba8" font-family="sans-serif">Service Provider</text>
+  <text x="870" y="94" text-anchor="middle" font-size="11" fill="#a6adc8" font-family="sans-serif">Web Application</text>
+
+  <!-- Lifelines -->
+  <line x1="130" y1="102" x2="130" y2="430" stroke="#45475a" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="500" y1="102" x2="500" y2="430" stroke="#45475a" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="870" y1="102" x2="870" y2="430" stroke="#45475a" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- Step 1: User → IdP (direct access to IdP portal) -->
+  <line x1="130" y1="135" x2="490" y2="135" stroke="#89b4fa" stroke-width="1.5"/>
+  <polygon points="490,130 500,135 490,140" fill="#89b4fa"/>
+  <text x="310" y="128" text-anchor="middle" font-size="12" fill="#f9e2af" font-family="sans-serif">① GET /idp/portal (直接 IdP ポータルにアクセス)</text>
+
+  <!-- Step 2: IdP → User (login page) -->
+  <line x1="500" y1="175" x2="140" y2="175" stroke="#a6e3a1" stroke-width="1.5" stroke-dasharray="8,3"/>
+  <polygon points="140,170 130,175 140,180" fill="#a6e3a1"/>
+  <text x="310" y="168" text-anchor="middle" font-size="12" fill="#f9e2af" font-family="sans-serif">② 200 OK: Login page</text>
+
+  <!-- Step 3: User → IdP (credentials) -->
+  <line x1="130" y1="215" x2="490" y2="215" stroke="#89b4fa" stroke-width="1.5"/>
+  <polygon points="490,210 500,215 490,220" fill="#89b4fa"/>
+  <text x="310" y="208" text-anchor="middle" font-size="12" fill="#f9e2af" font-family="sans-serif">③ POST credentials (username + password / MFA)</text>
+
+  <!-- Step 4: User → IdP (select SP from list) -->
+  <line x1="130" y1="255" x2="490" y2="255" stroke="#89b4fa" stroke-width="1.5"/>
+  <polygon points="490,250 500,255 490,260" fill="#89b4fa"/>
+  <text x="310" y="248" text-anchor="middle" font-size="12" fill="#f9e2af" font-family="sans-serif">④ クリック: Launch App (SP を選択)</text>
+
+  <!-- IdP generates SAML Response -->
+  <rect x="395" y="265" width="210" height="36" fill="#2a1a2e" stroke="#cba6f7" stroke-width="1" rx="4"/>
+  <text x="500" y="280" text-anchor="middle" font-size="10" fill="#cba6f7" font-family="sans-serif">IdP: SAMLResponse を生成</text>
+  <text x="500" y="296" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">SP の ACS URL を宛先に設定</text>
+
+  <!-- Step 5: IdP → User (auto-post form) -->
+  <line x1="500" y1="315" x2="140" y2="315" stroke="#fab387" stroke-width="2" stroke-dasharray="8,3"/>
+  <polygon points="140,310 130,315 140,320" fill="#fab387"/>
+  <text x="310" y="308" text-anchor="middle" font-size="12" fill="#fab387" font-family="sans-serif">⑤ HTML auto-submit form (SAMLResponse)</text>
+
+  <!-- Step 6: User → SP (POST SAMLResponse) -->
+  <line x1="130" y1="355" x2="860" y2="355" stroke="#fab387" stroke-width="2"/>
+  <polygon points="860,350 870,355 860,360" fill="#fab387"/>
+  <text x="500" y="348" text-anchor="middle" font-size="12" fill="#fab387" font-family="sans-serif">⑥ POST /sp/acs (SAMLResponse=Base64)</text>
+
+  <!-- SP validates -->
+  <rect x="775" y="363" width="190" height="36" fill="#2a1a1a" stroke="#f38ba8" stroke-width="1" rx="4"/>
+  <text x="870" y="379" text-anchor="middle" font-size="10" fill="#f38ba8" font-family="sans-serif">SP 検証: Signature + ACS URL</text>
+  <text x="870" y="394" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">Audience + Conditions</text>
+
+  <!-- Step 7: SP → User -->
+  <line x1="870" y1="413" x2="140" y2="413" stroke="#a6e3a1" stroke-width="1.5" stroke-dasharray="8,3"/>
+  <polygon points="140,408 130,413 140,418" fill="#a6e3a1"/>
+  <text x="500" y="406" text-anchor="middle" font-size="12" fill="#a6e3a1" font-family="sans-serif">⑦ 302 Redirect: Set-Cookie → Protected Resource</text>
+
+  <!-- Comparison note -->
+  <rect x="30" y="433" width="940" height="22" fill="#181825" stroke="#45475a" rx="3"/>
+  <text x="500" y="448" text-anchor="middle" font-size="10" fill="#fab387" font-family="sans-serif">⚠ セキュリティ注意: IdP-Initiated では RelayState の検証が困難。SP-Initiated + CSRF 対策が推奨</text>
+</svg>

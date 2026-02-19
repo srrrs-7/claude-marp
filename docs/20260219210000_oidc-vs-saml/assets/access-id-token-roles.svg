@@ -1,0 +1,79 @@
+<svg viewBox="0 0 1050 430" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="1050" height="430" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="525" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">Access Token vs ID Token — 役割の明確な分離</text>
+
+  <!-- Auth Server center -->
+  <rect x="420" y="48" width="210" height="60" fill="#313244" stroke="#cba6f7" stroke-width="2" rx="10"/>
+  <text x="525" y="73" text-anchor="middle" font-size="14" font-weight="bold" fill="#cba6f7" font-family="sans-serif">Authorization Server</text>
+  <text x="525" y="93" text-anchor="middle" font-size="11" fill="#a6adc8" font-family="sans-serif">OIDC Provider (Token Issuer)</text>
+
+  <!-- Token Exchange: Client ↔ Auth Server -->
+  <line x1="420" y1="78" x2="250" y2="78" stroke="#45475a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="335" y="72" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">Token Endpoint</text>
+
+  <!-- ID Token (left branch) -->
+  <line x1="420" y1="108" x2="250" y2="175" stroke="#a6e3a1" stroke-width="2"/>
+  <polygon points="254,170 246,180 258,178" fill="#a6e3a1"/>
+  <text x="315" y="148" text-anchor="middle" font-size="11" fill="#a6e3a1" font-family="sans-serif">id_token</text>
+
+  <rect x="20" y="175" width="240" height="115" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="2" rx="8"/>
+  <text x="140" y="198" text-anchor="middle" font-size="14" font-weight="bold" fill="#a6e3a1" font-family="sans-serif">ID Token (JWT)</text>
+  <text x="140" y="218" text-anchor="middle" font-size="11" fill="#cdd6f4" font-family="sans-serif">誰がログインしたかの証明</text>
+  <text x="35" y="238" font-size="10" fill="#a6adc8" font-family="sans-serif">• sub: ユーザー識別子</text>
+  <text x="35" y="254" font-size="10" fill="#a6adc8" font-family="sans-serif">• iss: 発行者 (IdP URL)</text>
+  <text x="35" y="270" font-size="10" fill="#a6adc8" font-family="sans-serif">• aud: クライアント ID</text>
+  <text x="35" y="285" font-size="10" fill="#a6adc8" font-family="sans-serif">• email, name など</text>
+
+  <!-- ID Token → Client App -->
+  <line x1="140" y1="290" x2="140" y2="340" stroke="#a6e3a1" stroke-width="1.5"/>
+  <polygon points="135,335 140,345 145,335" fill="#a6e3a1"/>
+  <rect x="50" y="345" width="180" height="50" fill="#313244" stroke="#a6e3a1" stroke-width="1.5" rx="6"/>
+  <text x="140" y="368" text-anchor="middle" font-size="13" font-weight="bold" fill="#a6e3a1" font-family="sans-serif">Client Application</text>
+  <text x="140" y="387" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">ユーザー認証の確認に使用</text>
+
+  <!-- ID Token usage annotation -->
+  <rect x="20" y="402" width="240" height="22" fill="#181825" stroke="#a6e3a1" rx="3"/>
+  <text x="140" y="417" text-anchor="middle" font-size="10" fill="#a6e3a1" font-family="sans-serif">API には絶対に送らない ✓</text>
+
+  <!-- Access Token (right branch) -->
+  <line x1="630" y1="108" x2="800" y2="175" stroke="#89b4fa" stroke-width="2"/>
+  <polygon points="795,172 803,182 807,170" fill="#89b4fa"/>
+  <text x="728" y="148" text-anchor="middle" font-size="11" fill="#89b4fa" font-family="sans-serif">access_token</text>
+
+  <rect x="790" y="175" width="240" height="115" fill="#1a1a2a" stroke="#89b4fa" stroke-width="2" rx="8"/>
+  <text x="910" y="198" text-anchor="middle" font-size="14" font-weight="bold" fill="#89b4fa" font-family="sans-serif">Access Token (JWT)</text>
+  <text x="910" y="218" text-anchor="middle" font-size="11" fill="#cdd6f4" font-family="sans-serif">APIアクセス権限の証明</text>
+  <text x="805" y="238" font-size="10" fill="#a6adc8" font-family="sans-serif">• scope: 許可されたスコープ</text>
+  <text x="805" y="254" font-size="10" fill="#a6adc8" font-family="sans-serif">• exp: 有効期限 (短め)</text>
+  <text x="805" y="270" font-size="10" fill="#a6adc8" font-family="sans-serif">• aud: Resource Server URL</text>
+  <text x="805" y="285" font-size="10" fill="#a6adc8" font-family="sans-serif">• (userinfo は必須でない)</text>
+
+  <!-- Access Token → Resource Server -->
+  <line x1="910" y1="290" x2="910" y2="340" stroke="#89b4fa" stroke-width="1.5"/>
+  <polygon points="905,335 910,345 915,335" fill="#89b4fa"/>
+  <rect x="820" y="345" width="180" height="50" fill="#313244" stroke="#89b4fa" stroke-width="1.5" rx="6"/>
+  <text x="910" y="368" text-anchor="middle" font-size="13" font-weight="bold" fill="#89b4fa" font-family="sans-serif">Resource Server</text>
+  <text x="910" y="387" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">Authorization: Bearer xxxx</text>
+
+  <!-- Access Token annotation -->
+  <rect x="790" y="402" width="240" height="22" fill="#181825" stroke="#89b4fa" rx="3"/>
+  <text x="910" y="417" text-anchor="middle" font-size="10" fill="#89b4fa" font-family="sans-serif">クライアントは中身を見なくて良い</text>
+
+  <!-- Center: Confusion warning -->
+  <rect x="340" y="200" width="370" height="180" fill="#181825" stroke="#f9e2af" stroke-width="1.5" rx="8"/>
+  <text x="525" y="220" text-anchor="middle" font-size="12" font-weight="bold" fill="#f9e2af" font-family="sans-serif">よくある混乱と正しい理解</text>
+  <!-- Misconceptions -->
+  <rect x="352" y="228" width="346" height="68" fill="#2a1a1a" stroke="#f38ba8" stroke-width="1" rx="4"/>
+  <text x="525" y="245" text-anchor="middle" font-size="10" font-weight="bold" fill="#f38ba8" font-family="sans-serif">❌ よくある間違い</text>
+  <text x="360" y="261" font-size="10" fill="#a6adc8" font-family="sans-serif">• Access Token を ID 確認に使う</text>
+  <text x="360" y="277" font-size="10" fill="#a6adc8" font-family="sans-serif">• ID Token を API に送る</text>
+  <text x="360" y="293" font-size="10" fill="#a6adc8" font-family="sans-serif">• Access Token の中身を parse して aud 確認</text>
+  <!-- Correct understanding -->
+  <rect x="352" y="304" width="346" height="68" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="1" rx="4"/>
+  <text x="525" y="321" text-anchor="middle" font-size="10" font-weight="bold" fill="#a6e3a1" font-family="sans-serif">✓ 正しい使い方</text>
+  <text x="360" y="337" font-size="10" fill="#a6adc8" font-family="sans-serif">• ID Token: Client がユーザー認証確認のみ</text>
+  <text x="360" y="353" font-size="10" fill="#a6adc8" font-family="sans-serif">• Access Token: API (Resource Server) への送付</text>
+  <text x="360" y="369" font-size="10" fill="#a6adc8" font-family="sans-serif">• UserInfo Endpoint でユーザー情報を取得</text>
+</svg>

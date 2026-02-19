@@ -1,0 +1,101 @@
+<svg viewBox="0 0 1200 590" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="1200" height="590" fill="#1e1e2e"/>
+
+  <!-- Actor positions: User=100, Client=400, AuthServer=750, ResourceServer=1100 -->
+  <!-- Actor: User -->
+  <rect x="10" y="15" width="180" height="50" fill="#313244" stroke="#89b4fa" stroke-width="2" rx="8"/>
+  <text x="100" y="39" text-anchor="middle" font-size="13" font-weight="bold" fill="#89b4fa" font-family="sans-serif">User / Browser</text>
+  <text x="100" y="57" text-anchor="middle" font-size="11" fill="#a6adc8" font-family="sans-serif">End User</text>
+  <!-- Actor: Client App -->
+  <rect x="310" y="15" width="180" height="50" fill="#313244" stroke="#a6e3a1" stroke-width="2" rx="8"/>
+  <text x="400" y="39" text-anchor="middle" font-size="13" font-weight="bold" fill="#a6e3a1" font-family="sans-serif">Client App</text>
+  <text x="400" y="57" text-anchor="middle" font-size="11" fill="#a6adc8" font-family="sans-serif">SPA / Web / Mobile</text>
+  <!-- Actor: Auth Server -->
+  <rect x="660" y="15" width="180" height="50" fill="#313244" stroke="#cba6f7" stroke-width="2" rx="8"/>
+  <text x="750" y="39" text-anchor="middle" font-size="13" font-weight="bold" fill="#cba6f7" font-family="sans-serif">Auth Server</text>
+  <text x="750" y="57" text-anchor="middle" font-size="11" fill="#a6adc8" font-family="sans-serif">OIDC Provider (OP)</text>
+  <!-- Actor: Resource Server -->
+  <rect x="1010" y="15" width="180" height="50" fill="#313244" stroke="#f38ba8" stroke-width="2" rx="8"/>
+  <text x="1100" y="39" text-anchor="middle" font-size="13" font-weight="bold" fill="#f38ba8" font-family="sans-serif">Resource Server</text>
+  <text x="1100" y="57" text-anchor="middle" font-size="11" fill="#a6adc8" font-family="sans-serif">REST API</text>
+
+  <!-- Lifelines -->
+  <line x1="100" y1="65" x2="100" y2="555" stroke="#45475a" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="400" y1="65" x2="400" y2="555" stroke="#45475a" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="750" y1="65" x2="750" y2="555" stroke="#45475a" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="1100" y1="65" x2="1100" y2="555" stroke="#45475a" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- Step 1: User → Client -->
+  <line x1="100" y1="97" x2="390" y2="97" stroke="#89b4fa" stroke-width="1.5"/>
+  <polygon points="390,92 400,97 390,102" fill="#89b4fa"/>
+  <text x="248" y="90" text-anchor="middle" font-size="11" fill="#f9e2af" font-family="sans-serif">① Access protected resource</text>
+
+  <!-- Step 2: Client → User (redirect) -->
+  <line x1="400" y1="137" x2="110" y2="137" stroke="#a6e3a1" stroke-width="1.5" stroke-dasharray="8,3"/>
+  <polygon points="110,132 100,137 110,142" fill="#a6e3a1"/>
+  <text x="248" y="130" text-anchor="middle" font-size="11" fill="#f9e2af" font-family="sans-serif">② 302: /authorize?client_id&amp;redirect_uri&amp;state&amp;nonce</text>
+
+  <!-- Step 3: User → AuthServer -->
+  <line x1="100" y1="177" x2="740" y2="177" stroke="#89b4fa" stroke-width="1.5"/>
+  <polygon points="740,172 750,177 740,182" fill="#89b4fa"/>
+  <text x="425" y="170" text-anchor="middle" font-size="11" fill="#f9e2af" font-family="sans-serif">③ GET /authorize (scope=openid profile email)</text>
+
+  <!-- Step 4: AuthServer → User (login) -->
+  <line x1="750" y1="217" x2="110" y2="217" stroke="#a6e3a1" stroke-width="1.5" stroke-dasharray="8,3"/>
+  <polygon points="110,212 100,217 110,222" fill="#a6e3a1"/>
+  <text x="425" y="210" text-anchor="middle" font-size="11" fill="#f9e2af" font-family="sans-serif">④ 200 OK: Login + Consent page</text>
+
+  <!-- Step 5: User → AuthServer (credentials) -->
+  <line x1="100" y1="257" x2="740" y2="257" stroke="#89b4fa" stroke-width="1.5"/>
+  <polygon points="740,252 750,257 740,262" fill="#89b4fa"/>
+  <text x="425" y="250" text-anchor="middle" font-size="11" fill="#f9e2af" font-family="sans-serif">⑤ POST credentials + consent grant</text>
+
+  <!-- Step 6: AuthServer → User (code) -->
+  <line x1="750" y1="297" x2="110" y2="297" stroke="#a6e3a1" stroke-width="1.5" stroke-dasharray="8,3"/>
+  <polygon points="110,292 100,297 110,302" fill="#a6e3a1"/>
+  <text x="425" y="290" text-anchor="middle" font-size="11" fill="#f9e2af" font-family="sans-serif">⑥ 302: redirect_uri?code=AUTH_CODE&amp;state=xxx</text>
+
+  <!-- Step 7: User → Client (code delivery) -->
+  <line x1="100" y1="337" x2="390" y2="337" stroke="#89b4fa" stroke-width="1.5"/>
+  <polygon points="390,332 400,337 390,342" fill="#89b4fa"/>
+  <text x="248" y="330" text-anchor="middle" font-size="11" fill="#f9e2af" font-family="sans-serif">⑦ GET /callback?code=AUTH_CODE</text>
+
+  <!-- Step 8: Client → AuthServer (token exchange) -->
+  <line x1="400" y1="377" x2="740" y2="377" stroke="#fab387" stroke-width="2"/>
+  <polygon points="740,372 750,377 740,382" fill="#fab387"/>
+  <text x="575" y="370" text-anchor="middle" font-size="11" fill="#fab387" font-family="sans-serif">⑧ POST /token (code + client_secret) [Back-channel]</text>
+
+  <!-- Step 9: AuthServer → Client (tokens) -->
+  <line x1="750" y1="417" x2="410" y2="417" stroke="#fab387" stroke-width="2" stroke-dasharray="8,3"/>
+  <polygon points="410,412 400,417 410,422" fill="#fab387"/>
+  <!-- Highlight token response -->
+  <rect x="410" y="395" width="340" height="38" fill="#2a1a0e" stroke="#fab387" stroke-width="1" rx="4"/>
+  <text x="580" y="412" text-anchor="middle" font-size="11" fill="#fab387" font-family="sans-serif">⑨ access_token + id_token + refresh_token</text>
+  <text x="580" y="427" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">(ID Token = JWT signed by Auth Server)</text>
+
+  <!-- ID Token verification note -->
+  <rect x="410" y="445" width="340" height="35" fill="#1a1a2e" stroke="#cba6f7" stroke-width="1" rx="4"/>
+  <text x="580" y="460" text-anchor="middle" font-size="10" fill="#cba6f7" font-family="sans-serif">Client verifies ID Token:</text>
+  <text x="580" y="474" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">iss, aud, exp, nonce, signature (JWKS)</text>
+
+  <!-- Step 10: Client → Resource Server -->
+  <line x1="400" y1="500" x2="1090" y2="500" stroke="#89b4fa" stroke-width="1.5"/>
+  <polygon points="1090,495 1100,500 1090,505" fill="#89b4fa"/>
+  <text x="748" y="493" text-anchor="middle" font-size="11" fill="#f9e2af" font-family="sans-serif">⑩ GET /api/data  Authorization: Bearer &lt;access_token&gt;</text>
+
+  <!-- Step 11: Resource Server → Client -->
+  <line x1="1100" y1="535" x2="410" y2="535" stroke="#a6e3a1" stroke-width="1.5" stroke-dasharray="8,3"/>
+  <polygon points="410,530 400,535 410,540" fill="#a6e3a1"/>
+  <text x="748" y="528" text-anchor="middle" font-size="11" fill="#f9e2af" font-family="sans-serif">⑪ 200 OK: Protected resource data</text>
+
+  <!-- Legend -->
+  <line x1="15" y1="572" x2="45" y2="572" stroke="#89b4fa" stroke-width="1.5"/>
+  <polygon points="45,567 55,572 45,577" fill="#89b4fa"/>
+  <text x="65" y="576" font-size="10" fill="#89b4fa" font-family="sans-serif">Front-channel</text>
+  <line x1="160" y1="572" x2="190" y2="572" stroke="#fab387" stroke-width="2"/>
+  <polygon points="190,567 200,572 190,577" fill="#fab387"/>
+  <text x="210" y="576" font-size="10" fill="#fab387" font-family="sans-serif">Back-channel (secure)</text>
+  <line x1="360" y1="572" x2="390" y2="572" stroke="#a6e3a1" stroke-width="1.5" stroke-dasharray="8,3"/>
+  <polygon points="390,567 400,572 390,577" fill="#a6e3a1"/>
+  <text x="410" y="576" font-size="10" fill="#a6e3a1" font-family="sans-serif">Response</text>
+</svg>

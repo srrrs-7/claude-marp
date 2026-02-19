@@ -1,0 +1,114 @@
+<svg viewBox="0 0 1050 550" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="1050" height="550" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="525" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">SAML 2.0 vs OIDC/OAuth 2.0 — 総合比較</text>
+
+  <!-- Header -->
+  <rect x="20" y="35" width="240" height="44" fill="#313244" stroke="#45475a" rx="4"/>
+  <text x="140" y="61" text-anchor="middle" font-size="13" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">比較項目</text>
+  <rect x="264" y="35" width="370" height="44" fill="#2a1a2e" stroke="#89b4fa" stroke-width="2" rx="4"/>
+  <text x="449" y="55" text-anchor="middle" font-size="14" font-weight="bold" fill="#89b4fa" font-family="sans-serif">SAML 2.0</text>
+  <text x="449" y="73" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">XML-based Federation (OASIS 2005)</text>
+  <rect x="638" y="35" width="392" height="44" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="2" rx="4"/>
+  <text x="834" y="55" text-anchor="middle" font-size="14" font-weight="bold" fill="#a6e3a1" font-family="sans-serif">OIDC / OAuth 2.0</text>
+  <text x="834" y="73" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">JSON/JWT-based Identity (IETF/OpenID Foundation 2014)</text>
+
+  <!-- Row helper function: alternating bg -->
+  <!-- Row 1: Token Format -->
+  <rect x="20" y="83" width="240" height="38" fill="#252535" rx="2"/>
+  <text x="30" y="106" font-size="12" fill="#cdd6f4" font-family="sans-serif">トークン形式</text>
+  <rect x="264" y="83" width="370" height="38" fill="#252535" rx="2"/>
+  <text x="449" y="100" text-anchor="middle" font-size="11" fill="#89b4fa" font-family="sans-serif">XML (Base64エンコード)</text>
+  <text x="449" y="114" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">SAML Assertion / Response (5-20KB)</text>
+  <rect x="638" y="83" width="392" height="38" fill="#252535" rx="2"/>
+  <text x="834" y="100" text-anchor="middle" font-size="11" fill="#a6e3a1" font-family="sans-serif">JSON / JWT</text>
+  <text x="834" y="114" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">ID Token + Access Token (〜500B〜1KB)</text>
+
+  <!-- Row 2: Transport -->
+  <rect x="20" y="125" width="240" height="38" fill="#202030" rx="2"/>
+  <text x="30" y="148" font-size="12" fill="#cdd6f4" font-family="sans-serif">通信プロトコル</text>
+  <rect x="264" y="125" width="370" height="38" fill="#202030" rx="2"/>
+  <text x="449" y="142" text-anchor="middle" font-size="11" fill="#89b4fa" font-family="sans-serif">HTTP Redirect / POST Binding</text>
+  <text x="449" y="157" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">ブラウザ経由 (SOAP オプション)</text>
+  <rect x="638" y="125" width="392" height="38" fill="#202030" rx="2"/>
+  <text x="834" y="142" text-anchor="middle" font-size="11" fill="#a6e3a1" font-family="sans-serif">HTTPS / REST (front + back channel)</text>
+  <text x="834" y="157" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">ブラウザ + ダイレクト API 呼び出し</text>
+
+  <!-- Row 3: Mobile/SPA -->
+  <rect x="20" y="167" width="240" height="38" fill="#252535" rx="2"/>
+  <text x="30" y="190" font-size="12" fill="#cdd6f4" font-family="sans-serif">モバイル/SPA 対応</text>
+  <rect x="264" y="167" width="370" height="38" fill="#252535" rx="2"/>
+  <text x="449" y="184" text-anchor="middle" font-size="14" fill="#f38ba8" font-family="sans-serif">✗ 不可</text>
+  <text x="449" y="198" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">XML POST はネイティブアプリで扱いが困難</text>
+  <rect x="638" y="167" width="392" height="38" fill="#252535" rx="2"/>
+  <text x="834" y="184" text-anchor="middle" font-size="14" fill="#a6e3a1" font-family="sans-serif">✓ 最適 (PKCE)</text>
+  <text x="834" y="198" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">Authorization Code + PKCE で安全に対応</text>
+
+  <!-- Row 4: API Authorization -->
+  <rect x="20" y="209" width="240" height="38" fill="#202030" rx="2"/>
+  <text x="30" y="232" font-size="12" fill="#cdd6f4" font-family="sans-serif">API 認可</text>
+  <rect x="264" y="209" width="370" height="38" fill="#202030" rx="2"/>
+  <text x="449" y="226" text-anchor="middle" font-size="14" fill="#f38ba8" font-family="sans-serif">✗ 設計外</text>
+  <text x="449" y="240" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">RESTful API での利用は困難</text>
+  <rect x="638" y="209" width="392" height="38" fill="#202030" rx="2"/>
+  <text x="834" y="226" text-anchor="middle" font-size="14" fill="#a6e3a1" font-family="sans-serif">✓ コア機能</text>
+  <text x="834" y="240" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">OAuth 2.0 は API 認可のために設計</text>
+
+  <!-- Row 5: Enterprise SSO -->
+  <rect x="20" y="251" width="240" height="38" fill="#252535" rx="2"/>
+  <text x="30" y="274" font-size="12" fill="#cdd6f4" font-family="sans-serif">エンタープライズ SSO</text>
+  <rect x="264" y="251" width="370" height="38" fill="#252535" rx="2"/>
+  <text x="449" y="268" text-anchor="middle" font-size="14" fill="#89b4fa" font-family="sans-serif">✓✓ 最適</text>
+  <text x="449" y="282" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">Active Directory との親和性、成熟したエコシステム</text>
+  <rect x="638" y="251" width="392" height="38" fill="#252535" rx="2"/>
+  <text x="834" y="268" text-anchor="middle" font-size="14" fill="#fab387" font-family="sans-serif">△ 可能</text>
+  <text x="834" y="282" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">Azure AD / Okta 経由で対応可能、移行コスト要</text>
+
+  <!-- Row 6: Security -->
+  <rect x="20" y="293" width="240" height="38" fill="#202030" rx="2"/>
+  <text x="30" y="316" font-size="12" fill="#cdd6f4" font-family="sans-serif">主なセキュリティリスク</text>
+  <rect x="264" y="293" width="370" height="38" fill="#202030" rx="2"/>
+  <text x="449" y="310" text-anchor="middle" font-size="11" fill="#f38ba8" font-family="sans-serif">XML Signature Wrapping (XSW)</text>
+  <text x="449" y="324" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">XMLインジェクション, リプレイ攻撃</text>
+  <rect x="638" y="293" width="392" height="38" fill="#202030" rx="2"/>
+  <text x="834" y="310" text-anchor="middle" font-size="11" fill="#f38ba8" font-family="sans-serif">不正リダイレクトURI, Token Leakage</text>
+  <text x="834" y="324" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">Implicit Flow (廃止), CSRF</text>
+
+  <!-- Row 7: Complexity -->
+  <rect x="20" y="335" width="240" height="38" fill="#252535" rx="2"/>
+  <text x="30" y="358" font-size="12" fill="#cdd6f4" font-family="sans-serif">実装難易度</text>
+  <rect x="264" y="335" width="370" height="38" fill="#252535" rx="2"/>
+  <text x="449" y="352" text-anchor="middle" font-size="11" fill="#f38ba8" font-family="sans-serif">高 (XML, 署名検証, XMLパーサー依存)</text>
+  <text x="449" y="366" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">カスタム実装は危険。ライブラリ使用必須</text>
+  <rect x="638" y="335" width="392" height="38" fill="#252535" rx="2"/>
+  <text x="834" y="352" text-anchor="middle" font-size="11" fill="#a6e3a1" font-family="sans-serif">中 (JWT, REST, 標準ライブラリ豊富)</text>
+  <text x="834" y="366" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">PKCE, nonce 等の正しい実装が必要</text>
+
+  <!-- Row 8: Specification size -->
+  <rect x="20" y="377" width="240" height="38" fill="#202030" rx="2"/>
+  <text x="30" y="400" font-size="12" fill="#cdd6f4" font-family="sans-serif">仕様の規模</text>
+  <rect x="264" y="377" width="370" height="38" fill="#202030" rx="2"/>
+  <text x="449" y="394" text-anchor="middle" font-size="11" fill="#89b4fa" font-family="sans-serif">1つの包括的な仕様 (約 100 ページ)</text>
+  <text x="449" y="408" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">SAML 2.0 Core + Profiles + Bindings</text>
+  <rect x="638" y="377" width="392" height="38" fill="#202030" rx="2"/>
+  <text x="834" y="394" text-anchor="middle" font-size="11" fill="#a6e3a1" font-family="sans-serif">多数のRFC (OAuth2 + OIDC + PKCE + ...)</text>
+  <text x="834" y="408" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">拡張性高いが把握に時間がかかる</text>
+
+  <!-- Summary recommendation -->
+  <rect x="20" y="425" width="610" height="110" fill="#181825" stroke="#89b4fa" stroke-width="1.5" rx="6"/>
+  <text x="325" y="444" text-anchor="middle" font-size="12" font-weight="bold" fill="#89b4fa" font-family="sans-serif">SAML を選ぶとき</text>
+  <text x="30" y="462" font-size="10" fill="#a6adc8" font-family="sans-serif">✓ 既存エンタープライズ環境 (AD/ADFS) が必須</text>
+  <text x="30" y="478" font-size="10" fill="#a6adc8" font-family="sans-serif">✓ 既存の SAML 対応 SaaS を継続利用</text>
+  <text x="30" y="494" font-size="10" fill="#a6adc8" font-family="sans-serif">✓ B2B フェデレーションで相手が SAML のみ対応</text>
+  <text x="30" y="510" font-size="10" fill="#a6adc8" font-family="sans-serif">✓ 移行コストが移行メリットを上回る場合</text>
+  <text x="30" y="526" font-size="10" fill="#6c7086" font-family="sans-serif">→ 新規開発では選ばない。既存維持に限定</text>
+
+  <rect x="640" y="425" width="390" height="110" fill="#181825" stroke="#a6e3a1" stroke-width="1.5" rx="6"/>
+  <text x="835" y="444" text-anchor="middle" font-size="12" font-weight="bold" fill="#a6e3a1" font-family="sans-serif">OIDC を選ぶとき</text>
+  <text x="650" y="462" font-size="10" fill="#a6adc8" font-family="sans-serif">✓ モバイル / SPA / API が対象</text>
+  <text x="650" y="478" font-size="10" fill="#a6adc8" font-family="sans-serif">✓ マイクロサービス・クラウドネイティブ</text>
+  <text x="650" y="494" font-size="10" fill="#a6adc8" font-family="sans-serif">✓ コンシューマー向け (ソーシャルログイン)</text>
+  <text x="650" y="510" font-size="10" fill="#a6adc8" font-family="sans-serif">✓ 新規プロジェクト (デフォルト推奨)</text>
+  <text x="650" y="526" font-size="10" fill="#6c7086" font-family="sans-serif">→ 迷ったらこちら。生態系が活発</text>
+</svg>

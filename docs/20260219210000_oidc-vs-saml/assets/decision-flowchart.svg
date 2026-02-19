@@ -1,0 +1,109 @@
+<svg viewBox="0 0 1000 580" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="1000" height="580" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="500" y="22" text-anchor="middle" font-size="15" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">プロトコル選択フローチャート</text>
+
+  <!-- START -->
+  <rect x="400" y="38" width="200" height="44" fill="#45475a" stroke="#cdd6f4" stroke-width="2" rx="22"/>
+  <text x="500" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">START: 認証基盤の選定</text>
+
+  <!-- Arrow down -->
+  <line x1="500" y1="82" x2="500" y2="112" stroke="#45475a" stroke-width="1.5"/>
+  <polygon points="495,107 500,117 505,107" fill="#45475a"/>
+
+  <!-- Q1: Enterprise / Active Directory? -->
+  <polygon points="500,120 650,155 500,190 350,155" fill="#2a1a2e" stroke="#cba6f7" stroke-width="2"/>
+  <text x="500" y="152" text-anchor="middle" font-size="11" font-weight="bold" fill="#cba6f7" font-family="sans-serif">既存 Active Directory /</text>
+  <text x="500" y="168" text-anchor="middle" font-size="11" font-weight="bold" fill="#cba6f7" font-family="sans-serif">LDAP が必須か？</text>
+
+  <!-- Yes branch (right) -->
+  <line x1="650" y1="155" x2="760" y2="155" stroke="#45475a" stroke-width="1.5"/>
+  <polygon points="755,150 765,155 755,160" fill="#45475a"/>
+  <text x="705" y="148" text-anchor="middle" font-size="11" fill="#a6e3a1" font-family="sans-serif">YES</text>
+
+  <!-- Q1-Yes: Legacy SP support? -->
+  <polygon points="840,155 940,180 840,205 740,180" fill="#2a1a2e" stroke="#cba6f7" stroke-width="1.5"/>
+  <text x="840" y="177" text-anchor="middle" font-size="10" font-weight="bold" fill="#cba6f7" font-family="sans-serif">SPが SAML</text>
+  <text x="840" y="192" text-anchor="middle" font-size="10" font-weight="bold" fill="#cba6f7" font-family="sans-serif">対応済み？</text>
+
+  <!-- Yes → SAML -->
+  <line x1="840" y1="205" x2="840" y2="235" stroke="#45475a" stroke-width="1.5"/>
+  <polygon points="835,230 840,240 845,230" fill="#45475a"/>
+  <text x="860" y="225" font-size="10" fill="#a6e3a1" font-family="sans-serif">YES</text>
+  <rect x="765" y="240" width="150" height="44" fill="#2a1a2e" stroke="#89b4fa" stroke-width="2" rx="6"/>
+  <text x="840" y="260" text-anchor="middle" font-size="13" font-weight="bold" fill="#89b4fa" font-family="sans-serif">SAML 2.0</text>
+  <text x="840" y="276" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">SP-Initiated SSO</text>
+
+  <!-- No → consider OIDC bridge -->
+  <line x1="940" y1="180" x2="985" y2="180" stroke="#45475a" stroke-width="1.5"/>
+  <line x1="985" y1="180" x2="985" y2="310" stroke="#45475a" stroke-width="1.5"/>
+  <line x1="985" y1="310" x2="960" y2="310" stroke="#45475a" stroke-width="1.5"/>
+  <polygon points="965,305 955,310 965,315" fill="#45475a"/>
+  <text x="963" y="170" font-size="10" fill="#f38ba8" font-family="sans-serif">NO</text>
+  <rect x="765" y="295" width="195" height="44" fill="#2a1a2e" stroke="#fab387" stroke-width="1.5" rx="6"/>
+  <text x="862" y="315" text-anchor="middle" font-size="11" font-weight="bold" fill="#fab387" font-family="sans-serif">OIDC + SAML ブリッジ</text>
+  <text x="862" y="330" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">(Keycloak / Azure AD)</text>
+
+  <!-- No branch (down) from Q1 -->
+  <line x1="500" y1="190" x2="500" y2="220" stroke="#45475a" stroke-width="1.5"/>
+  <polygon points="495,215 500,225 505,215" fill="#45475a"/>
+  <text x="516" y="212" font-size="11" fill="#f38ba8" font-family="sans-serif">NO</text>
+
+  <!-- Q2: Mobile/SPA? -->
+  <polygon points="500,228 650,263 500,298 350,263" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="2"/>
+  <text x="500" y="260" text-anchor="middle" font-size="11" font-weight="bold" fill="#a6e3a1" font-family="sans-serif">モバイル / SPA /</text>
+  <text x="500" y="276" text-anchor="middle" font-size="11" font-weight="bold" fill="#a6e3a1" font-family="sans-serif">パブリッククライアントか？</text>
+
+  <!-- Yes → OIDC PKCE -->
+  <line x1="350" y1="263" x2="240" y2="263" stroke="#45475a" stroke-width="1.5"/>
+  <polygon points="245,258 235,263 245,268" fill="#45475a"/>
+  <text x="292" y="255" text-anchor="middle" font-size="11" fill="#a6e3a1" font-family="sans-serif">YES</text>
+  <rect x="100" y="248" width="135" height="44" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="2" rx="6"/>
+  <text x="167" y="268" text-anchor="middle" font-size="13" font-weight="bold" fill="#a6e3a1" font-family="sans-serif">OIDC + PKCE</text>
+  <text x="167" y="284" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">Auth Code + PKCE</text>
+
+  <!-- No branch down from Q2 -->
+  <line x1="500" y1="298" x2="500" y2="328" stroke="#45475a" stroke-width="1.5"/>
+  <polygon points="495,323 500,333 505,323" fill="#45475a"/>
+  <text x="516" y="320" font-size="11" fill="#f38ba8" font-family="sans-serif">NO</text>
+
+  <!-- Q3: API authorization? -->
+  <polygon points="500,336 650,371 500,406 350,371" fill="#1a2a2a" stroke="#94e2d5" stroke-width="2"/>
+  <text x="500" y="368" text-anchor="middle" font-size="11" font-weight="bold" fill="#94e2d5" font-family="sans-serif">API 認可 /</text>
+  <text x="500" y="384" text-anchor="middle" font-size="11" font-weight="bold" fill="#94e2d5" font-family="sans-serif">サービス間通信か？</text>
+
+  <!-- Yes → OIDC OAuth2 -->
+  <line x1="350" y1="371" x2="240" y2="371" stroke="#45475a" stroke-width="1.5"/>
+  <polygon points="245,366 235,371 245,376" fill="#45475a"/>
+  <text x="292" y="363" text-anchor="middle" font-size="11" fill="#a6e3a1" font-family="sans-serif">YES</text>
+  <rect x="90" y="356" width="145" height="44" fill="#1a2a2a" stroke="#94e2d5" stroke-width="2" rx="6"/>
+  <text x="162" y="376" text-anchor="middle" font-size="12" font-weight="bold" fill="#94e2d5" font-family="sans-serif">OIDC / OAuth 2.0</text>
+  <text x="162" y="392" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">Client Credentials</text>
+
+  <!-- No branch down from Q3 -->
+  <line x1="500" y1="406" x2="500" y2="436" stroke="#45475a" stroke-width="1.5"/>
+  <polygon points="495,431 500,441 505,431" fill="#45475a"/>
+  <text x="516" y="428" font-size="11" fill="#f38ba8" font-family="sans-serif">NO</text>
+
+  <!-- Q4: B2B federation? -->
+  <polygon points="500,444 650,475 500,506 350,475" fill="#2a2a1a" stroke="#f9e2af" stroke-width="2"/>
+  <text x="500" y="472" text-anchor="middle" font-size="11" font-weight="bold" fill="#f9e2af" font-family="sans-serif">B2B フェデレーション /</text>
+  <text x="500" y="487" text-anchor="middle" font-size="11" font-weight="bold" fill="#f9e2af" font-family="sans-serif">パートナー企業との SSO？</text>
+
+  <!-- Yes → Both (ask partner) -->
+  <line x1="350" y1="475" x2="240" y2="475" stroke="#45475a" stroke-width="1.5"/>
+  <polygon points="245,470 235,475 245,480" fill="#45475a"/>
+  <text x="292" y="467" text-anchor="middle" font-size="11" fill="#a6e3a1" font-family="sans-serif">YES</text>
+  <rect x="75" y="460" width="160" height="44" fill="#2a2a1a" stroke="#f9e2af" stroke-width="1.5" rx="6"/>
+  <text x="155" y="480" text-anchor="middle" font-size="11" font-weight="bold" fill="#f9e2af" font-family="sans-serif">相手に合わせる</text>
+  <text x="155" y="496" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">SAML or OIDC</text>
+
+  <!-- No branch down from Q4 → Default OIDC -->
+  <line x1="500" y1="506" x2="500" y2="536" stroke="#45475a" stroke-width="1.5"/>
+  <polygon points="495,531 500,541 505,531" fill="#45475a"/>
+  <text x="516" y="528" font-size="11" fill="#f38ba8" font-family="sans-serif">その他</text>
+  <rect x="380" y="541" width="240" height="36" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="2.5" rx="6"/>
+  <text x="500" y="558" text-anchor="middle" font-size="13" font-weight="bold" fill="#a6e3a1" font-family="sans-serif">デフォルト: OIDC</text>
+  <text x="500" y="571" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">Auth Code + PKCE</text>
+</svg>

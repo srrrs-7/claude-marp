@@ -1,0 +1,110 @@
+<svg viewBox="0 0 1050 470" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="1050" height="470" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="525" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">ユースケース別プロトコル選択マトリクス</text>
+
+  <!-- Header row -->
+  <rect x="20" y="40" width="300" height="45" fill="#313244" stroke="#45475a" rx="4"/>
+  <text x="170" y="67" text-anchor="middle" font-size="13" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">ユースケース</text>
+
+  <rect x="324" y="40" width="175" height="45" fill="#2a1a2e" stroke="#89b4fa" stroke-width="1.5" rx="4"/>
+  <text x="411" y="60" text-anchor="middle" font-size="13" font-weight="bold" fill="#89b4fa" font-family="sans-serif">SAML 2.0</text>
+  <text x="411" y="77" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">XML-based</text>
+
+  <rect x="503" y="40" width="175" height="45" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="1.5" rx="4"/>
+  <text x="590" y="60" text-anchor="middle" font-size="13" font-weight="bold" fill="#a6e3a1" font-family="sans-serif">OIDC</text>
+  <text x="590" y="77" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">JWT/REST-based</text>
+
+  <rect x="682" y="40" width="347" height="45" fill="#313244" stroke="#45475a" rx="4"/>
+  <text x="855" y="67" text-anchor="middle" font-size="13" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">推奨・理由</text>
+
+  <!-- Rows -->
+  <!-- Row 1: Enterprise SSO -->
+  <rect x="20" y="89" width="300" height="52" fill="#252535" stroke="#45475a" rx="2"/>
+  <text x="30" y="108" font-size="12" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">エンタープライズ SSO</text>
+  <text x="30" y="126" font-size="10" fill="#6c7086" font-family="sans-serif">Active Directory + レガシー Web アプリ</text>
+  <rect x="324" y="89" width="175" height="52" fill="#1a1a30" rx="2"/>
+  <text x="411" y="122" text-anchor="middle" font-size="22" fill="#89b4fa" font-family="sans-serif">★★★</text>
+  <rect x="503" y="89" width="175" height="52" fill="#1a1a30" rx="2"/>
+  <text x="590" y="116" text-anchor="middle" font-size="16" fill="#a6e3a1" font-family="sans-serif">★★</text>
+  <text x="590" y="132" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">(可能だが移行コスト大)</text>
+  <rect x="682" y="89" width="347" height="52" fill="#252535" rx="2"/>
+  <text x="692" y="108" font-size="10" fill="#89b4fa" font-family="sans-serif">SAML: AD/LDAP との親和性, SP-Initiated SSO</text>
+  <text x="692" y="124" font-size="10" fill="#a6adc8" font-family="sans-serif">が多くのエンタープライズ製品でサポート済み</text>
+  <text x="692" y="136" font-size="10" fill="#a6adc8" font-family="sans-serif">→ 既存システムがある場合は SAML を維持</text>
+
+  <!-- Row 2: SPA/Mobile -->
+  <rect x="20" y="145" width="300" height="52" fill="#202030" stroke="#45475a" rx="2"/>
+  <text x="30" y="164" font-size="12" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">SPA / モバイルアプリ</text>
+  <text x="30" y="182" font-size="10" fill="#6c7086" font-family="sans-serif">React, Vue, iOS, Android アプリ</text>
+  <rect x="324" y="145" width="175" height="52" fill="#1a1a30" rx="2"/>
+  <text x="411" y="175" text-anchor="middle" font-size="14" fill="#f38ba8" font-family="sans-serif">✗</text>
+  <text x="411" y="190" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">(XML POST 不可)</text>
+  <rect x="503" y="145" width="175" height="52" fill="#1a2a1a" rx="2"/>
+  <text x="590" y="174" text-anchor="middle" font-size="22" fill="#a6e3a1" font-family="sans-serif">★★★</text>
+  <rect x="682" y="145" width="347" height="52" fill="#202030" rx="2"/>
+  <text x="692" y="164" font-size="10" fill="#a6e3a1" font-family="sans-serif">OIDC + PKCE: ブラウザ/モバイルで安全に動作</text>
+  <text x="692" y="180" font-size="10" fill="#a6adc8" font-family="sans-serif">client_secret 不要。Authorization Code + PKCE</text>
+  <text x="692" y="192" font-size="10" fill="#a6adc8" font-family="sans-serif">→ OIDC 一択。SAML は使用不可</text>
+
+  <!-- Row 3: API Authorization -->
+  <rect x="20" y="201" width="300" height="52" fill="#252535" stroke="#45475a" rx="2"/>
+  <text x="30" y="220" font-size="12" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">API アクセス制御</text>
+  <text x="30" y="238" font-size="10" fill="#6c7086" font-family="sans-serif">REST API, マイクロサービス間認可</text>
+  <rect x="324" y="201" width="175" height="52" fill="#1a1a30" rx="2"/>
+  <text x="411" y="231" text-anchor="middle" font-size="14" fill="#f38ba8" font-family="sans-serif">✗</text>
+  <text x="411" y="246" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">(設計外)</text>
+  <rect x="503" y="201" width="175" height="52" fill="#1a2a1a" rx="2"/>
+  <text x="590" y="230" text-anchor="middle" font-size="22" fill="#a6e3a1" font-family="sans-serif">★★★</text>
+  <rect x="682" y="201" width="347" height="52" fill="#252535" rx="2"/>
+  <text x="692" y="220" font-size="10" fill="#a6e3a1" font-family="sans-serif">OAuth 2.0 はまさに API 認可のために設計</text>
+  <text x="692" y="236" font-size="10" fill="#a6adc8" font-family="sans-serif">Bearer Token で REST API を保護</text>
+  <text x="692" y="248" font-size="10" fill="#a6adc8" font-family="sans-serif">→ OIDC/OAuth2.0 一択</text>
+
+  <!-- Row 4: B2B Federation -->
+  <rect x="20" y="257" width="300" height="52" fill="#202030" stroke="#45475a" rx="2"/>
+  <text x="30" y="276" font-size="12" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">B2B フェデレーション</text>
+  <text x="30" y="294" font-size="10" fill="#6c7086" font-family="sans-serif">取引先/パートナー企業との SSO</text>
+  <rect x="324" y="257" width="175" height="52" fill="#1a1a2e" rx="2"/>
+  <text x="411" y="286" text-anchor="middle" font-size="22" fill="#89b4fa" font-family="sans-serif">★★★</text>
+  <rect x="503" y="257" width="175" height="52" fill="#1a2a1a" rx="2"/>
+  <text x="590" y="286" text-anchor="middle" font-size="22" fill="#a6e3a1" font-family="sans-serif">★★★</text>
+  <rect x="682" y="257" width="347" height="52" fill="#202030" rx="2"/>
+  <text x="692" y="276" font-size="10" fill="#fab387" font-family="sans-serif">どちらでも可。相手の IdP に合わせる</text>
+  <text x="692" y="292" font-size="10" fill="#a6adc8" font-family="sans-serif">エンタープライズ: SAML が主流</text>
+  <text x="692" y="304" font-size="10" fill="#a6adc8" font-family="sans-serif">クラウドネイティブ: OIDC が増加傾向</text>
+
+  <!-- Row 5: Consumer/Social Login -->
+  <rect x="20" y="313" width="300" height="52" fill="#252535" stroke="#45475a" rx="2"/>
+  <text x="30" y="332" font-size="12" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">コンシューマー/ソーシャルログイン</text>
+  <text x="30" y="350" font-size="10" fill="#6c7086" font-family="sans-serif">Google/GitHub/Apple ログイン</text>
+  <rect x="324" y="313" width="175" height="52" fill="#1a1a30" rx="2"/>
+  <text x="411" y="343" text-anchor="middle" font-size="14" fill="#f38ba8" font-family="sans-serif">✗</text>
+  <text x="411" y="358" text-anchor="middle" font-size="10" fill="#6c7086" font-family="sans-serif">(非対応)</text>
+  <rect x="503" y="313" width="175" height="52" fill="#1a2a1a" rx="2"/>
+  <text x="590" y="342" text-anchor="middle" font-size="22" fill="#a6e3a1" font-family="sans-serif">★★★</text>
+  <rect x="682" y="313" width="347" height="52" fill="#252535" rx="2"/>
+  <text x="692" y="332" font-size="10" fill="#a6e3a1" font-family="sans-serif">主要プロバイダーは全て OIDC 対応</text>
+  <text x="692" y="348" font-size="10" fill="#a6adc8" font-family="sans-serif">Google Identity, GitHub OAuth, Apple Sign-In</text>
+  <text x="692" y="360" font-size="10" fill="#a6adc8" font-family="sans-serif">→ OIDC 一択</text>
+
+  <!-- Row 6: Microservices -->
+  <rect x="20" y="369" width="300" height="52" fill="#202030" stroke="#45475a" rx="2"/>
+  <text x="30" y="388" font-size="12" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">マイクロサービス間認証</text>
+  <text x="30" y="406" font-size="10" fill="#6c7086" font-family="sans-serif">Service-to-Service, mTLS + JWT</text>
+  <rect x="324" y="369" width="175" height="52" fill="#1a1a30" rx="2"/>
+  <text x="411" y="399" text-anchor="middle" font-size="14" fill="#f38ba8" font-family="sans-serif">✗</text>
+  <rect x="503" y="369" width="175" height="52" fill="#1a2a1a" rx="2"/>
+  <text x="590" y="398" text-anchor="middle" font-size="22" fill="#a6e3a1" font-family="sans-serif">★★★</text>
+  <rect x="682" y="369" width="347" height="52" fill="#202030" rx="2"/>
+  <text x="692" y="388" font-size="10" fill="#a6e3a1" font-family="sans-serif">Client Credentials Flow で M2M 認証</text>
+  <text x="692" y="404" font-size="10" fill="#a6adc8" font-family="sans-serif">JWT を各サービスがローカルで検証可能</text>
+  <text x="692" y="416" font-size="10" fill="#a6adc8" font-family="sans-serif">→ OIDC/OAuth2.0 一択</text>
+
+  <!-- Legend -->
+  <text x="30" y="444" font-size="11" fill="#89b4fa" font-family="sans-serif">★★★ = 最適</text>
+  <text x="120" y="444" font-size="11" fill="#a6e3a1" font-family="sans-serif">★★ = 対応可</text>
+  <text x="210" y="444" font-size="11" fill="#fab387" font-family="sans-serif">★ = 代替手段あり</text>
+  <text x="330" y="444" font-size="11" fill="#f38ba8" font-family="sans-serif">✗ = 非推奨 / 不可</text>
+</svg>

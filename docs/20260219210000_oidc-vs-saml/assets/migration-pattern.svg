@@ -1,0 +1,105 @@
+<svg viewBox="0 0 1050 440" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="1050" height="440" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="525" y="22" text-anchor="middle" font-size="15" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">SAML → OIDC 移行パターン（4フェーズ）</text>
+
+  <!-- Phase arrows connecting boxes -->
+  <line x1="222" y1="100" x2="258" y2="100" stroke="#45475a" stroke-width="2"/>
+  <polygon points="253,95 263,100 253,105" fill="#45475a"/>
+  <line x1="462" y1="100" x2="498" y2="100" stroke="#45475a" stroke-width="2"/>
+  <polygon points="493,95 503,100 493,105" fill="#45475a"/>
+  <line x1="702" y1="100" x2="738" y2="100" stroke="#45475a" stroke-width="2"/>
+  <polygon points="733,95 743,100 733,105" fill="#45475a"/>
+
+  <!-- Phase 1 -->
+  <rect x="20" y="52" width="242" height="190" fill="#2a1a1a" stroke="#f38ba8" stroke-width="1.5" rx="8"/>
+  <rect x="20" y="52" width="242" height="36" fill="#f38ba8" stroke="none" rx="8"/>
+  <rect x="20" y="72" width="242" height="16" fill="#f38ba8" stroke="none"/>
+  <text x="141" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e1e2e" font-family="sans-serif">Phase 1: 現状把握</text>
+  <text x="141" y="106" text-anchor="middle" font-size="11" font-weight="bold" fill="#f38ba8" font-family="sans-serif">SAML のみ稼働</text>
+  <text x="35" y="130" font-size="10" fill="#a6adc8" font-family="sans-serif">• 全 SAML SP をインベントリ</text>
+  <text x="35" y="148" font-size="10" fill="#a6adc8" font-family="sans-serif">• 各 SP の OIDC 対応状況確認</text>
+  <text x="35" y="166" font-size="10" fill="#a6adc8" font-family="sans-serif">• 移行優先順位を決定</text>
+  <text x="35" y="184" font-size="10" fill="#a6adc8" font-family="sans-serif">• テスト環境の準備</text>
+  <rect x="35" y="196" width="192" height="36" fill="#181825" stroke="#f38ba8" stroke-width="1" rx="3"/>
+  <text x="131" y="212" text-anchor="middle" font-size="10" fill="#f38ba8" font-family="sans-serif">状態: SAML 100%</text>
+  <text x="131" y="226" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">全サービス SAML に依存</text>
+
+  <!-- Phase 2 -->
+  <rect x="260" y="52" width="242" height="190" fill="#2a1a2a" stroke="#cba6f7" stroke-width="1.5" rx="8"/>
+  <rect x="260" y="52" width="242" height="36" fill="#cba6f7" stroke="none" rx="8"/>
+  <rect x="260" y="72" width="242" height="16" fill="#cba6f7" stroke="none"/>
+  <text x="381" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e1e2e" font-family="sans-serif">Phase 2: 並存期</text>
+  <text x="381" y="106" text-anchor="middle" font-size="11" font-weight="bold" fill="#cba6f7" font-family="sans-serif">SAML + OIDC ブリッジ</text>
+  <text x="275" y="130" font-size="10" fill="#a6adc8" font-family="sans-serif">• IdP で OIDC 対応を有効化</text>
+  <text x="275" y="148" font-size="10" fill="#a6adc8" font-family="sans-serif">• 新規アプリを OIDC で開発</text>
+  <text x="275" y="166" font-size="10" fill="#a6adc8" font-family="sans-serif">• SAML→OIDC プロキシ検討</text>
+  <text x="275" y="184" font-size="10" fill="#a6adc8" font-family="sans-serif">• 移行テストの実施</text>
+  <rect x="275" y="196" width="192" height="36" fill="#181825" stroke="#cba6f7" stroke-width="1" rx="3"/>
+  <text x="371" y="212" text-anchor="middle" font-size="10" fill="#cba6f7" font-family="sans-serif">状態: SAML 80% + OIDC 20%</text>
+  <text x="371" y="226" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">既存は SAML, 新規は OIDC</text>
+
+  <!-- Phase 3 -->
+  <rect x="500" y="52" width="242" height="190" fill="#1a2a2a" stroke="#94e2d5" stroke-width="1.5" rx="8"/>
+  <rect x="500" y="52" width="242" height="36" fill="#94e2d5" stroke="none" rx="8"/>
+  <rect x="500" y="72" width="242" height="16" fill="#94e2d5" stroke="none"/>
+  <text x="621" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e1e2e" font-family="sans-serif">Phase 3: 移行実行</text>
+  <text x="621" y="106" text-anchor="middle" font-size="11" font-weight="bold" fill="#94e2d5" font-family="sans-serif">OIDC 優勢 + SAML 縮小</text>
+  <text x="515" y="130" font-size="10" fill="#a6adc8" font-family="sans-serif">• SP を順次 OIDC に移行</text>
+  <text x="515" y="148" font-size="10" fill="#a6adc8" font-family="sans-serif">• SAML プロバイダー廃止計画</text>
+  <text x="515" y="166" font-size="10" fill="#a6adc8" font-family="sans-serif">• ユーザー受け入れテスト</text>
+  <text x="515" y="184" font-size="10" fill="#a6adc8" font-family="sans-serif">• ロールバック手順の準備</text>
+  <rect x="515" y="196" width="192" height="36" fill="#181825" stroke="#94e2d5" stroke-width="1" rx="3"/>
+  <text x="611" y="212" text-anchor="middle" font-size="10" fill="#94e2d5" font-family="sans-serif">状態: SAML 20% + OIDC 80%</text>
+  <text x="611" y="226" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">レガシーのみ SAML 残存</text>
+
+  <!-- Phase 4 -->
+  <rect x="740" y="52" width="290" height="190" fill="#1a2a1a" stroke="#a6e3a1" stroke-width="2" rx="8"/>
+  <rect x="740" y="52" width="290" height="36" fill="#a6e3a1" stroke="none" rx="8"/>
+  <rect x="740" y="72" width="290" height="16" fill="#a6e3a1" stroke="none"/>
+  <text x="885" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e1e2e" font-family="sans-serif">Phase 4: OIDC 完全移行</text>
+  <text x="885" y="106" text-anchor="middle" font-size="11" font-weight="bold" fill="#a6e3a1" font-family="sans-serif">OIDC のみ稼働</text>
+  <text x="755" y="130" font-size="10" fill="#a6adc8" font-family="sans-serif">• 全 SP が OIDC 移行完了</text>
+  <text x="755" y="148" font-size="10" fill="#a6adc8" font-family="sans-serif">• SAML プロバイダー停止</text>
+  <text x="755" y="166" font-size="10" fill="#a6adc8" font-family="sans-serif">• セキュリティ監査実施</text>
+  <text x="755" y="184" font-size="10" fill="#a6adc8" font-family="sans-serif">• ドキュメント整備</text>
+  <rect x="755" y="196" width="260" height="36" fill="#181825" stroke="#a6e3a1" stroke-width="1" rx="3"/>
+  <text x="885" y="212" text-anchor="middle" font-size="10" fill="#a6e3a1" font-family="sans-serif">状態: OIDC 100%</text>
+  <text x="885" y="226" text-anchor="middle" font-size="10" fill="#a6adc8" font-family="sans-serif">Auth Code + PKCE 標準化</text>
+
+  <!-- Timeline bar -->
+  <rect x="20" y="258" width="1010" height="30" fill="#181825" stroke="#45475a" rx="4"/>
+  <rect x="20" y="258" width="120" height="30" fill="#f38ba8" opacity="0.3" rx="4"/>
+  <rect x="140" y="258" width="240" height="30" fill="#cba6f7" opacity="0.3"/>
+  <rect x="380" y="258" width="360" height="30" fill="#94e2d5" opacity="0.3"/>
+  <rect x="740" y="258" width="290" height="30" fill="#a6e3a1" opacity="0.3" rx="4"/>
+  <text x="80" y="278" text-anchor="middle" font-size="10" fill="#f38ba8" font-family="sans-serif">1-2 ヶ月</text>
+  <text x="260" y="278" text-anchor="middle" font-size="10" fill="#cba6f7" font-family="sans-serif">3-6 ヶ月</text>
+  <text x="560" y="278" text-anchor="middle" font-size="10" fill="#94e2d5" font-family="sans-serif">6-18 ヶ月</text>
+  <text x="885" y="278" text-anchor="middle" font-size="10" fill="#a6e3a1" font-family="sans-serif">完了</text>
+
+  <!-- Key considerations -->
+  <rect x="20" y="300" width="1010" height="130" fill="#181825" stroke="#45475a" rx="8"/>
+  <text x="525" y="320" text-anchor="middle" font-size="13" font-weight="bold" fill="#cdd6f4" font-family="sans-serif">移行時の重要チェックポイント</text>
+  <rect x="30" y="328" width="300" height="90" fill="#2a1a1a" stroke="#f38ba8" rx="4"/>
+  <text x="180" y="346" text-anchor="middle" font-size="11" font-weight="bold" fill="#f38ba8" font-family="sans-serif">リスク対策</text>
+  <text x="40" y="364" font-size="10" fill="#a6adc8" font-family="sans-serif">• 移行前後でロールバック手順を明確化</text>
+  <text x="40" y="380" font-size="10" fill="#a6adc8" font-family="sans-serif">• ステージング環境でフル検証</text>
+  <text x="40" y="396" font-size="10" fill="#a6adc8" font-family="sans-serif">• セッション移行期間の設計</text>
+  <text x="40" y="412" font-size="10" fill="#a6adc8" font-family="sans-serif">• 監視強化（エラーレート監視）</text>
+
+  <rect x="345" y="328" width="310" height="90" fill="#1a2a1a" stroke="#a6e3a1" rx="4"/>
+  <text x="500" y="346" text-anchor="middle" font-size="11" font-weight="bold" fill="#a6e3a1" font-family="sans-serif">OIDC 移行で得られるメリット</text>
+  <text x="355" y="364" font-size="10" fill="#a6adc8" font-family="sans-serif">• モバイル/SPA 対応が容易に</text>
+  <text x="355" y="380" font-size="10" fill="#a6adc8" font-family="sans-serif">• マイクロサービス間認証が可能</text>
+  <text x="355" y="396" font-size="10" fill="#a6adc8" font-family="sans-serif">• 細粒度の認可 (scopes)</text>
+  <text x="355" y="412" font-size="10" fill="#a6adc8" font-family="sans-serif">• JWT の軽量さ (XML 比 1/10)</text>
+
+  <rect x="670" y="328" width="350" height="90" fill="#2a2a1a" stroke="#f9e2af" rx="4"/>
+  <text x="845" y="346" text-anchor="middle" font-size="11" font-weight="bold" fill="#f9e2af" font-family="sans-serif">移行困難なケースの対処</text>
+  <text x="680" y="364" font-size="10" fill="#a6adc8" font-family="sans-serif">• SAML のみの SaaS: ベンダー交渉 or 並存</text>
+  <text x="680" y="380" font-size="10" fill="#a6adc8" font-family="sans-serif">• カスタム SAML SP: OIDC-to-SAML プロキシ</text>
+  <text x="680" y="396" font-size="10" fill="#a6adc8" font-family="sans-serif">• コンプライアンス要件: ギャップ分析</text>
+  <text x="680" y="412" font-size="10" fill="#a6adc8" font-family="sans-serif">• 社内政治: 段階的移行で合意形成</text>
+</svg>
