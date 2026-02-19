@@ -1,0 +1,63 @@
+<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117">
+  <text x="480" y="38" text-anchor="middle" font-size="20" font-weight="bold" fill="#e6edf3" font-family="sans-serif">ローカルLLM 実行ツール比較</text>
+
+  <!-- Axes labels -->
+  <text x="480" y="466" text-anchor="middle" font-size="13" fill="#6b7280" font-family="sans-serif">→ セットアップのしやすさ（初心者にやさしい）</text>
+  <text x="24" y="250" text-anchor="middle" font-size="13" fill="#6b7280" font-family="sans-serif" transform="rotate(-90,24,250)">↑ スループット・本番適性</text>
+
+  <!-- Grid -->
+  <rect x="55" y="55" width="880" height="395" rx="8" fill="#111827"/>
+  <line x1="55" y1="252" x2="935" y2="252" stroke="#374151" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="495" y1="55" x2="495" y2="450" stroke="#374151" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Quadrant labels -->
+  <text x="110" y="78" font-size="11" fill="#374151" font-family="sans-serif">高スループット・難設定</text>
+  <text x="650" y="78" font-size="11" fill="#374151" font-family="sans-serif">高スループット・簡単</text>
+  <text x="110" y="438" font-size="11" fill="#374151" font-family="sans-serif">低スループット・難設定</text>
+  <text x="650" y="438" font-size="11" fill="#374151" font-family="sans-serif">低スループット・簡単</text>
+
+  <!-- vLLM - top left -->
+  <rect x="100" y="80" width="180" height="120" rx="10" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2" style="filter:drop-shadow(0 3px 8px rgba(59,130,246,0.4))"/>
+  <text x="190" y="108" text-anchor="middle" font-size="16" font-weight="bold" fill="#60a5fa" font-family="sans-serif">vLLM</text>
+  <text x="190" y="130" text-anchor="middle" font-size="12" fill="#93c5fd" font-family="sans-serif">本番・高スループット</text>
+  <text x="190" y="149" text-anchor="middle" font-size="11" fill="#bfdbfe" font-family="sans-serif">CUDA GPU必須</text>
+  <text x="190" y="167" text-anchor="middle" font-size="11" fill="#bfdbfe" font-family="sans-serif">PagedAttention</text>
+  <text x="190" y="185" text-anchor="middle" font-size="11" fill="#93c5fd" font-family="sans-serif">★ サーバー/API向け</text>
+
+  <!-- llama.cpp - center left -->
+  <rect x="90" y="240" width="190" height="120" rx="10" fill="#14532d" stroke="#22c55e" stroke-width="2" style="filter:drop-shadow(0 3px 8px rgba(34,197,94,0.35))"/>
+  <text x="185" y="268" text-anchor="middle" font-size="16" font-weight="bold" fill="#4ade80" font-family="sans-serif">llama.cpp</text>
+  <text x="185" y="290" text-anchor="middle" font-size="12" fill="#86efac" font-family="sans-serif">軽量・クロスプラットフォーム</text>
+  <text x="185" y="309" text-anchor="middle" font-size="11" fill="#bbf7d0" font-family="sans-serif">CPU/GPU/Metal対応</text>
+  <text x="185" y="327" text-anchor="middle" font-size="11" fill="#bbf7d0" font-family="sans-serif">エッジ・組み込み向け</text>
+  <text x="185" y="345" text-anchor="middle" font-size="11" fill="#86efac" font-family="sans-serif">★ 開発者・エッジ向け</text>
+
+  <!-- Ollama - top right (HIGH throughput + EASY) -->
+  <rect x="600" y="80" width="190" height="130" rx="10" fill="#7c2d12" stroke="#f97316" stroke-width="2.5" style="filter:drop-shadow(0 3px 10px rgba(249,115,22,0.5))"/>
+  <text x="695" y="108" text-anchor="middle" font-size="18" font-weight="bold" fill="#fb923c" font-family="sans-serif">Ollama</text>
+  <text x="695" y="130" text-anchor="middle" font-size="12" fill="#fed7aa" font-family="sans-serif">ワンクリック起動</text>
+  <text x="695" y="150" text-anchor="middle" font-size="11" fill="#ffedd5" font-family="sans-serif">OpenAI互換API内蔵</text>
+  <text x="695" y="169" text-anchor="middle" font-size="11" fill="#ffedd5" font-family="sans-serif">CUDA/Metal自動検出</text>
+  <text x="695" y="188" text-anchor="middle" font-size="13" fill="#f97316" font-family="sans-serif">★★ 推奨・まず始めはここ</text>
+
+  <!-- LM Studio - bottom right -->
+  <rect x="630" y="290" width="190" height="120" rx="10" fill="#1e1b4b" stroke="#6366f1" stroke-width="2" style="filter:drop-shadow(0 3px 8px rgba(99,102,241,0.4))"/>
+  <text x="725" y="318" text-anchor="middle" font-size="15" font-weight="bold" fill="#a5b4fc" font-family="sans-serif">LM Studio</text>
+  <text x="725" y="340" text-anchor="middle" font-size="12" fill="#c7d2fe" font-family="sans-serif">GUIアプリ（無料）</text>
+  <text x="725" y="359" text-anchor="middle" font-size="11" fill="#e0e7ff" font-family="sans-serif">HuggingFace内蔵ブラウザ</text>
+  <text x="725" y="378" text-anchor="middle" font-size="11" fill="#e0e7ff" font-family="sans-serif">非エンジニア向け</text>
+  <text x="725" y="396" text-anchor="middle" font-size="11" fill="#a5b4fc" font-family="sans-serif">★ 初心者・GUI好きに</text>
+
+  <!-- HuggingFace Transformers - center -->
+  <rect x="370" y="155" width="200" height="115" rx="10" fill="#374151" stroke="#9ca3af" stroke-width="1.5"/>
+  <text x="470" y="182" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9fafb" font-family="sans-serif">HF Transformers</text>
+  <text x="470" y="202" text-anchor="middle" font-size="11" fill="#d1d5db" font-family="sans-serif">Python / PyTorch</text>
+  <text x="470" y="221" text-anchor="middle" font-size="11" fill="#d1d5db" font-family="sans-serif">全モデル対応・高柔軟性</text>
+  <text x="470" y="240" text-anchor="middle" font-size="11" fill="#d1d5db" font-family="sans-serif">Fine-tuning / カスタム推論</text>
+  <text x="470" y="258" text-anchor="middle" font-size="11" fill="#9ca3af" font-family="sans-serif">★ 研究・カスタム開発向け</text>
+
+  <!-- Arrows showing relationships -->
+  <line x1="280" y1="145" x2="370" y2="200" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="320" y="170" font-size="10" fill="#6b7280" font-family="sans-serif">内部で使用</text>
+  <line x1="280" y1="300" x2="370" y2="258" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="5,3"/>
+</svg>

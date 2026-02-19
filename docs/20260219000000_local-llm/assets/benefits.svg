@@ -1,0 +1,43 @@
+<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117">
+  <text x="480" y="42" text-anchor="middle" font-size="22" font-weight="bold" fill="#e6edf3" font-family="sans-serif">ローカルLLMを選ぶ4つの理由</text>
+
+  <!-- Card 1: Privacy -->
+  <rect x="40" y="70" width="420" height="175" rx="12" fill="#1e1b4b" stroke="#6366f1" stroke-width="2" style="filter:drop-shadow(0 4px 12px rgba(99,102,241,0.3))"/>
+  <text x="70" y="112" font-size="36" font-family="sans-serif">🔒</text>
+  <text x="120" y="105" font-size="17" font-weight="bold" fill="#a5b4fc" font-family="sans-serif">プライバシー &amp; セキュリティ</text>
+  <text x="70" y="132" font-size="13" fill="#c7d2fe" font-family="sans-serif">機密データは一切外部送信なし</text>
+  <text x="70" y="153" font-size="13" fill="#c7d2fe" font-family="sans-serif">GDPR / 個人情報保護法に完全準拠</text>
+  <text x="70" y="174" font-size="13" fill="#c7d2fe" font-family="sans-serif">医療・法務・金融データも安全処理</text>
+  <text x="70" y="195" font-size="13" fill="#c7d2fe" font-family="sans-serif">エアギャップ環境でも動作</text>
+  <text x="70" y="224" font-size="22" font-weight="bold" fill="#6366f1" font-family="sans-serif">データ漏洩リスク: ゼロ</text>
+
+  <!-- Card 2: Cost -->
+  <rect x="500" y="70" width="420" height="175" rx="12" fill="#14532d" stroke="#22c55e" stroke-width="2" style="filter:drop-shadow(0 4px 12px rgba(34,197,94,0.3))"/>
+  <text x="530" y="112" font-size="36" font-family="sans-serif">💰</text>
+  <text x="580" y="105" font-size="17" font-weight="bold" fill="#86efac" font-family="sans-serif">コスト削減</text>
+  <text x="530" y="132" font-size="13" fill="#bbf7d0" font-family="sans-serif">クラウドAPI: $5〜$15 / 100万トークン</text>
+  <text x="530" y="153" font-size="13" fill="#bbf7d0" font-family="sans-serif">ローカル: 電気代のみ（月数百円）</text>
+  <text x="530" y="174" font-size="13" fill="#bbf7d0" font-family="sans-serif">RTX 4060 Ti ($400) → 4-6ヶ月でペイバック</text>
+  <text x="530" y="195" font-size="13" fill="#bbf7d0" font-family="sans-serif">大量バッチ処理でコスト差が顕著</text>
+  <text x="530" y="224" font-size="22" font-weight="bold" fill="#22c55e" font-family="sans-serif">ランニングコスト: 固定化</text>
+
+  <!-- Card 3: Offline -->
+  <rect x="40" y="275" width="420" height="175" rx="12" fill="#7c2d12" stroke="#f97316" stroke-width="2" style="filter:drop-shadow(0 4px 12px rgba(249,115,22,0.3))"/>
+  <text x="70" y="317" font-size="36" font-family="sans-serif">📶</text>
+  <text x="120" y="310" font-size="17" font-weight="bold" fill="#fed7aa" font-family="sans-serif">オフライン &amp; 低レイテンシ</text>
+  <text x="70" y="337" font-size="13" fill="#ffedd5" font-family="sans-serif">ネットワーク遅延ゼロ</text>
+  <text x="70" y="358" font-size="13" fill="#ffedd5" font-family="sans-serif">機内・障害時・僻地でも安定動作</text>
+  <text x="70" y="379" font-size="13" fill="#ffedd5" font-family="sans-serif">SLA を自社でコントロール可能</text>
+  <text x="70" y="400" font-size="13" fill="#ffedd5" font-family="sans-serif">GPU: 50〜200 tokens/sec を実現</text>
+  <text x="70" y="429" font-size="22" font-weight="bold" fill="#f97316" font-family="sans-serif">可用性: 100% 自社管理</text>
+
+  <!-- Card 4: Customization -->
+  <rect x="500" y="275" width="420" height="175" rx="12" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2" style="filter:drop-shadow(0 4px 12px rgba(59,130,246,0.3))"/>
+  <text x="530" y="317" font-size="36" font-family="sans-serif">🔧</text>
+  <text x="580" y="310" font-size="17" font-weight="bold" fill="#93c5fd" font-family="sans-serif">カスタマイズ自由度</text>
+  <text x="530" y="337" font-size="13" fill="#bfdbfe" font-family="sans-serif">システムプロンプト・温度を完全制御</text>
+  <text x="530" y="358" font-size="13" fill="#bfdbfe" font-family="sans-serif">LoRA / QLoRA でドメイン特化Fine-tune</text>
+  <text x="530" y="379" font-size="13" fill="#bfdbfe" font-family="sans-serif">Modelfileで社内専用モデルを作成</text>
+  <text x="530" y="400" font-size="13" fill="#bfdbfe" font-family="sans-serif">特定タスクに特化した動作を実現</text>
+  <text x="530" y="429" font-size="22" font-weight="bold" fill="#3b82f6" font-family="sans-serif">モデル動作: 完全掌握</text>
+</svg>

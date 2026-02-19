@@ -1,0 +1,25 @@
+topic: "ローカルLLM完全ガイド 2026"
+audience: "エンジニア・開発者"
+goal: "ローカルLLMの基礎から実践まで体系的に理解し、自分のプロジェクトで活用できる知識を習得する"
+language: "ja"
+
+output:
+  dir: "docs/20260219000000_local-llm"
+  baseName: "local-llm"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "ローカルLLM完全ガイド 2026"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+    section.section-slide {
+      background: #1a1a2e;
+    }

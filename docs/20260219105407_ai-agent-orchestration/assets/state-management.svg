@@ -1,0 +1,68 @@
+<svg viewBox="0 0 1000 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0f172a;border-radius:12px">
+  <text x="500" y="28" text-anchor="middle" fill="#f1f5f9" font-size="16" font-weight="bold" font-family="sans-serif">状態管理アーキテクチャ — Shared State + Checkpoint</text>
+  <!-- Central Shared State -->
+  <rect x="340" y="50" width="320" height="120" rx="10" fill="#1e293b" stroke="#fbbf24" stroke-width="2.5"/>
+  <text x="500" y="76" text-anchor="middle" fill="#fbbf24" font-size="14" font-weight="bold" font-family="sans-serif">Shared State Object</text>
+  <line x1="360" y1="84" x2="640" y2="84" stroke="#334155" stroke-width="1"/>
+  <text x="370" y="102" fill="#94a3b8" font-size="11" font-family="sans-serif">messages: []</text>
+  <text x="370" y="118" fill="#94a3b8" font-size="11" font-family="sans-serif">current_step: "research"</text>
+  <text x="370" y="134" fill="#94a3b8" font-size="11" font-family="sans-serif">context: {...}</text>
+  <text x="550" y="102" fill="#94a3b8" font-size="11" font-family="sans-serif">results: {}</text>
+  <text x="550" y="118" fill="#94a3b8" font-size="11" font-family="sans-serif">error_count: 0</text>
+  <text x="550" y="134" fill="#94a3b8" font-size="11" font-family="sans-serif">next: "writer"</text>
+  <text x="500" y="160" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">TypedDict / Pydantic で型定義 — すべてのエージェントが読み書き可能</text>
+  <!-- Agents reading/writing state -->
+  <!-- Agent 1 -->
+  <rect x="30" y="100" width="140" height="48" rx="8" fill="#1e3a5f" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="100" y="122" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="bold" font-family="sans-serif">Researcher</text>
+  <text x="100" y="140" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">results.research = ...</text>
+  <!-- Arrow write -->
+  <line x1="170" y1="116" x2="334" y2="100" stroke="#38bdf8" stroke-width="1.5"/>
+  <polygon points="326,94 336,100 326,106" fill="#38bdf8"/>
+  <text x="240" y="96" fill="#38bdf8" font-size="10" font-family="sans-serif">write</text>
+  <!-- Agent 2 -->
+  <rect x="30" y="188" width="140" height="48" rx="8" fill="#1e3a5f" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="100" y="210" text-anchor="middle" fill="#c084fc" font-size="13" font-weight="bold" font-family="sans-serif">Writer</text>
+  <text x="100" y="228" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">reads context, writes draft</text>
+  <line x1="170" y1="205" x2="334" y2="140" stroke="#c084fc" stroke-width="1.5"/>
+  <polygon points="326,134 336,140 326,146" fill="#c084fc"/>
+  <text x="230" y="164" fill="#c084fc" font-size="10" font-family="sans-serif">read/write</text>
+  <!-- Agent 3 -->
+  <rect x="830" y="100" width="140" height="48" rx="8" fill="#1e3a5f" stroke="#fdba74" stroke-width="1.5"/>
+  <text x="900" y="122" text-anchor="middle" fill="#fdba74" font-size="13" font-weight="bold" font-family="sans-serif">Reviewer</text>
+  <text x="900" y="140" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">reads draft, writes review</text>
+  <line x1="830" y1="116" x2="662" y2="100" stroke="#fdba74" stroke-width="1.5"/>
+  <polygon points="670,94 660,100 670,106" fill="#fdba74"/>
+  <text x="730" y="96" fill="#fdba74" font-size="10" font-family="sans-serif">read/write</text>
+  <!-- Agent 4 -->
+  <rect x="830" y="188" width="140" height="48" rx="8" fill="#1e3a5f" stroke="#34d399" stroke-width="1.5"/>
+  <text x="900" y="210" text-anchor="middle" fill="#34d399" font-size="13" font-weight="bold" font-family="sans-serif">Supervisor</text>
+  <text x="900" y="228" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">reads next, routes tasks</text>
+  <line x1="830" y1="205" x2="662" y2="140" stroke="#34d399" stroke-width="1.5"/>
+  <polygon points="670,134 660,140 670,146" fill="#34d399"/>
+  <text x="730" y="168" fill="#34d399" font-size="10" font-family="sans-serif">read</text>
+  <!-- Checkpoint Store -->
+  <rect x="340" y="210" width="320" height="70" rx="10" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+  <text x="500" y="234" text-anchor="middle" fill="#60a5fa" font-size="14" font-weight="bold" font-family="sans-serif">Checkpoint Store</text>
+  <text x="500" y="254" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">Redis / PostgreSQL / DynamoDB</text>
+  <text x="500" y="272" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">失敗時に最後のチェックポイントから再開可能</text>
+  <!-- Arrow from shared state to checkpoint -->
+  <line x1="500" y1="170" x2="500" y2="208" stroke="#60a5fa" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="494,208 500,218 506,208" fill="#60a5fa"/>
+  <text x="520" y="194" fill="#60a5fa" font-size="10" font-family="sans-serif">save</text>
+  <!-- Legend boxes -->
+  <rect x="30" y="300" width="440" height="65" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="50" y="320" fill="#fbbf24" font-size="12" font-weight="bold" font-family="sans-serif">インメモリ型:</text>
+  <text x="150" y="320" fill="#94a3b8" font-size="11" font-family="sans-serif">高速・揮発 → 短時間タスク向け</text>
+  <text x="50" y="340" fill="#60a5fa" font-size="12" font-weight="bold" font-family="sans-serif">永続化型:</text>
+  <text x="150" y="340" fill="#94a3b8" font-size="11" font-family="sans-serif">耐障害性・再開可能 → 長時間タスク向け</text>
+  <text x="50" y="356" fill="#34d399" font-size="12" font-weight="bold" font-family="sans-serif">チェックポイント:</text>
+  <text x="170" y="356" fill="#94a3b8" font-size="11" font-family="sans-serif">ステップ毎に保存 → HitLと相性◎</text>
+  <rect x="530" y="300" width="440" height="65" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="550" y="320" fill="#f87171" font-size="12" font-weight="bold" font-family="sans-serif">排他制御:</text>
+  <text x="640" y="320" fill="#94a3b8" font-size="11" font-family="sans-serif">並列エージェントの競合をロックで防止</text>
+  <text x="550" y="340" fill="#c084fc" font-size="12" font-weight="bold" font-family="sans-serif">スキーマ:</text>
+  <text x="640" y="340" fill="#94a3b8" font-size="11" font-family="sans-serif">TypedDict/Pydanticで型安全を保証</text>
+  <text x="550" y="356" fill="#fdba74" font-size="12" font-weight="bold" font-family="sans-serif">圧縮:</text>
+  <text x="600" y="356" fill="#94a3b8" font-size="11" font-family="sans-serif">古いmessagesを要約してトークン節約</text>
+</svg>

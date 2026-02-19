@@ -1,0 +1,94 @@
+<svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="440" fill="#f8f9fa" rx="8"/>
+  <text x="400" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#2c3e50" font-family="sans-serif">AWS IAM エンティティ関係図</text>
+
+  <!-- AWS Cloud box -->
+  <rect x="15" y="40" width="770" height="380" rx="12" fill="none" stroke="#e67e22" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="30" y="58" font-size="10" fill="#e67e22" font-family="sans-serif">AWS Account</text>
+
+  <!-- IAM User -->
+  <rect x="40" y="70" width="140" height="80" rx="8" fill="#3498db" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="55" y="95" font-size="22" font-family="sans-serif" fill="white">👤</text>
+  <text x="110" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">IAM User</text>
+  <text x="110" y="116" text-anchor="middle" font-size="9" fill="#d6eaf8" font-family="sans-serif">長期認証情報</text>
+  <text x="110" y="130" text-anchor="middle" font-size="9" fill="#d6eaf8" font-family="sans-serif">AccessKey + SecretKey</text>
+
+  <!-- IAM Group -->
+  <rect x="40" y="180" width="140" height="70" rx="8" fill="#2980b9" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="55" y="205" font-size="20" font-family="sans-serif" fill="white">👥</text>
+  <text x="110" y="210" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">IAM Group</text>
+  <text x="110" y="227" text-anchor="middle" font-size="9" fill="#d6eaf8" font-family="sans-serif">User の集合体</text>
+  <text x="110" y="240" text-anchor="middle" font-size="9" fill="#d6eaf8" font-family="sans-serif">Policy を一括付与</text>
+
+  <!-- IAM Role -->
+  <rect x="330" y="70" width="140" height="80" rx="8" fill="#e67e22" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="345" y="95" font-size="22" font-family="sans-serif" fill="white">🎭</text>
+  <text x="400" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">IAM Role</text>
+  <text x="400" y="116" text-anchor="middle" font-size="9" fill="#fdebd0" font-family="sans-serif">一時認証情報</text>
+  <text x="400" y="130" text-anchor="middle" font-size="9" fill="#fdebd0" font-family="sans-serif">Trust Policy + Permission</text>
+
+  <!-- IAM Policy -->
+  <rect x="330" y="200" width="140" height="80" rx="8" fill="#27ae60" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="345" y="225" font-size="22" font-family="sans-serif" fill="white">📋</text>
+  <text x="400" y="230" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">IAM Policy</text>
+  <text x="400" y="246" text-anchor="middle" font-size="9" fill="#d5f5e3" font-family="sans-serif">JSON: Effect/Action</text>
+  <text x="400" y="260" text-anchor="middle" font-size="9" fill="#d5f5e3" font-family="sans-serif">Resource/Condition</text>
+
+  <!-- STS -->
+  <rect x="620" y="70" width="140" height="70" rx="8" fill="#9b59b6" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="635" y="95" font-size="20" font-family="sans-serif" fill="white">🔑</text>
+  <text x="690" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">AWS STS</text>
+  <text x="690" y="116" text-anchor="middle" font-size="9" fill="#e8d5f5" font-family="sans-serif">AssumeRole</text>
+  <text x="690" y="130" text-anchor="middle" font-size="9" fill="#e8d5f5" font-family="sans-serif">一時証明書を発行</text>
+
+  <!-- AWS Service -->
+  <rect x="620" y="185" width="140" height="70" rx="8" fill="#e74c3c" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="635" y="210" font-size="20" font-family="sans-serif" fill="white">☁</text>
+  <text x="690" y="215" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">AWS Service</text>
+  <text x="690" y="231" text-anchor="middle" font-size="9" fill="#fdecea" font-family="sans-serif">S3 / EC2 / Lambda</text>
+  <text x="690" y="245" text-anchor="middle" font-size="9" fill="#fdecea" font-family="sans-serif">Resource Policy 対応</text>
+
+  <!-- Arrows -->
+  <!-- User → Group (belongs to) -->
+  <line x1="110" y1="150" x2="110" y2="179" stroke="#3498db" stroke-width="1.5"/>
+  <polygon points="110,179 105,169 115,169" fill="#3498db"/>
+  <text x="122" y="167" font-size="9" fill="#3498db" font-family="sans-serif">所属</text>
+
+  <!-- User → Role (AssumeRole) -->
+  <line x1="181" y1="108" x2="328" y2="108" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="328,108 318,103 318,113" fill="#e67e22"/>
+  <text x="255" y="102" text-anchor="middle" font-size="9" fill="#e67e22" font-family="sans-serif">AssumeRole</text>
+
+  <!-- Group → Policy (attached) -->
+  <line x1="181" y1="215" x2="328" y2="230" stroke="#27ae60" stroke-width="1.5"/>
+  <polygon points="328,230 320,223 322,233" fill="#27ae60"/>
+  <text x="255" y="228" text-anchor="middle" font-size="9" fill="#27ae60" font-family="sans-serif">アタッチ</text>
+
+  <!-- Role → Policy (attached) -->
+  <line x1="400" y1="151" x2="400" y2="198" stroke="#27ae60" stroke-width="1.5"/>
+  <polygon points="400,198 395,188 405,188" fill="#27ae60"/>
+  <text x="415" y="180" font-size="9" fill="#27ae60" font-family="sans-serif">アタッチ</text>
+
+  <!-- Role → STS -->
+  <line x1="471" y1="108" x2="618" y2="108" stroke="#9b59b6" stroke-width="1.5"/>
+  <polygon points="618,108 608,103 608,113" fill="#9b59b6"/>
+  <text x="545" y="102" text-anchor="middle" font-size="9" fill="#9b59b6" font-family="sans-serif">発行要求</text>
+
+  <!-- STS → Service (access) -->
+  <line x1="690" y1="141" x2="690" y2="184" stroke="#e74c3c" stroke-width="1.5"/>
+  <polygon points="690,184 685,174 695,174" fill="#e74c3c"/>
+  <text x="710" y="165" font-size="9" fill="#e74c3c" font-family="sans-serif">アクセス</text>
+
+  <!-- Policy → Service (evaluates) -->
+  <line x1="471" y1="238" x2="618" y2="225" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="618,225 610,218 612,228" fill="#27ae60"/>
+  <text x="545" y="237" text-anchor="middle" font-size="9" fill="#27ae60" font-family="sans-serif">評価</text>
+
+  <!-- Best practices box -->
+  <rect x="40" y="310" width="720" height="98" rx="8" fill="#2c3e50"/>
+  <text x="400" y="330" text-anchor="middle" font-size="11" font-weight="bold" fill="#f1c40f" font-family="sans-serif">ベストプラクティス</text>
+  <text x="55" y="350" font-size="10" fill="#ecf0f1" font-family="sans-serif">✅ IAM User より IAM Role を使用 (短命の一時認証情報が安全)</text>
+  <text x="55" y="368" font-size="10" fill="#ecf0f1" font-family="sans-serif">✅ ユーザーはGroupで管理し、Groupにポリシーをアタッチ (個人ポリシー管理は混乱の元)</text>
+  <text x="55" y="386" font-size="10" fill="#ecf0f1" font-family="sans-serif">✅ Managed Policy より Inline Policy は避ける (再利用性が低く、削除時に権限も消える)</text>
+  <text x="55" y="400" font-size="10" fill="#ecf0f1" font-family="sans-serif">⚠ AdministratorAccess の付与は緊急時のみ。通常は最小権限ポリシーを使用</text>
+</svg>

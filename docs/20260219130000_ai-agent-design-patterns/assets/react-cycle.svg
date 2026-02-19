@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340" style="max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+
+  <!-- User Query -->
+  <rect x="20" y="130" width="120" height="50" rx="8" fill="rgba(100,181,246,0.2)" stroke="#64b5f6" stroke-width="1.5"/>
+  <text x="80" y="152" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold">User</text>
+  <text x="80" y="170" text-anchor="middle" fill="#90caf9" font-family="sans-serif" font-size="11">クエリ</text>
+
+  <!-- Arrow → Thought -->
+  <line x1="140" y1="155" x2="178" y2="155" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="183,155 170,149 170,161" fill="#90caf9"/>
+
+  <!-- Thought -->
+  <rect x="183" y="120" width="130" height="70" rx="8" fill="rgba(77,208,225,0.2)" stroke="#4dd0e1" stroke-width="2"/>
+  <text x="248" y="150" text-anchor="middle" fill="#4dd0e1" font-family="sans-serif" font-size="13" font-weight="bold">Thought</text>
+  <text x="248" y="170" text-anchor="middle" fill="#b2ebf2" font-family="sans-serif" font-size="10">何をすべきか推論</text>
+
+  <!-- Arrow → Action -->
+  <line x1="313" y1="155" x2="353" y2="155" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="358,155 345,149 345,161" fill="#90caf9"/>
+
+  <!-- Action -->
+  <rect x="358" y="120" width="130" height="70" rx="8" fill="rgba(255,112,67,0.2)" stroke="#ff7043" stroke-width="2"/>
+  <text x="423" y="150" text-anchor="middle" fill="#ff8a65" font-family="sans-serif" font-size="13" font-weight="bold">Action</text>
+  <text x="423" y="170" text-anchor="middle" fill="#ffccbc" font-family="sans-serif" font-size="10">ツール呼び出し</text>
+
+  <!-- Arrow → Observation -->
+  <line x1="488" y1="155" x2="528" y2="155" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="533,155 520,149 520,161" fill="#90caf9"/>
+
+  <!-- Observation -->
+  <rect x="533" y="120" width="130" height="70" rx="8" fill="rgba(129,199,132,0.2)" stroke="#81c784" stroke-width="2"/>
+  <text x="598" y="150" text-anchor="middle" fill="#81c784" font-family="sans-serif" font-size="13" font-weight="bold">Observation</text>
+  <text x="598" y="170" text-anchor="middle" fill="#c8e6c9" font-family="sans-serif" font-size="10">ツール結果を受け取る</text>
+
+  <!-- Loop arrow back to Thought -->
+  <path d="M598,120 Q598,40 248,40 Q248,115 248,120" fill="none" stroke="#ffd54f" stroke-width="2" stroke-dasharray="7,4"/>
+  <polygon points="248,120 242,104 254,104" fill="#ffd54f"/>
+  <text x="423" y="30" text-anchor="middle" fill="#ffd54f" font-family="sans-serif" font-size="11">必要に応じてループ継続</text>
+
+  <!-- Arrow → Final Answer -->
+  <line x1="663" y1="155" x2="703" y2="155" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="708,155 695,149 695,161" fill="#90caf9"/>
+  <text x="686" y="145" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="sans-serif" font-size="9">完了判定</text>
+
+  <!-- Final Answer -->
+  <rect x="708" y="120" width="140" height="70" rx="8" fill="rgba(255,213,79,0.2)" stroke="#ffd54f" stroke-width="2"/>
+  <text x="778" y="150" text-anchor="middle" fill="#ffd54f" font-family="sans-serif" font-size="13" font-weight="bold">Final Answer</text>
+  <text x="778" y="170" text-anchor="middle" fill="#fff9c4" font-family="sans-serif" font-size="10">最終回答を返す</text>
+
+  <!-- Tool box below Action -->
+  <rect x="363" y="230" width="120" height="45" rx="6" fill="rgba(129,199,132,0.15)" stroke="#81c784" stroke-width="1.2"/>
+  <text x="423" y="252" text-anchor="middle" fill="#a5d6a7" font-family="sans-serif" font-size="11">ツール実行</text>
+  <text x="423" y="268" text-anchor="middle" fill="#a5d6a7" font-family="sans-serif" font-size="10">API / DB / Code</text>
+
+  <!-- Arrow Action ↔ Tool -->
+  <line x1="423" y1="190" x2="423" y2="225" stroke="#81c784" stroke-width="1.5"/>
+  <polygon points="423,230 417,215 429,215" fill="#81c784"/>
+  <line x1="433" y1="225" x2="433" y2="193" stroke="#81c784" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <polygon points="433,190 427,205 439,205" fill="#81c784"/>
+
+  <!-- Legend -->
+  <text x="30" y="300" fill="rgba(255,255,255,0.4)" font-family="sans-serif" font-size="10">※ stop_reason = "end_turn" で終了判定</text>
+  <text x="30" y="316" fill="rgba(255,255,255,0.4)" font-family="sans-serif" font-size="10">  最大ループ回数を必ず設定すること</text>
+</svg>

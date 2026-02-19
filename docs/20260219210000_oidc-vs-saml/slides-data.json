@@ -199,8 +199,11 @@
 		},
 		{
 			"title": "SAML Assertion — XML サンプル",
-			"layout": "default",
-			"content": ["署名付き Assertion の実際の XML 構造を確認する"],
+			"content": ["署名付き Assertion の実際の XML 構造を確認する"]
+		},
+		{
+			"title": "SAML Assertion — XML サンプル（コード例）",
+			"content": [],
 			"code": "<saml:Assertion xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\"\n  ID=\"_abc123\" IssueInstant=\"2026-02-19T12:00:00Z\" Version=\"2.0\">\n  <saml:Issuer>https://idp.example.com</saml:Issuer>\n  <saml:Subject>\n    <saml:NameID Format=\"urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress\">\n      user@example.com\n    </saml:NameID>\n    <saml:SubjectConfirmation Method=\"...bearer\">\n      <saml:SubjectConfirmationData\n        NotOnOrAfter=\"2026-02-19T12:05:00Z\"\n        Recipient=\"https://sp.example.com/acs\"/>\n    </saml:SubjectConfirmation>\n  </saml:Subject>\n  <saml:Conditions NotBefore=\"...\" NotOnOrAfter=\"...\">\n    <saml:AudienceRestriction>\n      <saml:Audience>https://sp.example.com</saml:Audience>\n    </saml:AudienceRestriction>\n  </saml:Conditions>\n  <saml:AttributeStatement>\n    <saml:Attribute Name=\"email\"><saml:AttributeValue>user@example.com</saml:AttributeValue></saml:Attribute>\n    <saml:Attribute Name=\"groups\"><saml:AttributeValue>admin</saml:AttributeValue></saml:Attribute>\n  </saml:AttributeStatement>\n  <ds:Signature><!-- RSA-SHA256 デジタル署名 --></ds:Signature>\n</saml:Assertion>",
 			"codeLanguage": "xml"
 		},
@@ -248,10 +251,13 @@
 		},
 		{
 			"title": "クレームマッピング: IdP → SP 属性変換",
-			"layout": "default",
 			"content": [
 				"IdP の属性名と SP が期待する属性名が異なる場合のマッピング設定例"
-			],
+			]
+		},
+		{
+			"title": "クレームマッピング: IdP → SP 属性変換（コード例）",
+			"content": [],
 			"code": "# Okta / Azure AD での SAML 属性マッピング設定例\nsaml_attributes:\n  - name: \"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress\"\n    value: \"user.email\"        # IdP フィールド名\n    # SP では 'email' として受け取りたい場合、SP 側でも変換設定\n\n# OIDC スコープとクレームのマッピング例 (Keycloak)\noidc_scope_mappings:\n  openid:\n    - sub\n  profile:\n    - name, given_name, family_name, picture\n  email:\n    - email, email_verified\n  # カスタムスコープ\n  roles:\n    - realm_roles, resource_access\n\n# JWT クレームでのグループ情報例\n{\n  \"sub\": \"user123\",\n  \"email\": \"user@example.com\",\n  \"groups\": [\"admin\", \"developers\"],\n  \"custom:department\": \"Engineering\"\n}",
 			"codeLanguage": "yaml"
 		},
@@ -433,8 +439,11 @@
 		},
 		{
 			"title": "Azure AD / Okta での OIDC 設定例",
-			"layout": "default",
-			"content": ["主要 IdP での OIDC アプリ登録と検証コードの例"],
+			"content": ["主要 IdP での OIDC アプリ登録と検証コードの例"]
+		},
+		{
+			"title": "Azure AD / Okta での OIDC 設定例（コード例）",
+			"content": [],
 			"code": "# Azure AD (MSAL Python) での OIDC 設定\nimport msal\n\napp = msal.ConfidentialClientApplication(\n    client_id=\"your-client-id\",\n    client_credential=\"your-client-secret\",\n    authority=\"https://login.microsoftonline.com/tenant-id\"\n)\n\n# 1. Authorization URL を生成\nauth_url = app.get_authorization_request_url(\n    scopes=[\"openid\", \"profile\", \"email\"],\n    redirect_uri=\"https://app.example.com/callback\",\n    state=\"random-csrf-token\",\n    nonce=\"random-nonce\"\n)\n\n# 2. Auth Code → Token 交換\nresult = app.acquire_token_by_authorization_code(\n    code=request.args[\"code\"],\n    scopes=[\"openid\", \"profile\"],\n    redirect_uri=\"https://app.example.com/callback\"\n)\n# result[\"id_token_claims\"] に検証済みクレームが入る",
 			"codeLanguage": "python"
 		},

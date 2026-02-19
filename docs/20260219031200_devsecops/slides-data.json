@@ -116,8 +116,6 @@
 		},
 		{
 			"title": "Semgrep実践 — カスタムルール",
-			"code": "rules:\n  - id: hardcoded-secret\n    patterns:\n      - pattern: $SECRET = \"...\"\n      - metavariable-regex:\n          metavariable: $SECRET\n          regex: '(?i)(password|secret|token|key)'\n    message: ハードコードされたシークレットを検出\n    languages: [python, javascript, typescript]\n    severity: ERROR",
-			"codeLanguage": "yaml",
 			"content": [
 				"**Semgrep**: パターンマッチングで独自ルールを記述",
 				"公式レジストリに2,000+のルールが公開済み",
@@ -125,13 +123,23 @@
 			]
 		},
 		{
+			"title": "Semgrep実践 — カスタムルール（コード例）",
+			"content": [],
+			"code": "rules:\n  - id: hardcoded-secret\n    patterns:\n      - pattern: $SECRET = \"...\"\n      - metavariable-regex:\n          metavariable: $SECRET\n          regex: '(?i)(password|secret|token|key)'\n    message: ハードコードされたシークレットを検出\n    languages: [python, javascript, typescript]\n    severity: ERROR",
+			"codeLanguage": "yaml"
+		},
+		{
 			"title": "CodeQL — GitHub Actions連携",
-			"code": "name: CodeQL Analysis\non: [push, pull_request]\njobs:\n  analyze:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: github/codeql-action/init@v3\n        with:\n          languages: javascript, python\n      - uses: github/codeql-action/autobuild@v3\n      - uses: github/codeql-action/analyze@v3",
-			"codeLanguage": "yaml",
 			"content": [
 				"**CodeQL**: GitHubネイティブ統合、PRにインラインコメント",
 				"クエリ言語でカスタム脆弱性検出ルールを定義可能"
 			]
+		},
+		{
+			"title": "CodeQL — GitHub Actions連携（コード例）",
+			"content": [],
+			"code": "name: CodeQL Analysis\non: [push, pull_request]\njobs:\n  analyze:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: github/codeql-action/init@v3\n        with:\n          languages: javascript, python\n      - uses: github/codeql-action/autobuild@v3\n      - uses: github/codeql-action/analyze@v3",
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "SCA・依存性管理",
@@ -164,9 +172,13 @@
 		},
 		{
 			"title": "Dependabot設定例",
-			"code": "# .github/dependabot.yml\nversion: 2\nupdates:\n  - package-ecosystem: npm\n    directory: \"/\"\n    schedule:\n      interval: weekly\n    open-pull-requests-limit: 10\n    groups:\n      production-dependencies:\n        dependency-type: production\n        update-types:\n          - minor\n          - patch",
-			"codeLanguage": "yaml",
 			"content": ["週次自動PR + グルーピングで更新コストを削減"]
+		},
+		{
+			"title": "Dependabot設定例（コード例）",
+			"content": [],
+			"code": "# .github/dependabot.yml\nversion: 2\nupdates:\n  - package-ecosystem: npm\n    directory: \"/\"\n    schedule:\n      interval: weekly\n    open-pull-requests-limit: 10\n    groups:\n      production-dependencies:\n        dependency-type: production\n        update-types:\n          - minor\n          - patch",
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "シークレットスキャン",
@@ -196,18 +208,26 @@
 		},
 		{
 			"title": "pre-commitフック設定",
-			"code": "# .pre-commit-config.yaml\nrepos:\n  - repo: https://github.com/gitleaks/gitleaks\n    rev: v8.18.4\n    hooks:\n      - id: gitleaks\n  - repo: https://github.com/Yelp/detect-secrets\n    rev: v1.4.0\n    hooks:\n      - id: detect-secrets\n        args: ['--baseline', '.secrets.baseline']",
-			"codeLanguage": "yaml",
 			"content": ["`pre-commit install` で自動的にフックを登録"]
 		},
 		{
+			"title": "pre-commitフック設定（コード例）",
+			"content": [],
+			"code": "# .pre-commit-config.yaml\nrepos:\n  - repo: https://github.com/gitleaks/gitleaks\n    rev: v8.18.4\n    hooks:\n      - id: gitleaks\n  - repo: https://github.com/Yelp/detect-secrets\n    rev: v1.4.0\n    hooks:\n      - id: detect-secrets\n        args: ['--baseline', '.secrets.baseline']",
+			"codeLanguage": "yaml"
+		},
+		{
 			"title": "HashiCorp Vault — CI/CD連携",
-			"code": "# GitHub Actions: Vault動的シークレット取得\n- name: Retrieve secrets from Vault\n  uses: hashicorp/vault-action@v3\n  with:\n    url: https://vault.example.com\n    method: jwt\n    jwtGithubAudience: vault.example.com\n    secrets: |\n      secret/data/app/prod db_password | DB_PASSWORD ;\n      aws/creds/my-role access_key | AWS_ACCESS_KEY_ID",
-			"codeLanguage": "yaml",
 			"content": [
 				"JWT認証で環境変数にシークレットを注入",
 				"ハードコード不要・有効期限付き動的シークレット"
 			]
+		},
+		{
+			"title": "HashiCorp Vault — CI/CD連携（コード例）",
+			"content": [],
+			"code": "# GitHub Actions: Vault動的シークレット取得\n- name: Retrieve secrets from Vault\n  uses: hashicorp/vault-action@v3\n  with:\n    url: https://vault.example.com\n    method: jwt\n    jwtGithubAudience: vault.example.com\n    secrets: |\n      secret/data/app/prod db_password | DB_PASSWORD ;\n      aws/creds/my-role access_key | AWS_ACCESS_KEY_ID",
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "DAST（動的解析）",
@@ -228,12 +248,16 @@
 		},
 		{
 			"title": "OWASP ZAP自動化",
-			"code": "# GitHub Actions: ZAP Scan\n- name: ZAP Baseline Scan\n  uses: zaproxy/action-baseline@v0.10.0\n  with:\n    target: 'https://staging.example.com'\n    rules_file_name: '.zap/rules.tsv'\n    cmd_options: '-a'\n  env:\n    ZAP_AUTH_HEADER: \"Authorization\"\n    ZAP_AUTH_HEADER_VALUE: ${{ secrets.STAGING_TOKEN }}",
-			"codeLanguage": "yaml",
 			"content": [
 				"Baselineスキャン: パッシブのみ（安全）",
 				"Full Scan: アクティブ攻撃シミュレーション（ステージングのみ）"
 			]
+		},
+		{
+			"title": "OWASP ZAP自動化（コード例）",
+			"content": [],
+			"code": "# GitHub Actions: ZAP Scan\n- name: ZAP Baseline Scan\n  uses: zaproxy/action-baseline@v0.10.0\n  with:\n    target: 'https://staging.example.com'\n    rules_file_name: '.zap/rules.tsv'\n    cmd_options: '-a'\n  env:\n    ZAP_AUTH_HEADER: \"Authorization\"\n    ZAP_AUTH_HEADER_VALUE: ${{ secrets.STAGING_TOKEN }}",
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "セキュリティゲート設計",
@@ -301,9 +325,13 @@
 		},
 		{
 			"title": "Syft/Trivyによる SBOM生成",
-			"code": "# Syft: コンテナイメージからSBOM生成\nsyft myapp:latest -o cyclonedx-json > sbom.json\n\n# Trivy: ファイルシステムスキャン + SBOM\ntrivy fs --format cyclonedx --output sbom.cdx.json .\n\n# Grype: SBOMから脆弱性照合\ngrype sbom:sbom.json --fail-on high",
-			"codeLanguage": "bash",
 			"content": ["CycloneDXフォーマットで出力 → Grypeで脆弱性照合"]
+		},
+		{
+			"title": "Syft/Trivyによる SBOM生成（コード例）",
+			"content": [],
+			"code": "# Syft: コンテナイメージからSBOM生成\nsyft myapp:latest -o cyclonedx-json > sbom.json\n\n# Trivy: ファイルシステムスキャン + SBOM\ntrivy fs --format cyclonedx --output sbom.cdx.json .\n\n# Grype: SBOMから脆弱性照合\ngrype sbom:sbom.json --fail-on high",
+			"codeLanguage": "bash"
 		},
 		{
 			"title": "SLSA Framework",
@@ -321,15 +349,23 @@
 		},
 		{
 			"title": "cosign署名・検証",
-			"code": "# GitHub Actionsからキーレス署名\ncosign sign \\\n  --identity-token=$(cat $ACTIONS_ID_TOKEN_REQUEST_TOKEN) \\\n  ghcr.io/myorg/myapp:v1.0.0\n\n# 検証（署名チェーン確認）\ncosign verify \\\n  --certificate-identity=\"https://github.com/myorg/myapp/.github/workflows/build.yml@refs/heads/main\"\\\n  --certificate-oidc-issuer=\"https://token.actions.githubusercontent.com\"\\\n  ghcr.io/myorg/myapp:v1.0.0",
-			"codeLanguage": "bash",
 			"content": ["キーレス署名: GitHub ActionsのOIDCトークンを使用"]
 		},
 		{
+			"title": "cosign署名・検証（コード例）",
+			"content": [],
+			"code": "# GitHub Actionsからキーレス署名\ncosign sign \\\n  --identity-token=$(cat $ACTIONS_ID_TOKEN_REQUEST_TOKEN) \\\n  ghcr.io/myorg/myapp:v1.0.0\n\n# 検証（署名チェーン確認）\ncosign verify \\\n  --certificate-identity=\"https://github.com/myorg/myapp/.github/workflows/build.yml@refs/heads/main\"\\\n  --certificate-oidc-issuer=\"https://token.actions.githubusercontent.com\"\\\n  ghcr.io/myorg/myapp:v1.0.0",
+			"codeLanguage": "bash"
+		},
+		{
 			"title": "GitHub dependency-review-action",
-			"code": "# .github/workflows/dependency-review.yml\nname: Dependency Review\non: pull_request\njobs:\n  dependency-review:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/dependency-review-action@v4\n        with:\n          fail-on-severity: high\n          deny-licenses: GPL-2.0, AGPL-3.0",
-			"codeLanguage": "yaml",
 			"content": ["PRマージ前に新規依存性の CVE + ライセンスを自動チェック"]
+		},
+		{
+			"title": "GitHub dependency-review-action（コード例）",
+			"content": [],
+			"code": "# .github/workflows/dependency-review.yml\nname: Dependency Review\non: pull_request\njobs:\n  dependency-review:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/dependency-review-action@v4\n        with:\n          fail-on-severity: high\n          deny-licenses: GPL-2.0, AGPL-3.0",
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "SBOM運用フロー",
@@ -365,9 +401,13 @@
 		},
 		{
 			"title": "DependencyTrack導入",
-			"code": "# Docker Composeで起動\ndocker run -d -m 4096m \\\n  -p 8080:8080 \\\n  -v /opt/dependency-track:/data \\\n  dependencytrack/bundled\n\n# SBOM をAPIでアップロード\ncurl -X PUT https://dt.example.com/api/v1/bom \\\n  -H 'X-API-Key: YOUR_API_KEY' \\\n  -F 'projectName=myapp' \\\n  -F 'bom=@sbom.cdx.json'",
-			"codeLanguage": "bash",
 			"content": ["継続的なSBOM管理・脆弱性ダッシュボード・Slack通知連携"]
+		},
+		{
+			"title": "DependencyTrack導入（コード例）",
+			"content": [],
+			"code": "# Docker Composeで起動\ndocker run -d -m 4096m \\\n  -p 8080:8080 \\\n  -v /opt/dependency-track:/data \\\n  dependencytrack/bundled\n\n# SBOM をAPIでアップロード\ncurl -X PUT https://dt.example.com/api/v1/bom \\\n  -H 'X-API-Key: YOUR_API_KEY' \\\n  -F 'projectName=myapp' \\\n  -F 'bom=@sbom.cdx.json'",
+			"codeLanguage": "bash"
 		},
 		{
 			"title": "Chapter 4: 脅威モデリング・STRIDE",
@@ -584,17 +624,25 @@
 		},
 		{
 			"title": "Trivy実践 — イメージスキャン",
-			"code": "# イメージスキャン（Critical/Highのみ表示）\ntrivy image --severity CRITICAL,HIGH \\\n  --format table \\\n  myapp:latest\n\n# CriticalCVEがあれば終了コード1でCIをブロック\ntrivy image --exit-code 1 \\\n  --severity CRITICAL \\\n  myapp:latest\n\n# SBOM付きスキャン\ntrivy image --format cyclonedx \\\n  --output sbom.json myapp:latest",
-			"codeLanguage": "bash",
 			"content": ["`--exit-code 1` でCI/CDゲートとして機能"]
 		},
 		{
+			"title": "Trivy実践 — イメージスキャン（コード例）",
+			"content": [],
+			"code": "# イメージスキャン（Critical/Highのみ表示）\ntrivy image --severity CRITICAL,HIGH \\\n  --format table \\\n  myapp:latest\n\n# CriticalCVEがあれば終了コード1でCIをブロック\ntrivy image --exit-code 1 \\\n  --severity CRITICAL \\\n  myapp:latest\n\n# SBOM付きスキャン\ntrivy image --format cyclonedx \\\n  --output sbom.json myapp:latest",
+			"codeLanguage": "bash"
+		},
+		{
 			"title": "Dockerfileベストプラクティス",
-			"code": "# ❌ 危険な例\nFROM ubuntu:latest\nRUN apt-get install -y curl wget\nCOPY . /app\nRUN npm install\nCMD [\"node\", \"server.js\"]\n\n# ✅ 安全な例\nFROM node:20-alpine AS builder\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --only=production\n\nFROM gcr.io/distroless/nodejs20\nCOPY --from=builder /app /app\nUSER nonroot\nCMD [\"/app/server.js\"]",
-			"codeLanguage": "dockerfile",
 			"content": [
 				"Distroless: シェル・パッケージマネージャーなし → 攻撃面を最小化"
 			]
+		},
+		{
+			"title": "Dockerfileベストプラクティス（コード例）",
+			"content": [],
+			"code": "# ❌ 危険な例\nFROM ubuntu:latest\nRUN apt-get install -y curl wget\nCOPY . /app\nRUN npm install\nCMD [\"node\", \"server.js\"]\n\n# ✅ 安全な例\nFROM node:20-alpine AS builder\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --only=production\n\nFROM gcr.io/distroless/nodejs20\nCOPY --from=builder /app /app\nUSER nonroot\nCMD [\"/app/server.js\"]",
+			"codeLanguage": "dockerfile"
 		},
 		{
 			"title": "コンテナランタイムセキュリティ — Falco",
@@ -609,9 +657,13 @@
 		},
 		{
 			"title": "Falcoルール作成例",
-			"code": "# /etc/falco/rules.d/custom.yaml\n- rule: Shell in container\n  desc: コンテナ内でシェルを実行\n  condition: >\n    spawned_process and container\n    and proc.name in (shell_binaries)\n  output: >\n    シェル実行検出 (user=%user.name\n    container=%container.name\n    cmd=%proc.cmdline)\n  priority: WARNING\n  tags: [container, shell, mitre_execution]",
-			"codeLanguage": "yaml",
 			"content": ["MITREタグ付きで攻撃フェーズを分類"]
+		},
+		{
+			"title": "Falcoルール作成例（コード例）",
+			"content": [],
+			"code": "# /etc/falco/rules.d/custom.yaml\n- rule: Shell in container\n  desc: コンテナ内でシェルを実行\n  condition: >\n    spawned_process and container\n    and proc.name in (shell_binaries)\n  output: >\n    シェル実行検出 (user=%user.name\n    container=%container.name\n    cmd=%proc.cmdline)\n  priority: WARNING\n  tags: [container, shell, mitre_execution]",
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "Kubernetesセキュリティ全体像",
@@ -619,21 +671,33 @@
 		},
 		{
 			"title": "PodSecurityAdmission（PSA）設定",
-			"code": "# Namespaceラベルでポリシーを適用\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: production\n  labels:\n    pod-security.kubernetes.io/enforce: restricted\n    pod-security.kubernetes.io/audit: restricted\n    pod-security.kubernetes.io/warn: restricted\n---\n# restrictedポリシー: root禁止・seccomp必須・capabilities DROP ALL",
-			"codeLanguage": "yaml",
 			"content": ["**3段階**: privileged → baseline → restricted"]
 		},
 		{
+			"title": "PodSecurityAdmission（PSA）設定（コード例）",
+			"content": [],
+			"code": "# Namespaceラベルでポリシーを適用\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: production\n  labels:\n    pod-security.kubernetes.io/enforce: restricted\n    pod-security.kubernetes.io/audit: restricted\n    pod-security.kubernetes.io/warn: restricted\n---\n# restrictedポリシー: root禁止・seccomp必須・capabilities DROP ALL",
+			"codeLanguage": "yaml"
+		},
+		{
 			"title": "NetworkPolicy — ゼロトラスト通信",
-			"code": "# デフォルト全拒否\napiVersion: networking.k8s.io/v1\nkind: NetworkPolicy\nmetadata:\n  name: default-deny-all\nspec:\n  podSelector: {}\n  policyTypes: [Ingress, Egress]\n---\n# バックエンドからDBへの許可のみ\nspec:\n  podSelector:\n    matchLabels: {role: db}\n  ingress:\n    - from:\n      - podSelector:\n          matchLabels: {role: backend}\n      ports: [{port: 5432}]",
-			"codeLanguage": "yaml",
 			"content": ["明示的許可リストで最小通信に制限"]
 		},
 		{
+			"title": "NetworkPolicy — ゼロトラスト通信（コード例）",
+			"content": [],
+			"code": "# デフォルト全拒否\napiVersion: networking.k8s.io/v1\nkind: NetworkPolicy\nmetadata:\n  name: default-deny-all\nspec:\n  podSelector: {}\n  policyTypes: [Ingress, Egress]\n---\n# バックエンドからDBへの許可のみ\nspec:\n  podSelector:\n    matchLabels: {role: db}\n  ingress:\n    - from:\n      - podSelector:\n          matchLabels: {role: backend}\n      ports: [{port: 5432}]",
+			"codeLanguage": "yaml"
+		},
+		{
 			"title": "RBAC最小権限設計",
-			"code": "# ❌ 過剰な権限（よくある間違い）\nrules:\n- apiGroups: [\"*\"]\n  resources: [\"*\"]\n  verbs: [\"*\"]\n\n# ✅ 最小権限の例\nrules:\n- apiGroups: [\"\"] # core\n  resources: [\"pods\"]\n  verbs: [\"get\", \"list\", \"watch\"]\n- apiGroups: [\"apps\"]\n  resources: [\"deployments\"]\n  verbs: [\"get\", \"list\"]",
-			"codeLanguage": "yaml",
 			"content": ["ツール: `kubectl-who-can`・`rakkess`でRBACを可視化"]
+		},
+		{
+			"title": "RBAC最小権限設計（コード例）",
+			"content": [],
+			"code": "# ❌ 過剰な権限（よくある間違い）\nrules:\n- apiGroups: [\"*\"]\n  resources: [\"*\"]\n  verbs: [\"*\"]\n\n# ✅ 最小権限の例\nrules:\n- apiGroups: [\"\"] # core\n  resources: [\"pods\"]\n  verbs: [\"get\", \"list\", \"watch\"]\n- apiGroups: [\"apps\"]\n  resources: [\"deployments\"]\n  verbs: [\"get\", \"list\"]",
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "OPA / Gatekeeper",
@@ -641,17 +705,25 @@
 		},
 		{
 			"title": "Regoポリシー記述例",
-			"code": "# ConstraintTemplate: 必須ラベルチェック\npackage requiredlabels\n\nviolation[{\"msg\": msg}] {\n  provided := {label | input.review.object.metadata.labels[label]}\n  required := {label | label := input.parameters.labels[_]}\n  missing := required - provided\n  count(missing) > 0\n  msg := sprintf(\"必須ラベルがありません: %v\", [missing])\n}",
-			"codeLanguage": "rego",
 			"content": [
 				"**Constraint**: `labels: [\"team\", \"env\", \"owner\"]` のように指定"
 			]
 		},
 		{
+			"title": "Regoポリシー記述例（コード例）",
+			"content": [],
+			"code": "# ConstraintTemplate: 必須ラベルチェック\npackage requiredlabels\n\nviolation[{\"msg\": msg}] {\n  provided := {label | input.review.object.metadata.labels[label]}\n  required := {label | label := input.parameters.labels[_]}\n  missing := required - provided\n  count(missing) > 0\n  msg := sprintf(\"必須ラベルがありません: %v\", [missing])\n}",
+			"codeLanguage": "rego"
+		},
+		{
 			"title": "Kyverno — K8sネイティブポリシーエンジン",
-			"code": "# Kyverno: root実行禁止ポリシー\napiVersion: kyverno.io/v1\nkind: ClusterPolicy\nmetadata:\n  name: disallow-root-user\nspec:\n  rules:\n    - name: check-runAsNonRoot\n      match:\n        resources:\n          kinds: [Pod]\n      validate:\n        message: \"root実行は禁止\"\n        pattern:\n          spec:\n            securityContext:\n              runAsNonRoot: true",
-			"codeLanguage": "yaml",
 			"content": ["OPA/Gatekeeper比: Rego不要・YAML記述・Mutate/Generateも対応"]
+		},
+		{
+			"title": "Kyverno — K8sネイティブポリシーエンジン（コード例）",
+			"content": [],
+			"code": "# Kyverno: root実行禁止ポリシー\napiVersion: kyverno.io/v1\nkind: ClusterPolicy\nmetadata:\n  name: disallow-root-user\nspec:\n  rules:\n    - name: check-runAsNonRoot\n      match:\n        resources:\n          kinds: [Pod]\n      validate:\n        message: \"root実行は禁止\"\n        pattern:\n          spec:\n            securityContext:\n              runAsNonRoot: true",
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "CSPMとは",
@@ -692,9 +764,13 @@
 		},
 		{
 			"title": "Tetragon設定例",
-			"code": "# Tetragon: /etc/passwdアクセスを監視\napiVersion: cilium.io/v1alpha1\nkind: TracingPolicy\nmetadata:\n  name: monitor-passwd\nspec:\n  kprobes:\n    - call: \"security_file_permission\"\n      syscall: false\n      args:\n        - index: 0\n          type: \"file\"\n      selectors:\n        - matchArgs:\n            - index: 0\n              operator: \"Prefix\"\n              values: [\"/etc/passwd\"]",
-			"codeLanguage": "yaml",
 			"content": ["Cilium/Hubbleと連携して観測性を向上"]
+		},
+		{
+			"title": "Tetragon設定例（コード例）",
+			"content": [],
+			"code": "# Tetragon: /etc/passwdアクセスを監視\napiVersion: cilium.io/v1alpha1\nkind: TracingPolicy\nmetadata:\n  name: monitor-passwd\nspec:\n  kprobes:\n    - call: \"security_file_permission\"\n      syscall: false\n      args:\n        - index: 0\n          type: \"file\"\n      selectors:\n        - matchArgs:\n            - index: 0\n              operator: \"Prefix\"\n              values: [\"/etc/passwd\"]",
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "サービスメッシュ — Istio mTLS",
@@ -741,9 +817,13 @@
 		},
 		{
 			"title": "SPIRE設定例",
-			"code": "# SPIRE Server設定\nserver:\n  bind_address: 0.0.0.0\n  bind_port: 8081\n  trust_domain: example.org\n  data_dir: /opt/spire/data/server\n  log_level: INFO\n  ca_ttl: 12h\n  default_svid_ttl: 1h\n\n# WorkloadRegistrationEntry\nspire-server entry create \\\n  -spiffeID spiffe://example.org/backend \\\n  -parentID spiffe://example.org/spire-agent \\\n  -selector k8s:ns:production \\\n  -selector k8s:sa:backend-sa",
-			"codeLanguage": "yaml",
 			"content": ["K8sのNamespace+ServiceAccountでIDを自動付与"]
+		},
+		{
+			"title": "SPIRE設定例（コード例）",
+			"content": [],
+			"code": "# SPIRE Server設定\nserver:\n  bind_address: 0.0.0.0\n  bind_port: 8081\n  trust_domain: example.org\n  data_dir: /opt/spire/data/server\n  log_level: INFO\n  ca_ttl: 12h\n  default_svid_ttl: 1h\n\n# WorkloadRegistrationEntry\nspire-server entry create \\\n  -spiffeID spiffe://example.org/backend \\\n  -parentID spiffe://example.org/spire-agent \\\n  -selector k8s:ns:production \\\n  -selector k8s:sa:backend-sa",
+			"codeLanguage": "yaml"
 		},
 		{
 			"title": "HashiCorp Vault — シークレット管理",
@@ -758,9 +838,13 @@
 		},
 		{
 			"title": "Vault Dynamic Secrets",
-			"code": "# PostgreSQL動的シークレット設定\nvault secrets enable database\nvault write database/config/my-postgresql \\\n  plugin_name=postgresql-database-plugin \\\n  connection_url=\"postgresql://{{username}}:{{password}}@db:5432/mydb\" \\\n  allowed_roles=\"readonly\"\n\nvault write database/roles/readonly \\\n  db_name=my-postgresql \\\n  default_ttl=\"1h\" max_ttl=\"24h\" \\\n  creation_statements=\"CREATE USER '{{name}}' WITH PASSWORD '{{password}}'\"\n\n# 動的シークレット取得\nvault read database/creds/readonly",
-			"codeLanguage": "bash",
 			"content": ["1時間で失効するDBユーザーを都度生成"]
+		},
+		{
+			"title": "Vault Dynamic Secrets（コード例）",
+			"content": [],
+			"code": "# PostgreSQL動的シークレット設定\nvault secrets enable database\nvault write database/config/my-postgresql \\\n  plugin_name=postgresql-database-plugin \\\n  connection_url=\"postgresql://{{username}}:{{password}}@db:5432/mydb\" \\\n  allowed_roles=\"readonly\"\n\nvault write database/roles/readonly \\\n  db_name=my-postgresql \\\n  default_ttl=\"1h\" max_ttl=\"24h\" \\\n  creation_statements=\"CREATE USER '{{name}}' WITH PASSWORD '{{password}}'\"\n\n# 動的シークレット取得\nvault read database/creds/readonly",
+			"codeLanguage": "bash"
 		},
 		{
 			"title": "AWS IAM最小権限設計",
@@ -775,9 +859,13 @@
 		},
 		{
 			"title": "IAM Access Analyzer活用",
-			"code": "# 外部アクセス可能なリソースを検出\naws accessanalyzer list-findings \\\n  --analyzer-arn arn:aws:access-analyzer:ap-northeast-1:123:analyzer/MyAnalyzer \\\n  --filter '{\"resourceType\": {\"eq\": [\"AWS::S3::Bucket\"]}}'\n\n# 未使用IAMロールの検出（最終使用日）\naws iam generate-service-last-accessed-details \\\n  --arn arn:aws:iam::123456789:role/MyRole\n\n# Pythonで一括棚卸し: boto3でフィルタリング",
-			"codeLanguage": "bash",
 			"content": ["年次ではなく継続的（月次）でIAM棚卸しを実施"]
+		},
+		{
+			"title": "IAM Access Analyzer活用（コード例）",
+			"content": [],
+			"code": "# 外部アクセス可能なリソースを検出\naws accessanalyzer list-findings \\\n  --analyzer-arn arn:aws:access-analyzer:ap-northeast-1:123:analyzer/MyAnalyzer \\\n  --filter '{\"resourceType\": {\"eq\": [\"AWS::S3::Bucket\"]}}'\n\n# 未使用IAMロールの検出（最終使用日）\naws iam generate-service-last-accessed-details \\\n  --arn arn:aws:iam::123456789:role/MyRole\n\n# Pythonで一括棚卸し: boto3でフィルタリング",
+			"codeLanguage": "bash"
 		},
 		{
 			"title": "SSO / MFA / OIDC設計",

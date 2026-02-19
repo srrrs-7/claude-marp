@@ -1,0 +1,612 @@
+{
+	"slides": [
+		{
+			"title": "ローカルLLM完全ガイド 2026",
+			"layout": "center",
+			"content": [
+				"エンジニアのための実践的ガイド",
+				"セットアップ・最適化・本番活用まで",
+				"2026年2月版"
+			],
+			"speakerNotes": "本日は60分以上かけてローカルLLMを徹底的に解説します。"
+		},
+		{
+			"title": "本日のアジェンダ",
+			"layout": "default",
+			"content": [
+				"1. ローカルLLMとは？（概念・定義・エコシステム）",
+				"2. なぜローカルLLMか？（メリット・コスト・セキュリティ）",
+				"3. 主要モデルカタログ（Llama / Mistral / Phi / Gemma / DeepSeek）",
+				"4. 量子化と形式（GGUF / AWQ / GPTQ）",
+				"5. 実行ツール（Ollama / LM Studio / vLLM）",
+				"6. ハードウェア要件（CPU / GPU / Apple Silicon）",
+				"7. 実践：Ollamaセットアップ & API活用",
+				"8. アプリ統合・RAG・ユースケース・最適化"
+			]
+		},
+		{
+			"title": "本日のゴール",
+			"layout": "center",
+			"content": [
+				"✅ ローカルLLMの全体像と選択基準を理解する",
+				"✅ 自分の環境でモデルを動かせるようになる",
+				"✅ アプリケーションへの統合方法を把握する",
+				"✅ 本番環境での活用パターンを知る"
+			]
+		},
+		{
+			"title": "ローカルLLMとは？",
+			"layout": "section",
+			"content": []
+		},
+		{
+			"title": "LLMの仕組みおさらい",
+			"layout": "default",
+			"content": [
+				"**LLM（大規模言語モデル）**: 大量テキストで学習したニューラルネットワーク",
+				"**トークン**: テキストをモデルが処理する最小単位（単語の一部〜数文字）",
+				"**推論（Inference）**: 学習済みモデルを使って出力を生成するプロセス",
+				"**パラメータ**: モデルの重み（7B = 70億個）→ モデルの「知識」が詰まった数値",
+				"学習（Training）は数百〜数千GPU×数週間が必要",
+				"**推論はずっと安価** → ローカル実行が現実的になった理由"
+			],
+			"speakerNotes": "まずLLMの基礎をおさらいします。"
+		},
+		{
+			"title": "ローカルLLMの定義",
+			"layout": "default",
+			"content": [
+				"**ローカルLLM**: クラウドAPIを使わず、自分のマシン上で動作するLLM",
+				"データは外部に送信されない → **プライバシー完全保護**",
+				"ネットワーク接続不要 → **オフライン動作可能**",
+				"API料金ゼロ → **コスト固定化**",
+				"モデルのカスタマイズ自由度が高い",
+				"代表的な実行形態: ラップトップ、サーバー、エッジデバイス"
+			]
+		},
+		{
+			"title": "クラウドLLM vs ローカルLLM",
+			"layout": "default",
+			"content": ["![w:900 center](assets/cloud-vs-local.svg)"],
+			"speakerNotes": "クラウドとローカルの主要な違いを比較します。"
+		},
+		{
+			"title": "ローカルLLMエコシステム全体図",
+			"layout": "default",
+			"content": ["![w:950 center](assets/ecosystem.svg)"],
+			"speakerNotes": "ローカルLLMを取り巻くエコシステム全体を把握します。"
+		},
+		{
+			"title": "2024-2026年のトレンド",
+			"layout": "default",
+			"content": [
+				"**小型化の加速**: 7Bモデルが GPT-3.5 相当の性能に到達",
+				"**量子化の普及**: 4bit量子化で精度劣化を最小化しつつ圧縮",
+				"**Apple Silicon革命**: M3/M4 Macで実用的なローカル推論が可能に",
+				"**マルチモーダル化**: ビジョン・音声対応モデルの急増（LLaVA, Whisper等）",
+				"**オープンソース優勢**: Meta/Mistral/Google がオープンモデルを積極公開",
+				"**エッジ展開**: スマートフォン・組み込みデバイスでも動作開始"
+			]
+		},
+		{
+			"title": "なぜローカルLLMか？",
+			"layout": "section",
+			"content": []
+		},
+		{
+			"title": "ローカルLLMを選ぶ4つの理由",
+			"layout": "default",
+			"content": ["![w:900 center](assets/benefits.svg)"],
+			"speakerNotes": "ローカルLLMを採用する主要な4つの理由を解説します。"
+		},
+		{
+			"title": "プライバシー・データセキュリティ",
+			"layout": "default",
+			"content": [
+				"**機密データをクラウドに送信しない** → 情報漏洩リスクゼロ",
+				"医療・法務・金融データも安全に処理可能",
+				"GDPR / 個人情報保護法 に完全準拠",
+				"社内コードをAPIに送らずAI補完が可能",
+				"データ保持ポリシーの懸念が不要",
+				"**エアギャップ環境**（インターネット非接続）でも動作"
+			]
+		},
+		{
+			"title": "コスト比較：クラウドAPI vs ローカル",
+			"layout": "default",
+			"content": [
+				"**GPT-4o**: 約 $5/100万トークン (入力) + $15/100万トークン (出力)",
+				"**Claude 3.5 Sonnet**: 約 $3/$15 per 100万トークン",
+				"**日常業務での月間コスト目安**: エンジニア1人 $20〜200+",
+				"**ローカルLLM（Ollama + 7Bモデル）**: 電気代のみ ≈ 月数十円〜数百円",
+				"**ROI**: RTX 4060 Ti ($400) → 約4〜6ヶ月でペイバック",
+				"大量バッチ処理（ログ分析、コード生成）でコスト差が顕著"
+			]
+		},
+		{
+			"title": "オフライン利用・低レイテンシ",
+			"layout": "default",
+			"content": [
+				"**ネットワーク遅延ゼロ** → 初回トークンまでの時間が短い",
+				"機内・僻地・障害時でも安定動作",
+				"レスポンスが安定 → SLAを自社でコントロール可能",
+				"同一リクエストでも気象・負荷変動による遅延がない",
+				"**GPU搭載マシンなら**: Llama 3 8B で 50〜100 tokens/sec",
+				"コード補完・リアルタイム応答に実用的"
+			]
+		},
+		{
+			"title": "主要モデルカタログ",
+			"layout": "section",
+			"content": []
+		},
+		{
+			"title": "モデルポジショニングマップ",
+			"layout": "default",
+			"content": ["![w:950 center](assets/model-map.svg)"],
+			"speakerNotes": "各モデルの性能・サイズ・特徴を俯瞰します。"
+		},
+		{
+			"title": "Meta: Llama 3.x シリーズ",
+			"layout": "default",
+			"content": [
+				"**Llama 3.2**: 1B / 3B（超軽量・エッジ向け）、11B / 90B（マルチモーダル）",
+				"**Llama 3.3**: 70B 命令チューニング、Llama 3.1 405B相当の性能",
+				"**ライセンス**: Meta Llama License（商用利用可、月間ユーザー数制限あり）",
+				"Ollama: `ollama pull llama3.2` / `ollama pull llama3.3`",
+				"**強み**: バランス良好、コミュニティ最大、ファインチューニング事例豊富",
+				"**用途**: 汎用チャット、コード生成、ツール利用、RAG"
+			]
+		},
+		{
+			"title": "Mistral AI: Mistral / Mixtral",
+			"layout": "default",
+			"content": [
+				"**Mistral 7B**: 小型ながら高品質、Apache 2.0 ライセンス",
+				"**Mixtral 8x7B**: MoE（Mixture of Experts）アーキテクチャ、実質13B相当の計算量",
+				"**Mixtral 8x22B**: より大型のMoEモデル",
+				"**Mistral Large 2**: フロンティアモデル、ローカル版は要スペック",
+				"**強み**: 欧州発、フランス語・多言語に強い、Apache 2.0で商用利用しやすい",
+				"Ollama: `ollama pull mistral` / `ollama pull mixtral`"
+			]
+		},
+		{
+			"title": "Microsoft: Phi-4",
+			"layout": "default",
+			"content": [
+				"**Phi-4**: 14Bパラメータながら驚異的な推論性能",
+				"**特徴**: 数学・科学的推論に特化、Small Language Model (SLM) の最高峰",
+				"**Phi-3.5-mini**: 3.8B、エッジデバイス向け",
+				"**ライセンス**: MIT License → 完全商用利用可",
+				"**強み**: 小サイズで高精度、教育・推論タスクに最適",
+				"Ollama: `ollama pull phi4` / HuggingFace でダウンロード可能"
+			]
+		},
+		{
+			"title": "Google: Gemma 3",
+			"layout": "default",
+			"content": [
+				"**Gemma 3**: 1B / 4B / 12B / 27B のラインナップ",
+				"**特徴**: Gemini 技術を転用、マルチモーダル対応（12B/27B）",
+				"**128Kコンテキスト**: 長文ドキュメント処理に強い",
+				"**140以上の言語対応**: 日本語も高品質",
+				"**ライセンス**: Gemma Terms of Use（商用利用可）",
+				"Ollama: `ollama pull gemma3` / `ollama pull gemma3:27b`"
+			]
+		},
+		{
+			"title": "DeepSeek / Qwen / その他注目モデル",
+			"layout": "default",
+			"content": [
+				"**DeepSeek-R1**: 671B（MoE）、GPT-4o級の推論、MIT License",
+				"**DeepSeek-R1-Distill**: 1.5B〜70B 蒸留版 → ローカル実行可能",
+				"**Qwen 2.5**: アリババ、0.5B〜72B、日本語・コード強い",
+				"**Qwen 2.5-Coder**: コード特化、32B まで",
+				"**Command-R**: Cohere、RAGに特化設計",
+				"**StarCoder2**: コード生成特化、15B"
+			]
+		},
+		{
+			"title": "モデル選択フローチャート",
+			"layout": "default",
+			"content": ["![w:900 center](assets/model-selection.svg)"],
+			"speakerNotes": "自分の用途・環境に合ったモデルを選ぶ際の判断基準を示します。"
+		},
+		{
+			"title": "量子化と形式",
+			"layout": "section",
+			"content": []
+		},
+		{
+			"title": "なぜ量子化が必要か",
+			"layout": "default",
+			"content": ["![w:900 center](assets/quantization-concept.svg)"],
+			"speakerNotes": "量子化の仕組みと必要性を図解で説明します。"
+		},
+		{
+			"title": "主要フォーマット比較：GGUF / AWQ / GPTQ",
+			"layout": "default",
+			"content": [
+				"**GGUF（旧GGML）**: llama.cpp形式。CPUでも動作、Ollama/LM Studioで利用",
+				"**AWQ（Activation-aware Weight Quantization）**: GPU向け高精度量子化",
+				"**GPTQ**: GPU向け4bit量子化、推論速度重視",
+				"**EXL2**: ExLlamaV2形式、AWQより高速・高精度",
+				"**bitsandbytes**: HuggingFace用、動的量子化（8bit/4bit）",
+				"**用途別推奨**: ローカル汎用→GGUF、GPU本番→AWQ/EXL2"
+			]
+		},
+		{
+			"title": "量子化レベルの比較",
+			"layout": "default",
+			"content": [
+				"**Q2_K**: 2bit、最小サイズ（7B→約2.5GB）、精度大幅劣化",
+				"**Q4_K_M**: 4bit（推奨）、7B→約4.1GB、精度劣化最小",
+				"**Q5_K_M**: 5bit、7B→約4.8GB、精度とサイズのベストバランス",
+				"**Q8_0**: 8bit、7B→約7.2GB、ほぼ元精度",
+				"**F16**: 半精度浮動小数点、7B→約14GB、完全精度",
+				"**実用推奨**: VRAM 4-8GB → Q4_K_M、8-12GB → Q5_K_M/Q8_0"
+			]
+		},
+		{
+			"title": "精度 vs 速度 vs メモリのトレードオフ",
+			"layout": "default",
+			"content": ["![w:900 center](assets/quant-tradeoff.svg)"],
+			"speakerNotes": "量子化レベルによるトレードオフを視覚的に示します。"
+		},
+		{
+			"title": "実行ツール",
+			"layout": "section",
+			"content": []
+		},
+		{
+			"title": "ローカルLLMツールエコシステム",
+			"layout": "default",
+			"content": ["![w:950 center](assets/tools-ecosystem.svg)"],
+			"speakerNotes": "主要な実行ツールのポジショニングを解説します。"
+		},
+		{
+			"title": "Ollama：一番手軽なローカルLLM実行環境",
+			"layout": "default",
+			"content": [
+				"**概要**: macOS/Linux/Windows対応のワンクリックLLM実行ツール",
+				"**OpenAI互換API**: `http://localhost:11434/v1` でAPIサーバーとして動作",
+				"**モデル管理**: `ollama pull/run/list/rm` でDockerライクに操作",
+				"**Modelfile**: カスタムプロンプト・パラメータを定義可能",
+				"**GPU自動検出**: CUDA / ROCm / Metal を自動利用",
+				"利用可能モデル: `https://ollama.com/library` で確認"
+			]
+		},
+		{
+			"title": "LM Studio：GUIで直感的にローカルLLM",
+			"layout": "default",
+			"content": [
+				"**概要**: macOS/Windows/Linux向けデスクトップアプリ（無料）",
+				"**HuggingFaceブラウザ内蔵**: GGUFモデルを検索・ダウンロード",
+				"**ChatUI**: ブラウザ不要でチャット可能",
+				"**ローカルサーバー**: OpenAI互換APIをGUIで起動",
+				"**GPU層制御**: モデルの何層をGPUオフロードするか手動設定可能",
+				"**推奨用途**: 非エンジニアとの共有、初回試行、モデル比較"
+			]
+		},
+		{
+			"title": "llama.cpp：軽量・高速な低レベル実行",
+			"layout": "default",
+			"content": [
+				"**概要**: C/C++実装のLLM推論エンジン（Ollama の内部エンジン）",
+				"**対応**: CPU (x86/ARM)、Apple Metal、CUDA、Vulkan、OpenBLAS",
+				"**特徴**: 依存ライブラリ最小、組み込み・エッジに最適",
+				"**サーバーモード**: `--server` フラグでOpenAI互換HTTPサーバー起動",
+				"**パフォーマンスチューニング**: `-ngl`（GPU層数）`-t`（スレッド数）で細かく制御",
+				"**Python binding**: `llama-cpp-python` でPythonから直接利用可"
+			]
+		},
+		{
+			"title": "vLLM：本番・高スループット向け",
+			"layout": "default",
+			"content": [
+				"**概要**: UC Berkeley発の高効率LLM推論エンジン（CUDA GPU必須）",
+				"**PagedAttention**: KVキャッシュを効率管理 → スループット最大24倍向上",
+				"**連続バッチング**: 複数リクエストをまとめて処理 → GPU稼働率最大化",
+				"**OpenAI互換API**: 本番サービスとほぼ同じAPIで利用可能",
+				"**サポートモデル**: LLaMA, Mistral, Qwen, Phi, Gemma 等すべて対応",
+				"**推奨用途**: チームサーバー、API サービス、バッチ処理パイプライン"
+			]
+		},
+		{
+			"title": "ハードウェア要件",
+			"layout": "section",
+			"content": []
+		},
+		{
+			"title": "CPU / GPU / NPU の役割分担",
+			"layout": "default",
+			"content": ["![w:900 center](assets/cpu-gpu-npu.svg)"],
+			"speakerNotes": "各プロセッサの役割とLLM推論での使われ方を説明します。"
+		},
+		{
+			"title": "VRAMとモデルサイズの目安",
+			"layout": "default",
+			"content": ["![w:900 center](assets/vram-matrix.svg)"],
+			"speakerNotes": "どのモデルを動かすのに何GBのVRAMが必要かを示します。"
+		},
+		{
+			"title": "Apple Silicon（Metal）の活用",
+			"layout": "default",
+			"content": [
+				"**統合メモリアーキテクチャ**: CPU/GPU がメモリを共有 → VRAMとRAMの区別なし",
+				"**M3 Pro (36GB RAM)**: Llama 3 70B Q4 が実用速度（20-30 tok/s）で動作",
+				"**M4 Max (128GB RAM)**: 最大 671B MoEモデルも動作可能",
+				"**Ollama**: Metal 自動検出、追加設定不要",
+				"**電力効率**: NVIDIA RTX4090 比でワットあたり性能が高い",
+				"**推奨**: 開発者の日常利用なら M3/M4 MacBook Pro が最適解の一つ"
+			]
+		},
+		{
+			"title": "コスパ最適化ガイド",
+			"layout": "default",
+			"content": [
+				"**予算 ～$300**: RTX 3060 (12GB) → Llama 3.1 8B Q8 / 13B Q4",
+				"**予算 $400-600**: RTX 4060 Ti (16GB) → 34B Q4 まで快適",
+				"**予算 $800-1200**: RTX 4070 Ti Super (16GB) → 最高効率帯",
+				"**予算 $2000+**: RTX 4090 (24GB) / A6000 → 70B Q4 快適動作",
+				"**サーバー活用**: 2×RTX 3090 (24GB×2) → テンソル並列で70B F16",
+				"**クラウドGPU**: RunPod / Vast.ai → 時間課金で大型モデルを試す"
+			]
+		},
+		{
+			"title": "実践：Ollamaセットアップ",
+			"layout": "section",
+			"content": []
+		},
+		{
+			"title": "インストールからモデル起動まで",
+			"layout": "default",
+			"content": [
+				"macOS/Linux ではワンライナーでインストール完了",
+				"モデルは `ollama pull` で自動ダウンロード（GGUF形式）",
+				"起動後は `http://localhost:11434` でAPIサーバーが待機"
+			],
+			"code": "# インストール (macOS / Linux)\ncurl -fsSL https://ollama.com/install.sh | sh\n\n# Windows: https://ollama.com/download からインストーラをダウンロード\n\n# モデルのダウンロードと起動\nollama pull llama3.2          # 3B モデル（約2GB）\nollama pull llama3.3:70b      # 70B モデル（要大容量VRAM）\nollama pull deepseek-r1:7b    # DeepSeek R1 蒸留版\n\n# インタラクティブチャット\nollama run llama3.2\nollama run llama3.2 \"Pythonでフィボナッチ数列を書いて\"",
+			"codeLanguage": "bash"
+		},
+		{
+			"title": "OpenAI互換APIの利用",
+			"layout": "default",
+			"content": [
+				"OllamaはOpenAI互換エンドポイントを提供",
+				"既存のOpenAI SDKコードをほぼそのまま流用可能",
+				"環境変数を切り替えるだけでローカル/クラウドを切替"
+			],
+			"code": "import OpenAI from \"openai\";\n\n// Ollama をOpenAI互換として利用\nconst client = new OpenAI({\n  baseURL: \"http://localhost:11434/v1\",\n  apiKey: \"ollama\", // 任意の文字列\n});\n\nconst response = await client.chat.completions.create({\n  model: \"llama3.2\",\n  messages: [\n    { role: \"system\", content: \"あなたはシニアエンジニアです。\" },\n    { role: \"user\", content: \"Rustでゼロコスト抽象化を説明して\" },\n  ],\n  stream: true,\n});\n\nfor await (const chunk of response) {\n  process.stdout.write(chunk.choices[0]?.delta?.content ?? \"\");\n}",
+			"codeLanguage": "typescript"
+		},
+		{
+			"title": "Modelfile：カスタムモデルの作成",
+			"layout": "default",
+			"content": [
+				"Modelfile でシステムプロンプト・パラメータをカスタマイズ",
+				"チームで共有・バージョン管理可能",
+				"`ollama create` でカスタムモデルとして登録"
+			],
+			"code": "# Modelfile\nFROM llama3.2\n\n# システムプロンプト\nSYSTEM \"\"\"\nあなたはシニアバックエンドエンジニアです。\nTypeScript / Rust / Go を専門とし、\nコードレビューとアーキテクチャ設計が得意です。\n回答は常に日本語で、コードには必ずコメントを付けてください。\n\"\"\"\n\n# モデルパラメータ調整\nPARAMETER temperature 0.3\nPARAMETER top_p 0.9\nPARAMETER num_ctx 8192\nPARAMETER num_predict 2048\n\n# ビルドと実行\n# ollama create my-engineer -f Modelfile\n# ollama run my-engineer",
+			"codeLanguage": "dockerfile"
+		},
+		{
+			"title": "アプリケーション統合",
+			"layout": "section",
+			"content": []
+		},
+		{
+			"title": "LangChain / LlamaIndex との連携",
+			"layout": "default",
+			"content": ["![w:900 center](assets/langchain-integration.svg)"],
+			"speakerNotes": "主要フレームワークとのOllama統合パターンを説明します。"
+		},
+		{
+			"title": "LangChain + Ollama 実装例",
+			"layout": "default",
+			"content": [
+				"ChatOllama クラスで簡単にローカルモデルを利用",
+				"既存の LangChain チェーンやエージェントがそのまま動作"
+			],
+			"code": "from langchain_ollama import ChatOllama\nfrom langchain_core.messages import HumanMessage, SystemMessage\nfrom langchain_core.prompts import ChatPromptTemplate\n\n# モデル初期化\nllm = ChatOllama(\n    model=\"llama3.2\",\n    temperature=0.3,\n    base_url=\"http://localhost:11434\",\n)\n\n# プロンプトテンプレート\nprompt = ChatPromptTemplate.from_messages([\n    (\"system\", \"あなたはコードレビュアーです。\"),\n    (\"human\", \"{code}\\n\\nこのコードをレビューして\"),\n])\n\nchain = prompt | llm\nresult = chain.invoke({\"code\": \"def fib(n): return fib(n-1)+fib(n-2)\"})",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "ローカルRAGアーキテクチャ",
+			"layout": "default",
+			"content": ["![w:950 center](assets/local-rag.svg)"],
+			"speakerNotes": "完全ローカルのRAGシステム構成を解説します。"
+		},
+		{
+			"title": "完全ローカルRAGの実装",
+			"layout": "default",
+			"content": [
+				"ベクトルDBも埋め込みモデルもローカルで完結",
+				"機密ドキュメントをクラウドに送らずAI検索を実現"
+			],
+			"code": "from langchain_ollama import OllamaEmbeddings, ChatOllama\nfrom langchain_chroma import Chroma\nfrom langchain.chains import RetrievalQA\nfrom langchain.document_loaders import DirectoryLoader\nfrom langchain.text_splitter import RecursiveCharacterTextSplitter\n\n# 埋め込みモデル（ローカル）\nembeddings = OllamaEmbeddings(model=\"nomic-embed-text\")\n\n# ドキュメント読込 & チャンク分割\nloader = DirectoryLoader(\"./docs\", glob=\"**/*.md\")\ndocs = RecursiveCharacterTextSplitter(\n    chunk_size=500, chunk_overlap=50\n).split_documents(loader.load())\n\n# ベクトルDB構築（ローカル）\nvectordb = Chroma.from_documents(docs, embeddings, persist_directory=\"./db\")\n\n# RAG チェーン\nqa = RetrievalQA.from_chain_type(\n    llm=ChatOllama(model=\"llama3.2\"),\n    retriever=vectordb.as_retriever(search_kwargs={\"k\": 5}),\n)",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "Function Calling / ツール利用",
+			"layout": "default",
+			"content": [
+				"**対応モデル**: Llama 3.x, Mistral, Qwen 2.5, Phi-4（Ollama経由）",
+				"**OpenAI tools API**: Ollama が互換エンドポイントで提供",
+				"天気取得・DB検索・コード実行などを自律的に実行",
+				"LangChain / LlamaIndex でエージェント化が容易",
+				"**制限**: クラウド系ほど安定していないモデルも存在",
+				"**推奨**: Llama 3.3 70B / Qwen 2.5-72B が最も安定"
+			]
+		},
+		{
+			"title": "マルチモーダル活用",
+			"layout": "default",
+			"content": [
+				"**LLaVA 1.6**: 画像理解、OCR、図解の説明生成",
+				"**Llama 3.2 11B/90B Vision**: Metaの最新ビジョンモデル",
+				"**Gemma 3 12B/27B**: マルチモーダル対応、高品質な画像理解",
+				"**Moondream2**: 超軽量1.8Bビジョンモデル、エッジ向け",
+				"Ollama: `ollama pull llama3.2-vision:11b`",
+				"**活用例**: 図面解析、スクリーンショット説明、書類OCR"
+			]
+		},
+		{
+			"title": "ユースケース",
+			"layout": "section",
+			"content": []
+		},
+		{
+			"title": "コーディング支援",
+			"layout": "default",
+			"content": [
+				"**コード補完**: VS Code + Continue拡張 + Ollama でCopilot代替",
+				"**コードレビュー**: プルリク差分を自動レビュー（社内コード漏洩なし）",
+				"**テスト生成**: 関数仕様からユニットテストを自動生成",
+				"**リファクタリング提案**: 技術的負債の特定・改善案生成",
+				"**推奨モデル**: Qwen 2.5-Coder 7B/32B、DeepSeek-Coder V2 Lite",
+				"**設定**: Continue拡張で `baseURL: http://localhost:11434/v1` に変更するだけ"
+			]
+		},
+		{
+			"title": "ドキュメント処理・社内データ活用",
+			"layout": "default",
+			"content": [
+				"**議事録自動生成**: 会議録音 → Whisper（ローカル）→ LLM 要約",
+				"**社内ナレッジベース**: Confluence/Notion文書 + ローカルRAG",
+				"**多言語翻訳**: 社内文書の英語/日本語翻訳（Qwen/Llama多言語モデル）",
+				"**報告書作成**: 定型フォーマットへの自動入力・要約",
+				"**ログ分析**: 大量ログのパターン抽出・異常検知サマリー生成",
+				"**完全オフライン**: クラウドサービス禁止の環境でも利用可能"
+			]
+		},
+		{
+			"title": "セキュリティ・コンプライアンス用途",
+			"layout": "default",
+			"content": [
+				"**脆弱性解析**: コードの脆弱性パターン検出（SAST補助）",
+				"**インシデントレスポンス**: ログ・アラートの自然言語説明生成",
+				"**コンプライアンスチェック**: 規定文書との差分分析",
+				"**マルウェア解析**: 難読化コードの解読支援（ローカル必須）",
+				"**規制対応**: GDPR/HIPAA/金融規制 → データ外部送信禁止のため必須",
+				"**SOC2/ISO27001**: ローカルLLM自体がセキュリティ要件を満たす手段に"
+			]
+		},
+		{
+			"title": "エッジデプロイ",
+			"layout": "default",
+			"content": [
+				"**産業IoT**: 工場内センサーデータ解析、異常検知",
+				"**医療機器**: 患者データをクラウド送信せずAI診断補助",
+				"**自動車**: 車載ECU / ADAS でのリアルタイム処理",
+				"**Raspberry Pi / Jetson**: llama.cpp + Phi-3.5-mini で動作実証",
+				"**Ollama on Docker**: コンテナ化してKubernetes/エッジK8sに展開",
+				"**モデル選定**: 1B〜3B のSLM（Small Language Model）が主役"
+			]
+		},
+		{
+			"title": "パフォーマンスと最適化",
+			"layout": "section",
+			"content": []
+		},
+		{
+			"title": "ベンチマーク：モデル・ツール別性能比較",
+			"layout": "default",
+			"content": [
+				"**速度指標（tokens/sec）目安**:",
+				"RTX 4090 + llama3.2:3b-q4 → 約150-200 tok/s",
+				"RTX 4090 + llama3.1:8b-q4 → 約80-120 tok/s",
+				"RTX 4090 + llama3.3:70b-q4 → 約20-35 tok/s",
+				"M3 Pro (36GB) + llama3.3:70b-q4 → 約15-25 tok/s",
+				"M4 Max (128GB) + llama3.3:70b-q4 → 約30-40 tok/s",
+				"CPU (Ryzen 9 / M3) + llama3.2:3b-q4 → 約15-40 tok/s"
+			]
+		},
+		{
+			"title": "推論最適化テクニック",
+			"layout": "default",
+			"content": [
+				"**Flash Attention 2**: KVキャッシュ計算を最適化 → 長コンテキストで大幅高速化",
+				"**コンテキスト長の管理**: 不要な会話履歴を圧縮・削除",
+				"**バッチサイズ調整**: vLLM の `--max-num-seqs` で並列リクエスト数最適化",
+				"**GPU層オフロード**: `-ngl` パラメータでGPU/CPUへの層割り当て制御",
+				"**Speculative Decoding**: 小モデルでドラフト生成 → 大モデルで検証（2-3倍速化）",
+				"**KVキャッシュ量子化**: キャッシュをfp8/int8に圧縮してVRAM節約"
+			]
+		},
+		{
+			"title": "展望・まとめ",
+			"layout": "section",
+			"content": []
+		},
+		{
+			"title": "ローカルLLMの課題と制限",
+			"layout": "default",
+			"content": [
+				"**ハードウェア依存**: 高品質な推論にはGPU/Apple Silicon が必要",
+				"**セットアップコスト**: 初期設定・チューニングに時間が必要",
+				"**最新モデルへの追従**: フロンティアモデル（GPT-4o級）はまだクラウド優勢",
+				"**コンテキスト長**: 一部ツールで長文処理時にメモリ不足が発生",
+				"**マルチモーダル成熟度**: 画像・音声処理はまだクラウドに劣る面あり",
+				"**Fine-tuning**: 高品質なLoRA/QLoRAには大容量GPUが依然必要"
+			]
+		},
+		{
+			"title": "2026年以降の展望",
+			"layout": "default",
+			"content": [
+				"**Apple M5/M6**: さらなるメモリ増加で100B級モデルが標準ラップトップで動作",
+				"**量子化精度向上**: 2bit量子化でもF16相当に近づく研究が進行中",
+				"**SLMの台頭**: 3B以下のモデルがユースケースの大半をカバーへ",
+				"**NPU活用**: Intel/AMD NPU によるCPU補助推論が普及",
+				"**クラウド不要なAIエージェント**: ローカルLLM + ローカルツール呼び出しが主流化",
+				"**オープンソースvsクローズド**: 性能差が急速に縮まっている"
+			]
+		},
+		{
+			"title": "選択のフレームワーク",
+			"layout": "default",
+			"content": ["![w:900 center](assets/selection-framework.svg)"],
+			"speakerNotes": "ローカルLLMを採用するかどうかの判断フレームワークを示します。"
+		},
+		{
+			"title": "まとめ",
+			"layout": "center",
+			"content": [
+				"🏠 **ローカルLLMは成熟期を迎えた** — 今すぐ実用可能",
+				"🔒 **プライバシー・コスト・オフライン** の3点が強み",
+				"🚀 **Ollama** から始めて、段階的に本番環境へ",
+				"📦 **モデル選択** はユースケース × VRAM × ライセンスで決める",
+				"🔧 **量子化 Q4_K_M** が実用のスイートスポット",
+				"🌐 **クラウドとのハイブリッド活用** が現実解"
+			]
+		},
+		{
+			"title": "参考資料 (1/2)",
+			"layout": "default",
+			"content": [
+				"**モデル・ダウンロード:**",
+				"[Ollama Library](https://ollama.com/library) — モデル一覧と使い方",
+				"[HuggingFace GGUF Hub](https://huggingface.co/TheBloke) — GGUFモデル集積所",
+				"[LM Studio](https://lmstudio.ai) — GUIクライアント",
+				"**ベンチマーク・評価:**",
+				"[Open LLM Leaderboard (HuggingFace)](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard)",
+				"[LLM Benchmark Hub](https://artificialanalysis.ai/leaderboards/models)"
+			]
+		},
+		{
+			"title": "参考資料 (2/2)",
+			"layout": "default",
+			"content": [
+				"**フレームワーク・ツール:**",
+				"[LangChain Ollama Integration](https://python.langchain.com/docs/integrations/chat/ollama/)",
+				"[vLLM Documentation](https://docs.vllm.ai/)",
+				"[llama.cpp GitHub](https://github.com/ggerganov/llama.cpp)",
+				"**コミュニティ:**",
+				"[r/LocalLLaMA (Reddit)](https://www.reddit.com/r/LocalLLaMA/)",
+				"[LocalAI GitHub](https://github.com/mudler/LocalAI)"
+			]
+		}
+	]
+}

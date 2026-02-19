@@ -1,0 +1,23 @@
+topic: "AIエージェント・オーケストレーション実践ワークショップ"
+language: "ja"
+
+output:
+  dir: "docs/20260219105407_ai-agent-orchestration"
+  baseName: "ai-agent-orchestration"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "AI Agent Orchestration Workshop"
+  footer: "© 2026 Engineering Workshop"
+  style: |
+    section {
+      font-size: 1.0em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+    section.section-slide h1 {
+      font-size: 2.0em;
+    }

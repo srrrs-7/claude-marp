@@ -1,0 +1,112 @@
+<svg viewBox="0 0 960 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117">
+  <text x="480" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#e6edf3" font-family="sans-serif">完全ローカルRAGアーキテクチャ</text>
+
+  <!-- Phase 1: Indexing -->
+  <rect x="30" y="52" width="420" height="200" rx="12" fill="#1c1917" stroke="#78350f" stroke-width="2"/>
+  <text x="240" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#fbbf24" font-family="sans-serif">① インデックス構築フェーズ（1回）</text>
+
+  <!-- Documents -->
+  <rect x="50" y="95" width="120" height="60" rx="8" fill="#292524" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="110" y="120" text-anchor="middle" font-size="12" fill="#e5e7eb" font-family="sans-serif">ドキュメント</text>
+  <text x="110" y="138" text-anchor="middle" font-size="11" fill="#9ca3af" font-family="sans-serif">PDF/MD/TXT</text>
+
+  <!-- Arrow -->
+  <line x1="170" y1="125" x2="200" y2="125" stroke="#6b7280" stroke-width="2"/>
+  <polygon points="204,125 194,119 194,131" fill="#6b7280"/>
+
+  <!-- Text Splitter -->
+  <rect x="200" y="95" width="100" height="60" rx="6" fill="#78350f" stroke="#f97316" stroke-width="1.5"/>
+  <text x="250" y="118" text-anchor="middle" font-size="11" font-weight="bold" fill="#fed7aa" font-family="sans-serif">Text</text>
+  <text x="250" y="133" text-anchor="middle" font-size="11" fill="#fed7aa" font-family="sans-serif">Splitter</text>
+  <text x="250" y="147" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="sans-serif">チャンク分割</text>
+
+  <!-- Arrow -->
+  <line x1="300" y1="125" x2="330" y2="125" stroke="#6b7280" stroke-width="2"/>
+  <polygon points="334,125 324,119 324,131" fill="#6b7280"/>
+
+  <!-- Embedding -->
+  <rect x="330" y="95" width="100" height="60" rx="6" fill="#7c2d12" stroke="#f97316" stroke-width="1.5"/>
+  <text x="380" y="118" text-anchor="middle" font-size="11" font-weight="bold" fill="#fed7aa" font-family="sans-serif">Embedding</text>
+  <text x="380" y="133" text-anchor="middle" font-size="11" fill="#ffedd5" font-family="sans-serif">nomic-embed</text>
+  <text x="380" y="147" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="sans-serif">ローカルモデル</text>
+
+  <!-- Arrow down to vectordb -->
+  <line x1="380" y1="155" x2="380" y2="185" stroke="#f97316" stroke-width="2"/>
+  <line x1="380" y1="185" x2="240" y2="215" stroke="#f97316" stroke-width="2"/>
+  <polygon points="238,218 242,206 250,214" fill="#f97316"/>
+
+  <!-- Vector DB -->
+  <rect x="130" y="200" width="220" height="40" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="2"/>
+  <text x="240" y="224" text-anchor="middle" font-size="13" font-weight="bold" fill="#4ade80" font-family="sans-serif">ベクトルDB (ChromaDB)</text>
+
+  <text x="240" y="253" text-anchor="middle" font-size="11" fill="#6b7280" font-family="sans-serif">📁 .chroma/ または インメモリ</text>
+
+  <!-- Phase 2: Query -->
+  <rect x="510" y="52" width="420" height="200" rx="12" fill="#0c1a14" stroke="#16a34a" stroke-width="2"/>
+  <text x="720" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#4ade80" font-family="sans-serif">② クエリフェーズ（毎回）</text>
+
+  <!-- User query -->
+  <rect x="530" y="95" width="110" height="60" rx="8" fill="#1f2937" stroke="#9ca3af" stroke-width="1.5"/>
+  <text x="585" y="120" text-anchor="middle" font-size="12" fill="#f9fafb" font-family="sans-serif">ユーザー</text>
+  <text x="585" y="138" text-anchor="middle" font-size="11" fill="#9ca3af" font-family="sans-serif">質問・クエリ</text>
+
+  <!-- Arrow -->
+  <line x1="640" y1="125" x2="670" y2="125" stroke="#6b7280" stroke-width="2"/>
+  <polygon points="674,125 664,119 664,131" fill="#6b7280"/>
+
+  <!-- Embedding query -->
+  <rect x="670" y="95" width="100" height="60" rx="6" fill="#7c2d12" stroke="#f97316" stroke-width="1.5"/>
+  <text x="720" y="118" text-anchor="middle" font-size="11" font-weight="bold" fill="#fed7aa" font-family="sans-serif">Embedding</text>
+  <text x="720" y="133" text-anchor="middle" font-size="11" fill="#ffedd5" font-family="sans-serif">クエリベクトル</text>
+  <text x="720" y="147" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="sans-serif">化</text>
+
+  <!-- Arrow to similarity search -->
+  <line x1="720" y1="155" x2="720" y2="185" stroke="#22c55e" stroke-width="2"/>
+  <line x1="720" y1="185" x2="730" y2="215" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="731,219 726,208 735,207" fill="#22c55e"/>
+
+  <!-- Similarity search result -->
+  <rect x="600" y="200" width="300" height="40" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2"/>
+  <text x="750" y="224" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa" font-family="sans-serif">類似チャンク TOP-K を取得</text>
+
+  <!-- Phase 3: Generation -->
+  <rect x="30" y="290" width="900" height="170" rx="12" fill="#162032" stroke="#3b82f6" stroke-width="2"/>
+  <text x="480" y="318" text-anchor="middle" font-size="15" font-weight="bold" fill="#60a5fa" font-family="sans-serif">③ 生成フェーズ（毎回）</text>
+
+  <!-- Prompt template -->
+  <rect x="50" y="330" width="220" height="110" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="160" y="356" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa" font-family="sans-serif">プロンプト構築</text>
+  <text x="70" y="376" font-size="11" fill="#93c5fd" font-family="sans-serif">System: あなたは社内アシスタント</text>
+  <text x="70" y="394" font-size="11" fill="#93c5fd" font-family="sans-serif">Context: [取得チャンクを挿入]</text>
+  <text x="70" y="412" font-size="11" fill="#93c5fd" font-family="sans-serif">Human: [ユーザーの質問]</text>
+  <text x="70" y="430" font-size="11" fill="#93c5fd" font-family="sans-serif">Answer in Japanese:</text>
+
+  <!-- Arrow -->
+  <line x1="270" y1="385" x2="330" y2="385" stroke="#9ca3af" stroke-width="2"/>
+  <polygon points="334,385 324,379 324,391" fill="#9ca3af"/>
+
+  <!-- Local LLM -->
+  <rect x="330" y="330" width="200" height="110" rx="8" fill="#7c2d12" stroke="#f97316" stroke-width="2" style="filter:drop-shadow(0 3px 8px rgba(249,115,22,0.4))"/>
+  <text x="430" y="358" text-anchor="middle" font-size="14" font-weight="bold" fill="#fb923c" font-family="sans-serif">ローカルLLM</text>
+  <text x="430" y="378" text-anchor="middle" font-size="12" fill="#fed7aa" font-family="sans-serif">Ollama / llama.cpp</text>
+  <text x="430" y="396" text-anchor="middle" font-size="12" fill="#fed7aa" font-family="sans-serif">llama3.2 / mistral</text>
+  <text x="430" y="416" text-anchor="middle" font-size="11" fill="#fbbf24" font-family="sans-serif">外部送信なし ✅</text>
+
+  <!-- Arrow -->
+  <line x1="530" y1="385" x2="590" y2="385" stroke="#9ca3af" stroke-width="2"/>
+  <polygon points="594,385 584,379 584,391" fill="#9ca3af"/>
+
+  <!-- Response -->
+  <rect x="590" y="330" width="300" height="110" rx="8" fill="#0c1a14" stroke="#22c55e" stroke-width="2"/>
+  <text x="740" y="358" text-anchor="middle" font-size="14" font-weight="bold" fill="#4ade80" font-family="sans-serif">回答生成</text>
+  <text x="610" y="380" font-size="12" fill="#86efac" font-family="sans-serif">✅ 社内ドキュメントを根拠にした</text>
+  <text x="610" y="398" font-size="12" fill="#86efac" font-family="sans-serif">　 正確な回答を生成</text>
+  <text x="610" y="416" font-size="12" fill="#86efac" font-family="sans-serif">✅ データは全てローカルに留まる</text>
+  <text x="610" y="434" font-size="12" fill="#86efac" font-family="sans-serif">✅ ハルシネーション抑制</text>
+
+  <!-- Connecting arrows between phases -->
+  <line x1="240" y1="240" x2="240" y2="290" stroke="#374151" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="240" y1="290" x2="55" y2="330" stroke="#374151" stroke-width="1.5"/>
+  <line x1="750" y1="240" x2="750" y2="280" stroke="#374151" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="750" y1="280" x2="600" y2="330" stroke="#374151" stroke-width="1.5"/>
+</svg>

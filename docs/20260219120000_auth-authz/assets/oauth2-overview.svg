@@ -1,0 +1,73 @@
+<svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="440" fill="#f8f9fa" rx="8"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#2c3e50" font-family="sans-serif">OAuth 2.0 フロー概要</text>
+
+  <!-- Actor: Resource Owner (User) -->
+  <rect x="30" y="55" width="160" height="60" rx="8" fill="#3498db" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="110" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">Resource Owner</text>
+  <text x="110" y="98" text-anchor="middle" font-size="11" fill="#dce6f0" font-family="sans-serif">（ユーザー）</text>
+
+  <!-- Actor: Client App -->
+  <rect x="610" y="55" width="160" height="60" rx="8" fill="#27ae60" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="690" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">Client App</text>
+  <text x="690" y="98" text-anchor="middle" font-size="11" fill="#d5f5e3" font-family="sans-serif">（アプリケーション）</text>
+
+  <!-- Actor: Auth Server -->
+  <rect x="30" y="310" width="160" height="60" rx="8" fill="#e67e22" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="110" y="334" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">Authorization</text>
+  <text x="110" y="352" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">Server</text>
+
+  <!-- Actor: Resource Server -->
+  <rect x="610" y="310" width="160" height="60" rx="8" fill="#8e44ad" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="690" y="334" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">Resource Server</text>
+  <text x="690" y="352" text-anchor="middle" font-size="11" fill="#e8d5f5" font-family="sans-serif">（APIサーバー）</text>
+
+  <!-- Center hub: Access Token -->
+  <rect x="310" y="170" width="180" height="50" rx="25" fill="#2c3e50" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="400" y="191" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">Access Token</text>
+  <text x="400" y="207" text-anchor="middle" font-size="10" fill="#bdc3c7" font-family="sans-serif">（短命・スコープ付き）</text>
+
+  <!-- Arrow 1: User → Client App (アクセス要求) -->
+  <line x1="192" y1="80" x2="608" y2="80" stroke="#3498db" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="608,80 598,75 598,85" fill="#3498db"/>
+  <text x="400" y="73" text-anchor="middle" font-size="10" fill="#3498db" font-family="sans-serif">① アクセス要求</text>
+
+  <!-- Arrow 2: Client → Auth Server (認可リクエスト) -->
+  <line x1="690" y1="116" x2="690" y2="200" stroke="#27ae60" stroke-width="2"/>
+  <line x1="690" y1="200" x2="492" y2="200" stroke="#27ae60" stroke-width="2"/>
+  <polygon points="492,200 502,195 502,205" fill="#27ae60"/>
+  <text x="600" y="165" text-anchor="middle" font-size="10" fill="#27ae60" font-family="sans-serif">② 認可リクエスト</text>
+
+  <!-- Arrow 3: Auth Server → User (認証プロンプト) -->
+  <line x1="110" y1="309" x2="110" y2="145" stroke="#e67e22" stroke-width="2"/>
+  <line x1="110" y1="145" x2="180" y2="85" stroke="#e67e22" stroke-width="2"/>
+  <polygon points="180,85 173,80 178,91" fill="#e67e22"/>
+  <text x="55" y="220" text-anchor="middle" font-size="10" fill="#e67e22" font-family="sans-serif" transform="rotate(-90,55,220)">③ 認証プロンプト</text>
+
+  <!-- Arrow 4: User → Auth Server (認証・同意) -->
+  <line x1="192" y1="108" x2="270" y2="290" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="270" y1="290" x2="192" y2="310" stroke="#2c3e50" stroke-width="2"/>
+  <polygon points="192,310 204,303 200,314" fill="#2c3e50"/>
+  <text x="270" y="220" text-anchor="middle" font-size="10" fill="#2c3e50" font-family="sans-serif">④ 認証・同意</text>
+
+  <!-- Arrow 5: Auth Server → Client (Access Token発行) -->
+  <line x1="192" y1="340" x2="610" y2="195" stroke="#e74c3c" stroke-width="2.5"/>
+  <polygon points="610,195 602,200 607,188" fill="#e74c3c"/>
+  <text x="420" y="300" text-anchor="middle" font-size="10" font-weight="bold" fill="#e74c3c" font-family="sans-serif">⑤ Access Token 発行</text>
+
+  <!-- Arrow 6: Client → Resource Server -->
+  <line x1="690" y1="310" x2="690" y2="280" stroke="#8e44ad" stroke-width="2"/>
+  <line x1="690" y1="280" x2="750" y2="280" stroke="#8e44ad" stroke-width="2"/>
+  <text x="720" y="296" text-anchor="middle" font-size="9" fill="#8e44ad" font-family="sans-serif">⑥ Token + API</text>
+
+  <!-- Arrow 7: Resource Server response -->
+  <line x1="770" y1="280" x2="770" y2="250" stroke="#8e44ad" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="760" y="245" text-anchor="end" font-size="9" fill="#8e44ad" font-family="sans-serif">⑦ レスポンス</text>
+
+  <!-- Legend -->
+  <rect x="30" y="400" width="740" height="32" rx="4" fill="#ecf0f1"/>
+  <text x="40" y="420" font-size="10" fill="#7f8c8d" font-family="sans-serif">🔵 ユーザー（人）　🟢 クライアントアプリ　🟠 認可サーバー（IdP）　🟣 リソースサーバー（API）</text>
+</svg>

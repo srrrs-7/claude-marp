@@ -1,0 +1,107 @@
+<svg viewBox="0 0 960 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117">
+  <text x="480" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#e6edf3" font-family="sans-serif">モデルポジショニングマップ</text>
+
+  <!-- Axes background -->
+  <rect x="80" y="60" width="800" height="390" rx="8" fill="#111827"/>
+
+  <!-- Grid lines -->
+  <line x1="80" y1="255" x2="880" y2="255" stroke="#374151" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="480" y1="60" x2="480" y2="450" stroke="#374151" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Axes -->
+  <line x1="80" y1="450" x2="880" y2="450" stroke="#6b7280" stroke-width="2"/>
+  <line x1="80" y1="60" x2="80" y2="450" stroke="#6b7280" stroke-width="2"/>
+
+  <!-- X axis arrow -->
+  <polygon points="884,450 874,444 874,456" fill="#6b7280"/>
+  <!-- Y axis arrow -->
+  <polygon points="80,56 74,66 86,66" fill="#6b7280"/>
+
+  <!-- Axis labels -->
+  <text x="480" y="490" text-anchor="middle" font-size="14" fill="#9ca3af" font-family="sans-serif">モデルサイズ（パラメータ数）→ 大</text>
+  <text x="90" y="63" font-size="14" fill="#9ca3af" font-family="sans-serif">↑ 性能（MMLU等）</text>
+  <text x="88" y="462" font-size="12" fill="#6b7280" font-family="sans-serif">小</text>
+  <text x="860" y="462" font-size="12" fill="#6b7280" font-family="sans-serif">大</text>
+
+  <!-- Quadrant labels -->
+  <text x="180" y="90" font-size="12" fill="#374151" font-family="sans-serif">小型・高精度</text>
+  <text x="630" y="90" font-size="12" fill="#374151" font-family="sans-serif">大型・最高精度</text>
+  <text x="180" y="430" font-size="12" fill="#374151" font-family="sans-serif">小型・標準精度</text>
+  <text x="630" y="430" font-size="12" fill="#374151" font-family="sans-serif">大型・高精度</text>
+
+  <!-- Models: bubble = size, position = params(x) vs quality(y) -->
+
+  <!-- Phi-4 14B - small params, very high quality (top-left) -->
+  <circle cx="280" cy="130" r="28" fill="#7c3aed" opacity="0.85" style="filter:drop-shadow(0 2px 6px rgba(124,58,237,0.5))"/>
+  <text x="280" y="126" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Phi-4</text>
+  <text x="280" y="141" text-anchor="middle" font-size="10" fill="#e9d5ff" font-family="sans-serif">14B / MIT</text>
+
+  <!-- Phi-3.5-mini 3.8B -->
+  <circle cx="165" cy="200" r="20" fill="#8b5cf6" opacity="0.8"/>
+  <text x="165" y="196" text-anchor="middle" font-size="10" font-weight="bold" fill="white" font-family="sans-serif">Phi-3.5</text>
+  <text x="165" y="210" text-anchor="middle" font-size="9" fill="#ede9fe" font-family="sans-serif">mini 3.8B</text>
+
+  <!-- Llama 3.2 3B -->
+  <circle cx="155" cy="310" r="18" fill="#0369a1" opacity="0.8"/>
+  <text x="155" y="306" text-anchor="middle" font-size="10" font-weight="bold" fill="white" font-family="sans-serif">Llama3.2</text>
+  <text x="155" y="320" text-anchor="middle" font-size="9" fill="#e0f2fe" font-family="sans-serif">3B</text>
+
+  <!-- Mistral 7B -->
+  <circle cx="330" cy="265" r="24" fill="#0891b2" opacity="0.85" style="filter:drop-shadow(0 2px 6px rgba(8,145,178,0.4))"/>
+  <text x="330" y="261" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Mistral</text>
+  <text x="330" y="275" text-anchor="middle" font-size="10" fill="#cffafe" font-family="sans-serif">7B / Apache2</text>
+
+  <!-- Qwen 2.5 7B -->
+  <circle cx="360" cy="210" r="22" fill="#065f46" opacity="0.85"/>
+  <text x="360" y="206" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Qwen2.5</text>
+  <text x="360" y="220" text-anchor="middle" font-size="10" fill="#a7f3d0" font-family="sans-serif">7B</text>
+
+  <!-- Llama 3.1 8B -->
+  <circle cx="395" cy="255" r="24" fill="#1d4ed8" opacity="0.85"/>
+  <text x="395" y="251" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Llama3.1</text>
+  <text x="395" y="265" text-anchor="middle" font-size="10" fill="#bfdbfe" font-family="sans-serif">8B</text>
+
+  <!-- Gemma 3 12B -->
+  <circle cx="470" cy="195" r="26" fill="#d97706" opacity="0.85" style="filter:drop-shadow(0 2px 6px rgba(217,119,6,0.4))"/>
+  <text x="470" y="191" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Gemma3</text>
+  <text x="470" y="205" text-anchor="middle" font-size="10" fill="#fef3c7" font-family="sans-serif">12B</text>
+
+  <!-- DeepSeek-R1 Distill 14B -->
+  <circle cx="510" cy="140" r="28" fill="#be123c" opacity="0.85" style="filter:drop-shadow(0 2px 6px rgba(190,18,60,0.5))"/>
+  <text x="510" y="136" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">DS-R1</text>
+  <text x="510" y="150" text-anchor="middle" font-size="10" fill="#ffe4e6" font-family="sans-serif">14B / MIT</text>
+
+  <!-- Mixtral 8x7B -->
+  <circle cx="590" cy="215" r="30" fill="#0e7490" opacity="0.85"/>
+  <text x="590" y="211" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Mixtral</text>
+  <text x="590" y="225" text-anchor="middle" font-size="10" fill="#cffafe" font-family="sans-serif">8x7B</text>
+
+  <!-- Qwen 2.5 32B -->
+  <circle cx="660" cy="165" r="30" fill="#166534" opacity="0.85"/>
+  <text x="660" y="161" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Qwen2.5</text>
+  <text x="660" y="175" text-anchor="middle" font-size="10" fill="#bbf7d0" font-family="sans-serif">32B</text>
+
+  <!-- Gemma 3 27B -->
+  <circle cx="700" cy="210" r="30" fill="#92400e" opacity="0.85"/>
+  <text x="700" y="206" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Gemma3</text>
+  <text x="700" y="220" text-anchor="middle" font-size="10" fill="#fef3c7" font-family="sans-serif">27B</text>
+
+  <!-- Llama 3.3 70B -->
+  <circle cx="790" cy="110" r="38" fill="#1e40af" opacity="0.9" style="filter:drop-shadow(0 3px 8px rgba(30,64,175,0.6))"/>
+  <text x="790" y="105" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">Llama3.3</text>
+  <text x="790" y="120" text-anchor="middle" font-size="11" fill="#bfdbfe" font-family="sans-serif">70B</text>
+  <text x="790" y="134" text-anchor="middle" font-size="10" fill="#93c5fd" font-family="sans-serif">★推奨</text>
+
+  <!-- DeepSeek-R1 671B (top right) -->
+  <circle cx="855" cy="95" r="28" fill="#7f1d1d" opacity="0.9" style="filter:drop-shadow(0 3px 8px rgba(127,29,29,0.6))"/>
+  <text x="855" y="90" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">DS-R1</text>
+  <text x="855" y="104" text-anchor="middle" font-size="10" fill="#fecaca" font-family="sans-serif">671B MoE</text>
+
+  <!-- Legend -->
+  <rect x="85" y="65" width="200" height="60" rx="6" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+  <text x="105" y="87" font-size="11" fill="#9ca3af" font-family="sans-serif">円のサイズ ≈ 必要VRAM</text>
+  <circle cx="105" cy="103" r="8" fill="#4b5563"/>
+  <text x="120" y="107" font-size="10" fill="#9ca3af" font-family="sans-serif">小サイズ = エッジ向け</text>
+  <circle cx="190" cy="103" r="14" fill="#4b5563"/>
+  <text x="210" y="107" font-size="10" fill="#9ca3af" font-family="sans-serif">大 = 高スペック必要</text>
+</svg>

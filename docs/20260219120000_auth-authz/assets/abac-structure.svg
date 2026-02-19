@@ -1,0 +1,85 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#f8f9fa" rx="8"/>
+  <text x="400" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#2c3e50" font-family="sans-serif">ABAC — Attribute-Based Access Control</text>
+
+  <!-- Subject attributes -->
+  <rect x="20" y="50" width="190" height="160" rx="8" fill="#eaf4fb" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.1))"/>
+  <rect x="20" y="50" width="190" height="32" rx="8" fill="#3498db"/>
+  <text x="115" y="71" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">Subject Attributes</text>
+  <text x="30" y="100" font-size="10" fill="#2c3e50" font-family="monospace">role: "developer"</text>
+  <text x="30" y="118" font-size="10" fill="#2c3e50" font-family="monospace">department: "eng"</text>
+  <text x="30" y="136" font-size="10" fill="#2c3e50" font-family="monospace">clearance: "L3"</text>
+  <text x="30" y="154" font-size="10" fill="#2c3e50" font-family="monospace">mfa: true</text>
+  <text x="30" y="172" font-size="10" fill="#2c3e50" font-family="monospace">ip: "10.0.1.5"</text>
+  <text x="30" y="192" font-size="9" fill="#7f8c8d" font-family="sans-serif">（ユーザー / サービス）</text>
+
+  <!-- Resource attributes -->
+  <rect x="20" y="230" width="190" height="150" rx="8" fill="#e8f8e8" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.1))"/>
+  <rect x="20" y="230" width="190" height="32" rx="8" fill="#27ae60"/>
+  <text x="115" y="251" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">Resource Attributes</text>
+  <text x="30" y="280" font-size="10" fill="#2c3e50" font-family="monospace">type: "document"</text>
+  <text x="30" y="298" font-size="10" fill="#2c3e50" font-family="monospace">sensitivity: "internal"</text>
+  <text x="30" y="316" font-size="10" fill="#2c3e50" font-family="monospace">owner_dept: "eng"</text>
+  <text x="30" y="334" font-size="10" fill="#2c3e50" font-family="monospace">region: "ap-northeast"</text>
+  <text x="30" y="362" font-size="9" fill="#7f8c8d" font-family="sans-serif">（S3, DB, API等）</text>
+
+  <!-- Environment attributes -->
+  <rect x="590" y="50" width="190" height="160" rx="8" fill="#fef9e7" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.1))"/>
+  <rect x="590" y="50" width="190" height="32" rx="8" fill="#f1c40f"/>
+  <text x="685" y="71" text-anchor="middle" font-size="12" font-weight="bold" fill="#2c3e50" font-family="sans-serif">Environment</text>
+  <text x="600" y="100" font-size="10" fill="#2c3e50" font-family="monospace">time: "09:30 JST"</text>
+  <text x="600" y="118" font-size="10" fill="#2c3e50" font-family="monospace">day: "weekday"</text>
+  <text x="600" y="136" font-size="10" fill="#2c3e50" font-family="monospace">network: "corporate"</text>
+  <text x="600" y="154" font-size="10" fill="#2c3e50" font-family="monospace">threat_level: "low"</text>
+  <text x="600" y="192" font-size="9" fill="#7f8c8d" font-family="sans-serif">（時刻・ネットワーク・脅威）</text>
+
+  <!-- Action box -->
+  <rect x="590" y="230" width="190" height="80" rx="8" fill="#fde8e8" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.1))"/>
+  <rect x="590" y="230" width="190" height="32" rx="8" fill="#e74c3c"/>
+  <text x="685" y="251" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">Action</text>
+  <text x="685" y="280" text-anchor="middle" font-size="10" fill="#2c3e50" font-family="monospace">s3:GetObject</text>
+  <text x="685" y="297" text-anchor="middle" font-size="10" fill="#2c3e50" font-family="monospace">dynamodb:PutItem</text>
+
+  <!-- Policy Engine - center -->
+  <rect x="285" y="130" width="230" height="130" rx="10" fill="#2c3e50" style="filter:drop-shadow(3px 3px 6px rgba(0,0,0,0.25))"/>
+  <rect x="285" y="130" width="230" height="36" rx="10" fill="#9b59b6"/>
+  <text x="400" y="153" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">Policy Engine</text>
+  <text x="295" y="178" font-size="10" fill="#bdc3c7" font-family="monospace">if subject.department ==</text>
+  <text x="295" y="193" font-size="10" fill="#bdc3c7" font-family="monospace">   resource.owner_dept</text>
+  <text x="295" y="208" font-size="10" fill="#bdc3c7" font-family="monospace">   AND subject.mfa == true</text>
+  <text x="295" y="223" font-size="10" fill="#f1c40f" font-family="monospace">→ ALLOW</text>
+  <text x="295" y="238" font-size="10" fill="#e74c3c" font-family="monospace">→ DENY</text>
+
+  <!-- Arrows to Policy Engine -->
+  <line x1="211" y1="125" x2="283" y2="170" stroke="#3498db" stroke-width="2"/>
+  <polygon points="283,170 276,160 286,160" fill="#3498db"/>
+  <text x="240" y="148" font-size="9" fill="#3498db" font-family="sans-serif">Subject</text>
+
+  <line x1="211" y1="295" x2="283" y2="220" stroke="#27ae60" stroke-width="2"/>
+  <polygon points="283,220 278,232 288,230" fill="#27ae60"/>
+  <text x="235" y="285" font-size="9" fill="#27ae60" font-family="sans-serif">Resource</text>
+
+  <line x1="589" y1="130" x2="517" y2="172" stroke="#e67e22" stroke-width="2"/>
+  <polygon points="517,172 523,162 527,172" fill="#e67e22"/>
+  <text x="538" y="148" font-size="9" fill="#e67e22" font-family="sans-serif">Env</text>
+
+  <line x1="589" y1="270" x2="517" y2="228" stroke="#e74c3c" stroke-width="2"/>
+  <polygon points="517,228 521,238 527,228" fill="#e74c3c"/>
+  <text x="540" y="268" font-size="9" fill="#e74c3c" font-family="sans-serif">Action</text>
+
+  <!-- Output -->
+  <rect x="310" y="295" width="90" height="35" rx="5" fill="#27ae60"/>
+  <text x="355" y="317" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">✅ ALLOW</text>
+
+  <rect x="420" y="295" width="80" height="35" rx="5" fill="#e74c3c"/>
+  <text x="460" y="317" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">❌ DENY</text>
+
+  <line x1="400" y1="262" x2="355" y2="294" stroke="#27ae60" stroke-width="1.5"/>
+  <polygon points="355,294 350,284 360,284" fill="#27ae60"/>
+  <line x1="400" y1="262" x2="460" y2="294" stroke="#e74c3c" stroke-width="1.5"/>
+  <polygon points="460,294 456,284 466,284" fill="#e74c3c"/>
+
+  <!-- AWS example -->
+  <text x="400" y="362" text-anchor="middle" font-size="10" fill="#7f8c8d" font-family="sans-serif">AWS実装: IAM Policy Condition ブロック = ABAC エンジン</text>
+  <text x="400" y="380" text-anchor="middle" font-size="9" fill="#95a5a6" font-family="monospace">"Condition": {"StringEquals": {"aws:PrincipalTag/Department": "Engineering"}}</text>
+</svg>

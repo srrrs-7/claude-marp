@@ -1,0 +1,88 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="420" fill="#f8f9fa" rx="8"/>
+  <text x="400" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#2c3e50" font-family="sans-serif">mTLS — 双方向TLS認証フロー</text>
+
+  <!-- Actors -->
+  <rect x="30" y="48" width="150" height="64" rx="8" fill="#3498db" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="105" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">Service A</text>
+  <text x="105" y="90" text-anchor="middle" font-size="10" fill="#d6eaf8" font-family="sans-serif">Order Service</text>
+  <text x="105" y="105" text-anchor="middle" font-size="9" fill="#d6eaf8" font-family="sans-serif">クライアント証明書あり</text>
+
+  <rect x="325" y="48" width="150" height="64" rx="8" fill="#e67e22" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="400" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">ACM PCA</text>
+  <text x="400" y="90" text-anchor="middle" font-size="10" fill="#fdebd0" font-family="sans-serif">Private CA</text>
+  <text x="400" y="105" text-anchor="middle" font-size="9" fill="#fdebd0" font-family="sans-serif">証明書発行・管理</text>
+
+  <rect x="620" y="48" width="150" height="64" rx="8" fill="#27ae60" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="695" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">Service B</text>
+  <text x="695" y="90" text-anchor="middle" font-size="10" fill="#d5f5e3" font-family="sans-serif">Payment Service</text>
+  <text x="695" y="105" text-anchor="middle" font-size="9" fill="#d5f5e3" font-family="sans-serif">サーバー証明書あり</text>
+
+  <!-- Lifelines -->
+  <line x1="105" y1="112" x2="105" y2="370" stroke="#3498db" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="400" y1="112" x2="400" y2="370" stroke="#e67e22" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="695" y1="112" x2="695" y2="370" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- mTLS Handshake Steps -->
+  <!-- Step 1: Client Hello -->
+  <rect x="5" y="128" width="16" height="16" rx="8" fill="#3498db"/>
+  <text x="13" y="140" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">1</text>
+  <line x1="105" y1="136" x2="693" y2="136" stroke="#555" stroke-width="1.5"/>
+  <polygon points="693,136 683,131 683,141" fill="#555"/>
+  <text x="400" y="128" text-anchor="middle" font-size="10" fill="#2c3e50" font-family="sans-serif">ClientHello (TLS version, cipher suites, random)</text>
+
+  <!-- Step 2: Server Hello + Certificate -->
+  <rect x="779" y="156" width="16" height="16" rx="8" fill="#27ae60"/>
+  <text x="787" y="168" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">2</text>
+  <line x1="693" y1="164" x2="107" y2="164" stroke="#27ae60" stroke-width="1.5"/>
+  <polygon points="107,164 117,159 117,169" fill="#27ae60"/>
+  <text x="400" y="157" text-anchor="middle" font-size="10" fill="#27ae60" font-family="sans-serif">ServerHello + 🏅 サーバー証明書 + CertificateRequest</text>
+
+  <!-- Step 3: Client verifies server cert -->
+  <rect x="5" y="184" width="16" height="16" rx="8" fill="#9b59b6"/>
+  <text x="13" y="196" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">3</text>
+  <line x1="105" y1="192" x2="398" y2="192" stroke="#9b59b6" stroke-width="1.5"/>
+  <polygon points="398,192 388,187 388,197" fill="#9b59b6"/>
+  <text x="245" y="185" text-anchor="middle" font-size="10" fill="#9b59b6" font-family="sans-serif">CA証明書でサーバー証明書を検証</text>
+
+  <!-- CA → Service A (cert verification) -->
+  <line x1="400" y1="192" x2="107" y2="192" stroke="#9b59b6" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <polygon points="107,192 117,187 117,197" fill="#9b59b6"/>
+
+  <!-- Step 4: Client Certificate -->
+  <rect x="5" y="220" width="16" height="16" rx="8" fill="#e74c3c"/>
+  <text x="13" y="232" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">4</text>
+  <line x1="105" y1="228" x2="693" y2="228" stroke="#e74c3c" stroke-width="2"/>
+  <polygon points="693,228 683,223 683,233" fill="#e74c3c"/>
+  <text x="400" y="221" text-anchor="middle" font-size="10" font-weight="bold" fill="#e74c3c" font-family="sans-serif">🏅 クライアント証明書を送信（これがmTLSの特徴）</text>
+
+  <!-- Step 5: Server verifies client cert -->
+  <rect x="779" y="248" width="16" height="16" rx="8" fill="#9b59b6"/>
+  <text x="787" y="260" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">5</text>
+  <line x1="693" y1="256" x2="402" y2="256" stroke="#9b59b6" stroke-width="1.5"/>
+  <polygon points="402,256 412,251 412,261" fill="#9b59b6"/>
+  <text x="548" y="249" text-anchor="middle" font-size="10" fill="#9b59b6" font-family="sans-serif">CA証明書でクライアント証明書を検証</text>
+
+  <line x1="400" y1="256" x2="693" y2="256" stroke="#9b59b6" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <polygon points="693,256 683,251 683,261" fill="#9b59b6"/>
+
+  <!-- Step 6: Established -->
+  <rect x="5" y="284" width="16" height="16" rx="8" fill="#27ae60"/>
+  <text x="13" y="296" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">6</text>
+  <line x1="105" y1="292" x2="693" y2="292" stroke="#27ae60" stroke-width="2.5"/>
+  <polygon points="693,292 683,287 683,297" fill="#27ae60"/>
+  <text x="400" y="285" text-anchor="middle" font-size="10" font-weight="bold" fill="#27ae60" font-family="sans-serif">🔒 TLS セッション確立 — 双方向認証完了</text>
+
+  <!-- Step 7: Application Data -->
+  <rect x="5" y="312" width="16" height="16" rx="8" fill="#2c3e50"/>
+  <text x="13" y="324" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">7</text>
+  <line x1="105" y1="320" x2="693" y2="320" stroke="#2c3e50" stroke-width="1.5"/>
+  <polygon points="693,320 683,315 683,325" fill="#2c3e50"/>
+  <text x="400" y="313" text-anchor="middle" font-size="10" fill="#2c3e50" font-family="sans-serif">暗号化された HTTP/2 リクエスト</text>
+
+  <!-- Summary box -->
+  <rect x="15" y="342" width="770" height="68" rx="8" fill="#2c3e50"/>
+  <text x="400" y="360" text-anchor="middle" font-size="11" font-weight="bold" fill="#f1c40f" font-family="sans-serif">AWS実装</text>
+  <text x="30" y="378" font-size="10" fill="#ecf0f1" font-family="sans-serif">🏛 ACM Private CA: プライベートルートCA + 中間CA。証明書の一括発行・失効管理</text>
+  <text x="30" y="396" font-size="10" fill="#ecf0f1" font-family="sans-serif">🕸 AWS App Mesh / Istio: サービスメッシュでmTLSを自動化。証明書ローテーションも自動</text>
+</svg>

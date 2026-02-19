@@ -1,0 +1,55 @@
+<svg viewBox="0 0 1000 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0f172a;border-radius:12px">
+  <text x="500" y="28" text-anchor="middle" fill="#f1f5f9" font-size="16" font-weight="bold" font-family="sans-serif">エラーリカバリーパターン</text>
+  <!-- Agent Call Box -->
+  <rect x="60" y="50" width="160" height="55" rx="8" fill="#1e3a5f" stroke="#38bdf8" stroke-width="2"/>
+  <text x="140" y="74" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="bold" font-family="sans-serif">Agent 呼び出し</text>
+  <text x="140" y="92" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">LLM API request</text>
+  <!-- Arrow to Error -->
+  <line x1="220" y1="77" x2="264" y2="77" stroke="#64748b" stroke-width="2"/>
+  <polygon points="264,71 274,77 264,83" fill="#64748b"/>
+  <!-- Error Diamond -->
+  <polygon points="320,50 390,77 320,104 250,77" fill="#2d1515" stroke="#f87171" stroke-width="2"/>
+  <text x="320" y="81" text-anchor="middle" fill="#f87171" font-size="12" font-weight="bold" font-family="sans-serif">ERROR</text>
+  <!-- Error type decision -->
+  <line x1="390" y1="77" x2="440" y2="77" stroke="#f87171" stroke-width="2"/>
+  <text x="410" y="68" fill="#f87171" font-size="10" font-family="sans-serif">失敗</text>
+  <!-- Error classifier -->
+  <rect x="440" y="55" width="160" height="44" rx="6" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="520" y="74" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="bold" font-family="sans-serif">エラー分類</text>
+  <text x="520" y="90" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">種類・頻度・重大度</text>
+  <!-- Three recovery paths -->
+  <!-- Path 1: Retry -->
+  <line x1="520" y1="99" x2="180" y2="152" stroke="#34d399" stroke-width="1.5"/>
+  <polygon points="173,146 180,158 187,146" fill="#34d399"/>
+  <text x="300" y="118" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">一時的エラー（5xx）</text>
+  <rect x="60" y="158" width="240" height="80" rx="8" fill="#0d2d1e" stroke="#34d399" stroke-width="2"/>
+  <text x="180" y="180" text-anchor="middle" fill="#34d399" font-size="13" font-weight="bold" font-family="sans-serif">Retry with Backoff</text>
+  <text x="180" y="198" text-anchor="middle" fill="#86efac" font-size="11" font-family="sans-serif">1s → 2s → 4s → 8s</text>
+  <text x="180" y="214" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">max_retries: 3 / jitter付き</text>
+  <text x="180" y="228" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">tenacity / retry lib 使用</text>
+  <!-- Path 2: Fallback -->
+  <line x1="520" y1="99" x2="520" y2="152" stroke="#c084fc" stroke-width="1.5"/>
+  <polygon points="514,152 520,164 526,152" fill="#c084fc"/>
+  <text x="535" y="128" fill="#c084fc" font-size="11" font-weight="bold" font-family="sans-serif">恒久的エラー</text>
+  <rect x="380" y="164" width="280" height="80" rx="8" fill="#2b0754" stroke="#c084fc" stroke-width="2"/>
+  <text x="520" y="186" text-anchor="middle" fill="#c084fc" font-size="13" font-weight="bold" font-family="sans-serif">Fallback Strategy</text>
+  <text x="520" y="204" text-anchor="middle" fill="#e9d5ff" font-size="11" font-family="sans-serif">代替エージェント / 別モデル</text>
+  <text x="520" y="220" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Sonnet → Haiku にグレードダウン</text>
+  <text x="520" y="236" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">部分的結果でも返却</text>
+  <!-- Path 3: Circuit Breaker -->
+  <line x1="520" y1="99" x2="830" y2="152" stroke="#f87171" stroke-width="1.5"/>
+  <polygon points="823,146 830,158 837,146" fill="#f87171"/>
+  <text x="700" y="118" fill="#f87171" font-size="11" font-weight="bold" font-family="sans-serif">連続失敗（3回以上）</text>
+  <rect x="680" y="158" width="280" height="80" rx="8" fill="#2d1515" stroke="#f87171" stroke-width="2"/>
+  <text x="820" y="180" text-anchor="middle" fill="#f87171" font-size="13" font-weight="bold" font-family="sans-serif">Circuit Breaker</text>
+  <text x="820" y="198" text-anchor="middle" fill="#fca5a5" font-size="11" font-family="sans-serif">OPEN状態: 呼び出し停止</text>
+  <text x="820" y="214" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">冷却期間後に HALF-OPEN</text>
+  <text x="820" y="230" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">成功すれば CLOSED に戻る</text>
+  <!-- All paths converge to resolution -->
+  <line x1="180" y1="238" x2="380" y2="308" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="520" y1="244" x2="480" y2="308" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="820" y1="238" x2="580" y2="308" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="340" y="308" width="320" height="50" rx="8" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+  <text x="500" y="330" text-anchor="middle" fill="#60a5fa" font-size="13" font-weight="bold" font-family="sans-serif">ログ記録 + 上位へ通知</text>
+  <text x="500" y="348" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">error_count更新 / アラート送信 / トレース記録</text>
+</svg>

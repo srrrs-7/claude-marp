@@ -1,0 +1,68 @@
+<svg viewBox="0 0 960 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117">
+  <!-- Title -->
+  <text x="480" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#e6edf3" font-family="sans-serif">クラウドLLM vs ローカルLLM</text>
+
+  <!-- Headers -->
+  <rect x="80" y="65" width="240" height="44" rx="6" fill="#1f2937"/>
+  <text x="200" y="92" text-anchor="middle" font-size="16" font-weight="bold" fill="#9ca3af" font-family="sans-serif">比較項目</text>
+
+  <rect x="340" y="65" width="240" height="44" rx="6" fill="#1e3a5f"/>
+  <text x="460" y="92" text-anchor="middle" font-size="16" font-weight="bold" fill="#60a5fa" font-family="sans-serif">☁️ クラウドLLM</text>
+
+  <rect x="600" y="65" width="240" height="44" rx="6" fill="#14532d"/>
+  <text x="720" y="92" text-anchor="middle" font-size="16" font-weight="bold" fill="#4ade80" font-family="sans-serif">🏠 ローカルLLM</text>
+
+  <!-- Rows -->
+  <!-- Row 1: Privacy -->
+  <rect x="80" y="120" width="240" height="46" rx="4" fill="#161b22"/>
+  <text x="200" y="148" text-anchor="middle" font-size="14" fill="#9ca3af" font-family="sans-serif">🔒 プライバシー</text>
+  <rect x="340" y="120" width="240" height="46" rx="4" fill="#1c2432"/>
+  <text x="460" y="148" text-anchor="middle" font-size="13" fill="#fca5a5" font-family="sans-serif">データがクラウドに送信される</text>
+  <rect x="600" y="120" width="240" height="46" rx="4" fill="#14251a"/>
+  <text x="720" y="148" text-anchor="middle" font-size="13" fill="#86efac" font-family="sans-serif">データは一切外部送信なし ✅</text>
+
+  <!-- Row 2: Cost -->
+  <rect x="80" y="177" width="240" height="46" rx="4" fill="#161b22"/>
+  <text x="200" y="205" text-anchor="middle" font-size="14" fill="#9ca3af" font-family="sans-serif">💰 コスト</text>
+  <rect x="340" y="177" width="240" height="46" rx="4" fill="#1c2432"/>
+  <text x="460" y="205" text-anchor="middle" font-size="13" fill="#fca5a5" font-family="sans-serif">従量課金（$5〜$15/Mトークン）</text>
+  <rect x="600" y="177" width="240" height="46" rx="4" fill="#14251a"/>
+  <text x="720" y="205" text-anchor="middle" font-size="13" fill="#86efac" font-family="sans-serif">電気代のみ（月数十〜数百円）✅</text>
+
+  <!-- Row 3: Latency -->
+  <rect x="80" y="234" width="240" height="46" rx="4" fill="#161b22"/>
+  <text x="200" y="262" text-anchor="middle" font-size="14" fill="#9ca3af" font-family="sans-serif">⚡ レイテンシ</text>
+  <rect x="340" y="234" width="240" height="46" rx="4" fill="#1c2432"/>
+  <text x="460" y="262" text-anchor="middle" font-size="13" fill="#fbbf24" font-family="sans-serif">ネットワーク遅延あり</text>
+  <rect x="600" y="234" width="240" height="46" rx="4" fill="#14251a"/>
+  <text x="720" y="262" text-anchor="middle" font-size="13" fill="#86efac" font-family="sans-serif">ネットワーク遅延ゼロ ✅</text>
+
+  <!-- Row 4: Model Quality -->
+  <rect x="80" y="291" width="240" height="46" rx="4" fill="#161b22"/>
+  <text x="200" y="319" text-anchor="middle" font-size="14" fill="#9ca3af" font-family="sans-serif">🧠 モデル品質</text>
+  <rect x="340" y="291" width="240" height="46" rx="4" fill="#14251a"/>
+  <text x="460" y="319" text-anchor="middle" font-size="13" fill="#86efac" font-family="sans-serif">最高峰（GPT-4o / Claude等）✅</text>
+  <rect x="600" y="291" width="240" height="46" rx="4" fill="#2d2415"/>
+  <text x="720" y="319" text-anchor="middle" font-size="13" fill="#fbbf24" font-family="sans-serif">7〜70B（クラウド比で劣る面あり）</text>
+
+  <!-- Row 5: Availability -->
+  <rect x="80" y="348" width="240" height="46" rx="4" fill="#161b22"/>
+  <text x="200" y="376" text-anchor="middle" font-size="14" fill="#9ca3af" font-family="sans-serif">📶 可用性</text>
+  <rect x="340" y="348" width="240" height="46" rx="4" fill="#1c2432"/>
+  <text x="460" y="376" text-anchor="middle" font-size="13" fill="#fca5a5" font-family="sans-serif">ネット接続必須</text>
+  <rect x="600" y="348" width="240" height="46" rx="4" fill="#14251a"/>
+  <text x="720" y="376" text-anchor="middle" font-size="13" fill="#86efac" font-family="sans-serif">オフライン完全動作 ✅</text>
+
+  <!-- Row 6: Customization -->
+  <rect x="80" y="405" width="240" height="46" rx="4" fill="#161b22"/>
+  <text x="200" y="433" text-anchor="middle" font-size="14" fill="#9ca3af" font-family="sans-serif">🔧 カスタマイズ</text>
+  <rect x="340" y="405" width="240" height="46" rx="4" fill="#1c2432"/>
+  <text x="460" y="433" text-anchor="middle" font-size="13" fill="#fca5a5" font-family="sans-serif">制限あり（Fine-tune不可が多い）</text>
+  <rect x="600" y="405" width="240" height="46" rx="4" fill="#14251a"/>
+  <text x="720" y="433" text-anchor="middle" font-size="13" fill="#86efac" font-family="sans-serif">LoRA/QLoRA含め完全自由 ✅</text>
+
+  <!-- divider lines -->
+  <line x1="80" y1="109" x2="840" y2="109" stroke="#374151" stroke-width="1"/>
+  <line x1="320" y1="65" x2="320" y2="455" stroke="#374151" stroke-width="1"/>
+  <line x1="580" y1="65" x2="580" y2="455" stroke="#374151" stroke-width="1"/>
+</svg>

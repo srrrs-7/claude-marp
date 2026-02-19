@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+
+  <!-- Center: LLM Brain -->
+  <rect x="350" y="170" width="200" height="80" rx="12" fill="rgba(186,104,200,0.25)" stroke="#ba68c8" stroke-width="2"/>
+  <text x="450" y="205" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="bold">LLM</text>
+  <text x="450" y="225" text-anchor="middle" fill="#ce93d8" font-family="sans-serif" font-size="12">Brain / Reasoner</text>
+
+  <!-- TOP: Memory -->
+  <rect x="310" y="30" width="280" height="80" rx="10" fill="rgba(77,208,225,0.15)" stroke="#4dd0e1" stroke-width="1.5"/>
+  <text x="450" y="62" text-anchor="middle" fill="#4dd0e1" font-family="sans-serif" font-size="15" font-weight="bold">Memory</text>
+  <text x="380" y="85" text-anchor="middle" fill="#b2ebf2" font-family="sans-serif" font-size="11">短期: コンテキスト</text>
+  <text x="530" y="85" text-anchor="middle" fill="#b2ebf2" font-family="sans-serif" font-size="11">長期: ベクターDB</text>
+  <!-- Arrow Memory → Brain -->
+  <line x1="450" y1="110" x2="450" y2="165" stroke="#4dd0e1" stroke-width="2"/>
+  <polygon points="450,170 444,155 456,155" fill="#4dd0e1"/>
+  <line x1="450" y1="155" x2="450" y2="110" stroke="#4dd0e1" stroke-width="2" stroke-dasharray="3,2"/>
+
+  <!-- RIGHT: Tools -->
+  <rect x="680" y="150" width="190" height="120" rx="10" fill="rgba(129,199,132,0.15)" stroke="#81c784" stroke-width="1.5"/>
+  <text x="775" y="178" text-anchor="middle" fill="#81c784" font-family="sans-serif" font-size="15" font-weight="bold">Tools</text>
+  <text x="775" y="200" text-anchor="middle" fill="#c8e6c9" font-family="sans-serif" font-size="11">Web 検索</text>
+  <text x="775" y="218" text-anchor="middle" fill="#c8e6c9" font-family="sans-serif" font-size="11">コード実行</text>
+  <text x="775" y="236" text-anchor="middle" fill="#c8e6c9" font-family="sans-serif" font-size="11">外部 API / DB</text>
+  <text x="775" y="254" text-anchor="middle" fill="#c8e6c9" font-family="sans-serif" font-size="11">ファイル操作</text>
+  <!-- Arrow Brain → Tools -->
+  <line x1="550" y1="210" x2="675" y2="210" stroke="#81c784" stroke-width="2"/>
+  <polygon points="680,210 664,204 664,216" fill="#81c784"/>
+  <!-- Arrow Tools → Brain (dashed) -->
+  <line x1="675" y1="218" x2="555" y2="218" stroke="#81c784" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="550,218 566,212 566,224" fill="#81c784"/>
+
+  <!-- BOTTOM: Orchestrator -->
+  <rect x="310" y="310" width="280" height="80" rx="10" fill="rgba(255,183,77,0.15)" stroke="#ffb74d" stroke-width="1.5"/>
+  <text x="450" y="342" text-anchor="middle" fill="#ffb74d" font-family="sans-serif" font-size="15" font-weight="bold">Orchestrator</text>
+  <text x="450" y="364" text-anchor="middle" fill="#ffe0b2" font-family="sans-serif" font-size="11">ループ制御 / タスク管理 / エラー処理</text>
+  <!-- Arrow Orchestrator → Brain -->
+  <line x1="450" y1="310" x2="450" y2="255" stroke="#ffb74d" stroke-width="2"/>
+  <polygon points="450,250 444,265 456,265" fill="#ffb74d"/>
+
+  <!-- LEFT: User / Environment -->
+  <rect x="30" y="150" width="190" height="120" rx="10" fill="rgba(100,181,246,0.15)" stroke="#64b5f6" stroke-width="1.5"/>
+  <text x="125" y="178" text-anchor="middle" fill="#64b5f6" font-family="sans-serif" font-size="15" font-weight="bold">User / Env</text>
+  <text x="125" y="200" text-anchor="middle" fill="#bbdefb" font-family="sans-serif" font-size="11">自然言語指示</text>
+  <text x="125" y="218" text-anchor="middle" fill="#bbdefb" font-family="sans-serif" font-size="11">ファイル / データ</text>
+  <text x="125" y="236" text-anchor="middle" fill="#bbdefb" font-family="sans-serif" font-size="11">フィードバック</text>
+  <text x="125" y="254" text-anchor="middle" fill="#bbdefb" font-family="sans-serif" font-size="11">Human-in-the-Loop</text>
+  <!-- Arrow User → Brain -->
+  <line x1="220" y1="210" x2="345" y2="210" stroke="#64b5f6" stroke-width="2"/>
+  <polygon points="350,210 334,204 334,216" fill="#64b5f6"/>
+  <!-- Arrow Brain → User (dashed) -->
+  <line x1="345" y1="218" x2="225" y2="218" stroke="#64b5f6" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="220,218 236,212 236,224" fill="#64b5f6"/>
+
+  <!-- Title -->
+  <text x="450" y="408" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="sans-serif" font-size="11">AIエージェントの4つのコアコンポーネント</text>
+</svg>

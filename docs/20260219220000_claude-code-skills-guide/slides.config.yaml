@@ -1,0 +1,26 @@
+topic: "Claude Code スキルガイドライン"
+language: "ja"
+
+output:
+  dir: "docs/20260219220000_claude-code-skills-guide"
+  baseName: "claude-code-skills-guide"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "Claude Code スキルガイドライン"
+  footer: "© 2026 Claude Code Skills Guide"
+  style: |
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+    section code {
+      font-size: 0.75em;
+    }
+    section h1 {
+      font-size: 1.6em;
+    }
+    section h2 {
+      font-size: 1.3em;
+    }

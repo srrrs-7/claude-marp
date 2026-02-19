@@ -1,0 +1,589 @@
+{
+	"slides": [
+		{
+			"title": "AI エージェント設計パターン",
+			"content": [
+				"アーキテクト・テックリードのための実践ガイド",
+				"ワークショップ | 2026.02.19"
+			],
+			"layout": "center"
+		},
+		{
+			"title": "アジェンダ (1/2)",
+			"content": [
+				"1. **AI エージェントとは** — 定義・LLMとの違い・なぜパターンが必要か",
+				"2. **Core Patterns** — ReAct / Chain-of-Thought / Tool Use / Memory",
+				"3. **Orchestration Patterns** — Single / Multi-Agent / Parallel / Swarm",
+				"4. **Reliability Patterns** — HiTL / 検証ループ / エラー回復 / Guardrails"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "アジェンダ (2/2)",
+			"content": [
+				"5. **実アーキテクチャ事例** — コード生成 / リサーチ / RAG エージェント",
+				"6. **実装ベストプラクティス** — プロンプト設計 / コンテキスト管理 / 評価",
+				"7. **まとめ・Q&A**"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "1. AI エージェントとは",
+			"content": ["定義・LLMとの違い・なぜパターンが必要か"],
+			"layout": "section"
+		},
+		{
+			"title": "AI エージェントの定義",
+			"content": [
+				"**目標志向**: 与えられた目標を達成するために自律的に行動する",
+				"**環境との相互作用**: ツール・API・DB などの外部リソースを利用できる",
+				"**ループ構造**: 観察 → 推論 → 行動のサイクルを繰り返す",
+				"**永続的コンテキスト**: セッションを超えた状態管理が可能",
+				"→ \"LLMを部品として組み合わせた自律型システム\""
+			],
+			"layout": "default"
+		},
+		{
+			"title": "LLM 単体 vs AI エージェント",
+			"content": ["![w:860 center](assets/agent-vs-llm.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "なぜ設計パターンが必要か",
+			"content": [
+				"**非決定性**: LLMの出力は確率的 → 予測不能な挙動が発生する",
+				"**状態管理の複雑さ**: マルチステップ処理で状態が爆発的に増加",
+				"**信頼性の確保**: エラー回復・リトライ・人間介入の設計が必須",
+				"**スケーラビリティ**: 複数エージェントの協調制御が困難",
+				"→ パターンは「実証済みの解決策の語彙」を提供する"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "エージェントの4つのコアコンポーネント",
+			"content": ["![w:820 center](assets/agent-components.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "2. Core Patterns",
+			"content": ["ReAct / Chain-of-Thought / Tool Use / Memory"],
+			"layout": "section"
+		},
+		{
+			"title": "ReAct パターン概要",
+			"content": [
+				"**Reasoning + Acting** の組み合わせ（Yao et al., 2022）",
+				"LLMに「思考」と「行動」を交互に出力させるアプローチ",
+				"**Thought**: 次に何をすべきか推論する",
+				"**Action**: ツールを呼び出す（Function Calling）",
+				"**Observation**: ツールの結果を受け取り、次の思考へ",
+				"→ 複雑な多段タスクに対して最も広く使われる基本パターン"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "ReAct: Thought-Action-Observation サイクル",
+			"content": ["![w:940 center](assets/react-cycle.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "ReAct の実装（Claude API）",
+			"content": ["tool_use / tool_result メッセージで制御ループを構成"]
+		},
+		{
+			"title": "ReAct の実装（Claude API）（コード例）",
+			"content": [],
+			"code": "MAX_STEPS = 10\n\nfor step in range(MAX_STEPS):\n    response = client.messages.create(\n        model=\"claude-opus-4-6\",\n        tools=tools,\n        messages=messages\n    )\n    if response.stop_reason == \"end_turn\":\n        break  # 完了\n    # Tool 呼び出しを処理\n    tool_results = []\n    for block in response.content:\n        if block.type == \"tool_use\":\n            result = execute_tool(block.name, block.input)\n            tool_results.append({\n                \"type\": \"tool_result\",\n                \"tool_use_id\": block.id,\n                \"content\": result\n            })\n    messages.append({\"role\": \"user\", \"content\": tool_results})",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "Chain-of-Thought (CoT)",
+			"content": [
+				"**Zero-shot CoT**: プロンプトに \"Let's think step by step\" を追加するだけ",
+				"**Few-shot CoT**: 推論例（reasoning chain）をプロンプトに提供する",
+				"**Tree-of-Thought (ToT)**: 複数の推論経路を並列探索・評価する",
+				"**Chain-of-Draft**: 簡潔なメモ書きで推論品質を保ちトークンを節約",
+				"→ 数学・論理・コーディングタスクの精度を大幅に向上させる"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Tool Use パターン",
+			"content": [
+				"LLMに外部ツール（関数・API）を呼び出す能力を付与するパターン",
+				"**Function Calling**: 構造化された引数でツールを呼び出す",
+				"**ツールの種類**: 検索・コード実行・DB操作・外部API・ファイルI/O",
+				"**設計原則**: 単一責任・明確な入出力スキーマ・エラー処理"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "ツール設計のベストプラクティス",
+			"content": [
+				"**名前**: 動詞+名詞で意図が明確に（例: `search_documents`, `execute_code`）",
+				"**説明文**: LLMが「いつ・なぜ使うか」判断できるよう詳細に記述する",
+				"**スキーマ**: JSON Schema で厳密に型定義し、description を必ず付ける",
+				"**冪等性**: 同じ入力は同じ結果（副作用を持つツールは要注意）",
+				"**エラー**: 失敗時も構造化レスポンスで返す（LLMが判断できるように）"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Function Calling の実装",
+			"content": ["input_schema に JSON Schema 形式でツール定義を記述する"]
+		},
+		{
+			"title": "Function Calling の実装（コード例）",
+			"content": [],
+			"code": "tools = [\n  {\n    \"name\": \"search_documents\",\n    \"description\": \"社内ドキュメントを全文検索する。検索したい情報がある場合に使用\",\n    \"input_schema\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"query\": {\n          \"type\": \"string\",\n          \"description\": \"検索クエリ文字列\"\n        },\n        \"limit\": {\n          \"type\": \"integer\",\n          \"description\": \"最大取得件数\",\n          \"default\": 5\n        }\n      },\n      \"required\": [\"query\"]\n    }\n  }\n]",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "Memory パターン概要",
+			"content": ["![w:870 center](assets/memory-types.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "短期メモリ: コンテキストウィンドウ管理",
+			"content": [
+				"問題: 長い会話でコンテキスト上限（200K tokens）に到達してしまう",
+				"**Sliding Window**: 古いメッセージを一定数に制限して削除",
+				"**Summarization**: 古い会話を定期的に要約して圧縮する",
+				"**Selective Retention**: 重要なメッセージのみを選択的に保持",
+				"→ トレードオフ: 情報損失 vs コスト削減・レイテンシ改善"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "長期メモリ: ベクターストア活用",
+			"content": [
+				"ベクター検索で意味的に近い過去記録を動的に取得できる",
+				"**RAG**: 外部知識ベースを Embedding でベクター化して保存",
+				"**実装**: pgvector / Pinecone / OpenSearch Serverless",
+				"**Episodic**: 過去のインタラクション記録を記憶として参照",
+				"→ エージェントに「長期記憶」を持たせる基本技術"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "エージェントのステート管理",
+			"content": [
+				"**ステートの種類**: 会話履歴・タスク進捗・ユーザープロファイル",
+				"**ステートマシン**: 明示的な状態遷移で制御フローを管理する",
+				"**永続化**: DB保存でセッション跨ぎのレジューム（再開）が可能",
+				"→ 設計の早い段階でステートスキーマを確定させることが重要"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Core Patterns まとめ",
+			"content": [
+				"**ReAct**: Think → Act → Observe のループ。ほぼ全エージェントの基本",
+				"**CoT**: 推論品質向上。`think` ツールや拡張思考（Extended Thinking）で実現",
+				"**Tool Use**: 外部世界との接続。ツール設計の質が品質を直接左右する",
+				"**Memory**: 短期＋長期の組み合わせで実用的なエージェントを実現できる"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "3. Orchestration Patterns",
+			"content": [
+				"Single / Multi-Agent / Orchestrator-Subagents / Parallel / Swarm"
+			],
+			"layout": "section"
+		},
+		{
+			"title": "Single Agent パターン",
+			"content": [
+				"1つのLLMが全タスクを処理するシンプルな構成",
+				"**メリット**: シンプル・デバッグ容易・コンテキスト共有が自然",
+				"**デメリット**: 複雑タスクで精度低下・長いコンテキストでコスト増加",
+				"**適用場面**: 比較的シンプルなタスク・PoC・プロトタイピング",
+				"→ まず Single Agent で動かし、必要になってから複雑化する"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Multi-Agent システム",
+			"content": [
+				"複数のエージェントが協調して複雑なタスクを処理するアーキテクチャ",
+				"**分割統治**: タスクを専門エージェントに委任・分担する",
+				"**並列処理**: 独立したサブタスクを同時実行してレイテンシを削減",
+				"**専門化**: 各エージェントが特定ドメイン・スキルに特化できる",
+				"→ 複雑な実世界タスクに対応するための必須アーキテクチャ"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "4つのOrchestration Patterns 比較",
+			"content": ["![w:880 center](assets/orchestration-overview.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "Orchestrator の実装例",
+			"content": ["Subagent を tool として定義し、Orchestrator が呼び出す構成"]
+		},
+		{
+			"title": "Orchestrator の実装例（コード例）",
+			"content": [],
+			"code": "# Subagentをtoolとして定義\nsubagent_tools = [\n    {\n        \"name\": \"research_agent\",\n        \"description\": \"Web検索・調査を担当するサブエージェント\",\n        \"input_schema\": {\"type\": \"object\",\n                         \"properties\": {\"task\": {\"type\": \"string\"}},\n                         \"required\": [\"task\"]}\n    },\n    {\"name\": \"writer_agent\",\n     \"description\": \"文章生成・編集を担当\", ...},\n    {\"name\": \"reviewer_agent\",\n     \"description\": \"品質レビューを担当\", ...},\n]\n\n# Orchestrator が全体を指揮\nresponse = client.messages.create(\n    model=\"claude-opus-4-6\",\n    tools=subagent_tools,\n    system=\"タスクを適切なエージェントに割り当てるオーケストレーターです\",\n    messages=[{\"role\": \"user\", \"content\": task}]\n)",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "Parallel Agents パターン",
+			"content": ["![w:870 center](assets/parallel-agents.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "Parallel Agents の実装",
+			"content": ["asyncio.gather で並列実行し、全結果が揃ってから統合する"]
+		},
+		{
+			"title": "Parallel Agents の実装（コード例）",
+			"content": [],
+			"code": "import asyncio\n\nasync def run_agent(task: str) -> str:\n    \"\"\"単一エージェントの非同期実行\"\"\"\n    response = await async_client.messages.create(\n        model=\"claude-haiku-4-5-20251001\",  # サブタスクは軽量モデル\n        messages=[{\"role\": \"user\", \"content\": task}]\n    )\n    return response.content[0].text\n\nasync def parallel_research(subtasks: list[str]) -> list[str]:\n    \"\"\"全タスクを並列実行\"\"\"\n    return await asyncio.gather(\n        *[run_agent(task) for task in subtasks]\n    )\n\n# 実行\nresults = asyncio.run(parallel_research([\n    \"市場規模を調査\", \"競合他社を分析\", \"技術トレンドを調査\"\n]))",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "Swarm パターン",
+			"content": [
+				"中央集権的なOrchestrator なしに複数エージェントが協調するパターン",
+				"**Handoff**: 専門エージェントへの動的な制御移譲（タスクの引き渡し）",
+				"**特徴**: 各エージェントが自律的に判断して次のエージェントへ委任",
+				"**適用**: カスタマーサポート・複数専門分野が絡む複合タスク",
+				"例: OpenAI Swarm / Anthropic multi-agent subagent pattern"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "エージェント間通信パターン",
+			"content": [
+				"**直接呼び出し**: 同期的・シンプル・密結合（PoC向け）",
+				"**メッセージキュー**: 非同期・疎結合・スケーラブル（SQS / Kafka）",
+				"**共有ステート**: DB / ファイル経由で状態を共有（シンプルだが競合注意）",
+				"→ 本番環境では非同期メッセージキューが最も適している"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "パターン選択ガイド",
+			"content": [
+				"タスクがシンプル → **Single Agent**（まずここから始める）",
+				"タスクに明確な依存関係あり → **Orchestrator-Subagents**",
+				"独立したサブタスクがある → **Parallel Agents**（レイテンシ削減）",
+				"専門知識の動的切り替えが必要 → **Swarm**",
+				"→ 最初はシンプルに始め、ボトルネックが出てから複雑化する"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "4. Reliability Patterns",
+			"content": ["Human-in-the-Loop / 検証ループ / エラー回復 / Guardrails"],
+			"layout": "section"
+		},
+		{
+			"title": "なぜ Reliability が重要か",
+			"content": [
+				"**幻覚（Hallucination）**: LLMは事実でないことを自信を持って出力する",
+				"**副作用**: ツール呼び出しがDB削除・メール送信などの不可逆操作を実行",
+				"**非決定性**: 同じ入力でも出力が変わる → テストが難しい",
+				"**Prompt Injection**: 外部コンテンツ経由で悪意ある指示が混入する",
+				"→ プロダクションでは「失敗を前提とした設計」が必須"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Reliability パターン全体像",
+			"content": ["![w:840 center](assets/reliability-layers.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "Human-in-the-Loop (HiTL)",
+			"content": [
+				"人間が確認・承認するチェックポイントをパイプラインに設ける",
+				"**適用場面**: 不可逆操作・高リスクアクション・曖昧な判断が必要な場合",
+				"**同期HiTL**: アクション前に確認プロンプトを表示して待機",
+				"**非同期HiTL**: Webhook でメール/Slackに通知し、非同期で承認を待つ",
+				"→ 自動化の効率と安全性のバランスを調整する重要なレバー"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "HiTL の実装パターン",
+			"content": [
+				"高リスクツールのリストを定義し、呼び出し前に人間の承認を要求する"
+			]
+		},
+		{
+			"title": "HiTL の実装パターン（コード例）",
+			"content": [],
+			"code": "HIGH_RISK_TOOLS = {\"delete_records\", \"send_email\", \"deploy_to_prod\"}\n\ndef execute_with_hitl(tool_name: str, tool_input: dict) -> dict:\n    if tool_name in HIGH_RISK_TOOLS:\n        print(f\"\\n⚠️  高リスク操作の承認が必要\")\n        print(f\"Tool  : {tool_name}\")\n        print(f\"Input : {tool_input}\")\n        approval = input(\"実行しますか？ (yes/no): \").strip()\n        if approval.lower() != \"yes\":\n            return {\"error\": \"ユーザーにより拒否されました\",\n                    \"cancelled\": True}\n    return execute_tool(tool_name, tool_input)",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "検証ループパターン",
+			"content": [
+				"生成結果を別のLLM / ロジックで検証し、品質を自動保証するパターン",
+				"**Self-critique**: 同じLLMに自分の出力を批評させる（コスト効率が良い）",
+				"**Separate Verifier**: 独立した検証エージェントが客観的にレビュー",
+				"**Unit Test**: コード生成ならテストを自動実行して正確性を検証",
+				"→ 人間レビューなしに出力品質を一定水準以上に保つメカニズム"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "エラー回復パターン",
+			"content": [
+				"**Retry with Backoff**: エラー時に指数バックオフで待機してリトライ",
+				"**Fallback**: 代替ツール / モデルへの切り替え（Opus → Sonnet など）",
+				"**Graceful Degradation**: 一部失敗でも部分的な結果を返す",
+				"**Max Retries**: 無限ループを防ぐ上限設定（通常3回）",
+				"→ 外部への全呼び出しにエラーハンドリングを実装すること"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Guardrails パターン",
+			"content": [
+				"入出力の安全性・品質を自動チェックする仕組み",
+				"**Input Guardrails**: 入力の無害性・スコープ確認・Injection 検出",
+				"**Output Guardrails**: PII 検出・有害コンテンツ除去・スキーマ検証",
+				"**Schema Validation**: 構造化出力が期待するスキーマに適合するか確認",
+				"例: Guardrails AI / NeMo Guardrails / Amazon Bedrock Guardrails"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "構造化出力で信頼性を高める",
+			"content": ["tool_choice で強制的にスキーマ準拠の出力を得る"]
+		},
+		{
+			"title": "構造化出力で信頼性を高める（コード例）",
+			"content": [],
+			"code": "from pydantic import BaseModel, Field\n\nclass AnalysisResult(BaseModel):\n    summary: str = Field(description=\"3文以内の要約\")\n    confidence: float = Field(ge=0.0, le=1.0, description=\"確信度\")\n    sources: list[str] = Field(description=\"根拠URL一覧\")\n    action_required: bool = Field(description=\"人間対応が必要か\")\n\n# tool_choice で構造化出力を強制\nresponse = client.messages.create(\n    model=\"claude-opus-4-6\",\n    tools=[{\"name\": \"output\",\n            \"input_schema\": AnalysisResult.model_json_schema()}],\n    tool_choice={\"type\": \"tool\", \"name\": \"output\"},\n    messages=messages\n)",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "観測可能性 (Observability)",
+			"content": [
+				"エージェントの挙動を可視化・追跡するインフラ。本番運用に必須",
+				"**Logging**: 全ステップの input / output / ツール呼び出しを記録",
+				"**Tracing**: リクエスト全体の処理フローを追跡（OpenTelemetry）",
+				"**Metrics**: レイテンシ・トークン使用量・エラー率・ツール成功率",
+				"推奨ツール: LangSmith / Langfuse（OSS）/ Arize / W&B Weave"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Reliability Patterns まとめ",
+			"content": [
+				"**HiTL**: 高リスク操作には必ず人間の承認チェックポイントを設ける",
+				"**検証ループ**: 出力品質を自動チェック → Self-critique が最もコスト効率が良い",
+				"**エラー回復**: 失敗前提に設計、上限付きリトライ + Fallback",
+				"**Guardrails**: 入出力の安全性を自動保証するレイヤーを必ず設ける",
+				"**Observability**: 設計段階からログ・トレース・メトリクスを組み込む"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "5. 実アーキテクチャ事例",
+			"content": ["コード生成 / リサーチ / RAG エージェント"],
+			"layout": "section"
+		},
+		{
+			"title": "コード生成エージェントのアーキテクチャ",
+			"content": ["![w:850 center](assets/code-gen-flow.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "コード生成エージェント: 設計ポイント",
+			"content": [
+				"**要件理解フェーズ**: 自然言語 → 仕様へ変換する前に曖昧さを排除",
+				"**テスト駆動生成**: テストケースを先に生成し、それをパスするコードを生成",
+				"**デバッグループ**: テスト失敗 → LLMがエラーを解析 → コード修正（最大3回）",
+				"**モデル使い分け**: 計画に Opus、実装に Sonnet、レビューに Haiku",
+				"**HiTL**: 最終的なマージは必ずエンジニアがレビューする"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "リサーチエージェントの設計",
+			"content": [
+				"**目的**: 特定トピックについて自動で調査・レポート作成を行うエージェント",
+				"**ツール**: Web検索・ドキュメント取得・PDF解析・データ分析",
+				"**Memory**: 収集情報をベクターDBに蓄積して重複取得を防ぐ",
+				"**Plan-then-Execute**: まず調査計画を立案し、その後並列で実行する",
+				"→ 情報収集フェーズと統合フェーズを明確に分離することが重要"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "リサーチエージェント: Plan-then-Execute",
+			"content": ["Planner → Parallel Researchers → Writer の3層構造"]
+		},
+		{
+			"title": "リサーチエージェント: Plan-then-Execute（コード例）",
+			"content": [],
+			"code": "# Step 1: 調査計画の立案\nplan = planner_agent.run(\n    f\"'{topic}'について調査計画を立ててください\",\n    system=\"サブトピックに分解し、JSON配列で返してください\"\n)\nsubtopics: list[str] = json.loads(plan)\n\n# Step 2: 並列リサーチ実行\nasync def research_parallel(subtopics: list[str]) -> list[str]:\n    tasks = [research_agent.run(t) for t in subtopics]\n    return await asyncio.gather(*tasks)\n\nresults = asyncio.run(research_parallel(subtopics))\n\n# Step 3: 統合・レポート生成\nreport = writer_agent.run(\n    f\"以下の調査結果を統合してレポートを作成: {results}\"\n)",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "RAG エージェントのパイプライン",
+			"content": ["![w:950 center](assets/rag-pipeline.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "Advanced RAG パターン",
+			"content": [
+				"**HyDE**: 仮の回答を生成してそれをベクター検索に使用する",
+				"**Self-Query**: LLMがメタデータフィルターを自動生成して絞り込む",
+				"**Corrective RAG**: 取得品質が低い場合は自動的に再検索する",
+				"**Adaptive RAG**: クエリの難易度に応じて検索戦略を動的に変更",
+				"→ シンプルな RAG から始め、精度不足の場合に段階的に改善する"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "アーキテクチャ事例: パターン適用まとめ",
+			"content": [
+				"**コード生成**: ReAct + 検証ループ + HiTL + モデル使い分け",
+				"**リサーチ**: Orchestrator-Subagents + Parallel + Long-term Memory",
+				"**RAG**: Tool Use + Memory（ベクターDB）+ Self-critique + Citation",
+				"→ 実際のシステムは複数パターンの組み合わせ。単独では使わない"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "6. 実装ベストプラクティス",
+			"content": [
+				"プロンプト設計 / コンテキスト管理 / 評価・テスト / セキュリティ"
+			],
+			"layout": "section"
+		},
+		{
+			"title": "システムプロンプト設計",
+			"content": [
+				"**役割と責務**: エージェントの目的・権限・制約を冒頭で明確に定義する",
+				"**制約の明示**: やってはいけないことを具体的に列挙する（否定形で明示）",
+				"**出力フォーマット**: 期待する出力形式を例示する（Few-shot が効果的）",
+				"**エラー処理指示**: 判断に迷った場合の行動を事前に指定しておく",
+				"→ プロンプトはコードと同様にバージョン管理する（Git管理推奨）"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "コンテキスト管理戦略",
+			"content": [
+				"**Token Budget 管理**: 残りトークン数を監視してアクションを制限する",
+				"**重要情報の優先配置**: システムプロンプトに核心情報を配置する",
+				"**会話圧縮**: 定期的に会話履歴を要約して古いメッセージを圧縮する",
+				"**Cache 活用**: Prompt Caching で繰り返し処理を高速化・コスト削減"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Prompt Caching の活用",
+			"content": [
+				"cache_control でシステムプロンプトをキャッシュし、コストを ~90% 削減"
+			]
+		},
+		{
+			"title": "Prompt Caching の活用（コード例）",
+			"content": [],
+			"code": "response = client.messages.create(\n    model=\"claude-opus-4-6\",\n    system=[\n        {\n            \"type\": \"text\",\n            \"text\": long_system_prompt,  # 1024+ tokens が必要\n            \"cache_control\": {\"type\": \"ephemeral\"}  # キャッシュ有効化\n        }\n    ],\n    messages=messages\n)\n\n# usage を確認\nprint(response.usage)\n# CacheCreationInputTokens: 初回はキャッシュ作成\n# CacheReadInputTokens   : 2回目以降はキャッシュHit\n# → キャッシュHit時 ~90% コスト削減・レイテンシ半減",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "エージェントの評価・テスト戦略",
+			"content": [
+				"**Unit Test**: 個別ツールの入出力をモックして単体テスト",
+				"**Integration Test**: エージェントの完全なフローをE2Eでテスト",
+				"**Golden Set**: 期待する入出力ペアを蓄積し、自動で回帰テストに活用",
+				"**LLM-as-Judge**: LLM自身に出力品質を評価させる自動評価手法",
+				"→ プロンプト変更が既存の動作に悪影響を与えないか必ず確認する"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "エージェントセキュリティ",
+			"content": [
+				"**Prompt Injection**: 外部コンテンツ（Web・DB）経由での悪意ある指示注入",
+				"**権限の最小化**: エージェントに必要最小限の権限・スコープのみ付与",
+				"**入力サニタイズ**: ユーザー入力の検証・エスケープを必ず実施",
+				"**Audit Log**: 全アクションの監査ログを記録・定期レビュー",
+				"→ AIエージェントはSQLインジェクションと同じカテゴリのリスクを持つ"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "コスト管理と最適化",
+			"content": [
+				"**モデル選択**: 計画→Opus 4.6 / 実装→Sonnet 4.6 / 分類→Haiku 4.5",
+				"**Batch API**: リアルタイム不要なタスクは非同期バッチ処理（50% 割引）",
+				"**Prompt Caching**: 繰り返し使うシステムプロンプトをキャッシュする",
+				"**Token 最適化**: 不要な会話履歴・冗長なプロンプトを定期的に削減",
+				"→ 本番移行前に典型的なフローのトークン使用量をプロファイリングする"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "ベストプラクティス まとめ",
+			"content": [
+				"**シンプルに始める**: Over-engineering を避け、必要に応じて複雑化する",
+				"**観測可能性を最初から**: ログ・トレース・メトリクスを設計段階で組み込む",
+				"**失敗を前提に設計**: リトライ・Fallback・HiTL を必ず実装する",
+				"**評価自動化**: Golden Set による回帰テストで品質を継続監視する",
+				"**セキュリティ**: Prompt Injection を SQL Injection と同等に扱う"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "7. まとめ・Q&A",
+			"content": ["Key Takeaways / 参考リソース / Q&A"],
+			"layout": "section"
+		},
+		{
+			"title": "Key Takeaways",
+			"content": [
+				"**Core**: ReAct + Tool Use + Memory がほぼ全エージェントの基礎",
+				"**Orchestration**: タスクの複雑さに応じてパターンを選択。まずシンプルに",
+				"**Reliability**: 失敗前提の設計・HiTL・Guardrails・Observability で担保",
+				"**実装**: シンプルから始め、観測可能性を確保しながら段階的に改善する",
+				"→ パターンは手段。ユーザー価値・ビジネス要件から逆算して選択すること"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "参考リソース (1/2)",
+			"content": [
+				"**Research Papers:**",
+				"[ReAct: Synergizing Reasoning and Acting in LLMs (2022)](https://arxiv.org/abs/2210.03629)",
+				"[Chain-of-Thought Prompting Elicits Reasoning (2022)](https://arxiv.org/abs/2201.11903)",
+				"**Anthropic Docs:**",
+				"[Building Effective Agents — Anthropic](https://www.anthropic.com/research/building-effective-agents)",
+				"[Claude API Tool Use Guide](https://docs.anthropic.com/en/docs/build-with-claude/tool-use)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "参考リソース (2/2)",
+			"content": [
+				"**Frameworks & Libraries:**",
+				"[LangGraph — LangChain](https://github.com/langchain-ai/langgraph)",
+				"[CrewAI — Multi-Agent Framework](https://github.com/crewAIInc/crewAI)",
+				"**Observability & Evaluation:**",
+				"[LangSmith — LangChain](https://smith.langchain.com/)",
+				"[Langfuse — OSS LLM Observability](https://langfuse.com/)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Q&A",
+			"content": [
+				"ご質問・ご意見はお気軽にどうぞ",
+				"スライドは後ほど共有します"
+			],
+			"layout": "center"
+		}
+	]
+}

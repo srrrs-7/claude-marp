@@ -1,0 +1,89 @@
+<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117">
+  <text x="480" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#e6edf3" font-family="sans-serif">なぜ量子化が必要か？</text>
+
+  <!-- Problem section -->
+  <rect x="30" y="60" width="430" height="370" rx="12" fill="#1c1917" stroke="#78350f" stroke-width="2"/>
+  <text x="245" y="90" text-anchor="middle" font-size="16" font-weight="bold" fill="#fbbf24" font-family="sans-serif">量子化なし (FP32/FP16)</text>
+
+  <!-- Model weights visualization - big blocks -->
+  <rect x="55" y="105" width="380" height="110" rx="6" fill="#292524"/>
+  <text x="245" y="135" text-anchor="middle" font-size="13" fill="#a8a29e" font-family="sans-serif">各パラメータ: 16bit〜32bit浮動小数点</text>
+  <!-- Weight blocks -->
+  <rect x="65" y="148" width="25" height="25" rx="2" fill="#d97706"/>
+  <rect x="96" y="148" width="25" height="25" rx="2" fill="#b45309"/>
+  <rect x="127" y="148" width="25" height="25" rx="2" fill="#d97706"/>
+  <rect x="158" y="148" width="25" height="25" rx="2" fill="#92400e"/>
+  <rect x="189" y="148" width="25" height="25" rx="2" fill="#d97706"/>
+  <rect x="220" y="148" width="25" height="25" rx="2" fill="#b45309"/>
+  <rect x="251" y="148" width="25" height="25" rx="2" fill="#d97706"/>
+  <rect x="282" y="148" width="25" height="25" rx="2" fill="#92400e"/>
+  <rect x="313" y="148" width="25" height="25" rx="2" fill="#d97706"/>
+  <rect x="344" y="148" width="25" height="25" rx="2" fill="#b45309"/>
+  <rect x="375" y="148" width="25" height="25" rx="2" fill="#d97706"/>
+  <rect x="65" y="179" width="25" height="25" rx="2" fill="#92400e"/>
+  <rect x="96" y="179" width="25" height="25" rx="2" fill="#d97706"/>
+  <rect x="127" y="179" width="25" height="25" rx="2" fill="#b45309"/>
+  <rect x="158" y="179" width="25" height="25" rx="2" fill="#d97706"/>
+  <rect x="189" y="179" width="25" height="25" rx="2" fill="#92400e"/>
+  <rect x="220" y="179" width="25" height="25" rx="2" fill="#d97706"/>
+  <rect x="251" y="179" width="25" height="25" rx="2" fill="#b45309"/>
+  <text x="295" y="196" font-size="13" fill="#a8a29e" font-family="sans-serif">× 70億個 ...</text>
+
+  <!-- Problem bullets -->
+  <text x="55" y="250" font-size="14" fill="#fca5a5" font-family="sans-serif">❌ Llama 3.1 8B FP16: 約 16GB</text>
+  <text x="55" y="275" font-size="14" fill="#fca5a5" font-family="sans-serif">❌ Llama 3.3 70B FP16: 約 140GB</text>
+  <text x="55" y="300" font-size="14" fill="#fca5a5" font-family="sans-serif">❌ 一般的なGPU (8-24GB) では動かない</text>
+  <text x="55" y="325" font-size="14" fill="#fca5a5" font-family="sans-serif">❌ 推論速度も遅い（メモリ帯域がボトルネック）</text>
+
+  <!-- Size bar large -->
+  <rect x="55" y="345" width="380" height="30" rx="4" fill="#7f1d1d"/>
+  <text x="245" y="365" text-anchor="middle" font-size="13" font-weight="bold" fill="#fecaca" font-family="sans-serif">ファイルサイズ: 100% (140GB for 70B)</text>
+
+  <!-- Solution section -->
+  <rect x="500" y="60" width="430" height="370" rx="12" fill="#0c1a14" stroke="#16a34a" stroke-width="2"/>
+  <text x="715" y="90" text-anchor="middle" font-size="16" font-weight="bold" fill="#4ade80" font-family="sans-serif">量子化後 (Q4_K_M)</text>
+
+  <!-- Model weights visualization - small blocks -->
+  <rect x="525" y="105" width="380" height="110" rx="6" fill="#14251a"/>
+  <text x="715" y="135" text-anchor="middle" font-size="13" fill="#86efac" font-family="sans-serif">各パラメータ: 4bit整数に圧縮</text>
+  <!-- Smaller weight blocks -->
+  <rect x="535" y="148" width="12" height="12" rx="1" fill="#16a34a"/>
+  <rect x="553" y="148" width="12" height="12" rx="1" fill="#15803d"/>
+  <rect x="571" y="148" width="12" height="12" rx="1" fill="#16a34a"/>
+  <rect x="589" y="148" width="12" height="12" rx="1" fill="#14532d"/>
+  <rect x="607" y="148" width="12" height="12" rx="1" fill="#16a34a"/>
+  <rect x="625" y="148" width="12" height="12" rx="1" fill="#15803d"/>
+  <rect x="643" y="148" width="12" height="12" rx="1" fill="#16a34a"/>
+  <rect x="661" y="148" width="12" height="12" rx="1" fill="#14532d"/>
+  <rect x="679" y="148" width="12" height="12" rx="1" fill="#16a34a"/>
+  <rect x="697" y="148" width="12" height="12" rx="1" fill="#15803d"/>
+  <rect x="715" y="148" width="12" height="12" rx="1" fill="#16a34a"/>
+  <rect x="733" y="148" width="12" height="12" rx="1" fill="#14532d"/>
+  <rect x="751" y="148" width="12" height="12" rx="1" fill="#16a34a"/>
+  <rect x="769" y="148" width="12" height="12" rx="1" fill="#15803d"/>
+  <rect x="787" y="148" width="12" height="12" rx="1" fill="#16a34a"/>
+  <rect x="805" y="148" width="12" height="12" rx="1" fill="#14532d"/>
+  <rect x="823" y="148" width="12" height="12" rx="1" fill="#16a34a"/>
+  <rect x="841" y="148" width="12" height="12" rx="1" fill="#15803d"/>
+  <rect x="859" y="148" width="12" height="12" rx="1" fill="#16a34a"/>
+  <rect x="877" y="148" width="12" height="12" rx="1" fill="#14532d"/>
+  <text x="535" y="180" font-size="12" fill="#86efac" font-family="sans-serif">同じ数のパラメータ、4分の1のサイズ</text>
+  <text x="535" y="200" font-size="12" fill="#86efac" font-family="sans-serif">精度劣化はわずか数% 以内</text>
+
+  <!-- Solution bullets -->
+  <text x="525" y="250" font-size="14" fill="#86efac" font-family="sans-serif">✅ Llama 3.1 8B Q4_K_M: 約 4.1GB</text>
+  <text x="525" y="275" font-size="14" fill="#86efac" font-family="sans-serif">✅ Llama 3.3 70B Q4_K_M: 約 42GB</text>
+  <text x="525" y="300" font-size="14" fill="#86efac" font-family="sans-serif">✅ RTX 3060 12GB で 8B モデルが動く</text>
+  <text x="525" y="325" font-size="14" fill="#86efac" font-family="sans-serif">✅ メモリ帯域効率UP → 推論も高速化</text>
+
+  <!-- Size bar compressed -->
+  <rect x="525" y="345" width="145" height="30" rx="4" fill="#15803d"/>
+  <rect x="672" y="345" width="235" height="30" rx="4" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+  <text x="598" y="365" text-anchor="middle" font-size="13" font-weight="bold" fill="#dcfce7" font-family="sans-serif">30%</text>
+  <text x="790" y="365" text-anchor="middle" font-size="12" fill="#6b7280" font-family="sans-serif">削減（節約70%）</text>
+
+  <!-- Arrow in center -->
+  <line x1="463" y1="245" x2="499" y2="245" stroke="#e5e7eb" stroke-width="3"/>
+  <polygon points="503,245 493,239 493,251" fill="#e5e7eb"/>
+  <text x="481" y="235" text-anchor="middle" font-size="12" fill="#9ca3af" font-family="sans-serif">量子化</text>
+</svg>

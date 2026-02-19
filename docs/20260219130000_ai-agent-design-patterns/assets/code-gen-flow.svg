@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" style="max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+
+  <!-- Step 1: Requirement -->
+  <rect x="20" y="140" width="120" height="60" rx="8" fill="rgba(100,181,246,0.2)" stroke="#64b5f6" stroke-width="1.5"/>
+  <text x="80" y="163" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="bold">要件入力</text>
+  <text x="80" y="182" text-anchor="middle" fill="#90caf9" font-family="sans-serif" font-size="10">自然言語</text>
+
+  <!-- Arrow -->
+  <line x1="140" y1="170" x2="168" y2="170" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="173,170 160,164 160,176" fill="#90caf9"/>
+
+  <!-- Step 2: LLM Planning -->
+  <rect x="173" y="130" width="130" height="80" rx="8" fill="rgba(186,104,200,0.2)" stroke="#ba68c8" stroke-width="1.5"/>
+  <text x="238" y="158" text-anchor="middle" fill="#ce93d8" font-family="sans-serif" font-size="12" font-weight="bold">LLM</text>
+  <text x="238" y="176" text-anchor="middle" fill="#e1bee7" font-family="sans-serif" font-size="11">Planning</text>
+  <text x="238" y="196" text-anchor="middle" fill="#e1bee7" font-family="sans-serif" font-size="9">タスク分解</text>
+
+  <!-- Arrow -->
+  <line x1="303" y1="170" x2="331" y2="170" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="336,170 323,164 323,176" fill="#90caf9"/>
+
+  <!-- Step 3: Code Generation -->
+  <rect x="336" y="130" width="130" height="80" rx="8" fill="rgba(77,208,225,0.2)" stroke="#4dd0e1" stroke-width="1.5"/>
+  <text x="401" y="158" text-anchor="middle" fill="#4dd0e1" font-family="sans-serif" font-size="12" font-weight="bold">Code Gen</text>
+  <text x="401" y="176" text-anchor="middle" fill="#b2ebf2" font-family="sans-serif" font-size="11">LLM</text>
+  <text x="401" y="196" text-anchor="middle" fill="#b2ebf2" font-family="sans-serif" font-size="9">コード生成</text>
+
+  <!-- Arrow -->
+  <line x1="466" y1="170" x2="494" y2="170" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="499,170 486,164 486,176" fill="#90caf9"/>
+
+  <!-- Step 4: Test Runner -->
+  <rect x="499" y="130" width="130" height="80" rx="8" fill="rgba(255,183,77,0.2)" stroke="#ffb74d" stroke-width="1.5"/>
+  <text x="564" y="158" text-anchor="middle" fill="#ffb74d" font-family="sans-serif" font-size="12" font-weight="bold">Test Runner</text>
+  <text x="564" y="176" text-anchor="middle" fill="#ffe0b2" font-family="sans-serif" font-size="11">自動実行</text>
+  <text x="564" y="196" text-anchor="middle" fill="#ffe0b2" font-family="sans-serif" font-size="9">pytest / jest</text>
+
+  <!-- Branch: Pass -->
+  <line x1="629" y1="150" x2="668" y2="130" stroke="#81c784" stroke-width="2"/>
+  <polygon points="673,127 659,128 664,140" fill="#81c784"/>
+  <text x="660" y="118" text-anchor="middle" fill="#81c784" font-family="sans-serif" font-size="10">PASS ✓</text>
+  <rect x="673" y="100" width="110" height="55" rx="8" fill="rgba(129,199,132,0.2)" stroke="#81c784" stroke-width="2"/>
+  <text x="728" y="122" text-anchor="middle" fill="#81c784" font-family="sans-serif" font-size="12" font-weight="bold">Human</text>
+  <text x="728" y="140" text-anchor="middle" fill="#c8e6c9" font-family="sans-serif" font-size="11">Review (HiTL)</text>
+
+  <!-- Arrow from Human Review to Output -->
+  <line x1="783" y1="127" x2="813" y2="127" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="818,127 805,121 805,133" fill="#90caf9"/>
+  <rect x="818" y="100" width="70" height="55" rx="8" fill="rgba(255,213,79,0.2)" stroke="#ffd54f" stroke-width="2"/>
+  <text x="853" y="122" text-anchor="middle" fill="#ffd54f" font-family="sans-serif" font-size="12" font-weight="bold">Output</text>
+  <text x="853" y="140" text-anchor="middle" fill="#fff9c4" font-family="sans-serif" font-size="10">マージ</text>
+
+  <!-- Branch: Fail -->
+  <line x1="629" y1="195" x2="668" y2="215" stroke="#ff7043" stroke-width="2"/>
+  <polygon points="673,218 659,210 664,222" fill="#ff7043"/>
+  <text x="660" y="232" text-anchor="middle" fill="#ff7043" font-family="sans-serif" font-size="10">FAIL ✗</text>
+
+  <!-- Debugger -->
+  <rect x="530" y="250" width="150" height="60" rx="8" fill="rgba(255,112,67,0.15)" stroke="#ff7043" stroke-width="1.5"/>
+  <text x="605" y="275" text-anchor="middle" fill="#ff8a65" font-family="sans-serif" font-size="12" font-weight="bold">Debug Agent</text>
+  <text x="605" y="295" text-anchor="middle" fill="#ffccbc" font-family="sans-serif" font-size="10">エラー原因を推論・修正</text>
+
+  <!-- Loop back to Code Gen -->
+  <line x1="530" y1="280" x2="401" y2="280" stroke="#ff7043" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="401" y1="280" x2="401" y2="210" stroke="#ff7043" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="401,210 395,224 407,224" fill="#ff7043"/>
+  <text x="460" y="298" text-anchor="middle" fill="#ff8a65" font-family="sans-serif" font-size="9">最大 3 回まで</text>
+
+  <!-- Max cycle note -->
+  <rect x="20" y="310" width="220" height="28" rx="6" fill="rgba(255,112,67,0.08)" stroke="rgba(255,112,67,0.3)" stroke-width="1"/>
+  <text x="130" y="328" text-anchor="middle" fill="#ffab91" font-family="sans-serif" font-size="9">3回失敗 → エスカレーション（HiTL）</text>
+</svg>

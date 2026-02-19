@@ -1,0 +1,85 @@
+<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117">
+  <text x="480" y="36" text-anchor="middle" font-size="20" font-weight="bold" fill="#e6edf3" font-family="sans-serif">量子化レベル：精度 vs 速度 vs メモリ（7Bモデル）</text>
+
+  <!-- Table header -->
+  <rect x="30" y="55" width="900" height="44" rx="6" fill="#1f2937"/>
+  <text x="105" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#9ca3af" font-family="sans-serif">形式</text>
+  <text x="250" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#9ca3af" font-family="sans-serif">ファイルサイズ</text>
+  <text x="430" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#9ca3af" font-family="sans-serif">精度（元モデル比）</text>
+  <text x="640" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#9ca3af" font-family="sans-serif">推論速度</text>
+  <text x="830" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#9ca3af" font-family="sans-serif">推奨用途</text>
+
+  <!-- Row Q2_K -->
+  <rect x="30" y="99" width="900" height="52" rx="4" fill="#1c1917"/>
+  <text x="105" y="130" text-anchor="middle" font-size="14" font-weight="bold" fill="#fbbf24" font-family="sans-serif">Q2_K</text>
+  <text x="250" y="124" text-anchor="middle" font-size="13" fill="#e5e7eb" font-family="sans-serif">~2.5GB</text>
+  <text x="250" y="141" text-anchor="middle" font-size="11" fill="#9ca3af" font-family="sans-serif">2bit</text>
+  <!-- Precision bar -->
+  <rect x="330" y="117" width="200" height="18" rx="4" fill="#374151"/>
+  <rect x="330" y="117" width="60" height="18" rx="4" fill="#ef4444"/>
+  <text x="545" y="130" font-size="12" fill="#fca5a5" font-family="sans-serif">~55% ❌</text>
+  <!-- Speed bar -->
+  <rect x="565" y="117" width="150" height="18" rx="4" fill="#374151"/>
+  <rect x="565" y="117" width="145" height="18" rx="4" fill="#22c55e"/>
+  <text x="730" y="130" font-size="12" fill="#86efac" font-family="sans-serif">最速 ✅</text>
+  <text x="770" y="130" font-size="12" fill="#9ca3af" font-family="sans-serif">超軽量デバイス</text>
+
+  <!-- Row Q4_K_M -->
+  <rect x="30" y="151" width="900" height="52" rx="4" fill="#162032"/>
+  <text x="105" y="182" text-anchor="middle" font-size="14" font-weight="bold" fill="#60a5fa" font-family="sans-serif">Q4_K_M</text>
+  <text x="105" y="196" text-anchor="middle" font-size="11" fill="#93c5fd" font-family="sans-serif">★推奨</text>
+  <text x="250" y="175" text-anchor="middle" font-size="13" fill="#e5e7eb" font-family="sans-serif">~4.1GB</text>
+  <text x="250" y="192" text-anchor="middle" font-size="11" fill="#9ca3af" font-family="sans-serif">4bit</text>
+  <rect x="330" y="169" width="200" height="18" rx="4" fill="#374151"/>
+  <rect x="330" y="169" width="178" height="18" rx="4" fill="#3b82f6"/>
+  <text x="545" y="182" font-size="12" fill="#93c5fd" font-family="sans-serif">~96% ✅✅</text>
+  <rect x="565" y="169" width="150" height="18" rx="4" fill="#374151"/>
+  <rect x="565" y="169" width="130" height="18" rx="4" fill="#22c55e"/>
+  <text x="730" y="182" font-size="12" fill="#86efac" font-family="sans-serif">高速</text>
+  <text x="770" y="182" font-size="12" fill="#93c5fd" font-family="sans-serif">★ 日常利用推奨</text>
+
+  <!-- Row Q5_K_M -->
+  <rect x="30" y="203" width="900" height="52" rx="4" fill="#162032"/>
+  <text x="105" y="234" text-anchor="middle" font-size="14" font-weight="bold" fill="#818cf8" font-family="sans-serif">Q5_K_M</text>
+  <text x="250" y="228" text-anchor="middle" font-size="13" fill="#e5e7eb" font-family="sans-serif">~4.8GB</text>
+  <text x="250" y="245" text-anchor="middle" font-size="11" fill="#9ca3af" font-family="sans-serif">5bit</text>
+  <rect x="330" y="222" width="200" height="18" rx="4" fill="#374151"/>
+  <rect x="330" y="222" width="190" height="18" rx="4" fill="#6366f1"/>
+  <text x="545" y="235" font-size="12" fill="#c7d2fe" font-family="sans-serif">~98% ✅✅</text>
+  <rect x="565" y="222" width="150" height="18" rx="4" fill="#374151"/>
+  <rect x="565" y="222" width="115" height="18" rx="4" fill="#22c55e"/>
+  <text x="730" y="235" font-size="12" fill="#86efac" font-family="sans-serif">速い</text>
+  <text x="770" y="235" font-size="12" fill="#c7d2fe" font-family="sans-serif">精度重視のローカル</text>
+
+  <!-- Row Q8_0 -->
+  <rect x="30" y="255" width="900" height="52" rx="4" fill="#1c1917"/>
+  <text x="105" y="286" text-anchor="middle" font-size="14" font-weight="bold" fill="#a78bfa" font-family="sans-serif">Q8_0</text>
+  <text x="250" y="280" text-anchor="middle" font-size="13" fill="#e5e7eb" font-family="sans-serif">~7.2GB</text>
+  <text x="250" y="297" text-anchor="middle" font-size="11" fill="#9ca3af" font-family="sans-serif">8bit</text>
+  <rect x="330" y="274" width="200" height="18" rx="4" fill="#374151"/>
+  <rect x="330" y="274" width="198" height="18" rx="4" fill="#7c3aed"/>
+  <text x="545" y="287" font-size="12" fill="#ddd6fe" font-family="sans-serif">~99.5% ✅✅✅</text>
+  <rect x="565" y="274" width="150" height="18" rx="4" fill="#374151"/>
+  <rect x="565" y="274" width="98" height="18" rx="4" fill="#22c55e"/>
+  <text x="730" y="287" font-size="12" fill="#86efac" font-family="sans-serif">中速</text>
+  <text x="770" y="287" font-size="12" fill="#ddd6fe" font-family="sans-serif">高VRAM環境</text>
+
+  <!-- Row F16 -->
+  <rect x="30" y="307" width="900" height="52" rx="4" fill="#162032"/>
+  <text x="105" y="338" text-anchor="middle" font-size="14" font-weight="bold" fill="#c4b5fd" font-family="sans-serif">F16</text>
+  <text x="250" y="332" text-anchor="middle" font-size="13" fill="#e5e7eb" font-family="sans-serif">~14GB</text>
+  <text x="250" y="349" text-anchor="middle" font-size="11" fill="#9ca3af" font-family="sans-serif">16bit</text>
+  <rect x="330" y="326" width="200" height="18" rx="4" fill="#374151"/>
+  <rect x="330" y="326" width="200" height="18" rx="4" fill="#8b5cf6"/>
+  <text x="545" y="339" font-size="12" fill="#f5f3ff" font-family="sans-serif">100% 完全精度</text>
+  <rect x="565" y="326" width="150" height="18" rx="4" fill="#374151"/>
+  <rect x="565" y="326" width="75" height="18" rx="4" fill="#22c55e"/>
+  <text x="730" y="339" font-size="12" fill="#86efac" font-family="sans-serif">低速</text>
+  <text x="770" y="339" font-size="12" fill="#c4b5fd" font-family="sans-serif">研究・Fine-tune</text>
+
+  <!-- Sweet spot annotation -->
+  <rect x="30" y="380" width="900" height="82" rx="8" fill="#0c1a14" stroke="#16a34a" stroke-width="2"/>
+  <text x="480" y="407" text-anchor="middle" font-size="16" font-weight="bold" fill="#4ade80" font-family="sans-serif">実用の最適解: Q4_K_M</text>
+  <text x="480" y="433" text-anchor="middle" font-size="13" fill="#86efac" font-family="sans-serif">精度劣化わずか4%以内 / サイズ75%削減 / 推論速度高い</text>
+  <text x="480" y="455" text-anchor="middle" font-size="13" fill="#86efac" font-family="sans-serif">VRAM 4GB あれば 7B モデルが動く → 大多数のGPUで利用可能</text>
+</svg>

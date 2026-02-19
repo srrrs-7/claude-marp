@@ -1,0 +1,23 @@
+topic: "クラウド認証・認可 完全設計ガイド"
+language: "ja"
+
+output:
+  dir: "docs/20260219120000_auth-authz"
+  baseName: "auth-authz"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "クラウド認証・認可 完全設計ガイド"
+  footer: "© 2026 Internal"
+  style: |
+    section {
+      font-size: 1.0em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+    section.section-slide h1 {
+      font-size: 2.2em;
+    }

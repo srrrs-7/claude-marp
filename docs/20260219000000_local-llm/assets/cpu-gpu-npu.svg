@@ -1,0 +1,101 @@
+<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117">
+  <text x="480" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#e6edf3" font-family="sans-serif">CPU / GPU / NPU の役割分担</text>
+
+  <!-- CPU Card -->
+  <rect x="30" y="60" width="280" height="360" rx="14" fill="#1c1917" stroke="#78350f" stroke-width="2"/>
+  <text x="170" y="95" text-anchor="middle" font-size="20" font-weight="bold" fill="#fbbf24" font-family="sans-serif">CPU</text>
+  <text x="170" y="118" text-anchor="middle" font-size="13" fill="#a8a29e" font-family="sans-serif">Sequential Computing</text>
+
+  <!-- CPU core visualization -->
+  <rect x="60" y="132" width="220" height="100" rx="6" fill="#292524"/>
+  <rect x="70" y="142" width="45" height="40" rx="4" fill="#78350f" stroke="#f97316" stroke-width="1"/>
+  <text x="92" y="167" text-anchor="middle" font-size="12" font-weight="bold" fill="#fed7aa" font-family="sans-serif">Core</text>
+  <rect x="125" y="142" width="45" height="40" rx="4" fill="#78350f" stroke="#f97316" stroke-width="1"/>
+  <text x="147" y="167" text-anchor="middle" font-size="12" font-weight="bold" fill="#fed7aa" font-family="sans-serif">Core</text>
+  <rect x="180" y="142" width="45" height="40" rx="4" fill="#78350f" stroke="#f97316" stroke-width="1"/>
+  <text x="202" y="167" text-anchor="middle" font-size="12" font-weight="bold" fill="#fed7aa" font-family="sans-serif">Core</text>
+  <rect x="235" y="142" width="35" height="40" rx="4" fill="#44403c"/>
+  <text x="252" y="167" text-anchor="middle" font-size="10" fill="#a8a29e" font-family="sans-serif">...</text>
+  <text x="170" y="216" text-anchor="middle" font-size="11" fill="#a8a29e" font-family="sans-serif">4〜64 コア（高機能・高クロック）</text>
+
+  <text x="50" y="260" font-size="13" fill="#fbbf24" font-family="sans-serif">✅ 得意なこと:</text>
+  <text x="50" y="281" font-size="12" fill="#d6d3d1" font-family="sans-serif">・逐次処理・制御フロー</text>
+  <text x="50" y="301" font-size="12" fill="#d6d3d1" font-family="sans-serif">・OS・アプリケーション全般</text>
+  <text x="50" y="321" font-size="12" fill="#d6d3d1" font-family="sans-serif">・GPU非搭載環境での推論</text>
+  <text x="50" y="355" font-size="13" fill="#fca5a5" font-family="sans-serif">⚠️ LLM推論では:</text>
+  <text x="50" y="376" font-size="12" fill="#fca5a5" font-family="sans-serif">3B以下なら実用速度</text>
+  <text x="50" y="396" font-size="12" fill="#fca5a5" font-family="sans-serif">（約5-40 tok/s）</text>
+
+  <!-- GPU Card -->
+  <rect x="340" y="60" width="280" height="360" rx="14" fill="#0c1a14" stroke="#16a34a" stroke-width="2.5" style="filter:drop-shadow(0 4px 12px rgba(22,163,74,0.3))"/>
+  <text x="480" y="95" text-anchor="middle" font-size="20" font-weight="bold" fill="#4ade80" font-family="sans-serif">GPU</text>
+  <text x="480" y="118" text-anchor="middle" font-size="13" fill="#6b7280" font-family="sans-serif">Parallel Computing ★ LLMの主役</text>
+
+  <!-- GPU core visualization -->
+  <rect x="360" y="132" width="240" height="100" rx="6" fill="#14251a"/>
+  <!-- Many small CUDA cores -->
+  <rect x="368" y="140" width="16" height="16" rx="2" fill="#16a34a"/>
+  <rect x="390" y="140" width="16" height="16" rx="2" fill="#15803d"/>
+  <rect x="412" y="140" width="16" height="16" rx="2" fill="#16a34a"/>
+  <rect x="434" y="140" width="16" height="16" rx="2" fill="#15803d"/>
+  <rect x="456" y="140" width="16" height="16" rx="2" fill="#16a34a"/>
+  <rect x="478" y="140" width="16" height="16" rx="2" fill="#15803d"/>
+  <rect x="500" y="140" width="16" height="16" rx="2" fill="#16a34a"/>
+  <rect x="522" y="140" width="16" height="16" rx="2" fill="#15803d"/>
+  <rect x="544" y="140" width="16" height="16" rx="2" fill="#16a34a"/>
+  <rect x="566" y="140" width="16" height="16" rx="2" fill="#15803d"/>
+  <rect x="368" y="162" width="16" height="16" rx="2" fill="#15803d"/>
+  <rect x="390" y="162" width="16" height="16" rx="2" fill="#16a34a"/>
+  <rect x="412" y="162" width="16" height="16" rx="2" fill="#15803d"/>
+  <rect x="434" y="162" width="16" height="16" rx="2" fill="#16a34a"/>
+  <rect x="456" y="162" width="16" height="16" rx="2" fill="#15803d"/>
+  <rect x="478" y="162" width="16" height="16" rx="2" fill="#16a34a"/>
+  <rect x="500" y="162" width="16" height="16" rx="2" fill="#15803d"/>
+  <rect x="522" y="162" width="16" height="16" rx="2" fill="#16a34a"/>
+  <rect x="544" y="162" width="16" height="16" rx="2" fill="#15803d"/>
+  <rect x="566" y="162" width="16" height="16" rx="2" fill="#16a34a"/>
+  <rect x="368" y="184" width="16" height="16" rx="2" fill="#16a34a"/>
+  <rect x="390" y="184" width="16" height="16" rx="2" fill="#15803d"/>
+  <rect x="412" y="184" width="16" height="16" rx="2" fill="#16a34a"/>
+  <text x="450" y="202" font-size="11" fill="#6b7280" font-family="sans-serif">... 数千〜数万 CUDAコア（並列）</text>
+  <text x="480" y="224" text-anchor="middle" font-size="11" fill="#86efac" font-family="sans-serif">VRAM: 8〜80GB（モデルを丸ごと格納）</text>
+
+  <text x="360" y="260" font-size="13" fill="#4ade80" font-family="sans-serif">✅ 得意なこと:</text>
+  <text x="360" y="281" font-size="12" fill="#d1fae5" font-family="sans-serif">・行列演算（Transformer推論の本体）</text>
+  <text x="360" y="301" font-size="12" fill="#d1fae5" font-family="sans-serif">・数千並列演算を同時実行</text>
+  <text x="360" y="321" font-size="12" fill="#d1fae5" font-family="sans-serif">・高メモリ帯域（HBM: 2TB/s+）</text>
+  <text x="360" y="355" font-size="13" fill="#86efac" font-family="sans-serif">🚀 LLM推論では:</text>
+  <text x="360" y="376" font-size="12" fill="#86efac" font-family="sans-serif">7B: 50-120 tok/s</text>
+  <text x="360" y="396" font-size="12" fill="#86efac" font-family="sans-serif">70B Q4: 20-40 tok/s (RTX4090)</text>
+
+  <!-- NPU Card -->
+  <rect x="650" y="60" width="280" height="360" rx="14" fill="#1e1b4b" stroke="#6366f1" stroke-width="2"/>
+  <text x="790" y="95" text-anchor="middle" font-size="20" font-weight="bold" fill="#a5b4fc" font-family="sans-serif">NPU</text>
+  <text x="790" y="118" text-anchor="middle" font-size="13" fill="#6b7280" font-family="sans-serif">Neural Processing Unit</text>
+
+  <!-- NPU visualization -->
+  <rect x="670" y="132" width="240" height="100" rx="6" fill="#312e81"/>
+  <rect x="685" y="145" width="70" height="70" rx="6" fill="#4338ca"/>
+  <text x="720" y="175" text-anchor="middle" font-size="11" fill="#e0e7ff" font-family="sans-serif">Matrix</text>
+  <text x="720" y="190" text-anchor="middle" font-size="11" fill="#e0e7ff" font-family="sans-serif">Engine</text>
+  <line x1="755" y1="180" x2="775" y2="180" stroke="#818cf8" stroke-width="2"/>
+  <polygon points="779,180 773,175 773,185" fill="#818cf8"/>
+  <rect x="779" y="153" width="55" height="54" rx="6" fill="#4338ca"/>
+  <text x="806" y="178" text-anchor="middle" font-size="10" fill="#e0e7ff" font-family="sans-serif">Low</text>
+  <text x="806" y="193" text-anchor="middle" font-size="10" fill="#e0e7ff" font-family="sans-serif">Power</text>
+  <text x="840" y="152" font-size="10" fill="#6b7280" font-family="sans-serif">INT8</text>
+  <text x="840" y="167" font-size="10" fill="#6b7280" font-family="sans-serif">FP8</text>
+  <text x="840" y="212" text-anchor="middle" font-size="11" fill="#a5b4fc" font-family="sans-serif">Apple NE / Qualcomm AI</text>
+
+  <text x="665" y="260" font-size="13" fill="#a5b4fc" font-family="sans-serif">✅ 得意なこと:</text>
+  <text x="665" y="281" font-size="12" fill="#c7d2fe" font-family="sans-serif">・低消費電力でAI推論</text>
+  <text x="665" y="301" font-size="12" fill="#c7d2fe" font-family="sans-serif">・量子化モデル（INT8/FP8）特化</text>
+  <text x="665" y="321" font-size="12" fill="#c7d2fe" font-family="sans-serif">・スマートフォン・ラップトップ向け</text>
+  <text x="665" y="355" font-size="13" fill="#818cf8" font-family="sans-serif">📱 LLM推論では:</text>
+  <text x="665" y="376" font-size="12" fill="#818cf8" font-family="sans-serif">Apple Neural Engine (M4): 高速</text>
+  <text x="665" y="396" font-size="12" fill="#818cf8" font-family="sans-serif">Snapdragon X Elite: llm.c等</text>
+
+  <!-- Bottom recommendation -->
+  <rect x="30" y="435" width="900" height="38" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="480" y="459" text-anchor="middle" font-size="14" fill="#4ade80" font-family="sans-serif">推奨: GPU（CUDA/Metal）があれば優先使用 → なければCPUでも小型モデルは実用的</text>
+</svg>

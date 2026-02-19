@@ -1,0 +1,54 @@
+<svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0f172a;border-radius:12px">
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" fill="#f1f5f9" font-size="16" font-weight="bold" font-family="sans-serif">Multi-Agent Network — ピアレビュー・集合知モデル</text>
+  <!-- Central message bus -->
+  <rect x="330" y="148" width="240" height="50" rx="10" fill="#1e293b" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="450" y="168" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="bold" font-family="sans-serif">Message Bus / Shared Context</text>
+  <text x="450" y="186" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">エージェント間のメッセージ仲介</text>
+  <!-- Agent 1: Author -->
+  <rect x="50" y="60" width="160" height="65" rx="8" fill="#1e3a5f" stroke="#38bdf8" stroke-width="2"/>
+  <text x="130" y="84" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="bold" font-family="sans-serif">Author Agent</text>
+  <text x="130" y="102" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">ドラフト生成</text>
+  <text x="130" y="117" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">初稿作成・提案</text>
+  <!-- Agent 2: Critic -->
+  <rect x="50" y="235" width="160" height="65" rx="8" fill="#2d1515" stroke="#f87171" stroke-width="2"/>
+  <text x="130" y="259" text-anchor="middle" fill="#f87171" font-size="13" font-weight="bold" font-family="sans-serif">Critic Agent</text>
+  <text x="130" y="277" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">批判的レビュー</text>
+  <text x="130" y="292" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">問題点・改善提案</text>
+  <!-- Agent 3: Fact Checker -->
+  <rect x="690" y="60" width="160" height="65" rx="8" fill="#14532d" stroke="#34d399" stroke-width="2"/>
+  <text x="770" y="84" text-anchor="middle" fill="#34d399" font-size="13" font-weight="bold" font-family="sans-serif">FactCheck Agent</text>
+  <text x="770" y="102" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">事実確認・検証</text>
+  <text x="770" y="117" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">信頼性スコア付与</text>
+  <!-- Agent 4: Synthesizer -->
+  <rect x="690" y="235" width="160" height="65" rx="8" fill="#3b0764" stroke="#c084fc" stroke-width="2"/>
+  <text x="770" y="259" text-anchor="middle" fill="#c084fc" font-size="13" font-weight="bold" font-family="sans-serif">Synthesizer</text>
+  <text x="770" y="277" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">統合・最終化</text>
+  <text x="770" y="292" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">合意形成・最終出力</text>
+  <!-- Bidirectional arrows: Author <-> Bus -->
+  <line x1="210" y1="92" x2="328" y2="163" stroke="#38bdf8" stroke-width="1.5"/>
+  <polygon points="320,158 328,168 336,160" fill="#38bdf8"/>
+  <line x1="330" y1="168" x2="212" y2="100" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="205,95 212,106 220,98" fill="#64748b"/>
+  <!-- Critic <-> Bus -->
+  <line x1="210" y1="268" x2="328" y2="185" stroke="#f87171" stroke-width="1.5"/>
+  <polygon points="320,182 328,172 336,180" fill="#f87171"/>
+  <line x1="330" y1="182" x2="212" y2="262" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="205,257 212,268 220,260" fill="#64748b"/>
+  <!-- FactCheck <-> Bus -->
+  <line x1="690" y1="92" x2="572" y2="163" stroke="#34d399" stroke-width="1.5"/>
+  <polygon points="578,158 570,168 562,160" fill="#34d399"/>
+  <line x1="570" y1="168" x2="688" y2="100" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="694,95 688,106 680,98" fill="#64748b"/>
+  <!-- Synthesizer <-> Bus -->
+  <line x1="690" y1="268" x2="572" y2="185" stroke="#c084fc" stroke-width="1.5"/>
+  <polygon points="578,182 570,172 562,180" fill="#c084fc"/>
+  <line x1="570" y1="182" x2="688" y2="262" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="694,257 688,268 680,260" fill="#64748b"/>
+  <!-- Iteration count badge -->
+  <circle cx="450" cy="148" r="18" fill="#fbbf24"/>
+  <text x="450" y="153" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="bold" font-family="sans-serif">N回</text>
+  <!-- Output at bottom -->
+  <text x="450" y="330" text-anchor="middle" fill="#86efac" font-size="13" font-family="sans-serif">収束するまで議論を繰り返し → 高品質な合意出力</text>
+  <text x="450" y="348" text-anchor="middle" fill="#64748b" font-size="11" font-family="sans-serif">注意: max_turns設定で無限ループを防止すること</text>
+</svg>

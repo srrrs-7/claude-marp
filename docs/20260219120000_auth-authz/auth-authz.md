@@ -1,0 +1,831 @@
+---
+marp: true
+theme: gaia
+size: 16:9
+paginate: true
+header: "クラウド認証・認可 完全設計ガイド"
+footer: "© 2026 Internal"
+style: |
+  section {
+    font-size: 1.0em;
+  }
+  section pre code {
+    font-size: 0.58em;
+    line-height: 1.4;
+  }
+  section.section-slide h1 {
+    font-size: 2.2em;
+  }
+  
+---
+
+<!-- _class: lead -->
+# クラウド認証・認可 完全設計ガイド
+
+- アーキテクト向け 実践パターン集
+- OAuth2 / OIDC / SAML / JWT / AWS IAM / Zero Trust
+- 2026年2月 | 内部資料
+
+
+---
+
+# アジェンダ (1/2)
+
+- **1. 認証 vs 認可** — 基礎概念・3要素・変遷
+- **2. 認証プロトコル** — OAuth2 / OIDC / SAML / JWT
+- **3. 認可モデル** — RBAC / ABAC / ReBAC / PBAC
+- **4. AWS IAM 設計** — Roles / Policies / SCP / Boundaries / IRSA
+
+
+---
+
+# アジェンダ (2/2)
+
+- **5. Cognito & Federation** — User Pools / Identity Pools / 外部IdP
+- **6. API 認証認可** — API GW / Lambda Authorizer / JWT検証
+- **7. Zero Trust** — 原則 / AWS実装 / mTLS / サービスメッシュ
+- **8. アンチパターン** — よくある失敗と対策
+- **9. まとめ** — チェックリスト / 参考資料
+
+
+---
+
+# 認証 vs 認可 — 定義と区別
+
+- **認証 (Authentication / AuthN)** — 「あなたは誰か？」を確認する
+- **認可 (Authorization / AuthZ)** — 「何をしてよいか？」を決定する
+- **よくある誤解**: 認証が通れば何でもできる → ❌ 認可で細粒度制御が必要
+- **順序**: 認証 → 認可 の順で処理。認可だけでは不十分
+- **実装上の分離**: IdP (認証) と Authorization Server (認可) を分けて設計
+- **責務**: 認証=アイデンティティの確認 / 認可=リソースへのアクセス権限の決定
+
+
+---
+
+# 認証の3要素
+
+- **知識要素 (Something You Know)** — パスワード、PIN、秘密の質問
+- **所持要素 (Something You Have)** — ハードウェアトークン、スマートフォン、FIDO2キー
+- **生体要素 (Something You Are)** — 指紋、顔認識、虹彩スキャン
+- **多要素認証 (MFA)** — 2種類以上の要素を組み合わせる。単一要素の弱点を補う
+- **リスクベース認証** — コンテキスト（場所・時刻・デバイス）に応じて追加認証要求
+- **推奨**: パスワード単独は廃止方向。FIDO2/パスキー (WebAuthn) へ移行
+
+
+---
+
+# 認可モデル概観
+
+- **RBAC** (Role-Based) — ロール単位でアクセス制御。シンプルだが硬直的
+- **ABAC** (Attribute-Based) — 属性条件で動的制御。柔軟だが複雑
+- **ReBAC** (Relationship-Based) — オブジェクト間の関係で制御。Google Zanzibar
+- **PBAC** (Policy-Based) — ポリシー言語で記述。OPA/Rego, AWS Cedar
+- **選択指針**: 小規模→RBAC / 動的条件多→ABAC / 階層オブジェクト→ReBAC / 複雑ロジック→PBAC
+
+
+---
+
+# セッション管理の変遷
+
+- **Cookie セッション時代** — サーバー側でセッションを保持。スケールが課題
+- **Tokenベース認証の登場** — ステートレスなトークンをクライアント側で保持
+- **JWT の普及** — 自己完結型トークン。署名で改ざん検知。サービス間で検証可能
+- **課題の変化**: セッション固定攻撃 → トークン漏洩・有効期限管理
+- **現在のトレンド**: 短命アクセストークン + リフレッシュトークンローテーション
+- **次世代**: Passkey / WebAuthn による passwordless 化の加速
+
+
+---
+
+# トークンベース認証の利点と課題
+
+- **利点 — Stateless**: サーバー側でセッション保持不要。水平スケール容易
+- **利点 — マイクロサービス**: サービス間でトークンを受け渡し可能
+- **利点 — モバイル/SPA対応**: Cookie制約なしにAPIアクセスできる
+- **課題 — 失効**: JWTはデフォルトで失効不可。短い有効期限が必須
+- **課題 — サイズ**: Cookieよりリクエストが大きくなる (ヘッダーサイズ制限に注意)
+- **課題 — 保管**: localStorage/sessionStorage/cookie 各々にセキュリティトレードオフ
+
+
+---
+
+# クレームベースアイデンティティ
+
+- **クレーム (Claim)** — アイデンティティに関する宣言（例: `email: user@example.com`）
+- **Principal** — アクセスを行うエンティティ（ユーザー、サービス、デバイス）
+- **Subject (sub)** — Principalの一意識別子。変わらないIDとして使用
+- **Issuer (iss)** — クレームを発行したIdP。信頼チェーンの起点
+- **標準クレーム (OIDC)**: sub, email, name, picture, phone_number, address
+- **カスタムクレーム**: `custom:role` のようにアプリ固有クレームを追加可能
+
+
+---
+
+<!-- _class: lead -->
+# 認証プロトコル
+
+- OAuth 2.0 / OpenID Connect / SAML 2.0 / JWT
+- フロー・構造・選択基準を体系化
+
+
+---
+
+# OAuth 2.0 全体像
+
+![w:760 center](assets/oauth2-overview.svg)
+
+<!--
+OAuth 2.0は認可フレームワーク。4つのロール: Resource Owner, Client, Authorization Server, Resource Server
+-->
+
+---
+
+# OAuth 2.0 グラントタイプ
+
+- **Authorization Code (+ PKCE)** — ウェブ/SPAアプリ。最も安全。**推奨**
+- **Client Credentials** — M2M通信（サービス間）。ユーザー不在のバックエンド処理
+- **Device Authorization** — IoT・CLI。入力デバイス制限環境向け
+- ~~Implicit~~ — 非推奨。Authorization Code + PKCEで代替すること
+- ~~Resource Owner Password~~ — 非推奨。セキュリティリスク大。使用禁止
+- **選択基準**: ユーザーあり→Auth Code+PKCE / M2M→Client Credentials / IoT→Device
+
+
+---
+
+# Authorization Code + PKCE フロー
+
+![w:760 center](assets/pkce-flow.svg)
+
+<!--
+PKCE: Proof Key for Code Exchange。code_verifier(ランダム文字列)とcode_challenge(SHA256ハッシュ)でコード横取り攻撃を防ぐ
+-->
+
+---
+
+# Client Credentials Flow
+
+- **用途**: バックエンドサービス間通信（M2M）、バッチ処理、データパイプライン
+- **フロー**: Client → AuthZ Server (client_id + client_secret) → Access Token → Resource Server
+- **スコープ**: サービスに必要な最小スコープのみ要求。`read:data` 等で細粒度化
+- **AWS実装**: Cognito App Client (client credentials) / IAM Role + SigV4 (推奨)
+- **注意点**: client_secret は安全に管理。AWS Secrets Manager / Parameter Store 使用
+- **代替**: AWS環境では IAM Role による署名付きリクエスト (SigV4) が推奨
+
+
+---
+
+# Device Authorization Flow
+
+- **用途**: スマートTV、IoTデバイス、CLIツールなど入力デバイス制限環境
+- **特徴**: ユーザーは別デバイス（スマホ等）で認証し、デバイスは定期ポーリング
+- **フロー**: Device → AuthZ Server → device_code + user_code → ユーザーが別デバイスで入力 → Approval → Token
+- **AWS実装**: Cognito は Device Flow をサポート。AWS CLI も同フロー使用
+- **セキュリティ**: device_code の有効期限短縮 (5〜10分)。interval ポーリング制限を設定
+
+
+---
+
+# OpenID Connect (OIDC) 概要
+
+- **OIDC = OAuth 2.0 + 認証レイヤー** — OAuth2は認可のみ。OIDCがアイデンティティを追加
+- **IDトークン** — JWT形式。ユーザー情報（クレーム）を署名付きで提供
+- **アクセストークン** — APIアクセス用。リソースサーバーへ提示
+- **UserInfo Endpoint** — アクセストークンで追加ユーザー情報を取得
+- **Discovery** — `/.well-known/openid-configuration` でメタデータ自動取得
+- **主要IdP**: Cognito / Auth0 / Okta / Google / Azure AD / GitHub
+
+
+---
+
+# IDトークン構造と検証
+
+![w:760 center](assets/id-token-structure.svg)
+
+<!--
+IDトークンの必須クレーム: iss, sub, aud, exp, iat。検証ステップ: 1)署名検証 2)iss確認 3)aud確認 4)exp確認
+-->
+
+---
+
+# SAML 2.0 概要
+
+- **SAML = Security Assertion Markup Language** — XML形式の認証・認可情報交換標準
+- **3要素**: Identity Provider (IdP) / Service Provider (SP) / Principal (ユーザー)
+- **Assertion タイプ**: Authentication / Attribute / Authorization Decision
+- **Binding**: HTTP POST（主流）/ HTTP Redirect / Artifact
+- **利点**: エンタープライズSSOでの実績・サポート幅が広い (AD FS, Okta, Shibboleth)
+- **欠点**: XMLの複雑さ・モバイル/SPA非適合・実装難 → 新規開発ではOIDCへ移行推奨
+
+
+---
+
+# SAML vs OIDC — 比較と選択基準
+
+| 比較軸 | SAML 2.0 | OIDC |
+|--------|----------|------|
+| フォーマット | XML (重い) | JSON / JWT (軽量) |
+| モバイル / SPA | 非適合 | 適合 ✅ |
+| エンタープライズSSOレガシー | 強い実績 | 対応増加中 |
+| セットアップ難易度 | 複雑 | 容易 |
+| 新規開発推奨 | — | ✅ OIDC 推奨 |
+
+
+---
+
+# JWT 詳解 — 構造と仕組み
+
+![w:760 center](assets/jwt-structure.svg)
+
+<!--
+JWT = Header.Payload.Signature。Base64URL エンコード。Payload は機密情報を入れない（暗号化されていない）
+-->
+
+---
+
+# JWT 署名アルゴリズム
+
+- **RS256** (RSA + SHA256) — 非対称。公開鍵で検証可能。**推奨** (IdP → Client)
+- **ES256** (ECDSA + SHA256) — 非対称。RS256より鍵が短い。高パフォーマンス
+- **HS256** (HMAC + SHA256) — 対称。署名者と検証者が同じ秘密鍵を共有。**同一サービス内のみ**
+- **alg:none 禁止** — 検証スキップの脆弱性。ライブラリで明示的に禁止設定必須
+- **JWKS** — 公開鍵セット。`/jwks.json` で提供。kid でキーローテーション対応
+- **推奨構成**: RS256 + JWKS キャッシュ + kid によるキーローテーション
+
+
+---
+
+# JWT ベストプラクティス
+
+- **有効期限を短く** — アクセストークン: 15〜60分。IDトークン: 1時間以内
+- **クレームを最小化** — Payload にセンシティブ情報を入れない（PII, パスワードなど）
+- **jti (JWT ID)** — 使い捨てトークン検証。リプレイ攻撃対策
+- **nbf (not before)** — 有効開始時刻。時刻ずれ対策に数秒のスラックを設定
+- **aud 検証必須** — 自分のサービス向けトークンのみ受け入れる
+- **失効設計** — ブラックリスト(Redis) / 短い TTL + ローテーション の2択
+
+
+---
+
+# トークンローテーション戦略
+
+- **Access Token** — 短命 (15〜60min)。漏洩時の影響を最小化
+- **Refresh Token** — 長命 (1〜30日)。新しいAccess Tokenを取得するために使用
+- **Refresh Token Rotation** — 使用のたびに新しいRefresh Tokenを発行。古いTokenは無効化
+- **Detect Reuse** — 同一Refresh Tokenの二重使用を検知したらセッション全体を失効
+- **保管場所**: Refresh Token は HttpOnly Secure Cookie 推奨。localStorage は XSS注意
+- **AWS Cognito**: `RefreshToken` のローテーションをデフォルト有効化
+
+
+---
+
+# PKCE 詳解 (Proof Key for Code Exchange)
+
+- **目的**: Authorization Code の横取り攻撃 (Code Interception Attack) を防ぐ
+- **code_verifier** — クライアントが生成するランダム文字列 (43〜128文字, Base64URL)
+- **code_challenge** — `BASE64URL(SHA256(code_verifier))`。認可リクエストに含める
+- **フロー**: ① challenge を AuthZ Serverへ送信 → ② code 取得 → ③ verifier でトークン交換
+- **検証**: AuthZ Server が `SHA256(verifier) == challenge` を確認。横取りしたcodeは使えない
+- **適用範囲**: パブリッククライアント(SPA, ネイティブアプリ)必須。コンフィデンシャルにも推奨
+
+
+---
+
+<!-- _class: lead -->
+# 認可モデル
+
+- RBAC / ABAC / ReBAC / PBAC
+- 設計選択の基準とトレードオフを整理
+
+
+---
+
+# RBAC — Role-Based Access Control
+
+![w:740 center](assets/rbac-hierarchy.svg)
+
+<!--
+RBAC: ユーザーをロールに割り当て、ロールにパーミッションを付与。階層RBACは継承で管理コストを削減
+-->
+
+---
+
+# ABAC — Attribute-Based Access Control
+
+![w:760 center](assets/abac-structure.svg)
+
+<!--
+ABAC: Subject属性 + Resource属性 + Environment条件 → Policy Engine → 許可/拒否。AWS IAM ConditionブロックはABACの実装
+-->
+
+---
+
+# ReBAC — Relationship-Based Access Control
+
+- **概念**: オブジェクト間の「関係」に基づいてアクセス制御を決定
+- **例**: `user:alice is viewer of document:report` → alice は report を閲覧できる
+- **Google Zanzibar**: Google Drive / Docs / Calendar の認可エンジン。ReBAC の事実上の標準
+- **OSS実装**: SpiceDB (Authzed) / OpenFGA (Auth0) / Ory Keto
+- **ユースケース**: ファイル共有・組織階層・SNSフォロー関係など
+- **特徴**: 動的な関係変更に強い。大規模グラフのトラバーサルが課題
+
+
+---
+
+# PBAC と OPA — Policy-Based Access Control
+
+- **PBAC**: 認可ロジックをポリシーとして外部化・コード化する考え方
+- **OPA (Open Policy Agent)** — CNCFプロジェクト。Rego言語でポリシー記述
+- **Cedar (AWS)** — AWS Verified Permissions のポリシー言語。型安全
+- **利点**: アプリコードからポリシーを分離。監査・テスト・更新が独立して可能
+- **Kubernetes**: Admission Webhook で OPA Gatekeeper によるポリシー強制
+
+```rego
+# OPA Rego ポリシー例
+package authz
+
+default allow := false
+
+allow if {
+    input.user.role == "admin"
+}
+
+allow if {
+    input.action == "read"
+    input.resource.owner == input.user.id
+}
+```
+
+
+---
+
+# 認可モデル比較
+
+| モデル | スケール | 柔軟性 | 複雑度 | 主な用途 |
+|--------|---------|-------|-------|---------|
+| RBAC | 中〜大 | 低 | 低 | 社内システム・API権限 |
+| ABAC | 大 | 高 | 中〜高 | マルチテナント・動的条件 |
+| ReBAC | 大規模 | 高 | 高 | ファイル共有・SNS |
+| PBAC | 大規模 | 高 | 高 | マイクロサービス横断 |
+- **推奨**: 小規模→RBAC / 複雑条件→ABAC(IAM Condition) / 階層構造→ReBAC
+
+
+---
+
+# IAM ポリシー言語
+
+- **Effect** — `Allow` / `Deny`。明示的 Deny は常に優先
+- **Action** — AWS API アクション (`s3:GetObject`, `ec2:*`)
+- **Resource** — ARN で対象リソースを特定 (`arn:aws:s3:::my-bucket/*`)
+- **Condition** — 追加条件 (`aws:SourceIp`, `aws:RequestedRegion`, `s3:prefix`)
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": ["s3:GetObject", "s3:PutObject"],
+    "Resource": "arn:aws:s3:::my-bucket/${aws:userid}/*",
+    "Condition": {
+      "StringEquals": {
+        "aws:RequestedRegion": "ap-northeast-1"
+      }
+    }
+  }]
+}
+```
+
+
+---
+
+# Least Privilege 原則の実装
+
+- **原則**: 必要最小限の権限のみ付与。余剰権限は攻撃面の拡大
+- **IAM Access Analyzer** — 使用されていない権限を検出。最小権限ポリシーを自動生成
+- **CloudTrail + Athena** — 実際の API 使用ログから必要な Action を特定
+- **SCPs でガードレール** — 組織全体で危険な操作を禁止 (例: `iam:CreateUser` 禁止)
+- **Permission Boundaries** — デリゲーション時の上限設定。開発者が自力で権限昇格不可
+- **定期レビュー**: 四半期ごとに未使用ロール・ポリシーを棚卸し
+
+
+---
+
+<!-- _class: lead -->
+# AWS IAM 設計パターン
+
+- Roles / Policies / SCP / Boundaries / IRSA
+- 最小権限・デリゲーション・クロスアカウント設計
+
+
+---
+
+# IAM エンティティ全体図
+
+![w:760 center](assets/iam-entities.svg)
+
+<!--
+IAM User: 長期認証情報。Group: ユーザーの集合。Role: 一時認証情報。Policy: 権限の定義。ベストプラクティス: ユーザーより Role を使用
+-->
+
+---
+
+# IAM ロール設計パターン
+
+- **サービスロール** — AWS サービスが AWS APIs を呼び出すための Role (EC2, Lambda, ECS Task)
+- **クロスアカウントロール** — 別AWSアカウントのリソースにアクセスするための Role
+- **フェデレーションロール** — 外部IdP認証済みユーザーが AssumeRole するための Role
+- **デプロイロール** — CI/CD パイプラインが使用するデプロイ専用 Role
+- **ブレイクグラスロール** — 緊急時のみ使用する高権限 Role。MFA + CloudTrail 必須
+- **原則**: 1 Role = 1 ユースケース。汎用ロールを作らない
+
+
+---
+
+# IAM ポリシー vs リソースポリシー
+
+- **IAM ポリシー** — Principal (User/Role) にアタッチ。**誰が**何をできるかを定義
+- **リソースポリシー** — リソース (S3, SQS, KMS) にアタッチ。**誰に**許可するかを定義
+- **評価順序**: 明示的 Deny → SCP → リソースポリシー → IAM ポリシー → 暗黙 Deny
+- **クロスアカウント**: 両方のポリシーで Allow が必要
+- **同一アカウント**: リソースポリシーの Allow だけで OK なケースあり
+- **ユースケース**: S3バケットポリシー / SQS / SNS / KMS キーポリシー
+
+
+---
+
+# SCP — Service Control Policies
+
+- **SCP とは**: AWS Organizations でアカウント全体に適用するガードレールポリシー
+- **特性**: Allow のみでは不十分。IAM ポリシーとの AND 評価。最大許可範囲を定義
+- **ユースケース**: 特定リージョン以外へのデプロイ禁止 / 危険なIAM操作禁止 / ルートアカウント使用禁止
+- **階層**: Root → OU → Account の順に継承・上書き可能
+
+```json
+{
+  "Effect": "Deny",
+  "Action": "*",
+  "Resource": "*",
+  "Condition": {
+    "StringNotEquals": {
+      "aws:RequestedRegion": [
+        "ap-northeast-1",
+        "us-east-1"
+      ]
+    }
+  }
+}
+```
+
+
+---
+
+# Permission Boundaries
+
+- **目的**: IAM エンティティの最大許可範囲を制限。デリゲーション時の権限昇格防止
+- **動作**: Permission Boundary で許可 AND IAM ポリシーで許可 = 有効な権限
+- **ユースケース**: 開発者に IAM 権限デリゲーション時、自分より強い権限ロール作成を防ぐ
+- **設計パターン**: 管理者が境界ポリシーを作成 → 開発者は境界の範囲内でのみロール作成可能
+- **注意**: SCP とは異なる。SCP は Organization レベル。Boundary は個別エンティティレベル
+- **実装**: `iam:CreateRole` 等に `iam:PermissionsBoundary` 条件キーを使用
+
+
+---
+
+# IAM Access Analyzer
+
+- **外部アクセス検出**: S3, IAM Role, KMS, SQS 等への組織外からのアクセスを検出
+- **未使用アクセス分析**: 使用されていない権限・ロール・アクセスキーを特定
+- **最小権限ポリシー生成**: CloudTrail ログから実際使用した Action のみのポリシーを自動生成
+- **ポリシー検証**: `validate-policy` API でポリシーの文法・セキュリティチェック
+- **CI/CD統合**: `aws accessanalyzer validate-policy` をデプロイパイプラインに組み込む
+- **アラート**: Security Hub / EventBridge 経由で Slack/PagerDuty 通知
+
+
+---
+
+# クロスアカウントアクセス設計
+
+- **基本パターン**: Account A の Principal が Account B の Role に AssumeRole
+- **Trust Policy**: Account B のロールに Account A の Principal を信頼する設定
+- **ExternalId**: 第三者(SaaS等)が代理アクセスする場合に推奨。混乱した副官攻撃を防止
+
+```json
+// Trust Policy (Account B側のRole)
+{
+  "Effect": "Allow",
+  "Principal": {
+    "AWS": "arn:aws:iam::ACCOUNT_A_ID:role/DeployRole"
+  },
+  "Action": "sts:AssumeRole",
+  "Condition": {
+    "StringEquals": {
+      "sts:ExternalId": "unique-external-id"
+    },
+    "Bool": {
+      "aws:MultiFactorAuthPresent": "true"
+    }
+  }
+}
+```
+
+
+---
+
+# EC2 Instance Profile / Lambda Execution Role
+
+- **Instance Profile** — EC2 インスタンスに IAM Role を付与する仕組み
+- **IMDSv2 必須** — v1 は SSRF 攻撃でメタデータ窃取リスク。v2(token必須)を強制
+- **Lambda Execution Role** — Lambda が AWS サービスにアクセスするための Role
+- **最小権限**: Lambda 関数ごとに専用 Role。共有 Role は使わない
+- **VPC Lambda**: ENI 作成に `ec2:CreateNetworkInterface` 等が必要。マネージドポリシー活用
+- **環境変数の秘密**: Secrets Manager / SSM Parameter Store から Lambda 起動時に取得
+
+
+---
+
+# EKS IRSA — IAM Roles for Service Accounts
+
+![w:760 center](assets/irsa-flow.svg)
+
+<!--
+IRSA: Pod単位でIAM Roleを付与。Node単位の権限付与より細粒度。OIDC Providerを介してSTS AssumeRoleWithWebIdentity
+-->
+
+---
+
+# STS AssumeRole — 一時認証情報の活用
+
+- **一時認証情報**: AccessKeyId + SecretAccessKey + **SessionToken** のセット。TTL: 15分〜12時間
+- **AssumeRole**: 別のロールになりきる。クロスアカウント・フェデレーションの基盤
+- **AssumeRoleWithWebIdentity**: OIDC トークン (JWT) を使った AssumeRole。IRSA, Cognito
+- **AssumeRoleWithSAML**: SAML アサーションを使った AssumeRole。エンタープライズ SSO
+- **セッションポリシー**: AssumeRole 時に追加で絞り込みポリシーを付与可能
+- **監査**: CloudTrail に AssumeRole イベントが記録される。SessionName で追跡
+
+
+---
+
+# IAM Identity Center (旧 AWS SSO)
+
+- **目的**: 複数AWSアカウントへのシングルサインオン。一元的なID管理
+- **ID ソース**: 内蔵ディレクトリ / Active Directory / 外部 OIDC IdP (Okta, Azure AD)
+- **権限セット**: AWS マネージド or カスタムポリシー。アカウント×権限セットで割り当て
+- **SCIM プロビジョニング**: IdP からユーザー/グループを自動同期
+- **アクセスポータル**: ユーザーはポータルからアカウント一覧を確認。CLI は `aws sso login`
+- **推奨**: 全アカウントで IAM User を廃止し Identity Center に一元化
+
+
+---
+
+<!-- _class: lead -->
+# Cognito & Federation
+
+- User Pools / Identity Pools / 外部IdP統合
+- マネージドIdPとAWS認証の架け橋
+
+
+---
+
+# Cognito User Pools 設計
+
+- **User Pool** — マネージドユーザーディレクトリ。サインアップ・サインイン・MFA を提供
+- **JWT 発行**: ID Token / Access Token / Refresh Token を OIDC 準拠で発行
+- **カスタムフロー** — Lambda Trigger で認証フローをカスタマイズ (Pre/Post Auth, Custom Challenge)
+- **MFA**: TOTP (Google Authenticator等) / SMS / SES メール OTP
+- **ユーザー属性**: 標準属性 (email, phone) + カスタム属性 (`custom:role`)
+- **設計考慮**: User Pool は削除できない。複数環境(dev/stg/prod)は別 Pool を推奨
+
+
+---
+
+# Cognito Identity Pools (Federated Identities)
+
+![w:760 center](assets/cognito-idp.svg)
+
+<!--
+Identity Pools: 外部IdPの認証済みトークンをSTS一時認証情報に変換。Unauthenticated Roleも設定可能
+-->
+
+---
+
+# 外部IdP統合パターン
+
+- **パターン1: OIDC → Cognito User Pool** — Google/Apple ソーシャルログインをCognitoに統合
+- **パターン2: SAML → Cognito User Pool** — Active Directory / Okta を SAML連携でCognito統合
+- **パターン3: OIDC/SAML → Identity Center** — 企業IdP → AWSアカウントSSO (推奨)
+- **パターン4: Cognito → Identity Pool → STS** — モバイルアプリ向けAWSリソース直接アクセス
+- **選択基準**: ウェブ/モバイルアプリ→User Pool / AWS直接アクセス→Identity Pool / 企業SSO→Identity Center
+
+
+---
+
+<!-- _class: lead -->
+# API 認証認可設計
+
+- API Gateway / Lambda Authorizer / JWT検証
+- APIレイヤーでの認証・認可の実装パターン
+
+
+---
+
+# API Gateway 認証方式比較
+
+![w:760 center](assets/apigw-auth.svg)
+
+<!--
+API GW 4つの認証方式: IAM認証(SigV4)、Cognito Authorizer、Lambda Authorizer(TOKEN/REQUEST)、API Key(制限的用途のみ)
+-->
+
+---
+
+# Lambda Authorizer 設計
+
+- **TOKEN タイプ** — Authorization ヘッダーのトークン (JWT) を検証
+- **REQUEST タイプ** — ヘッダー・クエリ・パス・ステージ変数全てにアクセス可能。複合条件に
+- **キャッシュ** — ARN ベースのポリシーキャッシュ (TTL: 0〜3600秒)。レイテンシ削減
+
+```javascript
+exports.handler = async (event) => {
+  const token = event.authorizationToken;
+  const claims = await verifyJWT(token); // 署名検証必須
+  return {
+    principalId: claims.sub,
+    policyDocument: {
+      Version: '2012-10-17',
+      Statement: [{
+        Action: 'execute-api:Invoke',
+        Effect: 'Allow',
+        Resource: event.methodArn
+      }]
+    },
+    context: { userId: claims.sub, role: claims['custom:role'] }
+  };
+};
+```
+
+
+---
+
+# JWT 検証ミドルウェア設計
+
+- **検証ステップ①**: JWKS エンドポイントから公開鍵取得 (`/.well-known/jwks.json`)
+- **検証ステップ②**: JWT ヘッダーの `kid` で使用鍵を特定
+- **検証ステップ③**: 署名検証 (`RS256` / `ES256`)
+- **検証ステップ④**: クレーム検証 — `iss`, `aud`, `exp`, `nbf`
+- **JWKS キャッシュ**: 公開鍵は TTL 付きでキャッシュ。キーローテーション時も自動対応
+- **パフォーマンス**: ローカル検証 (0.1ms) vs Introspection Endpoint (1〜10ms)
+
+
+---
+
+<!-- _class: lead -->
+# Zero Trust アーキテクチャ
+
+- Never Trust, Always Verify
+- 境界型セキュリティからの脱却
+
+
+---
+
+# Zero Trust 原則
+
+![w:760 center](assets/zero-trust.svg)
+
+<!--
+Zero Trust 5原則: 1)ネットワーク境界を信頼しない 2)最小権限 3)全通信を検査・記録 4)デバイス/ユーザーを継続検証 5)マイクロセグメンテーション
+-->
+
+---
+
+# Zero Trust AWS 実装例
+
+- **アイデンティティ検証**: IAM Identity Center + MFA 強制 / Cognito + リスクベース認証
+- **デバイス検証**: AWS Verified Access — デバイス状態確認後にアクセス許可
+- **ネットワーク分離**: VPC / Security Group / Network ACL / PrivateLink でミクロ分離
+- **通信暗号化**: TLS 1.2+ 強制 / ACM 証明書 / mTLS (ACM PCA)
+- **継続的監視**: CloudTrail + GuardDuty + Security Hub + Detective
+- **ポリシー強制**: SCP + Permission Boundaries + AWS Config Rules
+
+
+---
+
+# マイクロサービス間認証 — mTLS
+
+![w:760 center](assets/mtls-flow.svg)
+
+<!--
+mTLS: 双方向TLS。サーバーとクライアント両方が証明書を提示。ACM PCAでプライベートCA、AWS App MeshやIstioでサービスメッシュ内の自動mTLS
+-->
+
+---
+
+# サービスメッシュによる認可
+
+- **サービスメッシュ**: サービス間通信をサイドカープロキシ(Envoy)で制御・観測
+- **AWS App Mesh**: ECS/EKS 向けマネージドメッシュ。mTLS と L7 ルーティング
+- **Istio on EKS**: 高機能。mTLS自動、認証ポリシー、AuthorizationPolicy
+
+```yaml
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: payment-service-policy
+spec:
+  selector:
+    matchLabels:
+      app: payment
+  rules:
+  - from:
+    - source:
+        principals:
+          - cluster.local/ns/default/sa/order-service
+    to:
+    - operation:
+        methods: ["POST"]
+        paths: ["/payment/*"]
+```
+
+
+---
+
+<!-- _class: lead -->
+# アンチパターン
+
+- よくある失敗パターンと対策
+- 設計段階で避けるべきリスク
+
+
+---
+
+# アンチパターン①: 過剰な権限付与
+
+- ❌ **`"Action": "*"` / `"Resource": "*"`** — ワイルドカード多用。侵害時に全リソース危険
+- ❌ **共有 IAM ユーザー** — チームで共有するアクセスキー。誰の操作か追跡不能
+- ❌ **AdministratorAccess を開発者に付与** — 利便性優先でガードレールなし
+- ✅ **対策**: IAM Access Analyzer で未使用権限検出 → 最小権限ポリシーに置換
+- ✅ **対策**: SCPs でガードレール設定 + Permission Boundaries でデリゲーション制御
+- ✅ **対策**: 定期的な CloudTrail 分析で実際に使われている API のみ許可
+
+
+---
+
+# アンチパターン②: シークレット管理の誤り
+
+- ❌ **ハードコード** — コードや設定ファイルに API Key / DB パスワードを直書き
+- ❌ **環境変数の平文保存** — Lambda / ECS の環境変数に機密情報。ロールでアクセス可能
+- ❌ **長期 IAM Access Key** — ローテーション未設定。90日以上経過のキーは高リスク
+- ✅ **AWS Secrets Manager** — 自動ローテーション + 監査ログ + クロスアカウント共有
+- ✅ **SSM Parameter Store** — SecureString (KMS暗号化)。Secrets Managerより安価
+- ✅ **IAM Role で代替** — アクセスキー不要に。EC2/Lambda/ECS は Role を優先
+
+
+---
+
+# アンチパターン③: トークン検証省略
+
+- ❌ **署名検証なし** — Base64 デコードで claims を信頼。改ざんに気づかない
+- ❌ **`alg: none` 受け入れ** — アルゴリズム置換攻撃。lib で `none` 禁止必須
+- ❌ **`exp` / `aud` 未検証** — 期限切れトークンや他サービス向けトークンを受け入れ
+- ❌ **Introspection 省略** — 失効したトークンを有効と判断
+- ✅ **対策**: JWKS + `kid` ベースの署名検証を必須化
+- ✅ **対策**: `iss`, `aud`, `exp`, `nbf` の検証を JWT ライブラリで強制設定
+
+
+---
+
+# アーキテクト向け 設計チェックリスト
+
+- **認証**: [ ] MFA 強制 / [ ] パスワードポリシー / [ ] セッション有効期限 / [ ] FIDO2検討
+- **トークン**: [ ] 短命アクセストークン / [ ] Refresh Rotation / [ ] JWKS + 署名検証
+- **IAM**: [ ] 最小権限 / [ ] IAM Role優先 / [ ] SCP設定 / [ ] Access Analyzer有効化
+- **シークレット**: [ ] Secrets Manager / [ ] 長期キー棚卸し / [ ] ハードコードゼロ
+- **ネットワーク**: [ ] mTLS (マイクロサービス) / [ ] PrivateLink / [ ] VPC エンドポイント
+- **監視**: [ ] CloudTrail ALL有効 / [ ] GuardDuty / [ ] Security Hub / [ ] 定期レビュー
+
+
+---
+
+# 参考資料 (1/2)
+
+- **RFC / 標準仕様**
+- - [RFC 6749 — OAuth 2.0](https://tools.ietf.org/html/rfc6749)
+- - [RFC 7519 — JWT](https://tools.ietf.org/html/rfc7519) | [RFC 7636 — PKCE](https://tools.ietf.org/html/rfc7636)
+- - [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)
+- - [SAML 2.0 Technical Overview](https://docs.oasis-open.org/security/saml/v2.0/)
+- **セキュリティガイドライン**
+- - [NIST SP 800-207 — Zero Trust Architecture](https://csrc.nist.gov/publications/detail/sp/800-207/final)
+- - [OAuth 2.0 Security Best Current Practice (RFC 9700)](https://tools.ietf.org/html/rfc9700)
+
+
+---
+
+# 参考資料 (2/2)
+
+- **AWS ドキュメント**
+- - [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
+- - [Amazon Cognito Developer Guide](https://docs.aws.amazon.com/cognito/latest/developerguide/)
+- - [Zero Trust Architecture on AWS](https://aws.amazon.com/security/zero-trust/)
+- - [EKS IRSA Documentation](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html)
+- **その他**
+- - [Google Zanzibar Paper (2019)](https://research.google/pubs/zanzibar-googles-consistent-global-authorization-system/)
+- - [OpenFGA — ReBAC OSS](https://openfga.dev/) | [OPA — Policy Engine](https://www.openpolicyagent.org/)
+

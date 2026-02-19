@@ -1,0 +1,82 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="420" fill="#f8f9fa" rx="8"/>
+  <text x="400" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#2c3e50" font-family="sans-serif">API Gateway 認証方式比較</text>
+
+  <!-- Client -->
+  <rect x="15" y="165" width="110" height="60" rx="8" fill="#3498db" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="70" y="188" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">Client</text>
+  <text x="70" y="205" text-anchor="middle" font-size="9" fill="#d6eaf8" font-family="sans-serif">Web / Mobile</text>
+  <text x="70" y="219" text-anchor="middle" font-size="9" fill="#d6eaf8" font-family="sans-serif">/ Backend</text>
+
+  <!-- API Gateway -->
+  <rect x="190" y="140" width="150" height="110" rx="8" fill="#FF9900" style="filter:drop-shadow(3px 3px 6px rgba(0,0,0,0.2))"/>
+  <text x="265" y="170" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">API Gateway</text>
+  <text x="265" y="188" text-anchor="middle" font-size="10" fill="white" font-family="sans-serif">REST / HTTP / WebSocket</text>
+  <text x="265" y="204" text-anchor="middle" font-size="9" fill="#ffe8c0" font-family="sans-serif">認証・認可ゲートウェイ</text>
+  <text x="265" y="220" text-anchor="middle" font-size="9" fill="#ffe8c0" font-family="sans-serif">スロットリング・ロギング</text>
+  <text x="265" y="235" text-anchor="middle" font-size="9" fill="#ffe8c0" font-family="sans-serif">WAF連携</text>
+
+  <!-- Arrow: Client → API GW -->
+  <line x1="126" y1="195" x2="188" y2="195" stroke="#3498db" stroke-width="2"/>
+  <polygon points="188,195 178,190 178,200" fill="#3498db"/>
+  <text x="157" y="188" text-anchor="middle" font-size="9" fill="#3498db" font-family="sans-serif">HTTPS Request</text>
+
+  <!-- Four auth methods -->
+
+  <!-- Method 1: IAM Auth -->
+  <rect x="415" y="45" width="180" height="80" rx="8" fill="#8e44ad" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="505" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">① IAM 認証</text>
+  <text x="505" y="85" text-anchor="middle" font-size="10" fill="#e8d5f5" font-family="sans-serif">SigV4 署名付きリクエスト</text>
+  <text x="505" y="100" text-anchor="middle" font-size="9" fill="#e8d5f5" font-family="sans-serif">AWS SDK が自動処理</text>
+  <text x="505" y="115" text-anchor="middle" font-size="9" fill="#e8d5f5" font-family="sans-serif">M2M・AWS間通信に最適</text>
+
+  <!-- Method 2: Cognito Authorizer -->
+  <rect x="415" y="150" width="180" height="80" rx="8" fill="#e74c3c" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="505" y="173" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">② Cognito 認証</text>
+  <text x="505" y="190" text-anchor="middle" font-size="10" fill="#fdecea" font-family="sans-serif">Cognito JWT を検証</text>
+  <text x="505" y="206" text-anchor="middle" font-size="9" fill="#fdecea" font-family="sans-serif">API GW がトークン検証</text>
+  <text x="505" y="221" text-anchor="middle" font-size="9" fill="#fdecea" font-family="sans-serif">スコープベース認可</text>
+
+  <!-- Method 3: Lambda Authorizer -->
+  <rect x="415" y="255" width="180" height="80" rx="8" fill="#27ae60" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="505" y="278" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">③ Lambda Authorizer</text>
+  <text x="505" y="295" text-anchor="middle" font-size="10" fill="#d5f5e3" font-family="sans-serif">カスタム認証ロジック</text>
+  <text x="505" y="311" text-anchor="middle" font-size="9" fill="#d5f5e3" font-family="sans-serif">TOKEN / REQUEST タイプ</text>
+  <text x="505" y="326" text-anchor="middle" font-size="9" fill="#d5f5e3" font-family="sans-serif">IAMポリシーを返却</text>
+
+  <!-- Method 4: API Key (limited) -->
+  <rect x="415" y="355" width="180" height="50" rx="8" fill="#7f8c8d" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="505" y="376" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">④ API Key</text>
+  <text x="505" y="393" text-anchor="middle" font-size="9" fill="#ecf0f1" font-family="sans-serif">⚠ 認証ではなく識別のみ。認可には使わない</text>
+
+  <!-- Arrows from API GW to methods -->
+  <line x1="341" y1="172" x2="413" y2="85" stroke="#8e44ad" stroke-width="1.5"/>
+  <polygon points="413,85 408,95 418,92" fill="#8e44ad"/>
+
+  <line x1="341" y1="188" x2="413" y2="190" stroke="#e74c3c" stroke-width="1.5"/>
+  <polygon points="413,190 403,185 403,195" fill="#e74c3c"/>
+
+  <line x1="341" y1="205" x2="413" y2="295" stroke="#27ae60" stroke-width="1.5"/>
+  <polygon points="413,295 410,284 418,286" fill="#27ae60"/>
+
+  <line x1="341" y1="218" x2="413" y2="375" stroke="#7f8c8d" stroke-width="1.5"/>
+  <polygon points="413,375 412,364 420,367" fill="#7f8c8d"/>
+
+  <!-- Backend Lambda -->
+  <rect x="640" y="165" width="140" height="60" rx="8" fill="#e67e22" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="710" y="188" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">Backend</text>
+  <text x="710" y="205" text-anchor="middle" font-size="10" fill="#fdebd0" font-family="sans-serif">Lambda / ECS / EC2</text>
+
+  <!-- Auth methods → Backend -->
+  <line x1="596" y1="85" x2="708" y2="163" stroke="#8e44ad" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="708,163 704,153 714,155" fill="#8e44ad"/>
+
+  <line x1="596" y1="190" x2="639" y2="190" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="639,190 629,185 629,195" fill="#e74c3c"/>
+
+  <line x1="596" y1="295" x2="708" y2="226" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="708,226 706,215 714,219" fill="#27ae60"/>
+
+  <!-- Labels on arrows to backend -->
+  <text x="680" y="125" text-anchor="middle" font-size="9" fill="#7f8c8d" font-family="sans-serif">認証OK → 転送</text>
+</svg>

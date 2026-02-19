@@ -1,0 +1,84 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#f8f9fa" rx="8"/>
+  <text x="400" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#2c3e50" font-family="sans-serif">Authorization Code + PKCE フロー</text>
+
+  <!-- Actors -->
+  <rect x="30" y="45" width="130" height="44" rx="6" fill="#27ae60"/>
+  <text x="95" y="62" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">Client App</text>
+  <text x="95" y="78" text-anchor="middle" font-size="10" fill="#d5f5e3" font-family="sans-serif">(SPA / Native)</text>
+
+  <rect x="330" y="45" width="140" height="44" rx="6" fill="#3498db"/>
+  <text x="400" y="62" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">User / Browser</text>
+  <text x="400" y="78" text-anchor="middle" font-size="10" fill="#d6eaf8" font-family="sans-serif">(人間 + ブラウザ)</text>
+
+  <rect x="630" y="45" width="140" height="44" rx="6" fill="#e67e22"/>
+  <text x="700" y="62" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">Authorization</text>
+  <text x="700" y="78" text-anchor="middle" font-size="10" fill="#fdebd0" font-family="sans-serif">Server</text>
+
+  <!-- Lifelines -->
+  <line x1="95" y1="89" x2="95" y2="480" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="400" y1="89" x2="400" y2="480" stroke="#3498db" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="700" y1="89" x2="700" y2="480" stroke="#e67e22" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Step labels background -->
+  <!-- Step 1 -->
+  <rect x="6" y="108" width="18" height="18" rx="9" fill="#27ae60"/>
+  <text x="15" y="121" text-anchor="middle" font-size="10" fill="white" font-family="sans-serif">1</text>
+  <line x1="95" y1="118" x2="398" y2="118" stroke="#555" stroke-width="1.5"/>
+  <polygon points="398,118 388,113 388,123" fill="#555"/>
+  <text x="248" y="113" text-anchor="middle" font-size="10" fill="#2c3e50" font-family="sans-serif">code_verifier 生成 → SHA256 → code_challenge</text>
+
+  <!-- Step 2 -->
+  <rect x="6" y="148" width="18" height="18" rx="9" fill="#2980b9"/>
+  <text x="15" y="161" text-anchor="middle" font-size="10" fill="white" font-family="sans-serif">2</text>
+  <line x1="398" y1="158" x2="698" y2="158" stroke="#555" stroke-width="1.5"/>
+  <polygon points="698,158 688,153 688,163" fill="#555"/>
+  <text x="548" y="153" text-anchor="middle" font-size="10" fill="#2c3e50" font-family="sans-serif">認可リクエスト + code_challenge</text>
+
+  <!-- Step 3 -->
+  <rect x="776" y="188" width="18" height="18" rx="9" fill="#e67e22"/>
+  <text x="785" y="201" text-anchor="middle" font-size="10" fill="white" font-family="sans-serif">3</text>
+  <line x1="698" y1="198" x2="402" y2="198" stroke="#e67e22" stroke-width="1.5"/>
+  <polygon points="402,198 412,193 412,203" fill="#e67e22"/>
+  <text x="548" y="193" text-anchor="middle" font-size="10" fill="#e67e22" font-family="sans-serif">ログイン画面リダイレクト</text>
+
+  <!-- Step 4 -->
+  <rect x="376" y="228" width="18" height="18" rx="9" fill="#3498db"/>
+  <text x="385" y="241" text-anchor="middle" font-size="10" fill="white" font-family="sans-serif">4</text>
+  <line x1="402" y1="238" x2="698" y2="238" stroke="#555" stroke-width="1.5"/>
+  <polygon points="698,238 688,233 688,243" fill="#555"/>
+  <text x="548" y="233" text-anchor="middle" font-size="10" fill="#2c3e50" font-family="sans-serif">ユーザー認証・同意</text>
+
+  <!-- Step 5 -->
+  <rect x="776" y="268" width="18" height="18" rx="9" fill="#e67e22"/>
+  <text x="785" y="281" text-anchor="middle" font-size="10" fill="white" font-family="sans-serif">5</text>
+  <line x1="698" y1="278" x2="402" y2="278" stroke="#e67e22" stroke-width="1.5"/>
+  <polygon points="402,278 412,273 412,283" fill="#e67e22"/>
+  <text x="548" y="273" text-anchor="middle" font-size="10" fill="#e67e22" font-family="sans-serif">authorization_code + リダイレクト</text>
+
+  <!-- Step 6 -->
+  <rect x="376" y="308" width="18" height="18" rx="9" fill="#3498db"/>
+  <text x="385" y="321" text-anchor="middle" font-size="10" fill="white" font-family="sans-serif">6</text>
+  <line x1="402" y1="318" x2="97" y2="318" stroke="#555" stroke-width="1.5"/>
+  <polygon points="97,318 107,313 107,323" fill="#555"/>
+  <text x="248" y="313" text-anchor="middle" font-size="10" fill="#2c3e50" font-family="sans-serif">code コールバック受信</text>
+
+  <!-- Step 7 -->
+  <rect x="6" y="348" width="18" height="18" rx="9" fill="#27ae60"/>
+  <text x="15" y="361" text-anchor="middle" font-size="10" fill="white" font-family="sans-serif">7</text>
+  <line x1="97" y1="358" x2="698" y2="358" stroke="#e74c3c" stroke-width="2"/>
+  <polygon points="698,358 688,353 688,363" fill="#e74c3c"/>
+  <text x="400" y="348" text-anchor="middle" font-size="10" font-weight="bold" fill="#e74c3c" font-family="sans-serif">Token リクエスト: code + code_verifier</text>
+
+  <!-- Step 8 -->
+  <rect x="776" y="388" width="18" height="18" rx="9" fill="#e67e22"/>
+  <text x="785" y="401" text-anchor="middle" font-size="10" fill="white" font-family="sans-serif">8</text>
+  <line x1="698" y1="398" x2="97" y2="398" stroke="#e74c3c" stroke-width="2"/>
+  <polygon points="97,398 107,393 107,403" fill="#e74c3c"/>
+  <text x="400" y="390" text-anchor="middle" font-size="10" font-weight="bold" fill="#e74c3c" font-family="sans-serif">SHA256(verifier)==challenge 検証 → Access Token 発行</text>
+
+  <!-- PKCE box -->
+  <rect x="260" y="420" width="280" height="52" rx="6" fill="#2c3e50"/>
+  <text x="400" y="440" text-anchor="middle" font-size="11" font-weight="bold" fill="#f1c40f" font-family="sans-serif">PKCE の効果</text>
+  <text x="400" y="460" text-anchor="middle" font-size="10" fill="white" font-family="sans-serif">code が横取りされても verifier なしでは Token 取得不可</text>
+</svg>

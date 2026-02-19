@@ -1,0 +1,2081 @@
+<!DOCTYPE html><html lang="en-US"><head><title>ローカルLLM完全ガイド 2026</title><meta property="og:title" content="ローカルLLM完全ガイド 2026"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{appearance:none;background-color:initial;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear;-webkit-tap-highlight-color:transparent}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNNDAgNzBIMjBWNTBtMjAgMEwyMCA3MG00MC00MGgyMHYyMG0tMjAgMCAyMC0yMCIgY2xhc3M9ImEiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNMjAgNTBoMjB2MjBtLTIwIDAgMjAtMjBtNDAgMEg2MFYzMG0yMCAwTDYwIDUwIiBjbGFzcz0iYSIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODBNNTIgOTBWMTAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}@keyframes __bespoke_marp_transition_reduced_outgoing__{0%{opacity:1}to{opacity:0}}@keyframes __bespoke_marp_transition_reduced_incoming__{0%{mix-blend-mode:plus-lighter;opacity:0}to{mix-blend-mode:plus-lighter;opacity:1}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{::view-transition-group(*){animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-timing-function:ease}::view-transition-new(*),::view-transition-old(*){animation-delay:0s;animation-direction:var(--marp-bespoke-transition-animation-direction,normal);animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-fill-mode:both;animation-name:var(--marp-bespoke-transition-animation-name,var(--marp-bespoke-transition-animation-name-fallback,__bespoke_marp_transition_no_animation__));mix-blend-mode:normal}::view-transition-old(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_outgoing__;animation-timing-function:ease}::view-transition-new(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_incoming__;animation-timing-function:ease}::view-transition-new(root),::view-transition-old(root){animation-timing-function:linear}::view-transition-new(__bespoke_marp_transition_osc__),::view-transition-old(__bespoke_marp_transition_osc__){animation-duration:0s!important;animation-name:__bespoke_marp_transition_osc__!important}::view-transition-new(__bespoke_marp_transition_osc__){opacity:0!important}.bespoke-marp-transition-warming-up::view-transition-group(*),.bespoke-marp-transition-warming-up::view-transition-new(*),.bespoke-marp-transition-warming-up::view-transition-old(*){animation-play-state:paused!important}body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide:not(.bespoke-marp-active) *{view-transition-name:none!important}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}}@media screen and (prefers-reduced-motion:reduce){svg.bespoke-marp-slide *{view-transition-name:none!important}}@media screen{[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{inset:0;position:absolute}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{background:#000000a6;border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1;view-transition-name:__bespoke_marp_transition_osc__}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:#0000}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:#0000;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{display:block;inset:0;position:absolute}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:#000000a6;border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;white-space:pre-wrap;width:calc(100% - 40px);word-wrap:break-word;scrollbar-color:#eeeeee80 #0000;scrollbar-width:thin}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:#0000}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:#eeeeee80;border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>@charset "UTF-8";@import "https://fonts.bunny.net/css?family=Lato:400,900|Roboto+Mono:400,700&display=swap";div#\:\$p > svg > foreignObject > section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center;-webkit-text-size-adjust:100%;text-size-adjust:100%}div#\:\$p > svg > foreignObject > section::after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#\:\$p > svg > foreignObject > section:not([data-marpit-pagination])::after{display:none}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:2em;margin-block:0.67em}div#\:\$p > svg > foreignObject > section video::-webkit-media-controls{will-change:transform}@page {size:1280px 720px;margin:0}@media print{html, body{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#\:\$p > svg > foreignObject > section{page-break-before:always;break-before:page}div#\:\$p > svg > foreignObject > section, div#\:\$p > svg > foreignObject > section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;print-color-adjust:exact!important;transition:none!important}div#\:\$p > svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#\:\$p > svg > foreignObject > :where(section){container-type:size}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"]{direction:ltr}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"] > svg{overflow:visible;min-height:1px;min-width:1px}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"] > svg a{fill:blue;stroke:blue}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"][display="true"]{display:block;text-align:center;margin:1em 0}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"][display="true"][width="full"]{display:flex}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"][justify="left"]{text-align:left}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"][justify="right"]{text-align:right}div#\:\$p > svg > foreignObject > section g[data-mml-node="merror"] > g{fill:red;stroke:red}div#\:\$p > svg > foreignObject > section g[data-mml-node="merror"] > rect[data-background]{fill:yellow;stroke:none}div#\:\$p > svg > foreignObject > section g[data-mml-node="mtable"] > line[data-line], div#\:\$p > svg > foreignObject > section svg[data-table] > g > line[data-line]{stroke-width:70px;fill:none}div#\:\$p > svg > foreignObject > section g[data-mml-node="mtable"] > rect[data-frame], div#\:\$p > svg > foreignObject > section svg[data-table] > g > rect[data-frame]{stroke-width:70px;fill:none}div#\:\$p > svg > foreignObject > section g[data-mml-node="mtable"] > .mjx-dashed, div#\:\$p > svg > foreignObject > section svg[data-table] > g > .mjx-dashed{stroke-dasharray:140}div#\:\$p > svg > foreignObject > section g[data-mml-node="mtable"] > .mjx-dotted, div#\:\$p > svg > foreignObject > section svg[data-table] > g > .mjx-dotted{stroke-linecap:round;stroke-dasharray:0,140}div#\:\$p > svg > foreignObject > section g[data-mml-node="mtable"] > g > svg{overflow:visible}div#\:\$p > svg > foreignObject > section [jax="SVG"] mjx-tool{display:inline-block;position:relative;width:0;height:0}div#\:\$p > svg > foreignObject > section [jax="SVG"] mjx-tool > mjx-tip{position:absolute;top:0;left:0}div#\:\$p > svg > foreignObject > section mjx-tool > mjx-tip{display:inline-block;padding:.2em;border:1px solid #888;font-size:70%;background-color:#F8F8F8;color:black;box-shadow:2px 2px 5px #AAAAAA}div#\:\$p > svg > foreignObject > section g[data-mml-node="maction"][data-toggle]{cursor:pointer}div#\:\$p > svg > foreignObject > section mjx-status{display:block;position:fixed;left:1em;bottom:1em;min-width:25%;padding:.2em .4em;border:1px solid #888;font-size:90%;background-color:#F8F8F8;color:black}div#\:\$p > svg > foreignObject > section foreignObject[data-mjx-xml]{font-family:initial;line-height:normal;overflow:visible}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"] path[data-c], div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"] use[data-c]{stroke-width:3}@media print{div#\:\$p > svg > foreignObject > section mjx-container[jax=SVG] path[data-c],div#\:\$p > svg > foreignObject > section mjx-container[jax=SVG] use[data-c]{stroke-width:0}}div#\:\$p > svg > foreignObject > section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}/*!
+ * Marp / Marpit Gaia theme.
+ *
+ * @theme gaia
+ * @author Yuki Hattori
+ *
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ * @size 4:3 960px 720px
+ */div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code.hljs{display:block;overflow-x:auto;padding:1em}div#\:\$p > svg > foreignObject > section code.hljs{padding:3px 5px}div#\:\$p > svg > foreignObject > section .hljs{background:#000;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-comment,div#\:\$p > svg > foreignObject > section .hljs-quote{color:#aeaeae;font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-keyword,div#\:\$p > svg > foreignObject > section .hljs-selector-tag,div#\:\$p > svg > foreignObject > section .hljs-type{color:#e28964}div#\:\$p > svg > foreignObject > section .hljs-string{color:#65b042}div#\:\$p > svg > foreignObject > section .hljs-subst{color:#daefa3}div#\:\$p > svg > foreignObject > section .hljs-link,div#\:\$p > svg > foreignObject > section .hljs-regexp{color:#e9c062}div#\:\$p > svg > foreignObject > section .hljs-name,div#\:\$p > svg > foreignObject > section .hljs-section,div#\:\$p > svg > foreignObject > section .hljs-tag,div#\:\$p > svg > foreignObject > section .hljs-title{color:#89bdff}div#\:\$p > svg > foreignObject > section .hljs-class .hljs-title,div#\:\$p > svg > foreignObject > section .hljs-doctag,div#\:\$p > svg > foreignObject > section .hljs-title.class_{text-decoration:underline}div#\:\$p > svg > foreignObject > section .hljs-bullet,div#\:\$p > svg > foreignObject > section .hljs-number,div#\:\$p > svg > foreignObject > section .hljs-symbol{color:#3387cc}div#\:\$p > svg > foreignObject > section .hljs-params,div#\:\$p > svg > foreignObject > section .hljs-template-variable,div#\:\$p > svg > foreignObject > section .hljs-variable{color:#3e87e3}div#\:\$p > svg > foreignObject > section .hljs-attribute{color:#cda869}div#\:\$p > svg > foreignObject > section .hljs-meta{color:#8996a8}div#\:\$p > svg > foreignObject > section .hljs-formula{background-color:#0e2231;color:#f8f8f8;font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-addition{background-color:#253b22;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-deletion{background-color:#420e09;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-selector-class{color:#9b703f}div#\:\$p > svg > foreignObject > section .hljs-selector-id{color:#8b98ab}div#\:\$p > svg > foreignObject > section .hljs-emphasis{font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-strong{font-weight:700}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){margin:.5em 0 0}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{font-weight:inherit}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6)::part(auto-scaling){max-height:580px}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:1.8em}div#\:\$p > svg > foreignObject > section :is(h2, marp-h2){font-size:1.5em}div#\:\$p > svg > foreignObject > section :is(h3, marp-h3){font-size:1.3em}div#\:\$p > svg > foreignObject > section :is(h4, marp-h4){font-size:1.1em}div#\:\$p > svg > foreignObject > section :is(h5, marp-h5){font-size:1em}div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){font-size:.9em}div#\:\$p > svg > foreignObject > section blockquote,div#\:\$p > svg > foreignObject > section p{margin:1em 0 0}div#\:\$p > svg > foreignObject > section ol>li,div#\:\$p > svg > foreignObject > section ul>li{margin:.3em 0 0}div#\:\$p > svg > foreignObject > section ol>li>p,div#\:\$p > svg > foreignObject > section ul>li>p{margin:.6em 0 0}div#\:\$p > svg > foreignObject > section code{display:inline-block;font-family:Roboto Mono,monospace;font-size:.8em;letter-spacing:0;margin:-.1em .15em;padding:.1em .2em;vertical-align:baseline}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){display:block;margin:1em 0 0;overflow:visible}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{box-sizing:border-box;font-size:.7em;margin:0;min-width:100%;padding:.5em}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)::part(auto-scaling){max-height:calc(580px - 1em)}div#\:\$p > svg > foreignObject > section blockquote{margin:1em 0 0;padding:0 1em;position:relative}div#\:\$p > svg > foreignObject > section blockquote:after,div#\:\$p > svg > foreignObject > section blockquote:before{content:"“";display:block;font-family:Times New Roman,serif;font-weight:700;position:absolute}div#\:\$p > svg > foreignObject > section blockquote:before{left:0;top:0}div#\:\$p > svg > foreignObject > section blockquote:after{bottom:0;right:0;transform:rotate(180deg)}div#\:\$p > svg > foreignObject > section blockquote>:first-child{margin-top:0}div#\:\$p > svg > foreignObject > section mark{background:transparent}div#\:\$p > svg > foreignObject > section table{border-collapse:collapse;border-spacing:0;margin:1em 0 0}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{border-style:solid;border-width:1px;padding:.2em .4em}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header,div#\:\$p > svg > foreignObject > section:after{box-sizing:border-box;font-size:66%;height:70px;line-height:50px;overflow:hidden;padding:10px 25px;position:absolute}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:66%}div#\:\$p > svg > foreignObject > section header{top:0}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header{left:0;right:0}div#\:\$p > svg > foreignObject > section footer{bottom:0}div#\:\$p > svg > foreignObject > section{--color-background:light-dark(#fff8e1, #455a64);--color-background-stripe:light-dark(
+    rgba(69,90,100,.1),
+    rgba(255,248,225,.1)
+  );--color-foreground:light-dark(#455a64, #fff8e1);--color-dimmed:light-dark(
+    #6a7a7d,
+    #dad8c8
+  );--color-highlight:light-dark(#0288d1, #81d4fa);background-color:var(--color-background);background-image:linear-gradient(135deg, hsla(0,0%,53%,0), hsla(0,0%,53%,.02) 50%, hsla(0,0%,100%,0) 0, hsla(0,0%,100%,.05));color:var(--color-foreground);color-scheme:light;font-family:Lato,Avenir Next,Avenir,Trebuchet MS,Segoe UI,sans-serif;font-size:35px;height:720px;letter-spacing:1.25px;line-height:1.35;overflow-wrap:break-word;padding:70px;width:1280px}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size:35px}div#\:\$p > svg > foreignObject > section:after{bottom:0;font-size:80%;right:0}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:80%}div#\:\$p > svg > foreignObject > section a,div#\:\$p > svg > foreignObject > section mark{color:var(--color-highlight)}div#\:\$p > svg > foreignObject > section code{background:var(--color-dimmed);color:var(--color-background)}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{color:var(--color-highlight)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){background:var(--color-foreground)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)>code{background:transparent}div#\:\$p > svg > foreignObject > section blockquote:after,div#\:\$p > svg > foreignObject > section blockquote:before,div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header,div#\:\$p > svg > foreignObject > section section:after{color:var(--color-dimmed)}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{border-color:var(--color-foreground)}div#\:\$p > svg > foreignObject > section table thead th{background:var(--color-foreground);color:var(--color-background)}div#\:\$p > svg > foreignObject > section table tbody>tr:nth-child(odd) td,div#\:\$p > svg > foreignObject > section table tbody>tr:nth-child(odd) th{background:var(--color-background-stripe, transparent)}div#\:\$p > svg > foreignObject > section>:first-child,div#\:\$p > svg > foreignObject > section>header:first-child+*{margin-top:0}div#\:\$p > svg > foreignObject > section:where(.invert){color-scheme:dark}div#\:\$p > svg > foreignObject > section:where(.gaia){--color-background:#0288d1;--color-background-stripe:rgba(255,248,225,.1);--color-foreground:#fff8e1;--color-dimmed:#cce2de;--color-highlight:#81d4fa;}div#\:\$p > svg > foreignObject > section:where(.lead){align-items:stretch;flex-flow:column nowrap;place-content:safe center center}div#\:\$p > svg > foreignObject > section:where(.lead) :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h6, marp-h6){text-align:center}div#\:\$p > svg > foreignObject > section:where(.lead) p{text-align:center}div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h1, marp-h1),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h2, marp-h2),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h3, marp-h3),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h4, marp-h4),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h5, marp-h5),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h6, marp-h6),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>p{text-align:left}div#\:\$p > svg > foreignObject > section:where(.lead) ol>li>p,div#\:\$p > svg > foreignObject > section:where(.lead) ul>li>p{text-align:left}div#\:\$p > svg > foreignObject > section:where(.lead) table{margin-left:auto;margin-right:auto}div#\:\$p > svg > foreignObject > section{width:1280px;height:720px}div#\:\$p > svg > foreignObject > section{font-size:1.05em}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size: 1.05em}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{font-size:0.58em;line-height:1.4}div#\:\$p > svg > foreignObject > section.section-slide{background:#1a1a2e}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]{columns:initial!important;display:block!important;padding:0!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::after, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::after{display:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction="vertical"]{flex-direction:column}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split] > div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split, 50%)}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split="right"] > div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure > figcaption{position:absolute;border:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;white-space:nowrap;width:1px}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"], div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"]{background:transparent!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"], div#\:\$p > svg[data-marpit-svg] > foreignObject[data-marpit-advanced-background="pseudo"]{pointer-events:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background-split]{width:100%;height:100%}
+</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id=":$p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-class="lead" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="lead" data-marpit-pagination="1" style="--class:lead;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+
+<h1 id="%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%ABllm%E5%AE%8C%E5%85%A8%E3%82%AC%E3%82%A4%E3%83%89-2026">ローカルLLM完全ガイド 2026</h1>
+<ul>
+<li>エンジニアのための実践的ガイド</li>
+<li>セットアップ・最適化・本番活用まで</li>
+<li>2026年2月版</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="2" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E6%9C%AC%E6%97%A5%E3%81%AE%E3%82%A2%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%80">本日のアジェンダ</h1>
+<ul>
+<li>
+<ol>
+<li>ローカルLLMとは？（概念・定義・エコシステム）</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>なぜローカルLLMか？（メリット・コスト・セキュリティ）</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>主要モデルカタログ（Llama / Mistral / Phi / Gemma / DeepSeek）</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>量子化と形式（GGUF / AWQ / GPTQ）</li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>実行ツール（Ollama / LM Studio / vLLM）</li>
+</ol>
+</li>
+<li>
+<ol start="6">
+<li>ハードウェア要件（CPU / GPU / Apple Silicon）</li>
+</ol>
+</li>
+<li>
+<ol start="7">
+<li>実践：Ollamaセットアップ &amp; API活用</li>
+</ol>
+</li>
+<li>
+<ol start="8">
+<li>アプリ統合・RAG・ユースケース・最適化</li>
+</ol>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-class="lead" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="lead" data-marpit-pagination="3" style="--class:lead;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+
+<h1 id="%E6%9C%AC%E6%97%A5%E3%81%AE%E3%82%B4%E3%83%BC%E3%83%AB">本日のゴール</h1>
+<ul>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> ローカルLLMの全体像と選択基準を理解する</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 自分の環境でモデルを動かせるようになる</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> アプリケーションへの統合方法を把握する</li>
+<li><img class="emoji" draggable="false" alt="✅" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" data-marp-twemoji=""/> 本番環境での活用パターンを知る</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-class="lead" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="lead" data-marpit-pagination="4" style="--class:lead;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+
+<h1 id="%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%ABllm%E3%81%A8%E3%81%AF">ローカルLLMとは？</h1>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="5" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="llm%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF%E3%81%8A%E3%81%95%E3%82%89%E3%81%84">LLMの仕組みおさらい</h1>
+<ul>
+<li><strong>LLM（大規模言語モデル）</strong>: 大量テキストで学習したニューラルネットワーク</li>
+<li><strong>トークン</strong>: テキストをモデルが処理する最小単位（単語の一部〜数文字）</li>
+<li><strong>推論（Inference）</strong>: 学習済みモデルを使って出力を生成するプロセス</li>
+<li><strong>パラメータ</strong>: モデルの重み（7B = 70億個）→ モデルの「知識」が詰まった数値</li>
+<li>学習（Training）は数百〜数千GPU×数週間が必要</li>
+<li><strong>推論はずっと安価</strong> → ローカル実行が現実的になった理由</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="6" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%ABllm%E3%81%AE%E5%AE%9A%E7%BE%A9">ローカルLLMの定義</h1>
+<ul>
+<li><strong>ローカルLLM</strong>: クラウドAPIを使わず、自分のマシン上で動作するLLM</li>
+<li>データは外部に送信されない → <strong>プライバシー完全保護</strong></li>
+<li>ネットワーク接続不要 → <strong>オフライン動作可能</strong></li>
+<li>API料金ゼロ → <strong>コスト固定化</strong></li>
+<li>モデルのカスタマイズ自由度が高い</li>
+<li>代表的な実行形態: ラップトップ、サーバー、エッジデバイス</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="7" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89llm-vs-%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%ABllm">クラウドLLM vs ローカルLLM</h1>
+<p><img src="../assets/cloud-vs-local.svg" alt="center" style="width:900px;" /></p>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="8" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%ABllm%E3%82%A8%E3%82%B3%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E5%85%A8%E4%BD%93%E5%9B%B3">ローカルLLMエコシステム全体図</h1>
+<p><img src="../assets/ecosystem.svg" alt="center" style="width:950px;" /></p>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="9" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="2024-2026%E5%B9%B4%E3%81%AE%E3%83%88%E3%83%AC%E3%83%B3%E3%83%89">2024-2026年のトレンド</h1>
+<ul>
+<li><strong>小型化の加速</strong>: 7Bモデルが GPT-3.5 相当の性能に到達</li>
+<li><strong>量子化の普及</strong>: 4bit量子化で精度劣化を最小化しつつ圧縮</li>
+<li><strong>Apple Silicon革命</strong>: M3/M4 Macで実用的なローカル推論が可能に</li>
+<li><strong>マルチモーダル化</strong>: ビジョン・音声対応モデルの急増（LLaVA, Whisper等）</li>
+<li><strong>オープンソース優勢</strong>: Meta/Mistral/Google がオープンモデルを積極公開</li>
+<li><strong>エッジ展開</strong>: スマートフォン・組み込みデバイスでも動作開始</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-class="lead" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="lead" data-marpit-pagination="10" style="--class:lead;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+
+<h1 id="%E3%81%AA%E3%81%9C%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%ABllm%E3%81%8B">なぜローカルLLMか？</h1>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="11" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%ABllm%E3%82%92%E9%81%B8%E3%81%B64%E3%81%A4%E3%81%AE%E7%90%86%E7%94%B1">ローカルLLMを選ぶ4つの理由</h1>
+<p><img src="../assets/benefits.svg" alt="center" style="width:900px;" /></p>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="12" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%83%97%E3%83%A9%E3%82%A4%E3%83%90%E3%82%B7%E3%83%BC%E3%83%BB%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3">プライバシー・データセキュリティ</h1>
+<ul>
+<li><strong>機密データをクラウドに送信しない</strong> → 情報漏洩リスクゼロ</li>
+<li>医療・法務・金融データも安全に処理可能</li>
+<li>GDPR / 個人情報保護法 に完全準拠</li>
+<li>社内コードをAPIに送らずAI補完が可能</li>
+<li>データ保持ポリシーの懸念が不要</li>
+<li><strong>エアギャップ環境</strong>（インターネット非接続）でも動作</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="13" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%82%B3%E3%82%B9%E3%83%88%E6%AF%94%E8%BC%83%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89api-vs-%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB">コスト比較：クラウドAPI vs ローカル</h1>
+<ul>
+<li><strong>GPT-4o</strong>: 約 $5/100万トークン (入力) + $15/100万トークン (出力)</li>
+<li><strong>Claude 3.5 Sonnet</strong>: 約 $3/$15 per 100万トークン</li>
+<li><strong>日常業務での月間コスト目安</strong>: エンジニア1人 $20〜200+</li>
+<li><strong>ローカルLLM（Ollama + 7Bモデル）</strong>: 電気代のみ ≈ 月数十円〜数百円</li>
+<li><strong>ROI</strong>: RTX 4060 Ti ($400) → 約4〜6ヶ月でペイバック</li>
+<li>大量バッチ処理（ログ分析、コード生成）でコスト差が顕著</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="14" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%82%AA%E3%83%95%E3%83%A9%E3%82%A4%E3%83%B3%E5%88%A9%E7%94%A8%E3%83%BB%E4%BD%8E%E3%83%AC%E3%82%A4%E3%83%86%E3%83%B3%E3%82%B7">オフライン利用・低レイテンシ</h1>
+<ul>
+<li><strong>ネットワーク遅延ゼロ</strong> → 初回トークンまでの時間が短い</li>
+<li>機内・僻地・障害時でも安定動作</li>
+<li>レスポンスが安定 → SLAを自社でコントロール可能</li>
+<li>同一リクエストでも気象・負荷変動による遅延がない</li>
+<li><strong>GPU搭載マシンなら</strong>: Llama 3 8B で 50〜100 tokens/sec</li>
+<li>コード補完・リアルタイム応答に実用的</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-class="lead" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="lead" data-marpit-pagination="15" style="--class:lead;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+
+<h1 id="%E4%B8%BB%E8%A6%81%E3%83%A2%E3%83%87%E3%83%AB%E3%82%AB%E3%82%BF%E3%83%AD%E3%82%B0">主要モデルカタログ</h1>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="16" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%83%A2%E3%83%87%E3%83%AB%E3%83%9D%E3%82%B8%E3%82%B7%E3%83%A7%E3%83%8B%E3%83%B3%E3%82%B0%E3%83%9E%E3%83%83%E3%83%97">モデルポジショニングマップ</h1>
+<p><img src="../assets/model-map.svg" alt="center" style="width:950px;" /></p>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="17" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="meta-llama-3x-%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA">Meta: Llama 3.x シリーズ</h1>
+<ul>
+<li><strong>Llama 3.2</strong>: 1B / 3B（超軽量・エッジ向け）、11B / 90B（マルチモーダル）</li>
+<li><strong>Llama 3.3</strong>: 70B 命令チューニング、Llama 3.1 405B相当の性能</li>
+<li><strong>ライセンス</strong>: Meta Llama License（商用利用可、月間ユーザー数制限あり）</li>
+<li>Ollama: <code>ollama pull llama3.2</code> / <code>ollama pull llama3.3</code></li>
+<li><strong>強み</strong>: バランス良好、コミュニティ最大、ファインチューニング事例豊富</li>
+<li><strong>用途</strong>: 汎用チャット、コード生成、ツール利用、RAG</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="18" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="mistral-ai-mistral--mixtral">Mistral AI: Mistral / Mixtral</h1>
+<ul>
+<li><strong>Mistral 7B</strong>: 小型ながら高品質、Apache 2.0 ライセンス</li>
+<li><strong>Mixtral 8x7B</strong>: MoE（Mixture of Experts）アーキテクチャ、実質13B相当の計算量</li>
+<li><strong>Mixtral 8x22B</strong>: より大型のMoEモデル</li>
+<li><strong>Mistral Large 2</strong>: フロンティアモデル、ローカル版は要スペック</li>
+<li><strong>強み</strong>: 欧州発、フランス語・多言語に強い、Apache 2.0で商用利用しやすい</li>
+<li>Ollama: <code>ollama pull mistral</code> / <code>ollama pull mixtral</code></li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="19" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="microsoft-phi-4">Microsoft: Phi-4</h1>
+<ul>
+<li><strong>Phi-4</strong>: 14Bパラメータながら驚異的な推論性能</li>
+<li><strong>特徴</strong>: 数学・科学的推論に特化、Small Language Model (SLM) の最高峰</li>
+<li><strong>Phi-3.5-mini</strong>: 3.8B、エッジデバイス向け</li>
+<li><strong>ライセンス</strong>: MIT License → 完全商用利用可</li>
+<li><strong>強み</strong>: 小サイズで高精度、教育・推論タスクに最適</li>
+<li>Ollama: <code>ollama pull phi4</code> / HuggingFace でダウンロード可能</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="20" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="google-gemma-3">Google: Gemma 3</h1>
+<ul>
+<li><strong>Gemma 3</strong>: 1B / 4B / 12B / 27B のラインナップ</li>
+<li><strong>特徴</strong>: Gemini 技術を転用、マルチモーダル対応（12B/27B）</li>
+<li><strong>128Kコンテキスト</strong>: 長文ドキュメント処理に強い</li>
+<li><strong>140以上の言語対応</strong>: 日本語も高品質</li>
+<li><strong>ライセンス</strong>: Gemma Terms of Use（商用利用可）</li>
+<li>Ollama: <code>ollama pull gemma3</code> / <code>ollama pull gemma3:27b</code></li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="21" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="deepseek--qwen--%E3%81%9D%E3%81%AE%E4%BB%96%E6%B3%A8%E7%9B%AE%E3%83%A2%E3%83%87%E3%83%AB">DeepSeek / Qwen / その他注目モデル</h1>
+<ul>
+<li><strong>DeepSeek-R1</strong>: 671B（MoE）、GPT-4o級の推論、MIT License</li>
+<li><strong>DeepSeek-R1-Distill</strong>: 1.5B〜70B 蒸留版 → ローカル実行可能</li>
+<li><strong>Qwen 2.5</strong>: アリババ、0.5B〜72B、日本語・コード強い</li>
+<li><strong>Qwen 2.5-Coder</strong>: コード特化、32B まで</li>
+<li><strong>Command-R</strong>: Cohere、RAGに特化設計</li>
+<li><strong>StarCoder2</strong>: コード生成特化、15B</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="22" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%83%A2%E3%83%87%E3%83%AB%E9%81%B8%E6%8A%9E%E3%83%95%E3%83%AD%E3%83%BC%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88">モデル選択フローチャート</h1>
+<p><img src="../assets/model-selection.svg" alt="center" style="width:900px;" /></p>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-class="lead" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="lead" data-marpit-pagination="23" style="--class:lead;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+
+<h1 id="%E9%87%8F%E5%AD%90%E5%8C%96%E3%81%A8%E5%BD%A2%E5%BC%8F">量子化と形式</h1>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="24" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%81%AA%E3%81%9C%E9%87%8F%E5%AD%90%E5%8C%96%E3%81%8C%E5%BF%85%E8%A6%81%E3%81%8B">なぜ量子化が必要か</h1>
+<p><img src="../assets/quantization-concept.svg" alt="center" style="width:900px;" /></p>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="25" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E4%B8%BB%E8%A6%81%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%88%E6%AF%94%E8%BC%83gguf--awq--gptq">主要フォーマット比較：GGUF / AWQ / GPTQ</h1>
+<ul>
+<li><strong>GGUF（旧GGML）</strong>: llama.cpp形式。CPUでも動作、Ollama/LM Studioで利用</li>
+<li><strong>AWQ（Activation-aware Weight Quantization）</strong>: GPU向け高精度量子化</li>
+<li><strong>GPTQ</strong>: GPU向け4bit量子化、推論速度重視</li>
+<li><strong>EXL2</strong>: ExLlamaV2形式、AWQより高速・高精度</li>
+<li><strong>bitsandbytes</strong>: HuggingFace用、動的量子化（8bit/4bit）</li>
+<li><strong>用途別推奨</strong>: ローカル汎用→GGUF、GPU本番→AWQ/EXL2</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="26" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E9%87%8F%E5%AD%90%E5%8C%96%E3%83%AC%E3%83%99%E3%83%AB%E3%81%AE%E6%AF%94%E8%BC%83">量子化レベルの比較</h1>
+<ul>
+<li><strong>Q2_K</strong>: 2bit、最小サイズ（7B→約2.5GB）、精度大幅劣化</li>
+<li><strong>Q4_K_M</strong>: 4bit（推奨）、7B→約4.1GB、精度劣化最小</li>
+<li><strong>Q5_K_M</strong>: 5bit、7B→約4.8GB、精度とサイズのベストバランス</li>
+<li><strong>Q8_0</strong>: 8bit、7B→約7.2GB、ほぼ元精度</li>
+<li><strong>F16</strong>: 半精度浮動小数点、7B→約14GB、完全精度</li>
+<li><strong>実用推奨</strong>: VRAM 4-8GB → Q4_K_M、8-12GB → Q5_K_M/Q8_0</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="27" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E7%B2%BE%E5%BA%A6-vs-%E9%80%9F%E5%BA%A6-vs-%E3%83%A1%E3%83%A2%E3%83%AA%E3%81%AE%E3%83%88%E3%83%AC%E3%83%BC%E3%83%89%E3%82%AA%E3%83%95">精度 vs 速度 vs メモリのトレードオフ</h1>
+<p><img src="../assets/quant-tradeoff.svg" alt="center" style="width:900px;" /></p>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-class="lead" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="lead" data-marpit-pagination="28" style="--class:lead;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+
+<h1 id="%E5%AE%9F%E8%A1%8C%E3%83%84%E3%83%BC%E3%83%AB">実行ツール</h1>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="29" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%ABllm%E3%83%84%E3%83%BC%E3%83%AB%E3%82%A8%E3%82%B3%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0">ローカルLLMツールエコシステム</h1>
+<p><img src="../assets/tools-ecosystem.svg" alt="center" style="width:950px;" /></p>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="30" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="ollama%E4%B8%80%E7%95%AA%E6%89%8B%E8%BB%BD%E3%81%AA%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%ABllm%E5%AE%9F%E8%A1%8C%E7%92%B0%E5%A2%83">Ollama：一番手軽なローカルLLM実行環境</h1>
+<ul>
+<li><strong>概要</strong>: macOS/Linux/Windows対応のワンクリックLLM実行ツール</li>
+<li><strong>OpenAI互換API</strong>: <code>http://localhost:11434/v1</code> でAPIサーバーとして動作</li>
+<li><strong>モデル管理</strong>: <code>ollama pull/run/list/rm</code> でDockerライクに操作</li>
+<li><strong>Modelfile</strong>: カスタムプロンプト・パラメータを定義可能</li>
+<li><strong>GPU自動検出</strong>: CUDA / ROCm / Metal を自動利用</li>
+<li>利用可能モデル: <code>https://ollama.com/library</code> で確認</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="31" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="lm-studiogui%E3%81%A7%E7%9B%B4%E6%84%9F%E7%9A%84%E3%81%AB%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%ABllm">LM Studio：GUIで直感的にローカルLLM</h1>
+<ul>
+<li><strong>概要</strong>: macOS/Windows/Linux向けデスクトップアプリ（無料）</li>
+<li><strong>HuggingFaceブラウザ内蔵</strong>: GGUFモデルを検索・ダウンロード</li>
+<li><strong>ChatUI</strong>: ブラウザ不要でチャット可能</li>
+<li><strong>ローカルサーバー</strong>: OpenAI互換APIをGUIで起動</li>
+<li><strong>GPU層制御</strong>: モデルの何層をGPUオフロードするか手動設定可能</li>
+<li><strong>推奨用途</strong>: 非エンジニアとの共有、初回試行、モデル比較</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="32" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="llamacpp%E8%BB%BD%E9%87%8F%E3%83%BB%E9%AB%98%E9%80%9F%E3%81%AA%E4%BD%8E%E3%83%AC%E3%83%99%E3%83%AB%E5%AE%9F%E8%A1%8C">llama.cpp：軽量・高速な低レベル実行</h1>
+<ul>
+<li><strong>概要</strong>: C/C++実装のLLM推論エンジン（Ollama の内部エンジン）</li>
+<li><strong>対応</strong>: CPU (x86/ARM)、Apple Metal、CUDA、Vulkan、OpenBLAS</li>
+<li><strong>特徴</strong>: 依存ライブラリ最小、組み込み・エッジに最適</li>
+<li><strong>サーバーモード</strong>: <code>--server</code> フラグでOpenAI互換HTTPサーバー起動</li>
+<li><strong>パフォーマンスチューニング</strong>: <code>-ngl</code>（GPU層数）<code>-t</code>（スレッド数）で細かく制御</li>
+<li><strong>Python binding</strong>: <code>llama-cpp-python</code> でPythonから直接利用可</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="33" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="vllm%E6%9C%AC%E7%95%AA%E3%83%BB%E9%AB%98%E3%82%B9%E3%83%AB%E3%83%BC%E3%83%97%E3%83%83%E3%83%88%E5%90%91%E3%81%91">vLLM：本番・高スループット向け</h1>
+<ul>
+<li><strong>概要</strong>: UC Berkeley発の高効率LLM推論エンジン（CUDA GPU必須）</li>
+<li><strong>PagedAttention</strong>: KVキャッシュを効率管理 → スループット最大24倍向上</li>
+<li><strong>連続バッチング</strong>: 複数リクエストをまとめて処理 → GPU稼働率最大化</li>
+<li><strong>OpenAI互換API</strong>: 本番サービスとほぼ同じAPIで利用可能</li>
+<li><strong>サポートモデル</strong>: LLaMA, Mistral, Qwen, Phi, Gemma 等すべて対応</li>
+<li><strong>推奨用途</strong>: チームサーバー、API サービス、バッチ処理パイプライン</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-class="lead" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="lead" data-marpit-pagination="34" style="--class:lead;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+
+<h1 id="%E3%83%8F%E3%83%BC%E3%83%89%E3%82%A6%E3%82%A7%E3%82%A2%E8%A6%81%E4%BB%B6">ハードウェア要件</h1>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="35" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="cpu--gpu--npu-%E3%81%AE%E5%BD%B9%E5%89%B2%E5%88%86%E6%8B%85">CPU / GPU / NPU の役割分担</h1>
+<p><img src="../assets/cpu-gpu-npu.svg" alt="center" style="width:900px;" /></p>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="36" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="vram%E3%81%A8%E3%83%A2%E3%83%87%E3%83%AB%E3%82%B5%E3%82%A4%E3%82%BA%E3%81%AE%E7%9B%AE%E5%AE%89">VRAMとモデルサイズの目安</h1>
+<p><img src="../assets/vram-matrix.svg" alt="center" style="width:900px;" /></p>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="37" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="apple-siliconmetal%E3%81%AE%E6%B4%BB%E7%94%A8">Apple Silicon（Metal）の活用</h1>
+<ul>
+<li><strong>統合メモリアーキテクチャ</strong>: CPU/GPU がメモリを共有 → VRAMとRAMの区別なし</li>
+<li><strong>M3 Pro (36GB RAM)</strong>: Llama 3 70B Q4 が実用速度（20-30 tok/s）で動作</li>
+<li><strong>M4 Max (128GB RAM)</strong>: 最大 671B MoEモデルも動作可能</li>
+<li><strong>Ollama</strong>: Metal 自動検出、追加設定不要</li>
+<li><strong>電力効率</strong>: NVIDIA RTX4090 比でワットあたり性能が高い</li>
+<li><strong>推奨</strong>: 開発者の日常利用なら M3/M4 MacBook Pro が最適解の一つ</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="38" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%82%B3%E3%82%B9%E3%83%91%E6%9C%80%E9%81%A9%E5%8C%96%E3%82%AC%E3%82%A4%E3%83%89">コスパ最適化ガイド</h1>
+<ul>
+<li><strong>予算 ～$300</strong>: RTX 3060 (12GB) → Llama 3.1 8B Q8 / 13B Q4</li>
+<li><strong>予算 $400-600</strong>: RTX 4060 Ti (16GB) → 34B Q4 まで快適</li>
+<li><strong>予算 $800-1200</strong>: RTX 4070 Ti Super (16GB) → 最高効率帯</li>
+<li><strong>予算 $2000+</strong>: RTX 4090 (24GB) / A6000 → 70B Q4 快適動作</li>
+<li><strong>サーバー活用</strong>: 2×RTX 3090 (24GB×2) → テンソル並列で70B F16</li>
+<li><strong>クラウドGPU</strong>: RunPod / Vast.ai → 時間課金で大型モデルを試す</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-class="lead" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="lead" data-marpit-pagination="39" style="--class:lead;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+
+<h1 id="%E5%AE%9F%E8%B7%B5ollama%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97">実践：Ollamaセットアップ</h1>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="40" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%8B%E3%82%89%E3%83%A2%E3%83%87%E3%83%AB%E8%B5%B7%E5%8B%95%E3%81%BE%E3%81%A7">インストールからモデル起動まで</h1>
+<ul>
+<li>macOS/Linux ではワンライナーでインストール完了</li>
+<li>モデルは <code>ollama pull</code> で自動ダウンロード（GGUF形式）</li>
+<li>起動後は <code>http://localhost:11434</code> でAPIサーバーが待機</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash"><span class="hljs-comment"># インストール (macOS / Linux)</span>
+curl -fsSL https://ollama.com/install.sh | sh
+
+<span class="hljs-comment"># Windows: https://ollama.com/download からインストーラをダウンロード</span>
+
+<span class="hljs-comment"># モデルのダウンロードと起動</span>
+ollama pull llama3.2          <span class="hljs-comment"># 3B モデル（約2GB）</span>
+ollama pull llama3.3:70b      <span class="hljs-comment"># 70B モデル（要大容量VRAM）</span>
+ollama pull deepseek-r1:7b    <span class="hljs-comment"># DeepSeek R1 蒸留版</span>
+
+<span class="hljs-comment"># インタラクティブチャット</span>
+ollama run llama3.2
+ollama run llama3.2 <span class="hljs-string">&quot;Pythonでフィボナッチ数列を書いて&quot;</span>
+</code></pre>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="41" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="openai%E4%BA%92%E6%8F%9Bapi%E3%81%AE%E5%88%A9%E7%94%A8">OpenAI互換APIの利用</h1>
+<ul>
+<li>OllamaはOpenAI互換エンドポイントを提供</li>
+<li>既存のOpenAI SDKコードをほぼそのまま流用可能</li>
+<li>環境変数を切り替えるだけでローカル/クラウドを切替</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">OpenAI</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;openai&quot;</span>;
+
+<span class="hljs-comment">// Ollama をOpenAI互換として利用</span>
+<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> <span class="hljs-title class_">OpenAI</span>({
+  <span class="hljs-attr">baseURL</span>: <span class="hljs-string">&quot;http://localhost:11434/v1&quot;</span>,
+  <span class="hljs-attr">apiKey</span>: <span class="hljs-string">&quot;ollama&quot;</span>, <span class="hljs-comment">// 任意の文字列</span>
+});
+
+<span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> client.<span class="hljs-property">chat</span>.<span class="hljs-property">completions</span>.<span class="hljs-title function_">create</span>({
+  <span class="hljs-attr">model</span>: <span class="hljs-string">&quot;llama3.2&quot;</span>,
+  <span class="hljs-attr">messages</span>: [
+    { <span class="hljs-attr">role</span>: <span class="hljs-string">&quot;system&quot;</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">&quot;あなたはシニアエンジニアです。&quot;</span> },
+    { <span class="hljs-attr">role</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">&quot;Rustでゼロコスト抽象化を説明して&quot;</span> },
+  ],
+  <span class="hljs-attr">stream</span>: <span class="hljs-literal">true</span>,
+});
+
+<span class="hljs-keyword">for</span> <span class="hljs-title function_">await</span> (<span class="hljs-keyword">const</span> chunk <span class="hljs-keyword">of</span> response) {
+  process.<span class="hljs-property">stdout</span>.<span class="hljs-title function_">write</span>(chunk.<span class="hljs-property">choices</span>[<span class="hljs-number">0</span>]?.<span class="hljs-property">delta</span>?.<span class="hljs-property">content</span> ?? <span class="hljs-string">&quot;&quot;</span>);
+}
+</code></pre>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="42" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="modelfile%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90">Modelfile：カスタムモデルの作成</h1>
+<ul>
+<li>Modelfile でシステムプロンプト・パラメータをカスタマイズ</li>
+<li>チームで共有・バージョン管理可能</li>
+<li><code>ollama create</code> でカスタムモデルとして登録</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-dockerfile"><span class="hljs-comment"># Modelfile</span>
+<span class="hljs-keyword">FROM</span> llama3.<span class="hljs-number">2</span>
+
+<span class="hljs-comment"># システムプロンプト</span>
+SYSTEM <span class="hljs-string">&quot;&quot;</span><span class="hljs-string">&quot;
+あなたはシニアバックエンドエンジニアです。
+TypeScript / Rust / Go を専門とし、
+コードレビューとアーキテクチャ設計が得意です。
+回答は常に日本語で、コードには必ずコメントを付けてください。
+&quot;</span><span class="hljs-string">&quot;&quot;</span>
+
+<span class="hljs-comment"># モデルパラメータ調整</span>
+PARAMETER temperature <span class="hljs-number">0.3</span>
+PARAMETER top_p <span class="hljs-number">0.9</span>
+PARAMETER num_ctx <span class="hljs-number">8192</span>
+PARAMETER num_predict <span class="hljs-number">2048</span>
+
+<span class="hljs-comment"># ビルドと実行</span>
+<span class="hljs-comment"># ollama create my-engineer -f Modelfile</span>
+<span class="hljs-comment"># ollama run my-engineer</span>
+</code></pre>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-class="lead" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="lead" data-marpit-pagination="43" style="--class:lead;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+
+<h1 id="%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E7%B5%B1%E5%90%88">アプリケーション統合</h1>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="44" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="langchain--llamaindex-%E3%81%A8%E3%81%AE%E9%80%A3%E6%90%BA">LangChain / LlamaIndex との連携</h1>
+<p><img src="../assets/langchain-integration.svg" alt="center" style="width:900px;" /></p>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="45" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="langchain--ollama-%E5%AE%9F%E8%A3%85%E4%BE%8B">LangChain + Ollama 実装例</h1>
+<ul>
+<li>ChatOllama クラスで簡単にローカルモデルを利用</li>
+<li>既存の LangChain チェーンやエージェントがそのまま動作</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">from</span> langchain_ollama <span class="hljs-keyword">import</span> ChatOllama
+<span class="hljs-keyword">from</span> langchain_core.messages <span class="hljs-keyword">import</span> HumanMessage, SystemMessage
+<span class="hljs-keyword">from</span> langchain_core.prompts <span class="hljs-keyword">import</span> ChatPromptTemplate
+
+<span class="hljs-comment"># モデル初期化</span>
+llm = ChatOllama(
+    model=<span class="hljs-string">&quot;llama3.2&quot;</span>,
+    temperature=<span class="hljs-number">0.3</span>,
+    base_url=<span class="hljs-string">&quot;http://localhost:11434&quot;</span>,
+)
+
+<span class="hljs-comment"># プロンプトテンプレート</span>
+prompt = ChatPromptTemplate.from_messages([
+    (<span class="hljs-string">&quot;system&quot;</span>, <span class="hljs-string">&quot;あなたはコードレビュアーです。&quot;</span>),
+    (<span class="hljs-string">&quot;human&quot;</span>, <span class="hljs-string">&quot;{code}\n\nこのコードをレビューして&quot;</span>),
+])
+
+chain = prompt | llm
+result = chain.invoke({<span class="hljs-string">&quot;code&quot;</span>: <span class="hljs-string">&quot;def fib(n): return fib(n-1)+fib(n-2)&quot;</span>})
+</code></pre>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="46" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%ABrag%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3">ローカルRAGアーキテクチャ</h1>
+<p><img src="../assets/local-rag.svg" alt="center" style="width:950px;" /></p>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="47" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E5%AE%8C%E5%85%A8%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%ABrag%E3%81%AE%E5%AE%9F%E8%A3%85">完全ローカルRAGの実装</h1>
+<ul>
+<li>ベクトルDBも埋め込みモデルもローカルで完結</li>
+<li>機密ドキュメントをクラウドに送らずAI検索を実現</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">from</span> langchain_ollama <span class="hljs-keyword">import</span> OllamaEmbeddings, ChatOllama
+<span class="hljs-keyword">from</span> langchain_chroma <span class="hljs-keyword">import</span> Chroma
+<span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> RetrievalQA
+<span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> DirectoryLoader
+<span class="hljs-keyword">from</span> langchain.text_splitter <span class="hljs-keyword">import</span> RecursiveCharacterTextSplitter
+
+<span class="hljs-comment"># 埋め込みモデル（ローカル）</span>
+embeddings = OllamaEmbeddings(model=<span class="hljs-string">&quot;nomic-embed-text&quot;</span>)
+
+<span class="hljs-comment"># ドキュメント読込 &amp; チャンク分割</span>
+loader = DirectoryLoader(<span class="hljs-string">&quot;./docs&quot;</span>, glob=<span class="hljs-string">&quot;**/*.md&quot;</span>)
+docs = RecursiveCharacterTextSplitter(
+    chunk_size=<span class="hljs-number">500</span>, chunk_overlap=<span class="hljs-number">50</span>
+).split_documents(loader.load())
+
+<span class="hljs-comment"># ベクトルDB構築（ローカル）</span>
+vectordb = Chroma.from_documents(docs, embeddings, persist_directory=<span class="hljs-string">&quot;./db&quot;</span>)
+
+<span class="hljs-comment"># RAG チェーン</span>
+qa = RetrievalQA.from_chain_type(
+    llm=ChatOllama(model=<span class="hljs-string">&quot;llama3.2&quot;</span>),
+    retriever=vectordb.as_retriever(search_kwargs={<span class="hljs-string">&quot;k&quot;</span>: <span class="hljs-number">5</span>}),
+)
+</code></pre>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="48" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="function-calling--%E3%83%84%E3%83%BC%E3%83%AB%E5%88%A9%E7%94%A8">Function Calling / ツール利用</h1>
+<ul>
+<li><strong>対応モデル</strong>: Llama 3.x, Mistral, Qwen 2.5, Phi-4（Ollama経由）</li>
+<li><strong>OpenAI tools API</strong>: Ollama が互換エンドポイントで提供</li>
+<li>天気取得・DB検索・コード実行などを自律的に実行</li>
+<li>LangChain / LlamaIndex でエージェント化が容易</li>
+<li><strong>制限</strong>: クラウド系ほど安定していないモデルも存在</li>
+<li><strong>推奨</strong>: Llama 3.3 70B / Qwen 2.5-72B が最も安定</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="49" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%83%9E%E3%83%AB%E3%83%81%E3%83%A2%E3%83%BC%E3%83%80%E3%83%AB%E6%B4%BB%E7%94%A8">マルチモーダル活用</h1>
+<ul>
+<li><strong>LLaVA 1.6</strong>: 画像理解、OCR、図解の説明生成</li>
+<li><strong>Llama 3.2 11B/90B Vision</strong>: Metaの最新ビジョンモデル</li>
+<li><strong>Gemma 3 12B/27B</strong>: マルチモーダル対応、高品質な画像理解</li>
+<li><strong>Moondream2</strong>: 超軽量1.8Bビジョンモデル、エッジ向け</li>
+<li>Ollama: <code>ollama pull llama3.2-vision:11b</code></li>
+<li><strong>活用例</strong>: 図面解析、スクリーンショット説明、書類OCR</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="50" data-class="lead" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="lead" data-marpit-pagination="50" style="--class:lead;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+
+<h1 id="%E3%83%A6%E3%83%BC%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%B9">ユースケース</h1>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="51" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="51" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E6%94%AF%E6%8F%B4">コーディング支援</h1>
+<ul>
+<li><strong>コード補完</strong>: VS Code + Continue拡張 + Ollama でCopilot代替</li>
+<li><strong>コードレビュー</strong>: プルリク差分を自動レビュー（社内コード漏洩なし）</li>
+<li><strong>テスト生成</strong>: 関数仕様からユニットテストを自動生成</li>
+<li><strong>リファクタリング提案</strong>: 技術的負債の特定・改善案生成</li>
+<li><strong>推奨モデル</strong>: Qwen 2.5-Coder 7B/32B、DeepSeek-Coder V2 Lite</li>
+<li><strong>設定</strong>: Continue拡張で <code>baseURL: http://localhost:11434/v1</code> に変更するだけ</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="52" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="52" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E5%87%A6%E7%90%86%E3%83%BB%E7%A4%BE%E5%86%85%E3%83%87%E3%83%BC%E3%82%BF%E6%B4%BB%E7%94%A8">ドキュメント処理・社内データ活用</h1>
+<ul>
+<li><strong>議事録自動生成</strong>: 会議録音 → Whisper（ローカル）→ LLM 要約</li>
+<li><strong>社内ナレッジベース</strong>: Confluence/Notion文書 + ローカルRAG</li>
+<li><strong>多言語翻訳</strong>: 社内文書の英語/日本語翻訳（Qwen/Llama多言語モデル）</li>
+<li><strong>報告書作成</strong>: 定型フォーマットへの自動入力・要約</li>
+<li><strong>ログ分析</strong>: 大量ログのパターン抽出・異常検知サマリー生成</li>
+<li><strong>完全オフライン</strong>: クラウドサービス禁止の環境でも利用可能</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="53" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="53" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%83%BB%E3%82%B3%E3%83%B3%E3%83%97%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%82%B9%E7%94%A8%E9%80%94">セキュリティ・コンプライアンス用途</h1>
+<ul>
+<li><strong>脆弱性解析</strong>: コードの脆弱性パターン検出（SAST補助）</li>
+<li><strong>インシデントレスポンス</strong>: ログ・アラートの自然言語説明生成</li>
+<li><strong>コンプライアンスチェック</strong>: 規定文書との差分分析</li>
+<li><strong>マルウェア解析</strong>: 難読化コードの解読支援（ローカル必須）</li>
+<li><strong>規制対応</strong>: GDPR/HIPAA/金融規制 → データ外部送信禁止のため必須</li>
+<li><strong>SOC2/ISO27001</strong>: ローカルLLM自体がセキュリティ要件を満たす手段に</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="54" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="54" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%82%A8%E3%83%83%E3%82%B8%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4">エッジデプロイ</h1>
+<ul>
+<li><strong>産業IoT</strong>: 工場内センサーデータ解析、異常検知</li>
+<li><strong>医療機器</strong>: 患者データをクラウド送信せずAI診断補助</li>
+<li><strong>自動車</strong>: 車載ECU / ADAS でのリアルタイム処理</li>
+<li><strong>Raspberry Pi / Jetson</strong>: llama.cpp + Phi-3.5-mini で動作実証</li>
+<li><strong>Ollama on Docker</strong>: コンテナ化してKubernetes/エッジK8sに展開</li>
+<li><strong>モデル選定</strong>: 1B〜3B のSLM（Small Language Model）が主役</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="55" data-class="lead" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="lead" data-marpit-pagination="55" style="--class:lead;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+
+<h1 id="%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9%E3%81%A8%E6%9C%80%E9%81%A9%E5%8C%96">パフォーマンスと最適化</h1>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="56" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="56" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%83%99%E3%83%B3%E3%83%81%E3%83%9E%E3%83%BC%E3%82%AF%E3%83%A2%E3%83%87%E3%83%AB%E3%83%BB%E3%83%84%E3%83%BC%E3%83%AB%E5%88%A5%E6%80%A7%E8%83%BD%E6%AF%94%E8%BC%83">ベンチマーク：モデル・ツール別性能比較</h1>
+<ul>
+<li><strong>速度指標（tokens/sec）目安</strong>:</li>
+<li>RTX 4090 + llama3.2:3b-q4 → 約150-200 tok/s</li>
+<li>RTX 4090 + llama3.1:8b-q4 → 約80-120 tok/s</li>
+<li>RTX 4090 + llama3.3:70b-q4 → 約20-35 tok/s</li>
+<li>M3 Pro (36GB) + llama3.3:70b-q4 → 約15-25 tok/s</li>
+<li>M4 Max (128GB) + llama3.3:70b-q4 → 約30-40 tok/s</li>
+<li>CPU (Ryzen 9 / M3) + llama3.2:3b-q4 → 約15-40 tok/s</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="57" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="57" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E6%8E%A8%E8%AB%96%E6%9C%80%E9%81%A9%E5%8C%96%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF">推論最適化テクニック</h1>
+<ul>
+<li><strong>Flash Attention 2</strong>: KVキャッシュ計算を最適化 → 長コンテキストで大幅高速化</li>
+<li><strong>コンテキスト長の管理</strong>: 不要な会話履歴を圧縮・削除</li>
+<li><strong>バッチサイズ調整</strong>: vLLM の <code>--max-num-seqs</code> で並列リクエスト数最適化</li>
+<li><strong>GPU層オフロード</strong>: <code>-ngl</code> パラメータでGPU/CPUへの層割り当て制御</li>
+<li><strong>Speculative Decoding</strong>: 小モデルでドラフト生成 → 大モデルで検証（2-3倍速化）</li>
+<li><strong>KVキャッシュ量子化</strong>: キャッシュをfp8/int8に圧縮してVRAM節約</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="58" data-class="lead" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="lead" data-marpit-pagination="58" style="--class:lead;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+
+<h1 id="%E5%B1%95%E6%9C%9B%E3%83%BB%E3%81%BE%E3%81%A8%E3%82%81">展望・まとめ</h1>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="59" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="59" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%ABllm%E3%81%AE%E8%AA%B2%E9%A1%8C%E3%81%A8%E5%88%B6%E9%99%90">ローカルLLMの課題と制限</h1>
+<ul>
+<li><strong>ハードウェア依存</strong>: 高品質な推論にはGPU/Apple Silicon が必要</li>
+<li><strong>セットアップコスト</strong>: 初期設定・チューニングに時間が必要</li>
+<li><strong>最新モデルへの追従</strong>: フロンティアモデル（GPT-4o級）はまだクラウド優勢</li>
+<li><strong>コンテキスト長</strong>: 一部ツールで長文処理時にメモリ不足が発生</li>
+<li><strong>マルチモーダル成熟度</strong>: 画像・音声処理はまだクラウドに劣る面あり</li>
+<li><strong>Fine-tuning</strong>: 高品質なLoRA/QLoRAには大容量GPUが依然必要</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="60" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="60" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="2026%E5%B9%B4%E4%BB%A5%E9%99%8D%E3%81%AE%E5%B1%95%E6%9C%9B">2026年以降の展望</h1>
+<ul>
+<li><strong>Apple M5/M6</strong>: さらなるメモリ増加で100B級モデルが標準ラップトップで動作</li>
+<li><strong>量子化精度向上</strong>: 2bit量子化でもF16相当に近づく研究が進行中</li>
+<li><strong>SLMの台頭</strong>: 3B以下のモデルがユースケースの大半をカバーへ</li>
+<li><strong>NPU活用</strong>: Intel/AMD NPU によるCPU補助推論が普及</li>
+<li><strong>クラウド不要なAIエージェント</strong>: ローカルLLM + ローカルツール呼び出しが主流化</li>
+<li><strong>オープンソースvsクローズド</strong>: 性能差が急速に縮まっている</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="61" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="61" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E9%81%B8%E6%8A%9E%E3%81%AE%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF">選択のフレームワーク</h1>
+<p><img src="../assets/selection-framework.svg" alt="center" style="width:900px;" /></p>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="62" data-class="lead" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="lead" data-marpit-pagination="62" style="--class:lead;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+
+<h1 id="%E3%81%BE%E3%81%A8%E3%82%81">まとめ</h1>
+<ul>
+<li><img class="emoji" draggable="false" alt="🏠" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f3e0.svg" data-marp-twemoji=""/> <strong>ローカルLLMは成熟期を迎えた</strong> — 今すぐ実用可能</li>
+<li><img class="emoji" draggable="false" alt="🔒" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f512.svg" data-marp-twemoji=""/> <strong>プライバシー・コスト・オフライン</strong> の3点が強み</li>
+<li><img class="emoji" draggable="false" alt="🚀" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f680.svg" data-marp-twemoji=""/> <strong>Ollama</strong> から始めて、段階的に本番環境へ</li>
+<li><img class="emoji" draggable="false" alt="📦" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f4e6.svg" data-marp-twemoji=""/> <strong>モデル選択</strong> はユースケース × VRAM × ライセンスで決める</li>
+<li><img class="emoji" draggable="false" alt="🔧" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f527.svg" data-marp-twemoji=""/> <strong>量子化 Q4_K_M</strong> が実用のスイートスポット</li>
+<li><img class="emoji" draggable="false" alt="🌐" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f310.svg" data-marp-twemoji=""/> <strong>クラウドとのハイブリッド活用</strong> が現実解</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="63" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="63" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E5%8F%82%E8%80%83%E8%B3%87%E6%96%99-12">参考資料 (1/2)</h1>
+<ul>
+<li><strong>モデル・ダウンロード:</strong></li>
+<li><a href="https://ollama.com/library">Ollama Library</a> — モデル一覧と使い方</li>
+<li><a href="https://huggingface.co/TheBloke">HuggingFace GGUF Hub</a> — GGUFモデル集積所</li>
+<li><a href="https://lmstudio.ai">LM Studio</a> — GUIクライアント</li>
+<li><strong>ベンチマーク・評価:</strong></li>
+<li><a href="https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard">Open LLM Leaderboard (HuggingFace)</a></li>
+<li><a href="https://artificialanalysis.ai/leaderboards/models">LLM Benchmark Hub</a></li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="64" data-class="invert" data-paginate="true" data-header="ローカルLLM完全ガイド 2026" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+" lang="en-US" class="invert" data-marpit-pagination="64" style="--class:invert;--paginate:true;--header:ローカルLLM完全ガイド 2026;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  background: #1a1a2e;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>ローカルLLM完全ガイド 2026</header>
+<h1 id="%E5%8F%82%E8%80%83%E8%B3%87%E6%96%99-22">参考資料 (2/2)</h1>
+<ul>
+<li><strong>フレームワーク・ツール:</strong></li>
+<li><a href="https://python.langchain.com/docs/integrations/chat/ollama/">LangChain Ollama Integration</a></li>
+<li><a href="https://docs.vllm.ai/">vLLM Documentation</a></li>
+<li><a href="https://github.com/ggerganov/llama.cpp">llama.cpp GitHub</a></li>
+<li><strong>コミュニティ:</strong></li>
+<li><a href="https://www.reddit.com/r/LocalLLaMA/">r/LocalLLaMA (Reddit)</a></li>
+<li><a href="https://github.com/mudler/LocalAI">LocalAI GitHub</a></li>
+</ul>
+<footer>© 2026</footer>
+</section>
+<script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{container;containerSize;containerObserver;svg;svgComputedStyle;svgPreserveAspectRatio="xMinYMid meet";wrapper;wrapperSize;wrapperObserver;constructor(){super();const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=this.shadowRoot.querySelector(`div[${e}]`)??void 0;const t=this.svg;this.svg=this.wrapper?.querySelector(`svg[${i}]`)??void 0,this.svg!==t&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=this.svg?.querySelector(`span[${n}]`)??void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame(()=>{t.style.display=""}))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){let t=Math.ceil(this.containerSize?.width??0);const e=Math.ceil(this.containerSize?.height??0);void 0!==this.dataset.downscaleOnly&&(t=Math.max(t,this.wrapperSize?.width??0));const i=this.svg?.querySelector(":scope > foreignObject");if(i?.setAttribute("width",`${t}`),i?.setAttribute("height",`${e}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${t} ${e}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=t<=0||e<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const r=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this._shadow()}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_shadow(){if(!this.shadowRoot)try{this.attachShadow({mode:"open"})}catch(t){if(!(t instanceof Error&&"NotSupportedError"===t.name))throw t}return this.shadowRoot}_update(){const t=this._shadow();if(t){const e=i?`<style>:host { ${i} }</style>`:"";let n="<slot></slot>";const{autoScaling:s}=this.dataset;if(void 0!==s){n=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===s?"data-downscale-only":""}>${n}</marp-auto-scaling>`}t.innerHTML=e+n}}};let o;const a=Symbol(),l=()=>o??(o=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is"),o);let c;const d="marpitSVGPolyfill:setZoomFactor,",h=Symbol(),g=Symbol();const p=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[v]:[],i={then:e=>(t?(async()=>{if(void 0===c){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise(t=>{i.addEventListener("load",()=>t())});i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),c=e.getImageData(5,5,1,1).data[3]<128}return c})().then(t=>{null==e||e(t?[v]:[])}):null==e||e([]),i)};return Object.assign(e,i)};let m,u;function v(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(d)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(u=i)}}catch(t){console.error(t)}}));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),t=>{var e,s,r,o;t.style.transform||(t.style.transform="translateZ(0)");const a=i||u||t.currentScale||1;m!==a&&(m=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(o=null===(r=n.y)||void 0===r?void 0:r.baseVal.value)&&void 0!==o?o:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}}),!1!==n&&Array.from(e.querySelectorAll("iframe"),({contentWindow:t})=>{null==t||t.postMessage(`${d}${n}`,"null"===window.origin?"*":window.origin)})}function w({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[h])return t[h];let e=!0;const i=()=>{e=!1,delete t[h]};Object.defineProperty(t,h,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await p()}finally{s=!0}})();const r=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(r)};return r(),i}(e);return t?(i(),()=>{}):i}m=1,u=void 0;const b=Symbol(),y=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,o=t[n].proto();l()&&o!==HTMLElement?i||customElements.define(s,r(o,{style:t[n].style}),{extends:n}):(i||customElements.define(s,r(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach(t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)}))}window[a]=!0})(e),e[b])return e[b];const i=w({target:e}),n=()=>{i(),delete e[b]},o=Object.assign(n,{cleanup:n,update:()=>y(e)});return Object.defineProperty(e,b,{configurable:!0,value:o}),o},f=document.currentScript;y(f?f.getRootNode():document)}();
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="0" tabindex="0"><p>本日は60分以上かけてローカルLLMを徹底的に解説します。</p></div><div class="bespoke-marp-note" data-index="4" tabindex="0"><p>まずLLMの基礎をおさらいします。</p></div><div class="bespoke-marp-note" data-index="6" tabindex="0"><p>クラウドとローカルの主要な違いを比較します。</p></div><div class="bespoke-marp-note" data-index="7" tabindex="0"><p>ローカルLLMを取り巻くエコシステム全体を把握します。</p></div><div class="bespoke-marp-note" data-index="10" tabindex="0"><p>ローカルLLMを採用する主要な4つの理由を解説します。</p></div><div class="bespoke-marp-note" data-index="15" tabindex="0"><p>各モデルの性能・サイズ・特徴を俯瞰します。</p></div><div class="bespoke-marp-note" data-index="21" tabindex="0"><p>自分の用途・環境に合ったモデルを選ぶ際の判断基準を示します。</p></div><div class="bespoke-marp-note" data-index="23" tabindex="0"><p>量子化の仕組みと必要性を図解で説明します。</p></div><div class="bespoke-marp-note" data-index="26" tabindex="0"><p>量子化レベルによるトレードオフを視覚的に示します。</p></div><div class="bespoke-marp-note" data-index="28" tabindex="0"><p>主要な実行ツールのポジショニングを解説します。</p></div><div class="bespoke-marp-note" data-index="34" tabindex="0"><p>各プロセッサの役割とLLM推論での使われ方を説明します。</p></div><div class="bespoke-marp-note" data-index="35" tabindex="0"><p>どのモデルを動かすのに何GBのVRAMが必要かを示します。</p></div><div class="bespoke-marp-note" data-index="43" tabindex="0"><p>主要フレームワークとのOllama統合パターンを説明します。</p></div><div class="bespoke-marp-note" data-index="45" tabindex="0"><p>完全ローカルのRAGシステム構成を解説します。</p></div><div class="bespoke-marp-note" data-index="60" tabindex="0"><p>ローカルLLMを採用するかどうかの判断フレームワークを示します。</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@4.2.3/lib/bespoke.js.LICENSE.txt */
+!function(){"use strict";function e(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var t,n,r=(n||(n=1,t={from:function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),o=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,function(e){return"SCRIPT"!==e.nodeName}),a={},i=function(e,t){return(t=t||{}).index=o.indexOf(e),t.slide=e,t},s=function(e,t){a[e]=(a[e]||[]).filter(function(e){return e!==t})},c=function(e,t){return(a[e]||[]).reduce(function(e,n){return e&&!1!==n(t)},!0)},l=function(e,t){o[e]&&(n&&c("deactivate",i(n,t)),n=o[e],c("activate",i(n,t)))},d=function(e,t){var r=o.indexOf(n)+e;c(e>0?"next":"prev",i(n,t))&&l(r,t)},u={off:s,on:function(e,t){return(a[e]||(a[e]=[])).push(t),s.bind(null,e,t)},fire:c,slide:function(e,t){if(!arguments.length)return o.indexOf(n);c("slide",i(o[e],t))&&l(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:o,destroy:function(e){c("destroy",i(n,e)),a={}}};return(t||[]).forEach(function(e){e(u)}),n||l(0),u}}),t),o=e(r);const a=document.body,i=(...e)=>history.replaceState(...e),s="",c="presenter",l="next",d=["",c,l],u="bespoke-marp-",f=`data-${u}`,m=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},g=()=>a.dataset.bespokeView,p=e=>new URLSearchParams(location.search).get(e),v=(e,t={})=>{const n={location,setter:i,...t},r=new URLSearchParams(n.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?r.set(t,n):r.delete(t)}try{n.setter({...window.history.state??{}},"",m(r,n.location))}catch(e){console.error(e)}},h=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch{return!1}})(),y=e=>{try{return localStorage.getItem(e)}catch{return null}},b=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch{return!1}},w=e=>{try{return localStorage.removeItem(e),!0}catch{return!1}},x=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},k=e=>{e.parent.classList.add(`${u}parent`),e.slides.forEach(e=>e.classList.add(`${u}slide`)),e.on("activate",t=>{const n=`${u}active`,r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach(e=>{e.classList.remove(n),x(e,!0)}),o.add(n),x(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}})},$=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=o;e.setAttribute(`${f}fragment`,(a?"":"in")+"active");const i=`${f}current-fragment`;t===r&&n===o?e.setAttribute(i,"current"):e.removeAttribute(i)})}),e.fragmentIndex=o;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",a)};e.on("next",({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}}),e.on("prev",({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)}),o(0,0)},E=document,L=()=>!(!E.fullscreenEnabled&&!E.webkitFullscreenEnabled),S=()=>!(!E.fullscreenElement&&!E.webkitFullscreenElement),P=e=>{e.fullscreen=()=>{L()&&(async()=>{S()?(E.exitFullscreen||E.webkitExitFullscreen)?.call(E):((e=E.body)=>{(e.requestFullscreen||e.webkitRequestFullscreen)?.call(e)})()})()},document.addEventListener("keydown",t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!L()||(e.fullscreen(),t.preventDefault())})},_=`${u}inactive`,T=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout(()=>{r.add(_),o()},e),r.contains(_)&&(r.remove(_),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},I=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],M=e=>{e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(I.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})},O=e=>{window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("marp-auto-scaling, [data-auto-scaling], [data-marp-fitting]");t.setAttribute(`${f}load`,e?"":"hideable")}})},A=({interval:e=250}={})=>t=>{document.addEventListener("keydown",e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()});let n,r,o=0;t.parent.addEventListener("wheel",a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),e?.parentElement&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const c=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<12)return;r&&clearTimeout(r),r=setTimeout(()=>{n=0},e);const l=Date.now()-o<e,d=c<=n;if(n=c,l||d)return;let u;(a.deltaX>0||a.deltaY>0)&&(u="next"),(a.deltaX<0||a.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())})},C=(e=`.${u}osc`)=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${f}osc=${JSON.stringify(e)}]`).forEach(n)};return L()||n("fullscreen",e=>e.style.display="none"),h||n("presenter",e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."}),e=>{t.addEventListener("click",t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?e?.fullscreen():"presenter"===n&&e.openPresenterView()}}),e.parent.appendChild(t),e.on("activate",({index:t})=>{n("page",n=>n.textContent=`Page ${t+1} of ${e.slides.length}`)}),e.on("fragment",({index:t,fragments:r,fragmentIndex:o})=>{n("prev",e=>e.disabled=0===t&&0===o),n("next",n=>n.disabled=t===e.slides.length-1&&o===r.length-1)}),e.on("marp-active",()=>x(t,!1)),e.on("marp-inactive",()=>x(t,!0)),L()&&(e=>{for(const t of["","webkit"])E.addEventListener(t+"fullscreenchange",e)})(()=>n("fullscreen",e=>e.classList.toggle("exit",L()&&S())))}},D=e=>{window.addEventListener("message",t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}})};var N,B,q,K,F,j,V,U={exports:{}},X=(N||(N=1,U.exports=(B=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"],q=function(e){return String(e).replace(/[&<>"']/g,function(e){return"&"+K[e]+";"})},K={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},F="dangerouslySetInnerHTML",j={className:"class",htmlFor:"for"},V={},function(e,t){var n=[],r="";t=t||{};for(var o=arguments.length;o-- >2;)n.push(arguments[o]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(var a in t)!1!==t[a]&&null!=t[a]&&a!==F&&(r+=" "+(j[a]?j[a]:q(a))+'="'+q(t[a])+'"');r+=">"}if(-1===B.indexOf(e)){if(t[F])r+=t[F].__html;else for(;n.length;){var i=n.pop();if(i)if(i.pop)for(var s=i.length;s--;)n.push(i[s]);else r+=!0===V[i]?i:q(i)}r+=e?"</"+e+">":""}return V[r]=!0,r})),U.exports),H=e(X);const R=({children:e})=>H(null,null,...e),W=`${u}presenter-`,J={container:`${W}container`,dragbar:`${W}dragbar-container`,next:`${W}next`,nextContainer:`${W}next-container`,noteContainer:`${W}note-container`,noteWrapper:`${W}note-wrapper`,noteButtons:`${W}note-buttons`,infoContainer:`${W}info-container`,infoPage:`${W}info-page`,infoPageText:`${W}info-page-text`,infoPagePrev:`${W}info-page-prev`,infoPageNext:`${W}info-page-next`,noteButtonsBigger:`${W}note-bigger`,noteButtonsSmaller:`${W}note-smaller`,infoTime:`${W}info-time`,infoTimer:`${W}info-timer`},Y=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=J.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",H(R,null,H("div",{class:J.nextContainer},H("iframe",{class:J.next,src:"?view=next"})),H("div",{class:J.dragbar}),H("div",{class:J.noteContainer},H("div",{class:J.noteWrapper}),H("div",{class:J.noteButtons},H("button",{class:J.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),H("button",{class:J.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),H("div",{class:J.infoContainer},H("div",{class:J.infoPage},H("button",{class:J.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),H("span",{class:J.infoPageText}),H("button",{class:J.infoPageNext,tabindex:"-1",title:"Next"},"Next")),H("time",{class:J.infoTime,title:"Current time"}),H("time",{class:J.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(J.dragbar).addEventListener("mousedown",()=>{t=!0,r(J.dragbar).classList.add("active")}),window.addEventListener("mouseup",()=>{t=!1,r(J.dragbar).classList.remove("active")}),window.addEventListener("mousemove",e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(J.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)}),r(J.nextContainer).addEventListener("click",()=>e.next());const n=r(J.next),o=(a=n,(e,t)=>a.contentWindow?.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin));var a;n.addEventListener("load",()=>{r(J.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",({index:e,fragmentIndex:t})=>o(e,t))});const i=document.querySelectorAll(".bespoke-marp-note");i.forEach(e=>{e.addEventListener("keydown",e=>e.stopPropagation()),r(J.noteWrapper).appendChild(e)}),e.on("activate",()=>i.forEach(t=>t.classList.toggle("active",t.dataset.index==e.slide())));let s=0;const c=e=>{s=Math.max(-5,s+e),r(J.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},l=()=>c(1),d=()=>c(-1),u=r(J.noteButtonsBigger),f=r(J.noteButtonsSmaller);u.addEventListener("click",()=>{u.blur(),l()}),f.addEventListener("click",()=>{f.blur(),d()}),document.addEventListener("keydown",e=>{"+"===e.key&&l(),"-"===e.key&&d()},!0),e.on("activate",({index:t})=>{r(J.infoPageText).textContent=`${t+1} / ${e.slides.length}`});const m=r(J.infoPagePrev),g=r(J.infoPageNext);m.addEventListener("click",t=>{m.blur(),e.prev({fragment:!t.shiftKey})}),g.addEventListener("click",t=>{g.blur(),e.next({fragment:!t.shiftKey})}),e.on("fragment",({index:t,fragments:n,fragmentIndex:r})=>{m.disabled=0===t&&0===r,g.disabled=t===e.slides.length-1&&r===n.length-1});let p=new Date;const v=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-p.getTime(),o=t(n/1e3%60),a=t(n/1e3/60%60),i=t(n/36e5%24);r(J.infoTime).textContent=e.toLocaleTimeString(),r(J.infoTimer).textContent=`${i}:${a}:${o}`};v(),setInterval(v,250),r(J.infoTimer).addEventListener("click",()=>{p=new Date})})(e)},z=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:G},presenterUrl:{enumerable:!0,get:Q}}),h&&document.addEventListener("keydown",t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())})};function G(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,W+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function Q(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),m(e)}const Z=e=>{const t=g();return t===l&&e.appendChild(document.createElement("span")),{[s]:z,[c]:Y,[l]:D}[t]},ee=e=>{e.on("activate",t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach(n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"})})},te=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},ne=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{let n=t.fragment?te(p("f")||""):null;((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),c=o(0,r(n||0,a[s].length-1));s===e.slide()&&c===e.fragmentIndex||e.slide(s,{fragment:c})})((()=>{if(location.hash){const[t]=location.hash.slice(1).split(":~:");if(/^\d+$/.test(t))return(te(t)??1)-1;const r=document.getElementById(t)||document.querySelector(`a[name="${CSS.escape(t)}"]`);if(r){const{length:t}=e.slides;for(let o=0;o<t;o+=1)if(e.slides[o].contains(r)){const t=e.fragments?.[o],a=r.closest("[data-marpit-fragment]");if(t&&a){const e=t.indexOf(a);e>=0&&(n=e)}return o}}}return 0})(),n)};e.on("fragment",({index:e,fragmentIndex:r})=>{n||v({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})}),setTimeout(()=>{o(),window.addEventListener("hashchange",()=>r(()=>{o({fragment:!1}),v({f:void 0})})),window.addEventListener("popstate",()=>{n||r(()=>o())}),n=!1},0)}},re=(e={})=>{const t=e.key||window.history.state?.marpBespokeSyncKey||Math.random().toString(36).slice(2),n=`bespoke-marp-sync-${t}`;var r;r={marpBespokeSyncKey:t},v({},{setter:(e,...t)=>i({...e,...r},...t)});const o=()=>{const e=y(n);return e?JSON.parse(e):Object.create(null)},a=e=>{const t=o(),r={...t,...e(t)};return b(n,JSON.stringify(r)),r},s=()=>{window.removeEventListener("pageshow",s),a(e=>({reference:(e.reference||0)+1}))};return e=>{s(),Object.defineProperty(e,"syncKey",{value:t,enumerable:!0});let r=!0;setTimeout(()=>{e.on("fragment",e=>{r&&a(()=>({index:e.index,fragmentIndex:e.fragmentIndex}))})},0),window.addEventListener("storage",t=>{if(t.key===n&&t.oldValue&&t.newValue){const n=JSON.parse(t.oldValue),o=JSON.parse(t.newValue);if(n.index!==o.index||n.fragmentIndex!==o.fragmentIndex)try{r=!1,e.slide(o.index,{fragment:o.fragmentIndex,forSync:!0})}finally{r=!0}}});const i=()=>{const{reference:e}=o();void 0===e||e<=1?w(n):a(()=>({reference:e-1}))};window.addEventListener("pagehide",e=>{e.persisted&&window.addEventListener("pageshow",s),i()}),e.on("destroy",i)}},{PI:oe,abs:ae,sqrt:ie,atan2:se}=Math,ce={passive:!0},le=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",({touches:e})=>{r=1===e.length?a(e[0]):void 0},ce),o.addEventListener("touchmove",e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=ie(ae(n)**2+ae(o)**2),r.radian=se(n,o)}else r=void 0}),o.addEventListener("touchend",o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+oe)%(2*oe)-oe;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}},ce)},de=new Map;de.clear(),de.set("none",{backward:{both:void 0,incoming:void 0,outgoing:void 0},forward:{both:void 0,incoming:void 0,outgoing:void 0}});const ue={both:"",outgoing:"outgoing-",incoming:"incoming-"},fe={forward:"",backward:"-backward"},me=e=>`--marp-bespoke-transition-animation-${e}`,ge=e=>`--marp-transition-${e}`,pe=me("name"),ve=me("duration"),he=e=>new Promise(t=>{const n={},r=document.createElement("div"),o=e=>{r.remove(),t(e)};r.addEventListener("animationstart",()=>o(n)),Object.assign(r.style,{animationName:e,animationDuration:"1s",animationFillMode:"both",animationPlayState:"paused",position:"absolute",pointerEvents:"none"}),document.body.appendChild(r);const a=getComputedStyle(r).getPropertyValue(ge("duration"));a&&Number.parseFloat(a)>=0&&(n.defaultDuration=a),((e,t)=>{requestAnimationFrame(()=>{e.style.animationPlayState="running",requestAnimationFrame(()=>t(void 0))})})(r,o)}),ye=async e=>de.has(e)?de.get(e):(e=>{const t={},n=[];for(const[r,o]of Object.entries(ue))for(const[a,i]of Object.entries(fe)){const s=`marp-${o}transition${i}-${e}`;n.push(he(s).then(e=>{t[a]=t[a]||{},t[a][r]=e?{...e,name:s}:void 0}))}return Promise.all(n).then(()=>t)})(e).then(t=>(de.set(e,t),t)),be=e=>Object.values(e).flatMap(Object.values).every(e=>!e),we=(e,{type:t,backward:n})=>{const r=e[n?"backward":"forward"],o=(()=>{const e=r[t],n=e=>({[pe]:e.name});if(e)return n(e);if(r.both){const e=n(r.both);return"incoming"===t&&(e[me("direction")]="reverse"),e}})();return!o&&n?we(e,{type:t,backward:!1}):o||{[pe]:"__bespoke_marp_transition_no_animation__"}},xe=e=>{if(e)try{const t=JSON.parse(e);if((e=>{if("object"!=typeof e)return!1;const t=e;return"string"==typeof t.name&&(void 0===t.duration||"string"==typeof t.duration)})(t))return t}catch{}},ke="_tSId",$e="_tA",Ee="bespoke-marp-transition-warming-up",Le=window.matchMedia("(prefers-reduced-motion: reduce)"),Se="__bespoke_marp_transition_reduced_outgoing__",Pe="__bespoke_marp_transition_reduced_incoming__",_e={forward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}},backward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}}},Te=e=>{if(!document.startViewTransition)return;const t=t=>(void 0!==t&&(e._tD=t),e._tD);let n;t(!1),((...e)=>{CSS.registerProperty({name:ge("duration"),syntax:"<time>",inherits:!0,initialValue:"-1s"});const t=[...new Set(e).values()];return Promise.all(t.map(e=>ye(e))).then()})(...Array.from(document.querySelectorAll("section[data-transition], section[data-transition-back]")).flatMap(e=>[e.dataset.transition,e.dataset.transitionBack].flatMap(e=>{const t=xe(e);return[t?.name,t?.builtinFallback?`__builtin__${t.name}`:void 0]}).filter(e=>!!e))).then(()=>{document.querySelectorAll("style").forEach(e=>{e.innerHTML=e.innerHTML.replace(/--marp-transition-duration:[^;}]*[;}]/g,e=>e.slice(0,-1)+"!important"+e.slice(-1))})});const r=(n,{back:r,cond:o})=>a=>{const i=t();if(i)return!!a[$e]||!("object"!=typeof i||(i.skipTransition(),!a.forSync));if(!o(a))return!0;const s=e.slides[e.slide()],c=()=>a.back??r,l="data-transition"+(c()?"-back":""),d=s.querySelector(`section[${l}]`);if(!d)return!0;const u=xe(d.getAttribute(l)??void 0);return!u||((async(e,{builtinFallback:t=!0}={})=>{let n=await ye(e);if(be(n)){if(!t)return;return n=await ye(`__builtin__${e}`),be(n)?void 0:n}return n})(u.name,{builtinFallback:u.builtinFallback}).then(e=>{if(!e){t(!0);try{n(a)}finally{t(!1)}return}let r=e;Le.matches&&(console.warn("Use a constant animation to transition because preferring reduced motion by viewer has detected."),r=_e);const o=document.getElementById(ke);o&&o.remove();const i=document.createElement("style");i.id=ke,document.head.appendChild(i),((e,t)=>{const n=[`:root{${ge("direction")}:${t.backward?-1:1};}`,":root:has(.bespoke-marp-inactive){cursor:none;}"],r=t=>{const n=e[t].both?.defaultDuration||e[t].outgoing?.defaultDuration||e[t].incoming?.defaultDuration;return"forward"===t?n:n||r("forward")},o=t.duration||r(t.backward?"backward":"forward");void 0!==o&&n.push(`::view-transition-group(*){${ve}:${o};}`);const a=e=>Object.entries(e).map(([e,t])=>`${e}:${t};`).join("");return n.push(`::view-transition-old(root){${a(we(e,{...t,type:"outgoing"}))}}`,`::view-transition-new(root){${a(we(e,{...t,type:"incoming"}))}}`),n})(r,{backward:c(),duration:u.duration}).forEach(e=>i.sheet?.insertRule(e));const s=document.documentElement.classList;s.add(Ee);let l=!1;const d=()=>{l||(n(a),l=!0,s.remove(Ee))},f=()=>{t(!1),i.remove(),s.remove(Ee)};try{t(!0);const e=document.startViewTransition(d);t(e),e.finished.finally(f)}catch(e){console.error(e),d(),f()}}),!1)};e.on("prev",r(t=>e.prev({...t,[$e]:!0}),{back:!0,cond:e=>e.index>0&&!((e.fragment??1)&&n.fragmentIndex>0)})),e.on("next",r(t=>e.next({...t,[$e]:!0}),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout(()=>{e.on("slide",r(t=>e.slide(t.index,{...t,[$e]:!0}),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))},0),e.on("fragment",e=>{n=e})};let Ie;const Me=()=>(void 0===Ie&&(Ie="wakeLock"in navigator&&navigator.wakeLock),Ie),Oe=async()=>{const e=Me();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},Ae=async()=>{if(!Me())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&Oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await Oe(),e};((e=document.getElementById(":$p"))=>{(()=>{const e=p("view");a.dataset.bespokeView=e===l||e===c?e:""})();const t=(e=>{const t=p(e);return v({[e]:void 0}),t})("sync")||void 0;o.from(e,((...e)=>{const t=d.findIndex(e=>g()===e);return e.map(([e,n])=>e[t]&&n).filter(e=>e)})([[1,1,0],re({key:t})],[[1,1,1],Z(e)],[[1,1,0],M],[[1,1,1],k],[[1,0,0],T()],[[1,1,1],O],[[1,1,1],ne({history:!1})],[[1,1,0],A()],[[1,1,0],P],[[1,0,0],ee],[[1,1,0],le()],[[1,0,0],C()],[[1,0,0],Te],[[1,1,1],$],[[1,1,0],Ae]))})()}();</script></body></html>

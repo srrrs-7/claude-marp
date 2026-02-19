@@ -89,14 +89,16 @@
 		},
 		{
 			"title": "カスタムメトリクス — PutMetricData vs EMF",
-			"layout": "default",
 			"content": [
 				"**PutMetricData API**: 直接メトリクス送信（シンプルだが高コスト）",
 				"**EMF（Embedded Metric Format）**: CloudWatch Logsに埋め込み → 自動でメトリクス生成（推奨）"
-			],
+			]
+		},
+		{
+			"title": "カスタムメトリクス — PutMetricData vs EMF（コード例）",
+			"content": [],
 			"code": "import { createMetricsLogger, Unit } from 'aws-embedded-metrics';\n\nexport const handler = async (event) => {\n  const metrics = createMetricsLogger();\n  metrics.setNamespace('MyApp/Orders');\n  metrics.putDimensions({ Service: 'OrderAPI', Env: 'prod' });\n\n  const start = Date.now();\n  const result = await processOrder(event);\n  const latency = Date.now() - start;\n\n  metrics.putMetric('OrderLatency', latency, Unit.Milliseconds);\n  metrics.putMetric('OrderSuccess', 1, Unit.Count);\n  await metrics.flush(); // CloudWatch Logsへ書き込み\n  return result;\n};",
-			"codeLanguage": "typescript",
-			"speakerNotes": "EMFはLambda/ECS/EKSどこでも使える。CloudWatch Logs書き込みコストのみで済むため経済的。"
+			"codeLanguage": "typescript"
 		},
 		{
 			"title": "CloudWatch Logs — 基本設定",
@@ -112,10 +114,13 @@
 		},
 		{
 			"title": "CloudWatch Logs Insights — 実践クエリ",
-			"layout": "default",
 			"content": [
 				"Logs Insightsはサーバーレスクエリエンジン（$0.005/GBスキャン）"
-			],
+			]
+		},
+		{
+			"title": "CloudWatch Logs Insights — 実践クエリ（コード例）",
+			"content": [],
 			"code": "# Lambda エラー率分析\nfilter @message like /ERROR/\n| stats count(*) as errors by bin(5m)\n| sort @timestamp desc\n\n# レイテンシ分析（p99）\nfilter @type = \"REPORT\"\n| stats avg(@duration), percentile(@duration, 99) as p99\n        by bin(1h)\n\n# 相関ID追跡（構造化ログ）\nfilter correlationId = \"abc-123\"\n| fields @timestamp, @message, service, statusCode\n| sort @timestamp asc\n\n# コールドスタート検出\nfilter @message like /Init Duration/\n| parse @message '* ms' as initDuration\n| stats avg(initDuration) by functionName",
 			"codeLanguage": "bash"
 		},
@@ -222,28 +227,35 @@
 		},
 		{
 			"title": "Lambda + X-Ray設定",
-			"layout": "default",
-			"content": [
-				"Active Tracing有効化でLambdaがX-Rayに自動でセグメントを送信"
-			],
+			"content": ["Active Tracing有効化でLambdaがX-Rayに自動でセグメントを送信"]
+		},
+		{
+			"title": "Lambda + X-Ray設定（コード例）",
+			"content": [],
 			"code": "# CDKでActive Tracing有効化\nconst fn = new lambda.Function(this, 'MyFn', {\n  tracing: lambda.Tracing.ACTIVE, // PassThrough も選択可\n  layers: [adotLayer],            // ADOT Layer追加\n});\n\n# Lambda Powertools (TypeScript) でサブセグメント作成\nimport { Tracer } from '@aws-lambda-powertools/tracer';\nconst tracer = new Tracer({ serviceName: 'OrderService' });\n\nexport const handler = tracer.captureLambdaHandler(async (event) => {\n  const segment = tracer.getSegment();\n  const subsegment = segment.addNewSubsegment('## fetchFromDB');\n  try {\n    const result = await db.getOrder(event.orderId);\n    tracer.putAnnotation('orderId', event.orderId);\n    tracer.putMetadata('orderDetails', result);\n    return result;\n  } finally { subsegment.close(); }\n});",
 			"codeLanguage": "typescript"
 		},
 		{
 			"title": "ECS/Fargate + X-Ray サイドカー",
-			"layout": "default",
 			"content": [
 				"ECS TaskDefinitionにX-Ray daemonコンテナをサイドカーとして追加"
-			],
+			]
+		},
+		{
+			"title": "ECS/Fargate + X-Ray サイドカー（コード例）",
+			"content": [],
 			"code": "# ECS Task Definition (CDK)\nconst taskDef = new ecs.FargateTaskDefinition(this, 'Task');\n\n// X-Ray daemon サイドカー\ntaskDef.addContainer('xray-daemon', {\n  image: ecs.ContainerImage.fromRegistry(\n    'amazon/aws-xray-daemon'\n  ),\n  portMappings: [{ containerPort: 2000, protocol: ecs.Protocol.UDP }],\n  cpu: 32,\n  memoryLimitMiB: 256,\n  logging: ecs.LogDrivers.awsLogs({\n    logGroup: new logs.LogGroup(this, 'XRayLogs'),\n    streamPrefix: 'xray',\n  }),\n});\n\n// アプリコンテナの環境変数\ntaskDef.addContainer('app', {\n  environment: {\n    AWS_XRAY_DAEMON_ADDRESS: 'xray-daemon:2000',\n  },\n});",
 			"codeLanguage": "typescript"
 		},
 		{
 			"title": "EKS + X-Ray (ADOT Collector)",
-			"layout": "default",
 			"content": [
 				"EKSではADOT Operator経由でCollectorを管理し、X-Ray Exporterへ転送"
-			],
+			]
+		},
+		{
+			"title": "EKS + X-Ray (ADOT Collector)（コード例）",
+			"content": [],
 			"code": "# OpenTelemetryCollector CR (X-Ray exporter)\napiVersion: opentelemetry.io/v1alpha1\nkind: OpenTelemetryCollector\nmetadata:\n  name: adot-xray\nspec:\n  mode: daemonset\n  serviceAccount: adot-collector  # IRSA設定済み\n  config: |\n    receivers:\n      otlp:\n        protocols:\n          grpc:\n            endpoint: 0.0.0.0:4317\n    processors:\n      batch:\n        timeout: 1s\n    exporters:\n      awsxray:\n        region: ap-northeast-1\n    service:\n      pipelines:\n        traces:\n          receivers: [otlp]\n          processors: [batch]\n          exporters: [awsxray]",
 			"codeLanguage": "yaml"
 		},
@@ -261,8 +273,11 @@
 		},
 		{
 			"title": "X-Ray アノテーションとメタデータ",
-			"layout": "default",
-			"content": ["**Annotation vs Metadata の使い分け**:"],
+			"content": ["**Annotation vs Metadata の使い分け**:"]
+		},
+		{
+			"title": "X-Ray アノテーションとメタデータ（コード例）",
+			"content": [],
 			"code": "// Annotation: インデックス可能 → フィルタ/グループ化に使用\n// 型: string/number/boolean のみ\ntracer.putAnnotation('userId', userId);\ntracer.putAnnotation('orderId', orderId);\ntracer.putAnnotation('region', 'ap-northeast-1');\n\n// Metadata: インデックス不可 → 詳細デバッグ情報\n// 型: オブジェクト・配列も可（最大64KB）\ntracer.putMetadata('requestPayload', event.body);\ntracer.putMetadata('dbQueryPlan', queryPlan);\n\n// X-Ray Console でAnnotationフィルタ\n// annotation.userId = \"user-123\" AND annotation.env = \"prod\"\n\n// X-Ray Groups でアノテーション条件グループ作成\n// aws xray create-group --group-name \"HighValueOrders\"\n//   --filter-expression 'annotation.orderValue > 10000'",
 			"codeLanguage": "typescript"
 		},
@@ -281,8 +296,11 @@
 		},
 		{
 			"title": "X-Ray サンプリングルール",
-			"layout": "default",
-			"content": ["サンプリングでコストを制御（デフォルト: 5%, 最大1TPS）"],
+			"content": ["サンプリングでコストを制御（デフォルト: 5%, 最大1TPS）"]
+		},
+		{
+			"title": "X-Ray サンプリングルール（コード例）",
+			"content": [],
 			"code": "# カスタムサンプリングルール\naws xray create-sampling-rule \\\n  --sampling-rule '{\n    \"RuleName\": \"HighPriorityOrders\",\n    \"Priority\": 1,\n    \"ReservoirSize\": 5,\n    \"FixedRate\": 0.10,\n    \"URLPath\": \"/api/orders/*\",\n    \"HTTPMethod\": \"POST\",\n    \"ServiceName\": \"OrderService\",\n    \"ServiceType\": \"AWS::Lambda::Function\"\n  }'\n\n# ヘルスチェックを除外（サンプリング0%）\naws xray create-sampling-rule \\\n  --sampling-rule '{\n    \"RuleName\": \"ExcludeHealthCheck\",\n    \"Priority\": 1,\n    \"ReservoirSize\": 0,\n    \"FixedRate\": 0,\n    \"URLPath\": \"/health\",\n    \"HTTPMethod\": \"GET\"\n  }'",
 			"codeLanguage": "bash"
 		},
@@ -369,64 +387,85 @@
 		},
 		{
 			"title": "ADOT Collector設定 — フル構成例",
-			"layout": "default",
-			"content": ["X-Ray + AMP + CloudWatch を同時に受信・転送する設定例"],
+			"content": ["X-Ray + AMP + CloudWatch を同時に受信・転送する設定例"]
+		},
+		{
+			"title": "ADOT Collector設定 — フル構成例（コード例）",
+			"content": [],
 			"code": "receivers:\n  otlp:\n    protocols:\n      grpc: { endpoint: 0.0.0.0:4317 }\n      http: { endpoint: 0.0.0.0:4318 }\n  prometheus:\n    config:\n      scrape_configs:\n        - job_name: 'k8s-pods'\n          kubernetes_sd_configs:\n            - role: pod\nprocessors:\n  batch: { timeout: 5s, send_batch_size: 1000 }\n  resourcedetection:\n    detectors: [eks, ec2, env]\n  filter/drop_health:\n    spans:\n      exclude:\n        match_type: strict\n        attributes:\n          - { key: http.url, value: /health }\nexporters:\n  awsxray:  { region: ap-northeast-1 }\n  awsemf:   { namespace: MyApp/Metrics, region: ap-northeast-1 }\n  prometheusremotewrite:\n    endpoint: https://aps-workspaces.../api/v1/remote_write\n    auth: { authenticator: sigv4auth }\nservice:\n  pipelines:\n    traces:  { receivers: [otlp], processors: [batch,resourcedetection,filter/drop_health], exporters: [awsxray] }\n    metrics: { receivers: [otlp,prometheus], processors: [batch], exporters: [awsemf,prometheusremotewrite] }",
 			"codeLanguage": "yaml"
 		},
 		{
 			"title": "Lambda + ADOT Layer",
-			"layout": "default",
 			"content": [
 				"Lambda LayerとしてADOTを追加 — 既存コードを変更せずに計装可能"
-			],
+			]
+		},
+		{
+			"title": "Lambda + ADOT Layer（コード例）",
+			"content": [],
 			"code": "# CDK: ADOT Lambda Layer追加\nconst adotLayer = lambda.LayerVersion.fromLayerVersionArn(\n  this, 'AdotLayer',\n  `arn:aws:lambda:ap-northeast-1:901920570463:layer:\\\n   aws-otel-nodejs-amd64-ver-1-18-1:4`\n);\n\nconst fn = new lambda.Function(this, 'Fn', {\n  runtime: lambda.Runtime.NODEJS_20_X,\n  handler: 'index.handler',\n  layers: [adotLayer],\n  environment: {\n    AWS_LAMBDA_EXEC_WRAPPER: '/opt/otel-handler',\n    OPENTELEMETRY_COLLECTOR_CONFIG_FILE:\n      '/var/task/collector.yaml',\n  },\n  tracing: lambda.Tracing.ACTIVE,\n});\n\n// collector.yaml (Lambda内に配置)\n// receivers: { otlp: {} }\n// exporters: { awsxray: {}, awsemf: {} }\n// service:\n//   pipelines:\n//     traces: { receivers: [otlp], exporters: [awsxray] }",
 			"codeLanguage": "typescript"
 		},
 		{
 			"title": "EKS + ADOT Operator",
-			"layout": "default",
 			"content": [
 				"ADOT Operatorは OpenTelemetryCollector CRDを提供 — Collector管理を自動化"
-			],
+			]
+		},
+		{
+			"title": "EKS + ADOT Operator（コード例）",
+			"content": [],
 			"code": "# ADOT Operator インストール\nhelm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts\nhelm install opentelemetry-operator \\\n  open-telemetry/opentelemetry-operator \\\n  --namespace opentelemetry-operator-system\n\n# Auto-instrumentation設定（Java自動計装）\napiVersion: opentelemetry.io/v1alpha1\nkind: Instrumentation\nmetadata:\n  name: java-instrumentation\nspec:\n  exporter:\n    endpoint: http://adot-collector:4317\n  propagators: [tracecontext, baggage, xray]\n  sampler:\n    type: parentbased_traceidratio\n    argument: \"0.05\"  # 5%サンプリング\n  java:\n    image: ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-java:latest\n\n# PodにAnnotation追加だけで自動計装\nmetadata:\n  annotations:\n    instrumentation.opentelemetry.io/inject-java: \"true\"",
 			"codeLanguage": "yaml"
 		},
 		{
 			"title": "Java Auto-instrumentation",
-			"layout": "default",
 			"content": [
 				"**OTel Java Javaagent**: バイトコードインジェクションで自動計装（コード変更不要）",
 				"**対応ライブラリ**: Spring Boot / Quarkus / gRPC / JDBC / Kafka / Redis / MongoDB etc.",
 				"JVM起動オプションに `-javaagent` を追加するだけで動作"
-			],
+			]
+		},
+		{
+			"title": "Java Auto-instrumentation（コード例）",
+			"content": [],
 			"code": "# Dockerfile\nFROM amazoncorretto:17\nCOPY opentelemetry-javaagent.jar /app/\nCOPY app.jar /app/\n\nENV JAVA_TOOL_OPTIONS=\"-javaagent:/app/opentelemetry-javaagent.jar\"\nENV OTEL_EXPORTER_OTLP_ENDPOINT=\"http://adot-collector:4317\"\nENV OTEL_RESOURCE_ATTRIBUTES=\"service.name=order-service,env=prod\"\nENV OTEL_PROPAGATORS=\"tracecontext,baggage,xray\"\nENV OTEL_TRACES_SAMPLER=\"parentbased_traceidratio\"\nENV OTEL_TRACES_SAMPLER_ARG=\"0.05\"\n\nCMD [\"java\", \"-jar\", \"/app/app.jar\"]\n\n# 計装される主なライブラリ（自動）\n# Spring MVC / WebFlux / RestTemplate / WebClient\n# JDBC / Hibernate / R2DBC\n# AWS SDK v2（DynamoDB/S3/SQS）",
 			"codeLanguage": "dockerfile"
 		},
 		{
 			"title": "Node.js OpenTelemetry SDK",
-			"layout": "default",
 			"content": [
 				"Node.js SDKによる手動計装とAuto-instrumentation（`@opentelemetry/auto-instrumentations-node`）"
-			],
+			]
+		},
+		{
+			"title": "Node.js OpenTelemetry SDK（コード例）",
+			"content": [],
 			"code": "// tracing.ts (アプリ起動前にimport)\nimport { NodeSDK } from '@opentelemetry/sdk-node';\nimport { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';\nimport { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-grpc';\nimport { AWSXRayPropagator } from '@aws/aws-xray-propagator';\nimport { AWSXRayIdGenerator } from '@aws/aws-xray-id-generator';\n\nconst sdk = new NodeSDK({\n  traceExporter: new OTLPTraceExporter({\n    url: 'http://localhost:4317', // ADOT Collector\n  }),\n  instrumentations: [getNodeAutoInstrumentations()],\n  idGenerator: new AWSXRayIdGenerator(),     // X-Ray互換ID\n  textMapPropagator: new AWSXRayPropagator(), // X-Ray Trace Header\n});\n\nsdk.start(); // Express/Fastify/Koa が自動計装される",
 			"codeLanguage": "typescript"
 		},
 		{
 			"title": "Python OpenTelemetry SDK",
-			"layout": "default",
 			"content": [
 				"Python SDK + `opentelemetry-instrument` コマンドで最小変更で計装可能"
-			],
+			]
+		},
+		{
+			"title": "Python OpenTelemetry SDK（コード例）",
+			"content": [],
 			"code": "# pip install\n# opentelemetry-sdk opentelemetry-exporter-otlp\n# opentelemetry-instrumentation-flask\n# opentelemetry-instrumentation-botocore\n# aws-opentelemetry-distro\n\n# tracing.py\nfrom opentelemetry import trace\nfrom opentelemetry.sdk.trace import TracerProvider\nfrom opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter\nfrom opentelemetry.sdk.trace.export import BatchSpanProcessor\nfrom opentelemetry.propagators.aws import AwsXRayPropagator\n\nprovider = TracerProvider()\nexporter = OTLPSpanExporter(endpoint='http://localhost:4317')\nprovider.add_span_processor(BatchSpanProcessor(exporter))\ntrace.set_tracer_provider(provider)\n\ntracer = trace.get_tracer(__name__)\n\n@app.route('/order', methods=['POST'])\ndef create_order():\n    with tracer.start_as_current_span('create-order') as span:\n        span.set_attribute('order.id', order_id)\n        return process_order(request.json)",
 			"codeLanguage": "python"
 		},
 		{
 			"title": "カスタムSpanの作成",
-			"layout": "default",
 			"content": [
 				"**Span属性のベストプラクティス**: OpenTelemetry Semantic Conventions準拠"
-			],
+			]
+		},
+		{
+			"title": "カスタムSpanの作成（コード例）",
+			"content": [],
 			"code": "import { trace, context, SpanStatusCode } from '@opentelemetry/api';\nconst tracer = trace.getTracer('payment-service', '1.0.0');\n\nasync function processPayment(paymentData: PaymentRequest) {\n  // 手動Span作成\n  return tracer.startActiveSpan('payment.process', async (span) => {\n    try {\n      // Semantic Conventions準拠の属性\n      span.setAttributes({\n        'payment.method': paymentData.method,\n        'payment.amount': paymentData.amount,\n        'payment.currency': paymentData.currency,\n        'user.id': paymentData.userId,\n        // HTTP Semantic Conventions\n        'http.method': 'POST',\n        'http.url': 'https://payment-provider.example',\n      });\n      const result = await callPaymentProvider(paymentData);\n      span.setStatus({ code: SpanStatusCode.OK });\n      return result;\n    } catch (err) {\n      span.setStatus({ code: SpanStatusCode.ERROR, message: err.message });\n      span.recordException(err); // スタックトレースを記録\n      throw err;\n    } finally { span.end(); }\n  });\n}",
 			"codeLanguage": "typescript"
 		},
@@ -444,8 +483,11 @@
 		},
 		{
 			"title": "ADOT → AMP Exporter設定",
-			"layout": "default",
-			"content": ["Amazon Managed PrometheusへSigV4認証付きでremote_write"],
+			"content": ["Amazon Managed PrometheusへSigV4認証付きでremote_write"]
+		},
+		{
+			"title": "ADOT → AMP Exporter設定（コード例）",
+			"content": [],
 			"code": "# ADOT Collector config.yaml (AMP exporter)\nextensions:\n  sigv4auth:\n    region: ap-northeast-1\n    service: aps\n\nexporters:\n  prometheusremotewrite:\n    endpoint: https://aps-workspaces.ap-northeast-1.amazonaws.com/\\\nworkspaces/ws-xxxxxxxx/api/v1/remote_write\n    auth:\n      authenticator: sigv4auth\n    resource_to_telemetry_conversion:\n      enabled: true\n    tls:\n      insecure: false\n\n# Prometheus remote_write (代替方法)\n# prometheus.yml\nremote_write:\n  - url: https://aps-workspaces.../api/v1/remote_write\n    sigv4:\n      region: ap-northeast-1\n      # IAMロールはIRSAで付与\n    queue_config:\n      max_samples_per_send: 1000\n      batch_send_deadline: 5s",
 			"codeLanguage": "yaml"
 		},
@@ -484,17 +526,23 @@
 		},
 		{
 			"title": "AMP ワークスペース作成・IRSA設定",
-			"layout": "default",
-			"content": ["AMPワークスペース作成とEKSからの書き込みIRSA設定"],
+			"content": ["AMPワークスペース作成とEKSからの書き込みIRSA設定"]
+		},
+		{
+			"title": "AMP ワークスペース作成・IRSA設定（コード例）",
+			"content": [],
 			"code": "# AMP ワークスペース作成\naws amp create-workspace \\\n  --alias my-workspace \\\n  --region ap-northeast-1\n# → workspaceId: ws-xxxxxxxx\n\n# IRSA設定（ADOT Collector用）\neksctl create iamserviceaccount \\\n  --name adot-collector \\\n  --namespace monitoring \\\n  --cluster my-cluster \\\n  --attach-policy-arn \\\n    arn:aws:iam::aws:policy/AmazonPrometheusRemoteWriteAccess \\\n  --approve --override-existing-serviceaccounts\n\n# 追加ポリシー（X-Ray + CW Logs用）\naws iam attach-role-policy \\\n  --role-name eksctl-my-cluster-addon-iamserviceacc-... \\\n  --policy-arn \\\n    arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess",
 			"codeLanguage": "bash"
 		},
 		{
 			"title": "Prometheus recording rules でコスト最適化",
-			"layout": "default",
 			"content": [
 				"**recording rules**: 高頻度クエリを事前集計 → クエリコスト削減 + ダッシュボード高速化"
-			],
+			]
+		},
+		{
+			"title": "Prometheus recording rules でコスト最適化（コード例）",
+			"content": [],
 			"code": "# AMP Alerting + Recording Rules\naws amp create-rule-groups-namespace \\\n  --workspace-id ws-xxxxxxxx \\\n  --name monitoring-rules \\\n  --data file://rules.yaml\n\n# rules.yaml\ngroups:\n  - name: recording_rules\n    rules:\n      # 5分集計でカーディナリティ削減\n      - record: job:http_requests_total:rate5m\n        expr: rate(http_requests_total[5m])\n      - record: job:http_error_rate:rate5m\n        expr: |\n          rate(http_requests_total{status=~\"5..\"}[5m])\n          / rate(http_requests_total[5m])\n  - name: alerting_rules\n    rules:\n      - alert: HighErrorRate\n        expr: job:http_error_rate:rate5m > 0.05\n        for: 5m\n        labels: { severity: critical }\n        annotations:\n          summary: \"Error rate > 5%: {{ $value | humanize }}\"",
 			"codeLanguage": "yaml"
 		},
@@ -526,8 +574,11 @@
 		},
 		{
 			"title": "Grafana データソース設定",
-			"layout": "default",
-			"content": ["AMGでAMP/CloudWatch/X-Rayを設定し統合ダッシュボードを作成"],
+			"content": ["AMGでAMP/CloudWatch/X-Rayを設定し統合ダッシュボードを作成"]
+		},
+		{
+			"title": "Grafana データソース設定（コード例）",
+			"content": [],
 			"code": "# Grafana as Code (Terraform)\nresource \"aws_grafana_workspace\" \"main\" {\n  name                     = \"prod-observability\"\n  account_access_type      = \"CURRENT_ACCOUNT\"\n  authentication_providers = [\"AWS_SSO\"]\n  permission_type          = \"SERVICE_MANAGED\"\n  data_sources = [\n    \"CLOUDWATCH\",\n    \"PROMETHEUS\",  # AMP\n    \"XRAY\",\n    \"AMAZON_OPENSEARCH_SERVICE\",\n  ]\n  role_arn = aws_iam_role.grafana.arn\n}\n\n# Grafana IAMロール（各データソースへのRead権限）\n# AmazonGrafanaCloudWatchAccess\n# AmazonPrometheusQueryAccess\n# AWSXRayReadOnlyAccess\n# + CloudFormation Stack IDからWorkspace IDを参照",
 			"codeLanguage": "hcl"
 		},
@@ -613,10 +664,13 @@
 		},
 		{
 			"title": "Lambda Powertools — 詳細実装",
-			"layout": "default",
 			"content": [
 				"**AWS Lambda Powertools**: SRE/DevOpsベストプラクティスをデコレータで提供"
-			],
+			]
+		},
+		{
+			"title": "Lambda Powertools — 詳細実装（コード例）",
+			"content": [],
 			"code": "import { Logger } from '@aws-lambda-powertools/logger';\nimport { Tracer } from '@aws-lambda-powertools/tracer';\nimport { Metrics, MetricUnits } from '@aws-lambda-powertools/metrics';\n\nconst logger = new Logger({ serviceName: 'OrderService', logLevel: 'INFO' });\nconst tracer = new Tracer({ serviceName: 'OrderService' });\nconst metrics = new Metrics({ namespace: 'MyApp', serviceName: 'OrderService' });\n\nexport const handler = tracer.captureLambdaHandler(\n  logger.injectLambdaContext(\n    metrics.logMetrics(\n      async (event, context) => {\n        logger.info('Processing order', { orderId: event.orderId });\n        tracer.putAnnotation('orderId', event.orderId);\n\n        const result = await processOrder(event);\n\n        metrics.addMetric('OrderProcessed', MetricUnits.Count, 1);\n        metrics.addDimension('PaymentMethod', event.paymentMethod);\n        logger.info('Order completed', { result });\n        return result;\n      }\n    )\n  )\n);",
 			"codeLanguage": "typescript"
 		},
@@ -698,10 +752,13 @@
 		},
 		{
 			"title": "相関IDと構造化ログ設計",
-			"layout": "default",
 			"content": [
 				"**相関ID（Correlation ID）**: リクエストを横断して追跡するためのユニークID"
-			],
+			]
+		},
+		{
+			"title": "相関IDと構造化ログ設計（コード例）",
+			"content": [],
 			"code": "// 構造化ログ設計（JSON形式）\nconst logger = new Logger({\n  serviceName: 'OrderService',\n  persistentLogAttributes: {\n    environment: process.env.ENV,\n    version: process.env.SERVICE_VERSION,\n  },\n});\n\n// X-Ray Trace IDを相関IDとして自動付与（Powertools）\n// 出力例:\n// {\n//   \"level\": \"INFO\",\n//   \"service\": \"OrderService\",\n//   \"timestamp\": \"2026-02-19T04:43:39.000Z\",\n//   \"xray_trace_id\": \"1-65d33c7f-...\",\n//   \"correlation_id\": \"req-uuid-abc123\", // カスタム相関ID\n//   \"cold_start\": false,\n//   \"message\": \"Order processed\",\n//   \"orderId\": \"order-456\",\n//   \"userId\": \"user-789\"\n// }\n\n// Logs Insightsで横断検索\n// filter correlation_id = 'req-uuid-abc123'",
 			"codeLanguage": "typescript"
 		},
@@ -760,10 +817,13 @@
 		},
 		{
 			"title": "Observability as Code (CDK)",
-			"layout": "default",
 			"content": [
 				"観測設定をCDKでコード管理 — ダッシュボード・アラーム・ログ保持を再現可能に"
-			],
+			]
+		},
+		{
+			"title": "Observability as Code (CDK)（コード例）",
+			"content": [],
 			"code": "import * as cloudwatch from 'aws-cdk-lib/aws-cloudwatch';\nimport { Dashboard, GraphWidget, Alarm } from 'aws-cdk-lib/aws-cloudwatch';\n\n// ダッシュボードをCDKで定義\nconst dashboard = new Dashboard(stack, 'AppDashboard', {\n  dashboardName: 'OrderService-Production',\n});\n\ndashboard.addWidgets(\n  new GraphWidget({\n    title: 'Order Latency (p99)',\n    left: [orderFn.metricDuration({ statistic: 'p99' })],\n  }),\n  new GraphWidget({\n    title: 'Error Rate',\n    left: [orderFn.metricErrors({ period: Duration.minutes(1) })],\n  })\n);\n\n// アラームもコードで管理\nconst errorAlarm = new Alarm(stack, 'ErrorAlarm', {\n  metric: orderFn.metricErrors(),\n  threshold: 5,\n  evaluationPeriods: 3,\n  datapointsToAlarm: 2, // 3of2\n  treatMissingData: TreatMissingData.NOT_BREACHING,\n});",
 			"codeLanguage": "typescript"
 		},
@@ -808,8 +868,11 @@
 		},
 		{
 			"title": "X-Ray サンプリング戦略",
-			"layout": "default",
-			"content": ["サンプリング設定でコスト制御（本番環境の推奨設定）"],
+			"content": ["サンプリング設定でコスト制御（本番環境の推奨設定）"]
+		},
+		{
+			"title": "X-Ray サンプリング戦略（コード例）",
+			"content": [],
 			"code": "# 本番環境向けサンプリングルール設計\n# 優先度1: ヘルスチェックを除外\naws xray create-sampling-rule --sampling-rule '{\n  \"RuleName\": \"ExcludeHealthCheck\",\n  \"Priority\": 1,\n  \"ReservoirSize\": 0,\n  \"FixedRate\": 0,\n  \"URLPath\": \"/health\",\n  \"HTTPMethod\": \"*\"\n}'\n\n# 優先度2: 高価値APIは5%サンプリング\naws xray create-sampling-rule --sampling-rule '{\n  \"RuleName\": \"PaymentAPI\",\n  \"Priority\": 2,\n  \"ReservoirSize\": 10,\n  \"FixedRate\": 0.05,\n  \"URLPath\": \"/api/payments/*\",\n  \"ServiceName\": \"PaymentService\"\n}'\n\n# デフォルト(優先度10000): 1%サンプリング\n# ReservoirSize: 1 (TPS), FixedRate: 0.01\n# コスト試算: 1000req/s × 1% × 3600 × 24 × 30 = 259.2万/月 → $13/月",
 			"codeLanguage": "bash"
 		},
@@ -860,8 +923,11 @@
 		},
 		{
 			"title": "コストアラーム設定",
-			"layout": "default",
-			"content": ["Observability費用の予算超過を事前に検知する設定"],
+			"content": ["Observability費用の予算超過を事前に検知する設定"]
+		},
+		{
+			"title": "コストアラーム設定（コード例）",
+			"content": [],
 			"code": "# AWS Budgets でObservabilityコスト監視\naws budgets create-budget \\\n  --account-id $ACCOUNT_ID \\\n  --budget '{\n    \"BudgetName\": \"Observability-Monthly\",\n    \"BudgetLimit\": {\"Amount\": \"500\", \"Unit\": \"USD\"},\n    \"TimeUnit\": \"MONTHLY\",\n    \"BudgetType\": \"COST\",\n    \"CostFilters\": {\n      \"Service\": [\n        \"Amazon CloudWatch\",\n        \"AWS X-Ray\",\n        \"Amazon Managed Service for Prometheus\",\n        \"Amazon Managed Grafana\"\n      ]\n    }\n  }' \\\n  --notifications-with-subscribers '[{\n    \"Notification\": {\n      \"NotificationType\": \"ACTUAL\",\n      \"ComparisonOperator\": \"GREATER_THAN\",\n      \"Threshold\": 80,\n      \"ThresholdType\": \"PERCENTAGE\"\n    },\n    \"Subscribers\": [{\"SubscriptionType\": \"SNS\",\n      \"Address\": \"arn:aws:sns:...\"}]\n  }]'",
 			"codeLanguage": "bash"
 		},

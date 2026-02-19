@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" style="max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+
+  <!-- Title -->
+  <text x="450" y="22" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-family="sans-serif" font-size="12">Reliability レイヤー（左: リクエスト経路 / 右: 各レイヤーの役割）</text>
+
+  <!-- Pipeline arrow (vertical, center-left) -->
+  <line x1="160" y1="38" x2="160" y2="350" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+
+  <!-- Layer 1: Input -->
+  <rect x="30" y="38" width="260" height="48" rx="8" fill="rgba(100,181,246,0.15)" stroke="#64b5f6" stroke-width="1.5"/>
+  <text x="160" y="59" text-anchor="middle" fill="#64b5f6" font-family="sans-serif" font-size="13" font-weight="bold">① Input Validation</text>
+  <text x="160" y="77" text-anchor="middle" fill="#bbdefb" font-family="sans-serif" font-size="11">ユーザー入力のサニタイズ・安全性確認</text>
+  <!-- Right description -->
+  <text x="340" y="59" fill="#bbdefb" font-family="sans-serif" font-size="11">• PII 検出・マスキング</text>
+  <text x="340" y="76" fill="#bbdefb" font-family="sans-serif" font-size="11">• Prompt Injection チェック</text>
+
+  <!-- Arrow -->
+  <line x1="160" y1="86" x2="160" y2="108" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="160,113 154,100 166,100" fill="#90caf9"/>
+
+  <!-- Layer 2: Guardrails (Input) -->
+  <rect x="30" y="113" width="260" height="48" rx="8" fill="rgba(255,183,77,0.15)" stroke="#ffb74d" stroke-width="1.5"/>
+  <text x="160" y="134" text-anchor="middle" fill="#ffb74d" font-family="sans-serif" font-size="13" font-weight="bold">② Input Guardrails</text>
+  <text x="160" y="152" text-anchor="middle" fill="#ffe0b2" font-family="sans-serif" font-size="11">ポリシー違反・有害コンテンツ検出</text>
+  <text x="340" y="134" fill="#ffe0b2" font-family="sans-serif" font-size="11">• カテゴリフィルター</text>
+  <text x="340" y="151" fill="#ffe0b2" font-family="sans-serif" font-size="11">• スコープ外リクエスト拒否</text>
+
+  <!-- Arrow -->
+  <line x1="160" y1="161" x2="160" y2="183" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="160,188 154,175 166,175" fill="#90caf9"/>
+
+  <!-- Layer 3: Agent Loop -->
+  <rect x="30" y="188" width="260" height="48" rx="8" fill="rgba(186,104,200,0.15)" stroke="#ba68c8" stroke-width="1.5"/>
+  <text x="160" y="209" text-anchor="middle" fill="#ce93d8" font-family="sans-serif" font-size="13" font-weight="bold">③ Agent Loop</text>
+  <text x="160" y="227" text-anchor="middle" fill="#e1bee7" font-family="sans-serif" font-size="11">ReAct: Think → Act → Observe</text>
+  <text x="340" y="209" fill="#e1bee7" font-family="sans-serif" font-size="11">• 最大ステップ数制限</text>
+  <text x="340" y="226" fill="#e1bee7" font-family="sans-serif" font-size="11">• エラー回復・リトライ</text>
+
+  <!-- Arrow -->
+  <line x1="160" y1="236" x2="160" y2="258" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="160,263 154,250 166,250" fill="#90caf9"/>
+
+  <!-- Layer 4: HiTL -->
+  <rect x="30" y="263" width="260" height="48" rx="8" fill="rgba(255,112,67,0.15)" stroke="#ff7043" stroke-width="1.5"/>
+  <text x="160" y="284" text-anchor="middle" fill="#ff8a65" font-family="sans-serif" font-size="13" font-weight="bold">④ Human-in-the-Loop</text>
+  <text x="160" y="302" text-anchor="middle" fill="#ffccbc" font-family="sans-serif" font-size="11">高リスク操作の人間承認チェック</text>
+  <text x="340" y="284" fill="#ffccbc" font-family="sans-serif" font-size="11">• 不可逆操作のみ適用</text>
+  <text x="340" y="301" fill="#ffccbc" font-family="sans-serif" font-size="11">• 非同期承認（Webhook）</text>
+
+  <!-- Arrow -->
+  <line x1="160" y1="311" x2="160" y2="333" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="160,338 154,325 166,325" fill="#90caf9"/>
+
+  <!-- Layer 5: Output Guardrails -->
+  <rect x="30" y="338" width="260" height="30" rx="8" fill="rgba(129,199,132,0.15)" stroke="#81c784" stroke-width="1.5"/>
+  <text x="160" y="357" text-anchor="middle" fill="#a5d6a7" font-family="sans-serif" font-size="12" font-weight="bold">⑤ Output Guardrails → User</text>
+  <text x="340" y="352" fill="#c8e6c9" font-family="sans-serif" font-size="11">• PII 除去・スキーマ検証</text>
+
+  <!-- Observability banner on right -->
+  <rect x="720" y="38" width="160" height="330" rx="10" fill="rgba(100,181,246,0.05)" stroke="rgba(100,181,246,0.3)" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="800" y="60" text-anchor="middle" fill="#64b5f6" font-family="sans-serif" font-size="12" font-weight="bold">Observability</text>
+  <text x="800" y="85" text-anchor="middle" fill="#bbdefb" font-family="sans-serif" font-size="10">全レイヤーを横断</text>
+  <text x="800" y="115" text-anchor="middle" fill="#bbdefb" font-family="sans-serif" font-size="10">• Logging</text>
+  <text x="800" y="135" text-anchor="middle" fill="#bbdefb" font-family="sans-serif" font-size="10">• Tracing</text>
+  <text x="800" y="155" text-anchor="middle" fill="#bbdefb" font-family="sans-serif" font-size="10">• Metrics</text>
+  <text x="800" y="185" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="sans-serif" font-size="10">LangSmith</text>
+  <text x="800" y="205" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="sans-serif" font-size="10">Langfuse</text>
+  <text x="800" y="225" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="sans-serif" font-size="10">OpenTelemetry</text>
+</svg>

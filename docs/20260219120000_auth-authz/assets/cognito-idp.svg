@@ -1,0 +1,97 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#f8f9fa" rx="8"/>
+  <text x="400" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#2c3e50" font-family="sans-serif">Cognito Identity Pools — Federation フロー</text>
+
+  <!-- External IdPs -->
+  <rect x="15" y="45" width="145" height="295" rx="8" fill="none" stroke="#7f8c8d" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="88" y="62" text-anchor="middle" font-size="10" font-weight="bold" fill="#7f8c8d" font-family="sans-serif">External IdPs</text>
+
+  <rect x="25" y="72" width="125" height="40" rx="6" fill="#4285f4"/>
+  <text x="87" y="97" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Google / Apple</text>
+
+  <rect x="25" y="125" width="125" height="40" rx="6" fill="#0078d4"/>
+  <text x="87" y="150" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Azure AD (OIDC)</text>
+
+  <rect x="25" y="178" width="125" height="40" rx="6" fill="#d4380d"/>
+  <text x="87" y="203" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">SAML 2.0 IdP</text>
+
+  <rect x="25" y="231" width="125" height="40" rx="6" fill="#e74c3c"/>
+  <text x="87" y="256" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Cognito User Pool</text>
+
+  <rect x="25" y="284" width="125" height="40" rx="6" fill="#7f8c8d"/>
+  <text x="87" y="309" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">開発者認証</text>
+
+  <!-- Cognito Identity Pool -->
+  <rect x="270" y="110" width="200" height="170" rx="10" fill="#FF9900" style="filter:drop-shadow(3px 3px 6px rgba(0,0,0,0.2))"/>
+  <rect x="270" y="110" width="200" height="38" rx="10" fill="#E8851A"/>
+  <text x="370" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Cognito</text>
+  <text x="370" y="143" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Identity Pool</text>
+  <text x="280" y="170" font-size="10" fill="white" font-family="sans-serif">• IdPトークンを受け取る</text>
+  <text x="280" y="187" font-size="10" fill="white" font-family="sans-serif">• アイデンティティを検証</text>
+  <text x="280" y="204" font-size="10" fill="white" font-family="sans-serif">• 認証済みRole を選択</text>
+  <text x="280" y="221" font-size="10" fill="white" font-family="sans-serif">• STS に AssumeRole 要求</text>
+  <text x="280" y="246" font-size="9" fill="#ffe8c0" font-family="sans-serif">Unauthenticated Role も設定可能</text>
+  <text x="280" y="260" font-size="9" fill="#ffe8c0" font-family="sans-serif">（ゲストアクセス）</text>
+
+  <!-- STS -->
+  <rect x="560" y="110" width="140" height="80" rx="8" fill="#9b59b6" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="575" y="138" font-size="22" fill="white" font-family="sans-serif">🔑</text>
+  <text x="630" y="143" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">AWS STS</text>
+  <text x="630" y="159" text-anchor="middle" font-size="9" fill="#e8d5f5" font-family="sans-serif">AssumeRoleWithWebIdentity</text>
+  <text x="630" y="174" text-anchor="middle" font-size="9" fill="#e8d5f5" font-family="sans-serif">一時認証情報を発行</text>
+
+  <!-- IAM Roles -->
+  <rect x="560" y="215" width="140" height="70" rx="8" fill="#27ae60" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="630" y="238" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">IAM Role</text>
+  <text x="630" y="255" text-anchor="middle" font-size="9" fill="#d5f5e3" font-family="sans-serif">Authenticated Role</text>
+  <text x="630" y="270" text-anchor="middle" font-size="9" fill="#d5f5e3" font-family="sans-serif">Unauthenticated Role</text>
+
+  <!-- AWS Services -->
+  <rect x="270" y="310" width="430" height="70" rx="8" fill="#e74c3c" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="485" y="335" text-anchor="middle" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">AWS Services</text>
+  <text x="485" y="355" text-anchor="middle" font-size="10" fill="#fdecea" font-family="sans-serif">S3（ユーザー固有フォルダ）/ API Gateway / DynamoDB / AppSync</text>
+  <text x="485" y="372" text-anchor="middle" font-size="9" fill="#fdecea" font-family="sans-serif">一時認証情報でアクセス（15分〜12時間）</text>
+
+  <!-- Arrows -->
+  <!-- IdPs → Identity Pool -->
+  <line x1="151" y1="92" x2="268" y2="170" stroke="#4285f4" stroke-width="1.5"/>
+  <polygon points="268,170 262,160 272,160" fill="#4285f4"/>
+
+  <line x1="151" y1="145" x2="268" y2="185" stroke="#0078d4" stroke-width="1.5"/>
+  <polygon points="268,185 262,175 272,175" fill="#0078d4"/>
+
+  <line x1="151" y1="198" x2="268" y2="200" stroke="#d4380d" stroke-width="1.5"/>
+  <polygon points="268,200 258,195 258,205" fill="#d4380d"/>
+
+  <line x1="151" y1="251" x2="268" y2="220" stroke="#e74c3c" stroke-width="1.5"/>
+  <polygon points="268,220 262,230 272,228" fill="#e74c3c"/>
+
+  <line x1="151" y1="304" x2="268" y2="245" stroke="#7f8c8d" stroke-width="1.5"/>
+  <polygon points="268,245 262,255 272,253" fill="#7f8c8d"/>
+
+  <!-- IdP Token label -->
+  <text x="200" y="183" text-anchor="middle" font-size="9" fill="#7f8c8d" font-family="sans-serif">IdP Token</text>
+  <text x="200" y="194" text-anchor="middle" font-size="9" fill="#7f8c8d" font-family="sans-serif">(JWT / SAML)</text>
+
+  <!-- Identity Pool → STS -->
+  <line x1="471" y1="162" x2="558" y2="150" stroke="#9b59b6" stroke-width="2"/>
+  <polygon points="558,150 550,145 552,155" fill="#9b59b6"/>
+  <text x="515" y="148" text-anchor="middle" font-size="9" fill="#9b59b6" font-family="sans-serif">AssumeRole</text>
+
+  <!-- STS → IAM Role -->
+  <line x1="630" y1="191" x2="630" y2="213" stroke="#27ae60" stroke-width="1.5"/>
+  <polygon points="630,213 625,203 635,203" fill="#27ae60"/>
+
+  <!-- Temp creds back to mobile app + to AWS -->
+  <line x1="558" y1="155" x2="471" y2="200" stroke="#FF9900" stroke-width="2" stroke-dasharray="4,2"/>
+  <polygon points="471,200 476,190 480,200" fill="#FF9900"/>
+  <text x="510" y="188" text-anchor="middle" font-size="9" fill="#FF9900" font-family="sans-serif">一時認証情報</text>
+
+  <!-- Identity Pool → AWS Services -->
+  <line x1="370" y1="281" x2="370" y2="308" stroke="#e74c3c" stroke-width="2"/>
+  <polygon points="370,308 365,298 375,298" fill="#e74c3c"/>
+
+  <!-- IAM Role → AWS Services -->
+  <line x1="630" y1="286" x2="630" y2="308" stroke="#e74c3c" stroke-width="1.5"/>
+  <polygon points="630,308 625,298 635,298" fill="#e74c3c"/>
+</svg>

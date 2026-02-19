@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" style="max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+
+  <!-- Title bar -->
+  <rect x="300" y="10" width="300" height="44" rx="8" fill="rgba(186,104,200,0.2)" stroke="#ba68c8" stroke-width="1.5"/>
+  <text x="450" y="36" text-anchor="middle" fill="#ce93d8" font-family="sans-serif" font-size="15" font-weight="bold">エージェントメモリ</text>
+
+  <!-- Arrows down from title -->
+  <line x1="340" y1="54" x2="230" y2="94" stroke="#90caf9" stroke-width="1.5"/>
+  <polygon points="225,97 232,83 241,91" fill="#90caf9"/>
+  <line x1="560" y1="54" x2="670" y2="94" stroke="#90caf9" stroke-width="1.5"/>
+  <polygon points="675,97 659,91 668,83" fill="#90caf9"/>
+
+  <!-- LEFT: 短期メモリ -->
+  <rect x="30" y="97" width="390" height="60" rx="8" fill="rgba(77,208,225,0.2)" stroke="#4dd0e1" stroke-width="2"/>
+  <text x="225" y="122" text-anchor="middle" fill="#4dd0e1" font-family="sans-serif" font-size="15" font-weight="bold">短期メモリ（In-Context）</text>
+  <text x="225" y="145" text-anchor="middle" fill="#b2ebf2" font-family="sans-serif" font-size="12">コンテキストウィンドウ内の会話履歴</text>
+
+  <!-- Left sub-items -->
+  <rect x="45" y="175" width="110" height="60" rx="6" fill="rgba(77,208,225,0.1)" stroke="#4dd0e1" stroke-width="1"/>
+  <text x="100" y="200" text-anchor="middle" fill="#e0f7fa" font-family="sans-serif" font-size="12">会話履歴</text>
+  <text x="100" y="220" text-anchor="middle" fill="#b2ebf2" font-family="sans-serif" font-size="10">messages[]</text>
+
+  <rect x="165" y="175" width="110" height="60" rx="6" fill="rgba(77,208,225,0.1)" stroke="#4dd0e1" stroke-width="1"/>
+  <text x="220" y="200" text-anchor="middle" fill="#e0f7fa" font-family="sans-serif" font-size="12">ツール結果</text>
+  <text x="220" y="220" text-anchor="middle" fill="#b2ebf2" font-family="sans-serif" font-size="10">tool_result</text>
+
+  <rect x="285" y="175" width="110" height="60" rx="6" fill="rgba(77,208,225,0.1)" stroke="#4dd0e1" stroke-width="1"/>
+  <text x="340" y="200" text-anchor="middle" fill="#e0f7fa" font-family="sans-serif" font-size="12">中間推論</text>
+  <text x="340" y="220" text-anchor="middle" fill="#b2ebf2" font-family="sans-serif" font-size="10">scratchpad</text>
+
+  <!-- Left limitations -->
+  <rect x="45" y="255" width="350" height="50" rx="6" fill="rgba(255,112,67,0.1)" stroke="rgba(255,112,67,0.4)" stroke-width="1"/>
+  <text x="220" y="277" text-anchor="middle" fill="#ffab91" font-family="sans-serif" font-size="11">⚠ 上限: ~200K tokens（claude-opus-4-6）</text>
+  <text x="220" y="295" text-anchor="middle" fill="#ffab91" font-family="sans-serif" font-size="11">圧縮: Summarization / Sliding Window</text>
+
+  <!-- RIGHT: 長期メモリ -->
+  <rect x="480" y="97" width="390" height="60" rx="8" fill="rgba(129,199,132,0.2)" stroke="#81c784" stroke-width="2"/>
+  <text x="675" y="122" text-anchor="middle" fill="#81c784" font-family="sans-serif" font-size="15" font-weight="bold">長期メモリ（External）</text>
+  <text x="675" y="145" text-anchor="middle" fill="#c8e6c9" font-family="sans-serif" font-size="12">外部ストレージへの永続化</text>
+
+  <!-- Right sub-items -->
+  <rect x="495" y="175" width="110" height="60" rx="6" fill="rgba(129,199,132,0.1)" stroke="#81c784" stroke-width="1"/>
+  <text x="550" y="200" text-anchor="middle" fill="#e8f5e9" font-family="sans-serif" font-size="12">ベクターDB</text>
+  <text x="550" y="220" text-anchor="middle" fill="#c8e6c9" font-family="sans-serif" font-size="10">pgvector等</text>
+
+  <rect x="615" y="175" width="110" height="60" rx="6" fill="rgba(129,199,132,0.1)" stroke="#81c784" stroke-width="1"/>
+  <text x="670" y="200" text-anchor="middle" fill="#e8f5e9" font-family="sans-serif" font-size="12">KV ストア</text>
+  <text x="670" y="220" text-anchor="middle" fill="#c8e6c9" font-family="sans-serif" font-size="10">Redis / DynamoDB</text>
+
+  <rect x="735" y="175" width="110" height="60" rx="6" fill="rgba(129,199,132,0.1)" stroke="#81c784" stroke-width="1"/>
+  <text x="790" y="200" text-anchor="middle" fill="#e8f5e9" font-family="sans-serif" font-size="12">RDB</text>
+  <text x="790" y="220" text-anchor="middle" fill="#c8e6c9" font-family="sans-serif" font-size="10">PostgreSQL等</text>
+
+  <!-- Right feature -->
+  <rect x="495" y="255" width="350" height="50" rx="6" fill="rgba(129,199,132,0.1)" stroke="rgba(129,199,132,0.4)" stroke-width="1"/>
+  <text x="670" y="277" text-anchor="middle" fill="#a5d6a7" font-family="sans-serif" font-size="11">✓ セッション跨ぎの永続化</text>
+  <text x="670" y="295" text-anchor="middle" fill="#a5d6a7" font-family="sans-serif" font-size="11">意味検索（Embedding）で関連記憶を取得</text>
+
+  <!-- Arrows from title to boxes -->
+  <line x1="225" y1="175" x2="225" y2="157" stroke="#4dd0e1" stroke-width="1.5"/>
+  <line x1="675" y1="175" x2="675" y2="157" stroke="#81c784" stroke-width="1.5"/>
+
+  <!-- Bottom note -->
+  <text x="450" y="358" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="sans-serif" font-size="10">実用的なエージェントは短期＋長期を組み合わせて利用する</text>
+</svg>

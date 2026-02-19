@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" style="max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Divider -->
+  <line x1="450" y1="20" x2="450" y2="360" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- LEFT: LLM単体 -->
+  <text x="225" y="30" text-anchor="middle" fill="#64b5f6" font-family="sans-serif" font-size="17" font-weight="bold">LLM 単体</text>
+
+  <!-- Input box -->
+  <rect x="125" y="55" width="200" height="48" rx="8" fill="rgba(100,181,246,0.15)" stroke="#64b5f6" stroke-width="1.5"/>
+  <text x="225" y="83" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="14">ユーザー入力</text>
+
+  <!-- Arrow down -->
+  <line x1="225" y1="103" x2="225" y2="128" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="225,138 219,122 231,122" fill="#90caf9"/>
+
+  <!-- LLM box -->
+  <rect x="125" y="138" width="200" height="48" rx="8" fill="rgba(186,104,200,0.15)" stroke="#ba68c8" stroke-width="1.5"/>
+  <text x="225" y="166" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="14">LLM 処理</text>
+
+  <!-- Arrow down -->
+  <line x1="225" y1="186" x2="225" y2="211" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="225,221 219,205 231,205" fill="#90caf9"/>
+
+  <!-- Output box -->
+  <rect x="125" y="221" width="200" height="48" rx="8" fill="rgba(129,199,132,0.15)" stroke="#81c784" stroke-width="1.5"/>
+  <text x="225" y="249" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="14">レスポンス</text>
+
+  <!-- 1-step label -->
+  <rect x="100" y="295" width="250" height="36" rx="6" fill="rgba(100,181,246,0.08)" stroke="rgba(100,181,246,0.3)" stroke-width="1"/>
+  <text x="225" y="317" text-anchor="middle" fill="#64b5f6" font-family="sans-serif" font-size="12">1 リクエスト → 1 レスポンス</text>
+
+  <!-- RIGHT: AI エージェント -->
+  <text x="675" y="30" text-anchor="middle" fill="#ffb74d" font-family="sans-serif" font-size="17" font-weight="bold">AI エージェント</text>
+
+  <!-- User query -->
+  <rect x="575" y="55" width="200" height="40" rx="8" fill="rgba(100,181,246,0.15)" stroke="#64b5f6" stroke-width="1.5"/>
+  <text x="675" y="79" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="14">ユーザークエリ</text>
+
+  <!-- Arrow down -->
+  <line x1="675" y1="95" x2="675" y2="115" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="675,125 669,109 681,109" fill="#90caf9"/>
+
+  <!-- Loop container -->
+  <rect x="555" y="125" width="240" height="150" rx="12" fill="rgba(255,183,77,0.08)" stroke="#ffb74d" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="675" y="143" text-anchor="middle" fill="#ffb74d" font-family="sans-serif" font-size="11">エージェントループ</text>
+
+  <!-- Observe -->
+  <rect x="570" y="153" width="80" height="36" rx="6" fill="rgba(77,208,225,0.2)" stroke="#4dd0e1" stroke-width="1.2"/>
+  <text x="610" y="175" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="12">観察</text>
+
+  <!-- Reason -->
+  <rect x="635" y="185" width="80" height="36" rx="6" fill="rgba(186,104,200,0.2)" stroke="#ba68c8" stroke-width="1.2"/>
+  <text x="675" y="207" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="12">推論</text>
+
+  <!-- Act -->
+  <rect x="700" y="153" width="80" height="36" rx="6" fill="rgba(255,112,67,0.2)" stroke="#ff7043" stroke-width="1.2"/>
+  <text x="740" y="175" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="12">行動</text>
+
+  <!-- Loop arrows (curved via lines) -->
+  <path d="M690,171 Q760,148 740,153" fill="none" stroke="#90caf9" stroke-width="1.5"/>
+  <polygon points="740,153 730,147 733,157" fill="#90caf9"/>
+  <path d="M780,171 Q820,200 715,221" fill="none" stroke="#90caf9" stroke-width="1.5"/>
+  <polygon points="715,221 726,213 722,223" fill="#90caf9"/>
+  <path d="M635,203 Q590,230 610,189" fill="none" stroke="#90caf9" stroke-width="1.5"/>
+  <polygon points="610,189 606,200 616,199" fill="#90caf9"/>
+
+  <!-- Tools box on side -->
+  <rect x="820" y="168" width="65" height="50" rx="6" fill="rgba(129,199,132,0.2)" stroke="#81c784" stroke-width="1.2"/>
+  <text x="852" y="191" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="11">ツール</text>
+  <text x="852" y="207" text-anchor="middle" fill="#a5d6a7" font-family="sans-serif" font-size="10">API/DB</text>
+
+  <!-- Arrow to tools -->
+  <line x1="780" y1="171" x2="815" y2="186" stroke="#81c784" stroke-width="1.5"/>
+  <polygon points="820,188 808,180 812,190" fill="#81c784"/>
+
+  <!-- Arrow down from loop -->
+  <line x1="675" y1="275" x2="675" y2="300" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="675,310 669,294 681,294" fill="#90caf9"/>
+
+  <!-- Final answer -->
+  <rect x="575" y="310" width="200" height="40" rx="8" fill="rgba(129,199,132,0.15)" stroke="#81c784" stroke-width="1.5"/>
+  <text x="675" y="334" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="14">最終回答</text>
+
+  <!-- n-step label -->
+  <text x="675" y="372" text-anchor="middle" fill="#ffb74d" font-family="sans-serif" font-size="12">n ステップ × ツール利用 × 自律判断</text>
+</svg>

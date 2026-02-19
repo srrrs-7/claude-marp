@@ -785,8 +785,11 @@
 		},
 		{
 			"title": "CloudWatch Logs Insights（セキュリティ）",
-			"layout": "default",
-			"content": ["**CloudTrailのセキュリティ監視クエリ例:**"],
+			"content": ["**CloudTrailのセキュリティ監視クエリ例:**"]
+		},
+		{
+			"title": "CloudWatch Logs Insights（セキュリティ）（コード例）",
+			"content": [],
 			"code": "# ルートユーザーAPIコール検索\nfields @timestamp, userIdentity.type, eventName\n| filter userIdentity.type = \"Root\"\n| sort @timestamp desc\n| limit 20\n\n# 失敗したAPI呼び出し（AccessDenied）\nfields @timestamp, eventName, errorCode\n| filter errorCode like /AccessDenied/\n| stats count() by eventName\n\n# 大量S3削除検知\nfields @timestamp, requestParameters.bucketName\n| filter eventName = \"DeleteObject\"\n| stats count() as cnt by bin(5m)\n| sort cnt desc",
 			"codeLanguage": "sql"
 		},
@@ -809,8 +812,11 @@
 		},
 		{
 			"title": "EventBridge セキュリティ自動化",
-			"layout": "default",
-			"content": ["**セキュリティイベントの自動対応パターン:**"],
+			"content": ["**セキュリティイベントの自動対応パターン:**"]
+		},
+		{
+			"title": "EventBridge セキュリティ自動化（コード例）",
+			"content": [],
 			"code": "# GuardDuty 高深刻度 → EC2隔離\n{\n  \"source\": [\"aws.guardduty\"],\n  \"detail-type\": [\"GuardDuty Finding\"],\n  \"detail\": {\n    \"severity\": [{\"numeric\": [\">=\", 7]}]\n  }\n}\n// → Lambda: EC2のSGを隔離SG（全通信拒否）に変更\n\n// Config非準拠 → 自動修復\n{\n  \"source\": [\"aws.config\"],\n  \"detail\": {\"newEvaluationResult\":\n    {\"complianceType\": [\"NON_COMPLIANT\"]}}\n}\n// → SSM Automation Document で自動修復実行",
 			"codeLanguage": "json"
 		},
@@ -1017,8 +1023,11 @@
 		},
 		{
 			"title": "自動修復（Lambda / SSM Automation）",
-			"layout": "default",
-			"content": ["**EC2侵害時の自動隔離パターン:**"],
+			"content": ["**EC2侵害時の自動隔離パターン:**"]
+		},
+		{
+			"title": "自動修復（Lambda / SSM Automation）（コード例）",
+			"content": [],
 			"code": "def isolate_ec2_handler(event, context):\n    ec2 = boto3.client('ec2')\n    # GuardDuty FindingからインスタンスIDを取得\n    instance_id = (\n        event['detail']['resource']\n            ['instanceDetails']['instanceId']\n    )\n    # 1. 隔離SG（全通信拒否）に切り替え\n    ec2.modify_instance_attribute(\n        InstanceId=instance_id,\n        Groups=['sg-quarantine-00000000']\n    )\n    # 2. EBSスナップショット（証拠保全）\n    ec2.create_snapshot(\n        VolumeId=get_volume_id(instance_id),\n        Description=f'Forensic-{instance_id}'\n    )",
 			"codeLanguage": "python"
 		},

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" style="max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+
+  <!-- Top row: pipeline -->
+  <!-- User Query -->
+  <rect x="10" y="110" width="110" height="50" rx="8" fill="rgba(100,181,246,0.2)" stroke="#64b5f6" stroke-width="1.5"/>
+  <text x="65" y="132" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="bold">User</text>
+  <text x="65" y="150" text-anchor="middle" fill="#90caf9" font-family="sans-serif" font-size="10">クエリ入力</text>
+
+  <!-- Arrow -->
+  <line x1="120" y1="135" x2="148" y2="135" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="153,135 140,129 140,141" fill="#90caf9"/>
+
+  <!-- Query Rewriter -->
+  <rect x="153" y="105" width="120" height="60" rx="8" fill="rgba(77,208,225,0.15)" stroke="#4dd0e1" stroke-width="1.5"/>
+  <text x="213" y="128" text-anchor="middle" fill="#4dd0e1" font-family="sans-serif" font-size="11" font-weight="bold">Query</text>
+  <text x="213" y="145" text-anchor="middle" fill="#4dd0e1" font-family="sans-serif" font-size="11" font-weight="bold">Rewriter</text>
+  <text x="213" y="160" text-anchor="middle" fill="#b2ebf2" font-family="sans-serif" font-size="9">検索最適化</text>
+
+  <!-- Arrow -->
+  <line x1="273" y1="135" x2="301" y2="135" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="306,135 293,129 293,141" fill="#90caf9"/>
+
+  <!-- Vector Search -->
+  <rect x="306" y="105" width="120" height="60" rx="8" fill="rgba(186,104,200,0.15)" stroke="#ba68c8" stroke-width="1.5"/>
+  <text x="366" y="128" text-anchor="middle" fill="#ce93d8" font-family="sans-serif" font-size="11" font-weight="bold">Vector</text>
+  <text x="366" y="145" text-anchor="middle" fill="#ce93d8" font-family="sans-serif" font-size="11" font-weight="bold">Search</text>
+  <text x="366" y="160" text-anchor="middle" fill="#e1bee7" font-family="sans-serif" font-size="9">意味的類似度</text>
+
+  <!-- Arrow -->
+  <line x1="426" y1="135" x2="454" y2="135" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="459,135 446,129 446,141" fill="#90caf9"/>
+
+  <!-- Re-ranker -->
+  <rect x="459" y="105" width="120" height="60" rx="8" fill="rgba(255,183,77,0.15)" stroke="#ffb74d" stroke-width="1.5"/>
+  <text x="519" y="128" text-anchor="middle" fill="#ffb74d" font-family="sans-serif" font-size="11" font-weight="bold">Re-ranker</text>
+  <text x="519" y="148" text-anchor="middle" fill="#ffe0b2" font-family="sans-serif" font-size="10">関連度再評価</text>
+  <text x="519" y="162" text-anchor="middle" fill="#ffe0b2" font-family="sans-serif" font-size="9">Top-K 絞り込み</text>
+
+  <!-- Arrow -->
+  <line x1="579" y1="135" x2="607" y2="135" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="612,135 599,129 599,141" fill="#90caf9"/>
+
+  <!-- LLM + Context -->
+  <rect x="612" y="90" width="150" height="90" rx="8" fill="rgba(186,104,200,0.2)" stroke="#ba68c8" stroke-width="2"/>
+  <text x="687" y="117" text-anchor="middle" fill="#ce93d8" font-family="sans-serif" font-size="12" font-weight="bold">LLM</text>
+  <text x="687" y="136" text-anchor="middle" fill="#e1bee7" font-family="sans-serif" font-size="10">+ Retrieved Context</text>
+  <text x="687" y="153" text-anchor="middle" fill="#e1bee7" font-family="sans-serif" font-size="10">システムプロンプト</text>
+  <text x="687" y="170" text-anchor="middle" fill="#e1bee7" font-family="sans-serif" font-size="10">+ 検索結果を注入</text>
+
+  <!-- Arrow -->
+  <line x1="762" y1="135" x2="790" y2="135" stroke="#90caf9" stroke-width="2"/>
+  <polygon points="795,135 782,129 782,141" fill="#90caf9"/>
+
+  <!-- Response -->
+  <rect x="795" y="105" width="140" height="60" rx="8" fill="rgba(129,199,132,0.2)" stroke="#81c784" stroke-width="2"/>
+  <text x="865" y="128" text-anchor="middle" fill="#81c784" font-family="sans-serif" font-size="12" font-weight="bold">Response</text>
+  <text x="865" y="148" text-anchor="middle" fill="#c8e6c9" font-family="sans-serif" font-size="10">回答 + 引用元</text>
+  <text x="865" y="163" text-anchor="middle" fill="#c8e6c9" font-family="sans-serif" font-size="9">(Citation付き)</text>
+
+  <!-- Vector DB below Vector Search -->
+  <rect x="306" y="210" width="120" height="50" rx="6" fill="rgba(129,199,132,0.1)" stroke="#81c784" stroke-width="1.2" stroke-dasharray="4,2"/>
+  <text x="366" y="232" text-anchor="middle" fill="#a5d6a7" font-family="sans-serif" font-size="11">ベクターDB</text>
+  <text x="366" y="250" text-anchor="middle" fill="#a5d6a7" font-family="sans-serif" font-size="9">pgvector / Pinecone</text>
+  <line x1="366" y1="165" x2="366" y2="205" stroke="#ba68c8" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <polygon points="366,210 360,198 372,198" fill="#81c784"/>
+
+  <!-- Embedding box -->
+  <rect x="153" y="210" width="120" height="50" rx="6" fill="rgba(77,208,225,0.1)" stroke="#4dd0e1" stroke-width="1.2" stroke-dasharray="4,2"/>
+  <text x="213" y="232" text-anchor="middle" fill="#b2ebf2" font-family="sans-serif" font-size="11">Embedding</text>
+  <text x="213" y="250" text-anchor="middle" fill="#b2ebf2" font-family="sans-serif" font-size="9">text-embedding-3</text>
+  <line x1="213" y1="165" x2="213" y2="205" stroke="#4dd0e1" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <polygon points="213,210 207,198 219,198" fill="#4dd0e1"/>
+
+  <!-- Corrective loop (optional) -->
+  <path d="M519,165 Q519,285 213,285 Q153,285 153,260" fill="none" stroke="rgba(255,183,77,0.5)" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="153,255 147,268 159,268" fill="rgba(255,183,77,0.5)"/>
+  <text x="350" y="298" text-anchor="middle" fill="rgba(255,183,77,0.6)" font-family="sans-serif" font-size="10">Corrective RAG: 品質不足なら再検索</text>
+</svg>
