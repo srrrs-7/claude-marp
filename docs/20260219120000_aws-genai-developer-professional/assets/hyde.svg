@@ -1,0 +1,74 @@
+<svg viewBox="0 0 900 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="380" fill="#F8F9FA"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">HyDE — Hypothetical Document Embedding</text>
+
+  <!-- Standard RAG (top) -->
+  <text x="450" y="58" text-anchor="middle" font-size="13" fill="#666">通常のRAG検索 (クエリ → ベクター検索)</text>
+
+  <rect x="30" y="70" width="130" height="50" rx="8" fill="#666"/>
+  <text x="95" y="100" text-anchor="middle" font-size="12" fill="white">"S3の料金体系?"</text>
+
+  <line x1="160" y1="95" x2="200" y2="95" stroke="#666" stroke-width="2"/>
+  <polygon points="200,90 210,95 200,100" fill="#666"/>
+
+  <rect x="210" y="70" width="130" height="50" rx="8" fill="#666"/>
+  <text x="275" y="92" text-anchor="middle" font-size="11" fill="white">クエリ</text>
+  <text x="275" y="108" text-anchor="middle" font-size="11" fill="white">Embedding</text>
+
+  <line x1="340" y1="95" x2="380" y2="95" stroke="#666" stroke-width="2"/>
+  <polygon points="380,90 390,95 380,100" fill="#666"/>
+
+  <rect x="390" y="70" width="150" height="50" rx="8" fill="#666"/>
+  <text x="465" y="92" text-anchor="middle" font-size="11" fill="white">ベクターDB</text>
+  <text x="465" y="108" text-anchor="middle" font-size="11" fill="#DDD">短いクエリと長い</text>
+
+  <rect x="560" y="75" width="150" height="40" rx="6" fill="#C62828"/>
+  <text x="635" y="91" text-anchor="middle" font-size="11" fill="white">❌ ミスマッチ</text>
+  <text x="635" y="108" text-anchor="middle" font-size="11" fill="#FFCDD2">クエリ=短文, 文書=長文</text>
+
+  <!-- HyDE (bottom) -->
+  <text x="450" y="148" text-anchor="middle" font-size="13" fill="#1A73E8" font-weight="bold">HyDE: 仮想ドキュメント経由の検索</text>
+
+  <!-- Step 1 -->
+  <rect x="30" y="165" width="130" height="50" rx="8" fill="#232F3E"/>
+  <text x="95" y="186" text-anchor="middle" font-size="11" fill="white">"S3の料金体系?"</text>
+  <text x="95" y="203" text-anchor="middle" font-size="10" fill="#FFB74D">ユーザークエリ</text>
+
+  <line x1="160" y1="190" x2="200" y2="190" stroke="#FF9900" stroke-width="2.5"/>
+  <polygon points="200,185 210,190 200,195" fill="#FF9900"/>
+
+  <!-- Step 2: Hypothetical Doc Generation -->
+  <rect x="210" y="155" width="200" height="70" rx="8" fill="#FF9900" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="310" y="178" text-anchor="middle" font-size="12" font-weight="bold" fill="white">LLMで仮想文書生成</text>
+  <text x="310" y="196" text-anchor="middle" font-size="10" fill="#FFF3E0">"S3の料金体系はストレージクラス別に</text>
+  <text x="310" y="210" text-anchor="middle" font-size="10" fill="#FFF3E0">  設定され、Standard、IA、Glacier..."</text>
+
+  <line x1="410" y1="190" x2="450" y2="190" stroke="#1A73E8" stroke-width="2.5"/>
+  <polygon points="450,185 460,190 450,195" fill="#1A73E8"/>
+
+  <!-- Step 3: Embedding -->
+  <rect x="460" y="165" width="150" height="50" rx="8" fill="#1A73E8"/>
+  <text x="535" y="186" text-anchor="middle" font-size="11" font-weight="bold" fill="white">仮想文書を</text>
+  <text x="535" y="203" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Embedding化</text>
+
+  <line x1="610" y1="190" x2="650" y2="190" stroke="#1A9C3E" stroke-width="2.5"/>
+  <polygon points="650,185 660,190 650,195" fill="#1A9C3E"/>
+
+  <!-- Step 4: Search -->
+  <rect x="660" y="155" width="200" height="70" rx="8" fill="#1A9C3E" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="760" y="178" text-anchor="middle" font-size="12" font-weight="bold" fill="white">ベクターDB検索</text>
+  <text x="760" y="196" text-anchor="middle" font-size="11" fill="#C8E6C9">長文 vs 長文</text>
+  <text x="760" y="212" text-anchor="middle" font-size="11" fill="#C8E6C9">高い類似度一致！</text>
+
+  <!-- Benefit box -->
+  <rect x="30" y="255" width="840" height="105" rx="12" fill="#232F3E"/>
+  <text x="450" y="278" text-anchor="middle" font-size="14" font-weight="bold" fill="#FF9900">HyDEのポイント</text>
+
+  <text x="80" y="300" font-size="12" fill="#E0E0E0">✓ クエリ(短文)と文書(長文)のEmbedding空間のギャップを解消</text>
+  <text x="80" y="318" font-size="12" fill="#E0E0E0">✓ 特に専門ドメインの質問で精度向上</text>
+  <text x="80" y="336" font-size="12" fill="#E0E0E0">✓ Knowledge Basesに組み込み可能</text>
+
+  <text x="500" y="300" font-size="12" fill="#FFCC80">✗ LLMによる仮想文書生成コスト増</text>
+  <text x="500" y="318" font-size="12" fill="#FFCC80">✗ レイテンシが増加</text>
+  <text x="500" y="336" font-size="12" fill="#FFCC80">試験: 検索精度改善の選択肢としてHyDE</text>
+</svg>

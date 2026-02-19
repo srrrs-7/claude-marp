@@ -1,0 +1,36 @@
+topic: "AWS Certified Security - Specialty (SCS-C02) 完全技術ガイド"
+language: "ja"
+
+output:
+  dir: "docs/20260219120000_aws-security-specialty"
+  baseName: "aws-security-specialty"
+
+theme: gaia
+class: invert
+
+style: |
+  section {
+    font-size: 1.1em;
+  }
+  section pre code {
+    font-size: 0.6em;
+    line-height: 1.4;
+  }
+  section ul li {
+    font-size: 0.95em;
+    margin-bottom: 0.2em;
+  }
+  section h1 {
+    font-size: 1.6em;
+  }
+  section h2 {
+    font-size: 1.3em;
+    color: #90caf9;
+  }
+  table {
+    font-size: 0.85em;
+  }
+
+paginate: true
+header: "AWS Security Specialty (SCS-C02)"
+footer: "© 2026 AWS Security Study Guide"

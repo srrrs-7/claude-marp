@@ -1,0 +1,62 @@
+<svg viewBox="0 0 900 420" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="420" fill="#F8F9FA"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">よくある技術選定ミスと対策</text>
+
+  <!-- Header -->
+  <rect x="20" y="50" width="860" height="36" rx="6" fill="#232F3E"/>
+  <text x="230" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">よくある失敗</text>
+  <text x="560" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">なぜ起きる</text>
+  <text x="790" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">正しい対策</text>
+
+  <!-- Row 1: Over-engineering -->
+  <rect x="20" y="86" width="860" height="50" rx="4" fill="#FFEBEE"/>
+  <rect x="20" y="86" width="8" height="50" rx="4" fill="#E53935"/>
+  <text x="230" y="106" text-anchor="middle" font-size="12" font-weight="bold" fill="#C62828">過度な設計（Over-engineering）</text>
+  <text x="230" y="124" text-anchor="middle" font-size="11" fill="#555">最初からマイクロサービス化</text>
+  <text x="560" y="115" text-anchor="middle" font-size="11" fill="#232F3E">「将来スケールするかも」という不安</text>
+  <text x="790" y="115" text-anchor="middle" font-size="11" fill="#232F3E">まずモノリス。必要になったら分離</text>
+
+  <!-- Row 2: Tech Debt Accumulation -->
+  <rect x="20" y="136" width="860" height="50" rx="4" fill="#FFF3E0"/>
+  <rect x="20" y="136" width="8" height="50" rx="4" fill="#FF9900"/>
+  <text x="230" y="156" text-anchor="middle" font-size="12" font-weight="bold" fill="#E67700">技術負債の放置</text>
+  <text x="230" y="174" text-anchor="middle" font-size="11" fill="#555">テストなし・型なし・ドキュメントなし</text>
+  <text x="560" y="165" text-anchor="middle" font-size="11" fill="#232F3E">速度優先で「後でやる」が積み重なる</text>
+  <text x="790" y="165" text-anchor="middle" font-size="11" fill="#232F3E">TypeScript + テスト最低限は最初から</text>
+
+  <!-- Row 3: Wrong DB choice -->
+  <rect x="20" y="186" width="860" height="50" rx="4" fill="#F3E5F5"/>
+  <rect x="20" y="186" width="8" height="50" rx="4" fill="#7B1FA2"/>
+  <text x="230" y="206" text-anchor="middle" font-size="12" font-weight="bold" fill="#6A1B9A">DB の誤選択</text>
+  <text x="230" y="224" text-anchor="middle" font-size="11" fill="#555">NoSQL を使うべきでない箇所で使う</text>
+  <text x="560" y="215" text-anchor="middle" font-size="11" fill="#232F3E">「NoSQLはスケールする」という誤解</text>
+  <text x="790" y="215" text-anchor="middle" font-size="11" fill="#232F3E">まずPostgreSQL。NoSQLは特定用途のみ</text>
+
+  <!-- Row 4: Not using managed services -->
+  <rect x="20" y="236" width="860" height="50" rx="4" fill="#E8F5E9"/>
+  <rect x="20" y="236" width="8" height="50" rx="4" fill="#1A9C3E"/>
+  <text x="230" y="256" text-anchor="middle" font-size="12" font-weight="bold" fill="#157A30">自前インフラの過信</text>
+  <text x="230" y="274" text-anchor="middle" font-size="11" fill="#555">自前 k8s / 自前 DB 管理</text>
+  <text x="560" y="265" text-anchor="middle" font-size="11" fill="#232F3E">「コスト削減になる」という誤解</text>
+  <text x="790" y="265" text-anchor="middle" font-size="11" fill="#232F3E">マネージドサービス優先。人件費が最高コスト</text>
+
+  <!-- Row 5: Wrong hiring -->
+  <rect x="20" y="286" width="860" height="50" rx="4" fill="#E3F2FD"/>
+  <rect x="20" y="286" width="8" height="50" rx="4" fill="#1A73E8"/>
+  <text x="230" y="306" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">採用しにくい技術選択</text>
+  <text x="230" y="324" text-anchor="middle" font-size="11" fill="#555">マイナー言語・独自フレームワーク</text>
+  <text x="560" y="315" text-anchor="middle" font-size="11" fill="#232F3E">技術の好みでマニアックな選択</text>
+  <text x="790" y="315" text-anchor="middle" font-size="11" fill="#232F3E">採用市場シェアの大きい技術を優先</text>
+
+  <!-- Row 6: No cost monitoring -->
+  <rect x="20" y="336" width="860" height="50" rx="4" fill="#FFF8E1"/>
+  <rect x="20" y="336" width="8" height="50" rx="4" fill="#F57F17"/>
+  <text x="230" y="356" text-anchor="middle" font-size="12" font-weight="bold" fill="#E65100">コスト監視なしの突き進み</text>
+  <text x="230" y="374" text-anchor="middle" font-size="11" fill="#555">請求が来て初めて気づく高額コスト</text>
+  <text x="560" y="365" text-anchor="middle" font-size="11" fill="#232F3E">開発に集中しすぎてコストを忘れる</text>
+  <text x="790" y="365" text-anchor="middle" font-size="11" fill="#232F3E">Budget Alert を$500から設定する</text>
+
+  <!-- Grid lines -->
+  <line x1="430" y1="50" x2="430" y2="386" stroke="#DDD" stroke-width="1"/>
+  <line x1="680" y1="50" x2="680" y2="386" stroke="#DDD" stroke-width="1"/>
+</svg>

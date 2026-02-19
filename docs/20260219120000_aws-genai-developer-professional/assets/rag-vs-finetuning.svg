@@ -1,0 +1,49 @@
+<svg viewBox="0 0 900 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="420" fill="#F8F9FA"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">RAG vs ファインチューニング — 選択フレームワーク</text>
+
+  <!-- Decision tree: Start -->
+  <rect x="340" y="50" width="220" height="50" rx="10" fill="#232F3E"/>
+  <text x="450" y="71" text-anchor="middle" font-size="13" font-weight="bold" fill="white">最新情報・動的データが必要？</text>
+  <text x="450" y="88" text-anchor="middle" font-size="11" fill="#FFB74D">リアルタイム更新 / 社内データ参照</text>
+
+  <line x1="380" y1="100" x2="300" y2="145" stroke="#1A73E8" stroke-width="2"/>
+  <polygon points="295,145 300,135 305,145" fill="#1A73E8"/>
+  <text x="320" y="130" font-size="11" fill="#1A73E8" font-weight="bold">YES</text>
+
+  <line x1="520" y1="100" x2="600" y2="145" stroke="#E53935" stroke-width="2"/>
+  <polygon points="595,145 600,135 605,145" fill="#E53935"/>
+  <text x="570" y="130" font-size="11" fill="#E53935" font-weight="bold">NO</text>
+
+  <!-- RAG path -->
+  <rect x="130" y="145" width="340" height="220" rx="12" fill="#1A73E8" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="300" y="172" text-anchor="middle" font-size="14" font-weight="bold" fill="white">RAG 推奨</text>
+  <text x="155" y="198" font-size="12" fill="white">✓ 最新データへのリアルタイムアクセス</text>
+  <text x="155" y="216" font-size="12" fill="white">✓ ファインチューニング不要</text>
+  <text x="155" y="234" font-size="12" fill="white">✓ データ更新が容易（S3更新→自動再インデックス）</text>
+  <text x="155" y="252" font-size="12" fill="white">✓ ハルシネーション抑制（根拠提示）</text>
+  <text x="155" y="270" font-size="12" fill="white">✓ 少量データでも効果的</text>
+  <rect x="150" y="280" width="280" height="28" rx="6" fill="#0D47A1"/>
+  <text x="290" y="299" text-anchor="middle" font-size="12" fill="white">Knowledge Bases を使おう！</text>
+  <text x="155" y="330" font-size="11" fill="#BBDEFB">例: 社内ナレッジベース / Q&amp;Aボット</text>
+  <text x="155" y="348" font-size="11" fill="#BBDEFB">    最新ニュース参照 / 製品ドキュメント</text>
+
+  <!-- FT path -->
+  <rect x="490" y="145" width="380" height="220" rx="12" fill="#1A9C3E" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="680" y="172" text-anchor="middle" font-size="14" font-weight="bold" fill="white">特定タスク特化型か判定</text>
+
+  <rect x="510" y="185" width="340" height="50" rx="8" fill="#137830"/>
+  <text x="680" y="204" text-anchor="middle" font-size="12" font-weight="bold" fill="white">出力スタイル/形式の習得が目的？</text>
+  <text x="510" y="245" font-size="11" fill="#C8E6C9">YES → ファインチューニング (IFT)</text>
+  <text x="510" y="263" font-size="11" fill="#C8E6C9">      特定ドメインの語彙習得が目的？</text>
+  <text x="510" y="281" font-size="11" fill="#C8E6C9">YES → 継続的事前学習 (CPT)</text>
+  <text x="510" y="299" font-size="11" fill="#C8E6C9">      どちらでもない？ → プロンプト改善</text>
+
+  <rect x="510" y="315" width="340" height="38" rx="6" fill="#0A6E2A"/>
+  <text x="680" y="333" text-anchor="middle" font-size="12" fill="white">一般タスク → プロンプトエンジニアリング</text>
+  <text x="680" y="351" text-anchor="middle" font-size="11" fill="#C8E6C9">Few-shot / Chain-of-Thought を先に試す</text>
+
+  <!-- Bottom comparison table -->
+  <rect x="20" y="385" width="860" height="28" rx="6" fill="#FF9900"/>
+  <text x="450" y="402" text-anchor="middle" font-size="12" font-weight="bold" fill="white">試験頻出: RAG=知識注入・最新情報 / FT=スタイル変更・専門語彙 / Prompt=まず試すべき最初の手段</text>
+</svg>

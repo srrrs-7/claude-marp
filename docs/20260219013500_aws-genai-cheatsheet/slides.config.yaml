@@ -1,0 +1,19 @@
+topic: "AWS Certified Generative AI Developer - Professional 試験直前チートシート"
+output:
+  dir: "docs/20260219013500_aws-genai-cheatsheet"
+  baseName: "aws-genai-cheatsheet"
+marp:
+  theme: gaia
+  size: "16:9"
+  paginate: true
+  footer: "AWS GenAI Dev Pro チートシート 2026"
+  style: |
+    section { font-size: 0.80em; }
+    section pre code { font-size: 0.6em; line-height: 1.4; }
+    table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+    th { background: #1565C0; color: white; padding: 4px 8px; text-align: left; }
+    td { padding: 3px 8px; border-bottom: 1px solid #e0e0e0; }
+    tr:nth-child(even) td { background: #f0f6ff; }
+    section.lead h1 { font-size: 1.5em; }
+    h2 { color: #1565C0; }
+language: ja

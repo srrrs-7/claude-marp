@@ -1,0 +1,37 @@
+<svg viewBox="0 0 960 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="500" fill="#f8fafc" rx="12"/>
+  <text x="480" y="36" text-anchor="middle" font-size="20" font-weight="bold" fill="#1e293b">AWS データガバナンスフレームワーク</text>
+  <!-- Layer 1: Data Classification -->
+  <rect x="60" y="65" width="840" height="90" rx="12" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="200" y="100" font-size="15" font-weight="bold" fill="#1e40af">① データ分類（Data Classification）</text>
+  <text x="200" y="122" font-size="12" fill="#1d4ed8">機密 / 社内限定 / 公開 の3段階分類 → S3 タグ・IAM ポリシーに反映</text>
+  <text x="750" y="103" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">AWS Macie</text>
+  <text x="750" y="121" text-anchor="middle" font-size="11" fill="#1d4ed8">PII自動検出・分類</text>
+  <rect x="700" y="75" width="175" height="65" rx="8" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1.5"/>
+  <!-- Layer 2: Access Control -->
+  <rect x="60" y="172" width="840" height="90" rx="12" fill="#ede9fe" stroke="#7c3aed" stroke-width="2.5"/>
+  <text x="200" y="207" font-size="15" font-weight="bold" fill="#5b21b6">② アクセス制御（Access Control）</text>
+  <text x="200" y="229" font-size="12" fill="#6d28d9">最小権限の原則 → ロールベースアクセス制御（RBAC）・属性ベースアクセス制御（ABAC）</text>
+  <text x="750" y="210" text-anchor="middle" font-size="12" font-weight="bold" fill="#5b21b6">AWS IAM</text>
+  <text x="750" y="228" text-anchor="middle" font-size="11" fill="#6d28d9">ポリシー・ロール管理</text>
+  <rect x="700" y="182" width="175" height="65" rx="8" fill="#ddd6fe" stroke="#7c3aed" stroke-width="1.5"/>
+  <!-- Layer 3: Encryption -->
+  <rect x="60" y="279" width="840" height="90" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2.5"/>
+  <text x="200" y="314" font-size="15" font-weight="bold" fill="#92400e">③ 暗号化（Encryption）</text>
+  <text x="200" y="336" font-size="12" fill="#78350f">保存時暗号化（AES-256）+ 転送中暗号化（TLS 1.3）+ フィールドレベル暗号化</text>
+  <text x="750" y="313" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">AWS KMS</text>
+  <text x="750" y="331" text-anchor="middle" font-size="11" fill="#78350f">鍵管理サービス</text>
+  <rect x="700" y="289" width="175" height="65" rx="8" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+  <!-- Layer 4: Audit & Monitoring -->
+  <rect x="60" y="386" width="840" height="90" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+  <text x="200" y="421" font-size="15" font-weight="bold" fill="#166534">④ 監査・監視（Audit &amp; Monitoring）</text>
+  <text x="200" y="443" font-size="12" fill="#14532d">全APIコール記録 + リソース変更履歴 + コンプライアンス評価 + アラート通知</text>
+  <rect x="700" y="396" width="175" height="65" rx="8" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="750" y="421" text-anchor="middle" font-size="11" font-weight="bold" fill="#166534">CloudTrail</text>
+  <text x="750" y="437" text-anchor="middle" font-size="11" fill="#14532d">+ AWS Config</text>
+  <text x="750" y="453" text-anchor="middle" font-size="11" fill="#14532d">+ Audit Manager</text>
+  <!-- Down arrows between layers -->
+  <polygon points="480,160 474,168 486,168" fill="#94a3b8"/>
+  <polygon points="480,267 474,275 486,275" fill="#94a3b8"/>
+  <polygon points="480,374 474,382 486,382" fill="#94a3b8"/>
+</svg>

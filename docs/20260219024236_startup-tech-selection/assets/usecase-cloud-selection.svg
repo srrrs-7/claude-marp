@@ -1,0 +1,66 @@
+<svg viewBox="0 0 900 380" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="380" fill="#F8F9FA"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">ユースケース別 クラウド推奨</text>
+
+  <!-- Row headers -->
+  <rect x="20" y="50" width="860" height="36" rx="6" fill="#232F3E"/>
+  <text x="130" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">事業タイプ</text>
+  <text x="310" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">主力クラウド</text>
+  <text x="530" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">理由</text>
+  <text x="780" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">補足</text>
+
+  <!-- BtoC SaaS -->
+  <rect x="20" y="86" width="860" height="52" rx="4" fill="#FFF3E0"/>
+  <text x="130" y="108" text-anchor="middle" font-size="12" font-weight="bold" fill="#E67700">BtoC SaaS</text>
+  <text x="130" y="126" text-anchor="middle" font-size="10" fill="#555">消費者向けアプリ</text>
+  <rect x="250" y="93" width="120" height="32" rx="8" fill="#FF9900"/>
+  <text x="310" y="114" text-anchor="middle" font-size="12" font-weight="bold" fill="white">AWS</text>
+  <text x="530" y="108" text-anchor="middle" font-size="11" fill="#232F3E">CloudFront CDN / Amplify / Cognito</text>
+  <text x="530" y="126" text-anchor="middle" font-size="10" fill="#555">グローバルエッジ + 認証が充実</text>
+  <text x="780" y="114" text-anchor="middle" font-size="11" fill="#232F3E">Vercel + AWS バックエンドも定番</text>
+
+  <!-- BtoB SaaS -->
+  <rect x="20" y="138" width="860" height="52" rx="4" fill="#E3F2FD"/>
+  <text x="130" y="160" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">BtoB SaaS</text>
+  <text x="130" y="178" text-anchor="middle" font-size="10" fill="#555">法人・エンタープライズ向け</text>
+  <rect x="250" y="145" width="120" height="32" rx="8" fill="#0078D4"/>
+  <text x="310" y="166" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Azure</text>
+  <text x="530" y="160" text-anchor="middle" font-size="11" fill="#232F3E">Active Directory 連携 / Teams 統合</text>
+  <text x="530" y="178" text-anchor="middle" font-size="10" fill="#555">顧客がMSエコシステムを使っている</text>
+  <text x="780" y="166" text-anchor="middle" font-size="11" fill="#232F3E">Azure OpenAI も差別化要因に</text>
+
+  <!-- AI/ML スタートアップ -->
+  <rect x="20" y="190" width="860" height="52" rx="4" fill="#F3E5F5"/>
+  <text x="130" y="212" text-anchor="middle" font-size="12" font-weight="bold" fill="#6A1B9A">AI / ML プロダクト</text>
+  <text x="130" y="230" text-anchor="middle" font-size="10" fill="#555">LLM / 画像生成 / 推薦</text>
+  <rect x="250" y="197" width="120" height="32" rx="8" fill="#4285F4"/>
+  <text x="310" y="218" text-anchor="middle" font-size="12" font-weight="bold" fill="white">GCP</text>
+  <text x="530" y="212" text-anchor="middle" font-size="11" fill="#232F3E">Vertex AI / TPU / Gemini API</text>
+  <text x="530" y="230" text-anchor="middle" font-size="10" fill="#555">AI インフラ・モデルで最先端</text>
+  <text x="780" y="218" text-anchor="middle" font-size="11" fill="#232F3E">Google for Startups $200K クレジット</text>
+
+  <!-- Fintech -->
+  <rect x="20" y="242" width="860" height="52" rx="4" fill="#E8F5E9"/>
+  <text x="130" y="264" text-anchor="middle" font-size="12" font-weight="bold" fill="#157A30">Fintech / 金融</text>
+  <text x="130" y="282" text-anchor="middle" font-size="10" fill="#555">決済・送金・投資</text>
+  <rect x="250" y="249" width="120" height="32" rx="8" fill="#FF9900"/>
+  <text x="310" y="270" text-anchor="middle" font-size="12" font-weight="bold" fill="white">AWS</text>
+  <text x="530" y="264" text-anchor="middle" font-size="11" fill="#232F3E">金融機関での採用実績・コンプライアンス</text>
+  <text x="530" y="282" text-anchor="middle" font-size="10" fill="#555">PCI DSS / SOC2 対応が充実</text>
+  <text x="780" y="270" text-anchor="middle" font-size="11" fill="#232F3E">専任 Fintech SA サポートあり</text>
+
+  <!-- Global First -->
+  <rect x="20" y="294" width="860" height="52" rx="4" fill="#FFEBEE"/>
+  <text x="130" y="316" text-anchor="middle" font-size="12" font-weight="bold" fill="#C62828">グローバル展開優先</text>
+  <text x="130" y="334" text-anchor="middle" font-size="10" fill="#555">最初から多リージョン</text>
+  <rect x="250" y="301" width="120" height="32" rx="8" fill="#FF9900"/>
+  <text x="310" y="322" text-anchor="middle" font-size="12" font-weight="bold" fill="white">AWS</text>
+  <text x="530" y="316" text-anchor="middle" font-size="11" fill="#232F3E">最多リージョン数 / 最大CDNエッジ</text>
+  <text x="530" y="334" text-anchor="middle" font-size="10" fill="#555">エコシステム規模でパートナー探しやすい</text>
+  <text x="780" y="322" text-anchor="middle" font-size="11" fill="#232F3E">日本→US展開も容易</text>
+
+  <!-- Grid lines -->
+  <line x1="220" y1="50" x2="220" y2="346" stroke="#DDD" stroke-width="1"/>
+  <line x1="420" y1="50" x2="420" y2="346" stroke="#DDD" stroke-width="1"/>
+  <line x1="660" y1="50" x2="660" y2="346" stroke="#DDD" stroke-width="1"/>
+</svg>

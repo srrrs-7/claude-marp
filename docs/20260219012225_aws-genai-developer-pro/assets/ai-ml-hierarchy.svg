@@ -1,0 +1,53 @@
+<svg viewBox="0 0 860 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <!-- Background -->
+  <rect x="0" y="0" width="860" height="420" fill="#f0f4ff" rx="12"/>
+
+  <!-- AI (outermost) -->
+  <rect x="40" y="30" width="500" height="350" fill="#E3F2FD" rx="16" style="filter:drop-shadow(2px 2px 5px rgba(0,0,0,0.1))"/>
+  <text x="60" y="60" font-size="18" font-weight="bold" fill="#1565C0">人工知能（Artificial Intelligence）</text>
+  <text x="60" y="82" font-size="12" fill="#555">ルールベース・知識表現・計画・自然言語処理など</text>
+
+  <!-- Machine Learning -->
+  <rect x="80" y="100" width="420" height="260" fill="#BBDEFB" rx="14"/>
+  <text x="100" y="128" font-size="16" font-weight="bold" fill="#0D47A1">機械学習（Machine Learning）</text>
+  <text x="100" y="148" font-size="11" fill="#555">データからパターンを学習・予測</text>
+
+  <!-- Deep Learning -->
+  <rect x="120" y="165" width="340" height="175" fill="#90CAF9" rx="12"/>
+  <text x="140" y="192" font-size="15" font-weight="bold" fill="#0D47A1">深層学習（Deep Learning）</text>
+  <text x="140" y="210" font-size="11" fill="#444">多層ニューラルネットワークで高精度な特徴抽出</text>
+
+  <!-- Generative AI -->
+  <rect x="160" y="230" width="260" height="95" fill="#1565C0" rx="10"/>
+  <text x="290" y="268" text-anchor="middle" font-size="16" font-weight="bold" fill="white">生成 AI</text>
+  <text x="290" y="290" text-anchor="middle" font-size="12" fill="#90CAF9">（Generative AI）</text>
+  <text x="290" y="312" text-anchor="middle" font-size="11" fill="#BBD" >テキスト・画像・コードを生成</text>
+
+  <!-- Right side: descriptions -->
+  <rect x="580" y="40" width="250" height="340" fill="white" rx="12" style="filter:drop-shadow(2px 2px 6px rgba(0,0,0,0.1))"/>
+  <text x="705" y="72" text-anchor="middle" font-size="14" font-weight="bold" fill="#1565C0">試験で覚えるポイント</text>
+
+  <rect x="596" y="84" width="8" height="8" fill="#1565C0" rx="2"/>
+  <text x="612" y="93" font-size="11" fill="#333" font-weight="600">AI ⊃ ML ⊃ DL ⊃ 生成 AI</text>
+
+  <rect x="596" y="112" width="8" height="8" fill="#43A047" rx="2"/>
+  <text x="612" y="121" font-size="11" fill="#333">従来 ML</text>
+  <text x="612" y="136" font-size="10" fill="#666">→ 判別・予測が中心</text>
+  <text x="612" y="150" font-size="10" fill="#666">→ 構造化データ得意</text>
+
+  <rect x="596" y="168" width="8" height="8" fill="#1E88E5" rx="2"/>
+  <text x="612" y="177" font-size="11" fill="#333">深層学習</text>
+  <text x="612" y="192" font-size="10" fill="#666">→ 画像・音声・テキスト</text>
+  <text x="612" y="206" font-size="10" fill="#666">→ 特徴量自動抽出</text>
+
+  <rect x="596" y="224" width="8" height="8" fill="#1565C0" rx="2"/>
+  <text x="612" y="233" font-size="11" fill="#333">生成 AI（FM）</text>
+  <text x="612" y="248" font-size="10" fill="#666">→ 新しいコンテンツ生成</text>
+  <text x="612" y="262" font-size="10" fill="#666">→ ゼロショット対応</text>
+  <text x="612" y="276" font-size="10" fill="#666">→ マルチモーダル</text>
+
+  <rect x="596" y="300" width="218" height="68" fill="#FFF3E0" rx="8"/>
+  <text x="705" y="320" text-anchor="middle" font-size="11" fill="#E65100" font-weight="bold">AWS での生成 AI 中心サービス</text>
+  <text x="705" y="338" text-anchor="middle" font-size="11" fill="#555">Amazon Bedrock</text>
+  <text x="705" y="354" text-anchor="middle" font-size="10" fill="#777">（Foundation Models へのアクセス）</text>
+</svg>

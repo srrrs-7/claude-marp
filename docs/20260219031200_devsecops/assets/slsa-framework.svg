@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500"
+     style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:Arial,sans-serif;">
+
+  <!-- Background -->
+  <rect width="900" height="500" fill="#F5F7FA" rx="12"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="900" height="52" fill="#1B2A3B" rx="12"/>
+  <rect x="0" y="40" width="900" height="12" fill="#1B2A3B"/>
+  <text x="450" y="34" text-anchor="middle" font-size="21" font-weight="bold" fill="white" font-family="Arial,sans-serif">SLSA Framework — サプライチェーン完全性</text>
+
+  <!-- SLSA 1 (widest, lightest) -->
+  <polygon points="80,400 820,400 760,328 140,328" fill="#C8E6C9" stroke="#A5D6A7" stroke-width="1.5"/>
+  <text x="450" y="360" text-anchor="middle" font-size="17" font-weight="bold" fill="#1B5E20" font-family="Arial,sans-serif">SLSA 1 — ビルドの文書化</text>
+  <text x="450" y="382" text-anchor="middle" font-size="13" fill="#2E7D32" font-family="Arial,sans-serif">スクリプト化されたビルド / ビルドのプロビナンス生成</text>
+
+  <!-- SLSA 2 -->
+  <polygon points="140,326 760,326 700,254 200,254" fill="#81C784" stroke="#66BB6A" stroke-width="1.5"/>
+  <text x="450" y="284" text-anchor="middle" font-size="17" font-weight="bold" fill="#FFFFFF" font-family="Arial,sans-serif">SLSA 2 — 改ざん防止ビルド</text>
+  <text x="450" y="308" text-anchor="middle" font-size="13" fill="#E8F5E9" font-family="Arial,sans-serif">バージョン管理 / 認証済みビルドサービス / 署名付きプロビナンス</text>
+
+  <!-- SLSA 3 -->
+  <polygon points="200,252 700,252 640,180 260,180" fill="#388E3C" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="450" y="210" text-anchor="middle" font-size="17" font-weight="bold" fill="white" font-family="Arial,sans-serif">SLSA 3 — 信頼された分離ビルド</text>
+  <text x="450" y="234" text-anchor="middle" font-size="13" fill="#C8E6C9" font-family="Arial,sans-serif">分離されたビルド環境 / 改ざん不可なプロビナンス</text>
+
+  <!-- SLSA 4 (narrowest, top) -->
+  <polygon points="260,178 640,178 580,106 320,106" fill="#1B5E20" stroke="#0A3622" stroke-width="1.5"/>
+  <text x="450" y="134" text-anchor="middle" font-size="16" font-weight="bold" fill="#FFD54F" font-family="Arial,sans-serif">SLSA 4 — 再現可能ビルド + 2者レビュー</text>
+  <text x="450" y="158" text-anchor="middle" font-size="13" fill="#C8E6C9" font-family="Arial,sans-serif">再現可能ビルド / すべての変更に2者承認 / 保持ポリシー</text>
+
+  <!-- SLSA labels on left side -->
+  <text x="52" y="370" text-anchor="end" font-size="14" font-weight="bold" fill="#4CAF50" font-family="Arial,sans-serif">L1</text>
+  <text x="118" y="296" text-anchor="end" font-size="14" font-weight="bold" fill="#388E3C" font-family="Arial,sans-serif">L2</text>
+  <text x="178" y="222" text-anchor="end" font-size="14" font-weight="bold" fill="#2E7D32" font-family="Arial,sans-serif">L3</text>
+  <text x="238" y="148" text-anchor="end" font-size="14" font-weight="bold" fill="#1B5E20" font-family="Arial,sans-serif">L4</text>
+
+  <!-- Callout box: 現実的目標 -->
+  <rect x="630" y="270" width="240" height="72" fill="#FFF9C4" rx="8" style="filter:drop-shadow(2px 3px 6px rgba(0,0,0,0.18))"/>
+  <!-- Callout pointer triangle -->
+  <polygon points="630,306 616,300 630,314" fill="#FFF9C4"/>
+  <text x="750" y="295" text-anchor="middle" font-size="13" font-weight="bold" fill="#F57F17" font-family="Arial,sans-serif">現実的目標</text>
+  <text x="750" y="316" text-anchor="middle" font-size="15" font-weight="bold" fill="#E65100" font-family="Arial,sans-serif">SLSA 2–3</text>
+  <text x="750" y="334" text-anchor="middle" font-size="12" fill="#795548" font-family="Arial,sans-serif">多くの組織に適用可能なレベル</text>
+
+  <!-- Bottom axis -->
+  <line x1="80" y1="415" x2="820" y2="415" stroke="#90A4AE" stroke-width="1.5"/>
+  <text x="80" y="435" text-anchor="middle" font-size="12" fill="#78909C" font-family="Arial,sans-serif">低</text>
+  <text x="450" y="435" text-anchor="middle" font-size="13" fill="#455A64" font-family="Arial,sans-serif">← セキュリティ成熟度 →</text>
+  <text x="820" y="435" text-anchor="middle" font-size="12" fill="#78909C" font-family="Arial,sans-serif">高</text>
+
+  <!-- Footer -->
+  <text x="450" y="470" text-anchor="middle" font-size="12" fill="#90A4AE" font-family="Arial,sans-serif">SLSA = Supply-chain Levels for Software Artifacts | https://slsa.dev</text>
+</svg>

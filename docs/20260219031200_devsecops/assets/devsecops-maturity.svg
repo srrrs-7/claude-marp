@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:Arial,sans-serif;">
+
+  <!-- Header -->
+  <rect x="0" y="0" width="960" height="68" rx="8" ry="8" fill="#232F3E"/>
+  <text x="480" y="42" text-anchor="middle" fill="#FF9800" font-size="24" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">DevSecOps成熟度モデル</text>
+
+  <!-- Level data:
+       L1: x=20,  color=#9E9E9E, dark=#616161
+       L2: x=208, color=#FFC107, dark=#F57F17
+       L3: x=396, color=#FF9800, dark=#E65100
+       L4: x=584, color=#2196F3, dark=#0D47A1
+       L5: x=772, color=#4CAF50, dark=#1B5E20
+  -->
+
+  <!-- Level 1 -->
+  <rect x="20" y="90" width="168" height="370" rx="10" ry="10" fill="#9E9E9E" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.2))"/>
+  <rect x="20" y="90" width="168" height="64" rx="10" ry="10" fill="#616161"/>
+  <rect x="20" y="130" width="168" height="24" fill="#616161"/>
+  <text x="104" y="120" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">レベル 1</text>
+  <text x="104" y="146" text-anchor="middle" fill="#F5F5F5" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">認識なし</text>
+  <!-- Characteristics -->
+  <rect x="30" y="168" width="148" height="2" fill="rgba(255,255,255,0.3)"/>
+  <text x="34" y="192" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• セキュリティは後付け</text>
+  <text x="34" y="214" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• 手動・アドホック対応</text>
+  <text x="34" y="236" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• 知識・責任不明確</text>
+  <text x="34" y="258" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• ツール未導入</text>
+  <text x="34" y="280" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• 脆弱性対応が遅延</text>
+  <!-- Progress bar at bottom -->
+  <rect x="30" y="430" width="148" height="16" rx="8" ry="8" fill="rgba(0,0,0,0.2)"/>
+  <rect x="30" y="430" width="22" height="16" rx="8" ry="8" fill="#fff" style="opacity:0.6"/>
+  <text x="104" y="458" text-anchor="middle" fill="#fff" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">成熟度 15%</text>
+
+  <!-- Level 2 -->
+  <rect x="208" y="90" width="168" height="370" rx="10" ry="10" fill="#FFC107" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.2))"/>
+  <rect x="208" y="90" width="168" height="64" rx="10" ry="10" fill="#F57F17"/>
+  <rect x="208" y="130" width="168" height="24" fill="#F57F17"/>
+  <text x="292" y="120" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">レベル 2</text>
+  <text x="292" y="146" text-anchor="middle" fill="#FFF8E1" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">部分的導入</text>
+  <rect x="218" y="168" width="148" height="2" fill="rgba(255,255,255,0.3)"/>
+  <text x="222" y="192" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• 一部ツール導入済み</text>
+  <text x="222" y="214" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• セキュリティ意識向上</text>
+  <text x="222" y="236" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• 散発的なレビュー</text>
+  <text x="222" y="258" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• プロセス未標準化</text>
+  <text x="222" y="280" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• チーム間格差あり</text>
+  <rect x="218" y="430" width="148" height="16" rx="8" ry="8" fill="rgba(0,0,0,0.2)"/>
+  <rect x="218" y="430" width="52" height="16" rx="8" ry="8" fill="#fff" style="opacity:0.6"/>
+  <text x="292" y="458" text-anchor="middle" fill="#fff" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">成熟度 35%</text>
+
+  <!-- Level 3 -->
+  <rect x="396" y="90" width="168" height="370" rx="10" ry="10" fill="#FF9800" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.2))"/>
+  <rect x="396" y="90" width="168" height="64" rx="10" ry="10" fill="#E65100"/>
+  <rect x="396" y="130" width="168" height="24" fill="#E65100"/>
+  <text x="480" y="120" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">レベル 3</text>
+  <text x="480" y="146" text-anchor="middle" fill="#FFF3E0" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">標準化</text>
+  <rect x="406" y="168" width="148" height="2" fill="rgba(255,255,255,0.3)"/>
+  <text x="410" y="192" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• CI/CDパイプライン統合</text>
+  <text x="410" y="214" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• セキュリティゲート設置</text>
+  <text x="410" y="236" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• 標準化されたプロセス</text>
+  <text x="410" y="258" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• 脅威モデリング実施</text>
+  <text x="410" y="280" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• SAST/SCA導入済み</text>
+  <rect x="406" y="430" width="148" height="16" rx="8" ry="8" fill="rgba(0,0,0,0.2)"/>
+  <rect x="406" y="430" width="89" height="16" rx="8" ry="8" fill="#fff" style="opacity:0.6"/>
+  <text x="480" y="458" text-anchor="middle" fill="#fff" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">成熟度 60%</text>
+
+  <!-- Level 4 -->
+  <rect x="584" y="90" width="168" height="370" rx="10" ry="10" fill="#2196F3" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.2))"/>
+  <rect x="584" y="90" width="168" height="64" rx="10" ry="10" fill="#0D47A1"/>
+  <rect x="584" y="130" width="168" height="24" fill="#0D47A1"/>
+  <text x="668" y="120" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">レベル 4</text>
+  <text x="668" y="146" text-anchor="middle" fill="#E3F2FD" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">計測・管理</text>
+  <rect x="594" y="168" width="148" height="2" fill="rgba(255,255,255,0.3)"/>
+  <text x="598" y="192" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• KPIによる効果測定</text>
+  <text x="598" y="214" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• リスクの定量化</text>
+  <text x="598" y="236" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• 全チーム標準適用</text>
+  <text x="598" y="258" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• 自動コンプライアンス</text>
+  <text x="598" y="280" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• SLOベース管理</text>
+  <rect x="594" y="430" width="148" height="16" rx="8" ry="8" fill="rgba(0,0,0,0.2)"/>
+  <rect x="594" y="430" width="118" height="16" rx="8" ry="8" fill="#fff" style="opacity:0.6"/>
+  <text x="668" y="458" text-anchor="middle" fill="#fff" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">成熟度 80%</text>
+
+  <!-- Level 5 -->
+  <rect x="772" y="90" width="168" height="370" rx="10" ry="10" fill="#4CAF50" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.2))"/>
+  <rect x="772" y="90" width="168" height="64" rx="10" ry="10" fill="#1B5E20"/>
+  <rect x="772" y="130" width="168" height="24" fill="#1B5E20"/>
+  <text x="856" y="120" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">レベル 5</text>
+  <text x="856" y="146" text-anchor="middle" fill="#E8F5E9" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">継続改善</text>
+  <rect x="782" y="168" width="148" height="2" fill="rgba(255,255,255,0.3)"/>
+  <text x="786" y="192" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• 組織全体に浸透</text>
+  <text x="786" y="214" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• フィードバックループ</text>
+  <text x="786" y="236" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• 予測的セキュリティ</text>
+  <text x="786" y="258" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• イノベーション文化</text>
+  <text x="786" y="280" fill="#fff" font-size="12" font-family="Arial,sans-serif" letter-spacing="0">• 業界リーダーシップ</text>
+  <rect x="782" y="430" width="148" height="16" rx="8" ry="8" fill="rgba(0,0,0,0.2)"/>
+  <rect x="782" y="430" width="148" height="16" rx="8" ry="8" fill="#fff" style="opacity:0.6"/>
+  <text x="856" y="458" text-anchor="middle" fill="#fff" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">成熟度 100%</text>
+
+  <!-- Upward arrow on right side -->
+  <polygon points="945,420 938,380 952,380" fill="#FF9800"/>
+  <line x1="945" y1="420" x2="945" y2="385" stroke="#FF9800" stroke-width="3"/>
+  <text x="945" y="468" text-anchor="middle" fill="#555" font-size="11" font-family="Arial,sans-serif" letter-spacing="0">成熟度</text>
+
+</svg>

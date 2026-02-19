@@ -1,0 +1,21 @@
+topic: "AWS セキュリティ完全版 — IAM / KMS / GuardDuty / WAF / Security Specialty対策"
+output:
+  dir: "docs/20260219030000_aws-security-complete"
+  baseName: "aws-security-complete"
+marp:
+  theme: gaia
+  size: "16:9"
+  paginate: true
+  footer: "AWS セキュリティ完全版 2026 | Security Specialty対策"
+  style: |
+    section { font-size: 0.80em; }
+    section pre code { font-size: 0.58em; line-height: 1.4; }
+    table { font-size: 0.66em; border-collapse: collapse; width: 100%; }
+    th { background: #B71C1C; color: white; padding: 4px 8px; text-align: left; }
+    td { padding: 3px 8px; border-bottom: 1px solid #e0e0e0; }
+    tr:nth-child(even) td { background: #fff5f5; }
+    section.lead h1 { font-size: 1.4em; }
+    section.lead h2 { font-size: 1.1em; color: #fff; }
+    h2 { color: #B71C1C; }
+    h3 { color: #7F0000; font-size: 0.95em; }
+language: ja

@@ -1,0 +1,72 @@
+<svg viewBox="0 0 900 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="400" fill="#F0F4F8"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">Amazon Bedrock Flows アーキテクチャ</text>
+  <text x="450" y="48" text-anchor="middle" font-size="12" fill="#666">視覚的なノードグラフでAIワークフローを構築</text>
+
+  <!-- Input Node -->
+  <rect x="30" y="150" width="110" height="70" rx="10" fill="#232F3E"/>
+  <text x="85" y="175" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Input</text>
+  <text x="85" y="193" text-anchor="middle" font-size="11" fill="#FFB74D">ユーザー入力</text>
+  <text x="85" y="210" text-anchor="middle" font-size="10" fill="#888">Flow開始点</text>
+
+  <line x1="140" y1="185" x2="175" y2="185" stroke="#FF9900" stroke-width="2.5"/>
+  <polygon points="175,180 185,185 175,190" fill="#FF9900"/>
+
+  <!-- Prompt Node -->
+  <rect x="185" y="120" width="140" height="130" rx="10" fill="#FF9900" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="255" y="148" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Prompt Node</text>
+  <rect x="200" y="160" width="110" height="28" rx="5" fill="#E67700"/>
+  <text x="255" y="179" text-anchor="middle" font-size="11" fill="white">プロンプトテンプレート</text>
+  <rect x="200" y="194" width="110" height="28" rx="5" fill="#E67700"/>
+  <text x="255" y="213" text-anchor="middle" font-size="11" fill="white">変数バインディング</text>
+  <text x="255" y="240" text-anchor="middle" font-size="10" fill="#FFF3E0">LLM呼び出し</text>
+
+  <!-- Condition node branch -->
+  <line x1="325" y1="185" x2="365" y2="185" stroke="#666" stroke-width="2"/>
+  <polygon points="365,180 375,185 365,190" fill="#666"/>
+
+  <!-- Condition Node -->
+  <rect x="375" y="130" width="130" height="110" rx="10" fill="#E53935" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="440" y="155" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Condition</text>
+  <text x="440" y="173" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Node</text>
+  <text x="440" y="195" text-anchor="middle" font-size="11" fill="#FFCDD2">条件分岐</text>
+  <text x="440" y="213" text-anchor="middle" font-size="11" fill="#FFCDD2">IF/ELSE ロジック</text>
+  <text x="440" y="230" text-anchor="middle" font-size="10" fill="#FFCDD2">LLM出力で判定</text>
+
+  <!-- Branch: KB Search -->
+  <line x1="505" y1="160" x2="545" y2="120" stroke="#1A73E8" stroke-width="2"/>
+  <polygon points="540,115 545,125 550,115" fill="#1A73E8"/>
+  <text x="522" y="130" font-size="10" fill="#1A73E8">True</text>
+
+  <rect x="545" y="65" width="160" height="80" rx="10" fill="#1A73E8"/>
+  <text x="625" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Knowledge Base</text>
+  <text x="625" y="108" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Retrieval Node</text>
+  <text x="625" y="130" text-anchor="middle" font-size="11" fill="#BBDEFB">RAG検索・文書取得</text>
+
+  <!-- Branch: Lambda -->
+  <line x1="505" y1="210" x2="545" y2="260" stroke="#1A9C3E" stroke-width="2"/>
+  <polygon points="540,255 545,265 550,255" fill="#1A9C3E"/>
+  <text x="522" y="248" font-size="10" fill="#1A9C3E">False</text>
+
+  <rect x="545" y="260" width="160" height="80" rx="10" fill="#1A9C3E"/>
+  <text x="625" y="285" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Lambda Function</text>
+  <text x="625" y="303" text-anchor="middle" font-size="11" fill="#C8E6C9">カスタムコード実行</text>
+  <text x="625" y="322" text-anchor="middle" font-size="11" fill="#C8E6C9">外部API呼び出し</text>
+
+  <!-- Merge to Output -->
+  <line x1="705" y1="105" x2="745" y2="185" stroke="#666" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="705" y1="300" x2="745" y2="220" stroke="#666" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="740,180 745,190 750,180" fill="#666"/>
+  <polygon points="740,222 745,212 750,222" fill="#666"/>
+
+  <!-- Output Node -->
+  <rect x="745" y="155" width="120" height="70" rx="10" fill="#232F3E"/>
+  <text x="805" y="183" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Output Node</text>
+  <text x="805" y="201" text-anchor="middle" font-size="11" fill="#FFB74D">Flow終了点</text>
+  <text x="805" y="215" text-anchor="middle" font-size="10" fill="#888">結果を返す</text>
+
+  <!-- Benefits -->
+  <rect x="30" y="345" width="840" height="45" rx="10" fill="#7B1FA2"/>
+  <text x="450" y="363" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Flows の主要ノード種別</text>
+  <text x="450" y="381" text-anchor="middle" font-size="11" fill="#E1BEE7">Input/Output • Prompt • Condition • Knowledge Base Retrieval • Lambda • Agent • Iterator • Collector</text>
+</svg>

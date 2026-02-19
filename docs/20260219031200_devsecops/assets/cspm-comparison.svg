@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:Arial,sans-serif">
+  <!-- Title -->
+  <rect x="0" y="0" width="900" height="48" fill="#232F3E"/>
+  <text x="450" y="32" text-anchor="middle" font-size="22" font-weight="bold" fill="#FF9900" font-family="Arial,sans-serif">CSPMツール比較</text>
+
+  <!-- Header row -->
+  <rect x="0" y="48" width="900" height="44" fill="#37475A"/>
+  <text x="90" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#FF9900" font-family="Arial,sans-serif">ツール</text>
+  <text x="270" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#FF9900" font-family="Arial,sans-serif">マルチクラウド</text>
+  <text x="430" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#FF9900" font-family="Arial,sans-serif">エージェントレス</text>
+  <text x="610" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#FF9900" font-family="Arial,sans-serif">コード修正提案</text>
+  <text x="790" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#FF9900" font-family="Arial,sans-serif">価格帯</text>
+
+  <!-- Column dividers in header -->
+  <line x1="180" y1="48" x2="180" y2="92" stroke="#FF9900" stroke-width="1" opacity="0.4"/>
+  <line x1="360" y1="48" x2="360" y2="92" stroke="#FF9900" stroke-width="1" opacity="0.4"/>
+  <line x1="520" y1="48" x2="520" y2="92" stroke="#FF9900" stroke-width="1" opacity="0.4"/>
+  <line x1="700" y1="48" x2="700" y2="92" stroke="#FF9900" stroke-width="1" opacity="0.4"/>
+
+  <!-- Row 1: Wiz (light) -->
+  <rect x="0" y="92" width="900" height="56" fill="#F8F9FA"/>
+  <text x="90" y="125" text-anchor="middle" font-size="15" font-weight="bold" fill="#1565C0" font-family="Arial,sans-serif">Wiz</text>
+  <text x="270" y="125" text-anchor="middle" font-size="15" fill="#2E7D32" font-family="Arial,sans-serif">✓✓</text>
+  <text x="430" y="125" text-anchor="middle" font-size="15" fill="#2E7D32" font-family="Arial,sans-serif">✓✓</text>
+  <text x="610" y="125" text-anchor="middle" font-size="15" fill="#2E7D32" font-family="Arial,sans-serif">✓</text>
+  <rect x="750" y="104" width="80" height="26" rx="6" fill="#D32F2F"/>
+  <text x="790" y="122" text-anchor="middle" font-size="13" fill="white" font-family="Arial,sans-serif">高</text>
+
+  <!-- Row 2: Prisma Cloud (alt) -->
+  <rect x="0" y="148" width="900" height="56" fill="#EEF2FF"/>
+  <text x="90" y="181" text-anchor="middle" font-size="14" font-weight="bold" fill="#4A148C" font-family="Arial,sans-serif">Prisma Cloud</text>
+  <text x="270" y="181" text-anchor="middle" font-size="15" fill="#2E7D32" font-family="Arial,sans-serif">✓✓</text>
+  <text x="430" y="181" text-anchor="middle" font-size="15" fill="#F57F17" font-family="Arial,sans-serif">✓</text>
+  <text x="610" y="181" text-anchor="middle" font-size="15" fill="#2E7D32" font-family="Arial,sans-serif">✓</text>
+  <rect x="750" y="160" width="80" height="26" rx="6" fill="#D32F2F"/>
+  <text x="790" y="178" text-anchor="middle" font-size="13" fill="white" font-family="Arial,sans-serif">高</text>
+
+  <!-- Row 3: AWS SecurityHub (light) -->
+  <rect x="0" y="204" width="900" height="56" fill="#F8F9FA"/>
+  <text x="90" y="237" text-anchor="middle" font-size="13" font-weight="bold" fill="#232F3E" font-family="Arial,sans-serif">AWS SecurityHub</text>
+  <rect x="196" y="214" width="148" height="26" rx="6" fill="#FF9900" opacity="0.25"/>
+  <text x="270" y="232" text-anchor="middle" font-size="13" fill="#E65100" font-family="Arial,sans-serif">AWS only</text>
+  <text x="430" y="237" text-anchor="middle" font-size="15" fill="#2E7D32" font-family="Arial,sans-serif">✓✓</text>
+  <text x="610" y="237" text-anchor="middle" font-size="18" fill="#9E9E9E" font-family="Arial,sans-serif">−</text>
+  <rect x="730" y="216" width="120" height="26" rx="6" fill="#388E3C"/>
+  <text x="790" y="234" text-anchor="middle" font-size="12" fill="white" font-family="Arial,sans-serif">低(AWS)</text>
+
+  <!-- Row 4: Microsoft Defender (alt) -->
+  <rect x="0" y="260" width="900" height="56" fill="#EEF2FF"/>
+  <text x="90" y="289" text-anchor="middle" font-size="12" font-weight="bold" fill="#0D47A1" font-family="Arial,sans-serif">Microsoft Defender</text>
+  <rect x="196" y="270" width="148" height="26" rx="6" fill="#0078D4" opacity="0.18"/>
+  <text x="270" y="288" text-anchor="middle" font-size="13" fill="#0D47A1" font-family="Arial,sans-serif">Azure中心</text>
+  <text x="430" y="293" text-anchor="middle" font-size="15" fill="#2E7D32" font-family="Arial,sans-serif">✓✓</text>
+  <text x="610" y="293" text-anchor="middle" font-size="15" fill="#2E7D32" font-family="Arial,sans-serif">✓</text>
+  <rect x="750" y="272" width="80" height="26" rx="6" fill="#F57F17"/>
+  <text x="790" y="290" text-anchor="middle" font-size="13" fill="white" font-family="Arial,sans-serif">中</text>
+
+  <!-- Row 5: Trivy + KICS (light) -->
+  <rect x="0" y="316" width="900" height="56" fill="#F8F9FA"/>
+  <text x="90" y="349" text-anchor="middle" font-size="13" font-weight="bold" fill="#1B5E20" font-family="Arial,sans-serif">Trivy + KICS</text>
+  <text x="270" y="349" text-anchor="middle" font-size="15" fill="#F57F17" font-family="Arial,sans-serif">✓</text>
+  <rect x="376" y="326" width="108" height="26" rx="6" fill="#43A047" opacity="0.25"/>
+  <text x="430" y="344" text-anchor="middle" font-size="13" fill="#1B5E20" font-family="Arial,sans-serif">OSS</text>
+  <text x="610" y="349" text-anchor="middle" font-size="18" fill="#9E9E9E" font-family="Arial,sans-serif">−</text>
+  <rect x="740" y="328" width="100" height="26" rx="6" fill="#1B5E20"/>
+  <text x="790" y="346" text-anchor="middle" font-size="13" fill="white" font-family="Arial,sans-serif">無料</text>
+
+  <!-- Column dividers for all rows -->
+  <line x1="180" y1="92" x2="180" y2="372" stroke="#BDBDBD" stroke-width="1"/>
+  <line x1="360" y1="92" x2="360" y2="372" stroke="#BDBDBD" stroke-width="1"/>
+  <line x1="520" y1="92" x2="520" y2="372" stroke="#BDBDBD" stroke-width="1"/>
+  <line x1="700" y1="92" x2="700" y2="372" stroke="#BDBDBD" stroke-width="1"/>
+
+  <!-- Outer border -->
+  <rect x="0" y="0" width="900" height="372" fill="none" stroke="#37475A" stroke-width="2"/>
+
+  <!-- Legend -->
+  <rect x="0" y="384" width="900" height="96" fill="#FAFAFA" rx="0"/>
+  <text x="24" y="408" font-size="13" font-weight="bold" fill="#37475A" font-family="Arial,sans-serif">凡例:</text>
+  <text x="90" y="408" font-size="14" fill="#2E7D32" font-family="Arial,sans-serif">✓✓</text>
+  <text x="115" y="408" font-size="12" fill="#555" font-family="Arial,sans-serif">= 完全対応</text>
+  <text x="240" y="408" font-size="14" fill="#F57F17" font-family="Arial,sans-serif">✓</text>
+  <text x="258" y="408" font-size="12" fill="#555" font-family="Arial,sans-serif">= 部分対応</text>
+  <text x="380" y="408" font-size="14" fill="#9E9E9E" font-family="Arial,sans-serif">−</text>
+  <text x="398" y="408" font-size="12" fill="#555" font-family="Arial,sans-serif">= 非対応</text>
+  <text x="500" y="408" font-size="12" fill="#555" font-family="Arial,sans-serif">OSS = オープンソース (無償)</text>
+  <text x="24" y="436" font-size="12" fill="#666" font-family="Arial,sans-serif">* 価格は概算。組織規模・利用量により変動。エンタープライズ契約では要見積もり。</text>
+  <text x="24" y="460" font-size="12" fill="#666" font-family="Arial,sans-serif">* AWS SecurityHub は AWS 環境専用だが、価格は従量課金でコスト最適。</text>
+</svg>

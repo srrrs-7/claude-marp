@@ -1,0 +1,58 @@
+<svg viewBox="0 0 900 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="400" fill="#F8F9FA"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">ベクター検索 vs ハイブリッド検索</text>
+
+  <!-- Query -->
+  <rect x="350" y="50" width="200" height="50" rx="10" fill="#232F3E"/>
+  <text x="450" y="71" text-anchor="middle" font-size="13" font-weight="bold" fill="white">ユーザークエリ</text>
+  <text x="450" y="89" text-anchor="middle" font-size="11" fill="#FFB74D">"AWSのS3料金体系は？"</text>
+
+  <!-- Split arrows -->
+  <line x1="350" y1="75" x2="230" y2="130" stroke="#1A73E8" stroke-width="2"/>
+  <polygon points="225,130 230,120 235,130" fill="#1A73E8"/>
+  <line x1="550" y1="75" x2="670" y2="130" stroke="#1A9C3E" stroke-width="2"/>
+  <polygon points="665,130 670,120 675,130" fill="#1A9C3E"/>
+
+  <!-- Vector Search -->
+  <rect x="50" y="130" width="360" height="180" rx="12" fill="#1A73E8" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="230" y="156" text-anchor="middle" font-size="14" font-weight="bold" fill="white">ベクター検索 (Dense)</text>
+
+  <rect x="70" y="170" width="320" height="36" rx="6" fill="#1557B0"/>
+  <text x="230" y="191" text-anchor="middle" font-size="12" fill="white">クエリ → Embedding → ベクトル変換</text>
+
+  <line x1="230" y1="206" x2="230" y2="222" stroke="white" stroke-width="1.5"/>
+  <polygon points="225,222 230,232 235,222" fill="white"/>
+
+  <rect x="70" y="232" width="320" height="36" rx="6" fill="#1557B0"/>
+  <text x="230" y="253" text-anchor="middle" font-size="12" fill="white">コサイン類似度 / kNN検索</text>
+
+  <text x="70" y="290" font-size="11" fill="white">✓ 意味的類似性を捉える</text>
+  <text x="70" y="307" font-size="11" fill="white">✗ キーワード完全一致が弱い</text>
+
+  <!-- Keyword Search -->
+  <rect x="490" y="130" width="360" height="180" rx="12" fill="#1A9C3E" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="670" y="156" text-anchor="middle" font-size="14" font-weight="bold" fill="white">キーワード検索 (Sparse)</text>
+
+  <rect x="510" y="170" width="320" height="36" rx="6" fill="#137830"/>
+  <text x="670" y="191" text-anchor="middle" font-size="12" fill="white">BM25 / TF-IDF アルゴリズム</text>
+
+  <line x1="670" y1="206" x2="670" y2="222" stroke="white" stroke-width="1.5"/>
+  <polygon points="665,222 670,232 675,222" fill="white"/>
+
+  <rect x="510" y="232" width="320" height="36" rx="6" fill="#137830"/>
+  <text x="670" y="253" text-anchor="middle" font-size="12" fill="white">転置インデックス / 全文検索</text>
+
+  <text x="510" y="290" font-size="11" fill="white">✓ 固有名詞・専門用語に強い</text>
+  <text x="510" y="307" font-size="11" fill="white">✗ 同義語・文脈理解が弱い</text>
+
+  <!-- Combine arrows -->
+  <line x1="230" y1="310" x2="380" y2="355" stroke="#FF9900" stroke-width="2"/>
+  <line x1="670" y1="310" x2="520" y2="355" stroke="#FF9900" stroke-width="2"/>
+  <polygon points="375,350 380,360 385,350" fill="#FF9900"/>
+  <polygon points="515,350 520,360 525,350" fill="#FF9900"/>
+
+  <!-- Hybrid Result -->
+  <rect x="290" y="355" width="320" height="36" rx="10" fill="#FF9900" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="450" y="371" text-anchor="middle" font-size="13" font-weight="bold" fill="white">ハイブリッド検索 (Fusion)</text>
+  <text x="450" y="385" text-anchor="middle" font-size="11" fill="#FFF3E0">RRF (Reciprocal Rank Fusion) でスコアを統合</text>
+</svg>

@@ -1,0 +1,1525 @@
+---
+marp: true
+theme: gaia
+size: 16:9
+paginate: true
+---
+
+<!-- _class: lead -->
+# AWS Certified Advanced Networking - Specialty
+
+- ANS-C01 完全ガイド
+- 対象：ネットワークエンジニア・クラウドアーキテクト
+- AWS ネットワークの深層を網羅する139枚のスライド
+- Domain 1: Network Design (30%) | Domain 2: Implementation (26%)
+- Domain 3: Management & Operations (20%) | Domain 4: Security (24%)
+
+<!--
+ANS-C01は2023年改訂版。170分・65問。合格スコア750/1000。
+-->
+
+---
+
+# アジェンダ (1/2)
+
+- **Section 1**: VPC 基礎設計（CIDR・サブネット・ルーティング）
+- **Section 2**: VPC 接続性（Peering・TGW・PrivateLink）
+- **Section 3**: ハイブリッド接続（VPN・Direct Connect・BGP）
+- **Section 4**: 実装 Part 1（Enhanced Networking・LB・BGP詳細）
+- **Section 5**: 実装 Part 2（Route 53 Resolver・ALB/NLB/GWLB）
+- **Section 6**: CDN & グローバルトラフィック（CloudFront・GA）
+
+
+---
+
+# アジェンダ (2/2)
+
+- **Section 7**: 管理・運用 Part 1（Flow Logs・監視・Reachability）
+- **Section 8**: 管理・運用 Part 2（Route 53ルーティング・DNS）
+- **Section 9**: セキュリティ Part 1（SG・NACL・Network Firewall）
+- **Section 10**: セキュリティ Part 2（WAF・Shield・GuardDuty）
+- **Section 11**: アーキテクチャパターン（Hub-and-Spoke・マルチアカウント）
+- **Section 12**: 試験対策（比較表・頻出ミス・まとめ）
+
+
+---
+
+# ANS-C01 試験概要
+
+- **試験時間**: 170分 / **問題数**: 65問（うち15問は採点外）
+- **合格スコア**: 750/1000（100〜1000点スケール）
+- **ドメイン配分**:
+- - Domain 1: Network Design **30%** (19-20問相当)
+- - Domain 2: Network Implementation **26%** (17問相当)
+- - Domain 3: Network Management & Optimization **20%** (13問相当)
+- - Domain 4: Network Security, Compliance & Governance **24%** (15-16問相当)
+- **推奨経験**: AWSネットワーク実務5年以上、Associate/Professional資格保有
+
+
+---
+
+<!-- _class: lead -->
+# Section 1: VPC 基礎設計
+
+- Domain 1: Network Design
+- CIDR 設計・サブネット・ルーティング・IGW・NAT・Endpoints
+- IPv6・Prefix Lists・ENI・EIP
+
+
+---
+
+# VPC CIDR 設計原則
+
+- **RFC 1918 プライベートアドレス空間**:
+- - 10.0.0.0/8 (16,777,216 hosts) — 大規模環境推奨
+- - 172.16.0.0/12 (1,048,576 hosts)
+- - 192.168.0.0/16 (65,536 hosts) — 小規模環境
+- **VPC CIDR範囲**: /16（65,536 IP）〜 /28（16 IP）
+- **サブネット**: VPC CIDRの一部（/24が一般的 = 256 IP、利用可能251）
+- **AWS予約IP**: ネットワーク・ルーター・DNS・将来用・ブロードキャスト（各サブネット5 IP）
+- **追加CIDR**: 1 VPCに最大5つのCIDRブロック追加可能
+
+
+---
+
+# VPC CIDR 設計：ベストプラクティス
+
+- **重複しないCIDR設計**（ピアリング・VPN接続時に必須）
+- **ビットバウンダリーを尊重**: /16, /17, /18 … /28
+- **将来拡張を考慮**: 最低 /16 から開始推奨
+- **AZ別サブネット分割例** (/16 VPC → /24 サブネット):
+- - Public: 10.0.0.0/24 (AZ-a), 10.0.1.0/24 (AZ-b), 10.0.2.0/24 (AZ-c)
+- - Private: 10.0.10.0/24, 10.0.11.0/24, 10.0.12.0/24
+- - Data: 10.0.20.0/24, 10.0.21.0/24, 10.0.22.0/24
+- **本番・開発・ステージング**: 重複しない /16 割り当て
+
+
+---
+
+# VPC ルーティング基礎
+
+- **ルートテーブル**: サブネット単位で関連付け（1サブネット = 1ルートテーブル）
+- **ローカルルート**: VPC CIDR宛（削除不可・最優先）
+- **最長一致 (Longest Prefix Match)**: より具体的なルートが優先
+- **ルート優先順位** (同プレフィックス長時):
+- - 1. ローカルルート
+- - 2. 静的ルート（プレフィックスリスト含む）
+- - 3. プロパゲートルート（VPN/DX）
+- **メインルートテーブル**: VPCデフォルト（明示的関連付けなしのサブネット）
+- **カスタムルートテーブル**: サブネット別に明示的関連付け
+
+
+---
+
+# Internet Gateway (IGW) と パブリックサブネット
+
+- **IGW**: VPCに1つ（1対1対応）。水平スケールで可用性自動管理
+- **パブリックサブネット要件**:
+- - ルートテーブルに 0.0.0.0/0 → IGW のルート
+- - インスタンスにパブリックIP または EIP
+- **NAT Gateway と の違い**:
+- - IGW = 双方向（インバウンド・アウトバウンド）
+- - NAT GW = アウトバウンドのみ（プライベートサブネット用）
+- **Egress-Only IGW**: IPv6専用アウトバウンド（IPv4のNAT GWに相当）
+- **IGW Route**: 0.0.0.0/0 → igw-xxxxxxxx（IPv4）, ::/0 → eigw-xxx（IPv6）
+
+
+---
+
+# NAT Gateway 詳細
+
+- **マネージドNAT**: 高可用性・自動スケール（最大45 Gbps）
+- **配置**: パブリックサブネット（EIP必須）
+- **ルート設定**: プライベートサブネットRT → 0.0.0.0/0 → nat-xxxxxxxx
+- **AZ独立性**: 各AZにNAT GWを配置（AZ障害耐性・コスト最適化）
+- **料金**: 時間単位 + データ処理料金（GB単位）
+- **NAT Instance vs NAT Gateway**:
+- - NAT Instance: EC2ベース・スケール手動・Source/Dest Check無効化必要
+- - NAT GW: フルマネージド・自動スケール・推奨
+- **Private NAT GW**: RFC 1918アドレス間のNAT（オーバーラップCIDR解決に使用）
+
+
+---
+
+# VPC Endpoints 種別
+
+- **Gateway Endpoint** (S3・DynamoDB のみ):
+- - ルートテーブルに自動エントリ追加（pl-xxxxxxxx → vpce-xxx）
+- - 無料・リージョン内サービス向け
+- **Interface Endpoint** (PrivateLink):  
+- - ENI + プライベートIP（サブネット内）
+- - 時間 + データ処理料金
+- - DNS解決でプライベートIP返却（enableDnsSupport必須）
+- **Gateway Load Balancer Endpoint**:
+- - サードパーティNVA（Network Virtual Appliance）へのトラフィック転送
+- **エンドポイントポリシー**: IAM Resource Policyでアクセス制御可能
+
+
+---
+
+# ENI (Elastic Network Interface)
+
+- **ENI**: VPC内の仮想NIC。EC2インスタンスにアタッチ
+- **属性**: プライベートIP（複数可）・EIP・MAC・SG・送信元/宛先チェック
+- **プライマリENI (eth0)**: 削除不可。インスタンス終了時に自動削除
+- **セカンダリENI**: 別サブネットへの移動可能（フェイルオーバーに活用）
+- **Trunk ENI**: EKS/ECS向け。1 ENIに複数コンテナ用IPを集約（VPC CNI）
+- **IP割り当て上限**: インスタンスタイプ依存（例: m5.large = 10 ENI × 10 IP）
+- **送信元/宛先チェック**: NAT Instance・VPN・IDS/IPSでは無効化必要
+- **ネットワークカーボン**: Enhanced Networking使用時はENA推奨
+
+
+---
+
+# Elastic IP (EIP) と IPv6
+
+- **EIP**: 固定パブリックIPv4。インスタンス/NAT GW/NLBに関連付け
+- - 関連付けなしで課金（節約のため未使用EIPは即解放）
+- - リージョン内の移動可能（フェイルオーバーに活用）
+- **IPv6 in VPC**:
+- - VPCに /56 割り当て（AWSが管理）
+- - サブネットに /64 割り当て
+- - グローバルユニキャスト（GUA）: インターネット直接ルーティング可能
+- - Egress-Only IGW でアウトバウンドのみ
+- **デュアルスタック**: EC2インスタンスにIPv4とIPv6同時割り当て可能
+- **IPv6専用サブネット**: IPv4なし（コンテナ環境での節約）
+
+
+---
+
+# Prefix Lists
+
+- **Prefix List**: CIDRブロックの集合体（再利用可能なグループ）
+- **マネージドPL**: AWSが管理（S3, DynamoDB等のIPレンジ）
+- **カスタムPL**: ユーザー定義（最大1000エントリ/リスト）
+- **利用箇所**:
+- - セキュリティグループのInbound/Outboundルール
+- - ルートテーブルのDestination（TGW・VGW・IGW等へ）
+- - AWS RAM でマルチアカウント共有可能
+- **メリット**: SG/RTのルール数削減・一元管理・変更時の更新箇所最小化
+- **例**: オフィスIPを1つのPLにまとめてSGルールを1行に集約
+
+
+---
+
+<!-- _class: lead -->
+# Section 2: VPC 接続性
+
+- VPC Peering・Transit Gateway・AWS PrivateLink
+- エンドポイント比較・接続パターン
+
+
+---
+
+# VPC Peering
+
+- **VPC Peering**: 2つのVPC間のプライベート接続（同一/別アカウント/クロスリージョン）
+- **制約（重要）**:
+- - **推移的ルーティング不可**: A↔B, B↔C でも A→C は不可
+- - **CIDRオーバーラップ不可**: ピアリング前にCIDR確認必須
+- - **マルチキャスト不可**
+- **設定ステップ**:
+- - 1. Peering Request → Accepter VPC で承認
+- - 2. 両VPCのルートテーブルに相手CIDR → pcx-xxx を追加
+- - 3. SGでピアVPCのCIDRまたはSGを許可
+- **DNS解決**: enableDnsResolutionFromRemoteVpc = true でプライベートDNS解決
+- **コスト**: 同AZ間無料、AZ間・リージョン間はデータ転送料金
+
+
+---
+
+# Transit Gateway (TGW) 概要
+
+- **TGW**: リージョナルな仮想ルーター。ハブアンドスポーク接続の中核
+- **接続可能なアタッチメント**:
+- - VPC Attachment（サブネット指定、最大5 AZ）
+- - VPN Attachment（Site-to-Site VPN）
+- - Direct Connect Gateway Attachment
+- - TGW Peering Attachment（クロスリージョン・クロスアカウント）
+- - Connect Attachment（SD-WAN/GRE + BGP）
+- **スケール**: 最大5,000 VPC接続 / TGW。帯域幅 100 Gbps
+- **AWS RAM**: 他アカウントとTGW共有（Organizations対応）
+- **料金**: アタッチメント時間単位 + データ処理料金
+
+
+---
+
+# TGW ルートテーブルと分離
+
+- **TGWルートテーブル**: 複数作成可能（デフォルト1つ）
+- **アタッチメントの関連付け**: 各アタッチメントが1つのRTと関連付け
+- **プロパゲーション**: VPN/DXのBGPルートを自動的にTGW RTに反映
+- **ルート分離パターン**:
+- - **共有RT**: 全VPCが1つのRTを使用（フルメッシュ）
+- - **分離RT**: 本番/開発を別RTで分離（相互通信なし）
+- - **インスペクションRT**: セキュリティVPCを経由する強制検査
+- **Blackhole Route**: 特定CIDRへのトラフィックを破棄
+- **スタティックルート**: BGPで広告されないCIDRを手動追加
+
+
+---
+
+# TGW 高度な機能
+
+- **ECMP (Equal-Cost Multi-Path)**:
+- - 同一プレフィックスに複数VPN/DXアタッチメント → 負荷分散
+- - BGPで同一AS_PATH・同一MED → ECMP有効化
+- **TGW SiteLink**:
+- - TGW経由でVPN/DX拠点同士を接続（拠点間通信）
+- - 専用SiteLink設定ではなくルートプロパゲーション設定で実現
+- **TGW Connect**:
+- - SD-WANデバイスとGREトンネル + BGPで接続
+- - VPC Attachmentの上にConnect Attachmentを作成
+- **Multicast**: TGWでマルチキャスト対応（明示的に有効化）
+- **Appliance Mode**: セッション維持のためトラフィックを同一AZのアプライアンスへ
+
+
+---
+
+# AWS PrivateLink
+
+- **PrivateLink**: サービスをプライベートIPで公開（インターネット不使用）
+- **コンポーネント**:
+- - **NLB (Provider側)**: サービスをNLBの後ろに配置
+- - **VPC Endpoint Service**: NLBをPrivateLinkサービスとして登録
+- - **Interface Endpoint (Consumer側)**: ENI経由でサービスにアクセス
+- **メリット**: CIDR重複OK・推移的ルーティング回避・SG制御可能
+- **承認フロー**: プロバイダーがコンシューマーアカウントを承認（whitelist）
+- **DNS**: enablePrivateDns → サービスのエンドポイントDNSをプライベートIPに解決
+- **制約**: TCP/UDPのみ（ICMPなし）。一方向（コンシューマー→プロバイダー）
+
+
+---
+
+# VPC Endpoints 比較まとめ
+
+| 種別 | 対象サービス | 方式 | 料金 |
+|------|------------|------|------|
+| Gateway EP | S3, DynamoDB | RTエントリ | 無料 |
+| Interface EP | 150+サービス | ENI+IP | 時間+GB |
+| GWLB EP | NVA (Palo Alto等) | ENI | 時間+GB |
+- **Gateway EP vs Interface EP (S3)**:
+- - Gateway: オンプレからは使用不可（RTベース）
+- - Interface: オンプレ→DX/VPN経由でも使用可（DNSベース）
+- **エンドポイントポリシー**: aws:sourceVpc / aws:sourceVpce 条件キーで制御
+- **Private DNS**: Interface EPにカスタムDNS設定（enableDnsSupport=true必須）
+
+
+---
+
+# VPC接続パターン比較
+
+| 接続方式 | 推移的 | CIDR重複 | スケール | 用途 |
+|---------|-------|---------|---------|------|
+| Peering | ✗ | ✗ | 小〜中 | シンプルな2VPC接続 |
+| TGW | ✓ | ✗ | 大（5000VPC）| マルチVPC・ハブスポーク |
+| PrivateLink | ✓ | ✓ | 大 | サービス公開・SaaS |
+- **TGW vs Peering選択基準**:
+- - Peering: 少数VPC・低コスト・シンプル
+- - TGW: 多数VPC・オンプレ接続・中央管理・ルート制御
+- **PrivateLink選択**: CIDRオーバーラップあり・一方向サービス公開
+
+
+---
+
+<!-- _class: lead -->
+# Section 3: ハイブリッド接続
+
+- Site-to-Site VPN・Client VPN・Direct Connect
+- BGP 制御・Direct Connect Gateway・DX + TGW
+
+
+---
+
+# AWS Site-to-Site VPN
+
+- **構成要素**:
+- - **Customer Gateway (CGW)**: オンプレ側VPNデバイスの論理表現（IPアドレス）
+- - **Virtual Private Gateway (VGW)**: AWS側のVPNエンドポイント（VPCにアタッチ）
+- - **VPN Connection**: 2本のIPsecトンネル（冗長化・異なるAWS側IP）
+- **スペック**: 最大1.25 Gbps/接続。AES-256・SHA-2・DH Group 14+
+- **ルーティング**:
+- - 静的: オンプレCIDRを手動設定
+- - 動的: BGP（AS番号設定、デフォルトAWS ASN = 64512）
+- **冗長化パターン**:
+- - 2 CGW + 2 VGW（高可用性）
+- - TGW VPN + ECMP（帯域幅向上）
+
+
+---
+
+# AWS Client VPN
+
+- **Client VPN**: OpenVPNベースのマネージドリモートアクセスVPN
+- **認証方式**:
+- - Active Directory (AWS Managed AD / オンプレAD)
+- - 相互証明書認証（ACM証明書）
+- - SAML 2.0 フェデレーション（Okta・Azure AD等）
+- **接続先**: VPCサブネットにENI作成 → VPC内リソースにアクセス
+- **Split Tunneling**: 有効化 → AWSトラフィックのみVPN経由（インターネットはローカル）
+- **承認ルール**: セキュリティグループ + 承認ルール（CIDR×グループ）
+- **スケール**: 最大2,000同時接続 / エンドポイント
+- **ログ**: CloudWatch Logs / S3 で接続ログ記録
+
+
+---
+
+# AWS Direct Connect 概要
+
+- **Direct Connect (DX)**: AWS専用線接続サービス
+- **接続タイプ**:
+- - **Dedicated Connection**: 1G / 10G / 100G（AWSから直接）
+- - **Hosted Connection**: 50M〜10G（APN Partnerから提供）
+- **物理構成**: DXロケーション（PoP）でAWSルーターと顧客/Partnerルーター接続
+- **レイテンシ**: VPNより低い・安定（専用線のため）
+- **帯域幅**: VPNより高い（100 Gbpsまで）
+- **暗号化**: デフォルト非暗号化 → MACsec（802.1AE）または VPN over DX
+- **料金**: ポート時間単位 + データ転送料金（アウトバウンドが安い）
+
+
+---
+
+# Direct Connect: Virtual Interfaces (VIF)
+
+- **VIF**: 1本の物理DX接続を論理的に分割（VLAN + BGP）
+- **Private VIF**: VPCへの接続（VGWまたはDX GW経由）
+- - 送受信: 最大100 BGPプレフィックス（オンプレ→AWS）
+- **Public VIF**: AWSパブリックサービス（S3・CloudFront等）へのアクセス
+- - BGPでAWSのパブリックIPレンジを受信
+- **Transit VIF**: DX GW → TGW経由でVPCへ
+- - 1 DX GW に複数TGW接続可能（クロスリージョン）
+- **VIF設定項目**: VLAN ID・BGP ASN・BGP認証キー・ルーティング（eBGP/iBGP）
+- **Hosted VIF**: パートナーDX接続で使用（アカウント間共有）
+
+
+---
+
+# Direct Connect Gateway (DX GW)
+
+- **DX GW**: グローバルサービス（リージョンまたがり）
+- **用途**: 1本のPrivate/Transit VIFから複数リージョンのVPCへ接続
+- **接続パターン**:
+- - DX → Private VIF → DX GW → VGW (VPC)
+- - DX → Transit VIF → DX GW → TGW → VPC群
+- **制約**:
+- - DX GW経由ではVPC間通信不可（VPC A → DX GW → VPC B = 不可）
+- - 同一DX GWに接続したVPCのCIDRはオーバーラップ不可
+- - DX GW に最大20 VGW または 3 TGW 接続
+- **アカウント共有**: DX GWはアカウント間共有可能（VIF提供者と異なるアカウントのVGWに接続）
+
+
+---
+
+# DX 冗長化・耐障害性設計
+
+- **AWS推奨冗長モデル（4段階）**:
+- - **最高可用性**: 2 DXロケーション × 2接続 = 4本（DX GW共有）
+- - **高可用性**: 2 DXロケーション × 1接続 = 2本
+- - **開発/テスト**: 1接続 + VPNフォールバック
+- - **非冗長**: 1接続（非推奨）
+- **フェイルオーバー設定**:
+- - BGP AS_PATHプリペンドで優先路を制御
+- - VPN over DX + VPN直接 → DX障害時にVPN自動切替
+- **BFD (Bidirectional Forwarding Detection)**:
+- - 障害検知を高速化（デフォルトBGP Holddown 90秒 → BFD 300ms）
+- - DXでサポート（オンプレ側での設定必要）
+
+
+---
+
+# DX + TGW アーキテクチャ
+
+- **Transit VIF + DX GW + TGW**構成:
+- - オンプレ → DX → Transit VIF → DX GW → TGW → VPC群
+- - 1本のDX接続で複数リージョン・複数VPC接続
+- **TGW ECMP over DX**:
+- - 複数DX接続 + TGW ECMP → 帯域幅集約
+- - TGW側でECMP有効化（ecmpEnabled）
+- - 同一BGPプレフィックスを複数パスで受信
+- **DX GW + TGW制約**:
+- - TGW経由でオンプレ→オンプレ通信は不可
+- - DX GW接続TGW間のトラフィック転送は不可
+- **MACsec over DX**: Dedicated 10G/100Gで対応。KMSキー管理
+
+
+---
+
+# BGP 基礎とAWS活用
+
+- **BGP (Border Gateway Protocol)**: パスベクタールーティングプロトコル
+- **eBGP**: 異なるAS間（DX/VPN接続）
+- **iBGP**: 同一AS内（TGW内部）
+- **重要属性（優先順位 高→低）**:
+- - Weight (Cisco独自・ローカル) → Local Preference → AS_PATH長 → MED → eBGP > iBGP
+- **AWS BGP設定**:
+- - VGW/TGW ASN: 64512（デフォルト）または カスタム（1-4バイトAS）
+- - Customer Gateway ASN: 64512-65534（プライベート）
+- **ルート制御テクニック**:
+- - AS_PATHプリペンド: オンプレ→AWSの優先路を制御
+- - MED: AWS→オンプレの優先路を制御（ローカルプリファレンス優先）
+
+
+---
+
+<!-- _class: lead -->
+# Section 4: 実装 Part 1
+
+- Enhanced Networking・Placement Groups・MTU
+- DX詳細設定・BGP チューニング・LAG
+
+
+---
+
+# Enhanced Networking と ENA
+
+- **Enhanced Networking**: SR-IOV（Single Root I/O Virtualization）による高性能NIC
+- **ENA (Elastic Network Adapter)**:
+- - 最大100 Gbps（c5n, m5n, etc.）
+- - 低レイテンシ・低CPU負荷
+- - 対応インスタンス: 現行世代のほぼ全て
+- **Intel 82599 VF（ixgbevf）**: 最大10 Gbps（旧世代）
+- **ENA Express**: UDP 最大25 Gbps（SRDプロトコル使用・同AZ内）
+- **確認方法**: `ethtool -i eth0` でドライバ確認、`aws ec2 describe-instances`でenaSupport確認
+- **Placement Group × ENA**: Cluster PGでは最大100 Gbps達成
+- **DPDK**: c5nインスタンスでDPDK使用時に最大スループット
+
+
+---
+
+# Placement Groups
+
+- **Cluster Placement Group**:
+- - 同一ラック（AZ内）。最低レイテンシ・最高帯域幅（10/100 Gbps）
+- - 用途: HPC・機械学習・密結合分散処理
+- - リスク: ラック障害で全インスタンス影響
+- **Partition Placement Group**:
+- - 複数パーティション（各AZ最大7）。パーティション = 独立ラック群
+- - 用途: HDFS・Cassandra・Kafka等の大規模分散システム
+- **Spread Placement Group**:
+- - 各インスタンスが別ラック。最大7インスタンス/AZ（Outpost除く）
+- - 用途: 少数の重要インスタンス（マスターノード等）
+- **制約**: 既存インスタンスはPlacement Groupへの移動不可（停止→起動必要）
+
+
+---
+
+# MTU とジャンボフレーム
+
+- **MTU (Maximum Transmission Unit)**: 1フレームの最大バイト数
+- **標準Ethernet**: 1500 MTU（デフォルト）
+- **Jumbo Frame**: 9001 MTU（AWS内部サポート）
+- **AWS内MTU サポート状況**:
+- - VPC内EC2間: 9001 MTU（ジャンボフレーム対応）
+- - VPC Peering / TGW: 8500 MTU
+- - VPN（IGW経由）: 1500 MTU
+- - Direct Connect: 9001 MTU
+- **Path MTU Discovery (PMTUD)**:
+- - ICMPタイプ3（Destination Unreachable）でMTUネゴシエーション
+- - ICMP Type 3がブロックされるとPMTUDが機能せず → TCP接続問題
+- - NACLでICMP Type 3 Code 4を許可推奨
+
+
+---
+
+# Link Aggregation Group (LAG)
+
+- **LAG**: 複数のDX接続を1つの論理接続に集約（IEEE 802.3ad LACP）
+- **メリット**: 帯域幅向上 + 単一接続ポイント管理
+- **制約**:
+- - 最大4本のDedicatedConnection（同一DXロケーション・同一帯域幅）
+- - 全接続が同一DXロケーション内（冗長化ではない）
+- - アクティブ接続数の最小値設定可（例: 4本中最低2本必要）
+- **冗長化との組み合わせ**:
+- - LAG × 2（異なるDXロケーション）→ 帯域幅 × 冗長性
+- **設定**: `aws directconnect create-lag` でLAG作成後、既存接続を関連付け
+- **活用場面**: 100G接続が必要な大規模データ転送、メディア配信
+
+
+---
+
+# DX 詳細設定とトラブルシューティング
+
+- **BGP タイマー設定**:
+- - Keepalive: 10秒（デフォルト）
+- - Hold Timer: 30秒（3回 Keepalive 失敗で障害判定）
+- - BFD: 300ms検知（BGPより高速）
+- **DX メトリクス（CloudWatch）**:
+- - ConnectionState（0=Down, 1=Up）
+- - ConnectionBpsIngress / ConnectionBpsEgress
+- - ConnectionPpsIngress / ConnectionPpsEgress
+- **一般的なDX障害原因**:
+- - BGP AS番号の不一致
+- - VLAN IDの不一致
+- - BGP認証キーの不一致
+- - オンプレ側ルーターのBGP Advertise設定ミス
+- **DX監視**: CloudWatch Alarms + SNS通知設定を推奨
+
+
+---
+
+# VPN over Direct Connect
+
+- **用途**: DX接続をIPsec VPNで暗号化（MACsecより互換性高い）
+- **構成**:
+- - Public VIF → CGW（オンプレ）→ Site-to-Site VPN → VGW/TGW
+- - DXのPublic VIFを経由してVPNトンネルを確立
+- **メリット**: DXの低レイテンシ + IPsecの暗号化
+- **帯域幅**: VPN自体は1.25 Gbps上限（DX帯域ではなくVPN処理能力が制約）
+- **MACsec vs VPN over DX**:
+- - MACsec: L2暗号化。ホップ間のみ。Dedicated 10G/100Gのみ対応
+- - VPN over DX: E2E暗号化。全DXタイプ対応。オーバーヘッドあり
+- **ECMP + VPN over DX**: 複数VPNトンネル + TGW ECMPで帯域幅集約
+
+
+---
+
+<!-- _class: lead -->
+# Section 5: 実装 Part 2
+
+- Route 53 Resolver・ハイブリッドDNS
+- ALB・NLB・GWLB 詳細
+
+
+---
+
+# Route 53 Resolver 基礎
+
+- **VPC DNS Resolver**: 169.254.169.253 または VPC CIDR + 2（例: 10.0.0.2）
+- **Route 53 Resolver**: VPCのDNS解決エンジン（全VPCでデフォルト有効）
+- **設定オプション**:
+- - enableDnsSupport: VPCのDNS解決有効化
+- - enableDnsHostnames: EC2インスタンスにDNSホスト名付与
+- **Private Hosted Zone (PHZ)**: 内部ドメイン名（例: internal.example.com）
+- - 複数VPCに関連付け可能（クロスアカウント可）
+- **Resolver Endpoints（ハイブリッドDNS用）**:
+- - Inbound: オンプレ → AWSのDNS解決
+- - Outbound: AWS → オンプレのDNS解決（Forwardingルール）
+
+
+---
+
+# Route 53 Resolver Endpoints 詳細
+
+- **Inbound Endpoint**:
+- - AWSがENI（プライベートIP）を作成 → オンプレDNSサーバーがこのIPにクエリ転送
+- - オンプレから route53.amazonaws.com の解決が可能に
+- - 複数AZにENI配置（高可用性）
+- **Outbound Endpoint**:
+- - AWSからオンプレDNSサーバーへのクエリ転送
+- - Forwarding Ruleを設定（例: on-prem.example.com → 192.168.1.10）
+- - System Rule: VPC内DNSはResolver自身が処理（上書き不可）
+- **Resolver Rule共有**: AWS RAM で複数アカウントに共有
+- **DNS Firewall**: ドメイン単位でブロック/許可（アウトバウンドDNSフィルタリング）
+
+
+---
+
+# ハイブリッドDNS アーキテクチャパターン
+
+- **パターン1: オンプレ→AWSの名前解決**
+- - オンプレDNS → Inbound Endpoint IP → Route 53 Resolver → PHZ
+- **パターン2: AWS→オンプレの名前解決**
+- - EC2 → Resolver → Outbound Endpoint → オンプレDNS
+- - Forwarding Rule: corp.example.com → 10.0.0.10（オンプレDNSIP）
+- **パターン3: 双方向解決（完全統合）**
+- - Inbound + Outbound 両方設定
+- - Route 53 PHZ + オンプレDNS共存
+- **注意点**:
+- - Outbound EndpointのSGでUDP/TCP 53をオンプレDNSIPに許可
+- - Inbound EndpointのSGでUDP/TCP 53をオンプレネットワークから許可
+
+
+---
+
+# Application Load Balancer (ALB)
+
+- **ALB**: L7（HTTP/HTTPS/HTTP2/WebSocket/gRPC）ロードバランサー
+- **ターゲットタイプ**: インスタンス・IP・Lambda・ALB（ネストALB）
+- **高度なルーティング**:
+- - パスベース（/api/* → TargetGroup-A）
+- - ホストヘッダーベース（api.example.com vs app.example.com）
+- - HTTPヘッダー/メソッド/クエリ文字列ベース
+- - 固定レスポンス・リダイレクト
+- **スティッキーセッション**: AWSALB Cookieまたはカスタムクッキー
+- **認証**: Amazon Cognito / OIDC（ALBがOAuthトークン検証）
+- **ログ**: S3へのAccessLog（ELBアクセスログ）
+- **WAF統合**: ALBにWAF WebACLを直接アタッチ
+
+
+---
+
+# Network Load Balancer (NLB)
+
+- **NLB**: L4（TCP/UDP/TLS）ロードバランサー。超低レイテンシ
+- **静的IP**: AZ毎に静的IP（またはEIP）。ファイアウォールルールに最適
+- **ターゲットタイプ**: インスタンス・IP・ALB（NLB→ALBチェーン可）
+- **クロスAZ負荷分散**:
+- - デフォルト無効（AZ別に独立した負荷分散）
+- - 有効化でAZ間均等分散（データ転送コスト増加）
+- **TLS終端**: ACM証明書でTLS Offloading（バックエンドはHTTP）
+- **ヘルスチェック**: TCP/HTTP/HTTPS（失敗閾値2〜10）
+- **ソースIP保持**: ターゲットがソースIPを直接参照可（プロキシプロトコルV2でさらに詳細）
+- **PrivateLink**: NLB がプロバイダー側のエンドポイント
+
+
+---
+
+# Gateway Load Balancer (GWLB)
+
+- **GWLB**: L3ゲートウェイ + L4ロードバランサーの組み合わせ
+- **用途**: サードパーティNVA（Palo Alto・Fortinet等）への透過的なトラフィック検査
+- **プロトコル**: GENEVE（Generic Network Virtualization Encapsulation）ポート6081
+- **動作**:
+- - トラフィックはGWLBエンドポイント経由でGWLBへ
+- - GWLBがGENEVEカプセル化してNVAへ転送
+- - NVAが検査後にGWLBに返却 → 元の宛先へ
+- **セッション永続性**: 5タプルまたは3タプルで同一NVAに固定
+- **スケール**: NVAを自動スケール（ASG統合）
+- **Appliance Mode**: TGWでGWLB Endpointへのルーティング時に必須
+
+
+---
+
+# LB 比較表
+
+| 特性 | ALB | NLB | GWLB |
+|------|-----|-----|------|
+| レイヤー | L7 | L4 | L3/L4 |
+| プロトコル | HTTP/S,gRPC | TCP/UDP/TLS | 全プロトコル |
+| 静的IP | ✗ | ✓(EIP) | ✓ |
+| 遅延 | 中 | 低 | 低 |
+| WAF | ✓ | ✗ | ✗ |
+| PrivateLink | ✗ | ✓(Provider) | ✓(GWLB EP) |
+- **選択基準**:
+- - HTTP高度ルーティング → ALB
+- - 超低レイテンシ・固定IP・UDP → NLB
+- - NVA透過検査 → GWLB
+
+
+---
+
+<!-- _class: lead -->
+# Section 6: CDN & グローバルトラフィック
+
+- Amazon CloudFront・AWS Global Accelerator
+- キャッシュ戦略・グローバル可用性
+
+
+---
+
+# Amazon CloudFront 概要
+
+- **CloudFront**: グローバルCDN。450+エッジロケーション（PoP）
+- **オリジンタイプ**: S3・ALB・NLB・EC2・カスタムHTTPサーバー
+- **HTTPS強制**: Viewer Protocol Policy (Redirect HTTP → HTTPS)
+- **OAC (Origin Access Control)** ← 推奨:
+- - S3バケットへのアクセスをCloudFront経由のみに制限
+- - SigV4署名でリクエスト認証（OAIより安全）
+- **OAI (Origin Access Identity)** ← レガシー:
+- - 専用IAMプリンシパル（OACに移行推奨）
+- **カスタムヘッダー**: オリジン側でCloudFrontからのリクエストを識別
+- **Geo Restriction**: 国単位でアクセス制御（ブロック/許可リスト）
+
+
+---
+
+# CloudFront キャッシュ戦略
+
+- **Cache Behavior**: URLパターン別にキャッシュ設定
+- **TTL設定**: min/default/max TTL（Cache-Controlヘッダーと連動）
+- **Cache Key**: デフォルト=URL。カスタム=クエリ文字列・ヘッダー・Cookie
+- **Cache Policy**（推奨・マネージドポリシー利用可）:
+- - CachingOptimized: 静的コンテンツ（Cache-Controlのみ）
+- - CachingDisabled: 動的コンテンツ（API等）
+- **Origin Request Policy**: オリジンに転送するヘッダー/クエリ/Cookie設定
+- **キャッシュ無効化**: Invalidationで特定パスのキャッシュ削除（料金：最初1000パス/月無料）
+- **Origin Shield**: 追加キャッシュレイヤー（リージョン別）でオリジン負荷削減
+
+
+---
+
+# CloudFront 高度な機能
+
+- **Lambda@Edge / CloudFront Functions**:
+- - Lambda@Edge: Viewer/Origin Request/Response（Node.js/Python）
+- - CloudFront Functions: Viewer Request/Response のみ（1ms以下・安価）
+- **フェイルオーバーオリジン**: プライマリ障害時にセカンダリオリジンへ自動切替
+- **フィールドレベル暗号化**: 特定フォームフィールドをエッジで暗号化
+- **リアルタイムログ**: Kinesis Data Streamsへのリアルタイム転送
+- **Standard Logs**: S3へのアクセスログ（5分〜1時間遅延）
+- **WAF統合**: CloudFront + WAF WebACL でグローバルL7保護
+- **証明書**: ACMで us-east-1 のみ（CloudFrontはグローバルサービス）
+
+
+---
+
+# AWS Global Accelerator
+
+- **Global Accelerator**: AWSグローバルネットワーク経由でトラフィック最適化
+- **仕組み**: エニーキャストIP（2つの静的IP）でユーザーを最寄りエッジへ誘導
+- - インターネット区間を最小化 → AWSバックボーンで転送
+- **対応エンドポイント**: ALB・NLB・EC2・EIP（マルチリージョン）
+- **トラフィックコントロール**: 重み付け（Dial設定：0-100%）
+- **ヘルスチェック**: エンドポイント障害時に自動フェイルオーバー
+- **ユースケース**: レイテンシ重視アプリ・ゲーム・VoIP・フェイルオーバー
+- **CloudFront vs Global Accelerator**:
+- - CF: HTTP/S キャッシュ。静的/動的コンテンツ配信
+- - GA: TCP/UDP プロキシ。非HTTP・固定IP・マルチリージョンFO
+
+
+---
+
+# CloudFront vs Global Accelerator 選択基準
+
+| 要件 | CloudFront | Global Accelerator |
+|------|-----------|-------------------|
+| HTTPキャッシュ | ✓ | ✗ |
+| 静的IP（固定） | ✗ | ✓（エニーキャスト2IP）|
+| UDP/TCP（非HTTP）| ✗ | ✓ |
+| DDoS保護（Shield）| ✓ | ✓ |
+| Lambda@Edge | ✓ | ✗ |
+| マルチリージョンFO | ✓（Origin FO）| ✓（重み付け）|
+- **同時使用パターン**:
+- - CloudFront（CDN）+ GA（バックエンドAPI）の組み合わせも可
+- **価格差**: GAはCloudFrontより一般に高め（固定IP・転送コストが加わる）
+
+
+---
+
+<!-- _class: lead -->
+# Section 7: 管理・運用 Part 1
+
+- VPC Flow Logs・CloudWatch・Reachability Analyzer
+- Network Access Analyzer・Traffic Mirroring
+
+
+---
+
+# VPC Flow Logs
+
+- **Flow Logs**: VPCのENIを通過するIPトラフィックのメタデータをキャプチャ
+- **キャプチャレベル**: VPC全体・サブネット・ENI単位
+- **送信先**: CloudWatch Logs・S3・Kinesis Data Firehose
+- **デフォルトフィールド（v2）**: version, account-id, interface-id, srcaddr, dstaddr, srcport, dstport, protocol, packets, bytes, start, end, action, log-status
+- **v5追加フィールド**: vpc-id, subnet-id, instance-id, tcp-flags, type(IPv4/6), pkt-srcaddr, pkt-dstaddr
+- **action**: ACCEPT（SG+NACL許可）/ REJECT（SG or NACL拒否）
+- **注意**: DNS（169.254.169.253）・DHCP・メタデータ（169.254.169.254）はキャプチャされない
+- **集約間隔**: デフォルト10分（1分に変更可能・コスト増）
+
+
+---
+
+# VPC Flow Logs: 分析とユースケース
+
+- **セキュリティ分析**:
+- - REJECT ログで不審なアクセス試行を検出
+- - 予期しないポートへの通信を特定
+- - GuardDutyもFlow Logsを内部的に分析
+- **トラブルシューティング**:
+- - 通信できない原因（ACCEPT/REJECT確認）
+- - SG設定確認（アウトバウンドACCEPT・インバウンドREJECTならSG問題）
+- **コスト最適化**: S3送信でCloudWatch Logsより安価（Athenaでクエリ）
+- **Athena分析例**:
+- ```sql
+SELECT srcaddr, COUNT(*) AS cnt
+FROM flowlogs
+WHERE action = 'REJECT'
+GROUP BY srcaddr
+ORDER BY cnt DESC LIMIT 10;
+```
+
+
+---
+
+# CloudWatch ネットワーク監視
+
+- **EC2ネットワークメトリクス**（1分間隔）:
+- - NetworkIn / NetworkOut（バイト数）
+- - NetworkPacketsIn / NetworkPacketsOut
+- **ALB/NLBメトリクス**:
+- - ActiveConnectionCount・RequestCount・TargetResponseTime
+- - HealthyHostCount・UnHealthyHostCount
+- - ProcessedBytes（NLBのみ）
+- **VPN/DXメトリクス**:
+- - TunnelState（VPN）・ConnectionState（DX）
+- - TunnelDataIn / TunnelDataOut
+- **CloudWatch Logs Insights**: Flow Logsを高速クエリ
+- **Contributor Insights**: Flow Logsから上位通信者を自動検出
+
+
+---
+
+# VPC Reachability Analyzer
+
+- **用途**: 2つのAWSリソース間のネットワーク到達性を自動検証
+- **動作**: 実際のパケットを送信せず論理的に経路を分析
+- **分析対象**: VPC・サブネット・IGW・VGW・TGW・NAT GW・ENI・Peering
+- **出力**:
+- - **Reachable**: 到達可能（経路詳細を表示）
+- - **Not Reachable**: 到達不可（ブロック要因を特定）
+- **ブロック要因の特定**: SG・NACL・ルートテーブル・ミドルボックス
+- **ユースケース**:
+- - デプロイ前の設定検証
+- - 障害時のRCA（根本原因分析）
+- - コンプライアンス確認（パスが意図通りか）
+- **料金**: 分析1回ごとに課金
+
+
+---
+
+# Network Access Analyzer
+
+- **用途**: ネットワークアクセスの網羅的な分析（意図しない経路の発見）
+- **Reachability Analyzerとの違い**:
+- - Reachability: 2点間の特定経路を検証
+- - Network Access Analyzer: 定義した条件に合致する全経路を発見
+- **スコープ例**:
+- - インターネットからプライベートサブネットへの到達経路
+- - TGW経由の意図しないVPC間通信
+- - 特定ポートへのオープンアクセス
+- **AWS Foundational Security Best Practices**: Security Hubと統合
+- **活用場面**: セキュリティ監査・コンプライアンス報告・大規模変更後の確認
+- **出力**: 検出した経路の一覧（リソース・プロトコル・ポート）
+
+
+---
+
+# Traffic Mirroring
+
+- **Traffic Mirroring**: ENIトラフィックをリアルタイムでコピーして分析
+- **コンポーネント**:
+- - **Mirror Source**: コピー元ENI（EC2インスタンス）
+- - **Mirror Target**: コピー先（ENI・NLB・GWLB）
+- - **Mirror Filter**: キャプチャするトラフィックの条件（INBOUND/OUTBOUND・プロトコル・CIDR）
+- - **Mirror Session**: Source・Target・Filterの組み合わせ
+- **プロトコル**: VXLANカプセル化（ポート4789）でターゲットへ転送
+- **ユースケース**:
+- - IDS/IPS（Intrusion Detection/Prevention System）
+- - ネットワークフォレンジック
+- - アプリケーションパフォーマンス監視
+- **制約**: 同一VPC内または Peering先（クロスVPN/DXは別途設定）
+
+
+---
+
+<!-- _class: lead -->
+# Section 8: 管理・運用 Part 2
+
+- Route 53 ルーティングポリシー完全ガイド
+- DNS Firewall・AWS Config・CloudTrail
+
+
+---
+
+# Route 53 ルーティングポリシー概要
+
+- **シンプルルーティング**: 1レコード→1または複数値（ランダム返却）
+- **重み付きルーティング**: 重み比率でトラフィック配分（A/Bテスト・カナリア）
+- **レイテンシベース**: ユーザーから最低レイテンシのリージョンへ誘導
+- **フェイルオーバー**: プライマリ→セカンダリへの自動切替（ヘルスチェック必須）
+- **地理的ルーティング**: ユーザーの地理的位置（国・大陸）に基づく
+- **地理的近接性ルーティング**: バイアス値で地理的境界を調整（Traffic Flow必要）
+- **複数値応答**: 最大8レコード返却（簡易的なロードバランス）
+- **IPベースルーティング**: クライアントIPに基づくルーティング（CIDR指定）
+
+
+---
+
+# Route 53 ヘルスチェック
+
+- **エンドポイントヘルスチェック**: HTTP/HTTPS/TCPで定期確認
+- - チェック間隔: 30秒（標準）または 10秒（高速・コスト高）
+- - 失敗閾値: デフォルト3回
+- - 18のAWSヘルスチェッカーがグローバルに監視
+- **計算型ヘルスチェック**: 複数ヘルスチェックの論理結合（AND/OR）
+- **CloudWatchアラームベース**: メトリクスに基づくヘルス判定
+- **フェイルオーバーと連携**: ヘルスチェック失敗→フェイルオーバーレコードへ切替
+- **プライベートエンドポイント**: CloudWatch経由（ヘルスチェッカーはVPC外）
+- **SNI**: HTTPS確認時にSNIを使用（証明書の確認）
+
+
+---
+
+# Route 53 ルーティング詳細: 重み付け・レイテンシ
+
+- **重み付きルーティング**:
+- - 重み0: トラフィックなし（メンテナンス時）
+- - 全レコード重み0: 全てに均等配布
+- - ユースケース: カナリアデプロイ（新バージョンに5%配布等）
+- **レイテンシベースルーティング**:
+- - AWSがユーザーからの各リージョンへのレイテンシを計測（履歴データ）
+- - 実際のネットワーク測定ではなく計測データベース参照
+- - 地理的に近いリージョンが最低レイテンシとは限らない
+- **重み × レイテンシ組み合わせ**:
+- - レイテンシルーティングで最適リージョン選択
+- - そのリージョン内で重み付けで配布
+- - ヘルスチェック組み合わせで自動フェイルオーバー
+
+
+---
+
+# Route 53 地理的・地理的近接性ルーティング
+
+- **地理的ルーティング（Geolocation）**:
+- - ユーザーの国・大陸・デフォルト（それ以外全て）を設定
+- - デフォルトレコードなし + 未設定地域 → NO ANSWER
+- - コンプライアンス（特定国向けコンテンツ制限）に有効
+- **地理的近接性ルーティング（Geoproximity）**:
+- - エンドポイントの緯度経度に基づき最近接エンドポイントへ
+- - **バイアス**: +1〜+99（引き付け範囲拡大）/ -1〜-99（縮小）
+- - AWSリソース: リージョンを指定
+- - 非AWSリソース: 緯度経度を手動指定
+- - **Route 53 Traffic Flow必須**（視覚的フローエディタ）
+- **選択基準**: データ主権・コンテンツ制限 → Geolocation、最近接サービング → Geoproximity
+
+
+---
+
+# Route 53 Private Hosted Zone (PHZ) と Resolver
+
+- **PHZ**: VPC内のプライベートDNS（external.comと同名も可）
+- **VPC関連付け**: 複数VPC（クロスアカウント可）に1つのPHZを関連付け
+- - クロスアカウント: CLI/SDKで他アカウントVPCを承認後関連付け
+- **Resolver ルール優先順位**:
+- - System Rule（AWSサービスDNS） > PHZ > 転送ルール > Resolver
+- **DNS Split-horizon**: パブリック/プライベートで同名ドメインに異なるIP返却
+- - 例: api.example.com → VPC内 10.0.1.100、外部 203.0.113.1
+- **ドット区切りドメイン**: より具体的なドメインが優先（.corp.example.comが.example.comより優先）
+- **DNSSEC**: Route 53でパブリックHZのみ対応（PHZは非対応）
+
+
+---
+
+# Route 53 DNS Firewall
+
+- **DNS Firewall**: Route 53 Resolverのアウトバウンドクエリをフィルタリング
+- **動作**: EC2からのDNSクエリを検査 → マネージドリスト/カスタムリストと照合
+- **マネージドドメインリスト**:
+- - AWSManagedDomainsMalwareDomainList（マルウェアC2等）
+- - AWSManagedDomainsAggregateThreatList
+- **カスタムドメインリスト**: 組織独自のブラックリスト/ホワイトリスト
+- **アクション**: BLOCK（返答なし/NXDOMAIN/カスタム）・ALERT（ログのみ）・ALLOW
+- **優先順位**: ルールグループ内のルールに優先度番号を設定
+- **フェイルオーバー設定**: DNS Firewall障害時の動作（BLOCK or ALLOW）
+- **CloudWatch Logs**: フィルタリングログを記録・分析
+
+
+---
+
+# AWS Config と CloudTrail
+
+- **AWS Config**: リソース設定の変更追跡・コンプライアンス評価
+- - ネットワーク関連ルール例:
+-   - restricted-ssh: ポート22がオープンでないか
+-   - vpc-default-security-group-closed: デフォルトSGが全閉か
+-   - vpc-flow-logs-enabled: Flow Logs有効か
+-   - no-unrestricted-route-to-igw: IGWへの無制限ルートがないか
+- **AWS CloudTrail**: AWSサービスへのAPI呼び出しを記録
+- - ネットワーク変更の監査（CreateVpc・ModifyRoute・AuthorizeSecurityGroupIngress等）
+- - S3・CloudWatch Logs に保存
+- - CloudTrail Insights: 異常なAPI呼び出しパターン検出
+- **統合**: Config変更 → EventBridge → Lambda（自動修復）
+
+
+---
+
+<!-- _class: lead -->
+# Section 9: セキュリティ Part 1
+
+- Security Groups・Network ACL
+- AWS Network Firewall・展開パターン
+
+
+---
+
+# Security Groups 詳細
+
+- **SG**: ステートフル（返りトラフィック自動許可）・インスタンスレベル
+- **ルール**: インバウンド + アウトバウンド（デフォルト: 全インバウンド拒否・全アウトバウンド許可）
+- **参照方法**:
+- - IPアドレス/CIDR
+- - 別のSG（同一VPC・Peering先VPC）
+- - Prefix List
+- **SG間参照の利点**: IPを書かずSGを参照 → 動的IP変更に強い
+- **SG連鎖（チェーン）**: Web SG（Outbound→App SG）→ App SG（Inbound←Web SG）
+- **制約**: 1 ENIに最大5 SG（デフォルト）。ルール数: 60 Inbound + 60 Outbound
+- **デフォルトSG**: 全インバウンド許可（同SG内）・全アウトバウンド許可（使用非推奨）
+- **SGは拒否ルールなし**: 許可ルールのみ（暗黙のDeny）
+
+
+---
+
+# Network ACL (NACL) 詳細
+
+- **NACL**: ステートレス（Inbound・Outbound独立）・サブネットレベル
+- **ルール番号**: 1〜32766（小さいほど優先）。最後に暗黙のDeny All (*)
+- **デフォルトNACL**: 全許可（全インバウンド・全アウトバウンド）
+- **カスタムNACL**: デフォルト全拒否（ルール追加で許可）
+- **エフェメラルポート（重要）**:
+- - Linuxクライアント: 32768-60999
+- - Windowsクライアント: 49152-65535
+- - NACLアウトバウンドルールでエフェメラルポート範囲を許可必須
+- **SG vs NACL**:
+- - SG: ステートフル・ENIレベル・許可ルールのみ
+- - NACL: ステートレス・サブネットレベル・許可/拒否ルール（明示的Deny可能）
+- **NACL推奨用途**: 特定IPブロック・DDoS緩和（SG補完）
+
+
+---
+
+# AWS Network Firewall 概要
+
+- **AWS Network Firewall**: マネージドステートフルL3-L7ファイアウォール
+- **エンジン**: Suricata互換（オープンソースIDS/IPSルールエンジン）
+- **ルールグループ種別**:
+- - **ステートレス**: 5タプルマッチング（パケット単位・高速）
+- - **ステートフル**: セッション追跡・Suricataルール・ドメインフィルタ
+- **ステートフルルールタイプ**:
+- - 5タプルルール（標準）
+- - ドメインリストルール（FQDN単位でALLOW/DENY）
+- - Suricataルール（完全なIDS/IPS署名）
+- **マネージドルールグループ**: AWSが提供（マルウェア・脅威インテリジェンス）
+- **TLS Inspection**: 復号化→検査→再暗号化（ACM証明書使用）
+
+
+---
+
+# Network Firewall 展開パターン
+
+- **集中型展開（Hub VPC）** ← 推奨:
+- - TGW経由で全VPCトラフィックをHub VPCのNetwork Firewallで検査
+- - インスペクションルートテーブル + Appliance Mode
+- **分散型展開**:
+- - 各VPCにNetwork Firewall配置
+- - 小規模環境・VPC独立管理に適合
+- **アウトバウンドインターネット集中検査**:
+- - Hub VPC: Network Firewall → NAT GW → IGW
+- - スポーク VPC → TGW → Hub VPC（強制トンネリング）
+- **イングレス検査（インバウンド）**:
+- - IGW → Network Firewall EP → ALB/NLB
+- - ルートテーブル: IGWルートテーブルで内部IPをFirewall EPへ
+- **ログ**: S3・CloudWatch・Kinesis Firehoseへアラートログ・フローログ
+
+
+---
+
+# Network Firewall ルール設計
+
+- **ファイアウォールポリシー階層**:
+- - ファイアウォール → ファイアウォールポリシー → ルールグループ
+- **ステートレスデフォルトアクション**: PASS（ステートフルへ）/ DROP / FORWARD
+- **ステートフルルール優先順位**:
+- - STRICT_ORDER: ルール番号順（明示的PASS必要）
+- - ACTION_ORDER: DROP/REJECT → PASS順（デフォルト）
+- **ドメインリストルール例**:
+- - 許可: .amazonaws.com, .github.com
+- - 拒否: *.malware.com（ブラックリスト）
+- **Suricataルール例**:
+- ```
+alert http any any -> any any \
+  (msg:"Blocked domain"; \
+   content:"badsite.com"; \
+   sid:1001;)
+```
+
+
+---
+
+# SG・NACL・Network Firewall 比較
+
+| 特性 | SG | NACL | Network Firewall |
+|------|----|----|-----------------|
+| レイヤー | L4 | L4 | L3-L7 |
+| ステート | フル | レス | フル(ステートフルRG)|
+| 適用単位 | ENI | サブネット | VPC/TGW |
+| FQDN | ✗ | ✗ | ✓ |
+| IDS/IPS | ✗ | ✗ | ✓(Suricata) |
+| TLS復号 | ✗ | ✗ | ✓ |
+| 明示的Deny | ✗ | ✓ | ✓ |
+- **多層防御**: SG（許可制御）+ NACL（明示的拒否）+ Network Firewall（高度検査）
+- **試験頻出**: 3層の役割と限界を理解することが重要
+
+
+---
+
+<!-- _class: lead -->
+# Section 10: セキュリティ Part 2
+
+- AWS WAF・Shield・Firewall Manager
+- GuardDuty・Inspector・IKEv2・MACsec
+
+
+---
+
+# AWS WAF (Web Application Firewall)
+
+- **WAF**: L7 Webアプリケーションファイアウォール（HTTP/S検査）
+- **アタッチ先**: CloudFront・ALB・API Gateway・AppSync・Cognito
+- **WebACL ルール種別**:
+- - マネージドルールグループ（AWS提供・APN Partner提供）
+- - カスタムルール（IP・地理・ヘッダー・URI・本文・クエリ文字列）
+- - レートベースルール（IPごとのリクエスト数制限）
+- **一般的マネージドルール**:
+- - AWSManagedRulesCommonRuleSet（OWASP Top10）
+- - AWSManagedRulesSQLiRuleSet（SQLインジェクション）
+- - AWSManagedRulesBotControlRuleSet（ボット制御）
+- **アクション**: Allow・Block・Count・CAPTCHA・Challenge
+- **ログ**: Kinesis Firehose・S3・CloudWatch Logsへ
+
+
+---
+
+# AWS Shield
+
+- **Shield Standard**: 全AWSユーザーに無料。L3/L4 DDoS自動防御
+- - SYN Flood・UDP Reflection・ICMP Flood等を自動緩和
+- **Shield Advanced**: 有料サービス（$3,000/月）
+- - L7 DDoS（HTTP Flood）への追加保護（WAF連携）
+- - リアルタイムDDoS診断・詳細レポート
+- - **DDoS Cost Protection**: DDoS起因のAWS料金をクレジット
+- - **SRT（Shield Response Team）**: 24/7専門家サポート
+- - Route 53・CloudFront・Global Accelerator・ALB・EIPに適用可
+- **保護対象リソース**: Shield Advancedで保護対象を明示的に指定
+- **CloudWatch メトリクス**: DDoSDetected・DDoSAttackBitsPerSecond等
+
+
+---
+
+# AWS Firewall Manager
+
+- **Firewall Manager**: Organizations全体でセキュリティポリシーを一元管理
+- **管理対象**:
+- - AWS WAF WebACL（CloudFront・ALB・API GW）
+- - AWS Shield Advanced（保護対象リソース）
+- - VPC Security Groups（ポリシー適用・監査）
+- - AWS Network Firewall（VPC全体へのデプロイ）
+- - Route 53 Resolver DNS Firewall
+- **管理アカウント**: 管理者アカウントからOrganizations全体に適用
+- **コンプライアンスレポート**: 各アカウントのポリシー準拠状況
+- **自動適用**: 新規アカウント・新規リソースに自動でポリシー適用
+- **前提条件**: AWS Organizations + Security Hub 有効化推奨
+
+
+---
+
+# Amazon GuardDuty
+
+- **GuardDuty**: 機械学習を使った脅威検出サービス
+- **データソース**:
+- - VPC Flow Logs（ネットワーク異常）
+- - CloudTrail（API異常）
+- - Route 53 DNSクエリログ（マルウェアDNS）
+- - EKS監査ログ・Runtime監視
+- **脅威カテゴリ（ネットワーク関連）**:
+- - Recon:EC2/PortProbeUnprotectedPort（ポートスキャン）
+- - UnauthorizedAccess:EC2/SSHBruteForce（SSH総当たり）
+- - Trojan:EC2/DNSDataExfiltration（DNSトンネリング）
+- - CryptoCurrency:EC2/BitcoinTool.B（マイニング）
+- **自動応答**: EventBridge → Lambda でSGルール自動追加等
+- **料金**: Flow Logs・CloudTrail分析のデータ量に応じた従量課金
+
+
+---
+
+# VPN IKEv2 と MACsec
+
+- **IKEv2 (Internet Key Exchange version 2)**:
+- - AWS Site-to-Site VPNで対応（IKEv1も可）
+- - より高速なネゴシエーション・モビリティ対応
+- - MOBIKE: IPアドレス変更時にSA（セキュリティアソシエーション）を維持
+- - Dead Peer Detection（DPD）: 対向死活監視
+- **MACsec (IEEE 802.1AE)**:
+- - L2暗号化（Ethernetフレーム単位）
+- - DX Dedicated Connection（10G/100G）で対応
+- - ホップ間暗号化（DXロケーション内のリンク）
+- - KMSで事前共有キー管理（CAK: Connectivity Association Key）
+- - VPN over DXとの比較: MACsecはオーバーヘッド小・帯域制約なし
+
+
+---
+
+# ゼロトラストネットワーク設計
+
+- **ゼロトラスト原則**: 「信頼しない、常に検証する」
+- **AWS実装コンポーネント**:
+- - IAM（最小権限・条件付きポリシー）
+- - PrivateLink（サービス境界）
+- - VPC Lattice（サービス間通信の認証・認可）
+- - SG（ポート/プロトコルの最小化）
+- - Network Firewall（L7検査）
+- - Verified Access（VPNなしのゼロトラストアクセス）
+- **AWS Verified Access**:
+- - Identity Providerと統合（IAM Identity Center・Okta等）
+- - デバイスポスチャー確認（AWS IAM Roles Anywhere等）
+- - VPN不要でプライベートアプリへの安全なアクセス
+
+
+---
+
+<!-- _class: lead -->
+# Section 11: アーキテクチャパターン
+
+- Hub-and-Spoke・マルチアカウント・集中型Egress/Ingress
+- Shared Services VPC・マルチリージョン DR
+
+
+---
+
+# Hub-and-Spoke with TGW
+
+- **パターン概要**: TGWをハブに全VPCを接続（推移的ルーティング実現）
+- **標準構成**:
+- - Hub VPC: 共有サービス（DNS・認証・監視・NVA）
+- - Spoke VPC: アプリケーション（本番・開発・ステージング等）
+- - TGW: ハブスポーク間のルーティング
+- **ルートテーブル分離戦略**:
+- - 本番RT: 本番Spoke + Hub への接続
+- - 開発RT: 開発Spoke + Hub への接続（本番から分離）
+- - Hub RT: 全Spoke へのルート
+- **インスペクション追加**:
+- - Hub VPCにNetwork Firewall → インスペクションRT
+- - Spoke→TGW→Hub(Firewall)→TGW→別Spoke（East-West検査）
+
+
+---
+
+# マルチアカウント ネットワーク設計
+
+- **AWS Organizations + RAM（Resource Access Manager）**
+- **共有リソース**: TGW・Prefix List・Private Hosted Zone・Resolver Rules
+- **Network Accountパターン**:
+- - 専用のNetwork/Connectivity Accountを設置
+- - TGW・DX・VPN・共有VPCをNetwork Accountが管理
+- - 各アプリアカウントのVPCをTGWにアタッチ（RAM共有）
+- **VPCアタッチメント**: RAM招待 → アプリアカウントがTGWにアタッチ
+- **IPアドレス管理**: Amazon VPC IP Address Manager (IPAM)
+- - 組織全体のCIDRを一元管理・重複防止
+- - プールからVPCにCIDRを自動割り当て
+- **AWS Control Tower**: ランディングゾーン自動構築（Network Account含む）
+
+
+---
+
+# 集中型 Egress インターネット
+
+- **パターン**: スポークVPCのアウトバウンドをHub VPC経由に集中
+- **構成**:
+- - Hub VPC: NAT GW + IGW（またはNetwork Firewall + NAT GW + IGW）
+- - Spoke VPC: プライベートサブネットのみ（IGW・NAT GW不要）
+- - TGW: Spoke → Hub へのデフォルトルート転送
+- **ルーティング**:
+- - Spoke RT: 0.0.0.0/0 → TGW
+- - TGW RT: 0.0.0.0/0 → Hub VPC Attachment
+- - Hub VPC Private RT: 0.0.0.0/0 → NAT GW
+- **メリット**: NAT GW・IGW・EIPを集中管理・コスト削減・監視一元化
+- **追加**: Network Firewall挿入 → アウトバウンドトラフィックのL7検査
+
+
+---
+
+# 集中型 Ingress と GWLB 展開
+
+- **集中型Ingressパターン**: 外部トラフィックをHub VPCで受けてSpoke VPCへ転送
+- **GWLB集中検査構成**:
+- - IGW → GWLB Endpoint（Hub）→ GWLB → NVA（Palo Alto等）
+- - NVA検査後 → TGW → Spoke VPC → ALB/EC2
+- **ルーティング（Ingressパス）**:
+- - IGW Route Table: Spoke VPC CIDR → GWLB EP
+- - GWLB EP → NVA（GENEVE検査）
+- - NVA → TGW → Spoke VPC（戻り）
+- **Appliance Modeの重要性**:
+- - TGWのAppliance Modeを有効化 → 同一AZのNVAにセッション固定
+- - 無効だと往復トラフィックが異なるAZのNVAを経由 → セッション破断
+- **ALBとの組み合わせ**: ALBはSpoke VPCに設置。NVA検査後にALBへ
+
+
+---
+
+# Shared Services VPC
+
+- **共有サービスVPC**: 複数チームが利用する共通インフラを集約
+- **典型的な共有サービス**:
+- - Active Directory / AWS Managed Microsoft AD
+- - Route 53 Resolver（Inbound/Outbound Endpoints）
+- - CodeArtifact / ECR（コンテナイメージ）
+- - 監視（CloudWatch / Datadog Agent）
+- - CI/CD（Jenkins / GitLab Runner）
+- **アクセス方法**:
+- - TGW経由（アプリVPC → TGW → Shared Services VPC）
+- - PrivateLink（サービス公開型）
+- - VPC Peering（少数VPC）
+- **Resolver Rules**: Shared Services VPCのOutbound EndpointルールをRAMで全アカウントに共有
+- **セキュリティ**: Shared Services SG でアプリVPC CIDRのみ許可
+
+
+---
+
+# マルチリージョン DR アーキテクチャ
+
+- **DR戦略（RTO/RPO別）**:
+- - **Backup & Restore**: RTO 数時間。S3クロスリージョンレプリケーション
+- - **Pilot Light**: RTO 10-30分。最小構成をDRリージョンで維持（DBレプリカ）
+- - **Warm Standby**: RTO 数分。縮小スケールで稼動（スケールアップで本番化）
+- - **Active-Active**: RTO ほぼ0。Route 53レイテンシ/フェイルオーバーで常時分散
+- **ネットワーク設計**:
+- - TGW Peering（クロスリージョン）でVPC間接続
+- - DX GWでマルチリージョンへの単一DX接続
+- - Route 53 フェイルオーバー: ヘルスチェック + フェイルオーバーレコード
+- **Global Accelerator**: Activeリージョン障害 → DRリージョンへ自動切替
+
+
+---
+
+# Amazon VPC Lattice
+
+- **VPC Lattice**: マイクロサービス間通信を統一的に管理するサービスメッシュ
+- **主要コンポーネント**:
+- - **Service Network**: 論理的なネットワーク境界（VPC・サービスを関連付け）
+- - **Service**: エンドポイント（ALB・Lambda・ECS）の論理表現
+- - **Target Group**: バックエンドターゲット
+- - **Listener/Rule**: トラフィックルーティングルール（HTTP/S・gRPC）
+- **認証認可**: SigV4認証・IAMポリシー（サービス間通信の制御）
+- **CIDR重複**: VPC Latticeはオーバーレイネットワーク → CIDR重複OK
+- **マルチアカウント**: RAM でService NetworkとServiceを共有
+- **vs PrivateLink**: Lattice = 双方向・マイクロサービス向け。PL = 一方向・サービス公開向け
+
+
+---
+
+# AWS Network Manager
+
+- **Network Manager**: グローバルネットワークの可視化・管理
+- **グローバルネットワーク**: TGW・VPN・DX・SD-WAN を1つのビューに統合
+- **Transit Gateway Network Manager**:
+- - TGWトポロジーの可視化
+- - ルーティングアナライザー（経路確認）
+- - イベント（BGPセッション変化・VPN状態変化）の監視
+- **Route Analyzer**: TGW経由の経路をルートテーブルベースで解析
+- **SD-WAN統合**: Cisco・Meraki・Velocloud等のSD-WANをConnect Attachment経由で統合
+- **Cloud WAN**:
+- - グローバルWANをAWSのバックボーンで構築
+- - Core Network Policy（JSON）でセグメント・ルーティングを定義
+- - TGWの上位サービス（クロスリージョン統合WANを自動構築）
+
+
+---
+
+<!-- _class: lead -->
+# Section 12: 試験対策
+
+- サービス比較表・頻出ミス・参考リソース・まとめ
+
+
+---
+
+# 重要サービス比較: 接続性
+
+| シナリオ | 推奨サービス | 理由 |
+|---------|------------|------|
+| 2 VPC シンプル接続 | VPC Peering | 低コスト・シンプル |
+| 多数VPC接続 | TGW | 推移的ルーティング・一元管理 |
+| CIDRオーバーラップ接続 | PrivateLink | CIDR不要 |
+| オンプレ接続（高速・安定）| DX | 低レイテンシ・高帯域 |
+| オンプレ接続（暗号化必須）| DX + MACsec / VPN over DX | 暗号化 |
+| オンプレ冗長接続 | DX×2 (2 PoP) + VPN FO | 最高可用性 |
+| グローバルサービス公開 | CloudFront + S3/ALB | CDN + HTTPキャッシュ |
+| 固定IP・非HTTPグローバル | Global Accelerator | エニーキャスト |
+
+
+---
+
+# 重要サービス比較: セキュリティ
+
+| 要件 | サービス | ポイント |
+|-----|---------|---------|
+| VPC内通信制御 | SG（ステートフル）| 許可ルールのみ |
+| サブネット境界制御 | NACL（ステートレス）| 明示的Deny可能 |
+| L7 Webアプリ保護 | WAF | OWASP・ボット・レートリミット |
+| DDoS保護（L3/L4）| Shield Standard | 全ユーザー無料 |
+| DDoS保護（高度）| Shield Advanced | SRT・コスト保護 |
+| FQDN/IPS検査 | Network Firewall | Suricata・TLS復号 |
+| DNS出口フィルタ | DNS Firewall | マルウェアドメインブロック |
+| 多組織ポリシー管理 | Firewall Manager | Organizations一括管理 |
+| 脅威検出 | GuardDuty | ML・Flow Logs・CloudTrail |
+
+
+---
+
+# ANS-C01 頻出ミスと対策
+
+- ❌ **TGWの推移的ルーティングを忘れる** → ✅ PeeringはNG・TGWはOK
+- ❌ **NACLはステートレス→エフェメラルポート忘れ** → ✅ 戻りトラフィック用にEPrang許可
+- ❌ **DX GW経由のVPC間通信** → ✅ DX GWはVPC間通信不可（TGW使用）
+- ❌ **CloudFront証明書リージョン** → ✅ ACM証明書は us-east-1 のみ
+- ❌ **Gateway EP vs Interface EP (S3)** → ✅ Gateway=RTベース/オンプレ不可、Interface=ENI/DX可
+- ❌ **MACsec対応範囲** → ✅ Dedicated 10G/100Gのみ（Hosted DXは対応なし）
+- ❌ **Shield Advancedなしで SRT** → ✅ SRTはAdvancedのみ
+- ❌ **GWLB Appliance Modeを忘れる** → ✅ TGW + GWLB構成では必須
+
+
+---
+
+# BGP・ルーティング制御 まとめ
+
+- **AWS → オンプレ（インバウンド経路制御）**:
+- - BGP Local Preference: AWS側で設定不可（eBGPのため）
+- - AS_PATH Prepend: オンプレ側で設定（AWS→オンプレの経路を操作）
+- - MED (Multi-Exit Discriminator): AWS→オンプレへのMEDを設定
+- **オンプレ → AWS（アウトバウンド経路制御）**:
+- - AS_PATH Prepend: オンプレ側で設定（プリファードでないパスに追加）
+- - コミュニティ: Blackhole (7224:9999) 等でフィルタ
+- **TGW ルーティング制御**:
+- - ブラックホールルート（特定トラフィック破棄）
+- - ルートテーブル分離（セグメンテーション）
+- - プロパゲーション/スタティックの組み合わせ
+- **DX BGP制限**: オンプレ→AWSに最大100プレフィックス（Private VIF）
+
+
+---
+
+# 試験スコアアップ: 数値・制限値
+
+- **VPC**: CIDR /16〜/28。追加CIDR最大5。サブネット各5 IP予約
+- **TGW**: 最大5,000 VPC。帯域幅100 Gbps。ECMP対応
+- **VPN**: 最大1.25 Gbps/接続。2トンネル/接続。BGP AS 64512（デフォルト）
+- **DX**: Dedicated 1G/10G/100G。Hosted 50M〜10G。Private VIF 100プレフィックス
+- **SG**: 1 ENI 最大5 SG。60 Inbound + 60 Outbound ルール
+- **NLB**: AZ毎に固定IP。クロスAZデフォルト無効
+- **CloudFront**: エッジロケーション450+。ACM証明書はus-east-1のみ
+- **NAT GW**: 最大45 Gbps/GW。EIP必須（パブリックNAT）
+- **Route 53**: ヘルスチェック間隔10/30秒。フェイルオーバー自動
+- **Network Firewall**: ルールグループ最大20/ポリシー
+
+
+---
+
+# 参考リソース
+
+- **AWS公式ドキュメント:**
+- - [ANS-C01 試験ガイド](https://aws.amazon.com/certification/certified-advanced-networking-specialty/)
+- - [AWS VPC ユーザーガイド](https://docs.aws.amazon.com/vpc/latest/userguide/)
+- - [AWS Direct Connect ユーザーガイド](https://docs.aws.amazon.com/directconnect/latest/UserGuide/)
+- **AWS ホワイトペーパー:**
+- - AWS Transit Gateway Design Patterns
+- - Building a Scalable and Secure Multi-VPC AWS Network Infrastructure
+- **re:Invent セッション:**
+- - NET302: VPC Fundamentals and Connectivity Options
+- - NET401: Advanced VPC Design and New Capabilities
+- - NET402: Deep Dive into AWS Direct Connect
+
+
+---
+
+# まとめ: ANS-C01 合格への道
+
+- **Domain 1 (30%)**: VPC設計・TGW・DX・BGPの深い理解が最重要
+- **Domain 2 (26%)**: ENA・GWLB・Route 53 Resolverの実装詳細を押さえる
+- **Domain 3 (20%)**: Flow Logs・Reachability Analyzer・Route 53ルーティングポリシー
+- **Domain 4 (24%)**: Network Firewall・WAF・Shield・Firewall Managerの役割と使い分け
+- **合格のポイント**:
+- - 各サービスの**制限値・制約**を暗記
+- - ステートフル/ステートレスの区別（SG・NACL・Network Firewall）
+- - ルーティング優先順位（最長一致・BGP属性）
+- - 多層防御アーキテクチャの設計パターン
+- **おすすめ学習**: AWS Skill Builder + 公式演習問題 + 実機ハンズオン
+

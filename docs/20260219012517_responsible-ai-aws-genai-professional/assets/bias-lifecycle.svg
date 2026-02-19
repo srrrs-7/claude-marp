@@ -1,0 +1,71 @@
+<svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="420" fill="#f8fafc" rx="12"/>
+  <text x="480" y="36" text-anchor="middle" font-size="20" font-weight="bold" fill="#1e293b">バイアス発生ライフサイクル</text>
+  <!-- Stage boxes -->
+  <!-- Stage 1: Data Collection -->
+  <rect x="20" y="80" width="140" height="70" rx="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="90" y="112" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e40af">データ収集</text>
+  <text x="90" y="130" text-anchor="middle" font-size="11" fill="#1e40af">Data Collection</text>
+  <!-- Arrow 1→2 -->
+  <line x1="160" y1="115" x2="178" y2="115" stroke="#64748b" stroke-width="2"/>
+  <polygon points="182,115 174,110 174,120" fill="#64748b"/>
+  <!-- Stage 2: Feature Engineering -->
+  <rect x="182" y="80" width="140" height="70" rx="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="252" y="106" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e40af">特徴量</text>
+  <text x="252" y="123" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">エンジニアリング</text>
+  <text x="252" y="139" text-anchor="middle" font-size="10" fill="#3b82f6">Feature Engineering</text>
+  <!-- Arrow 2→3 -->
+  <line x1="322" y1="115" x2="340" y2="115" stroke="#64748b" stroke-width="2"/>
+  <polygon points="344,115 336,110 336,120" fill="#64748b"/>
+  <!-- Stage 3: Model Training -->
+  <rect x="344" y="80" width="140" height="70" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="414" y="112" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">モデル訓練</text>
+  <text x="414" y="130" text-anchor="middle" font-size="11" fill="#92400e">Model Training</text>
+  <!-- Arrow 3→4 -->
+  <line x1="484" y1="115" x2="502" y2="115" stroke="#64748b" stroke-width="2"/>
+  <polygon points="506,115 498,110 498,120" fill="#64748b"/>
+  <!-- Stage 4: Evaluation -->
+  <rect x="506" y="80" width="140" height="70" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="576" y="112" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">モデル評価</text>
+  <text x="576" y="130" text-anchor="middle" font-size="11" fill="#92400e">Evaluation</text>
+  <!-- Arrow 4→5 -->
+  <line x1="646" y1="115" x2="664" y2="115" stroke="#64748b" stroke-width="2"/>
+  <polygon points="668,115 660,110 660,120" fill="#64748b"/>
+  <!-- Stage 5: Deployment -->
+  <rect x="668" y="80" width="130" height="70" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="733" y="112" text-anchor="middle" font-size="13" font-weight="bold" fill="#991b1b">デプロイ</text>
+  <text x="733" y="130" text-anchor="middle" font-size="11" fill="#991b1b">Deployment</text>
+  <!-- Arrow 5→6 -->
+  <line x1="798" y1="115" x2="816" y2="115" stroke="#64748b" stroke-width="2"/>
+  <polygon points="820,115 812,110 812,120" fill="#64748b"/>
+  <!-- Stage 6: Monitoring -->
+  <rect x="820" y="80" width="120" height="70" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="880" y="112" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">監視</text>
+  <text x="880" y="130" text-anchor="middle" font-size="11" fill="#166534">Monitoring</text>
+  <!-- Bias labels below each stage -->
+  <text x="90" y="185" text-anchor="middle" font-size="11" fill="#dc2626" font-weight="bold">⚠ 選択バイアス</text>
+  <text x="90" y="200" text-anchor="middle" font-size="10" fill="#dc2626">サンプリング偏り</text>
+  <text x="252" y="185" text-anchor="middle" font-size="11" fill="#dc2626" font-weight="bold">⚠ 測定バイアス</text>
+  <text x="252" y="200" text-anchor="middle" font-size="10" fill="#dc2626">代理変数問題</text>
+  <text x="414" y="185" text-anchor="middle" font-size="11" fill="#ea580c" font-weight="bold">⚠ 歴史的バイアス</text>
+  <text x="414" y="200" text-anchor="middle" font-size="10" fill="#ea580c">不均衡データ学習</text>
+  <text x="576" y="185" text-anchor="middle" font-size="11" fill="#ea580c" font-weight="bold">⚠ 評価バイアス</text>
+  <text x="576" y="200" text-anchor="middle" font-size="10" fill="#ea580c">偏ったテストセット</text>
+  <text x="733" y="185" text-anchor="middle" font-size="11" fill="#dc2626" font-weight="bold">⚠ 配備バイアス</text>
+  <text x="733" y="200" text-anchor="middle" font-size="10" fill="#dc2626">フィードバックループ</text>
+  <text x="880" y="185" text-anchor="middle" font-size="11" fill="#16a34a" font-weight="bold">✓ 継続監視</text>
+  <text x="880" y="200" text-anchor="middle" font-size="10" fill="#16a34a">ドリフト検出</text>
+  <!-- Clarify coverage indicator -->
+  <rect x="20" y="230" width="626" height="52" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="333" y="251" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">SageMaker Clarify</text>
+  <text x="333" y="269" text-anchor="middle" font-size="11" fill="#1d4ed8">事前学習バイアス分析（データ・特徴量）→ 事後学習バイアス分析（評価・予測）</text>
+  <!-- Legend -->
+  <rect x="20" y="310" width="220" height="90" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="35" y="332" font-size="12" font-weight="bold" fill="#334155">凡例</text>
+  <rect x="35" y="342" width="16" height="12" rx="3" fill="#dbeafe" stroke="#3b82f6"/>
+  <text x="58" y="353" font-size="11" fill="#334155">データ・特徴量フェーズ</text>
+  <rect x="35" y="362" width="16" height="12" rx="3" fill="#fef3c7" stroke="#d97706"/>
+  <text x="58" y="373" font-size="11" fill="#334155">訓練・評価フェーズ</text>
+  <rect x="35" y="382" width="16" height="12" rx="3" fill="#fee2e2" stroke="#dc2626"/>
+  <text x="58" y="393" font-size="11" fill="#334155">デプロイ後フェーズ</text>
+</svg>

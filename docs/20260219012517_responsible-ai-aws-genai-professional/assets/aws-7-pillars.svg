@@ -1,0 +1,45 @@
+<svg viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="560" fill="#f8fafc" rx="16"/>
+  <!-- Connection lines from center to each node -->
+  <line x1="480" y1="245" x2="480" y2="150" stroke="#cbd5e1" stroke-width="2.5"/>
+  <line x1="480" y1="245" x2="628" y2="188" stroke="#cbd5e1" stroke-width="2.5"/>
+  <line x1="480" y1="245" x2="658" y2="315" stroke="#cbd5e1" stroke-width="2.5"/>
+  <line x1="480" y1="245" x2="562" y2="432" stroke="#cbd5e1" stroke-width="2.5"/>
+  <line x1="480" y1="245" x2="398" y2="432" stroke="#cbd5e1" stroke-width="2.5"/>
+  <line x1="480" y1="245" x2="302" y2="315" stroke="#cbd5e1" stroke-width="2.5"/>
+  <line x1="480" y1="245" x2="332" y2="188" stroke="#cbd5e1" stroke-width="2.5"/>
+  <!-- Center node: AWS Responsible AI -->
+  <circle cx="480" cy="280" r="72" fill="#FF9900" style="filter:drop-shadow(0 4px 12px rgba(255,153,0,0.4))"/>
+  <text x="480" y="267" text-anchor="middle" font-size="14" font-weight="bold" fill="white">AWS</text>
+  <text x="480" y="285" text-anchor="middle" font-size="12" fill="white">Responsible</text>
+  <text x="480" y="302" text-anchor="middle" font-size="12" fill="white">AI</text>
+  <!-- Node 1: Fairness (top) -->
+  <circle cx="480" cy="90" r="58" fill="#16a34a" style="filter:drop-shadow(0 3px 8px rgba(22,163,74,0.3))"/>
+  <text x="480" y="83" text-anchor="middle" font-size="14" font-weight="bold" fill="white">公平性</text>
+  <text x="480" y="101" text-anchor="middle" font-size="11" fill="white">Fairness</text>
+  <!-- Node 2: Explainability (top-right) -->
+  <circle cx="648" cy="165" r="58" fill="#2563eb" style="filter:drop-shadow(0 3px 8px rgba(37,99,235,0.3))"/>
+  <text x="648" y="158" text-anchor="middle" font-size="13" font-weight="bold" fill="white">説明可能性</text>
+  <text x="648" y="176" text-anchor="middle" font-size="11" fill="white">Explainability</text>
+  <!-- Node 3: Privacy & Security (right) -->
+  <circle cx="680" cy="320" r="58" fill="#7c3aed" style="filter:drop-shadow(0 3px 8px rgba(124,58,237,0.3))"/>
+  <text x="680" y="309" text-anchor="middle" font-size="12" font-weight="bold" fill="white">プライバシー</text>
+  <text x="680" y="325" text-anchor="middle" font-size="12" font-weight="bold" fill="white">＆セキュリティ</text>
+  <text x="680" y="341" text-anchor="middle" font-size="10" fill="#e9d5ff">Privacy &amp; Security</text>
+  <!-- Node 4: Robustness (bottom-right) -->
+  <circle cx="568" cy="464" r="58" fill="#d97706" style="filter:drop-shadow(0 3px 8px rgba(217,119,6,0.3))"/>
+  <text x="568" y="457" text-anchor="middle" font-size="14" font-weight="bold" fill="white">堅牢性</text>
+  <text x="568" y="475" text-anchor="middle" font-size="11" fill="white">Robustness</text>
+  <!-- Node 5: Governance (bottom-left) -->
+  <circle cx="392" cy="464" r="58" fill="#dc2626" style="filter:drop-shadow(0 3px 8px rgba(220,38,38,0.3))"/>
+  <text x="392" y="457" text-anchor="middle" font-size="13" font-weight="bold" fill="white">ガバナンス</text>
+  <text x="392" y="475" text-anchor="middle" font-size="11" fill="white">Governance</text>
+  <!-- Node 6: Transparency (left) -->
+  <circle cx="280" cy="320" r="58" fill="#0891b2" style="filter:drop-shadow(0 3px 8px rgba(8,145,178,0.3))"/>
+  <text x="280" y="313" text-anchor="middle" font-size="13" font-weight="bold" fill="white">透明性</text>
+  <text x="280" y="331" text-anchor="middle" font-size="11" fill="white">Transparency</text>
+  <!-- Node 7: Safety (top-left) -->
+  <circle cx="312" cy="165" r="58" fill="#ea580c" style="filter:drop-shadow(0 3px 8px rgba(234,88,12,0.3))"/>
+  <text x="312" y="158" text-anchor="middle" font-size="14" font-weight="bold" fill="white">安全性</text>
+  <text x="312" y="176" text-anchor="middle" font-size="11" fill="white">Safety</text>
+</svg>

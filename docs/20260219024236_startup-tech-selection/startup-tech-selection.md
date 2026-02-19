@@ -1,0 +1,972 @@
+---
+marp: true
+theme: gaia
+size: 16:9
+paginate: true
+header: "スタートアップ技術選定ガイド"
+style: |
+  section { font-size: 22px; }
+  section pre code { font-size: 0.6em; line-height: 1.4; }
+  section.lead h1 { font-size: 2em; }
+  section img { max-height: 70vh; }
+  table { font-size: 0.8em; }
+  
+---
+
+<!-- _class: lead -->
+# スタートアップ技術選定ガイド
+
+- AWS vs GCP vs Azure — どう選ぶか
+- OSS スタック選定の実践的フレームワーク
+- 投資家・事業責任者向け技術戦略解説
+- 2026年版 最新トレンド反映
+
+
+---
+
+# 本資料の目的と対象者
+
+- **対象者**: スタートアップ投資家・事業責任者・CTO候補
+- **本資料で分かること**:
+- - クラウド3社（AWS/GCP/Azure）の選択基準
+- - ステージ別（Seed/A/B）の推奨技術スタック
+- - コスト最適化の実践的手法
+- - よくある技術選定ミスと回避策
+- **前提**: 技術的背景は問わない。経営判断に役立つ粒度で解説
+
+
+---
+
+# アジェンダ（1/2）
+
+- **第1章** — なぜ今、技術選定が重要か（スタートアップの失敗事例）
+- **第2章** — クラウド3社比較
+- - AWS vs GCP vs Azure の強み・弱み
+- - スタートアッププログラム（クレジット）比較
+- - ユースケース別・ステージ別推奨
+- **第3章** — コスト最適化戦略
+- - Spot インスタンス・Reserved・FinOps
+- - フェーズ別コスト目安とアラート設定
+
+
+---
+
+# アジェンダ（2/2）
+
+- **第4章** — OSS技術スタック選定
+- - フロントエンド / バックエンド / DB / 認証 / CI/CD
+- - Seed 期・Series A 期 推奨スタック
+- **第5章** — ステージ別ロードマップ
+- - MVP → Series A → Series B の技術変遷
+- - 採用しやすいスタックの選び方
+- **第6章** — 意思決定フレームワーク・まとめ
+- - 技術選定の5軸・よくある失敗・投資家目線のDD
+
+
+---
+
+<!-- _class: lead -->
+# 技術スタックが成否を分ける
+
+- 第1章: なぜ今、技術選定が重要か
+
+
+---
+
+# スタートアップの失敗 — 技術的要因
+
+- **CB Insights 調査（2024）**: スタートアップ失敗の技術的要因 TOP3
+- ① **スケーリング失敗** (32%) — 成長に技術が追いつかなかった
+- ② **開発速度の停滞** (28%) — 過剰な技術負債で機能開発が止まった
+- ③ **コスト超過** (21%) — クラウドコストが予算を圧迫
+- **早期の技術選定ミスが Series A 以降に致命傷になる**
+- - DB 移行コスト: $500K〜$2M（エンジニアリング工数換算）
+- - フレームワーク移行: 3〜12ヶ月の機能開発停止
+
+
+---
+
+# クラウド市場動向 2026
+
+![w:860 center](assets/cloud-market-share.svg)
+
+
+---
+
+# 投資家から見た技術スタック
+
+- **Tech Due Diligence（DD）で投資家が見るポイント**
+- - **スケーラビリティ**: 10x ユーザー増加に対応できるか
+- - **技術負債**: コードの品質・テストカバレッジ・ドキュメント
+- - **セキュリティ**: GDPR/SOC2 等のコンプライアンス対応
+- - **採用可能性**: その技術スタックでエンジニアを採用できるか
+- - **コスト構造**: スケールするとコストはどう変化するか
+- **「技術スタックは事業継続性のリスクファクター」**
+- Series A DD では CTO への技術インタビューが必須
+
+
+---
+
+# 技術負債の蓄積速度
+
+- **「技術負債は複利で積み上がる」**
+- - Seed期に1日分の手抜き → Series A で1週間分のコスト
+- - テストなし1本の機能 → 次の機能追加に2x時間かかる
+- **何が技術負債になるか**:
+- - ❌ 型なし JavaScript（バグの発見が本番後）
+- - ❌ テストなし重要ロジック（リファクタリング不能）
+- - ❌ ハードコードされた設定値（環境切り替え不可）
+- - ❌ モノリスの過剰な結合（チーム分離できない）
+- **最低限のアーキテクチャ規律を最初から守る**
+
+
+---
+
+<!-- _class: lead -->
+# クラウド3社比較
+
+- 第2章: AWS vs GCP vs Azure
+
+
+---
+
+# 3社ポジション比較
+
+![w:840 center](assets/cloud-comparison-radar.svg)
+
+
+---
+
+# スタートアッププログラム比較
+
+![w:860 center](assets/startup-programs.svg)
+
+
+---
+
+# 主要サービス対応表
+
+![w:860 center](assets/cloud-services-comparison.svg)
+
+
+---
+
+# コンピューティング詳細比較
+
+- **仮想マシン (VM) 比較**
+| 指標 | AWS EC2 | GCE | Azure VM |
+|------|---------|-----|---------|
+| 最小課金 | 1秒 | 1秒 | 1分 |
+| GPU 種類 | A100/H100 | TPU v5/A100 | NDv4/H100 |
+| Spot 割引 | 最大90% off | 最大91% off | 最大90% off |
+| 無料枠 | t2.micro 750h/月 | e2-micro 720h/月 | B1s 750h/月 |
+- **コンテナ**: ECS Fargate が Seed 期は最も手軽
+- **サーバーレス**: Lambda が最も成熟・エコシステム豊富
+
+
+---
+
+# データベース詳細比較
+
+- **マネージド RDBMS 比較**
+| | AWS Aurora | Cloud SQL | Azure Database |
+|--|-----------|-----------|---------------|
+| エンジン | MySQL/PG | MySQL/PG/SQLServer | MySQL/PG/MariaDB |
+| Serverless | Aurora Serverless v2 | Cloud SQL Edition | ❌（なし）|
+| 最大ストレージ | 128TB | 64TB | 32TB |
+| グローバル | Global DB (6リージョン) | Cross-region replica | Geo-replication |
+- **推奨**: Seed 期は **Supabase**（PostgreSQL）が最速
+- Series A 以降は **Aurora PostgreSQL** に移行
+
+
+---
+
+# AI / ML サービス比較
+
+- **LLM / 生成AIサービス比較**
+| | AWS Bedrock | GCP Vertex AI | Azure OpenAI |
+|--|------------|--------------|-------------|
+| 提供モデル | Claude/Llama/Titan | Gemini/Claude/Llama | GPT-4o/o1 |
+| Fine-tuning | ◎ | ◎ | ◎ |
+| RAG 構築 | Knowledge Bases | Vertex AI Search | Azure AI Search |
+| 独自 GPU | Trainium2/Inferentia | TPU v5 | ❌ |
+| Enterprise SLA | 99.95% | 99.9% | 99.9% |
+- **スタートアップTip**: API呼び出しから始め、将来の切り替えに備えてLiteLLM等の抽象化層を使用
+
+
+---
+
+# ネットワーク・CDN比較
+
+- **CDN / エッジ比較**
+- - **AWS CloudFront**: 600+ エッジロケーション / Lambda@Edge
+- - **GCP Cloud CDN**: Anycast / 最短レイテンシー / Firebase Hosting
+- - **Azure CDN / Frontdoor**: Verizon/Akamai経由 / Teams連携
+- **データ転送コスト（OUT）比較**:
+- - AWS: $0.085〜0.09/GB（最初10TB）
+- - GCP: $0.08〜0.12/GB（リージョン依存）
+- - Azure: $0.087〜0.083/GB
+- **インターネットへのOUTは全社有料 — 設計で最小化が重要**
+- 同一リージョン・同一VPC内の転送は無料（各社共通）
+
+
+---
+
+# 開発者エクスペリエンス比較
+
+- **SDK / CLI / ドキュメント**
+| 観点 | AWS | GCP | Azure |
+|------|-----|-----|-------|
+| CLI | aws-cli (◎) | gcloud (◎) | az (○) |
+| SDK | Boto3/JS SDK | google-cloud-* | @azure/* |
+| IaC | CDK/CloudFormation | Cloud Deployment Mgr | ARM/Bicep |
+| Terraform対応 | ◎（最も成熟） | ◎ | ◎ |
+- **スタートアップTip**: Terraform をどのクラウドでも使う
+- → クラウド間の知識移転・将来の移行コストを低減
+
+
+---
+
+# 価格モデルの違い
+
+- **課金モデル比較**
+- - **AWS**: 秒課金（EC2/Lambda）。最も細かい割引プランが揃う
+- - **GCP**: Committed Use Discount が自動適用（30〜57%割引）
+- - **Azure**: Hybrid Benefit（既存Windowsライセンス活用）が独自優位
+- **Spot/Preemptible 比較**:
+- - AWS Spot: 最大90%割引・中断通知2分前
+- - GCP Preemptible: 固定60%〜70%割引・24時間で必ず停止
+- - Azure Spot: 最大90%割引・柔軟な中断ポリシー
+- **スタートアップの現実**: Seed期はフリーティア + クレジットで実質$0運用可能
+
+
+---
+
+# グローバルリージョン比較
+
+- **2026年時点リージョン数**
+- - **AWS**: 33リージョン / 105 Availability Zones（世界最多）
+- - **Azure**: 60以上のリージョン（地域数最多）
+- - **GCP**: 40リージョン（拡張中）
+- **日本展開時の選択**:
+- - AWS: 東京 + 大阪（2リージョン）→ DR設計が容易
+- - GCP: 東京（1リージョン）→ グローバルAnycastで補完
+- - Azure: 東日本 + 西日本（2リージョン）→ エンタープライズに実績
+- **グローバル展開を最初から考えるなら AWS が選択肢として最も豊富**
+
+
+---
+
+# ベンダーロックインリスク
+
+![w:860 center](assets/vendor-lockin-risk.svg)
+
+
+---
+
+# ユースケース別 クラウド推奨
+
+![w:860 center](assets/usecase-cloud-selection.svg)
+
+
+---
+
+# ステージ別クラウド推奨
+
+- **Seed 期（〜Series A前）**
+- - **第一推奨: AWS** — Activate $100K + 最大エコシステム + 採用しやすさ
+- - AI重視: GCP（Google for Startups $200K）
+- **Series A 期**
+- - クラウドを変える必要はほぼない。選んだクラウドを深化させる
+- - コスト最適化（Reserved / Spot）を本格開始
+- **Series B 期以降**
+- - Enterprise顧客が多い → Azure 追加を検討
+- - AI事業 → GCP 追加（Vertex AI / TPU）
+- - マルチクラウドの複雑さ > コスト削減メリット が多い
+- **結論: Seed期は AWS か GCP の二択。まず一つに集中投資**
+
+
+---
+
+# スタートアップ活用事例（AWS）
+
+- **AWS Activate 活用成功事例**
+- - **Stripe**: 初期 AWS で構築 → 今も AWS メイン。PaymentはEC2+SQS
+- - **Airbnb**: Ruby on Rails + EC2 からスタート → 現在EKS+DynamoDB
+- - **Netflix**: AWS 上で全インフラ → 世界最大の AWS ユーザーの一つ
+- **日本のスタートアップ事例**
+- - **freee**: AWS メイン。会計SaaS で PCI DSS 対応に AWS を活用
+- - **LayerX**: AWS + Bedrock で AI 自動化サービスを構築
+- - **Ubie**: 医療 AI / AWS メイン。HIPAA相当のセキュリティ要件に対応
+- **共通点**: Seed 期は AWS のマネージドサービスを最大活用してスピード優先
+
+
+---
+
+# スタートアップ活用事例（GCP / Azure）
+
+- **GCP活用事例**
+- - **Snapchat**: BigQuery + GCP でリアルタイム分析基盤
+- - **Spotify**: GCP に全面移行（2016〜）。BigQuery でデータ分析
+- - **Duolingo**: Firebase + GCP で急成長。AI推薦にVertex AI
+- **Azure活用事例**
+- - **GitHub**: Azure買収後、Azure DevOps と統合
+- - **Adobe**: Creative Cloud の一部を Azure に移行
+- - **日本SaaS各社**: Microsoft 365 連携で Azure + Teams 統合が強み
+- **教訓**: 事業ドメイン・顧客属性によってクラウドの相性が異なる
+
+
+---
+
+# マルチクラウド vs シングルクラウド
+
+- **マルチクラウドのメリット**
+- - ベンダーロックイン回避・価格交渉力の向上
+- - 特定サービスのベストオブブリード選択
+- **マルチクラウドのデメリット（スタートアップに致命的）**
+- - 運用複雑度が2倍〜3倍に増加
+- - エンジニアのスキル分散（専門性が育たない）
+- - コスト監視・セキュリティ設定の二重管理
+- **判断基準**:
+- - Series B 以前: **シングルクラウドに集中投資**を強く推奨
+- - Series B 以降: 特定要件（AI/Enterprise顧客）でセカンドクラウド検討
+- **「最初からマルチクラウドは贅沢、まず一つを極める」**
+
+
+---
+
+# 3社総合比較表
+
+- **スタートアップ向け最終評価**
+| 評価軸 | AWS | GCP | Azure |
+|--------|-----|-----|-------|
+| スタートアップ支援 | ◎ $100K | ◎◎ $200K | ◎ $150K |
+| エコシステム規模 | ◎◎◎ 最大 | ○ | ◎◎ |
+| AI/ML | ◎◎ | ◎◎◎ 最強 | ◎◎ |
+| エンジニア採用 | ◎◎◎ | ◎◎ | ○ |
+| ドキュメント品質 | ◎◎◎ | ◎◎◎ | ◎◎ |
+| 初期コスト最適化 | ○ | ◎◎ | ○ |
+- **総合推奨: AWS（汎用）/ GCP（AI特化）/ Azure（Enterprise BtoB）**
+
+
+---
+
+# クラウド選定フローチャート
+
+![w:800 center](assets/cloud-selection-flowchart.svg)
+
+
+---
+
+<!-- _class: lead -->
+# コスト最適化戦略
+
+- 第3章: コスト最適化 — スタートアップのサバイバル戦術
+
+
+---
+
+# クラウドコストの構造
+
+![w:860 center](assets/cloud-cost-structure.svg)
+
+
+---
+
+# フリーティア・プログラム最大活用
+
+- **AWS フリーティア（12ヶ月間）主要枠**
+- - EC2 t2.micro: 750時間/月
+- - RDS db.t3.micro: 750時間/月 + 20GB
+- - S3: 5GB ストレージ + 20K GET
+- - Lambda: 1M リクエスト/月（無期限）
+- **活用戦略 for Seed期**:
+- - AWS Activate で最大$100K → 実質2〜3年の運用コストをカバー
+- - GCP の$200K クレジットで AI/ML を並行活用
+- - **Budget Alert を$500から設定して予期しない請求を防ぐ**
+- Seed期の典型コスト: $200〜500/月（最適化済み）
+
+
+---
+
+# Spot / Preemptible インスタンス戦略
+
+- **Spot インスタンスとは**
+- - 余剰リソースを最大90%割引で利用できる
+- - AWS では中断2分前通知 / GCP では24時間で停止
+- **適したワークロード**:
+- - ✅ バッチ処理・データ変換パイプライン
+- - ✅ CI/CD ランナー（GitHub Actions self-hosted）
+- - ✅ 機械学習 トレーニングジョブ
+- - ✅ 開発・ステージング環境
+- **不適切なワークロード**:
+- - ❌ 本番APIサーバー（単独では）
+- - ❌ ステートフルなDBサーバー
+- **Tip**: ECS + Spot Fleet を使うと本番でもSpotを安全に混用可能
+
+
+---
+
+# Reserved / Committed Use の見極め
+
+- **Reserved Instance (RI) / Savings Plans 概要**
+- - 1年〜3年のコミットメントで最大72%割引
+- - 3種類: No Upfront / Partial Upfront / All Upfront
+- **購入タイミングの判断基準**:
+- - ✅ **購入すべき**: 3ヶ月以上同じスペックで稼働実績あり
+- - ✅ **購入すべき**: 月次コストが$5,000超えている
+- - ❌ **待つべき**: スケック変更可能性が高い（Seed期前半）
+- - ❌ **待つべき**: 利用実績が2ヶ月未満
+- **AWS Savings Plans**: EC2/Lambda/Fargate に横断適用。RI より柔軟
+- **GCP Committed Use**: 使った分だけ自動割引。判断が最も簡単
+
+
+---
+
+# コンテナ・サーバーレスでコスト削減
+
+- **コンテナ化によるコスト最適化**
+- - 1台のEC2に複数コンテナ → サーバー利用率を最大化
+- - ECS Bin Packing でリソース効率化
+- - 開発/本番環境で同じコンテナイメージ → 検証コスト削減
+- **サーバーレス（Lambda）のコスト構造**
+- - 課金: リクエスト数 × 実行時間 × メモリ量
+- - メリット: アイドル時はゼロコスト
+- - デメリット: 高頻度呼び出しはEC2より高くなる閾値あり
+- **判断基準**: リクエスト < 100万/日 → Lambda有利
+- リクエスト > 100万/日 → EC2/コンテナが有利
+
+
+---
+
+# FinOps ライフサイクル
+
+![w:840 center](assets/finops-lifecycle.svg)
+
+
+---
+
+# コスト最適化戦略マップ
+
+![w:860 center](assets/cost-optimization-strategies.svg)
+
+
+---
+
+# コスト監視ツール比較
+
+- **AWS ネイティブツール**
+- - **Cost Explorer**: 過去・予測コストを視覚化。無料
+- - **AWS Budgets**: 閾値アラート。月$0.02/予算
+- - **Trusted Advisor**: 未使用リソース・節約提案
+- - **Compute Optimizer**: 右サイジング推奨
+- **サードパーティ FinOps ツール**
+- - **Infracost**: Terraform の変更がコストに与える影響を PR で通知
+- - **CloudHealth by VMware**: マルチクラウド統合管理
+- - **Grafana Cloud**: OSS でカスタムダッシュボード
+- **スタートアップ推奨**: まず AWS Budgets だけ設定。複雑なツールは後から
+
+
+---
+
+# フェーズ別クラウドコスト目安
+
+- **スタートアップのステージ別コスト感**
+| ステージ | 月次コスト | 主なコスト要因 |
+|---------|-----------|--------------|
+| Idea / Pre-seed | $0〜100 | フリーティア活用 |
+| Seed 前半 | $100〜500 | DB + API サーバー |
+| Seed 後半 | $500〜2,000 | トラフィック増加 |
+| Series A | $2,000〜10,000 | マルチ環境 + 監視 |
+| Series B | $10,000〜50,000 | マルチリージョン |
+| Growth | $50,000〜 | FinOps 必須 |
+- **ランウェイのルール**: クラウドコストはランウェイの5%以下を目標に
+- 超えたらアーキテクチャ見直しのシグナル
+
+
+---
+
+# コスト最適化チェックリスト
+
+- **今すぐできる（Seed 期必須）**
+- - [ ] AWS Budgets を月$500でアラート設定
+- - [ ] Cost Explorer で最大コスト要因を特定
+- - [ ] 開発環境を夜間・週末に自動停止（Lambda + EventBridge）
+- - [ ] 未使用 EIP・スナップショットを削除
+- **Series A で実施**
+- - [ ] Spot + On-demand の混合構成（ECS）
+- - [ ] Savings Plans / Reserved購入（3ヶ月実績後）
+- - [ ] 月次コストレビューをチームで実施
+- - [ ] S3 ライフサイクルポリシー設定（古いデータをGlacierへ）
+- - [ ] CloudFront でS3直接アクセスを減らす
+
+
+---
+
+<!-- _class: lead -->
+# OSS 技術スタック選定
+
+- 第4章: 実践的 OSS スタック選定ガイド
+
+
+---
+
+# OSS 選定の判断軸
+
+- **技術選定で使う5つのフィルター**
+- ① **GitHub Stars / Activity**: 死んだプロジェクトを使わない（1K stars 以上推奨）
+- ② **エンジニア採用市場**: Indeed / LinkedIn での求人数で人材プールを確認
+- ③ **マネージドサービスの有無**: AWS / GCP が Managed 版を提供しているか
+- ④ **SaaS 版の存在**: 初期は SaaS版で学習コストを下げる
+- ⑤ **移行容易性**: 標準 API / プロトコルに準拠しているか
+- **避けるべき選択**: ベンダー独自フォーク・コミュニティの小さいOSS
+- **ゴールデンルール**: 最初はつまらない（boring）技術を選べ
+
+
+---
+
+# フロントエンド比較
+
+- **フレームワーク比較（2026年）**
+| | Next.js | Remix | SvelteKit | Nuxt (Vue) |
+|--|---------|-------|-----------|-----------|
+| SSR/SSG | ◎ | ◎ | ◎ | ◎ |
+| 採用市場 | ◎◎◎ 最大 | ◎◎ | ◎ | ◎◎ |
+| 学習コスト | ◎ | ○ | ◎ | ◎ |
+| エコシステム | ◎◎◎ | ◎◎ | ◎◎ | ◎◎ |
+- **推奨: Next.js 15（App Router）**
+- - React エコシステム最大・Vercel で即デプロイ
+- - shadcn/ui + Tailwind CSS で UI 開発を最速化
+
+
+---
+
+# バックエンド言語・フレームワーク
+
+- **言語別特性**
+- - **TypeScript（Node.js）**: フロントと共有型・採用しやすい・エコシステム最大
+- - **Python（FastAPI）**: AI/ML との親和性・データサイエンス連携
+- - **Go**: 高パフォーマンス・低メモリ・マイクロサービスに適合
+- - **Rust**: 最高性能・採用難易度が高い（Seed期は非推奨）
+- **フレームワーク推奨**:
+- - Seed期: **Node.js + Hono** / **Python + FastAPI**
+- - AI重視: **Python + FastAPI** が業界標準
+- - 高トラフィック: **Go + Echo/Gin** を Series A 以降で検討
+- **最重要**: チームが得意な言語を選ぶ。パフォーマンス差より開発速度
+
+
+---
+
+# データベース選定 — SQL vs NoSQL
+
+- **「まずPostgreSQL」が業界のベストプラクティス**
+- **PostgreSQLを選ぶべき場合（ほぼすべて）**:
+- - ACID トランザクションが必要（決済・在庫・ユーザーデータ）
+- - スキーマが定まっていない初期段階（JSONB カラムで柔軟に）
+- - チームが SQL に慣れている
+- **NoSQL を選ぶべき場合**:
+- - キー・バリューアクセスのみ（Redis / DynamoDB）
+- - スキーマレスなドキュメントが本質的に必要（ログ・IoT）
+- - グラフデータ（SNS フォロー関係等）
+- **アンチパターン**: 「スケールするから」という理由だけで NoSQL を選ばない
+- PostgreSQL は適切なインデックスで数千万レコードをスムーズに処理
+
+
+---
+
+# PostgreSQL 詳細活用
+
+- **PostgreSQL の見落とされがちな強力な機能**
+- - **JSONB**: スキーマレスなデータも PostgreSQL 一本で管理
+- - **pgvector**: ベクトル検索（RAG・推薦システム）を追加費用なしで実装
+- - **Row Level Security**: Supabase と組み合わせて認証を DB レベルで管理
+- - **全文検索**: tsvector で Elasticsearch なしの全文検索
+- - **Timescale**: 時系列データも PostgreSQL 拡張で対応
+- **マネージドオプション**:
+- - **Supabase**: 認証・ストレージ・Realtime まで包括（Seed期に最適）
+- - **Neon**: Serverless PostgreSQL（コールドスタートが速い）
+- - **AWS Aurora PG**: 本番 Series A 以降の標準選択
+
+
+---
+
+# キャッシュ・セッション管理
+
+- **Redis の用途別活用**
+- - **セッションストア**: JWTより Redis セッションの方が失効制御しやすい
+- - **APIキャッシュ**: 頻繁に呼ばれる DB クエリ結果を TTL 付きキャッシュ
+- - **レート制限**: Token Bucket をRedisで実装（API保護）
+- - **ジョブキュー**: BullMQ で非同期ジョブ処理（メール送信・画像変換）
+- - **PubSub**: リアルタイム通知のメッセージブローカー
+- **マネージドオプション**:
+- - **Upstash Redis**: Serverless課金・無料枠あり（Seed期推奨）
+- - **AWS ElastiCache**: Redis互換・Series A以降の本番環境
+- - **Redis Cloud**: マルチクラウド対応の SaaS版
+
+
+---
+
+# 認証・ID管理
+
+- **認証ソリューション比較**
+| | NextAuth.js | Supabase Auth | Auth0 | Keycloak |
+|--|------------|--------------|-------|---------|
+| 月額コスト | 無料(OSS) | 無料〜$25 | 無料〜$240 | 無料(セルフ) |
+| SSO(Google/GitHub) | ◎ | ◎ | ◎ | ◎ |
+| SAML/OIDC | ○ | ○ | ◎◎ | ◎◎ |
+| セルフホスト | ◎ | ◎ | ❌ | ◎ |
+| Enterprise対応 | ○ | ○ | ◎◎ | ◎◎ |
+- **Seed期推奨**: NextAuth.js または Supabase Auth（コスト$0）
+- **BtoB SaaS で SAML 必要になったら**: Auth0 または Keycloak に移行
+- Clerk（新興）も DX が良くスタートアップに人気
+
+
+---
+
+# IaC — Terraform vs CDK vs Pulumi
+
+- **インフラ as Code（IaC）比較**
+| | Terraform | AWS CDK | Pulumi |
+|--|-----------|---------|--------|
+| 言語 | HCL（独自） | TypeScript/Python | TypeScript/Python |
+| マルチクラウド | ◎◎◎ | AWS のみ | ◎◎◎ |
+| 学習コスト | ○（HCL独自） | ◎ | ◎ |
+| コミュニティ | ◎◎◎ 最大 | ◎◎ | ◎◎ |
+| GitOps対応 | ◎ | ◎ | ◎ |
+- **推奨**: **Terraform**（マルチクラウド視野・最大エコシステム）
+- AWSのみ縛りなら CDK（TypeScript のまま書ける）も選択肢
+- Seed期はTerraformのリポジトリを最初から用意。後付けは痛い
+
+
+---
+
+# CI/CD 比較
+
+- **CI/CD ツール比較**
+| | GitHub Actions | CircleCI | GitLab CI | Jenkins |
+|--|---------------|---------|-----------|---------|
+| 無料枠 | 2,000分/月 | 6,000分/月 | 400分/月 | セルフ無制限 |
+| セットアップ | ◎（YAML一枚）| ◎ | ◎ | △（複雑） |
+| Marketplace | ◎◎◎ | ○ | ○ | ◎ |
+| セルフホスト | ◎ | ○ | ◎ | ◎ |
+- **推奨: GitHub Actions**
+- - コードと同じリポジトリで管理
+- - Actions Marketplace で即使えるアクションが豊富
+- - Dependabot + CodeQL セキュリティスキャンが標準装備
+
+
+---
+
+# コンテナオーケストレーション
+
+- **Seed期: ECS Fargate（Kubernetes不要）**
+- - 設定が少ない・k8s の複雑さなし
+- - タスク定義 + サービスのみで本番運用可能
+- - ALB との統合が容易
+- **Series A 以降: EKS / GKE の検討**
+- - マイクロサービスが5つ以上になったら k8s を検討
+- - Helm Charts でサービスをテンプレート化
+- - Argo CD でGitOps デプロイ
+- **判断基準**:
+- - チームに k8s 経験者がいない → ECS Fargate で十分
+- - Platform Engineering チームを作る予定 → k8s を学習投資
+- 「k8s はインフラエンジニアを専任で雇えるフェーズから」
+
+
+---
+
+# モニタリング・可観測性
+
+- **可観測性の3本柱**: Metrics / Logs / Traces
+- **Seed 期の最小構成**:
+- - **Metrics**: CloudWatch（無料枠内）+ Uptime チェック
+- - **Logs**: CloudWatch Logs（構造化ログ）
+- - **Errors**: Sentry（フリープランで十分）
+- - **UX**: Vercel Analytics / PostHog
+- **Series A の本格構成**:
+- - **All-in-one**: Datadog（高価だが統合運用が楽）
+- - **OSS スタック**: Prometheus + Grafana + Loki（安価だが運用コスト）
+- - **Traces**: OpenTelemetry + Jaeger / Tempo
+- **アラート設計**: アラートは行動につながるものだけ。アラート疲れを防ぐ
+
+
+---
+
+# API 設計 — REST vs GraphQL vs gRPC
+
+- **設計スタイル比較**
+| | REST | GraphQL | gRPC |
+|--|------|---------|------|
+| 学習コスト | 低 | 中 | 高 |
+| 柔軟なクエリ | ❌ | ◎ | ❌ |
+| パフォーマンス | ◎ | ○ | ◎◎ |
+| 型安全 | ○ | ◎ | ◎◎ |
+| ブラウザ対応 | ◎ | ◎ | △ |
+| 向いている用途 | 汎用 | 複雑なUI | マイクロサービス間 |
+- **推奨**: Seed 期は **REST（OpenAPI）**。tRPC（TypeScript間）も有力
+- GraphQL は BFF として複数クライアント対応時に有用
+- gRPC は Series A 以降のサービス間通信に限定
+
+
+---
+
+# 決済 — Stripe でスタートする
+
+- **なぜ Stripe 一択か**
+- - 国内シェア70%以上のスタートアップが採用
+- - 手数料: 2.9% + 30¢（日本: 3.6% + 30¢）
+- - **SCA / 3D Secure**: 自動対応
+- - **Billing**: サブスクリプション管理が完結
+- - **Stripe Radar**: 不正決済検知 AI が標準搭載
+- **統合パターン**:
+- - Stripe Checkout: 最速（数時間で決済導入）
+- - Stripe Elements: カスタマイズ可能な UI
+- - Stripe Payment Intents API: フル制御
+- **アドバイス**: 決済は後回しにしない。PMF前でも決済なしの「フリー」は避ける
+- 「お金を払う意思確認が最も確実なPMFの証明」
+
+
+---
+
+# Seed 期 推奨 OSS スタック
+
+![w:860 center](assets/oss-stack-seed.svg)
+
+
+---
+
+# Series A 期 推奨スタック
+
+![w:860 center](assets/oss-stack-series-a.svg)
+
+
+---
+
+# OSS 選定チェックリスト
+
+- **技術採用前の必須チェック**
+- - [ ] GitHub のコミット頻度が直近3ヶ月でアクティブか
+- - [ ] Open Issues の未解決件数が増え続けていないか
+- - [ ] マネージド/SaaS版が存在するか（運用コスト試算）
+- - [ ] Stack Overflow の回答数（検索可能性）
+- - [ ] 日本語求人での採用可能性（採用市場サイズ）
+- - [ ] ライセンス確認（GPL は商用利用に注意）
+- **採用後の定期チェック**
+- - 四半期ごとにセキュリティ脆弱性を確認（Dependabot）
+- - メジャーバージョンアップは2世代以上遅れない
+
+
+---
+
+<!-- _class: lead -->
+# ステージ別ロードマップ
+
+- 第5章: Seed → Series A → Series B の技術進化
+
+
+---
+
+# スタートアップ技術ロードマップ
+
+![w:860 center](assets/startup-tech-roadmap.svg)
+
+
+---
+
+# Seed 期 — MVP 最速構築の原則
+
+- **Seed 期の技術指針**
+- ① **モノリスから始める**: マイクロサービスは早すぎる
+- ② **マネージドサービス最大活用**: Supabase + Vercel で運用ゼロ
+- ③ **デプロイを自動化**: Day1からGitHub Actions でCI/CD
+- ④ **TypeScript 必須**: 後からの型付けは10倍コスト
+- ⑤ **テストは最重要ロジックのみ**: 全てテストは後回し
+- **やらないことリスト**:
+- - ❌ k8s / Docker Swarm（ECS Fargate で十分）
+- - ❌ マイクロサービス分割
+- - ❌ 複雑なキャッシュ戦略
+- - ❌ 自前認証システム（NextAuth/Supabase Auth を使う）
+
+
+---
+
+# Series A 期 — スケールへの備え
+
+- **Series A で対応すべき技術課題**
+- **SLA・信頼性**:
+- - Multi-AZ 構成（RDS / ECS）で99.9%可用性
+- - ALB ヘルスチェック + 自動フェイルオーバー
+- - バックアップ自動化 + DR テスト実施
+- **セキュリティ強化**:
+- - WAF（AWS WAF / Cloudflare）導入
+- - VPC + Private Subnet 設計
+- - Secret Manager で環境変数を安全管理
+- **開発プロセス**:
+- - ブランチ戦略（GitHub Flow / GitFlow）の統一
+- - コードレビュー必須 + CI でlint/test を自動化
+- - オンコール体制の整備
+
+
+---
+
+# Series B 期 — プロダクション品質
+
+- **Series B 以降の技術課題**
+- **スケーラビリティ**:
+- - マルチリージョン展開（レイテンシー最適化）
+- - データベースシャーディング / 読み取りレプリカ増設
+- - CDN + Edge Computing でグローバル対応
+- **コンプライアンス**:
+- - SOC 2 Type II 取得（BtoB 必須）
+- - GDPR / 個人情報保護法への完全対応
+- - ISO 27001 検討（Enterprise顧客要件）
+- **組織・プロセス**:
+- - Platform Engineering チーム設立
+- - FinOps 専任担当 or チーム
+- - セキュリティエンジニア採用
+
+
+---
+
+# 採用しやすいスタックの選び方
+
+- **採用市場での技術スタック人気（2026年）**
+- **フロントエンド採用しやすい順**:
+- React / Next.js > Vue / Nuxt > Angular > Svelte
+- **バックエンド採用しやすい順**:
+- TypeScript(Node) > Python > Java > Go > Rust
+- **DB の認知度**:
+- PostgreSQL / MySQL > MongoDB > Redis > DynamoDB
+- **クラウドスキル**:
+- AWS > Azure > GCP の順でエンジニア数が多い
+- **実践アドバイス**:
+- - 採用JDに「Next.js・TypeScript経験者」と書けるスタックを選ぶ
+- - マニアックな技術は CTO の自己満足になりがち
+- 「チームが拡大できる技術 ≥ パフォーマンスが高い技術」
+
+
+---
+
+# エンジニア採用視点での選定
+
+- **採用に有利な技術スタック設計**
+- **第一線のエンジニアが惹かれる条件**:
+- - 最新技術を使えること（Next.js App Router / Bun / Rust等）
+- - 技術的意思決定に関われること
+- - スケールしていくプロダクトで自分の影響を感じられること
+- **採用で差が出るポイント**:
+- - TypeScript フルスタック → フロント・バック両面で採用可能に
+- - AI 活用 → 優秀なエンジニアが興味を持つ
+- - Remote first + 良い開発環境（高スペックMac支給）
+- **注意**: 「Javaで全部書いてます」は 2026年に若手エンジニアに刺さりにくい
+- → Kotlin/Go リライトのロードマップを見せることで対応可能
+
+
+---
+
+# 技術負債の管理
+
+![w:840 center](assets/tech-debt-quadrant.svg)
+
+
+---
+
+# テックリード・CTO の役割
+
+- **CTO に求められる技術選定力**
+- **Seed 期 CTO**:
+- - 自分でコードを書き、最速でプロダクトを出す
+- - 技術負債を意識しながらトレードオフを判断
+- - エンジニア1〜2人目の採用を担当
+- **Series A CTO**:
+- - 個人の実装からチームの生産性向上にシフト
+- - アーキテクチャ方針を確立し、技術的ビジョンを語る
+- - エンジニアリングカルチャーの設計
+- **Series B 以降 CTO**:
+- - 事業戦略と技術戦略の整合を保つ
+- - VP of Engineering を採用して実行を委任
+- - 外部（投資家・顧客）への技術的コミュニケーション
+
+
+---
+
+<!-- _class: lead -->
+# 意思決定フレームワーク
+
+- 第6章: 技術選定フレームワーク・まとめ
+
+
+---
+
+# 技術選定フレームワーク
+
+![w:840 center](assets/tech-decision-framework.svg)
+
+
+---
+
+# よくある失敗パターン
+
+![w:860 center](assets/common-mistakes.svg)
+
+
+---
+
+# まとめ — 技術選定の黄金律
+
+![w:840 center](assets/overall-summary.svg)
+
+
+---
+
+# 投資家向け Tech Due Diligence チェックリスト
+
+- **投資検討時の技術確認事項**
+- **アーキテクチャ評価**
+- - [ ] スケーラビリティの設計は適切か
+- - [ ] 技術負債の量と返済計画があるか
+- - [ ] 単一障害点（SPOF）の有無と対策
+- **チーム評価**
+- - [ ] CTO / テックリードの経験・判断力
+- - [ ] 採用できる技術スタックか（採用パイプライン）
+- **コスト構造**
+- - [ ] ユニットエコノミクス（インフラコスト/ユーザー）の推移
+- - [ ] スケール時のコスト試算が存在するか
+- **セキュリティ・コンプライアンス**
+- - [ ] 個人情報の扱い・GDPR 対応状況
+- - [ ] SOC2 取得計画（BtoB の場合）
+
+
+---
+
+# 参考リンク（1/2）
+
+- **クラウド公式**
+- - [AWS Activate（スタートアッププログラム）](https://aws.amazon.com/activate/)
+- - [Google for Startups](https://cloud.google.com/startup)
+- - [Microsoft for Startups Founders Hub](https://foundershub.startups.microsoft.com/)
+- **コスト最適化**
+- - [AWS Cost Management ドキュメント](https://docs.aws.amazon.com/cost-management/)
+- - [FinOps Foundation](https://www.finops.org/)
+- - [Infracost（IaCコスト可視化）](https://www.infracost.io/)
+- **アーキテクチャ**
+- - [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/)
+- - [The Twelve-Factor App](https://12factor.net/)
+
+
+---
+
+# 参考リンク（2/2）
+
+- **OSS スタック・ベストプラクティス**
+- - [Next.js 公式ドキュメント](https://nextjs.org/docs)
+- - [Supabase（PostgreSQL + Auth）](https://supabase.com/)
+- - [Terraform Registry](https://registry.terraform.io/)
+- - [shadcn/ui コンポーネント](https://ui.shadcn.com/)
+- **採用・組織**
+- - [Stack Overflow Developer Survey 2025](https://survey.stackoverflow.co/2025/)
+- - [CNCF Annual Survey（クラウドネイティブ動向）](https://www.cncf.io/reports/)
+- **スタートアップ技術戦略**
+- - [a16z: Technical Founder's Guide](https://a16z.com/)
+- - [Stripe Engineering Blog](https://stripe.com/blog/engineering)
+

@@ -1,0 +1,66 @@
+<svg viewBox="0 0 900 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="420" fill="#F8F9FA"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">LLM評価指標: ROUGE / BLEU / BERTScore</text>
+
+  <!-- ROUGE -->
+  <rect x="20" y="50" width="270" height="250" rx="12" fill="#1A73E8" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="155" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="white">ROUGE</text>
+  <text x="155" y="96" text-anchor="middle" font-size="11" fill="#BBDEFB">Recall-Oriented Understudy</text>
+  <text x="155" y="112" text-anchor="middle" font-size="11" fill="#BBDEFB">for Gisting Evaluation</text>
+
+  <rect x="38" y="125" width="234" height="28" rx="6" fill="#1557B0"/>
+  <text x="155" y="144" text-anchor="middle" font-size="12" fill="white">n-gramの一致率（再現率）</text>
+
+  <text x="40" y="175" font-size="12" font-weight="bold" fill="white">主な種類</text>
+  <text x="40" y="193" font-size="11" fill="#BBDEFB">ROUGE-1: 単語の一致</text>
+  <text x="40" y="210" font-size="11" fill="#BBDEFB">ROUGE-2: バイグラムの一致</text>
+  <text x="40" y="227" font-size="11" fill="#BBDEFB">ROUGE-L: 最長共通部分列</text>
+
+  <text x="40" y="248" font-size="12" font-weight="bold" fill="white">用途</text>
+  <text x="40" y="266" font-size="11" fill="#BBDEFB">要約・翻訳の評価に最適</text>
+  <text x="40" y="283" font-size="11" fill="#FFCC80">✗ 意味的類似性を捉えられない</text>
+
+  <!-- BLEU -->
+  <rect x="315" y="50" width="270" height="250" rx="12" fill="#1A9C3E" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="450" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="white">BLEU</text>
+  <text x="450" y="96" text-anchor="middle" font-size="11" fill="#C8E6C9">Bilingual Evaluation</text>
+  <text x="450" y="112" text-anchor="middle" font-size="11" fill="#C8E6C9">Understudy</text>
+
+  <rect x="333" y="125" width="234" height="28" rx="6" fill="#137830"/>
+  <text x="450" y="144" text-anchor="middle" font-size="12" fill="white">n-gramの一致率（精度）</text>
+
+  <text x="335" y="175" font-size="12" font-weight="bold" fill="white">計算方法</text>
+  <text x="335" y="193" font-size="11" fill="#C8E6C9">精度スコア (Precision)</text>
+  <text x="335" y="210" font-size="11" fill="#C8E6C9">1-gram, 2-gram, 3-gram, 4-gram</text>
+  <text x="335" y="227" font-size="11" fill="#C8E6C9">短い文へのペナルティ (BP)</text>
+
+  <text x="335" y="248" font-size="12" font-weight="bold" fill="white">スコア範囲</text>
+  <text x="335" y="266" font-size="11" fill="#C8E6C9">0.0 〜 1.0 (高いほど良い)</text>
+  <text x="335" y="283" font-size="11" fill="#FFCC80">✗ 語順の変化に敏感でない</text>
+
+  <!-- BERTScore -->
+  <rect x="610" y="50" width="270" height="250" rx="12" fill="#7B1FA2" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="745" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="white">BERTScore</text>
+  <text x="745" y="96" text-anchor="middle" font-size="11" fill="#E1BEE7">BERT-based Evaluation</text>
+  <text x="745" y="112" text-anchor="middle" font-size="11" fill="#E1BEE7">Metric</text>
+
+  <rect x="628" y="125" width="234" height="28" rx="6" fill="#6A1B9A"/>
+  <text x="745" y="144" text-anchor="middle" font-size="12" fill="white">意味的類似度（コサイン距離）</text>
+
+  <text x="630" y="175" font-size="12" font-weight="bold" fill="white">特徴</text>
+  <text x="630" y="193" font-size="11" fill="#E1BEE7">事前学習済みBERTを使用</text>
+  <text x="630" y="210" font-size="11" fill="#E1BEE7">文脈を考慮した意味的評価</text>
+  <text x="630" y="227" font-size="11" fill="#E1BEE7">同義語・言い換えに対応</text>
+
+  <text x="630" y="248" font-size="12" font-weight="bold" fill="white">出力</text>
+  <text x="630" y="266" font-size="11" fill="#E1BEE7">Precision / Recall / F1</text>
+  <text x="630" y="283" font-size="11" fill="#CE93D8">✓ 意味的類似性を捉える</text>
+
+  <!-- Comparison table -->
+  <rect x="20" y="320" width="860" height="85" rx="10" fill="#232F3E"/>
+  <text x="450" y="344" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">使い分けガイド (試験ポイント)</text>
+  <text x="80" y="365" font-size="12" fill="#E0E0E0">ROUGE: 要約の品質評価、検索結果の評価</text>
+  <text x="80" y="383" font-size="12" fill="#E0E0E0">BLEU: 機械翻訳の品質評価</text>
+  <text x="450" y="365" font-size="12" fill="#E0E0E0">BERTScore: RAGのFaithfulness評価</text>
+  <text x="450" y="383" font-size="12" fill="#E0E0E0">Bedrock Evaluation: 上記+LLM-as-judgeを統合</text>
+</svg>

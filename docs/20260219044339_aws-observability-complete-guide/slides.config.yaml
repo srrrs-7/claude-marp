@@ -1,0 +1,27 @@
+topic: "AWS Observability完全ガイド — OpenTelemetry + CloudWatch + Grafana + X-Ray"
+language: "ja"
+output:
+  dir: "docs/20260219044339_aws-observability-complete-guide"
+  baseName: "aws-observability-complete-guide"
+theme: gaia
+style: |
+  section {
+    font-size: 21px;
+    --color-highlight: #FF9900;
+    --color-background: #1a1a2e;
+  }
+  section.gaia {
+    background: #1a1a2e;
+    color: #e2e8f0;
+  }
+  h1, h2 { color: #FF9900; }
+  h3 { color: #f59e0b; }
+  section pre code {
+    font-size: 0.58em;
+    line-height: 1.35;
+  }
+  table { font-size: 0.8em; }
+  strong { color: #fbbf24; }
+directives:
+  paginate: true
+  footer: "AWS Observability完全ガイド"

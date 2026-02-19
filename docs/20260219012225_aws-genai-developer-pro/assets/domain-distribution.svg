@@ -1,0 +1,51 @@
+<svg viewBox="0 0 860 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <!-- Background -->
+  <rect x="0" y="0" width="860" height="400" fill="#f8f9fa" rx="12"/>
+
+  <!-- Title -->
+  <text x="430" y="38" text-anchor="middle" font-size="20" font-weight="bold" fill="#1a1a2e">評価領域と出題比率（合計 100%）</text>
+
+  <!-- Domain 1: 20% -->
+  <rect x="240" y="65" width="196" height="46" fill="#43A047" rx="6"/>
+  <text x="228" y="93" text-anchor="end" font-size="13" fill="#444" font-weight="600">Domain 1 AI/ML の基礎</text>
+  <text x="338" y="94" text-anchor="middle" font-size="15" font-weight="bold" fill="white">20%</text>
+
+  <!-- Domain 2: 24% -->
+  <rect x="240" y="129" width="235" height="46" fill="#1E88E5" rx="6"/>
+  <text x="228" y="157" text-anchor="end" font-size="13" fill="#444" font-weight="600">Domain 2 生成 AI の基礎</text>
+  <text x="357" y="158" text-anchor="middle" font-size="15" font-weight="bold" fill="white">24%</text>
+
+  <!-- Domain 3: 28% (widest / 最重要) -->
+  <rect x="240" y="193" width="274" height="46" fill="#1565C0" rx="6"/>
+  <text x="228" y="221" text-anchor="end" font-size="13" fill="#444" font-weight="600">Domain 3 FM の活用 ★</text>
+  <text x="377" y="222" text-anchor="middle" font-size="15" font-weight="bold" fill="white">28%</text>
+  <!-- star badge -->
+  <rect x="522" y="197" width="80" height="38" fill="#FFC107" rx="6"/>
+  <text x="562" y="221" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a1a2e">最重要領域</text>
+
+  <!-- Domain 4: 14% -->
+  <rect x="240" y="257" width="137" height="46" fill="#FB8C00" rx="6"/>
+  <text x="228" y="285" text-anchor="end" font-size="13" fill="#444" font-weight="600">Domain 4 責任ある AI</text>
+  <text x="308" y="286" text-anchor="middle" font-size="15" font-weight="bold" fill="white">14%</text>
+
+  <!-- Domain 5: 14% -->
+  <rect x="240" y="321" width="137" height="46" fill="#E53935" rx="6"/>
+  <text x="228" y="349" text-anchor="end" font-size="13" fill="#444" font-weight="600">Domain 5 セキュリティ</text>
+  <text x="308" y="350" text-anchor="middle" font-size="15" font-weight="bold" fill="white">14%</text>
+
+  <!-- scale axis -->
+  <line x1="240" y1="58" x2="240" y2="380" stroke="#ccc" stroke-width="1.5"/>
+  <line x1="240" y1="378" x2="520" y2="378" stroke="#ccc" stroke-width="1.5"/>
+  <text x="240" y="395" text-anchor="middle" font-size="11" fill="#999">0%</text>
+  <text x="338" y="395" text-anchor="middle" font-size="11" fill="#999">10%</text>
+  <text x="436" y="395" text-anchor="middle" font-size="11" fill="#999">20%</text>
+  <text x="534" y="395" text-anchor="middle" font-size="11" fill="#999">30%</text>
+  <line x1="338" y1="375" x2="338" y2="382" stroke="#ccc" stroke-width="1"/>
+  <line x1="436" y1="375" x2="436" y2="382" stroke="#ccc" stroke-width="1"/>
+  <line x1="534" y1="375" x2="534" y2="382" stroke="#ccc" stroke-width="1"/>
+
+  <!-- Legend note -->
+  <text x="620" y="280" text-anchor="middle" font-size="12" fill="#666">目安学習配分</text>
+  <text x="620" y="300" text-anchor="middle" font-size="12" fill="#1565C0" font-weight="bold">Domain 3 を最優先</text>
+  <text x="620" y="320" text-anchor="middle" font-size="12" fill="#666">で対策すること</text>
+</svg>

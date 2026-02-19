@@ -1,0 +1,40 @@
+<svg viewBox="0 0 900 460" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="460" fill="#F8F9FA"/>
+  <text x="450" y="36" text-anchor="middle" font-size="20" font-weight="bold" fill="#232F3E">試験ドメイン構成</text>
+
+  <!-- Domain 1 -->
+  <rect x="60" y="70" width="360" height="80" rx="10" fill="#FF9900"/>
+  <text x="240" y="102" text-anchor="middle" font-size="15" font-weight="bold" fill="white">Domain 1: Bedrock Core &amp; Fundamentals</text>
+  <text x="240" y="125" text-anchor="middle" font-size="14" fill="white">モデル選択・API・ファインチューニング・コスト</text>
+  <rect x="430" y="85" width="120" height="50" rx="8" fill="#E67700"/>
+  <text x="490" y="108" text-anchor="middle" font-size="22" font-weight="bold" fill="white">28%</text>
+  <rect x="560" y="90" width="290" height="40" rx="6" fill="#FFD180"/>
+  <text x="705" y="115" text-anchor="middle" font-size="13" fill="#232F3E">■■■■■■■■■■■■■■</text>
+
+  <!-- Domain 2 -->
+  <rect x="60" y="165" width="360" height="80" rx="10" fill="#1A73E8"/>
+  <text x="240" y="197" text-anchor="middle" font-size="15" font-weight="bold" fill="white">Domain 2: RAG &amp; Document Retrieval</text>
+  <text x="240" y="220" text-anchor="middle" font-size="14" fill="white">Knowledge Bases・ベクターDB・チャンク戦略</text>
+  <rect x="430" y="180" width="120" height="50" rx="8" fill="#1557B0"/>
+  <text x="490" y="203" text-anchor="middle" font-size="22" font-weight="bold" fill="white">24%</text>
+  <rect x="560" y="185" width="249" height="40" rx="6" fill="#BBDEFB"/>
+  <text x="684" y="210" text-anchor="middle" font-size="13" fill="#232F3E">■■■■■■■■■■■■</text>
+
+  <!-- Domain 3 -->
+  <rect x="60" y="260" width="360" height="80" rx="10" fill="#1A9C3E"/>
+  <text x="240" y="292" text-anchor="middle" font-size="15" font-weight="bold" fill="white">Domain 3: Agents &amp; Orchestration</text>
+  <text x="240" y="315" text-anchor="middle" font-size="14" fill="white">Bedrock Agents・Flows・マルチエージェント</text>
+  <rect x="430" y="275" width="120" height="50" rx="8" fill="#137830"/>
+  <text x="490" y="298" text-anchor="middle" font-size="22" font-weight="bold" fill="white">26%</text>
+  <rect x="560" y="280" width="269" height="40" rx="6" fill="#C8E6C9"/>
+  <text x="694" y="305" text-anchor="middle" font-size="13" fill="#232F3E">■■■■■■■■■■■■■</text>
+
+  <!-- Domain 4 -->
+  <rect x="60" y="355" width="360" height="80" rx="10" fill="#7B1FA2"/>
+  <text x="240" y="387" text-anchor="middle" font-size="15" font-weight="bold" fill="white">Domain 4: Safety, Evaluation &amp; Responsible AI</text>
+  <text x="240" y="410" text-anchor="middle" font-size="14" fill="white">Guardrails・評価指標・コンプライアンス</text>
+  <rect x="430" y="370" width="120" height="50" rx="8" fill="#6A1B9A"/>
+  <text x="490" y="393" text-anchor="middle" font-size="22" font-weight="bold" fill="white">22%</text>
+  <rect x="560" y="375" width="228" height="40" rx="6" fill="#E1BEE7"/>
+  <text x="674" y="400" text-anchor="middle" font-size="13" fill="#232F3E">■■■■■■■■■■■</text>
+</svg>

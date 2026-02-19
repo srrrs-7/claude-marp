@@ -1,0 +1,45 @@
+<svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect x="0" y="0" width="900" height="380" fill="#f8f9ff" rx="12"/>
+  <text x="450" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">AWS 共有責任モデル — AI ワークロード</text>
+
+  <!-- AWS Responsibility (bottom) -->
+  <rect x="20" y="225" width="860" height="140" fill="#E3F2FD" rx="10" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.1))"/>
+  <text x="450" y="250" text-anchor="middle" font-size="15" font-weight="bold" fill="#1565C0">AWS の責任（Security OF the Cloud）</text>
+  <text x="50" y="275" font-size="11" fill="#444">• 物理インフラ（データセンター・ネットワーク・ハードウェア）のセキュリティ</text>
+  <text x="50" y="293" font-size="11" fill="#444">• Bedrock / SageMaker マネージドサービスの運用・パッチ適用</text>
+  <text x="50" y="311" font-size="11" fill="#444">• Foundation Models のホスティング・可用性管理</text>
+  <text x="50" y="329" font-size="11" fill="#444">• AWS Inferentia / Trainium チップの管理</text>
+  <text x="50" y="347" font-size="11" fill="#444">• 顧客データは FM 学習に使用しない（Bedrock の場合）</text>
+
+  <!-- Customer Responsibility (top) -->
+  <rect x="20" y="52" width="860" height="162" fill="#FFF3E0" rx="10" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.1))"/>
+  <text x="450" y="76" text-anchor="middle" font-size="15" font-weight="bold" fill="#E65100">顧客の責任（Security IN the Cloud）</text>
+
+  <rect x="35" y="88" width="260" height="115" fill="white" rx="8"/>
+  <text x="165" y="108" text-anchor="middle" font-size="12" font-weight="bold" fill="#E65100">データ管理</text>
+  <text x="45" y="126" font-size="10" fill="#555">• 学習データの品質・偏り管理</text>
+  <text x="45" y="142" font-size="10" fill="#555">• PII データの適切な処理</text>
+  <text x="45" y="158" font-size="10" fill="#555">• S3 バケットポリシー設定</text>
+  <text x="45" y="174" font-size="10" fill="#555">• データ暗号化（KMS）</text>
+  <text x="45" y="190" font-size="10" fill="#555">• データガバナンス</text>
+
+  <rect x="310" y="88" width="260" height="115" fill="white" rx="8"/>
+  <text x="440" y="108" text-anchor="middle" font-size="12" font-weight="bold" fill="#E65100">アクセス制御</text>
+  <text x="320" y="126" font-size="10" fill="#555">• IAM ポリシーと最小権限の原則</text>
+  <text x="320" y="142" font-size="10" fill="#555">• Bedrock アクション粒度の制御</text>
+  <text x="320" y="158" font-size="10" fill="#555">• VPC エンドポイント設定</text>
+  <text x="320" y="174" font-size="10" fill="#555">• ネットワーク分離</text>
+  <text x="320" y="190" font-size="10" fill="#555">• CloudTrail 監査ログ有効化</text>
+
+  <rect x="585" y="88" width="280" height="115" fill="white" rx="8"/>
+  <text x="725" y="108" text-anchor="middle" font-size="12" font-weight="bold" fill="#E65100">アプリケーション</text>
+  <text x="595" y="126" font-size="10" fill="#555">• Bedrock Guardrails の設定</text>
+  <text x="595" y="142" font-size="10" fill="#555">• プロンプトインジェクション対策</text>
+  <text x="595" y="158" font-size="10" fill="#555">• Fine-tuning データの管理</text>
+  <text x="595" y="174" font-size="10" fill="#555">• AI アウトプットの検証</text>
+  <text x="595" y="190" font-size="10" fill="#555">• Agents の Action Group 設計</text>
+
+  <!-- Divider -->
+  <line x1="20" y1="218" x2="880" y2="218" stroke="#999" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="450" y="214" text-anchor="middle" font-size="11" fill="#999" font-weight="bold">───── 責任の境界線 ─────</text>
+</svg>

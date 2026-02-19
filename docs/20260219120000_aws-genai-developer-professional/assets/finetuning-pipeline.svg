@@ -1,0 +1,74 @@
+<svg viewBox="0 0 900 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="380" fill="#F8F9FA"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">ファインチューニング パイプライン</text>
+
+  <!-- Step 1 -->
+  <rect x="20" y="55" width="140" height="80" rx="10" fill="#1A73E8" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="90" y="85" text-anchor="middle" font-size="13" font-weight="bold" fill="white">① データ準備</text>
+  <text x="90" y="105" text-anchor="middle" font-size="11" fill="#BBDEFB">JSONL形式</text>
+  <text x="90" y="122" text-anchor="middle" font-size="11" fill="#BBDEFB">prompt/completion</text>
+
+  <!-- Arrow -->
+  <line x1="160" y1="95" x2="195" y2="95" stroke="#666" stroke-width="2"/>
+  <polygon points="195,90 205,95 195,100" fill="#666"/>
+
+  <!-- Step 2 -->
+  <rect x="205" y="55" width="140" height="80" rx="10" fill="#1A9C3E" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="275" y="85" text-anchor="middle" font-size="13" font-weight="bold" fill="white">② S3 アップロード</text>
+  <text x="275" y="105" text-anchor="middle" font-size="11" fill="#C8E6C9">Training data</text>
+  <text x="275" y="122" text-anchor="middle" font-size="11" fill="#C8E6C9">Validation data</text>
+
+  <!-- Arrow -->
+  <line x1="345" y1="95" x2="380" y2="95" stroke="#666" stroke-width="2"/>
+  <polygon points="380,90 390,95 380,100" fill="#666"/>
+
+  <!-- Step 3 -->
+  <rect x="390" y="55" width="140" height="80" rx="10" fill="#FF9900" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="460" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="white">③ FTジョブ作成</text>
+  <text x="460" y="100" text-anchor="middle" font-size="11" fill="#FFF3E0">ベースモデル選択</text>
+  <text x="460" y="117" text-anchor="middle" font-size="11" fill="#FFF3E0">ハイパーパラメータ</text>
+  <text x="460" y="130" text-anchor="middle" font-size="10" fill="#FFF3E0">epochs / batch size / lr</text>
+
+  <!-- Arrow -->
+  <line x1="530" y1="95" x2="565" y2="95" stroke="#666" stroke-width="2"/>
+  <polygon points="565,90 575,95 565,100" fill="#666"/>
+
+  <!-- Step 4 -->
+  <rect x="575" y="55" width="140" height="80" rx="10" fill="#7B1FA2" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="645" y="85" text-anchor="middle" font-size="13" font-weight="bold" fill="white">④ 学習実行</text>
+  <text x="645" y="105" text-anchor="middle" font-size="11" fill="#E1BEE7">自動プロビジョニング</text>
+  <text x="645" y="122" text-anchor="middle" font-size="11" fill="#E1BEE7">CloudWatch監視</text>
+
+  <!-- Arrow -->
+  <line x1="715" y1="95" x2="750" y2="95" stroke="#666" stroke-width="2"/>
+  <polygon points="750,90 760,95 750,100" fill="#666"/>
+
+  <!-- Step 5 -->
+  <rect x="760" y="55" width="120" height="80" rx="10" fill="#E53935" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="820" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="white">⑤ カスタム</text>
+  <text x="820" y="99" text-anchor="middle" font-size="13" font-weight="bold" fill="white">モデル</text>
+  <text x="820" y="118" text-anchor="middle" font-size="11" fill="#FFCDD2">S3に保存</text>
+
+  <!-- Types section -->
+  <rect x="20" y="165" width="420" height="100" rx="10" fill="#E3F2FD" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="230" y="188" text-anchor="middle" font-size="14" font-weight="bold" fill="#1A73E8">継続的事前学習 (CPT)</text>
+  <text x="60" y="210" font-size="12" fill="#232F3E">・ドメイン固有の生データで学習</text>
+  <text x="60" y="228" font-size="12" fill="#232F3E">・専門知識の獲得（医療・法律・金融）</text>
+  <text x="60" y="246" font-size="12" fill="#232F3E">・大量データ必要 / 計算コスト高</text>
+  <text x="60" y="252" font-size="9" fill="#666">※ Claude以外のモデルで利用可</text>
+
+  <rect x="460" y="165" width="420" height="100" rx="10" fill="#E8F5E9" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="670" y="188" text-anchor="middle" font-size="14" font-weight="bold" fill="#1A9C3E">指示チューニング (IFT / SFT)</text>
+  <text x="500" y="210" font-size="12" fill="#232F3E">・prompt/completion ペアで学習</text>
+  <text x="500" y="228" font-size="12" fill="#232F3E">・特定タスクの出力形式を習得</text>
+  <text x="500" y="246" font-size="12" fill="#232F3E">・少数データでも効果的</text>
+  <text x="500" y="258" font-size="9" fill="#666">※ Titan, Llama, Mistralなどで利用可</text>
+
+  <!-- Requirements -->
+  <rect x="20" y="282" width="860" height="80" rx="10" fill="#FFF8E1"/>
+  <text x="450" y="304" text-anchor="middle" font-size="14" font-weight="bold" fill="#E65100">データ要件と注意点</text>
+  <text x="80" y="325" font-size="12" fill="#232F3E">・最小データ数: IFT = 100件以上推奨、CPT = 1,000件以上推奨</text>
+  <text x="80" y="343" font-size="12" fill="#232F3E">・JSONL形式: {&quot;prompt&quot;: &quot;...&quot;, &quot;completion&quot;: &quot;...&quot;} または {&quot;messages&quot;: [...]}</text>
+  <text x="500" y="325" font-size="12" fill="#232F3E">・S3バケットはBedrockと同一リージョン</text>
+  <text x="500" y="343" font-size="12" fill="#232F3E">・IAMロールでBedrockがS3にアクセス可能にする</text>
+</svg>

@@ -1,0 +1,21 @@
+topic: "RAG実装ガイド完全版 — OpenSearch / pgvector / Bedrock Knowledge Base"
+output:
+  dir: "docs/20260219020000_rag-implementation-guide"
+  baseName: "rag-implementation-guide"
+marp:
+  theme: gaia
+  size: "16:9"
+  paginate: true
+  footer: "RAG実装ガイド完全版 2026 | AWS GenAI Developer Pro"
+  style: |
+    section { font-size: 0.80em; }
+    section pre code { font-size: 0.58em; line-height: 1.4; }
+    table { font-size: 0.66em; border-collapse: collapse; width: 100%; }
+    th { background: #1565C0; color: white; padding: 4px 8px; text-align: left; }
+    td { padding: 3px 8px; border-bottom: 1px solid #e0e0e0; }
+    tr:nth-child(even) td { background: #f0f6ff; }
+    section.lead h1 { font-size: 1.4em; }
+    section.lead h2 { font-size: 1.1em; color: #fff; }
+    h2 { color: #1565C0; }
+    h3 { color: #0D47A1; font-size: 0.95em; }
+language: ja

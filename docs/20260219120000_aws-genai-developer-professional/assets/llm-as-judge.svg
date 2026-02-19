@@ -1,0 +1,72 @@
+<svg viewBox="0 0 900 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="400" fill="#F0F4F8"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">LLM-as-Judge 評価パターン</text>
+
+  <!-- Input -->
+  <rect x="20" y="100" width="150" height="180" rx="12" fill="#232F3E" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="95" y="126" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">評価データ</text>
+  <rect x="35" y="138" width="120" height="30" rx="6" fill="#37474F"/>
+  <text x="95" y="158" text-anchor="middle" font-size="11" fill="white">質問 (Input)</text>
+  <rect x="35" y="175" width="120" height="30" rx="6" fill="#37474F"/>
+  <text x="95" y="195" text-anchor="middle" font-size="11" fill="white">参照回答 (GT)</text>
+  <rect x="35" y="212" width="120" height="30" rx="6" fill="#37474F"/>
+  <text x="95" y="232" text-anchor="middle" font-size="11" fill="white">モデル出力</text>
+  <rect x="35" y="249" width="120" height="20" rx="4" fill="#263238"/>
+  <text x="95" y="263" text-anchor="middle" font-size="10" fill="#90CAF9">コンテキスト</text>
+
+  <!-- Arrow -->
+  <line x1="170" y1="190" x2="210" y2="190" stroke="#666" stroke-width="2"/>
+  <polygon points="210,185 220,190 210,195" fill="#666"/>
+
+  <!-- Judge LLM -->
+  <rect x="220" y="80" width="240" height="220" rx="14" fill="#7B1FA2" style="filter:drop-shadow(3px 3px 6px rgba(0,0,0,0.25))"/>
+  <text x="340" y="108" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Judge LLM</text>
+  <text x="340" y="126" text-anchor="middle" font-size="11" fill="#E1BEE7">Claude / GPT-4等の強力なLLM</text>
+
+  <rect x="238" y="140" width="204" height="32" rx="6" fill="#6A1B9A"/>
+  <text x="340" y="161" text-anchor="middle" font-size="12" fill="white">評価プロンプト生成</text>
+
+  <rect x="238" y="180" width="204" height="32" rx="6" fill="#6A1B9A"/>
+  <text x="340" y="201" text-anchor="middle" font-size="12" fill="white">Faithfulness 判定</text>
+
+  <rect x="238" y="220" width="204" height="32" rx="6" fill="#6A1B9A"/>
+  <text x="340" y="241" text-anchor="middle" font-size="12" fill="white">Relevance 判定</text>
+
+  <rect x="238" y="260" width="204" height="30" rx="6" fill="#4A148C"/>
+  <text x="340" y="280" text-anchor="middle" font-size="12" fill="white">スコア (1-5) 付与</text>
+
+  <!-- Arrow -->
+  <line x1="460" y1="190" x2="500" y2="190" stroke="#666" stroke-width="2"/>
+  <polygon points="500,185 510,190 500,195" fill="#666"/>
+
+  <!-- Scores -->
+  <rect x="510" y="70" width="360" height="280" rx="12" fill="#1A73E8" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="690" y="98" text-anchor="middle" font-size="14" font-weight="bold" fill="white">評価スコアと指標</text>
+
+  <!-- Metrics -->
+  <rect x="528" y="112" width="324" height="42" rx="6" fill="#1557B0"/>
+  <text x="690" y="130" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Faithfulness (忠実性)</text>
+  <text x="690" y="147" text-anchor="middle" font-size="11" fill="#BBDEFB">回答がコンテキストに基づいているか</text>
+
+  <rect x="528" y="162" width="324" height="42" rx="6" fill="#1557B0"/>
+  <text x="690" y="180" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Answer Relevance (関連性)</text>
+  <text x="690" y="197" text-anchor="middle" font-size="11" fill="#BBDEFB">回答が質問に対応しているか</text>
+
+  <rect x="528" y="212" width="324" height="42" rx="6" fill="#1557B0"/>
+  <text x="690" y="230" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Context Recall (文脈再現性)</text>
+  <text x="690" y="247" text-anchor="middle" font-size="11" fill="#BBDEFB">必要な情報が検索できているか</text>
+
+  <rect x="528" y="262" width="324" height="42" rx="6" fill="#1557B0"/>
+  <text x="690" y="280" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Correctness (正確性)</text>
+  <text x="690" y="297" text-anchor="middle" font-size="11" fill="#BBDEFB">GT (正解) との一致度</text>
+
+  <!-- Score display -->
+  <rect x="528" y="316" width="324" height="24" rx="6" fill="#0D47A1"/>
+  <text x="690" y="333" text-anchor="middle" font-size="12" fill="#FF9900" font-weight="bold">総合スコア: 0.85 / 1.00 → 合格基準0.70以上</text>
+
+  <!-- Amazon Bedrock Evaluation note -->
+  <rect x="20" y="320" width="450" height="60" rx="10" fill="#FF9900"/>
+  <text x="245" y="345" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Amazon Bedrock Evaluation</text>
+  <text x="245" y="363" text-anchor="middle" font-size="11" fill="#FFF3E0">自動評価 / LLM-as-judge / ヒューマン評価をサポート</text>
+  <text x="245" y="374" text-anchor="middle" font-size="10" fill="#FFF3E0">モデル比較・A/Bテスト・RAG評価に対応</text>
+</svg>

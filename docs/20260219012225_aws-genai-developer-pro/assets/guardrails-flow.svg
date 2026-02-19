@@ -1,0 +1,95 @@
+<svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect x="0" y="0" width="900" height="340" fill="#fff8f8" rx="12"/>
+  <text x="450" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">Amazon Bedrock Guardrails — フィルタリングフロー</text>
+
+  <!-- User Input -->
+  <rect x="10" y="55" width="90" height="55" fill="#E8EAF6" rx="8"/>
+  <text x="55" y="80" text-anchor="middle" font-size="12" font-weight="bold" fill="#3949AB">ユーザー</text>
+  <text x="55" y="98" text-anchor="middle" font-size="10" fill="#666">リクエスト</text>
+
+  <!-- Arrow -->
+  <line x1="100" y1="82" x2="118" y2="82" stroke="#C62828" stroke-width="2"/>
+  <polygon points="118,77 130,82 118,87" fill="#C62828"/>
+
+  <!-- Input Guardrails -->
+  <rect x="130" y="45" width="130" height="75" fill="#FFEBEE" rx="8" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="195" y="68" text-anchor="middle" font-size="11" font-weight="bold" fill="#C62828">入力フィルタ</text>
+  <text x="195" y="84" text-anchor="middle" font-size="10" fill="#C62828">（Input Guard）</text>
+  <text x="140" y="100" font-size="9" fill="#555">• コンテンツフィルタ</text>
+  <text x="140" y="113" font-size="9" fill="#555">• トピック拒否</text>
+
+  <!-- Arrow -->
+  <line x1="260" y1="82" x2="278" y2="82" stroke="#555" stroke-width="2"/>
+  <polygon points="278,77 290,82 278,87" fill="#555"/>
+
+  <!-- PII Redaction -->
+  <rect x="290" y="45" width="120" height="75" fill="#FFF3E0" rx="8" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="350" y="68" text-anchor="middle" font-size="11" font-weight="bold" fill="#E65100">PII 保護</text>
+  <text x="350" y="84" text-anchor="middle" font-size="10" fill="#E65100">（マスキング）</text>
+  <text x="300" y="100" font-size="9" fill="#555">• 氏名・メール</text>
+  <text x="300" y="113" font-size="9" fill="#555">• クレカ番号</text>
+
+  <!-- Arrow -->
+  <line x1="410" y1="82" x2="428" y2="82" stroke="#555" stroke-width="2"/>
+  <polygon points="428,77 440,82 428,87" fill="#555"/>
+
+  <!-- FM -->
+  <rect x="440" y="45" width="120" height="75" fill="#1565C0" rx="10" style="filter:drop-shadow(2px 2px 5px rgba(0,0,0,0.15))"/>
+  <text x="500" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Foundation</text>
+  <text x="500" y="93" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Model</text>
+  <text x="500" y="111" text-anchor="middle" font-size="10" fill="#90CAF9">（Bedrock）</text>
+
+  <!-- Arrow -->
+  <line x1="560" y1="82" x2="578" y2="82" stroke="#555" stroke-width="2"/>
+  <polygon points="578,77 590,82 578,87" fill="#555"/>
+
+  <!-- Output Guardrails -->
+  <rect x="590" y="45" width="130" height="75" fill="#FFEBEE" rx="8" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="655" y="68" text-anchor="middle" font-size="11" font-weight="bold" fill="#C62828">出力フィルタ</text>
+  <text x="655" y="84" text-anchor="middle" font-size="10" fill="#C62828">（Output Guard）</text>
+  <text x="600" y="100" font-size="9" fill="#555">• コンテンツフィルタ</text>
+  <text x="600" y="113" font-size="9" fill="#555">• Grounding チェック</text>
+
+  <!-- Arrow -->
+  <line x1="720" y1="82" x2="748" y2="82" stroke="#43A047" stroke-width="2"/>
+  <polygon points="748,77 760,82 748,87" fill="#43A047"/>
+
+  <!-- Safe Response -->
+  <rect x="760" y="55" width="120" height="55" fill="#E8F5E9" rx="8"/>
+  <text x="820" y="78" text-anchor="middle" font-size="12" font-weight="bold" fill="#2E7D32">安全な回答</text>
+  <text x="820" y="96" text-anchor="middle" font-size="10" fill="#555">ユーザーへ</text>
+
+  <!-- Block path -->
+  <line x1="195" y1="120" x2="195" y2="155" stroke="#C62828" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <rect x="130" y="155" width="130" height="40" fill="#FFCDD2" rx="6"/>
+  <text x="195" y="173" text-anchor="middle" font-size="11" font-weight="bold" fill="#C62828">ブロック &amp; 拒否</text>
+  <text x="195" y="188" text-anchor="middle" font-size="10" fill="#666">安全メッセージを返す</text>
+
+  <!-- Filter Types Detail -->
+  <rect x="10" y="220" width="860" height="110" fill="white" rx="10" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.08))"/>
+  <text x="450" y="244" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a1a2e">フィルタの種類と設定</text>
+
+  <!-- Content Filter -->
+  <rect x="20" y="255" width="190" height="65" fill="#FFEBEE" rx="8"/>
+  <text x="115" y="274" text-anchor="middle" font-size="11" font-weight="bold" fill="#C62828">コンテンツフィルタ</text>
+  <text x="30" y="291" font-size="10" fill="#555">暴力・ヘイト・性的コンテンツ</text>
+  <text x="30" y="305" font-size="10" fill="#555">強度: None / Low / Medium / High</text>
+
+  <!-- Topic Denial -->
+  <rect x="225" y="255" width="190" height="65" fill="#FFF3E0" rx="8"/>
+  <text x="320" y="274" text-anchor="middle" font-size="11" font-weight="bold" fill="#E65100">トピック拒否</text>
+  <text x="235" y="291" font-size="10" fill="#555">指定トピックへの回答を禁止</text>
+  <text x="235" y="305" font-size="10" fill="#555">例: 競合製品・政治・法律相談</text>
+
+  <!-- PII Redaction -->
+  <rect x="430" y="255" width="190" height="65" fill="#E8F5E9" rx="8"/>
+  <text x="525" y="274" text-anchor="middle" font-size="11" font-weight="bold" fill="#2E7D32">PII 保護</text>
+  <text x="440" y="291" font-size="10" fill="#555">個人情報の検出・マスキング</text>
+  <text x="440" y="305" font-size="10" fill="#555">BLOCK / ANONYMIZE モード</text>
+
+  <!-- Grounding -->
+  <rect x="635" y="255" width="235" height="65" fill="#E3F2FD" rx="8"/>
+  <text x="752" y="274" text-anchor="middle" font-size="11" font-weight="bold" fill="#1565C0">Grounding チェック</text>
+  <text x="645" y="291" font-size="10" fill="#555">RAG 出力がソースに基づくか検証</text>
+  <text x="645" y="305" font-size="10" fill="#555">ハルシネーション検出・ブロック</text>
+</svg>

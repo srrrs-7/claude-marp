@@ -1,0 +1,91 @@
+<svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="540" fill="#f8fafc" rx="12"/>
+  <text x="480" y="34" text-anchor="middle" font-size="18" font-weight="bold" fill="#1e293b">EKS セキュリティレイヤー全体図</text>
+
+  <!-- Layer 1: Infrastructure -->
+  <rect x="20" y="52" width="920" height="78" rx="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="46" y="76" font-size="13" font-weight="bold" fill="#1e40af">① インフラ層（AWS責任）</text>
+  <rect x="120" y="84" width="140" height="36" rx="6" fill="white" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="190" y="107" text-anchor="middle" font-size="11" fill="#1e40af">EC2 / Fargate</text>
+  <rect x="270" y="84" width="140" height="36" rx="6" fill="white" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="340" y="107" text-anchor="middle" font-size="11" fill="#1e40af">VPC / Subnet</text>
+  <rect x="420" y="84" width="140" height="36" rx="6" fill="white" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="490" y="107" text-anchor="middle" font-size="11" fill="#1e40af">KMS / CloudHSM</text>
+  <rect x="570" y="84" width="140" height="36" rx="6" fill="white" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="640" y="107" text-anchor="middle" font-size="11" fill="#1e40af">IAM / STS</text>
+  <rect x="720" y="84" width="200" height="36" rx="6" fill="#1d4ed8"/>
+  <text x="820" y="107" text-anchor="middle" font-size="11" font-weight="bold" fill="white">責任共有モデル境界</text>
+
+  <!-- Arrow -->
+  <polygon points="480,134 474,142 486,142" fill="#64748b"/>
+
+  <!-- Layer 2: Cluster -->
+  <rect x="20" y="146" width="920" height="78" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="46" y="170" font-size="13" font-weight="bold" fill="#5b21b6">② クラスター層（共同責任）</text>
+  <rect x="120" y="178" width="140" height="36" rx="6" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="190" y="201" text-anchor="middle" font-size="11" fill="#5b21b6">EKS Control Plane</text>
+  <rect x="270" y="178" width="140" height="36" rx="6" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="340" y="201" text-anchor="middle" font-size="11" fill="#5b21b6">aws-auth / OIDC</text>
+  <rect x="420" y="178" width="140" height="36" rx="6" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="490" y="201" text-anchor="middle" font-size="11" fill="#5b21b6">エンドポイント制御</text>
+  <rect x="570" y="178" width="140" height="36" rx="6" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="640" y="201" text-anchor="middle" font-size="11" fill="#5b21b6">監査ログ</text>
+  <rect x="720" y="178" width="200" height="36" rx="6" fill="#7c3aed"/>
+  <text x="820" y="201" text-anchor="middle" font-size="11" font-weight="bold" fill="white">CIS EKS Benchmark</text>
+
+  <!-- Arrow -->
+  <polygon points="480,228 474,236 486,236" fill="#64748b"/>
+
+  <!-- Layer 3: Workload -->
+  <rect x="20" y="240" width="920" height="78" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="46" y="264" font-size="13" font-weight="bold" fill="#991b1b">③ ワークロード層（ユーザー責任）</text>
+  <rect x="120" y="272" width="140" height="36" rx="6" fill="white" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="190" y="295" text-anchor="middle" font-size="11" fill="#991b1b">RBAC / IRSA</text>
+  <rect x="270" y="272" width="140" height="36" rx="6" fill="white" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="340" y="295" text-anchor="middle" font-size="11" fill="#991b1b">Pod Security</text>
+  <rect x="420" y="272" width="140" height="36" rx="6" fill="white" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="490" y="295" text-anchor="middle" font-size="11" fill="#991b1b">Network Policy</text>
+  <rect x="570" y="272" width="140" height="36" rx="6" fill="white" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="640" y="295" text-anchor="middle" font-size="11" fill="#991b1b">Secrets管理</text>
+  <rect x="720" y="272" width="200" height="36" rx="6" fill="#dc2626"/>
+  <text x="820" y="295" text-anchor="middle" font-size="11" font-weight="bold" fill="white">OPA / Kyverno</text>
+
+  <!-- Arrow -->
+  <polygon points="480,322 474,330 486,330" fill="#64748b"/>
+
+  <!-- Layer 4: Image -->
+  <rect x="20" y="334" width="920" height="78" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="46" y="358" font-size="13" font-weight="bold" fill="#166534">④ イメージ層（ユーザー責任）</text>
+  <rect x="120" y="366" width="140" height="36" rx="6" fill="white" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="190" y="389" text-anchor="middle" font-size="11" fill="#166534">ECR スキャン</text>
+  <rect x="270" y="366" width="140" height="36" rx="6" fill="white" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="340" y="389" text-anchor="middle" font-size="11" fill="#166534">イメージ署名</text>
+  <rect x="420" y="366" width="140" height="36" rx="6" fill="white" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="490" y="389" text-anchor="middle" font-size="11" fill="#166534">Admission Control</text>
+  <rect x="570" y="366" width="140" height="36" rx="6" fill="white" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="640" y="389" text-anchor="middle" font-size="11" fill="#166534">SBOM 管理</text>
+  <rect x="720" y="366" width="200" height="36" rx="6" fill="#16a34a"/>
+  <text x="820" y="389" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Distroless / Scratch</text>
+
+  <!-- Bottom monitoring bar -->
+  <rect x="20" y="430" width="920" height="96" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="46" y="454" font-size="13" font-weight="bold" fill="#92400e">⑤ 監視・監査層（横断）</text>
+  <rect x="120" y="462" width="130" height="50" rx="6" fill="white" stroke="#d97706" stroke-width="1.5"/>
+  <text x="185" y="484" text-anchor="middle" font-size="11" fill="#92400e">GuardDuty EKS</text>
+  <text x="185" y="500" text-anchor="middle" font-size="10" fill="#92400e">Protection</text>
+  <rect x="260" y="462" width="130" height="50" rx="6" fill="white" stroke="#d97706" stroke-width="1.5"/>
+  <text x="325" y="484" text-anchor="middle" font-size="11" fill="#92400e">CloudTrail</text>
+  <text x="325" y="500" text-anchor="middle" font-size="10" fill="#92400e">Audit Logs</text>
+  <rect x="400" y="462" width="130" height="50" rx="6" fill="white" stroke="#d97706" stroke-width="1.5"/>
+  <text x="465" y="484" text-anchor="middle" font-size="11" fill="#92400e">Security Hub</text>
+  <text x="465" y="500" text-anchor="middle" font-size="10" fill="#92400e">統合ダッシュボード</text>
+  <rect x="540" y="462" width="130" height="50" rx="6" fill="white" stroke="#d97706" stroke-width="1.5"/>
+  <text x="605" y="484" text-anchor="middle" font-size="11" fill="#92400e">Falco</text>
+  <text x="605" y="500" text-anchor="middle" font-size="10" fill="#92400e">ランタイム検知</text>
+  <rect x="680" y="462" width="130" height="50" rx="6" fill="white" stroke="#d97706" stroke-width="1.5"/>
+  <text x="745" y="484" text-anchor="middle" font-size="11" fill="#92400e">Amazon Detective</text>
+  <text x="745" y="500" text-anchor="middle" font-size="10" fill="#92400e">調査・分析</text>
+  <rect x="820" y="462" width="100" height="50" rx="6" fill="#d97706"/>
+  <text x="870" y="484" text-anchor="middle" font-size="11" font-weight="bold" fill="white">kube-bench</text>
+  <text x="870" y="500" text-anchor="middle" font-size="10" fill="#fef3c7">CIS Check</text>
+</svg>

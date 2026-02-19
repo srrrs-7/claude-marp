@@ -1,0 +1,33 @@
+topic: "LLMアプリ設計パターン完全ガイド — RAG・Fine-tuning・Agents・評価フレームワーク"
+language: "ja"
+
+output:
+  dir: "docs/20260219170000_llm-app-design-patterns"
+  baseName: "llm-app-design-patterns"
+
+theme: "gaia"
+
+style: |
+  section {
+    font-size: 1.1rem;
+  }
+  section h1 {
+    font-size: 1.8rem;
+  }
+  section h2 {
+    font-size: 1.5rem;
+  }
+  section pre code {
+    font-size: 0.58em;
+    line-height: 1.35;
+  }
+  section ul li {
+    margin-bottom: 0.25em;
+  }
+  section.center {
+    text-align: center;
+  }
+
+directives:
+  paginate: true
+  footer: "LLMアプリ設計パターン完全ガイド | アーキテクト・テックリード向け"

@@ -1,0 +1,16 @@
+topic: "スタートアップ技術選定ガイド — AWS vs GCP vs Azure + OSS選定"
+language: "ja"
+output:
+  dir: "docs/20260219024236_startup-tech-selection"
+  baseName: "startup-tech-selection"
+marp:
+  theme: gaia
+  size: "16:9"
+  paginate: true
+  header: "スタートアップ技術選定ガイド"
+  style: |
+    section { font-size: 22px; }
+    section pre code { font-size: 0.6em; line-height: 1.4; }
+    section.lead h1 { font-size: 2em; }
+    section img { max-height: 70vh; }
+    table { font-size: 0.8em; }

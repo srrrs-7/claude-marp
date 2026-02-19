@@ -1,0 +1,91 @@
+<svg viewBox="0 0 900 440" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="440" fill="#F0F4F8"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">Amazon Bedrock Guardrails アーキテクチャ</text>
+
+  <!-- Input -->
+  <rect x="20" y="175" width="100" height="60" rx="10" fill="#232F3E"/>
+  <text x="70" y="200" text-anchor="middle" font-size="12" font-weight="bold" fill="white">ユーザー</text>
+  <text x="70" y="218" text-anchor="middle" font-size="11" fill="#FFB74D">プロンプト入力</text>
+
+  <!-- Arrow -->
+  <line x1="120" y1="205" x2="160" y2="205" stroke="#666" stroke-width="2"/>
+  <polygon points="160,200 170,205 160,210" fill="#666"/>
+
+  <!-- Guardrails Box (Input) -->
+  <rect x="170" y="80" width="200" height="260" rx="12" fill="#7B1FA2" style="filter:drop-shadow(3px 3px 6px rgba(0,0,0,0.25))"/>
+  <text x="270" y="108" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Guardrails</text>
+  <text x="270" y="126" text-anchor="middle" font-size="11" fill="#E1BEE7">(入力フィルタ)</text>
+
+  <rect x="188" y="140" width="164" height="28" rx="6" fill="#6A1B9A"/>
+  <text x="270" y="159" text-anchor="middle" font-size="11" fill="white">コンテンツフィルタリング</text>
+
+  <rect x="188" y="175" width="164" height="28" rx="6" fill="#6A1B9A"/>
+  <text x="270" y="194" text-anchor="middle" font-size="11" fill="white">拒否トピック検出</text>
+
+  <rect x="188" y="210" width="164" height="28" rx="6" fill="#6A1B9A"/>
+  <text x="270" y="229" text-anchor="middle" font-size="11" fill="white">PII検出・マスキング</text>
+
+  <rect x="188" y="245" width="164" height="28" rx="6" fill="#6A1B9A"/>
+  <text x="270" y="264" text-anchor="middle" font-size="11" fill="white">プロンプトインジェクション</text>
+
+  <rect x="188" y="280" width="164" height="28" rx="6" fill="#6A1B9A"/>
+  <text x="270" y="299" text-anchor="middle" font-size="11" fill="white">グラウンディングチェック</text>
+
+  <!-- Arrow to LLM -->
+  <line x1="370" y1="205" x2="410" y2="205" stroke="#FF9900" stroke-width="2"/>
+  <polygon points="410,200 420,205 410,210" fill="#FF9900"/>
+  <text x="390" y="195" text-anchor="middle" font-size="10" fill="#1A9C3E">通過</text>
+
+  <!-- Block path -->
+  <line x1="270" y1="340" x2="270" y2="380" stroke="#E53935" stroke-width="2"/>
+  <polygon points="265,380 270,390 275,380" fill="#E53935"/>
+  <rect x="170" y="390" width="200" height="38" rx="8" fill="#E53935"/>
+  <text x="270" y="413" text-anchor="middle" font-size="12" font-weight="bold" fill="white">ブロック / 代替メッセージ</text>
+
+  <!-- LLM -->
+  <rect x="420" y="155" width="160" height="100" rx="12" fill="#FF9900" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="500" y="182" text-anchor="middle" font-size="13" font-weight="bold" fill="white">FM / LLM</text>
+  <text x="500" y="200" text-anchor="middle" font-size="11" fill="#FFF3E0">Claude / Titan</text>
+  <text x="500" y="218" text-anchor="middle" font-size="11" fill="#FFF3E0">推論・回答生成</text>
+  <text x="500" y="236" text-anchor="middle" font-size="11" fill="#FFF3E0">Knowledge Base参照</text>
+
+  <!-- Arrow to output guardrails -->
+  <line x1="580" y1="205" x2="620" y2="205" stroke="#666" stroke-width="2"/>
+  <polygon points="620,200 630,205 620,210" fill="#666"/>
+
+  <!-- Guardrails Box (Output) -->
+  <rect x="630" y="80" width="200" height="260" rx="12" fill="#7B1FA2" style="filter:drop-shadow(3px 3px 6px rgba(0,0,0,0.25))"/>
+  <text x="730" y="108" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Guardrails</text>
+  <text x="730" y="126" text-anchor="middle" font-size="11" fill="#E1BEE7">(出力フィルタ)</text>
+
+  <rect x="648" y="140" width="164" height="28" rx="6" fill="#6A1B9A"/>
+  <text x="730" y="159" text-anchor="middle" font-size="11" fill="white">出力コンテンツチェック</text>
+
+  <rect x="648" y="175" width="164" height="28" rx="6" fill="#6A1B9A"/>
+  <text x="730" y="194" text-anchor="middle" font-size="11" fill="white">PII再確認・マスキング</text>
+
+  <rect x="648" y="210" width="164" height="28" rx="6" fill="#6A1B9A"/>
+  <text x="730" y="229" text-anchor="middle" font-size="11" fill="white">グラウンディング検証</text>
+
+  <rect x="648" y="245" width="164" height="28" rx="6" fill="#6A1B9A"/>
+  <text x="730" y="264" text-anchor="middle" font-size="11" fill="white">ウォーターマーク (将来)</text>
+
+  <rect x="648" y="280" width="164" height="28" rx="6" fill="#4A148C"/>
+  <text x="730" y="299" text-anchor="middle" font-size="11" fill="#E1BEE7">Trace機能でログ記録</text>
+
+  <!-- Arrow to user output -->
+  <line x1="830" y1="205" x2="865" y2="205" stroke="#1A9C3E" stroke-width="2"/>
+  <polygon points="865,200 875,205 865,210" fill="#1A9C3E"/>
+  <rect x="825" y="175" width="70" height="60" rx="10" fill="#232F3E"/>
+  <text x="860" y="200" text-anchor="middle" font-size="10" font-weight="bold" fill="white">安全な</text>
+  <text x="860" y="215" text-anchor="middle" font-size="10" font-weight="bold" fill="white">回答</text>
+
+  <!-- Block output path -->
+  <line x1="730" y1="340" x2="730" y2="380" stroke="#E53935" stroke-width="2"/>
+  <polygon points="725,380 730,390 735,380" fill="#E53935"/>
+  <rect x="630" y="390" width="200" height="38" rx="8" fill="#E53935"/>
+  <text x="730" y="413" text-anchor="middle" font-size="12" font-weight="bold" fill="white">ブロック / 代替メッセージ</text>
+
+  <!-- Note -->
+  <text x="450" y="52" text-anchor="middle" font-size="11" fill="#666">試験ポイント: GuardrailsはBedrockの全API (InvokeModel, Converse, Agents) で利用可能</text>
+</svg>

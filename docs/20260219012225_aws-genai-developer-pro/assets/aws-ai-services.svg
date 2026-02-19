@@ -1,0 +1,48 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect x="0" y="0" width="900" height="400" fill="#f0f4ff" rx="12"/>
+  <text x="450" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">AWS AI/ML サービス全体像</text>
+
+  <!-- Layer 1: AI Services (top) -->
+  <rect x="20" y="50" width="860" height="90" fill="#E3F2FD" rx="10" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.1))"/>
+  <text x="40" y="74" font-size="13" font-weight="bold" fill="#1565C0">AI サービス（APIコール型 — 事前学習済みモデル）</text>
+  <text x="75" y="98" font-size="11" fill="#555">Rekognition</text>
+  <text x="75" y="114" font-size="10" fill="#888">画像・動画分析</text>
+  <text x="185" y="98" font-size="11" fill="#555">Comprehend</text>
+  <text x="185" y="114" font-size="10" fill="#888">NLP・感情分析</text>
+  <text x="305" y="98" font-size="11" fill="#555">Transcribe</text>
+  <text x="305" y="114" font-size="10" fill="#888">音声→テキスト</text>
+  <text x="415" y="98" font-size="11" fill="#555">Polly</text>
+  <text x="415" y="114" font-size="10" fill="#888">テキスト→音声</text>
+  <text x="505" y="98" font-size="11" fill="#555">Translate</text>
+  <text x="505" y="114" font-size="10" fill="#888">機械翻訳</text>
+  <text x="605" y="98" font-size="11" fill="#555">Textract</text>
+  <text x="605" y="114" font-size="10" fill="#888">文書OCR</text>
+  <text x="700" y="98" font-size="11" fill="#555">Forecast</text>
+  <text x="700" y="114" font-size="10" fill="#888">時系列予測</text>
+  <text x="795" y="98" font-size="11" fill="#555">Kendra</text>
+  <text x="795" y="114" font-size="10" fill="#888">インテリジェント検索</text>
+
+  <!-- Layer 2: GenAI Services -->
+  <rect x="20" y="155" width="860" height="80" fill="#1565C0" rx="10" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.12))"/>
+  <text x="40" y="179" font-size="13" font-weight="bold" fill="white">生成 AI サービス（Foundation Models へのアクセス）</text>
+  <rect x="40" y="190" width="300" height="35" fill="#0D47A1" rx="8"/>
+  <text x="190" y="212" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Amazon Bedrock</text>
+  <text x="395" y="198" font-size="11" fill="#90CAF9">Claude, Titan, Llama, Stability AI ...</text>
+  <text x="395" y="216" font-size="11" fill="#90CAF9">KB, Agents, Guardrails, Fine-tuning</text>
+  <rect x="640" y="190" width="220" height="35" fill="#0D47A1" rx="8"/>
+  <text x="750" y="212" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Amazon Q</text>
+
+  <!-- Layer 3: ML Platform -->
+  <rect x="20" y="248" width="860" height="75" fill="#E8F5E9" rx="10" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.1))"/>
+  <text x="40" y="272" font-size="13" font-weight="bold" fill="#2E7D32">ML プラットフォーム（フルサイクル ML 開発）</text>
+  <text x="75" y="300" font-size="12" fill="#555">Amazon SageMaker — Studio / Training / Endpoints / Pipelines / Clarify / Feature Store / Autopilot / Model Registry</text>
+
+  <!-- Layer 4: Infrastructure -->
+  <rect x="20" y="336" width="860" height="50" fill="#FFF3E0" rx="10"/>
+  <text x="40" y="358" font-size="13" font-weight="bold" fill="#E65100">AI インフラ（専用チップ）</text>
+  <text x="270" y="358" font-size="12" fill="#666">AWS Inferentia（推論高速化）</text>
+  <text x="530" y="358" font-size="12" fill="#666">AWS Trainium（学習コスト最適化）</text>
+  <text x="760" y="358" font-size="12" fill="#666">P4d / G5 GPU</text>
+  <text x="270" y="374" font-size="10" fill="#999">低コスト推論チップ</text>
+  <text x="530" y="374" font-size="10" fill="#999">大規模 FM 学習向け</text>
+</svg>

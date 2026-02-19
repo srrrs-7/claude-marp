@@ -1,0 +1,77 @@
+<svg viewBox="0 0 900 420" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="420" fill="#F0F4F8"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">スタートアップ ステージ別 技術ロードマップ</text>
+
+  <!-- Timeline -->
+  <line x1="50" y1="80" x2="870" y2="80" stroke="#CCC" stroke-width="2"/>
+
+  <!-- Stage markers -->
+  <!-- Pre-seed -->
+  <circle cx="100" cy="80" r="14" fill="#888"/>
+  <text x="100" y="60" text-anchor="middle" font-size="11" font-weight="bold" fill="#555">Pre-seed</text>
+  <text x="100" y="55" text-anchor="middle" font-size="9" fill="#888">〜$200K</text>
+
+  <!-- Seed -->
+  <circle cx="280" cy="80" r="16" fill="#FF9900"/>
+  <text x="280" y="60" text-anchor="middle" font-size="11" font-weight="bold" fill="#E67700">Seed</text>
+  <text x="280" y="55" text-anchor="middle" font-size="9" fill="#888">〜$2M</text>
+
+  <!-- Series A -->
+  <circle cx="520" cy="80" r="18" fill="#1A9C3E"/>
+  <text x="520" y="58" text-anchor="middle" font-size="11" font-weight="bold" fill="#157A30">Series A</text>
+  <text x="520" y="53" text-anchor="middle" font-size="9" fill="#888">〜$15M</text>
+
+  <!-- Series B -->
+  <circle cx="760" cy="80" r="20" fill="#1A73E8"/>
+  <text x="760" y="56" text-anchor="middle" font-size="11" font-weight="bold" fill="#1565C0">Series B</text>
+  <text x="760" y="51" text-anchor="middle" font-size="9" fill="#888">〜$50M+</text>
+
+  <!-- Pre-seed content -->
+  <rect x="20" y="105" width="160" height="270" rx="10" fill="#888" opacity="0.85"/>
+  <text x="100" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="white">検証フェーズ</text>
+  <text x="30" y="152" font-size="10" fill="white">・Webflow/Bubble</text>
+  <text x="30" y="170" font-size="10" fill="white">・ノーコード MVP</text>
+  <text x="30" y="188" font-size="10" fill="white">・Google Analytics</text>
+  <text x="30" y="206" font-size="10" fill="white">・Notion / Airtable</text>
+  <text x="30" y="228" font-size="10" fill="white">技術負債OK</text>
+  <text x="30" y="246" font-size="10" fill="white">速度最優先</text>
+  <text x="100" y="330" text-anchor="middle" font-size="10" fill="#EEE">コード書かなくていい</text>
+
+  <!-- Seed content -->
+  <rect x="200" y="105" width="220" height="270" rx="10" fill="#FF9900" style="filter:drop-shadow(1px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="310" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="white">構築フェーズ</text>
+  <text x="215" y="152" font-size="10" fill="white">・Next.js + Vercel</text>
+  <text x="215" y="170" font-size="10" fill="white">・Supabase（All-in-one）</text>
+  <text x="215" y="188" font-size="10" fill="white">・AWS ECS Fargate</text>
+  <text x="215" y="206" font-size="10" fill="white">・GitHub Actions CI/CD</text>
+  <text x="215" y="224" font-size="10" fill="white">・Stripe 決済</text>
+  <text x="215" y="242" font-size="10" fill="white">・Sentry エラー監視</text>
+  <text x="310" y="280" text-anchor="middle" font-size="10" font-weight="bold" fill="white">クラウド: AWS Activate</text>
+  <text x="310" y="298" text-anchor="middle" font-size="10" fill="#FFF3E0">最大$100K クレジット</text>
+  <text x="310" y="340" text-anchor="middle" font-size="10" fill="#FFF3E0">エンジニア: 2-5名</text>
+
+  <!-- Series A content -->
+  <rect x="440" y="105" width="240" height="270" rx="10" fill="#1A9C3E" style="filter:drop-shadow(1px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="560" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="white">スケールフェーズ</text>
+  <text x="455" y="152" font-size="10" fill="white">・EKS / k8s 移行検討</text>
+  <text x="455" y="170" font-size="10" fill="white">・Aurora Multi-AZ</text>
+  <text x="455" y="188" font-size="10" fill="white">・ElastiCache Redis</text>
+  <text x="455" y="206" font-size="10" fill="white">・Terraform IaC</text>
+  <text x="455" y="224" font-size="10" fill="white">・Datadog 可観測性</text>
+  <text x="455" y="242" font-size="10" fill="white">・マイクロサービス分離</text>
+  <text x="560" y="280" text-anchor="middle" font-size="10" font-weight="bold" fill="white">SLA 99.9%〜保証</text>
+  <text x="560" y="298" text-anchor="middle" font-size="10" fill="#C8E6C9">セキュリティ強化</text>
+  <text x="560" y="340" text-anchor="middle" font-size="10" fill="#C8E6C9">エンジニア: 10-30名</text>
+
+  <!-- Series B content -->
+  <rect x="700" y="105" width="180" height="270" rx="10" fill="#1A73E8" style="filter:drop-shadow(1px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="790" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="white">成長フェーズ</text>
+  <text x="712" y="152" font-size="10" fill="white">・マルチリージョン</text>
+  <text x="712" y="170" font-size="10" fill="white">・FinOps組織化</text>
+  <text x="712" y="188" font-size="10" fill="white">・Platform Eng</text>
+  <text x="712" y="206" font-size="10" fill="white">・SOC2/ISO取得</text>
+  <text x="712" y="224" font-size="10" fill="white">・DR 設計</text>
+  <text x="712" y="242" font-size="10" fill="white">・Data Platform</text>
+  <text x="790" y="280" text-anchor="middle" font-size="10" font-weight="bold" fill="white">SLA 99.99%</text>
+  <text x="790" y="340" text-anchor="middle" font-size="10" fill="#BBDEFB">エンジニア: 50名+</text>
+</svg>

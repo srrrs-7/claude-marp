@@ -1,0 +1,84 @@
+<svg viewBox="0 0 960 520" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="520" fill="#f8fafc" rx="12"/>
+  <text x="480" y="36" text-anchor="middle" font-size="20" font-weight="bold" fill="#1e293b">責任あるAI 関連 AWS サービス全体マップ</text>
+  <!-- Column headers -->
+  <!-- Column 1: Fairness -->
+  <rect x="20" y="60" width="175" height="440" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <rect x="20" y="60" width="175" height="45" rx="10" fill="#16a34a"/>
+  <text x="107" y="88" text-anchor="middle" font-size="14" font-weight="bold" fill="white">公平性</text>
+  <!-- Column 2: Explainability -->
+  <rect x="205" y="60" width="175" height="440" rx="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="205" y="60" width="175" height="45" rx="10" fill="#3b82f6"/>
+  <text x="292" y="88" text-anchor="middle" font-size="14" font-weight="bold" fill="white">説明可能性</text>
+  <!-- Column 3: Privacy -->
+  <rect x="390" y="60" width="175" height="440" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <rect x="390" y="60" width="175" height="45" rx="10" fill="#7c3aed"/>
+  <text x="477" y="88" text-anchor="middle" font-size="14" font-weight="bold" fill="white">プライバシー</text>
+  <!-- Column 4: Safety -->
+  <rect x="575" y="60" width="175" height="440" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <rect x="575" y="60" width="175" height="45" rx="10" fill="#dc2626"/>
+  <text x="662" y="88" text-anchor="middle" font-size="14" font-weight="bold" fill="white">安全性</text>
+  <!-- Column 5: Governance -->
+  <rect x="760" y="60" width="180" height="440" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <rect x="760" y="60" width="180" height="45" rx="10" fill="#d97706"/>
+  <text x="850" y="88" text-anchor="middle" font-size="14" font-weight="bold" fill="white">ガバナンス</text>
+  <!-- Services in each column -->
+  <!-- Fairness services -->
+  <rect x="32" y="118" width="150" height="58" rx="8" fill="white" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="107" y="141" text-anchor="middle" font-size="12" font-weight="bold" fill="#166534">SageMaker</text>
+  <text x="107" y="159" text-anchor="middle" font-size="11" fill="#166534">Clarify</text>
+  <text x="107" y="169" text-anchor="middle" font-size="9" fill="#14532d">バイアス指標計算</text>
+  <rect x="32" y="186" width="150" height="52" rx="8" fill="white" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="107" y="209" text-anchor="middle" font-size="12" font-weight="bold" fill="#166534">Fairlearn</text>
+  <text x="107" y="228" text-anchor="middle" font-size="10" fill="#166534">バイアス軽減ライブラリ</text>
+  <rect x="32" y="248" width="150" height="52" rx="8" fill="white" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="107" y="271" text-anchor="middle" font-size="12" font-weight="bold" fill="#166534">SageMaker</text>
+  <text x="107" y="289" text-anchor="middle" font-size="11" fill="#166534">Ground Truth</text>
+  <!-- Explainability services -->
+  <rect x="217" y="118" width="150" height="58" rx="8" fill="white" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="292" y="141" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">SageMaker</text>
+  <text x="292" y="159" text-anchor="middle" font-size="11" fill="#1e40af">Clarify</text>
+  <text x="292" y="169" text-anchor="middle" font-size="9" fill="#1d4ed8">SHAP値・特徴量重要度</text>
+  <rect x="217" y="186" width="150" height="52" rx="8" fill="white" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="292" y="209" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">SageMaker</text>
+  <text x="292" y="228" text-anchor="middle" font-size="11" fill="#1e40af">Model Cards</text>
+  <rect x="217" y="248" width="150" height="52" rx="8" fill="white" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="292" y="271" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">AWS AI</text>
+  <text x="292" y="289" text-anchor="middle" font-size="11" fill="#1e40af">Service Cards</text>
+  <!-- Privacy services -->
+  <rect x="402" y="118" width="150" height="58" rx="8" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="477" y="141" text-anchor="middle" font-size="12" font-weight="bold" fill="#5b21b6">Amazon</text>
+  <text x="477" y="159" text-anchor="middle" font-size="11" fill="#5b21b6">Macie</text>
+  <text x="477" y="169" text-anchor="middle" font-size="9" fill="#4c1d95">S3 PII自動検出</text>
+  <rect x="402" y="186" width="150" height="52" rx="8" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="477" y="209" text-anchor="middle" font-size="12" font-weight="bold" fill="#5b21b6">Amazon</text>
+  <text x="477" y="228" text-anchor="middle" font-size="11" fill="#5b21b6">Comprehend</text>
+  <rect x="402" y="248" width="150" height="52" rx="8" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="477" y="271" text-anchor="middle" font-size="12" font-weight="bold" fill="#5b21b6">AWS KMS</text>
+  <text x="477" y="289" text-anchor="middle" font-size="11" fill="#5b21b6">暗号化鍵管理</text>
+  <!-- Safety services -->
+  <rect x="587" y="118" width="150" height="58" rx="8" fill="white" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="662" y="141" text-anchor="middle" font-size="12" font-weight="bold" fill="#991b1b">Bedrock</text>
+  <text x="662" y="159" text-anchor="middle" font-size="11" fill="#991b1b">Guardrails</text>
+  <text x="662" y="169" text-anchor="middle" font-size="9" fill="#7f1d1d">コンテンツフィルター</text>
+  <rect x="587" y="186" width="150" height="52" rx="8" fill="white" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="662" y="209" text-anchor="middle" font-size="12" font-weight="bold" fill="#991b1b">Amazon</text>
+  <text x="662" y="228" text-anchor="middle" font-size="11" fill="#991b1b">Rekognition</text>
+  <rect x="587" y="248" width="150" height="52" rx="8" fill="white" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="662" y="271" text-anchor="middle" font-size="12" font-weight="bold" fill="#991b1b">Amazon A2I</text>
+  <text x="662" y="289" text-anchor="middle" font-size="11" fill="#991b1b">人間レビュー</text>
+  <!-- Governance services -->
+  <rect x="772" y="118" width="155" height="58" rx="8" fill="white" stroke="#d97706" stroke-width="1.5"/>
+  <text x="849" y="141" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">AWS CloudTrail</text>
+  <text x="849" y="159" text-anchor="middle" font-size="11" fill="#92400e">操作監査ログ</text>
+  <text x="849" y="169" text-anchor="middle" font-size="9" fill="#78350f">全APIコール記録</text>
+  <rect x="772" y="186" width="155" height="52" rx="8" fill="white" stroke="#d97706" stroke-width="1.5"/>
+  <text x="849" y="209" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">AWS Config</text>
+  <text x="849" y="228" text-anchor="middle" font-size="11" fill="#92400e">コンプライアンス評価</text>
+  <rect x="772" y="248" width="155" height="52" rx="8" fill="white" stroke="#d97706" stroke-width="1.5"/>
+  <text x="849" y="271" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">AWS Audit</text>
+  <text x="849" y="289" text-anchor="middle" font-size="11" fill="#92400e">Manager</text>
+  <!-- Cross-cutting: Security Hub -->
+  <rect x="20" y="460" width="920" height="30" rx="8" fill="#1e293b"/>
+  <text x="480" y="481" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">横断: AWS Security Hub — セキュリティ状態の一元管理・コンプライアンスダッシュボード</text>
+</svg>

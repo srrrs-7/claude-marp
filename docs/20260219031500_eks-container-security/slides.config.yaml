@@ -1,0 +1,31 @@
+topic: "EKS / コンテナセキュリティ完全ガイド — RBAC・イメージスキャン・Fargate"
+language: "ja"
+
+output:
+  dir: "docs/20260219031500_eks-container-security"
+  baseName: "eks-container-security"
+
+theme: default
+
+style: |
+  section {
+    font-size: 22px;
+  }
+  section pre code {
+    font-size: 0.6em;
+    line-height: 1.4;
+  }
+  h1 {
+    font-size: 1.8em;
+    color: #1e293b;
+  }
+  h2 {
+    font-size: 1.3em;
+    color: #1e40af;
+  }
+  strong {
+    color: #1e40af;
+  }
+  table {
+    font-size: 0.85em;
+  }

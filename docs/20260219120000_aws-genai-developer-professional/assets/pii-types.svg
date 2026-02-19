@@ -1,0 +1,59 @@
+<svg viewBox="0 0 900 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="380" fill="#F8F9FA"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">Guardrails — PII 検出と処理オプション</text>
+
+  <!-- PII Types Grid -->
+  <!-- Personal Identity -->
+  <rect x="20" y="50" width="260" height="160" rx="12" fill="#1A73E8" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="150" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="white">個人識別情報</text>
+  <text x="40" y="98" font-size="11" fill="white">・氏名 (NAME)</text>
+  <text x="40" y="116" font-size="11" fill="white">・メールアドレス (EMAIL)</text>
+  <text x="40" y="134" font-size="11" fill="white">・電話番号 (PHONE)</text>
+  <text x="40" y="152" font-size="11" fill="white">・住所 (ADDRESS)</text>
+  <text x="40" y="170" font-size="11" fill="white">・誕生日 (DATE_TIME)</text>
+  <text x="40" y="188" font-size="11" fill="white">・年齢 (AGE)</text>
+
+  <!-- Financial -->
+  <rect x="300" y="50" width="260" height="160" rx="12" fill="#1A9C3E" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="430" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="white">金融情報</text>
+  <text x="320" y="98" font-size="11" fill="white">・クレジットカード番号</text>
+  <text x="320" y="116" font-size="11" fill="white">・銀行口座番号</text>
+  <text x="320" y="134" font-size="11" fill="white">・国際銀行番号 (IBAN)</text>
+  <text x="320" y="152" font-size="11" fill="white">・暗証番号 (PIN)</text>
+  <text x="320" y="170" font-size="11" fill="white">・ABA ルーティング番号</text>
+  <text x="320" y="188" font-size="11" fill="white">・Swift コード</text>
+
+  <!-- Government/Health -->
+  <rect x="580" y="50" width="300" height="160" rx="12" fill="#7B1FA2" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="730" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="white">政府・医療情報</text>
+  <text x="600" y="98" font-size="11" fill="white">・社会保障番号 (SSN)</text>
+  <text x="600" y="116" font-size="11" fill="white">・運転免許番号</text>
+  <text x="600" y="134" font-size="11" fill="white">・パスポート番号</text>
+  <text x="600" y="152" font-size="11" fill="white">・健康保険番号</text>
+  <text x="600" y="170" font-size="11" fill="white">・IPアドレス (IP_ADDRESS)</text>
+  <text x="600" y="188" font-size="11" fill="white">・URL・MACアドレス</text>
+
+  <!-- Processing Options -->
+  <text x="450" y="240" text-anchor="middle" font-size="15" font-weight="bold" fill="#232F3E">PII 処理オプション</text>
+
+  <rect x="20" y="255" width="260" height="100" rx="10" fill="#FF9900" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="150" y="278" text-anchor="middle" font-size="13" font-weight="bold" fill="white">ANONYMIZE</text>
+  <text x="150" y="298" text-anchor="middle" font-size="11" fill="#FFF3E0">PII を [NAME] [EMAIL] 等の</text>
+  <text x="150" y="315" text-anchor="middle" font-size="11" fill="#FFF3E0">プレースホルダーに置換</text>
+  <text x="150" y="333" text-anchor="middle" font-size="11" fill="#FFF3E0">元データは保持しない</text>
+  <text x="150" y="348" text-anchor="middle" font-size="10" fill="white">出力: "こんにちは、[NAME]さん"</text>
+
+  <rect x="320" y="255" width="260" height="100" rx="10" fill="#E53935" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="450" y="278" text-anchor="middle" font-size="13" font-weight="bold" fill="white">BLOCK</text>
+  <text x="450" y="298" text-anchor="middle" font-size="11" fill="#FFCDD2">PII が検出された場合に</text>
+  <text x="450" y="315" text-anchor="middle" font-size="11" fill="#FFCDD2">リクエスト全体をブロック</text>
+  <text x="450" y="333" text-anchor="middle" font-size="11" fill="#FFCDD2">エラーメッセージを返す</text>
+  <text x="450" y="348" text-anchor="middle" font-size="10" fill="white">出力: ブロックメッセージ</text>
+
+  <rect x="620" y="255" width="260" height="100" rx="10" fill="#1A73E8" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="750" y="278" text-anchor="middle" font-size="13" font-weight="bold" fill="white">NONE (検出のみ)</text>
+  <text x="750" y="298" text-anchor="middle" font-size="11" fill="#BBDEFB">PII を検出してログに記録</text>
+  <text x="750" y="315" text-anchor="middle" font-size="11" fill="#BBDEFB">ブロックはしない</text>
+  <text x="750" y="333" text-anchor="middle" font-size="11" fill="#BBDEFB">監査・モニタリング用途</text>
+  <text x="750" y="348" text-anchor="middle" font-size="10" fill="white">Traceモードと組み合わせ</text>
+</svg>

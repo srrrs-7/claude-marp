@@ -1,0 +1,20 @@
+topic: "AWS Certified Generative AI Developer - Professional 試験対策"
+output:
+  dir: "docs/20260219012225_aws-genai-developer-pro"
+  baseName: "aws-genai-developer-pro"
+theme: gaia
+language: ja
+style: |
+  section {
+    font-size: 0.88em;
+  }
+  section pre code {
+    font-size: 0.6em;
+    line-height: 1.4;
+  }
+  section.lead h1 {
+    font-size: 1.6em;
+  }
+  h2 {
+    color: #1565C0;
+  }

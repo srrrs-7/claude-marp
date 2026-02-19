@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:Arial,sans-serif;">
+
+  <!-- Dark header bar -->
+  <rect x="0" y="0" width="900" height="72" rx="8" ry="8" fill="#232F3E"/>
+  <text x="450" y="44" text-anchor="middle" fill="#FF9800" font-size="26" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">DevSecOpsとは — 3本柱</text>
+
+  <!-- Center DevSecOps circle -->
+  <circle cx="450" cy="210" r="68" fill="#232F3E" style="filter:drop-shadow(0 4px 8px rgba(0,0,0,0.35))"/>
+  <text x="450" y="202" text-anchor="middle" fill="#FF9800" font-size="18" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">Dev</text>
+  <text x="450" y="222" text-anchor="middle" fill="#E53935" font-size="18" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">Sec</text>
+  <text x="450" y="242" text-anchor="middle" fill="#4CAF50" font-size="18" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">Ops</text>
+
+  <!-- Connector lines from center to pillars (drawn before pillars) -->
+  <!-- Left: People -->
+  <line x1="385" y1="192" x2="245" y2="192" stroke="#4CAF50" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <!-- Right: Technology -->
+  <line x1="515" y1="192" x2="655" y2="192" stroke="#FF9800" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <!-- Bottom: Process -->
+  <line x1="450" y1="278" x2="450" y2="340" stroke="#2196F3" stroke-width="2.5" stroke-dasharray="6,3"/>
+
+  <!-- Arrow heads (explicit polygons) -->
+  <!-- Left arrow head pointing to People pillar -->
+  <polygon points="248,192 260,186 260,198" fill="#4CAF50"/>
+  <!-- Right arrow head pointing to Technology pillar -->
+  <polygon points="652,192 640,186 640,198" fill="#FF9800"/>
+  <!-- Down arrow head pointing to Process pillar -->
+  <polygon points="450,337 444,325 456,325" fill="#2196F3"/>
+
+  <!-- People pillar (left) -->
+  <rect x="30" y="140" width="210" height="240" rx="12" ry="12" fill="#4CAF50" style="filter:drop-shadow(2px 3px 6px rgba(0,0,0,0.2))"/>
+  <rect x="30" y="140" width="210" height="52" rx="12" ry="12" fill="#388E3C"/>
+  <rect x="30" y="168" width="210" height="24" fill="#388E3C"/>
+  <text x="135" y="172" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">People</text>
+  <text x="135" y="190" text-anchor="middle" fill="#E8F5E9" font-size="13" font-family="Arial,sans-serif" letter-spacing="0">人材・文化</text>
+  <!-- Bullets -->
+  <circle cx="52" cy="218" r="5" fill="#fff"/>
+  <text x="63" y="222" fill="#fff" font-size="14" font-family="Arial,sans-serif" letter-spacing="0">セキュリティ文化醸成</text>
+  <circle cx="52" cy="248" r="5" fill="#fff"/>
+  <text x="63" y="252" fill="#fff" font-size="14" font-family="Arial,sans-serif" letter-spacing="0">チャンピオン制度</text>
+  <circle cx="52" cy="278" r="5" fill="#fff"/>
+  <text x="63" y="282" fill="#fff" font-size="14" font-family="Arial,sans-serif" letter-spacing="0">教育・トレーニング</text>
+  <circle cx="52" cy="308" r="5" fill="#fff"/>
+  <text x="63" y="312" fill="#fff" font-size="14" font-family="Arial,sans-serif" letter-spacing="0">責任の共有</text>
+  <circle cx="52" cy="338" r="5" fill="#fff"/>
+  <text x="63" y="342" fill="#fff" font-size="14" font-family="Arial,sans-serif" letter-spacing="0">心理的安全性</text>
+
+  <!-- Technology pillar (right) -->
+  <rect x="660" y="140" width="210" height="240" rx="12" ry="12" fill="#FF9800" style="filter:drop-shadow(2px 3px 6px rgba(0,0,0,0.2))"/>
+  <rect x="660" y="140" width="210" height="52" rx="12" ry="12" fill="#E65100"/>
+  <rect x="660" y="168" width="210" height="24" fill="#E65100"/>
+  <text x="765" y="172" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">Technology</text>
+  <text x="765" y="190" text-anchor="middle" fill="#FFF3E0" font-size="13" font-family="Arial,sans-serif" letter-spacing="0">ツール・自動化</text>
+  <!-- Bullets -->
+  <circle cx="682" cy="218" r="5" fill="#fff"/>
+  <text x="693" y="222" fill="#fff" font-size="14" font-family="Arial,sans-serif" letter-spacing="0">ツール自動化</text>
+  <circle cx="682" cy="248" r="5" fill="#fff"/>
+  <text x="693" y="252" fill="#fff" font-size="14" font-family="Arial,sans-serif" letter-spacing="0">CSPM導入</text>
+  <circle cx="682" cy="278" r="5" fill="#fff"/>
+  <text x="693" y="282" fill="#fff" font-size="14" font-family="Arial,sans-serif" letter-spacing="0">SAST / DAST</text>
+  <circle cx="682" cy="308" r="5" fill="#fff"/>
+  <text x="693" y="312" fill="#fff" font-size="14" font-family="Arial,sans-serif" letter-spacing="0">SCA / SBOM</text>
+  <circle cx="682" cy="338" r="5" fill="#fff"/>
+  <text x="693" y="342" fill="#fff" font-size="14" font-family="Arial,sans-serif" letter-spacing="0">シークレット管理</text>
+
+  <!-- Process pillar (bottom center) -->
+  <rect x="280" y="345" width="340" height="155" rx="12" ry="12" fill="#2196F3" style="filter:drop-shadow(2px 3px 6px rgba(0,0,0,0.2))"/>
+  <rect x="280" y="345" width="340" height="52" rx="12" ry="12" fill="#0D47A1"/>
+  <rect x="280" y="373" width="340" height="24" fill="#0D47A1"/>
+  <text x="450" y="377" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold" font-family="Arial,sans-serif" letter-spacing="0">Process</text>
+  <text x="450" y="395" text-anchor="middle" fill="#E3F2FD" font-size="13" font-family="Arial,sans-serif" letter-spacing="0">プロセス・方法論</text>
+  <!-- Bullets in 2 columns -->
+  <circle cx="302" cy="420" r="5" fill="#fff"/>
+  <text x="313" y="424" fill="#fff" font-size="14" font-family="Arial,sans-serif" letter-spacing="0">シフトレフト</text>
+  <circle cx="302" cy="448" r="5" fill="#fff"/>
+  <text x="313" y="452" fill="#fff" font-size="14" font-family="Arial,sans-serif" letter-spacing="0">脅威モデリング</text>
+  <circle cx="302" cy="476" r="5" fill="#fff"/>
+  <text x="313" y="480" fill="#fff" font-size="14" font-family="Arial,sans-serif" letter-spacing="0">継続的コンプライアンス</text>
+  <circle cx="490" cy="420" r="5" fill="#fff"/>
+  <text x="501" y="424" fill="#fff" font-size="14" font-family="Arial,sans-serif" letter-spacing="0">GitOps</text>
+  <circle cx="490" cy="448" r="5" fill="#fff"/>
+  <text x="501" y="452" fill="#fff" font-size="14" font-family="Arial,sans-serif" letter-spacing="0">ポリシーas Code</text>
+  <circle cx="490" cy="476" r="5" fill="#fff"/>
+  <text x="501" y="480" fill="#fff" font-size="14" font-family="Arial,sans-serif" letter-spacing="0">インシデント対応</text>
+
+</svg>

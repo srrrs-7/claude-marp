@@ -1,0 +1,49 @@
+<svg viewBox="0 0 900 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="400" fill="#F8F9FA"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">技術選定フレームワーク — 5つの判断軸</text>
+
+  <!-- Center -->
+  <circle cx="450" cy="210" r="55" fill="#232F3E"/>
+  <text x="450" y="205" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">技術</text>
+  <text x="450" y="223" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">選定</text>
+
+  <!-- 5 axes -->
+  <!-- Top: 開発速度 -->
+  <line x1="450" y1="155" x2="450" y2="80" stroke="#FF9900" stroke-width="2.5"/>
+  <polygon points="445,80 450,68 455,80" fill="#FF9900"/>
+  <rect x="340" y="42" width="220" height="44" rx="10" fill="#FF9900" style="filter:drop-shadow(1px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="450" y="60" text-anchor="middle" font-size="13" font-weight="bold" fill="white">① 開発速度</text>
+  <text x="450" y="78" text-anchor="middle" font-size="11" fill="#FFF3E0">「どれだけ早く動くものを作れるか」</text>
+
+  <!-- Right: スケーラビリティ -->
+  <line x1="505" y1="180" x2="620" y2="130" stroke="#1A9C3E" stroke-width="2.5"/>
+  <polygon points="617,122 625,135 612,134" fill="#1A9C3E"/>
+  <rect x="630" y="105" width="240" height="44" rx="10" fill="#1A9C3E" style="filter:drop-shadow(1px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="750" y="123" text-anchor="middle" font-size="13" font-weight="bold" fill="white">② スケーラビリティ</text>
+  <text x="750" y="141" text-anchor="middle" font-size="11" fill="#C8E6C9">「10x成長に耐えられるか」</text>
+
+  <!-- Bottom-Right: コスト -->
+  <line x1="498" y1="248" x2="600" y2="300" stroke="#1A73E8" stroke-width="2.5"/>
+  <polygon points="596,308 605,296 595,295" fill="#1A73E8"/>
+  <rect x="605" y="292" width="200" height="44" rx="10" fill="#1A73E8" style="filter:drop-shadow(1px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="705" y="310" text-anchor="middle" font-size="13" font-weight="bold" fill="white">③ コスト</text>
+  <text x="705" y="328" text-anchor="middle" font-size="11" fill="#BBDEFB">「ランウェイに対して妥当か」</text>
+
+  <!-- Bottom-Left: 採用しやすさ -->
+  <line x1="402" y1="248" x2="300" y2="300" stroke="#7B1FA2" stroke-width="2.5"/>
+  <polygon points="294,295 304,296 295,308" fill="#7B1FA2"/>
+  <rect x="60" y="292" width="240" height="44" rx="10" fill="#7B1FA2" style="filter:drop-shadow(1px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="180" y="310" text-anchor="middle" font-size="13" font-weight="bold" fill="white">④ 採用しやすさ</text>
+  <text x="180" y="328" text-anchor="middle" font-size="11" fill="#E1BEE7">「エンジニアが集まる技術か」</text>
+
+  <!-- Left: ベンダーロックイン -->
+  <line x1="395" y1="180" x2="275" y2="130" stroke="#E53935" stroke-width="2.5"/>
+  <polygon points="272,122 280,135 268,134" fill="#E53935"/>
+  <rect x="20" y="105" width="255" height="44" rx="10" fill="#E53935" style="filter:drop-shadow(1px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="147" y="123" text-anchor="middle" font-size="13" font-weight="bold" fill="white">⑤ ベンダーロックイン</text>
+  <text x="147" y="141" text-anchor="middle" font-size="11" fill="#FFCDD2">「移行コストは許容できるか」</text>
+
+  <!-- Note bottom -->
+  <rect x="20" y="358" width="860" height="32" rx="8" fill="#232F3E"/>
+  <text x="450" y="379" text-anchor="middle" font-size="12" fill="#FF9900">Seed期は①②優先 / Series A以降は③④⑤も同様に重視 → トレードオフを明文化してチームで合意</text>
+</svg>

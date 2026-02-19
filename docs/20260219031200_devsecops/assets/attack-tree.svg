@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:Arial,sans-serif;">
+
+  <!-- Background -->
+  <rect width="960" height="580" fill="#F8F9FA" rx="8"/>
+
+  <!-- Title -->
+  <text x="480" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#B71C1C">攻撃ツリー — 認証バイパスの例</text>
+
+  <!-- ===== ROOT NODE ===== -->
+  <rect x="330" y="48" width="220" height="52" rx="10" fill="#C62828" stroke="#B71C1C" stroke-width="3" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.25))"/>
+  <text x="440" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="white">管理者アカウント奪取</text>
+  <text x="440" y="88" text-anchor="middle" font-size="10" fill="#FFCDD2">目標 (Goal)</text>
+
+  <!-- ===== LEVEL 1 — vertical trunk line ===== -->
+  <line x1="440" y1="100" x2="440" y2="140" stroke="#78909C" stroke-width="2"/>
+  <!-- Horizontal connector -->
+  <line x1="160" y1="140" x2="720" y2="140" stroke="#78909C" stroke-width="2"/>
+
+  <!-- Branch lines down to L1 nodes -->
+  <line x1="160" y1="140" x2="160" y2="168" stroke="#78909C" stroke-width="2"/>
+  <line x1="440" y1="140" x2="440" y2="168" stroke="#78909C" stroke-width="2"/>
+  <line x1="720" y1="140" x2="720" y2="168" stroke="#78909C" stroke-width="2"/>
+
+  <!-- ===== LEVEL 1 NODES (mid = orange) ===== -->
+
+  <!-- パスワード攻撃 -->
+  <rect x="80" y="168" width="160" height="48" rx="8" fill="#E65100" stroke="#BF360C" stroke-width="2" style="filter:drop-shadow(1px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="160" y="191" text-anchor="middle" font-size="12" font-weight="bold" fill="white">パスワード攻撃</text>
+  <text x="160" y="207" text-anchor="middle" font-size="10" fill="#FFE0B2">AND</text>
+
+  <!-- セッションハイジャック -->
+  <rect x="360" y="168" width="160" height="48" rx="8" fill="#E65100" stroke="#BF360C" stroke-width="2" style="filter:drop-shadow(1px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="440" y="188" text-anchor="middle" font-size="12" font-weight="bold" fill="white">セッション</text>
+  <text x="440" y="204" text-anchor="middle" font-size="12" font-weight="bold" fill="white">ハイジャック</text>
+
+  <!-- 権限昇格 -->
+  <rect x="640" y="168" width="160" height="48" rx="8" fill="#E65100" stroke="#BF360C" stroke-width="2" style="filter:drop-shadow(1px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="720" y="191" text-anchor="middle" font-size="12" font-weight="bold" fill="white">権限昇格</text>
+  <text x="720" y="207" text-anchor="middle" font-size="10" fill="#FFE0B2">OR</text>
+
+  <!-- ===== CONNECTORS L1 → L2 ===== -->
+
+  <!-- パスワード攻撃 branches -->
+  <line x1="160" y1="216" x2="160" y2="252" stroke="#78909C" stroke-width="2"/>
+  <line x1="100" y1="252" x2="225" y2="252" stroke="#78909C" stroke-width="2"/>
+  <line x1="100" y1="252" x2="100" y2="272" stroke="#78909C" stroke-width="2"/>
+  <line x1="225" y1="252" x2="225" y2="272" stroke="#78909C" stroke-width="2"/>
+
+  <!-- セッションハイジャック branches -->
+  <line x1="440" y1="216" x2="440" y2="252" stroke="#78909C" stroke-width="2"/>
+  <line x1="380" y1="252" x2="505" y2="252" stroke="#78909C" stroke-width="2"/>
+  <line x1="380" y1="252" x2="380" y2="272" stroke="#78909C" stroke-width="2"/>
+  <line x1="505" y1="252" x2="505" y2="272" stroke="#78909C" stroke-width="2"/>
+
+  <!-- 権限昇格 branches -->
+  <line x1="720" y1="216" x2="720" y2="252" stroke="#78909C" stroke-width="2"/>
+  <line x1="655" y1="252" x2="785" y2="252" stroke="#78909C" stroke-width="2"/>
+  <line x1="655" y1="252" x2="655" y2="272" stroke="#78909C" stroke-width="2"/>
+  <line x1="785" y1="252" x2="785" y2="272" stroke="#78909C" stroke-width="2"/>
+
+  <!-- ===== LEAF NODES (yellow) ===== -->
+
+  <!-- ブルートフォース -->
+  <rect x="42" y="272" width="118" height="44" rx="6" fill="#F9A825" stroke="#F57F17" stroke-width="2"/>
+  <text x="101" y="290" text-anchor="middle" font-size="11" font-weight="bold" fill="#4E342E">ブルート</text>
+  <text x="101" y="306" text-anchor="middle" font-size="11" font-weight="bold" fill="#4E342E">フォース</text>
+
+  <!-- クレデンシャルスタッフィング -->
+  <rect x="168" y="272" width="118" height="44" rx="6" fill="#F9A825" stroke="#F57F17" stroke-width="2"/>
+  <text x="227" y="288" text-anchor="middle" font-size="10" font-weight="bold" fill="#4E342E">クレデンシャル</text>
+  <text x="227" y="303" text-anchor="middle" font-size="10" font-weight="bold" fill="#4E342E">スタッフィング</text>
+
+  <!-- XSS経由でのCookie窃取 -->
+  <rect x="322" y="272" width="118" height="44" rx="6" fill="#F9A825" stroke="#F57F17" stroke-width="2"/>
+  <text x="381" y="288" text-anchor="middle" font-size="10" font-weight="bold" fill="#4E342E">XSS経由での</text>
+  <text x="381" y="304" text-anchor="middle" font-size="10" font-weight="bold" fill="#4E342E">Cookie窃取</text>
+
+  <!-- 中間者攻撃(MITM) -->
+  <rect x="447" y="272" width="118" height="44" rx="6" fill="#F9A825" stroke="#F57F17" stroke-width="2"/>
+  <text x="506" y="288" text-anchor="middle" font-size="10" font-weight="bold" fill="#4E342E">中間者攻撃</text>
+  <text x="506" y="304" text-anchor="middle" font-size="10" font-weight="bold" fill="#4E342E">(MITM)</text>
+
+  <!-- SQLインジェクション -->
+  <rect x="597" y="272" width="118" height="44" rx="6" fill="#F9A825" stroke="#F57F17" stroke-width="2"/>
+  <text x="656" y="288" text-anchor="middle" font-size="11" font-weight="bold" fill="#4E342E">SQLインジェク</text>
+  <text x="656" y="304" text-anchor="middle" font-size="11" font-weight="bold" fill="#4E342E">ション</text>
+
+  <!-- 脆弱なJWT検証 -->
+  <rect x="727" y="272" width="118" height="44" rx="6" fill="#F9A825" stroke="#F57F17" stroke-width="2"/>
+  <text x="786" y="288" text-anchor="middle" font-size="10" font-weight="bold" fill="#4E342E">脆弱なJWT</text>
+  <text x="786" y="304" text-anchor="middle" font-size="10" font-weight="bold" fill="#4E342E">検証</text>
+
+  <!-- ===== COUNTERMEASURES (green boxes on right) ===== -->
+  <rect x="0" y="358" width="960" height="210" rx="8" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="480" y="378" text-anchor="middle" font-size="13" font-weight="bold" fill="#1B5E20">対策 (Countermeasures)</text>
+
+  <!-- CM 1 -->
+  <rect x="20" y="390" width="200" height="65" rx="6" fill="#2E7D32" stroke="#1B5E20" stroke-width="2"/>
+  <text x="120" y="408" text-anchor="middle" font-size="11" font-weight="bold" fill="white">パスワード攻撃対策</text>
+  <text x="30" y="424" font-size="10" fill="#C8E6C9">• アカウントロックアウト</text>
+  <text x="30" y="438" font-size="10" fill="#C8E6C9">• 多要素認証 (MFA)</text>
+  <text x="30" y="452" font-size="10" fill="#C8E6C9">• レート制限 / CAPTCHA</text>
+
+  <!-- CM 2 -->
+  <rect x="240" y="390" width="200" height="65" rx="6" fill="#2E7D32" stroke="#1B5E20" stroke-width="2"/>
+  <text x="340" y="408" text-anchor="middle" font-size="11" font-weight="bold" fill="white">セッション保護対策</text>
+  <text x="250" y="424" font-size="10" fill="#C8E6C9">• CSPヘッダー / HttpOnly</text>
+  <text x="250" y="438" font-size="10" fill="#C8E6C9">• TLS 1.3強制 / HSTS</text>
+  <text x="250" y="452" font-size="10" fill="#C8E6C9">• セッションタイムアウト</text>
+
+  <!-- CM 3 -->
+  <rect x="460" y="390" width="200" height="65" rx="6" fill="#2E7D32" stroke="#1B5E20" stroke-width="2"/>
+  <text x="560" y="408" text-anchor="middle" font-size="11" font-weight="bold" fill="white">権限昇格対策</text>
+  <text x="470" y="424" font-size="10" fill="#C8E6C9">• WAF / 入力バリデーション</text>
+  <text x="470" y="438" font-size="10" fill="#C8E6C9">• JWT署名強化 (RS256)</text>
+  <text x="470" y="452" font-size="10" fill="#C8E6C9">• 最小権限の原則 (PoLP)</text>
+
+  <!-- CM 4: General -->
+  <rect x="680" y="390" width="260" height="65" rx="6" fill="#1565C0" stroke="#0D47A1" stroke-width="2"/>
+  <text x="810" y="408" text-anchor="middle" font-size="11" font-weight="bold" fill="white">共通対策</text>
+  <text x="690" y="424" font-size="10" fill="#BBDEFB">• ペネトレーションテスト定期実施</text>
+  <text x="690" y="438" font-size="10" fill="#BBDEFB">• 脅威モデリング (STRIDE)</text>
+  <text x="690" y="452" font-size="10" fill="#BBDEFB">• SIEM / ログ監視・アラート</text>
+
+  <!-- リスクレベル -->
+  <rect x="20" y="472" width="920" height="80" rx="6" fill="#FFF8E1" stroke="#FFE082" stroke-width="1"/>
+  <text x="480" y="490" text-anchor="middle" font-size="12" font-weight="bold" fill="#E65100">リスクレベル判定基準</text>
+  <!-- High -->
+  <rect x="40" y="498" width="16" height="16" rx="2" fill="#C62828"/>
+  <text x="62" y="511" font-size="10" fill="#37474F">高 (Critical) — 即時対応必須</text>
+  <!-- Medium -->
+  <rect x="240" y="498" width="16" height="16" rx="2" fill="#E65100"/>
+  <text x="262" y="511" font-size="10" fill="#37474F">中 (High) — 次スプリントで対応</text>
+  <!-- Low -->
+  <rect x="460" y="498" width="16" height="16" rx="2" fill="#F9A825"/>
+  <text x="482" y="511" font-size="10" fill="#37474F">低 (Medium) — バックログ管理</text>
+  <!-- Mitigated -->
+  <rect x="680" y="498" width="16" height="16" rx="2" fill="#2E7D32"/>
+  <text x="702" y="511" font-size="10" fill="#37474F">対策済み — 継続モニタリング</text>
+
+  <!-- Dashed connector lines from leaf nodes to countermeasures -->
+  <line x1="101" y1="316" x2="120" y2="390" stroke="#2E7D32" stroke-width="1" stroke-dasharray="5,3" opacity="0.5"/>
+  <line x1="381" y1="316" x2="340" y2="390" stroke="#2E7D32" stroke-width="1" stroke-dasharray="5,3" opacity="0.5"/>
+  <line x1="656" y1="316" x2="560" y2="390" stroke="#2E7D32" stroke-width="1" stroke-dasharray="5,3" opacity="0.5"/>
+
+</svg>

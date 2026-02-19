@@ -1,0 +1,57 @@
+<svg viewBox="0 0 900 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="400" fill="#F8F9FA"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">クラウドコストの構造</text>
+
+  <!-- 4 cost categories -->
+  <!-- Compute -->
+  <rect x="20" y="55" width="195" height="290" rx="12" fill="#FF9900" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.2))"/>
+  <text x="117" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white">コンピューティング</text>
+  <text x="117" y="100" text-anchor="middle" font-size="22" font-weight="bold" fill="white">40-60%</text>
+  <line x1="35" y1="112" x2="200" y2="112" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  <text x="35" y="135" font-size="11" fill="white">・EC2/VM インスタンス</text>
+  <text x="35" y="155" font-size="11" fill="white">・コンテナ（ECS/GKE）</text>
+  <text x="35" y="175" font-size="11" fill="white">・Serverless 実行コスト</text>
+  <text x="35" y="195" font-size="11" fill="white">・GPU インスタンス</text>
+  <rect x="35" y="270" width="165" height="34" rx="6" fill="#E67700"/>
+  <text x="117" y="292" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Spot で最大70%削減</text>
+
+  <!-- Storage/DB -->
+  <rect x="230" y="55" width="195" height="290" rx="12" fill="#1A73E8" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.2))"/>
+  <text x="327" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white">ストレージ / DB</text>
+  <text x="327" y="100" text-anchor="middle" font-size="22" font-weight="bold" fill="white">20-30%</text>
+  <line x1="245" y1="112" x2="410" y2="112" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  <text x="245" y="135" font-size="11" fill="white">・S3/GCS ストレージ</text>
+  <text x="245" y="155" font-size="11" fill="white">・RDS/Aurora DB</text>
+  <text x="245" y="175" font-size="11" fill="white">・DynamoDB リクエスト</text>
+  <text x="245" y="195" font-size="11" fill="white">・バックアップ費用</text>
+  <rect x="245" y="270" width="165" height="34" rx="6" fill="#1565C0"/>
+  <text x="327" y="292" text-anchor="middle" font-size="11" font-weight="bold" fill="white">ライフサイクル管理が鍵</text>
+
+  <!-- Network -->
+  <rect x="440" y="55" width="195" height="290" rx="12" fill="#1A9C3E" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.2))"/>
+  <text x="537" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white">ネットワーク</text>
+  <text x="537" y="100" text-anchor="middle" font-size="22" font-weight="bold" fill="white">10-20%</text>
+  <line x1="455" y1="112" x2="620" y2="112" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  <text x="455" y="135" font-size="11" fill="white">・データ転送料（Out）</text>
+  <text x="455" y="155" font-size="11" fill="white">・CDN 転送コスト</text>
+  <text x="455" y="175" font-size="11" fill="white">・VPN/Direct Connect</text>
+  <text x="455" y="195" font-size="11" fill="white">・ロードバランサー</text>
+  <rect x="455" y="270" width="165" height="34" rx="6" fill="#157A30"/>
+  <text x="537" y="292" text-anchor="middle" font-size="11" font-weight="bold" fill="white">同一リージョン転送は無料</text>
+
+  <!-- Support/Other -->
+  <rect x="650" y="55" width="230" height="290" rx="12" fill="#7B1FA2" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.2))"/>
+  <text x="765" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white">サポート / その他</text>
+  <text x="765" y="100" text-anchor="middle" font-size="22" font-weight="bold" fill="white">5-15%</text>
+  <line x1="665" y1="112" x2="865" y2="112" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  <text x="665" y="135" font-size="11" fill="white">・サポートプラン</text>
+  <text x="665" y="155" font-size="11" fill="white">・マーケットプレイス</text>
+  <text x="665" y="175" font-size="11" fill="white">・監視ツール</text>
+  <text x="665" y="195" font-size="11" fill="white">・証明書/ドメイン</text>
+  <rect x="665" y="270" width="195" height="34" rx="6" fill="#6A1B9A"/>
+  <text x="762" y="292" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Developerプランで十分初期は</text>
+
+  <!-- Bottom bar -->
+  <rect x="20" y="360" width="860" height="32" rx="8" fill="#232F3E"/>
+  <text x="450" y="381" text-anchor="middle" font-size="12" fill="#FF9900">スタートアップの典型コスト: Seed期 $500-2,000/月 → Series A $5,000-20,000/月 → Series B $50,000+/月</text>
+</svg>

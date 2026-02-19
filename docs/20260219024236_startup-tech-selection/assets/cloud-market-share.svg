@@ -1,0 +1,35 @@
+<svg viewBox="0 0 900 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="400" fill="#F8F9FA"/>
+  <text x="450" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">2026年 クラウド市場シェア（IaaS+PaaS）</text>
+
+  <!-- Bar chart -->
+  <!-- AWS -->
+  <rect x="80" y="60" width="200" height="240" rx="8" fill="#FF9900" style="filter:drop-shadow(2px 3px 4px rgba(0,0,0,0.2))"/>
+  <text x="180" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#232F3E">Amazon AWS</text>
+  <text x="180" y="190" text-anchor="middle" font-size="36" font-weight="bold" fill="white">31%</text>
+  <text x="180" y="218" text-anchor="middle" font-size="12" fill="#FFF3E0">クラウド市場の雄</text>
+  <text x="180" y="235" text-anchor="middle" font-size="11" fill="#FFF3E0">最大のエコシステム</text>
+  <text x="180" y="315" text-anchor="middle" font-size="11" fill="white">YoY +17%</text>
+
+  <!-- Azure -->
+  <rect x="330" y="120" width="200" height="180" rx="8" fill="#0078D4" style="filter:drop-shadow(2px 3px 4px rgba(0,0,0,0.2))"/>
+  <text x="430" y="112" text-anchor="middle" font-size="14" font-weight="bold" fill="#232F3E">Microsoft Azure</text>
+  <text x="430" y="215" text-anchor="middle" font-size="36" font-weight="bold" fill="white">24%</text>
+  <text x="430" y="243" text-anchor="middle" font-size="12" fill="#BBDEFB">エンタープライズ強</text>
+  <text x="430" y="315" text-anchor="middle" font-size="11" fill="white">YoY +21%</text>
+
+  <!-- GCP -->
+  <rect x="580" y="175" width="200" height="125" rx="8" fill="#4285F4" style="filter:drop-shadow(2px 3px 4px rgba(0,0,0,0.2))"/>
+  <text x="680" y="167" text-anchor="middle" font-size="14" font-weight="bold" fill="#232F3E">Google Cloud</text>
+  <text x="680" y="244" text-anchor="middle" font-size="36" font-weight="bold" fill="white">11%</text>
+  <text x="680" y="272" text-anchor="middle" font-size="12" fill="#BBDEFB">AI/ML 最先端</text>
+  <text x="680" y="315" text-anchor="middle" font-size="11" fill="white">YoY +28%</text>
+
+  <!-- X axis -->
+  <line x1="60" y1="315" x2="840" y2="315" stroke="#CCC" stroke-width="1.5"/>
+
+  <!-- Others note -->
+  <rect x="60" y="340" width="780" height="48" rx="8" fill="#232F3E"/>
+  <text x="450" y="360" text-anchor="middle" font-size="12" font-weight="bold" fill="#FF9900">残り34%: その他（Alibaba Cloud 9%、Oracle Cloud 5% 等）</text>
+  <text x="450" y="378" text-anchor="middle" font-size="11" fill="#AAA">出典: Gartner, Synergy Research 2026Q1 推計</text>
+</svg>

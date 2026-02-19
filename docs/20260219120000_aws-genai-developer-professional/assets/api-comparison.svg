@@ -1,0 +1,51 @@
+<svg viewBox="0 0 900 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="420" fill="#F8F9FA"/>
+  <text x="450" y="32" text-anchor="middle" font-size="18" font-weight="bold" fill="#232F3E">InvokeModel API vs Converse API</text>
+
+  <!-- InvokeModel -->
+  <rect x="40" y="55" width="380" height="320" rx="12" fill="#232F3E" style="filter:drop-shadow(2px 2px 5px rgba(0,0,0,0.2))"/>
+  <rect x="40" y="55" width="380" height="50" rx="12" fill="#1A73E8"/>
+  <rect x="40" y="93" width="380" height="12" rx="0" fill="#1A73E8"/>
+  <text x="230" y="87" text-anchor="middle" font-size="16" font-weight="bold" fill="white">InvokeModel API</text>
+
+  <text x="70" y="130" font-size="13" fill="#FF9900" font-weight="bold">特徴</text>
+  <text x="70" y="152" font-size="12" fill="#E0E0E0">・モデル固有のリクエスト形式</text>
+  <text x="70" y="172" font-size="12" fill="#E0E0E0">・JSON bodyを直接構築</text>
+  <text x="70" y="192" font-size="12" fill="#E0E0E0">・完全なパラメータ制御</text>
+  <text x="70" y="212" font-size="12" fill="#E0E0E0">・モデル変更時にコード変更必要</text>
+
+  <text x="70" y="240" font-size="13" fill="#FF9900" font-weight="bold">使用場面</text>
+  <text x="70" y="262" font-size="12" fill="#E0E0E0">・画像生成 (Stability AI)</text>
+  <text x="70" y="282" font-size="12" fill="#E0E0E0">・埋め込みモデル (Titan Embeddings)</text>
+  <text x="70" y="302" font-size="12" fill="#E0E0E0">・モデル固有の高度パラメータ利用</text>
+
+  <text x="70" y="332" font-size="13" fill="#FF9900" font-weight="bold">エンドポイント</text>
+  <rect x="60" y="340" width="340" height="26" rx="5" fill="#0D2137"/>
+  <text x="230" y="358" text-anchor="middle" font-size="12" fill="#64B5F6" font-family="monospace">POST /model/{modelId}/invoke</text>
+
+  <!-- Converse API -->
+  <rect x="480" y="55" width="380" height="320" rx="12" fill="#232F3E" style="filter:drop-shadow(2px 2px 5px rgba(0,0,0,0.2))"/>
+  <rect x="480" y="55" width="380" height="50" rx="12" fill="#1A9C3E"/>
+  <rect x="480" y="93" width="380" height="12" rx="0" fill="#1A9C3E"/>
+  <text x="670" y="87" text-anchor="middle" font-size="16" font-weight="bold" fill="white">Converse API</text>
+
+  <text x="510" y="130" font-size="13" fill="#FF9900" font-weight="bold">特徴</text>
+  <text x="510" y="152" font-size="12" fill="#E0E0E0">・統一インターフェース</text>
+  <text x="510" y="172" font-size="12" fill="#E0E0E0">・マルチターン会話をネイティブサポート</text>
+  <text x="510" y="192" font-size="12" fill="#E0E0E0">・モデル切り替えが容易</text>
+  <text x="510" y="212" font-size="12" fill="#E0E0E0">・Tool Use (Function Calling) 統合</text>
+
+  <text x="510" y="240" font-size="13" fill="#FF9900" font-weight="bold">使用場面</text>
+  <text x="510" y="262" font-size="12" fill="#E0E0E0">・チャットボット・会話型AI</text>
+  <text x="510" y="282" font-size="12" fill="#E0E0E0">・Agentsのオーケストレーション</text>
+  <text x="510" y="302" font-size="12" fill="#E0E0E0">・マルチモデル環境での開発</text>
+
+  <text x="510" y="332" font-size="13" fill="#FF9900" font-weight="bold">エンドポイント</text>
+  <rect x="500" y="340" width="340" height="26" rx="5" fill="#0D2137"/>
+  <text x="670" y="358" text-anchor="middle" font-size="12" fill="#64B5F6" font-family="monospace">POST /model/{modelId}/converse</text>
+
+  <!-- Arrow between -->
+  <text x="450" y="225" text-anchor="middle" font-size="20" fill="#666">⇄</text>
+  <text x="450" y="248" text-anchor="middle" font-size="11" fill="#666">試験での</text>
+  <text x="450" y="265" text-anchor="middle" font-size="11" fill="#666">選択基準</text>
+</svg>

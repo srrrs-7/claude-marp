@@ -1,0 +1,52 @@
+<svg viewBox="0 0 960 440" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="440" fill="#f8fafc" rx="12"/>
+  <text x="480" y="34" text-anchor="middle" font-size="18" font-weight="bold" fill="#1e293b">Fargate vs EC2ノード — セキュリティ比較</text>
+
+  <!-- EC2 Column -->
+  <rect x="30" y="55" width="420" height="370" rx="10" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+  <rect x="30" y="55" width="420" height="46" rx="10" fill="#ea580c"/>
+  <text x="240" y="84" text-anchor="middle" font-size="16" font-weight="bold" fill="white">EC2 マネージドノードグループ</text>
+
+  <text x="55" y="128" font-size="12" font-weight="bold" fill="#9a3412">■ ノード管理</text>
+  <text x="55" y="148" font-size="11" fill="#431407">• OS パッチ適用: ユーザー責任（SSM / eksctl upgrade）</text>
+  <text x="55" y="166" font-size="11" fill="#431407">• kubelet・コンテナランタイム: ユーザー責任</text>
+  <text x="55" y="184" font-size="11" fill="#431407">• Node グループのAMI更新: 定期的に実施が必要</text>
+
+  <text x="55" y="210" font-size="12" font-weight="bold" fill="#9a3412">■ ネットワーク分離</text>
+  <text x="55" y="230" font-size="11" fill="#431407">• 複数Podがノードを共有（ネームスペースで分離）</text>
+  <text x="55" y="248" font-size="11" fill="#431407">• Security Group: ノード単位（Pod単位はSGPで別途）</text>
+  <text x="55" y="266" font-size="11" fill="#431407">• ホストネットワーク（hostNetwork: true）リスクあり</text>
+
+  <text x="55" y="292" font-size="12" font-weight="bold" fill="#9a3412">■ セキュリティ設定</text>
+  <text x="55" y="312" font-size="11" fill="#431407">• privileged コンテナが動作可能（PSA設定要）</text>
+  <text x="55" y="330" font-size="11" fill="#431407">• ノードへのSSHアクセス可能（キーペア管理）</text>
+  <text x="55" y="348" font-size="11" fill="#431407">• EC2 Instance Metadata アクセス可（IMDSv2必須）</text>
+
+  <text x="55" y="374" font-size="12" font-weight="bold" fill="#9a3412">■ 柔軟性</text>
+  <text x="55" y="394" font-size="11" fill="#431407">• DaemonSet 使用可（Fluent Bit, Falco等）</text>
+  <text x="55" y="412" font-size="11" fill="#431407">• GPU / 高メモリインスタンスを選択可</text>
+
+  <!-- Fargate Column -->
+  <rect x="510" y="55" width="420" height="370" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="510" y="55" width="420" height="46" rx="10" fill="#3b82f6"/>
+  <text x="720" y="84" text-anchor="middle" font-size="16" font-weight="bold" fill="white">AWS Fargate (EKS)</text>
+
+  <text x="535" y="128" font-size="12" font-weight="bold" fill="#1e40af">■ ノード管理</text>
+  <text x="535" y="148" font-size="11" fill="#1e3a8a">• OS・ランタイム: AWS完全管理（パッチ自動）</text>
+  <text x="535" y="166" font-size="11" fill="#1e3a8a">• ノードへのアクセス不可（SSH不可）</text>
+  <text x="535" y="184" font-size="11" fill="#1e3a8a">• マイクロVM（Firecracker）: 強固な分離</text>
+
+  <text x="535" y="210" font-size="12" font-weight="bold" fill="#1e40af">■ ネットワーク分離</text>
+  <text x="535" y="230" font-size="11" fill="#1e3a8a">• 1 Pod = 1 ENI（ハードウェアレベル分離）</text>
+  <text x="535" y="248" font-size="11" fill="#1e3a8a">• Security Group: Pod単位で直接付与</text>
+  <text x="535" y="266" font-size="11" fill="#1e3a8a">• hostNetwork 使用不可（セキュリティ強化）</text>
+
+  <text x="535" y="292" font-size="12" font-weight="bold" fill="#1e40af">■ セキュリティ設定</text>
+  <text x="535" y="312" font-size="11" fill="#1e3a8a">• privileged コンテナ: 実行不可</text>
+  <text x="535" y="330" font-size="11" fill="#1e3a8a">• EC2 Instance Metadata: アクセス不可</text>
+  <text x="535" y="348" font-size="11" fill="#1e3a8a">• Seccomp RuntimeDefault が自動適用</text>
+
+  <text x="535" y="374" font-size="12" font-weight="bold" fill="#1e40af">■ 制約</text>
+  <text x="535" y="394" font-size="11" fill="#1e3a8a">• DaemonSet 使用不可（Fluent Bit Sidecar方式）</text>
+  <text x="535" y="412" font-size="11" fill="#1e3a8a">• GPUワークロード非対応（CPU/メモリのみ）</text>
+</svg>

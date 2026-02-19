@@ -1,0 +1,26 @@
+topic: "AWS Certified Generative AI Developer - Professional 応用的資料"
+language: "ja"
+
+output:
+  dir: "docs/20260219120000_aws-genai-developer-professional"
+  baseName: "aws-genai-developer-professional"
+
+marp:
+  theme: gaia
+  size: "16:9"
+  paginate: true
+  header: "AWS Certified Generative AI Developer - Professional"
+  style: |
+    section {
+      font-size: 22px;
+    }
+    section pre code {
+      font-size: 0.6em;
+      line-height: 1.4;
+    }
+    section.lead h1 {
+      font-size: 2em;
+    }
+    section img {
+      max-height: 70vh;
+    }

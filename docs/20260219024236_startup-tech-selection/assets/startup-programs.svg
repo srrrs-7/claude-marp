@@ -1,0 +1,49 @@
+<svg viewBox="0 0 900 380" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="380" fill="#F8F9FA"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">スタートアッププログラム比較</text>
+
+  <!-- AWS Activate -->
+  <rect x="20" y="50" width="270" height="300" rx="12" fill="#FF9900" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.2))"/>
+  <text x="155" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="white">AWS Activate</text>
+  <line x1="40" y1="90" x2="270" y2="90" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  <text x="155" y="112" text-anchor="middle" font-size="13" font-weight="bold" fill="white">最大 $100,000</text>
+  <text x="155" y="130" text-anchor="middle" font-size="11" fill="#FFF3E0">クレジット（2年間）</text>
+  <text x="40" y="158" font-size="11" fill="white">・AWS クレジット</text>
+  <text x="40" y="176" font-size="11" fill="white">・AWS トレーニング割引</text>
+  <text x="40" y="194" font-size="11" fill="white">・テクニカルサポート</text>
+  <text x="40" y="212" font-size="11" fill="white">・Founders/Portfolio 2種</text>
+  <text x="40" y="230" font-size="11" fill="white">・認定VCパートナー経由申請</text>
+  <rect x="40" y="255" width="210" height="36" rx="8" fill="#E67700"/>
+  <text x="145" y="278" text-anchor="middle" font-size="12" font-weight="bold" fill="white">採用率: 最も普及</text>
+  <text x="155" y="325" text-anchor="middle" font-size="11" fill="#FFF3E0">最大手エコシステム活用可</text>
+
+  <!-- Google for Startups -->
+  <rect x="310" y="50" width="270" height="300" rx="12" fill="#4285F4" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.2))"/>
+  <text x="445" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="white">Google for Startups</text>
+  <line x1="330" y1="90" x2="560" y2="90" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  <text x="445" y="112" text-anchor="middle" font-size="13" font-weight="bold" fill="white">最大 $200,000</text>
+  <text x="445" y="130" text-anchor="middle" font-size="11" fill="#BBDEFB">クレジット（2年間）</text>
+  <text x="330" y="158" font-size="11" fill="white">・GCP クレジット</text>
+  <text x="330" y="176" font-size="11" fill="white">・Google Workspace 無料</text>
+  <text x="330" y="194" font-size="11" fill="white">・Firebase / BigQuery 含む</text>
+  <text x="330" y="212" font-size="11" fill="white">・Gemini API 利用枠</text>
+  <text x="330" y="230" font-size="11" fill="white">・mentoring プログラム</text>
+  <rect x="330" y="255" width="210" height="36" rx="8" fill="#1565C0"/>
+  <text x="435" y="278" text-anchor="middle" font-size="12" font-weight="bold" fill="white">AI 重視ならここ</text>
+  <text x="445" y="325" text-anchor="middle" font-size="11" fill="#BBDEFB">AI/MLクレジット最大</text>
+
+  <!-- Microsoft for Startups -->
+  <rect x="600" y="50" width="280" height="300" rx="12" fill="#0078D4" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.2))"/>
+  <text x="740" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="white">Microsoft for Startups</text>
+  <line x1="620" y1="90" x2="860" y2="90" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  <text x="740" y="112" text-anchor="middle" font-size="13" font-weight="bold" fill="white">最大 $150,000</text>
+  <text x="740" y="130" text-anchor="middle" font-size="11" fill="#BBDEFB">クレジット（2年間）</text>
+  <text x="620" y="158" font-size="11" fill="white">・Azure クレジット</text>
+  <text x="620" y="176" font-size="11" fill="white">・Microsoft 365 無料</text>
+  <text x="620" y="194" font-size="11" fill="white">・GitHub Enterprise</text>
+  <text x="620" y="212" font-size="11" fill="white">・Azure OpenAI 利用枠</text>
+  <text x="620" y="230" font-size="11" fill="white">・LinkedIn Premium</text>
+  <rect x="620" y="255" width="220" height="36" rx="8" fill="#005A9E"/>
+  <text x="730" y="278" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Enterprise顧客獲得向き</text>
+  <text x="740" y="325" text-anchor="middle" font-size="11" fill="#BBDEFB">MS エコシステム連携強</text>
+</svg>

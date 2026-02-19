@@ -1,0 +1,68 @@
+<svg viewBox="0 0 900 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="380" fill="#F0F4F8"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">Cross-Region Inference (クロスリージョン推論)</text>
+
+  <!-- Application -->
+  <rect x="20" y="150" width="130" height="70" rx="10" fill="#232F3E"/>
+  <text x="85" y="178" text-anchor="middle" font-size="12" font-weight="bold" fill="white">アプリケーション</text>
+  <text x="85" y="196" text-anchor="middle" font-size="11" fill="#FFB74D">us-east-1</text>
+  <text x="85" y="212" text-anchor="middle" font-size="10" fill="#888">ホームリージョン</text>
+
+  <!-- Arrow to Inference Profile -->
+  <line x1="150" y1="185" x2="195" y2="185" stroke="#FF9900" stroke-width="2.5"/>
+  <polygon points="195,180 205,185 195,190" fill="#FF9900"/>
+
+  <!-- Inference Profile -->
+  <rect x="205" y="120" width="200" height="130" rx="12" fill="#FF9900" style="filter:drop-shadow(3px 3px 6px rgba(0,0,0,0.25))"/>
+  <text x="305" y="148" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Inference Profile</text>
+  <text x="305" y="166" text-anchor="middle" font-size="11" fill="#FFF3E0">システムが自動でルーティング</text>
+  <rect x="220" y="178" width="170" height="26" rx="6" fill="#E67700"/>
+  <text x="305" y="196" text-anchor="middle" font-size="11" fill="white">負荷・可用性を監視</text>
+  <rect x="220" y="210" width="170" height="26" rx="6" fill="#E67700"/>
+  <text x="305" y="228" text-anchor="middle" font-size="11" fill="white">最適リージョン選択</text>
+
+  <!-- Arrows to regions -->
+  <line x1="405" y1="165" x2="455" y2="110" stroke="#1A73E8" stroke-width="2"/>
+  <polygon points="450,105 455,115 460,105" fill="#1A73E8"/>
+  <line x1="405" y1="185" x2="455" y2="185" stroke="#1A9C3E" stroke-width="2"/>
+  <polygon points="455,180 465,185 455,190" fill="#1A9C3E"/>
+  <line x1="405" y1="205" x2="455" y2="260" stroke="#7B1FA2" stroke-width="2"/>
+  <polygon points="450,255 455,265 460,255" fill="#7B1FA2"/>
+
+  <!-- Region boxes -->
+  <rect x="465" y="60" width="220" height="90" rx="10" fill="#1A73E8" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="575" y="84" text-anchor="middle" font-size="12" font-weight="bold" fill="white">us-east-1</text>
+  <text x="575" y="102" text-anchor="middle" font-size="11" fill="#BBDEFB">Claude 3.5 Sonnet</text>
+  <text x="575" y="119" text-anchor="middle" font-size="11" fill="#BBDEFB">Capacity: 通常負荷</text>
+  <rect x="565" y="128" width="80" height="18" rx="4" fill="#0D47A1"/>
+  <text x="605" y="141" text-anchor="middle" font-size="10" fill="#90EE90">● 稼働中</text>
+
+  <rect x="465" y="155" width="220" height="90" rx="10" fill="#1A9C3E" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="575" y="179" text-anchor="middle" font-size="12" font-weight="bold" fill="white">us-west-2</text>
+  <text x="575" y="197" text-anchor="middle" font-size="11" fill="#C8E6C9">Claude 3.5 Sonnet</text>
+  <text x="575" y="214" text-anchor="middle" font-size="11" fill="#C8E6C9">Capacity: 高負荷時にフォールバック</text>
+  <rect x="565" y="223" width="80" height="18" rx="4" fill="#0A6E2A"/>
+  <text x="605" y="236" text-anchor="middle" font-size="10" fill="#90EE90">● スタンバイ</text>
+
+  <rect x="465" y="250" width="220" height="90" rx="10" fill="#7B1FA2" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="575" y="274" text-anchor="middle" font-size="12" font-weight="bold" fill="white">eu-west-1</text>
+  <text x="575" y="292" text-anchor="middle" font-size="11" fill="#E1BEE7">Claude 3.5 Sonnet</text>
+  <text x="575" y="309" text-anchor="middle" font-size="11" fill="#E1BEE7">EU規制対応 / DR用途</text>
+  <rect x="565" y="318" width="80" height="18" rx="4" fill="#4A148C"/>
+  <text x="605" y="331" text-anchor="middle" font-size="10" fill="#CE93D8">● オプション</text>
+
+  <!-- Benefits -->
+  <rect x="700" y="80" width="180" height="260" rx="12" fill="#232F3E"/>
+  <text x="790" y="108" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">メリット</text>
+  <text x="715" y="132" font-size="11" fill="#E0E0E0">✓ スロットリング回避</text>
+  <text x="715" y="150" font-size="11" fill="#E0E0E0">✓ 自動フォールバック</text>
+  <text x="715" y="168" font-size="11" fill="#E0E0E0">✓ 高可用性</text>
+  <text x="715" y="186" font-size="11" fill="#E0E0E0">✓ 負荷分散</text>
+  <text x="790" y="215" text-anchor="middle" font-size="12" font-weight="bold" fill="#FF9900">注意点</text>
+  <text x="715" y="235" font-size="11" fill="#FFCC80">・レイテンシが</text>
+  <text x="715" y="252" font-size="11" fill="#FFCC80">  若干増加</text>
+  <text x="715" y="270" font-size="11" fill="#FFCC80">・データ主権の</text>
+  <text x="715" y="287" font-size="11" fill="#FFCC80">  確認必要</text>
+  <text x="715" y="308" font-size="11" fill="#FFCC80">・同一モデルIDで</text>
+  <text x="715" y="323" font-size="11" fill="#FFCC80">  複数リージョン</text>
+</svg>

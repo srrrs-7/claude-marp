@@ -1,0 +1,101 @@
+<svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect x="0" y="0" width="900" height="380" fill="#f8fafb" rx="12"/>
+  <text x="450" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">ベクトルデータベースと類似度検索</text>
+
+  <!-- Left: Text → Vector concept -->
+  <rect x="15" y="48" width="260" height="310" fill="white" rx="10" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.08))"/>
+  <text x="145" y="72" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565C0">テキスト → ベクトル変換</text>
+
+  <!-- Text items -->
+  <rect x="30" y="86" width="230" height="34" fill="#E3F2FD" rx="6"/>
+  <text x="145" y="108" text-anchor="middle" font-size="11" fill="#1565C0">"AWSのクラウドサービスとは"</text>
+  <text x="145" y="130" text-anchor="middle" font-size="10" fill="#888">↓ エンベディングモデル（Titan）</text>
+  <rect x="30" y="140" width="230" height="28" fill="#90CAF9" rx="4"/>
+  <text x="145" y="159" text-anchor="middle" font-size="10" fill="#0D47A1">[0.82, -0.34, 0.67, 0.12, ...]</text>
+
+  <rect x="30" y="185" width="230" height="34" fill="#E8F5E9" rx="6"/>
+  <text x="145" y="207" text-anchor="middle" font-size="11" fill="#2E7D32">"Amazon EC2 仮想サーバー"</text>
+  <text x="145" y="228" text-anchor="middle" font-size="10" fill="#888">↓ エンベディングモデル（Titan）</text>
+  <rect x="30" y="238" width="230" height="28" fill="#A5D6A7" rx="4"/>
+  <text x="145" y="257" text-anchor="middle" font-size="10" fill="#1B5E20">[0.79, -0.28, 0.71, 0.08, ...]</text>
+
+  <rect x="30" y="282" width="230" height="34" fill="#FFF3E0" rx="6"/>
+  <text x="145" y="304" text-anchor="middle" font-size="11" fill="#E65100">"機械学習モデルの学習"</text>
+  <text x="145" y="323" text-anchor="middle" font-size="10" fill="#888">↓ エンベディングモデル（Titan）</text>
+  <rect x="30" y="333" width="230" height="22" fill="#FFCC80" rx="4"/>
+  <text x="145" y="348" text-anchor="middle" font-size="10" fill="#E65100">[0.12, 0.88, -0.43, 0.55, ...]</text>
+
+  <!-- Center: Vector Space visualization -->
+  <rect x="290" y="48" width="310" height="310" fill="white" rx="10" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.08))"/>
+  <text x="445" y="72" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565C0">ベクトル空間（概念図）</text>
+
+  <!-- Axis -->
+  <line x1="330" y1="310" x2="580" y2="310" stroke="#ccc" stroke-width="1.5"/>
+  <line x1="330" y1="310" x2="330" y2="90" stroke="#ccc" stroke-width="1.5"/>
+  <text x="585" y="314" font-size="10" fill="#999">dim1</text>
+  <text x="315" y="88" font-size="10" fill="#999">dim2</text>
+
+  <!-- Points -->
+  <!-- AWS related (blue cluster) -->
+  <circle cx="430" cy="140" r="10" fill="#1565C0" style="filter:drop-shadow(1px 1px 2px rgba(0,0,0,0.2))"/>
+  <text x="445" y="136" font-size="9" fill="#1565C0">クラウド</text>
+  <circle cx="460" cy="155" r="10" fill="#1E88E5"/>
+  <text x="475" y="152" font-size="9" fill="#1565C0">EC2</text>
+  <circle cx="445" cy="175" r="10" fill="#42A5F5"/>
+  <text x="460" y="172" font-size="9" fill="#1565C0">S3</text>
+  <!-- Dashed similarity circle -->
+  <circle cx="445" cy="155" r="45" fill="none" stroke="#1565C0" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="500" y="220" font-size="9" fill="#1565C0">AWS クラスター</text>
+
+  <!-- ML cluster (green) -->
+  <circle cx="370" cy="245" r="10" fill="#43A047" style="filter:drop-shadow(1px 1px 2px rgba(0,0,0,0.2))"/>
+  <text x="385" y="242" font-size="9" fill="#2E7D32">機械学習</text>
+  <circle cx="390" cy="265" r="10" fill="#66BB6A"/>
+  <text x="405" y="262" font-size="9" fill="#2E7D32">ニューラルネット</text>
+  <circle cx="365" cy="275" r="10" fill="#81C784"/>
+  <text x="380" y="272" font-size="9" fill="#2E7D32">学習データ</text>
+  <circle cx="383" cy="258" r="38" fill="none" stroke="#43A047" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+  <!-- Query point -->
+  <circle cx="438" cy="150" r="12" fill="none" stroke="#E53935" stroke-width="2.5"/>
+  <circle cx="438" cy="150" r="5" fill="#E53935"/>
+  <text x="455" y="118" font-size="9" fill="#E53935" font-weight="bold">クエリ</text>
+  <!-- Query arrow -->
+  <line x1="450" y1="122" x2="440" y2="138" stroke="#E53935" stroke-width="1.5"/>
+  <polygon points="436,133 440,144 444,134" fill="#E53935"/>
+
+  <!-- Similarity lines -->
+  <line x1="438" y1="150" x2="430" y2="140" stroke="#E53935" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="438" y1="150" x2="460" y2="155" stroke="#E53935" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="438" y1="150" x2="445" y2="175" stroke="#E53935" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- Right: Similarity Metrics -->
+  <rect x="615" y="48" width="270" height="310" fill="white" rx="10" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.08))"/>
+  <text x="750" y="72" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565C0">類似度計算手法</text>
+
+  <!-- Cosine Similarity -->
+  <rect x="628" y="84" width="244" height="70" fill="#E3F2FD" rx="8"/>
+  <text x="750" y="104" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">コサイン類似度</text>
+  <text x="750" y="120" text-anchor="middle" font-size="11" fill="#555">cos(θ) = A·B / (|A||B|)</text>
+  <text x="638" y="140" font-size="10" fill="#666">• 方向の類似性を測定</text>
+  <text x="638" y="154" font-size="10" fill="#666">• -1〜1（1 = 完全一致）</text>
+
+  <!-- Dot Product -->
+  <rect x="628" y="164" width="244" height="70" fill="#E8F5E9" rx="8"/>
+  <text x="750" y="184" text-anchor="middle" font-size="12" font-weight="bold" fill="#2E7D32">内積（ドット積）</text>
+  <text x="750" y="200" text-anchor="middle" font-size="11" fill="#555">A · B = Σ AiBi</text>
+  <text x="638" y="220" font-size="10" fill="#666">• 大きさと方向の両方を考慮</text>
+  <text x="638" y="234" font-size="10" fill="#666">• 正規化済みベクトルで高速</text>
+
+  <!-- Euclidean -->
+  <rect x="628" y="244" width="244" height="70" fill="#FFF3E0" rx="8"/>
+  <text x="750" y="264" text-anchor="middle" font-size="12" font-weight="bold" fill="#E65100">ユークリッド距離</text>
+  <text x="750" y="280" text-anchor="middle" font-size="11" fill="#555">d = √(Σ(Ai-Bi)²)</text>
+  <text x="638" y="300" font-size="10" fill="#666">• 空間的な距離を測定</text>
+  <text x="638" y="314" font-size="10" fill="#666">• 小さいほど類似</text>
+
+  <!-- AWS Vector DB options -->
+  <rect x="615" y="326" width="270" height="34" fill="#1565C0" rx="6"/>
+  <text x="750" y="340" text-anchor="middle" font-size="10" font-weight="bold" fill="white">AWS: OpenSearch Serverless / Aurora pgvector</text>
+  <text x="750" y="353" text-anchor="middle" font-size="10" fill="#90CAF9">サードパーティ: Pinecone / Weaviate / Redis</text>
+</svg>

@@ -1,0 +1,62 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect x="0" y="0" width="900" height="420" fill="#f8faff" rx="12"/>
+  <text x="450" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">責任ある AI（Responsible AI）の原則</text>
+
+  <!-- Center circle -->
+  <circle cx="450" cy="220" r="65" fill="#1565C0" style="filter:drop-shadow(2px 2px 6px rgba(0,0,0,0.2))"/>
+  <text x="450" y="212" text-anchor="middle" font-size="13" font-weight="bold" fill="white">責任ある</text>
+  <text x="450" y="230" text-anchor="middle" font-size="13" font-weight="bold" fill="white">AI</text>
+  <text x="450" y="248" text-anchor="middle" font-size="11" fill="#90CAF9">AWS Principles</text>
+
+  <!-- Principle 1: Fairness (top) -->
+  <rect x="340" y="48" width="220" height="72" fill="#43A047" rx="10" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.12))"/>
+  <text x="450" y="72" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Fairness（公平性）</text>
+  <text x="450" y="90" text-anchor="middle" font-size="10" fill="#C8E6C9">全ユーザーへの平等な扱い</text>
+  <text x="450" y="106" text-anchor="middle" font-size="10" fill="#C8E6C9">差別・偏見の排除</text>
+  <line x1="450" y1="120" x2="450" y2="155" stroke="#43A047" stroke-width="2"/>
+  <polygon points="445,155 450,163 455,155" fill="#43A047"/>
+
+  <!-- Principle 2: Explainability (right-top) -->
+  <rect x="670" y="90" width="210" height="72" fill="#FB8C00" rx="10" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.12))"/>
+  <text x="775" y="114" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Explainability</text>
+  <text x="775" y="132" text-anchor="middle" font-size="12" fill="#FFF3E0">（説明可能性）</text>
+  <text x="775" y="150" text-anchor="middle" font-size="10" fill="#FFE0B2">SHAP・SageMaker Clarify</text>
+  <line x1="670" y1="150" x2="515" y2="185" stroke="#FB8C00" stroke-width="2"/>
+  <polygon points="509,188 519,177 521,190" fill="#FB8C00"/>
+
+  <!-- Principle 3: Privacy (right-bottom) -->
+  <rect x="670" y="270" width="210" height="72" fill="#7B1FA2" rx="10" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.12))"/>
+  <text x="775" y="294" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Privacy &amp; Security</text>
+  <text x="775" y="312" text-anchor="middle" font-size="12" fill="#E1BEE7">（プライバシー）</text>
+  <text x="775" y="330" text-anchor="middle" font-size="10" fill="#CE93D8">PII 保護・GDPR 準拠</text>
+  <line x1="670" y1="290" x2="515" y2="255" stroke="#7B1FA2" stroke-width="2"/>
+  <polygon points="509,258 521,246 523,260" fill="#7B1FA2"/>
+
+  <!-- Principle 4: Safety (bottom) -->
+  <rect x="340" y="302" width="220" height="72" fill="#E53935" rx="10" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.12))"/>
+  <text x="450" y="326" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Safety（安全性）</text>
+  <text x="450" y="344" text-anchor="middle" font-size="10" fill="#FFCDD2">有害コンテンツの防止</text>
+  <text x="450" y="360" text-anchor="middle" font-size="10" fill="#FFCDD2">Bedrock Guardrails</text>
+  <line x1="450" y1="302" x2="450" y2="285" stroke="#E53935" stroke-width="2"/>
+  <polygon points="445,285 450,277 455,285" fill="#E53935"/>
+
+  <!-- Principle 5: Controllability (left-bottom) -->
+  <rect x="20" y="270" width="210" height="72" fill="#1E88E5" rx="10" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.12))"/>
+  <text x="125" y="294" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Controllability</text>
+  <text x="125" y="312" text-anchor="middle" font-size="12" fill="#E3F2FD">（制御可能性）</text>
+  <text x="125" y="330" text-anchor="middle" font-size="10" fill="#BBDEFB">HITL・Human-in-the-loop</text>
+  <line x1="230" y1="290" x2="385" y2="255" stroke="#1E88E5" stroke-width="2"/>
+  <polygon points="379,258 391,246 393,260" fill="#1E88E5"/>
+
+  <!-- Principle 6: Veracity (left-top) -->
+  <rect x="20" y="90" width="210" height="72" fill="#00897B" rx="10" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.12))"/>
+  <text x="125" y="114" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Veracity（正確性）</text>
+  <text x="125" y="132" text-anchor="middle" font-size="12" fill="#B2DFDB">ハルシネーション最小化</text>
+  <text x="125" y="150" text-anchor="middle" font-size="10" fill="#80CBC4">RAG・Grounding</text>
+  <line x1="230" y1="150" x2="385" y2="185" stroke="#00897B" stroke-width="2"/>
+  <polygon points="379,182 391,178 387,190" fill="#00897B"/>
+
+  <!-- AWS Tools row -->
+  <rect x="20" y="376" width="860" height="34" fill="#E3F2FD" rx="6"/>
+  <text x="450" y="398" text-anchor="middle" font-size="11" fill="#1565C0" font-weight="600">AWS ツール: SageMaker Clarify（バイアス検出・SHAP）/ Bedrock Guardrails（コンテンツ制御）/ Amazon Macie（PII 検出）</text>
+</svg>

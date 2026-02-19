@@ -1,0 +1,64 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="500" fill="#F0F4F8"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">クラウド選定フローチャート</text>
+
+  <!-- Start -->
+  <rect x="350" y="48" width="200" height="44" rx="22" fill="#232F3E"/>
+  <text x="450" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="white">クラウド選定開始</text>
+  <!-- Arrow down -->
+  <line x1="450" y1="92" x2="450" y2="118" stroke="#555" stroke-width="2"/>
+  <polygon points="445,118 450,128 455,118" fill="#555"/>
+
+  <!-- Q1: AI/ML重視? -->
+  <rect x="310" y="128" width="280" height="48" rx="8" fill="#7B1FA2"/>
+  <text x="450" y="152" text-anchor="middle" font-size="13" font-weight="bold" fill="white">AI/ML が事業の中核？</text>
+  <text x="450" y="168" text-anchor="middle" font-size="11" fill="#E1BEE7">（LLM, 画像生成, 推薦）</text>
+
+  <!-- Yes → GCP -->
+  <line x1="590" y1="152" x2="680" y2="152" stroke="#4285F4" stroke-width="2"/>
+  <polygon points="680,147 690,152 680,157" fill="#4285F4"/>
+  <text x="635" y="145" text-anchor="middle" font-size="11" fill="#4285F4">Yes</text>
+  <rect x="690" y="130" width="180" height="44" rx="10" fill="#4285F4"/>
+  <text x="780" y="157" text-anchor="middle" font-size="13" font-weight="bold" fill="white">GCP 推奨</text>
+
+  <!-- No → Q2 -->
+  <line x1="450" y1="176" x2="450" y2="210" stroke="#555" stroke-width="2"/>
+  <polygon points="445,210 450,220 455,210" fill="#555"/>
+  <text x="465" y="200" font-size="11" fill="#555">No</text>
+
+  <!-- Q2: Enterpriseターゲット? -->
+  <rect x="290" y="220" width="320" height="48" rx="8" fill="#1A9C3E"/>
+  <text x="450" y="244" text-anchor="middle" font-size="13" font-weight="bold" fill="white">BtoB / Enterpriseターゲット？</text>
+  <text x="450" y="260" text-anchor="middle" font-size="11" fill="#C8E6C9">（MS 365連携, 大企業顧客）</text>
+
+  <!-- Yes → Azure -->
+  <line x1="610" y1="244" x2="680" y2="244" stroke="#0078D4" stroke-width="2"/>
+  <polygon points="680,239 690,244 680,249" fill="#0078D4"/>
+  <text x="645" y="237" text-anchor="middle" font-size="11" fill="#0078D4">Yes</text>
+  <rect x="690" y="222" width="180" height="44" rx="10" fill="#0078D4"/>
+  <text x="780" y="249" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Azure 推奨</text>
+
+  <!-- No → Q3 -->
+  <line x1="450" y1="268" x2="450" y2="302" stroke="#555" stroke-width="2"/>
+  <polygon points="445,302 450,312 455,302" fill="#555"/>
+  <text x="465" y="292" font-size="11" fill="#555">No</text>
+
+  <!-- Q3: グローバル展開重視? -->
+  <rect x="280" y="312" width="340" height="48" rx="8" fill="#E67700"/>
+  <text x="450" y="336" text-anchor="middle" font-size="13" font-weight="bold" fill="white">グローバル展開を重視？</text>
+  <text x="450" y="352" text-anchor="middle" font-size="11" fill="#FFF3E0">（複数リージョン, エコシステム規模）</text>
+
+  <!-- Any → AWS -->
+  <line x1="450" y1="360" x2="450" y2="400" stroke="#FF9900" stroke-width="2"/>
+  <polygon points="445,400 450,410 455,400" fill="#FF9900"/>
+  <text x="465" y="387" font-size="11" fill="#FF9900">Yes / どちらでも</text>
+
+  <!-- AWS Result -->
+  <rect x="310" y="410" width="280" height="50" rx="12" fill="#FF9900" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="450" y="433" text-anchor="middle" font-size="14" font-weight="bold" fill="white">AWS 推奨</text>
+  <text x="450" y="451" text-anchor="middle" font-size="11" fill="#FFF3E0">最大エコシステム・採用しやすさ◎</text>
+
+  <!-- Note -->
+  <rect x="20" y="460" width="860" height="30" rx="6" fill="#232F3E"/>
+  <text x="450" y="480" text-anchor="middle" font-size="11" fill="#FF9900">※ 複数クラウドの併用（マルチクラウド）も有効。ただし初期はシングルクラウドで集中投資推奨</text>
+</svg>

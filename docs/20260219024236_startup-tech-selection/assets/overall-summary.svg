@@ -1,0 +1,45 @@
+<svg viewBox="0 0 900 420" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="420" fill="#F0F4F8"/>
+  <text x="450" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#232F3E">スタートアップ技術選定 黄金律</text>
+
+  <!-- Center circle -->
+  <circle cx="450" cy="220" r="80" fill="#232F3E" style="filter:drop-shadow(2px 4px 6px rgba(0,0,0,0.3))"/>
+  <text x="450" y="213" text-anchor="middle" font-size="14" font-weight="bold" fill="#FF9900">製品開発</text>
+  <text x="450" y="232" text-anchor="middle" font-size="14" font-weight="bold" fill="#FF9900">最速化</text>
+
+  <!-- Rule 1: Top -->
+  <rect x="290" y="50" width="320" height="60" rx="12" fill="#FF9900" style="filter:drop-shadow(1px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="450" y="72" text-anchor="middle" font-size="13" font-weight="bold" fill="white">① まず動くものを出す</text>
+  <text x="450" y="93" text-anchor="middle" font-size="11" fill="#FFF3E0">完璧な技術より顧客への速いデリバリー</text>
+  <line x1="450" y1="110" x2="450" y2="140" stroke="#FF9900" stroke-width="2" stroke-dasharray="4,2"/>
+
+  <!-- Rule 2: Top-Right -->
+  <rect x="660" y="120" width="220" height="60" rx="12" fill="#1A9C3E" style="filter:drop-shadow(1px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="770" y="142" text-anchor="middle" font-size="13" font-weight="bold" fill="white">② マネージド優先</text>
+  <text x="770" y="162" text-anchor="middle" font-size="11" fill="#C8E6C9">インフラより製品に集中せよ</text>
+  <line x1="660" y1="155" x2="528" y2="190" stroke="#1A9C3E" stroke-width="2" stroke-dasharray="4,2"/>
+
+  <!-- Rule 3: Bottom-Right -->
+  <rect x="660" y="270" width="220" height="60" rx="12" fill="#1A73E8" style="filter:drop-shadow(1px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="770" y="292" text-anchor="middle" font-size="13" font-weight="bold" fill="white">③ コスト監視必須</text>
+  <text x="770" y="312" text-anchor="middle" font-size="11" fill="#BBDEFB">クレジット頼りは危険。常に計測</text>
+  <line x1="660" y1="300" x2="528" y2="256" stroke="#1A73E8" stroke-width="2" stroke-dasharray="4,2"/>
+
+  <!-- Rule 4: Bottom -->
+  <rect x="290" y="340" width="320" height="60" rx="12" fill="#7B1FA2" style="filter:drop-shadow(1px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="450" y="362" text-anchor="middle" font-size="13" font-weight="bold" fill="white">④ 採用を意識した選定</text>
+  <text x="450" y="382" text-anchor="middle" font-size="11" fill="#E1BEE7">エンジニアが集まる技術スタックを</text>
+  <line x1="450" y1="340" x2="450" y2="300" stroke="#7B1FA2" stroke-width="2" stroke-dasharray="4,2"/>
+
+  <!-- Rule 5: Bottom-Left -->
+  <rect x="20" y="270" width="220" height="60" rx="12" fill="#E53935" style="filter:drop-shadow(1px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="130" y="292" text-anchor="middle" font-size="13" font-weight="bold" fill="white">⑤ ロックイン管理</text>
+  <text x="130" y="312" text-anchor="middle" font-size="11" fill="#FFCDD2">抽象化層を設けて逃げ道確保</text>
+  <line x1="240" y1="300" x2="372" y2="256" stroke="#E53935" stroke-width="2" stroke-dasharray="4,2"/>
+
+  <!-- Rule 6: Top-Left -->
+  <rect x="20" y="120" width="220" height="60" rx="12" fill="#E67700" style="filter:drop-shadow(1px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="130" y="142" text-anchor="middle" font-size="13" font-weight="bold" fill="white">⑥ チームで決める</text>
+  <text x="130" y="162" text-anchor="middle" font-size="11" fill="#FFF3E0">個人の好みでなく組織の合意で</text>
+  <line x1="240" y1="155" x2="372" y2="190" stroke="#E67700" stroke-width="2" stroke-dasharray="4,2"/>
+</svg>

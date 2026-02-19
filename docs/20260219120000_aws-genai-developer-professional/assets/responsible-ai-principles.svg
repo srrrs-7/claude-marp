@@ -1,0 +1,62 @@
+<svg viewBox="0 0 900 440" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="440" fill="#F0F4F8"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">AWS 責任あるAI — 6つの原則</text>
+
+  <!-- Center circle -->
+  <circle cx="450" cy="230" r="70" fill="#FF9900" style="filter:drop-shadow(3px 3px 6px rgba(0,0,0,0.25))"/>
+  <text x="450" y="222" text-anchor="middle" font-size="13" font-weight="bold" fill="white">責任ある</text>
+  <text x="450" y="240" text-anchor="middle" font-size="13" font-weight="bold" fill="white">AI</text>
+  <text x="450" y="258" text-anchor="middle" font-size="11" fill="#FFF3E0">Responsible AI</text>
+
+  <!-- Principle 1: Fairness -->
+  <rect x="20" y="50" width="200" height="100" rx="12" fill="#1A73E8" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="120" y="78" text-anchor="middle" font-size="15" fill="white">⚖</text>
+  <text x="120" y="98" text-anchor="middle" font-size="13" font-weight="bold" fill="white">公平性</text>
+  <text x="120" y="116" text-anchor="middle" font-size="11" fill="#BBDEFB">バイアスの検出・排除</text>
+  <text x="120" y="133" text-anchor="middle" font-size="11" fill="#BBDEFB">多様性・公平な扱い</text>
+  <line x1="220" y1="100" x2="385" y2="175" stroke="#1A73E8" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Principle 2: Explainability -->
+  <rect x="340" y="40" width="220" height="100" rx="12" fill="#1A9C3E" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="450" y="68" text-anchor="middle" font-size="15" fill="white">🔍</text>
+  <text x="450" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="white">説明可能性</text>
+  <text x="450" y="106" text-anchor="middle" font-size="11" fill="#C8E6C9">判断根拠の提示</text>
+  <text x="450" y="123" text-anchor="middle" font-size="11" fill="#C8E6C9">ブラックボックス回避</text>
+  <line x1="450" y1="140" x2="450" y2="160" stroke="#1A9C3E" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Principle 3: Privacy & Security -->
+  <rect x="680" y="50" width="200" height="100" rx="12" fill="#7B1FA2" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="780" y="78" text-anchor="middle" font-size="15" fill="white">🔒</text>
+  <text x="780" y="98" text-anchor="middle" font-size="13" font-weight="bold" fill="white">プライバシー・安全</text>
+  <text x="780" y="116" text-anchor="middle" font-size="11" fill="#E1BEE7">データ保護・暗号化</text>
+  <text x="780" y="133" text-anchor="middle" font-size="11" fill="#E1BEE7">PII管理・アクセス制御</text>
+  <line x1="680" y1="100" x2="515" y2="175" stroke="#7B1FA2" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Principle 4: Robustness -->
+  <rect x="20" y="290" width="200" height="100" rx="12" fill="#E53935" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="120" y="318" text-anchor="middle" font-size="15" fill="white">🛡</text>
+  <text x="120" y="338" text-anchor="middle" font-size="13" font-weight="bold" fill="white">堅牢性</text>
+  <text x="120" y="356" text-anchor="middle" font-size="11" fill="#FFCDD2">敵対的入力への耐性</text>
+  <text x="120" y="373" text-anchor="middle" font-size="11" fill="#FFCDD2">プロンプトインジェクション対策</text>
+  <line x1="220" y1="340" x2="385" y2="285" stroke="#E53935" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Principle 5: Transparency -->
+  <rect x="340" y="300" width="220" height="100" rx="12" fill="#F57C00" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="450" y="328" text-anchor="middle" font-size="15" fill="white">📋</text>
+  <text x="450" y="348" text-anchor="middle" font-size="13" font-weight="bold" fill="white">透明性</text>
+  <text x="450" y="366" text-anchor="middle" font-size="11" fill="#FFF3E0">AIの利用を開示</text>
+  <text x="450" y="383" text-anchor="middle" font-size="11" fill="#FFF3E0">ログ・監査トレイル</text>
+  <line x1="450" y1="300" x2="450" y2="300" stroke="#F57C00" stroke-width="1.5"/>
+
+  <!-- Principle 6: Governance -->
+  <rect x="680" y="290" width="200" height="100" rx="12" fill="#00897B" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="780" y="318" text-anchor="middle" font-size="15" fill="white">🏛</text>
+  <text x="780" y="338" text-anchor="middle" font-size="13" font-weight="bold" fill="white">ガバナンス</text>
+  <text x="780" y="356" text-anchor="middle" font-size="11" fill="#B2DFDB">人間によるオーバーサイト</text>
+  <text x="780" y="373" text-anchor="middle" font-size="11" fill="#B2DFDB">規制・コンプライアンス準拠</text>
+  <line x1="680" y1="340" x2="515" y2="285" stroke="#00897B" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- AWS note -->
+  <rect x="290" y="410" width="320" height="25" rx="6" fill="#232F3E"/>
+  <text x="450" y="427" text-anchor="middle" font-size="12" fill="#FF9900">AWS AI Service Cards で各原則を文書化・公開</text>
+</svg>

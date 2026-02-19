@@ -1,0 +1,85 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect x="0" y="0" width="900" height="400" fill="#fafbff" rx="12"/>
+  <text x="450" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">プロンプトエンジニアリング手法の比較</text>
+
+  <!-- Column Headers -->
+  <rect x="20" y="48" width="170" height="36" fill="#1565C0" rx="6"/>
+  <text x="105" y="71" text-anchor="middle" font-size="13" font-weight="bold" fill="white">手法</text>
+  <rect x="200" y="48" width="220" height="36" fill="#1565C0" rx="6"/>
+  <text x="310" y="71" text-anchor="middle" font-size="13" font-weight="bold" fill="white">特徴・使い方</text>
+  <rect x="430" y="48" width="200" height="36" fill="#1565C0" rx="6"/>
+  <text x="530" y="71" text-anchor="middle" font-size="13" font-weight="bold" fill="white">適切なシーン</text>
+  <rect x="640" y="48" width="240" height="36" fill="#1565C0" rx="6"/>
+  <text x="760" y="71" text-anchor="middle" font-size="13" font-weight="bold" fill="white">プロンプト例</text>
+
+  <!-- Row 1: Zero-shot -->
+  <rect x="20" y="94" width="170" height="55" fill="#E3F2FD" rx="6"/>
+  <text x="105" y="116" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">Zero-shot</text>
+  <text x="105" y="135" text-anchor="middle" font-size="10" fill="#555">（例なし直接指示）</text>
+  <rect x="200" y="94" width="220" height="55" fill="#F5F5F5" rx="6"/>
+  <text x="210" y="114" font-size="10" fill="#444">例を与えず直接タスクを指示</text>
+  <text x="210" y="130" font-size="10" fill="#444">事前学習の汎化能力を活用</text>
+  <text x="210" y="146" font-size="10" fill="#888">最もシンプル・即座に試せる</text>
+  <rect x="430" y="94" width="200" height="55" fill="#F5F5F5" rx="6"/>
+  <text x="440" y="114" font-size="10" fill="#444">一般的なタスク・常識的な</text>
+  <text x="440" y="130" font-size="10" fill="#444">推論・翻訳・要約など</text>
+  <text x="440" y="146" font-size="10" fill="#888">シンプルなリクエスト向き</text>
+  <rect x="640" y="94" width="240" height="55" fill="#E3F2FD" rx="6"/>
+  <text x="650" y="114" font-size="10" fill="#444" font-style="italic">"次の文章を日本語に翻訳</text>
+  <text x="650" y="130" font-size="10" fill="#444" font-style="italic">してください: ..."</text>
+
+  <!-- Row 2: Few-shot -->
+  <rect x="20" y="159" width="170" height="55" fill="#E8F5E9" rx="6"/>
+  <text x="105" y="181" text-anchor="middle" font-size="12" font-weight="bold" fill="#2E7D32">Few-shot</text>
+  <text x="105" y="200" text-anchor="middle" font-size="10" fill="#555">（例付き指示）</text>
+  <rect x="200" y="159" width="220" height="55" fill="#F5F5F5" rx="6"/>
+  <text x="210" y="179" font-size="10" fill="#444">2〜5件の入出力例を提示</text>
+  <text x="210" y="195" font-size="10" fill="#444">期待する出力形式を示す</text>
+  <text x="210" y="211" font-size="10" fill="#888">精度向上・形式統一に有効</text>
+  <rect x="430" y="159" width="200" height="55" fill="#F5F5F5" rx="6"/>
+  <text x="440" y="179" font-size="10" fill="#444">特定フォーマットの出力・</text>
+  <text x="440" y="195" font-size="10" fill="#444">分類タスク・スタイル模倣</text>
+  <text x="440" y="211" font-size="10" fill="#888">出力形式を固定したいとき</text>
+  <rect x="640" y="159" width="240" height="55" fill="#E8F5E9" rx="6"/>
+  <text x="650" y="176" font-size="10" fill="#444" font-style="italic">"ポジティブ: 素晴らしい</text>
+  <text x="650" y="192" font-size="10" fill="#444" font-style="italic">ネガティブ: 最悪</text>
+  <text x="650" y="208" font-size="10" fill="#444" font-style="italic">この文章は: ..."</text>
+
+  <!-- Row 3: Chain-of-Thought -->
+  <rect x="20" y="224" width="170" height="55" fill="#FFF3E0" rx="6"/>
+  <text x="105" y="243" text-anchor="middle" font-size="12" font-weight="bold" fill="#E65100">Chain-of-Thought</text>
+  <text x="105" y="262" text-anchor="middle" font-size="10" fill="#555">（推論ステップ明示）</text>
+  <rect x="200" y="224" width="220" height="55" fill="#F5F5F5" rx="6"/>
+  <text x="210" y="244" font-size="10" fill="#444">「ステップバイステップで</text>
+  <text x="210" y="260" font-size="10" fill="#444">考えてください」と指示</text>
+  <text x="210" y="276" font-size="10" fill="#888">推論過程を可視化</text>
+  <rect x="430" y="224" width="200" height="55" fill="#F5F5F5" rx="6"/>
+  <text x="440" y="244" font-size="10" fill="#444">数学的推論・複雑な論理・</text>
+  <text x="440" y="260" font-size="10" fill="#444">多段階の問題解決</text>
+  <text x="440" y="276" font-size="10" fill="#888">複雑な推論タスク</text>
+  <rect x="640" y="224" width="240" height="55" fill="#FFF3E0" rx="6"/>
+  <text x="650" y="241" font-size="10" fill="#444" font-style="italic">"ステップバイステップで</text>
+  <text x="650" y="257" font-size="10" fill="#444" font-style="italic">考えて、この問題を</text>
+  <text x="650" y="273" font-size="10" fill="#444" font-style="italic">解いてください: ..."</text>
+
+  <!-- Row 4: Role Prompting -->
+  <rect x="20" y="289" width="170" height="55" fill="#EDE7F6" rx="6"/>
+  <text x="105" y="308" text-anchor="middle" font-size="12" font-weight="bold" fill="#4527A0">Role Prompting</text>
+  <text x="105" y="327" text-anchor="middle" font-size="10" fill="#555">（役割付与）</text>
+  <rect x="200" y="289" width="220" height="55" fill="#F5F5F5" rx="6"/>
+  <text x="210" y="309" font-size="10" fill="#444">AI に特定の役割・専門家</text>
+  <text x="210" y="325" font-size="10" fill="#444">ペルソナを与える</text>
+  <text x="210" y="341" font-size="10" fill="#888">一貫したトーン・専門知識</text>
+  <rect x="430" y="289" width="200" height="55" fill="#F5F5F5" rx="6"/>
+  <text x="440" y="309" font-size="10" fill="#444">カスタマーサポート・</text>
+  <text x="440" y="325" font-size="10" fill="#444">専門的なアドバイス</text>
+  <text x="440" y="341" font-size="10" fill="#888">特定ドメインの専門性</text>
+  <rect x="640" y="289" width="240" height="55" fill="#EDE7F6" rx="6"/>
+  <text x="650" y="306" font-size="10" fill="#444" font-style="italic">"あなたはシニア AWS</text>
+  <text x="650" y="322" font-size="10" fill="#444" font-style="italic">ソリューションアーキテクト</text>
+  <text x="650" y="338" font-size="10" fill="#444" font-style="italic">として回答してください"</text>
+
+  <!-- Bottom note -->
+  <rect x="20" y="356" width="860" height="32" fill="#E3F2FD" rx="6"/>
+  <text x="450" y="376" text-anchor="middle" font-size="11" fill="#1565C0" font-weight="600">試験ポイント: 複雑な推論→ Chain-of-Thought / 形式統一→ Few-shot / シンプル→ Zero-shot</text>
+</svg>

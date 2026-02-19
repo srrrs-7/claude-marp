@@ -1,0 +1,67 @@
+<svg viewBox="0 0 900 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="400" fill="#F8F9FA"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">Guardrails — コンテンツフィルタカテゴリと強度設定</text>
+
+  <!-- Header -->
+  <rect x="20" y="45" width="860" height="36" rx="6" fill="#232F3E"/>
+  <text x="200" y="68" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">カテゴリ</text>
+  <text x="420" y="68" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">対象コンテンツ</text>
+  <text x="650" y="68" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">強度レベル</text>
+  <text x="820" y="68" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">適用対象</text>
+
+  <!-- Hate -->
+  <rect x="20" y="81" width="860" height="50" rx="4" fill="#FFEBEE"/>
+  <rect x="20" y="81" width="8" height="50" rx="4" fill="#E53935"/>
+  <text x="200" y="103" text-anchor="middle" font-size="13" font-weight="bold" fill="#C62828">ヘイト (Hate)</text>
+  <text x="200" y="121" text-anchor="middle" font-size="11" fill="#666">差別・偏見・憎悪表現</text>
+  <text x="420" y="111" text-anchor="middle" font-size="11" fill="#232F3E">人種・宗教・性別・国籍等に基づく攻撃的コンテンツ</text>
+  <text x="650" y="103" text-anchor="middle" font-size="11" fill="#232F3E">None / Low / Medium / High</text>
+  <text x="650" y="121" text-anchor="middle" font-size="11" fill="#666">↑ Highで厳格にブロック</text>
+  <text x="820" y="111" text-anchor="middle" font-size="11" fill="#232F3E">入力/出力</text>
+
+  <!-- Insults -->
+  <rect x="20" y="131" width="860" height="50" rx="4" fill="#FFF3E0"/>
+  <rect x="20" y="131" width="8" height="50" rx="4" fill="#FF9900"/>
+  <text x="200" y="153" text-anchor="middle" font-size="13" font-weight="bold" fill="#E67700">侮辱 (Insults)</text>
+  <text x="200" y="171" text-anchor="middle" font-size="11" fill="#666">軽蔑・中傷表現</text>
+  <text x="420" y="161" text-anchor="middle" font-size="11" fill="#232F3E">個人への侮辱・名誉毀損・ハラスメント</text>
+  <text x="650" y="153" text-anchor="middle" font-size="11" fill="#232F3E">None / Low / Medium / High</text>
+  <text x="820" y="161" text-anchor="middle" font-size="11" fill="#232F3E">入力/出力</text>
+
+  <!-- Sexual -->
+  <rect x="20" y="181" width="860" height="50" rx="4" fill="#FCE4EC"/>
+  <rect x="20" y="181" width="8" height="50" rx="4" fill="#C2185B"/>
+  <text x="200" y="203" text-anchor="middle" font-size="13" font-weight="bold" fill="#C2185B">性的 (Sexual)</text>
+  <text x="200" y="221" text-anchor="middle" font-size="11" fill="#666">成人向けコンテンツ</text>
+  <text x="420" y="211" text-anchor="middle" font-size="11" fill="#232F3E">性的描写・不適切な性的コンテンツ</text>
+  <text x="650" y="203" text-anchor="middle" font-size="11" fill="#232F3E">None / Low / Medium / High</text>
+  <text x="820" y="211" text-anchor="middle" font-size="11" fill="#232F3E">入力/出力</text>
+
+  <!-- Violence -->
+  <rect x="20" y="231" width="860" height="50" rx="4" fill="#FFEBEE"/>
+  <rect x="20" y="231" width="8" height="50" rx="4" fill="#B71C1C"/>
+  <text x="200" y="253" text-anchor="middle" font-size="13" font-weight="bold" fill="#B71C1C">暴力 (Violence)</text>
+  <text x="200" y="271" text-anchor="middle" font-size="11" fill="#666">暴力・危害描写</text>
+  <text x="420" y="261" text-anchor="middle" font-size="11" fill="#232F3E">物理的暴力・自傷・危害の詳細描写</text>
+  <text x="650" y="253" text-anchor="middle" font-size="11" fill="#232F3E">None / Low / Medium / High</text>
+  <text x="820" y="261" text-anchor="middle" font-size="11" fill="#232F3E">入力/出力</text>
+
+  <!-- Misconduct -->
+  <rect x="20" y="281" width="860" height="50" rx="4" fill="#E8F5E9"/>
+  <rect x="20" y="281" width="8" height="50" rx="4" fill="#1A9C3E"/>
+  <text x="200" y="303" text-anchor="middle" font-size="13" font-weight="bold" fill="#1A9C3E">不正行為 (Misconduct)</text>
+  <text x="200" y="321" text-anchor="middle" font-size="11" fill="#666">違法・詐欺行為</text>
+  <text x="420" y="311" text-anchor="middle" font-size="11" fill="#232F3E">薬物・武器・詐欺・犯罪方法の情報提供</text>
+  <text x="650" y="303" text-anchor="middle" font-size="11" fill="#232F3E">None / Low / Medium / High</text>
+  <text x="820" y="311" text-anchor="middle" font-size="11" fill="#232F3E">入力/出力</text>
+
+  <!-- Grid lines -->
+  <line x1="340" y1="45" x2="340" y2="331" stroke="#DDD" stroke-width="1"/>
+  <line x1="560" y1="45" x2="560" y2="331" stroke="#DDD" stroke-width="1"/>
+  <line x1="780" y1="45" x2="780" y2="331" stroke="#DDD" stroke-width="1"/>
+
+  <!-- Note -->
+  <rect x="20" y="345" width="860" height="48" rx="8" fill="#7B1FA2"/>
+  <text x="450" y="365" text-anchor="middle" font-size="12" font-weight="bold" fill="white">試験ポイント: カテゴリごとに入力/出力の強度を個別設定可能</text>
+  <text x="450" y="383" text-anchor="middle" font-size="11" fill="#E1BEE7">High = ほぼすべてブロック / None = フィルタなし / Medium = バランス設定（一般的な用途に推奨）</text>
+</svg>

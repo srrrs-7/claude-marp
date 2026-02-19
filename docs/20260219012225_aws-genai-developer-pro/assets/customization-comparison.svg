@@ -1,0 +1,88 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect x="0" y="0" width="900" height="420" fill="#fafbff" rx="12"/>
+  <text x="450" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">FM カスタマイズ手法の比較</text>
+
+  <!-- Headers -->
+  <rect x="10" y="48" width="148" height="38" fill="#37474F" rx="6"/>
+  <text x="84" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="white">比較軸</text>
+  <rect x="165" y="48" width="170" height="38" fill="#1565C0" rx="6"/>
+  <text x="250" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Prompt Engineering</text>
+  <text x="250" y="80" text-anchor="middle" font-size="10" fill="#90CAF9">プロンプト設計</text>
+  <rect x="340" y="48" width="170" height="38" fill="#1E88E5" rx="6"/>
+  <text x="425" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="white">RAG</text>
+  <text x="425" y="80" text-anchor="middle" font-size="10" fill="#BBDEFB">検索拡張生成</text>
+  <rect x="515" y="48" width="170" height="38" fill="#7B1FA2" rx="6"/>
+  <text x="600" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Fine-tuning</text>
+  <text x="600" y="80" text-anchor="middle" font-size="10" fill="#E1BEE7">追加学習</text>
+  <rect x="690" y="48" width="200" height="38" fill="#37474F" rx="6"/>
+  <text x="790" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Continued Pre-training</text>
+  <text x="790" y="80" text-anchor="middle" font-size="10" fill="#B0BEC5">継続事前学習</text>
+
+  <!-- Row: データ要件 -->
+  <rect x="10" y="96" width="148" height="44" fill="#ECEFF1" rx="4"/>
+  <text x="84" y="123" text-anchor="middle" font-size="11" fill="#37474F" font-weight="600">データ要件</text>
+  <rect x="165" y="96" width="170" height="44" fill="#E3F2FD" rx="4"/>
+  <text x="250" y="114" text-anchor="middle" font-size="11" fill="#444">不要</text>
+  <text x="250" y="130" text-anchor="middle" font-size="10" fill="#888">（プロンプト設計のみ）</text>
+  <rect x="340" y="96" width="170" height="44" fill="#E3F2FD" rx="4"/>
+  <text x="425" y="114" text-anchor="middle" font-size="11" fill="#444">知識ベース用ドキュメント</text>
+  <text x="425" y="130" text-anchor="middle" font-size="10" fill="#888">（数 MB 〜数 GB）</text>
+  <rect x="515" y="96" width="170" height="44" fill="#E3F2FD" rx="4"/>
+  <text x="600" y="114" text-anchor="middle" font-size="11" fill="#444">数百〜数千件の</text>
+  <text x="600" y="130" text-anchor="middle" font-size="10" fill="#888">ラベル付き入出力例</text>
+  <rect x="690" y="96" width="200" height="44" fill="#E3F2FD" rx="4"/>
+  <text x="790" y="114" text-anchor="middle" font-size="11" fill="#444">数十億トークンの</text>
+  <text x="790" y="130" text-anchor="middle" font-size="10" fill="#888">ドメイン固有コーパス</text>
+
+  <!-- Row: コスト -->
+  <rect x="10" y="148" width="148" height="44" fill="#ECEFF1" rx="4"/>
+  <text x="84" y="175" text-anchor="middle" font-size="11" fill="#37474F" font-weight="600">コスト</text>
+  <rect x="165" y="148" width="170" height="44" fill="#E8F5E9" rx="4"/>
+  <text x="250" y="172" text-anchor="middle" font-size="13" font-weight="bold" fill="#2E7D32">最安（無料）</text>
+  <rect x="340" y="148" width="170" height="44" fill="#FFF3E0" rx="4"/>
+  <text x="425" y="172" text-anchor="middle" font-size="13" font-weight="bold" fill="#E65100">中（インフラ費用）</text>
+  <rect x="515" y="148" width="170" height="44" fill="#FFEBEE" rx="4"/>
+  <text x="600" y="172" text-anchor="middle" font-size="13" font-weight="bold" fill="#C62828">高（学習費用）</text>
+  <rect x="690" y="148" width="200" height="44" fill="#FCE4EC" rx="4"/>
+  <text x="790" y="172" text-anchor="middle" font-size="13" font-weight="bold" fill="#880E4F">最高（大規模計算）</text>
+
+  <!-- Row: 用途 -->
+  <rect x="10" y="200" width="148" height="60" fill="#ECEFF1" rx="4"/>
+  <text x="84" y="234" text-anchor="middle" font-size="11" fill="#37474F" font-weight="600">主な用途</text>
+  <rect x="165" y="200" width="170" height="60" fill="#E3F2FD" rx="4"/>
+  <text x="175" y="218" font-size="10" fill="#444">• 汎用タスク全般</text>
+  <text x="175" y="234" font-size="10" fill="#444">• 形式・スタイル制御</text>
+  <text x="175" y="250" font-size="10" fill="#444">• まず試すべき手法</text>
+  <rect x="340" y="200" width="170" height="60" fill="#E3F2FD" rx="4"/>
+  <text x="350" y="218" font-size="10" fill="#444">• リアルタイム情報</text>
+  <text x="350" y="234" font-size="10" fill="#444">• 社内ドキュメント Q&amp;A</text>
+  <text x="350" y="250" font-size="10" fill="#444">• 根拠付き回答が必要</text>
+  <rect x="515" y="200" width="170" height="60" fill="#E3F2FD" rx="4"/>
+  <text x="525" y="218" font-size="10" fill="#444">• 特定ドメイン特化</text>
+  <text x="525" y="234" font-size="10" fill="#444">• 出力スタイル固定</text>
+  <text x="525" y="250" font-size="10" fill="#444">• 応答速度改善</text>
+  <rect x="690" y="200" width="200" height="60" fill="#E3F2FD" rx="4"/>
+  <text x="700" y="218" font-size="10" fill="#444">• ドメイン知識の埋め込み</text>
+  <text x="700" y="234" font-size="10" fill="#444">• 専門用語・新概念習得</text>
+  <text x="700" y="250" font-size="10" fill="#444">• 低リソース言語対応</text>
+
+  <!-- Row: 即時性 -->
+  <rect x="10" y="268" width="148" height="44" fill="#ECEFF1" rx="4"/>
+  <text x="84" y="295" text-anchor="middle" font-size="11" fill="#37474F" font-weight="600">実装の速さ</text>
+  <rect x="165" y="268" width="170" height="44" fill="#E8F5E9" rx="4"/>
+  <text x="250" y="295" text-anchor="middle" font-size="11" fill="#2E7D32" font-weight="bold">即座（分〜時間）</text>
+  <rect x="340" y="268" width="170" height="44" fill="#FFF3E0" rx="4"/>
+  <text x="425" y="295" text-anchor="middle" font-size="11" fill="#E65100">数日（KB 構築）</text>
+  <rect x="515" y="268" width="170" height="44" fill="#FFEBEE" rx="4"/>
+  <text x="600" y="295" text-anchor="middle" font-size="11" fill="#C62828">数週間（学習）</text>
+  <rect x="690" y="268" width="200" height="44" fill="#FCE4EC" rx="4"/>
+  <text x="790" y="295" text-anchor="middle" font-size="11" fill="#880E4F">数週間〜数ヶ月</text>
+
+  <!-- Recommendation -->
+  <rect x="10" y="330" width="880" height="80" fill="#E3F2FD" rx="8"/>
+  <text x="450" y="352" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565C0">試験での選択基準</text>
+  <text x="30" y="372" font-size="11" fill="#444">• 「コスト最小で今すぐ試したい」→ Prompt Engineering</text>
+  <text x="30" y="390" font-size="11" fill="#444">• 「リアルタイム / 社内知識 / 引用付き回答」→ RAG（Bedrock Knowledge Bases）</text>
+  <text x="450" y="372" font-size="11" fill="#444">• 「特定タスクの精度・応答速度改善」→ Fine-tuning</text>
+  <text x="450" y="390" font-size="11" fill="#444">• 「ドメイン固有の大量知識をモデルに埋め込む」→ Continued Pre-training</text>
+</svg>

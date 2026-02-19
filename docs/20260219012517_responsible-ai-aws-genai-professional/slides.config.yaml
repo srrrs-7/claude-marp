@@ -1,0 +1,40 @@
+topic: "AWS Certified Generative AI Developer - Professional: 責任あるAI（Responsible AI）完全ガイド"
+language: "ja"
+
+output:
+  dir: "docs/20260219012517_responsible-ai-aws-genai-professional"
+  baseName: "responsible-ai-aws-genai-professional"
+
+theme: default
+
+presentation:
+  title: "AWS Certified Generative AI Developer - Professional"
+  subtitle: "責任あるAI（Responsible AI）完全ガイド"
+  author: "AWS認定試験対策"
+  date: "2026-02-19"
+
+style: |
+  section {
+    font-size: 22px;
+  }
+  section pre code {
+    font-size: 0.6em;
+    line-height: 1.4;
+  }
+  section.section-slide {
+    background: #1a1a2e;
+    color: #ffffff;
+  }
+  h1 {
+    font-size: 1.6em;
+  }
+  h2 {
+    font-size: 1.3em;
+    color: #2563eb;
+  }
+  ul li {
+    margin-bottom: 0.3em;
+  }
+  table {
+    font-size: 0.85em;
+  }

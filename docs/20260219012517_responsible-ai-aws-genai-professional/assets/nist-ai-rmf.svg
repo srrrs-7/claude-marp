@@ -1,0 +1,57 @@
+<svg viewBox="0 0 960 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="500" fill="#f8fafc" rx="12"/>
+  <text x="480" y="36" text-anchor="middle" font-size="20" font-weight="bold" fill="#1e293b">NIST AI リスク管理フレームワーク（AI RMF 1.0）</text>
+  <!-- GOVERN: Cross-cutting outer ring -->
+  <rect x="30" y="60" width="900" height="420" rx="16" fill="#1e293b" style="filter:drop-shadow(0 4px 16px rgba(0,0,0,0.25))"/>
+  <text x="480" y="90" text-anchor="middle" font-size="18" font-weight="bold" fill="#FF9900">GOVERN（ガバナン）</text>
+  <text x="480" y="112" text-anchor="middle" font-size="13" fill="#94a3b8">AIリスク管理文化・ポリシー・プロセス・組織体制の確立（全機能に横断適用）</text>
+  <!-- Inner area for 3 operational functions -->
+  <rect x="55" y="130" width="850" height="330" rx="12" fill="#f8fafc"/>
+  <!-- MAP box -->
+  <rect x="75" y="148" width="255" height="295" rx="12" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="202" y="184" text-anchor="middle" font-size="18" font-weight="bold" fill="#1e40af">MAP</text>
+  <text x="202" y="204" text-anchor="middle" font-size="13" fill="#1d4ed8">（マッピング）</text>
+  <text x="95" y="230" font-size="12" fill="#1e40af">AIシステムの用途・</text>
+  <text x="95" y="248" font-size="12" fill="#1e40af">文脈・リスク因子を</text>
+  <text x="95" y="266" font-size="12" fill="#1e40af">特定・分類する</text>
+  <rect x="90" y="282" width="225" height="130" rx="8" fill="#bfdbfe"/>
+  <text x="202" y="302" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e40af">主な活動:</text>
+  <text x="105" y="322" font-size="11" fill="#1e40af">▸ ユースケースの特定</text>
+  <text x="105" y="340" font-size="11" fill="#1e40af">▸ ステークホルダー分析</text>
+  <text x="105" y="358" font-size="11" fill="#1e40af">▸ リスク優先度付け</text>
+  <text x="105" y="376" font-size="11" fill="#1e40af">▸ リスク許容度の設定</text>
+  <!-- MEASURE box -->
+  <rect x="352" y="148" width="255" height="295" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2.5"/>
+  <text x="479" y="184" text-anchor="middle" font-size="18" font-weight="bold" fill="#92400e">MEASURE</text>
+  <text x="479" y="204" text-anchor="middle" font-size="13" fill="#78350f">（測定・評価）</text>
+  <text x="370" y="230" font-size="12" fill="#92400e">特定したリスクを</text>
+  <text x="370" y="248" font-size="12" fill="#92400e">定量的・定性的に</text>
+  <text x="370" y="266" font-size="12" fill="#92400e">測定・評価する</text>
+  <rect x="367" y="282" width="225" height="130" rx="8" fill="#fde68a"/>
+  <text x="479" y="302" text-anchor="middle" font-size="11" font-weight="bold" fill="#92400e">主な活動:</text>
+  <text x="382" y="322" font-size="11" fill="#92400e">▸ バイアス指標の測定</text>
+  <text x="382" y="340" font-size="11" fill="#92400e">▸ 説明可能性の評価</text>
+  <text x="382" y="358" font-size="11" fill="#92400e">▸ Red Teaming 実施</text>
+  <text x="382" y="376" font-size="11" fill="#92400e">▸ ベンチマーキング</text>
+  <!-- MANAGE box -->
+  <rect x="629" y="148" width="255" height="295" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+  <text x="756" y="184" text-anchor="middle" font-size="18" font-weight="bold" fill="#166534">MANAGE</text>
+  <text x="756" y="204" text-anchor="middle" font-size="13" fill="#14532d">（管理・対応）</text>
+  <text x="648" y="230" font-size="12" fill="#166534">測定したリスクを</text>
+  <text x="648" y="248" font-size="12" fill="#166534">優先度に基づき</text>
+  <text x="648" y="266" font-size="12" fill="#166534">対処・軽減する</text>
+  <rect x="644" y="282" width="225" height="130" rx="8" fill="#bbf7d0"/>
+  <text x="756" y="302" text-anchor="middle" font-size="11" font-weight="bold" fill="#166534">主な活動:</text>
+  <text x="660" y="322" font-size="11" fill="#166534">▸ 軽減策の実装</text>
+  <text x="660" y="340" font-size="11" fill="#166534">▸ インシデント対応</text>
+  <text x="660" y="358" font-size="11" fill="#166534">▸ 継続的監視</text>
+  <text x="660" y="376" font-size="11" fill="#166534">▸ 定期的見直し</text>
+  <!-- Arrows between MAP, MEASURE, MANAGE -->
+  <line x1="330" y1="295" x2="350" y2="295" stroke="#64748b" stroke-width="2"/>
+  <polygon points="354,295 346,290 346,300" fill="#64748b"/>
+  <line x1="607" y1="295" x2="627" y2="295" stroke="#64748b" stroke-width="2"/>
+  <polygon points="631,295 623,290 623,300" fill="#64748b"/>
+  <!-- GOVERN bottom label -->
+  <text x="480" y="462" text-anchor="middle" font-size="12" fill="#94a3b8">GOVERN は他の3機能を支える横断的基盤。ポリシー・役割・プロセスを組織全体で確立</text>
+  <text x="480" y="478" text-anchor="middle" font-size="11" fill="#64748b">出典: NIST AI RMF 1.0（2023）— 米国国立標準技術研究所</text>
+</svg>

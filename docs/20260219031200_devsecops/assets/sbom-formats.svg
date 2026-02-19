@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480"
+     style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:Arial,sans-serif;">
+
+  <!-- Background -->
+  <rect width="900" height="480" fill="#F8F9FA" rx="12"/>
+
+  <!-- Title -->
+  <rect x="0" y="0" width="900" height="52" fill="#232F3E" rx="12"/>
+  <rect x="0" y="40" width="900" height="12" fill="#232F3E"/>
+  <text x="450" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="white" font-family="Arial,sans-serif">SBOM形式比較 — SPDX vs CycloneDX</text>
+
+  <!-- Table header row -->
+  <rect x="40" y="72" width="220" height="44" fill="#455A64" rx="4"/>
+  <rect x="268" y="72" width="280" height="44" fill="#1565C0" rx="4"/>
+  <rect x="556" y="72" width="304" height="44" fill="#2E7D32" rx="4"/>
+
+  <text x="150" y="100" text-anchor="middle" font-size="17" font-weight="bold" fill="white" font-family="Arial,sans-serif">項目</text>
+  <text x="408" y="100" text-anchor="middle" font-size="17" font-weight="bold" fill="white" font-family="Arial,sans-serif">SPDX</text>
+  <text x="708" y="100" text-anchor="middle" font-size="17" font-weight="bold" fill="white" font-family="Arial,sans-serif">CycloneDX</text>
+
+  <!-- Row definitions: y, label, spdx, cdx -->
+  <!-- Row 1: 開発元 -->
+  <rect x="40" y="124" width="220" height="52" fill="#ECEFF1" rx="2"/>
+  <rect x="268" y="124" width="280" height="52" fill="#E3F2FD" rx="2"/>
+  <rect x="556" y="124" width="304" height="52" fill="#E8F5E9" rx="2"/>
+  <line x1="40" y1="176" x2="860" y2="176" stroke="#CFD8DC" stroke-width="1"/>
+  <text x="150" y="155" text-anchor="middle" font-size="15" font-weight="bold" fill="#37474F" font-family="Arial,sans-serif">開発元</text>
+  <text x="408" y="155" text-anchor="middle" font-size="14" fill="#1A237E" font-family="Arial,sans-serif">Linux Foundation</text>
+  <text x="708" y="155" text-anchor="middle" font-size="14" fill="#1B5E20" font-family="Arial,sans-serif">OWASP</text>
+
+  <!-- Row 2: 形式 -->
+  <rect x="40" y="177" width="220" height="52" fill="#ECEFF1" rx="2"/>
+  <rect x="268" y="177" width="280" height="52" fill="#E3F2FD" rx="2"/>
+  <rect x="556" y="177" width="304" height="52" fill="#E8F5E9" rx="2"/>
+  <line x1="40" y1="229" x2="860" y2="229" stroke="#CFD8DC" stroke-width="1"/>
+  <text x="150" y="208" text-anchor="middle" font-size="15" font-weight="bold" fill="#37474F" font-family="Arial,sans-serif">形式</text>
+  <text x="408" y="208" text-anchor="middle" font-size="13" fill="#1A237E" font-family="Arial,sans-serif">JSON / YAML / RDF / TV</text>
+  <text x="708" y="208" text-anchor="middle" font-size="14" fill="#1B5E20" font-family="Arial,sans-serif">JSON / XML</text>
+
+  <!-- Row 3: 主な用途 -->
+  <rect x="40" y="230" width="220" height="52" fill="#ECEFF1" rx="2"/>
+  <rect x="268" y="230" width="280" height="52" fill="#E3F2FD" rx="2"/>
+  <rect x="556" y="230" width="304" height="52" fill="#E8F5E9" rx="2"/>
+  <line x1="40" y1="282" x2="860" y2="282" stroke="#CFD8DC" stroke-width="1"/>
+  <text x="150" y="261" text-anchor="middle" font-size="15" font-weight="bold" fill="#37474F" font-family="Arial,sans-serif">主な用途</text>
+  <text x="408" y="261" text-anchor="middle" font-size="14" fill="#1A237E" font-family="Arial,sans-serif">ライセンス管理</text>
+  <text x="708" y="261" text-anchor="middle" font-size="14" fill="#1B5E20" font-family="Arial,sans-serif">セキュリティ脆弱性</text>
+
+  <!-- Row 4: ツール連携 -->
+  <rect x="40" y="283" width="220" height="52" fill="#ECEFF1" rx="2"/>
+  <rect x="268" y="283" width="280" height="52" fill="#E3F2FD" rx="2"/>
+  <rect x="556" y="283" width="304" height="52" fill="#E8F5E9" rx="2"/>
+  <line x1="40" y1="335" x2="860" y2="335" stroke="#CFD8DC" stroke-width="1"/>
+  <text x="150" y="314" text-anchor="middle" font-size="15" font-weight="bold" fill="#37474F" font-family="Arial,sans-serif">ツール連携</text>
+  <text x="408" y="314" text-anchor="middle" font-size="14" fill="#1A237E" font-family="Arial,sans-serif">Syft, FOSSA</text>
+  <text x="708" y="314" text-anchor="middle" font-size="14" fill="#1B5E20" font-family="Arial,sans-serif">Syft, Trivy, cdxgen</text>
+
+  <!-- Row 5: 規制対応 -->
+  <rect x="40" y="336" width="220" height="52" fill="#ECEFF1" rx="2"/>
+  <rect x="268" y="336" width="280" height="52" fill="#E3F2FD" rx="2"/>
+  <rect x="556" y="336" width="304" height="52" fill="#E8F5E9" rx="2"/>
+  <text x="150" y="367" text-anchor="middle" font-size="15" font-weight="bold" fill="#37474F" font-family="Arial,sans-serif">規制対応</text>
+  <text x="408" y="367" text-anchor="middle" font-size="14" fill="#1A237E" font-family="Arial,sans-serif">NTIA準拠</text>
+  <text x="708" y="367" text-anchor="middle" font-size="14" fill="#1B5E20" font-family="Arial,sans-serif">NTIA準拠</text>
+
+  <!-- Outer border -->
+  <rect x="40" y="72" width="820" height="316" fill="none" stroke="#B0BEC5" stroke-width="1.5" rx="4"/>
+  <!-- Vertical dividers -->
+  <line x1="268" y1="72" x2="268" y2="388" stroke="#B0BEC5" stroke-width="1.5"/>
+  <line x1="556" y1="72" x2="556" y2="388" stroke="#B0BEC5" stroke-width="1.5"/>
+
+  <!-- Legend / Note -->
+  <rect x="40" y="408" width="820" height="50" fill="#FFF9C4" rx="8" style="filter:drop-shadow(0 1px 3px rgba(0,0,0,0.12))"/>
+  <text x="450" y="432" text-anchor="middle" font-size="14" fill="#5D4037" font-family="Arial,sans-serif" font-weight="bold">Note: 両形式ともNTIA最小要件を満たす。セキュリティ重視なら CycloneDX VEX、ライセンス管理重視なら SPDX を推奨</text>
+  <text x="450" y="450" text-anchor="middle" font-size="12" fill="#795548" font-family="Arial,sans-serif">Syft は両形式に対応 — 統一ツールとして活用可能</text>
+</svg>

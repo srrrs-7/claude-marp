@@ -1,0 +1,72 @@
+<svg viewBox="0 0 900 440" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="440" fill="#F0F4F8"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">Seed 期 推奨 OSS スタック（MVP 最速構築）</text>
+
+  <!-- Frontend -->
+  <rect x="20" y="55" width="200" height="350" rx="12" fill="#1A73E8" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.2))"/>
+  <text x="120" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white">フロントエンド</text>
+  <line x1="35" y1="90" x2="205" y2="90" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <rect x="35" y="105" width="170" height="36" rx="8" fill="#1565C0"/>
+  <text x="120" y="128" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Next.js 15</text>
+  <text x="120" y="160" text-anchor="middle" font-size="10" fill="#BBDEFB">SSR/SSG/App Router</text>
+  <rect x="35" y="175" width="170" height="36" rx="8" fill="#1565C0"/>
+  <text x="120" y="198" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Tailwind CSS</text>
+  <text x="120" y="225" text-anchor="middle" font-size="10" fill="#BBDEFB">ユーティリティCSS</text>
+  <rect x="35" y="240" width="170" height="36" rx="8" fill="#1565C0"/>
+  <text x="120" y="263" text-anchor="middle" font-size="12" font-weight="bold" fill="white">shadcn/ui</text>
+  <text x="120" y="290" text-anchor="middle" font-size="10" fill="#BBDEFB">コンポーネントライブラリ</text>
+  <rect x="35" y="305" width="170" height="36" rx="8" fill="#1565C0"/>
+  <text x="120" y="328" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Vercel</text>
+  <text x="120" y="355" text-anchor="middle" font-size="10" fill="#BBDEFB">ホスティング（無料枠◎）</text>
+
+  <!-- Backend -->
+  <rect x="240" y="55" width="200" height="350" rx="12" fill="#1A9C3E" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.2))"/>
+  <text x="340" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white">バックエンド</text>
+  <line x1="255" y1="90" x2="425" y2="90" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <rect x="255" y="105" width="170" height="36" rx="8" fill="#157A30"/>
+  <text x="340" y="128" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Node.js + Hono</text>
+  <text x="340" y="160" text-anchor="middle" font-size="10" fill="#C8E6C9">軽量&高速 API</text>
+  <rect x="255" y="175" width="170" height="36" rx="8" fill="#157A30"/>
+  <text x="340" y="198" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Prisma ORM</text>
+  <text x="340" y="225" text-anchor="middle" font-size="10" fill="#C8E6C9">型安全 DB アクセス</text>
+  <rect x="255" y="240" width="170" height="36" rx="8" fill="#157A30"/>
+  <text x="340" y="263" text-anchor="middle" font-size="12" font-weight="bold" fill="white">tRPC / REST</text>
+  <text x="340" y="290" text-anchor="middle" font-size="10" fill="#C8E6C9">型安全 API 設計</text>
+  <rect x="255" y="305" width="170" height="36" rx="8" fill="#157A30"/>
+  <text x="340" y="328" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Zod バリデーション</text>
+  <text x="340" y="355" text-anchor="middle" font-size="10" fill="#C8E6C9">スキーマ検証</text>
+
+  <!-- Database -->
+  <rect x="460" y="55" width="200" height="350" rx="12" fill="#7B1FA2" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.2))"/>
+  <text x="560" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white">データ / 認証</text>
+  <line x1="475" y1="90" x2="645" y2="90" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <rect x="475" y="105" width="170" height="36" rx="8" fill="#6A1B9A"/>
+  <text x="560" y="128" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Supabase</text>
+  <text x="560" y="160" text-anchor="middle" font-size="10" fill="#E1BEE7">PostgreSQL+Auth+Storage</text>
+  <rect x="475" y="175" width="170" height="36" rx="8" fill="#6A1B9A"/>
+  <text x="560" y="198" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Redis (Upstash)</text>
+  <text x="560" y="225" text-anchor="middle" font-size="10" fill="#E1BEE7">セッション/キャッシュ</text>
+  <rect x="475" y="240" width="170" height="36" rx="8" fill="#6A1B9A"/>
+  <text x="560" y="263" text-anchor="middle" font-size="12" font-weight="bold" fill="white">NextAuth.js</text>
+  <text x="560" y="290" text-anchor="middle" font-size="10" fill="#E1BEE7">認証（Google/GitHub SSO）</text>
+  <rect x="475" y="305" width="170" height="36" rx="8" fill="#6A1B9A"/>
+  <text x="560" y="328" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Stripe</text>
+  <text x="560" y="355" text-anchor="middle" font-size="10" fill="#E1BEE7">決済（早期実装推奨）</text>
+
+  <!-- DevOps -->
+  <rect x="680" y="55" width="200" height="350" rx="12" fill="#E67700" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.2))"/>
+  <text x="780" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white">DevOps / Infra</text>
+  <line x1="695" y1="90" x2="865" y2="90" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <rect x="695" y="105" width="170" height="36" rx="8" fill="#CC5500"/>
+  <text x="780" y="128" text-anchor="middle" font-size="12" font-weight="bold" fill="white">GitHub Actions</text>
+  <text x="780" y="160" text-anchor="middle" font-size="10" fill="#FFF3E0">CI/CD（無料枠あり）</text>
+  <rect x="695" y="175" width="170" height="36" rx="8" fill="#CC5500"/>
+  <text x="780" y="198" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Docker</text>
+  <text x="780" y="225" text-anchor="middle" font-size="10" fill="#FFF3E0">コンテナ化（Compose）</text>
+  <rect x="695" y="240" width="170" height="36" rx="8" fill="#CC5500"/>
+  <text x="780" y="263" text-anchor="middle" font-size="12" font-weight="bold" fill="white">AWS ECS / Fargate</text>
+  <text x="780" y="290" text-anchor="middle" font-size="10" fill="#FFF3E0">バックエンドホスト</text>
+  <rect x="695" y="305" width="170" height="36" rx="8" fill="#CC5500"/>
+  <text x="780" y="328" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Sentry</text>
+  <text x="780" y="355" text-anchor="middle" font-size="10" fill="#FFF3E0">エラーモニタリング</text>
+</svg>

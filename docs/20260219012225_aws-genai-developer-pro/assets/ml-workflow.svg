@@ -1,0 +1,72 @@
+<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect x="0" y="0" width="900" height="320" fill="#fafafa" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">機械学習ワークフロー</text>
+
+  <!-- Step boxes -->
+  <!-- Step 1: Data Collection -->
+  <rect x="20" y="60" width="130" height="80" fill="#1565C0" rx="10" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="85" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="white">① データ</text>
+  <text x="85" y="110" text-anchor="middle" font-size="13" font-weight="bold" fill="white">収集・準備</text>
+  <text x="85" y="130" text-anchor="middle" font-size="10" fill="#90CAF9">S3, Glue, Lake</text>
+  <text x="85" y="143" text-anchor="middle" font-size="10" fill="#90CAF9">Formation</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="150" y1="100" x2="178" y2="100" stroke="#555" stroke-width="2"/>
+  <polygon points="178,95 190,100 178,105" fill="#555"/>
+
+  <!-- Step 2: Feature Engineering -->
+  <rect x="190" y="60" width="130" height="80" fill="#1976D2" rx="10" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="255" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="white">② 特徴量</text>
+  <text x="255" y="110" text-anchor="middle" font-size="13" font-weight="bold" fill="white">エンジニアリング</text>
+  <text x="255" y="130" text-anchor="middle" font-size="10" fill="#90CAF9">SageMaker</text>
+  <text x="255" y="143" text-anchor="middle" font-size="10" fill="#90CAF9">Feature Store</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="320" y1="100" x2="348" y2="100" stroke="#555" stroke-width="2"/>
+  <polygon points="348,95 360,100 348,105" fill="#555"/>
+
+  <!-- Step 3: Model Training -->
+  <rect x="360" y="60" width="130" height="80" fill="#2196F3" rx="10" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="425" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="white">③ モデル</text>
+  <text x="425" y="110" text-anchor="middle" font-size="13" font-weight="bold" fill="white">学習</text>
+  <text x="425" y="130" text-anchor="middle" font-size="10" fill="#E3F2FD">SageMaker</text>
+  <text x="425" y="143" text-anchor="middle" font-size="10" fill="#E3F2FD">Training</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="490" y1="100" x2="518" y2="100" stroke="#555" stroke-width="2"/>
+  <polygon points="518,95 530,100 518,105" fill="#555"/>
+
+  <!-- Step 4: Evaluation -->
+  <rect x="530" y="60" width="130" height="80" fill="#43A047" rx="10" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="595" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="white">④ モデル</text>
+  <text x="595" y="110" text-anchor="middle" font-size="13" font-weight="bold" fill="white">評価</text>
+  <text x="595" y="130" text-anchor="middle" font-size="10" fill="#C8E6C9">Clarify,</text>
+  <text x="595" y="143" text-anchor="middle" font-size="10" fill="#C8E6C9">Experiments</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="660" y1="100" x2="688" y2="100" stroke="#555" stroke-width="2"/>
+  <polygon points="688,95 700,100 688,105" fill="#555"/>
+
+  <!-- Step 5: Deploy -->
+  <rect x="700" y="60" width="130" height="80" fill="#FB8C00" rx="10" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="765" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="white">⑤ デプロイ</text>
+  <text x="765" y="110" text-anchor="middle" font-size="13" font-weight="bold" fill="white">・推論</text>
+  <text x="765" y="130" text-anchor="middle" font-size="10" fill="#FFF3E0">SageMaker</text>
+  <text x="765" y="143" text-anchor="middle" font-size="10" fill="#FFF3E0">Endpoints</text>
+
+  <!-- Monitoring feedback loop below -->
+  <rect x="190" y="180" width="520" height="60" fill="#EDE7F6" rx="10"/>
+  <text x="450" y="207" text-anchor="middle" font-size="13" font-weight="bold" fill="#4527A0">⑥ モニタリング（継続的改善）</text>
+  <text x="450" y="228" text-anchor="middle" font-size="11" fill="#666">SageMaker Model Monitor — データドリフト・品質劣化・バイアス検出 → 再学習トリガー</text>
+
+  <!-- Feedback arrows -->
+  <line x1="765" y1="140" x2="765" y2="210" stroke="#7B1FA2" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="765" y1="210" x2="210" y2="210" stroke="#7B1FA2" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="210" y1="210" x2="210" y2="180" stroke="#7B1FA2" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="205,180 210,168 215,180" fill="#7B1FA2"/>
+
+  <!-- SageMaker Pipelines label -->
+  <rect x="310" y="258" width="280" height="40" fill="#F3E5F5" rx="8"/>
+  <text x="450" y="275" text-anchor="middle" font-size="12" font-weight="bold" fill="#6A1B9A">SageMaker Pipelines</text>
+  <text x="450" y="291" text-anchor="middle" font-size="10" fill="#888">ワークフロー全体を CI/CD パイプラインとして自動化</text>
+</svg>

@@ -1,0 +1,64 @@
+<svg viewBox="0 0 900 380" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="380" fill="#F8F9FA"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">ベンダーロックインリスク マップ</text>
+
+  <!-- Header -->
+  <rect x="20" y="50" width="860" height="36" rx="6" fill="#232F3E"/>
+  <text x="160" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">サービス種別</text>
+  <text x="350" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">ロックインリスク</text>
+  <text x="600" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">移行対策</text>
+  <text x="800" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">許容度</text>
+
+  <!-- Object Storage -->
+  <rect x="20" y="86" width="860" height="44" rx="4" fill="#E8F5E9"/>
+  <text x="160" y="113" text-anchor="middle" font-size="12" fill="#232F3E">オブジェクトストレージ (S3)</text>
+  <text x="350" y="107" text-anchor="middle" font-size="11" font-weight="bold" fill="#1A9C3E">低 ★☆☆☆☆</text>
+  <text x="350" y="122" text-anchor="middle" font-size="10" fill="#555">S3互換APIが業界標準</text>
+  <text x="600" y="113" text-anchor="middle" font-size="11" fill="#232F3E">rclone で即座に移行可能</text>
+  <text x="800" y="113" text-anchor="middle" font-size="12" font-weight="bold" fill="#1A9C3E">高</text>
+
+  <!-- Compute -->
+  <rect x="20" y="130" width="860" height="44" rx="4" fill="#E8F5E9"/>
+  <text x="160" y="157" text-anchor="middle" font-size="12" fill="#232F3E">コンピューティング (EC2/VM)</text>
+  <text x="350" y="151" text-anchor="middle" font-size="11" font-weight="bold" fill="#1A9C3E">低 ★★☆☆☆</text>
+  <text x="350" y="166" text-anchor="middle" font-size="10" fill="#555">Docker化で移行しやすい</text>
+  <text x="600" y="157" text-anchor="middle" font-size="11" fill="#232F3E">コンテナ化 + Terraform IaC</text>
+  <text x="800" y="157" text-anchor="middle" font-size="12" font-weight="bold" fill="#1A9C3E">高</text>
+
+  <!-- Managed DB -->
+  <rect x="20" y="174" width="860" height="44" rx="4" fill="#FFF3E0"/>
+  <text x="160" y="201" text-anchor="middle" font-size="12" fill="#232F3E">マネージドDB (Aurora/RDS)</text>
+  <text x="350" y="195" text-anchor="middle" font-size="11" font-weight="bold" fill="#FF9900">中 ★★★☆☆</text>
+  <text x="350" y="210" text-anchor="middle" font-size="10" fill="#555">PostgreSQL互換なら比較的移行可</text>
+  <text x="600" y="201" text-anchor="middle" font-size="11" fill="#232F3E">標準エンジン選択 + pgdump 定期取得</text>
+  <text x="800" y="201" text-anchor="middle" font-size="12" font-weight="bold" fill="#FF9900">中</text>
+
+  <!-- Proprietary DB -->
+  <rect x="20" y="218" width="860" height="44" rx="4" fill="#FFEBEE"/>
+  <text x="160" y="245" text-anchor="middle" font-size="12" fill="#232F3E">独自NoSQL (DynamoDB/CosmosDB)</text>
+  <text x="350" y="239" text-anchor="middle" font-size="11" font-weight="bold" fill="#E53935">高 ★★★★☆</text>
+  <text x="350" y="254" text-anchor="middle" font-size="10" fill="#555">APIが独自仕様で移行コスト大</text>
+  <text x="600" y="245" text-anchor="middle" font-size="11" fill="#232F3E">アクセス層を抽象化。DynamoDB Local で開発</text>
+  <text x="800" y="245" text-anchor="middle" font-size="12" font-weight="bold" fill="#E53935">低</text>
+
+  <!-- Serverless/Functions -->
+  <rect x="20" y="262" width="860" height="44" rx="4" fill="#FFEBEE"/>
+  <text x="160" y="289" text-anchor="middle" font-size="12" fill="#232F3E">サーバーレス (Lambda/Functions)</text>
+  <text x="350" y="283" text-anchor="middle" font-size="11" font-weight="bold" fill="#E53935">高 ★★★★☆</text>
+  <text x="350" y="298" text-anchor="middle" font-size="10" fill="#555">実行環境・トリガーが独自仕様</text>
+  <text x="600" y="289" text-anchor="middle" font-size="11" fill="#232F3E">Hono + 標準HTTPで移植性を確保</text>
+  <text x="800" y="289" text-anchor="middle" font-size="12" font-weight="bold" fill="#E53935">低</text>
+
+  <!-- AI Services -->
+  <rect x="20" y="306" width="860" height="44" rx="4" fill="#FFEBEE"/>
+  <text x="160" y="333" text-anchor="middle" font-size="12" fill="#232F3E">AI APIサービス (Bedrock/OpenAI)</text>
+  <text x="350" y="327" text-anchor="middle" font-size="11" font-weight="bold" fill="#C62828">最高 ★★★★★</text>
+  <text x="350" y="342" text-anchor="middle" font-size="10" fill="#555">モデル・APIが完全独自</text>
+  <text x="600" y="333" text-anchor="middle" font-size="11" fill="#232F3E">LLM抽象化層 (LangChain/LiteLLM)</text>
+  <text x="800" y="333" text-anchor="middle" font-size="12" font-weight="bold" fill="#C62828">要注意</text>
+
+  <!-- Grid lines -->
+  <line x1="270" y1="50" x2="270" y2="350" stroke="#DDD" stroke-width="1"/>
+  <line x1="470" y1="50" x2="470" y2="350" stroke="#DDD" stroke-width="1"/>
+  <line x1="740" y1="50" x2="740" y2="350" stroke="#DDD" stroke-width="1"/>
+</svg>

@@ -1,0 +1,613 @@
+{
+	"slides": [
+		{
+			"title": "AWS Certified Generative AI Developer - Professional",
+			"content": [
+				"試験対策 基礎資料",
+				"エンジニアチーム向け内部研修 | 2026年2月",
+				"対象: 全評価領域（Domain 1〜5）を均等にカバー"
+			],
+			"layout": "center"
+		},
+		{
+			"title": "本日のアジェンダ（1/2）",
+			"content": [
+				"**試験概要** — 形式・評価領域・合格スコア・準備方法",
+				"**Domain 1（20%）** — AI/ML の基礎: 機械学習種類・ML ワークフロー・AWS AI サービス",
+				"**Domain 2（24%）** — 生成 AI の基礎: FM の仕組み・プロンプトエンジニアリング・ハルシネーション",
+				"**Domain 3（28%）** — Foundation Models の活用: Bedrock・RAG・Agents・カスタマイズ",
+				"**Domain 4（14%）** — 責任ある AI: 原則・バイアス・SageMaker Clarify",
+				"**Domain 5（14%）** — セキュリティ: Guardrails・IAM・データガバナンス",
+				"**試験対策** — よく出るパターン・学習リソース・まとめ"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "試験の位置づけ",
+			"content": [
+				"**認定名**: AWS Certified Generative AI Developer - Professional",
+				"**対象者**: AWS 上で生成 AI / ML ソリューションを設計・実装・最適化するエンジニア",
+				"**推奨経験**: AWS 実務経験 1 年以上 + 生成 AI / ML の基礎知識",
+				"**目的**: Amazon Bedrock・SageMaker を中心とした AWS 生成 AI スキルの証明",
+				"**関連資格**: AWS Certified AI Practitioner（基礎）→ 本試験（実践応用）→ ML Specialty（専門深化）",
+				"**有効期間**: 3 年間（再認定が必要）"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "本資料の使い方",
+			"content": [
+				"**学習フロー**: 各ドメインのセクションスライドから順番に読み進める",
+				"**チェックリスト活用**: 各ドメイン末尾の「重要ポイント」で理解度を確認",
+				"**図解の活用**: SVG 図解は試験に頻出のアーキテクチャを視覚的に整理",
+				"**合格スコア**: 750/1000（65問中の正答率に基づくスケールスコア）",
+				"**問題形式**: 単一選択（最も適切な 1 つを選ぶ）& 複数選択（正しいものをすべて選ぶ）",
+				"**ヒント**: AWS 公式の「試験ガイド」と「サンプル問題」も必ず参照すること"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "試験概要",
+			"content": ["形式・評価領域・合格スコア・学習計画を把握する"],
+			"layout": "section"
+		},
+		{
+			"title": "試験形式・詳細",
+			"content": [
+				"**問題数**: 85 問（採点対象 65 問 + ノンスコアリング 20 問）",
+				"**試験時間**: 170 分（約 2 分/問のペース配分）",
+				"**出題形式**: 単一回答・複数回答の選択式（記述問題なし）",
+				"**受験料**: USD 300（Professional レベル）",
+				"**言語**: 英語（日本語試験 UI は選択可能）",
+				"**合格スコア**: 750/1000 スケールスコア",
+				"**受験方法**: ピアソン VUE テストセンター または オンライン監督試験（自宅受験）"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "評価領域と出題比率",
+			"content": ["![w:820 center](assets/domain-distribution.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "試験準備の目安",
+			"content": [
+				"**学習期間の目安**: AWS 経験 1 年以上なら 4〜6 週間、未経験者は 8〜12 週間",
+				"**必須の実践経験**: Amazon Bedrock（Knowledge Bases・Agents・Guardrails）の実装経験",
+				"**AWS Skill Builder**: 公式オンライン学習プラットフォームで試験対応コースを受講",
+				"**模擬試験**: AWS 公式模擬試験（有料）で本番形式に慣れる",
+				"**Hands-on**: AWS マネジメントコンソールで Bedrock を実際に操作する",
+				"**コミュニティ**: AWS re:Post・公式ドキュメント・GitHub の Bedrock サンプルを活用"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "合格に向けたアプローチ",
+			"content": [
+				"**Week 1-2**: AWS AI/ML サービスの全体像 + Bedrock の基礎操作（コンソール・API）",
+				"**Week 3-4**: RAG・Agents・Guardrails の実装 + プロンプトエンジニアリング実践",
+				"**Week 5-6**: 責任ある AI・セキュリティ・コンプライアンスの理解",
+				"**Week 7-8**: 模擬試験繰り返し + 弱点ドメインの集中復習",
+				"**重要**: Domain 3（28%）は最重点。Bedrock の全機能を手を動かして理解する",
+				"**直前確認**: 各ドメイン末尾のチェックリストですべて ✅ になることを確認"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Domain 1: AI と ML の基礎",
+			"content": [
+				"出題比率 20% | AI/ML の基本概念と AWS AI サービスの全体像を理解する"
+			],
+			"layout": "section"
+		},
+		{
+			"title": "AI/ML/生成 AI の関係",
+			"content": ["![w:820 center](assets/ai-ml-hierarchy.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "機械学習の種類",
+			"content": [
+				"**教師あり学習（Supervised Learning）**: ラベル付きデータから予測モデルを学習。分類（スパム判定）・回帰（価格予測）",
+				"**教師なし学習（Unsupervised Learning）**: ラベルなしデータからパターン発見。クラスタリング・次元削減・異常検知",
+				"**強化学習（Reinforcement Learning）**: 環境との相互作用から報酬を最大化。ゲーム AI・ロボット制御・RLHF（LLM の人間フィードバック学習）",
+				"**半教師あり学習**: 少量のラベル付き + 大量のラベルなしデータを組み合わせる",
+				"**自己教師あり学習**: データ自体から教師信号を生成（LLM の事前学習・BERT・GPT）"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "機械学習ワークフロー",
+			"content": ["![w:860 center](assets/ml-workflow.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "ML モデルの主要評価指標",
+			"content": [
+				"**Accuracy（精度）**: 全サンプル中の正解率。クラス不均衡時は不適切（95% 正解でも実は全部「陰性」予測かも）",
+				"**Precision（適合率）**: 「陽性と予測した」うち本当の陽性の割合。偽陽性を減らしたい時",
+				"**Recall（再現率）**: 「実際の陽性」のうち正しく検出できた割合。偽陰性を減らしたい時（がん診断など）",
+				"**F1 Score**: Precision と Recall の調和平均。不均衡データの総合指標",
+				"**AUC-ROC**: モデルの判別能力を 0〜1 で評価。0.5 = ランダム、1.0 = 完璧",
+				"**RMSE/MAE**: 回帰問題の誤差指標。RMSE は外れ値に敏感"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "AWS AI/ML サービスの全体像",
+			"content": ["![w:860 center](assets/aws-ai-services.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "Amazon SageMaker — 主要機能",
+			"content": [
+				"**SageMaker Studio**: 統合 ML 開発環境（IDE）。ノートブック・実験・パイプラインを一元管理",
+				"**SageMaker Autopilot**: AutoML。データを与えるだけで最適なモデルを自動構築",
+				"**SageMaker Training**: 分散学習ジョブの管理。Spot インスタンスでコスト削減",
+				"**SageMaker Endpoints**: リアルタイム推論エンドポイント（オートスケーリング対応）",
+				"**SageMaker Pipelines**: ML ワークフローを CI/CD パイプラインとして自動化",
+				"**SageMaker Model Registry**: モデルバージョン管理・承認フロー・デプロイ追跡"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "SageMaker — 追加コンポーネント",
+			"content": [
+				"**SageMaker Clarify**: バイアス検出（学習前・後）+ SHAP による説明可能性（XAI）",
+				"**SageMaker Feature Store**: 特徴量のオンライン/オフライン一元管理・再利用促進",
+				"**SageMaker Model Monitor**: リアルタイムでデータドリフト・品質劣化・バイアスを検出",
+				"**SageMaker Ground Truth**: 人手ラベリング（Mechanical Turk / 専門家）+ 自動ラベリング",
+				"**SageMaker JumpStart**: 事前学習済みモデルの検索・ファインチューニング・デプロイを簡略化",
+				"**SageMaker Data Wrangler**: ノーコードのデータ前処理・変換・可視化ツール"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Domain 1 — 試験対策チェックリスト",
+			"content": [
+				"✅ 教師あり/なし/強化学習の違いと AWS サービスへの対応を説明できる",
+				"✅ Precision・Recall・F1 の計算と使い分け（クラス不均衡時は Accuracy より F1）",
+				"✅ AWS AI サービスを適切なユースケースに対応付けられる（Rekognition=画像、Comprehend=NLP）",
+				"✅ SageMaker の主要コンポーネント（Studio/Pipelines/Clarify/Monitor）の役割を把握",
+				"✅ ML ワークフローの各ステップと対応 AWS サービスを図で説明できる",
+				"✅ AUC-ROC と F1 Score の違いを理解（AUC=判別能力、F1=不均衡データ）"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Domain 2: 生成 AI の基礎",
+			"content": [
+				"出題比率 24% | Foundation Models の仕組み・プロンプトエンジニアリング・ハルシネーション対策"
+			],
+			"layout": "section"
+		},
+		{
+			"title": "生成 AI と Foundation Models",
+			"content": [
+				"**生成 AI（Generative AI）とは**: 学習データのパターンから新しいコンテンツ（テキスト・画像・コード・音声・動画）を生成する AI",
+				"**従来 AI との違い**: 判別 AI（入力→分類/予測）vs 生成 AI（入力→新しいコンテンツ創出）",
+				"**Foundation Models（FM）**: 大規模データで事前学習済みの汎用モデル。数十億〜数千億パラメータ",
+				"**FMの特徴**: ファインチューニングなしで多様なタスクに対応（Zero-shot/Few-shot）",
+				"**マルチモーダル**: テキスト・画像・音声・動画など複数モダリティに対応するモデル",
+				"**代表モデル**: Claude（Anthropic）・GPT-4（OpenAI）・Titan（Amazon）・Llama（Meta）"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Transformer アーキテクチャの仕組み",
+			"content": [
+				"**Transformer とは**: 2017 年に Google が発表した「Attention Is All You Need」に基づく DL アーキテクチャ",
+				"**Self-Attention メカニズム**: 文章内の単語間の関係性を並列計算で捉える（長距離依存も対応）",
+				"**エンコーダ・デコーダ構造**: BERT（エンコーダ型）= 理解タスク / GPT（デコーダ型）= 生成タスク",
+				"**位置エンコーディング**: 単語の順序情報を数値化してモデルに付与（RNN 不要）",
+				"**Scale の重要性**: パラメータ数・データ量・計算量を増やすほど能力が急激に向上（Scaling Law）",
+				"**試験ポイント**: LLM は基本的に Transformer デコーダ型。テキストを次々予測して生成"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "トークン・エンベディング・コンテキストウィンドウ",
+			"content": [
+				"**トークン**: LLM が処理するテキストの基本単位（サブワード）。1 トークン ≈ 0.75 英語単語 / 0.5 日本語文字",
+				"**エンベディング**: テキストを意味を保持した高次元数値ベクトルに変換。類似テキスト = 近いベクトル",
+				"**コンテキストウィンドウ**: 1 回のリクエストで処理できる最大トークン数（入力 + 出力の合計）",
+				"**重要性**: コンテキストウィンドウが大きい = 長い文書・会話履歴を一度に処理可能",
+				"**チャンキング**: 長文書をコンテキストウィンドウに収まるサイズに分割する手法（RAG で重要）",
+				"**Titan Embeddings**: Amazon 提供のエンベディングモデル（Bedrock 経由で利用可能）"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "LLM 推論パラメータ",
+			"content": [
+				"**Temperature（0〜2）**: 出力の多様性。低い値（0.1）→確定的・一貫性高い / 高い値（1.5）→創造的・ランダム",
+				"**Top-P（0〜1）**: 累積確率が P を超えるまでの上位トークンからサンプリング（Nucleus Sampling）",
+				"**Top-K**: 上位 K 個のトークンの中からサンプリング。K=1 → Greedy（最高確率を常に選択）",
+				"**Max Tokens**: 生成するトークン数の上限（コスト制御と応答長のバランス）",
+				"**Stop Sequences**: 特定の文字列が出現したら生成を停止する（出力形式の制御）",
+				"**試験ポイント**: 事実確認・コード生成 → 低 Temperature / 創作・アイデア出し → 高 Temperature"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "プロンプトエンジニアリング手法",
+			"content": ["![w:860 center](assets/prompt-engineering.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "高度なプロンプト技法",
+			"content": [
+				"**Self-Consistency**: 同じ質問を複数回（異なる Temperature で）生成し、多数決で最終回答を決定",
+				"**ReAct（Reasoning + Acting）**: 推論とツール使用を交互に繰り返す。Bedrock Agents の基盤",
+				"**Reflection**: モデルが自分の回答を批評・修正する反復プロセス（精度向上）",
+				"**Tree-of-Thought（ToT）**: 複数の推論パスを木構造で探索（複雑な問題に有効）",
+				"**Prompt Injection 対策**: ユーザー入力を信頼しない設計・入力のサニタイズ・Guardrails 活用",
+				"**System Prompt**: AI の役割・制約・出力形式をセッション全体で定義する事前指示"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "プロンプトの構成要素",
+			"content": [
+				"**指示（Instruction）**: モデルに何をしてほしいかを具体的・明確に記述",
+				"**コンテキスト（Context）**: タスクに関連する背景情報・制約・前提条件",
+				"**入力データ（Input Data）**: 処理対象のデータや Few-shot の例",
+				"**出力形式（Output Indicator）**: 期待する出力の形式（JSON / 箇条書き / 表など）",
+				"**ベストプラクティス**: ①具体的・明確に記述 ②否定より肯定で指示 ③例を提示（Few-shot）④段階的に分解",
+				"**注意点**: プロンプトが長すぎるとコンテキストウィンドウを消費し、コスト増加・精度低下に繋がる"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "ハルシネーション（幻覚）とは",
+			"content": [
+				"**定義**: LLM が事実に反する内容や存在しない情報を、自信を持って生成する現象",
+				"**原因①（学習データ）**: 誤った・偏ったデータを学習。知識カットオフ（最新情報なし）",
+				"**原因②（確率的生成）**: 次のトークンを確率的に予測するため、「それらしい嘘」が生まれる",
+				"**原因③（コンテキスト不足）**: 十分な情報なしに質問されると、埋め合わせで誤情報を生成",
+				"**被害事例**: 存在しない法律条文・医療情報の誤り・架空の引用文献",
+				"**特徴**: LLM は「確信度」を正確に表現できないため、嘘でも断定的に答える"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "ハルシネーション対策",
+			"content": [
+				"**① RAG（Retrieval-Augmented Generation）**: 外部ナレッジから根拠を取得して回答生成。最も効果的",
+				"**② Grounding（Bedrock Guardrails）**: RAG の回答がソースに基づくかを自動検証・ブロック",
+				"**③ Temperature 低下**: 0.0〜0.3 に設定することで決定論的・一貫性の高い出力を促進",
+				"**④ Chain-of-Thought**: 推論ステップを明示させることで、論理的に正しい回答を誘導",
+				"**⑤ 人間によるレビュー（HITL）**: 高リスクな判断には人間の確認を挟む",
+				"**⑥ Few-shot でのグラウンディング**: 正確な参照例を提示して出力の方向性を固定"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Domain 2 — 試験対策チェックリスト",
+			"content": [
+				"✅ FM と従来 ML モデルの違いを説明できる（汎用性・スケール・Zero-shot 対応）",
+				"✅ トークン・エンベディング・コンテキストウィンドウの概念を理解",
+				"✅ Temperature / Top-P / Top-K がモデル出力に与える影響を説明できる",
+				"✅ Zero-shot / Few-shot / Chain-of-Thought の使い分けを把握",
+				"✅ ハルシネーションの原因（学習データ・確率的生成）と軽減策（RAG・Grounding）を理解",
+				"✅ Self-Attention・Transformer デコーダ型の基本概念を説明できる"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Domain 3: Foundation Models の活用",
+			"content": [
+				"出題比率 28%（最重要） | Amazon Bedrock の全機能と RAG・Agents・カスタマイズを深く理解する"
+			],
+			"layout": "section"
+		},
+		{
+			"title": "Amazon Bedrock — コンポーネント全体像",
+			"content": ["![w:860 center](assets/bedrock-components.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "Bedrock Foundation Models の特徴",
+			"content": [
+				"**Anthropic Claude**: 長文理解・複雑な推論・安全性に優れる。最大コンテキストウィンドウ 200K tokens",
+				"**Amazon Titan**: AWS ネイティブ FM。テキスト生成（Titan Text）と Embeddings の 2 系統",
+				"**Meta Llama**: オープンソース系。ファインチューニングのベースモデルとして人気",
+				"**Stability AI**: Stable Diffusion で画像生成に特化。テキスト→画像変換",
+				"**Mistral AI**: 効率的なアーキテクチャで低レイテンシー推論を実現",
+				"**選択基準**: タスクの種類（テキスト/画像）・必要なコンテキスト長・コスト・レイテンシー要件・ライセンス"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "RAG（Retrieval-Augmented Generation）とは",
+			"content": [
+				"**RAG の定義**: 外部ナレッジベースから関連情報を取得（Retrieve）して FM の回答生成（Generate）を補強するパターン",
+				"**解決する問題**: ① 知識カットオフ ② ハルシネーション ③ 社内固有情報への対応（Fine-tuning 不要）",
+				"**基本フロー**: クエリ → エンベディング変換 → ベクトル DB 類似検索 → 関連チャンク取得 → FM に入力 → 回答生成",
+				"**AWS 実装**: Amazon Bedrock Knowledge Bases（マネージド RAG）",
+				"**ベクトルストア選択肢**: OpenSearch Serverless / Aurora PostgreSQL（pgvector）/ Pinecone / Redis Enterprise",
+				"**メリット**: 最新情報対応・引用付き回答・ハルシネーション大幅軽減・Fine-tuning 不要"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "RAG アーキテクチャ詳細",
+			"content": ["![w:860 center](assets/rag-architecture.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "Amazon Bedrock Knowledge Bases",
+			"content": [
+				"**定義**: S3 のドキュメントを自動的に処理し、ベクトル DB と統合するマネージド RAG サービス",
+				"**データソース**: Amazon S3 / Confluence / SharePoint / Salesforce / Web Crawler",
+				"**処理フロー**: ドキュメント読み込み → チャンキング → エンベディング（Titan）→ ベクトル DB 保存",
+				"**API**: `RetrieveAndGenerate`（引用付き回答生成）/ `Retrieve`（検索のみ・後続処理を自由に設計）",
+				"**チャンキング戦略**: Fixed-size / Semantic（意味単位）/ Hierarchical（階層分割）で検索精度が変わる",
+				"**統合ベクトル DB**: OpenSearch Serverless（デフォルト）/ Aurora pgvector / Pinecone / Redis Enterprise"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "ベクトル DB と類似度検索",
+			"content": ["![w:860 center](assets/vector-db-similarity.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "Amazon Bedrock Agents",
+			"content": [
+				"**定義**: FM を使ってマルチステップタスクを自律実行するエージェント構築サービス",
+				"**仕組み（ReAct パターン）**: FM が Reasoning（推論）→ Action（ツール実行）→ Observation（結果確認）を繰り返す",
+				"**Action Groups**: OpenAPI スキーマで定義した API を FM が呼び出す（Lambda 関数に接続）",
+				"**Return Control**: エージェントが人間の確認を求めて一時停止できる（高リスクアクション前）",
+				"**Knowledge Bases 連携**: Agent から KB を参照して事実根拠に基づいた回答を生成",
+				"**ユースケース**: カスタマーサポート自動化 / 社内 Q&A / コード生成 / ワークフロー自動化"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Bedrock Agents — ReAct フロー",
+			"content": ["![w:860 center](assets/bedrock-agents-react.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "FM カスタマイズ手法の比較",
+			"content": ["![w:860 center](assets/customization-comparison.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "Fine-tuning と Continued Pre-training",
+			"content": [
+				"**Fine-tuning（追加学習）**: 事前学習済み FM に特定タスクのデータ（入力/出力ペア）で追加学習",
+				"**Fine-tuning のメリット**: 特定タスクの精度向上 / 応答スタイルの固定 / 推論速度改善",
+				"**Fine-tuning の注意**: カタストロフィック忘却（以前の能力低下）/ 大量の高品質データが必要",
+				"**Continued Pre-training**: 特定ドメインの大量テキストで Base Model を継続学習（医療・法律・言語等）",
+				"**Bedrock での実装**: コンソール / API でファインチューニングジョブを実行（Titan・Llama 対応）",
+				"**Provisioned Throughput**: Fine-tuned モデルを専用スループットでデプロイ（低レイテンシー保証）"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Bedrock Model Evaluation",
+			"content": [
+				"**自動評価（Automatic Evaluation）**: 定義済みデータセットでモデルを自動採点",
+				"**人手評価（Human Evaluation）**: AWS Managed Team または プライベートチームが回答を採点",
+				"**評価指標（テキスト生成）**: ROUGE（要約）/ BERTScore（意味的類似度）/ カスタム指標",
+				"**A/B テスト形式**: 複数モデルを並列比較し、最適モデルを選択",
+				"**用途**: ベースモデル選択 / Fine-tuning 前後の比較 / プロンプト改善の効果測定",
+				"**CloudWatch 統合**: Bedrock API のレイテンシー・スループット・エラー率をリアルタイム監視"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Domain 3 — 試験対策チェックリスト",
+			"content": [
+				"✅ Amazon Bedrock の主要機能（Knowledge Bases・Agents・Guardrails・Fine-tuning）を理解",
+				"✅ RAG の処理フローを図で説明できる（クエリ→エンベディング→検索→コンテキスト付与→生成）",
+				"✅ Prompt Engineering / RAG / Fine-tuning / Pre-training の使い分け基準を把握",
+				"✅ ベクトル DB の選択肢（OpenSearch / Aurora pgvector）と類似度計算手法を理解",
+				"✅ Bedrock Agents の仕組み（Action Groups・ReAct・Return Control・KB 連携）を説明できる",
+				"✅ Fine-tuning と Continued Pre-training の違いと適用場面を理解"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Domain 4: 責任ある AI",
+			"content": [
+				"出題比率 14% | AI 倫理・バイアス・公平性・透明性・説明可能性のガイドラインを理解する"
+			],
+			"layout": "section"
+		},
+		{
+			"title": "責任ある AI の原則",
+			"content": [
+				"**Fairness（公平性）**: すべてのユーザーに対して公平な結果を提供。特定グループへの差別・偏見を防止",
+				"**Explainability（説明可能性）**: モデルの予測根拠を人間が理解できる形で提示（ブラックボックス問題の解消）",
+				"**Privacy & Security（プライバシー）**: 個人データの保護・最小化・安全な取り扱い（GDPR 準拠）",
+				"**Safety（安全性）**: 有害なコンテンツの生成・意図しない悪用を防止（Guardrails）",
+				"**Controllability（制御可能性）**: 人間が AI の動作を監視・制御・修正できる仕組み（HITL）",
+				"**Veracity（正確性）**: 正確な情報を提供し、ハルシネーションを最小化（RAG・Grounding）"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "責任ある AI — 原則の全体像",
+			"content": ["![w:820 center](assets/responsible-ai-principles.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "AI バイアスの種類と対策",
+			"content": [
+				"**学習データバイアス**: 過去の差別的データを学習したモデルが同様の偏りを再現（採用スクリーニング等）",
+				"**選択バイアス（サンプリングバイアス）**: 特定グループが過小/過剰代表されたデータセットでの学習",
+				"**測定バイアス**: 特定グループのデータ品質・精度が他のグループと異なる（顔認識での人種差）",
+				"**確認バイアス**: モデルが既存の前提・ステレオタイプを強化する方向に学習",
+				"**対策①（データ）**: データ拡張・再重み付け・バランス調整・多様なデータ収集",
+				"**対策②（モデル）**: SageMaker Clarify でバイアス測定・Fairness Indicators でモニタリング"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "説明可能 AI（XAI）と透明性",
+			"content": [
+				"**XAI（Explainable AI）の必要性**: 医療・金融・採用など高リスク判断での説明責任・規制準拠",
+				"**SHAP（SHapley Additive exPlanations）**: 各特徴量が予測結果に与える影響量を数値化（標準手法）",
+				"**LIME（Local Interpretable Model-agnostic Explanations）**: 個別の予測に対して局所的な線形モデルで近似説明",
+				"**Feature Importance**: ランダムフォレスト等での特徴量重要度ランキング（グローバル解釈）",
+				"**モデルカード**: モデルの目的・学習データ・性能・制限事項を文書化（倫理審査用）",
+				"**AWS 実装**: SageMaker Clarify（SHAP 値計算）/ SageMaker Model Cards"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Amazon SageMaker Clarify",
+			"content": [
+				"**目的**: ML モデルのバイアス検出とモデル説明性（SHAP）を提供する SageMaker の機能",
+				"**バイアス検出①（学習前）**: データセット内のバイアス指標を計算（Class Imbalance・DPL など）",
+				"**バイアス検出②（学習後）**: モデル予測のバイアス指標（Equal Opportunity・Demographic Parity）を算出",
+				"**SHAP 値の提供**: 各特徴量が個別の予測に与えた影響を可視化（フィーチャー貢献度）",
+				"**Clarify レポート**: SageMaker Studio 上でバイアス・説明性レポートを自動生成",
+				"**継続監視**: SageMaker Model Monitor と組み合わせてリアルタイムバイアスモニタリングが可能"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "ヒューマンインザループ（HITL）",
+			"content": [
+				"**HITL の定義**: AI の判断に人間が介入するレビュー・承認・修正プロセスを組み込む設計",
+				"**必要な場面**: 高リスクな判断（医療診断・融資審査・採用）/ 低信頼スコアの出力 / 法的責任が問われる場合",
+				"**AWS SageMaker Ground Truth Plus**: ヒューマンレビューワークフローを簡単に組み込めるサービス",
+				"**Amazon Augmented AI（A2I）**: ML モデルの出力に人間のレビューを追加するマネージドサービス",
+				"**Bedrock Agents Return Control**: エージェントが特定アクション前に人間の確認を要求する機能",
+				"**設計原則**: どのケースを自動化し、どのケースで人間が介入するかの明確な閾値設定が重要"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Domain 4 — 試験対策チェックリスト",
+			"content": [
+				"✅ AWS の責任ある AI 6 原則（公平性・説明可能性・プライバシー・安全性・制御可能性・正確性）を説明できる",
+				"✅ バイアスの種類（学習データ/選択/測定/確認）と対策（データ拡張・Clarify・フェアネス指標）を理解",
+				"✅ SageMaker Clarify の機能（バイアス検出・SHAP 値）と使用場面を把握",
+				"✅ HITL（ヒューマンインザループ）の必要性と AWS 実装（A2I・Ground Truth Plus・Return Control）",
+				"✅ XAI の手法（SHAP・LIME・Feature Importance）の違いを理解",
+				"✅ モデルカードの目的（モデルの透明性・説明責任の文書化）を把握"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Domain 5: セキュリティ・コンプライアンス・ガバナンス",
+			"content": [
+				"出題比率 14% | AI ワークロードのセキュリティ設計・データガバナンス・コンプライアンスを理解する"
+			],
+			"layout": "section"
+		},
+		{
+			"title": "AWS 共有責任モデル（AI ワークロード）",
+			"content": ["![w:860 center](assets/shared-responsibility-ai.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "Bedrock セキュリティ設計の基本",
+			"content": [
+				"**IAM 最小権限**: `bedrock:InvokeModel` / `bedrock:InvokeAgent` など Bedrock アクション単位で権限設定",
+				"**VPC エンドポイント（PrivateLink）**: Bedrock API コールをパブリックインターネットを介さずに処理",
+				"**AWS KMS**: 学習データ（S3）・モデルアーティファクト・Knowledge Bases コンテンツを暗号化",
+				"**CloudTrail**: Bedrock / SageMaker へのすべての API コールを完全記録・監査（誰が・いつ・何を呼んだか）",
+				"**Amazon Macie**: S3 の学習データ・ドキュメントに含まれる PII（個人情報）を自動検出・通知",
+				"**モデルデータ保護**: Bedrock は顧客のリクエスト/レスポンスデータをモデル学習に使用しない"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Amazon Bedrock Guardrails — 詳細",
+			"content": [
+				"**定義**: Bedrock の FM 入力・出力に対するコンテンツフィルタリング・ポリシー適用機能",
+				"**コンテンツフィルタ**: 有害・暴力的・性的・ヘイトスピーチコンテンツを検出・ブロック（強度調整可：None/Low/Medium/High）",
+				"**トピックの拒否**: 指定したトピック（競合製品・政治・法律相談）への回答を禁止",
+				"**PII 保護**: 氏名・メール・電話番号・クレジットカード番号を自動検出→ BLOCK または ANONYMIZE",
+				"**Grounding チェック**: RAG の回答がソースに基づいているか検証し、ハルシネーションを検出・ブロック",
+				"**適用範囲**: 単体モデル呼び出し・Agents・Knowledge Bases すべてに同一ポリシーを適用可能"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Bedrock Guardrails — フィルタリングフロー",
+			"content": ["![w:860 center](assets/guardrails-flow.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "AI データガバナンス",
+			"content": [
+				"**データ分類**: 機密レベルに応じた分類（Public / Internal / Confidential / Restricted）と保護措置",
+				"**個人情報（PII）の取り扱い**: GDPR・個人情報保護法に準拠。収集最小化・目的外利用禁止・削除権対応",
+				"**学習データの品質管理**: データリネージ（出所追跡）・バージョン管理・品質スコアの記録",
+				"**SageMaker Feature Store**: 特徴量のオンライン/オフライン統合管理。特徴量ストアのバージョニング",
+				"**AWS Artifact**: SOC 2・ISO 27001・HIPAA などコンプライアンスレポートをオンデマンドで取得",
+				"**データ削除・保持ポリシー**: S3 ライフサイクルポリシーで学習データの保持期間を自動管理"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "IAM と最小権限設計",
+			"content": [
+				"**最小権限の原則**: 必要最低限の権限のみを付与。`*` ワイルドカードを避ける",
+				"**Bedrock の IAM アクション粒度**: `bedrock:InvokeModel`（モデル呼び出し）/ `bedrock:CreateKnowledgeBase`（KB 作成）/ `bedrock:InvokeAgent`（Agent 実行）",
+				"**リソースポリシー**: 特定のモデル ARN にのみアクセスを許可（Cross-Account も設定可能）",
+				"**サービスロール**: Bedrock Agents / Knowledge Bases が S3・Lambda・OpenSearch にアクセスするための専用 IAM ロール",
+				"**AWS Organizations SCP**: 組織単位で Bedrock 利用リージョン・モデルを制限",
+				"**CloudTrail + Config**: 権限の誰が使ったかの監査 + IAM ポリシー変更の検出・アラート"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Domain 5 — 試験対策チェックリスト",
+			"content": [
+				"✅ Bedrock Guardrails の 4 機能（コンテンツフィルタ・トピック拒否・PII 保護・Grounding）を理解",
+				"✅ VPC PrivateLink による Bedrock の閉域アクセス設計を把握",
+				"✅ 共有責任モデルにおける AI ワークロードの顧客/AWS の責任境界を説明できる",
+				"✅ IAM 最小権限原則の Bedrock への適用（アクション単位の権限制御）を理解",
+				"✅ PII 検出・保護の仕組み（Macie=S3 検出、Guardrails=入出力保護）を把握",
+				"✅ CloudTrail による Bedrock API 監査ログの有効化と活用方法を理解"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "試験でよく出るパターン",
+			"content": [
+				"**「最適なサービスを選べ」系**: RAG が必要→Bedrock KB / 画像分析→Rekognition / NLP→Comprehend",
+				"**「最もコスト効率の良い方法は」系**: Prompt Engineering < RAG < Fine-tuning < Pre-training の順でコスト上昇",
+				"**「ハルシネーションを減らすには」系**: RAG（Knowledge Bases）+ Guardrails（Grounding チェック）",
+				"**「セキュリティを確保するには」系**: 最小権限 IAM + VPC エンドポイント + KMS 暗号化 + CloudTrail",
+				"**「責任ある AI の観点から」系**: Clarify でバイアス検出 + Guardrails でコンテンツ制御 + HITL",
+				"**「リアルタイム情報や社内データが必要」系**: Fine-tuning は不正解、RAG（Knowledge Bases）が正解"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "推奨学習リソース",
+			"content": [
+				"**AWS 公式ドキュメント:**",
+				"[Amazon Bedrock ユーザーガイド](https://docs.aws.amazon.com/bedrock/latest/userguide/)",
+				"[Amazon SageMaker ドキュメント](https://docs.aws.amazon.com/sagemaker/latest/dg/)",
+				"**AWS Skill Builder（無料/有料）:**",
+				"[AWS Certified AI Practitioner 学習パス](https://aws.amazon.com/training/learn-about/ai-practitioner/)",
+				"[Generative AI with Amazon Bedrock コース](https://explore.skillbuilder.aws/)",
+				"**ハンズオン・ワークショップ:**",
+				"[Amazon Bedrock Workshop（AWS Catalog）](https://catalog.us-east-1.prod.workshops.aws/workshops/a4bdb007-5600-4368-81c5-ff5b4154f518/)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "まとめ — 試験合格のための最重要ポイント",
+			"content": [
+				"**Domain 1（20%）**: 機械学習の種類・評価指標（F1/AUC-ROC）・SageMaker コンポーネントを体系的に理解",
+				"**Domain 2（24%）**: FM の仕組み・プロンプト技法（Zero-shot/Few-shot/CoT）・ハルシネーション対策",
+				"**Domain 3（28% 最重要）**: Bedrock 全機能（KB・Agents・Guardrails）+ RAG の詳細な処理フローを必ず習得",
+				"**Domain 4（14%）**: 責任ある AI 6 原則・SageMaker Clarify（バイアス検出・SHAP）・HITL",
+				"**Domain 5（14%）**: セキュリティ設計（IAM・VPC・KMS）・Guardrails・共有責任モデル",
+				"**合格の鍵**: 各サービスの「なぜそれを使うか」という選択基準を実践的に理解し、Bedrock を実際に操作して体験すること"
+			],
+			"layout": "default"
+		}
+	]
+}

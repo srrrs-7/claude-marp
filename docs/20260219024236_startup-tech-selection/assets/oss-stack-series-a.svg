@@ -1,0 +1,43 @@
+<svg viewBox="0 0 900 420" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="420" fill="#F0F4F8"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">Series A 期 推奨スタック（スケール対応）</text>
+
+  <!-- Arrows from Seed to Series A -->
+  <!-- Architecture evolution diagram -->
+  <!-- Layer: Frontend -->
+  <rect x="20" y="55" width="860" height="52" rx="10" fill="#1A73E8" style="filter:drop-shadow(1px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="150" y="82" text-anchor="middle" font-size="12" font-weight="bold" fill="white">フロントエンド</text>
+  <text x="450" y="76" text-anchor="middle" font-size="11" fill="#BBDEFB">Next.js 15 (App Router) + CDN (CloudFront/Vercel) + Storybook + Chromatic (UI テスト)</text>
+  <text x="450" y="97" text-anchor="middle" font-size="11" fill="#BBDEFB">TypeScript 厳格化 + ESLint/Biome + Playwright E2Eテスト</text>
+
+  <!-- Layer: API -->
+  <rect x="20" y="120" width="860" height="52" rx="10" fill="#1A9C3E" style="filter:drop-shadow(1px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="150" y="148" text-anchor="middle" font-size="12" font-weight="bold" fill="white">API / BFF 層</text>
+  <text x="450" y="140" text-anchor="middle" font-size="11" fill="#C8E6C9">Hono / FastAPI + API Gateway + OpenAPI (Zod/Pydantic 自動生成)</text>
+  <text x="450" y="162" text-anchor="middle" font-size="11" fill="#C8E6C9">レート制限 + JWT 認証 + CORS 設定 + ヘルスチェックエンドポイント</text>
+
+  <!-- Layer: Services -->
+  <rect x="20" y="185" width="420" height="80" rx="10" fill="#7B1FA2" style="filter:drop-shadow(1px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="230" y="207" text-anchor="middle" font-size="12" font-weight="bold" fill="white">マイクロサービス分離（徐々に）</text>
+  <text x="230" y="227" text-anchor="middle" font-size="11" fill="#E1BEE7">Auth Service / Payment Service / Notification Service</text>
+  <text x="230" y="247" text-anchor="middle" font-size="11" fill="#E1BEE7">SQS / Kafka (MSK) でイベント駆動</text>
+
+  <rect x="460" y="185" width="420" height="80" rx="10" fill="#E67700" style="filter:drop-shadow(1px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="670" y="207" text-anchor="middle" font-size="12" font-weight="bold" fill="white">データ層進化</text>
+  <text x="670" y="227" text-anchor="middle" font-size="11" fill="#FFF3E0">Aurora PostgreSQL (Multi-AZ) + Read Replica</text>
+  <text x="670" y="247" text-anchor="middle" font-size="11" fill="#FFF3E0">ElastiCache Redis クラスター + S3 + Athena</text>
+
+  <!-- Layer: Infra -->
+  <rect x="20" y="278" width="860" height="52" rx="10" fill="#FF9900" style="filter:drop-shadow(1px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="150" y="305" text-anchor="middle" font-size="12" font-weight="bold" fill="white">インフラ / 可観測性</text>
+  <text x="450" y="298" text-anchor="middle" font-size="11" fill="#FFF3E0">EKS (Kubernetes) or ECS + Terraform IaC + GitHub Actions CD</text>
+  <text x="450" y="318" text-anchor="middle" font-size="11" fill="#FFF3E0">Datadog / Grafana + Prometheus + OpenTelemetry + PagerDuty</text>
+
+  <!-- Seed → SeriesA diff -->
+  <rect x="20" y="348" width="860" height="58" rx="10" fill="#232F3E"/>
+  <text x="450" y="368" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">Seed → Series A の主な変化点</text>
+  <text x="110" y="392" text-anchor="middle" font-size="11" fill="#AAA">モノリス → サービス分離</text>
+  <text x="300" y="392" text-anchor="middle" font-size="11" fill="#AAA">Supabase → Aurora 移行</text>
+  <text x="500" y="392" text-anchor="middle" font-size="11" fill="#AAA">単一リージョン → Multi-AZ</text>
+  <text x="700" y="392" text-anchor="middle" font-size="11" fill="#AAA">手動デプロイ → CI/CD 完全自動化</text>
+</svg>

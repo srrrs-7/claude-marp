@@ -1,0 +1,16 @@
+topic: "DevSecOps実践ガイド — シフトレフト・SBOM・脅威モデリング・クラウドネイティブセキュリティ"
+language: "ja"
+output:
+  dir: "docs/20260219031200_devsecops"
+  baseName: "devsecops"
+marp:
+  theme: gaia
+  size: "16:9"
+  paginate: true
+  header: "DevSecOps実践ガイド"
+  style: |
+    section { font-size: 22px; }
+    section pre code { font-size: 0.6em; line-height: 1.4; }
+    section.lead h1 { font-size: 2em; }
+    section img { max-height: 70vh; }
+    table { font-size: 0.8em; }

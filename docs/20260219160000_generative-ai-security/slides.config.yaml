@@ -1,0 +1,33 @@
+topic: "生成AIセキュリティ完全ガイド — LLM/AIシステムの防御戦略"
+language: "ja"
+
+output:
+  dir: "docs/20260219160000_generative-ai-security"
+  baseName: "generative-ai-security"
+
+theme: "gaia"
+
+style: |
+  section {
+    font-size: 1.1rem;
+  }
+  section h1 {
+    font-size: 1.8rem;
+  }
+  section h2 {
+    font-size: 1.5rem;
+  }
+  section pre code {
+    font-size: 0.58em;
+    line-height: 1.35;
+  }
+  section ul li {
+    margin-bottom: 0.25em;
+  }
+  section.center {
+    text-align: center;
+  }
+
+directives:
+  paginate: true
+  footer: "生成AIセキュリティ完全ガイド | セキュリティエンジニア向け"

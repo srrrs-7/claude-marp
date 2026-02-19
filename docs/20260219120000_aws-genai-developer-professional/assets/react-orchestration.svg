@@ -1,0 +1,67 @@
+<svg viewBox="0 0 900 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" font-family="Arial,sans-serif">
+  <rect width="900" height="420" fill="#F0F4F8"/>
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#232F3E">ReAct オーケストレーション パターン</text>
+
+  <!-- Input -->
+  <rect x="30" y="160" width="110" height="60" rx="10" fill="#232F3E"/>
+  <text x="85" y="184" text-anchor="middle" font-size="12" font-weight="bold" fill="white">ユーザー</text>
+  <text x="85" y="202" text-anchor="middle" font-size="11" fill="#FFB74D">タスク入力</text>
+
+  <line x1="140" y1="190" x2="175" y2="190" stroke="#666" stroke-width="2"/>
+  <polygon points="175,185 185,190 175,195" fill="#666"/>
+
+  <!-- Step 1: Think -->
+  <rect x="185" y="130" width="160" height="120" rx="12" fill="#1A73E8" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="265" y="158" text-anchor="middle" font-size="14" font-weight="bold" fill="white">💭 Think</text>
+  <text x="265" y="178" text-anchor="middle" font-size="11" fill="#BBDEFB">LLMが状況を分析</text>
+  <text x="265" y="195" text-anchor="middle" font-size="11" fill="#BBDEFB">・目標の理解</text>
+  <text x="265" y="212" text-anchor="middle" font-size="11" fill="#BBDEFB">・必要アクション特定</text>
+  <text x="265" y="229" text-anchor="middle" font-size="11" fill="#BBDEFB">・ツール選択</text>
+
+  <!-- Arrow Think→Act -->
+  <line x1="345" y1="190" x2="380" y2="190" stroke="#666" stroke-width="2"/>
+  <polygon points="380,185 390,190 380,195" fill="#666"/>
+
+  <!-- Step 2: Act -->
+  <rect x="390" y="130" width="160" height="120" rx="12" fill="#FF9900" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="470" y="158" text-anchor="middle" font-size="14" font-weight="bold" fill="white">⚡ Act</text>
+  <text x="470" y="178" text-anchor="middle" font-size="11" fill="#FFF3E0">ツール/APIを呼び出す</text>
+  <text x="470" y="195" text-anchor="middle" font-size="11" fill="#FFF3E0">・Lambda実行</text>
+  <text x="470" y="212" text-anchor="middle" font-size="11" fill="#FFF3E0">・KB検索</text>
+  <text x="470" y="229" text-anchor="middle" font-size="11" fill="#FFF3E0">・外部API呼び出し</text>
+
+  <!-- Arrow Act→Observe -->
+  <line x1="550" y1="190" x2="585" y2="190" stroke="#666" stroke-width="2"/>
+  <polygon points="585,185 595,190 585,195" fill="#666"/>
+
+  <!-- Step 3: Observe -->
+  <rect x="595" y="130" width="160" height="120" rx="12" fill="#1A9C3E" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="675" y="158" text-anchor="middle" font-size="14" font-weight="bold" fill="white">👁 Observe</text>
+  <text x="675" y="178" text-anchor="middle" font-size="11" fill="#C8E6C9">結果を観察・評価</text>
+  <text x="675" y="195" text-anchor="middle" font-size="11" fill="#C8E6C9">・実行結果取得</text>
+  <text x="675" y="212" text-anchor="middle" font-size="11" fill="#C8E6C9">・エラー検知</text>
+  <text x="675" y="229" text-anchor="middle" font-size="11" fill="#C8E6C9">・目標達成判定</text>
+
+  <!-- Loop back arrow (from Observe to Think) -->
+  <path d="M 675 130 Q 675 60 265 60 Q 265 60 265 130" stroke="#E53935" stroke-width="2" fill="none" stroke-dasharray="6,3"/>
+  <polygon points="260,130 265,120 270,130" fill="#E53935"/>
+  <text x="470" y="50" text-anchor="middle" font-size="12" fill="#E53935" font-weight="bold">目標未達成の場合：ループ継続</text>
+
+  <!-- Final Answer -->
+  <rect x="775" y="160" width="110" height="60" rx="10" fill="#232F3E"/>
+  <text x="830" y="184" text-anchor="middle" font-size="12" font-weight="bold" fill="white">最終回答</text>
+  <text x="830" y="202" text-anchor="middle" font-size="11" fill="#FF9900">ユーザーへ</text>
+
+  <line x1="755" y1="190" x2="775" y2="190" stroke="#1A9C3E" stroke-width="2"/>
+  <polygon points="775,185 785,190 775,195" fill="#1A9C3E"/>
+  <text x="765" y="178" text-anchor="middle" font-size="10" fill="#1A9C3E">目標達成</text>
+
+  <!-- Scratchpad -->
+  <rect x="30" y="290" width="840" height="110" rx="10" fill="#232F3E"/>
+  <text x="450" y="312" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">Chain of Thought (Scratchpad) — 試験で重要！</text>
+  <text x="60" y="335" font-size="12" fill="#E0E0E0">思考プロセスのトレース例:</text>
+  <text x="60" y="353" font-size="11" fill="#90CAF9" font-family="monospace">Thought: ユーザーの注文履歴を調べる必要がある。OrderHistoryツールを使う。</text>
+  <text x="60" y="370" font-size="11" fill="#A5D6A7" font-family="monospace">Action: order_history_lookup(customer_id="C001")</text>
+  <text x="60" y="387" font-size="11" fill="#FFCC80" font-family="monospace">Observation: {"orders": [{"id": "O123", "status": "shipped"}, ...]}</text>
+  <text x="60" y="394" font-size="9" fill="#888">※ CloudWatch Logs または Trace APIでデバッグ可能</text>
+</svg>

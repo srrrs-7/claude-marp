@@ -92,10 +92,13 @@
 		},
 		{
 			"title": "S3 バケットポリシー例",
-			"content": ["特定VPCエンドポイントからのアクセスのみ許可する例:"],
+			"content": ["特定VPCエンドポイントからのアクセスのみ許可する例:"]
+		},
+		{
+			"title": "S3 バケットポリシー例（コード例）",
+			"content": [],
 			"code": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [{\n    \"Sid\": \"VPCEndpointOnly\",\n    \"Effect\": \"Deny\",\n    \"Principal\": \"*\",\n    \"Action\": \"s3:*\",\n    \"Resource\": [\n      \"arn:aws:s3:::my-bucket\",\n      \"arn:aws:s3:::my-bucket/*\"\n    ],\n    \"Condition\": {\n      \"StringNotEquals\": {\n        \"aws:sourceVpce\": \"vpce-1234567890\"\n      }\n    }\n  }]\n}",
-			"codeLanguage": "json",
-			"layout": "default"
+			"codeLanguage": "json"
 		},
 		{
 			"title": "S3 暗号化オプション",
@@ -128,10 +131,13 @@
 		},
 		{
 			"title": "S3 ライフサイクルポリシー例",
-			"content": ["段階的にコストを最適化するライフサイクル設定:"],
+			"content": ["段階的にコストを最適化するライフサイクル設定:"]
+		},
+		{
+			"title": "S3 ライフサイクルポリシー例（コード例）",
+			"content": [],
 			"code": "{\n  \"Rules\": [{\n    \"ID\": \"OptimizeCost\",\n    \"Status\": \"Enabled\",\n    \"Transitions\": [\n      { \"Days\": 30, \"StorageClass\": \"STANDARD_IA\" },\n      { \"Days\": 90, \"StorageClass\": \"GLACIER\" },\n      { \"Days\": 365, \"StorageClass\": \"DEEP_ARCHIVE\" }\n    ],\n    \"NoncurrentVersionExpiration\": {\n      \"NoncurrentDays\": 90\n    }\n  }]\n}",
-			"codeLanguage": "json",
-			"layout": "default"
+			"codeLanguage": "json"
 		},
 		{
 			"title": "S3 レプリケーション",
@@ -296,10 +302,13 @@
 		},
 		{
 			"title": "EBS スナップショット運用例",
-			"content": ["AWS CLIを使用した自動スナップショット取得:"],
+			"content": ["AWS CLIを使用した自動スナップショット取得:"]
+		},
+		{
+			"title": "EBS スナップショット運用例（コード例）",
+			"content": [],
 			"code": "# スナップショット作成\naws ec2 create-snapshot \\\n  --volume-id vol-0123456789abcdef0 \\\n  --description \"Daily backup $(date +%Y-%m-%d)\" \\\n  --tag-specifications 'ResourceType=snapshot,Tags=[{Key=Name,Value=daily-backup}]'\n\n# 古いスナップショットの削除（30日以上前）\naws ec2 describe-snapshots \\\n  --filters Name=tag:Name,Values=daily-backup \\\n  --query 'Snapshots[?StartTime<=`2026-01-15`].SnapshotId' \\\n  --output text | xargs -n1 aws ec2 delete-snapshot --snapshot-id",
-			"codeLanguage": "bash",
-			"layout": "default"
+			"codeLanguage": "bash"
 		},
 		{
 			"title": "EBS 暗号化",
@@ -427,10 +436,13 @@
 		},
 		{
 			"title": "EFS マウント設定例",
-			"content": ["EC2インスタンスからEFSをマウントする手順:"],
+			"content": ["EC2インスタンスからEFSをマウントする手順:"]
+		},
+		{
+			"title": "EFS マウント設定例（コード例）",
+			"content": [],
 			"code": "# EFS マウントヘルパーをインストール\nsudo yum install -y amazon-efs-utils\n\n# マウントポイント作成\nsudo mkdir -p /mnt/efs\n\n# TLS暗号化付きでマウント（推奨）\nsudo mount -t efs -o tls fs-0123456789abcdef0:/ /mnt/efs\n\n# /etc/fstab に永続マウント設定\necho 'fs-0123456789abcdef0:/ /mnt/efs efs _netdev,tls 0 0' \\\n  | sudo tee -a /etc/fstab",
-			"codeLanguage": "bash",
-			"layout": "default"
+			"codeLanguage": "bash"
 		},
 		{
 			"title": "EFS アクセス制御",

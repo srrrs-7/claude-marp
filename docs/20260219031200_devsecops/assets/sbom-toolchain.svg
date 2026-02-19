@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420"
+     style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:Arial,sans-serif;">
+
+  <!-- Background -->
+  <rect width="1000" height="420" fill="#F5F7FA" rx="12"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="1000" height="52" fill="#1B2A3B" rx="12"/>
+  <rect x="0" y="40" width="1000" height="12" fill="#1B2A3B"/>
+  <text x="500" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="white" font-family="Arial,sans-serif">SBOMライフサイクル</text>
+
+  <!-- Stage definitions: x, color, label, tools lines -->
+  <!-- Stage 1: 生成 -->
+  <rect x="30" y="80" width="160" height="130" fill="#E8F5E9" rx="10" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.13))"/>
+  <rect x="30" y="80" width="160" height="38" fill="#4CAF50" rx="10"/>
+  <rect x="30" y="106" width="160" height="12" fill="#4CAF50"/>
+  <text x="110" y="104" text-anchor="middle" font-size="15" font-weight="bold" fill="white" font-family="Arial,sans-serif">生成</text>
+  <text x="110" y="136" text-anchor="middle" font-size="13" fill="#2E7D32" font-family="Arial,sans-serif">Syft</text>
+  <text x="110" y="156" text-anchor="middle" font-size="13" fill="#2E7D32" font-family="Arial,sans-serif">Trivy</text>
+  <text x="110" y="176" text-anchor="middle" font-size="13" fill="#2E7D32" font-family="Arial,sans-serif">cdxgen</text>
+
+  <!-- Arrow 1 -->
+  <line x1="192" y1="145" x2="228" y2="145" stroke="#78909C" stroke-width="2.5"/>
+  <polygon points="228,139 240,145 228,151" fill="#78909C"/>
+
+  <!-- Stage 2: 保存・管理 -->
+  <rect x="242" y="80" width="160" height="130" fill="#E3F2FD" rx="10" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.13))"/>
+  <rect x="242" y="80" width="160" height="38" fill="#2196F3" rx="10"/>
+  <rect x="242" y="106" width="160" height="12" fill="#2196F3"/>
+  <text x="322" y="104" text-anchor="middle" font-size="15" font-weight="bold" fill="white" font-family="Arial,sans-serif">保存・管理</text>
+  <text x="322" y="136" text-anchor="middle" font-size="13" fill="#0D47A1" font-family="Arial,sans-serif">DependencyTrack</text>
+  <text x="322" y="156" text-anchor="middle" font-size="13" fill="#0D47A1" font-family="Arial,sans-serif">Grype</text>
+
+  <!-- Arrow 2 -->
+  <line x1="404" y1="145" x2="440" y2="145" stroke="#78909C" stroke-width="2.5"/>
+  <polygon points="440,139 452,145 440,151" fill="#78909C"/>
+
+  <!-- Stage 3: 脆弱性照合 -->
+  <rect x="454" y="80" width="160" height="130" fill="#FFF3E0" rx="10" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.13))"/>
+  <rect x="454" y="80" width="160" height="38" fill="#FF9800" rx="10"/>
+  <rect x="454" y="106" width="160" height="12" fill="#FF9800"/>
+  <text x="534" y="104" text-anchor="middle" font-size="15" font-weight="bold" fill="white" font-family="Arial,sans-serif">脆弱性照合</text>
+  <text x="534" y="136" text-anchor="middle" font-size="13" fill="#E65100" font-family="Arial,sans-serif">OSV</text>
+  <text x="534" y="156" text-anchor="middle" font-size="13" fill="#E65100" font-family="Arial,sans-serif">NVD</text>
+  <text x="534" y="176" text-anchor="middle" font-size="13" fill="#E65100" font-family="Arial,sans-serif">GHSA</text>
+
+  <!-- Arrow 3 -->
+  <line x1="616" y1="145" x2="652" y2="145" stroke="#78909C" stroke-width="2.5"/>
+  <polygon points="652,139 664,145 652,151" fill="#78909C"/>
+
+  <!-- Stage 4: レポート -->
+  <rect x="666" y="80" width="140" height="130" fill="#F3E5F5" rx="10" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.13))"/>
+  <rect x="666" y="80" width="140" height="38" fill="#9C27B0" rx="10"/>
+  <rect x="666" y="106" width="140" height="12" fill="#9C27B0"/>
+  <text x="736" y="104" text-anchor="middle" font-size="15" font-weight="bold" fill="white" font-family="Arial,sans-serif">レポート</text>
+  <text x="736" y="140" text-anchor="middle" font-size="12" fill="#4A148C" font-family="Arial,sans-serif">CycloneDX VEX</text>
+
+  <!-- Arrow 4 -->
+  <line x1="808" y1="145" x2="840" y2="145" stroke="#78909C" stroke-width="2.5"/>
+  <polygon points="840,139 852,145 840,151" fill="#78909C"/>
+
+  <!-- Stage 5: 対応 -->
+  <rect x="854" y="80" width="120" height="130" fill="#FFEBEE" rx="10" style="filter:drop-shadow(2px 3px 5px rgba(0,0,0,0.13))"/>
+  <rect x="854" y="80" width="120" height="38" fill="#1565C0" rx="10"/>
+  <rect x="854" y="106" width="120" height="12" fill="#1565C0"/>
+  <text x="914" y="104" text-anchor="middle" font-size="15" font-weight="bold" fill="white" font-family="Arial,sans-serif">対応</text>
+  <text x="914" y="136" text-anchor="middle" font-size="13" fill="#B71C1C" font-family="Arial,sans-serif">Dependabot</text>
+  <text x="914" y="156" text-anchor="middle" font-size="13" fill="#B71C1C" font-family="Arial,sans-serif">PR作成</text>
+
+  <!-- Gradient flow bar -->
+  <defs>
+    <!-- No url(#) usage: use inline style instead -->
+  </defs>
+  <rect x="30" y="228" width="944" height="12" fill="#CFD8DC" rx="6"/>
+  <rect x="30" y="228" width="944" height="12" fill="none" rx="6" stroke="#90A4AE" stroke-width="1"/>
+  <!-- Color segments of flow bar -->
+  <rect x="30" y="228" width="190" height="12" fill="#4CAF50" rx="6"/>
+  <rect x="218" y="228" width="4" height="12" fill="#CFD8DC"/>
+  <rect x="222" y="228" width="192" height="12" fill="#2196F3"/>
+  <rect x="412" y="228" width="4" height="12" fill="#CFD8DC"/>
+  <rect x="416" y="228" width="202" height="12" fill="#FF9800"/>
+  <rect x="616" y="228" width="4" height="12" fill="#CFD8DC"/>
+  <rect x="620" y="228" width="184" height="12" fill="#9C27B0"/>
+  <rect x="802" y="228" width="4" height="12" fill="#CFD8DC"/>
+  <rect x="806" y="228" width="168" height="12" fill="#1565C0" rx="6"/>
+
+  <!-- Description area -->
+  <rect x="30" y="258" width="940" height="80" fill="white" rx="8" style="filter:drop-shadow(0 2px 4px rgba(0,0,0,0.10))"/>
+  <text x="500" y="284" text-anchor="middle" font-size="13" font-weight="bold" fill="#37474F" font-family="Arial,sans-serif">DevSecOps パイプライン統合ポイント</text>
+  <text x="110" y="310" text-anchor="middle" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">CI/CDビルド時</text>
+  <text x="322" y="310" text-anchor="middle" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">アーティファクト管理</text>
+  <text x="534" y="310" text-anchor="middle" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">定期スキャン</text>
+  <text x="736" y="310" text-anchor="middle" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">ダッシュボード</text>
+  <text x="914" y="310" text-anchor="middle" font-size="12" fill="#546E7A" font-family="Arial,sans-serif">自動修正</text>
+
+  <text x="500" y="328" text-anchor="middle" font-size="12" fill="#78909C" font-family="Arial,sans-serif">継続的な監視と自動対応で、サプライチェーンセキュリティを維持する</text>
+
+  <!-- Footer label -->
+  <text x="500" y="400" text-anchor="middle" font-size="12" fill="#90A4AE" font-family="Arial,sans-serif">SBOM = Software Bill of Materials | VEX = Vulnerability Exploitability eXchange</text>
+</svg>

@@ -1,0 +1,84 @@
+<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="480" fill="#f8fafc" rx="12"/>
+  <text x="480" y="34" text-anchor="middle" font-size="18" font-weight="bold" fill="#1e293b">GuardDuty EKS Protection — 検知カテゴリマップ</text>
+
+  <!-- Center: GuardDuty -->
+  <rect x="380" y="190" width="200" height="80" rx="12" fill="#1e293b"/>
+  <text x="480" y="224" text-anchor="middle" font-size="14" font-weight="bold" fill="#FF9900">Amazon GuardDuty</text>
+  <text x="480" y="244" text-anchor="middle" font-size="12" fill="#e2e8f0">EKS Protection</text>
+  <text x="480" y="262" text-anchor="middle" font-size="10" fill="#94a3b8">Audit Logs + Runtime</text>
+
+  <!-- Data sources (top) -->
+  <rect x="220" y="80" width="160" height="60" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="300" y="107" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">EKS Audit Logs</text>
+  <text x="300" y="125" text-anchor="middle" font-size="10" fill="#1e40af">API Server呼び出し記録</text>
+
+  <rect x="580" y="80" width="160" height="60" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="660" y="107" text-anchor="middle" font-size="12" font-weight="bold" fill="#5b21b6">Runtime Monitoring</text>
+  <text x="660" y="125" text-anchor="middle" font-size="10" fill="#5b21b6">コンテナ内プロセス監視</text>
+
+  <!-- Arrows from data sources to center -->
+  <line x1="300" y1="140" x2="420" y2="195" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="423,196 413,193 418,203" fill="#3b82f6"/>
+  <line x1="660" y1="140" x2="540" y2="195" stroke="#7c3aed" stroke-width="2"/>
+  <polygon points="537,196 545,192 542,202" fill="#7c3aed"/>
+
+  <!-- Detection categories (radiating out) -->
+  <!-- Left top -->
+  <rect x="20" y="90" width="185" height="76" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="112" y="113" text-anchor="middle" font-size="11" font-weight="bold" fill="#991b1b">権限昇格 (Escalation)</text>
+  <text x="112" y="130" text-anchor="middle" font-size="10" fill="#7f1d1d">• PrivilegedContainerLaunched</text>
+  <text x="112" y="146" text-anchor="middle" font-size="10" fill="#7f1d1d">• AdminAccessToServiceAcct</text>
+  <text x="112" y="160" text-anchor="middle" font-size="10" fill="#7f1d1d">• ClusterAdminUserGranted</text>
+
+  <!-- Left middle -->
+  <rect x="20" y="190" width="185" height="76" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="112" y="213" text-anchor="middle" font-size="11" font-weight="bold" fill="#991b1b">侵害指標 (Compromise)</text>
+  <text x="112" y="230" text-anchor="middle" font-size="10" fill="#7f1d1d">• MaliciousIPCaller</text>
+  <text x="112" y="246" text-anchor="middle" font-size="10" fill="#7f1d1d">• TorIPCaller</text>
+  <text x="112" y="262" text-anchor="middle" font-size="10" fill="#7f1d1d">• AnonymousAccessGranted</text>
+
+  <!-- Left bottom -->
+  <rect x="20" y="290" width="185" height="76" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <text x="112" y="313" text-anchor="middle" font-size="11" font-weight="bold" fill="#92400e">設定ミス (Misconfiguration)</text>
+  <text x="112" y="330" text-anchor="middle" font-size="10" fill="#78350f">• PubliclyExposedService</text>
+  <text x="112" y="346" text-anchor="middle" font-size="10" fill="#78350f">• InsecureCapabilityGranted</text>
+  <text x="112" y="362" text-anchor="middle" font-size="10" fill="#78350f">• HostNetworkGranted</text>
+
+  <!-- Right top -->
+  <rect x="755" y="90" width="185" height="76" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="847" y="113" text-anchor="middle" font-size="11" font-weight="bold" fill="#991b1b">マルウェア (Malware)</text>
+  <text x="847" y="130" text-anchor="middle" font-size="10" fill="#7f1d1d">• RuntimeAgent検知</text>
+  <text x="847" y="146" text-anchor="middle" font-size="10" fill="#7f1d1d">• 暗号通貨マイニング</text>
+  <text x="847" y="160" text-anchor="middle" font-size="10" fill="#7f1d1d">• バックドア接続</text>
+
+  <!-- Right middle -->
+  <rect x="755" y="190" width="185" height="76" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="847" y="213" text-anchor="middle" font-size="11" font-weight="bold" fill="#991b1b">探索 (Discovery)</text>
+  <text x="847" y="230" text-anchor="middle" font-size="10" fill="#7f1d1d">• SuccessfulAnonymousAccess</text>
+  <text x="847" y="246" text-anchor="middle" font-size="10" fill="#7f1d1d">• WorkloadsWithPrintableSA</text>
+  <text x="847" y="262" text-anchor="middle" font-size="10" fill="#7f1d1d">• SecretsAccessedViaKubectl</text>
+
+  <!-- Right bottom -->
+  <rect x="755" y="290" width="185" height="76" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="847" y="313" text-anchor="middle" font-size="11" font-weight="bold" fill="#166534">対応アクション</text>
+  <text x="847" y="330" text-anchor="middle" font-size="10" fill="#14532d">→ Security Hub 連携</text>
+  <text x="847" y="346" text-anchor="middle" font-size="10" fill="#14532d">→ EventBridge → Lambda</text>
+  <text x="847" y="362" text-anchor="middle" font-size="10" fill="#14532d">→ Pod強制終了・隔離</text>
+
+  <!-- Connecting lines left -->
+  <line x1="205" y1="128" x2="380" y2="210" stroke="#dc2626" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="205" y1="228" x2="380" y2="228" stroke="#dc2626" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="205" y1="328" x2="380" y2="250" stroke="#d97706" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Connecting lines right -->
+  <line x1="755" y1="128" x2="580" y2="210" stroke="#dc2626" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="755" y1="228" x2="580" y2="228" stroke="#dc2626" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="755" y1="328" x2="580" y2="250" stroke="#16a34a" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Bottom bar -->
+  <rect x="20" y="390" width="920" height="70" rx="8" fill="#1e293b"/>
+  <text x="480" y="413" text-anchor="middle" font-size="13" font-weight="bold" fill="#FF9900">GuardDuty EKS Protection 有効化コマンド</text>
+  <text x="480" y="433" text-anchor="middle" font-size="11" fill="#e2e8f0">aws guardduty update-detector --detector-id &lt;id&gt; --features Name=EKS_AUDIT_LOGS,Status=ENABLED</text>
+  <text x="480" y="451" text-anchor="middle" font-size="11" fill="#94a3b8">Runtime Monitoring: EKS Add-on「aws-guardduty-agent」をクラスターに追加（別途有効化）</text>
+</svg>
