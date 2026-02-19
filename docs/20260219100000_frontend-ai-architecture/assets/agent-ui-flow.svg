@@ -1,0 +1,95 @@
+<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117">
+  <text x="480" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#e6edf3" font-family="sans-serif">エージェントUI — タスク実行フロー</text>
+
+  <!-- Step 1: Input -->
+  <rect x="30" y="65" width="150" height="80" rx="8" fill="#1f2937" stroke="#4b5563" stroke-width="2"/>
+  <text x="105" y="95" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9fafb" font-family="sans-serif">① 指示入力</text>
+  <text x="105" y="115" text-anchor="middle" font-size="11" fill="#9ca3af" font-family="sans-serif">自然言語で</text>
+  <text x="105" y="130" text-anchor="middle" font-size="11" fill="#9ca3af" font-family="sans-serif">タスク指示</text>
+
+  <!-- Arrow -->
+  <line x1="180" y1="105" x2="215" y2="105" stroke="#6b7280" stroke-width="2"/>
+  <polygon points="219,105 211,100 211,110" fill="#6b7280"/>
+
+  <!-- Step 2: Planning -->
+  <rect x="220" y="65" width="150" height="80" rx="8" fill="#7c2d12" stroke="#f97316" stroke-width="2"/>
+  <text x="295" y="95" text-anchor="middle" font-size="13" font-weight="bold" fill="#fb923c" font-family="sans-serif">② プランニング</text>
+  <text x="295" y="115" text-anchor="middle" font-size="11" fill="#fed7aa" font-family="sans-serif">LLMがタスクを</text>
+  <text x="295" y="130" text-anchor="middle" font-size="11" fill="#fed7aa" font-family="sans-serif">ステップ分解</text>
+
+  <!-- Arrow -->
+  <line x1="370" y1="105" x2="405" y2="105" stroke="#6b7280" stroke-width="2"/>
+  <polygon points="409,105 401,100 401,110" fill="#6b7280"/>
+
+  <!-- Step 3: Tool execution -->
+  <rect x="410" y="65" width="150" height="80" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2"/>
+  <text x="485" y="95" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa" font-family="sans-serif">③ ツール実行</text>
+  <text x="485" y="115" text-anchor="middle" font-size="11" fill="#93c5fd" font-family="sans-serif">Function Calling</text>
+  <text x="485" y="130" text-anchor="middle" font-size="11" fill="#93c5fd" font-family="sans-serif">API/DB/Web操作</text>
+
+  <!-- Arrow -->
+  <line x1="560" y1="105" x2="595" y2="105" stroke="#6b7280" stroke-width="2"/>
+  <polygon points="599,105 591,100 591,110" fill="#6b7280"/>
+
+  <!-- Step 4: Human check -->
+  <rect x="600" y="65" width="160" height="80" rx="8" fill="#1e1b4b" stroke="#6366f1" stroke-width="2"/>
+  <text x="680" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#a5b4fc" font-family="sans-serif">④ ヒューマン</text>
+  <text x="680" y="108" text-anchor="middle" font-size="13" font-weight="bold" fill="#a5b4fc" font-family="sans-serif">チェック</text>
+  <text x="680" y="128" text-anchor="middle" font-size="11" fill="#c7d2fe" font-family="sans-serif">承認 / 修正指示</text>
+
+  <!-- Arrow -->
+  <line x1="760" y1="105" x2="795" y2="105" stroke="#6b7280" stroke-width="2"/>
+  <polygon points="799,105 791,100 791,110" fill="#6b7280"/>
+
+  <!-- Step 5: Complete -->
+  <rect x="800" y="65" width="140" height="80" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="2"/>
+  <text x="870" y="95" text-anchor="middle" font-size="13" font-weight="bold" fill="#4ade80" font-family="sans-serif">⑤ 完了</text>
+  <text x="870" y="115" text-anchor="middle" font-size="11" fill="#86efac" font-family="sans-serif">結果提示</text>
+  <text x="870" y="130" text-anchor="middle" font-size="11" fill="#86efac" font-family="sans-serif">アクション提案</text>
+
+  <!-- Feedback loop arrow -->
+  <line x1="680" y1="145" x2="680" y2="180" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="680" y1="180" x2="295" y2="180" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="295" y1="180" x2="295" y2="155" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="295,151 289,161 301,161" fill="#6366f1"/>
+  <text x="487" y="175" text-anchor="middle" font-size="10" fill="#818cf8" font-family="sans-serif">修正指示→再プランニング</text>
+
+  <!-- UI Components section -->
+  <text x="480" y="215" text-anchor="middle" font-size="15" font-weight="bold" fill="#e6edf3" font-family="sans-serif">UIコンポーネント設計</text>
+
+  <!-- TaskProgress -->
+  <rect x="30" y="230" width="210" height="130" rx="8" fill="#7c2d12" stroke="#f97316" stroke-width="1.5"/>
+  <text x="135" y="255" text-anchor="middle" font-size="13" font-weight="bold" fill="#fb923c" font-family="sans-serif">TaskProgressBar</text>
+  <text x="50" y="278" font-size="11" fill="#fed7aa" font-family="sans-serif">■ ステップ一覧 (完了/実行中)</text>
+  <text x="50" y="296" font-size="11" fill="#fed7aa" font-family="sans-serif">■ 現在実行中のツール名</text>
+  <text x="50" y="314" font-size="11" fill="#fed7aa" font-family="sans-serif">■ 経過時間 / 推定残り時間</text>
+  <text x="50" y="332" font-size="11" fill="#fbbf24" font-family="sans-serif">■ キャンセルボタン</text>
+  <text x="50" y="350" font-size="11" fill="#fbbf24" font-family="sans-serif">■ aria-live="polite"</text>
+
+  <!-- ToolCallDisplay -->
+  <rect x="260" y="230" width="210" height="130" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="365" y="255" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa" font-family="sans-serif">ToolCallDisplay</text>
+  <text x="280" y="278" font-size="11" fill="#93c5fd" font-family="sans-serif">■ ツール名 + 引数プレビュー</text>
+  <text x="280" y="296" font-size="11" fill="#93c5fd" font-family="sans-serif">■ 実行前 確認ダイアログ</text>
+  <text x="280" y="314" font-size="11" fill="#93c5fd" font-family="sans-serif">■ 結果の折りたたみ表示</text>
+  <text x="280" y="332" font-size="11" fill="#93c5fd" font-family="sans-serif">■ エラー時の詳細表示</text>
+
+  <!-- HumanApproval -->
+  <rect x="490" y="230" width="210" height="130" rx="8" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="595" y="255" text-anchor="middle" font-size="13" font-weight="bold" fill="#a5b4fc" font-family="sans-serif">HumanApproval</text>
+  <text x="510" y="278" font-size="11" fill="#c7d2fe" font-family="sans-serif">■ 実行予定アクション一覧</text>
+  <text x="510" y="296" font-size="11" fill="#c7d2fe" font-family="sans-serif">■ 承認 / 却下 / 修正ボタン</text>
+  <text x="510" y="314" font-size="11" fill="#c7d2fe" font-family="sans-serif">■ 修正コメント入力欄</text>
+  <text x="510" y="332" font-size="11" fill="#818cf8" font-family="sans-serif">■ タイムアウト警告</text>
+
+  <!-- AgentTrace -->
+  <rect x="720" y="230" width="210" height="130" rx="8" fill="#0c1a14" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="825" y="255" text-anchor="middle" font-size="13" font-weight="bold" fill="#4ade80" font-family="sans-serif">AgentTrace</text>
+  <text x="740" y="278" font-size="11" fill="#86efac" font-family="sans-serif">■ 思考プロセスの可視化</text>
+  <text x="740" y="296" font-size="11" fill="#86efac" font-family="sans-serif">■ デバッグ用トレース</text>
+  <text x="740" y="314" font-size="11" fill="#86efac" font-family="sans-serif">■ コスト/トークン表示</text>
+  <text x="740" y="332" font-size="11" fill="#86efac" font-family="sans-serif">■ 折りたたみ可能なUI</text>
+
+  <!-- Bottom note -->
+  <text x="480" y="440" text-anchor="middle" font-size="11" fill="#9ca3af" font-family="sans-serif">エージェントUIのキー原則: 透明性（何をしているか）× 制御可能性（いつでも止められる）</text>
+</svg>

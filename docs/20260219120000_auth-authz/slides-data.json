@@ -287,14 +287,17 @@
 		},
 		{
 			"title": "PBAC と OPA — Policy-Based Access Control",
-			"layout": "default",
 			"content": [
 				"**PBAC**: 認可ロジックをポリシーとして外部化・コード化する考え方",
 				"**OPA (Open Policy Agent)** — CNCFプロジェクト。Rego言語でポリシー記述",
 				"**Cedar (AWS)** — AWS Verified Permissions のポリシー言語。型安全",
 				"**利点**: アプリコードからポリシーを分離。監査・テスト・更新が独立して可能",
 				"**Kubernetes**: Admission Webhook で OPA Gatekeeper によるポリシー強制"
-			],
+			]
+		},
+		{
+			"title": "PBAC と OPA — Policy-Based Access Control（コード例）",
+			"content": [],
 			"code": "# OPA Rego ポリシー例\npackage authz\n\ndefault allow := false\n\nallow if {\n    input.user.role == \"admin\"\n}\n\nallow if {\n    input.action == \"read\"\n    input.resource.owner == input.user.id\n}",
 			"codeLanguage": "rego"
 		},
@@ -313,13 +316,16 @@
 		},
 		{
 			"title": "IAM ポリシー言語",
-			"layout": "default",
 			"content": [
 				"**Effect** — `Allow` / `Deny`。明示的 Deny は常に優先",
 				"**Action** — AWS API アクション (`s3:GetObject`, `ec2:*`)",
 				"**Resource** — ARN で対象リソースを特定 (`arn:aws:s3:::my-bucket/*`)",
 				"**Condition** — 追加条件 (`aws:SourceIp`, `aws:RequestedRegion`, `s3:prefix`)"
-			],
+			]
+		},
+		{
+			"title": "IAM ポリシー言語（コード例）",
+			"content": [],
 			"code": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [{\n    \"Effect\": \"Allow\",\n    \"Action\": [\"s3:GetObject\", \"s3:PutObject\"],\n    \"Resource\": \"arn:aws:s3:::my-bucket/${aws:userid}/*\",\n    \"Condition\": {\n      \"StringEquals\": {\n        \"aws:RequestedRegion\": \"ap-northeast-1\"\n      }\n    }\n  }]\n}",
 			"codeLanguage": "json"
 		},
@@ -375,13 +381,16 @@
 		},
 		{
 			"title": "SCP — Service Control Policies",
-			"layout": "default",
 			"content": [
 				"**SCP とは**: AWS Organizations でアカウント全体に適用するガードレールポリシー",
 				"**特性**: Allow のみでは不十分。IAM ポリシーとの AND 評価。最大許可範囲を定義",
 				"**ユースケース**: 特定リージョン以外へのデプロイ禁止 / 危険なIAM操作禁止 / ルートアカウント使用禁止",
 				"**階層**: Root → OU → Account の順に継承・上書き可能"
-			],
+			]
+		},
+		{
+			"title": "SCP — Service Control Policies（コード例）",
+			"content": [],
 			"code": "{\n  \"Effect\": \"Deny\",\n  \"Action\": \"*\",\n  \"Resource\": \"*\",\n  \"Condition\": {\n    \"StringNotEquals\": {\n      \"aws:RequestedRegion\": [\n        \"ap-northeast-1\",\n        \"us-east-1\"\n      ]\n    }\n  }\n}",
 			"codeLanguage": "json"
 		},
@@ -411,12 +420,15 @@
 		},
 		{
 			"title": "クロスアカウントアクセス設計",
-			"layout": "default",
 			"content": [
 				"**基本パターン**: Account A の Principal が Account B の Role に AssumeRole",
 				"**Trust Policy**: Account B のロールに Account A の Principal を信頼する設定",
 				"**ExternalId**: 第三者(SaaS等)が代理アクセスする場合に推奨。混乱した副官攻撃を防止"
-			],
+			]
+		},
+		{
+			"title": "クロスアカウントアクセス設計（コード例）",
+			"content": [],
 			"code": "// Trust Policy (Account B側のRole)\n{\n  \"Effect\": \"Allow\",\n  \"Principal\": {\n    \"AWS\": \"arn:aws:iam::ACCOUNT_A_ID:role/DeployRole\"\n  },\n  \"Action\": \"sts:AssumeRole\",\n  \"Condition\": {\n    \"StringEquals\": {\n      \"sts:ExternalId\": \"unique-external-id\"\n    },\n    \"Bool\": {\n      \"aws:MultiFactorAuthPresent\": \"true\"\n    }\n  }\n}",
 			"codeLanguage": "json"
 		},
@@ -515,12 +527,15 @@
 		},
 		{
 			"title": "Lambda Authorizer 設計",
-			"layout": "default",
 			"content": [
 				"**TOKEN タイプ** — Authorization ヘッダーのトークン (JWT) を検証",
 				"**REQUEST タイプ** — ヘッダー・クエリ・パス・ステージ変数全てにアクセス可能。複合条件に",
 				"**キャッシュ** — ARN ベースのポリシーキャッシュ (TTL: 0〜3600秒)。レイテンシ削減"
-			],
+			]
+		},
+		{
+			"title": "Lambda Authorizer 設計（コード例）",
+			"content": [],
 			"code": "exports.handler = async (event) => {\n  const token = event.authorizationToken;\n  const claims = await verifyJWT(token); // 署名検証必須\n  return {\n    principalId: claims.sub,\n    policyDocument: {\n      Version: '2012-10-17',\n      Statement: [{\n        Action: 'execute-api:Invoke',\n        Effect: 'Allow',\n        Resource: event.methodArn\n      }]\n    },\n    context: { userId: claims.sub, role: claims['custom:role'] }\n  };\n};",
 			"codeLanguage": "javascript"
 		},
@@ -567,12 +582,15 @@
 		},
 		{
 			"title": "サービスメッシュによる認可",
-			"layout": "default",
 			"content": [
 				"**サービスメッシュ**: サービス間通信をサイドカープロキシ(Envoy)で制御・観測",
 				"**AWS App Mesh**: ECS/EKS 向けマネージドメッシュ。mTLS と L7 ルーティング",
 				"**Istio on EKS**: 高機能。mTLS自動、認証ポリシー、AuthorizationPolicy"
-			],
+			]
+		},
+		{
+			"title": "サービスメッシュによる認可（コード例）",
+			"content": [],
 			"code": "apiVersion: security.istio.io/v1beta1\nkind: AuthorizationPolicy\nmetadata:\n  name: payment-service-policy\nspec:\n  selector:\n    matchLabels:\n      app: payment\n  rules:\n  - from:\n    - source:\n        principals:\n          - cluster.local/ns/default/sa/order-service\n    to:\n    - operation:\n        methods: [\"POST\"]\n        paths: [\"/payment/*\"]",
 			"codeLanguage": "yaml"
 		},

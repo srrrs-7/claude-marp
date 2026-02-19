@@ -1,0 +1,58 @@
+<svg viewBox="0 0 960 370" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0f172a;border-radius:12px">
+  <text x="480" y="26" text-anchor="middle" fill="#f1f5f9" font-size="17" font-weight="bold" font-family="sans-serif">AiTM（Adversary-in-the-Middle）フィッシング攻撃フロー</text>
+
+  <!-- Actors: top row -->
+  <!-- User -->
+  <rect x="30" y="60" width="140" height="55" rx="8" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2"/>
+  <text x="100" y="83" text-anchor="middle" fill="#60a5fa" font-size="13" font-weight="bold" font-family="sans-serif">ユーザー</text>
+  <text x="100" y="101" text-anchor="middle" fill="#7dd3fc" font-size="11" font-family="sans-serif">正規の認証情報保持</text>
+
+  <!-- Arrow 1: User to fake site -->
+  <line x1="170" y1="87" x2="264" y2="87" stroke="#f87171" stroke-width="2"/>
+  <polygon points="260,81 272,87 260,93" fill="#f87171"/>
+  <text x="217" y="78" text-anchor="middle" fill="#f87171" font-size="9" font-family="sans-serif">① フィッシングリンクへ誘導</text>
+
+  <!-- Attacker proxy (center, red) -->
+  <rect x="272" y="46" width="200" height="82" rx="8" fill="#2d1515" stroke="#f87171" stroke-width="2.5"/>
+  <text x="372" y="72" text-anchor="middle" fill="#f87171" font-size="13" font-weight="bold" font-family="sans-serif">攻撃者プロキシ</text>
+  <text x="372" y="90" text-anchor="middle" fill="#fca5a5" font-size="11" font-family="sans-serif">（Evilginx等）</text>
+  <text x="372" y="108" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">正規サイトに見せかけたリバースプロキシ</text>
+  <text x="372" y="122" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">全通信をリアルタイムで傍受・転送</text>
+
+  <!-- Arrow: proxy to real site -->
+  <line x1="472" y1="87" x2="564" y2="87" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="560,81 572,87 560,93" fill="#94a3b8"/>
+  <text x="518" y="78" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">② 全通信を転送</text>
+
+  <!-- Legitimate site -->
+  <rect x="572" y="60" width="160" height="55" rx="8" fill="#0d2d1e" stroke="#34d399" stroke-width="2"/>
+  <text x="652" y="83" text-anchor="middle" fill="#34d399" font-size="13" font-weight="bold" font-family="sans-serif">正規サービス</text>
+  <text x="652" y="101" text-anchor="middle" fill="#6ee7b7" font-size="11" font-family="sans-serif">Microsoft 365 等</text>
+
+  <!-- Step-by-step flow below -->
+  <!-- Step 1 -->
+  <rect x="30" y="165" width="880" height="38" rx="6" fill="#1e293b" stroke="#f87171" stroke-width="1.5"/>
+  <rect x="30" y="165" width="34" height="38" rx="6" fill="#2d1515"/>
+  <text x="47" y="189" text-anchor="middle" fill="#f87171" font-size="14" font-weight="bold" font-family="sans-serif">1</text>
+  <text x="480" y="183" text-anchor="middle" fill="#f87171" font-size="12" font-weight="bold" font-family="sans-serif">ユーザーID・パスワードを入力 → プロキシが傍受しつつ正規サイトへ転送</text>
+  <text x="480" y="198" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">ユーザーには正規サイトと見分けがつかない（SSLも有効）</text>
+
+  <!-- Step 2 -->
+  <rect x="30" y="211" width="880" height="38" rx="6" fill="#1e293b" stroke="#f87171" stroke-width="1.5"/>
+  <rect x="30" y="211" width="34" height="38" rx="6" fill="#2d1515"/>
+  <text x="47" y="235" text-anchor="middle" fill="#f87171" font-size="14" font-weight="bold" font-family="sans-serif">2</text>
+  <text x="480" y="229" text-anchor="middle" fill="#f87171" font-size="12" font-weight="bold" font-family="sans-serif">正規サイトがMFA要求 → ユーザーがOTPを入力（またはPUSH承認）</text>
+  <text x="480" y="244" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">MFAコードも同様にプロキシが傍受し正規サイトへリアルタイム転送</text>
+
+  <!-- Step 3 -->
+  <rect x="30" y="257" width="880" height="38" rx="6" fill="#2d1515" stroke="#f87171" stroke-width="2"/>
+  <rect x="30" y="257" width="34" height="38" rx="6" fill="#431407"/>
+  <text x="47" y="281" text-anchor="middle" fill="#f87171" font-size="14" font-weight="bold" font-family="sans-serif">3</text>
+  <text x="480" y="273" text-anchor="middle" fill="#f87171" font-size="13" font-weight="bold" font-family="sans-serif">セッショントークン（Cookie）を攻撃者が取得 → MFAは無意味化</text>
+  <text x="480" y="290" text-anchor="middle" fill="#fca5a5" font-size="11" font-family="sans-serif">認証後のセッションCookieを盗むため、MFAを「通過済み」の状態でアクセス可能</text>
+
+  <!-- Defense box -->
+  <rect x="30" y="310" width="880" height="45" rx="6" fill="#0d2d1e" stroke="#34d399" stroke-width="2"/>
+  <text x="480" y="328" text-anchor="middle" fill="#34d399" font-size="13" font-weight="bold" font-family="sans-serif">対策: FIDO2/Passkeys — オリジン（ドメイン）に鍵がバインドされているため偽サイトでは機能しない</text>
+  <text x="480" y="347" text-anchor="middle" fill="#86efac" font-size="11" font-family="sans-serif">TOTP・SMS OTP・PUSH通知 は AiTM に対して無効。FIDO2 のみが根本的解決策</text>
+</svg>

@@ -1,0 +1,19 @@
+topic: "AIの学習の仕組み 〜研究者・専門家向け完全解説〜"
+language: "ja"
+
+output:
+  dir: "docs/20260219150000_ai-learning-mechanisms"
+  baseName: "ai-learning-mechanisms"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "AIの学習の仕組み"
+  footer: "© 2026 - 研究者・専門家向け完全解説"
+  style: |
+    section { font-size: 1.0em; }
+    section pre code { font-size: 0.56em; line-height: 1.35; }
+    section h1 { font-size: 1.55em; }
+    section h2 { font-size: 1.25em; }
+    section ul li { margin-bottom: 0.18em; }
+    section table { font-size: 0.85em; }

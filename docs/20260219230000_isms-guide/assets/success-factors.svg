@@ -1,0 +1,36 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="380" fill="#f0f4f8" rx="12"/>
+  <text x="400" y="30" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="15" font-weight="bold">ISMS導入成功の5つの要因</text>
+  <!-- Center: ISMS Success -->
+  <circle cx="400" cy="195" r="65" fill="#F9A825" style="filter: drop-shadow(3px 3px 8px rgba(0,0,0,0.25))"/>
+  <text x="400" y="188" text-anchor="middle" fill="white" font-family="sans-serif" font-size="15" font-weight="bold">ISMS</text>
+  <text x="400" y="208" text-anchor="middle" fill="white" font-family="sans-serif" font-size="14" font-weight="bold">成功</text>
+  <!-- Factor 1: Top - 経営コミットメント -->
+  <line x1="400" y1="130" x2="400" y2="82" stroke="#90A4AE" stroke-width="2"/>
+  <rect x="310" y="45" width="180" height="40" rx="8" fill="#1565C0" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2))"/>
+  <text x="400" y="62" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">① 経営層のコミットメント</text>
+  <text x="400" y="79" text-anchor="middle" fill="#BBDEFB" font-family="sans-serif" font-size="10">トップダウンの推進力</text>
+  <!-- Factor 2: Top-right - スコープ最適化 -->
+  <line x1="455" y1="150" x2="540" y2="100" stroke="#90A4AE" stroke-width="2"/>
+  <rect x="545" y="65" width="185" height="40" rx="8" fill="#2E7D32" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2))"/>
+  <text x="638" y="82" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">② スコープの適切な設定</text>
+  <text x="638" y="99" text-anchor="middle" fill="#C8E6C9" font-family="sans-serif" font-size="10">段階的導入・優先度付け</text>
+  <!-- Factor 3: Bottom-right - 全員参加 -->
+  <line x1="455" y1="240" x2="540" y2="290" stroke="#90A4AE" stroke-width="2"/>
+  <rect x="545" y="295" width="185" height="40" rx="8" fill="#E65100" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2))"/>
+  <text x="638" y="312" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">③ 全員参加の文化醸成</text>
+  <text x="638" y="329" text-anchor="middle" fill="#FFCCBC" font-family="sans-serif" font-size="10">教育・訓練・意識向上</text>
+  <!-- Factor 4: Bottom-left - 業務プロセス統合 -->
+  <line x1="345" y1="240" x2="260" y2="290" stroke="#90A4AE" stroke-width="2"/>
+  <rect x="70" y="295" width="185" height="40" rx="8" fill="#6A1B9A" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2))"/>
+  <text x="163" y="312" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">④ 業務プロセスへの統合</text>
+  <text x="163" y="329" text-anchor="middle" fill="#E1BEE7" font-family="sans-serif" font-size="10">形骸化防止・実効性確保</text>
+  <!-- Factor 5: Top-left - 継続的改善 -->
+  <line x1="345" y1="150" x2="260" y2="100" stroke="#90A4AE" stroke-width="2"/>
+  <rect x="70" y="65" width="185" height="40" rx="8" fill="#0277BD" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2))"/>
+  <text x="163" y="82" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">⑤ 継続的な改善活動</text>
+  <text x="163" y="99" text-anchor="middle" fill="#B3E5FC" font-family="sans-serif" font-size="10">PDCAサイクルの徹底</text>
+  <!-- Bottom note -->
+  <rect x="60" y="355" width="680" height="22" rx="4" fill="#E8F5E9"/>
+  <text x="400" y="370" text-anchor="middle" fill="#2E7D32" font-family="sans-serif" font-size="12" font-weight="bold">失敗要因：「認証取得が目的化」「IT部門だけの取組み」「文書だけで運用なし」</text>
+</svg>

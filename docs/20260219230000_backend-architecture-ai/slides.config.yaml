@@ -1,0 +1,29 @@
+topic: "バックエンドアーキテクチャ × AI 相性完全ガイド"
+language: "ja"
+
+output:
+  dir: "docs/20260219230000_backend-architecture-ai"
+  baseName: "backend-architecture-ai"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "バックエンドアーキテクチャ × AI 相性完全ガイド"
+  footer: "© 2026 Backend Architecture × AI Guide"
+  style: |
+    section pre code {
+      font-size: 0.55em;
+      line-height: 1.35;
+    }
+    section code {
+      font-size: 0.72em;
+    }
+    section h1 {
+      font-size: 1.55em;
+    }
+    section h2 {
+      font-size: 1.25em;
+    }
+    section table {
+      font-size: 0.75em;
+    }

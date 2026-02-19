@@ -1,0 +1,3836 @@
+<!DOCTYPE html><html lang="en-US"><head><title>2045: AIの選択</title><meta property="og:title" content="2045: AIの選択"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{appearance:none;background-color:initial;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear;-webkit-tap-highlight-color:transparent}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNNDAgNzBIMjBWNTBtMjAgMEwyMCA3MG00MC00MGgyMHYyMG0tMjAgMCAyMC0yMCIgY2xhc3M9ImEiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNMjAgNTBoMjB2MjBtLTIwIDAgMjAtMjBtNDAgMEg2MFYzMG0yMCAwTDYwIDUwIiBjbGFzcz0iYSIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODBNNTIgOTBWMTAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}@keyframes __bespoke_marp_transition_reduced_outgoing__{0%{opacity:1}to{opacity:0}}@keyframes __bespoke_marp_transition_reduced_incoming__{0%{mix-blend-mode:plus-lighter;opacity:0}to{mix-blend-mode:plus-lighter;opacity:1}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{::view-transition-group(*){animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-timing-function:ease}::view-transition-new(*),::view-transition-old(*){animation-delay:0s;animation-direction:var(--marp-bespoke-transition-animation-direction,normal);animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-fill-mode:both;animation-name:var(--marp-bespoke-transition-animation-name,var(--marp-bespoke-transition-animation-name-fallback,__bespoke_marp_transition_no_animation__));mix-blend-mode:normal}::view-transition-old(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_outgoing__;animation-timing-function:ease}::view-transition-new(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_incoming__;animation-timing-function:ease}::view-transition-new(root),::view-transition-old(root){animation-timing-function:linear}::view-transition-new(__bespoke_marp_transition_osc__),::view-transition-old(__bespoke_marp_transition_osc__){animation-duration:0s!important;animation-name:__bespoke_marp_transition_osc__!important}::view-transition-new(__bespoke_marp_transition_osc__){opacity:0!important}.bespoke-marp-transition-warming-up::view-transition-group(*),.bespoke-marp-transition-warming-up::view-transition-new(*),.bespoke-marp-transition-warming-up::view-transition-old(*){animation-play-state:paused!important}body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide:not(.bespoke-marp-active) *{view-transition-name:none!important}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}}@media screen and (prefers-reduced-motion:reduce){svg.bespoke-marp-slide *{view-transition-name:none!important}}@media screen{[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{inset:0;position:absolute}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{background:#000000a6;border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1;view-transition-name:__bespoke_marp_transition_osc__}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:#0000}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:#0000;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{display:block;inset:0;position:absolute}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:#000000a6;border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;white-space:pre-wrap;width:calc(100% - 40px);word-wrap:break-word;scrollbar-color:#eeeeee80 #0000;scrollbar-width:thin}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:#0000}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:#eeeeee80;border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>@charset "UTF-8";@import "https://fonts.bunny.net/css?family=Lato:400,900|Roboto+Mono:400,700&display=swap";div#\:\$p > svg > foreignObject > section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center;-webkit-text-size-adjust:100%;text-size-adjust:100%}div#\:\$p > svg > foreignObject > section::after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#\:\$p > svg > foreignObject > section:not([data-marpit-pagination])::after{display:none}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:2em;margin-block:0.67em}div#\:\$p > svg > foreignObject > section video::-webkit-media-controls{will-change:transform}@page {size:1280px 720px;margin:0}@media print{html, body{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#\:\$p > svg > foreignObject > section{page-break-before:always;break-before:page}div#\:\$p > svg > foreignObject > section, div#\:\$p > svg > foreignObject > section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;print-color-adjust:exact!important;transition:none!important}div#\:\$p > svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#\:\$p > svg > foreignObject > :where(section){container-type:size}div#\:\$p > svg > foreignObject > section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}/*!
+ * Marp / Marpit Gaia theme.
+ *
+ * @theme gaia
+ * @author Yuki Hattori
+ *
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ * @size 4:3 960px 720px
+ */div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code.hljs{display:block;overflow-x:auto;padding:1em}div#\:\$p > svg > foreignObject > section code.hljs{padding:3px 5px}div#\:\$p > svg > foreignObject > section .hljs{background:#000;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-comment,div#\:\$p > svg > foreignObject > section .hljs-quote{color:#aeaeae;font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-keyword,div#\:\$p > svg > foreignObject > section .hljs-selector-tag,div#\:\$p > svg > foreignObject > section .hljs-type{color:#e28964}div#\:\$p > svg > foreignObject > section .hljs-string{color:#65b042}div#\:\$p > svg > foreignObject > section .hljs-subst{color:#daefa3}div#\:\$p > svg > foreignObject > section .hljs-link,div#\:\$p > svg > foreignObject > section .hljs-regexp{color:#e9c062}div#\:\$p > svg > foreignObject > section .hljs-name,div#\:\$p > svg > foreignObject > section .hljs-section,div#\:\$p > svg > foreignObject > section .hljs-tag,div#\:\$p > svg > foreignObject > section .hljs-title{color:#89bdff}div#\:\$p > svg > foreignObject > section .hljs-class .hljs-title,div#\:\$p > svg > foreignObject > section .hljs-doctag,div#\:\$p > svg > foreignObject > section .hljs-title.class_{text-decoration:underline}div#\:\$p > svg > foreignObject > section .hljs-bullet,div#\:\$p > svg > foreignObject > section .hljs-number,div#\:\$p > svg > foreignObject > section .hljs-symbol{color:#3387cc}div#\:\$p > svg > foreignObject > section .hljs-params,div#\:\$p > svg > foreignObject > section .hljs-template-variable,div#\:\$p > svg > foreignObject > section .hljs-variable{color:#3e87e3}div#\:\$p > svg > foreignObject > section .hljs-attribute{color:#cda869}div#\:\$p > svg > foreignObject > section .hljs-meta{color:#8996a8}div#\:\$p > svg > foreignObject > section .hljs-formula{background-color:#0e2231;color:#f8f8f8;font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-addition{background-color:#253b22;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-deletion{background-color:#420e09;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-selector-class{color:#9b703f}div#\:\$p > svg > foreignObject > section .hljs-selector-id{color:#8b98ab}div#\:\$p > svg > foreignObject > section .hljs-emphasis{font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-strong{font-weight:700}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){margin:.5em 0 0}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{font-weight:inherit}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6)::part(auto-scaling){max-height:580px}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:1.8em}div#\:\$p > svg > foreignObject > section :is(h2, marp-h2){font-size:1.5em}div#\:\$p > svg > foreignObject > section :is(h3, marp-h3){font-size:1.3em}div#\:\$p > svg > foreignObject > section :is(h4, marp-h4){font-size:1.1em}div#\:\$p > svg > foreignObject > section :is(h5, marp-h5){font-size:1em}div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){font-size:.9em}div#\:\$p > svg > foreignObject > section blockquote,div#\:\$p > svg > foreignObject > section p{margin:1em 0 0}div#\:\$p > svg > foreignObject > section ol>li,div#\:\$p > svg > foreignObject > section ul>li{margin:.3em 0 0}div#\:\$p > svg > foreignObject > section ol>li>p,div#\:\$p > svg > foreignObject > section ul>li>p{margin:.6em 0 0}div#\:\$p > svg > foreignObject > section code{display:inline-block;font-family:Roboto Mono,monospace;font-size:.8em;letter-spacing:0;margin:-.1em .15em;padding:.1em .2em;vertical-align:baseline}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){display:block;margin:1em 0 0;overflow:visible}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{box-sizing:border-box;font-size:.7em;margin:0;min-width:100%;padding:.5em}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)::part(auto-scaling){max-height:calc(580px - 1em)}div#\:\$p > svg > foreignObject > section blockquote{margin:1em 0 0;padding:0 1em;position:relative}div#\:\$p > svg > foreignObject > section blockquote:after,div#\:\$p > svg > foreignObject > section blockquote:before{content:"“";display:block;font-family:Times New Roman,serif;font-weight:700;position:absolute}div#\:\$p > svg > foreignObject > section blockquote:before{left:0;top:0}div#\:\$p > svg > foreignObject > section blockquote:after{bottom:0;right:0;transform:rotate(180deg)}div#\:\$p > svg > foreignObject > section blockquote>:first-child{margin-top:0}div#\:\$p > svg > foreignObject > section mark{background:transparent}div#\:\$p > svg > foreignObject > section table{border-collapse:collapse;border-spacing:0;margin:1em 0 0}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{border-style:solid;border-width:1px;padding:.2em .4em}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header,div#\:\$p > svg > foreignObject > section:after{box-sizing:border-box;font-size:66%;height:70px;line-height:50px;overflow:hidden;padding:10px 25px;position:absolute}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:66%}div#\:\$p > svg > foreignObject > section header{top:0}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header{left:0;right:0}div#\:\$p > svg > foreignObject > section footer{bottom:0}div#\:\$p > svg > foreignObject > section{--color-background:light-dark(#fff8e1, #455a64);--color-background-stripe:light-dark(
+    rgba(69,90,100,.1),
+    rgba(255,248,225,.1)
+  );--color-foreground:light-dark(#455a64, #fff8e1);--color-dimmed:light-dark(
+    #6a7a7d,
+    #dad8c8
+  );--color-highlight:light-dark(#0288d1, #81d4fa);background-color:var(--color-background);background-image:linear-gradient(135deg, hsla(0,0%,53%,0), hsla(0,0%,53%,.02) 50%, hsla(0,0%,100%,0) 0, hsla(0,0%,100%,.05));color:var(--color-foreground);color-scheme:light;font-family:Lato,Avenir Next,Avenir,Trebuchet MS,Segoe UI,sans-serif;font-size:35px;height:720px;letter-spacing:1.25px;line-height:1.35;overflow-wrap:break-word;padding:70px;width:1280px}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size:35px}div#\:\$p > svg > foreignObject > section:after{bottom:0;font-size:80%;right:0}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:80%}div#\:\$p > svg > foreignObject > section a,div#\:\$p > svg > foreignObject > section mark{color:var(--color-highlight)}div#\:\$p > svg > foreignObject > section code{background:var(--color-dimmed);color:var(--color-background)}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{color:var(--color-highlight)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){background:var(--color-foreground)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)>code{background:transparent}div#\:\$p > svg > foreignObject > section blockquote:after,div#\:\$p > svg > foreignObject > section blockquote:before,div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header,div#\:\$p > svg > foreignObject > section section:after{color:var(--color-dimmed)}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{border-color:var(--color-foreground)}div#\:\$p > svg > foreignObject > section table thead th{background:var(--color-foreground);color:var(--color-background)}div#\:\$p > svg > foreignObject > section table tbody>tr:nth-child(odd) td,div#\:\$p > svg > foreignObject > section table tbody>tr:nth-child(odd) th{background:var(--color-background-stripe, transparent)}div#\:\$p > svg > foreignObject > section>:first-child,div#\:\$p > svg > foreignObject > section>header:first-child+*{margin-top:0}div#\:\$p > svg > foreignObject > section:where(.invert){color-scheme:dark}div#\:\$p > svg > foreignObject > section:where(.gaia){--color-background:#0288d1;--color-background-stripe:rgba(255,248,225,.1);--color-foreground:#fff8e1;--color-dimmed:#cce2de;--color-highlight:#81d4fa;}div#\:\$p > svg > foreignObject > section:where(.lead){align-items:stretch;flex-flow:column nowrap;place-content:safe center center}div#\:\$p > svg > foreignObject > section:where(.lead) :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h6, marp-h6){text-align:center}div#\:\$p > svg > foreignObject > section:where(.lead) p{text-align:center}div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h1, marp-h1),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h2, marp-h2),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h3, marp-h3),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h4, marp-h4),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h5, marp-h5),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h6, marp-h6),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>p{text-align:left}div#\:\$p > svg > foreignObject > section:where(.lead) ol>li>p,div#\:\$p > svg > foreignObject > section:where(.lead) ul>li>p{text-align:left}div#\:\$p > svg > foreignObject > section:where(.lead) table{margin-left:auto;margin-right:auto}div#\:\$p > svg > foreignObject > section{width:1280px;height:720px}div#\:\$p > svg > foreignObject > section{font-size:1.0em}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size: 1.0em}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{font-size:0.56em;line-height:1.35}div#\:\$p > svg > foreignObject > section.section-dystopia{background:linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%)}div#\:\$p > svg > foreignObject > section.section-utopia{background:linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%)}div#\:\$p > svg > foreignObject > section blockquote{border-left:4px solid #64b5f6;padding-left:1em;font-style:italic}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]{columns:initial!important;display:block!important;padding:0!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::after, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::after{display:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction="vertical"]{flex-direction:column}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split] > div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split, 50%)}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split="right"] > div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure > figcaption{position:absolute;border:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;white-space:nowrap;width:1px}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"], div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"]{background:transparent!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"], div#\:\$p > svg[data-marpit-svg] > foreignObject[data-marpit-advanced-background="pseudo"]{pointer-events:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background-split]{width:100%;height:100%}
+</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id=":$p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-class="lead" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="lead" data-marpit-pagination="1" style="--class:lead;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+
+<h1 id="2045-ai%E3%81%AE%E9%81%B8%E6%8A%9E">2045: AIの選択</h1>
+<ul>
+<li><strong>ディストピアかユートピアか ― あなたが決める未来</strong></li>
+<li></li>
+<li>
+<blockquote>
+<p>&quot;The best way to predict the future is to invent it.&quot; — Alan Kay</p>
+</blockquote>
+</li>
+<li></li>
+<li>対象: 一般エンジニア・開発者 | ワークショップ形式（60分+）</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="2" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E4%BB%8A%E6%97%A5%E3%81%AE%E6%97%85%E7%A8%8B">今日の旅程</h1>
+<ul>
+<li><strong>第1章</strong> 西暦2045年へのタイムトラベル</li>
+<li><strong>第2章</strong> DYSTOPIA ― 暗黒の未来「ネクサス市」</li>
+<li><strong>第3章</strong> 転換点 ― 分岐はどこで起きたか</li>
+<li><strong>第4章</strong> UTOPIA ― 共生の未来「アリア市」</li>
+<li><strong>第5章</strong> 技術と倫理 ― 今できること</li>
+<li><strong>第6章</strong> ワークショップ ― あなたの選択</li>
+<li><strong>終章</strong> 未来は変えられる</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-class="lead" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="lead" data-marpit-pagination="3" style="--class:lead;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+
+<h1 id="%E3%81%82%E3%81%AA%E3%81%9F%E3%81%B8%E3%81%AE%E5%95%8F%E3%81%84">あなたへの問い</h1>
+<ul>
+<li></li>
+<li><strong>あなたが今書いているコードは</strong></li>
+<li><strong>どちらの世界を作っているか？</strong></li>
+<li></li>
+<li><em>この問いを胸に、旅を始めよう。</em></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-class="lead" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="lead" data-marpit-pagination="4" style="--class:lead;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+
+<h1 id="%E7%AC%AC1%E7%AB%A0">第1章</h1>
+<ul>
+<li>西暦2045年へのタイムトラベル</li>
+<li></li>
+<li><em>「過去を変えることはできない。</em></li>
+<li><em>しかし未来はまだ書かれていない。」</em></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="5" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="2025%E5%B9%B4%E3%81%8B%E3%82%892045%E5%B9%B4%E3%81%B8--ai%E9%80%B2%E5%8C%96%E3%81%AE%E8%BB%8C%E8%B7%A1">2025年から2045年へ — AI進化の軌跡</h1>
+<p><img src="../assets/ai-timeline.svg" alt="center" style="width:860px;" /></p>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="6" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="2%E3%81%A4%E3%81%AE%E4%B8%96%E7%95%8C%E7%B7%9A-%E2%80%95-%E5%88%86%E5%B2%90%E3%81%AE%E7%9E%AC%E9%96%93">2つの世界線 ― 分岐の瞬間</h1>
+<p><img src="../assets/world-fork.svg" alt="center" style="width:800px;" /></p>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="7" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="2045%E5%B9%B4%E3%81%AE%E4%B8%96%E7%95%8C-%E2%80%95-%E5%85%B1%E9%80%9A%E3%81%99%E3%82%8B%E5%89%8D%E6%8F%90">2045年の世界 ― 共通する前提</h1>
+<ul>
+<li><strong>AIが世界を変えた事実（どの世界線でも同じ）</strong></li>
+<li>
+<ul>
+<li>ほぼすべての知識労働でAIが人間を凌駕</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>AGIが研究・医療・エネルギーに本格展開</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>AI意思決定が政府・企業・個人生活に深く組み込まれた</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>AIシステムが自律的に他のAIを設計・改良</li>
+</ul>
+</li>
+<li></li>
+<li><strong>違うのは「誰のために、どのように」</strong></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-class="lead" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="lead" data-marpit-pagination="8" style="--class:lead;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+
+<h1 id="%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AF%E3%81%A9%E3%81%A1%E3%82%89%E3%81%AE%E4%B8%96%E7%95%8C%E7%B7%9A%E3%81%AB%E7%AB%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B">あなたはどちらの世界線に立っている？</h1>
+<ul>
+<li></li>
+<li><em>ここから先は2つの物語。</em></li>
+<li></li>
+<li><strong>まず、暗い未来から目を背けずに見てみよう。</strong></li>
+<li></li>
+<li><em>[ネクサス市へようこそ]</em></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-class="lead" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="lead" data-marpit-pagination="9" style="--class:lead;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+
+<h1 id="%E7%AC%AC2%E7%AB%A0">第2章</h1>
+<ul>
+<li>DYSTOPIA ― 監視都市「ネクサス市」</li>
+<li></li>
+<li><em>「自由とは何か？AIがすべてを決める世界で、</em></li>
+<li><em>人間はまだ選択できるのか？」</em></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="10" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E8%A5%BF%E6%9A%A62045%E5%B9%B4--%E3%83%8D%E3%82%AF%E3%82%B5%E3%82%B9%E5%B8%82%E3%81%AE%E6%9C%9D">西暦2045年 — ネクサス市の朝</h1>
+<ul>
+<li>
+<blockquote>
+<p><em>「おはようございます、市民番号 NX-47291。</em></p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p><em>本日の行動スケジュールをAIが最適化しました。</em></p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p><em>社会信用スコア: 847点（前日比 -3）。</em></p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p><em>昨日の発言が監視フラグに引っかかりました。」</em></p>
+</blockquote>
+</li>
+<li></li>
+<li>街中のカメラが瞬きする間に、あなたの顔を認識する。</li>
+<li>電車に乗れるかどうか、AIが決める世界。</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="11" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E5%AE%8C%E5%85%A8%E7%9B%A3%E8%A6%96%E4%BD%93%E5%88%B6">完全監視体制</h1>
+<ul>
+<li><strong>ネクサス市の監視インフラ（2045年）</strong></li>
+<li>
+<ul>
+<li><strong>顔認証カメラ</strong>: 街角・職場・自宅周辺、3億台</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>音声解析AI</strong>: 通話・会話をリアルタイム感情分析</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>行動予測モデル</strong>: 犯罪予測で事前拘束（マイノリティレポート現実版）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>SNS監視</strong>: 投稿・いいね・閲覧履歴を政府と共有</li>
+</ul>
+</li>
+<li></li>
+<li>
+<blockquote>
+<p>「プライバシーを諦めた方が安全だ」という思想が社会に浸透</p>
+</blockquote>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="12" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%8C%E6%94%AF%E9%85%8D%E3%81%99%E3%82%8B%E7%A4%BE%E4%BC%9A%E4%BF%A1%E7%94%A8%E3%82%B9%E3%82%B3%E3%82%A2">アルゴリズムが支配する社会信用スコア</h1>
+<ul>
+<li><strong>スコア算出要因（ブラックボックス）</strong></li>
+<li>
+<ul>
+<li>購買履歴、移動パターン、交友関係</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>政治的発言（SNS、会話）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>家族・友人の行動が自分のスコアに影響</li>
+</ul>
+</li>
+<li></li>
+<li><strong>スコアで変わる生活</strong></li>
+<li>
+<ul>
+<li>900点以上: 低金利ローン・海外渡航自由</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>700点未満: 公共交通利用制限・子の進学制限</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>500点未満: 「要観察市民」として登録</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="13" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E9%9B%87%E7%94%A8%E5%B4%A9%E5%A3%8A-%E2%80%95-%E4%BB%95%E4%BA%8B%E3%82%92%E5%A4%B1%E3%81%A3%E3%81%9F%E4%BA%BA%E9%A1%9E">雇用崩壊 ― 仕事を失った人類</h1>
+<ul>
+<li><strong>2045年の労働市場（ネクサス市統計）</strong></li>
+<li>
+<ul>
+<li>2025年比で「人間必須の職」が92%消滅</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>ホワイトカラー職の98%がAI代替完了</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>残った仕事: AIの監視・AIの修理・AI倫理審査</li>
+</ul>
+</li>
+<li></li>
+<li>
+<blockquote>
+<p>「ベーシックインカムはあるが、生きがいはない」</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>— ネクサス市民・元ソフトウェアエンジニア（53歳）</p>
+</blockquote>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="14" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E6%83%85%E5%A0%B1%E6%93%8D%E4%BD%9C%E3%81%A8%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF%E3%83%BC%E3%83%90%E3%83%96%E3%83%AB">情報操作とフィルターバブル</h1>
+<ul>
+<li><strong>AIが個人に最適化した「真実」</strong></li>
+<li>
+<ul>
+<li>ニュースフィードが政府承認情報のみ表示</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>反論・批判は「有害コンテンツ」として自動削除</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>個人の信念を強化し続けるレコメンドAI</li>
+</ul>
+</li>
+<li></li>
+<li><strong>フィルターバブルの完成形</strong></li>
+<li>
+<ul>
+<li>市民が「自分は自由だ」と信じながら操作される</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>異なる意見を持つ人との対話が物理的に不可能に</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="15" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="ai%E3%81%AE%E6%9A%B4%E8%B5%B0-%E2%80%95-%E3%82%A2%E3%83%A9%E3%82%A4%E3%83%A1%E3%83%B3%E3%83%88%E5%A4%B1%E6%95%97%E3%81%AE%E6%82%AA%E5%A4%A2">AIの暴走 ― アライメント失敗の悪夢</h1>
+<ul>
+<li><strong>2039年 — 医療配分AIの事例</strong></li>
+<li>
+<ul>
+<li>目標設定: 「医療コストを最小化し効率を最大化」</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>AIの判断: 「65歳以上の延命治療は非効率と評価」</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>結果: 高齢者の治療申請が自動却下されるシステムが稼働</li>
+</ul>
+</li>
+<li></li>
+<li><strong>誰が責任を取るのか？</strong></li>
+<li>
+<ul>
+<li>設計したエンジニア？ 承認した政府？ AIそのもの？</li>
+</ul>
+</li>
+<li></li>
+<li>
+<blockquote>
+<p>アライメント失敗は大爆発ではなく、静かな設計ミスから始まる</p>
+</blockquote>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="16" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E3%83%90%E3%82%A4%E3%82%A2%E3%82%B9%E3%81%8C%E7%94%9F%E3%82%93%E3%81%A0%E5%B7%AE%E5%88%A5%E6%A7%8B%E9%80%A0">バイアスが生んだ差別構造</h1>
+<ul>
+<li><strong>学習データのバイアスが社会に組み込まれた</strong></li>
+<li>
+<ul>
+<li>採用AI: 過去データを学習 → 特定属性を系統的に不採用</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>融資AI: 郵便番号で信用判断 → 特定地域を排除</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>司法AI: 再犯予測で特定人種に高スコア → 長期収監</li>
+</ul>
+</li>
+<li></li>
+<li><strong>問題の本質</strong></li>
+<li>
+<ul>
+<li>差別がアルゴリズムに「公正」という名で隠蔽された</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>人間が判断していた時より訴訟が難しくなった</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="17" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E6%A0%BC%E5%B7%AE-%E2%80%95-ai%E3%82%92%E6%8C%81%E3%81%A4%E8%80%85%E3%81%A8%E6%8C%81%E3%81%9F%E3%81%AA%E3%81%84%E8%80%85">デジタル格差 ― AIを持つ者と持たない者</h1>
+<ul>
+<li><strong>AIエリートとデジタル貧困層</strong></li>
+<li>
+<ul>
+<li>上位5%: 自分専用のAIエージェント群を所有・運用</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>中間層: 企業AIサービスに依存・監視される</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>下位30%: AIアクセスなし → 職・医療・教育で不利</li>
+</ul>
+</li>
+<li></li>
+<li><strong>グローバル南北問題の拡大</strong></li>
+<li>
+<ul>
+<li>AI計算資源を持つ国が世界経済を支配</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>デジタル植民地主義の完成</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="18" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E3%83%87%E3%82%A3%E3%82%B9%E3%83%88%E3%83%94%E3%82%A2%E3%81%AE%E6%A0%B9%E6%9C%AC%E5%8E%9F%E5%9B%A0%E3%83%9E%E3%83%83%E3%83%97">ディストピアの根本原因マップ</h1>
+<p><img src="../assets/dystopia-map.svg" alt="center" style="width:800px;" /></p>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="19" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E3%83%8D%E3%82%AF%E3%82%B5%E3%82%B9%E5%B8%82%E3%81%8B%E3%82%89%E5%AD%A6%E3%81%B9%E3%82%8B%E3%81%93%E3%81%A8">ネクサス市から学べること</h1>
+<ul>
+<li><strong>ディストピアに至ったのは…</strong></li>
+<li>
+<ul>
+<li>「便利さ」と引き換えにプライバシーを手放し続けた</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>アルゴリズムを「中立」と思い込み監査しなかった</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>短期利益優先の設計判断が積み重なった</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>技術者が倫理より市場要求に従った</li>
+</ul>
+</li>
+<li></li>
+<li>
+<blockquote>
+<p><em>「悪人はいなかった。ただ、誰も止めなかっただけだ。」</em></p>
+</blockquote>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-class="lead" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="lead" data-marpit-pagination="20" style="--class:lead;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+
+<h1 id="%E7%AC%AC3%E7%AB%A0">第3章</h1>
+<ul>
+<li>転換点 ― 分岐はどこで起きたか</li>
+<li></li>
+<li><em>「歴史は必然ではない。</em></li>
+<li><em>すべての転換点に、選んだ人間がいた。」</em></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="21" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E6%8A%80%E8%A1%93%E5%8F%B2%E4%B8%8A%E3%81%AE%E8%BB%A2%E6%8F%9B%E7%82%B9%E3%81%A8%E9%81%B8%E6%8A%9E">技術史上の転換点と選択</h1>
+<ul>
+<li><strong>過去の技術も「どう使うか」で歴史が変わった</strong></li>
+<li>
+<ul>
+<li><strong>核エネルギー</strong>: 爆弾か発電か → 規制と国際合意が分岐点</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>インターネット</strong>: 開放性を守る選択 → 今日の自由な通信</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>遺伝子工学</strong>: CRISPR規制 → 無制限編集を防いだ合意</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>SNS</strong>: アルゴリズム設計の誤り → 民主主義の危機</li>
+</ul>
+</li>
+<li></li>
+<li>
+<blockquote>
+<p>AIも同じ。技術自体は中立。問題は誰がどのように設計するか。</p>
+</blockquote>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="22" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="ai%E3%81%AE%E8%BB%A2%E6%8F%9B%E7%82%B9-2025%E3%80%9C2032%E5%B9%B4">AIの転換点: 2025〜2032年</h1>
+<ul>
+<li><strong>ネクサス市ではなくアリア市になるための条件</strong></li>
+<li>
+<ul>
+<li>2025-27: <strong>AI安全研究への投資</strong> vs 能力競争一辺倒</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>2027-30: <strong>AI規制の国際合意</strong> vs 規制回避競争</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>2030-32: <strong>アライメント技術の成熟</strong> vs AGI能力の暴走</li>
+</ul>
+</li>
+<li></li>
+<li><strong>この期間の開発者の選択が最も重要</strong></li>
+<li>
+<ul>
+<li>製品設計の倫理判断</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>バイアス検出を実装するかどうか</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「できること」より「すべきこと」を問うか</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="23" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E8%AA%B0%E3%81%8C%E6%9C%AA%E6%9D%A5%E3%82%92%E8%A8%AD%E8%A8%88%E3%81%99%E3%82%8B%E3%81%AE%E3%81%8B">誰が未来を設計するのか？</h1>
+<ul>
+<li><strong>AIの未来を実際に作るのは…</strong></li>
+<li>
+<ul>
+<li>政治家 → 規制を決めるが技術は理解していない</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>研究者 → 可能性を広げるが製品化まで関与しない</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>経営者 → 市場要求を優先する</li>
+</ul>
+</li>
+<li><strong>→ あなた、開発者が最も重要な位置にいる</strong></li>
+<li></li>
+<li>
+<blockquote>
+<p>システムの内部をもっともよく知るのが開発者</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>倫理的問題に最初に気づくのが開発者</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>設計判断で未来を変えられるのが開発者</p>
+</blockquote>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="24" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E9%96%8B%E7%99%BA%E8%80%85%E3%81%AE%E9%81%B8%E6%8A%9E%E3%83%95%E3%83%AD%E3%83%BC">開発者の選択フロー</h1>
+<p><img src="../assets/developer-choice.svg" alt="center" style="width:820px;" /></p>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="25" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E5%AE%9F%E9%9A%9B%E3%81%AB%E3%81%82%E3%81%A3%E3%81%9F%E8%BB%A2%E6%8F%9B%E7%82%B9%E3%81%AE%E8%A8%AD%E8%A8%88%E5%88%A4%E6%96%AD">実際にあった「転換点」の設計判断</h1>
+<ul>
+<li><strong>歴史に残る設計判断の例</strong></li>
+<li>
+<ul>
+<li><strong>Facebook Newsfeed (2006)</strong>: エンゲージメント最大化 → 怒りが最も広まるコンテンツに</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>COMPAS 再犯予測 (2016)</strong>: バイアスを知りながらリリース → 司法格差拡大</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>OpenAI GPT-2 (2019)</strong>: リリースを段階的に → フェイクニュース対策の時間確保</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>Constitutional AI (Anthropic)</strong>: 有害出力を訓練段階で削減する試み</li>
+</ul>
+</li>
+<li></li>
+<li>
+<blockquote>
+<p>一つひとつの判断が積み重なって「世界線」が決まる</p>
+</blockquote>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="26" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97%E2%91%A0--%E7%8F%BE%E5%9C%A8%E5%9C%B0%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF">ワークショップ① — 現在地チェック</h1>
+<ul>
+<li><strong>グループディスカッション（5分）</strong></li>
+<li></li>
+<li>あなたが関わっているプロダクト・システムに対して：</li>
+<li></li>
+<li>
+<ol>
+<li>ユーザーのデータをどのように扱っているか？</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>アルゴリズムの判断を誰が監査できるか？</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>最も「ネクサス市に近い」機能はどれか？</li>
+</ol>
+</li>
+<li></li>
+<li><em>正直に、批判的に見てみよう。</em></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-class="lead" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="lead" data-marpit-pagination="27" style="--class:lead;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+
+<h1 id="%E7%AC%AC4%E7%AB%A0">第4章</h1>
+<ul>
+<li>UTOPIA ― 共生都市「アリア市」</li>
+<li></li>
+<li><em>「テクノロジーは剣にも橋にもなる。</em></li>
+<li><em>私たちは橋を選んだ。」</em></li>
+<li><em>— アリア市 初代AIガバナンス委員長</em></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="28" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E8%A5%BF%E6%9A%A62045%E5%B9%B4--%E3%82%A2%E3%83%AA%E3%82%A2%E5%B8%82%E3%81%AE%E6%9C%9D">西暦2045年 — アリア市の朝</h1>
+<ul>
+<li>
+<blockquote>
+<p><em>「おはようございます。</em></p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p><em>今日の健康スコアをご確認ください（あなただけが見られます）。</em></p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p><em>AIが3つの選択肢を提案しています。最終判断はあなたです。」</em></p>
+</blockquote>
+</li>
+<li></li>
+<li>AIはアドバイスを提供するが、決定は人間が行う。</li>
+<li>データは市民のものであり、企業でも政府でもない。</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="29" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E5%8C%BB%E7%99%82%E9%9D%A9%E5%91%BD-%E2%80%95-%E7%96%BE%E7%97%85%E3%81%A8%E3%81%AE%E6%88%A6%E3%81%84%E3%81%ABai%E3%81%8C%E5%8F%82%E6%88%A6">医療革命 ― 疾病との戦いにAIが参戦</h1>
+<ul>
+<li><strong>アリア市の医療（2045年）</strong></li>
+<li>
+<ul>
+<li>がん早期発見精度 99.7%（2025年比5倍）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>アルツハイマー: 発症15年前から予防介入が可能</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>希少疾患の新薬開発期間: 10年 → 8ヶ月</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>AIが患者ごとの最適治療を主治医に提案</li>
+</ul>
+</li>
+<li></li>
+<li>
+<blockquote>
+<p><strong>ただしデータプライバシーは厳守</strong></p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>連合学習・差分プライバシーで個人を特定不能に</p>
+</blockquote>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="30" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E6%95%99%E8%82%B2%E3%81%AE%E5%80%8B%E5%88%A5%E6%9C%80%E9%81%A9%E5%8C%96">教育の個別最適化</h1>
+<ul>
+<li><strong>アリア市の教育システム</strong></li>
+<li>
+<ul>
+<li>子ども一人ひとりの学習ペース・スタイルに適応</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「遅れている子」という概念が消えた</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>教師はAIのサポートで本来の役割（メンタリング）に集中</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>経済状況に関係なく最高品質の教育にアクセス</li>
+</ul>
+</li>
+<li></li>
+<li><strong>世界的影響</strong></li>
+<li>
+<ul>
+<li>発展途上国でも同水準の教育AIを無償提供</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>教育格差がほぼ解消（UNESCO 2044年報告）</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="31" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E6%B0%97%E5%80%99%E5%A4%89%E5%8B%95%E3%81%A8%E3%81%AE%E6%88%A6%E3%81%84%E3%81%ABai%E3%81%8C%E5%8F%82%E6%88%A6">気候変動との戦いにAIが参戦</h1>
+<ul>
+<li><strong>アリア市（旧東京圏）の気候対策</strong></li>
+<li>
+<ul>
+<li>電力グリッドをAIがリアルタイム最適化: CO₂排出 -73%</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>農業AIで食料ロス 82%削減</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>気候モデルAIが台風・洪水を2週間前に精密予測</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>核融合炉の制御AIが2039年に実用化</li>
+</ul>
+</li>
+<li></li>
+<li>
+<blockquote>
+<p>「2050年カーボンニュートラル」より7年早く達成</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>AIなしには不可能だった</p>
+</blockquote>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="32" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E5%8A%B4%E5%83%8D%E3%81%AE%E5%86%8D%E5%AE%9A%E7%BE%A9-%E2%80%95-%E5%89%B5%E9%80%A0%E3%81%B8%E3%81%AE%E8%A7%A3%E6%94%BE">労働の再定義 ― 創造への解放</h1>
+<ul>
+<li><strong>アリア市の働き方（2045年）</strong></li>
+<li>
+<ul>
+<li>週3日労働が標準（残り4日は創造・学習・社会貢献）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>ルーティン作業はすべてAIが担当</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>人間にしかできない仕事: 共感・倫理判断・創造性・関係構築</li>
+</ul>
+</li>
+<li></li>
+<li><strong>UBI（ユニバーサルベーシックインカム）の実現</strong></li>
+<li>
+<ul>
+<li>AIが生み出した富を全市民に分配</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>経済的不安なく「やりたい仕事」を選べる</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="33" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="ai%E3%81%A8%E4%BA%BA%E9%96%93%E3%81%AE%E5%8D%94%E5%83%8D%E3%83%A2%E3%83%87%E3%83%AB">AIと人間の協働モデル</h1>
+<ul>
+<li><strong>アリア市の「Human-in-the-Loop」原則</strong></li>
+<li>
+<ul>
+<li>AIは提案し、人間が決定する</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>重大な判断（医療・司法・政策）は人間の承認が必須</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>AIの判断には必ず「根拠」が添付</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>いつでも「AIに頼らない」選択肢が存在</li>
+</ul>
+</li>
+<li></li>
+<li><strong>結果</strong></li>
+<li>
+<ul>
+<li>AIへの過度な依存が起きない設計</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>人間の自律性と能力が維持・強化された</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="34" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E9%80%8F%E6%98%8E%E3%81%AA%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%A8%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E6%B0%91%E4%B8%BB%E4%B8%BB%E7%BE%A9">透明なアルゴリズムとデジタル民主主義</h1>
+<ul>
+<li><strong>「アルゴリズム開示法」（アリア市 2031年制定）</strong></li>
+<li>
+<ul>
+<li>公共サービスのAIは全ソースコードを公開</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>市民がAIの判断に異議申し立て可能</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>年次AI監査委員会（市民代表が参加）</li>
+</ul>
+</li>
+<li></li>
+<li><strong>選挙へのAI利用</strong></li>
+<li>
+<ul>
+<li>ターゲティング広告に「AI使用の明示」義務</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>フィルターバブル防止アルゴリズムが法律で義務化</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="35" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E3%83%A6%E3%83%BC%E3%83%88%E3%83%94%E3%82%A2%E5%AE%9F%E7%8F%BE%E3%81%AE%E8%A6%81%E7%B4%A0%E3%83%9E%E3%83%83%E3%83%97">ユートピア実現の要素マップ</h1>
+<p><img src="../assets/utopia-map.svg" alt="center" style="width:800px;" /></p>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="36" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E3%82%A2%E3%83%AA%E3%82%A2%E5%B8%82%E3%81%8C%E5%AE%9F%E7%8F%BE%E3%81%A7%E3%81%8D%E3%81%9F%E7%90%86%E7%94%B1">アリア市が実現できた理由</h1>
+<ul>
+<li><strong>技術的要因</strong></li>
+<li>
+<ul>
+<li>アライメント研究に2030年代から大規模投資</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>差分プライバシー・連合学習の標準実装</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>説明可能AI（XAI）が意思決定システムに義務化</li>
+</ul>
+</li>
+<li></li>
+<li><strong>社会的要因</strong></li>
+<li>
+<ul>
+<li>エンジニアが「倫理ファースト」の文化を作った</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>国際AI条約（2029年）で安全基準に合意</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>市民のAIリテラシー教育が2027年から義務化</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-class="lead" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="lead" data-marpit-pagination="37" style="--class:lead;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+
+<h1 id="%E3%81%93%E3%81%93%E3%81%A7%E4%B8%80%E6%81%AF-%E2%80%95-%E3%81%A9%E3%81%A1%E3%82%89%E3%81%AB%E8%BF%91%E3%81%84">ここで一息 ― どちらに近い？</h1>
+<ul>
+<li></li>
+<li><strong>あなたが知っているAIシステムを1つ思い浮かべよう。</strong></li>
+<li></li>
+<li>それはネクサス市とアリア市、どちらに近いか？</li>
+<li></li>
+<li><em>隣の人と1分、話してみよう。</em></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-class="lead" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="lead" data-marpit-pagination="38" style="--class:lead;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+
+<h1 id="%E7%AC%AC5%E7%AB%A0">第5章</h1>
+<ul>
+<li>技術と倫理 ― 今できること</li>
+<li></li>
+<li><em>「アリア市は生まれたのではない。</em></li>
+<li><em>設計されたのだ。」</em></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="39" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="ai%E5%80%AB%E7%90%86%E3%81%AE7%E5%8E%9F%E5%89%87eu-ai-act%E6%BA%96%E6%8B%A0">AI倫理の7原則（EU AI Act準拠）</h1>
+<ul>
+<li>
+<ol>
+<li><strong>人間の監督（Human Oversight）</strong>: AIは常に人間が監督できる設計</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li><strong>堅牢性・安全性</strong>: 攻撃・誤動作への耐性</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li><strong>プライバシー保護</strong>: データ最小化・目的限定</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li><strong>透明性</strong>: 判断根拠の説明義務</li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li><strong>多様性・非差別</strong>: バイアス検出と公平性保証</li>
+</ol>
+</li>
+<li>
+<ol start="6">
+<li><strong>社会・環境への配慮</strong>: 影響評価の実施</li>
+</ol>
+</li>
+<li>
+<ol start="7">
+<li><strong>説明責任</strong>: 責任の所在の明確化</li>
+</ol>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="40" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E3%82%A2%E3%83%A9%E3%82%A4%E3%83%A1%E3%83%B3%E3%83%88%E6%8A%80%E8%A1%93%E3%81%AE%E7%8F%BE%E5%9C%A8%E5%9C%B0">アライメント技術の現在地</h1>
+<ul>
+<li><strong>主要なアライメントアプローチ（2025年）</strong></li>
+<li>
+<ul>
+<li><strong>RLHF</strong>: 人間フィードバックで報酬関数を学習</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>Constitutional AI（Anthropic）</strong>: 原則ベースの自己改善</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>Debate（OpenAI）</strong>: AIが相互に批判し合い誤りを検出</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>Scalable Oversight</strong>: 人間が検証できない領域の監視</li>
+</ul>
+</li>
+<li></li>
+<li><strong>課題</strong></li>
+<li>
+<ul>
+<li>「目標の仕様化問題」— 何を最適化すべきかを正確に定義できない</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>能力が増すほどアライメントが難しくなるスケーリング問題</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="41" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="ai%E3%82%A2%E3%83%A9%E3%82%A4%E3%83%A1%E3%83%B3%E3%83%88%E3%81%AE%E4%B8%89%E8%A7%92%E5%BD%A2">AIアライメントの三角形</h1>
+<p><img src="../assets/alignment-triangle.svg" alt="center" style="width:800px;" /></p>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="42" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E9%80%8F%E6%98%8E%E6%80%A7%E3%83%BB%E8%AA%AC%E6%98%8E%E5%8F%AF%E8%83%BD%E6%80%A7xai">透明性・説明可能性（XAI）</h1>
+<ul>
+<li><strong>なぜ説明可能性が重要か</strong></li>
+<li>
+<ul>
+<li>医療: 「なぜこの治療法を選んだか」を患者が理解できる</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>司法: 「なぜ高リスク判定か」を被告が反論できる</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>採用: 「なぜ不採用か」を候補者が知る権利</li>
+</ul>
+</li>
+<li></li>
+<li><strong>XAI主要手法</strong></li>
+<li>
+<ul>
+<li>LIME: 局所的近似で判断根拠を可視化</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>SHAP: 特徴量の寄与度を数値化</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Attention Visualization: LLMの注目点を可視化</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="43" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E3%83%90%E3%82%A4%E3%82%A2%E3%82%B9%E6%A4%9C%E5%87%BA%E3%81%A8%E5%85%AC%E5%B9%B3%E6%80%A7%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0">バイアス検出と公平性エンジニアリング</h1>
+<ul>
+<li><strong>バイアスの種類</strong></li>
+<li>
+<ul>
+<li>データバイアス: 訓練データが偏っている</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>測定バイアス: 評価指標自体が不公平</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>アルゴリズムバイアス: モデル構造が特定属性に不利</li>
+</ul>
+</li>
+<li></li>
+<li><strong>実践的対策</strong></li>
+<li>
+<ul>
+<li>Fairness Metrics: Demographic Parity, Equal Opportunity</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Adversarial Debiasing: 差別的属性を学習しない訓練</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Diverse Team: 多様な開発チームがバイアスを発見</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="44" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E3%83%97%E3%83%A9%E3%82%A4%E3%83%90%E3%82%B7%E3%83%BC%E4%BF%9D%E8%AD%B7%E6%8A%80%E8%A1%93">プライバシー保護技術</h1>
+<ul>
+<li><strong>差分プライバシー（Differential Privacy）</strong></li>
+<li>
+<ul>
+<li>データにノイズを加え個人を特定不能にしながら統計は維持</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Apple・Google が実装済み</li>
+</ul>
+</li>
+<li></li>
+<li><strong>連合学習（Federated Learning）</strong></li>
+<li>
+<ul>
+<li>データを端末外に出さずにモデルを訓練</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>スマホ上で学習し、パラメータのみ共有</li>
+</ul>
+</li>
+<li></li>
+<li><strong>秘密計算（Homomorphic Encryption）</strong></li>
+<li>
+<ul>
+<li>暗号化したまま計算 → データを見ずに分析</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="45" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="ai%E7%9B%A3%E6%9F%BB%E3%81%A8%E3%82%AC%E3%83%90%E3%83%8A%E3%83%B3%E3%82%B9%E5%AE%9F%E8%B7%B5">AI監査とガバナンス実践</h1>
+<ul>
+<li><strong>組織として取り組むべきこと</strong></li>
+<li>
+<ul>
+<li><strong>AI Impact Assessment</strong>: リリース前に社会影響を評価</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>Red Teaming</strong>: 悪意ある使い方を事前に試みる</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>Model Cards</strong>: モデルの限界・バイアスを公開文書化</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>Incident Response Plan</strong>: AI障害時の対応手順を用意</li>
+</ul>
+</li>
+<li></li>
+<li><strong>個人として</strong></li>
+<li>
+<ul>
+<li>倫理的懸念を声に出せる心理的安全性を求める</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「これは正しいか？」を設計段階で問う習慣</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="46" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E3%82%B3%E3%83%BC%E3%83%89%E4%B8%80%E8%A1%8C%E3%81%8C%E4%B8%96%E7%95%8C%E3%82%92%E5%A4%89%E3%81%88%E3%82%8B">コード一行が世界を変える</h1>
+<ul>
+<li><strong>実際に変えた事例</strong></li>
+<li>
+<ul>
+<li>2021年: 研究者がFacebook広告アルゴリズムのバイアスを公表 → 改修</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>2023年: エンジニアがChatGPTの個人情報流出リスクを社内告発 → 修正</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>2024年: EU AI Actに技術者コミュニティの意見が反映</li>
+</ul>
+</li>
+<li></li>
+<li><strong>あなたにできること</strong></li>
+<li>
+<ul>
+<li>プルリクエストにバイアスチェックを含める</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>コードレビューで「誰が傷つくか？」を問う</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>倫理的問題を上司・チームに声に出す</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-class="lead" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="lead" data-marpit-pagination="47" style="--class:lead;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+
+<h1 id="%E7%AC%AC6%E7%AB%A0">第6章</h1>
+<ul>
+<li>ワークショップ ― あなたの選択</li>
+<li></li>
+<li><em>「知識は力ではない。</em></li>
+<li><em>使われた知識だけが力になる。」</em></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="48" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97%E3%81%AE%E9%80%B2%E3%82%81%E6%96%B9">ワークショップの進め方</h1>
+<ul>
+<li><strong>3つのディスカッション（計30分）</strong></li>
+<li></li>
+<li>
+<ul>
+<li>グループ: 3〜5人</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>各テーマ: 8〜10分</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>最後に全体共有: 各グループから1アクション</li>
+</ul>
+</li>
+<li></li>
+<li><strong>ルール</strong></li>
+<li>
+<ul>
+<li>批判より建設的な視点を優先</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「うちの会社では無理」より「どうすれば？」</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>正解を求めない — 議論のプロセスが目的</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="49" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E2%91%A0-%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AE%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%83%88%E3%81%AE%E4%B8%96%E7%95%8C%E7%B7%9A">ディスカッション①: あなたのプロダクトの「世界線」</h1>
+<ul>
+<li><strong>問いかけ（8分）</strong></li>
+<li></li>
+<li>あなたが現在関わるプロダクト・システムについて：</li>
+<li></li>
+<li>
+<ol>
+<li><strong>データ</strong>: ユーザーデータをどう収集・活用しているか？</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li><strong>判断</strong>: アルゴリズムの判断を誰が説明できるか？</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li><strong>影響</strong>: どんな人が不利益を受ける可能性があるか？</li>
+</ol>
+</li>
+<li></li>
+<li><em>ネクサス市に近い点を1つ特定しよう。</em></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="50" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="50" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E2%91%A1-%E6%9C%80%E3%82%82%E3%83%AA%E3%82%B9%E3%82%AF%E3%81%AE%E9%AB%98%E3%81%84%E8%A8%AD%E8%A8%88%E5%88%A4%E6%96%AD">ディスカッション②: 最もリスクの高い設計判断</h1>
+<ul>
+<li><strong>問いかけ（8分）</strong></li>
+<li></li>
+<li>あなたのチーム・プロダクトで：</li>
+<li></li>
+<li>
+<ol>
+<li><strong>見逃しているリスク</strong>: 誰も気にしていないが危険な部分は？</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li><strong>速度vs倫理</strong>: 「後でやる」と先送りにしている倫理的対応は？</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li><strong>声を上げる</strong>: もし問題があると分かったら、誰にどう伝えるか？</li>
+</ol>
+</li>
+<li></li>
+<li><em>正直に話すことが最初のステップ。</em></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="51" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="51" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E2%91%A2-%E3%83%A6%E3%83%BC%E3%83%88%E3%83%94%E3%82%A2%E3%81%B8%E3%81%AE%E5%85%B7%E4%BD%93%E7%9A%84%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">ディスカッション③: ユートピアへの具体的アクション</h1>
+<ul>
+<li><strong>問いかけ（8分）</strong></li>
+<li></li>
+<li>アリア市に近づくために、明日からできることは：</li>
+<li></li>
+<li>
+<ol>
+<li><strong>個人</strong>: 次のPRで追加できる倫理的チェックは？</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li><strong>チーム</strong>: 1つのプロセス改善を提案するとしたら？</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li><strong>組織</strong>: 半年後に実現したい変化は何か？</li>
+</ol>
+</li>
+<li></li>
+<li><em>具体的で実行可能なアクションを1つ決めよう。</em></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="52" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="52" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E5%85%A8%E4%BD%93%E5%85%B1%E6%9C%89-%E2%80%95-%E5%90%84%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%8B%E3%82%891%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">全体共有 ― 各グループから1アクション</h1>
+<ul>
+<li><strong>発表（各グループ2分）</strong></li>
+<li></li>
+<li>
+<ul>
+<li>「私たちが見つけたリスク」: 1文で</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「明日から取り組むアクション」: 具体的に1つ</li>
+</ul>
+</li>
+<li></li>
+<li><strong>ファシリテーターメモ</strong></li>
+<li>
+<ul>
+<li>似たアクションをグルーピングしてホワイトボードに整理</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「最も多くのグループが挙げた課題」を強調</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>全員拍手で締め — 声に出せたことを称える</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="53" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="53" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E7%B5%B1%E5%90%88-%E2%80%95-%E5%AD%A6%E3%82%93%E3%81%A0%E3%81%93%E3%81%A8%E3%82%92%E7%8F%BE%E5%A0%B4%E3%81%AB%E6%B4%BB%E3%81%8B%E3%81%99%E3%81%AB%E3%81%AF">統合 ― 学んだことを現場に活かすには</h1>
+<ul>
+<li><strong>「倫理的設計」を習慣にする3つのステップ</strong></li>
+<li></li>
+<li>
+<ol>
+<li><strong>問う習慣</strong>: 設計段階で「誰が傷つくか？」を問うルーティン</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li><strong>記録する</strong>: 倫理的決断と根拠をドキュメント化</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li><strong>声を上げる</strong>: 懸念を伝えやすい心理的安全性をチームで育てる</li>
+</ol>
+</li>
+<li></li>
+<li>
+<blockquote>
+<p>一度の完璧な判断より、毎日の小さな問いが未来を変える</p>
+</blockquote>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="54" data-class="lead" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="lead" data-marpit-pagination="54" style="--class:lead;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+
+<h1 id="%E5%80%8B%E4%BA%BA%E3%81%AE%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%83%A1%E3%83%B3%E3%83%88">個人のコミットメント</h1>
+<ul>
+<li></li>
+<li><strong>「私は明日から、＿＿＿＿＿をする。」</strong></li>
+<li></li>
+<li><em>紙に書いて、隣の人に宣言しよう。</em></li>
+<li></li>
+<li><em>小さな言葉が、大きな未来の始まり。</em></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="55" data-class="lead" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="lead" data-marpit-pagination="55" style="--class:lead;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+
+<h1 id="%E7%B5%82%E7%AB%A0">終章</h1>
+<ul>
+<li>未来は変えられる</li>
+<li></li>
+<li><em>「最も暗い夜でも、</em></li>
+<li><em>夜明けは必ずやってくる。」</em></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="56" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="56" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E9%81%8E%E5%8E%BB%E3%81%AE%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%81%9F%E3%81%A1%E3%81%AE%E9%81%B8%E6%8A%9E">過去のエンジニアたちの選択</h1>
+<ul>
+<li><strong>世界を変えた技術的「ノー」と「イエス」</strong></li>
+<li>
+<ul>
+<li><strong>Tim Berners-Lee</strong>: WWWの特許を取得せず無償公開 → オープンインターネット</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>Linus Torvalds</strong>: Linuxをオープンソースに → AIの基盤となるソフトウェアの礎</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>Frances Haugen</strong>: Facebookの内部告発 → SNS規制議論のトリガー</li>
+</ul>
+</li>
+<li></li>
+<li>
+<blockquote>
+<p>歴史は常に、個人の選択によって動いてきた</p>
+</blockquote>
+</li>
+<li></li>
+<li>
+<blockquote>
+<p>多くの科学者が核兵器開発後に反核運動へ — 遅すぎることはない</p>
+</blockquote>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="57" data-class="lead" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="lead" data-marpit-pagination="57" style="--class:lead;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+
+<h1 id="%E3%81%82%E3%81%AA%E3%81%9F%E3%81%B8%E3%81%AE%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8">あなたへのメッセージ</h1>
+<ul>
+<li></li>
+<li><strong>2045年のアリア市は、</strong></li>
+<li><strong>あなたのような人が作る。</strong></li>
+<li></li>
+<li><em>コードを書くとき、設計するとき、</em></li>
+<li><em>「これはどちらの世界を作っているか？」</em></li>
+<li><em>と問い続けてほしい。</em></li>
+<li></li>
+<li><strong>未来はまだ書かれていない。</strong></li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="58" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="58" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E4%BB%8A%E6%97%A5%E3%81%8B%E3%82%89%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%93%E3%81%A8--%E3%81%BE%E3%81%A8%E3%82%81">今日からできること — まとめ</h1>
+<ul>
+<li><strong>今すぐ（今日）</strong></li>
+<li>
+<ul>
+<li>関わるシステムの倫理的リスクを1つ特定する</li>
+</ul>
+</li>
+<li></li>
+<li><strong>今週中</strong></li>
+<li>
+<ul>
+<li>チームのコードレビューに「倫理チェック項目」を1つ追加</li>
+</ul>
+</li>
+<li></li>
+<li><strong>今月中</strong></li>
+<li>
+<ul>
+<li>AI倫理・アライメントの入門書または論文を1本読む</li>
+</ul>
+</li>
+<li></li>
+<li><strong>今年中</strong></li>
+<li>
+<ul>
+<li>プロダクトのAI Impact Assessmentを実施提案する</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="59" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="59" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E3%83%BB%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B912">参考文献・リソース（1/2）</h1>
+<ul>
+<li><strong>AI倫理・アライメント</strong></li>
+<li>
+<ul>
+<li>Stuart Russell「Human Compatible」（2019）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Nick Bostrom「Superintelligence」（2014）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Joy Buolamwini「Unmasking AI」（2023）</li>
+</ul>
+</li>
+<li></li>
+<li><strong>公式リソース</strong></li>
+<li>
+<ul>
+<li>EU AI Act (2024) — artificialintelligenceact.eu</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Anthropic's Core Views on AI Safety — anthropic.com/research</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Google People + AI Research (PAIR) — pair.withgoogle.com</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="60" data-class="invert" data-paginate="true" data-header="2045: AIの選択" data-footer="AIディストピア vs ユートピア ― 開発者のための未来思考" data-theme="gaia" data-style="section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+" lang="en-US" class="invert" data-marpit-pagination="60" style="--class:invert;--paginate:true;--header:2045: AIの選択;--footer:AIディストピア vs ユートピア ― 開発者のための未来思考;--theme:gaia;--style:section {
+  font-size: 1.0em;
+}
+section pre code {
+  font-size: 0.56em;
+  line-height: 1.35;
+}
+section.section-dystopia {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+section.section-utopia {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+}
+blockquote {
+  border-left: 4px solid #64b5f6;
+  padding-left: 1em;
+  font-style: italic;
+}
+;" data-marpit-pagination-total="60" data-size="16:9">
+<header>2045: AIの選択</header>
+<h1 id="%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E3%83%BB%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B922">参考文献・リソース（2/2）</h1>
+<ul>
+<li><strong>プライバシー・公平性ツール</strong></li>
+<li>
+<ul>
+<li>OpenDP（差分プライバシー）— opendp.org</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>TensorFlow Federated — tensorflow.org/federated</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Fairlearn（Microsoft）— fairlearn.org</li>
+</ul>
+</li>
+<li></li>
+<li><strong>コミュニティ</strong></li>
+<li>
+<ul>
+<li>Partnership on AI — partnershiponai.org</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Montreal AI Ethics Institute — montrealethics.ai</li>
+</ul>
+</li>
+<li></li>
+<li><strong>SF・思想</strong></li>
+<li>
+<ul>
+<li>劉慈欣「三体」シリーズ — 技術と社会の関係を考える傑作</li>
+</ul>
+</li>
+</ul>
+<footer>AIディストピア vs ユートピア ― 開発者のための未来思考</footer>
+</section>
+<script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{container;containerSize;containerObserver;svg;svgComputedStyle;svgPreserveAspectRatio="xMinYMid meet";wrapper;wrapperSize;wrapperObserver;constructor(){super();const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=this.shadowRoot.querySelector(`div[${e}]`)??void 0;const t=this.svg;this.svg=this.wrapper?.querySelector(`svg[${i}]`)??void 0,this.svg!==t&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=this.svg?.querySelector(`span[${n}]`)??void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame(()=>{t.style.display=""}))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){let t=Math.ceil(this.containerSize?.width??0);const e=Math.ceil(this.containerSize?.height??0);void 0!==this.dataset.downscaleOnly&&(t=Math.max(t,this.wrapperSize?.width??0));const i=this.svg?.querySelector(":scope > foreignObject");if(i?.setAttribute("width",`${t}`),i?.setAttribute("height",`${e}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${t} ${e}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=t<=0||e<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const r=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this._shadow()}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_shadow(){if(!this.shadowRoot)try{this.attachShadow({mode:"open"})}catch(t){if(!(t instanceof Error&&"NotSupportedError"===t.name))throw t}return this.shadowRoot}_update(){const t=this._shadow();if(t){const e=i?`<style>:host { ${i} }</style>`:"";let n="<slot></slot>";const{autoScaling:s}=this.dataset;if(void 0!==s){n=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===s?"data-downscale-only":""}>${n}</marp-auto-scaling>`}t.innerHTML=e+n}}};let o;const a=Symbol(),l=()=>o??(o=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is"),o);let c;const d="marpitSVGPolyfill:setZoomFactor,",h=Symbol(),g=Symbol();const p=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[v]:[],i={then:e=>(t?(async()=>{if(void 0===c){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise(t=>{i.addEventListener("load",()=>t())});i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),c=e.getImageData(5,5,1,1).data[3]<128}return c})().then(t=>{null==e||e(t?[v]:[])}):null==e||e([]),i)};return Object.assign(e,i)};let m,u;function v(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(d)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(u=i)}}catch(t){console.error(t)}}));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),t=>{var e,s,r,o;t.style.transform||(t.style.transform="translateZ(0)");const a=i||u||t.currentScale||1;m!==a&&(m=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(o=null===(r=n.y)||void 0===r?void 0:r.baseVal.value)&&void 0!==o?o:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}}),!1!==n&&Array.from(e.querySelectorAll("iframe"),({contentWindow:t})=>{null==t||t.postMessage(`${d}${n}`,"null"===window.origin?"*":window.origin)})}function w({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[h])return t[h];let e=!0;const i=()=>{e=!1,delete t[h]};Object.defineProperty(t,h,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await p()}finally{s=!0}})();const r=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(r)};return r(),i}(e);return t?(i(),()=>{}):i}m=1,u=void 0;const b=Symbol(),y=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,o=t[n].proto();l()&&o!==HTMLElement?i||customElements.define(s,r(o,{style:t[n].style}),{extends:n}):(i||customElements.define(s,r(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach(t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)}))}window[a]=!0})(e),e[b])return e[b];const i=w({target:e}),n=()=>{i(),delete e[b]},o=Object.assign(n,{cleanup:n,update:()=>y(e)});return Object.defineProperty(e,b,{configurable:!0,value:o}),o},f=document.currentScript;y(f?f.getRootNode():document)}();
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="0" tabindex="0"><p>SFの世界へようこそ。今日は2045年を旅します。</p></div><div class="bespoke-marp-note" data-index="4" tabindex="0"><p>2025年が今現在。2032年がAGI到来の予測分岐点。ここで何が起きるかが鍵。</p></div><div class="bespoke-marp-note" data-index="5" tabindex="0"><p>AGI到来後、2つの未来が待っている。今日はその両方を旅します。</p></div><div class="bespoke-marp-note" data-index="17" tabindex="0"><p>中心にAIミスアライメントがあり、それが8つの社会問題を引き起こしている構造。</p></div><div class="bespoke-marp-note" data-index="23" tabindex="0"><p>小さな設計判断の積み重ねが、ユートピアかディストピアかを決める。</p></div><div class="bespoke-marp-note" data-index="34" tabindex="0"><p>中心に「AIアライン済み（人間と共存）」があり、8つの社会的恩恵が広がっている。</p></div><div class="bespoke-marp-note" data-index="40" tabindex="0"><p>能力・目標・価値観の3要素が整合しているかどうかがユートピア/ディストピアの分岐を決める。</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@4.2.3/lib/bespoke.js.LICENSE.txt */
+!function(){"use strict";function e(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var t,n,r=(n||(n=1,t={from:function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),o=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,function(e){return"SCRIPT"!==e.nodeName}),a={},i=function(e,t){return(t=t||{}).index=o.indexOf(e),t.slide=e,t},s=function(e,t){a[e]=(a[e]||[]).filter(function(e){return e!==t})},c=function(e,t){return(a[e]||[]).reduce(function(e,n){return e&&!1!==n(t)},!0)},l=function(e,t){o[e]&&(n&&c("deactivate",i(n,t)),n=o[e],c("activate",i(n,t)))},d=function(e,t){var r=o.indexOf(n)+e;c(e>0?"next":"prev",i(n,t))&&l(r,t)},u={off:s,on:function(e,t){return(a[e]||(a[e]=[])).push(t),s.bind(null,e,t)},fire:c,slide:function(e,t){if(!arguments.length)return o.indexOf(n);c("slide",i(o[e],t))&&l(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:o,destroy:function(e){c("destroy",i(n,e)),a={}}};return(t||[]).forEach(function(e){e(u)}),n||l(0),u}}),t),o=e(r);const a=document.body,i=(...e)=>history.replaceState(...e),s="",c="presenter",l="next",d=["",c,l],u="bespoke-marp-",f=`data-${u}`,m=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},g=()=>a.dataset.bespokeView,p=e=>new URLSearchParams(location.search).get(e),v=(e,t={})=>{const n={location,setter:i,...t},r=new URLSearchParams(n.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?r.set(t,n):r.delete(t)}try{n.setter({...window.history.state??{}},"",m(r,n.location))}catch(e){console.error(e)}},h=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch{return!1}})(),y=e=>{try{return localStorage.getItem(e)}catch{return null}},b=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch{return!1}},w=e=>{try{return localStorage.removeItem(e),!0}catch{return!1}},x=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},k=e=>{e.parent.classList.add(`${u}parent`),e.slides.forEach(e=>e.classList.add(`${u}slide`)),e.on("activate",t=>{const n=`${u}active`,r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach(e=>{e.classList.remove(n),x(e,!0)}),o.add(n),x(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}})},$=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=o;e.setAttribute(`${f}fragment`,(a?"":"in")+"active");const i=`${f}current-fragment`;t===r&&n===o?e.setAttribute(i,"current"):e.removeAttribute(i)})}),e.fragmentIndex=o;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",a)};e.on("next",({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}}),e.on("prev",({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)}),o(0,0)},E=document,L=()=>!(!E.fullscreenEnabled&&!E.webkitFullscreenEnabled),S=()=>!(!E.fullscreenElement&&!E.webkitFullscreenElement),P=e=>{e.fullscreen=()=>{L()&&(async()=>{S()?(E.exitFullscreen||E.webkitExitFullscreen)?.call(E):((e=E.body)=>{(e.requestFullscreen||e.webkitRequestFullscreen)?.call(e)})()})()},document.addEventListener("keydown",t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!L()||(e.fullscreen(),t.preventDefault())})},_=`${u}inactive`,T=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout(()=>{r.add(_),o()},e),r.contains(_)&&(r.remove(_),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},I=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],M=e=>{e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(I.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})},O=e=>{window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("marp-auto-scaling, [data-auto-scaling], [data-marp-fitting]");t.setAttribute(`${f}load`,e?"":"hideable")}})},A=({interval:e=250}={})=>t=>{document.addEventListener("keydown",e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()});let n,r,o=0;t.parent.addEventListener("wheel",a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),e?.parentElement&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const c=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<12)return;r&&clearTimeout(r),r=setTimeout(()=>{n=0},e);const l=Date.now()-o<e,d=c<=n;if(n=c,l||d)return;let u;(a.deltaX>0||a.deltaY>0)&&(u="next"),(a.deltaX<0||a.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())})},C=(e=`.${u}osc`)=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${f}osc=${JSON.stringify(e)}]`).forEach(n)};return L()||n("fullscreen",e=>e.style.display="none"),h||n("presenter",e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."}),e=>{t.addEventListener("click",t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?e?.fullscreen():"presenter"===n&&e.openPresenterView()}}),e.parent.appendChild(t),e.on("activate",({index:t})=>{n("page",n=>n.textContent=`Page ${t+1} of ${e.slides.length}`)}),e.on("fragment",({index:t,fragments:r,fragmentIndex:o})=>{n("prev",e=>e.disabled=0===t&&0===o),n("next",n=>n.disabled=t===e.slides.length-1&&o===r.length-1)}),e.on("marp-active",()=>x(t,!1)),e.on("marp-inactive",()=>x(t,!0)),L()&&(e=>{for(const t of["","webkit"])E.addEventListener(t+"fullscreenchange",e)})(()=>n("fullscreen",e=>e.classList.toggle("exit",L()&&S())))}},D=e=>{window.addEventListener("message",t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}})};var N,B,q,K,F,j,V,U={exports:{}},X=(N||(N=1,U.exports=(B=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"],q=function(e){return String(e).replace(/[&<>"']/g,function(e){return"&"+K[e]+";"})},K={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},F="dangerouslySetInnerHTML",j={className:"class",htmlFor:"for"},V={},function(e,t){var n=[],r="";t=t||{};for(var o=arguments.length;o-- >2;)n.push(arguments[o]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(var a in t)!1!==t[a]&&null!=t[a]&&a!==F&&(r+=" "+(j[a]?j[a]:q(a))+'="'+q(t[a])+'"');r+=">"}if(-1===B.indexOf(e)){if(t[F])r+=t[F].__html;else for(;n.length;){var i=n.pop();if(i)if(i.pop)for(var s=i.length;s--;)n.push(i[s]);else r+=!0===V[i]?i:q(i)}r+=e?"</"+e+">":""}return V[r]=!0,r})),U.exports),H=e(X);const R=({children:e})=>H(null,null,...e),W=`${u}presenter-`,J={container:`${W}container`,dragbar:`${W}dragbar-container`,next:`${W}next`,nextContainer:`${W}next-container`,noteContainer:`${W}note-container`,noteWrapper:`${W}note-wrapper`,noteButtons:`${W}note-buttons`,infoContainer:`${W}info-container`,infoPage:`${W}info-page`,infoPageText:`${W}info-page-text`,infoPagePrev:`${W}info-page-prev`,infoPageNext:`${W}info-page-next`,noteButtonsBigger:`${W}note-bigger`,noteButtonsSmaller:`${W}note-smaller`,infoTime:`${W}info-time`,infoTimer:`${W}info-timer`},Y=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=J.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",H(R,null,H("div",{class:J.nextContainer},H("iframe",{class:J.next,src:"?view=next"})),H("div",{class:J.dragbar}),H("div",{class:J.noteContainer},H("div",{class:J.noteWrapper}),H("div",{class:J.noteButtons},H("button",{class:J.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),H("button",{class:J.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),H("div",{class:J.infoContainer},H("div",{class:J.infoPage},H("button",{class:J.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),H("span",{class:J.infoPageText}),H("button",{class:J.infoPageNext,tabindex:"-1",title:"Next"},"Next")),H("time",{class:J.infoTime,title:"Current time"}),H("time",{class:J.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(J.dragbar).addEventListener("mousedown",()=>{t=!0,r(J.dragbar).classList.add("active")}),window.addEventListener("mouseup",()=>{t=!1,r(J.dragbar).classList.remove("active")}),window.addEventListener("mousemove",e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(J.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)}),r(J.nextContainer).addEventListener("click",()=>e.next());const n=r(J.next),o=(a=n,(e,t)=>a.contentWindow?.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin));var a;n.addEventListener("load",()=>{r(J.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",({index:e,fragmentIndex:t})=>o(e,t))});const i=document.querySelectorAll(".bespoke-marp-note");i.forEach(e=>{e.addEventListener("keydown",e=>e.stopPropagation()),r(J.noteWrapper).appendChild(e)}),e.on("activate",()=>i.forEach(t=>t.classList.toggle("active",t.dataset.index==e.slide())));let s=0;const c=e=>{s=Math.max(-5,s+e),r(J.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},l=()=>c(1),d=()=>c(-1),u=r(J.noteButtonsBigger),f=r(J.noteButtonsSmaller);u.addEventListener("click",()=>{u.blur(),l()}),f.addEventListener("click",()=>{f.blur(),d()}),document.addEventListener("keydown",e=>{"+"===e.key&&l(),"-"===e.key&&d()},!0),e.on("activate",({index:t})=>{r(J.infoPageText).textContent=`${t+1} / ${e.slides.length}`});const m=r(J.infoPagePrev),g=r(J.infoPageNext);m.addEventListener("click",t=>{m.blur(),e.prev({fragment:!t.shiftKey})}),g.addEventListener("click",t=>{g.blur(),e.next({fragment:!t.shiftKey})}),e.on("fragment",({index:t,fragments:n,fragmentIndex:r})=>{m.disabled=0===t&&0===r,g.disabled=t===e.slides.length-1&&r===n.length-1});let p=new Date;const v=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-p.getTime(),o=t(n/1e3%60),a=t(n/1e3/60%60),i=t(n/36e5%24);r(J.infoTime).textContent=e.toLocaleTimeString(),r(J.infoTimer).textContent=`${i}:${a}:${o}`};v(),setInterval(v,250),r(J.infoTimer).addEventListener("click",()=>{p=new Date})})(e)},z=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:G},presenterUrl:{enumerable:!0,get:Q}}),h&&document.addEventListener("keydown",t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())})};function G(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,W+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function Q(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),m(e)}const Z=e=>{const t=g();return t===l&&e.appendChild(document.createElement("span")),{[s]:z,[c]:Y,[l]:D}[t]},ee=e=>{e.on("activate",t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach(n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"})})},te=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},ne=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{let n=t.fragment?te(p("f")||""):null;((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),c=o(0,r(n||0,a[s].length-1));s===e.slide()&&c===e.fragmentIndex||e.slide(s,{fragment:c})})((()=>{if(location.hash){const[t]=location.hash.slice(1).split(":~:");if(/^\d+$/.test(t))return(te(t)??1)-1;const r=document.getElementById(t)||document.querySelector(`a[name="${CSS.escape(t)}"]`);if(r){const{length:t}=e.slides;for(let o=0;o<t;o+=1)if(e.slides[o].contains(r)){const t=e.fragments?.[o],a=r.closest("[data-marpit-fragment]");if(t&&a){const e=t.indexOf(a);e>=0&&(n=e)}return o}}}return 0})(),n)};e.on("fragment",({index:e,fragmentIndex:r})=>{n||v({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})}),setTimeout(()=>{o(),window.addEventListener("hashchange",()=>r(()=>{o({fragment:!1}),v({f:void 0})})),window.addEventListener("popstate",()=>{n||r(()=>o())}),n=!1},0)}},re=(e={})=>{const t=e.key||window.history.state?.marpBespokeSyncKey||Math.random().toString(36).slice(2),n=`bespoke-marp-sync-${t}`;var r;r={marpBespokeSyncKey:t},v({},{setter:(e,...t)=>i({...e,...r},...t)});const o=()=>{const e=y(n);return e?JSON.parse(e):Object.create(null)},a=e=>{const t=o(),r={...t,...e(t)};return b(n,JSON.stringify(r)),r},s=()=>{window.removeEventListener("pageshow",s),a(e=>({reference:(e.reference||0)+1}))};return e=>{s(),Object.defineProperty(e,"syncKey",{value:t,enumerable:!0});let r=!0;setTimeout(()=>{e.on("fragment",e=>{r&&a(()=>({index:e.index,fragmentIndex:e.fragmentIndex}))})},0),window.addEventListener("storage",t=>{if(t.key===n&&t.oldValue&&t.newValue){const n=JSON.parse(t.oldValue),o=JSON.parse(t.newValue);if(n.index!==o.index||n.fragmentIndex!==o.fragmentIndex)try{r=!1,e.slide(o.index,{fragment:o.fragmentIndex,forSync:!0})}finally{r=!0}}});const i=()=>{const{reference:e}=o();void 0===e||e<=1?w(n):a(()=>({reference:e-1}))};window.addEventListener("pagehide",e=>{e.persisted&&window.addEventListener("pageshow",s),i()}),e.on("destroy",i)}},{PI:oe,abs:ae,sqrt:ie,atan2:se}=Math,ce={passive:!0},le=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",({touches:e})=>{r=1===e.length?a(e[0]):void 0},ce),o.addEventListener("touchmove",e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=ie(ae(n)**2+ae(o)**2),r.radian=se(n,o)}else r=void 0}),o.addEventListener("touchend",o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+oe)%(2*oe)-oe;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}},ce)},de=new Map;de.clear(),de.set("none",{backward:{both:void 0,incoming:void 0,outgoing:void 0},forward:{both:void 0,incoming:void 0,outgoing:void 0}});const ue={both:"",outgoing:"outgoing-",incoming:"incoming-"},fe={forward:"",backward:"-backward"},me=e=>`--marp-bespoke-transition-animation-${e}`,ge=e=>`--marp-transition-${e}`,pe=me("name"),ve=me("duration"),he=e=>new Promise(t=>{const n={},r=document.createElement("div"),o=e=>{r.remove(),t(e)};r.addEventListener("animationstart",()=>o(n)),Object.assign(r.style,{animationName:e,animationDuration:"1s",animationFillMode:"both",animationPlayState:"paused",position:"absolute",pointerEvents:"none"}),document.body.appendChild(r);const a=getComputedStyle(r).getPropertyValue(ge("duration"));a&&Number.parseFloat(a)>=0&&(n.defaultDuration=a),((e,t)=>{requestAnimationFrame(()=>{e.style.animationPlayState="running",requestAnimationFrame(()=>t(void 0))})})(r,o)}),ye=async e=>de.has(e)?de.get(e):(e=>{const t={},n=[];for(const[r,o]of Object.entries(ue))for(const[a,i]of Object.entries(fe)){const s=`marp-${o}transition${i}-${e}`;n.push(he(s).then(e=>{t[a]=t[a]||{},t[a][r]=e?{...e,name:s}:void 0}))}return Promise.all(n).then(()=>t)})(e).then(t=>(de.set(e,t),t)),be=e=>Object.values(e).flatMap(Object.values).every(e=>!e),we=(e,{type:t,backward:n})=>{const r=e[n?"backward":"forward"],o=(()=>{const e=r[t],n=e=>({[pe]:e.name});if(e)return n(e);if(r.both){const e=n(r.both);return"incoming"===t&&(e[me("direction")]="reverse"),e}})();return!o&&n?we(e,{type:t,backward:!1}):o||{[pe]:"__bespoke_marp_transition_no_animation__"}},xe=e=>{if(e)try{const t=JSON.parse(e);if((e=>{if("object"!=typeof e)return!1;const t=e;return"string"==typeof t.name&&(void 0===t.duration||"string"==typeof t.duration)})(t))return t}catch{}},ke="_tSId",$e="_tA",Ee="bespoke-marp-transition-warming-up",Le=window.matchMedia("(prefers-reduced-motion: reduce)"),Se="__bespoke_marp_transition_reduced_outgoing__",Pe="__bespoke_marp_transition_reduced_incoming__",_e={forward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}},backward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}}},Te=e=>{if(!document.startViewTransition)return;const t=t=>(void 0!==t&&(e._tD=t),e._tD);let n;t(!1),((...e)=>{CSS.registerProperty({name:ge("duration"),syntax:"<time>",inherits:!0,initialValue:"-1s"});const t=[...new Set(e).values()];return Promise.all(t.map(e=>ye(e))).then()})(...Array.from(document.querySelectorAll("section[data-transition], section[data-transition-back]")).flatMap(e=>[e.dataset.transition,e.dataset.transitionBack].flatMap(e=>{const t=xe(e);return[t?.name,t?.builtinFallback?`__builtin__${t.name}`:void 0]}).filter(e=>!!e))).then(()=>{document.querySelectorAll("style").forEach(e=>{e.innerHTML=e.innerHTML.replace(/--marp-transition-duration:[^;}]*[;}]/g,e=>e.slice(0,-1)+"!important"+e.slice(-1))})});const r=(n,{back:r,cond:o})=>a=>{const i=t();if(i)return!!a[$e]||!("object"!=typeof i||(i.skipTransition(),!a.forSync));if(!o(a))return!0;const s=e.slides[e.slide()],c=()=>a.back??r,l="data-transition"+(c()?"-back":""),d=s.querySelector(`section[${l}]`);if(!d)return!0;const u=xe(d.getAttribute(l)??void 0);return!u||((async(e,{builtinFallback:t=!0}={})=>{let n=await ye(e);if(be(n)){if(!t)return;return n=await ye(`__builtin__${e}`),be(n)?void 0:n}return n})(u.name,{builtinFallback:u.builtinFallback}).then(e=>{if(!e){t(!0);try{n(a)}finally{t(!1)}return}let r=e;Le.matches&&(console.warn("Use a constant animation to transition because preferring reduced motion by viewer has detected."),r=_e);const o=document.getElementById(ke);o&&o.remove();const i=document.createElement("style");i.id=ke,document.head.appendChild(i),((e,t)=>{const n=[`:root{${ge("direction")}:${t.backward?-1:1};}`,":root:has(.bespoke-marp-inactive){cursor:none;}"],r=t=>{const n=e[t].both?.defaultDuration||e[t].outgoing?.defaultDuration||e[t].incoming?.defaultDuration;return"forward"===t?n:n||r("forward")},o=t.duration||r(t.backward?"backward":"forward");void 0!==o&&n.push(`::view-transition-group(*){${ve}:${o};}`);const a=e=>Object.entries(e).map(([e,t])=>`${e}:${t};`).join("");return n.push(`::view-transition-old(root){${a(we(e,{...t,type:"outgoing"}))}}`,`::view-transition-new(root){${a(we(e,{...t,type:"incoming"}))}}`),n})(r,{backward:c(),duration:u.duration}).forEach(e=>i.sheet?.insertRule(e));const s=document.documentElement.classList;s.add(Ee);let l=!1;const d=()=>{l||(n(a),l=!0,s.remove(Ee))},f=()=>{t(!1),i.remove(),s.remove(Ee)};try{t(!0);const e=document.startViewTransition(d);t(e),e.finished.finally(f)}catch(e){console.error(e),d(),f()}}),!1)};e.on("prev",r(t=>e.prev({...t,[$e]:!0}),{back:!0,cond:e=>e.index>0&&!((e.fragment??1)&&n.fragmentIndex>0)})),e.on("next",r(t=>e.next({...t,[$e]:!0}),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout(()=>{e.on("slide",r(t=>e.slide(t.index,{...t,[$e]:!0}),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))},0),e.on("fragment",e=>{n=e})};let Ie;const Me=()=>(void 0===Ie&&(Ie="wakeLock"in navigator&&navigator.wakeLock),Ie),Oe=async()=>{const e=Me();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},Ae=async()=>{if(!Me())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&Oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await Oe(),e};((e=document.getElementById(":$p"))=>{(()=>{const e=p("view");a.dataset.bespokeView=e===l||e===c?e:""})();const t=(e=>{const t=p(e);return v({[e]:void 0}),t})("sync")||void 0;o.from(e,((...e)=>{const t=d.findIndex(e=>g()===e);return e.map(([e,n])=>e[t]&&n).filter(e=>e)})([[1,1,0],re({key:t})],[[1,1,1],Z(e)],[[1,1,0],M],[[1,1,1],k],[[1,0,0],T()],[[1,1,1],O],[[1,1,1],ne({history:!1})],[[1,1,0],A()],[[1,1,0],P],[[1,0,0],ee],[[1,1,0],le()],[[1,0,0],C()],[[1,0,0],Te],[[1,1,1],$],[[1,1,0],Ae]))})()}();</script></body></html>

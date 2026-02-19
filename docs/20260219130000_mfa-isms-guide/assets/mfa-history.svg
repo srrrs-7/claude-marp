@@ -1,0 +1,68 @@
+<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0f172a;border-radius:12px">
+  <text x="480" y="28" text-anchor="middle" fill="#f1f5f9" font-size="17" font-weight="bold" font-family="sans-serif">MFA発展史タイムライン</text>
+
+  <!-- Timeline axis -->
+  <line x1="40" y1="145" x2="930" y2="145" stroke="#334155" stroke-width="2"/>
+  <!-- Arrowhead at end -->
+  <polygon points="925,139 937,145 925,151" fill="#334155"/>
+
+  <!-- 1986: RSA SecurID -->
+  <line x1="80" y1="135" x2="80" y2="100" stroke="#60a5fa" stroke-width="1.5"/>
+  <circle cx="80" cy="145" r="6" fill="#60a5fa"/>
+  <rect x="20" y="48" width="120" height="48" rx="6" fill="#1e3a5f" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="80" y="67" text-anchor="middle" fill="#60a5fa" font-size="12" font-weight="bold" font-family="sans-serif">1986</text>
+  <text x="80" y="83" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">RSA SecurID</text>
+  <text x="80" y="96" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">ハードウェアOTP誕生</text>
+
+  <!-- 2000: SMS OTP -->
+  <line x1="210" y1="155" x2="210" y2="195" stroke="#34d399" stroke-width="1.5"/>
+  <circle cx="210" cy="145" r="6" fill="#34d399"/>
+  <rect x="150" y="200" width="120" height="48" rx="6" fill="#0d2d1e" stroke="#34d399" stroke-width="1.5"/>
+  <text x="210" y="219" text-anchor="middle" fill="#34d399" font-size="12" font-weight="bold" font-family="sans-serif">2000s</text>
+  <text x="210" y="235" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">SMS OTP普及</text>
+  <text x="210" y="248" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">銀行・金融で導入拡大</text>
+
+  <!-- 2007: HOTP RFC -->
+  <line x1="355" y1="135" x2="355" y2="90" stroke="#fbbf24" stroke-width="1.5"/>
+  <circle cx="355" cy="145" r="6" fill="#fbbf24"/>
+  <rect x="295" y="42" width="120" height="48" rx="6" fill="#2d1f00" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="355" y="61" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="bold" font-family="sans-serif">2005/2011</text>
+  <text x="355" y="77" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">HOTP/TOTP RFC</text>
+  <text x="355" y="90" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">オープン標準化</text>
+
+  <!-- 2012: FIDO Alliance -->
+  <line x1="490" y1="155" x2="490" y2="195" stroke="#c084fc" stroke-width="1.5"/>
+  <circle cx="490" cy="145" r="6" fill="#c084fc"/>
+  <rect x="430" y="200" width="120" height="48" rx="6" fill="#2b0754" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="490" y="219" text-anchor="middle" fill="#c084fc" font-size="12" font-weight="bold" font-family="sans-serif">2012</text>
+  <text x="490" y="235" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">FIDO Alliance設立</text>
+  <text x="490" y="248" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">Google/MS/PayPal等</text>
+
+  <!-- 2018: WebAuthn W3C -->
+  <line x1="620" y1="135" x2="620" y2="90" stroke="#38bdf8" stroke-width="1.5"/>
+  <circle cx="620" cy="145" r="6" fill="#38bdf8"/>
+  <rect x="558" y="42" width="124" height="48" rx="6" fill="#0c2a3c" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="620" y="61" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="bold" font-family="sans-serif">2018</text>
+  <text x="620" y="77" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">WebAuthn W3C</text>
+  <text x="620" y="90" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">FIDO2正式勧告</text>
+
+  <!-- 2022: Passkeys -->
+  <line x1="760" y1="155" x2="760" y2="200" stroke="#f97316" stroke-width="1.5"/>
+  <circle cx="760" cy="145" r="7" fill="#f97316"/>
+  <rect x="700" y="205" width="120" height="52" rx="6" fill="#431407" stroke="#f97316" stroke-width="1.5"/>
+  <text x="760" y="224" text-anchor="middle" fill="#f97316" font-size="12" font-weight="bold" font-family="sans-serif">2022</text>
+  <text x="760" y="240" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Passkeys発表</text>
+  <text x="760" y="255" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">Apple/Google/MS協調</text>
+
+  <!-- 2024: NIST rev 4 -->
+  <line x1="890" y1="135" x2="890" y2="88" stroke="#34d399" stroke-width="1.5"/>
+  <circle cx="890" cy="145" r="7" fill="#34d399"/>
+  <rect x="830" y="40" width="110" height="48" rx="6" fill="#0d2d1e" stroke="#34d399" stroke-width="2"/>
+  <text x="885" y="59" text-anchor="middle" fill="#34d399" font-size="12" font-weight="bold" font-family="sans-serif">2024</text>
+  <text x="885" y="75" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">NIST 800-63-4</text>
+  <text x="885" y="88" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">最終公開版</text>
+
+  <!-- Bottom summary -->
+  <rect x="30" y="272" width="900" height="32" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="480" y="293" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">トレンド: ハードウェアOTP → SMS OTP → TOTP アプリ → FIDO2/WebAuthn → Passkeys（パスワードレス） へ進化</text>
+</svg>

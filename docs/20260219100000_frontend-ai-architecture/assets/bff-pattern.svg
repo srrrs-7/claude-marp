@@ -1,0 +1,86 @@
+<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117">
+  <text x="480" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#e6edf3" font-family="sans-serif">BFF パターン — APIキーを安全に管理</text>
+
+  <!-- NG Pattern (top) -->
+  <text x="200" y="68" text-anchor="middle" font-size="14" font-weight="bold" fill="#f87171" font-family="sans-serif">❌ NG: クライアント直接呼び出し</text>
+
+  <!-- Browser -->
+  <rect x="30" y="80" width="130" height="80" rx="8" fill="#1f2937" stroke="#4b5563" stroke-width="2"/>
+  <text x="95" y="112" text-anchor="middle" font-size="13" fill="#f9fafb" font-family="sans-serif">ブラウザ</text>
+  <text x="95" y="130" text-anchor="middle" font-size="10" fill="#ef4444" font-family="sans-serif">APIキー漏洩!</text>
+  <text x="95" y="147" text-anchor="middle" font-size="10" fill="#ef4444" font-family="sans-serif">DevToolsで丸見え</text>
+
+  <!-- Arrow NG -->
+  <line x1="160" y1="120" x2="255" y2="120" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="259,120 251,115 251,125" fill="#ef4444"/>
+  <text x="207" y="113" text-anchor="middle" font-size="10" fill="#ef4444" font-family="sans-serif">APIキー</text>
+  <text x="207" y="127" text-anchor="middle" font-size="10" fill="#ef4444" font-family="sans-serif">= EXPOSED</text>
+
+  <!-- AI API NG -->
+  <rect x="260" y="80" width="130" height="80" rx="8" fill="#1c1917" stroke="#ef4444" stroke-width="2"/>
+  <text x="325" y="115" text-anchor="middle" font-size="13" fill="#f87171" font-family="sans-serif">OpenAI API</text>
+  <text x="325" y="133" text-anchor="middle" font-size="10" fill="#9ca3af" font-family="sans-serif">OPENAI_KEY=sk-...</text>
+
+  <!-- Warning -->
+  <rect x="420" y="88" width="200" height="62" rx="6" fill="#450a0a" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="520" y="112" text-anchor="middle" font-size="12" fill="#f87171" font-family="sans-serif">⚠️ セキュリティリスク</text>
+  <text x="520" y="130" text-anchor="middle" font-size="11" fill="#fca5a5" font-family="sans-serif">APIキーが全ユーザーに公開</text>
+  <text x="520" y="145" text-anchor="middle" font-size="11" fill="#fca5a5" font-family="sans-serif">課金リスク・不正利用</text>
+
+  <!-- Divider -->
+  <line x1="30" y1="185" x2="900" y2="185" stroke="#374151" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- OK Pattern (bottom) -->
+  <text x="340" y="210" text-anchor="middle" font-size="14" font-weight="bold" fill="#4ade80" font-family="sans-serif">✅ OK: BFF パターン</text>
+
+  <!-- Browser OK -->
+  <rect x="30" y="225" width="140" height="90" rx="8" fill="#1f2937" stroke="#4b5563" stroke-width="2"/>
+  <text x="100" y="255" text-anchor="middle" font-size="13" fill="#f9fafb" font-family="sans-serif">ブラウザ</text>
+  <text x="100" y="273" text-anchor="middle" font-size="11" fill="#9ca3af" font-family="sans-serif">POST /api/chat</text>
+  <text x="100" y="288" text-anchor="middle" font-size="10" fill="#4ade80" font-family="sans-serif">APIキーなし ✅</text>
+  <text x="100" y="305" text-anchor="middle" font-size="10" fill="#9ca3af" font-family="sans-serif">Cookie/JWT認証</text>
+
+  <!-- Arrow to BFF -->
+  <line x1="170" y1="270" x2="265" y2="270" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="269,270 261,265 261,275" fill="#22c55e"/>
+  <text x="217" y="258" text-anchor="middle" font-size="10" fill="#86efac" font-family="sans-serif">認証済み</text>
+  <text x="217" y="270" text-anchor="middle" font-size="10" fill="#86efac" font-family="sans-serif">リクエスト</text>
+
+  <!-- BFF Server -->
+  <rect x="270" y="215" width="220" height="130" rx="10" fill="#14532d" stroke="#22c55e" stroke-width="2" style="filter:drop-shadow(0 4px 10px rgba(34,197,94,0.3))"/>
+  <text x="380" y="243" text-anchor="middle" font-size="14" font-weight="bold" fill="#4ade80" font-family="sans-serif">BFF サーバー</text>
+  <text x="380" y="261" text-anchor="middle" font-size="11" fill="#86efac" font-family="sans-serif">Next.js Route Handler</text>
+  <text x="290" y="282" font-size="10" fill="#86efac" font-family="sans-serif">✅ 認証チェック</text>
+  <text x="290" y="298" font-size="10" fill="#86efac" font-family="sans-serif">✅ レート制限</text>
+  <text x="290" y="314" font-size="10" fill="#86efac" font-family="sans-serif">✅ 入力バリデーション</text>
+  <text x="290" y="330" font-size="10" fill="#86efac" font-family="sans-serif">✅ コスト管理</text>
+
+  <!-- Arrow BFF to AI -->
+  <line x1="490" y1="280" x2="585" y2="280" stroke="#f97316" stroke-width="2"/>
+  <polygon points="589,280 581,275 581,285" fill="#f97316"/>
+  <text x="537" y="268" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="sans-serif">OPENAI_KEY</text>
+  <text x="537" y="280" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="sans-serif">サーバー側env</text>
+
+  <!-- AI API OK -->
+  <rect x="590" y="225" width="140" height="90" rx="8" fill="#1c1917" stroke="#f97316" stroke-width="2"/>
+  <text x="660" y="260" text-anchor="middle" font-size="13" fill="#fb923c" font-family="sans-serif">OpenAI API</text>
+  <text x="660" y="280" text-anchor="middle" font-size="10" fill="#fed7aa" font-family="sans-serif">安全に呼び出し</text>
+  <text x="660" y="296" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="sans-serif">APIキー保護 ✅</text>
+
+  <!-- Arrow back to browser -->
+  <line x1="490" y1="295" x2="170" y2="295" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="166,295 174,290 174,300" fill="#3b82f6"/>
+  <text x="330" y="350" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">ストリーミングレスポンス返送</text>
+
+  <!-- Right side: Implementation tips -->
+  <rect x="760" y="215" width="165" height="145" rx="8" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+  <text x="842" y="240" text-anchor="middle" font-size="12" font-weight="bold" fill="#f9fafb" font-family="sans-serif">実装ポイント</text>
+  <text x="778" y="262" font-size="11" fill="#d1d5db" font-family="sans-serif">・Clerk / NextAuth</text>
+  <text x="778" y="280" font-size="11" fill="#d1d5db" font-family="sans-serif">・Upstash Rate Limit</text>
+  <text x="778" y="298" font-size="11" fill="#d1d5db" font-family="sans-serif">・Zod バリデーション</text>
+  <text x="778" y="316" font-size="11" fill="#d1d5db" font-family="sans-serif">・Edge Runtime対応</text>
+  <text x="778" y="334" font-size="11" fill="#d1d5db" font-family="sans-serif">・ログ・監査</text>
+
+  <!-- Bottom note -->
+  <text x="480" y="440" text-anchor="middle" font-size="11" fill="#6b7280" font-family="sans-serif">APIキーは必ずサーバー側環境変数に保管 — NEXT_PUBLIC_ プレフィックスを絶対につけない</text>
+</svg>

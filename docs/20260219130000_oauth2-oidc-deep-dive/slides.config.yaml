@@ -1,0 +1,20 @@
+topic: "OAuth2 / OIDC 実装詳細ガイド"
+language: "ja"
+
+output:
+  dir: "docs/20260219130000_oauth2-oidc-deep-dive"
+  baseName: "oauth2-oidc-deep-dive"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "OAuth2 / OIDC 実装詳細ガイド"
+  footer: "© 2026 Internal"
+  style: |
+    section pre code {
+      font-size: 0.56em;
+      line-height: 1.35;
+    }
+    section table {
+      font-size: 0.78em;
+    }

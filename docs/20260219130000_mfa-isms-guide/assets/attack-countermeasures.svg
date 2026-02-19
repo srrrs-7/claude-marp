@@ -1,0 +1,61 @@
+<svg viewBox="0 0 960 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0f172a;border-radius:12px">
+  <text x="480" y="26" text-anchor="middle" fill="#f1f5f9" font-size="16" font-weight="bold" font-family="sans-serif">攻撃パターン別 対策マッピング</text>
+
+  <!-- Header row -->
+  <rect x="20" y="38" width="460" height="28" rx="6" fill="#2d1515" stroke="#f87171" stroke-width="1.5"/>
+  <text x="250" y="57" text-anchor="middle" fill="#f87171" font-size="12" font-weight="bold" font-family="sans-serif">攻撃手法</text>
+  <rect x="490" y="38" width="450" height="28" rx="6" fill="#0d2d1e" stroke="#34d399" stroke-width="1.5"/>
+  <text x="715" y="57" text-anchor="middle" fill="#34d399" font-size="12" font-weight="bold" font-family="sans-serif">対策</text>
+
+  <!-- Row 1: AiTM -->
+  <rect x="20" y="72" width="460" height="44" rx="0" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="250" y="89" text-anchor="middle" fill="#f87171" font-size="12" font-weight="bold" font-family="sans-serif">AiTMフィッシング</text>
+  <text x="250" y="107" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">セッショントークン盗取 / OTPリアルタイム転送</text>
+  <rect x="490" y="72" width="450" height="44" rx="0" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="715" y="89" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">FIDO2/Passkeys導入（根本解決）</text>
+  <text x="715" y="107" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">ドメインバインドで偽サイト無効化 + セッション有効期限短縮</text>
+
+  <!-- Row 2: SIM Swapping -->
+  <rect x="20" y="118" width="460" height="44" rx="0" fill="#172030" stroke="#334155" stroke-width="0.5"/>
+  <text x="250" y="135" text-anchor="middle" fill="#f87171" font-size="12" font-weight="bold" font-family="sans-serif">SIMスワッピング</text>
+  <text x="250" y="153" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">電話番号乗っ取りでSMS OTP傍受</text>
+  <rect x="490" y="118" width="450" height="44" rx="0" fill="#172030" stroke="#334155" stroke-width="0.5"/>
+  <text x="715" y="135" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">SMS OTP廃止 → TOTP/FIDO2へ移行</text>
+  <text x="715" y="153" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">キャリアへのSIM変更手続き強化要求</text>
+
+  <!-- Row 3: Push Bombing -->
+  <rect x="20" y="164" width="460" height="44" rx="0" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="250" y="181" text-anchor="middle" fill="#f87171" font-size="12" font-weight="bold" font-family="sans-serif">Push Bombing（疲弊攻撃）</text>
+  <text x="250" y="199" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">大量のPUSH通知でユーザーを誤承認</text>
+  <rect x="490" y="164" width="450" height="44" rx="0" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="715" y="181" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">番号照合（Number Matching）の有効化</text>
+  <text x="715" y="199" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">Rate Limiting + 場所/IP情報を通知に追加表示</text>
+
+  <!-- Row 4: SS7 -->
+  <rect x="20" y="210" width="460" height="44" rx="0" fill="#172030" stroke="#334155" stroke-width="0.5"/>
+  <text x="250" y="227" text-anchor="middle" fill="#f87171" font-size="12" font-weight="bold" font-family="sans-serif">SS7プロトコル攻撃</text>
+  <text x="250" y="245" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">電話網でSMS傍受 / 国家機関級の攻撃者</text>
+  <rect x="490" y="210" width="450" height="44" rx="0" fill="#172030" stroke="#334155" stroke-width="0.5"/>
+  <text x="715" y="227" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">高価値標的にSMS OTP使用禁止ポリシー</text>
+  <text x="715" y="245" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">FIDO2/TOTP（オフライン生成）のみ許可</text>
+
+  <!-- Row 5: Social Engineering -->
+  <rect x="20" y="256" width="460" height="44" rx="0" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="250" y="273" text-anchor="middle" fill="#f87171" font-size="12" font-weight="bold" font-family="sans-serif">ソーシャルエンジニアリング</text>
+  <text x="250" y="291" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">ヘルプデスク詐称 / MFAリセット要求</text>
+  <rect x="490" y="256" width="450" height="44" rx="0" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="715" y="273" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">MFAリセット手順の厳格化（本人確認）</text>
+  <text x="715" y="291" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">ヘルプデスク担当者へのSEトレーニング実施</text>
+
+  <!-- Row 6: Session Hijacking -->
+  <rect x="20" y="302" width="460" height="44" rx="0" fill="#172030" stroke="#334155" stroke-width="0.5"/>
+  <text x="250" y="319" text-anchor="middle" fill="#f87171" font-size="12" font-weight="bold" font-family="sans-serif">セッションハイジャック</text>
+  <text x="250" y="337" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">認証後トークン盗取でMFA迂回</text>
+  <rect x="490" y="302" width="450" height="44" rx="0" fill="#172030" stroke="#334155" stroke-width="0.5"/>
+  <text x="715" y="319" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">セッション有効期限短縮 + 継続的検証</text>
+  <text x="715" y="337" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">再認証トリガー（高リスク操作時） + CSP/HSTS</text>
+
+  <!-- Bottom border -->
+  <rect x="20" y="346" width="920" height="2" fill="#334155"/>
+  <text x="480" y="366" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">ISMS観点: 攻撃手法ごとの対策をセキュリティ対策一覧表に明記し、年次リスク評価で有効性を検証</text>
+</svg>

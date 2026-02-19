@@ -1,0 +1,85 @@
+<svg viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0f172a;border-radius:12px">
+  <text x="480" y="24" text-anchor="middle" fill="#f1f5f9" font-size="16" font-weight="bold" font-family="sans-serif">MFA方式別 攻撃耐性マトリクス</text>
+
+  <!-- Header row -->
+  <rect x="20" y="34" width="940" height="30" rx="4" fill="#1e3a5f" stroke="#334155" stroke-width="1"/>
+  <text x="130" y="54" text-anchor="middle" fill="#f1f5f9" font-size="11" font-weight="bold" font-family="sans-serif">攻撃 \ MFA方式</text>
+  <text x="290" y="54" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="bold" font-family="sans-serif">SMS OTP</text>
+  <text x="415" y="54" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="bold" font-family="sans-serif">TOTP</text>
+  <text x="540" y="54" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="bold" font-family="sans-serif">PUSH通知</text>
+  <text x="680" y="54" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="bold" font-family="sans-serif">FIDO2</text>
+  <text x="830" y="54" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">Passkeys</text>
+
+  <!-- Column separators -->
+  <line x1="212" y1="34" x2="212" y2="316" stroke="#334155" stroke-width="1"/>
+  <line x1="354" y1="34" x2="354" y2="316" stroke="#334155" stroke-width="1"/>
+  <line x1="480" y1="34" x2="480" y2="316" stroke="#334155" stroke-width="1"/>
+  <line x1="606" y1="34" x2="606" y2="316" stroke="#334155" stroke-width="1"/>
+  <line x1="754" y1="34" x2="754" y2="316" stroke="#334155" stroke-width="1"/>
+
+  <!-- Row definitions: attack | SMS | TOTP | PUSH | FIDO2 | Passkeys -->
+  <!-- Row 1: AiTM Phishing -->
+  <rect x="20" y="64" width="940" height="38" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="116" y="87" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">AiTMフィッシング</text>
+  <text x="290" y="87" text-anchor="middle" fill="#f87171" font-size="16" font-weight="bold" font-family="sans-serif">✗</text>
+  <text x="415" y="87" text-anchor="middle" fill="#f87171" font-size="16" font-weight="bold" font-family="sans-serif">✗</text>
+  <text x="540" y="87" text-anchor="middle" fill="#f87171" font-size="16" font-weight="bold" font-family="sans-serif">✗</text>
+  <text x="680" y="87" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="830" y="87" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+
+  <!-- Row 2: SIM Swapping -->
+  <rect x="20" y="102" width="940" height="38" fill="#172030" stroke="#334155" stroke-width="0.5"/>
+  <text x="116" y="125" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">SIMスワッピング</text>
+  <text x="290" y="125" text-anchor="middle" fill="#f87171" font-size="16" font-weight="bold" font-family="sans-serif">✗</text>
+  <text x="415" y="125" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="540" y="125" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="680" y="125" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="830" y="125" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+
+  <!-- Row 3: Push Bombing -->
+  <rect x="20" y="140" width="940" height="38" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="116" y="163" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">Push Bombing</text>
+  <text x="290" y="163" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="415" y="163" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="540" y="155" text-anchor="middle" fill="#fbbf24" font-size="14" font-weight="bold" font-family="sans-serif">△</text>
+  <text x="540" y="173" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">番号照合で改善</text>
+  <text x="680" y="163" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="830" y="163" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+
+  <!-- Row 4: SS7 -->
+  <rect x="20" y="178" width="940" height="38" fill="#172030" stroke="#334155" stroke-width="0.5"/>
+  <text x="116" y="201" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">SS7攻撃</text>
+  <text x="290" y="201" text-anchor="middle" fill="#f87171" font-size="16" font-weight="bold" font-family="sans-serif">✗</text>
+  <text x="415" y="201" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="540" y="201" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="680" y="201" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="830" y="201" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+
+  <!-- Row 5: Social Engineering -->
+  <rect x="20" y="216" width="940" height="38" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="116" y="232" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">ソーシャルエンジニア</text>
+  <text x="116" y="248" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">リング（SE）</text>
+  <text x="290" y="239" text-anchor="middle" fill="#fbbf24" font-size="14" font-weight="bold" font-family="sans-serif">△</text>
+  <text x="415" y="239" text-anchor="middle" fill="#fbbf24" font-size="14" font-weight="bold" font-family="sans-serif">△</text>
+  <text x="540" y="239" text-anchor="middle" fill="#fbbf24" font-size="14" font-weight="bold" font-family="sans-serif">△</text>
+  <text x="680" y="239" text-anchor="middle" fill="#fbbf24" font-size="14" font-weight="bold" font-family="sans-serif">△</text>
+  <text x="830" y="239" text-anchor="middle" fill="#fbbf24" font-size="14" font-weight="bold" font-family="sans-serif">△</text>
+
+  <!-- Row 6: Credential Stuffing -->
+  <rect x="20" y="254" width="940" height="38" fill="#172030" stroke="#334155" stroke-width="0.5"/>
+  <text x="116" y="277" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">リスト型・PW漏洩</text>
+  <text x="290" y="277" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="415" y="277" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="540" y="277" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="680" y="277" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="830" y="277" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold" font-family="sans-serif">✓</text>
+
+  <!-- Bottom separator -->
+  <rect x="20" y="292" width="940" height="2" fill="#334155"/>
+
+  <!-- Legend -->
+  <text x="80" y="316" fill="#34d399" font-size="11" font-family="sans-serif">✓ 耐性あり</text>
+  <text x="180" y="316" fill="#fbbf24" font-size="11" font-family="sans-serif">△ 部分的耐性（設定依存）</text>
+  <text x="370" y="316" fill="#f87171" font-size="11" font-family="sans-serif">✗ 脆弱</text>
+  <text x="480" y="316" fill="#93c5fd" font-size="11" font-family="sans-serif">SE攻撃はすべての技術的MFAで残存リスク → プロセス強化が必須</text>
+</svg>

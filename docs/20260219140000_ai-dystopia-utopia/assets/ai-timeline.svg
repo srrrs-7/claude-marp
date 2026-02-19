@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300" style="max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Timeline axis -->
+  <line x1="40" y1="150" x2="960" y2="150" stroke="#64b5f6" stroke-width="2"/>
+  <polygon points="965,150 952,144 952,156" fill="#64b5f6"/>
+
+  <!-- Year markers -->
+  <!-- 2025 -->
+  <circle cx="100" cy="150" r="8" fill="#4dd0e1"/>
+  <text x="100" y="175" text-anchor="middle" fill="#b2ebf2" font-family="sans-serif" font-size="11" font-weight="bold">2025</text>
+  <rect x="52" y="80" width="96" height="50" rx="6" fill="rgba(77,208,225,0.15)" stroke="#4dd0e1" stroke-width="1.5"/>
+  <text x="100" y="101" text-anchor="middle" fill="#4dd0e1" font-family="sans-serif" font-size="10" font-weight="bold">LLM爆発期</text>
+  <text x="100" y="117" text-anchor="middle" fill="#b2ebf2" font-family="sans-serif" font-size="9">GPT-5, Claude 4</text>
+  <text x="100" y="131" text-anchor="middle" fill="#b2ebf2" font-family="sans-serif" font-size="9">エージェントAI普及</text>
+  <line x1="100" y1="130" x2="100" y2="142" stroke="#4dd0e1" stroke-width="1.5"/>
+
+  <!-- 2028 -->
+  <circle cx="270" cy="150" r="8" fill="#ba68c8"/>
+  <text x="270" y="175" text-anchor="middle" fill="#e1bee7" font-family="sans-serif" font-size="11" font-weight="bold">2028</text>
+  <rect x="222" y="185" width="96" height="55" rx="6" fill="rgba(186,104,200,0.15)" stroke="#ba68c8" stroke-width="1.5"/>
+  <text x="270" y="206" text-anchor="middle" fill="#ce93d8" font-family="sans-serif" font-size="10" font-weight="bold">自律AI台頭</text>
+  <text x="270" y="222" text-anchor="middle" fill="#e1bee7" font-family="sans-serif" font-size="9">ホワイトカラー代替</text>
+  <text x="270" y="236" text-anchor="middle" fill="#e1bee7" font-family="sans-serif" font-size="9">AI規制法成立</text>
+  <line x1="270" y1="158" x2="270" y2="185" stroke="#ba68c8" stroke-width="1.5"/>
+
+  <!-- 2032 -->
+  <circle cx="500" cy="150" r="8" fill="#ffb74d"/>
+  <text x="500" y="175" text-anchor="middle" fill="#ffe0b2" font-family="sans-serif" font-size="11" font-weight="bold">2032</text>
+  <rect x="452" y="75" width="96" height="55" rx="6" fill="rgba(255,183,77,0.15)" stroke="#ffb74d" stroke-width="1.5"/>
+  <text x="500" y="96" text-anchor="middle" fill="#ffb74d" font-family="sans-serif" font-size="10" font-weight="bold">ANI→AGI境界</text>
+  <text x="500" y="112" text-anchor="middle" fill="#ffe0b2" font-family="sans-serif" font-size="9">汎用AIシステム登場</text>
+  <text x="500" y="126" text-anchor="middle" fill="#ffe0b2" font-family="sans-serif" font-size="9">◀ 分岐点 ▶</text>
+  <line x1="500" y1="130" x2="500" y2="142" stroke="#ffb74d" stroke-width="1.5"/>
+
+  <!-- 2038 -->
+  <circle cx="730" cy="150" r="8" fill="#ef9a9a"/>
+  <text x="730" y="175" text-anchor="middle" fill="#ffcdd2" font-family="sans-serif" font-size="11" font-weight="bold">2038</text>
+  <rect x="682" y="185" width="96" height="55" rx="6" fill="rgba(239,154,154,0.15)" stroke="#ef9a9a" stroke-width="1.5"/>
+  <text x="730" y="206" text-anchor="middle" fill="#ef9a9a" font-family="sans-serif" font-size="10" font-weight="bold">世界線確定期</text>
+  <text x="730" y="222" text-anchor="middle" fill="#ffcdd2" font-family="sans-serif" font-size="9">AI統治体制が固まる</text>
+  <text x="730" y="236" text-anchor="middle" fill="#ffcdd2" font-family="sans-serif" font-size="9">D/U どちらへ？</text>
+  <line x1="730" y1="158" x2="730" y2="185" stroke="#ef9a9a" stroke-width="1.5"/>
+
+  <!-- 2045 -->
+  <circle cx="920" cy="150" r="10" fill="#ffd54f" stroke="#fff9c4" stroke-width="2"/>
+  <text x="920" y="175" text-anchor="middle" fill="#fff9c4" font-family="sans-serif" font-size="12" font-weight="bold">2045</text>
+  <rect x="864" y="75" width="112" height="55" rx="6" fill="rgba(255,213,79,0.2)" stroke="#ffd54f" stroke-width="2"/>
+  <text x="920" y="96" text-anchor="middle" fill="#ffd54f" font-family="sans-serif" font-size="10" font-weight="bold">ASI時代 or</text>
+  <text x="920" y="112" text-anchor="middle" fill="#ffd54f" font-family="sans-serif" font-size="10" font-weight="bold">共生社会</text>
+  <text x="920" y="128" text-anchor="middle" fill="#fff9c4" font-family="sans-serif" font-size="9">今日の選択次第</text>
+  <line x1="920" y1="130" x2="920" y2="142" stroke="#ffd54f" stroke-width="1.5"/>
+
+  <!-- "NOW" indicator -->
+  <line x1="100" y1="30" x2="100" y2="65" stroke="#4dd0e1" stroke-width="2" stroke-dasharray="4,3"/>
+  <text x="100" y="25" text-anchor="middle" fill="#4dd0e1" font-family="sans-serif" font-size="11" font-weight="bold">← NOW</text>
+</svg>

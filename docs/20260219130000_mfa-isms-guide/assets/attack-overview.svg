@@ -1,0 +1,67 @@
+<svg viewBox="0 0 960 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0f172a;border-radius:12px">
+  <text x="480" y="26" text-anchor="middle" fill="#f1f5f9" font-size="17" font-weight="bold" font-family="sans-serif">MFAを標的とする主要攻撃手法</text>
+
+  <!-- Center target -->
+  <circle cx="480" cy="180" r="55" fill="#2d1515" stroke="#f87171" stroke-width="3"/>
+  <text x="480" y="173" text-anchor="middle" fill="#f87171" font-size="13" font-weight="bold" font-family="sans-serif">MFA</text>
+  <text x="480" y="191" text-anchor="middle" fill="#fca5a5" font-size="12" font-weight="bold" font-family="sans-serif">標的</text>
+
+  <!-- Attack 1: AiTM Phishing (top) -->
+  <rect x="340" y="30" width="280" height="55" rx="8" fill="#1e293b" stroke="#f87171" stroke-width="2"/>
+  <text x="480" y="52" text-anchor="middle" fill="#f87171" font-size="13" font-weight="bold" font-family="sans-serif">AiTMフィッシング</text>
+  <text x="480" y="70" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">中間プロキシでセッショントークン奪取</text>
+  <text x="480" y="82" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">Evilginx, Modlishka等のツール使用</text>
+  <line x1="480" y1="85" x2="480" y2="124" stroke="#f87171" stroke-width="1.5"/>
+  <polygon points="474,121 480,132 486,121" fill="#f87171"/>
+
+  <!-- Attack 2: SIM Swapping (top right) -->
+  <rect x="720" y="60" width="220" height="55" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+  <text x="830" y="82" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="bold" font-family="sans-serif">SIMスワッピング</text>
+  <text x="830" y="100" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">電話番号を攻撃者SIMへ移管</text>
+  <text x="830" y="112" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">SMS OTPを完全無効化</text>
+  <line x1="720" y1="108" x2="536" y2="156" stroke="#fbbf24" stroke-width="1.5"/>
+  <polygon points="540,150 532,158 540,165" fill="#fbbf24"/>
+
+  <!-- Attack 3: Push Bombing (right) -->
+  <rect x="740" y="155" width="200" height="55" rx="8" fill="#1e293b" stroke="#c084fc" stroke-width="2"/>
+  <text x="840" y="177" text-anchor="middle" fill="#c084fc" font-size="13" font-weight="bold" font-family="sans-serif">Push Bombing</text>
+  <text x="840" y="195" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">大量通知でユーザーを疲弊</text>
+  <text x="840" y="207" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">Uber事例で有名</text>
+  <line x1="740" y1="182" x2="537" y2="185" stroke="#c084fc" stroke-width="1.5"/>
+  <polygon points="540,178 529,185 540,191" fill="#c084fc"/>
+
+  <!-- Attack 4: SS7 (bottom right) -->
+  <rect x="700" y="270" width="240" height="55" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="820" y="292" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="bold" font-family="sans-serif">SS7脆弱性</text>
+  <text x="820" y="310" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">電話網でSMS傍受・転送</text>
+  <text x="820" y="322" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">国家機関レベルのアクター</text>
+  <line x1="700" y1="298" x2="536" y2="216" stroke="#fbbf24" stroke-width="1.5"/>
+  <polygon points="540,210 530,218 540,224" fill="#fbbf24"/>
+
+  <!-- Attack 5: Social Engineering (bottom) -->
+  <rect x="310" y="290" width="340" height="55" rx="8" fill="#1e293b" stroke="#f87171" stroke-width="2"/>
+  <text x="480" y="312" text-anchor="middle" fill="#f87171" font-size="13" font-weight="bold" font-family="sans-serif">ソーシャルエンジニアリング</text>
+  <text x="480" y="330" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">ヘルプデスク詐称 / MFAリセット要求</text>
+  <text x="480" y="342" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">MGM事例: LinkedInで標的特定後ヘルプデスクへ</text>
+  <line x1="480" y1="290" x2="480" y2="237" stroke="#f87171" stroke-width="1.5"/>
+  <polygon points="474,240 480,229 486,240" fill="#f87171"/>
+
+  <!-- Attack 6: Session Hijacking (bottom left) -->
+  <rect x="20" y="270" width="230" height="55" rx="8" fill="#1e293b" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="135" y="292" text-anchor="middle" fill="#c084fc" font-size="13" font-weight="bold" font-family="sans-serif">セッションハイジャック</text>
+  <text x="135" y="310" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">認証後のトークン盗用</text>
+  <text x="135" y="322" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">XSS / 偽サイト Cookie奪取</text>
+  <line x1="250" y1="297" x2="426" y2="218" stroke="#c084fc" stroke-width="1.5"/>
+  <polygon points="420,212 428,220 420,227" fill="#c084fc"/>
+
+  <!-- Attack 7: Credential Stuffing (left) -->
+  <rect x="20" y="155" width="210" height="55" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="125" y="177" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="bold" font-family="sans-serif">リスト型攻撃</text>
+  <text x="125" y="195" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">漏洩PW + OTP自動試行</text>
+  <text x="125" y="207" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">MFA疲弊と組合せる</text>
+  <line x1="230" y1="182" x2="425" y2="183" stroke="#38bdf8" stroke-width="1.5"/>
+  <polygon points="421,176 432,183 421,189" fill="#38bdf8"/>
+
+  <!-- Defense note -->
+  <rect x="380" y="160" width="200" height="46" rx="8" fill="#2d1515" stroke="#f87171" stroke-width="1" stroke-dasharray="4,2"/>
+</svg>

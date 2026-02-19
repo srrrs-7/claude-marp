@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117" font-family="sans-serif">
+  <rect width="960" height="480" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="480" y="26" text-anchor="middle" fill="#e6edf3" font-size="18" font-weight="bold">LoRA — Low-Rank Adaptation</text>
+
+  <!-- ===== LEFT: Full Fine-tuning ===== -->
+  <rect x="20" y="42" width="420" height="300" rx="6" fill="#0f1520" stroke="#30363d" stroke-width="1"/>
+  <text x="230" y="64" text-anchor="middle" fill="#ef4444" font-size="14" font-weight="bold">Full Fine-tuning</text>
+  <text x="230" y="80" text-anchor="middle" fill="#94a3b8" font-size="10">全パラメータを更新 — 巨大な勾配ストレージが必要</text>
+
+  <!-- Pre-trained W0 (large, orange) -->
+  <rect x="80" y="100" width="300" height="140" rx="6" fill="#1c1108" stroke="#f97316" stroke-width="3" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.6))"/>
+  <text x="230" y="160" text-anchor="middle" fill="#f97316" font-size="20" font-weight="bold">W₀</text>
+  <text x="230" y="182" text-anchor="middle" fill="#fed7aa" font-size="12">d × k 行列</text>
+  <text x="230" y="200" text-anchor="middle" fill="#fed7aa" font-size="11">例: 4096 × 4096</text>
+  <text x="230" y="218" text-anchor="middle" fill="#94a3b8" font-size="10">frozen or updated</text>
+
+  <!-- Delta W (same size, red) -->
+  <rect x="100" y="255" width="260" height="50" rx="4" fill="#2a0000" stroke="#ef4444" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="230" y="275" text-anchor="middle" fill="#fca5a5" font-size="12" font-weight="bold">+ ΔW</text>
+  <text x="230" y="292" text-anchor="middle" fill="#fca5a5" font-size="10">same rank as W₀ (d × k)</text>
+
+  <!-- Parameter count label -->
+  <rect x="40" y="318" width="380" height="50" rx="5" fill="#2a0000" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="230" y="338" text-anchor="middle" fill="#fca5a5" font-size="12" font-weight="bold">学習パラメータ: d × k = 16,777,216</text>
+  <text x="230" y="356" text-anchor="middle" fill="#fca5a5" font-size="11">GPT-3 175B = 175,000,000,000 params</text>
+
+  <!-- Input x -->
+  <text x="230" y="90" text-anchor="middle" fill="#e6edf3" font-size="11">h = W₀x + ΔW·x</text>
+
+  <!-- ===== RIGHT: LoRA ===== -->
+  <rect x="460" y="42" width="480" height="300" rx="6" fill="#0f1520" stroke="#30363d" stroke-width="1"/>
+  <text x="700" y="64" text-anchor="middle" fill="#22c55e" font-size="14" font-weight="bold">LoRA (Low-Rank Adaptation)</text>
+  <text x="700" y="80" text-anchor="middle" fill="#94a3b8" font-size="10">低ランク行列 A×B のみ学習 — 大幅なパラメータ削減</text>
+
+  <!-- Frozen W0 (gray, no gradient) -->
+  <rect x="480" y="100" width="200" height="140" rx="6" fill="#1a1f2e" stroke="#475569" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="580" y="155" text-anchor="middle" fill="#64748b" font-size="18" font-weight="bold">W₀</text>
+  <text x="580" y="175" text-anchor="middle" fill="#475569" font-size="11">(frozen)</text>
+  <text x="580" y="192" text-anchor="middle" fill="#475569" font-size="10">勾配なし</text>
+  <text x="580" y="208" text-anchor="middle" fill="#475569" font-size="10">d × k = 4096²</text>
+
+  <!-- B matrix (d×r, blue) -->
+  <rect x="705" y="100" width="60" height="140" rx="5" fill="#0a1628" stroke="#3b82f6" stroke-width="2.5" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5))"/>
+  <text x="735" y="165" text-anchor="middle" fill="#3b82f6" font-size="16" font-weight="bold">B</text>
+  <text x="735" y="183" text-anchor="middle" fill="#93c5fd" font-size="10">d × r</text>
+  <text x="735" y="197" text-anchor="middle" fill="#93c5fd" font-size="9">4096×8</text>
+
+  <!-- A matrix (r×k, green) -->
+  <rect x="785" y="186" width="140" height="54" rx="5" fill="#0a2010" stroke="#22c55e" stroke-width="2.5" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5))"/>
+  <text x="855" y="209" text-anchor="middle" fill="#22c55e" font-size="16" font-weight="bold">A</text>
+  <text x="855" y="225" text-anchor="middle" fill="#86efac" font-size="10">r × k  (8 × 4096)</text>
+
+  <!-- r << d arrow -->
+  <text x="858" y="162" text-anchor="middle" fill="#f97316" font-size="13" font-weight="bold">r=8 &lt;&lt; d=4096</text>
+
+  <!-- Formula h = W0x + BAx -->
+  <rect x="480" y="255" width="450" height="40" rx="4" fill="#0f2a1a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="705" y="278" text-anchor="middle" fill="#86efac" font-size="14" font-weight="bold">h = W₀x + BAx</text>
+
+  <!-- Parameter count label -->
+  <rect x="480" y="308" width="450" height="50" rx="5" fill="#0a2010" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="705" y="328" text-anchor="middle" fill="#86efac" font-size="12" font-weight="bold">学習パラメータ: (d+k)×r = (4096+4096)×8 = 65,536</text>
+  <text x="705" y="348" text-anchor="middle" fill="#4ade80" font-size="13" font-weight="bold">削減率: 99.9%  (16M → 65K)</text>
+
+  <!-- ===== BOTTOM: QLoRA ===== -->
+  <rect x="20" y="352" width="920" height="120" rx="6" fill="#0f1520" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="480" y="374" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="bold">QLoRA — Quantized LoRA (Dettmers et al., 2023)</text>
+
+  <!-- 3 columns -->
+  <rect x="30" y="385" width="250" height="78" rx="4" fill="#1a1028" stroke="#a78bfa" stroke-width="1"/>
+  <text x="155" y="403" text-anchor="middle" fill="#c4b5fd" font-size="11" font-weight="bold">NF4 量子化 W₀</text>
+  <text x="155" y="419" text-anchor="middle" fill="#94a3b8" font-size="10">4-bit Normal Float (NF4)</text>
+  <text x="155" y="434" text-anchor="middle" fill="#94a3b8" font-size="10">base model を4-bit圧縮</text>
+  <text x="155" y="450" text-anchor="middle" fill="#94a3b8" font-size="10">65B model → ~40GB VRAM</text>
+
+  <rect x="295" y="385" width="250" height="78" rx="4" fill="#0a2010" stroke="#22c55e" stroke-width="1"/>
+  <text x="420" y="403" text-anchor="middle" fill="#86efac" font-size="11" font-weight="bold">16-bit LoRA Adapters</text>
+  <text x="420" y="419" text-anchor="middle" fill="#94a3b8" font-size="10">LoRA行列はbfloat16</text>
+  <text x="420" y="434" text-anchor="middle" fill="#94a3b8" font-size="10">精度を保ちながら学習</text>
+  <text x="420" y="450" text-anchor="middle" fill="#94a3b8" font-size="10">勾配は16-bitで計算</text>
+
+  <rect x="560" y="385" width="370" height="78" rx="4" fill="#1c1108" stroke="#f97316" stroke-width="1"/>
+  <text x="745" y="403" text-anchor="middle" fill="#fb923c" font-size="11" font-weight="bold">効果: 単一GPU で 65B モデルをFine-tune</text>
+  <text x="745" y="419" text-anchor="middle" fill="#94a3b8" font-size="10">4-bit base + 16-bit LoRA ≈ ~4bit 実効精度</text>
+  <text x="745" y="434" text-anchor="middle" fill="#94a3b8" font-size="10">A100 80GB 1枚で Llama-2 65B Fine-tuning可能</text>
+  <text x="745" y="450" text-anchor="middle" fill="#94a3b8" font-size="10">FullFT比でほぼ同等性能 (論文reported)</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="460" fill="#f0f4f8" rx="12"/>
+  <!-- Triangle lines -->
+  <line x1="400" y1="80" x2="100" y2="400" stroke="#90A4AE" stroke-width="2.5" stroke-dasharray="8,4"/>
+  <line x1="400" y1="80" x2="700" y2="400" stroke="#90A4AE" stroke-width="2.5" stroke-dasharray="8,4"/>
+  <line x1="100" y1="400" x2="700" y2="400" stroke="#90A4AE" stroke-width="2.5" stroke-dasharray="8,4"/>
+  <!-- Center ellipse -->
+  <ellipse cx="400" cy="265" rx="100" ry="55" fill="#37474F" style="filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.3))"/>
+  <text x="400" y="258" text-anchor="middle" fill="white" font-family="sans-serif" font-size="15" font-weight="bold">情報セキュリティ</text>
+  <text x="400" y="278" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13">C + I + A</text>
+  <!-- Top: Confidentiality -->
+  <circle cx="400" cy="80" r="64" fill="#1565C0" style="filter: drop-shadow(2px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="400" y="72" text-anchor="middle" fill="white" font-family="sans-serif" font-size="17" font-weight="bold">機密性</text>
+  <text x="400" y="93" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">Confidentiality</text>
+  <!-- Bottom-left: Integrity -->
+  <circle cx="100" cy="400" r="64" fill="#2E7D32" style="filter: drop-shadow(2px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="100" y="392" text-anchor="middle" fill="white" font-family="sans-serif" font-size="17" font-weight="bold">完全性</text>
+  <text x="100" y="413" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">Integrity</text>
+  <!-- Bottom-right: Availability -->
+  <circle cx="700" cy="400" r="64" fill="#E65100" style="filter: drop-shadow(2px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="700" y="392" text-anchor="middle" fill="white" font-family="sans-serif" font-size="17" font-weight="bold">可用性</text>
+  <text x="700" y="413" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">Availability</text>
+  <!-- Edge descriptions -->
+  <text x="215" y="205" text-anchor="middle" fill="#1565C0" font-family="sans-serif" font-size="12" font-weight="bold" transform="rotate(-52 215 205)">権限管理・暗号化</text>
+  <text x="585" y="205" text-anchor="middle" fill="#E65100" font-family="sans-serif" font-size="12" font-weight="bold" transform="rotate(52 585 205)">冗長化・バックアップ</text>
+  <text x="400" y="452" text-anchor="middle" fill="#2E7D32" font-family="sans-serif" font-size="12" font-weight="bold">ハッシュ・デジタル署名</text>
+</svg>

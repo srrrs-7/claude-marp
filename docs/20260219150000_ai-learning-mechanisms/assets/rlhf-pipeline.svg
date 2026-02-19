@@ -1,0 +1,57 @@
+<svg viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <!-- Title -->
+  <text x="430" y="22" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">RLHF パイプライン</text>
+
+  <!-- Step 1: Pre-train LLM -->
+  <rect x="20" y="50" width="150" height="80" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+  <text x="95" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565c0">① 事前学習</text>
+  <text x="95" y="96" text-anchor="middle" font-size="11" fill="#555">大規模コーパスで</text>
+  <text x="95" y="111" text-anchor="middle" font-size="11" fill="#555">次トークン予測</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="170" y1="90" x2="210" y2="90" stroke="#555" stroke-width="2"/>
+  <polygon points="207,84 218,90 207,96" fill="#555"/>
+
+  <!-- Step 2: SFT -->
+  <rect x="215" y="50" width="155" height="80" rx="10" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="293" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#4a148c">② SFT</text>
+  <text x="293" y="96" text-anchor="middle" font-size="11" fill="#555">人手デモデータで</text>
+  <text x="293" y="111" text-anchor="middle" font-size="11" fill="#555">教師あり微調整</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="370" y1="90" x2="410" y2="90" stroke="#555" stroke-width="2"/>
+  <polygon points="407,84 418,90 407,96" fill="#555"/>
+
+  <!-- Step 3: Reward Model -->
+  <rect x="415" y="50" width="155" height="80" rx="10" fill="#fff3e0" stroke="#f57c00" stroke-width="2"/>
+  <text x="493" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#e65100">③ 報酬モデル</text>
+  <text x="493" y="91" text-anchor="middle" font-size="11" fill="#555">人間の比較選好で</text>
+  <text x="493" y="106" text-anchor="middle" font-size="11" fill="#555">RM 学習</text>
+  <text x="493" y="121" text-anchor="middle" font-size="11" fill="#e65100">Bradley-Terry</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="570" y1="90" x2="610" y2="90" stroke="#555" stroke-width="2"/>
+  <polygon points="607,84 618,90 607,96" fill="#555"/>
+
+  <!-- Step 4: PPO -->
+  <rect x="615" y="50" width="155" height="80" rx="10" fill="#e8f5e9" stroke="#388e3c" stroke-width="2"/>
+  <text x="693" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#1b5e20">④ PPO 強化学習</text>
+  <text x="693" y="91" text-anchor="middle" font-size="11" fill="#555">RMスコアを報酬に</text>
+  <text x="693" y="106" text-anchor="middle" font-size="11" fill="#555">KL 制約で発散防止</text>
+  <text x="693" y="121" text-anchor="middle" font-size="11" fill="#388e3c">LLM を最適化</text>
+
+  <!-- Feedback loop arrow from PPO back to SFT -->
+  <path d="M 693 135 Q 693 185 493 185 Q 293 185 293 135" stroke="#c62828" stroke-width="2" stroke-dasharray="7,4" fill="none"/>
+  <polygon points="286,132 293,142 300,132" fill="#c62828"/>
+  <text x="493" y="200" text-anchor="middle" font-size="11" fill="#c62828">フィードバックループ（複数サイクル）</text>
+
+  <!-- Human feedback annotation -->
+  <rect x="380" y="165" width="100" height="28" rx="6" fill="#ffebee" stroke="#e91e63"/>
+  <text x="430" y="183" text-anchor="middle" font-size="12" fill="#c2185b">👤 人間評価</text>
+  <line x1="430" y1="165" x2="480" y2="130" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="478,124 487,130 480,137" fill="#e91e63"/>
+
+  <!-- DPO alternative annotation -->
+  <rect x="395" y="225" width="180" height="25" rx="6" fill="#e8eaf6" stroke="#3949ab"/>
+  <text x="485" y="242" text-anchor="middle" font-size="11" fill="#283593">DPO: PPO不要、直接選好最適化</text>
+</svg>

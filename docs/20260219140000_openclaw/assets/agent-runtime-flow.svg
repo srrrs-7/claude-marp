@@ -1,0 +1,63 @@
+<svg viewBox="0 0 860 340" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <text x="430" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#333">Agent Runtime 処理フロー</text>
+
+  <!-- Step boxes -->
+  <!-- 1 -->
+  <rect x="30" y="60" width="130" height="70" rx="10" fill="#bbdefb" stroke="#1976d2" stroke-width="2"/>
+  <text x="95" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#0d47a1">① 入力受信</text>
+  <text x="95" y="107" text-anchor="middle" font-size="11" fill="#333">メッセージ受信</text>
+  <text x="95" y="122" text-anchor="middle" font-size="11" fill="#333">セッション特定</text>
+
+  <polygon points="162,92 178,95 162,98" fill="#666"/>
+  <line x1="160" y1="95" x2="176" y2="95" stroke="#666" stroke-width="2"/>
+
+  <!-- 2 -->
+  <rect x="180" y="60" width="130" height="70" rx="10" fill="#c8e6c9" stroke="#388e3c" stroke-width="2"/>
+  <text x="245" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#1b5e20">② コンテキスト</text>
+  <text x="245" y="107" text-anchor="middle" font-size="11" fill="#333">メモリ検索</text>
+  <text x="245" y="122" text-anchor="middle" font-size="11" fill="#333">履歴組み立て</text>
+
+  <polygon points="312,92 328,95 312,98" fill="#666"/>
+  <line x1="310" y1="95" x2="326" y2="95" stroke="#666" stroke-width="2"/>
+
+  <!-- 3 -->
+  <rect x="330" y="60" width="130" height="70" rx="10" fill="#fff9c4" stroke="#f9a825" stroke-width="2"/>
+  <text x="395" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#e65100">③ LLM呼び出し</text>
+  <text x="395" y="107" text-anchor="middle" font-size="11" fill="#333">モデルAPI送信</text>
+  <text x="395" y="122" text-anchor="middle" font-size="11" fill="#333">ストリーミング受信</text>
+
+  <polygon points="462,92 478,95 462,98" fill="#666"/>
+  <line x1="460" y1="95" x2="476" y2="95" stroke="#666" stroke-width="2"/>
+
+  <!-- 4 -->
+  <rect x="480" y="60" width="130" height="70" rx="10" fill="#fce4ec" stroke="#e53935" stroke-width="2"/>
+  <text x="545" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#b71c1c">④ ツール実行</text>
+  <text x="545" y="107" text-anchor="middle" font-size="11" fill="#333">サンドボックス実行</text>
+  <text x="545" y="122" text-anchor="middle" font-size="11" fill="#333">結果収集</text>
+
+  <polygon points="612,92 628,95 612,98" fill="#666"/>
+  <line x1="610" y1="95" x2="626" y2="95" stroke="#666" stroke-width="2"/>
+
+  <!-- 5 -->
+  <rect x="630" y="60" width="130" height="70" rx="10" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="695" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#4a148c">⑤ 状態保存</text>
+  <text x="695" y="107" text-anchor="middle" font-size="11" fill="#333">メモリ更新</text>
+  <text x="695" y="122" text-anchor="middle" font-size="11" fill="#333">セッション保存</text>
+
+  <!-- Feedback loop -->
+  <path d="M 760 130 Q 760 200 545 200 Q 330 200 180 200 Q 60 200 60 130" fill="none" stroke="#9e9e9e" stroke-width="2" stroke-dasharray="6"/>
+  <polygon points="56,130 60,118 64,130" fill="#9e9e9e"/>
+  <text x="400" y="220" text-anchor="middle" font-size="12" fill="#888">ツール結果をコンテキストに追加して再呼び出し（ReActループ）</text>
+
+  <!-- Output -->
+  <rect x="300" y="260" width="260" height="55" rx="10" fill="#e8f5e9" stroke="#43a047" stroke-width="2"/>
+  <text x="430" y="285" text-anchor="middle" font-size="13" font-weight="bold" fill="#1b5e20">⑥ レスポンス返却</text>
+  <text x="430" y="305" text-anchor="middle" font-size="11" fill="#555">メッセージプラットフォームへ送信</text>
+  <line x1="695" y1="130" x2="695" y2="247" stroke="#7b1fa2" stroke-width="1.5" stroke-dasharray="4"/>
+  <line x1="430" y1="247" x2="430" y2="260" stroke="#43a047" stroke-width="1.5"/>
+  <polygon points="424,258 430,270 436,258" fill="#43a047"/>
+
+  <!-- Tool not needed branch -->
+  <text x="545" y="155" text-anchor="middle" font-size="10" fill="#888">ツール不要の場合</text>
+  <path d="M 545 130 L 545 242 L 560 242" fill="none" stroke="#9e9e9e" stroke-width="1.5" stroke-dasharray="4"/>
+</svg>

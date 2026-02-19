@@ -1,0 +1,52 @@
+<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <!-- Supervised Learning -->
+  <rect x="20" y="40" width="260" height="265" rx="12" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+  <text x="150" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#1976d2">教師あり学習</text>
+  <text x="150" y="89" text-anchor="middle" font-size="11" fill="#555">Supervised Learning</text>
+  <rect x="45" y="103" width="100" height="28" rx="6" fill="#bbdefb"/>
+  <text x="95" y="122" text-anchor="middle" font-size="12" fill="#0d47a1">📊 入力データ</text>
+  <rect x="155" y="103" width="100" height="28" rx="6" fill="#bbdefb"/>
+  <text x="205" y="122" text-anchor="middle" font-size="12" fill="#0d47a1">🏷️ ラベル</text>
+  <line x1="150" y1="131" x2="150" y2="160" stroke="#1976d2" stroke-width="2"/>
+  <polygon points="144,157 150,167 156,157" fill="#1976d2"/>
+  <rect x="80" y="165" width="140" height="30" rx="6" fill="#1976d2"/>
+  <text x="150" y="185" text-anchor="middle" font-size="13" fill="white">🤖 モデル学習</text>
+  <line x1="150" y1="195" x2="150" y2="222" stroke="#1976d2" stroke-width="2"/>
+  <polygon points="144,219 150,229 156,219" fill="#1976d2"/>
+  <rect x="80" y="227" width="140" height="30" rx="6" fill="#42a5f5"/>
+  <text x="150" y="247" text-anchor="middle" font-size="13" fill="white">✅ 予測・分類</text>
+  <text x="150" y="282" text-anchor="middle" font-size="11" fill="#555">例: 画像分類 / 翻訳</text>
+
+  <!-- Unsupervised Learning -->
+  <rect x="320" y="40" width="260" height="265" rx="12" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="450" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#7b1fa2">教師なし学習</text>
+  <text x="450" y="89" text-anchor="middle" font-size="11" fill="#555">Unsupervised Learning</text>
+  <rect x="355" y="103" width="190" height="28" rx="6" fill="#e1bee7"/>
+  <text x="450" y="122" text-anchor="middle" font-size="12" fill="#4a148c">📊 ラベルなしデータ</text>
+  <line x1="450" y1="131" x2="450" y2="160" stroke="#7b1fa2" stroke-width="2"/>
+  <polygon points="444,157 450,167 456,157" fill="#7b1fa2"/>
+  <rect x="380" y="165" width="140" height="30" rx="6" fill="#7b1fa2"/>
+  <text x="450" y="185" text-anchor="middle" font-size="13" fill="white">🔍 構造発見</text>
+  <line x1="450" y1="195" x2="450" y2="222" stroke="#7b1fa2" stroke-width="2"/>
+  <polygon points="444,219 450,229 456,219" fill="#7b1fa2"/>
+  <rect x="380" y="227" width="140" height="30" rx="6" fill="#ab47bc"/>
+  <text x="450" y="247" text-anchor="middle" font-size="13" fill="white">🗂️ パターン抽出</text>
+  <text x="450" y="282" text-anchor="middle" font-size="11" fill="#555">例: K-means / VAE</text>
+
+  <!-- Reinforcement Learning -->
+  <rect x="620" y="40" width="260" height="265" rx="12" fill="#e8f5e9" stroke="#388e3c" stroke-width="2"/>
+  <text x="750" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#388e3c">強化学習</text>
+  <text x="750" y="89" text-anchor="middle" font-size="11" fill="#555">Reinforcement Learning</text>
+  <ellipse cx="695" cy="185" rx="52" ry="32" fill="#388e3c"/>
+  <text x="695" y="189" text-anchor="middle" font-size="14" fill="white" font-weight="bold">Agent</text>
+  <ellipse cx="812" cy="185" rx="52" ry="32" fill="#66bb6a"/>
+  <text x="812" y="189" text-anchor="middle" font-size="14" fill="white" font-weight="bold">Env</text>
+  <line x1="747" y1="173" x2="760" y2="173" stroke="#1b5e20" stroke-width="2"/>
+  <polygon points="757,167 767,173 757,179" fill="#1b5e20"/>
+  <text x="753" y="163" text-anchor="middle" font-size="11" fill="#1b5e20">行動 a</text>
+  <line x1="760" y1="197" x2="747" y2="197" stroke="#c62828" stroke-width="2"/>
+  <polygon points="750,191 740,197 750,203" fill="#c62828"/>
+  <text x="753" y="213" text-anchor="middle" font-size="11" fill="#c62828">状態 s / 報酬 r</text>
+  <text x="750" y="252" text-anchor="middle" font-size="12" fill="#388e3c">方策 π(a|s) を最大化</text>
+  <text x="750" y="282" text-anchor="middle" font-size="11" fill="#555">例: ゲームAI / RLHF</text>
+</svg>

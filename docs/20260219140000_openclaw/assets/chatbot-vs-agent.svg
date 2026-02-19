@@ -1,0 +1,68 @@
+<svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <!-- Left: Chatbot -->
+  <rect x="30" y="30" width="380" height="320" rx="16" fill="#e8f0fe" stroke="#4285f4" stroke-width="2"/>
+  <text x="220" y="65" text-anchor="middle" font-size="20" font-weight="bold" fill="#1a73e8">従来チャットボット</text>
+  <text x="220" y="90" text-anchor="middle" font-size="13" fill="#666">（例: ChatGPT標準）</text>
+
+  <!-- User → Bot → User arrows -->
+  <rect x="70" y="110" width="120" height="40" rx="8" fill="#4285f4"/>
+  <text x="130" y="136" text-anchor="middle" font-size="14" fill="white">👤 ユーザー</text>
+  <line x1="130" y1="150" x2="130" y2="182" stroke="#666" stroke-width="2"/>
+  <polygon points="124,179 130,188 136,179" fill="#666"/>
+  <text x="150" y="172" font-size="11" fill="#888">質問</text>
+  <rect x="70" y="185" width="120" height="40" rx="8" fill="#fbbc04"/>
+  <text x="130" y="211" text-anchor="middle" font-size="14" fill="white">🤖 LLM</text>
+  <line x1="130" y1="225" x2="130" y2="260" stroke="#666" stroke-width="2"/>
+  <text x="150" y="248" font-size="11" fill="#888">返答</text>
+  <rect x="70" y="260" width="120" height="40" rx="8" fill="#4285f4"/>
+  <text x="130" y="286" text-anchor="middle" font-size="14" fill="white">👤 ユーザー</text>
+
+  <!-- Limitations -->
+  <text x="230" y="155" font-size="13" fill="#c62828">✗ 外部ツールなし</text>
+  <text x="230" y="185" font-size="13" fill="#c62828">✗ メモリなし</text>
+  <text x="230" y="215" font-size="13" fill="#c62828">✗ 自律実行なし</text>
+  <text x="230" y="245" font-size="13" fill="#c62828">✗ 単一ターン</text>
+  <text x="230" y="275" font-size="13" fill="#c62828">✗ 受動的</text>
+
+  <!-- Right: OpenClaw -->
+  <rect x="490" y="30" width="380" height="320" rx="16" fill="#e8f5e9" stroke="#34a853" stroke-width="2"/>
+  <text x="680" y="65" text-anchor="middle" font-size="20" font-weight="bold" fill="#1b5e20">OpenClaw</text>
+  <text x="680" y="90" text-anchor="middle" font-size="13" fill="#666">（自律AIエージェント）</text>
+
+  <!-- Hub -->
+  <ellipse cx="680" cy="220" rx="55" ry="35" fill="#34a853"/>
+  <text x="680" y="215" text-anchor="middle" font-size="13" fill="white" font-weight="bold">Agent</text>
+  <text x="680" y="232" text-anchor="middle" font-size="13" fill="white" font-weight="bold">Runtime</text>
+
+  <!-- Spokes -->
+  <line x1="625" y1="200" x2="540" y2="155" stroke="#34a853" stroke-width="2"/>
+  <rect x="500" y="130" width="80" height="30" rx="6" fill="#81c784"/>
+  <text x="540" y="151" text-anchor="middle" font-size="12" fill="white">📧 メール</text>
+
+  <line x1="625" y1="215" x2="530" y2="215" stroke="#34a853" stroke-width="2"/>
+  <rect x="490" y="200" width="80" height="30" rx="6" fill="#81c784"/>
+  <text x="530" y="220" text-anchor="middle" font-size="12" fill="white">📅 カレンダー</text>
+
+  <line x1="625" y1="235" x2="540" y2="280" stroke="#34a853" stroke-width="2"/>
+  <rect x="500" y="265" width="80" height="30" rx="6" fill="#81c784"/>
+  <text x="540" y="285" text-anchor="middle" font-size="12" fill="white">🌐 ブラウザ</text>
+
+  <line x1="735" y1="200" x2="820" y2="155" stroke="#34a853" stroke-width="2"/>
+  <rect x="800" y="130" width="55" height="30" rx="6" fill="#66bb6a"/>
+  <text x="828" y="151" text-anchor="middle" font-size="12" fill="white">💾 DB</text>
+
+  <line x1="735" y1="215" x2="825" y2="215" stroke="#34a853" stroke-width="2"/>
+  <rect x="810" y="200" width="60" height="30" rx="6" fill="#66bb6a"/>
+  <text x="840" y="220" text-anchor="middle" font-size="12" fill="white">📂 ファイル</text>
+
+  <line x1="735" y1="235" x2="820" y2="280" stroke="#34a853" stroke-width="2"/>
+  <rect x="800" y="265" width="60" height="30" rx="6" fill="#66bb6a"/>
+  <text x="830" y="285" text-anchor="middle" font-size="12" fill="white">🔧 API</text>
+
+  <!-- Memory badge -->
+  <rect x="615" y="110" width="130" height="28" rx="6" fill="#1b5e20"/>
+  <text x="680" y="128" text-anchor="middle" font-size="13" fill="white">🧠 永続メモリ</text>
+
+  <!-- Advantages -->
+  <text x="630" y="330" font-size="13" fill="#1b5e20">✓ 自律実行 ✓ 永続記憶 ✓ マルチツール</text>
+</svg>

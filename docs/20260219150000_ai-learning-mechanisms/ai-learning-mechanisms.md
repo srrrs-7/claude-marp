@@ -1,0 +1,986 @@
+---
+marp: true
+theme: gaia
+size: 16:9
+paginate: true
+header: "AIの学習の仕組み"
+footer: "© 2026 - 研究者・専門家向け完全解説"
+style: |
+  section { font-size: 1.0em; }
+  section pre code { font-size: 0.56em; line-height: 1.35; }
+  section h1 { font-size: 1.55em; }
+  section h2 { font-size: 1.25em; }
+  section ul li { margin-bottom: 0.18em; }
+  section table { font-size: 0.85em; }
+  
+---
+
+<!-- _class: lead -->
+# AIの学習の仕組み
+
+- 研究者・専門家向け完全解説
+- 機械学習の基礎から最新手法まで
+- 2026年2月
+
+
+---
+
+# AIの「学習」とは何か
+
+- **関数近似問題**: データから未知の関数 f: X → Y を近似する
+- **経験的リスク最小化 (ERM)**: min_θ (1/n) Σ L(f_θ(xᵢ), yᵢ)
+- **帰納バイアス**: 仮説空間の制約がなければ汎化は不可能 (No Free Lunch)
+- **PAC 学習**: 多項式サンプル数での近似的正解の確率的保証
+- **VC 次元**: 仮説クラスの表現力 — 高いほど過学習リスクも増大
+- **学習の本質**: 訓練データを記憶するのではなく汎化すること
+
+
+---
+
+# 本資料の構成 (1/2)
+
+- **1.** 機械学習の3パラダイム
+- **2.** 最適化と損失関数
+- **3.** ニューラルネットワーク基礎
+- **4.** 深層学習アーキテクチャ
+- **5.** 自己教師あり学習と事前学習
+- **6.** スケーリング則
+
+
+---
+
+# 本資料の構成 (2/2)
+
+- **7.** ファインチューニングとアライメント
+- **8.** 学習データとデータエンジニアリング
+- **9.** 分散学習・並列化
+- **10.** 最新研究トレンド
+- **11.** 解釈可能性と評価
+- **12.** まとめと展望
+
+
+---
+
+<!-- _class: lead -->
+# 1. 機械学習の3パラダイム
+
+- 教師あり学習 / 教師なし学習 / 強化学習
+
+
+---
+
+# 学習パラダイムの概要
+
+- 問題の構造 (ラベルの有無・報酬の有無) がパラダイムを決定する
+- 3つのパラダイムは相互補完的に組み合わせて使われる
+![w:850 center](assets/learning-paradigms.svg)
+
+
+---
+
+# 教師あり学習の定式化
+
+- 入力 x ∈ X, 出力 y ∈ Y, 仮説クラス H から h: X→Y を選択
+- **経験的リスク**: R̂(h) = (1/n) Σ L(h(xᵢ), yᵢ)
+- **期待リスク**: R(h) = E_{(x,y)~D}[L(h(x), y)] — 真の目標
+- **汎化誤差**: R(h) − R̂(h) が小さいほど良い汎化
+- 主なタスク: 分類 / 回帰 / 系列ラベリング / 構造予測
+- 決定境界の複雑さとサンプル数のトレードオフが鍵
+
+
+---
+
+# 教師なし・自己教師あり学習
+
+- **教師なし**: ラベルなしデータ p(x) の構造を発見
+- クラスタリング (K-means, DBSCAN): 密度に基づく分離
+- 次元削減 (PCA, t-SNE, UMAP): 潜在空間 z ∈ Z の学習
+- 生成モデル (VAE, GAN): p(x) = ∫ p(x|z)p(z)dz の近似
+- **自己教師あり**: データ自身からプレテキストタスクを自動生成
+- 例: マスクトークン予測 / 画像回転予測 / 対照学習
+
+
+---
+
+# 強化学習の基礎
+
+- **マルコフ決定過程 (MDP)**: (S, A, P, R, γ) の5タプルで定義
+- 目標: 期待累積報酬 E[Σ γᵗ rₜ] の最大化 (γ: 割引率)
+- **方策 π(a|s)**: 状態から行動確率への写像
+- **Q 関数**: Q^π(s,a) = E[Σ γᵗ rₜ | s₀=s, a₀=a]
+- **ベルマン方程式**: Q*(s,a) = r + γ max_{a'} Q*(s',a')
+- 応用: ゲームAI (AlphaGo) / ロボティクス / RLHF
+
+
+---
+
+# 汎化誤差と過学習
+
+- **汎化誤差** = 期待リスク − 経験的リスク (理想は 0 に近い)
+- **過学習**: 訓練損失 ↓ だが汎化損失 ↑ — 訓練データを記憶
+- **過小適合**: モデル表現力が不足 — 両方の損失が高い
+- 原因: 訓練データ不足 / モデル過複雑 / 正則化不足
+- k-fold クロスバリデーション: 小データでの分散低減に有効
+- テストセットは一度だけ使用 — 複数回使うと過楽観なバイアス
+
+
+---
+
+# バイアス・バリアンス・トレードオフ
+
+- 期待二乗誤差 = Bias²(ĥ) + Var(ĥ) + 不可約誤差 (ノイズ)
+- **Bias (偏り)**: 仮説クラスの表現力不足による系統的誤差
+- **Variance (分散)**: 訓練データへの高感度 → 過学習傾向
+- **二重降下 (Double Descent)**: 過パラメータ域で val loss が再低下
+- **Benign Overfitting**: 補間しながらも汎化できる理論的条件
+- 深層モデルはバイアス低・バリアンス高だが二重降下で回避
+
+
+---
+
+# 正則化手法
+
+- **L2 正則化 (Weight Decay)**: loss += λ Σ wᵢ² — 重みを小さく保つ
+- **L1 正則化 (Lasso)**: loss += λ Σ |wᵢ| — スパース解を誘導
+- **Dropout**: 学習時ランダムにニューロンをマスク (p = 0.1〜0.5)
+- **Early Stopping**: Validation ロスの最小点で学習を停止
+- **Mixup / CutMix**: サンプル間の線形補間で汎化性向上
+- **Label Smoothing**: y = 0.9·one_hot + 0.1/K で過信を抑制
+
+
+---
+
+<!-- _class: lead -->
+# 2. 最適化と損失関数
+
+- 損失設計と勾配ベース最適化の理論と実践
+
+
+---
+
+# 損失関数の種類
+
+- **MSE**: L = (1/n) Σ (yᵢ − ŷᵢ)² — 回帰の標準、外れ値に敏感
+- **Cross-Entropy**: L = −Σ yᵢ log ŷᵢ — 分類の標準、最大尤度推定
+- **KL Divergence**: DKL(P‖Q) = Σ P log(P/Q) — 分布間距離
+- **Huber Loss**: MSE と MAE のハイブリッド — 外れ値に頑健
+- **Focal Loss**: 難サンプルに重みを置く — 不均衡データ向け
+- **InfoNCE / Contrastive**: 対照学習の目的関数
+
+
+---
+
+# 勾配降下法の原理
+
+- 更新則: θ_{t+1} = θ_t − η ∇_θ L(θ_t; X)
+- 学習率 η の役割: 大きすぎると発散、小さすぎると収束遅延
+- ミニバッチ SGD: B サンプルごとに更新 — 計算と品質のバランス
+![w:800 center](assets/gradient-descent.svg)
+
+
+---
+
+# SGD → Adam → AdamW の進化
+
+- SGD + Momentum: 鞍点を乗り越える慣性を付与
+- AdaGrad: 疎な勾配に適応的学習率 (累積二乗和で除算)
+
+```python
+# Adam optimizer update
+m = beta1 * m + (1 - beta1) * grad       # 1st moment (mean)
+v = beta2 * v + (1 - beta2) * grad**2    # 2nd moment (variance)
+m_hat = m / (1 - beta1**t)               # bias correction
+v_hat = v / (1 - beta2**t)
+theta -= lr * m_hat / (sqrt(v_hat) + eps)
+# AdamW: L2 weight decay を最適化ステップの外に分離
+theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
+```
+
+
+---
+
+# 学習率スケジューリング
+
+- **Warmup**: 初期の不安定な勾配を避けるため学習率を徐々に増加
+- **Cosine Decay**: η(t) = η_min + 0.5(η_max−η_min)(1+cos(πt/T))
+- **Linear Decay**: シンプルで BERT 系モデルに広く使用
+- **OneCycleLR**: 超収束 — 1サイクルで高速学習 (Smith 2018)
+- **Inverse Square Root**: Transformer 原論文の手法
+- **LR Finder**: 小バッチで sweep して最適学習率を探索
+
+
+---
+
+# 損失地形と局所最適解
+
+- 高次元パラメータ空間では真の局所最小解は稀 — 多くは鞍点
+- **シャープ最小値 vs フラット最小値**: フラットほど汎化が良い傾向
+- **SAM (Sharpness-Aware Minimization)**: フラット最小を明示的に探索
+- **Loss Landscape 可視化**: Filter Normalization (Li et al., 2018)
+- 過パラメータ化が不思議なほど良い最小値へ収束しやすくする
+- ランダム性 (SGD ノイズ) が暗黙的にフラット最小値を選択
+
+
+---
+
+# 勾配クリッピングと学習安定化
+
+- **勾配爆発**: 深いNNで勾配が指数的に増大 → 発散
+- **Gradient Clipping**: ‖g‖ > τ なら g ← g × (τ/‖g‖)
+- **LayerNorm / RMSNorm**: 各層の活性化を正規化して安定化
+- **BF16**: FP32 と同じ指数域 — LLM 学習の実質標準
+- **Dynamic Loss Scaling**: FP16 のアンダーフロー防止
+- Gradient Checkpointing: 活性化を再計算でメモリ節約
+
+
+---
+
+<!-- _class: lead -->
+# 3. ニューラルネットワーク基礎
+
+- パーセプトロンから深層モデルへ
+
+
+---
+
+# パーセプトロンからMLPへ
+
+- パーセプトロン (Rosenblatt 1957): 線形分離可能な問題のみ解ける
+- **XOR 問題**: 単層では解けず → 多層が必要 (Minsky & Papert 1969)
+- **普遍近似定理**: 十分な幅の1隠れ層 NN は任意の連続関数を近似
+![w:820 center](assets/neural-network-mlp.svg)
+
+
+---
+
+# 活性化関数の進化
+
+- **Sigmoid**: σ(z) = 1/(1+e^{−z}) — 勾配消失問題あり
+- **tanh**: (e^z − e^{−z})/(e^z + e^{−z}) — 中心化で Sigmoid 改善
+- **ReLU**: max(0, z) — 勾配消失を大幅改善 (Krizhevsky 2012)
+- **Leaky ReLU**: max(αz, z) — Dead ReLU を防止
+- **GELU**: z·Φ(z) — BERT / GPT 系で標準採用
+- **SiLU (Swish)**: z·σ(z) — LLaMA / Gemma 系で採用
+
+
+---
+
+# 誤差逆伝播法 (Backpropagation)
+
+- **連鎖律**: ∂L/∂w = (∂L/∂a)(∂a/∂z)(∂z/∂w)
+- 計算グラフで演算ノードを通じて勾配を自動微分
+- PyTorch / JAX の autograd が実装の核心
+![w:820 center](assets/backprop-graph.svg)
+
+
+---
+
+# バッチ正規化 (Batch Normalization)
+
+- **内部共変量シフト**: 学習中に各層の入力分布が変化する問題
+- **BN 操作**: x̂ = (x−μ_B)/σ_B, y = γx̂+β (学習可能パラメータ γ, β)
+- 効果: 学習安定化 / 高学習率使用可 / 正則化効果
+- **LayerNorm**: バッチでなく特徴次元で正規化 — Transformer で使用
+- **RMSNorm**: γx/RMS(x) — LayerNorm より計算効率が高い
+- **GroupNorm**: チャネルをグループ分けして正規化 — 小バッチでも安定
+
+
+---
+
+# ドロップアウトと正則化
+
+- **Dropout** (Srivastava 2014): 訓練時に確率 p でユニットをゼロ化
+- **アンサンブル解釈**: 指数的な数のサブネットの平均と等価
+- **Inverted Dropout**: テスト時に (1−p) 補正で期待値を一致
+- **DropPath / Stochastic Depth**: 残差ブランチ全体をドロップ
+- LLM では Dropout より Weight Decay が主流
+- 過学習の種類に応じた正則化手法の選択が重要
+
+
+---
+
+# 残差接続 (ResNet)
+
+- **消失勾配問題**: 深いNNで勾配が指数的に縮小する問題
+- **残差ブロック**: H(x) = F(x) + x — 恒等写像をスキップ
+- 勾配の直接経路: スキップ接続を通じて勾配がダイレクトに流れる
+- ResNet-152 で ImageNet SOTA を達成 (He et al., 2016)
+- **Pre-Activation ResNet**: BN + ReLU → Conv の順で勾配流改善
+- Transformer の残差接続も同じ原理 — 深さへの鍵
+
+
+---
+
+# 初期化戦略
+
+- ゼロ初期化の問題: 対称性が破れず全ニューロンが同一更新
+- **Xavier 初期化**: Var(w) = 2/(n_in + n_out) — tanh / sigmoid 向け
+- **He / Kaiming 初期化**: Var(w) = 2/n_in — ReLU 向け (推奨)
+- **LeCun 初期化**: Var(w) = 1/n_in — SELU 活性化と組み合わせ
+- **正規直交初期化**: 勾配ノルムの等尺性保持 (Saxe et al., 2014)
+- μP (Maximal Update Parameterization): スケール不変の初期化
+
+
+---
+
+<!-- _class: lead -->
+# 4. 深層学習アーキテクチャ
+
+- CNN / RNN / Transformer の設計原理
+
+
+---
+
+# CNN: 畳み込みの仕組み
+
+- **局所受容野**: 各フィルタは空間的に局所なパターンを検出
+- **重み共有**: 同じフィルタを全位置に適用 → パラメータ削減
+- 演算: (I * K)(i,j) = Σ_{m,n} I(i+m, j+n)·K(m,n)
+- **ストライド**: フィルタ移動間隔 — 空間解像度を削減
+- **特徴マップの積み上げ**: チャネル数 ↑ × 空間解像度 ↓ が基本設計
+- 受容野 (Receptive Field): 深い層ほど入力の広い領域を統合
+
+
+---
+
+# CNNの進化
+
+- **AlexNet (2012)**: ReLU + Dropout + GPU — 深層学習の火付け役
+- **VGGNet (2014)**: 3×3 Conv の積み重ね — シンプルかつ深い
+- **GoogLeNet / Inception (2014)**: Inception Module — 多スケール特徴
+- **ResNet (2016)**: 残差接続 — 152層の超深層化を実現
+- **EfficientNet (2019)**: NAS + Compound Scaling — 精度・効率の最前線
+- **ConvNeXt (2022)**: Transformer 設計を CNN に導入
+
+
+---
+
+# RNN / LSTM の仕組み
+
+- **RNN**: h_t = tanh(W_h h_{t-1} + W_x x_t + b)
+- **長期依存問題**: 長いシーケンスで勾配が消失または爆発
+- **LSTM (Hochreiter 1997)**: 忘却ゲート f / 入力ゲート i / 出力ゲート o + Cell state c
+- セル状態: 長期記憶の担体 — ゲートで制御されて情報を保持
+- **GRU (Cho 2014)**: LSTM を簡略化 — 2 ゲートでパラメータ削減
+- Seq2Seq + Attention: RNN 時代の機械翻訳標準手法
+
+
+---
+
+# Attention 機構の原理
+
+- RNN の固定長ベクトル圧縮による情報ボトルネックを解消
+- **Scaled Dot-Product**: Attention(Q,K,V) = softmax(QKᵀ/√d_k)·V
+- Q / K / V: 同じ入力から線形変換で生成 (Self-Attention)
+![w:840 center](assets/attention-mechanism.svg)
+
+
+---
+
+# Transformer アーキテクチャ
+
+- Vaswani et al. (2017): 「Attention is All You Need」
+- Encoder-only (BERT) / Decoder-only (GPT) / Enc-Dec (T5) の3系統
+- FFN: 2層MLP、幅は Attention の4倍が標準
+![w:640 center](assets/transformer-arch.svg)
+
+
+---
+
+# Multi-Head Self-Attention の詳細
+
+- h 個の独立した Attention ヘッドを並列実行 → 多様な依存を捕捉
+- 各ヘッド: d_head = d_model / h 次元で独立した Q/K/V 変換
+- 出力: Concat([head₁, ..., headₕ]) · W_O で統合
+- ヘッド多様性: 構文 / 意味 / 照応解決などに自然に特化
+- **Causal Masking**: デコーダでは未来トークンを -∞ でマスク
+- **Flash Attention**: IO-aware 実装で 4〜10× 高速化 (Dao 2022)
+
+
+---
+
+# 位置エンコーディング
+
+- Transformer は順序情報を持たない → 位置情報を明示的に付与
+- **Sinusoidal** (原論文): PE(pos, 2i) = sin(pos/10000^{2i/d})
+- **学習可能位置埋め込み**: BERT — 最大長のルックアップテーブル
+- **RoPE** (Rotary PE): 相対位置を回転行列で表現 — LLaMA / GPT-NeoX
+- **ALiBi**: Attention スコアに線形バイアス — 学習超えの長文外挿に強い
+- **YaRN / LongRoPE**: コンテキスト長拡張に対応した RoPE 変種
+
+
+---
+
+# Vision Transformer (ViT)
+
+- **画像パッチ化**: 16×16 ピクセルのパッチを「トークン」として処理
+- **ViT** (Dosovitskiy 2020): 大規模事前学習で ResNet を超える
+- スケーリング依存性: CNN より大量データで初めて性能を発揮
+- **DeiT**: 蒸留により ImageNet-1k 単独でも高精度 (Touvron 2021)
+- **Swin Transformer**: 階層構造 + Window Attention — 物体検出に最適
+- **MAE**: ランダムマスクパッチの復元による自己教師あり事前学習
+
+
+---
+
+<!-- _class: lead -->
+# 5. 自己教師あり学習と事前学習
+
+- ラベルなしデータから汎用表現を獲得する手法群
+
+
+---
+
+# 自己教師あり学習の概念
+
+- **定義**: データ自身から自動的に監督シグナルを生成する学習枠組み
+- プレテキストタスク: 回転予測 / ジグソーパズル / 色付け / マスク予測
+- 大規模ラベルなしデータの活用 — 人手アノテーション不要
+- **表現学習の目標**: 下流タスクへの転移学習に有用な汎用表現
+- 自然言語はテキスト自体がプレテキストタスクの宝庫 (次トークン予測)
+- 事前学習の品質が下流タスクの上限を決める
+
+
+---
+
+# マスク言語モデリング (BERT)
+
+- **BERT** (Devlin 2018): 双方向エンコーダによる文脈表現の学習
+- **MLM**: 入力の 15% をランダムマスク → マスクトークンを予測
+- → 80% を [MASK]、10% をランダム語、10% を元の語に置換
+- **NSP** (Next Sentence Prediction): 文ペアの連続性を予測
+- **RoBERTa**: NSP 廃止 + 大バッチ + 動的マスキング → 大幅改善
+- **DeBERTa**: 分離注意機構 + 絶対位置デコーダ → さらなる向上
+
+
+---
+
+# 自己回帰型事前学習 (GPT 系)
+
+- 目標: 次トークン予測 — P(x_t | x_1, ..., x_{t-1}) の最大化
+- **GPT-1 (2018)**: 大規模コーパス事前学習 → 少量データで微調整
+- **GPT-2 (2019)**: 1.5B パラメータ — Zero-shot マルチタスク
+- **GPT-3 (2020)**: 175B パラメータ — In-context Learning の発見
+- Causal Masking: 未来トークンへのアクセスを禁止
+- スケールアップの一貫性: 損失はべき乗則で改善し続ける
+
+
+---
+
+# 対照学習 (Contrastive Learning)
+
+- 目標: 類似ペアの表現を近づけ、非類似ペアを遠ざける
+- **InfoNCE Loss**: L = −log[exp(sim(zᵢ,zⱼ)/τ) / Σ_k exp(sim(zᵢ,z_k)/τ)]
+- **SimCLR**: 同画像の2種 Augmentation を正例、バッチ内他を負例
+- **MoCo**: Momentum Encoder + キューで大規模負例を効率管理
+- **CLIP** (Radford 2021): 画像-テキストペア 4億件から共同表現を学習
+- Hard Negative Mining: 難しい負例ほど表現品質の向上に有効
+
+
+---
+
+# MAE / SimMIM
+
+- **MAE** (He 2021): 画像の 75% のパッチをランダムマスク → ピクセル復元
+- 非対称 Encoder-Decoder: 可視パッチのみ Encoder へ入力 → 高速
+- MAE の洞察: 画像は高度に冗長 → 難しい補完タスクが表現品質向上
+- **SimMIM** (2022): スパース線形ヘッドで raw pixel を直接予測
+- **BEiT**: dVAE 由来の離散トークン予測 — DALL-E の離散 VAE を利用
+- 下流転移: Fine-tuning / Linear Probe で BERT 類似の転移学習
+
+
+---
+
+# Instruction Tuning の登場
+
+- **FLAN** (Wei 2021): 60+ データセットを自然言語指示に変換
+- **Instruction Following**: 指示文を理解して多様なタスクをゼロショット実行
+- **InstructGPT** (2022): SFT + RLHF で有害出力を大幅削減
+- **SuperNI** (2022): 1600 以上のタスク指示セット
+- **Alpaca / Vicuna**: ChatGPT 出力を教師データとしたオープンモデル
+- 指示の品質と多様性がモデルの汎化能力を決定する
+
+
+---
+
+# 思考連鎖 (CoT) 事前学習
+
+- **CoT Prompting** (Wei 2022): 中間推論ステップを含む few-shot 例で推論誘導
+- **Zero-Shot CoT**: 「Let's think step by step」のみで推論を引き出す
+- **STaR** (Self-Taught Reasoner): 自己生成した正解推論でブートストラップ
+- **Think Tokens** (o1 / R1): <think>...</think> で長い推論を展開
+- **Process Reward Model (PRM)**: 各推論ステップの正しさを評価
+- **GRPO / REINFORCE++**: RL で推論品質を直接最適化
+
+
+---
+
+<!-- _class: lead -->
+# 6. スケーリング則
+
+- 計算量・データ・モデルサイズの関係
+
+
+---
+
+# Kaplan スケーリング則 (2020)
+
+- Kaplan et al. (2020): 計算量・モデルサイズ・データの3要素の冪乗則
+- L(N) ∝ N^{−0.076}: パラメータ数に対する冪乗的損失減少
+- L(C) ∝ C^{−0.050}: 計算量 FLOPs に対する冪乗的損失減少
+![w:800 center](assets/scaling-laws.svg)
+
+
+---
+
+# Chinchilla スケーリング則 (2022)
+
+- **Hoffmann et al. (2022)**: Kaplan 則への反論 — 最適 N/D 配分の再考
+- Chinchilla (70B / 1.4T tokens) が GPT-3 (175B / 300B) を凌駕
+- 最適配分: N ∝ C^{0.5}, D ∝ C^{0.5} — モデルとデータを等比率で
+- **D ≈ 20N** が実用的な経験則 (N: パラメータ数)
+- **LLaMA / Mistral**: Chinchilla 則に基づく高効率トレーニング
+- Llama 3: 405B / 15T tokens — 推論コスト最適化を重視
+
+
+---
+
+# 創発能力 (Emergent Abilities)
+
+- **Wei et al. (2022)**: 特定スケール閾値を超えると突然能力が出現
+- 算数 / 多段階推論 / BIG-bench: 小規模では偶然以下 → 大規模で急伸
+- **段階的 vs 突然**: 評価指標の選択がグラフの形状に影響 (Schaeffer 2023)
+- **Few-shot ICL**: プロンプト内の例からのタスク推定能力
+- **Chain-of-Thought**: 中間推論ステップの自発的展開
+- Calibration の破綻: 大規模化で confidence が過剰になる傾向
+
+
+---
+
+# データ・計算・モデルの最適配分
+
+- 固定計算予算: C ≈ 6ND FLOPs (N: パラメータ数, D: トークン数)
+- Compute-optimal: N* ∝ C^{0.5}, D* ∝ C^{0.5}
+- **Inference-efficiency 重視**: 推論コストを考慮した小モデル + 多データ
+- **Multi-epoch 訓練**: データ拡張・合成データで無限データ化を目指す
+- データ反復: 同データの複数エポック — 1〜2 エポックが実用的最大
+- GPT-4 / Gemini 1.5 Ultra はパラメータを非公開 — 新しい配分の可能性
+
+
+---
+
+<!-- _class: lead -->
+# 7. ファインチューニングとアライメント
+
+- SFT / RLHF / DPO / PEFT の理論と実装
+
+
+---
+
+# Supervised Fine-Tuning (SFT)
+
+- 目標: 事前学習モデルをタスク固有データでパラメータ更新
+- Instruction-Response ペア: 指示文と模範回答のペアで学習
+- 学習率: 事前学習の 1/10〜1/100 — 壊滅的忘却を防ぐ
+- **Catastrophic Forgetting**: FT 時に事前学習の汎用知識が失われる問題
+- 解決策: SFT データと事前学習データの混合 / 低学習率
+- **データ品質 >> データ量**: 1000件の高品質データが大量低品質データを超える
+
+
+---
+
+# RLHF: 強化学習による人間フィードバック
+
+- Ziegler et al. (2019) / InstructGPT (2022) が実用化を確立
+- KL 制約: L = R(π) − β DKL(π ‖ π_ref) で発散を防止
+- 人間評価コスト: 数万件の比較ラベルが必要
+![w:860 center](assets/rlhf-pipeline.svg)
+
+
+---
+
+# 報酬モデルの学習
+
+- **Bradley-Terry モデル**: P(y_w > y_l | x) = σ(r(x,y_w) − r(x,y_l))
+- **損失関数**: L = −log σ(r(x,y_w) − r(x,y_l))
+- RM のアーキテクチャ: SFT モデルに線形ヘッドを追加
+- **Reward Hacking**: RL が RM の弱点を突いてスコアを水増し
+- **Overoptimization**: KL 増大で実際の人間評価が低下する現象
+- **Ensemble RM**: 複数報酬モデルの統計で不確実性を推定
+
+
+---
+
+# PPO 最適化
+
+- **PPO** (Schulman 2017): Clip でポリシー変化を制限して安定学習
+- **クリップ目的**: L = E[min(r_t(θ)·A_t, clip(r_t(θ), 1−ε, 1+ε)·A_t)]
+- r_t(θ) = π_θ(a_t|s_t) / π_{old}(a_t|s_t): 重要度比
+- 価値関数ネットワーク: 状態価値 V(s) を学習 — Advantage の推定
+- KL ペナルティ: 参照モデルとの KL 発散をペナルティとして加算
+- 実装の複雑さ: RM / Actor / Critic / Reference の4モデルを同時管理
+
+
+---
+
+# DPO: 直接選好最適化
+
+- Rafailov et al. (2023): RLHF を PPO なしに単一損失で実現
+- 最適方策のクローズドフォーム: π* ∝ π_ref · exp(r/β)
+
+```python
+# DPO Loss (Rafailov et al., 2023)
+def dpo_loss(pi_logp_w, pi_logp_l, ref_logp_w, ref_logp_l, beta=0.1):
+    pi_ratio_w = pi_logp_w - ref_logp_w  # chosen
+    pi_ratio_l = pi_logp_l - ref_logp_l  # rejected
+    loss = -F.logsigmoid(beta * (pi_ratio_w - pi_ratio_l))
+    return loss.mean()
+# SimPO: length-normalized, no ref model needed
+# KTO: binary preference signal (liked/disliked)
+```
+
+
+---
+
+# GRPO / REINFORCE++
+
+- **GRPO** (DeepSeek-R1): グループ相対方策最適化 — 価値関数ネットワーク不要
+- アドバンテージ: グループ内の相対スコアで Advantage を計算
+- **REINFORCE++**: 分散低減のためベースライン付き REINFORCE
+- 数学タスクへの適用: 検証可能な正誤で自動報酬 — 人手評価不要
+- **DeepSeek-R1-Zero**: SFT なしで RL のみで推論能力が自発的に出現
+- Self-Play: モデルが自らに対して学習 — 能力のブートストラップ
+
+
+---
+
+# PEFT: パラメータ効率的ファインチューニング
+
+- 動機: 170B モデルの完全 FT には数百 GB の VRAM が必要
+- **Adapter** (Houlsby 2019): 各層に小型 FFN を挿入 → 全パラメータの 1%
+- **Prefix Tuning**: Key/Value に連続的な「soft prompt」を前置
+- **Prompt Tuning**: 入力埋め込みのみを学習 — 極端なパラメータ削減
+- **IA³**: スケーリングベクターで活性化を調整 — Few-shot PEFT
+- **LoRA**: 低ランク行列近似 — 現在最も広く使われる手法
+
+
+---
+
+# LoRA / QLoRA
+
+- LoRA: W + ΔW = W + BA (B∈R^{d×r}, A∈R^{r×k}, r << min(d,k))
+
+```python
+class LoRALayer(nn.Module):
+    def __init__(self, d_in, d_out, rank=16, alpha=32):
+        super().__init__()
+        self.W = nn.Linear(d_in, d_out, bias=False)
+        self.W.requires_grad_(False)      # freeze base model
+        self.A = nn.Parameter(torch.randn(d_in, rank) * 0.01)
+        self.B = nn.Parameter(torch.zeros(rank, d_out))
+        self.scale = alpha / rank         # alpha/r scaling
+    def forward(self, x):
+        return self.W(x) + (x @ self.A @ self.B) * self.scale
+# QLoRA: 4-bit NF4 quantization + Double Quant + LoRA
+```
+
+
+---
+
+<!-- _class: lead -->
+# 8. 学習データとデータエンジニアリング
+
+- データ品質・キュレーション・合成データの実際
+
+
+---
+
+# 学習データの品質と規模
+
+- **Common Crawl**: 数 PB の Web テキスト — 低品質・有害コンテンツを含む
+- **The Pile** (2021): 多様な高品質ソース 825 GB のキュレーション済みデータ
+- **FineWeb** (2024): CC から高品質フィルタリング — 15T tokens
+- データ混合比: コードデータが大量に含まれると推論能力が向上
+- **多言語不均衡**: 日本語/中国語等は英語の 1/50 以下
+- 法的問題: 著作権データの扱い — Books3, LibGen 等で訴訟
+
+
+---
+
+# データキュレーションパイプライン
+
+- 言語識別 → 重複排除 → 品質フィルタ → 有害コンテンツ除去
+- **MinHash LSH**: 近似近傍ハッシュによる大規模重複排除
+- **Perplexity フィルタ**: 言語モデルスコアで低品質テキストを除去
+- **Deduplication の重要性**: 重複データは汎化を損ない記憶を促進
+- **Quality Classifier**: GPT-4 / Claude でアノテートし品質スコアを付与
+- 規模が増えるほどフィルタリングの精度が全体品質を左右
+
+
+---
+
+# データ汚染と評価セット独立性
+
+- **データ汚染**: 評価ベンチマークのデータが訓練データに混入する問題
+- 汚染モデルはベンチマークを「暗記」→ 実能力より高いスコアを報告
+- **汚染検出**: n-gram 重複率 / Perplexity スパイク / カナリアデータ
+- **LiveBench / GPQA**: 定期更新 / 非公開で汚染を防ぐ設計
+- テストセットは一度だけ使用 — 複数回使うと過楽観バイアス
+- コミュニティへの提言: 評価データは秘匿し公開を最小限に
+
+
+---
+
+# 合成データと自己改善ループ
+
+- **Alpaca / Vicuna**: GPT-4 出力で蒸留 — コスト効率的に能力獲得
+- **Self-Instruct** (2023): LLM が自ら指示データを生成 → フィルタ → FT
+- **STaR / ReST**: 自己生成の正しい推論例でブートストラップ
+- **Phi-1/2/3**: 小モデルでも高品質合成データで大モデルに匹敵
+- 合成データの限界: 多様性欠如 / 幻覚の伝播 / モデル崩壊リスク
+- **検証可能タスク** (数学・コード): 自動報酬で合成データの品質保証
+
+
+---
+
+<!-- _class: lead -->
+# 9. 分散学習・並列化
+
+- 大規模モデルを効率よく訓練する並列化戦略
+
+
+---
+
+# 分散学習の並列化戦略
+
+- 各手法の適用範囲は問題規模とハードウェアに依存する
+- データ並列: モデルがGPU 1台に収まる場合の標準手法
+- モデル並列: 単一モデルが 1GPU を超える場合に必要
+![w:880 center](assets/distributed-training.svg)
+
+
+---
+
+# モデル並列処理とテンソル並列
+
+- **テンソル並列** (Megatron-LM): 重み行列を GPU 間で列/行方向に分割
+- Column 並列: W_Q, W_K, W_V を分割 → 各 GPU が独立して計算
+- Row 並列: FFN の 2層目を分割 → AllReduce で結合
+- 通信コスト: 各 Forward で AllReduce が必要 — NVLink 帯域が律速
+- **Expert 並列**: MoE の各 Expert を異なる GPU に配置
+- **FSDP** (PyTorch): ZeRO-3 相当のパラメータシャーディング
+
+
+---
+
+# パイプライン並列化
+
+- モデルの層を複数ステージに分割し、各 GPU に割り当て
+- **バブル問題**: ステージ間の待ち時間 — GPU 使用率が低下
+- **GPipe**: マイクロバッチでバブル低減 — バブル率 (p-1)/(m+p-1)
+- **1F1B** (PipeDream): 1 Forward → 1 Backward を交互に実行
+- **Interleaved 1F1B**: 仮想ステージを使いバブルをさらに削減
+- 最適ステージ数: バブル率と通信コストのトレードオフ
+
+
+---
+
+# ZeRO / 3D 並列
+
+- **ZeRO** (DeepSpeed): Zero Redundancy Optimizer — パラメータ冗長を排除
+- **ZeRO-1**: オプティマイザ状態のシャーディング
+- **ZeRO-2**: + 勾配のシャーディング
+- **ZeRO-3 / FSDP**: + パラメータのシャーディング — 最大のメモリ削減
+- **3D 並列**: データ並列 × テンソル並列 × パイプライン並列の組み合わせ
+- Megatron-DeepSpeed: 100B+ 規模の学習で実績
+
+
+---
+
+# 混合精度学習と勾配チェックポイント
+
+- **FP16**: 2 bytes/param — 一部の演算で数値不安定
+- **BF16**: FP32 と同じ指数域 — LLM 学習の実質標準 (Ampere 以降)
+- 混合精度: BF16 で演算 + FP32 のマスターコピーで勾配更新
+- **Dynamic Loss Scaling**: FP16 アンダーフロー防止の自動スケーリング
+- **Gradient Checkpointing**: 活性化を再計算 → メモリ O(√n) へ削減
+- FlashAttention-2/3: IO-aware な計算で GPU HBM 帯域を最大活用
+
+
+---
+
+<!-- _class: lead -->
+# 10. 最新研究トレンド
+
+- 2024〜2026年の主要ブレークスルー
+
+
+---
+
+# Mixture of Experts (MoE)
+
+- FFN 層を N 個の Expert に置き換え — 上位 K 個のみ実行
+- **Mixtral 8x7B** (2023): 8 Expert 中 2 使用 — 46.7B params / 12.9B active
+- Expert のロードバランス: routing collapse を防ぐ auxiliary loss
+![w:760 center](assets/moe-architecture.svg)
+
+
+---
+
+# Test-Time Compute (TTC)
+
+- **パラダイムシフト**: 学習コストではなく推論コストをスケール
+- **Best-of-N Sampling**: N 個の出力を生成 → PRM で最良を選択
+- **Tree Search / MCTS**: 推論過程を木探索で最適化
+- **o1** (OpenAI 2024): <think> トークンで内部推論を展開
+- **DeepSeek-R1**: RL で自発的な長い思考連鎖を誘導
+- 二重スケーリング: 事前学習コスト × 推論コストの両軸で性能向上
+
+
+---
+
+# マルチモーダル学習
+
+- **VLM** (Vision-Language Model): 画像とテキストを統合して処理
+- **CLIP** (Radford 2021): 4億ペアのコントラスト学習で視覚-言語表現
+- **LLaVA**: CLIP 視覚エンコーダ + LLM — オープンソース VLM の標準
+- **GPT-4V / Gemini**: ネイティブマルチモーダル — テキスト/画像/動画/音声
+- **Video-LLM**: 時系列フレームを処理するための時間的整合機構
+- 統合アーキテクチャ: モダリティ固有エンコーダ + 統一 Transformer
+
+
+---
+
+# 拡散モデルの学習
+
+- **DDPM** (Ho 2020): q(x_t|x_{t-1}) = N(√αx_{t-1}, (1-α)I) でノイズ付加
+- **逆拡散**: εθ(x_t, t) でノイズを予測 → 段階的にデノイズ
+- **単純損失**: L = E[‖ε − εθ(√ᾱx₀+√(1-ᾱ)ε, t)‖²]
+- **DDIM**: 非マルコフ過程で決定論的サンプリング — 10× 高速化
+- **Stable Diffusion**: Latent Diffusion — 潜在空間でのノイズ除去
+- **Flow Matching**: 確率フロー ODE で拡散を統一的に定式化
+
+
+---
+
+# World Models と予測学習
+
+- **World Model**: 環境ダイナミクス s_{t+1} = f(s_t, a_t) を内化
+- **Dreamer** (Hafner 2020): 潜在空間でのロールアウトで RL を高速化
+- **JEPA** (LeCun): Joint Embedding Predictive Architecture — 潜在空間予測
+- I-JEPA / V-JEPA: 画像・動画の JEPA 実装
+- **Sora** 等の動画生成: 暗黙的に World Model を学習している可能性
+- AGI への道: 世界の因果構造を内化したモデルの構築
+
+
+---
+
+# Constitutional AI と RLAIF
+
+- **Anthropic (2022)**: 原則集 (Constitution) に基づく自己批判・改訂
+- **RLAIF**: 人手ではなく AI フィードバックで RL — スケーラブル
+- **Critique & Revision**: モデルが自らの出力を批判 → 修正
+- **3H 原則**: Helpful / Harmless / Honest の定式化
+- **Scalable Oversight**: 超人的 AI のアライメントへの布石
+- **Debate** (Irving 2018): AI 同士が主張を戦わせ人間が判断
+
+
+---
+
+# Speculative Decoding
+
+- **問題**: LLM の自己回帰生成は GPU の memory bandwidth 律速
+- **Speculative Decoding** (Chen 2023): Draft モデルで複数トークン先読み
+- 検証ステップ: Target LLM が Draft の全トークンを並列検証
+- **数学的等価性**: 受け入れ率調整で Target LLM と完全に等価な出力
+- 速度向上: 2〜3× の高速化 (Drafter と Target の分布が近いほど有効)
+- **Medusa / EAGLE**: 複数ヘッドで並列生成するアーキテクチャ改変手法
+
+
+---
+
+<!-- _class: lead -->
+# 11. 解釈可能性と評価
+
+- モデルの内部動作の理解と性能測定の方法論
+
+
+---
+
+# 主要ベンチマーク概観
+
+- **MMLU** (2021): 57 分野 14,000 問 — 幅広い知識評価
+- **HumanEval / MBPP**: コード生成 — pass@k で機能的正確さを測定
+- **MATH** (Hendrycks 2021): 数学問題集 — 解法ステップが必要
+- **GPQA Diamond**: 博士レベル科学問題 — 専門家でも 69% 程度
+- **SWE-bench**: 実 GitHub Issues の修正 — エンジニアリング能力測定
+- **FrontierMath**: 未公開の最難関数学問題 — 現行モデルは 1% 未満
+
+
+---
+
+# Mechanistic Interpretability
+
+- 目標: 「なぜその答えを出したか」を回路レベルで解明
+- **Circuit Analysis**: サブネットワーク (circuit) が特定タスクを担当
+- **IOI** (Indirect Object Identification): 注意ヘッドの役割特定 (Wang 2022)
+- **Superposition**: 1ニューロンが複数特徴を重ね合わせて表現
+- **Sparse AutoEncoder (SAE)**: 単一の解釈可能特徴を線形分離
+- Anthropic: 百万規模の SAE で特徴辞書を構築 (Monosemanticity)
+
+
+---
+
+# 内部表現の可視化
+
+- **Probing**: 線形分類器でニューロン表現に格納された情報を検査
+- **Activation Atlas** (Carter 2019): UMAP + Concept Activation Vectors
+- **Logit Lens**: 中間層の残差ストリームを語彙空間に投影して可視化
+- **Attention Pattern Analysis**: ヘッドの注意パターン — 構文/共参照/コピー
+- **Representation Engineering (RepE)**: 概念の方向ベクトルを直接操作
+- **Linear Representation Hypothesis**: 概念は残差ストリームの線形方向に存在
+
+
+---
+
+# 評価の限界と課題
+
+- **ベンチマーク飽和**: モデルが人間レベルを超えても能力差が見えない
+- **データ汚染**: 訓練データとの重複で過楽観な結果
+- **ゲームプレイ**: スコア最大化に最適化 → 実能力と乖離
+- **Elicitation Gap**: モデルが持つ能力と評価で引き出せる能力のギャップ
+- **多次元能力**: 単一スコアでの比較は誤解を招く
+- **安全性評価**: 有害出力の定量化の難しさ — 標準化が急務
+
+
+---
+
+<!-- _class: lead -->
+# 12. まとめと展望
+
+- AIの学習の変遷と未解決問題
+
+
+---
+
+# 学習パラダイムの変遷まとめ
+
+- **1990-2010**: 特徴量エンジニアリング + 浅い学習 (SVM, Boosting)
+- **2012**: AlexNet — 深層学習の幕開け、特徴量の自動学習
+- **2017**: Transformer — Self-Attention と自己回帰生成の確立
+- **2020**: GPT-3 — In-context Learning とスケーリング則の確立
+- **2022**: ChatGPT / RLHF — アライメントと Instruction Following
+- **2024〜**: o1 / R1 / TTC — 推論コストのスケーリングへ
+
+
+---
+
+# 未解決問題と今後の方向性
+
+- **幻覚問題**: 事実根拠のない自信ある出力の根絶
+- **継続学習**: 壊滅的忘却なしに新知識を追加更新
+- **合成知識**: 学習データを超えた新規概念の真の理解と創造
+- **AGI の定義**: どうすれば汎化が「十分」と言えるか
+- **安全性と整合性**: 超人的 AI と人間価値観の整合 (Scalable Oversight)
+- **エネルギー効率**: 脳 (20W) vs GPU クラスター (100MW) のギャップ
+

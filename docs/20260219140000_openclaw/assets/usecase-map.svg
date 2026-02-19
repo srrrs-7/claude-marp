@@ -1,0 +1,56 @@
+<svg viewBox="0 0 860 460" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <text x="430" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#333">OpenClaw ユースケース全体マップ</text>
+
+  <!-- Center -->
+  <ellipse cx="430" cy="240" rx="70" ry="50" fill="#e53935"/>
+  <text x="430" y="234" text-anchor="middle" font-size="13" font-weight="bold" fill="white">🦞</text>
+  <text x="430" y="254" text-anchor="middle" font-size="12" font-weight="bold" fill="white">OpenClaw</text>
+
+  <!-- Personal Productivity -->
+  <line x1="365" y1="205" x2="255" y2="130" stroke="#1976d2" stroke-width="2"/>
+  <rect x="120" y="50" width="180" height="90" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+  <text x="210" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#0d47a1">📧 個人生産性</text>
+  <text x="210" y="98" text-anchor="middle" font-size="11" fill="#333">メール自動化</text>
+  <text x="210" y="114" text-anchor="middle" font-size="11" fill="#333">カレンダー管理</text>
+  <text x="210" y="130" text-anchor="middle" font-size="11" fill="#333">タスク整理</text>
+
+  <!-- Developer Tools -->
+  <line x1="430" y1="190" x2="430" y2="115" stroke="#7b1fa2" stroke-width="2"/>
+  <rect x="320" y="50" width="220" height="90" rx="10" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="430" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#4a148c">💻 開発者ツール</text>
+  <text x="430" y="98" text-anchor="middle" font-size="11" fill="#333">コード生成・レビュー</text>
+  <text x="430" y="114" text-anchor="middle" font-size="11" fill="#333">CI/CD連携・デバッグ</text>
+  <text x="430" y="130" text-anchor="middle" font-size="11" fill="#333">GitHub Issue管理</text>
+
+  <!-- Research -->
+  <line x1="495" y1="205" x2="605" y2="130" stroke="#388e3c" stroke-width="2"/>
+  <rect x="560" y="50" width="180" height="90" rx="10" fill="#e8f5e9" stroke="#388e3c" stroke-width="2"/>
+  <text x="650" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#1b5e20">🔍 リサーチ</text>
+  <text x="650" y="98" text-anchor="middle" font-size="11" fill="#333">Web検索・情報収集</text>
+  <text x="650" y="114" text-anchor="middle" font-size="11" fill="#333">要約・レポート作成</text>
+  <text x="650" y="130" text-anchor="middle" font-size="11" fill="#333">データ分析支援</text>
+
+  <!-- Business Automation -->
+  <line x1="365" y1="270" x2="255" y2="345" stroke="#f57c00" stroke-width="2"/>
+  <rect x="120" y="320" width="200" height="90" rx="10" fill="#fff3e0" stroke="#f57c00" stroke-width="2"/>
+  <text x="220" y="348" text-anchor="middle" font-size="13" font-weight="bold" fill="#e65100">🏢 ビジネス自動化</text>
+  <text x="220" y="368" text-anchor="middle" font-size="11" fill="#333">CRM連携</text>
+  <text x="220" y="384" text-anchor="middle" font-size="11" fill="#333">レポート自動生成</text>
+  <text x="220" y="400" text-anchor="middle" font-size="11" fill="#333">ワークフロー管理</text>
+
+  <!-- Smart Home / IoT -->
+  <line x1="430" y1="290" x2="430" y2="360" stroke="#00838f" stroke-width="2"/>
+  <rect x="330" y="355" width="200" height="90" rx="10" fill="#e0f7fa" stroke="#00838f" stroke-width="2"/>
+  <text x="430" y="383" text-anchor="middle" font-size="13" font-weight="bold" fill="#006064">🏠 スマートホーム</text>
+  <text x="430" y="403" text-anchor="middle" font-size="11" fill="#333">IoTデバイス制御</text>
+  <text x="430" y="419" text-anchor="middle" font-size="11" fill="#333">自動化ルーティン</text>
+  <text x="430" y="435" text-anchor="middle" font-size="11" fill="#333">センサー監視</text>
+
+  <!-- Finance -->
+  <line x1="495" y1="270" x2="605" y2="345" stroke="#c62828" stroke-width="2"/>
+  <rect x="540" y="320" width="200" height="90" rx="10" fill="#ffebee" stroke="#c62828" stroke-width="2"/>
+  <text x="640" y="348" text-anchor="middle" font-size="13" font-weight="bold" fill="#b71c1c">💰 ファイナンス</text>
+  <text x="640" y="368" text-anchor="middle" font-size="11" fill="#333">支出追跡・家計管理</text>
+  <text x="640" y="384" text-anchor="middle" font-size="11" fill="#333">投資情報収集</text>
+  <text x="640" y="400" text-anchor="middle" font-size="11" fill="#333">請求書処理</text>
+</svg>

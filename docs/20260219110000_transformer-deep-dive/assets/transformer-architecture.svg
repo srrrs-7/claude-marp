@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117" font-family="sans-serif">
+  <rect width="960" height="480" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="480" y="28" text-anchor="middle" fill="#e6edf3" font-size="18" font-weight="bold">Transformer アーキテクチャ (Vaswani et al. 2017)</text>
+
+  <!-- ===== ENCODER (Left) ===== -->
+  <text x="230" y="55" text-anchor="middle" fill="#818cf8" font-size="15" font-weight="bold">Encoder</text>
+
+  <!-- Encoder Output -->
+  <rect x="80" y="65" width="300" height="34" rx="5" fill="#1e1b4b" stroke="#818cf8" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="230" y="87" text-anchor="middle" fill="#a5b4fc" font-size="12" font-weight="bold">Encoder Output</text>
+
+  <!-- Nx bracket for encoder -->
+  <line x1="75" y1="110" x2="75" y2="295" stroke="#4f46e5" stroke-width="2"/>
+  <line x1="75" y1="110" x2="82" y2="110" stroke="#4f46e5" stroke-width="2"/>
+  <line x1="75" y1="295" x2="82" y2="295" stroke="#4f46e5" stroke-width="2"/>
+  <text x="62" y="207" text-anchor="middle" fill="#818cf8" font-size="13" font-weight="bold">×N</text>
+
+  <!-- Add & Norm 2 (Encoder) -->
+  <rect x="85" y="110" width="290" height="30" rx="4" fill="#1a1a2e" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="230" y="130" text-anchor="middle" fill="#a5b4fc" font-size="11">Add &amp; Norm</text>
+
+  <!-- Feed-Forward -->
+  <rect x="85" y="148" width="290" height="36" rx="4" fill="#1e1b4b" stroke="#818cf8" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="230" y="171" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="bold">Feed-Forward Network</text>
+
+  <!-- Add & Norm 1 (Encoder) -->
+  <rect x="85" y="192" width="290" height="30" rx="4" fill="#1a1a2e" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="230" y="212" text-anchor="middle" fill="#a5b4fc" font-size="11">Add &amp; Norm</text>
+
+  <!-- Multi-Head Self-Attention -->
+  <rect x="85" y="230" width="290" height="36" rx="4" fill="#1e1b4b" stroke="#818cf8" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="230" y="253" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="bold">Multi-Head Self-Attention</text>
+
+  <!-- Input Embedding + PE (Encoder) -->
+  <rect x="85" y="300" width="290" height="40" rx="5" fill="#0f2a1a" stroke="#22c55e" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="230" y="317" text-anchor="middle" fill="#86efac" font-size="11" font-weight="bold">Input Embedding</text>
+  <text x="230" y="332" text-anchor="middle" fill="#86efac" font-size="11">+ Positional Encoding</text>
+
+  <!-- Input text -->
+  <text x="230" y="365" text-anchor="middle" fill="#94a3b8" font-size="12">Input Sequence</text>
+  <line x1="230" y1="368" x2="230" y2="298" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="225,300 230,293 235,300" fill="#22c55e"/>
+
+  <!-- Encoder arrows -->
+  <line x1="230" y1="340" x2="230" y2="302" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="230" y1="267" x2="230" y2="232" stroke="#818cf8" stroke-width="1.5"/>
+  <polygon points="225,234 230,227 235,234" fill="#818cf8"/>
+  <line x1="230" y1="225" x2="230" y2="194" stroke="#818cf8" stroke-width="1.5"/>
+  <polygon points="225,196 230,189 235,196" fill="#818cf8"/>
+  <line x1="230" y1="185" x2="230" y2="150" stroke="#818cf8" stroke-width="1.5"/>
+  <polygon points="225,152 230,145 235,152" fill="#818cf8"/>
+  <line x1="230" y1="144" x2="230" y2="112" stroke="#818cf8" stroke-width="1.5"/>
+  <polygon points="225,114 230,107 235,114" fill="#818cf8"/>
+  <line x1="230" y1="107" x2="230" y2="101" stroke="#818cf8" stroke-width="1.5"/>
+  <polygon points="225,103 230,96 235,103" fill="#818cf8"/>
+
+  <!-- ===== DECODER (Right) ===== -->
+  <text x="730" y="55" text-anchor="middle" fill="#f472b6" font-size="15" font-weight="bold">Decoder</text>
+
+  <!-- Output Probabilities -->
+  <rect x="580" y="65" width="300" height="34" rx="5" fill="#2d0a1e" stroke="#f472b6" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="730" y="87" text-anchor="middle" fill="#f9a8d4" font-size="12" font-weight="bold">Output Probabilities</text>
+
+  <!-- Linear + Softmax -->
+  <rect x="585" y="105" width="290" height="30" rx="4" fill="#2d0a1e" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="730" y="125" text-anchor="middle" fill="#f9a8d4" font-size="11" font-weight="bold">Linear + Softmax</text>
+
+  <!-- Nx bracket for decoder -->
+  <line x1="575" y1="143" x2="575" y2="358" stroke="#db2777" stroke-width="2"/>
+  <line x1="575" y1="143" x2="582" y2="143" stroke="#db2777" stroke-width="2"/>
+  <line x1="575" y1="358" x2="582" y2="358" stroke="#db2777" stroke-width="2"/>
+  <text x="562" y="255" text-anchor="middle" fill="#f472b6" font-size="13" font-weight="bold">×N</text>
+
+  <!-- Add & Norm 3 (Decoder) -->
+  <rect x="585" y="143" width="290" height="28" rx="4" fill="#1a0a14" stroke="#db2777" stroke-width="1.5"/>
+  <text x="730" y="162" text-anchor="middle" fill="#f9a8d4" font-size="11">Add &amp; Norm</text>
+
+  <!-- Feed-Forward (Decoder) -->
+  <rect x="585" y="178" width="290" height="32" rx="4" fill="#2d0a1e" stroke="#f472b6" stroke-width="1.5" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="730" y="199" text-anchor="middle" fill="#f9a8d4" font-size="11" font-weight="bold">Feed-Forward Network</text>
+
+  <!-- Add & Norm 2 (Decoder) -->
+  <rect x="585" y="218" width="290" height="28" rx="4" fill="#1a0a14" stroke="#db2777" stroke-width="1.5"/>
+  <text x="730" y="237" text-anchor="middle" fill="#f9a8d4" font-size="11">Add &amp; Norm</text>
+
+  <!-- Cross Attention -->
+  <rect x="585" y="253" width="290" height="38" rx="4" fill="#1a1028" stroke="#a78bfa" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="730" y="270" text-anchor="middle" fill="#ddd6fe" font-size="11" font-weight="bold">Cross-Attention</text>
+  <text x="730" y="284" text-anchor="middle" fill="#c4b5fd" font-size="10">(Q from Dec, K/V from Enc)</text>
+
+  <!-- Add & Norm 1 (Decoder) -->
+  <rect x="585" y="299" width="290" height="28" rx="4" fill="#1a0a14" stroke="#db2777" stroke-width="1.5"/>
+  <text x="730" y="318" text-anchor="middle" fill="#f9a8d4" font-size="11">Add &amp; Norm</text>
+
+  <!-- Masked Multi-Head Self-Attention -->
+  <rect x="585" y="333" width="290" height="38" rx="4" fill="#2d0a1e" stroke="#f472b6" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="730" y="350" text-anchor="middle" fill="#f9a8d4" font-size="11" font-weight="bold">Masked Multi-Head</text>
+  <text x="730" y="365" text-anchor="middle" fill="#f9a8d4" font-size="11">Self-Attention</text>
+
+  <!-- Output Embedding + PE -->
+  <rect x="585" y="380" width="290" height="40" rx="5" fill="#0f1a2a" stroke="#38bdf8" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="730" y="397" text-anchor="middle" fill="#7dd3fc" font-size="11" font-weight="bold">Output Embedding</text>
+  <text x="730" y="412" text-anchor="middle" fill="#7dd3fc" font-size="11">+ Positional Encoding</text>
+
+  <!-- Output label -->
+  <text x="730" y="448" text-anchor="middle" fill="#94a3b8" font-size="12">Output Sequence (shifted right)</text>
+
+  <!-- Decoder arrows -->
+  <line x1="730" y1="445" x2="730" y2="422" stroke="#38bdf8" stroke-width="1.5"/>
+  <polygon points="725,424 730,417 735,424" fill="#38bdf8"/>
+
+  <line x1="730" y1="371" x2="730" y2="335" stroke="#f472b6" stroke-width="1.5"/>
+  <polygon points="725,337 730,330 235,337" fill="none"/>
+  <polygon points="725,337 730,330 735,337" fill="#f472b6"/>
+
+  <!-- Cross-attention arrow from Encoder to Decoder -->
+  <path d="M380,82 Q480,50 580,272" stroke="#a78bfa" stroke-width="2" fill="none" stroke-dasharray="6,3"/>
+  <polygon points="577,263 582,274 587,263" fill="#a78bfa"/>
+  <text x="478" y="48" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="bold">Encoder Output</text>
+
+  <!-- Bottom note -->
+  <rect x="40" y="440" width="880" height="32" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="480" y="461" text-anchor="middle" fill="#94a3b8" font-size="11">Encoder: 入力を文脈ベクトルに変換  |  Decoder: 文脈ベクトルから出力を生成（自己回帰）  |  Cross-Attention: DecoderがEncoderの情報を参照</text>
+</svg>

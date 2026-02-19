@@ -1,0 +1,48 @@
+<svg viewBox="0 0 840 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="840" height="400" fill="#1A237E" rx="12"/>
+  <text x="420" y="30" text-anchor="middle" fill="white" font-family="sans-serif" font-size="16" font-weight="bold">ゼロトラストアーキテクチャとISMS管理策の対応</text>
+  <!-- Core principle -->
+  <ellipse cx="420" cy="200" rx="95" ry="65" fill="#F9A825" style="filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.5))"/>
+  <text x="420" y="190" text-anchor="middle" fill="#1A237E" font-family="sans-serif" font-size="14" font-weight="bold">Policy</text>
+  <text x="420" y="208" text-anchor="middle" fill="#1A237E" font-family="sans-serif" font-size="14" font-weight="bold">Engine</text>
+  <text x="420" y="226" text-anchor="middle" fill="#1A237E" font-family="sans-serif" font-size="11">Never Trust,</text>
+  <text x="420" y="241" text-anchor="middle" fill="#1A237E" font-family="sans-serif" font-size="11">Always Verify</text>
+  <!-- Left: Identity -->
+  <rect x="25" y="80" width="150" height="100" rx="8" fill="#1565C0" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.4))"/>
+  <text x="100" y="113" text-anchor="middle" fill="white" font-family="sans-serif" font-size="14" font-weight="bold">ID・認証</text>
+  <text x="100" y="132" text-anchor="middle" fill="#BBDEFB" font-family="sans-serif" font-size="11">MFA必須</text>
+  <text x="100" y="148" text-anchor="middle" fill="#BBDEFB" font-family="sans-serif" font-size="11">特権アクセス管理</text>
+  <text x="100" y="164" text-anchor="middle" fill="#BBDEFB" font-family="sans-serif" font-size="11">→ Annex A 8.2</text>
+  <line x1="175" y1="130" x2="325" y2="175" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="325,172 333,178 324,183" fill="#90A4AE"/>
+  <!-- Left-bottom: Device -->
+  <rect x="25" y="230" width="150" height="100" rx="8" fill="#0277BD" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.4))"/>
+  <text x="100" y="263" text-anchor="middle" fill="white" font-family="sans-serif" font-size="14" font-weight="bold">デバイス</text>
+  <text x="100" y="282" text-anchor="middle" fill="#B3E5FC" font-family="sans-serif" font-size="11">端末管理(MDM)</text>
+  <text x="100" y="298" text-anchor="middle" fill="#B3E5FC" font-family="sans-serif" font-size="11">パッチ適用状態</text>
+  <text x="100" y="314" text-anchor="middle" fill="#B3E5FC" font-family="sans-serif" font-size="11">→ Annex A 8.9</text>
+  <line x1="175" y1="270" x2="325" y2="220" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="325,220 335,215 329,224" fill="#90A4AE"/>
+  <!-- Right: Network -->
+  <rect x="665" y="80" width="150" height="100" rx="8" fill="#00695C" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.4))"/>
+  <text x="740" y="113" text-anchor="middle" fill="white" font-family="sans-serif" font-size="14" font-weight="bold">ネットワーク</text>
+  <text x="740" y="132" text-anchor="middle" fill="#B2DFDB" font-family="sans-serif" font-size="11">マイクロセグメント</text>
+  <text x="740" y="148" text-anchor="middle" fill="#B2DFDB" font-family="sans-serif" font-size="11">暗号化通信</text>
+  <text x="740" y="164" text-anchor="middle" fill="#B2DFDB" font-family="sans-serif" font-size="11">→ Annex A 8.20</text>
+  <line x1="665" y1="130" x2="515" y2="175" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="515,172 507,178 516,183" fill="#90A4AE"/>
+  <!-- Right-bottom: Data -->
+  <rect x="665" y="230" width="150" height="100" rx="8" fill="#BF360C" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.4))"/>
+  <text x="740" y="263" text-anchor="middle" fill="white" font-family="sans-serif" font-size="14" font-weight="bold">データ</text>
+  <text x="740" y="282" text-anchor="middle" fill="#FFCCBC" font-family="sans-serif" font-size="11">暗号化・DLP</text>
+  <text x="740" y="298" text-anchor="middle" fill="#FFCCBC" font-family="sans-serif" font-size="11">分類・ラベリング</text>
+  <text x="740" y="314" text-anchor="middle" fill="#FFCCBC" font-family="sans-serif" font-size="11">→ Annex A 8.12</text>
+  <line x1="665" y1="270" x2="515" y2="220" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="515,220 505,215 511,224" fill="#90A4AE"/>
+  <!-- Bottom: Monitoring -->
+  <rect x="295" y="310" width="250" height="70" rx="8" fill="#37474F" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.4))"/>
+  <text x="420" y="338" text-anchor="middle" fill="white" font-family="sans-serif" font-size="14" font-weight="bold">継続的監視・分析</text>
+  <text x="420" y="358" text-anchor="middle" fill="#CFD8DC" font-family="sans-serif" font-size="11">SIEM / UEBA / ログ分析 → Annex A 8.15/8.16</text>
+  <line x1="420" y1="265" x2="420" y2="310" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="415,310 420,318 425,310" fill="#90A4AE"/>
+</svg>

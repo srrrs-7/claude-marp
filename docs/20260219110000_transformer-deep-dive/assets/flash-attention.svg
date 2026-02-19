@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117" font-family="sans-serif">
+  <rect width="960" height="480" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="480" y="26" text-anchor="middle" fill="#e6edf3" font-size="18" font-weight="bold">Flash Attention — IO-Aware アルゴリズム</text>
+
+  <!-- ===== LEFT: Standard Attention ===== -->
+  <rect x="20" y="40" width="430" height="320" rx="6" fill="#0f1520" stroke="#30363d" stroke-width="1"/>
+  <text x="235" y="62" text-anchor="middle" fill="#ef4444" font-size="14" font-weight="bold">Standard Attention (Naive)</text>
+
+  <!-- HBM box (large) -->
+  <rect x="40" y="80" width="390" height="130" rx="6" fill="#1a0a00" stroke="#f97316" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="55" y="100" fill="#f97316" font-size="12" font-weight="bold">HBM (High Bandwidth Memory)</text>
+  <text x="55" y="115" fill="#94a3b8" font-size="10">GPU DRAM — 高レイテンシ・大容量</text>
+
+  <!-- Matrices in HBM -->
+  <rect x="50" y="120" width="55" height="32" rx="3" fill="#2a1500" stroke="#fb923c" stroke-width="1"/>
+  <text x="77" y="141" text-anchor="middle" fill="#fb923c" font-size="11" font-weight="bold">Q</text>
+
+  <rect x="115" y="120" width="55" height="32" rx="3" fill="#2a1500" stroke="#fb923c" stroke-width="1"/>
+  <text x="142" y="141" text-anchor="middle" fill="#fb923c" font-size="11" font-weight="bold">K</text>
+
+  <rect x="180" y="120" width="55" height="32" rx="3" fill="#2a1500" stroke="#fb923c" stroke-width="1"/>
+  <text x="207" y="141" text-anchor="middle" fill="#fb923c" font-size="11" font-weight="bold">V</text>
+
+  <rect x="255" y="120" width="55" height="32" rx="3" fill="#200800" stroke="#dc2626" stroke-width="1"/>
+  <text x="282" y="141" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="bold">S</text>
+
+  <rect x="320" y="120" width="55" height="32" rx="3" fill="#200800" stroke="#dc2626" stroke-width="1"/>
+  <text x="347" y="141" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="bold">P</text>
+
+  <rect x="385" y="120" width="42" height="32" rx="3" fill="#200800" stroke="#dc2626" stroke-width="1"/>
+  <text x="406" y="141" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="bold">O</text>
+
+  <!-- SRAM small box -->
+  <rect x="40" y="225" width="390" height="45" rx="4" fill="#0a1628" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="235" y="244" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="bold">SRAM (On-Chip Cache)</text>
+  <text x="235" y="258" text-anchor="middle" fill="#93c5fd" font-size="10">高速・小容量 (例: 20MB)</text>
+
+  <!-- Read/Write arrows with labels -->
+  <!-- Q,K read -->
+  <line x1="77" y1="152" x2="77" y2="225" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="72,222 77,232 82,222" fill="#fb923c"/>
+  <text x="50" y="215" fill="#fb923c" font-size="8">read</text>
+
+  <line x1="142" y1="152" x2="142" y2="225" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="137,222 142,232 147,222" fill="#fb923c"/>
+
+  <!-- S write back to HBM -->
+  <line x1="282" y1="225" x2="282" y2="155" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="277,157 282,147 287,157" fill="#dc2626"/>
+  <text x="245" y="218" fill="#dc2626" font-size="8">write S=QKᵀ</text>
+
+  <!-- S read again -->
+  <path d="M320,152 Q360,200 355,225" stroke="#fca5a5" stroke-width="1.5" fill="none" stroke-dasharray="3,2"/>
+  <text x="358" y="210" fill="#fca5a5" font-size="8">re-read</text>
+
+  <!-- Labels below -->
+  <text x="235" y="295" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="bold">問題点</text>
+  <text x="235" y="313" text-anchor="middle" fill="#fca5a5" font-size="11">O(n²) メモリ  —  多数のHBM Read/Write</text>
+  <text x="235" y="328" text-anchor="middle" fill="#94a3b8" font-size="10">n=4096: S行列 = 4096² × 4B = 64GB!</text>
+  <text x="235" y="348" text-anchor="middle" fill="#94a3b8" font-size="10">HBMアクセスがボトルネック (遅い)</text>
+
+  <!-- ===== RIGHT: Flash Attention ===== -->
+  <rect x="510" y="40" width="430" height="320" rx="6" fill="#0f1520" stroke="#30363d" stroke-width="1"/>
+  <text x="725" y="62" text-anchor="middle" fill="#22c55e" font-size="14" font-weight="bold">Flash Attention (Dao et al., 2022)</text>
+
+  <!-- HBM box -->
+  <rect x="530" y="80" width="390" height="80" rx="6" fill="#0a1a0a" stroke="#22c55e" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="545" y="100" fill="#22c55e" font-size="12" font-weight="bold">HBM</text>
+
+  <!-- Tiled Q,K,V in HBM -->
+  <rect x="545" y="110" width="45" height="36" rx="3" fill="#0a2010" stroke="#4ade80" stroke-width="1"/>
+  <text x="567" y="124" text-anchor="middle" fill="#4ade80" font-size="9" font-weight="bold">Q</text>
+  <text x="567" y="136" text-anchor="middle" fill="#4ade80" font-size="8">tiles</text>
+
+  <rect x="598" y="110" width="45" height="36" rx="3" fill="#0a2010" stroke="#4ade80" stroke-width="1"/>
+  <text x="620" y="124" text-anchor="middle" fill="#4ade80" font-size="9" font-weight="bold">K</text>
+  <text x="620" y="136" text-anchor="middle" fill="#4ade80" font-size="8">tiles</text>
+
+  <rect x="651" y="110" width="45" height="36" rx="3" fill="#0a2010" stroke="#4ade80" stroke-width="1"/>
+  <text x="673" y="124" text-anchor="middle" fill="#4ade80" font-size="9" font-weight="bold">V</text>
+  <text x="673" y="136" text-anchor="middle" fill="#4ade80" font-size="8">tiles</text>
+
+  <rect x="800" y="110" width="110" height="36" rx="3" fill="#0f2a1a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="855" y="128" text-anchor="middle" fill="#86efac" font-size="10">Output O</text>
+  <text x="855" y="140" text-anchor="middle" fill="#86efac" font-size="8">(write once)</text>
+
+  <!-- SRAM box (larger role) -->
+  <rect x="530" y="185" width="390" height="90" rx="4" fill="#0a1628" stroke="#3b82f6" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="545" y="205" fill="#3b82f6" font-size="11" font-weight="bold">SRAM (On-Chip)</text>
+
+  <!-- Tile computation -->
+  <rect x="550" y="210" width="90" height="55" rx="3" fill="#1a1f2e" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="595" y="227" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="bold">Tile Qi</text>
+  <text x="595" y="240" text-anchor="middle" fill="#c4b5fd" font-size="8">load once</text>
+  <text x="595" y="253" text-anchor="middle" fill="#c4b5fd" font-size="8">iterate K,V</text>
+
+  <rect x="655" y="210" width="90" height="55" rx="3" fill="#1a1028" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="700" y="227" text-anchor="middle" fill="#ddd6fe" font-size="9" font-weight="bold">Online Softmax</text>
+  <text x="700" y="240" text-anchor="middle" fill="#c4b5fd" font-size="8">m,l accumulate</text>
+  <text x="700" y="253" text-anchor="middle" fill="#c4b5fd" font-size="8">no S stored</text>
+
+  <rect x="760" y="210" width="148" height="55" rx="3" fill="#0a2010" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="834" y="227" text-anchor="middle" fill="#86efac" font-size="9" font-weight="bold">Partial Output</text>
+  <text x="834" y="240" text-anchor="middle" fill="#86efac" font-size="8">accumulate Oi</text>
+  <text x="834" y="253" text-anchor="middle" fill="#86efac" font-size="8">rescale at end</text>
+
+  <!-- Tile load arrows -->
+  <line x1="567" y1="148" x2="567" y2="210" stroke="#4ade80" stroke-width="1.5"/>
+  <polygon points="562,208 567,218 572,208" fill="#4ade80"/>
+  <text x="540" y="185" fill="#4ade80" font-size="8">tile load</text>
+
+  <!-- Result write-back -->
+  <line x1="855" y1="265" x2="855" y2="148" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="850,150 855,140 860,150" fill="#22c55e"/>
+
+  <!-- Labels below -->
+  <text x="725" y="295" text-anchor="middle" fill="#22c55e" font-size="12" font-weight="bold">改善点</text>
+  <text x="725" y="313" text-anchor="middle" fill="#86efac" font-size="11">O(n) メモリ  —  HBM Read/Write を最小化</text>
+  <text x="725" y="328" text-anchor="middle" fill="#94a3b8" font-size="10">タイル分割でSRAM内完結 → 10x高速</text>
+  <text x="725" y="348" text-anchor="middle" fill="#94a3b8" font-size="10">S行列をHBMに書かない = 大幅な省メモリ</text>
+
+  <!-- ===== BOTTOM: Online Softmax Formula ===== -->
+  <rect x="20" y="368" width="920" height="102" rx="6" fill="#0f1520" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="480" y="388" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="bold">Online Softmax Trick — タイル処理で S を保存せずにsoftmaxを計算</text>
+
+  <text x="50" y="412" fill="#e6edf3" font-size="11">m_new = max(m_old, rowmax(S_tile))</text>
+  <text x="50" y="430" fill="#e6edf3" font-size="11">l_new = e^(m_old − m_new) × l_old + rowsum(e^(S_tile − m_new))</text>
+  <text x="50" y="448" fill="#e6edf3" font-size="11">O_new = diag(e^(m_old − m_new))⁻¹ × O_old + e^(S_tile − m_new) × V_tile</text>
+
+  <rect x="620" y="398" width="300" height="64" rx="4" fill="#0a1628" stroke="#3b82f6" stroke-width="1"/>
+  <text x="770" y="415" text-anchor="middle" fill="#93c5fd" font-size="11" font-weight="bold">効果まとめ</text>
+  <text x="770" y="432" text-anchor="middle" fill="#86efac" font-size="10">FlashAttention-2: ~2x speedup over FA1</text>
+  <text x="770" y="449" text-anchor="middle" fill="#86efac" font-size="10">FlashAttention-3: H100最適化 (FP8)</text>
+  <text x="770" y="462" text-anchor="middle" fill="#94a3b8" font-size="10">標準実装の10-15x 実効速度向上</text>
+</svg>

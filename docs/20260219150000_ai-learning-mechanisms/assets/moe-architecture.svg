@@ -1,0 +1,76 @@
+<svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <!-- Title -->
+  <text x="380" y="22" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">Mixture of Experts (MoE) アーキテクチャ</text>
+
+  <!-- Input token -->
+  <rect x="315" y="45" width="130" height="40" rx="8" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+  <text x="380" y="70" text-anchor="middle" font-size="13" fill="#1565c0">入力トークン</text>
+
+  <!-- Arrow down to router -->
+  <line x1="380" y1="85" x2="380" y2="115" stroke="#555" stroke-width="2"/>
+  <polygon points="374,112 380,122 386,112" fill="#555"/>
+
+  <!-- Router -->
+  <rect x="300" y="120" width="160" height="45" rx="10" fill="#ff8f00" stroke="#e65100" stroke-width="2"/>
+  <text x="380" y="143" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Router (Gating)</text>
+  <text x="380" y="158" text-anchor="middle" font-size="11" fill="#fff8e1">softmax(W_g · x)</text>
+
+  <!-- Fan-out arrows to experts -->
+  <line x1="350" y1="165" x2="105" y2="210" stroke="#ff8f00" stroke-width="1.5"/>
+  <polygon points="102,203 108,213 114,205" fill="#ff8f00"/>
+  <line x1="362" y1="165" x2="230" y2="208" stroke="#ff8f00" stroke-width="1.5"/>
+  <polygon points="226,202 232,212 238,204" fill="#ff8f00"/>
+  <line x1="380" y1="165" x2="380" y2="208" stroke="#ff8f00" stroke-width="2"/>
+  <polygon points="374,205 380,215 386,205" fill="#ff8f00"/>
+  <line x1="398" y1="165" x2="528" y2="208" stroke="#ff8f00" stroke-width="1.5"/>
+  <polygon points="524,202 530,212 536,204" fill="#ff8f00"/>
+  <line x1="415" y1="165" x2="653" y2="208" stroke="#ff8f00" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="648,202 656,209 650,216" fill="#ff8f00"/>
+
+  <!-- Expert boxes -->
+  <!-- Expert 1 (selected, highlighted) -->
+  <rect x="55" y="215" width="100" height="55" rx="8" fill="#e8f5e9" stroke="#388e3c" stroke-width="2.5"/>
+  <text x="105" y="240" text-anchor="middle" font-size="12" font-weight="bold" fill="#1b5e20">Expert 1</text>
+  <text x="105" y="256" text-anchor="middle" font-size="11" fill="#388e3c">FFN 専門家</text>
+  <text x="105" y="270" text-anchor="middle" font-size="10" fill="#555">✅ 選択</text>
+
+  <!-- Expert 2 (selected) -->
+  <rect x="180" y="215" width="100" height="55" rx="8" fill="#e8f5e9" stroke="#388e3c" stroke-width="2.5"/>
+  <text x="230" y="240" text-anchor="middle" font-size="12" font-weight="bold" fill="#1b5e20">Expert 2</text>
+  <text x="230" y="256" text-anchor="middle" font-size="11" fill="#388e3c">FFN 専門家</text>
+  <text x="230" y="270" text-anchor="middle" font-size="10" fill="#555">✅ 選択</text>
+
+  <!-- Expert 3 (not selected) -->
+  <rect x="330" y="215" width="100" height="55" rx="8" fill="#f5f5f5" stroke="#bbb" stroke-width="1.5"/>
+  <text x="380" y="240" text-anchor="middle" font-size="12" fill="#999">Expert 3</text>
+  <text x="380" y="256" text-anchor="middle" font-size="11" fill="#bbb">FFN 専門家</text>
+  <text x="380" y="270" text-anchor="middle" font-size="10" fill="#bbb">— スキップ</text>
+
+  <!-- Expert 4 (not selected) -->
+  <rect x="480" y="215" width="100" height="55" rx="8" fill="#f5f5f5" stroke="#bbb" stroke-width="1.5"/>
+  <text x="530" y="240" text-anchor="middle" font-size="12" fill="#999">Expert 4</text>
+  <text x="530" y="256" text-anchor="middle" font-size="11" fill="#bbb">FFN 専門家</text>
+  <text x="530" y="270" text-anchor="middle" font-size="10" fill="#bbb">— スキップ</text>
+
+  <!-- Expert N (dots) -->
+  <text x="650" y="248" text-anchor="middle" font-size="20" fill="#bbb">…</text>
+  <text x="650" y="270" text-anchor="middle" font-size="11" fill="#bbb">Expert N</text>
+
+  <!-- Weighted sum arrows from selected experts -->
+  <line x1="105" y1="270" x2="310" y2="305" stroke="#388e3c" stroke-width="2"/>
+  <polygon points="307,299 318,305 308,312" fill="#388e3c"/>
+  <line x1="230" y1="270" x2="335" y2="305" stroke="#388e3c" stroke-width="2"/>
+  <polygon points="332,299 343,305 333,312" fill="#388e3c"/>
+
+  <!-- Weighted sum node -->
+  <rect x="310" y="305" width="140" height="35" rx="8" fill="#388e3c"/>
+  <text x="380" y="326" text-anchor="middle" font-size="13" fill="white">加重和 (Top-K)</text>
+
+  <!-- Output -->
+  <line x1="380" y1="340" x2="380" y2="360" stroke="#555" stroke-width="2"/>
+  <polygon points="374,357 380,367 386,357" fill="#555"/>
+
+  <!-- Annotations -->
+  <text x="380" y="378" text-anchor="middle" font-size="11" fill="#555">Top-2 Expert 選択 → 2/N の計算量で N倍のパラメータ</text>
+  <text x="380" y="393" text-anchor="middle" font-size="11" fill="#e65100">Mixtral / GPT-4 / Gemini 1.5 で採用</text>
+</svg>

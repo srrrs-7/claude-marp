@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117" font-family="sans-serif">
+  <rect width="960" height="480" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="480" y="28" text-anchor="middle" fill="#e6edf3" font-size="18" font-weight="bold">Self-Attention — Q/K/V 行列演算</text>
+
+  <!-- ===== INPUT X ===== -->
+  <rect x="60" y="55" width="110" height="80" rx="6" fill="#1a1f2e" stroke="#64748b" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="115" y="88" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="bold">X</text>
+  <text x="115" y="106" text-anchor="middle" fill="#94a3b8" font-size="10">seq_len × d_model</text>
+  <text x="115" y="120" text-anchor="middle" fill="#94a3b8" font-size="10">例: 512 × 768</text>
+
+  <!-- Arrow from X to weight matrices -->
+  <line x1="170" y1="95" x2="210" y2="95" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="208,90 218,95 208,100" fill="#64748b"/>
+
+  <!-- ===== WEIGHT MATRICES ===== -->
+  <!-- WQ -->
+  <rect x="218" y="55" width="85" height="70" rx="5" fill="#1c1108" stroke="#f97316" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="260" y="84" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold">W^Q</text>
+  <text x="260" y="100" text-anchor="middle" fill="#fed7aa" font-size="10">d_model × d_k</text>
+  <text x="260" y="115" text-anchor="middle" fill="#fed7aa" font-size="10">768 × 64</text>
+
+  <!-- WK -->
+  <rect x="218" y="145" width="85" height="70" rx="5" fill="#0a1628" stroke="#3b82f6" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="260" y="174" text-anchor="middle" fill="#3b82f6" font-size="14" font-weight="bold">W^K</text>
+  <text x="260" y="190" text-anchor="middle" fill="#93c5fd" font-size="10">d_model × d_k</text>
+  <text x="260" y="205" text-anchor="middle" fill="#93c5fd" font-size="10">768 × 64</text>
+
+  <!-- WV -->
+  <rect x="218" y="235" width="85" height="70" rx="5" fill="#0a2010" stroke="#22c55e" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="260" y="264" text-anchor="middle" fill="#22c55e" font-size="14" font-weight="bold">W^V</text>
+  <text x="260" y="280" text-anchor="middle" fill="#86efac" font-size="10">d_model × d_v</text>
+  <text x="260" y="295" text-anchor="middle" fill="#86efac" font-size="10">768 × 64</text>
+
+  <!-- Arrows from X to each W -->
+  <line x1="170" y1="95" x2="218" y2="92" stroke="#f97316" stroke-width="1.5"/>
+  <line x1="170" y1="95" x2="218" y2="182" stroke="#3b82f6" stroke-width="1.5"/>
+  <line x1="170" y1="95" x2="218" y2="272" stroke="#22c55e" stroke-width="1.5"/>
+
+  <!-- ===== Q, K, V RESULTS ===== -->
+  <!-- Q -->
+  <rect x="340" y="55" width="90" height="70" rx="5" fill="#1c1108" stroke="#f97316" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="385" y="84" text-anchor="middle" fill="#f97316" font-size="16" font-weight="bold">Q</text>
+  <text x="385" y="102" text-anchor="middle" fill="#fed7aa" font-size="10">seq_len × d_k</text>
+  <text x="385" y="116" text-anchor="middle" fill="#fed7aa" font-size="10">Query</text>
+
+  <!-- K -->
+  <rect x="340" y="145" width="90" height="70" rx="5" fill="#0a1628" stroke="#3b82f6" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="385" y="174" text-anchor="middle" fill="#3b82f6" font-size="16" font-weight="bold">K</text>
+  <text x="385" y="192" text-anchor="middle" fill="#93c5fd" font-size="10">seq_len × d_k</text>
+  <text x="385" y="206" text-anchor="middle" fill="#93c5fd" font-size="10">Key</text>
+
+  <!-- V -->
+  <rect x="340" y="235" width="90" height="70" rx="5" fill="#0a2010" stroke="#22c55e" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="385" y="264" text-anchor="middle" fill="#22c55e" font-size="16" font-weight="bold">V</text>
+  <text x="385" y="282" text-anchor="middle" fill="#86efac" font-size="10">seq_len × d_v</text>
+  <text x="385" y="296" text-anchor="middle" fill="#86efac" font-size="10">Value</text>
+
+  <!-- Arrows from W to Q/K/V -->
+  <line x1="303" y1="90" x2="340" y2="90" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="338,85 348,90 338,95" fill="#f97316"/>
+  <line x1="303" y1="180" x2="340" y2="180" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="338,175 348,180 338,185" fill="#3b82f6"/>
+  <line x1="303" y1="270" x2="340" y2="270" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="338,265 348,270 338,275" fill="#22c55e"/>
+
+  <!-- ===== COMPUTATION STEPS ===== -->
+  <!-- Step 1: QK^T -->
+  <rect x="470" y="55" width="120" height="70" rx="5" fill="#1a1028" stroke="#a78bfa" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="530" y="80" text-anchor="middle" fill="#a78bfa" font-size="13" font-weight="bold">QK^T</text>
+  <text x="530" y="96" text-anchor="middle" fill="#c4b5fd" font-size="10">seq_len × seq_len</text>
+  <text x="530" y="110" text-anchor="middle" fill="#c4b5fd" font-size="10">Attention Scores</text>
+
+  <!-- Arrow Q -> QK^T -->
+  <line x1="430" y1="90" x2="470" y2="90" stroke="#a78bfa" stroke-width="1.5"/>
+  <polygon points="468,85 478,90 468,95" fill="#a78bfa"/>
+  <!-- Arrow K -> QK^T -->
+  <line x1="430" y1="180" x2="450" y2="180" stroke="#a78bfa" stroke-width="1.5"/>
+  <line x1="450" y1="180" x2="450" y2="115" stroke="#a78bfa" stroke-width="1.5"/>
+  <line x1="450" y1="115" x2="470" y2="102" stroke="#a78bfa" stroke-width="1.5"/>
+
+  <!-- Step 2: /sqrt(d_k) -->
+  <rect x="470" y="148" width="120" height="50" rx="5" fill="#1a0a14" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="530" y="168" text-anchor="middle" fill="#f9a8d4" font-size="12" font-weight="bold">÷ √d_k</text>
+  <text x="530" y="187" text-anchor="middle" fill="#f9a8d4" font-size="10">Scale (√64 = 8)</text>
+
+  <!-- Arrow QK^T -> scale -->
+  <line x1="530" y1="125" x2="530" y2="148" stroke="#a78bfa" stroke-width="1.5"/>
+  <polygon points="525,146 530,139 535,146" fill="#a78bfa"/>
+
+  <!-- Step 3: softmax -->
+  <rect x="470" y="218" width="120" height="50" rx="5" fill="#1a1028" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="530" y="238" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="bold">softmax</text>
+  <text x="530" y="255" text-anchor="middle" fill="#c4b5fd" font-size="10">Attention Weights</text>
+
+  <!-- Arrow scale -> softmax -->
+  <line x1="530" y1="198" x2="530" y2="218" stroke="#f472b6" stroke-width="1.5"/>
+  <polygon points="525,216 530,209 535,216" fill="#f472b6"/>
+
+  <!-- Step 4: * V -->
+  <rect x="470" y="288" width="120" height="50" rx="5" fill="#0a2010" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="530" y="309" text-anchor="middle" fill="#86efac" font-size="12" font-weight="bold">× V</text>
+  <text x="530" y="326" text-anchor="middle" fill="#86efac" font-size="10">Weighted Sum</text>
+
+  <!-- Arrow softmax -> *V -->
+  <line x1="530" y1="268" x2="530" y2="288" stroke="#a78bfa" stroke-width="1.5"/>
+  <polygon points="525,286 530,279 535,286" fill="#a78bfa"/>
+  <!-- Arrow V -> *V -->
+  <line x1="430" y1="270" x2="455" y2="270" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="455" y1="270" x2="455" y2="313" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="455" y1="313" x2="470" y2="313" stroke="#22c55e" stroke-width="1.5"/>
+
+  <!-- ===== OUTPUT ===== -->
+  <rect x="630" y="168" width="120" height="60" rx="6" fill="#0f2a1a" stroke="#22c55e" stroke-width="2.5" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="690" y="193" text-anchor="middle" fill="#86efac" font-size="14" font-weight="bold">Output</text>
+  <text x="690" y="210" text-anchor="middle" fill="#86efac" font-size="10">seq_len × d_v</text>
+  <text x="690" y="224" text-anchor="middle" fill="#86efac" font-size="10">Attention Result</text>
+
+  <!-- Arrow *V -> Output -->
+  <line x1="590" y1="313" x2="610" y2="313" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="610" y1="313" x2="610" y2="198" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="610" y1="198" x2="630" y2="198" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="628,193 638,198 628,203" fill="#22c55e"/>
+
+  <!-- ===== FORMULA BOX ===== -->
+  <rect x="60" y="360" width="880" height="100" rx="8" fill="#0f1520" stroke="#818cf8" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="480" y="382" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="bold">Attention Formula</text>
+  <text x="480" y="410" text-anchor="middle" fill="#e6edf3" font-size="16" font-weight="bold">Attention(Q, K, V) = softmax(QKᵀ / √d_k) · V</text>
+  <text x="480" y="435" text-anchor="middle" fill="#94a3b8" font-size="11">Q: Query (何を探す?),  K: Key (何がある?),  V: Value (何を取り出す?)</text>
+  <text x="480" y="452" text-anchor="middle" fill="#94a3b8" font-size="11">√d_k でスケーリング → softmaxの勾配消失を防止  |  d_k = 64 (d_model=512, h=8 の場合)</text>
+
+  <!-- Dimension labels -->
+  <rect x="760" y="55" width="185" height="155" rx="6" fill="#0f1520" stroke="#30363d" stroke-width="1"/>
+  <text x="852" y="74" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="bold">行列サイズ</text>
+  <text x="770" y="94" fill="#e6edf3" font-size="10">X:    [seq_len × d_model]</text>
+  <text x="770" y="112" fill="#f97316" font-size="10">Q:    [seq_len × d_k]</text>
+  <text x="770" y="130" fill="#3b82f6" font-size="10">K:    [seq_len × d_k]</text>
+  <text x="770" y="148" fill="#22c55e" font-size="10">V:    [seq_len × d_v]</text>
+  <text x="770" y="166" fill="#a78bfa" font-size="10">QKᵀ: [seq_len × seq_len]</text>
+  <text x="770" y="184" fill="#86efac" font-size="10">Out:  [seq_len × d_v]</text>
+  <text x="770" y="202" fill="#94a3b8" font-size="10">seq_len=512, d_model=768</text>
+</svg>

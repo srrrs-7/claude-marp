@@ -1,0 +1,68 @@
+<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117">
+  <text x="480" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#e6edf3" font-family="sans-serif">AIコンポーネントの責務分離パターン</text>
+
+  <!-- Left: Layer diagram -->
+  <!-- Provider layer -->
+  <rect x="30" y="60" width="430" height="380" rx="12" fill="#1e1b4b" stroke="#6366f1" stroke-width="2"/>
+  <text x="245" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#a5b4fc" font-family="sans-serif">AIProvider (Context / 状態管理)</text>
+  <text x="245" y="104" text-anchor="middle" font-size="11" fill="#818cf8" font-family="sans-serif">会話履歴 / ストリーミング状態 / エラー管理</text>
+
+  <!-- Container layer -->
+  <rect x="60" y="116" width="370" height="290" rx="10" fill="#162032" stroke="#3b82f6" stroke-width="2"/>
+  <text x="245" y="140" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa" font-family="sans-serif">ChatContainer (Container Component)</text>
+  <text x="245" y="157" text-anchor="middle" font-size="11" fill="#93c5fd" font-family="sans-serif">データフェッチ / ビジネスロジック / サイドエフェクト</text>
+
+  <!-- Pure components layer -->
+  <rect x="85" y="172" width="320" height="220" rx="8" fill="#0c1a14" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="245" y="196" text-anchor="middle" font-size="12" font-weight="bold" fill="#4ade80" font-family="sans-serif">Pure Components (表示のみ)</text>
+
+  <!-- MessageList -->
+  <rect x="105" y="210" width="130" height="60" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="170" y="234" text-anchor="middle" font-size="11" font-weight="bold" fill="#4ade80" font-family="sans-serif">MessageList</text>
+  <text x="170" y="252" text-anchor="middle" font-size="10" fill="#86efac" font-family="sans-serif">messages: Message[]</text>
+  <text x="170" y="266" text-anchor="middle" font-size="10" fill="#86efac" font-family="sans-serif">isStreaming: boolean</text>
+
+  <!-- InputForm -->
+  <rect x="255" y="210" width="130" height="60" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="320" y="234" text-anchor="middle" font-size="11" font-weight="bold" fill="#4ade80" font-family="sans-serif">InputForm</text>
+  <text x="320" y="252" text-anchor="middle" font-size="10" fill="#86efac" font-family="sans-serif">onSubmit: fn</text>
+  <text x="320" y="266" text-anchor="middle" font-size="10" fill="#86efac" font-family="sans-serif">disabled: boolean</text>
+
+  <!-- StreamingText + ErrorBoundary -->
+  <rect x="105" y="286" width="130" height="60" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="170" y="308" text-anchor="middle" font-size="11" font-weight="bold" fill="#4ade80" font-family="sans-serif">StreamingText</text>
+  <text x="170" y="326" text-anchor="middle" font-size="10" fill="#86efac" font-family="sans-serif">stream: Iterable</text>
+  <text x="170" y="340" text-anchor="middle" font-size="10" fill="#86efac" font-family="sans-serif">aria-live: polite</text>
+
+  <rect x="255" y="286" width="130" height="60" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="320" y="308" text-anchor="middle" font-size="11" font-weight="bold" fill="#4ade80" font-family="sans-serif">ErrorBoundary</text>
+  <text x="320" y="326" text-anchor="middle" font-size="10" fill="#86efac" font-family="sans-serif">fallback: ReactNode</text>
+  <text x="320" y="340" text-anchor="middle" font-size="10" fill="#86efac" font-family="sans-serif">onRetry: fn</text>
+
+  <!-- Custom Hooks (right side) -->
+  <rect x="500" y="60" width="430" height="380" rx="12" fill="#1f2937" stroke="#4b5563" stroke-width="1.5"/>
+  <text x="715" y="88" text-anchor="middle" font-size="15" font-weight="bold" fill="#f9fafb" font-family="sans-serif">Custom Hooks (副作用の分離)</text>
+
+  <!-- useAIChat -->
+  <rect x="530" y="108" width="370" height="100" rx="8" fill="#7c2d12" stroke="#f97316" stroke-width="1.5"/>
+  <text x="715" y="130" text-anchor="middle" font-size="13" font-weight="bold" fill="#fb923c" font-family="sans-serif">useAIChat()</text>
+  <text x="545" y="152" font-size="11" fill="#fed7aa" font-family="sans-serif">// 会話状態 + ストリーミング管理</text>
+  <text x="545" y="170" font-size="11" fill="#fbbf24" font-family="sans-serif">returns: { messages, sendMessage, isLoading, error }</text>
+  <text x="545" y="188" font-size="11" fill="#fed7aa" font-family="sans-serif">// Vercel AI SDK useChat() をラップ</text>
+  <text x="545" y="200" font-size="11" fill="#fed7aa" font-family="sans-serif">// 独自エラーハンドリング追加可能</text>
+
+  <!-- useStreamingText -->
+  <rect x="530" y="222" width="370" height="80" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="715" y="244" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa" font-family="sans-serif">useStreamingText(stream)</text>
+  <text x="545" y="266" font-size="11" fill="#93c5fd" font-family="sans-serif">// ReadableStream → リアクティブなstring</text>
+  <text x="545" y="285" font-size="11" fill="#93c5fd" font-family="sans-serif">returns: { text, isComplete }</text>
+
+  <!-- useOptimisticMessages -->
+  <rect x="530" y="316" width="370" height="80" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="715" y="338" text-anchor="middle" font-size="13" font-weight="bold" fill="#4ade80" font-family="sans-serif">useOptimisticMessages()</text>
+  <text x="545" y="360" font-size="11" fill="#86efac" font-family="sans-serif">// 楽観的更新 + ロールバック</text>
+  <text x="545" y="379" font-size="11" fill="#86efac" font-family="sans-serif">returns: { messages, add, rollback }</text>
+
+  <!-- Principle at bottom -->
+  <text x="480" y="456" text-anchor="middle" font-size="12" fill="#9ca3af" font-family="sans-serif">原則: Hooks = ロジック / Pure Components = 表示 / Provider = グローバル状態</text>
+</svg>

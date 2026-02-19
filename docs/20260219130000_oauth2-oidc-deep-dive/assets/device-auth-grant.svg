@@ -1,0 +1,82 @@
+<svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="440" fill="#f8f9fa" rx="8"/>
+  <text x="400" y="24" text-anchor="middle" font-size="13" font-weight="bold" fill="#2c3e50" font-family="sans-serif">デバイス認可グラント (RFC 8628) — CLI / TV / IoT</text>
+
+  <!-- Actors -->
+  <rect x="15" y="36" width="145" height="58" rx="8" fill="#8e44ad" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="88" y="59" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Device / CLI</text>
+  <text x="88" y="75" text-anchor="middle" font-size="9" fill="#e8d5f5" font-family="sans-serif">TV / Smart Device</text>
+  <text x="88" y="88" text-anchor="middle" font-size="9" fill="#e8d5f5" font-family="sans-serif">ブラウザなし</text>
+
+  <rect x="310" y="36" width="185" height="58" rx="8" fill="#3498db" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="403" y="59" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">User (Browser)</text>
+  <text x="403" y="75" text-anchor="middle" font-size="9" fill="#d6eaf8" font-family="sans-serif">スマートフォン / PC</text>
+  <text x="403" y="88" text-anchor="middle" font-size="9" fill="#d6eaf8" font-family="sans-serif">別デバイスで操作</text>
+
+  <rect x="625" y="36" width="160" height="58" rx="8" fill="#e67e22" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="705" y="53" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Authorization</text>
+  <text x="705" y="68" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Server</text>
+  <text x="705" y="85" text-anchor="middle" font-size="8" fill="#fdebd0" font-family="sans-serif">/device_authorization /token</text>
+
+  <!-- Lifelines -->
+  <line x1="88" y1="94" x2="88" y2="390" stroke="#8e44ad" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="403" y1="94" x2="403" y2="390" stroke="#3498db" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="705" y1="94" x2="705" y2="390" stroke="#e67e22" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Step 1: Device Authorization Request -->
+  <rect x="0" y="108" width="14" height="14" rx="7" fill="#8e44ad"/>
+  <text x="7" y="119" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">1</text>
+  <line x1="88" y1="115" x2="703" y2="115" stroke="#555" stroke-width="1.5"/>
+  <polygon points="703,115 693,110 693,120" fill="#555"/>
+  <text x="400" y="109" text-anchor="middle" font-size="9" fill="#2c3e50" font-family="sans-serif">POST /device_authorization  {client_id, scope: "openid profile"}</text>
+
+  <!-- Step 2: Device Code Response -->
+  <rect x="786" y="128" width="14" height="14" rx="7" fill="#e67e22"/>
+  <text x="793" y="139" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">2</text>
+  <line x1="703" y1="135" x2="90" y2="135" stroke="#e67e22" stroke-width="1.5"/>
+  <polygon points="90,135 100,130 100,140" fill="#e67e22"/>
+  <text x="400" y="130" text-anchor="middle" font-size="8" fill="#d35400" font-family="sans-serif">{device_code: "GmRhmhcxhwAzkoEqiMEg_DnyEysNkuNhszIySk9eS", user_code: "WDJB-MJHT", verification_uri, expires_in: 900, interval: 5}</text>
+
+  <!-- Step 3: Device displays user code -->
+  <rect x="18" y="150" width="140" height="50" rx="6" fill="#6c3483" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="88" y="168" text-anchor="middle" font-size="9" font-weight="bold" fill="#f1c40f" font-family="sans-serif">📺 デバイス画面表示</text>
+  <text x="88" y="183" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">example.com/activate</text>
+  <text x="88" y="196" text-anchor="middle" font-size="10" font-weight="bold" fill="#f1c40f" font-family="sans-serif">Code: WDJB-MJHT</text>
+
+  <!-- Step 4: User visits URL on browser -->
+  <rect x="0" y="218" width="14" height="14" rx="7" fill="#3498db"/>
+  <text x="7" y="229" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">3</text>
+  <line x1="403" y1="225" x2="703" y2="225" stroke="#3498db" stroke-width="1.5"/>
+  <polygon points="703,225 693,220 693,230" fill="#3498db"/>
+  <text x="554" y="219" text-anchor="middle" font-size="9" fill="#2980b9" font-family="sans-serif">verification_uri にアクセス → user_code 入力</text>
+
+  <!-- Step 5: User authenticates -->
+  <rect x="620" y="238" width="170" height="20" rx="4" fill="#fdebd0"/>
+  <text x="705" y="252" text-anchor="middle" font-size="8" fill="#d35400" font-family="sans-serif">ユーザー認証 &amp; デバイス認可</text>
+
+  <!-- Step 6: Device polls (pending) -->
+  <rect x="0" y="272" width="14" height="14" rx="7" fill="#8e44ad"/>
+  <text x="7" y="283" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">4</text>
+  <line x1="88" y1="279" x2="703" y2="279" stroke="#8e44ad" stroke-width="1" stroke-dasharray="3,2"/>
+  <polygon points="703,279 693,274 693,284" fill="#8e44ad"/>
+  <text x="400" y="273" text-anchor="middle" font-size="9" fill="#8e44ad" font-family="sans-serif">POST /token  grant_type=urn:ietf:params:oauth:grant-type:device_code &amp; device_code  ← 5秒ごとポーリング</text>
+
+  <!-- Pending response -->
+  <line x1="703" y1="294" x2="90" y2="294" stroke="#8e44ad" stroke-width="1" stroke-dasharray="3,2"/>
+  <polygon points="90,294 100,289 100,299" fill="#8e44ad"/>
+  <text x="400" y="290" text-anchor="middle" font-size="8" fill="#8e44ad" font-family="sans-serif">error: authorization_pending  (slow_down → interval +5秒)</text>
+
+  <!-- Step 7: Success response -->
+  <rect x="786" y="312" width="14" height="14" rx="7" fill="#27ae60"/>
+  <text x="793" y="323" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">5</text>
+  <line x1="703" y1="319" x2="90" y2="319" stroke="#27ae60" stroke-width="2"/>
+  <polygon points="90,319 100,314 100,324" fill="#27ae60"/>
+  <text x="400" y="313" text-anchor="middle" font-size="9" font-weight="bold" fill="#27ae60" font-family="sans-serif">✅ access_token + refresh_token（ユーザー認可後に返却）</text>
+
+  <!-- Footer -->
+  <rect x="15" y="344" width="770" height="82" rx="8" fill="#2c3e50"/>
+  <text x="400" y="362" text-anchor="middle" font-size="10" font-weight="bold" fill="#f1c40f" font-family="sans-serif">ユースケースと注意点</text>
+  <text x="25" y="380" font-size="9" fill="#ecf0f1" font-family="sans-serif">用途: AWS CLI (`aws sso login`) / GitHub CLI / TV streaming / 入力困難デバイス</text>
+  <text x="25" y="396" font-size="9" fill="#ecf0f1" font-family="sans-serif">⚠ device_code は機密情報（user_code とは別）。expires_in 内に完了しない場合は再開始</text>
+  <text x="25" y="412" font-size="9" fill="#aed6f1" font-family="sans-serif">AWS: IAM Identity Center + OIDC で Device Grant をネイティブサポート（`aws configure sso`）</text>
+</svg>

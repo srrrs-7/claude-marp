@@ -1,0 +1,45 @@
+<svg viewBox="0 0 880 340" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="880" height="340" fill="#f0f4f8" rx="12"/>
+  <text x="440" y="30" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="15" font-weight="bold">事例1：IT企業（300名）ISMS認証プロジェクト（12ヶ月）</text>
+  <!-- Month axis -->
+  <line x1="60" y1="280" x2="860" y2="280" stroke="#90A4AE" stroke-width="1.5"/>
+  <!-- Month ticks -->
+  <text x="60" y="300" text-anchor="middle" fill="#555" font-family="sans-serif" font-size="12" font-weight="bold">Month</text>
+  <text x="127" y="300" text-anchor="middle" fill="#555" font-family="sans-serif" font-size="11">1-2</text>
+  <text x="194" y="300" text-anchor="middle" fill="#555" font-family="sans-serif" font-size="11">3</text>
+  <text x="261" y="300" text-anchor="middle" fill="#555" font-family="sans-serif" font-size="11">4</text>
+  <text x="328" y="300" text-anchor="middle" fill="#555" font-family="sans-serif" font-size="11">5-6</text>
+  <text x="460" y="300" text-anchor="middle" fill="#555" font-family="sans-serif" font-size="11">7-8</text>
+  <text x="594" y="300" text-anchor="middle" fill="#555" font-family="sans-serif" font-size="11">9-10</text>
+  <text x="727" y="300" text-anchor="middle" fill="#555" font-family="sans-serif" font-size="11">11</text>
+  <text x="793" y="300" text-anchor="middle" fill="#555" font-family="sans-serif" font-size="11">12</text>
+  <!-- Gantt bars -->
+  <!-- Row 1: ギャップ分析 -->
+  <text x="55" y="75" text-anchor="end" fill="#37474F" font-family="sans-serif" font-size="12">ギャップ分析</text>
+  <rect x="60" y="62" width="200" height="22" rx="4" fill="#455A64" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <text x="160" y="77" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">現状調査・課題洗出し</text>
+  <!-- Row 2: 文書整備 -->
+  <text x="55" y="115" text-anchor="end" fill="#37474F" font-family="sans-serif" font-size="12">文書整備</text>
+  <rect x="200" y="102" width="270" height="22" rx="4" fill="#1565C0" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <text x="335" y="117" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">ISMS方針・規程・手順書策定</text>
+  <!-- Row 3: 管理策実装 -->
+  <text x="55" y="155" text-anchor="end" fill="#37474F" font-family="sans-serif" font-size="12">管理策実装</text>
+  <rect x="260" y="142" width="400" height="22" rx="4" fill="#0277BD" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <text x="460" y="157" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">技術的・組織的管理策の導入・訓練</text>
+  <!-- Row 4: 内部監査 -->
+  <text x="55" y="195" text-anchor="end" fill="#37474F" font-family="sans-serif" font-size="12">内部監査・MR</text>
+  <rect x="594" y="182" width="133" height="22" rx="4" fill="#2E7D32" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <text x="661" y="197" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">内部監査・MR完了</text>
+  <!-- Row 5: 外部審査 -->
+  <text x="55" y="235" text-anchor="end" fill="#37474F" font-family="sans-serif" font-size="12">外部審査</text>
+  <rect x="694" y="222" width="66" height="22" rx="4" fill="#E65100" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <text x="727" y="237" text-anchor="middle" fill="white" font-family="sans-serif" font-size="10">Stage1</text>
+  <rect x="760" y="222" width="100" height="22" rx="4" fill="#BF360C" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <text x="810" y="237" text-anchor="middle" fill="white" font-family="sans-serif" font-size="10">Stage2→認証</text>
+  <!-- Star: certification -->
+  <polygon points="840,50 847,70 868,70 852,83 858,103 840,90 822,103 828,83 812,70 833,70" fill="#F9A825" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="840" y="115" text-anchor="middle" fill="#E65100" font-family="sans-serif" font-size="12" font-weight="bold">認証取得</text>
+  <!-- Result box -->
+  <rect x="60" y="315" width="760" height="20" rx="4" fill="#E8F5E9"/>
+  <text x="440" y="328" text-anchor="middle" fill="#2E7D32" font-family="sans-serif" font-size="12" font-weight="bold">成果：企業顧客向け受託案件 30%増加 / 社内セキュリティインシデント 45%削減</text>
+</svg>

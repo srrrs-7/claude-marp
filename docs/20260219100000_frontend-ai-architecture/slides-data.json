@@ -1,0 +1,664 @@
+{
+	"slides": [
+		{
+			"title": "フロントエンドアーキテクチャとAIの相性",
+			"content": [
+				"完全ガイド 2026",
+				"フルスタック・テックリード向け深掘り講座",
+				"アーキテクチャ選択 × AI機能実装 × 相性分析"
+			],
+			"layout": "center"
+		},
+		{
+			"title": "アジェンダ (1/2)",
+			"content": [
+				"**Ch1** フロントエンドアーキテクチャの現在地",
+				"**Ch2** AI開発ツールとフロントエンド",
+				"**Ch3** AIをプロダクトに組み込む",
+				"**Ch4** アーキテクチャ × AI相性分析",
+				"**Ch5** AI対応コンポーネント設計"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "アジェンダ (2/2)",
+			"content": [
+				"**Ch6** パフォーマンスと最適化",
+				"**Ch7** テスト戦略",
+				"**Ch8** セキュリティ考慮点",
+				"**Ch9** 将来展望・まとめ"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "フロントエンドの10年変遷",
+			"content": [
+				"2014: React登場 — コンポーネント指向SPA時代の幕開け",
+				"2017: Next.js登場 — SSR × Reactの実用化",
+				"2020: Jamstack最盛期 — 静的生成(SSG/ISR)が主流へ",
+				"2022: React Server Components — サーバー・クライアント境界の再定義",
+				"2023: Islands Architecture(Astro 3.0) — 選択的ハイドレーション",
+				"2024: AI開発ツール爆発的普及 — Cursor/v0/Copilot",
+				"2026: AIファーストフロントエンド — エージェントUI・オンデバイス推論"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "AIがすべてを変えた 2024–2026",
+			"content": [
+				"**開発体験の変革**: Cursor/Windsurf → コード補完がペアプログラミングに進化",
+				"**UI生成の台頭**: v0/Lovable → デザインからReactコードが秒単位で生成",
+				"**AI機能の民主化**: Vercel AI SDK → ストリーミングUIが数十行で実装可能",
+				"**アーキテクチャへの影響**: RSC + Server Actions = API Keyの安全な隠蔽が容易に",
+				"**次のフロンティア**: エージェントUI × Human-in-the-Loop × オンデバイス推論"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Ch 1",
+			"content": ["フロントエンドアーキテクチャの現在地"],
+			"layout": "section"
+		},
+		{
+			"title": "主要アーキテクチャパターン一覧",
+			"content": ["![w:900 center](assets/arch-evolution.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "CSR / SPA — リッチUXの代償",
+			"content": [
+				"**メリット**: リッチなインタラクション・オフライン対応(PWA)・開発体験が良い",
+				"**デメリット**: 初回JS読み込みが遅い・SEO困難・バンドルサイズ肥大化",
+				"**AIとの相性課題**: クライアントからAI APIを直接呼ぶとAPIキーがDevToolsで丸見え",
+				"**対策**: BFF(Backend for Frontend)またはAPI Proxyを必ず経由する",
+				"**代表実装**: React SPA, Vue SPA, Angular",
+				"**AI相性スコア**: ★★☆☆☆ — BFF追加で★★★★に改善可能"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "SSR / SSG / ISR — サーバー起点レンダリング",
+			"content": [
+				"**SSR** (Server-Side Rendering): リクエスト毎にサーバーでHTML生成 → SEO◎・初回表示速い",
+				"**SSG** (Static Site Generation): ビルド時にHTML生成 → 最速・動的コンテンツは苦手",
+				"**ISR** (Incremental Static Regeneration): 指定間隔で再生成 → 静的の速さ+動的更新",
+				"**AIとの相性**: サーバーサイドでAI APIを安全に呼び出せる → APIキー保護◎",
+				"**ユースケース**: ブログ/EC(SSG)、ダッシュボード(SSR)、カタログ(ISR)",
+				"**AI相性スコア**: ★★★☆☆ — サーバー側でAI呼び出し可能"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "React Server Components — 境界の再定義",
+			"content": [
+				"コンポーネントをサーバーで実行 → クライアントにJS不要(ゼロバンドル可能)",
+				"データフェッチをコンポーネント内に直接記述、クライアントにデータを渡さない",
+				"**AIとの相性**: AIレスポンスをサーバーフェッチし、HTMLとして配信 → APIキー完全保護",
+				"Streaming RSC: `<Suspense>` でAIレスポンスを段階的にストリーム配信",
+				"Server Actions: クライアントから直接サーバー関数を呼び出せる → AIトリガーに最適",
+				"**AI相性スコア**: ★★★★★ — Next.js App Routerの最大の強み"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Islands Architecture — 選択的ハイドレーション",
+			"content": [
+				"静的HTML主体 + 必要な部分だけJS(島)を読み込む",
+				"Astroが代表実装: `<Component client:load />` で明示的にハイドレート",
+				"フレームワーク非依存: React/Vue/Svelte を同一ページで混在可能",
+				"**AIとの相性**: AIチャットウィジェットを独立した島として配置 → 他コンテンツに影響なし",
+				"AIウィジェットがクラッシュしても静的コンテンツは正常動作（アイソレーション◎）",
+				"**AI相性スコア**: ★★★★☆ — アイソレーション×段階的追加に最適"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Micro Frontends — チーム独立開発",
+			"content": [
+				"チームごとに独立したフロントエンドを開発・デプロイ",
+				"統合方法: Module Federation / iframe / Web Components / ESM CDN",
+				"**AIとの相性**: AIチームが `ai-chat-mfe` として独立デプロイ可能",
+				"AIモデルのアップデートが他チームのデプロイに影響しない（独立性◎）",
+				"ランタイム統合なら各チームが独自のAI SDKバージョンを維持可能",
+				"**AI相性スコア**: ★★★☆☆ — 大規模組織での独立運用に強み"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Ch 2",
+			"content": ["AI開発ツールとフロントエンド"],
+			"layout": "section"
+		},
+		{
+			"title": "AI開発ツール全体像（2026年）",
+			"content": ["![w:900 center](assets/ai-tools-map.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "コード補完系: Copilot / Cursor / Windsurf",
+			"content": [
+				"**GitHub Copilot**: IDEプラグイン型・コンテキスト補完・企業導入◎・GitHub連携",
+				"**Cursor**: エディタ統合型・チャット+インライン編集・コンポーネントリファクタに強い",
+				"**Windsurf**: エージェント型・ファイル横断編集・大規模リファクタに最適",
+				"**フロントエンド特化の強み**: Reactフック生成・型定義補完・テストコード自動生成",
+				"**効果が高い場面**: 定型的なCRUDコンポーネント・型定義・テストケース生成",
+				"**効果が低い場面**: 独自アーキテクチャのコア設計・複雑なパフォーマンス最適化"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "UI生成系: v0 / Lovable / Builder.io",
+			"content": [
+				"**v0 by Vercel**: プロンプト → React + shadcn/ui + Tailwind を即生成",
+				"**Lovable**: ビジュアルデザイン → フルアプリケーション生成・バックエンドも対応",
+				"**Builder.io AI**: 既存Figmaデザイン → コンポーネントコード変換",
+				"**共通の注意点**: 生成コードは「たたき台」 → 命名・アクセシビリティは必ずレビュー",
+				"**アーキテクチャ制約**: 生成ツールは既存アーキテクチャを理解しない → 統合作業が必要",
+				"**最大の価値**: プロトタイプ速度の向上（ゼロ→形になるまでが10x速い）"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "アーキテクチャ × AIコード生成の相性原則",
+			"content": [
+				"**コンポーネント粒度**: 小さく分割されているほどAI補完が精確（単一責任原則◎）",
+				"**TypeScript型定義**: Props型・ReturnType が明確なほどAI補完品質UP",
+				"**テストカバレッジ**: テストがあるとAIによるリファクタ安全性UP",
+				"**命名一貫性**: 命名規則が統一されているとAIが文脈を正確に把握",
+				"**まとめ**: クリーンコードの原則 ≒ AIとの相性を高める設計原則と一致する",
+				"逆説: 「AIに頼りやすいコード」=「人間にも読みやすいコード」"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "AI親和性の高いコンポーネント設計原則",
+			"content": [
+				"**① 単一責任**: 1コンポーネント = 1機能 → AIが正確にコンテキストを把握",
+				"**② 明示的なProps型**: `interface ButtonProps { label: string; onClick: () => void }` 必須",
+				"**③ 副作用の分離**: Custom Hooks に副作用を集約 → コンポーネントは純粋に保つ",
+				"**④ 命名の一貫性**: `useXxx` / `XxxComponent` / `XxxProvider` のプレフィックス規則",
+				"**⑤ JSDocコメント**: 複雑なロジックにコメント → AIが意図を誤解しない",
+				"**⑥ テストと型の整合**: テスト名×Props型が整合すると補完精度が大幅UP"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "AIが書いたコードのレビューポイント",
+			"content": [
+				"**セキュリティ**: `dangerouslySetInnerHTML` の使用確認・XSS・インジェクション",
+				"**パフォーマンス**: 不要なre-render（依存配列の漏れ・新しいオブジェクト参照）",
+				"**アクセシビリティ**: `aria-label`/`role` 属性の欠落・キーボード操作対応",
+				"**型安全性**: `any` 型・型アサション(`as`)の多用を警戒",
+				"**エラーハンドリング**: ネットワークエラー・null参照の考慮漏れ",
+				"**テスト可能性**: ハードコードされた依存・グローバル状態への直接アクセス"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Ch 3",
+			"content": ["AIをプロダクトに組み込む"],
+			"layout": "section"
+		},
+		{
+			"title": "AI機能の分類と実装パターン",
+			"content": [
+				"**① 同期型**: テキスト分類・センチメント分析 → 通常のfetch/axios・応答時間<1s",
+				"**② ストリーミング型**: テキスト生成・チャット → SSE/ReadableStream・数秒〜数十秒",
+				"**③ 非同期処理型**: 画像生成・音声変換 → polling/webhook・数十秒〜数分",
+				"**④ リアルタイム型**: 音声通話AI・ライブ翻訳 → WebSocket双方向通信",
+				"**選択基準**: 応答時間・双方向性・エラーリカバリの要件で決定",
+				"**最重要**: ストリーミング型が現代AIアプリの主流 → UX改善効果が最大"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Vercel AI SDK — フロントエンドAIの標準ツールキット",
+			"content": ["![w:900 center](assets/vercel-ai-sdk.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "ストリーミングUI 3つのパターン",
+			"content": ["![w:900 center](assets/streaming-patterns.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "useChat / useCompletion — Vercel AI SDK",
+			"content": [
+				"Vercel AI SDK の `useChat` フックでチャットUIを数十行で実装できる"
+			]
+		},
+		{
+			"title": "useChat / useCompletion — Vercel AI SDK（コード例）",
+			"content": [],
+			"code": "import { useChat } from 'ai/react'\n\nexport function ChatUI() {\n  const { messages, input, handleInputChange,\n          handleSubmit, isLoading } = useChat({ api: '/api/chat' })\n\n  return (\n    <div>\n      {messages.map(m => (\n        <div key={m.id} data-role={m.role}>{m.content}</div>\n      ))}\n      <form onSubmit={handleSubmit}>\n        <input value={input} onChange={handleInputChange} disabled={isLoading} />\n        <button type=\"submit\" disabled={isLoading}>\n          {isLoading ? '生成中...' : '送信'}\n        </button>\n      </form>\n    </div>\n  )\n}",
+			"codeLanguage": "tsx"
+		},
+		{
+			"title": "Server Actions × AI Streaming (Next.js 15)",
+			"content": [
+				"RSC + Server Actions でAPIキーをサーバーに閉じ込めながらAIストリーミングを実現"
+			]
+		},
+		{
+			"title": "Server Actions × AI Streaming (Next.js 15)（コード例）",
+			"content": [],
+			"code": "'use server'\nimport { streamText } from 'ai'\nimport { openai } from '@ai-sdk/openai'\nimport { createStreamableValue } from 'ai/rsc'\n\nexport async function generateResponse(prompt: string) {\n  const stream = createStreamableValue('')\n  ;(async () => {\n    const { textStream } = await streamText({\n      model: openai('gpt-4o-mini'),\n      system: 'あなたは親切なアシスタントです。',\n      prompt,\n    })\n    for await (const delta of textStream) { stream.update(delta) }\n    stream.done()\n  })()\n  return { output: stream.value }  // streamable value を返す\n}",
+			"codeLanguage": "typescript"
+		},
+		{
+			"title": "SSE vs WebSocket vs ReadableStream 比較",
+			"content": [
+				"**SSE** (Server-Sent Events): HTTP/1.1互換・一方向・実装シンプル → AI応答配信の主流",
+				"**WebSocket**: 双方向・低レイテンシ → 音声AI・リアルタイム翻訳など双方向が必要な場合",
+				"**ReadableStream** (Vercel AI SDK): fetchベース・Edge対応・最もシンプルな実装",
+				"**推奨**: テキスト生成/チャット → ReadableStream or SSE / 双方向通話 → WebSocket",
+				"**注意**: SSEはHTTP/2 multiplexingで複数ストリームを効率化できる"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "BFF パターン — APIキーを安全に管理",
+			"content": ["![w:900 center](assets/bff-pattern.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "RAG UI パターン — 社内ドキュメント検索",
+			"content": [
+				"**インデックス構築**: ドキュメントアップロード → チャンク分割 → Embedding → ベクトルDB保存",
+				"**クエリフロー**: ユーザー質問 → クエリEmbedding → 類似検索 → コンテキスト付きLLM呼び出し",
+				"**引用元表示UI**: 回答に使われたドキュメント名・ページ番号を表示（信頼性UP）",
+				"**実装スタック**: LangChain.js / Vercel AI SDK + Pinecone / ChromaDB",
+				"**フロントエンド責務**: ファイルアップロードUI・検索状態表示・引用ハイライト",
+				"**アーキテクチャ**: Next.js Route Handlers が Embedding→検索→LLM呼び出しをサーバー側で処理"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "マルチターン会話の状態管理",
+			"content": [
+				"**① クライアント側** (useState/Zustand): シンプル・ページリロードで消える",
+				"**② サーバーDB** (PostgreSQL/KV): 永続化・マルチデバイス対応・認証必須",
+				"**③ RSC + Server Actions**: サーバー管理・クライアントは軽量・Next.js最適解",
+				"**会話履歴の長さ制限**: トークン数管理が必須 → 古いメッセージを要約・切り捨て",
+				"**Vercel AI SDK**: `useChat` が会話履歴を自動管理 → `/api/chat` にメッセージ配列を送信"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "マルチモーダルUI — 画像・音声入力",
+			"content": [
+				"**画像入力**: `<input type=\"file\" accept=\"image/*\">` → FileReader → Base64 → Vision API",
+				"**ドラッグ&ドロップ**: `onDrop` で File オブジェクト取得 → プレビュー表示 → API送信",
+				"**音声入力**: `MediaRecorder API` → 音声録音 → Whisper API → テキスト変換",
+				"**ビデオ分析**: Canvas で フレーム抽出 → Base64 → GPT-4o Vision で解析",
+				"**Vercel AI SDK**: `useChat` の `experimental_attachments` でファイル添付対応済み"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Edge Runtime × AI推論",
+			"content": [
+				"**Vercel Edge Functions**: ユーザーに近いCDNエッジでAI推論 → TTFT最小化",
+				"**Cloudflare Workers**: Workers AI + エッジ推論 → ゼロコールドスタート",
+				"**エッジの制限**: Node.js API非対応・実行時間上限あり・使えるパッケージが限られる",
+				"**AI SDKのEdge対応**: Vercel AI SDK は全関数がEdge Runtimeで動作する設計",
+				"**Durable Objects** (Cloudflare): エッジでの状態管理 → 会話履歴をエッジに保持可能"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Ch 4",
+			"content": ["アーキテクチャ × AI相性分析"],
+			"layout": "section"
+		},
+		{
+			"title": "SPA × AI — 課題と対処法",
+			"content": [
+				"**課題①: APIキー漏洩**: DevToolsのNetworkタブでAI APIキーが丸見えになる",
+				"**課題②: CORS**: AI APIの多くはブラウザからの直接呼び出しをブロック",
+				"**課題③: バンドルサイズ**: AI SDKをクライアントに含めると数十KB肥大化",
+				"**対策①: BFF必須**: Next.js Route Handlers や Express で AIプロキシを実装",
+				"**対策②: 動的インポート**: AIウィジェットを `React.lazy()` で遅延読み込み",
+				"**AI相性スコア**: ★★☆☆☆ → BFF追加 + 動的インポートで ★★★★ に改善"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Next.js App Router × AI — 最高相性の理由",
+			"content": [
+				"**Server Components**: AIレスポンスをサーバーフェッチ → APIキーがブラウザに届かない",
+				"**Server Actions**: クライアントから直接サーバー関数を呼ぶ → RPCライクなAI呼び出し",
+				"**Streaming RSC**: `<Suspense>` × `createStreamableUI` でAI応答を段階的に描画",
+				"**Route Handlers**: `/api/chat` をEdge Runtimeで動かして全世界に低レイテンシ配信",
+				"**Caching**: `fetch` キャッシュ × `revalidate` でAIレスポンスをISRキャッシュ",
+				"**AI相性スコア**: ★★★★★ — サーバー/クライアント分離がAIに完璧にマッチ"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "React Server Components × AI Streaming",
+			"content": [
+				"RSCのSuspense境界とServer Actionsを組み合わせたAIストリーミング実装"
+			]
+		},
+		{
+			"title": "React Server Components × AI Streaming（コード例）",
+			"content": [],
+			"code": "// app/ai-page/page.tsx (Server Component)\nimport { Suspense } from 'react'\nimport { generateResponse } from '../actions'\nimport { StreamingOutput } from '@/components/StreamingOutput'\n\nexport default async function AIPage() {\n  const { output } = await generateResponse('最新のReactトレンドを教えて')\n  return (\n    <main>\n      <h1>AI回答</h1>\n      <Suspense fallback={<div aria-live=\"polite\">生成中...</div>}>\n        <StreamingOutput stream={output} />\n      </Suspense>\n    </main>\n  )\n}",
+			"codeLanguage": "tsx"
+		},
+		{
+			"title": "Islands Architecture × AI",
+			"content": [
+				"Astroでメインコンテンツは静的HTML → AIチャットウィジェットだけを島として配置",
+				"`<ChatWidget client:load />` で必要なタイミングにのみJSをハイドレート",
+				"AIウィジェットがJSエラーでクラッシュしても静的コンテンツは正常動作",
+				"**段階的なAI機能追加**: 既存静的サイトに `client:visible` で遅延ロードAI機能を追加",
+				"**AI相性スコア**: ★★★★☆ — アイソレーション性と段階的導入のしやすさが強み"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Micro Frontends × AI",
+			"content": [
+				"AIチームが `ai-assistant-mfe` として独立開発・デプロイ → 他チームに影響なし",
+				"**Module Federation**: Webpack 5 でAIコンポーネントを動的にリモートロード",
+				"AIモデルのアップデート・SDK更新が他チームのリリースサイクルに干渉しない",
+				"**独立したバンドル**: AIウィジェットのみ遅延ロード → 非AI部分の速度を維持",
+				"**AI相性スコア**: ★★★☆☆ — 組織規模と独立デプロイが必要な場合に強み"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Edge-first × AI — レイテンシ最小化",
+			"content": [
+				"**Cloudflare Workers + Workers AI**: ユーザーに最も近いエッジでAI推論実行",
+				"**Vercel Edge + OpenAI Streaming**: CDNエッジ → OpenAI API → ストリーミング返送",
+				"**TTFT削減効果**: リージョン配置で東京ユーザーへのTTFTが50-80ms短縮",
+				"**Durable Objects**: エッジで会話状態を管理 → DBへのラウンドトリップを省略",
+				"**AI相性スコア**: ★★★★★ — グローバルユーザーへの低レイテンシAI配信に最適"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "GraphQL × AI — 型安全なAIインターフェース",
+			"content": [
+				"**Schemaでレスポンス型を強制**: AIの出力をGraphQL型で定義 → クライアントに型安全を保証",
+				"**Subscription**: GraphQLサブスクリプションでAIストリーミングを実現（WebSocketベース）",
+				"**DataLoader**: N+1問題をバッチ化 → AI embeddings生成のバッチ最適化",
+				"**注意**: REST + SSE のほうが実装シンプル → 既存GraphQL環境でのみ採用を検討",
+				"**AI相性スコア**: ★★★☆☆ — 型安全重視・既存GraphQL環境での採用が合理的"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "総合相性マトリクス",
+			"content": ["![w:900 center](assets/arch-ai-compat.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "推奨スタック — ユースケース別",
+			"content": ["![w:900 center](assets/recommended-stack.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "Ch 5",
+			"content": ["AI対応コンポーネント設計"],
+			"layout": "section"
+		},
+		{
+			"title": "AIコンポーネントの責務分離",
+			"content": ["![w:900 center](assets/component-design.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "Streaming Text コンポーネント実装",
+			"content": [
+				"ストリーミングテキストをリアルタイムで表示するコンポーネント"
+			]
+		},
+		{
+			"title": "Streaming Text コンポーネント実装（コード例）",
+			"content": [],
+			"code": "'use client'\nimport { useState, useEffect } from 'react'\nimport { readStreamableValue } from 'ai/rsc'\n\ninterface Props { stream: AsyncIterable<string> }\n\nexport function StreamingText({ stream }: Props) {\n  const [text, setText] = useState('')\n\n  useEffect(() => {\n    ;(async () => {\n      for await (const delta of readStreamableValue(stream)) {\n        setText(prev => prev + (delta ?? ''))\n      }\n    })()\n  }, [stream])\n\n  return <p aria-live=\"polite\">{text}<span className=\"animate-pulse\">▌</span></p>\n}",
+			"codeLanguage": "tsx"
+		},
+		{
+			"title": "Optimistic UI — AI応答を即座に表示",
+			"content": [
+				"メッセージ送信を楽観的に表示し、失敗時にロールバックするパターン"
+			]
+		},
+		{
+			"title": "Optimistic UI — AI応答を即座に表示（コード例）",
+			"content": [],
+			"code": "const [messages, setMessages] = useState<Message[]>([])\n\nasync function sendMessage(text: string) {\n  const tempId = Date.now()\n  // 楽観的に即座に追加\n  setMessages(prev => [...prev,\n    { id: tempId, role: 'user', content: text, status: 'sending' }\n  ])\n  try {\n    const reply = await fetchAIResponse(text)\n    setMessages(prev => [\n      ...prev.map(m => m.id === tempId ? { ...m, status: 'sent' } : m),\n      { id: Date.now(), role: 'assistant', content: reply }\n    ])\n  } catch {\n    setMessages(prev =>\n      prev.map(m => m.id === tempId ? { ...m, status: 'failed' } : m)\n    )\n  }\n}",
+			"codeLanguage": "typescript"
+		},
+		{
+			"title": "Error Boundary × AI フォールバック",
+			"content": [
+				"AI機能専用のErrorBoundaryでUXを保護し、再試行フローを提供する"
+			]
+		},
+		{
+			"title": "Error Boundary × AI フォールバック（コード例）",
+			"content": [],
+			"code": "class AIErrorBoundary extends React.Component<\n  { children: React.ReactNode },\n  { hasError: boolean }\n> {\n  state = { hasError: false }\n  static getDerivedStateFromError() { return { hasError: true } }\n\n  render() {\n    if (this.state.hasError) return (\n      <div role=\"alert\" className=\"ai-fallback\">\n        <p>⚠️ AI機能が一時的に利用できません</p>\n        <button onClick={() => this.setState({ hasError: false })}>\n          再試行\n        </button>\n      </div>\n    )\n    return this.props.children\n  }\n}",
+			"codeLanguage": "tsx"
+		},
+		{
+			"title": "プログレッシブUI — 3段階の表示戦略",
+			"content": [
+				"**① Skeleton** (0–500ms): アウトラインのみ → ユーザーは「ロード中」と認識",
+				"**② Partial** (500ms–2s): 最初のトークンが届き始め → テキストが現れる",
+				"**③ Full** (2s–): 全文表示 + アクションボタン（コピー・再生成）が出現",
+				"**UXの重要点**: ユーザーはテキストが出た瞬間から読み始める → **TTFTが最重要指標**",
+				"実装: `isLoading` → Skeleton → ストリーミング開始で即切替 → `isDone` でアクション表示"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "アクセシビリティ × ストリーミングUI",
+			"content": [
+				"**`aria-live=\"polite\"`**: ストリーミングテキストをスクリーンリーダーが段階的に読み上げ",
+				"**`aria-busy=\"true/false\"`**: ローディング状態をスクリーンリーダーに通知",
+				"**`role=\"log\"`**: チャット履歴要素に付与 → スクリーンリーダーが新着メッセージを通知",
+				"**フォーカス管理**: メッセージ送信後、返答エリアに自動フォーカス移動",
+				"**`prefers-reduced-motion`**: ストリーミングカーソルアニメーションを無効化",
+				"**`prefers-contrast`**: ハイコントラストモードでAIとユーザーメッセージを区別"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Ch 6",
+			"content": ["パフォーマンスと最適化"],
+			"layout": "section"
+		},
+		{
+			"title": "AI機能固有のパフォーマンス指標",
+			"content": ["![w:900 center](assets/perf-metrics.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "Time to First Token (TTFT) 最適化",
+			"content": [
+				"**モデル配置**: ユーザーに近いリージョン/エッジに配置 → RTT削減で50-100ms改善",
+				"**モデル選択**: GPT-4o → GPT-4o mini で TTFT を30-50%削減（品質はほぼ同等）",
+				"**Prompt Caching**: Anthropicのキャッシュ機能でシステムプロンプトのTTFTを90%削減",
+				"**並列フェッチ**: ストリーミング開始前にDB・外部APIをParallel fetchで事前取得",
+				"**ウォームアップ**: Route Handlerを事前リクエストでコールドスタートを回避"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "ストリーミングバッファリング戦略",
+			"content": [
+				"**文字/トークン単位**: 最高のストリーミング体験・ネットワーク負荷が大きい",
+				"**文章単位**: 句点・改行でバースト送信・ネットワーク効率◎・少しカクつく",
+				"**時間間隔**: 100ms毎にバッファをflush → バランス型",
+				"**推奨**: SSEで文字/トークン単位（体験優先）・WebSocketで文章単位（効率優先）",
+				"**Vercel AI SDK**: デフォルトでトークン単位ストリーミング → カスタマイズは `smoothStream()` を使用"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "AI応答のキャッシュ設計",
+			"content": [
+				"**Exact Match Cache**: 完全一致クエリをKV（Redis/Upstash）にキャッシュ",
+				"**Semantic Cache**: ベクトル類似度で近いクエリをキャッシュ → GPTCache / Momento",
+				"**TTL設計**: 時事情報は短TTL(1h)・FAQ/静的情報は長TTL(24h〜7d)",
+				"**注意**: 非決定論的生成(temperature>0)のキャッシュ共有は品質劣化リスクあり",
+				"**コスト削減効果**: 同一クエリへのキャッシュで API コストを最大80%削減事例あり"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "バンドルサイズ最適化",
+			"content": [
+				"**AI SDKのバンドルサイズ**: `ai` package ~60KB (gzip) → 遅延インポートで初回ロードに含めない",
+				"**動的インポート**: `const { useChat } = await import('ai/react')` でチャット画面遷移時のみロード",
+				"**Tree Shaking**: `@ai-sdk/openai` はTree-shaking対応 → 使わないプロバイダは除外される",
+				"**Server Componentへ移行**: クライアントAI処理をServer Componentで代替 → クライアントJS削減",
+				"**Lazy Loading**: AIウィジェットは最後に読み込み → LCPやTTIの悪化を防ぐ"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Ch 7",
+			"content": ["テスト戦略"],
+			"layout": "section"
+		},
+		{
+			"title": "AI統合テストの課題",
+			"content": [
+				"**非決定論的**: 同じ入力でも異なる出力 → アサーション条件を柔軟に設計する必要あり",
+				"**コスト**: テストのたびにAPI費用が発生 → CI実行回数をコントロールする必要あり",
+				"**レート制限**: CIで大量テストを並列実行するとAPIレート制限に到達する",
+				"**ストリーミング**: ReadableStreamの非同期テストは通常のPromiseテストより複雑",
+				"**対策**: AIを完全にモック化・ゴールデンファイルテスト・E2Eはスモークテストのみ",
+				"**テスト分類**: Unit(AIモック) / Integration(MSWモック) / E2E(本物API・CI限定実行)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "LLMモック戦略 — MSWでストリームをシミュレート",
+			"content": [
+				"MSW(Mock Service Worker)でSSEストリームをテスト用にシミュレート"
+			]
+		},
+		{
+			"title": "LLMモック戦略 — MSWでストリームをシミュレート（コード例）",
+			"content": [],
+			"code": "import { http, HttpResponse } from 'msw'\n\nexport const aiHandlers = [\n  http.post('/api/chat', () => {\n    const encoder = new TextEncoder()\n    const stream = new ReadableStream({\n      start(ctrl) {\n        ['こんにちは', '！', ' 何か', 'お手伝い', 'できますか？'].forEach(c =>\n          ctrl.enqueue(\n            encoder.encode(`data: {\"content\":\"${c}\"}\n\n`)\n          )\n        )\n        ctrl.close()\n      }\n    })\n    return new HttpResponse(stream,\n      { headers: { 'Content-Type': 'text/event-stream' } }\n    )\n  })\n]",
+			"codeLanguage": "typescript"
+		},
+		{
+			"title": "ストリーミングUIのテスト",
+			"content": [
+				"Testing Libraryでストリーミングテキストが最終的に表示されることを検証"
+			]
+		},
+		{
+			"title": "ストリーミングUIのテスト（コード例）",
+			"content": [],
+			"code": "import { render, screen } from '@testing-library/react'\nimport userEvent from '@testing-library/user-event'\nimport { server } from './mocks/server'\nimport { aiHandlers } from './mocks/aiHandlers'\nimport { ChatUI } from './ChatUI'\n\nbeforeAll(() => server.listen())\nafterEach(() => server.resetHandlers())\nafterAll(() => server.close())\n\ntest('AIストリーミングレスポンスが表示される', async () => {\n  server.use(...aiHandlers)\n  render(<ChatUI />)\n  await userEvent.type(screen.getByRole('textbox'), 'こんにちは{Enter}')\n  await screen.findByText('こんにちは！ 何かお手伝いできますか？')\n})",
+			"codeLanguage": "typescript"
+		},
+		{
+			"title": "Ch 8",
+			"content": ["セキュリティ考慮点"],
+			"layout": "section"
+		},
+		{
+			"title": "クライアントサイドのAIリスク",
+			"content": [
+				"**① APIキー漏洩**: クライアントにAPIキーを含めると誰でも取得・不正利用可能",
+				"**② プロンプトインジェクション**: ユーザー入力でシステムプロンプトを改変・脱獄",
+				"**③ コンテンツインジェクション**: AI出力にJavaScriptやHTMLを埋め込んでXSS",
+				"**④ SSRF**: AI経由で内部ネットワーク・メタデータAPIへのアクセスを誘導",
+				"**⑤ 過度な権限**: Function Callingでファイル削除・DBアクセスなど危険な操作を許可",
+				"**最重要原則**: AIは外部入力を含む → 全出力を「信頼しない入力」として扱う"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "プロンプトインジェクション対策",
+			"content": [
+				"構造化プロンプト + 入力サニタイズ + 長さ制限でインジェクションを防ぐ"
+			]
+		},
+		{
+			"title": "プロンプトインジェクション対策（コード例）",
+			"content": [],
+			"code": "// NG: ユーザー入力をシステムプロンプトに直接連結\nconst bad = `You are helpful. User: ${userInput} Answer:`\n\n// OK: 構造化プロンプト + サニタイズ\nfunction buildSecurePrompt(userInput: string): ChatMessage[] {\n  const sanitized = userInput\n    .replace(/<[^>]*>/g, '')  // HTMLタグ除去\n    .replace(/[{}\\[\\]]/g, '') // テンプレート文字除去\n    .substring(0, 1000)       // 長さ制限\n  return [\n    { role: 'system', content: 'あなたは社内アシスタントです。' },\n    // ユーザー入力を明示的にラベリングして区切る\n    { role: 'user', content: `ユーザーの質問: ${sanitized}` }\n  ]\n}",
+			"codeLanguage": "typescript"
+		},
+		{
+			"title": "API Key管理 — 3つのパターン",
+			"content": [
+				"**❌ 最悪**: `REACT_APP_OPENAI_KEY` でクライアントに直接埋め込み → 絶対にNG",
+				"**✅ 基本**: Next.js Route Handlers / Express API をプロキシとして使用",
+				"**✅ ベスト**: BFF + レート制限 + 認証チェック + IP制限を組み合わせる",
+				"**BFFの実装例**: `/api/chat` → 認証確認 → ユーザー毎レート制限 → OpenAI API呼び出し",
+				"**Vercel環境変数**: `OPENAI_API_KEY`（`NEXT_PUBLIC_` プレフィックスなし）でサーバー専用化"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Ch 9",
+			"content": ["将来展望・まとめ"],
+			"layout": "section"
+		},
+		{
+			"title": "WebGPU × オンデバイス推論",
+			"content": [
+				"**WebGPU API**: ブラウザからGPUに直接アクセス → WebGLより10-100x高速な計算",
+				"**Transformers.js**: Hugging FaceのWebGPU対応ライブラリ → 100+モデルをブラウザで動作",
+				"**WebLLM**: ブラウザ内LLM実行 → Llama 3.2-3B (3GB) が Chrome / Safari で動作済み",
+				"**ユースケース**: プライバシー重視機能(医療・法律)・オフライン動作・レイテンシゼロ",
+				"**現実的な制約**: モデルダウンロード3-5GB・推論速度はサーバーの1/5〜1/10程度"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "MCP × フロントエンド",
+			"content": [
+				"**Model Context Protocol**: AIとツールの標準通信プロトコル（Anthropic発）",
+				"**ブラウザ拡張 × MCP**: Chrome拡張がMCPサーバーとして機能 → AIがブラウザを操作",
+				"**Web Automationエージェント**: MCPでDOM操作・フォーム入力・ナビゲーションを標準化",
+				"**フロントエンドのUI操作をAIが直接実行**: アクセシビリティツリーを通じたUI理解",
+				"**展望**: MCP対応フロントエンドが標準になることでAIエージェントの利用率が急増"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "エージェントUI パターン",
+			"content": ["![w:900 center](assets/agent-ui-flow.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "フロントエンドエンジニアの必須AIスキルロードマップ",
+			"content": [
+				"**Level 1** AI補助開発: Copilot/Cursor活用・プロンプトエンジニアリング基礎",
+				"**Level 2** AI機能実装: Vercel AI SDK・ストリーミングUI・BFFパターン",
+				"**Level 3** RAG/Agent UI設計: LangChain.js・ベクトルDB・エージェント状態UI",
+				"**Level 4** エッジAI・オンデバイス: Transformers.js・WebGPU・Workers AI",
+				"**共通基盤**: TypeScript型安全・パフォーマンス計測(TTFT)・セキュリティ(インジェクション対策)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "まとめ — フロントエンド × AI ベストプラクティス",
+			"content": [
+				"**① APIキーは絶対にクライアントに置かない** → BFF / Server Actions 必須",
+				"**② TTFT最優先** → Edge配置・小型モデル選択・Prompt Caching",
+				"**③ Next.js App Router + RSC + Server Actions** = 現時点のAI最適フロントエンド構成",
+				"**④ AIコンポーネントはErrorBoundaryで包む** → AI障害がUX全体に波及しない",
+				"**⑤ LLMをモック化してCI/CDを高速・低コストに保つ** → MSW活用",
+				"**参考**: [Vercel AI SDK](https://sdk.vercel.ai) / [AI SDK Examples](https://github.com/vercel/ai) / [WebLLM](https://webllm.mlc.ai) / [Transformers.js](https://huggingface.co/docs/transformers.js)"
+			],
+			"layout": "default"
+		}
+	]
+}

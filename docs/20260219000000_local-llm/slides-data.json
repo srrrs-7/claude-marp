@@ -360,34 +360,43 @@
 		},
 		{
 			"title": "インストールからモデル起動まで",
-			"layout": "default",
 			"content": [
 				"macOS/Linux ではワンライナーでインストール完了",
 				"モデルは `ollama pull` で自動ダウンロード（GGUF形式）",
 				"起動後は `http://localhost:11434` でAPIサーバーが待機"
-			],
+			]
+		},
+		{
+			"title": "インストールからモデル起動まで（コード例）",
+			"content": [],
 			"code": "# インストール (macOS / Linux)\ncurl -fsSL https://ollama.com/install.sh | sh\n\n# Windows: https://ollama.com/download からインストーラをダウンロード\n\n# モデルのダウンロードと起動\nollama pull llama3.2          # 3B モデル（約2GB）\nollama pull llama3.3:70b      # 70B モデル（要大容量VRAM）\nollama pull deepseek-r1:7b    # DeepSeek R1 蒸留版\n\n# インタラクティブチャット\nollama run llama3.2\nollama run llama3.2 \"Pythonでフィボナッチ数列を書いて\"",
 			"codeLanguage": "bash"
 		},
 		{
 			"title": "OpenAI互換APIの利用",
-			"layout": "default",
 			"content": [
 				"OllamaはOpenAI互換エンドポイントを提供",
 				"既存のOpenAI SDKコードをほぼそのまま流用可能",
 				"環境変数を切り替えるだけでローカル/クラウドを切替"
-			],
+			]
+		},
+		{
+			"title": "OpenAI互換APIの利用（コード例）",
+			"content": [],
 			"code": "import OpenAI from \"openai\";\n\n// Ollama をOpenAI互換として利用\nconst client = new OpenAI({\n  baseURL: \"http://localhost:11434/v1\",\n  apiKey: \"ollama\", // 任意の文字列\n});\n\nconst response = await client.chat.completions.create({\n  model: \"llama3.2\",\n  messages: [\n    { role: \"system\", content: \"あなたはシニアエンジニアです。\" },\n    { role: \"user\", content: \"Rustでゼロコスト抽象化を説明して\" },\n  ],\n  stream: true,\n});\n\nfor await (const chunk of response) {\n  process.stdout.write(chunk.choices[0]?.delta?.content ?? \"\");\n}",
 			"codeLanguage": "typescript"
 		},
 		{
 			"title": "Modelfile：カスタムモデルの作成",
-			"layout": "default",
 			"content": [
 				"Modelfile でシステムプロンプト・パラメータをカスタマイズ",
 				"チームで共有・バージョン管理可能",
 				"`ollama create` でカスタムモデルとして登録"
-			],
+			]
+		},
+		{
+			"title": "Modelfile：カスタムモデルの作成（コード例）",
+			"content": [],
 			"code": "# Modelfile\nFROM llama3.2\n\n# システムプロンプト\nSYSTEM \"\"\"\nあなたはシニアバックエンドエンジニアです。\nTypeScript / Rust / Go を専門とし、\nコードレビューとアーキテクチャ設計が得意です。\n回答は常に日本語で、コードには必ずコメントを付けてください。\n\"\"\"\n\n# モデルパラメータ調整\nPARAMETER temperature 0.3\nPARAMETER top_p 0.9\nPARAMETER num_ctx 8192\nPARAMETER num_predict 2048\n\n# ビルドと実行\n# ollama create my-engineer -f Modelfile\n# ollama run my-engineer",
 			"codeLanguage": "dockerfile"
 		},
@@ -404,11 +413,14 @@
 		},
 		{
 			"title": "LangChain + Ollama 実装例",
-			"layout": "default",
 			"content": [
 				"ChatOllama クラスで簡単にローカルモデルを利用",
 				"既存の LangChain チェーンやエージェントがそのまま動作"
-			],
+			]
+		},
+		{
+			"title": "LangChain + Ollama 実装例（コード例）",
+			"content": [],
 			"code": "from langchain_ollama import ChatOllama\nfrom langchain_core.messages import HumanMessage, SystemMessage\nfrom langchain_core.prompts import ChatPromptTemplate\n\n# モデル初期化\nllm = ChatOllama(\n    model=\"llama3.2\",\n    temperature=0.3,\n    base_url=\"http://localhost:11434\",\n)\n\n# プロンプトテンプレート\nprompt = ChatPromptTemplate.from_messages([\n    (\"system\", \"あなたはコードレビュアーです。\"),\n    (\"human\", \"{code}\\n\\nこのコードをレビューして\"),\n])\n\nchain = prompt | llm\nresult = chain.invoke({\"code\": \"def fib(n): return fib(n-1)+fib(n-2)\"})",
 			"codeLanguage": "python"
 		},
@@ -420,11 +432,14 @@
 		},
 		{
 			"title": "完全ローカルRAGの実装",
-			"layout": "default",
 			"content": [
 				"ベクトルDBも埋め込みモデルもローカルで完結",
 				"機密ドキュメントをクラウドに送らずAI検索を実現"
-			],
+			]
+		},
+		{
+			"title": "完全ローカルRAGの実装（コード例）",
+			"content": [],
 			"code": "from langchain_ollama import OllamaEmbeddings, ChatOllama\nfrom langchain_chroma import Chroma\nfrom langchain.chains import RetrievalQA\nfrom langchain.document_loaders import DirectoryLoader\nfrom langchain.text_splitter import RecursiveCharacterTextSplitter\n\n# 埋め込みモデル（ローカル）\nembeddings = OllamaEmbeddings(model=\"nomic-embed-text\")\n\n# ドキュメント読込 & チャンク分割\nloader = DirectoryLoader(\"./docs\", glob=\"**/*.md\")\ndocs = RecursiveCharacterTextSplitter(\n    chunk_size=500, chunk_overlap=50\n).split_documents(loader.load())\n\n# ベクトルDB構築（ローカル）\nvectordb = Chroma.from_documents(docs, embeddings, persist_directory=\"./db\")\n\n# RAG チェーン\nqa = RetrievalQA.from_chain_type(\n    llm=ChatOllama(model=\"llama3.2\"),\n    retriever=vectordb.as_retriever(search_kwargs={\"k\": 5}),\n)",
 			"codeLanguage": "python"
 		},

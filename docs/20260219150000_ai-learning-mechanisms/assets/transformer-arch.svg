@@ -1,0 +1,84 @@
+<svg viewBox="0 0 700 440" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <!-- Title -->
+  <text x="350" y="22" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">Transformer アーキテクチャ</text>
+
+  <!-- Encoder (left) -->
+  <rect x="30" y="40" width="270" height="380" rx="12" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+  <text x="165" y="65" text-anchor="middle" font-size="15" font-weight="bold" fill="#1976d2">Encoder</text>
+
+  <!-- Encoder layers (bottom to top) -->
+  <!-- Input Embedding + Pos Enc -->
+  <rect x="55" y="365" width="220" height="35" rx="6" fill="#bbdefb" stroke="#1976d2"/>
+  <text x="165" y="387" text-anchor="middle" font-size="12" fill="#0d47a1">Input Embedding + 位置エンコード</text>
+  <line x1="165" y1="365" x2="165" y2="340" stroke="#1976d2" stroke-width="1.5"/>
+  <polygon points="159,343 165,333 171,343" fill="#1976d2"/>
+
+  <!-- Add & Norm -->
+  <rect x="90" y="308" width="150" height="30" rx="6" fill="#e3f2fd" stroke="#42a5f5"/>
+  <text x="165" y="327" text-anchor="middle" font-size="12" fill="#1976d2">Add &amp; Norm</text>
+  <line x1="165" y1="308" x2="165" y2="280" stroke="#1976d2" stroke-width="1.5"/>
+  <polygon points="159,283 165,273 171,283" fill="#1976d2"/>
+
+  <!-- Multi-Head Attention -->
+  <rect x="70" y="245" width="190" height="33" rx="6" fill="#1976d2"/>
+  <text x="165" y="266" text-anchor="middle" font-size="12" fill="white">Multi-Head Attention</text>
+  <line x1="165" y1="245" x2="165" y2="218" stroke="#1976d2" stroke-width="1.5"/>
+  <polygon points="159,221 165,211 171,221" fill="#1976d2"/>
+
+  <!-- Add & Norm 2 -->
+  <rect x="90" y="185" width="150" height="30" rx="6" fill="#e3f2fd" stroke="#42a5f5"/>
+  <text x="165" y="204" text-anchor="middle" font-size="12" fill="#1976d2">Add &amp; Norm</text>
+  <line x1="165" y1="185" x2="165" y2="155" stroke="#1976d2" stroke-width="1.5"/>
+  <polygon points="159,158 165,148 171,158" fill="#1976d2"/>
+
+  <!-- Feed Forward -->
+  <rect x="70" y="118" width="190" height="33" rx="6" fill="#42a5f5"/>
+  <text x="165" y="139" text-anchor="middle" font-size="12" fill="white">Feed Forward (FFN)</text>
+  <line x1="165" y1="118" x2="165" y2="95" stroke="#1976d2" stroke-width="1.5"/>
+  <polygon points="159,98 165,88 171,98" fill="#1976d2"/>
+
+  <!-- Encoder output label -->
+  <text x="165" y="82" text-anchor="middle" font-size="12" fill="#1976d2" font-style="italic">×N 層</text>
+
+  <!-- Decoder (right) -->
+  <rect x="400" y="40" width="270" height="380" rx="12" fill="#e8f5e9" stroke="#388e3c" stroke-width="2"/>
+  <text x="535" y="65" text-anchor="middle" font-size="15" font-weight="bold" fill="#388e3c">Decoder</text>
+
+  <!-- Decoder Input Embedding + Pos -->
+  <rect x="425" y="365" width="220" height="35" rx="6" fill="#c8e6c9" stroke="#388e3c"/>
+  <text x="535" y="387" text-anchor="middle" font-size="12" fill="#1b5e20">Output Embedding + 位置エンコード</text>
+  <line x1="535" y1="365" x2="535" y2="340" stroke="#388e3c" stroke-width="1.5"/>
+  <polygon points="529,343 535,333 541,343" fill="#388e3c"/>
+
+  <!-- Masked MHA -->
+  <rect x="440" y="308" width="190" height="30" rx="6" fill="#388e3c"/>
+  <text x="535" y="327" text-anchor="middle" font-size="11" fill="white">Masked Multi-Head Attention</text>
+  <line x1="535" y1="308" x2="535" y2="280" stroke="#388e3c" stroke-width="1.5"/>
+  <polygon points="529,283 535,273 541,283" fill="#388e3c"/>
+
+  <!-- Add & Norm -->
+  <rect x="458" y="248" width="154" height="30" rx="6" fill="#e8f5e9" stroke="#66bb6a"/>
+  <text x="535" y="267" text-anchor="middle" font-size="12" fill="#388e3c">Add &amp; Norm</text>
+  <line x1="535" y1="248" x2="535" y2="218" stroke="#388e3c" stroke-width="1.5"/>
+  <polygon points="529,221 535,211 541,221" fill="#388e3c"/>
+
+  <!-- Cross-Attention -->
+  <rect x="440" y="183" width="190" height="33" rx="6" fill="#66bb6a"/>
+  <text x="535" y="204" text-anchor="middle" font-size="12" fill="white">Cross-Attention (Enc→Dec)</text>
+  <line x1="535" y1="183" x2="535" y2="155" stroke="#388e3c" stroke-width="1.5"/>
+  <polygon points="529,158 535,148 541,158" fill="#388e3c"/>
+
+  <!-- Add & Norm + FFN -->
+  <rect x="458" y="123" width="154" height="30" rx="6" fill="#e8f5e9" stroke="#66bb6a"/>
+  <text x="535" y="142" text-anchor="middle" font-size="12" fill="#388e3c">Add &amp; Norm + FFN</text>
+  <line x1="535" y1="123" x2="535" y2="95" stroke="#388e3c" stroke-width="1.5"/>
+  <polygon points="529,98 535,88 541,98" fill="#388e3c"/>
+
+  <!-- Decoder output label -->
+  <text x="535" y="82" text-anchor="middle" font-size="12" fill="#388e3c" font-style="italic">×N 層 → Linear + Softmax → 出力</text>
+
+  <!-- Cross-attention connection Encoder → Decoder -->
+  <line x1="300" y1="200" x2="440" y2="200" stroke="#e91e63" stroke-width="2" stroke-dasharray="7,4"/>
+  <polygon points="437,194 448,200 437,206" fill="#e91e63"/>
+  <text x="360" y="193" text-anchor="middle" font-size="11" fill="#e91e63">K, V</text>
+</svg>

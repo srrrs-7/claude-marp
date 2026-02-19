@@ -1,0 +1,40 @@
+<svg viewBox="0 0 880 240" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="880" height="240" fill="#f0f4f8" rx="12"/>
+  <text x="440" y="30" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="15" font-weight="bold">サプライヤー関係管理のライフサイクル (Annex A 5.19〜5.22)</text>
+  <!-- Box 1: 選定 -->
+  <rect x="30" y="60" width="165" height="130" rx="10" fill="#1565C0" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.25))"/>
+  <text x="113" y="105" text-anchor="middle" fill="white" font-family="sans-serif" font-size="17" font-weight="bold">① 選定</text>
+  <text x="113" y="128" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">セキュリティ評価</text>
+  <text x="113" y="145" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">認証・実績確認</text>
+  <text x="113" y="162" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">リスク分類</text>
+  <!-- Arrow 1→2 -->
+  <line x1="195" y1="125" x2="225" y2="125" stroke="#37474F" stroke-width="2.5"/>
+  <polygon points="225,119 237,125 225,131" fill="#37474F"/>
+  <!-- Box 2: 契約 -->
+  <rect x="237" y="60" width="165" height="130" rx="10" fill="#1976D2" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.25))"/>
+  <text x="320" y="105" text-anchor="middle" fill="white" font-family="sans-serif" font-size="17" font-weight="bold">② 契約</text>
+  <text x="320" y="128" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">SLA・機密保持</text>
+  <text x="320" y="145" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">セキュリティ要件</text>
+  <text x="320" y="162" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">監査権利の明記</text>
+  <!-- Arrow 2→3 -->
+  <line x1="402" y1="125" x2="432" y2="125" stroke="#37474F" stroke-width="2.5"/>
+  <polygon points="432,119 444,125 432,131" fill="#37474F"/>
+  <!-- Box 3: 管理・監視 -->
+  <rect x="444" y="60" width="165" height="130" rx="10" fill="#0277BD" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.25))"/>
+  <text x="527" y="97" text-anchor="middle" fill="white" font-family="sans-serif" font-size="17" font-weight="bold">③ 管理・監視</text>
+  <text x="527" y="120" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">定期的なレビュー</text>
+  <text x="527" y="137" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">インシデント対応</text>
+  <text x="527" y="154" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">変更管理</text>
+  <text x="527" y="171" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">監査・評価</text>
+  <!-- Arrow 3→4 -->
+  <line x1="609" y1="125" x2="639" y2="125" stroke="#37474F" stroke-width="2.5"/>
+  <polygon points="639,119 651,125 639,131" fill="#37474F"/>
+  <!-- Box 4: 終了 -->
+  <rect x="651" y="60" width="165" height="130" rx="10" fill="#37474F" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.25))"/>
+  <text x="734" y="105" text-anchor="middle" fill="white" font-family="sans-serif" font-size="17" font-weight="bold">④ 終了</text>
+  <text x="734" y="128" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">アクセス権の無効化</text>
+  <text x="734" y="145" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">データの返却・消去</text>
+  <text x="734" y="162" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">移行・引継ぎ計画</text>
+  <!-- Compliance note -->
+  <text x="440" y="218" text-anchor="middle" fill="#1565C0" font-family="sans-serif" font-size="12" font-weight="bold">⚠ すべてのフェーズで情報セキュリティ要件を文書化し証跡を保持する</text>
+</svg>

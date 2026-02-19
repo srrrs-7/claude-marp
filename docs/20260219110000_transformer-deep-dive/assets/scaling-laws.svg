@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117" font-family="sans-serif">
+  <rect width="960" height="480" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="480" y="26" text-anchor="middle" fill="#e6edf3" font-size="18" font-weight="bold">スケーリング則 — Kaplan &amp; Chinchilla</text>
+
+  <!-- ===== LEFT PANEL: Kaplan Scaling Laws ===== -->
+  <rect x="30" y="40" width="430" height="335" rx="6" fill="#0f1520" stroke="#30363d" stroke-width="1"/>
+  <text x="245" y="62" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold">Kaplan Scaling Laws (OpenAI, 2020)</text>
+  <text x="245" y="78" text-anchor="middle" fill="#94a3b8" font-size="10">log-log スケールでの Loss vs リソース</text>
+
+  <!-- Graph area -->
+  <rect x="75" y="90" width="360" height="255" rx="3" fill="#0a0e18" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Y-axis label -->
+  <text x="55" y="220" text-anchor="middle" fill="#94a3b8" font-size="10" transform="rotate(-90, 55, 220)">Loss (log scale)</text>
+  <!-- X-axis label -->
+  <text x="255" y="360" text-anchor="middle" fill="#94a3b8" font-size="10">Scale (log scale)</text>
+
+  <!-- Y-axis ticks -->
+  <line x1="75" y1="110" x2="435" y2="110" stroke="#21262d" stroke-width="0.5"/>
+  <line x1="75" y1="150" x2="435" y2="150" stroke="#21262d" stroke-width="0.5"/>
+  <line x1="75" y1="190" x2="435" y2="190" stroke="#21262d" stroke-width="0.5"/>
+  <line x1="75" y1="230" x2="435" y2="230" stroke="#21262d" stroke-width="0.5"/>
+  <line x1="75" y1="270" x2="435" y2="270" stroke="#21262d" stroke-width="0.5"/>
+  <line x1="75" y1="310" x2="435" y2="310" stroke="#21262d" stroke-width="0.5"/>
+
+  <!-- Loss vs Parameters curve (orange) - power law decreasing -->
+  <polyline points="85,115 115,130 145,148 175,168 210,192 245,215 285,240 325,263 370,285 430,315"
+    stroke="#f97316" stroke-width="2.5" fill="none" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.5))"/>
+  <text x="390" y="309" fill="#f97316" font-size="10" font-weight="bold">Parameters</text>
+
+  <!-- Loss vs Data curve (blue) -->
+  <polyline points="85,118 115,134 145,153 175,174 210,198 250,222 290,246 335,270 385,295 430,320"
+    stroke="#3b82f6" stroke-width="2.5" fill="none" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.5))"/>
+  <text x="390" y="325" fill="#3b82f6" font-size="10" font-weight="bold">Data</text>
+
+  <!-- Loss vs Compute curve (green) -->
+  <polyline points="85,112 120,128 155,146 195,167 235,188 275,210 315,233 355,256 400,280 430,295"
+    stroke="#22c55e" stroke-width="2.5" fill="none" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.5))"/>
+  <text x="390" y="290" fill="#22c55e" font-size="10" font-weight="bold">Compute</text>
+
+  <!-- Formula -->
+  <rect x="85" y="100" width="200" height="32" rx="4" fill="#1c1108" stroke="#f97316" stroke-width="1"/>
+  <text x="95" y="112" fill="#f97316" font-size="9" font-weight="bold">L(N) ∝ N^(-α)</text>
+  <text x="95" y="126" fill="#fed7aa" font-size="9">α ≈ 0.076 (parameters)</text>
+
+  <!-- ===== RIGHT PANEL: Chinchilla ===== -->
+  <rect x="500" y="40" width="430" height="335" rx="6" fill="#0f1520" stroke="#30363d" stroke-width="1"/>
+  <text x="715" y="62" text-anchor="middle" fill="#3b82f6" font-size="14" font-weight="bold">Chinchilla Optimal (DeepMind, 2022)</text>
+  <text x="715" y="78" text-anchor="middle" fill="#94a3b8" font-size="10">固定 Compute C のもとでの最適配分</text>
+
+  <!-- Comparison table -->
+  <!-- Header -->
+  <rect x="515" y="90" width="400" height="28" rx="3" fill="#1a1f2e" stroke="#3b82f6" stroke-width="1"/>
+  <text x="560" y="109" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="bold">Model</text>
+  <text x="660" y="109" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="bold">Params</text>
+  <text x="760" y="109" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="bold">Tokens</text>
+  <text x="870" y="109" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="bold">Ratio</text>
+
+  <!-- GPT-3 row -->
+  <rect x="515" y="118" width="400" height="36" rx="2" fill="#1c1108" stroke="#30363d" stroke-width="0.5"/>
+  <text x="560" y="141" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold">GPT-3</text>
+  <text x="660" y="141" text-anchor="middle" fill="#e6edf3" font-size="11">175B</text>
+  <text x="760" y="141" text-anchor="middle" fill="#e6edf3" font-size="11">300B</text>
+  <text x="870" y="141" text-anchor="middle" fill="#fca5a5" font-size="11">1.7×</text>
+
+  <!-- Chinchilla row -->
+  <rect x="515" y="154" width="400" height="36" rx="2" fill="#0a1628" stroke="#3b82f6" stroke-width="1"/>
+  <text x="560" y="177" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="bold">Chinchilla</text>
+  <text x="660" y="177" text-anchor="middle" fill="#e6edf3" font-size="11">70B</text>
+  <text x="760" y="177" text-anchor="middle" fill="#e6edf3" font-size="11">1.4T</text>
+  <text x="870" y="177" text-anchor="middle" fill="#86efac" font-size="11">20×</text>
+
+  <!-- Llama-3 row -->
+  <rect x="515" y="190" width="400" height="36" rx="2" fill="#1c0a00" stroke="#30363d" stroke-width="0.5"/>
+  <text x="560" y="213" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="bold">Llama-3</text>
+  <text x="660" y="213" text-anchor="middle" fill="#e6edf3" font-size="11">8B</text>
+  <text x="760" y="213" text-anchor="middle" fill="#e6edf3" font-size="11">15T</text>
+  <text x="870" y="213" text-anchor="middle" fill="#a3e635" font-size="11">1875×</text>
+
+  <!-- GPT-4 estimated row -->
+  <rect x="515" y="226" width="400" height="36" rx="2" fill="#1a0028" stroke="#30363d" stroke-width="0.5"/>
+  <text x="560" y="249" text-anchor="middle" fill="#d946ef" font-size="11" font-weight="bold">GPT-4*</text>
+  <text x="660" y="249" text-anchor="middle" fill="#e6edf3" font-size="11">~1.8T*</text>
+  <text x="760" y="249" text-anchor="middle" fill="#e6edf3" font-size="11">13T*</text>
+  <text x="870" y="249" text-anchor="middle" fill="#a3e635" font-size="11">7×*</text>
+
+  <!-- Key insight -->
+  <rect x="515" y="275" width="400" height="55" rx="5" fill="#0a2010" stroke="#22c55e" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="715" y="296" text-anchor="middle" fill="#86efac" font-size="12" font-weight="bold">Chinchilla 最適比率</text>
+  <text x="715" y="315" text-anchor="middle" fill="#e6edf3" font-size="13" font-weight="bold">Tokens ≈ 20 × Parameters</text>
+  <text x="715" y="330" text-anchor="middle" fill="#94a3b8" font-size="10">compute固定時: D_opt ∝ C^0.51, N_opt ∝ C^0.49</text>
+
+  <!-- Chinchilla formula -->
+  <rect x="515" y="340" width="400" height="28" rx="4" fill="#0a1628" stroke="#3b82f6" stroke-width="1"/>
+  <text x="715" y="359" text-anchor="middle" fill="#93c5fd" font-size="11">N_opt = 0.1 × C^0.50   |   D_opt = 5.4 × C^0.50</text>
+
+  <!-- Bottom insights -->
+  <rect x="30" y="385" width="900" height="85" rx="6" fill="#0f1520" stroke="#30363d" stroke-width="1"/>
+  <text x="480" y="405" text-anchor="middle" fill="#e6edf3" font-size="12" font-weight="bold">スケーリング則から学んだこと</text>
+
+  <!-- 3 columns -->
+  <rect x="45" y="415" width="270" height="46" rx="4" fill="#1c1108" stroke="#f97316" stroke-width="1"/>
+  <text x="180" y="432" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold">モデルサイズだけでは不十分</text>
+  <text x="180" y="450" text-anchor="middle" fill="#94a3b8" font-size="10">GPT-3は過小学習 (under-trained)</text>
+
+  <rect x="345" y="415" width="270" height="46" rx="4" fill="#0a1628" stroke="#3b82f6" stroke-width="1"/>
+  <text x="480" y="432" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="bold">データ品質が最重要</text>
+  <text x="480" y="450" text-anchor="middle" fill="#94a3b8" font-size="10">Token数 vs パラメータのバランスが鍵</text>
+
+  <rect x="645" y="415" width="270" height="46" rx="4" fill="#0a2010" stroke="#22c55e" stroke-width="1"/>
+  <text x="780" y="432" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold">小モデル + 大データが効率的</text>
+  <text x="780" y="450" text-anchor="middle" fill="#94a3b8" font-size="10">Llama-3-8Bが175B GPT-3に匹敵</text>
+</svg>

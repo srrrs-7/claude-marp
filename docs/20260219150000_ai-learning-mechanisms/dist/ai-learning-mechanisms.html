@@ -1,0 +1,2090 @@
+<!DOCTYPE html><html lang="en-US"><head><title>AIの学習の仕組み</title><meta property="og:title" content="AIの学習の仕組み"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{appearance:none;background-color:initial;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear;-webkit-tap-highlight-color:transparent}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNNDAgNzBIMjBWNTBtMjAgMEwyMCA3MG00MC00MGgyMHYyMG0tMjAgMCAyMC0yMCIgY2xhc3M9ImEiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNMjAgNTBoMjB2MjBtLTIwIDAgMjAtMjBtNDAgMEg2MFYzMG0yMCAwTDYwIDUwIiBjbGFzcz0iYSIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODBNNTIgOTBWMTAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}@keyframes __bespoke_marp_transition_reduced_outgoing__{0%{opacity:1}to{opacity:0}}@keyframes __bespoke_marp_transition_reduced_incoming__{0%{mix-blend-mode:plus-lighter;opacity:0}to{mix-blend-mode:plus-lighter;opacity:1}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{::view-transition-group(*){animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-timing-function:ease}::view-transition-new(*),::view-transition-old(*){animation-delay:0s;animation-direction:var(--marp-bespoke-transition-animation-direction,normal);animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-fill-mode:both;animation-name:var(--marp-bespoke-transition-animation-name,var(--marp-bespoke-transition-animation-name-fallback,__bespoke_marp_transition_no_animation__));mix-blend-mode:normal}::view-transition-old(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_outgoing__;animation-timing-function:ease}::view-transition-new(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_incoming__;animation-timing-function:ease}::view-transition-new(root),::view-transition-old(root){animation-timing-function:linear}::view-transition-new(__bespoke_marp_transition_osc__),::view-transition-old(__bespoke_marp_transition_osc__){animation-duration:0s!important;animation-name:__bespoke_marp_transition_osc__!important}::view-transition-new(__bespoke_marp_transition_osc__){opacity:0!important}.bespoke-marp-transition-warming-up::view-transition-group(*),.bespoke-marp-transition-warming-up::view-transition-new(*),.bespoke-marp-transition-warming-up::view-transition-old(*){animation-play-state:paused!important}body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide:not(.bespoke-marp-active) *{view-transition-name:none!important}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}}@media screen and (prefers-reduced-motion:reduce){svg.bespoke-marp-slide *{view-transition-name:none!important}}@media screen{[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{inset:0;position:absolute}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{background:#000000a6;border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1;view-transition-name:__bespoke_marp_transition_osc__}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:#0000}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:#0000;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{display:block;inset:0;position:absolute}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:#000000a6;border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;white-space:pre-wrap;width:calc(100% - 40px);word-wrap:break-word;scrollbar-color:#eeeeee80 #0000;scrollbar-width:thin}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:#0000}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:#eeeeee80;border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>@charset "UTF-8";@import "https://fonts.bunny.net/css?family=Lato:400,900|Roboto+Mono:400,700&display=swap";div#\:\$p > svg > foreignObject > section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center;-webkit-text-size-adjust:100%;text-size-adjust:100%}div#\:\$p > svg > foreignObject > section::after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#\:\$p > svg > foreignObject > section:not([data-marpit-pagination])::after{display:none}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:2em;margin-block:0.67em}div#\:\$p > svg > foreignObject > section video::-webkit-media-controls{will-change:transform}@page {size:1280px 720px;margin:0}@media print{html, body{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#\:\$p > svg > foreignObject > section{page-break-before:always;break-before:page}div#\:\$p > svg > foreignObject > section, div#\:\$p > svg > foreignObject > section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;print-color-adjust:exact!important;transition:none!important}div#\:\$p > svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#\:\$p > svg > foreignObject > :where(section){container-type:size}div#\:\$p > svg > foreignObject > section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}/*!
+ * Marp / Marpit Gaia theme.
+ *
+ * @theme gaia
+ * @author Yuki Hattori
+ *
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ * @size 4:3 960px 720px
+ */div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code.hljs{display:block;overflow-x:auto;padding:1em}div#\:\$p > svg > foreignObject > section code.hljs{padding:3px 5px}div#\:\$p > svg > foreignObject > section .hljs{background:#000;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-comment,div#\:\$p > svg > foreignObject > section .hljs-quote{color:#aeaeae;font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-keyword,div#\:\$p > svg > foreignObject > section .hljs-selector-tag,div#\:\$p > svg > foreignObject > section .hljs-type{color:#e28964}div#\:\$p > svg > foreignObject > section .hljs-string{color:#65b042}div#\:\$p > svg > foreignObject > section .hljs-subst{color:#daefa3}div#\:\$p > svg > foreignObject > section .hljs-link,div#\:\$p > svg > foreignObject > section .hljs-regexp{color:#e9c062}div#\:\$p > svg > foreignObject > section .hljs-name,div#\:\$p > svg > foreignObject > section .hljs-section,div#\:\$p > svg > foreignObject > section .hljs-tag,div#\:\$p > svg > foreignObject > section .hljs-title{color:#89bdff}div#\:\$p > svg > foreignObject > section .hljs-class .hljs-title,div#\:\$p > svg > foreignObject > section .hljs-doctag,div#\:\$p > svg > foreignObject > section .hljs-title.class_{text-decoration:underline}div#\:\$p > svg > foreignObject > section .hljs-bullet,div#\:\$p > svg > foreignObject > section .hljs-number,div#\:\$p > svg > foreignObject > section .hljs-symbol{color:#3387cc}div#\:\$p > svg > foreignObject > section .hljs-params,div#\:\$p > svg > foreignObject > section .hljs-template-variable,div#\:\$p > svg > foreignObject > section .hljs-variable{color:#3e87e3}div#\:\$p > svg > foreignObject > section .hljs-attribute{color:#cda869}div#\:\$p > svg > foreignObject > section .hljs-meta{color:#8996a8}div#\:\$p > svg > foreignObject > section .hljs-formula{background-color:#0e2231;color:#f8f8f8;font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-addition{background-color:#253b22;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-deletion{background-color:#420e09;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-selector-class{color:#9b703f}div#\:\$p > svg > foreignObject > section .hljs-selector-id{color:#8b98ab}div#\:\$p > svg > foreignObject > section .hljs-emphasis{font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-strong{font-weight:700}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){margin:.5em 0 0}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{font-weight:inherit}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6)::part(auto-scaling){max-height:580px}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:1.8em}div#\:\$p > svg > foreignObject > section :is(h2, marp-h2){font-size:1.5em}div#\:\$p > svg > foreignObject > section :is(h3, marp-h3){font-size:1.3em}div#\:\$p > svg > foreignObject > section :is(h4, marp-h4){font-size:1.1em}div#\:\$p > svg > foreignObject > section :is(h5, marp-h5){font-size:1em}div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){font-size:.9em}div#\:\$p > svg > foreignObject > section blockquote,div#\:\$p > svg > foreignObject > section p{margin:1em 0 0}div#\:\$p > svg > foreignObject > section ol>li,div#\:\$p > svg > foreignObject > section ul>li{margin:.3em 0 0}div#\:\$p > svg > foreignObject > section ol>li>p,div#\:\$p > svg > foreignObject > section ul>li>p{margin:.6em 0 0}div#\:\$p > svg > foreignObject > section code{display:inline-block;font-family:Roboto Mono,monospace;font-size:.8em;letter-spacing:0;margin:-.1em .15em;padding:.1em .2em;vertical-align:baseline}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){display:block;margin:1em 0 0;overflow:visible}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{box-sizing:border-box;font-size:.7em;margin:0;min-width:100%;padding:.5em}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)::part(auto-scaling){max-height:calc(580px - 1em)}div#\:\$p > svg > foreignObject > section blockquote{margin:1em 0 0;padding:0 1em;position:relative}div#\:\$p > svg > foreignObject > section blockquote:after,div#\:\$p > svg > foreignObject > section blockquote:before{content:"“";display:block;font-family:Times New Roman,serif;font-weight:700;position:absolute}div#\:\$p > svg > foreignObject > section blockquote:before{left:0;top:0}div#\:\$p > svg > foreignObject > section blockquote:after{bottom:0;right:0;transform:rotate(180deg)}div#\:\$p > svg > foreignObject > section blockquote>:first-child{margin-top:0}div#\:\$p > svg > foreignObject > section mark{background:transparent}div#\:\$p > svg > foreignObject > section table{border-collapse:collapse;border-spacing:0;margin:1em 0 0}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{border-style:solid;border-width:1px;padding:.2em .4em}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header,div#\:\$p > svg > foreignObject > section:after{box-sizing:border-box;font-size:66%;height:70px;line-height:50px;overflow:hidden;padding:10px 25px;position:absolute}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:66%}div#\:\$p > svg > foreignObject > section header{top:0}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header{left:0;right:0}div#\:\$p > svg > foreignObject > section footer{bottom:0}div#\:\$p > svg > foreignObject > section{--color-background:light-dark(#fff8e1, #455a64);--color-background-stripe:light-dark(
+    rgba(69,90,100,.1),
+    rgba(255,248,225,.1)
+  );--color-foreground:light-dark(#455a64, #fff8e1);--color-dimmed:light-dark(
+    #6a7a7d,
+    #dad8c8
+  );--color-highlight:light-dark(#0288d1, #81d4fa);background-color:var(--color-background);background-image:linear-gradient(135deg, hsla(0,0%,53%,0), hsla(0,0%,53%,.02) 50%, hsla(0,0%,100%,0) 0, hsla(0,0%,100%,.05));color:var(--color-foreground);color-scheme:light;font-family:Lato,Avenir Next,Avenir,Trebuchet MS,Segoe UI,sans-serif;font-size:35px;height:720px;letter-spacing:1.25px;line-height:1.35;overflow-wrap:break-word;padding:70px;width:1280px}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size:35px}div#\:\$p > svg > foreignObject > section:after{bottom:0;font-size:80%;right:0}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:80%}div#\:\$p > svg > foreignObject > section a,div#\:\$p > svg > foreignObject > section mark{color:var(--color-highlight)}div#\:\$p > svg > foreignObject > section code{background:var(--color-dimmed);color:var(--color-background)}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{color:var(--color-highlight)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){background:var(--color-foreground)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)>code{background:transparent}div#\:\$p > svg > foreignObject > section blockquote:after,div#\:\$p > svg > foreignObject > section blockquote:before,div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header,div#\:\$p > svg > foreignObject > section section:after{color:var(--color-dimmed)}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{border-color:var(--color-foreground)}div#\:\$p > svg > foreignObject > section table thead th{background:var(--color-foreground);color:var(--color-background)}div#\:\$p > svg > foreignObject > section table tbody>tr:nth-child(odd) td,div#\:\$p > svg > foreignObject > section table tbody>tr:nth-child(odd) th{background:var(--color-background-stripe, transparent)}div#\:\$p > svg > foreignObject > section>:first-child,div#\:\$p > svg > foreignObject > section>header:first-child+*{margin-top:0}div#\:\$p > svg > foreignObject > section:where(.invert){color-scheme:dark}div#\:\$p > svg > foreignObject > section:where(.gaia){--color-background:#0288d1;--color-background-stripe:rgba(255,248,225,.1);--color-foreground:#fff8e1;--color-dimmed:#cce2de;--color-highlight:#81d4fa;}div#\:\$p > svg > foreignObject > section:where(.lead){align-items:stretch;flex-flow:column nowrap;place-content:safe center center}div#\:\$p > svg > foreignObject > section:where(.lead) :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h6, marp-h6){text-align:center}div#\:\$p > svg > foreignObject > section:where(.lead) p{text-align:center}div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h1, marp-h1),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h2, marp-h2),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h3, marp-h3),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h4, marp-h4),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h5, marp-h5),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h6, marp-h6),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>p{text-align:left}div#\:\$p > svg > foreignObject > section:where(.lead) ol>li>p,div#\:\$p > svg > foreignObject > section:where(.lead) ul>li>p{text-align:left}div#\:\$p > svg > foreignObject > section:where(.lead) table{margin-left:auto;margin-right:auto}div#\:\$p > svg > foreignObject > section{width:1280px;height:720px}div#\:\$p > svg > foreignObject > section{font-size:1.0em}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size: 1.0em}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{font-size:0.56em;line-height:1.35}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:1.55em}div#\:\$p > svg > foreignObject > section :is(h2, marp-h2){font-size:1.25em}div#\:\$p > svg > foreignObject > section ul li{margin-bottom:0.18em}div#\:\$p > svg > foreignObject > section table{font-size:0.85em}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]{columns:initial!important;display:block!important;padding:0!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::after, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::after{display:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction="vertical"]{flex-direction:column}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split] > div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split, 50%)}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split="right"] > div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure > figcaption{position:absolute;border:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;white-space:nowrap;width:1px}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"], div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"]{background:transparent!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"], div#\:\$p > svg[data-marpit-svg] > foreignObject[data-marpit-advanced-background="pseudo"]{pointer-events:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background-split]{width:100%;height:100%}
+</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id=":$p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-class="lead" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" class="lead" data-marpit-pagination="1" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--class:lead;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+
+<h1 id="ai%E3%81%AE%E5%AD%A6%E7%BF%92%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF">AIの学習の仕組み</h1>
+<ul>
+<li>研究者・専門家向け完全解説</li>
+<li>機械学習の基礎から最新手法まで</li>
+<li>2026年2月</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="2" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="ai%E3%81%AE%E5%AD%A6%E7%BF%92%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B">AIの「学習」とは何か</h1>
+<ul>
+<li><strong>関数近似問題</strong>: データから未知の関数 f: X → Y を近似する</li>
+<li><strong>経験的リスク最小化 (ERM)</strong>: min_θ (1/n) Σ L(f_θ(xᵢ), yᵢ)</li>
+<li><strong>帰納バイアス</strong>: 仮説空間の制約がなければ汎化は不可能 (No Free Lunch)</li>
+<li><strong>PAC 学習</strong>: 多項式サンプル数での近似的正解の確率的保証</li>
+<li><strong>VC 次元</strong>: 仮説クラスの表現力 — 高いほど過学習リスクも増大</li>
+<li><strong>学習の本質</strong>: 訓練データを記憶するのではなく汎化すること</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="3" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E6%9C%AC%E8%B3%87%E6%96%99%E3%81%AE%E6%A7%8B%E6%88%90-12">本資料の構成 (1/2)</h1>
+<ul>
+<li><strong>1.</strong> 機械学習の3パラダイム</li>
+<li><strong>2.</strong> 最適化と損失関数</li>
+<li><strong>3.</strong> ニューラルネットワーク基礎</li>
+<li><strong>4.</strong> 深層学習アーキテクチャ</li>
+<li><strong>5.</strong> 自己教師あり学習と事前学習</li>
+<li><strong>6.</strong> スケーリング則</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="4" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E6%9C%AC%E8%B3%87%E6%96%99%E3%81%AE%E6%A7%8B%E6%88%90-22">本資料の構成 (2/2)</h1>
+<ul>
+<li><strong>7.</strong> ファインチューニングとアライメント</li>
+<li><strong>8.</strong> 学習データとデータエンジニアリング</li>
+<li><strong>9.</strong> 分散学習・並列化</li>
+<li><strong>10.</strong> 最新研究トレンド</li>
+<li><strong>11.</strong> 解釈可能性と評価</li>
+<li><strong>12.</strong> まとめと展望</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-class="lead" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" class="lead" data-marpit-pagination="5" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--class:lead;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+
+<h1 id="1-%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E3%81%AE3%E3%83%91%E3%83%A9%E3%83%80%E3%82%A4%E3%83%A0">1. 機械学習の3パラダイム</h1>
+<ul>
+<li>教師あり学習 / 教師なし学習 / 強化学習</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="6" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E5%AD%A6%E7%BF%92%E3%83%91%E3%83%A9%E3%83%80%E3%82%A4%E3%83%A0%E3%81%AE%E6%A6%82%E8%A6%81">学習パラダイムの概要</h1>
+<ul>
+<li>問題の構造 (ラベルの有無・報酬の有無) がパラダイムを決定する</li>
+<li>3つのパラダイムは相互補完的に組み合わせて使われる<br />
+<img src="../assets/learning-paradigms.svg" alt="center" style="width:850px;" /></li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="7" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E6%95%99%E5%B8%AB%E3%81%82%E3%82%8A%E5%AD%A6%E7%BF%92%E3%81%AE%E5%AE%9A%E5%BC%8F%E5%8C%96">教師あり学習の定式化</h1>
+<ul>
+<li>入力 x ∈ X, 出力 y ∈ Y, 仮説クラス H から h: X→Y を選択</li>
+<li><strong>経験的リスク</strong>: R̂(h) = (1/n) Σ L(h(xᵢ), yᵢ)</li>
+<li><strong>期待リスク</strong>: R(h) = E_{(x,y)~D}[L(h(x), y)] — 真の目標</li>
+<li><strong>汎化誤差</strong>: R(h) − R̂(h) が小さいほど良い汎化</li>
+<li>主なタスク: 分類 / 回帰 / 系列ラベリング / 構造予測</li>
+<li>決定境界の複雑さとサンプル数のトレードオフが鍵</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="8" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E6%95%99%E5%B8%AB%E3%81%AA%E3%81%97%E3%83%BB%E8%87%AA%E5%B7%B1%E6%95%99%E5%B8%AB%E3%81%82%E3%82%8A%E5%AD%A6%E7%BF%92">教師なし・自己教師あり学習</h1>
+<ul>
+<li><strong>教師なし</strong>: ラベルなしデータ p(x) の構造を発見</li>
+<li>クラスタリング (K-means, DBSCAN): 密度に基づく分離</li>
+<li>次元削減 (PCA, t-SNE, UMAP): 潜在空間 z ∈ Z の学習</li>
+<li>生成モデル (VAE, GAN): p(x) = ∫ p(x|z)p(z)dz の近似</li>
+<li><strong>自己教師あり</strong>: データ自身からプレテキストタスクを自動生成</li>
+<li>例: マスクトークン予測 / 画像回転予測 / 対照学習</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="9" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E5%BC%B7%E5%8C%96%E5%AD%A6%E7%BF%92%E3%81%AE%E5%9F%BA%E7%A4%8E">強化学習の基礎</h1>
+<ul>
+<li><strong>マルコフ決定過程 (MDP)</strong>: (S, A, P, R, γ) の5タプルで定義</li>
+<li>目標: 期待累積報酬 E[Σ γᵗ rₜ] の最大化 (γ: 割引率)</li>
+<li><strong>方策 π(a|s)</strong>: 状態から行動確率への写像</li>
+<li><strong>Q 関数</strong>: Q^π(s,a) = E[Σ γᵗ rₜ | s₀=s, a₀=a]</li>
+<li><strong>ベルマン方程式</strong>: Q*(s,a) = r + γ max_{a'} Q*(s',a')</li>
+<li>応用: ゲームAI (AlphaGo) / ロボティクス / RLHF</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="10" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E6%B1%8E%E5%8C%96%E8%AA%A4%E5%B7%AE%E3%81%A8%E9%81%8E%E5%AD%A6%E7%BF%92">汎化誤差と過学習</h1>
+<ul>
+<li><strong>汎化誤差</strong> = 期待リスク − 経験的リスク (理想は 0 に近い)</li>
+<li><strong>過学習</strong>: 訓練損失 ↓ だが汎化損失 ↑ — 訓練データを記憶</li>
+<li><strong>過小適合</strong>: モデル表現力が不足 — 両方の損失が高い</li>
+<li>原因: 訓練データ不足 / モデル過複雑 / 正則化不足</li>
+<li>k-fold クロスバリデーション: 小データでの分散低減に有効</li>
+<li>テストセットは一度だけ使用 — 複数回使うと過楽観なバイアス</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="11" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E3%83%90%E3%82%A4%E3%82%A2%E3%82%B9%E3%83%BB%E3%83%90%E3%83%AA%E3%82%A2%E3%83%B3%E3%82%B9%E3%83%BB%E3%83%88%E3%83%AC%E3%83%BC%E3%83%89%E3%82%AA%E3%83%95">バイアス・バリアンス・トレードオフ</h1>
+<ul>
+<li>期待二乗誤差 = Bias²(ĥ) + Var(ĥ) + 不可約誤差 (ノイズ)</li>
+<li><strong>Bias (偏り)</strong>: 仮説クラスの表現力不足による系統的誤差</li>
+<li><strong>Variance (分散)</strong>: 訓練データへの高感度 → 過学習傾向</li>
+<li><strong>二重降下 (Double Descent)</strong>: 過パラメータ域で val loss が再低下</li>
+<li><strong>Benign Overfitting</strong>: 補間しながらも汎化できる理論的条件</li>
+<li>深層モデルはバイアス低・バリアンス高だが二重降下で回避</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="12" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E6%AD%A3%E5%89%87%E5%8C%96%E6%89%8B%E6%B3%95">正則化手法</h1>
+<ul>
+<li><strong>L2 正則化 (Weight Decay)</strong>: loss += λ Σ wᵢ² — 重みを小さく保つ</li>
+<li><strong>L1 正則化 (Lasso)</strong>: loss += λ Σ |wᵢ| — スパース解を誘導</li>
+<li><strong>Dropout</strong>: 学習時ランダムにニューロンをマスク (p = 0.1〜0.5)</li>
+<li><strong>Early Stopping</strong>: Validation ロスの最小点で学習を停止</li>
+<li><strong>Mixup / CutMix</strong>: サンプル間の線形補間で汎化性向上</li>
+<li><strong>Label Smoothing</strong>: y = 0.9·one_hot + 0.1/K で過信を抑制</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-class="lead" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" class="lead" data-marpit-pagination="13" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--class:lead;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+
+<h1 id="2-%E6%9C%80%E9%81%A9%E5%8C%96%E3%81%A8%E6%90%8D%E5%A4%B1%E9%96%A2%E6%95%B0">2. 最適化と損失関数</h1>
+<ul>
+<li>損失設計と勾配ベース最適化の理論と実践</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="14" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E6%90%8D%E5%A4%B1%E9%96%A2%E6%95%B0%E3%81%AE%E7%A8%AE%E9%A1%9E">損失関数の種類</h1>
+<ul>
+<li><strong>MSE</strong>: L = (1/n) Σ (yᵢ − ŷᵢ)² — 回帰の標準、外れ値に敏感</li>
+<li><strong>Cross-Entropy</strong>: L = −Σ yᵢ log ŷᵢ — 分類の標準、最大尤度推定</li>
+<li><strong>KL Divergence</strong>: DKL(P‖Q) = Σ P log(P/Q) — 分布間距離</li>
+<li><strong>Huber Loss</strong>: MSE と MAE のハイブリッド — 外れ値に頑健</li>
+<li><strong>Focal Loss</strong>: 難サンプルに重みを置く — 不均衡データ向け</li>
+<li><strong>InfoNCE / Contrastive</strong>: 対照学習の目的関数</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="15" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E5%8B%BE%E9%85%8D%E9%99%8D%E4%B8%8B%E6%B3%95%E3%81%AE%E5%8E%9F%E7%90%86">勾配降下法の原理</h1>
+<ul>
+<li>更新則: θ_{t+1} = θ_t − η ∇_θ L(θ_t; X)</li>
+<li>学習率 η の役割: 大きすぎると発散、小さすぎると収束遅延</li>
+<li>ミニバッチ SGD: B サンプルごとに更新 — 計算と品質のバランス<br />
+<img src="../assets/gradient-descent.svg" alt="center" style="width:800px;" /></li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="16" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="sgd-%E2%86%92-adam-%E2%86%92-adamw-%E3%81%AE%E9%80%B2%E5%8C%96">SGD → Adam → AdamW の進化</h1>
+<ul>
+<li>SGD + Momentum: 鞍点を乗り越える慣性を付与</li>
+<li>AdaGrad: 疎な勾配に適応的学習率 (累積二乗和で除算)</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-comment"># Adam optimizer update</span>
+m = beta1 * m + (<span class="hljs-number">1</span> - beta1) * grad       <span class="hljs-comment"># 1st moment (mean)</span>
+v = beta2 * v + (<span class="hljs-number">1</span> - beta2) * grad**<span class="hljs-number">2</span>    <span class="hljs-comment"># 2nd moment (variance)</span>
+m_hat = m / (<span class="hljs-number">1</span> - beta1**t)               <span class="hljs-comment"># bias correction</span>
+v_hat = v / (<span class="hljs-number">1</span> - beta2**t)
+theta -= lr * m_hat / (sqrt(v_hat) + eps)
+<span class="hljs-comment"># AdamW: L2 weight decay を最適化ステップの外に分離</span>
+theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
+</code></pre>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="17" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E5%AD%A6%E7%BF%92%E7%8E%87%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0">学習率スケジューリング</h1>
+<ul>
+<li><strong>Warmup</strong>: 初期の不安定な勾配を避けるため学習率を徐々に増加</li>
+<li><strong>Cosine Decay</strong>: η(t) = η_min + 0.5(η_max−η_min)(1+cos(πt/T))</li>
+<li><strong>Linear Decay</strong>: シンプルで BERT 系モデルに広く使用</li>
+<li><strong>OneCycleLR</strong>: 超収束 — 1サイクルで高速学習 (Smith 2018)</li>
+<li><strong>Inverse Square Root</strong>: Transformer 原論文の手法</li>
+<li><strong>LR Finder</strong>: 小バッチで sweep して最適学習率を探索</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="18" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E6%90%8D%E5%A4%B1%E5%9C%B0%E5%BD%A2%E3%81%A8%E5%B1%80%E6%89%80%E6%9C%80%E9%81%A9%E8%A7%A3">損失地形と局所最適解</h1>
+<ul>
+<li>高次元パラメータ空間では真の局所最小解は稀 — 多くは鞍点</li>
+<li><strong>シャープ最小値 vs フラット最小値</strong>: フラットほど汎化が良い傾向</li>
+<li><strong>SAM (Sharpness-Aware Minimization)</strong>: フラット最小を明示的に探索</li>
+<li><strong>Loss Landscape 可視化</strong>: Filter Normalization (Li et al., 2018)</li>
+<li>過パラメータ化が不思議なほど良い最小値へ収束しやすくする</li>
+<li>ランダム性 (SGD ノイズ) が暗黙的にフラット最小値を選択</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="19" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E5%8B%BE%E9%85%8D%E3%82%AF%E3%83%AA%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%81%A8%E5%AD%A6%E7%BF%92%E5%AE%89%E5%AE%9A%E5%8C%96">勾配クリッピングと学習安定化</h1>
+<ul>
+<li><strong>勾配爆発</strong>: 深いNNで勾配が指数的に増大 → 発散</li>
+<li><strong>Gradient Clipping</strong>: ‖g‖ &gt; τ なら g ← g × (τ/‖g‖)</li>
+<li><strong>LayerNorm / RMSNorm</strong>: 各層の活性化を正規化して安定化</li>
+<li><strong>BF16</strong>: FP32 と同じ指数域 — LLM 学習の実質標準</li>
+<li><strong>Dynamic Loss Scaling</strong>: FP16 のアンダーフロー防止</li>
+<li>Gradient Checkpointing: 活性化を再計算でメモリ節約</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-class="lead" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" class="lead" data-marpit-pagination="20" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--class:lead;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+
+<h1 id="3-%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%83%AB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E5%9F%BA%E7%A4%8E">3. ニューラルネットワーク基礎</h1>
+<ul>
+<li>パーセプトロンから深層モデルへ</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="21" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E3%83%91%E3%83%BC%E3%82%BB%E3%83%97%E3%83%88%E3%83%AD%E3%83%B3%E3%81%8B%E3%82%89mlp%E3%81%B8">パーセプトロンからMLPへ</h1>
+<ul>
+<li>パーセプトロン (Rosenblatt 1957): 線形分離可能な問題のみ解ける</li>
+<li><strong>XOR 問題</strong>: 単層では解けず → 多層が必要 (Minsky &amp; Papert 1969)</li>
+<li><strong>普遍近似定理</strong>: 十分な幅の1隠れ層 NN は任意の連続関数を近似<br />
+<img src="../assets/neural-network-mlp.svg" alt="center" style="width:820px;" /></li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="22" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E6%B4%BB%E6%80%A7%E5%8C%96%E9%96%A2%E6%95%B0%E3%81%AE%E9%80%B2%E5%8C%96">活性化関数の進化</h1>
+<ul>
+<li><strong>Sigmoid</strong>: σ(z) = 1/(1+e^{−z}) — 勾配消失問題あり</li>
+<li><strong>tanh</strong>: (e^z − e^{−z})/(e^z + e^{−z}) — 中心化で Sigmoid 改善</li>
+<li><strong>ReLU</strong>: max(0, z) — 勾配消失を大幅改善 (Krizhevsky 2012)</li>
+<li><strong>Leaky ReLU</strong>: max(αz, z) — Dead ReLU を防止</li>
+<li><strong>GELU</strong>: z·Φ(z) — BERT / GPT 系で標準採用</li>
+<li><strong>SiLU (Swish)</strong>: z·σ(z) — LLaMA / Gemma 系で採用</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="23" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E8%AA%A4%E5%B7%AE%E9%80%86%E4%BC%9D%E6%92%AD%E6%B3%95-backpropagation">誤差逆伝播法 (Backpropagation)</h1>
+<ul>
+<li><strong>連鎖律</strong>: ∂L/∂w = (∂L/∂a)(∂a/∂z)(∂z/∂w)</li>
+<li>計算グラフで演算ノードを通じて勾配を自動微分</li>
+<li>PyTorch / JAX の autograd が実装の核心<br />
+<img src="../assets/backprop-graph.svg" alt="center" style="width:820px;" /></li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="24" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E3%83%90%E3%83%83%E3%83%81%E6%AD%A3%E8%A6%8F%E5%8C%96-batch-normalization">バッチ正規化 (Batch Normalization)</h1>
+<ul>
+<li><strong>内部共変量シフト</strong>: 学習中に各層の入力分布が変化する問題</li>
+<li><strong>BN 操作</strong>: x̂ = (x−μ_B)/σ_B, y = γx̂+β (学習可能パラメータ γ, β)</li>
+<li>効果: 学習安定化 / 高学習率使用可 / 正則化効果</li>
+<li><strong>LayerNorm</strong>: バッチでなく特徴次元で正規化 — Transformer で使用</li>
+<li><strong>RMSNorm</strong>: γx/RMS(x) — LayerNorm より計算効率が高い</li>
+<li><strong>GroupNorm</strong>: チャネルをグループ分けして正規化 — 小バッチでも安定</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="25" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E3%83%89%E3%83%AD%E3%83%83%E3%83%97%E3%82%A2%E3%82%A6%E3%83%88%E3%81%A8%E6%AD%A3%E5%89%87%E5%8C%96">ドロップアウトと正則化</h1>
+<ul>
+<li><strong>Dropout</strong> (Srivastava 2014): 訓練時に確率 p でユニットをゼロ化</li>
+<li><strong>アンサンブル解釈</strong>: 指数的な数のサブネットの平均と等価</li>
+<li><strong>Inverted Dropout</strong>: テスト時に (1−p) 補正で期待値を一致</li>
+<li><strong>DropPath / Stochastic Depth</strong>: 残差ブランチ全体をドロップ</li>
+<li>LLM では Dropout より Weight Decay が主流</li>
+<li>過学習の種類に応じた正則化手法の選択が重要</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="26" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E6%AE%8B%E5%B7%AE%E6%8E%A5%E7%B6%9A-resnet">残差接続 (ResNet)</h1>
+<ul>
+<li><strong>消失勾配問題</strong>: 深いNNで勾配が指数的に縮小する問題</li>
+<li><strong>残差ブロック</strong>: H(x) = F(x) + x — 恒等写像をスキップ</li>
+<li>勾配の直接経路: スキップ接続を通じて勾配がダイレクトに流れる</li>
+<li>ResNet-152 で ImageNet SOTA を達成 (He et al., 2016)</li>
+<li><strong>Pre-Activation ResNet</strong>: BN + ReLU → Conv の順で勾配流改善</li>
+<li>Transformer の残差接続も同じ原理 — 深さへの鍵</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="27" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E5%88%9D%E6%9C%9F%E5%8C%96%E6%88%A6%E7%95%A5">初期化戦略</h1>
+<ul>
+<li>ゼロ初期化の問題: 対称性が破れず全ニューロンが同一更新</li>
+<li><strong>Xavier 初期化</strong>: Var(w) = 2/(n_in + n_out) — tanh / sigmoid 向け</li>
+<li><strong>He / Kaiming 初期化</strong>: Var(w) = 2/n_in — ReLU 向け (推奨)</li>
+<li><strong>LeCun 初期化</strong>: Var(w) = 1/n_in — SELU 活性化と組み合わせ</li>
+<li><strong>正規直交初期化</strong>: 勾配ノルムの等尺性保持 (Saxe et al., 2014)</li>
+<li>μP (Maximal Update Parameterization): スケール不変の初期化</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-class="lead" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" class="lead" data-marpit-pagination="28" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--class:lead;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+
+<h1 id="4-%E6%B7%B1%E5%B1%A4%E5%AD%A6%E7%BF%92%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3">4. 深層学習アーキテクチャ</h1>
+<ul>
+<li>CNN / RNN / Transformer の設計原理</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="29" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="cnn-%E7%95%B3%E3%81%BF%E8%BE%BC%E3%81%BF%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF">CNN: 畳み込みの仕組み</h1>
+<ul>
+<li><strong>局所受容野</strong>: 各フィルタは空間的に局所なパターンを検出</li>
+<li><strong>重み共有</strong>: 同じフィルタを全位置に適用 → パラメータ削減</li>
+<li>演算: (I * K)(i,j) = Σ_{m,n} I(i+m, j+n)·K(m,n)</li>
+<li><strong>ストライド</strong>: フィルタ移動間隔 — 空間解像度を削減</li>
+<li><strong>特徴マップの積み上げ</strong>: チャネル数 ↑ × 空間解像度 ↓ が基本設計</li>
+<li>受容野 (Receptive Field): 深い層ほど入力の広い領域を統合</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="30" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="cnn%E3%81%AE%E9%80%B2%E5%8C%96">CNNの進化</h1>
+<ul>
+<li><strong>AlexNet (2012)</strong>: ReLU + Dropout + GPU — 深層学習の火付け役</li>
+<li><strong>VGGNet (2014)</strong>: 3×3 Conv の積み重ね — シンプルかつ深い</li>
+<li><strong>GoogLeNet / Inception (2014)</strong>: Inception Module — 多スケール特徴</li>
+<li><strong>ResNet (2016)</strong>: 残差接続 — 152層の超深層化を実現</li>
+<li><strong>EfficientNet (2019)</strong>: NAS + Compound Scaling — 精度・効率の最前線</li>
+<li><strong>ConvNeXt (2022)</strong>: Transformer 設計を CNN に導入</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="31" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="rnn--lstm-%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF">RNN / LSTM の仕組み</h1>
+<ul>
+<li><strong>RNN</strong>: h_t = tanh(W_h h_{t-1} + W_x x_t + b)</li>
+<li><strong>長期依存問題</strong>: 長いシーケンスで勾配が消失または爆発</li>
+<li><strong>LSTM (Hochreiter 1997)</strong>: 忘却ゲート f / 入力ゲート i / 出力ゲート o + Cell state c</li>
+<li>セル状態: 長期記憶の担体 — ゲートで制御されて情報を保持</li>
+<li><strong>GRU (Cho 2014)</strong>: LSTM を簡略化 — 2 ゲートでパラメータ削減</li>
+<li>Seq2Seq + Attention: RNN 時代の機械翻訳標準手法</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="32" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="attention-%E6%A9%9F%E6%A7%8B%E3%81%AE%E5%8E%9F%E7%90%86">Attention 機構の原理</h1>
+<ul>
+<li>RNN の固定長ベクトル圧縮による情報ボトルネックを解消</li>
+<li><strong>Scaled Dot-Product</strong>: Attention(Q,K,V) = softmax(QKᵀ/√d_k)·V</li>
+<li>Q / K / V: 同じ入力から線形変換で生成 (Self-Attention)<br />
+<img src="../assets/attention-mechanism.svg" alt="center" style="width:840px;" /></li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="33" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="transformer-%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3">Transformer アーキテクチャ</h1>
+<ul>
+<li>Vaswani et al. (2017): 「Attention is All You Need」</li>
+<li>Encoder-only (BERT) / Decoder-only (GPT) / Enc-Dec (T5) の3系統</li>
+<li>FFN: 2層MLP、幅は Attention の4倍が標準<br />
+<img src="../assets/transformer-arch.svg" alt="center" style="width:640px;" /></li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="34" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="multi-head-self-attention-%E3%81%AE%E8%A9%B3%E7%B4%B0">Multi-Head Self-Attention の詳細</h1>
+<ul>
+<li>h 個の独立した Attention ヘッドを並列実行 → 多様な依存を捕捉</li>
+<li>各ヘッド: d_head = d_model / h 次元で独立した Q/K/V 変換</li>
+<li>出力: Concat([head₁, ..., headₕ]) · W_O で統合</li>
+<li>ヘッド多様性: 構文 / 意味 / 照応解決などに自然に特化</li>
+<li><strong>Causal Masking</strong>: デコーダでは未来トークンを -∞ でマスク</li>
+<li><strong>Flash Attention</strong>: IO-aware 実装で 4〜10× 高速化 (Dao 2022)</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="35" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E4%BD%8D%E7%BD%AE%E3%82%A8%E3%83%B3%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0">位置エンコーディング</h1>
+<ul>
+<li>Transformer は順序情報を持たない → 位置情報を明示的に付与</li>
+<li><strong>Sinusoidal</strong> (原論文): PE(pos, 2i) = sin(pos/10000^{2i/d})</li>
+<li><strong>学習可能位置埋め込み</strong>: BERT — 最大長のルックアップテーブル</li>
+<li><strong>RoPE</strong> (Rotary PE): 相対位置を回転行列で表現 — LLaMA / GPT-NeoX</li>
+<li><strong>ALiBi</strong>: Attention スコアに線形バイアス — 学習超えの長文外挿に強い</li>
+<li><strong>YaRN / LongRoPE</strong>: コンテキスト長拡張に対応した RoPE 変種</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="36" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="vision-transformer-vit">Vision Transformer (ViT)</h1>
+<ul>
+<li><strong>画像パッチ化</strong>: 16×16 ピクセルのパッチを「トークン」として処理</li>
+<li><strong>ViT</strong> (Dosovitskiy 2020): 大規模事前学習で ResNet を超える</li>
+<li>スケーリング依存性: CNN より大量データで初めて性能を発揮</li>
+<li><strong>DeiT</strong>: 蒸留により ImageNet-1k 単独でも高精度 (Touvron 2021)</li>
+<li><strong>Swin Transformer</strong>: 階層構造 + Window Attention — 物体検出に最適</li>
+<li><strong>MAE</strong>: ランダムマスクパッチの復元による自己教師あり事前学習</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-class="lead" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" class="lead" data-marpit-pagination="37" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--class:lead;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+
+<h1 id="5-%E8%87%AA%E5%B7%B1%E6%95%99%E5%B8%AB%E3%81%82%E3%82%8A%E5%AD%A6%E7%BF%92%E3%81%A8%E4%BA%8B%E5%89%8D%E5%AD%A6%E7%BF%92">5. 自己教師あり学習と事前学習</h1>
+<ul>
+<li>ラベルなしデータから汎用表現を獲得する手法群</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="38" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E8%87%AA%E5%B7%B1%E6%95%99%E5%B8%AB%E3%81%82%E3%82%8A%E5%AD%A6%E7%BF%92%E3%81%AE%E6%A6%82%E5%BF%B5">自己教師あり学習の概念</h1>
+<ul>
+<li><strong>定義</strong>: データ自身から自動的に監督シグナルを生成する学習枠組み</li>
+<li>プレテキストタスク: 回転予測 / ジグソーパズル / 色付け / マスク予測</li>
+<li>大規模ラベルなしデータの活用 — 人手アノテーション不要</li>
+<li><strong>表現学習の目標</strong>: 下流タスクへの転移学習に有用な汎用表現</li>
+<li>自然言語はテキスト自体がプレテキストタスクの宝庫 (次トークン予測)</li>
+<li>事前学習の品質が下流タスクの上限を決める</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="39" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E3%83%9E%E3%82%B9%E3%82%AF%E8%A8%80%E8%AA%9E%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0-bert">マスク言語モデリング (BERT)</h1>
+<ul>
+<li><strong>BERT</strong> (Devlin 2018): 双方向エンコーダによる文脈表現の学習</li>
+<li><strong>MLM</strong>: 入力の 15% をランダムマスク → マスクトークンを予測</li>
+<li>→ 80% を [MASK]、10% をランダム語、10% を元の語に置換</li>
+<li><strong>NSP</strong> (Next Sentence Prediction): 文ペアの連続性を予測</li>
+<li><strong>RoBERTa</strong>: NSP 廃止 + 大バッチ + 動的マスキング → 大幅改善</li>
+<li><strong>DeBERTa</strong>: 分離注意機構 + 絶対位置デコーダ → さらなる向上</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="40" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E8%87%AA%E5%B7%B1%E5%9B%9E%E5%B8%B0%E5%9E%8B%E4%BA%8B%E5%89%8D%E5%AD%A6%E7%BF%92-gpt-%E7%B3%BB">自己回帰型事前学習 (GPT 系)</h1>
+<ul>
+<li>目標: 次トークン予測 — P(x_t | x_1, ..., x_{t-1}) の最大化</li>
+<li><strong>GPT-1 (2018)</strong>: 大規模コーパス事前学習 → 少量データで微調整</li>
+<li><strong>GPT-2 (2019)</strong>: 1.5B パラメータ — Zero-shot マルチタスク</li>
+<li><strong>GPT-3 (2020)</strong>: 175B パラメータ — In-context Learning の発見</li>
+<li>Causal Masking: 未来トークンへのアクセスを禁止</li>
+<li>スケールアップの一貫性: 損失はべき乗則で改善し続ける</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="41" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E5%AF%BE%E7%85%A7%E5%AD%A6%E7%BF%92-contrastive-learning">対照学習 (Contrastive Learning)</h1>
+<ul>
+<li>目標: 類似ペアの表現を近づけ、非類似ペアを遠ざける</li>
+<li><strong>InfoNCE Loss</strong>: L = −log[exp(sim(zᵢ,zⱼ)/τ) / Σ_k exp(sim(zᵢ,z_k)/τ)]</li>
+<li><strong>SimCLR</strong>: 同画像の2種 Augmentation を正例、バッチ内他を負例</li>
+<li><strong>MoCo</strong>: Momentum Encoder + キューで大規模負例を効率管理</li>
+<li><strong>CLIP</strong> (Radford 2021): 画像-テキストペア 4億件から共同表現を学習</li>
+<li>Hard Negative Mining: 難しい負例ほど表現品質の向上に有効</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="42" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="mae--simmim">MAE / SimMIM</h1>
+<ul>
+<li><strong>MAE</strong> (He 2021): 画像の 75% のパッチをランダムマスク → ピクセル復元</li>
+<li>非対称 Encoder-Decoder: 可視パッチのみ Encoder へ入力 → 高速</li>
+<li>MAE の洞察: 画像は高度に冗長 → 難しい補完タスクが表現品質向上</li>
+<li><strong>SimMIM</strong> (2022): スパース線形ヘッドで raw pixel を直接予測</li>
+<li><strong>BEiT</strong>: dVAE 由来の離散トークン予測 — DALL-E の離散 VAE を利用</li>
+<li>下流転移: Fine-tuning / Linear Probe で BERT 類似の転移学習</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="43" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="instruction-tuning-%E3%81%AE%E7%99%BB%E5%A0%B4">Instruction Tuning の登場</h1>
+<ul>
+<li><strong>FLAN</strong> (Wei 2021): 60+ データセットを自然言語指示に変換</li>
+<li><strong>Instruction Following</strong>: 指示文を理解して多様なタスクをゼロショット実行</li>
+<li><strong>InstructGPT</strong> (2022): SFT + RLHF で有害出力を大幅削減</li>
+<li><strong>SuperNI</strong> (2022): 1600 以上のタスク指示セット</li>
+<li><strong>Alpaca / Vicuna</strong>: ChatGPT 出力を教師データとしたオープンモデル</li>
+<li>指示の品質と多様性がモデルの汎化能力を決定する</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="44" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E6%80%9D%E8%80%83%E9%80%A3%E9%8E%96-cot-%E4%BA%8B%E5%89%8D%E5%AD%A6%E7%BF%92">思考連鎖 (CoT) 事前学習</h1>
+<ul>
+<li><strong>CoT Prompting</strong> (Wei 2022): 中間推論ステップを含む few-shot 例で推論誘導</li>
+<li><strong>Zero-Shot CoT</strong>: 「Let's think step by step」のみで推論を引き出す</li>
+<li><strong>STaR</strong> (Self-Taught Reasoner): 自己生成した正解推論でブートストラップ</li>
+<li><strong>Think Tokens</strong> (o1 / R1): <think>...</think> で長い推論を展開</li>
+<li><strong>Process Reward Model (PRM)</strong>: 各推論ステップの正しさを評価</li>
+<li><strong>GRPO / REINFORCE++</strong>: RL で推論品質を直接最適化</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-class="lead" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" class="lead" data-marpit-pagination="45" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--class:lead;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+
+<h1 id="6-%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E5%89%87">6. スケーリング則</h1>
+<ul>
+<li>計算量・データ・モデルサイズの関係</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="46" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="kaplan-%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E5%89%87-2020">Kaplan スケーリング則 (2020)</h1>
+<ul>
+<li>Kaplan et al. (2020): 計算量・モデルサイズ・データの3要素の冪乗則</li>
+<li>L(N) ∝ N^{−0.076}: パラメータ数に対する冪乗的損失減少</li>
+<li>L(C) ∝ C^{−0.050}: 計算量 FLOPs に対する冪乗的損失減少<br />
+<img src="../assets/scaling-laws.svg" alt="center" style="width:800px;" /></li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="47" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="chinchilla-%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E5%89%87-2022">Chinchilla スケーリング則 (2022)</h1>
+<ul>
+<li><strong>Hoffmann et al. (2022)</strong>: Kaplan 則への反論 — 最適 N/D 配分の再考</li>
+<li>Chinchilla (70B / 1.4T tokens) が GPT-3 (175B / 300B) を凌駕</li>
+<li>最適配分: N ∝ C^{0.5}, D ∝ C^{0.5} — モデルとデータを等比率で</li>
+<li><strong>D ≈ 20N</strong> が実用的な経験則 (N: パラメータ数)</li>
+<li><strong>LLaMA / Mistral</strong>: Chinchilla 則に基づく高効率トレーニング</li>
+<li>Llama 3: 405B / 15T tokens — 推論コスト最適化を重視</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="48" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E5%89%B5%E7%99%BA%E8%83%BD%E5%8A%9B-emergent-abilities">創発能力 (Emergent Abilities)</h1>
+<ul>
+<li><strong>Wei et al. (2022)</strong>: 特定スケール閾値を超えると突然能力が出現</li>
+<li>算数 / 多段階推論 / BIG-bench: 小規模では偶然以下 → 大規模で急伸</li>
+<li><strong>段階的 vs 突然</strong>: 評価指標の選択がグラフの形状に影響 (Schaeffer 2023)</li>
+<li><strong>Few-shot ICL</strong>: プロンプト内の例からのタスク推定能力</li>
+<li><strong>Chain-of-Thought</strong>: 中間推論ステップの自発的展開</li>
+<li>Calibration の破綻: 大規模化で confidence が過剰になる傾向</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="49" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E3%83%87%E3%83%BC%E3%82%BF%E3%83%BB%E8%A8%88%E7%AE%97%E3%83%BB%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E6%9C%80%E9%81%A9%E9%85%8D%E5%88%86">データ・計算・モデルの最適配分</h1>
+<ul>
+<li>固定計算予算: C ≈ 6ND FLOPs (N: パラメータ数, D: トークン数)</li>
+<li>Compute-optimal: N* ∝ C^{0.5}, D* ∝ C^{0.5}</li>
+<li><strong>Inference-efficiency 重視</strong>: 推論コストを考慮した小モデル + 多データ</li>
+<li><strong>Multi-epoch 訓練</strong>: データ拡張・合成データで無限データ化を目指す</li>
+<li>データ反復: 同データの複数エポック — 1〜2 エポックが実用的最大</li>
+<li>GPT-4 / Gemini 1.5 Ultra はパラメータを非公開 — 新しい配分の可能性</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="50" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-class="lead" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" class="lead" data-marpit-pagination="50" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--class:lead;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+
+<h1 id="7-%E3%83%95%E3%82%A1%E3%82%A4%E3%83%B3%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%A8%E3%82%A2%E3%83%A9%E3%82%A4%E3%83%A1%E3%83%B3%E3%83%88">7. ファインチューニングとアライメント</h1>
+<ul>
+<li>SFT / RLHF / DPO / PEFT の理論と実装</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="51" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="51" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="supervised-fine-tuning-sft">Supervised Fine-Tuning (SFT)</h1>
+<ul>
+<li>目標: 事前学習モデルをタスク固有データでパラメータ更新</li>
+<li>Instruction-Response ペア: 指示文と模範回答のペアで学習</li>
+<li>学習率: 事前学習の 1/10〜1/100 — 壊滅的忘却を防ぐ</li>
+<li><strong>Catastrophic Forgetting</strong>: FT 時に事前学習の汎用知識が失われる問題</li>
+<li>解決策: SFT データと事前学習データの混合 / 低学習率</li>
+<li><strong>データ品質 &gt;&gt; データ量</strong>: 1000件の高品質データが大量低品質データを超える</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="52" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="52" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="rlhf-%E5%BC%B7%E5%8C%96%E5%AD%A6%E7%BF%92%E3%81%AB%E3%82%88%E3%82%8B%E4%BA%BA%E9%96%93%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%83%90%E3%83%83%E3%82%AF">RLHF: 強化学習による人間フィードバック</h1>
+<ul>
+<li>Ziegler et al. (2019) / InstructGPT (2022) が実用化を確立</li>
+<li>KL 制約: L = R(π) − β DKL(π ‖ π_ref) で発散を防止</li>
+<li>人間評価コスト: 数万件の比較ラベルが必要<br />
+<img src="../assets/rlhf-pipeline.svg" alt="center" style="width:860px;" /></li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="53" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="53" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E5%A0%B1%E9%85%AC%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E5%AD%A6%E7%BF%92">報酬モデルの学習</h1>
+<ul>
+<li><strong>Bradley-Terry モデル</strong>: P(y_w &gt; y_l | x) = σ(r(x,y_w) − r(x,y_l))</li>
+<li><strong>損失関数</strong>: L = −log σ(r(x,y_w) − r(x,y_l))</li>
+<li>RM のアーキテクチャ: SFT モデルに線形ヘッドを追加</li>
+<li><strong>Reward Hacking</strong>: RL が RM の弱点を突いてスコアを水増し</li>
+<li><strong>Overoptimization</strong>: KL 増大で実際の人間評価が低下する現象</li>
+<li><strong>Ensemble RM</strong>: 複数報酬モデルの統計で不確実性を推定</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="54" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="54" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="ppo-%E6%9C%80%E9%81%A9%E5%8C%96">PPO 最適化</h1>
+<ul>
+<li><strong>PPO</strong> (Schulman 2017): Clip でポリシー変化を制限して安定学習</li>
+<li><strong>クリップ目的</strong>: L = E[min(r_t(θ)·A_t, clip(r_t(θ), 1−ε, 1+ε)·A_t)]</li>
+<li>r_t(θ) = π_θ(a_t|s_t) / π_{old}(a_t|s_t): 重要度比</li>
+<li>価値関数ネットワーク: 状態価値 V(s) を学習 — Advantage の推定</li>
+<li>KL ペナルティ: 参照モデルとの KL 発散をペナルティとして加算</li>
+<li>実装の複雑さ: RM / Actor / Critic / Reference の4モデルを同時管理</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="55" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="55" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="dpo-%E7%9B%B4%E6%8E%A5%E9%81%B8%E5%A5%BD%E6%9C%80%E9%81%A9%E5%8C%96">DPO: 直接選好最適化</h1>
+<ul>
+<li>Rafailov et al. (2023): RLHF を PPO なしに単一損失で実現</li>
+<li>最適方策のクローズドフォーム: π* ∝ π_ref · exp(r/β)</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-comment"># DPO Loss (Rafailov et al., 2023)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">dpo_loss</span>(<span class="hljs-params">pi_logp_w, pi_logp_l, ref_logp_w, ref_logp_l, beta=<span class="hljs-number">0.1</span></span>):
+    pi_ratio_w = pi_logp_w - ref_logp_w  <span class="hljs-comment"># chosen</span>
+    pi_ratio_l = pi_logp_l - ref_logp_l  <span class="hljs-comment"># rejected</span>
+    loss = -F.logsigmoid(beta * (pi_ratio_w - pi_ratio_l))
+    <span class="hljs-keyword">return</span> loss.mean()
+<span class="hljs-comment"># SimPO: length-normalized, no ref model needed</span>
+<span class="hljs-comment"># KTO: binary preference signal (liked/disliked)</span>
+</code></pre>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="56" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="56" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="grpo--reinforce">GRPO / REINFORCE++</h1>
+<ul>
+<li><strong>GRPO</strong> (DeepSeek-R1): グループ相対方策最適化 — 価値関数ネットワーク不要</li>
+<li>アドバンテージ: グループ内の相対スコアで Advantage を計算</li>
+<li><strong>REINFORCE++</strong>: 分散低減のためベースライン付き REINFORCE</li>
+<li>数学タスクへの適用: 検証可能な正誤で自動報酬 — 人手評価不要</li>
+<li><strong>DeepSeek-R1-Zero</strong>: SFT なしで RL のみで推論能力が自発的に出現</li>
+<li>Self-Play: モデルが自らに対して学習 — 能力のブートストラップ</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="57" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="57" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="peft-%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E5%8A%B9%E7%8E%87%E7%9A%84%E3%83%95%E3%82%A1%E3%82%A4%E3%83%B3%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0">PEFT: パラメータ効率的ファインチューニング</h1>
+<ul>
+<li>動機: 170B モデルの完全 FT には数百 GB の VRAM が必要</li>
+<li><strong>Adapter</strong> (Houlsby 2019): 各層に小型 FFN を挿入 → 全パラメータの 1%</li>
+<li><strong>Prefix Tuning</strong>: Key/Value に連続的な「soft prompt」を前置</li>
+<li><strong>Prompt Tuning</strong>: 入力埋め込みのみを学習 — 極端なパラメータ削減</li>
+<li><strong>IA³</strong>: スケーリングベクターで活性化を調整 — Few-shot PEFT</li>
+<li><strong>LoRA</strong>: 低ランク行列近似 — 現在最も広く使われる手法</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="58" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="58" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="lora--qlora">LoRA / QLoRA</h1>
+<ul>
+<li>LoRA: W + ΔW = W + BA (B∈R^{d×r}, A∈R^{r×k}, r &lt;&lt; min(d,k))</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">LoRALayer</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, d_in, d_out, rank=<span class="hljs-number">16</span>, alpha=<span class="hljs-number">32</span></span>):
+        <span class="hljs-built_in">super</span>().__init__()
+        <span class="hljs-variable language_">self</span>.W = nn.Linear(d_in, d_out, bias=<span class="hljs-literal">False</span>)
+        <span class="hljs-variable language_">self</span>.W.requires_grad_(<span class="hljs-literal">False</span>)      <span class="hljs-comment"># freeze base model</span>
+        <span class="hljs-variable language_">self</span>.A = nn.Parameter(torch.randn(d_in, rank) * <span class="hljs-number">0.01</span>)
+        <span class="hljs-variable language_">self</span>.B = nn.Parameter(torch.zeros(rank, d_out))
+        <span class="hljs-variable language_">self</span>.scale = alpha / rank         <span class="hljs-comment"># alpha/r scaling</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.W(x) + (x @ <span class="hljs-variable language_">self</span>.A @ <span class="hljs-variable language_">self</span>.B) * <span class="hljs-variable language_">self</span>.scale
+<span class="hljs-comment"># QLoRA: 4-bit NF4 quantization + Double Quant + LoRA</span>
+</code></pre>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="59" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-class="lead" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" class="lead" data-marpit-pagination="59" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--class:lead;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+
+<h1 id="8-%E5%AD%A6%E7%BF%92%E3%83%87%E3%83%BC%E3%82%BF%E3%81%A8%E3%83%87%E3%83%BC%E3%82%BF%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0">8. 学習データとデータエンジニアリング</h1>
+<ul>
+<li>データ品質・キュレーション・合成データの実際</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="60" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="60" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E5%AD%A6%E7%BF%92%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E5%93%81%E8%B3%AA%E3%81%A8%E8%A6%8F%E6%A8%A1">学習データの品質と規模</h1>
+<ul>
+<li><strong>Common Crawl</strong>: 数 PB の Web テキスト — 低品質・有害コンテンツを含む</li>
+<li><strong>The Pile</strong> (2021): 多様な高品質ソース 825 GB のキュレーション済みデータ</li>
+<li><strong>FineWeb</strong> (2024): CC から高品質フィルタリング — 15T tokens</li>
+<li>データ混合比: コードデータが大量に含まれると推論能力が向上</li>
+<li><strong>多言語不均衡</strong>: 日本語/中国語等は英語の 1/50 以下</li>
+<li>法的問題: 著作権データの扱い — Books3, LibGen 等で訴訟</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="61" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="61" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E3%83%87%E3%83%BC%E3%82%BF%E3%82%AD%E3%83%A5%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%91%E3%82%A4%E3%83%97%E3%83%A9%E3%82%A4%E3%83%B3">データキュレーションパイプライン</h1>
+<ul>
+<li>言語識別 → 重複排除 → 品質フィルタ → 有害コンテンツ除去</li>
+<li><strong>MinHash LSH</strong>: 近似近傍ハッシュによる大規模重複排除</li>
+<li><strong>Perplexity フィルタ</strong>: 言語モデルスコアで低品質テキストを除去</li>
+<li><strong>Deduplication の重要性</strong>: 重複データは汎化を損ない記憶を促進</li>
+<li><strong>Quality Classifier</strong>: GPT-4 / Claude でアノテートし品質スコアを付与</li>
+<li>規模が増えるほどフィルタリングの精度が全体品質を左右</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="62" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="62" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E3%83%87%E3%83%BC%E3%82%BF%E6%B1%9A%E6%9F%93%E3%81%A8%E8%A9%95%E4%BE%A1%E3%82%BB%E3%83%83%E3%83%88%E7%8B%AC%E7%AB%8B%E6%80%A7">データ汚染と評価セット独立性</h1>
+<ul>
+<li><strong>データ汚染</strong>: 評価ベンチマークのデータが訓練データに混入する問題</li>
+<li>汚染モデルはベンチマークを「暗記」→ 実能力より高いスコアを報告</li>
+<li><strong>汚染検出</strong>: n-gram 重複率 / Perplexity スパイク / カナリアデータ</li>
+<li><strong>LiveBench / GPQA</strong>: 定期更新 / 非公開で汚染を防ぐ設計</li>
+<li>テストセットは一度だけ使用 — 複数回使うと過楽観バイアス</li>
+<li>コミュニティへの提言: 評価データは秘匿し公開を最小限に</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="63" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="63" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E5%90%88%E6%88%90%E3%83%87%E3%83%BC%E3%82%BF%E3%81%A8%E8%87%AA%E5%B7%B1%E6%94%B9%E5%96%84%E3%83%AB%E3%83%BC%E3%83%97">合成データと自己改善ループ</h1>
+<ul>
+<li><strong>Alpaca / Vicuna</strong>: GPT-4 出力で蒸留 — コスト効率的に能力獲得</li>
+<li><strong>Self-Instruct</strong> (2023): LLM が自ら指示データを生成 → フィルタ → FT</li>
+<li><strong>STaR / ReST</strong>: 自己生成の正しい推論例でブートストラップ</li>
+<li><strong>Phi-1/2/3</strong>: 小モデルでも高品質合成データで大モデルに匹敵</li>
+<li>合成データの限界: 多様性欠如 / 幻覚の伝播 / モデル崩壊リスク</li>
+<li><strong>検証可能タスク</strong> (数学・コード): 自動報酬で合成データの品質保証</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="64" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-class="lead" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" class="lead" data-marpit-pagination="64" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--class:lead;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+
+<h1 id="9-%E5%88%86%E6%95%A3%E5%AD%A6%E7%BF%92%E3%83%BB%E4%B8%A6%E5%88%97%E5%8C%96">9. 分散学習・並列化</h1>
+<ul>
+<li>大規模モデルを効率よく訓練する並列化戦略</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="65" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="65" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E5%88%86%E6%95%A3%E5%AD%A6%E7%BF%92%E3%81%AE%E4%B8%A6%E5%88%97%E5%8C%96%E6%88%A6%E7%95%A5">分散学習の並列化戦略</h1>
+<ul>
+<li>各手法の適用範囲は問題規模とハードウェアに依存する</li>
+<li>データ並列: モデルがGPU 1台に収まる場合の標準手法</li>
+<li>モデル並列: 単一モデルが 1GPU を超える場合に必要<br />
+<img src="../assets/distributed-training.svg" alt="center" style="width:880px;" /></li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="66" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="66" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E3%83%A2%E3%83%87%E3%83%AB%E4%B8%A6%E5%88%97%E5%87%A6%E7%90%86%E3%81%A8%E3%83%86%E3%83%B3%E3%82%BD%E3%83%AB%E4%B8%A6%E5%88%97">モデル並列処理とテンソル並列</h1>
+<ul>
+<li><strong>テンソル並列</strong> (Megatron-LM): 重み行列を GPU 間で列/行方向に分割</li>
+<li>Column 並列: W_Q, W_K, W_V を分割 → 各 GPU が独立して計算</li>
+<li>Row 並列: FFN の 2層目を分割 → AllReduce で結合</li>
+<li>通信コスト: 各 Forward で AllReduce が必要 — NVLink 帯域が律速</li>
+<li><strong>Expert 並列</strong>: MoE の各 Expert を異なる GPU に配置</li>
+<li><strong>FSDP</strong> (PyTorch): ZeRO-3 相当のパラメータシャーディング</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="67" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="67" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E3%83%91%E3%82%A4%E3%83%97%E3%83%A9%E3%82%A4%E3%83%B3%E4%B8%A6%E5%88%97%E5%8C%96">パイプライン並列化</h1>
+<ul>
+<li>モデルの層を複数ステージに分割し、各 GPU に割り当て</li>
+<li><strong>バブル問題</strong>: ステージ間の待ち時間 — GPU 使用率が低下</li>
+<li><strong>GPipe</strong>: マイクロバッチでバブル低減 — バブル率 (p-1)/(m+p-1)</li>
+<li><strong>1F1B</strong> (PipeDream): 1 Forward → 1 Backward を交互に実行</li>
+<li><strong>Interleaved 1F1B</strong>: 仮想ステージを使いバブルをさらに削減</li>
+<li>最適ステージ数: バブル率と通信コストのトレードオフ</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="68" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="68" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="zero--3d-%E4%B8%A6%E5%88%97">ZeRO / 3D 並列</h1>
+<ul>
+<li><strong>ZeRO</strong> (DeepSpeed): Zero Redundancy Optimizer — パラメータ冗長を排除</li>
+<li><strong>ZeRO-1</strong>: オプティマイザ状態のシャーディング</li>
+<li><strong>ZeRO-2</strong>: + 勾配のシャーディング</li>
+<li><strong>ZeRO-3 / FSDP</strong>: + パラメータのシャーディング — 最大のメモリ削減</li>
+<li><strong>3D 並列</strong>: データ並列 × テンソル並列 × パイプライン並列の組み合わせ</li>
+<li>Megatron-DeepSpeed: 100B+ 規模の学習で実績</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="69" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="69" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6%E5%AD%A6%E7%BF%92%E3%81%A8%E5%8B%BE%E9%85%8D%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88">混合精度学習と勾配チェックポイント</h1>
+<ul>
+<li><strong>FP16</strong>: 2 bytes/param — 一部の演算で数値不安定</li>
+<li><strong>BF16</strong>: FP32 と同じ指数域 — LLM 学習の実質標準 (Ampere 以降)</li>
+<li>混合精度: BF16 で演算 + FP32 のマスターコピーで勾配更新</li>
+<li><strong>Dynamic Loss Scaling</strong>: FP16 アンダーフロー防止の自動スケーリング</li>
+<li><strong>Gradient Checkpointing</strong>: 活性化を再計算 → メモリ O(√n) へ削減</li>
+<li>FlashAttention-2/3: IO-aware な計算で GPU HBM 帯域を最大活用</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="70" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-class="lead" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" class="lead" data-marpit-pagination="70" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--class:lead;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+
+<h1 id="10-%E6%9C%80%E6%96%B0%E7%A0%94%E7%A9%B6%E3%83%88%E3%83%AC%E3%83%B3%E3%83%89">10. 最新研究トレンド</h1>
+<ul>
+<li>2024〜2026年の主要ブレークスルー</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="71" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="71" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="mixture-of-experts-moe">Mixture of Experts (MoE)</h1>
+<ul>
+<li>FFN 層を N 個の Expert に置き換え — 上位 K 個のみ実行</li>
+<li><strong>Mixtral 8x7B</strong> (2023): 8 Expert 中 2 使用 — 46.7B params / 12.9B active</li>
+<li>Expert のロードバランス: routing collapse を防ぐ auxiliary loss<br />
+<img src="../assets/moe-architecture.svg" alt="center" style="width:760px;" /></li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="72" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="72" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="test-time-compute-ttc">Test-Time Compute (TTC)</h1>
+<ul>
+<li><strong>パラダイムシフト</strong>: 学習コストではなく推論コストをスケール</li>
+<li><strong>Best-of-N Sampling</strong>: N 個の出力を生成 → PRM で最良を選択</li>
+<li><strong>Tree Search / MCTS</strong>: 推論過程を木探索で最適化</li>
+<li><strong>o1</strong> (OpenAI 2024): <think> トークンで内部推論を展開</li>
+<li><strong>DeepSeek-R1</strong>: RL で自発的な長い思考連鎖を誘導</li>
+<li>二重スケーリング: 事前学習コスト × 推論コストの両軸で性能向上</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="73" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="73" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E3%83%9E%E3%83%AB%E3%83%81%E3%83%A2%E3%83%BC%E3%83%80%E3%83%AB%E5%AD%A6%E7%BF%92">マルチモーダル学習</h1>
+<ul>
+<li><strong>VLM</strong> (Vision-Language Model): 画像とテキストを統合して処理</li>
+<li><strong>CLIP</strong> (Radford 2021): 4億ペアのコントラスト学習で視覚-言語表現</li>
+<li><strong>LLaVA</strong>: CLIP 視覚エンコーダ + LLM — オープンソース VLM の標準</li>
+<li><strong>GPT-4V / Gemini</strong>: ネイティブマルチモーダル — テキスト/画像/動画/音声</li>
+<li><strong>Video-LLM</strong>: 時系列フレームを処理するための時間的整合機構</li>
+<li>統合アーキテクチャ: モダリティ固有エンコーダ + 統一 Transformer</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="74" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="74" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E6%8B%A1%E6%95%A3%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E5%AD%A6%E7%BF%92">拡散モデルの学習</h1>
+<ul>
+<li><strong>DDPM</strong> (Ho 2020): q(x_t|x_{t-1}) = N(√αx_{t-1}, (1-α)I) でノイズ付加</li>
+<li><strong>逆拡散</strong>: εθ(x_t, t) でノイズを予測 → 段階的にデノイズ</li>
+<li><strong>単純損失</strong>: L = E[‖ε − εθ(√ᾱx₀+√(1-ᾱ)ε, t)‖²]</li>
+<li><strong>DDIM</strong>: 非マルコフ過程で決定論的サンプリング — 10× 高速化</li>
+<li><strong>Stable Diffusion</strong>: Latent Diffusion — 潜在空間でのノイズ除去</li>
+<li><strong>Flow Matching</strong>: 確率フロー ODE で拡散を統一的に定式化</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="75" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="75" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="world-models-%E3%81%A8%E4%BA%88%E6%B8%AC%E5%AD%A6%E7%BF%92">World Models と予測学習</h1>
+<ul>
+<li><strong>World Model</strong>: 環境ダイナミクス s_{t+1} = f(s_t, a_t) を内化</li>
+<li><strong>Dreamer</strong> (Hafner 2020): 潜在空間でのロールアウトで RL を高速化</li>
+<li><strong>JEPA</strong> (LeCun): Joint Embedding Predictive Architecture — 潜在空間予測</li>
+<li>I-JEPA / V-JEPA: 画像・動画の JEPA 実装</li>
+<li><strong>Sora</strong> 等の動画生成: 暗黙的に World Model を学習している可能性</li>
+<li>AGI への道: 世界の因果構造を内化したモデルの構築</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="76" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="76" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="constitutional-ai-%E3%81%A8-rlaif">Constitutional AI と RLAIF</h1>
+<ul>
+<li><strong>Anthropic (2022)</strong>: 原則集 (Constitution) に基づく自己批判・改訂</li>
+<li><strong>RLAIF</strong>: 人手ではなく AI フィードバックで RL — スケーラブル</li>
+<li><strong>Critique &amp; Revision</strong>: モデルが自らの出力を批判 → 修正</li>
+<li><strong>3H 原則</strong>: Helpful / Harmless / Honest の定式化</li>
+<li><strong>Scalable Oversight</strong>: 超人的 AI のアライメントへの布石</li>
+<li><strong>Debate</strong> (Irving 2018): AI 同士が主張を戦わせ人間が判断</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="77" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="77" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="speculative-decoding">Speculative Decoding</h1>
+<ul>
+<li><strong>問題</strong>: LLM の自己回帰生成は GPU の memory bandwidth 律速</li>
+<li><strong>Speculative Decoding</strong> (Chen 2023): Draft モデルで複数トークン先読み</li>
+<li>検証ステップ: Target LLM が Draft の全トークンを並列検証</li>
+<li><strong>数学的等価性</strong>: 受け入れ率調整で Target LLM と完全に等価な出力</li>
+<li>速度向上: 2〜3× の高速化 (Drafter と Target の分布が近いほど有効)</li>
+<li><strong>Medusa / EAGLE</strong>: 複数ヘッドで並列生成するアーキテクチャ改変手法</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="78" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-class="lead" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" class="lead" data-marpit-pagination="78" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--class:lead;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+
+<h1 id="11-%E8%A7%A3%E9%87%88%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%A8%E8%A9%95%E4%BE%A1">11. 解釈可能性と評価</h1>
+<ul>
+<li>モデルの内部動作の理解と性能測定の方法論</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="79" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="79" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E4%B8%BB%E8%A6%81%E3%83%99%E3%83%B3%E3%83%81%E3%83%9E%E3%83%BC%E3%82%AF%E6%A6%82%E8%A6%B3">主要ベンチマーク概観</h1>
+<ul>
+<li><strong>MMLU</strong> (2021): 57 分野 14,000 問 — 幅広い知識評価</li>
+<li><strong>HumanEval / MBPP</strong>: コード生成 — pass@k で機能的正確さを測定</li>
+<li><strong>MATH</strong> (Hendrycks 2021): 数学問題集 — 解法ステップが必要</li>
+<li><strong>GPQA Diamond</strong>: 博士レベル科学問題 — 専門家でも 69% 程度</li>
+<li><strong>SWE-bench</strong>: 実 GitHub Issues の修正 — エンジニアリング能力測定</li>
+<li><strong>FrontierMath</strong>: 未公開の最難関数学問題 — 現行モデルは 1% 未満</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="80" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="80" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="mechanistic-interpretability">Mechanistic Interpretability</h1>
+<ul>
+<li>目標: 「なぜその答えを出したか」を回路レベルで解明</li>
+<li><strong>Circuit Analysis</strong>: サブネットワーク (circuit) が特定タスクを担当</li>
+<li><strong>IOI</strong> (Indirect Object Identification): 注意ヘッドの役割特定 (Wang 2022)</li>
+<li><strong>Superposition</strong>: 1ニューロンが複数特徴を重ね合わせて表現</li>
+<li><strong>Sparse AutoEncoder (SAE)</strong>: 単一の解釈可能特徴を線形分離</li>
+<li>Anthropic: 百万規模の SAE で特徴辞書を構築 (Monosemanticity)</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="81" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="81" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E5%86%85%E9%83%A8%E8%A1%A8%E7%8F%BE%E3%81%AE%E5%8F%AF%E8%A6%96%E5%8C%96">内部表現の可視化</h1>
+<ul>
+<li><strong>Probing</strong>: 線形分類器でニューロン表現に格納された情報を検査</li>
+<li><strong>Activation Atlas</strong> (Carter 2019): UMAP + Concept Activation Vectors</li>
+<li><strong>Logit Lens</strong>: 中間層の残差ストリームを語彙空間に投影して可視化</li>
+<li><strong>Attention Pattern Analysis</strong>: ヘッドの注意パターン — 構文/共参照/コピー</li>
+<li><strong>Representation Engineering (RepE)</strong>: 概念の方向ベクトルを直接操作</li>
+<li><strong>Linear Representation Hypothesis</strong>: 概念は残差ストリームの線形方向に存在</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="82" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="82" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E8%A9%95%E4%BE%A1%E3%81%AE%E9%99%90%E7%95%8C%E3%81%A8%E8%AA%B2%E9%A1%8C">評価の限界と課題</h1>
+<ul>
+<li><strong>ベンチマーク飽和</strong>: モデルが人間レベルを超えても能力差が見えない</li>
+<li><strong>データ汚染</strong>: 訓練データとの重複で過楽観な結果</li>
+<li><strong>ゲームプレイ</strong>: スコア最大化に最適化 → 実能力と乖離</li>
+<li><strong>Elicitation Gap</strong>: モデルが持つ能力と評価で引き出せる能力のギャップ</li>
+<li><strong>多次元能力</strong>: 単一スコアでの比較は誤解を招く</li>
+<li><strong>安全性評価</strong>: 有害出力の定量化の難しさ — 標準化が急務</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="83" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-class="lead" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" class="lead" data-marpit-pagination="83" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--class:lead;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+
+<h1 id="12-%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A8%E5%B1%95%E6%9C%9B">12. まとめと展望</h1>
+<ul>
+<li>AIの学習の変遷と未解決問題</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="84" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="84" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E5%AD%A6%E7%BF%92%E3%83%91%E3%83%A9%E3%83%80%E3%82%A4%E3%83%A0%E3%81%AE%E5%A4%89%E9%81%B7%E3%81%BE%E3%81%A8%E3%82%81">学習パラダイムの変遷まとめ</h1>
+<ul>
+<li><strong>1990-2010</strong>: 特徴量エンジニアリング + 浅い学習 (SVM, Boosting)</li>
+<li><strong>2012</strong>: AlexNet — 深層学習の幕開け、特徴量の自動学習</li>
+<li><strong>2017</strong>: Transformer — Self-Attention と自己回帰生成の確立</li>
+<li><strong>2020</strong>: GPT-3 — In-context Learning とスケーリング則の確立</li>
+<li><strong>2022</strong>: ChatGPT / RLHF — アライメントと Instruction Following</li>
+<li><strong>2024〜</strong>: o1 / R1 / TTC — 推論コストのスケーリングへ</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="85" data-paginate="true" data-header="AIの学習の仕組み" data-footer="© 2026 - 研究者・専門家向け完全解説" data-theme="gaia" data-style="section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+" lang="en-US" data-marpit-pagination="85" style="--paginate:true;--header:AIの学習の仕組み;--footer:© 2026 - 研究者・専門家向け完全解説;--theme:gaia;--style:section { font-size: 1.0em; }
+section pre code { font-size: 0.56em; line-height: 1.35; }
+section h1 { font-size: 1.55em; }
+section h2 { font-size: 1.25em; }
+section ul li { margin-bottom: 0.18em; }
+section table { font-size: 0.85em; }
+;" data-marpit-pagination-total="85" data-size="16:9">
+<header>AIの学習の仕組み</header>
+<h1 id="%E6%9C%AA%E8%A7%A3%E6%B1%BA%E5%95%8F%E9%A1%8C%E3%81%A8%E4%BB%8A%E5%BE%8C%E3%81%AE%E6%96%B9%E5%90%91%E6%80%A7">未解決問題と今後の方向性</h1>
+<ul>
+<li><strong>幻覚問題</strong>: 事実根拠のない自信ある出力の根絶</li>
+<li><strong>継続学習</strong>: 壊滅的忘却なしに新知識を追加更新</li>
+<li><strong>合成知識</strong>: 学習データを超えた新規概念の真の理解と創造</li>
+<li><strong>AGI の定義</strong>: どうすれば汎化が「十分」と言えるか</li>
+<li><strong>安全性と整合性</strong>: 超人的 AI と人間価値観の整合 (Scalable Oversight)</li>
+<li><strong>エネルギー効率</strong>: 脳 (20W) vs GPU クラスター (100MW) のギャップ</li>
+</ul>
+<footer>© 2026 - 研究者・専門家向け完全解説</footer>
+</section>
+<script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{container;containerSize;containerObserver;svg;svgComputedStyle;svgPreserveAspectRatio="xMinYMid meet";wrapper;wrapperSize;wrapperObserver;constructor(){super();const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=this.shadowRoot.querySelector(`div[${e}]`)??void 0;const t=this.svg;this.svg=this.wrapper?.querySelector(`svg[${i}]`)??void 0,this.svg!==t&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=this.svg?.querySelector(`span[${n}]`)??void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame(()=>{t.style.display=""}))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){let t=Math.ceil(this.containerSize?.width??0);const e=Math.ceil(this.containerSize?.height??0);void 0!==this.dataset.downscaleOnly&&(t=Math.max(t,this.wrapperSize?.width??0));const i=this.svg?.querySelector(":scope > foreignObject");if(i?.setAttribute("width",`${t}`),i?.setAttribute("height",`${e}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${t} ${e}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=t<=0||e<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const r=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this._shadow()}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_shadow(){if(!this.shadowRoot)try{this.attachShadow({mode:"open"})}catch(t){if(!(t instanceof Error&&"NotSupportedError"===t.name))throw t}return this.shadowRoot}_update(){const t=this._shadow();if(t){const e=i?`<style>:host { ${i} }</style>`:"";let n="<slot></slot>";const{autoScaling:s}=this.dataset;if(void 0!==s){n=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===s?"data-downscale-only":""}>${n}</marp-auto-scaling>`}t.innerHTML=e+n}}};let o;const a=Symbol(),l=()=>o??(o=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is"),o);let c;const d="marpitSVGPolyfill:setZoomFactor,",h=Symbol(),g=Symbol();const p=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[v]:[],i={then:e=>(t?(async()=>{if(void 0===c){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise(t=>{i.addEventListener("load",()=>t())});i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),c=e.getImageData(5,5,1,1).data[3]<128}return c})().then(t=>{null==e||e(t?[v]:[])}):null==e||e([]),i)};return Object.assign(e,i)};let m,u;function v(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(d)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(u=i)}}catch(t){console.error(t)}}));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),t=>{var e,s,r,o;t.style.transform||(t.style.transform="translateZ(0)");const a=i||u||t.currentScale||1;m!==a&&(m=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(o=null===(r=n.y)||void 0===r?void 0:r.baseVal.value)&&void 0!==o?o:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}}),!1!==n&&Array.from(e.querySelectorAll("iframe"),({contentWindow:t})=>{null==t||t.postMessage(`${d}${n}`,"null"===window.origin?"*":window.origin)})}function w({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[h])return t[h];let e=!0;const i=()=>{e=!1,delete t[h]};Object.defineProperty(t,h,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await p()}finally{s=!0}})();const r=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(r)};return r(),i}(e);return t?(i(),()=>{}):i}m=1,u=void 0;const b=Symbol(),y=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,o=t[n].proto();l()&&o!==HTMLElement?i||customElements.define(s,r(o,{style:t[n].style}),{extends:n}):(i||customElements.define(s,r(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach(t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)}))}window[a]=!0})(e),e[b])return e[b];const i=w({target:e}),n=()=>{i(),delete e[b]},o=Object.assign(n,{cleanup:n,update:()=>y(e)});return Object.defineProperty(e,b,{configurable:!0,value:o}),o},f=document.currentScript;y(f?f.getRootNode():document)}();
+</script></foreignObject></svg></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@4.2.3/lib/bespoke.js.LICENSE.txt */
+!function(){"use strict";function e(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var t,n,r=(n||(n=1,t={from:function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),o=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,function(e){return"SCRIPT"!==e.nodeName}),a={},i=function(e,t){return(t=t||{}).index=o.indexOf(e),t.slide=e,t},s=function(e,t){a[e]=(a[e]||[]).filter(function(e){return e!==t})},c=function(e,t){return(a[e]||[]).reduce(function(e,n){return e&&!1!==n(t)},!0)},l=function(e,t){o[e]&&(n&&c("deactivate",i(n,t)),n=o[e],c("activate",i(n,t)))},d=function(e,t){var r=o.indexOf(n)+e;c(e>0?"next":"prev",i(n,t))&&l(r,t)},u={off:s,on:function(e,t){return(a[e]||(a[e]=[])).push(t),s.bind(null,e,t)},fire:c,slide:function(e,t){if(!arguments.length)return o.indexOf(n);c("slide",i(o[e],t))&&l(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:o,destroy:function(e){c("destroy",i(n,e)),a={}}};return(t||[]).forEach(function(e){e(u)}),n||l(0),u}}),t),o=e(r);const a=document.body,i=(...e)=>history.replaceState(...e),s="",c="presenter",l="next",d=["",c,l],u="bespoke-marp-",f=`data-${u}`,m=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},g=()=>a.dataset.bespokeView,p=e=>new URLSearchParams(location.search).get(e),v=(e,t={})=>{const n={location,setter:i,...t},r=new URLSearchParams(n.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?r.set(t,n):r.delete(t)}try{n.setter({...window.history.state??{}},"",m(r,n.location))}catch(e){console.error(e)}},h=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch{return!1}})(),y=e=>{try{return localStorage.getItem(e)}catch{return null}},b=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch{return!1}},w=e=>{try{return localStorage.removeItem(e),!0}catch{return!1}},x=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},k=e=>{e.parent.classList.add(`${u}parent`),e.slides.forEach(e=>e.classList.add(`${u}slide`)),e.on("activate",t=>{const n=`${u}active`,r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach(e=>{e.classList.remove(n),x(e,!0)}),o.add(n),x(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}})},$=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=o;e.setAttribute(`${f}fragment`,(a?"":"in")+"active");const i=`${f}current-fragment`;t===r&&n===o?e.setAttribute(i,"current"):e.removeAttribute(i)})}),e.fragmentIndex=o;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",a)};e.on("next",({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}}),e.on("prev",({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)}),o(0,0)},E=document,L=()=>!(!E.fullscreenEnabled&&!E.webkitFullscreenEnabled),S=()=>!(!E.fullscreenElement&&!E.webkitFullscreenElement),P=e=>{e.fullscreen=()=>{L()&&(async()=>{S()?(E.exitFullscreen||E.webkitExitFullscreen)?.call(E):((e=E.body)=>{(e.requestFullscreen||e.webkitRequestFullscreen)?.call(e)})()})()},document.addEventListener("keydown",t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!L()||(e.fullscreen(),t.preventDefault())})},_=`${u}inactive`,T=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout(()=>{r.add(_),o()},e),r.contains(_)&&(r.remove(_),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},I=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],M=e=>{e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(I.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})},O=e=>{window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("marp-auto-scaling, [data-auto-scaling], [data-marp-fitting]");t.setAttribute(`${f}load`,e?"":"hideable")}})},A=({interval:e=250}={})=>t=>{document.addEventListener("keydown",e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()});let n,r,o=0;t.parent.addEventListener("wheel",a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),e?.parentElement&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const c=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<12)return;r&&clearTimeout(r),r=setTimeout(()=>{n=0},e);const l=Date.now()-o<e,d=c<=n;if(n=c,l||d)return;let u;(a.deltaX>0||a.deltaY>0)&&(u="next"),(a.deltaX<0||a.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())})},C=(e=`.${u}osc`)=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${f}osc=${JSON.stringify(e)}]`).forEach(n)};return L()||n("fullscreen",e=>e.style.display="none"),h||n("presenter",e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."}),e=>{t.addEventListener("click",t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?e?.fullscreen():"presenter"===n&&e.openPresenterView()}}),e.parent.appendChild(t),e.on("activate",({index:t})=>{n("page",n=>n.textContent=`Page ${t+1} of ${e.slides.length}`)}),e.on("fragment",({index:t,fragments:r,fragmentIndex:o})=>{n("prev",e=>e.disabled=0===t&&0===o),n("next",n=>n.disabled=t===e.slides.length-1&&o===r.length-1)}),e.on("marp-active",()=>x(t,!1)),e.on("marp-inactive",()=>x(t,!0)),L()&&(e=>{for(const t of["","webkit"])E.addEventListener(t+"fullscreenchange",e)})(()=>n("fullscreen",e=>e.classList.toggle("exit",L()&&S())))}},D=e=>{window.addEventListener("message",t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}})};var N,B,q,K,F,j,V,U={exports:{}},X=(N||(N=1,U.exports=(B=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"],q=function(e){return String(e).replace(/[&<>"']/g,function(e){return"&"+K[e]+";"})},K={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},F="dangerouslySetInnerHTML",j={className:"class",htmlFor:"for"},V={},function(e,t){var n=[],r="";t=t||{};for(var o=arguments.length;o-- >2;)n.push(arguments[o]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(var a in t)!1!==t[a]&&null!=t[a]&&a!==F&&(r+=" "+(j[a]?j[a]:q(a))+'="'+q(t[a])+'"');r+=">"}if(-1===B.indexOf(e)){if(t[F])r+=t[F].__html;else for(;n.length;){var i=n.pop();if(i)if(i.pop)for(var s=i.length;s--;)n.push(i[s]);else r+=!0===V[i]?i:q(i)}r+=e?"</"+e+">":""}return V[r]=!0,r})),U.exports),H=e(X);const R=({children:e})=>H(null,null,...e),W=`${u}presenter-`,J={container:`${W}container`,dragbar:`${W}dragbar-container`,next:`${W}next`,nextContainer:`${W}next-container`,noteContainer:`${W}note-container`,noteWrapper:`${W}note-wrapper`,noteButtons:`${W}note-buttons`,infoContainer:`${W}info-container`,infoPage:`${W}info-page`,infoPageText:`${W}info-page-text`,infoPagePrev:`${W}info-page-prev`,infoPageNext:`${W}info-page-next`,noteButtonsBigger:`${W}note-bigger`,noteButtonsSmaller:`${W}note-smaller`,infoTime:`${W}info-time`,infoTimer:`${W}info-timer`},Y=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=J.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",H(R,null,H("div",{class:J.nextContainer},H("iframe",{class:J.next,src:"?view=next"})),H("div",{class:J.dragbar}),H("div",{class:J.noteContainer},H("div",{class:J.noteWrapper}),H("div",{class:J.noteButtons},H("button",{class:J.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),H("button",{class:J.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),H("div",{class:J.infoContainer},H("div",{class:J.infoPage},H("button",{class:J.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),H("span",{class:J.infoPageText}),H("button",{class:J.infoPageNext,tabindex:"-1",title:"Next"},"Next")),H("time",{class:J.infoTime,title:"Current time"}),H("time",{class:J.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(J.dragbar).addEventListener("mousedown",()=>{t=!0,r(J.dragbar).classList.add("active")}),window.addEventListener("mouseup",()=>{t=!1,r(J.dragbar).classList.remove("active")}),window.addEventListener("mousemove",e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(J.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)}),r(J.nextContainer).addEventListener("click",()=>e.next());const n=r(J.next),o=(a=n,(e,t)=>a.contentWindow?.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin));var a;n.addEventListener("load",()=>{r(J.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",({index:e,fragmentIndex:t})=>o(e,t))});const i=document.querySelectorAll(".bespoke-marp-note");i.forEach(e=>{e.addEventListener("keydown",e=>e.stopPropagation()),r(J.noteWrapper).appendChild(e)}),e.on("activate",()=>i.forEach(t=>t.classList.toggle("active",t.dataset.index==e.slide())));let s=0;const c=e=>{s=Math.max(-5,s+e),r(J.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},l=()=>c(1),d=()=>c(-1),u=r(J.noteButtonsBigger),f=r(J.noteButtonsSmaller);u.addEventListener("click",()=>{u.blur(),l()}),f.addEventListener("click",()=>{f.blur(),d()}),document.addEventListener("keydown",e=>{"+"===e.key&&l(),"-"===e.key&&d()},!0),e.on("activate",({index:t})=>{r(J.infoPageText).textContent=`${t+1} / ${e.slides.length}`});const m=r(J.infoPagePrev),g=r(J.infoPageNext);m.addEventListener("click",t=>{m.blur(),e.prev({fragment:!t.shiftKey})}),g.addEventListener("click",t=>{g.blur(),e.next({fragment:!t.shiftKey})}),e.on("fragment",({index:t,fragments:n,fragmentIndex:r})=>{m.disabled=0===t&&0===r,g.disabled=t===e.slides.length-1&&r===n.length-1});let p=new Date;const v=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-p.getTime(),o=t(n/1e3%60),a=t(n/1e3/60%60),i=t(n/36e5%24);r(J.infoTime).textContent=e.toLocaleTimeString(),r(J.infoTimer).textContent=`${i}:${a}:${o}`};v(),setInterval(v,250),r(J.infoTimer).addEventListener("click",()=>{p=new Date})})(e)},z=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:G},presenterUrl:{enumerable:!0,get:Q}}),h&&document.addEventListener("keydown",t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())})};function G(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,W+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function Q(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),m(e)}const Z=e=>{const t=g();return t===l&&e.appendChild(document.createElement("span")),{[s]:z,[c]:Y,[l]:D}[t]},ee=e=>{e.on("activate",t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach(n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"})})},te=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},ne=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{let n=t.fragment?te(p("f")||""):null;((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),c=o(0,r(n||0,a[s].length-1));s===e.slide()&&c===e.fragmentIndex||e.slide(s,{fragment:c})})((()=>{if(location.hash){const[t]=location.hash.slice(1).split(":~:");if(/^\d+$/.test(t))return(te(t)??1)-1;const r=document.getElementById(t)||document.querySelector(`a[name="${CSS.escape(t)}"]`);if(r){const{length:t}=e.slides;for(let o=0;o<t;o+=1)if(e.slides[o].contains(r)){const t=e.fragments?.[o],a=r.closest("[data-marpit-fragment]");if(t&&a){const e=t.indexOf(a);e>=0&&(n=e)}return o}}}return 0})(),n)};e.on("fragment",({index:e,fragmentIndex:r})=>{n||v({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})}),setTimeout(()=>{o(),window.addEventListener("hashchange",()=>r(()=>{o({fragment:!1}),v({f:void 0})})),window.addEventListener("popstate",()=>{n||r(()=>o())}),n=!1},0)}},re=(e={})=>{const t=e.key||window.history.state?.marpBespokeSyncKey||Math.random().toString(36).slice(2),n=`bespoke-marp-sync-${t}`;var r;r={marpBespokeSyncKey:t},v({},{setter:(e,...t)=>i({...e,...r},...t)});const o=()=>{const e=y(n);return e?JSON.parse(e):Object.create(null)},a=e=>{const t=o(),r={...t,...e(t)};return b(n,JSON.stringify(r)),r},s=()=>{window.removeEventListener("pageshow",s),a(e=>({reference:(e.reference||0)+1}))};return e=>{s(),Object.defineProperty(e,"syncKey",{value:t,enumerable:!0});let r=!0;setTimeout(()=>{e.on("fragment",e=>{r&&a(()=>({index:e.index,fragmentIndex:e.fragmentIndex}))})},0),window.addEventListener("storage",t=>{if(t.key===n&&t.oldValue&&t.newValue){const n=JSON.parse(t.oldValue),o=JSON.parse(t.newValue);if(n.index!==o.index||n.fragmentIndex!==o.fragmentIndex)try{r=!1,e.slide(o.index,{fragment:o.fragmentIndex,forSync:!0})}finally{r=!0}}});const i=()=>{const{reference:e}=o();void 0===e||e<=1?w(n):a(()=>({reference:e-1}))};window.addEventListener("pagehide",e=>{e.persisted&&window.addEventListener("pageshow",s),i()}),e.on("destroy",i)}},{PI:oe,abs:ae,sqrt:ie,atan2:se}=Math,ce={passive:!0},le=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",({touches:e})=>{r=1===e.length?a(e[0]):void 0},ce),o.addEventListener("touchmove",e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=ie(ae(n)**2+ae(o)**2),r.radian=se(n,o)}else r=void 0}),o.addEventListener("touchend",o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+oe)%(2*oe)-oe;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}},ce)},de=new Map;de.clear(),de.set("none",{backward:{both:void 0,incoming:void 0,outgoing:void 0},forward:{both:void 0,incoming:void 0,outgoing:void 0}});const ue={both:"",outgoing:"outgoing-",incoming:"incoming-"},fe={forward:"",backward:"-backward"},me=e=>`--marp-bespoke-transition-animation-${e}`,ge=e=>`--marp-transition-${e}`,pe=me("name"),ve=me("duration"),he=e=>new Promise(t=>{const n={},r=document.createElement("div"),o=e=>{r.remove(),t(e)};r.addEventListener("animationstart",()=>o(n)),Object.assign(r.style,{animationName:e,animationDuration:"1s",animationFillMode:"both",animationPlayState:"paused",position:"absolute",pointerEvents:"none"}),document.body.appendChild(r);const a=getComputedStyle(r).getPropertyValue(ge("duration"));a&&Number.parseFloat(a)>=0&&(n.defaultDuration=a),((e,t)=>{requestAnimationFrame(()=>{e.style.animationPlayState="running",requestAnimationFrame(()=>t(void 0))})})(r,o)}),ye=async e=>de.has(e)?de.get(e):(e=>{const t={},n=[];for(const[r,o]of Object.entries(ue))for(const[a,i]of Object.entries(fe)){const s=`marp-${o}transition${i}-${e}`;n.push(he(s).then(e=>{t[a]=t[a]||{},t[a][r]=e?{...e,name:s}:void 0}))}return Promise.all(n).then(()=>t)})(e).then(t=>(de.set(e,t),t)),be=e=>Object.values(e).flatMap(Object.values).every(e=>!e),we=(e,{type:t,backward:n})=>{const r=e[n?"backward":"forward"],o=(()=>{const e=r[t],n=e=>({[pe]:e.name});if(e)return n(e);if(r.both){const e=n(r.both);return"incoming"===t&&(e[me("direction")]="reverse"),e}})();return!o&&n?we(e,{type:t,backward:!1}):o||{[pe]:"__bespoke_marp_transition_no_animation__"}},xe=e=>{if(e)try{const t=JSON.parse(e);if((e=>{if("object"!=typeof e)return!1;const t=e;return"string"==typeof t.name&&(void 0===t.duration||"string"==typeof t.duration)})(t))return t}catch{}},ke="_tSId",$e="_tA",Ee="bespoke-marp-transition-warming-up",Le=window.matchMedia("(prefers-reduced-motion: reduce)"),Se="__bespoke_marp_transition_reduced_outgoing__",Pe="__bespoke_marp_transition_reduced_incoming__",_e={forward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}},backward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}}},Te=e=>{if(!document.startViewTransition)return;const t=t=>(void 0!==t&&(e._tD=t),e._tD);let n;t(!1),((...e)=>{CSS.registerProperty({name:ge("duration"),syntax:"<time>",inherits:!0,initialValue:"-1s"});const t=[...new Set(e).values()];return Promise.all(t.map(e=>ye(e))).then()})(...Array.from(document.querySelectorAll("section[data-transition], section[data-transition-back]")).flatMap(e=>[e.dataset.transition,e.dataset.transitionBack].flatMap(e=>{const t=xe(e);return[t?.name,t?.builtinFallback?`__builtin__${t.name}`:void 0]}).filter(e=>!!e))).then(()=>{document.querySelectorAll("style").forEach(e=>{e.innerHTML=e.innerHTML.replace(/--marp-transition-duration:[^;}]*[;}]/g,e=>e.slice(0,-1)+"!important"+e.slice(-1))})});const r=(n,{back:r,cond:o})=>a=>{const i=t();if(i)return!!a[$e]||!("object"!=typeof i||(i.skipTransition(),!a.forSync));if(!o(a))return!0;const s=e.slides[e.slide()],c=()=>a.back??r,l="data-transition"+(c()?"-back":""),d=s.querySelector(`section[${l}]`);if(!d)return!0;const u=xe(d.getAttribute(l)??void 0);return!u||((async(e,{builtinFallback:t=!0}={})=>{let n=await ye(e);if(be(n)){if(!t)return;return n=await ye(`__builtin__${e}`),be(n)?void 0:n}return n})(u.name,{builtinFallback:u.builtinFallback}).then(e=>{if(!e){t(!0);try{n(a)}finally{t(!1)}return}let r=e;Le.matches&&(console.warn("Use a constant animation to transition because preferring reduced motion by viewer has detected."),r=_e);const o=document.getElementById(ke);o&&o.remove();const i=document.createElement("style");i.id=ke,document.head.appendChild(i),((e,t)=>{const n=[`:root{${ge("direction")}:${t.backward?-1:1};}`,":root:has(.bespoke-marp-inactive){cursor:none;}"],r=t=>{const n=e[t].both?.defaultDuration||e[t].outgoing?.defaultDuration||e[t].incoming?.defaultDuration;return"forward"===t?n:n||r("forward")},o=t.duration||r(t.backward?"backward":"forward");void 0!==o&&n.push(`::view-transition-group(*){${ve}:${o};}`);const a=e=>Object.entries(e).map(([e,t])=>`${e}:${t};`).join("");return n.push(`::view-transition-old(root){${a(we(e,{...t,type:"outgoing"}))}}`,`::view-transition-new(root){${a(we(e,{...t,type:"incoming"}))}}`),n})(r,{backward:c(),duration:u.duration}).forEach(e=>i.sheet?.insertRule(e));const s=document.documentElement.classList;s.add(Ee);let l=!1;const d=()=>{l||(n(a),l=!0,s.remove(Ee))},f=()=>{t(!1),i.remove(),s.remove(Ee)};try{t(!0);const e=document.startViewTransition(d);t(e),e.finished.finally(f)}catch(e){console.error(e),d(),f()}}),!1)};e.on("prev",r(t=>e.prev({...t,[$e]:!0}),{back:!0,cond:e=>e.index>0&&!((e.fragment??1)&&n.fragmentIndex>0)})),e.on("next",r(t=>e.next({...t,[$e]:!0}),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout(()=>{e.on("slide",r(t=>e.slide(t.index,{...t,[$e]:!0}),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))},0),e.on("fragment",e=>{n=e})};let Ie;const Me=()=>(void 0===Ie&&(Ie="wakeLock"in navigator&&navigator.wakeLock),Ie),Oe=async()=>{const e=Me();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},Ae=async()=>{if(!Me())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&Oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await Oe(),e};((e=document.getElementById(":$p"))=>{(()=>{const e=p("view");a.dataset.bespokeView=e===l||e===c?e:""})();const t=(e=>{const t=p(e);return v({[e]:void 0}),t})("sync")||void 0;o.from(e,((...e)=>{const t=d.findIndex(e=>g()===e);return e.map(([e,n])=>e[t]&&n).filter(e=>e)})([[1,1,0],re({key:t})],[[1,1,1],Z(e)],[[1,1,0],M],[[1,1,1],k],[[1,0,0],T()],[[1,1,1],O],[[1,1,1],ne({history:!1})],[[1,1,0],A()],[[1,1,0],P],[[1,0,0],ee],[[1,1,0],le()],[[1,0,0],C()],[[1,0,0],Te],[[1,1,1],$],[[1,1,0],Ae]))})()}();</script></body></html>

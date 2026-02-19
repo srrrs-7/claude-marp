@@ -1,0 +1,96 @@
+<svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="600" height="500" fill="#f0f4f8" rx="12"/>
+  <!-- Title -->
+  <text x="300" y="32" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="16" font-weight="bold">リスク評価マトリクス（影響度 × 発生可能性）</text>
+  <!-- Matrix grid (5x5) -->
+  <!-- Colors: 1=green, 2=yellow-green, 3=yellow, 4=orange, 5=red -->
+  <!-- Row 5 (top = high impact) -->
+  <rect x="100" y="55" width="90" height="70" fill="#FFEE58" rx="2"/>
+  <rect x="190" y="55" width="90" height="70" fill="#FFA726" rx="2"/>
+  <rect x="280" y="55" width="90" height="70" fill="#EF5350" rx="2"/>
+  <rect x="370" y="55" width="90" height="70" fill="#C62828" rx="2"/>
+  <rect x="460" y="55" width="90" height="70" fill="#B71C1C" rx="2"/>
+  <!-- Row 4 -->
+  <rect x="100" y="125" width="90" height="70" fill="#9CCC65" rx="2"/>
+  <rect x="190" y="125" width="90" height="70" fill="#FFEE58" rx="2"/>
+  <rect x="280" y="125" width="90" height="70" fill="#FFA726" rx="2"/>
+  <rect x="370" y="125" width="90" height="70" fill="#EF5350" rx="2"/>
+  <rect x="460" y="125" width="90" height="70" fill="#C62828" rx="2"/>
+  <!-- Row 3 -->
+  <rect x="100" y="195" width="90" height="70" fill="#66BB6A" rx="2"/>
+  <rect x="190" y="195" width="90" height="70" fill="#9CCC65" rx="2"/>
+  <rect x="280" y="195" width="90" height="70" fill="#FFEE58" rx="2"/>
+  <rect x="370" y="195" width="90" height="70" fill="#FFA726" rx="2"/>
+  <rect x="460" y="195" width="90" height="70" fill="#EF5350" rx="2"/>
+  <!-- Row 2 -->
+  <rect x="100" y="265" width="90" height="70" fill="#43A047" rx="2"/>
+  <rect x="190" y="265" width="90" height="70" fill="#66BB6A" rx="2"/>
+  <rect x="280" y="265" width="90" height="70" fill="#9CCC65" rx="2"/>
+  <rect x="370" y="265" width="90" height="70" fill="#FFEE58" rx="2"/>
+  <rect x="460" y="265" width="90" height="70" fill="#FFA726" rx="2"/>
+  <!-- Row 1 (bottom = low impact) -->
+  <rect x="100" y="335" width="90" height="70" fill="#2E7D32" rx="2"/>
+  <rect x="190" y="335" width="90" height="70" fill="#43A047" rx="2"/>
+  <rect x="280" y="335" width="90" height="70" fill="#66BB6A" rx="2"/>
+  <rect x="370" y="335" width="90" height="70" fill="#9CCC65" rx="2"/>
+  <rect x="460" y="335" width="90" height="70" fill="#FFEE58" rx="2"/>
+  <!-- Grid lines -->
+  <rect x="100" y="55" width="450" height="350" fill="none" stroke="white" stroke-width="2"/>
+  <line x1="190" y1="55" x2="190" y2="405" stroke="white" stroke-width="1.5"/>
+  <line x1="280" y1="55" x2="280" y2="405" stroke="white" stroke-width="1.5"/>
+  <line x1="370" y1="55" x2="370" y2="405" stroke="white" stroke-width="1.5"/>
+  <line x1="460" y1="55" x2="460" y2="405" stroke="white" stroke-width="1.5"/>
+  <line x1="100" y1="125" x2="550" y2="125" stroke="white" stroke-width="1.5"/>
+  <line x1="100" y1="195" x2="550" y2="195" stroke="white" stroke-width="1.5"/>
+  <line x1="100" y1="265" x2="550" y2="265" stroke="white" stroke-width="1.5"/>
+  <line x1="100" y1="335" x2="550" y2="335" stroke="white" stroke-width="1.5"/>
+  <!-- Risk level values in cells -->
+  <text x="145" y="97" text-anchor="middle" fill="#333" font-family="sans-serif" font-size="18" font-weight="bold">5</text>
+  <text x="235" y="97" text-anchor="middle" fill="#333" font-family="sans-serif" font-size="18" font-weight="bold">10</text>
+  <text x="325" y="97" text-anchor="middle" fill="white" font-family="sans-serif" font-size="18" font-weight="bold">15</text>
+  <text x="415" y="97" text-anchor="middle" fill="white" font-family="sans-serif" font-size="18" font-weight="bold">20</text>
+  <text x="505" y="97" text-anchor="middle" fill="white" font-family="sans-serif" font-size="18" font-weight="bold">25</text>
+  <text x="145" y="167" text-anchor="middle" fill="#333" font-family="sans-serif" font-size="18" font-weight="bold">4</text>
+  <text x="235" y="167" text-anchor="middle" fill="#333" font-family="sans-serif" font-size="18" font-weight="bold">8</text>
+  <text x="325" y="167" text-anchor="middle" fill="#333" font-family="sans-serif" font-size="18" font-weight="bold">12</text>
+  <text x="415" y="167" text-anchor="middle" fill="white" font-family="sans-serif" font-size="18" font-weight="bold">16</text>
+  <text x="505" y="167" text-anchor="middle" fill="white" font-family="sans-serif" font-size="18" font-weight="bold">20</text>
+  <text x="145" y="237" text-anchor="middle" fill="white" font-family="sans-serif" font-size="18" font-weight="bold">3</text>
+  <text x="235" y="237" text-anchor="middle" fill="#333" font-family="sans-serif" font-size="18" font-weight="bold">6</text>
+  <text x="325" y="237" text-anchor="middle" fill="#333" font-family="sans-serif" font-size="18" font-weight="bold">9</text>
+  <text x="415" y="237" text-anchor="middle" fill="#333" font-family="sans-serif" font-size="18" font-weight="bold">12</text>
+  <text x="505" y="237" text-anchor="middle" fill="white" font-family="sans-serif" font-size="18" font-weight="bold">15</text>
+  <text x="145" y="307" text-anchor="middle" fill="white" font-family="sans-serif" font-size="18" font-weight="bold">2</text>
+  <text x="235" y="307" text-anchor="middle" fill="white" font-family="sans-serif" font-size="18" font-weight="bold">4</text>
+  <text x="325" y="307" text-anchor="middle" fill="#333" font-family="sans-serif" font-size="18" font-weight="bold">6</text>
+  <text x="415" y="307" text-anchor="middle" fill="#333" font-family="sans-serif" font-size="18" font-weight="bold">8</text>
+  <text x="505" y="307" text-anchor="middle" fill="#333" font-family="sans-serif" font-size="18" font-weight="bold">10</text>
+  <text x="145" y="377" text-anchor="middle" fill="white" font-family="sans-serif" font-size="18" font-weight="bold">1</text>
+  <text x="235" y="377" text-anchor="middle" fill="white" font-family="sans-serif" font-size="18" font-weight="bold">2</text>
+  <text x="325" y="377" text-anchor="middle" fill="white" font-family="sans-serif" font-size="18" font-weight="bold">3</text>
+  <text x="415" y="377" text-anchor="middle" fill="#333" font-family="sans-serif" font-size="18" font-weight="bold">4</text>
+  <text x="505" y="377" text-anchor="middle" fill="#333" font-family="sans-serif" font-size="18" font-weight="bold">5</text>
+  <!-- Y-axis label (impact) -->
+  <text x="60" y="240" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="14" font-weight="bold" transform="rotate(-90 60 240)">影響度 (Impact)</text>
+  <text x="83" y="90" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="11">5</text>
+  <text x="83" y="163" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="11">4</text>
+  <text x="83" y="233" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="11">3</text>
+  <text x="83" y="303" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="11">2</text>
+  <text x="83" y="373" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="11">1</text>
+  <!-- X-axis label (likelihood) -->
+  <text x="325" y="430" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="14" font-weight="bold">発生可能性 (Likelihood)</text>
+  <text x="145" y="416" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="11">1</text>
+  <text x="235" y="416" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="11">2</text>
+  <text x="325" y="416" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="11">3</text>
+  <text x="415" y="416" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="11">4</text>
+  <text x="505" y="416" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="11">5</text>
+  <!-- Legend -->
+  <rect x="100" y="450" width="16" height="12" fill="#2E7D32" rx="2"/>
+  <text x="120" y="461" fill="#37474F" font-family="sans-serif" font-size="11">低リスク (1-4)</text>
+  <rect x="240" y="450" width="16" height="12" fill="#FFEE58" rx="2"/>
+  <text x="260" y="461" fill="#37474F" font-family="sans-serif" font-size="11">中リスク (5-9)</text>
+  <rect x="380" y="450" width="16" height="12" fill="#FFA726" rx="2"/>
+  <text x="400" y="461" fill="#37474F" font-family="sans-serif" font-size="11">高リスク (10-15)</text>
+  <rect x="510" y="450" width="16" height="12" fill="#B71C1C" rx="2"/>
+  <text x="530" y="461" fill="#37474F" font-family="sans-serif" font-size="11">最高 (16+)</text>
+</svg>

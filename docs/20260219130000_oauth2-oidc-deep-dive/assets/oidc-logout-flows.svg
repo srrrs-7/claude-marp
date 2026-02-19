@@ -1,0 +1,98 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="420" fill="#f8f9fa" rx="8"/>
+  <text x="400" y="24" text-anchor="middle" font-size="13" font-weight="bold" fill="#2c3e50" font-family="sans-serif">OIDC ログアウトフロー比較</text>
+
+  <!-- Left: Front-Channel Logout -->
+  <rect x="12" y="36" width="380" height="320" rx="8" fill="none" stroke="#e74c3c" stroke-width="1.5"/>
+  <text x="202" y="56" text-anchor="middle" font-size="11" font-weight="bold" fill="#e74c3c" font-family="sans-serif">Front-Channel Logout (OIDC Core)</text>
+
+  <!-- Actors for Front-Channel -->
+  <rect x="22" y="66" width="90" height="44" rx="6" fill="#3498db" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="67" y="86" text-anchor="middle" font-size="10" font-weight="bold" fill="white" font-family="sans-serif">User</text>
+  <text x="67" y="101" text-anchor="middle" font-size="8" fill="#d6eaf8" font-family="sans-serif">Browser</text>
+
+  <rect x="152" y="66" width="90" height="44" rx="6" fill="#e67e22" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="197" y="84" text-anchor="middle" font-size="9" font-weight="bold" fill="white" font-family="sans-serif">OpenID</text>
+  <text x="197" y="98" text-anchor="middle" font-size="9" fill="#fdebd0" font-family="sans-serif">Provider (OP)</text>
+
+  <rect x="280" y="66" width="95" height="44" rx="6" fill="#27ae60" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="328" y="84" text-anchor="middle" font-size="9" font-weight="bold" fill="white" font-family="sans-serif">Relying</text>
+  <text x="328" y="98" text-anchor="middle" font-size="9" fill="#d5f5e3" font-family="sans-serif">Party (RP)</text>
+
+  <!-- Lifelines -->
+  <line x1="67" y1="110" x2="67" y2="340" stroke="#3498db" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="197" y1="110" x2="197" y2="340" stroke="#e67e22" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="328" y1="110" x2="328" y2="340" stroke="#27ae60" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <text x="22" y="130" font-size="8" fill="#7f8c8d" font-family="sans-serif">① ユーザーがOP</text>
+  <text x="22" y="142" font-size="8" fill="#7f8c8d" font-family="sans-serif">でログアウト操作</text>
+  <line x1="67" y1="148" x2="195" y2="148" stroke="#555" stroke-width="1.5"/>
+  <polygon points="195,148 185,143 185,153" fill="#555"/>
+
+  <text x="140" y="172" text-anchor="middle" font-size="8" fill="#e67e22" font-family="sans-serif">② OP が各 RP の</text>
+  <text x="140" y="184" text-anchor="middle" font-size="8" fill="#e67e22" font-family="sans-serif">logout_uri を</text>
+  <text x="140" y="196" text-anchor="middle" font-size="8" fill="#e67e22" font-family="sans-serif">iframeで呼び出す</text>
+  <line x1="197" y1="200" x2="67" y2="200" stroke="#e67e22" stroke-width="1.5"/>
+  <polygon points="67,200 77,195 77,205" fill="#e67e22"/>
+
+  <text x="22" y="220" font-size="8" fill="#3498db" font-family="sans-serif">③ Browser が</text>
+  <text x="22" y="232" font-size="8" fill="#3498db" font-family="sans-serif">各RPのURLを</text>
+  <text x="22" y="244" font-size="8" fill="#3498db" font-family="sans-serif">iframeで取得</text>
+  <line x1="67" y1="248" x2="326" y2="248" stroke="#3498db" stroke-width="1.5"/>
+  <polygon points="326,248 316,243 316,253" fill="#3498db"/>
+
+  <text x="215" y="270" font-size="8" fill="#27ae60" font-family="sans-serif">④ RP セッション削除</text>
+  <line x1="328" y1="272" x2="69" y2="272" stroke="#27ae60" stroke-width="1"/>
+  <polygon points="69,272 79,267 79,277" fill="#27ae60"/>
+
+  <!-- Problem box -->
+  <rect x="22" y="290" width="353" height="40" rx="6" fill="#fdecea"/>
+  <text x="199" y="308" text-anchor="middle" font-size="9" font-weight="bold" fill="#c0392b" font-family="sans-serif">⚠ 制限事項</text>
+  <text x="199" y="323" text-anchor="middle" font-size="8" fill="#c0392b" font-family="sans-serif">Popup Blocker / ネットワーク遮断で失敗の可能性 / 信頼性低</text>
+
+  <!-- Right: Back-Channel Logout -->
+  <rect x="408" y="36" width="380" height="320" rx="8" fill="none" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="598" y="56" text-anchor="middle" font-size="11" font-weight="bold" fill="#27ae60" font-family="sans-serif">Back-Channel Logout (OpenID Connect)</text>
+
+  <!-- Actors for Back-Channel -->
+  <rect x="418" y="66" width="90" height="44" rx="6" fill="#e67e22" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="463" y="84" text-anchor="middle" font-size="9" font-weight="bold" fill="white" font-family="sans-serif">OpenID</text>
+  <text x="463" y="98" text-anchor="middle" font-size="9" fill="#fdebd0" font-family="sans-serif">Provider (OP)</text>
+
+  <rect x="690" y="66" width="90" height="44" rx="6" fill="#27ae60" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="735" y="84" text-anchor="middle" font-size="9" font-weight="bold" fill="white" font-family="sans-serif">Relying</text>
+  <text x="735" y="98" text-anchor="middle" font-size="9" fill="#d5f5e3" font-family="sans-serif">Party (RP)</text>
+
+  <line x1="463" y1="110" x2="463" y2="340" stroke="#e67e22" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="735" y1="110" x2="735" y2="340" stroke="#27ae60" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <text x="418" y="132" font-size="8" fill="#7f8c8d" font-family="sans-serif">① OP がログアウト</text>
+  <text x="418" y="144" font-size="8" fill="#7f8c8d" font-family="sans-serif">イベントを検知</text>
+  <rect x="418" y="150" width="90" height="26" rx="4" fill="#fdebd0"/>
+  <text x="463" y="167" text-anchor="middle" font-size="8" fill="#d35400" font-family="sans-serif">Logout Token 生成</text>
+
+  <text x="540" y="188" text-anchor="middle" font-size="8" fill="#e67e22" font-family="sans-serif">② HTTPS POST で RP に直接送信</text>
+  <line x1="463" y1="196" x2="733" y2="196" stroke="#e67e22" stroke-width="2"/>
+  <polygon points="733,196 723,191 723,201" fill="#e67e22"/>
+  <text x="598" y="210" text-anchor="middle" font-size="8" fill="#7f8c8d" font-family="sans-serif">POST /backchannel_logout  logout_token=&lt;JWT&gt;</text>
+
+  <!-- Logout Token structure -->
+  <rect x="596" y="220" width="176" height="60" rx="5" fill="#1a7a3c" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="684" y="237" text-anchor="middle" font-size="8" font-weight="bold" fill="#f1c40f" font-family="sans-serif">Logout Token (JWT)</text>
+  <text x="606" y="252" font-size="8" fill="#d5f5e3" font-family="sans-serif">iss, aud, iat, jti</text>
+  <text x="606" y="265" font-size="8" fill="#d5f5e3" font-family="sans-serif">sub or sid (セッションID)</text>
+  <text x="606" y="278" font-size="8" fill="#f1c40f" font-family="sans-serif">events: {urn:ietf:params:...}</text>
+
+  <text x="540" y="296" text-anchor="middle" font-size="8" fill="#27ae60" font-family="sans-serif">③ RP がセッション削除 → 200 OK</text>
+  <line x1="733" y1="302" x2="465" y2="302" stroke="#27ae60" stroke-width="1.5"/>
+  <polygon points="465,302 475,297 475,307" fill="#27ae60"/>
+
+  <!-- Advantage box -->
+  <rect x="418" y="316" width="362" height="32" rx="6" fill="#d5f5e3"/>
+  <text x="599" y="332" text-anchor="middle" font-size="9" font-weight="bold" fill="#166534" font-family="sans-serif">✅ ブラウザ不要 / ネットワーク直通 / 高信頼性</text>
+
+  <!-- Comparison footer -->
+  <rect x="12" y="368" width="776" height="44" rx="8" fill="#2c3e50"/>
+  <text x="400" y="386" text-anchor="middle" font-size="10" font-weight="bold" fill="#f1c40f" font-family="sans-serif">選択指針</text>
+  <text x="25" y="404" font-size="9" fill="#ecf0f1" font-family="sans-serif">Front-Channel: シンプルな SPA 構成。Back-Channel: セキュリティ要件高・SLO（Single Logout）必須時。AWS Cognito: Back-Channel Logout サポート（Hosted UI）</text>
+</svg>

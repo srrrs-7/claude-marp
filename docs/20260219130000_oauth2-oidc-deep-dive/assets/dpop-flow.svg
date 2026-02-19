@@ -1,0 +1,79 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="420" fill="#f8f9fa" rx="8"/>
+  <text x="400" y="24" text-anchor="middle" font-size="13" font-weight="bold" fill="#2c3e50" font-family="sans-serif">DPoP — Demonstrating Proof of Possession (RFC 9449)</text>
+
+  <!-- Left: DPoP Proof JWT Structure -->
+  <rect x="12" y="36" width="370" height="290" rx="8" fill="#fff8e1" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="197" y="56" text-anchor="middle" font-size="11" font-weight="bold" fill="#d35400" font-family="sans-serif">DPoP Proof JWT 構造</text>
+
+  <!-- Header -->
+  <rect x="22" y="64" width="350" height="72" rx="6" fill="#e74c3c" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="197" y="82" text-anchor="middle" font-size="10" font-weight="bold" fill="white" font-family="sans-serif">Header</text>
+  <text x="32" y="99" font-size="9" fill="#fdecea" font-family="sans-serif">"typ": "dpop+jwt"</text>
+  <text x="32" y="114" font-size="9" fill="#fdecea" font-family="sans-serif">"alg": "ES256"   // 非対称アルゴリズム必須</text>
+  <text x="32" y="129" font-size="9" fill="#fdecea" font-family="sans-serif">"jwk": {"kty":"EC", "crv":"P-256", ...}  // 公開鍵を埋め込む</text>
+
+  <!-- Payload -->
+  <rect x="22" y="144" width="350" height="110" rx="6" fill="#8e44ad" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="197" y="162" text-anchor="middle" font-size="10" font-weight="bold" fill="white" font-family="sans-serif">Payload</text>
+  <text x="32" y="179" font-size="9" fill="#e8d5f5" font-family="sans-serif">"jti": "e1JK8v..."    // 一意なID（リプレイ防止）</text>
+  <text x="32" y="195" font-size="9" fill="#e8d5f5" font-family="sans-serif">"htm": "POST"         // HTTP メソッド</text>
+  <text x="32" y="211" font-size="9" fill="#e8d5f5" font-family="sans-serif">"htu": "https://api.example.com/token"  // URL</text>
+  <text x="32" y="227" font-size="9" fill="#e8d5f5" font-family="sans-serif">"iat": 1750000000     // 発行時刻（短命: ±10s）</text>
+  <text x="32" y="243" font-size="9" fill="#f1c40f" font-family="sans-serif">"ath": "BASE64URL(SHA256(access_token))"  // AT バインド</text>
+
+  <!-- Signature -->
+  <rect x="22" y="262" width="350" height="40" rx="6" fill="#2c3e50"/>
+  <text x="197" y="281" text-anchor="middle" font-size="10" font-weight="bold" fill="#f1c40f" font-family="sans-serif">Signature（秘密鍵で署名）</text>
+  <text x="197" y="295" text-anchor="middle" font-size="8" fill="#bdc3c7" font-family="sans-serif">秘密鍵はクライアントデバイスのみ保持</text>
+
+  <!-- Right: DPoP Flow -->
+  <rect x="396" y="36" width="396" height="290" rx="8" fill="#e8f8f5" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="594" y="56" text-anchor="middle" font-size="11" font-weight="bold" fill="#1a6644" font-family="sans-serif">DPoP バインドフロー</text>
+
+  <!-- Actors -->
+  <rect x="410" y="66" width="90" height="40" rx="6" fill="#3498db" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="455" y="86" text-anchor="middle" font-size="10" font-weight="bold" fill="white" font-family="sans-serif">Client</text>
+  <text x="455" y="99" text-anchor="middle" font-size="8" fill="#d6eaf8" font-family="sans-serif">秘密鍵保持</text>
+
+  <rect x="700" y="66" width="82" height="40" rx="6" fill="#27ae60" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.1))"/>
+  <text x="741" y="86" text-anchor="middle" font-size="10" font-weight="bold" fill="white" font-family="sans-serif">Resource</text>
+  <text x="741" y="99" text-anchor="middle" font-size="9" fill="#d5f5e3" font-family="sans-serif">Server</text>
+
+  <line x1="455" y1="106" x2="455" y2="310" stroke="#3498db" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="741" y1="106" x2="741" y2="310" stroke="#27ae60" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- Step 1: Token Request with DPoP Proof -->
+  <text x="410" y="128" font-size="8" fill="#7f8c8d" font-family="sans-serif">① DPoP Proof for /token</text>
+  <line x1="455" y1="134" x2="739" y2="134" stroke="#e74c3c" stroke-width="2"/>
+  <polygon points="739,134 729,129 729,139" fill="#e74c3c"/>
+  <text x="597" y="128" text-anchor="middle" font-size="8" fill="#e74c3c" font-family="sans-serif">DPoP: &lt;proof-JWT&gt;</text>
+  <text x="597" y="149" text-anchor="middle" font-size="8" fill="#7f8c8d" font-family="sans-serif">Authorization: Bearer &lt;access_token&gt;</text>
+
+  <!-- Step 2: Server verifies -->
+  <rect x="650" y="158" width="136" height="36" rx="5" fill="#d5f5e3"/>
+  <text x="718" y="173" text-anchor="middle" font-size="8" font-weight="bold" fill="#166534" font-family="sans-serif">① jwk の公開鍵で署名検証</text>
+  <text x="718" y="186" text-anchor="middle" font-size="8" fill="#166534" font-family="sans-serif">② ath == SHA256(AT) 確認</text>
+
+  <!-- Step 3: htm/htu check -->
+  <rect x="650" y="200" width="136" height="36" rx="5" fill="#d5f5e3"/>
+  <text x="718" y="215" text-anchor="middle" font-size="8" font-weight="bold" fill="#166534" font-family="sans-serif">③ htm/htu が一致するか</text>
+  <text x="718" y="229" text-anchor="middle" font-size="8" fill="#166534" font-family="sans-serif">④ jti のリプレイ確認</text>
+
+  <!-- Result -->
+  <rect x="650" y="242" width="136" height="28" rx="5" fill="#27ae60"/>
+  <text x="718" y="258" text-anchor="middle" font-size="9" font-weight="bold" fill="white" font-family="sans-serif">✅ 全検証通過</text>
+  <text x="718" y="270" text-anchor="middle" font-size="8" fill="#d5f5e3" font-family="sans-serif">リソース応答</text>
+
+  <!-- DPoP-bound AT note -->
+  <rect x="410" y="278" width="226" height="32" rx="5" fill="#2c3e50"/>
+  <text x="523" y="293" text-anchor="middle" font-size="8" font-weight="bold" fill="#f1c40f" font-family="sans-serif">DPoP-bound Access Token 発行時</text>
+  <text x="523" y="306" text-anchor="middle" font-size="8" fill="#bdc3c7" font-family="sans-serif">cnf.jkt クレームに公開鍵フィンガープリントを埋め込む</text>
+
+  <!-- Footer -->
+  <rect x="12" y="340" width="776" height="68" rx="8" fill="#2c3e50"/>
+  <text x="400" y="358" text-anchor="middle" font-size="10" font-weight="bold" fill="#f1c40f" font-family="sans-serif">DPoP の利点と適用シーン</text>
+  <text x="22" y="376" font-size="9" fill="#ecf0f1" font-family="sans-serif">🔒 Bearer Token との違い: トークンを鍵ペアに束縛 → 盗難されても別デバイスから使用不可</text>
+  <text x="22" y="392" font-size="9" fill="#ecf0f1" font-family="sans-serif">📌 FAPI 2.0 必須要件 / 高セキュリティ API（金融・医療）。DPoP Nonce でリプレイ防止を強化</text>
+  <text x="22" y="408" font-size="9" fill="#aed6f1" font-family="sans-serif">AWS: API Gateway Lambda Authorizer でカスタム DPoP 検証実装可能</text>
+</svg>

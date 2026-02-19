@@ -1,0 +1,76 @@
+<svg viewBox="0 0 960 370" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0f172a;border-radius:12px">
+  <text x="480" y="26" text-anchor="middle" fill="#f1f5f9" font-size="17" font-weight="bold" font-family="sans-serif">ゼロトラストアーキテクチャにおけるMFAの役割</text>
+
+  <!-- ZTA Principle banner -->
+  <rect x="200" y="40" width="560" height="30" rx="6" fill="#2d1f00" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="480" y="60" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="bold" font-family="sans-serif">原則: 「決して信頼しない、常に検証する（Never Trust, Always Verify）」</text>
+
+  <!-- Left: Request sources -->
+  <rect x="20" y="90" width="160" height="45" rx="8" fill="#1e293b" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="100" y="109" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="bold" font-family="sans-serif">社内ネットワーク</text>
+  <text x="100" y="127" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">PC / 社内端末</text>
+
+  <rect x="20" y="148" width="160" height="45" rx="8" fill="#1e293b" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="100" y="167" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="bold" font-family="sans-serif">リモートワーク</text>
+  <text x="100" y="185" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">自宅 / カフェ / 外出先</text>
+
+  <rect x="20" y="206" width="160" height="45" rx="8" fill="#1e293b" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="100" y="225" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="bold" font-family="sans-serif">クラウドアクセス</text>
+  <text x="100" y="243" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">SaaS / IaaS</text>
+
+  <rect x="20" y="264" width="160" height="45" rx="8" fill="#1e293b" stroke="#94a3b8" stroke-width="1"/>
+  <text x="100" y="283" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="bold" font-family="sans-serif">サプライチェーン</text>
+  <text x="100" y="301" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">委託先 / ベンダー</text>
+
+  <!-- Arrows to Policy Engine -->
+  <line x1="180" y1="112" x2="280" y2="190" stroke="#60a5fa" stroke-width="1.5"/>
+  <line x1="180" y1="170" x2="280" y2="195" stroke="#60a5fa" stroke-width="1.5"/>
+  <line x1="180" y1="228" x2="280" y2="205" stroke="#60a5fa" stroke-width="1.5"/>
+  <line x1="180" y1="286" x2="280" y2="215" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="276,185 284,192 276,198" fill="#60a5fa"/>
+
+  <!-- Center: Policy Engine (ZTA core) -->
+  <rect x="280" y="100" width="310" height="190" rx="10" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2.5"/>
+  <text x="435" y="125" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="bold" font-family="sans-serif">Policy Engine</text>
+  <text x="435" y="143" text-anchor="middle" fill="#7dd3fc" font-size="11" font-family="sans-serif">（ゼロトラストの中核）</text>
+
+  <!-- Policy components -->
+  <rect x="295" y="155" width="280" height="28" rx="5" fill="#172554"/>
+  <text x="435" y="174" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">MFA認証 — フィッシング耐性MFAを要求</text>
+
+  <rect x="295" y="190" width="280" height="28" rx="5" fill="#172554"/>
+  <text x="435" y="209" text-anchor="middle" fill="#fbbf24" font-size="11" font-family="sans-serif">デバイス信頼性チェック（MDM準拠確認）</text>
+
+  <rect x="295" y="225" width="280" height="28" rx="5" fill="#172554"/>
+  <text x="435" y="244" text-anchor="middle" fill="#c084fc" font-size="11" font-family="sans-serif">ネットワーク・位置・リスクスコア評価</text>
+
+  <rect x="295" y="260" width="280" height="22" rx="5" fill="#0d2d1e"/>
+  <text x="435" y="276" text-anchor="middle" fill="#86efac" font-size="11" font-family="sans-serif">継続的なセッション検証（都度評価）</text>
+
+  <!-- Arrow to resource -->
+  <line x1="590" y1="195" x2="666" y2="195" stroke="#34d399" stroke-width="2"/>
+  <polygon points="662,189 670,195 662,201" fill="#34d399"/>
+  <text x="628" y="184" text-anchor="middle" fill="#34d399" font-size="10" font-family="sans-serif">検証済み</text>
+  <text x="628" y="215" text-anchor="middle" fill="#f87171" font-size="10" font-family="sans-serif">≠ 暗黙の信頼</text>
+
+  <!-- Right: Protected resources -->
+  <rect x="668" y="90" width="270" height="50" rx="8" fill="#0d2d1e" stroke="#34d399" stroke-width="1.5"/>
+  <text x="803" y="109" text-anchor="middle" fill="#34d399" font-size="12" font-weight="bold" font-family="sans-serif">保護リソース</text>
+  <text x="803" y="128" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">社内システム / SaaS / データ</text>
+
+  <rect x="668" y="155" width="270" height="40" rx="6" fill="#1e293b" stroke="#60a5fa" stroke-width="1"/>
+  <text x="803" y="172" text-anchor="middle" fill="#93c5fd" font-size="11" font-family="sans-serif">条件付きアクセスポリシーで</text>
+  <text x="803" y="188" text-anchor="middle" fill="#93c5fd" font-size="11" font-family="sans-serif">細粒度のリソース制御を実現</text>
+
+  <rect x="668" y="207" width="270" height="40" rx="6" fill="#1e293b" stroke="#fbbf24" stroke-width="1"/>
+  <text x="803" y="224" text-anchor="middle" fill="#fbbf24" font-size="11" font-family="sans-serif">高リスク操作: ステップアップ認証</text>
+  <text x="803" y="240" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">（追加MFAを要求）</text>
+
+  <rect x="668" y="259" width="270" height="40" rx="6" fill="#2b0754" stroke="#c084fc" stroke-width="1"/>
+  <text x="803" y="276" text-anchor="middle" fill="#c084fc" font-size="11" font-family="sans-serif">ISMS A.8.3 情報アクセス制限</text>
+  <text x="803" y="292" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">最小権限 + 継続検証の実現</text>
+
+  <!-- Bottom banner -->
+  <rect x="20" y="330" width="920" height="30" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="480" y="350" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">ZTA × MFA: すべてのアクセスを「未認証」と見なし、MFA + デバイス + リスクの3要素で継続的に検証する</text>
+</svg>

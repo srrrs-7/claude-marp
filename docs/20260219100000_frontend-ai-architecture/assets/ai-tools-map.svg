@@ -1,0 +1,64 @@
+<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117">
+  <text x="480" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#e6edf3" font-family="sans-serif">AI開発ツール全体像（2026年）</text>
+
+  <!-- Axes -->
+  <line x1="80" y1="60" x2="80" y2="420" stroke="#374151" stroke-width="1.5"/>
+  <line x1="80" y1="420" x2="900" y2="420" stroke="#374151" stroke-width="1.5"/>
+  <text x="80" y="55" text-anchor="middle" font-size="12" fill="#6b7280" font-family="sans-serif">自動化レベル</text>
+  <text x="480" y="450" text-anchor="middle" font-size="12" fill="#6b7280" font-family="sans-serif">ユースケース特化度 →</text>
+  <!-- Y axis labels -->
+  <text x="70" y="90" text-anchor="end" font-size="11" fill="#6b7280" font-family="sans-serif">高</text>
+  <text x="70" y="420" text-anchor="end" font-size="11" fill="#6b7280" font-family="sans-serif">低</text>
+
+  <!-- Category: コード補完系 -->
+  <text x="200" y="395" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">── コード補完系 ──</text>
+
+  <!-- GitHub Copilot -->
+  <ellipse cx="180" cy="330" rx="65" ry="32" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2"/>
+  <text x="180" y="325" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa" font-family="sans-serif">GitHub Copilot</text>
+  <text x="180" y="342" text-anchor="middle" font-size="10" fill="#93c5fd" font-family="sans-serif">補完・チャット</text>
+
+  <!-- Cursor -->
+  <ellipse cx="310" cy="295" rx="60" ry="32" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2"/>
+  <text x="310" y="290" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa" font-family="sans-serif">Cursor</text>
+  <text x="310" y="308" text-anchor="middle" font-size="10" fill="#93c5fd" font-family="sans-serif">チャット+編集</text>
+
+  <!-- Windsurf -->
+  <ellipse cx="420" cy="245" rx="60" ry="32" fill="#1e1b4b" stroke="#6366f1" stroke-width="2"/>
+  <text x="420" y="240" text-anchor="middle" font-size="12" font-weight="bold" fill="#a5b4fc" font-family="sans-serif">Windsurf</text>
+  <text x="420" y="258" text-anchor="middle" font-size="10" fill="#c7d2fe" font-family="sans-serif">エージェント型</text>
+
+  <!-- Category: UI生成系 -->
+  <text x="660" y="395" text-anchor="middle" font-size="11" fill="#4ade80" font-family="sans-serif">── UI生成系 ──</text>
+
+  <!-- v0 -->
+  <ellipse cx="620" cy="200" rx="60" ry="32" fill="#14532d" stroke="#22c55e" stroke-width="2"/>
+  <text x="620" y="195" text-anchor="middle" font-size="13" font-weight="bold" fill="#4ade80" font-family="sans-serif">v0 by Vercel</text>
+  <text x="620" y="213" text-anchor="middle" font-size="10" fill="#86efac" font-family="sans-serif">React UI生成</text>
+
+  <!-- Lovable -->
+  <ellipse cx="750" cy="170" rx="65" ry="32" fill="#14532d" stroke="#22c55e" stroke-width="2"/>
+  <text x="750" y="165" text-anchor="middle" font-size="12" font-weight="bold" fill="#4ade80" font-family="sans-serif">Lovable</text>
+  <text x="750" y="183" text-anchor="middle" font-size="10" fill="#86efac" font-family="sans-serif">フルアプリ生成</text>
+
+  <!-- Builder.io -->
+  <ellipse cx="860" cy="140" rx="65" ry="32" fill="#0c1a14" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="860" y="135" text-anchor="middle" font-size="12" font-weight="bold" fill="#4ade80" font-family="sans-serif">Builder.io AI</text>
+  <text x="860" y="153" text-anchor="middle" font-size="10" fill="#86efac" font-family="sans-serif">Figma→コード</text>
+
+  <!-- Category: AI SDK -->
+  <text x="240" y="120" text-anchor="middle" font-size="11" fill="#fb923c" font-family="sans-serif">── AI統合SDK ──</text>
+
+  <!-- Vercel AI SDK -->
+  <rect x="100" y="68" width="180" height="60" rx="8" fill="#7c2d12" stroke="#f97316" stroke-width="2"/>
+  <text x="190" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb923c" font-family="sans-serif">Vercel AI SDK</text>
+  <text x="190" y="110" text-anchor="middle" font-size="10" fill="#fed7aa" font-family="sans-serif">useChat / streamText</text>
+
+  <!-- LangChain.js -->
+  <rect x="310" y="68" width="160" height="60" rx="8" fill="#78350f" stroke="#f97316" stroke-width="1.5"/>
+  <text x="390" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb923c" font-family="sans-serif">LangChain.js</text>
+  <text x="390" y="110" text-anchor="middle" font-size="10" fill="#fed7aa" font-family="sans-serif">RAG / Chain / Agent</text>
+
+  <!-- Legend arrows -->
+  <text x="480" y="468" text-anchor="middle" font-size="11" fill="#4b5563" font-family="sans-serif">汎用ツール（左）→ 特化ツール（右） / 補助的（下）→ 自律的（上）</text>
+</svg>

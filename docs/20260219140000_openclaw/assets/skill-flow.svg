@@ -1,0 +1,72 @@
+<svg viewBox="0 0 860 340" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <text x="430" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#333">スキル開発・インストールフロー</text>
+
+  <!-- Step 1 -->
+  <rect x="30" y="60" width="145" height="90" rx="10" fill="#fff3e0" stroke="#f57c00" stroke-width="2"/>
+  <text x="102" y="87" text-anchor="middle" font-size="22">📝</text>
+  <text x="102" y="110" text-anchor="middle" font-size="13" font-weight="bold" fill="#e65100">① 作成</text>
+  <text x="102" y="130" text-anchor="middle" font-size="11" fill="#555">SKILL.md</text>
+  <text x="102" y="146" text-anchor="middle" font-size="11" fill="#555">作成・設定</text>
+
+  <polygon points="178,102 194,105 178,108" fill="#888"/>
+  <line x1="175" y1="105" x2="192" y2="105" stroke="#888" stroke-width="2"/>
+
+  <!-- Step 2 -->
+  <rect x="196" y="60" width="145" height="90" rx="10" fill="#e8f5e9" stroke="#388e3c" stroke-width="2"/>
+  <text x="268" y="87" text-anchor="middle" font-size="22">🔧</text>
+  <text x="268" y="110" text-anchor="middle" font-size="13" font-weight="bold" fill="#1b5e20">② 宣言</text>
+  <text x="268" y="130" text-anchor="middle" font-size="11" fill="#555">依存関係</text>
+  <text x="268" y="146" text-anchor="middle" font-size="11" fill="#555">env vars / binaries</text>
+
+  <polygon points="344,102 360,105 344,108" fill="#888"/>
+  <line x1="341" y1="105" x2="358" y2="105" stroke="#888" stroke-width="2"/>
+
+  <!-- Step 3 -->
+  <rect x="362" y="60" width="145" height="90" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+  <text x="434" y="87" text-anchor="middle" font-size="22">🏪</text>
+  <text x="434" y="110" text-anchor="middle" font-size="13" font-weight="bold" fill="#0d47a1">③ 公開</text>
+  <text x="434" y="130" text-anchor="middle" font-size="11" fill="#555">ClawHub</text>
+  <text x="434" y="146" text-anchor="middle" font-size="11" fill="#555">スキルディレクトリ</text>
+
+  <polygon points="510,102 526,105 510,108" fill="#888"/>
+  <line x1="507" y1="105" x2="524" y2="105" stroke="#888" stroke-width="2"/>
+
+  <!-- Step 4 -->
+  <rect x="528" y="60" width="145" height="90" rx="10" fill="#fce4ec" stroke="#c62828" stroke-width="2"/>
+  <text x="600" y="87" text-anchor="middle" font-size="22">⬇️</text>
+  <text x="600" y="110" text-anchor="middle" font-size="13" font-weight="bold" fill="#b71c1c">④ インストール</text>
+  <text x="600" y="130" text-anchor="middle" font-size="11" fill="#555">/skills install</text>
+  <text x="600" y="146" text-anchor="middle" font-size="11" fill="#555">コマンド実行</text>
+
+  <polygon points="676,102 692,105 676,108" fill="#888"/>
+  <line x1="673" y1="105" x2="690" y2="105" stroke="#888" stroke-width="2"/>
+
+  <!-- Step 5 -->
+  <rect x="694" y="60" width="145" height="90" rx="10" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="766" y="87" text-anchor="middle" font-size="22">🚀</text>
+  <text x="766" y="110" text-anchor="middle" font-size="13" font-weight="bold" fill="#4a148c">⑤ 実行</text>
+  <text x="766" y="130" text-anchor="middle" font-size="11" fill="#555">チャットから</text>
+  <text x="766" y="146" text-anchor="middle" font-size="11" fill="#555">呼び出し</text>
+
+  <!-- ClawHub catalog below -->
+  <rect x="30" y="185" width="800" height="130" rx="10" fill="#f5f5f5" stroke="#bbb" stroke-width="1.5"/>
+  <text x="430" y="208" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">ClawHub スキルカタログ（例）</text>
+
+  <rect x="50" y="218" width="155" height="50" rx="8" fill="#bbdefb" stroke="#1976d2" stroke-width="1"/>
+  <text x="127" y="240" text-anchor="middle" font-size="12" font-weight="bold" fill="#0d47a1">claw-progressive</text>
+  <text x="127" y="258" text-anchor="middle" font-size="11" fill="#555">メモリ管理メタスキル</text>
+
+  <rect x="220" y="218" width="155" height="50" rx="8" fill="#c8e6c9" stroke="#388e3c" stroke-width="1"/>
+  <text x="297" y="240" text-anchor="middle" font-size="12" font-weight="bold" fill="#1b5e20">claw-roam</text>
+  <text x="297" y="258" text-anchor="middle" font-size="11" fill="#555">マルチマシン同期</text>
+
+  <rect x="390" y="218" width="155" height="50" rx="8" fill="#fff9c4" stroke="#f9a825" stroke-width="1"/>
+  <text x="467" y="240" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">clawringhouse</text>
+  <text x="467" y="258" text-anchor="middle" font-size="11" fill="#555">AIショッピング支援</text>
+
+  <rect x="560" y="218" width="155" height="50" rx="8" fill="#fce4ec" stroke="#c62828" stroke-width="1"/>
+  <text x="637" y="240" text-anchor="middle" font-size="12" font-weight="bold" fill="#b71c1c">continuity</text>
+  <text x="637" y="258" text-anchor="middle" font-size="11" fill="#555">非同期リフレクション</text>
+
+  <text x="430" y="300" text-anchor="middle" font-size="11" fill="#888">ClawHub: 2,857+ スキル公開中（2026年2月現在）</text>
+</svg>

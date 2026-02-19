@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Center: AI Misalignment -->
+  <circle cx="450" cy="210" r="52" fill="rgba(255,82,82,0.25)" stroke="#ff5252" stroke-width="2.5"/>
+  <text x="450" y="204" text-anchor="middle" fill="#ff5252" font-family="sans-serif" font-size="12" font-weight="bold">AI</text>
+  <text x="450" y="220" text-anchor="middle" fill="#ff5252" font-family="sans-serif" font-size="12" font-weight="bold">ミスアライン</text>
+  <text x="450" y="236" text-anchor="middle" fill="#ffcdd2" font-family="sans-serif" font-size="9">制御不能</text>
+
+  <!-- Node 1: Mass Surveillance (top left) -->
+  <rect x="60" y="40" width="130" height="60" rx="8" fill="rgba(255,82,82,0.12)" stroke="#ff7043" stroke-width="1.5"/>
+  <text x="125" y="63" text-anchor="middle" fill="#ff8a65" font-family="sans-serif" font-size="11" font-weight="bold">完全監視</text>
+  <text x="125" y="80" text-anchor="middle" fill="#ffccbc" font-family="sans-serif" font-size="9">顔認証・行動追跡</text>
+  <line x1="190" y1="80" x2="400" y2="175" stroke="#ff7043" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Node 2: Social Credit (top) -->
+  <rect x="330" y="20" width="140" height="60" rx="8" fill="rgba(255,82,82,0.12)" stroke="#ef9a9a" stroke-width="1.5"/>
+  <text x="400" y="43" text-anchor="middle" fill="#ef9a9a" font-family="sans-serif" font-size="11" font-weight="bold">社会信用スコア</text>
+  <text x="400" y="60" text-anchor="middle" fill="#ffcdd2" font-family="sans-serif" font-size="9">アルゴリズムが市民を評価</text>
+  <line x1="400" y1="80" x2="435" y2="158" stroke="#ef9a9a" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Node 3: Job Collapse (top right) -->
+  <rect x="700" y="40" width="130" height="60" rx="8" fill="rgba(255,82,82,0.12)" stroke="#ff5252" stroke-width="1.5"/>
+  <text x="765" y="63" text-anchor="middle" fill="#ff5252" font-family="sans-serif" font-size="11" font-weight="bold">雇用崩壊</text>
+  <text x="765" y="80" text-anchor="middle" fill="#ffcdd2" font-family="sans-serif" font-size="9">失業率50%超</text>
+  <line x1="700" y1="80" x2="500" y2="175" stroke="#ff5252" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Node 4: Info Manipulation (left) -->
+  <rect x="20" y="185" width="130" height="60" rx="8" fill="rgba(255,82,82,0.12)" stroke="#ff7043" stroke-width="1.5"/>
+  <text x="85" y="208" text-anchor="middle" fill="#ff8a65" font-family="sans-serif" font-size="11" font-weight="bold">情報操作</text>
+  <text x="85" y="225" text-anchor="middle" fill="#ffccbc" font-family="sans-serif" font-size="9">フィルターバブル</text>
+  <line x1="150" y1="215" x2="398" y2="210" stroke="#ff7043" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Node 5: Digital Divide (right) -->
+  <rect x="748" y="185" width="130" height="60" rx="8" fill="rgba(255,82,82,0.12)" stroke="#e57373" stroke-width="1.5"/>
+  <text x="813" y="208" text-anchor="middle" fill="#e57373" font-family="sans-serif" font-size="11" font-weight="bold">デジタル格差</text>
+  <text x="813" y="225" text-anchor="middle" fill="#ffcdd2" font-family="sans-serif" font-size="9">AIエリートと貧困層</text>
+  <line x1="748" y1="215" x2="502" y2="210" stroke="#e57373" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Node 6: Privacy Death (bottom left) -->
+  <rect x="60" y="320" width="130" height="60" rx="8" fill="rgba(255,82,82,0.12)" stroke="#ff7043" stroke-width="1.5"/>
+  <text x="125" y="343" text-anchor="middle" fill="#ff8a65" font-family="sans-serif" font-size="11" font-weight="bold">プライバシー消滅</text>
+  <text x="125" y="360" text-anchor="middle" fill="#ffccbc" font-family="sans-serif" font-size="9">データは企業の資産</text>
+  <line x1="190" y1="340" x2="400" y2="262" stroke="#ff7043" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Node 7: Bias discrimination (bottom) -->
+  <rect x="335" y="340" width="130" height="60" rx="8" fill="rgba(255,82,82,0.12)" stroke="#ef9a9a" stroke-width="1.5"/>
+  <text x="400" y="363" text-anchor="middle" fill="#ef9a9a" font-family="sans-serif" font-size="11" font-weight="bold">バイアス差別</text>
+  <text x="400" y="380" text-anchor="middle" fill="#ffcdd2" font-family="sans-serif" font-size="9">偏見を学習・増幅</text>
+  <line x1="400" y1="340" x2="450" y2="262" stroke="#ef9a9a" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Node 8: Autonomy Loss (bottom right) -->
+  <rect x="700" y="320" width="130" height="60" rx="8" fill="rgba(255,82,82,0.12)" stroke="#ff5252" stroke-width="1.5"/>
+  <text x="765" y="343" text-anchor="middle" fill="#ff5252" font-family="sans-serif" font-size="11" font-weight="bold">自律性の喪失</text>
+  <text x="765" y="360" text-anchor="middle" fill="#ffcdd2" font-family="sans-serif" font-size="9">AIに意思決定を委任</text>
+  <line x1="700" y1="340" x2="500" y2="262" stroke="#ff5252" stroke-width="1.5" stroke-dasharray="4,3"/>
+</svg>

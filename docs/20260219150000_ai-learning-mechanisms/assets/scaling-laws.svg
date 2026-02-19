@@ -1,0 +1,50 @@
+<svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <!-- Title -->
+  <text x="380" y="22" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">スケーリング則: 性能 vs 計算量</text>
+
+  <!-- Left chart: Kaplan -->
+  <rect x="30" y="35" width="330" height="290" rx="10" fill="#f8f9fa" stroke="#ccc" stroke-width="1"/>
+  <text x="195" y="58" text-anchor="middle" font-size="13" font-weight="bold" fill="#1976d2">Kaplan et al. (2020)</text>
+  <!-- Axes -->
+  <line x1="70" y1="290" x2="340" y2="290" stroke="#555" stroke-width="1.5"/>
+  <polygon points="337,284 347,290 337,296" fill="#555"/>
+  <text x="350" y="294" font-size="11" fill="#555">C (計算量)</text>
+  <line x1="70" y1="290" x2="70" y2="70" stroke="#555" stroke-width="1.5"/>
+  <polygon points="64,73 70,63 76,73" fill="#555"/>
+  <text x="50" y="67" font-size="11" fill="#555" text-anchor="middle">Loss</text>
+  <!-- Power law curve (steep decrease) -->
+  <path d="M 80 270 C 120 220 160 175 200 145 C 240 118 280 98 330 82" stroke="#1976d2" stroke-width="2.5" fill="none"/>
+  <!-- Data points -->
+  <circle cx="110" cy="248" r="4" fill="#1976d2"/>
+  <circle cx="150" cy="205" r="4" fill="#1976d2"/>
+  <circle cx="200" cy="165" r="4" fill="#1976d2"/>
+  <circle cx="255" cy="130" r="4" fill="#1976d2"/>
+  <circle cx="310" cy="95" r="4" fill="#1976d2"/>
+  <!-- Annotation -->
+  <text x="190" y="310" text-anchor="middle" font-size="11" fill="#555">L ∝ C^{-0.05} (べき乗則)</text>
+  <text x="190" y="325" text-anchor="middle" font-size="11" fill="#555">モデル優先で大きく</text>
+
+  <!-- Right chart: Chinchilla -->
+  <rect x="400" y="35" width="330" height="290" rx="10" fill="#f8f9fa" stroke="#ccc" stroke-width="1"/>
+  <text x="565" y="58" text-anchor="middle" font-size="13" font-weight="bold" fill="#388e3c">Chinchilla (2022)</text>
+  <!-- Axes -->
+  <line x1="440" y1="290" x2="710" y2="290" stroke="#555" stroke-width="1.5"/>
+  <polygon points="707,284 717,290 707,296" fill="#555"/>
+  <text x="718" y="294" font-size="11" fill="#555">C (計算量)</text>
+  <line x1="440" y1="290" x2="440" y2="70" stroke="#555" stroke-width="1.5"/>
+  <polygon points="434,73 440,63 446,73" fill="#555"/>
+  <text x="420" y="67" font-size="11" fill="#555" text-anchor="middle">Loss</text>
+  <!-- Chinchilla optimal line -->
+  <path d="M 450 275 C 490 230 530 185 570 148 C 610 115 655 90 700 72" stroke="#388e3c" stroke-width="2.5" fill="none"/>
+  <!-- Kaplan-sized models (suboptimal, lighter dashes) -->
+  <path d="M 450 270 C 490 235 540 205 590 185 C 630 170 670 160 700 155" stroke="#e53935" stroke-width="1.5" fill="none" stroke-dasharray="7,4"/>
+  <!-- Annotations -->
+  <text x="680" y="62" font-size="11" fill="#388e3c" text-anchor="end">最適</text>
+  <text x="690" y="148" font-size="11" fill="#e53935" text-anchor="end">過大モデル</text>
+  <!-- Arrow and D=20N label -->
+  <rect x="450" y="305" width="240" height="18" rx="4" fill="#e8f5e9"/>
+  <text x="570" y="318" text-anchor="middle" font-size="11" fill="#1b5e20">最適: データ D ≈ 20 × モデルパラメータ N</text>
+
+  <!-- Comparison summary at bottom -->
+  <text x="380" y="348" text-anchor="middle" font-size="12" fill="#333">Chinchilla則: モデルとデータを等比率でスケール → GPT-4 / LLaMA 3 で採用</text>
+</svg>

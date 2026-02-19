@@ -1,0 +1,78 @@
+<svg viewBox="0 0 960 350" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0f172a;border-radius:12px">
+  <text x="480" y="28" text-anchor="middle" fill="#f1f5f9" font-size="17" font-weight="bold" font-family="sans-serif">Passkeys — パスワードレス認証の仕組み</text>
+
+  <!-- Phase labels -->
+  <text x="160" y="60" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="bold" font-family="sans-serif">Phase 1: デバイス登録</text>
+  <text x="500" y="60" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="bold" font-family="sans-serif">Phase 2: 認証</text>
+  <text x="820" y="60" text-anchor="middle" fill="#34d399" font-size="13" font-weight="bold" font-family="sans-serif">セキュリティの特徴</text>
+
+  <!-- Divider -->
+  <line x1="350" y1="52" x2="350" y2="320" stroke="#334155" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="650" y1="52" x2="650" y2="320" stroke="#334155" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Phase 1: Registration -->
+  <!-- Device generates key pair -->
+  <rect x="30" y="80" width="260" height="55" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="160" y="101" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="bold" font-family="sans-serif">① デバイスで鍵ペア生成</text>
+  <text x="160" y="118" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">生体認証 or PIN でデバイスをロック解除</text>
+  <text x="160" y="132" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">TPM / Secure Enclave 内で安全に生成</text>
+
+  <line x1="160" y1="135" x2="160" y2="162" stroke="#fbbf24" stroke-width="1.5"/>
+  <polygon points="154,159 160,170 166,159" fill="#fbbf24"/>
+
+  <!-- Key pair explanation -->
+  <rect x="30" y="172" width="115" height="44" rx="6" fill="#2b0754" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="87" y="192" text-anchor="middle" fill="#c084fc" font-size="11" font-weight="bold" font-family="sans-serif">秘密鍵</text>
+  <text x="87" y="208" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">デバイスに封印</text>
+
+  <rect x="155" y="172" width="135" height="44" rx="6" fill="#0d2d1e" stroke="#34d399" stroke-width="1.5"/>
+  <text x="222" y="192" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">公開鍵</text>
+  <text x="222" y="208" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">サーバーへ送信・保存</text>
+
+  <line x1="160" y1="216" x2="160" y2="245" stroke="#fbbf24" stroke-width="1.5"/>
+  <polygon points="154,242 160,253 166,242" fill="#fbbf24"/>
+
+  <rect x="30" y="255" width="260" height="38" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="160" y="274" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">② 公開鍵をサービスに登録完了</text>
+  <text x="160" y="288" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">秘密鍵はデバイス外に出ない</text>
+
+  <!-- Phase 2: Authentication -->
+  <rect x="370" y="80" width="265" height="55" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="502" y="101" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="bold" font-family="sans-serif">① サーバーがチャレンジ送信</text>
+  <text x="502" y="118" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">ランダムなチャレンジ値を生成</text>
+  <text x="502" y="132" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">オリジン（ドメイン）情報を含む</text>
+
+  <line x1="502" y1="135" x2="502" y2="162" stroke="#38bdf8" stroke-width="1.5"/>
+  <polygon points="496,159 502,170 508,159" fill="#38bdf8"/>
+
+  <rect x="370" y="172" width="265" height="44" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="502" y="192" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="bold" font-family="sans-serif">② 生体/PIN でデバイスアンロック</text>
+  <text x="502" y="208" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">秘密鍵でチャレンジに署名</text>
+
+  <line x1="502" y1="216" x2="502" y2="243" stroke="#38bdf8" stroke-width="1.5"/>
+  <polygon points="496,240 502,251 508,240" fill="#38bdf8"/>
+
+  <rect x="370" y="253" width="265" height="40" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="502" y="272" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="bold" font-family="sans-serif">③ 署名をサーバーで公開鍵検証</text>
+  <text x="502" y="287" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">一致 → ログイン成功</text>
+
+  <!-- Security features (right column) -->
+  <rect x="668" y="80" width="272" height="40" rx="6" fill="#0d2d1e" stroke="#34d399" stroke-width="1.5"/>
+  <text x="804" y="95" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">フィッシング耐性</text>
+  <text x="804" y="113" text-anchor="middle" fill="#86efac" font-size="10" font-family="sans-serif">鍵はオリジン（ドメイン）にバインド済み</text>
+
+  <rect x="668" y="130" width="272" height="40" rx="6" fill="#0d2d1e" stroke="#34d399" stroke-width="1.5"/>
+  <text x="804" y="145" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">パスワード不要</text>
+  <text x="804" y="163" text-anchor="middle" fill="#86efac" font-size="10" font-family="sans-serif">漏洩するパスワードが存在しない</text>
+
+  <rect x="668" y="180" width="272" height="40" rx="6" fill="#0d2d1e" stroke="#34d399" stroke-width="1.5"/>
+  <text x="804" y="195" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">再利用攻撃不可</text>
+  <text x="804" y="213" text-anchor="middle" fill="#86efac" font-size="10" font-family="sans-serif">署名はチャレンジごとに一意</text>
+
+  <rect x="668" y="230" width="272" height="40" rx="6" fill="#172554" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="804" y="245" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="bold" font-family="sans-serif">対応プラットフォーム</text>
+  <text x="804" y="263" text-anchor="middle" fill="#93c5fd" font-size="10" font-family="sans-serif">Apple / Google / Microsoft / FIDO Alliance</text>
+
+  <rect x="668" y="280" width="272" height="32" rx="6" fill="#2b0754" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="804" y="299" text-anchor="middle" fill="#c084fc" font-size="11" font-family="sans-serif">NIST SP 800-63B AAL2〜3 相当</text>
+</svg>

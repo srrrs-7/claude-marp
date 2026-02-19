@@ -1,0 +1,86 @@
+<svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="480" fill="#f8f9fa" rx="8"/>
+  <text x="400" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#2c3e50" font-family="sans-serif">認可コードフロー (RFC 6749 §4.1) + PKCE (RFC 7636)</text>
+
+  <!-- Actors -->
+  <rect x="15" y="34" width="130" height="52" rx="8" fill="#3498db" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="80" y="57" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Client App</text>
+  <text x="80" y="73" text-anchor="middle" font-size="9" fill="#d6eaf8" font-family="sans-serif">SPA / Mobile / Web</text>
+
+  <rect x="285" y="34" width="200" height="52" rx="8" fill="#e67e22" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="385" y="57" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Authorization Server</text>
+  <text x="385" y="73" text-anchor="middle" font-size="9" fill="#fdebd0" font-family="sans-serif">Cognito / Keycloak</text>
+
+  <rect x="625" y="34" width="160" height="52" rx="8" fill="#27ae60" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="705" y="57" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">Resource Server</text>
+  <text x="705" y="73" text-anchor="middle" font-size="9" fill="#d5f5e3" font-family="sans-serif">API Gateway / Lambda</text>
+
+  <!-- Lifelines -->
+  <line x1="80" y1="86" x2="80" y2="440" stroke="#3498db" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="385" y1="86" x2="385" y2="440" stroke="#e67e22" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="705" y1="86" x2="705" y2="440" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Step 1: Authorization Request -->
+  <rect x="0" y="100" width="14" height="14" rx="7" fill="#3498db"/>
+  <text x="7" y="111" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">1</text>
+  <line x1="80" y1="107" x2="383" y2="107" stroke="#555" stroke-width="1.5"/>
+  <polygon points="383,107 373,102 373,112" fill="#555"/>
+  <text x="232" y="102" text-anchor="middle" font-size="9" fill="#2c3e50" font-family="sans-serif">GET /authorize</text>
+  <text x="232" y="120" text-anchor="middle" font-size="8" fill="#7f8c8d" font-family="sans-serif">response_type=code &amp; client_id &amp; redirect_uri &amp; scope &amp; state &amp; code_challenge &amp; code_challenge_method=S256</text>
+
+  <!-- Step 2: User Auth at AS -->
+  <rect x="295" y="132" width="181" height="20" rx="4" fill="#fdebd0"/>
+  <text x="386" y="146" text-anchor="middle" font-size="9" fill="#d35400" font-family="sans-serif">👤 ユーザー認証 &amp; 同意画面</text>
+
+  <!-- Step 3: Authorization Code Response -->
+  <rect x="786" y="160" width="14" height="14" rx="7" fill="#e67e22"/>
+  <text x="793" y="171" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">2</text>
+  <line x1="383" y1="167" x2="82" y2="167" stroke="#e67e22" stroke-width="1.5"/>
+  <polygon points="82,167 92,162 92,172" fill="#e67e22"/>
+  <text x="232" y="161" text-anchor="middle" font-size="9" fill="#e67e22" font-family="sans-serif">302 Redirect → redirect_uri</text>
+  <text x="232" y="180" text-anchor="middle" font-size="8" fill="#7f8c8d" font-family="sans-serif">?code=SplxlOB...&amp;state=xyz  （code は1回限り有効 / 短命 ~10分）</text>
+
+  <!-- Step 4: Token Request -->
+  <rect x="0" y="196" width="14" height="14" rx="7" fill="#9b59b6"/>
+  <text x="7" y="207" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">3</text>
+  <line x1="80" y1="203" x2="383" y2="203" stroke="#9b59b6" stroke-width="2"/>
+  <polygon points="383,203 373,198 373,208" fill="#9b59b6"/>
+  <text x="232" y="197" text-anchor="middle" font-size="9" font-weight="bold" fill="#9b59b6" font-family="sans-serif">POST /token  （クライアント認証付き）</text>
+  <text x="232" y="216" text-anchor="middle" font-size="8" fill="#7f8c8d" font-family="sans-serif">grant_type=authorization_code &amp; code &amp; redirect_uri &amp; code_verifier &amp; client_auth</text>
+
+  <!-- Step 4b: PKCE Verification -->
+  <rect x="295" y="228" width="181" height="20" rx="4" fill="#fdebd0"/>
+  <text x="386" y="242" text-anchor="middle" font-size="9" fill="#d35400" font-family="sans-serif">🔑 SHA256(code_verifier) == code_challenge ✓</text>
+
+  <!-- Step 5: Token Response -->
+  <rect x="786" y="256" width="14" height="14" rx="7" fill="#27ae60"/>
+  <text x="793" y="267" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">4</text>
+  <line x1="383" y1="263" x2="82" y2="263" stroke="#27ae60" stroke-width="2"/>
+  <polygon points="82,263 92,258 92,268" fill="#27ae60"/>
+  <text x="232" y="257" text-anchor="middle" font-size="9" font-weight="bold" fill="#27ae60" font-family="sans-serif">200 OK — Token Response</text>
+  <text x="232" y="276" text-anchor="middle" font-size="8" fill="#7f8c8d" font-family="sans-serif">access_token (JWT) + id_token (JWT) + refresh_token + expires_in + scope</text>
+
+  <!-- Step 6: API Request -->
+  <rect x="0" y="294" width="14" height="14" rx="7" fill="#2c3e50"/>
+  <text x="7" y="305" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">5</text>
+  <line x1="80" y1="301" x2="703" y2="301" stroke="#2c3e50" stroke-width="1.5"/>
+  <polygon points="703,301 693,296 693,306" fill="#2c3e50"/>
+  <text x="390" y="295" text-anchor="middle" font-size="9" fill="#2c3e50" font-family="sans-serif">GET /api/resource   Authorization: Bearer &lt;access_token&gt;</text>
+
+  <!-- Step 7: RS verifies JWT -->
+  <rect x="630" y="315" width="152" height="20" rx="4" fill="#d5f5e3"/>
+  <text x="706" y="329" text-anchor="middle" font-size="8" fill="#1a7a3c" font-family="sans-serif">JWT 署名 / exp / scope 検証 ✓</text>
+
+  <!-- Step 8: Response -->
+  <line x1="703" y1="350" x2="82" y2="350" stroke="#2c3e50" stroke-width="1.5"/>
+  <polygon points="82,350 92,345 92,355" fill="#2c3e50"/>
+  <text x="390" y="344" text-anchor="middle" font-size="9" fill="#2c3e50" font-family="sans-serif">200 OK — Protected Resource</text>
+
+  <!-- Footer -->
+  <rect x="15" y="372" width="770" height="96" rx="8" fill="#2c3e50"/>
+  <text x="400" y="390" text-anchor="middle" font-size="10" font-weight="bold" fill="#f1c40f" font-family="sans-serif">セキュリティパラメータ</text>
+  <text x="25" y="408" font-size="9" fill="#ecf0f1" font-family="sans-serif">🛡 state: CSRF 対策（必須）。リクエスト前に生成 → レスポンスで検証</text>
+  <text x="25" y="424" font-size="9" fill="#ecf0f1" font-family="sans-serif">🔒 code_challenge / code_verifier: コードインジェクション防止。SPA・Mobile は必須（RFC 9700）</text>
+  <text x="25" y="440" font-size="9" fill="#ecf0f1" font-family="sans-serif">📌 nonce (OIDC): ID Token リプレイ攻撃対策。redirect_uri: 完全一致検証（ワイルドカード禁止）</text>
+  <text x="25" y="456" font-size="9" fill="#aed6f1" font-family="sans-serif">⚠ Authorization Code は使い捨て（再利用 → 即失効 + 全セッション無効化）</text>
+</svg>

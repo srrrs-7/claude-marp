@@ -1,0 +1,80 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <text x="400" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#333">ハブ＆スポーク設計</text>
+
+  <!-- Central Gateway -->
+  <rect x="280" y="150" width="240" height="120" rx="15" fill="#fff3e0" stroke="#f57c00" stroke-width="3"/>
+  <text x="400" y="185" text-anchor="middle" font-size="15" font-weight="bold" fill="#e65100">Gateway</text>
+  <text x="400" y="205" text-anchor="middle" font-size="12" fill="#555">コントロールプレーン</text>
+  <text x="400" y="225" text-anchor="middle" font-size="11" fill="#777">認証 / ルーティング</text>
+  <text x="400" y="243" text-anchor="middle" font-size="11" fill="#777">セッション管理</text>
+  <text x="400" y="261" text-anchor="middle" font-size="11" fill="#777">アクセス制御</text>
+
+  <!-- Left: Input channels -->
+  <text x="105" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#1976d2">入力チャネル</text>
+
+  <rect x="25" y="68" width="160" height="32" rx="8" fill="#bbdefb" stroke="#1976d2" stroke-width="1.5"/>
+  <text x="105" y="89" text-anchor="middle" font-size="12" fill="#0d47a1">📱 メッセージングアプリ</text>
+  <line x1="185" y1="84" x2="280" y2="175" stroke="#1976d2" stroke-width="1.5"/>
+  <polygon points="276,168 280,182 287,172" fill="#1976d2"/>
+
+  <rect x="25" y="112" width="160" height="32" rx="8" fill="#bbdefb" stroke="#1976d2" stroke-width="1.5"/>
+  <text x="105" y="133" text-anchor="middle" font-size="12" fill="#0d47a1">🌐 Web UI</text>
+  <line x1="185" y1="128" x2="280" y2="185" stroke="#1976d2" stroke-width="1.5"/>
+  <polygon points="275,179 280,193 287,183" fill="#1976d2"/>
+
+  <rect x="25" y="156" width="160" height="32" rx="8" fill="#bbdefb" stroke="#1976d2" stroke-width="1.5"/>
+  <text x="105" y="177" text-anchor="middle" font-size="12" fill="#0d47a1">💻 CLI</text>
+  <line x1="185" y1="172" x2="280" y2="210" stroke="#1976d2" stroke-width="1.5"/>
+  <polygon points="276,205 280,218 286,207" fill="#1976d2"/>
+
+  <rect x="25" y="200" width="160" height="32" rx="8" fill="#bbdefb" stroke="#1976d2" stroke-width="1.5"/>
+  <text x="105" y="221" text-anchor="middle" font-size="12" fill="#0d47a1">🍎 macOSアプリ</text>
+  <line x1="185" y1="216" x2="280" y2="230" stroke="#1976d2" stroke-width="1.5"/>
+  <polygon points="276,225 280,238 286,228" fill="#1976d2"/>
+
+  <!-- Right: Agent Runtime and backends -->
+  <text x="680" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#388e3c">バックエンド</text>
+
+  <rect x="600" y="68" width="160" height="32" rx="8" fill="#c8e6c9" stroke="#388e3c" stroke-width="1.5"/>
+  <text x="680" y="89" text-anchor="middle" font-size="12" fill="#1b5e20">🤖 Agent Runtime</text>
+  <line x1="520" y1="175" x2="600" y2="84" stroke="#388e3c" stroke-width="1.5"/>
+  <polygon points="596,79 602,91 610,82" fill="#388e3c"/>
+
+  <rect x="600" y="112" width="160" height="32" rx="8" fill="#c8e6c9" stroke="#388e3c" stroke-width="1.5"/>
+  <text x="680" y="133" text-anchor="middle" font-size="12" fill="#1b5e20">🧠 メモリ</text>
+  <line x1="520" y1="190" x2="600" y2="128" stroke="#388e3c" stroke-width="1.5"/>
+  <polygon points="597,123 602,135 610,126" fill="#388e3c"/>
+
+  <rect x="600" y="156" width="160" height="32" rx="8" fill="#c8e6c9" stroke="#388e3c" stroke-width="1.5"/>
+  <text x="680" y="177" text-anchor="middle" font-size="12" fill="#1b5e20">🔧 ツール実行</text>
+  <line x1="520" y1="210" x2="600" y2="172" stroke="#388e3c" stroke-width="1.5"/>
+  <polygon points="597,167 602,179 610,170" fill="#388e3c"/>
+
+  <rect x="600" y="200" width="160" height="32" rx="8" fill="#c8e6c9" stroke="#388e3c" stroke-width="1.5"/>
+  <text x="680" y="221" text-anchor="middle" font-size="12" fill="#1b5e20">📅 スケジューラ</text>
+  <line x1="520" y1="230" x2="600" y2="216" stroke="#388e3c" stroke-width="1.5"/>
+  <polygon points="597,212 602,224 610,215" fill="#388e3c"/>
+
+  <!-- Bottom: LLM Providers -->
+  <text x="400" y="310" text-anchor="middle" font-size="13" font-weight="bold" fill="#7b1fa2">LLMプロバイダー（モデル非依存）</text>
+
+  <rect x="80" y="325" width="120" height="50" rx="8" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="1.5"/>
+  <text x="140" y="350" text-anchor="middle" font-size="13" font-weight="bold" fill="#4a148c">Claude</text>
+  <text x="140" y="368" text-anchor="middle" font-size="10" fill="#666">Anthropic</text>
+  <line x1="350" y1="270" x2="200" y2="325" stroke="#9c27b0" stroke-width="1.5" stroke-dasharray="5"/>
+
+  <rect x="230" y="325" width="120" height="50" rx="8" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="1.5"/>
+  <text x="290" y="350" text-anchor="middle" font-size="13" font-weight="bold" fill="#4a148c">GPT-4o</text>
+  <text x="290" y="368" text-anchor="middle" font-size="10" fill="#666">OpenAI</text>
+  <line x1="380" y1="270" x2="350" y2="325" stroke="#9c27b0" stroke-width="1.5" stroke-dasharray="5"/>
+
+  <rect x="380" y="325" width="120" height="50" rx="8" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="1.5"/>
+  <text x="440" y="350" text-anchor="middle" font-size="13" font-weight="bold" fill="#4a148c">DeepSeek</text>
+  <text x="440" y="368" text-anchor="middle" font-size="10" fill="#666">DeepSeek AI</text>
+  <line x1="420" y1="270" x2="440" y2="325" stroke="#9c27b0" stroke-width="1.5" stroke-dasharray="5"/>
+
+  <rect x="530" y="325" width="120" height="50" rx="8" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="1.5"/>
+  <text x="590" y="350" text-anchor="middle" font-size="13" font-weight="bold" fill="#4a148c">Gemini</text>
+  <text x="590" y="368" text-anchor="middle" font-size="10" fill="#666">Google</text>
+  <line x1="450" y1="270" x2="590" y2="325" stroke="#9c27b0" stroke-width="1.5" stroke-dasharray="5"/>
+</svg>

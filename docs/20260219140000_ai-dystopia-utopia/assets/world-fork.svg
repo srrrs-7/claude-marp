@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" style="max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Origin node -->
+  <circle cx="150" cy="200" r="40" fill="rgba(255,213,79,0.2)" stroke="#ffd54f" stroke-width="2"/>
+  <text x="150" y="194" text-anchor="middle" fill="#ffd54f" font-family="sans-serif" font-size="11" font-weight="bold">2032年</text>
+  <text x="150" y="210" text-anchor="middle" fill="#fff9c4" font-family="sans-serif" font-size="10">AGI到来</text>
+
+  <!-- Upper branch (Dystopia) - red curved path -->
+  <path d="M188,178 Q400,80 650,100" fill="none" stroke="#ff5252" stroke-width="3"/>
+  <polygon points="655,98 640,90 643,104" fill="#ff5252"/>
+
+  <!-- Lower branch (Utopia) - green curved path -->
+  <path d="M188,222 Q400,320 650,300" fill="none" stroke="#69f0ae" stroke-width="3"/>
+  <polygon points="655,302 640,294 643,308" fill="#69f0ae"/>
+
+  <!-- Dystopia endpoint -->
+  <rect x="655" y="55" width="220" height="100" rx="10" fill="rgba(255,82,82,0.15)" stroke="#ff5252" stroke-width="2"/>
+  <text x="765" y="82" text-anchor="middle" fill="#ff5252" font-family="sans-serif" font-size="14" font-weight="bold">DYSTOPIA</text>
+  <text x="765" y="100" text-anchor="middle" fill="#ffcdd2" font-family="sans-serif" font-size="10">監視・格差・支配</text>
+  <text x="765" y="116" text-anchor="middle" fill="#ffcdd2" font-family="sans-serif" font-size="10">アライメント失敗</text>
+  <text x="765" y="132" text-anchor="middle" fill="#ffcdd2" font-family="sans-serif" font-size="10">人間性の喪失</text>
+
+  <!-- Utopia endpoint -->
+  <rect x="655" y="255" width="220" height="100" rx="10" fill="rgba(105,240,174,0.15)" stroke="#69f0ae" stroke-width="2"/>
+  <text x="765" y="282" text-anchor="middle" fill="#69f0ae" font-family="sans-serif" font-size="14" font-weight="bold">UTOPIA</text>
+  <text x="765" y="300" text-anchor="middle" fill="#ccf5e3" font-family="sans-serif" font-size="10">共生・公平・創造</text>
+  <text x="765" y="316" text-anchor="middle" fill="#ccf5e3" font-family="sans-serif" font-size="10">アライメント成功</text>
+  <text x="765" y="332" text-anchor="middle" fill="#ccf5e3" font-family="sans-serif" font-size="10">人間の可能性拡張</text>
+
+  <!-- Factors at fork -->
+  <rect x="300" y="155" width="130" height="90" rx="8" fill="rgba(255,213,79,0.1)" stroke="#ffd54f" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="365" y="177" text-anchor="middle" fill="#ffd54f" font-family="sans-serif" font-size="10" font-weight="bold">分岐を決める要因</text>
+  <text x="365" y="193" text-anchor="middle" fill="#fff9c4" font-family="sans-serif" font-size="9">· 規制・ガバナンス</text>
+  <text x="365" y="207" text-anchor="middle" fill="#fff9c4" font-family="sans-serif" font-size="9">· 開発者の倫理観</text>
+  <text x="365" y="221" text-anchor="middle" fill="#fff9c4" font-family="sans-serif" font-size="9">· アライメント研究</text>
+  <text x="365" y="235" text-anchor="middle" fill="#fff9c4" font-family="sans-serif" font-size="9">· 社会的合意形成</text>
+
+  <!-- "Your choice" label -->
+  <text x="150" y="355" text-anchor="middle" fill="rgba(255,213,79,0.7)" font-family="sans-serif" font-size="11" font-style="italic">あなたの選択がどちらに向かわせるか？</text>
+</svg>

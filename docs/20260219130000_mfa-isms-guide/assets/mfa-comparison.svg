@@ -1,0 +1,99 @@
+<svg viewBox="0 0 960 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0f172a;border-radius:12px">
+  <text x="480" y="26" text-anchor="middle" fill="#f1f5f9" font-size="16" font-weight="bold" font-family="sans-serif">MFA方式 比較マトリクス</text>
+
+  <!-- Table header row -->
+  <rect x="20" y="38" width="940" height="34" rx="6" fill="#1e3a5f" stroke="#334155" stroke-width="1"/>
+  <text x="118" y="60" text-anchor="middle" fill="#f1f5f9" font-size="12" font-weight="bold" font-family="sans-serif">評価軸</text>
+  <text x="262" y="60" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="bold" font-family="sans-serif">SMS OTP</text>
+  <text x="398" y="60" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="bold" font-family="sans-serif">TOTP</text>
+  <text x="536" y="60" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="bold" font-family="sans-serif">PUSH通知</text>
+  <text x="686" y="60" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="bold" font-family="sans-serif">FIDO2</text>
+  <text x="848" y="60" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">Passkeys</text>
+
+  <!-- Column separators -->
+  <line x1="202" y1="38" x2="202" y2="375" stroke="#334155" stroke-width="1"/>
+  <line x1="336" y1="38" x2="336" y2="375" stroke="#334155" stroke-width="1"/>
+  <line x1="468" y1="38" x2="468" y2="375" stroke="#334155" stroke-width="1"/>
+  <line x1="610" y1="38" x2="610" y2="375" stroke="#334155" stroke-width="1"/>
+  <line x1="768" y1="38" x2="768" y2="375" stroke="#334155" stroke-width="1"/>
+
+  <!-- Row 1: フィッシング耐性 -->
+  <rect x="20" y="72" width="940" height="48" rx="0" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="118" y="90" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">フィッシング</text>
+  <text x="118" y="108" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">耐性</text>
+  <text x="262" y="100" text-anchor="middle" fill="#f87171" font-size="14" font-weight="bold" font-family="sans-serif">✗</text>
+  <text x="398" y="100" text-anchor="middle" fill="#f87171" font-size="14" font-weight="bold" font-family="sans-serif">✗</text>
+  <text x="536" y="93" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="bold" font-family="sans-serif">△</text>
+  <text x="536" y="110" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">番号照合で改善</text>
+  <text x="686" y="93" text-anchor="middle" fill="#34d399" font-size="14" font-weight="bold" font-family="sans-serif">✓✓</text>
+  <text x="686" y="110" text-anchor="middle" fill="#86efac" font-size="9" font-family="sans-serif">ドメインバインド</text>
+  <text x="848" y="93" text-anchor="middle" fill="#34d399" font-size="14" font-weight="bold" font-family="sans-serif">✓✓</text>
+  <text x="848" y="110" text-anchor="middle" fill="#86efac" font-size="9" font-family="sans-serif">最強クラス</text>
+
+  <!-- Row 2: オフライン動作 -->
+  <rect x="20" y="120" width="940" height="48" rx="0" fill="#172030" stroke="#334155" stroke-width="0.5"/>
+  <text x="118" y="138" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">オフライン</text>
+  <text x="118" y="156" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">動作</text>
+  <text x="262" y="148" text-anchor="middle" fill="#f87171" font-size="14" font-weight="bold" font-family="sans-serif">✗</text>
+  <text x="398" y="148" text-anchor="middle" fill="#34d399" font-size="14" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="536" y="148" text-anchor="middle" fill="#f87171" font-size="14" font-weight="bold" font-family="sans-serif">✗</text>
+  <text x="686" y="148" text-anchor="middle" fill="#34d399" font-size="14" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="848" y="148" text-anchor="middle" fill="#34d399" font-size="14" font-weight="bold" font-family="sans-serif">✓</text>
+
+  <!-- Row 3: UX -->
+  <rect x="20" y="168" width="940" height="48" rx="0" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="118" y="197" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">UX</text>
+  <text x="262" y="190" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="bold" font-family="sans-serif">△</text>
+  <text x="262" y="207" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">電波不要時NG</text>
+  <text x="398" y="190" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="bold" font-family="sans-serif">○</text>
+  <text x="398" y="207" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">アプリ操作要</text>
+  <text x="536" y="190" text-anchor="middle" fill="#34d399" font-size="13" font-weight="bold" font-family="sans-serif">✓</text>
+  <text x="536" y="207" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">タップ1回</text>
+  <text x="686" y="190" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="bold" font-family="sans-serif">△</text>
+  <text x="686" y="207" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">キー携帯必要</text>
+  <text x="848" y="190" text-anchor="middle" fill="#34d399" font-size="13" font-weight="bold" font-family="sans-serif">✓✓</text>
+  <text x="848" y="207" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">生体/PINだけ</text>
+
+  <!-- Row 4: NIST AAL -->
+  <rect x="20" y="216" width="940" height="48" rx="0" fill="#172030" stroke="#334155" stroke-width="0.5"/>
+  <text x="118" y="234" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">NIST</text>
+  <text x="118" y="252" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">AAL</text>
+  <rect x="222" y="228" width="80" height="24" rx="4" fill="#2d1515"/>
+  <text x="262" y="245" text-anchor="middle" fill="#f87171" font-size="11" font-weight="bold" font-family="sans-serif">AAL1</text>
+  <rect x="358" y="228" width="80" height="24" rx="4" fill="#172554"/>
+  <text x="398" y="245" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="bold" font-family="sans-serif">AAL2</text>
+  <rect x="496" y="228" width="80" height="24" rx="4" fill="#172554"/>
+  <text x="536" y="245" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="bold" font-family="sans-serif">AAL2</text>
+  <rect x="646" y="228" width="80" height="24" rx="4" fill="#0d2d1e"/>
+  <text x="686" y="245" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">AAL3</text>
+  <rect x="808" y="228" width="80" height="24" rx="4" fill="#0d2d1e"/>
+  <text x="848" y="245" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">AAL2-3</text>
+
+  <!-- Row 5: コスト -->
+  <rect x="20" y="264" width="940" height="38" rx="0" fill="#1e293b" stroke="#334155" stroke-width="0.5"/>
+  <text x="118" y="288" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">導入コスト</text>
+  <text x="262" y="287" text-anchor="middle" fill="#34d399" font-size="11" font-family="sans-serif">低</text>
+  <text x="398" y="287" text-anchor="middle" fill="#34d399" font-size="11" font-family="sans-serif">低〜中</text>
+  <text x="536" y="287" text-anchor="middle" fill="#fbbf24" font-size="11" font-family="sans-serif">中</text>
+  <text x="686" y="287" text-anchor="middle" fill="#f87171" font-size="11" font-family="sans-serif">高（キー代）</text>
+  <text x="848" y="287" text-anchor="middle" fill="#fbbf24" font-size="11" font-family="sans-serif">中</text>
+
+  <!-- Row 6: 実装難度 -->
+  <rect x="20" y="302" width="940" height="38" rx="0" fill="#172030" stroke="#334155" stroke-width="0.5"/>
+  <text x="118" y="326" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">実装難度</text>
+  <text x="262" y="325" text-anchor="middle" fill="#34d399" font-size="11" font-family="sans-serif">低</text>
+  <text x="398" y="325" text-anchor="middle" fill="#34d399" font-size="11" font-family="sans-serif">低〜中</text>
+  <text x="536" y="325" text-anchor="middle" fill="#fbbf24" font-size="11" font-family="sans-serif">中</text>
+  <text x="686" y="325" text-anchor="middle" fill="#f87171" font-size="11" font-family="sans-serif">高</text>
+  <text x="848" y="325" text-anchor="middle" fill="#fbbf24" font-size="11" font-family="sans-serif">中〜高</text>
+
+  <!-- Bottom border -->
+  <rect x="20" y="340" width="940" height="2" fill="#334155"/>
+
+  <!-- Legend -->
+  <text x="80" y="362" fill="#34d399" font-size="11" font-family="sans-serif">✓✓ 優秀</text>
+  <text x="165" y="362" fill="#34d399" font-size="11" font-family="sans-serif">✓ 良好</text>
+  <text x="235" y="362" fill="#fbbf24" font-size="11" font-family="sans-serif">△/○ 普通/条件付き</text>
+  <text x="400" y="362" fill="#f87171" font-size="11" font-family="sans-serif">✗ 不十分</text>
+  <text x="530" y="362" fill="#60a5fa" font-size="11" font-family="sans-serif">推奨: 高リスク用途には FIDO2/Passkeys</text>
+</svg>

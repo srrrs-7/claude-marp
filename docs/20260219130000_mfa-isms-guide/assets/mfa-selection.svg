@@ -1,0 +1,81 @@
+<svg viewBox="0 0 960 390" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0f172a;border-radius:12px">
+  <text x="480" y="26" text-anchor="middle" fill="#f1f5f9" font-size="17" font-weight="bold" font-family="sans-serif">リスクベース MFA選択フレームワーク</text>
+
+  <!-- Start -->
+  <rect x="385" y="42" width="190" height="36" rx="8" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2"/>
+  <text x="480" y="65" text-anchor="middle" fill="#60a5fa" font-size="12" font-weight="bold" font-family="sans-serif">保護対象を特定する</text>
+  <line x1="480" y1="78" x2="480" y2="100" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="474,97 480,108 486,97" fill="#60a5fa"/>
+
+  <!-- Question 1: Risk Level -->
+  <rect x="310" y="108" width="340" height="36" rx="8" fill="#2d1f00" stroke="#fbbf24" stroke-width="2"/>
+  <text x="480" y="131" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="bold" font-family="sans-serif">リスクレベルは？（情報資産価値）</text>
+
+  <!-- Branch: High risk left, Low risk right -->
+  <line x1="390" y1="144" x2="250" y2="174" stroke="#fbbf24" stroke-width="1.5"/>
+  <polygon points="245,169 248,181 258,173" fill="#fbbf24"/>
+  <text x="302" y="165" fill="#fbbf24" font-size="10" font-family="sans-serif">高リスク</text>
+  <line x1="570" y1="144" x2="700" y2="174" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="695,169 700,181 710,173" fill="#64748b"/>
+  <text x="650" y="165" fill="#94a3b8" font-size="10" font-family="sans-serif">低〜中リスク</text>
+
+  <!-- Question 2 left: User type for high risk -->
+  <rect x="100" y="180" width="300" height="36" rx="8" fill="#1e293b" stroke="#f87171" stroke-width="1.5"/>
+  <text x="250" y="203" text-anchor="middle" fill="#f87171" font-size="12" font-weight="bold" font-family="sans-serif">特権アカウント / 重要システム?</text>
+
+  <!-- Branch from Q2 left: Yes/No -->
+  <line x1="180" y1="216" x2="100" y2="246" stroke="#f87171" stroke-width="1.5"/>
+  <polygon points="96,242 98,254 108,245" fill="#f87171"/>
+  <text x="128" y="238" fill="#f87171" font-size="10" font-family="sans-serif">Yes</text>
+  <line x1="330" y1="216" x2="360" y2="246" stroke="#f87171" stroke-width="1.5"/>
+  <polygon points="355,242 358,254 368,245" fill="#f87171"/>
+  <text x="335" y="238" fill="#94a3b8" font-size="10" font-family="sans-serif">No</text>
+
+  <!-- Result 1: FIDO2 (highest) -->
+  <rect x="20" y="255" width="180" height="55" rx="8" fill="#0d2d1e" stroke="#34d399" stroke-width="2.5"/>
+  <text x="110" y="275" text-anchor="middle" fill="#34d399" font-size="12" font-weight="bold" font-family="sans-serif">FIDO2</text>
+  <text x="110" y="291" text-anchor="middle" fill="#34d399" font-size="12" font-weight="bold" font-family="sans-serif">セキュリティキー</text>
+  <text x="110" y="307" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">NIST AAL3 / 最強</text>
+
+  <!-- Result 2: Passkeys -->
+  <rect x="224" y="255" width="200" height="55" rx="8" fill="#0d2d1e" stroke="#34d399" stroke-width="2"/>
+  <text x="324" y="275" text-anchor="middle" fill="#34d399" font-size="12" font-weight="bold" font-family="sans-serif">Passkeys</text>
+  <text x="324" y="291" text-anchor="middle" fill="#34d399" font-size="11" font-family="sans-serif">+ FIDO2アプリ</text>
+  <text x="324" y="307" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">NIST AAL2-3 / フィッシング耐性</text>
+
+  <!-- Question 3 right: Offline needed? -->
+  <rect x="560" y="180" width="280" height="36" rx="8" fill="#1e293b" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="700" y="203" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="bold" font-family="sans-serif">オフライン動作が必要?</text>
+
+  <!-- Branch from Q3: Yes offline / No -->
+  <line x1="645" y1="216" x2="585" y2="246" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="580,242 582,254 592,246" fill="#94a3b8"/>
+  <text x="602" y="238" fill="#94a3b8" font-size="10" font-family="sans-serif">Yes</text>
+  <line x1="760" y1="216" x2="820" y2="246" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="815,242 818,254 828,246" fill="#94a3b8"/>
+  <text x="784" y="238" fill="#94a3b8" font-size="10" font-family="sans-serif">No</text>
+
+  <!-- Result 3: TOTP -->
+  <rect x="490" y="255" width="190" height="55" rx="8" fill="#172554" stroke="#60a5fa" stroke-width="2"/>
+  <text x="585" y="275" text-anchor="middle" fill="#60a5fa" font-size="12" font-weight="bold" font-family="sans-serif">TOTP</text>
+  <text x="585" y="291" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="sans-serif">（認証アプリ）</text>
+  <text x="585" y="307" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">NIST AAL2 / オフライン対応</text>
+
+  <!-- Result 4: PUSH -->
+  <rect x="700" y="255" width="240" height="55" rx="8" fill="#172554" stroke="#7dd3fc" stroke-width="2"/>
+  <text x="820" y="275" text-anchor="middle" fill="#7dd3fc" font-size="12" font-weight="bold" font-family="sans-serif">PUSH通知</text>
+  <text x="820" y="291" text-anchor="middle" fill="#7dd3fc" font-size="11" font-family="sans-serif">（番号照合）</text>
+  <text x="820" y="307" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">NIST AAL2 / UX優先</text>
+
+  <!-- Dotted bottom line connecting results -->
+  <line x1="110" y1="310" x2="110" y2="335" stroke="#334155" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="324" y1="310" x2="324" y2="335" stroke="#334155" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="585" y1="310" x2="585" y2="335" stroke="#334155" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="820" y1="310" x2="820" y2="335" stroke="#334155" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="110" y1="335" x2="820" y2="335" stroke="#334155" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- Common recommendation box -->
+  <rect x="100" y="345" width="760" height="36" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="480" y="362" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="bold" font-family="sans-serif">共通原則: SMS OTPはリスク評価で「高」判定の場合は使用禁止、消費者向け低リスクのみに限定</text>
+  <text x="480" y="377" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">選定結果はリスク評価書に記録し経営承認を得る（ISMS手順書に組み込む）</text>
+</svg>

@@ -1,0 +1,75 @@
+<svg viewBox="0 0 960 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0f172a;border-radius:12px">
+  <text x="480" y="28" text-anchor="middle" fill="#f1f5f9" font-size="17" font-weight="bold" font-family="sans-serif">NIST SP 800-63B — 認証保証レベル（AAL）</text>
+
+  <!-- AAL1 -->
+  <rect x="30" y="50" width="280" height="280" rx="10" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+  <rect x="30" y="50" width="280" height="48" rx="10" fill="#172554"/>
+  <rect x="30" y="86" width="280" height="12" fill="#172554"/>
+  <text x="170" y="74" text-anchor="middle" fill="#60a5fa" font-size="15" font-weight="bold" font-family="sans-serif">AAL1</text>
+  <text x="170" y="92" text-anchor="middle" fill="#7dd3fc" font-size="11" font-family="sans-serif">基本保証レベル</text>
+
+  <text x="170" y="120" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="bold" font-family="sans-serif">要件</text>
+  <text x="170" y="140" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">単要素または多要素認証</text>
+  <text x="170" y="158" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">パスワード + OTP（SMS含む）</text>
+
+  <text x="170" y="190" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="bold" font-family="sans-serif">対象ユースケース</text>
+  <text x="170" y="210" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">低リスクの一般サービス</text>
+  <text x="170" y="228" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">消費者向けWebアプリ等</text>
+
+  <text x="170" y="258" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="bold" font-family="sans-serif">認証方式例</text>
+  <rect x="60" y="265" width="220" height="22" rx="4" fill="#172554"/>
+  <text x="170" y="281" text-anchor="middle" fill="#7dd3fc" font-size="10" font-family="sans-serif">SMS OTP（制限付き） / ソフトウェアOTP</text>
+  <rect x="60" y="292" width="220" height="22" rx="4" fill="#172554"/>
+  <text x="170" y="308" text-anchor="middle" fill="#7dd3fc" font-size="10" font-family="sans-serif">パスワード + 記憶秘密（組合せ）</text>
+
+  <!-- AAL2 -->
+  <rect x="340" y="50" width="280" height="280" rx="10" fill="#1e293b" stroke="#fbbf24" stroke-width="2.5"/>
+  <rect x="340" y="50" width="280" height="48" rx="10" fill="#2d1f00"/>
+  <rect x="340" y="86" width="280" height="12" fill="#2d1f00"/>
+  <text x="480" y="74" text-anchor="middle" fill="#fbbf24" font-size="15" font-weight="bold" font-family="sans-serif">AAL2</text>
+  <text x="480" y="92" text-anchor="middle" fill="#fdba74" font-size="11" font-family="sans-serif">高保証レベル（標準）</text>
+
+  <text x="480" y="120" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="bold" font-family="sans-serif">要件</text>
+  <text x="480" y="140" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">2種類以上の要素を使った多要素認証</text>
+  <text x="480" y="158" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">暗号プロトコルによる保護が必要</text>
+
+  <text x="480" y="190" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="bold" font-family="sans-serif">対象ユースケース</text>
+  <text x="480" y="210" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">企業内システム・中リスク業務</text>
+  <text x="480" y="228" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">VPN、クラウドサービス、社内SaaS</text>
+
+  <text x="480" y="258" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="bold" font-family="sans-serif">認証方式例</text>
+  <rect x="370" y="265" width="220" height="22" rx="4" fill="#2d1f00"/>
+  <text x="480" y="281" text-anchor="middle" fill="#fdba74" font-size="10" font-family="sans-serif">TOTP / PUSH通知（番号照合）</text>
+  <rect x="370" y="292" width="220" height="22" rx="4" fill="#2d1f00"/>
+  <text x="480" y="308" text-anchor="middle" fill="#fdba74" font-size="10" font-family="sans-serif">Passkeys（デバイスバウンド）</text>
+
+  <!-- AAL3 -->
+  <rect x="650" y="50" width="280" height="280" rx="10" fill="#1e293b" stroke="#34d399" stroke-width="3"/>
+  <rect x="650" y="50" width="280" height="48" rx="10" fill="#0d2d1e"/>
+  <rect x="650" y="86" width="280" height="12" fill="#0d2d1e"/>
+  <text x="790" y="74" text-anchor="middle" fill="#34d399" font-size="15" font-weight="bold" font-family="sans-serif">AAL3</text>
+  <text x="790" y="92" text-anchor="middle" fill="#6ee7b7" font-size="11" font-family="sans-serif">最高保証レベル</text>
+
+  <text x="790" y="120" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="bold" font-family="sans-serif">要件</text>
+  <text x="790" y="140" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">ハードウェア認証器 + フィッシング耐性</text>
+  <text x="790" y="158" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">物理デバイスに秘密鍵バインドが必須</text>
+
+  <text x="790" y="190" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="bold" font-family="sans-serif">対象ユースケース</text>
+  <text x="790" y="210" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">特権アクセス・重要インフラ</text>
+  <text x="790" y="228" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">政府機関・金融・医療の重要システム</text>
+
+  <text x="790" y="258" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="bold" font-family="sans-serif">認証方式例</text>
+  <rect x="680" y="265" width="220" height="22" rx="4" fill="#0d2d1e"/>
+  <text x="790" y="281" text-anchor="middle" fill="#6ee7b7" font-size="10" font-family="sans-serif">FIDO2 セキュリティキー（YubiKey等）</text>
+  <rect x="680" y="292" width="220" height="22" rx="4" fill="#0d2d1e"/>
+  <text x="790" y="308" text-anchor="middle" fill="#6ee7b7" font-size="10" font-family="sans-serif">スマートカード / PKI証明書</text>
+
+  <!-- Arrows between levels -->
+  <line x1="320" y1="190" x2="338" y2="190" stroke="#334155" stroke-width="2"/>
+  <polygon points="334,184 342,190 334,196" fill="#334155"/>
+  <line x1="622" y1="190" x2="648" y2="190" stroke="#334155" stroke-width="2"/>
+  <polygon points="644,184 652,190 644,196" fill="#334155"/>
+
+  <!-- Bottom note -->
+  <text x="480" y="348" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">ISMS（ISO27001）では最低でも AAL2 相当の実装を特権アカウントに適用することを推奨</text>
+</svg>

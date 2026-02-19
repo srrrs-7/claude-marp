@@ -1,0 +1,64 @@
+<svg viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="820" height="360" fill="#f0f4f8" rx="12"/>
+  <text x="410" y="30" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="15" font-weight="bold">インシデント管理プロセス (Annex A 5.24〜5.28)</text>
+  <!-- Step boxes in a horizontal flow -->
+  <!-- 1: 準備 -->
+  <rect x="25" y="65" width="120" height="100" rx="8" fill="#37474F" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.25))"/>
+  <text x="85" y="100" text-anchor="middle" fill="white" font-family="sans-serif" font-size="14" font-weight="bold">準備</text>
+  <text x="85" y="118" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">計画策定</text>
+  <text x="85" y="133" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">体制整備</text>
+  <text x="85" y="148" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">訓練実施</text>
+  <!-- Arrow 1→2 -->
+  <line x1="145" y1="115" x2="165" y2="115" stroke="#37474F" stroke-width="2"/>
+  <polygon points="165,110 175,115 165,120" fill="#37474F"/>
+  <!-- 2: 検知・報告 -->
+  <rect x="175" y="65" width="120" height="100" rx="8" fill="#EF5350" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.25))"/>
+  <text x="235" y="95" text-anchor="middle" fill="white" font-family="sans-serif" font-size="14" font-weight="bold">検知・報告</text>
+  <text x="235" y="113" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">監視アラート</text>
+  <text x="235" y="128" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">従業員報告</text>
+  <text x="235" y="143" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">ログ分析</text>
+  <text x="235" y="158" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">分類・評価</text>
+  <!-- Arrow 2→3 -->
+  <line x1="295" y1="115" x2="315" y2="115" stroke="#37474F" stroke-width="2"/>
+  <polygon points="315,110 325,115 315,120" fill="#37474F"/>
+  <!-- 3: トリアージ・分析 -->
+  <rect x="325" y="65" width="120" height="100" rx="8" fill="#E65100" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.25))"/>
+  <text x="385" y="95" text-anchor="middle" fill="white" font-family="sans-serif" font-size="14" font-weight="bold">分析・評価</text>
+  <text x="385" y="113" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">影響範囲特定</text>
+  <text x="385" y="128" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">優先度判定</text>
+  <text x="385" y="143" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">原因調査</text>
+  <text x="385" y="158" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">エスカレ</text>
+  <!-- Arrow 3→4 -->
+  <line x1="445" y1="115" x2="465" y2="115" stroke="#37474F" stroke-width="2"/>
+  <polygon points="465,110 475,115 465,120" fill="#37474F"/>
+  <!-- 4: 封じ込め・根絶 -->
+  <rect x="475" y="65" width="120" height="100" rx="8" fill="#1565C0" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.25))"/>
+  <text x="535" y="95" text-anchor="middle" fill="white" font-family="sans-serif" font-size="14" font-weight="bold">封込・根絶</text>
+  <text x="535" y="113" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">隔離・遮断</text>
+  <text x="535" y="128" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">マルウェア除去</text>
+  <text x="535" y="143" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">脆弱性修正</text>
+  <text x="535" y="158" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">証拠保全</text>
+  <!-- Arrow 4→5 -->
+  <line x1="595" y1="115" x2="615" y2="115" stroke="#37474F" stroke-width="2"/>
+  <polygon points="615,110 625,115 615,120" fill="#37474F"/>
+  <!-- 5: 復旧 -->
+  <rect x="625" y="65" width="120" height="100" rx="8" fill="#2E7D32" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.25))"/>
+  <text x="685" y="100" text-anchor="middle" fill="white" font-family="sans-serif" font-size="14" font-weight="bold">復旧</text>
+  <text x="685" y="118" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">バックアップ復元</text>
+  <text x="685" y="133" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">サービス再開</text>
+  <text x="685" y="148" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">監視強化</text>
+  <!-- 6: 事後分析 (bottom center) -->
+  <rect x="300" y="220" width="220" height="100" rx="8" fill="#6A1B9A" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.25))"/>
+  <text x="410" y="255" text-anchor="middle" fill="white" font-family="sans-serif" font-size="15" font-weight="bold">⑥ 事後分析・学習</text>
+  <text x="410" y="273" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">根本原因の特定</text>
+  <text x="410" y="290" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">再発防止策</text>
+  <text x="410" y="307" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12">報告書作成・共有</text>
+  <!-- Arrows to/from post-analysis -->
+  <line x1="685" y1="165" x2="685" y2="200" stroke="#6A1B9A" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="685" y1="200" x2="520" y2="230" stroke="#6A1B9A" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="410" y1="220" x2="85" y2="175" stroke="#6A1B9A" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="88,170 78,175 85,182" fill="#6A1B9A"/>
+  <text x="220" y="215" text-anchor="middle" fill="#6A1B9A" font-family="sans-serif" font-size="12" font-weight="bold">継続的改善へ</text>
+  <!-- ISMSとの関連 -->
+  <text x="410" y="345" text-anchor="middle" fill="#1565C0" font-family="sans-serif" font-size="12" font-weight="bold">★ 個人情報保護法：重大インシデントは72時間以内（速報）に個人情報保護委員会へ報告義務</text>
+</svg>

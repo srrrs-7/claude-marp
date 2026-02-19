@@ -1,0 +1,87 @@
+<svg viewBox="0 0 920 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="920" height="380" fill="#f0f4f8" rx="12"/>
+  <text x="460" y="30" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="15" font-weight="bold">ISMS認証取得プロセス（ISO/IEC 27001認証スキーム）</text>
+  <!-- Phase labels row -->
+  <text x="60" y="60" text-anchor="middle" fill="#666" font-family="sans-serif" font-size="11">事前準備</text>
+  <text x="200" y="60" text-anchor="middle" fill="#666" font-family="sans-serif" font-size="11">実装</text>
+  <text x="380" y="60" text-anchor="middle" fill="#666" font-family="sans-serif" font-size="11">内部評価</text>
+  <text x="560" y="60" text-anchor="middle" fill="#666" font-family="sans-serif" font-size="11">外部審査</text>
+  <text x="720" y="60" text-anchor="middle" fill="#666" font-family="sans-serif" font-size="11">認証後</text>
+  <!-- Box 1: ギャップ分析 -->
+  <rect x="15" y="75" width="95" height="80" rx="8" fill="#455A64" style="filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.25))"/>
+  <text x="63" y="107" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">ギャップ</text>
+  <text x="63" y="123" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">分析</text>
+  <text x="63" y="143" text-anchor="middle" fill="#CFD8DC" font-family="sans-serif" font-size="10">現状把握</text>
+  <!-- Arrow -->
+  <line x1="110" y1="115" x2="125" y2="115" stroke="#90A4AE" stroke-width="2"/>
+  <polygon points="125,110 135,115 125,120" fill="#90A4AE"/>
+  <!-- Box 2: 体制整備 -->
+  <rect x="135" y="75" width="95" height="80" rx="8" fill="#37474F" style="filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.25))"/>
+  <text x="183" y="107" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">体制整備</text>
+  <text x="183" y="123" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">&amp;文書化</text>
+  <text x="183" y="143" text-anchor="middle" fill="#CFD8DC" font-family="sans-serif" font-size="10">方針・規程</text>
+  <!-- Arrow -->
+  <line x1="230" y1="115" x2="245" y2="115" stroke="#90A4AE" stroke-width="2"/>
+  <polygon points="245,110 255,115 245,120" fill="#90A4AE"/>
+  <!-- Box 3: 管理策実装 -->
+  <rect x="255" y="75" width="95" height="80" rx="8" fill="#1565C0" style="filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.25))"/>
+  <text x="303" y="107" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">管理策</text>
+  <text x="303" y="123" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">実装</text>
+  <text x="303" y="143" text-anchor="middle" fill="#BBDEFB" font-family="sans-serif" font-size="10">Annex A</text>
+  <!-- Arrow -->
+  <line x1="350" y1="115" x2="365" y2="115" stroke="#90A4AE" stroke-width="2"/>
+  <polygon points="365,110 375,115 365,120" fill="#90A4AE"/>
+  <!-- Box 4: 内部監査 -->
+  <rect x="375" y="75" width="95" height="80" rx="8" fill="#0277BD" style="filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.25))"/>
+  <text x="423" y="107" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">内部監査</text>
+  <text x="423" y="130" text-anchor="middle" fill="#BBDEFB" font-family="sans-serif" font-size="10">全範囲</text>
+  <text x="423" y="143" text-anchor="middle" fill="#BBDEFB" font-family="sans-serif" font-size="10">適合性確認</text>
+  <!-- Arrow -->
+  <line x1="470" y1="115" x2="485" y2="115" stroke="#90A4AE" stroke-width="2"/>
+  <polygon points="485,110 495,115 485,120" fill="#90A4AE"/>
+  <!-- Box 5: マネジメントレビュー -->
+  <rect x="495" y="75" width="95" height="80" rx="8" fill="#00695C" style="filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.25))"/>
+  <text x="543" y="100" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12" font-weight="bold">マネジメント</text>
+  <text x="543" y="116" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12" font-weight="bold">レビュー</text>
+  <text x="543" y="133" text-anchor="middle" fill="#B2DFDB" font-family="sans-serif" font-size="10">経営層評価</text>
+  <text x="543" y="146" text-anchor="middle" fill="#B2DFDB" font-family="sans-serif" font-size="10">承認・改善</text>
+  <!-- Arrow -->
+  <line x1="590" y1="115" x2="605" y2="115" stroke="#90A4AE" stroke-width="2"/>
+  <polygon points="605,110 615,115 605,120" fill="#90A4AE"/>
+  <!-- Box 6: ステージ1 -->
+  <rect x="615" y="75" width="80" height="80" rx="8" fill="#E65100" style="filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.25))"/>
+  <text x="655" y="107" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">Stage 1</text>
+  <text x="655" y="123" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">文書審査</text>
+  <text x="655" y="140" text-anchor="middle" fill="#FFCCBC" font-family="sans-serif" font-size="10">準備確認</text>
+  <!-- Arrow -->
+  <line x1="695" y1="115" x2="710" y2="115" stroke="#90A4AE" stroke-width="2"/>
+  <polygon points="710,110 720,115 710,120" fill="#90A4AE"/>
+  <!-- Box 7: ステージ2 -->
+  <rect x="720" y="75" width="80" height="80" rx="8" fill="#BF360C" style="filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.25))"/>
+  <text x="760" y="107" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">Stage 2</text>
+  <text x="760" y="123" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">現地審査</text>
+  <text x="760" y="140" text-anchor="middle" fill="#FFCCBC" font-family="sans-serif" font-size="10">実施確認</text>
+  <!-- Arrow -->
+  <line x1="800" y1="115" x2="815" y2="115" stroke="#90A4AE" stroke-width="2"/>
+  <polygon points="815,110 825,115 815,120" fill="#90A4AE"/>
+  <!-- Box 8: 認証 -->
+  <rect x="825" y="75" width="80" height="80" rx="8" fill="#F9A825" style="filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.3))"/>
+  <text x="865" y="107" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">認証</text>
+  <text x="865" y="123" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">発行</text>
+  <text x="865" y="140" text-anchor="middle" fill="#FFF8E1" font-family="sans-serif" font-size="10">3年間有効</text>
+  <!-- Post-certification cycle -->
+  <rect x="615" y="210" width="130" height="65" rx="8" fill="#455A64" style="filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="680" y="240" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">サーベイランス</text>
+  <text x="680" y="258" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">第1年・第2年（年次）</text>
+  <rect x="760" y="210" width="145" height="65" rx="8" fill="#6A1B9A" style="filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="833" y="240" text-anchor="middle" fill="white" font-family="sans-serif" font-size="13" font-weight="bold">更新審査</text>
+  <text x="833" y="258" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11">第3年（再認証）</text>
+  <line x1="865" y1="155" x2="865" y2="210" stroke="#F9A825" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <!-- Timeline labels -->
+  <text x="110" y="200" text-anchor="middle" fill="#1565C0" font-family="sans-serif" font-size="12" font-weight="bold">約3〜6ヶ月（準備期間）</text>
+  <text x="460" y="200" text-anchor="middle" fill="#0277BD" font-family="sans-serif" font-size="12" font-weight="bold">約3〜6ヶ月（実装・評価）</text>
+  <text x="680" y="310" text-anchor="middle" fill="#455A64" font-family="sans-serif" font-size="12">認証後は3年サイクルで継続</text>
+  <!-- Duration line -->
+  <line x1="15" y1="175" x2="905" y2="175" stroke="#90A4AE" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="460" y="168" text-anchor="middle" fill="#90A4AE" font-family="sans-serif" font-size="11">総期間の目安：初回認証まで6〜18ヶ月</text>
+</svg>

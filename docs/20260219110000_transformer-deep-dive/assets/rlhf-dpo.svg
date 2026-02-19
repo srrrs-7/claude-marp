@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117" font-family="sans-serif">
+  <rect width="960" height="480" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="480" y="26" text-anchor="middle" fill="#e6edf3" font-size="18" font-weight="bold">RLHF vs DPO — アライメント手法の比較</text>
+
+  <!-- ===== LEFT: RLHF Pipeline ===== -->
+  <rect x="20" y="40" width="430" height="285" rx="6" fill="#0f1520" stroke="#30363d" stroke-width="1"/>
+  <text x="235" y="62" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold">RLHF — Reinforcement Learning from Human Feedback</text>
+
+  <!-- Step 1: SFT -->
+  <rect x="35" y="75" width="400" height="55" rx="5" fill="#1c1108" stroke="#f97316" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="70" y="93" fill="#f97316" font-size="11" font-weight="bold">Step 1: SFT (Supervised Fine-Tuning)</text>
+  <text x="55" y="110" fill="#94a3b8" font-size="10">Prompt + Human Demo</text>
+  <polygon points="200,110 220,110 220,115 225,107 220,99 220,104 200,104" fill="#f97316"/>
+  <text x="235" y="112" fill="#fed7aa" font-size="10">→ LLM学習</text>
+  <text x="355" y="112" fill="#94a3b8" font-size="9">(SFT Model)</text>
+
+  <!-- Arrow -->
+  <line x1="235" y1="130" x2="235" y2="145" stroke="#f97316" stroke-width="2"/>
+  <polygon points="230,143 235,153 240,143" fill="#f97316"/>
+
+  <!-- Step 2: Reward Model -->
+  <rect x="35" y="153" width="400" height="62" rx="5" fill="#1c0808" stroke="#ef4444" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="70" y="171" fill="#ef4444" font-size="11" font-weight="bold">Step 2: Reward Model Training</text>
+  <text x="55" y="188" fill="#94a3b8" font-size="10">Human annotators:</text>
+  <text x="55" y="202" fill="#94a3b8" font-size="10">y_A &gt; y_B &gt; y_C → Rank responses</text>
+  <text x="280" y="191" fill="#fca5a5" font-size="10">→ Train RM</text>
+  <text x="280" y="205" fill="#fca5a5" font-size="10">r(x,y) score</text>
+
+  <!-- Arrow -->
+  <line x1="235" y1="215" x2="235" y2="230" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="230,228 235,238 240,228" fill="#ef4444"/>
+
+  <!-- Step 3: PPO -->
+  <rect x="35" y="238" width="400" height="70" rx="5" fill="#200808" stroke="#dc2626" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="70" y="255" fill="#dc2626" font-size="11" font-weight="bold">Step 3: PPO (Proximal Policy Optimization)</text>
+  <!-- Mini cycle inside -->
+  <rect x="50" y="263" width="70" height="36" rx="3" fill="#1c1108" stroke="#f97316" stroke-width="1"/>
+  <text x="85" y="280" text-anchor="middle" fill="#f97316" font-size="9">LLM</text>
+  <text x="85" y="292" text-anchor="middle" fill="#94a3b8" font-size="8">generates</text>
+
+  <line x1="120" y1="281" x2="145" y2="281" stroke="#fb923c" stroke-width="1.5"/>
+  <polygon points="143,277 153,281 143,285" fill="#fb923c"/>
+
+  <rect x="153" y="263" width="70" height="36" rx="3" fill="#1c0808" stroke="#ef4444" stroke-width="1"/>
+  <text x="188" y="280" text-anchor="middle" fill="#ef4444" font-size="9">RM</text>
+  <text x="188" y="292" text-anchor="middle" fill="#94a3b8" font-size="8">scores</text>
+
+  <line x1="223" y1="281" x2="248" y2="281" stroke="#dc2626" stroke-width="1.5"/>
+  <polygon points="246,277 256,281 246,285" fill="#dc2626"/>
+
+  <rect x="256" y="263" width="70" height="36" rx="3" fill="#200800" stroke="#dc2626" stroke-width="1"/>
+  <text x="291" y="280" text-anchor="middle" fill="#dc2626" font-size="9">PPO</text>
+  <text x="291" y="292" text-anchor="middle" fill="#94a3b8" font-size="8">updates</text>
+
+  <!-- Loop back arrow -->
+  <line x1="326" y1="281" x2="360" y2="281" stroke="#dc2626" stroke-width="1.5"/>
+  <path d="M360,281 Q390,281 390,295 Q390,305 380,305 Q200,310 55,298 Q40,298 40,285 Q40,272 50,268" stroke="#dc2626" stroke-width="1.5" fill="none" stroke-dasharray="4,2"/>
+  <polygon points="45,265 50,258 55,265" fill="#dc2626"/>
+  <text x="380" y="320" fill="#94a3b8" font-size="9">repeat</text>
+
+  <!-- ===== RIGHT: DPO ===== -->
+  <rect x="510" y="40" width="430" height="285" rx="6" fill="#0f1520" stroke="#30363d" stroke-width="1"/>
+  <text x="725" y="62" text-anchor="middle" fill="#3b82f6" font-size="14" font-weight="bold">DPO — Direct Preference Optimization</text>
+  <text x="725" y="78" text-anchor="middle" fill="#94a3b8" font-size="10">(Rafailov et al., 2023)</text>
+
+  <!-- Single step: DPO loss -->
+  <rect x="525" y="90" width="400" height="180" rx="5" fill="#0a1628" stroke="#3b82f6" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="725" y="110" text-anchor="middle" fill="#3b82f6" font-size="12" font-weight="bold">Single Step: DPO Training</text>
+
+  <!-- Input data -->
+  <rect x="538" y="120" width="175" height="55" rx="4" fill="#1a1f2e" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="625" y="138" text-anchor="middle" fill="#a5b4fc" font-size="10" font-weight="bold">Preference Dataset</text>
+  <text x="625" y="153" text-anchor="middle" fill="#c4b5fd" font-size="10">y_w (preferred)</text>
+  <text x="625" y="168" text-anchor="middle" fill="#c4b5fd" font-size="10">y_l (rejected)</text>
+
+  <!-- Arrow -->
+  <line x1="713" y1="147" x2="740" y2="147" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="738,143 748,147 738,151" fill="#3b82f6"/>
+
+  <!-- DPO loss box -->
+  <rect x="748" y="120" width="165" height="55" rx="4" fill="#0f2a1a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="830" y="138" text-anchor="middle" fill="#86efac" font-size="10" font-weight="bold">DPO Loss</text>
+  <text x="830" y="153" text-anchor="middle" fill="#86efac" font-size="10">-log σ(β × Δ)</text>
+  <text x="830" y="168" text-anchor="middle" fill="#86efac" font-size="10">直接最適化</text>
+
+  <!-- Full DPO formula -->
+  <rect x="538" y="184" width="375" height="52" rx="3" fill="#0f1520" stroke="#30363d" stroke-width="1"/>
+  <text x="725" y="203" text-anchor="middle" fill="#c4b5fd" font-size="9" font-weight="bold">L_DPO(π_θ; π_ref) = </text>
+  <text x="725" y="220" text-anchor="middle" fill="#e6edf3" font-size="9">-E[log σ(β log(π_θ(y_w|x)/π_ref(y_w|x)) - β log(π_θ(y_l|x)/π_ref(y_l|x)))]</text>
+  <text x="725" y="233" text-anchor="middle" fill="#94a3b8" font-size="8">β: KLペナルティ強度, π_ref: 参照モデル</text>
+
+  <!-- Benefits -->
+  <rect x="525" y="282" width="190" height="30" rx="4" fill="#0a2010" stroke="#22c55e" stroke-width="1"/>
+  <text x="620" y="301" text-anchor="middle" fill="#86efac" font-size="11" font-weight="bold">RM不要 (1ステップ)</text>
+
+  <rect x="725" y="282" width="210" height="30" rx="4" fill="#0a2010" stroke="#22c55e" stroke-width="1"/>
+  <text x="830" y="301" text-anchor="middle" fill="#86efac" font-size="11" font-weight="bold">PPO不要 (安定学習)</text>
+
+  <!-- ===== BOTTOM COMPARISON TABLE ===== -->
+  <rect x="20" y="335" width="920" height="138" rx="6" fill="#0f1520" stroke="#30363d" stroke-width="1"/>
+  <text x="480" y="355" text-anchor="middle" fill="#e6edf3" font-size="13" font-weight="bold">手法比較</text>
+
+  <!-- Table header -->
+  <rect x="30" y="362" width="900" height="26" rx="3" fill="#161b22" stroke="#21262d" stroke-width="1"/>
+  <text x="180" y="379" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="bold">項目</text>
+  <text x="430" y="379" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold">RLHF (PPO)</text>
+  <text x="680" y="379" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="bold">DPO</text>
+  <text x="870" y="379" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold">ORPO/SimPO*</text>
+
+  <!-- Row 1 -->
+  <rect x="30" y="388" width="900" height="26" rx="0" fill="#0d1117"/>
+  <text x="180" y="405" text-anchor="middle" fill="#e6edf3" font-size="11">複雑さ</text>
+  <text x="430" y="405" text-anchor="middle" fill="#fca5a5" font-size="11">高い (3段階, RM必要)</text>
+  <text x="680" y="405" text-anchor="middle" fill="#86efac" font-size="11">低い (1段階)</text>
+  <text x="870" y="405" text-anchor="middle" fill="#86efac" font-size="11">最低 (ref不要)</text>
+
+  <!-- Row 2 -->
+  <rect x="30" y="414" width="900" height="26" rx="0" fill="#161b22"/>
+  <text x="180" y="431" text-anchor="middle" fill="#e6edf3" font-size="11">学習安定性</text>
+  <text x="430" y="431" text-anchor="middle" fill="#fca5a5" font-size="11">不安定 (PPO reward hack)</text>
+  <text x="680" y="431" text-anchor="middle" fill="#86efac" font-size="11">安定</text>
+  <text x="870" y="431" text-anchor="middle" fill="#86efac" font-size="11">安定</text>
+
+  <!-- Row 3 -->
+  <rect x="30" y="440" width="900" height="26" rx="0" fill="#0d1117"/>
+  <text x="180" y="457" text-anchor="middle" fill="#e6edf3" font-size="11">性能</text>
+  <text x="430" y="457" text-anchor="middle" fill="#f97316" font-size="11">高い (GPT-4級)</text>
+  <text x="680" y="457" text-anchor="middle" fill="#93c5fd" font-size="11">競争的 (Llama-3等)</text>
+  <text x="870" y="457" text-anchor="middle" fill="#86efac" font-size="11">競争的・効率的</text>
+
+  <!-- Row 4 -->
+  <rect x="30" y="466" width="900" height="26" rx="0" fill="#161b22"/>
+  <text x="180" y="483" text-anchor="middle" fill="#e6edf3" font-size="11">採用例</text>
+  <text x="430" y="483" text-anchor="middle" fill="#94a3b8" font-size="11">GPT-4, Claude, Gemini</text>
+  <text x="680" y="483" text-anchor="middle" fill="#94a3b8" font-size="11">Llama-3, Mistral, Zephyr</text>
+  <text x="870" y="483" text-anchor="middle" fill="#94a3b8" font-size="11">2024年以降のモデル</text>
+</svg>

@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0d1117" font-family="sans-serif">
+  <!-- Background -->
+  <rect width="960" height="480" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="480" y="36" text-anchor="middle" fill="#e6edf3" font-size="20" font-weight="bold">RNN vs Transformer — 並列処理の違い</text>
+
+  <!-- Dividing line -->
+  <line x1="480" y1="55" x2="480" y2="430" stroke="#30363d" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- ===== LEFT: RNN ===== -->
+  <text x="240" y="72" text-anchor="middle" fill="#f97316" font-size="16" font-weight="bold">RNN (逐次処理)</text>
+
+  <!-- RNN boxes -->
+  <!-- t-2 -->
+  <rect x="60" y="140" width="80" height="50" rx="6" fill="#1c1108" stroke="#f97316" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="100" y="162" text-anchor="middle" fill="#f97316" font-size="12" font-weight="bold">t-2</text>
+  <text x="100" y="178" text-anchor="middle" fill="#e6edf3" font-size="10">hidden</text>
+
+  <!-- t-1 -->
+  <rect x="180" y="140" width="80" height="50" rx="6" fill="#1c1108" stroke="#f97316" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="220" y="162" text-anchor="middle" fill="#f97316" font-size="12" font-weight="bold">t-1</text>
+  <text x="220" y="178" text-anchor="middle" fill="#e6edf3" font-size="10">hidden</text>
+
+  <!-- t -->
+  <rect x="300" y="140" width="80" height="50" rx="6" fill="#1c1108" stroke="#f97316" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="340" y="162" text-anchor="middle" fill="#f97316" font-size="12" font-weight="bold">t</text>
+  <text x="340" y="178" text-anchor="middle" fill="#e6edf3" font-size="10">hidden</text>
+
+  <!-- RNN sequential arrows -->
+  <!-- t-2 -> t-1 -->
+  <line x1="140" y1="165" x2="178" y2="165" stroke="#f97316" stroke-width="2"/>
+  <polygon points="178,160 188,165 178,170" fill="#f97316"/>
+  <!-- t-1 -> t -->
+  <line x1="260" y1="165" x2="298" y2="165" stroke="#f97316" stroke-width="2"/>
+  <polygon points="298,160 308,165 298,170" fill="#f97316"/>
+  <!-- arrow after t -->
+  <line x1="380" y1="165" x2="415" y2="165" stroke="#f97316" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="415,160 425,165 415,170" fill="#f97316"/>
+
+  <!-- Input arrows (bottom) -->
+  <line x1="100" y1="220" x2="100" y2="240" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="95,238 100,248 105,238" fill="#94a3b8"/>
+  <text x="100" y="262" text-anchor="middle" fill="#94a3b8" font-size="10">x₁</text>
+
+  <line x1="220" y1="220" x2="220" y2="240" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="215,238 220,248 225,238" fill="#94a3b8"/>
+  <text x="220" y="262" text-anchor="middle" fill="#94a3b8" font-size="10">x₂</text>
+
+  <line x1="340" y1="220" x2="340" y2="240" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="335,238 340,248 345,238" fill="#94a3b8"/>
+  <text x="340" y="262" text-anchor="middle" fill="#94a3b8" font-size="10">x₃</text>
+
+  <!-- RNN label -->
+  <rect x="60" y="280" width="370" height="32" rx="5" fill="#1c1108" stroke="#f97316" stroke-width="1"/>
+  <text x="245" y="300" text-anchor="middle" fill="#f97316" font-size="13">逐次処理 O(n) — ステップを1つずつ処理</text>
+
+  <!-- RNN problem note -->
+  <rect x="80" y="330" width="330" height="50" rx="5" fill="#1c0a00" stroke="#dc2626" stroke-width="1"/>
+  <text x="245" y="350" text-anchor="middle" fill="#fca5a5" font-size="12" font-weight="bold">問題点</text>
+  <text x="245" y="368" text-anchor="middle" fill="#fca5a5" font-size="11">長距離依存が苦手・並列化不可</text>
+
+  <!-- Curved dependency arrow showing long-range problem -->
+  <path d="M100,138 Q220,100 340,138" stroke="#f97316" stroke-width="1.5" fill="none" stroke-dasharray="5,3"/>
+  <text x="220" y="95" text-anchor="middle" fill="#f97316" font-size="10">情報が劣化</text>
+
+  <!-- ===== RIGHT: Transformer ===== -->
+  <text x="720" y="72" text-anchor="middle" fill="#3b82f6" font-size="16" font-weight="bold">Transformer (並列処理)</text>
+
+  <!-- Transformer boxes -->
+  <rect x="530" y="140" width="80" height="50" rx="6" fill="#0a1628" stroke="#3b82f6" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="570" y="162" text-anchor="middle" fill="#3b82f6" font-size="12" font-weight="bold">pos 1</text>
+  <text x="570" y="178" text-anchor="middle" fill="#e6edf3" font-size="10">token</text>
+
+  <rect x="650" y="140" width="80" height="50" rx="6" fill="#0a1628" stroke="#3b82f6" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="690" y="162" text-anchor="middle" fill="#3b82f6" font-size="12" font-weight="bold">pos 2</text>
+  <text x="690" y="178" text-anchor="middle" fill="#e6edf3" font-size="10">token</text>
+
+  <rect x="770" y="140" width="80" height="50" rx="6" fill="#0a1628" stroke="#3b82f6" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="810" y="162" text-anchor="middle" fill="#3b82f6" font-size="12" font-weight="bold">pos 3</text>
+  <text x="810" y="178" text-anchor="middle" fill="#e6edf3" font-size="10">token</text>
+
+  <!-- All-to-all connections (Transformer self-attention) -->
+  <!-- pos1 <-> pos2 -->
+  <line x1="610" y1="155" x2="650" y2="155" stroke="#60a5fa" stroke-width="1.5"/>
+  <!-- pos2 <-> pos3 -->
+  <line x1="730" y1="155" x2="770" y2="155" stroke="#60a5fa" stroke-width="1.5"/>
+  <!-- pos1 <-> pos3 (arc) -->
+  <path d="M570,140 Q690,95 810,140" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+  <!-- bidirectional indicators -->
+  <polygon points="648,150 658,155 648,160" fill="#60a5fa"/>
+  <polygon points="612,150 602,155 612,160" fill="#60a5fa"/>
+  <polygon points="768,150 778,155 768,160" fill="#60a5fa"/>
+  <polygon points="732,150 722,155 732,160" fill="#60a5fa"/>
+
+  <!-- Input arrows -->
+  <line x1="570" y1="220" x2="570" y2="240" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="565,238 570,248 575,238" fill="#94a3b8"/>
+  <text x="570" y="262" text-anchor="middle" fill="#94a3b8" font-size="10">x₁</text>
+
+  <line x1="690" y1="220" x2="690" y2="240" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="685,238 690,248 695,238" fill="#94a3b8"/>
+  <text x="690" y="262" text-anchor="middle" fill="#94a3b8" font-size="10">x₂</text>
+
+  <line x1="810" y1="220" x2="810" y2="240" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="805,238 810,248 815,238" fill="#94a3b8"/>
+  <text x="810" y="262" text-anchor="middle" fill="#94a3b8" font-size="10">x₃</text>
+
+  <!-- Transformer label -->
+  <rect x="520" y="280" width="400" height="32" rx="5" fill="#0a1628" stroke="#3b82f6" stroke-width="1"/>
+  <text x="720" y="300" text-anchor="middle" fill="#3b82f6" font-size="13">並列処理 O(1) — 全位置を同時に処理</text>
+
+  <!-- Transformer benefit note -->
+  <rect x="540" y="330" width="360" height="50" rx="5" fill="#001428" stroke="#22c55e" stroke-width="1"/>
+  <text x="720" y="350" text-anchor="middle" fill="#86efac" font-size="12" font-weight="bold">利点</text>
+  <text x="720" y="368" text-anchor="middle" fill="#86efac" font-size="11">全位置を同時参照・GPUで高速並列化</text>
+
+  <!-- Bottom comparison -->
+  <rect x="40" y="415" width="880" height="55" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="240" y="437" text-anchor="middle" fill="#f97316" font-size="12" font-weight="bold">RNN: 長距離依存が苦手</text>
+  <text x="240" y="456" text-anchor="middle" fill="#94a3b8" font-size="11">勾配消失・逐次依存による速度制限</text>
+  <line x1="480" y1="420" x2="480" y2="465" stroke="#30363d" stroke-width="1"/>
+  <text x="720" y="437" text-anchor="middle" fill="#3b82f6" font-size="12" font-weight="bold">Transformer: 全位置を同時に参照</text>
+  <text x="720" y="456" text-anchor="middle" fill="#94a3b8" font-size="11">Attention機構で任意の位置間を直接接続</text>
+</svg>

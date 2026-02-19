@@ -1,0 +1,53 @@
+<svg viewBox="0 0 900 310" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <text x="450" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">OpenClaw 3フェーズ進化</text>
+
+  <!-- Phase 1 -->
+  <rect x="30" y="50" width="250" height="230" rx="12" fill="#e8eaf6" stroke="#3f51b5" stroke-width="2"/>
+  <rect x="30" y="50" width="250" height="44" rx="12" fill="#3f51b5"/>
+  <rect x="30" y="78" width="250" height="16" fill="#3f51b5"/>
+  <text x="155" y="79" text-anchor="middle" font-size="16" font-weight="bold" fill="white">Phase 1</text>
+  <text x="155" y="115" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a237e">WhatsApp Relay</text>
+  <text x="155" y="137" text-anchor="middle" font-size="12" fill="#555">2025年11月</text>
+  <line x1="55" y1="152" x2="255" y2="152" stroke="#c5cae9" stroke-width="1"/>
+  <text x="65" y="175" font-size="12" fill="#333">• AI返答をWhatsAppに転送</text>
+  <text x="65" y="197" font-size="12" fill="#333">• 単純なメッセージリレー</text>
+  <text x="65" y="219" font-size="12" fill="#333">• Claude/GPTと連携</text>
+  <text x="65" y="241" font-size="12" fill="#333">• 個人向け週末ハック</text>
+  <text x="65" y="263" font-size="12" fill="#888">Clawdbot 前身</text>
+
+  <!-- Arrow 1 -->
+  <polygon points="285,165 305,155 305,175" fill="#666"/>
+  <line x1="280" y1="165" x2="303" y2="165" stroke="#666" stroke-width="2"/>
+
+  <!-- Phase 2 -->
+  <rect x="325" y="50" width="250" height="230" rx="12" fill="#fce4ec" stroke="#e91e63" stroke-width="2"/>
+  <rect x="325" y="50" width="250" height="44" rx="12" fill="#e91e63"/>
+  <rect x="325" y="78" width="250" height="16" fill="#e91e63"/>
+  <text x="450" y="79" text-anchor="middle" font-size="16" font-weight="bold" fill="white">Phase 2</text>
+  <text x="450" y="115" text-anchor="middle" font-size="14" font-weight="bold" fill="#880e4f">パーソナルAIアシスタント</text>
+  <text x="450" y="137" text-anchor="middle" font-size="12" fill="#555">2026年1月</text>
+  <line x1="350" y1="152" x2="550" y2="152" stroke="#f8bbd9" stroke-width="1"/>
+  <text x="360" y="175" font-size="12" fill="#333">• プロアクティブ通知</text>
+  <text x="360" y="197" font-size="12" fill="#333">• メモリ・コンテキスト管理</text>
+  <text x="360" y="219" font-size="12" fill="#333">• 複数プラットフォーム対応</text>
+  <text x="360" y="241" font-size="12" fill="#333">• スキルシステム初期版</text>
+  <text x="360" y="263" font-size="12" fill="#888">Clawdbot / Moltbot</text>
+
+  <!-- Arrow 2 -->
+  <polygon points="580,165 600,155 600,175" fill="#666"/>
+  <line x1="575" y1="165" x2="598" y2="165" stroke="#666" stroke-width="2"/>
+
+  <!-- Phase 3 -->
+  <rect x="620" y="50" width="250" height="230" rx="12" fill="#e8f5e9" stroke="#43a047" stroke-width="2.5"/>
+  <rect x="620" y="50" width="250" height="44" rx="12" fill="#43a047"/>
+  <rect x="620" y="78" width="250" height="16" fill="#43a047"/>
+  <text x="745" y="79" text-anchor="middle" font-size="16" font-weight="bold" fill="white">Phase 3</text>
+  <text x="745" y="115" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">AIインフラ</text>
+  <text x="745" y="137" text-anchor="middle" font-size="12" fill="#555">2026年1月30日〜</text>
+  <line x1="645" y1="152" x2="845" y2="152" stroke="#c8e6c9" stroke-width="1"/>
+  <text x="655" y="175" font-size="12" fill="#333">• モデル非依存アーキテクチャ</text>
+  <text x="655" y="197" font-size="12" fill="#333">• サンドボックスツール実行</text>
+  <text x="655" y="219" font-size="12" fill="#333">• ハブ&スポーク設計</text>
+  <text x="655" y="241" font-size="12" fill="#333">• 1Mトークンコンテキスト</text>
+  <text x="655" y="263" font-size="12" fill="#1b5e20" font-weight="bold">OpenClaw ★</text>
+</svg>

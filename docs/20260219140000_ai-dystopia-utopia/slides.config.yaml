@@ -1,0 +1,31 @@
+topic: "2045: AIの選択 ― ディストピアかユートピアか"
+language: "ja"
+
+output:
+  dir: "docs/20260219140000_ai-dystopia-utopia"
+  baseName: "ai-dystopia-utopia"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "2045: AIの選択"
+  footer: "AIディストピア vs ユートピア ― 開発者のための未来思考"
+  style: |
+    section {
+      font-size: 1.0em;
+    }
+    section pre code {
+      font-size: 0.56em;
+      line-height: 1.35;
+    }
+    section.section-dystopia {
+      background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+    }
+    section.section-utopia {
+      background: linear-gradient(135deg, #0a1a0a 0%, #0f2d1a 100%);
+    }
+    blockquote {
+      border-left: 4px solid #64b5f6;
+      padding-left: 1em;
+      font-style: italic;
+    }

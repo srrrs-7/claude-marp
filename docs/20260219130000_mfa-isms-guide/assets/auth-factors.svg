@@ -1,0 +1,66 @@
+<svg viewBox="0 0 960 370" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0f172a;border-radius:12px">
+  <text x="480" y="30" text-anchor="middle" fill="#f1f5f9" font-size="17" font-weight="bold" font-family="sans-serif">認証の3要素 — MFA = 異なる要素を2つ以上組み合わせる</text>
+
+  <!-- Knowledge factor -->
+  <rect x="30" y="48" width="275" height="295" rx="12" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+  <rect x="30" y="48" width="275" height="44" rx="12" fill="#1e3a5f"/>
+  <rect x="30" y="80" width="275" height="12" fill="#1e3a5f"/>
+  <text x="167" y="76" text-anchor="middle" fill="#60a5fa" font-size="15" font-weight="bold" font-family="sans-serif">知識要素</text>
+  <text x="167" y="110" text-anchor="middle" fill="#7dd3fc" font-size="12" font-family="sans-serif">Something You KNOW</text>
+  <!-- Lock shape -->
+  <rect x="142" y="128" width="50" height="38" rx="5" fill="#172554" stroke="#60a5fa" stroke-width="2"/>
+  <path d="M152 128 Q152 110 167 110 Q182 110 182 128" fill="none" stroke="#60a5fa" stroke-width="2.5"/>
+  <circle cx="167" cy="150" r="5" fill="#60a5fa"/>
+  <line x1="167" y1="155" x2="167" y2="162" stroke="#60a5fa" stroke-width="2"/>
+  <text x="167" y="195" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">パスワード / PIN</text>
+  <text x="167" y="214" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">秘密の質問</text>
+  <text x="167" y="233" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">パスフレーズ</text>
+  <rect x="50" y="258" width="235" height="30" rx="6" fill="#2d1515"/>
+  <text x="167" y="278" text-anchor="middle" fill="#f87171" font-size="11" font-family="sans-serif">⚠ 漏洩・フィッシング・推測に脆弱</text>
+  <rect x="50" y="298" width="235" height="30" rx="6" fill="#172554"/>
+  <text x="167" y="318" text-anchor="middle" fill="#93c5fd" font-size="11" font-family="sans-serif">単独では不十分。必ず他要素と組合せを</text>
+
+  <!-- Possession factor -->
+  <rect x="342" y="48" width="276" height="295" rx="12" fill="#1e293b" stroke="#34d399" stroke-width="2"/>
+  <rect x="342" y="48" width="276" height="44" rx="12" fill="#0d2d1e"/>
+  <rect x="342" y="80" width="276" height="12" fill="#0d2d1e"/>
+  <text x="480" y="76" text-anchor="middle" fill="#34d399" font-size="15" font-weight="bold" font-family="sans-serif">所持要素</text>
+  <text x="480" y="110" text-anchor="middle" fill="#6ee7b7" font-size="12" font-family="sans-serif">Something You HAVE</text>
+  <!-- Phone shape -->
+  <rect x="458" y="125" width="44" height="68" rx="6" fill="#0d2d1e" stroke="#34d399" stroke-width="2"/>
+  <rect x="464" y="132" width="32" height="44" rx="2" fill="#1e3a5f"/>
+  <circle cx="480" cy="184" r="4" fill="#34d399"/>
+  <text x="480" y="218" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">スマートフォン（PUSH/TOTP）</text>
+  <text x="480" y="237" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">セキュリティキー（FIDO2）</text>
+  <text x="480" y="256" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">ハードウェアトークン</text>
+  <rect x="362" y="272" width="236" height="30" rx="6" fill="#0d2d1e"/>
+  <text x="480" y="292" text-anchor="middle" fill="#86efac" font-size="11" font-family="sans-serif">✓ デバイスに物理的に紐付く強い証拠</text>
+  <rect x="362" y="308" width="236" height="30" rx="6" fill="#0d2d1e"/>
+  <text x="480" y="328" text-anchor="middle" fill="#6ee7b7" font-size="11" font-family="sans-serif">FIDO2 = フィッシング耐性 最強クラス</text>
+
+  <!-- Inherence factor -->
+  <rect x="655" y="48" width="275" height="295" rx="12" fill="#1e293b" stroke="#c084fc" stroke-width="2"/>
+  <rect x="655" y="48" width="275" height="44" rx="12" fill="#2b0754"/>
+  <rect x="655" y="80" width="275" height="12" fill="#2b0754"/>
+  <text x="792" y="76" text-anchor="middle" fill="#c084fc" font-size="15" font-weight="bold" font-family="sans-serif">生体要素</text>
+  <text x="792" y="110" text-anchor="middle" fill="#d8b4fe" font-size="12" font-family="sans-serif">Something You ARE</text>
+  <!-- Fingerprint circles -->
+  <circle cx="792" cy="155" r="28" fill="#2b0754" stroke="#c084fc" stroke-width="2"/>
+  <circle cx="792" cy="155" r="19" fill="none" stroke="#c084fc" stroke-width="1.5"/>
+  <circle cx="792" cy="155" r="10" fill="none" stroke="#c084fc" stroke-width="1.5"/>
+  <circle cx="792" cy="155" r="3" fill="#c084fc"/>
+  <text x="792" y="215" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">指紋 / 顔認証</text>
+  <text x="792" y="234" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">虹彩 / 声紋認証</text>
+  <text x="792" y="253" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">静脈パターン</text>
+  <rect x="673" y="270" width="238" height="30" rx="6" fill="#2b0754"/>
+  <text x="792" y="290" text-anchor="middle" fill="#d8b4fe" font-size="11" font-family="sans-serif">✓ 本人固有・なりすまし困難</text>
+  <rect x="673" y="306" width="238" height="30" rx="6" fill="#2b0754"/>
+  <text x="792" y="326" text-anchor="middle" fill="#c084fc" font-size="11" font-family="sans-serif">GDPR/個人情報保護法の特別管理対象</text>
+
+  <!-- Plus signs between columns -->
+  <text x="318" y="205" text-anchor="middle" fill="#fbbf24" font-size="30" font-weight="bold" font-family="sans-serif">+</text>
+  <text x="631" y="205" text-anchor="middle" fill="#fbbf24" font-size="30" font-weight="bold" font-family="sans-serif">+</text>
+  <!-- Bottom note -->
+  <rect x="200" y="352" width="560" height="12" rx="4" fill="#1e293b"/>
+  <text x="480" y="362" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">同カテゴリ2つ（例: パスワード + PIN）は2FAではなくSFA（単要素認証）</text>
+</svg>
