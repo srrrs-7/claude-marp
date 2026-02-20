@@ -1,0 +1,50 @@
+<svg viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="460" fill="#0f172a" rx="12"/>
+  <text x="480" y="34" text-anchor="middle" font-size="18" font-weight="bold" fill="#e2e8f0">OSS貢献の動機：多層モデル</text>
+
+  <!-- Outer layer: Economic / Reputational -->
+  <ellipse cx="350" cy="240" rx="290" ry="190" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2"/>
+  <!-- Middle layer: Social / Reputational -->
+  <ellipse cx="350" cy="240" rx="210" ry="135" fill="#1a3a2a" stroke="#22c55e" stroke-width="2"/>
+  <!-- Inner layer: Intrinsic -->
+  <ellipse cx="350" cy="240" rx="120" ry="78" fill="#3d2a1a" stroke="#f97316" stroke-width="2.5"/>
+
+  <!-- Inner label -->
+  <text x="350" y="233" text-anchor="middle" font-size="14" font-weight="bold" fill="#fb923c">内発的動機</text>
+  <text x="350" y="252" text-anchor="middle" font-size="11" fill="#fed7aa">有能感・自律性・関係性</text>
+  <text x="350" y="268" text-anchor="middle" font-size="10" fill="#fdba74">フロー体験・学習欲求</text>
+
+  <!-- Middle layer labels -->
+  <text x="350" y="135" text-anchor="middle" font-size="13" font-weight="bold" fill="#4ade80">社会的・評判的動機</text>
+  <text x="350" y="154" text-anchor="middle" font-size="10" fill="#86efac">シグナリング・評判資本・キャリア形成</text>
+  <text x="350" y="335" text-anchor="middle" font-size="10" fill="#86efac">贈与経済・互恵性・ハッカー倫理</text>
+
+  <!-- Outer layer labels -->
+  <text x="350" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#93c5fd">経済的・制度的動機</text>
+  <text x="350" y="108" text-anchor="middle" font-size="10" fill="#bfdbfe">企業所属・スポンサー・雇用条件</text>
+  <text x="350" y="390" text-anchor="middle" font-size="10" fill="#bfdbfe">オープンソースライセンス・知的財産戦略</text>
+
+  <!-- Right panel: interaction notes -->
+  <rect x="680" y="55" width="260" height="370" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="810" y="82" text-anchor="middle" font-size="14" font-weight="bold" fill="#e2e8f0">層間の相互作用</text>
+
+  <rect x="695" y="95" width="230" height="70" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="810" y="116" text-anchor="middle" font-size="11" font-weight="bold" fill="#93c5fd">強化（Reinforcement）</text>
+  <text x="810" y="134" text-anchor="middle" font-size="10" fill="#bfdbfe">内発動機 + 評判 → 持続性UP</text>
+  <text x="810" y="152" text-anchor="middle" font-size="10" fill="#bfdbfe">コミュニティ評価が有能感を強化</text>
+
+  <rect x="695" y="178" width="230" height="70" rx="8" fill="#052e16" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="810" y="199" text-anchor="middle" font-size="11" font-weight="bold" fill="#4ade80">クラウディングアウト</text>
+  <text x="810" y="217" text-anchor="middle" font-size="10" fill="#86efac">過剰な外発報酬が</text>
+  <text x="810" y="233" text-anchor="middle" font-size="10" fill="#86efac">内発動機を破壊するリスク</text>
+
+  <rect x="695" y="261" width="230" height="70" rx="8" fill="#2d1b00" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="810" y="282" text-anchor="middle" font-size="11" font-weight="bold" fill="#fbbf24">動機の多様性</text>
+  <text x="810" y="300" text-anchor="middle" font-size="10" fill="#fde68a">同一プロジェクトに</text>
+  <text x="810" y="316" text-anchor="middle" font-size="10" fill="#fde68a">異なる動機の人が共存する</text>
+
+  <rect x="695" y="344" width="230" height="70" rx="8" fill="#1a0533" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="810" y="365" text-anchor="middle" font-size="11" font-weight="bold" fill="#c084fc">時間的変化</text>
+  <text x="810" y="383" text-anchor="middle" font-size="10" fill="#d8b4fe">入門時は内発 → 熟練後は</text>
+  <text x="810" y="399" text-anchor="middle" font-size="10" fill="#d8b4fe">評判・経済動機が加わる</text>
+</svg>

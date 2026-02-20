@@ -1,0 +1,17 @@
+topic: "海底ケーブルが切れたら — インターネットの物理的脆弱性"
+language: "ja"
+
+output:
+  dir: "docs/20260220060000_submarine-cable"
+  baseName: "submarine-cable"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "海底ケーブルが切れたら"
+  footer: "© 2026"
+  style: |
+    section { font-size: 1.05em; }
+    section pre code { font-size: 0.58em; line-height: 1.4; }
+    section h1 { font-size: 1.6em; }
+    section h2 { font-size: 1.3em; }

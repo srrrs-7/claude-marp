@@ -1,0 +1,73 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="420" fill="#FAFAFA" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#2C3E50">認知バイアス: サンクコスト</text>
+
+  <!-- Left: Sunk investment box -->
+  <rect x="30" y="70" width="220" height="120" fill="#FADBD8" rx="10" stroke="#E74C3C" stroke-width="2"/>
+  <text x="140" y="100" text-anchor="middle" font-size="15" font-weight="bold" fill="#C0392B">過去の投資（回収不能）</text>
+  <text x="140" y="125" text-anchor="middle" font-size="13" fill="#C0392B">・費やしたお金</text>
+  <text x="140" y="145" text-anchor="middle" font-size="13" fill="#C0392B">・費やした時間</text>
+  <text x="140" y="165" text-anchor="middle" font-size="13" fill="#C0392B">・注いだ労力</text>
+
+  <!-- Arrow right from sunk cost -->
+  <line x1="250" y1="130" x2="330" y2="130" stroke="#888" stroke-width="2"/>
+  <polygon points="330,130 320,124 320,136" fill="#888"/>
+
+  <!-- Decision box -->
+  <rect x="330" y="95" width="180" height="70" fill="#EBF5FB" rx="10" stroke="#3498DB" stroke-width="2"/>
+  <text x="420" y="125" text-anchor="middle" font-size="15" font-weight="bold" fill="#2980B9">続けるべきか？</text>
+  <text x="420" y="148" text-anchor="middle" font-size="13" fill="#2980B9">判断の分岐点</text>
+
+  <!-- Arrow down from decision: Sunk cost thinking -->
+  <line x1="420" y1="165" x2="420" y2="220" stroke="#E74C3C" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="420,220 414,210 426,210" fill="#E74C3C"/>
+
+  <!-- Sunk cost path box -->
+  <rect x="300" y="220" width="240" height="70" fill="#FADBD8" rx="8" stroke="#E74C3C" stroke-width="2"/>
+  <text x="420" y="248" text-anchor="middle" font-size="13" font-weight="bold" fill="#C0392B">サンクコスト思考</text>
+  <text x="420" y="268" text-anchor="middle" font-size="12" fill="#C0392B">「もったいないから続けよう」</text>
+
+  <!-- Arrow right from sunk cost thinking -->
+  <line x1="540" y1="255" x2="610" y2="255" stroke="#E74C3C" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="610,255 600,249 600,261" fill="#E74C3C"/>
+
+  <!-- Bad outcome -->
+  <rect x="610" y="220" width="250" height="70" fill="#FADBD8" rx="8" stroke="#E74C3C" stroke-width="2"/>
+  <text x="735" y="248" text-anchor="middle" font-size="13" font-weight="bold" fill="#C0392B">さらなる損失</text>
+  <text x="735" y="268" text-anchor="middle" font-size="12" fill="#C0392B">過去の失敗に引きずられる</text>
+
+  <!-- Rational path -->
+  <!-- Arrow from decision to rational -->
+  <line x1="510" y1="130" x2="620" y2="130" stroke="#27AE60" stroke-width="2"/>
+  <polygon points="620,130 610,124 610,136" fill="#27AE60"/>
+
+  <!-- Rational box -->
+  <rect x="620" y="95" width="250" height="70" fill="#D5F5E3" rx="10" stroke="#27AE60" stroke-width="2"/>
+  <text x="745" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E8449">YAGNI 的合理判断</text>
+  <text x="745" y="148" text-anchor="middle" font-size="12" fill="#1E8449">「今から利益が出るか？」で判断</text>
+
+  <!-- Arrow down from rational -->
+  <line x1="745" y1="165" x2="745" y2="220" stroke="#27AE60" stroke-width="2"/>
+  <polygon points="745,220 739,210 751,210" fill="#27AE60"/>
+
+  <!-- Good outcome -->
+  <rect x="610" y="220" width="250" height="70" fill="#D5F5E3" rx="8" stroke="#27AE60" stroke-width="2"/>
+  <!-- Already drawn above, just update content for rational -->
+
+  <!-- Actually, let me reposition to avoid overlap -->
+  <!-- Rational good outcome below rational path -->
+  <rect x="620" y="310" width="250" height="70" fill="#D5F5E3" rx="8" stroke="#27AE60" stroke-width="2"/>
+  <text x="745" y="338" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E8449">損切り → 前進</text>
+  <text x="745" y="358" text-anchor="middle" font-size="12" fill="#1E8449">コストを最小化して次に進む</text>
+  <!-- Arrow from rational box to good outcome -->
+  <line x1="745" y1="165" x2="745" y2="310" stroke="#27AE60" stroke-width="2"/>
+  <polygon points="745,310 739,300 751,300" fill="#27AE60"/>
+
+  <!-- Key insight box -->
+  <rect x="30" y="310" width="500" height="80" fill="#FEF9E7" rx="10" stroke="#F39C12" stroke-width="2"/>
+  <text x="280" y="340" text-anchor="middle" font-size="14" font-weight="bold" fill="#D68910">YAGNI の教え</text>
+  <text x="280" y="362" text-anchor="middle" font-size="13" fill="#D68910">過去のコストは変えられない。</text>
+  <text x="280" y="382" text-anchor="middle" font-size="13" fill="#D68910">判断の基準は「これから」だけにする。</text>
+</svg>

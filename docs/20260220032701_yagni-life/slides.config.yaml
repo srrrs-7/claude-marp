@@ -1,0 +1,24 @@
+topic: "YAGNI原則を人生に適用する"
+language: "ja"
+
+output:
+  dir: "docs/20260220032701_yagni-life"
+  baseName: "yagni-life"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "YAGNI原則を人生に適用する"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+    section.section-slide {
+      justify-content: center;
+      text-align: center;
+    }

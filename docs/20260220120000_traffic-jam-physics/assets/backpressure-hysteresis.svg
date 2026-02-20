@@ -1,0 +1,99 @@
+<svg viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="460" fill="#f8fafc" rx="12"/>
+  <text x="480" y="36" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">バックプレッシャー × ヒステリシス：二系の比較</text>
+
+  <!-- Left panel: Event Loop Backpressure -->
+  <rect x="20" y="55" width="440" height="360" rx="12" fill="#1e1e2e" stroke="#7c3aed" stroke-width="2"/>
+  <rect x="20" y="55" width="440" height="44" rx="12" fill="#7c3aed"/>
+  <rect x="20" y="85" width="440" height="14" fill="#7c3aed"/>
+  <text x="240" y="83" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">イベントループ：バックプレッシャー</text>
+
+  <!-- Queue visualization -->
+  <text x="240" y="125" text-anchor="middle" font-size="12" fill="#a5b4fc">Producer → Queue → Consumer</text>
+
+  <!-- Queue boxes -->
+  <rect x="50" y="135" width="70" height="40" rx="6" fill="#4c1d95" stroke="#7c3aed" stroke-width="2"/>
+  <text x="85" y="160" text-anchor="middle" font-size="12" font-weight="bold" fill="#c4b5fd">Producer</text>
+
+  <!-- Arrow -->
+  <line x1="120" y1="155" x2="165" y2="155" stroke="#7c3aed" stroke-width="2"/>
+  <polygon points="169,155 161,150 161,160" fill="#7c3aed"/>
+  <text x="143" y="147" text-anchor="middle" font-size="10" fill="#a5b4fc">req/s</text>
+
+  <!-- Queue (filling) -->
+  <rect x="169" y="125" width="160" height="70" rx="6" fill="#2d1b69" stroke="#7c3aed" stroke-width="2"/>
+  <text x="249" y="145" text-anchor="middle" font-size="11" fill="#a5b4fc">Queue</text>
+  <rect x="175" y="150" width="30" height="38" rx="2" fill="#7c3aed"/>
+  <rect x="210" y="150" width="30" height="38" rx="2" fill="#7c3aed"/>
+  <rect x="245" y="150" width="30" height="38" rx="2" fill="#7c3aed"/>
+  <rect x="280" y="150" width="30" height="38" rx="2" fill="#dc2626" stroke="#fca5a5" stroke-width="1"/>
+  <text x="295" y="173" text-anchor="middle" font-size="9" fill="#fca5a5">溢</text>
+
+  <!-- Arrow -->
+  <line x1="329" y1="155" x2="365" y2="155" stroke="#7c3aed" stroke-width="2"/>
+  <polygon points="369,155 361,150 361,160" fill="#7c3aed"/>
+
+  <rect x="369" y="135" width="75" height="40" rx="6" fill="#4c1d95" stroke="#7c3aed" stroke-width="2"/>
+  <text x="406" y="160" text-anchor="middle" font-size="11" font-weight="bold" fill="#c4b5fd">Consumer</text>
+  <text x="406" y="173" text-anchor="middle" font-size="9" fill="#a5b4fc">低速</text>
+
+  <!-- Backpressure arrow (reverse) -->
+  <line x1="369" y1="185" x2="120" y2="185" stroke="#f97316" stroke-width="2.5" stroke-dasharray="7,4"/>
+  <polygon points="116,185 126,180 126,190" fill="#f97316"/>
+  <text x="243" y="200" text-anchor="middle" font-size="11" font-weight="bold" fill="#f97316">← Backpressure（上流に圧力）</text>
+
+  <!-- Hysteresis graph -->
+  <text x="240" y="230" text-anchor="middle" font-size="12" font-weight="bold" fill="#a5b4fc">ヒステリシスループ</text>
+  <line x1="70" y1="390" x2="400" y2="390" stroke="#475569" stroke-width="1.5"/>
+  <line x1="70" y1="390" x2="70" y2="245" stroke="#475569" stroke-width="1.5"/>
+  <text x="235" y="405" text-anchor="middle" font-size="10" fill="#64748b">負荷 (load)</text>
+  <text x="55" y="318" text-anchor="middle" font-size="10" fill="#64748b" transform="rotate(-90,55,318)">レイテンシ</text>
+
+  <!-- Up curve (going into congestion) -->
+  <path d="M 80,385 Q 200,380 260,300 Q 300,240 370,248" fill="none" stroke="#f97316" stroke-width="2.5"/>
+  <!-- Down curve (recovering) - different path = hysteresis -->
+  <path d="M 370,248 Q 340,340 250,360 Q 160,375 80,385" fill="none" stroke="#60a5fa" stroke-width="2.5" stroke-dasharray="6,3"/>
+
+  <text x="380" y="245" font-size="10" fill="#f97316">→ 悪化</text>
+  <text x="280" y="375" font-size="10" fill="#60a5fa">← 回復</text>
+  <text x="150" y="300" font-size="10" fill="#e879f9">ループ = ヒステリシス</text>
+
+  <!-- Right panel: Traffic Hysteresis -->
+  <rect x="500" y="55" width="440" height="360" rx="12" fill="#1e1e2e" stroke="#dc2626" stroke-width="2"/>
+  <rect x="500" y="55" width="440" height="44" rx="12" fill="#dc2626"/>
+  <rect x="500" y="85" width="440" height="14" fill="#dc2626"/>
+  <text x="720" y="83" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">交通流：ヒステリシス効果</text>
+
+  <!-- State machine -->
+  <circle cx="620" cy="165" r="45" fill="#1a3a2a" stroke="#22c55e" stroke-width="2.5"/>
+  <text x="620" y="160" text-anchor="middle" font-size="12" font-weight="bold" fill="#4ade80">自由流</text>
+  <text x="620" y="178" text-anchor="middle" font-size="11" fill="#86efac">Free Flow</text>
+  <text x="620" y="193" text-anchor="middle" font-size="10" fill="#4ade80">v ≈ 100 km/h</text>
+
+  <circle cx="820" cy="165" r="45" fill="#3a1a1a" stroke="#dc2626" stroke-width="2.5"/>
+  <text x="820" y="160" text-anchor="middle" font-size="12" font-weight="bold" fill="#fca5a5">渋滞流</text>
+  <text x="820" y="178" text-anchor="middle" font-size="11" fill="#fca5a5">Congested</text>
+  <text x="820" y="193" text-anchor="middle" font-size="10" fill="#dc2626">v ≈ 20 km/h</text>
+
+  <!-- Transition arrows -->
+  <path d="M 665,145 Q 720,110 775,145" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
+  <polygon points="779,147 769,140 772,152" fill="#f59e0b"/>
+  <text x="720" y="120" text-anchor="middle" font-size="11" fill="#f59e0b">密度 k &gt; k_cr</text>
+  <text x="720" y="134" text-anchor="middle" font-size="10" fill="#f59e0b">（急激に遷移）</text>
+
+  <path d="M 775,188 Q 720,225 665,188" fill="none" stroke="#60a5fa" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <polygon points="661,186 671,179 668,191" fill="#60a5fa"/>
+  <text x="720" y="220" text-anchor="middle" font-size="11" fill="#60a5fa">k &lt;&lt; k_cr 必要</text>
+  <text x="720" y="234" text-anchor="middle" font-size="10" fill="#60a5fa">（回復に大幅に低密度が必要）</text>
+
+  <!-- Key insight -->
+  <rect x="515" y="260" width="410" height="70" rx="8" fill="#2d1b1b" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="720" y="285" text-anchor="middle" font-size="12" font-weight="bold" fill="#fca5a5">非対称な遷移がヒステリシスの本質</text>
+  <text x="720" y="305" text-anchor="middle" font-size="11" fill="#fda4af">渋滞発生: k = k_cr でスムーズに突入</text>
+  <text x="720" y="322" text-anchor="middle" font-size="11" fill="#fda4af">渋滞解消: k が k_cr を大幅に下回るまで継続</text>
+
+  <!-- Hysteresis graph (traffic) -->
+  <text x="720" y="358" text-anchor="middle" font-size="11" fill="#94a3b8">→ 「原因が消えても渋滞は残る」</text>
+  <text x="720" y="375" text-anchor="middle" font-size="11" fill="#94a3b8">= イベントループのキュードレイン問題と同構造</text>
+  <text x="720" y="392" text-anchor="middle" font-size="11" font-weight="bold" fill="#f97316">両者ともヒステリシスループを描く</text>
+</svg>

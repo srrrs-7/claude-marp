@@ -1,0 +1,98 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="420" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="26" text-anchor="middle" fill="#ecf0f1" font-size="14" font-weight="bold">AIチップ需要爆発 — データセンター向けAI半導体市場規模推移</text>
+
+  <!-- Chart background -->
+  <rect x="80" y="45" width="640" height="300" fill="#111125" rx="6"/>
+
+  <!-- Y axis labels (Unit: 10億ドル) -->
+  <text x="72" y="348" text-anchor="end" fill="#95a5a6" font-size="10">$0B</text>
+  <text x="72" y="288" text-anchor="end" fill="#95a5a6" font-size="10">$100B</text>
+  <text x="72" y="228" text-anchor="end" fill="#95a5a6" font-size="10">$200B</text>
+  <text x="72" y="168" text-anchor="end" fill="#95a5a6" font-size="10">$300B</text>
+  <text x="72" y="108" text-anchor="end" fill="#95a5a6" font-size="10">$400B</text>
+  <text x="72" y="52" text-anchor="end" fill="#95a5a6" font-size="10">$500B</text>
+
+  <!-- Grid lines -->
+  <line x1="80" y1="345" x2="720" y2="345" stroke="#2d3748" stroke-width="1"/>
+  <line x1="80" y1="285" x2="720" y2="285" stroke="#2d3748" stroke-width="1"/>
+  <line x1="80" y1="225" x2="720" y2="225" stroke="#2d3748" stroke-width="1"/>
+  <line x1="80" y1="165" x2="720" y2="165" stroke="#2d3748" stroke-width="1"/>
+  <line x1="80" y1="105" x2="720" y2="105" stroke="#2d3748" stroke-width="1"/>
+  <line x1="80" y1="45" x2="720" y2="45" stroke="#2d3748" stroke-width="1"/>
+
+  <!-- Bars (each year: width=70, gap=10) -->
+  <!-- 2020: $18B → 18/500*300 = 10.8px height -->
+  <rect x="98" y="334" width="70" height="11" rx="2" fill="#2980b9"/>
+  <text x="133" y="329" text-anchor="middle" fill="#85c1e9" font-size="10">$18B</text>
+  <text x="133" y="365" text-anchor="middle" fill="#95a5a6" font-size="10">2020</text>
+
+  <!-- 2021: $36B → 21.6px -->
+  <rect x="186" y="323" width="70" height="22" rx="2" fill="#2980b9"/>
+  <text x="221" y="317" text-anchor="middle" fill="#85c1e9" font-size="10">$36B</text>
+  <text x="221" y="365" text-anchor="middle" fill="#95a5a6" font-size="10">2021</text>
+
+  <!-- 2022: $53B → 31.8px (ChatGPT year) -->
+  <rect x="274" y="313" width="70" height="32" rx="2" fill="#27ae60"/>
+  <text x="309" y="307" text-anchor="middle" fill="#a9dfbf" font-size="10">$53B</text>
+  <text x="309" y="365" text-anchor="middle" fill="#95a5a6" font-size="10">2022</text>
+
+  <!-- 2023: $103B → 61.8px -->
+  <rect x="362" y="283" width="70" height="62" rx="2" fill="#2ecc71"/>
+  <text x="397" y="276" text-anchor="middle" fill="#a9dfbf" font-size="10" font-weight="bold">$103B</text>
+  <text x="397" y="365" text-anchor="middle" fill="#ecf0f1" font-size="10" font-weight="bold">2023</text>
+
+  <!-- 2024: $200B → 120px (estimated) -->
+  <rect x="450" y="225" width="70" height="120" rx="2" fill="#f39c12"/>
+  <text x="485" y="218" text-anchor="middle" fill="#fad7a0" font-size="10" font-weight="bold">$200B</text>
+  <text x="485" y="365" text-anchor="middle" fill="#ecf0f1" font-size="10" font-weight="bold">2024</text>
+  <text x="485" y="380" text-anchor="middle" fill="#fad7a0" font-size="9">推計</text>
+
+  <!-- 2025: $330B → 198px (forecast) -->
+  <rect x="538" y="147" width="70" height="198" rx="2" fill="#e67e22"/>
+  <text x="573" y="140" text-anchor="middle" fill="#fad7a0" font-size="10" font-weight="bold">$330B</text>
+  <text x="573" y="365" text-anchor="middle" fill="#ecf0f1" font-size="10" font-weight="bold">2025</text>
+  <text x="573" y="380" text-anchor="middle" fill="#fad7a0" font-size="9">予測</text>
+
+  <!-- 2027: $500B → 300px (forecast) -->
+  <rect x="626" y="45" width="70" height="300" rx="2" fill="#e74c3c"/>
+  <text x="661" y="38" text-anchor="middle" fill="#f1948a" font-size="10" font-weight="bold">$500B+</text>
+  <text x="661" y="365" text-anchor="middle" fill="#ecf0f1" font-size="10" font-weight="bold">2027</text>
+  <text x="661" y="380" text-anchor="middle" fill="#f1948a" font-size="9">予測</text>
+
+  <!-- Milestone annotations -->
+  <!-- ChatGPT -->
+  <line x1="309" y1="300" x2="309" y2="260" stroke="#2ecc71" stroke-width="1" stroke-dasharray="4,3"/>
+  <rect x="245" y="235" width="130" height="28" rx="4" fill="#1e4d2b" stroke="#2ecc71" stroke-width="1"/>
+  <text x="310" y="252" text-anchor="middle" fill="#2ecc71" font-size="10">ChatGPT 公開</text>
+
+  <!-- GPT-4 -->
+  <line x1="397" y1="270" x2="397" y2="225" stroke="#a9dfbf" stroke-width="1" stroke-dasharray="4,3"/>
+  <rect x="338" y="200" width="118" height="28" rx="4" fill="#1e4d2b" stroke="#a9dfbf" stroke-width="1"/>
+  <text x="397" y="218" text-anchor="middle" fill="#a9dfbf" font-size="10">GPT-4 / 生成AI爆発</text>
+
+  <!-- H100 shortage -->
+  <line x1="485" y1="215" x2="530" y2="180" stroke="#f39c12" stroke-width="1" stroke-dasharray="4,3"/>
+  <rect x="498" y="155" width="145" height="28" rx="4" fill="#2c2c1a" stroke="#f39c12" stroke-width="1"/>
+  <text x="570" y="173" text-anchor="middle" fill="#f39c12" font-size="10">H100 数ヶ月待ち</text>
+
+  <!-- Legend and insight -->
+  <rect x="738" y="55" width="148" height="220" rx="6" fill="#0d1f33" stroke="#2d3748" stroke-width="1"/>
+  <text x="812" y="76" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">主要プレイヤー</text>
+  <text x="812" y="97" text-anchor="middle" fill="#2ecc71" font-size="10" font-weight="bold">Nvidia</text>
+  <text x="812" y="112" text-anchor="middle" fill="#a9dfbf" font-size="9">GPU市場70〜80%</text>
+  <text x="812" y="127" text-anchor="middle" fill="#a9dfbf" font-size="9">H100/H200/B200</text>
+  <text x="812" y="148" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="bold">TSMC</text>
+  <text x="812" y="163" text-anchor="middle" fill="#fad7a0" font-size="9">AI GPU製造を独占</text>
+  <text x="812" y="178" text-anchor="middle" fill="#fad7a0" font-size="9">CoWoSで高帯域接続</text>
+  <text x="812" y="199" text-anchor="middle" fill="#8e44ad" font-size="10" font-weight="bold">SK Hynix</text>
+  <text x="812" y="214" text-anchor="middle" fill="#d7bde2" font-size="9">HBMをNvidiaへ</text>
+  <text x="812" y="229" text-anchor="middle" fill="#d7bde2" font-size="9">独占供給</text>
+  <text x="812" y="250" text-anchor="middle" fill="#3498db" font-size="10" font-weight="bold">Google/AWS/MS</text>
+  <text x="812" y="265" text-anchor="middle" fill="#85c1e9" font-size="9">独自ASIC開発で</text>
+  <text x="812" y="280" text-anchor="middle" fill="#85c1e9" font-size="9">Nvidia依存を低減</text>
+
+  <!-- Bottom note -->
+  <rect x="80" y="390" width="640" height="22" rx="4" fill="#145a32" stroke="#2ecc71" stroke-width="1"/>
+  <text x="400" y="406" text-anchor="middle" fill="#a9dfbf" font-size="10">AI需要拡大がTSMCの先端プロセス・HBM・CoWoSへの需要をさらに増大させる</text>
+</svg>

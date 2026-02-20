@@ -1,0 +1,111 @@
+<svg viewBox="0 0 900 390" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="390" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="26" text-anchor="middle" fill="#ecf0f1" font-size="14" font-weight="bold">半導体サプライチェーン全体図</text>
+
+  <!-- Stage 1: EDA & IP -->
+  <rect x="12" y="48" width="140" height="52" rx="6" fill="#1a3a5c" stroke="#3498db" stroke-width="2"/>
+  <text x="82" y="68" text-anchor="middle" fill="#3498db" font-size="12" font-weight="bold">EDA &amp; IP</text>
+  <text x="82" y="85" text-anchor="middle" fill="#85c1e9" font-size="10">設計ツール・知的財産</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="152" y1="74" x2="177" y2="74" stroke="#4a5568" stroke-width="2"/>
+  <polygon points="177,74 167,69 167,79" fill="#4a5568"/>
+
+  <!-- Stage 2: Fabless -->
+  <rect x="179" y="48" width="148" height="52" rx="6" fill="#1a2c40" stroke="#2980b9" stroke-width="2"/>
+  <text x="253" y="68" text-anchor="middle" fill="#5dade2" font-size="12" font-weight="bold">ファブレス設計</text>
+  <text x="253" y="85" text-anchor="middle" fill="#85c1e9" font-size="10">設計専業（製造なし）</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="327" y1="74" x2="352" y2="74" stroke="#4a5568" stroke-width="2"/>
+  <polygon points="352,74 342,69 342,79" fill="#4a5568"/>
+
+  <!-- Stage 3: Foundry (highlighted) -->
+  <rect x="354" y="38" width="168" height="72" rx="6" fill="#145a32" stroke="#2ecc71" stroke-width="3"/>
+  <text x="438" y="62" text-anchor="middle" fill="#2ecc71" font-size="12" font-weight="bold">ファウンドリ</text>
+  <text x="438" y="79" text-anchor="middle" fill="#a9dfbf" font-size="10">純粋製造専業</text>
+  <text x="438" y="96" text-anchor="middle" fill="#f39c12" font-size="9">← 世界最重要ボトルネック</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="522" y1="74" x2="547" y2="74" stroke="#4a5568" stroke-width="2"/>
+  <polygon points="547,74 537,69 537,79" fill="#4a5568"/>
+
+  <!-- Stage 4: OSAT -->
+  <rect x="549" y="48" width="138" height="52" rx="6" fill="#2a1a4a" stroke="#8e44ad" stroke-width="2"/>
+  <text x="618" y="68" text-anchor="middle" fill="#bb8fce" font-size="12" font-weight="bold">後工程 (OSAT)</text>
+  <text x="618" y="85" text-anchor="middle" fill="#d7bde2" font-size="10">パッケージング・検査</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="687" y1="74" x2="712" y2="74" stroke="#4a5568" stroke-width="2"/>
+  <polygon points="712,74 702,69 702,79" fill="#4a5568"/>
+
+  <!-- Stage 5: Products -->
+  <rect x="714" y="48" width="162" height="52" rx="6" fill="#2c2c1a" stroke="#f39c12" stroke-width="2"/>
+  <text x="795" y="68" text-anchor="middle" fill="#f39c12" font-size="12" font-weight="bold">最終製品</text>
+  <text x="795" y="85" text-anchor="middle" fill="#fad7a0" font-size="10">スマホ・AI・自動車・軍事</text>
+
+  <!-- Player boxes -->
+  <!-- EDA players -->
+  <rect x="12" y="118" width="140" height="82" rx="4" fill="#0d1f33" stroke="#3498db" stroke-width="1"/>
+  <text x="82" y="136" text-anchor="middle" fill="#3498db" font-size="10" font-weight="bold">米国独占</text>
+  <text x="82" y="151" text-anchor="middle" fill="#85c1e9" font-size="10">Synopsys (米)</text>
+  <text x="82" y="165" text-anchor="middle" fill="#85c1e9" font-size="10">Cadence (米)</text>
+  <text x="82" y="179" text-anchor="middle" fill="#f5cba7" font-size="10">Arm (英 / IP)</text>
+  <text x="82" y="193" text-anchor="middle" fill="#e74c3c" font-size="9">★ 輸出禁止=中国詰む</text>
+
+  <!-- Fabless players -->
+  <rect x="179" y="118" width="148" height="82" rx="4" fill="#0d1f33" stroke="#2980b9" stroke-width="1"/>
+  <text x="253" y="136" text-anchor="middle" fill="#5dade2" font-size="10" font-weight="bold">米国主力</text>
+  <text x="253" y="151" text-anchor="middle" fill="#85c1e9" font-size="10">Apple / Nvidia</text>
+  <text x="253" y="165" text-anchor="middle" fill="#85c1e9" font-size="10">AMD / Qualcomm</text>
+  <text x="253" y="179" text-anchor="middle" fill="#85c1e9" font-size="10">Broadcom / MediaTek</text>
+  <text x="253" y="193" text-anchor="middle" fill="#e74c3c" font-size="9">Hisilicon(制裁中)</text>
+
+  <!-- Foundry players -->
+  <rect x="354" y="118" width="168" height="82" rx="4" fill="#0d1f33" stroke="#2ecc71" stroke-width="2"/>
+  <text x="438" y="136" text-anchor="middle" fill="#2ecc71" font-size="10" font-weight="bold">TSMC 台湾 (先端90%超)</text>
+  <text x="438" y="151" text-anchor="middle" fill="#a9dfbf" font-size="10">Samsung 韓国 (2位)</text>
+  <text x="438" y="165" text-anchor="middle" fill="#fad7a0" font-size="10">Intel Foundry 米 (新興)</text>
+  <text x="438" y="179" text-anchor="middle" fill="#e74c3c" font-size="10">SMIC 中国 (制裁・制限)</text>
+  <text x="438" y="193" text-anchor="middle" fill="#f39c12" font-size="9">GlobalFoundries (成熟)</text>
+
+  <!-- OSAT players -->
+  <rect x="549" y="118" width="138" height="82" rx="4" fill="#0d1f33" stroke="#8e44ad" stroke-width="1"/>
+  <text x="618" y="136" text-anchor="middle" fill="#8e44ad" font-size="10" font-weight="bold">台湾・韓国主力</text>
+  <text x="618" y="151" text-anchor="middle" fill="#d7bde2" font-size="10">ASE Group (台)</text>
+  <text x="618" y="165" text-anchor="middle" fill="#d7bde2" font-size="10">Amkor (米・韓)</text>
+  <text x="618" y="179" text-anchor="middle" fill="#d7bde2" font-size="10">Powertech (台)</text>
+  <text x="618" y="193" text-anchor="middle" fill="#2ecc71" font-size="9">CoWoS = TSMC直営</text>
+
+  <!-- Products players -->
+  <rect x="714" y="118" width="162" height="82" rx="4" fill="#0d1f33" stroke="#f39c12" stroke-width="1"/>
+  <text x="795" y="136" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="bold">全世界の企業</text>
+  <text x="795" y="151" text-anchor="middle" fill="#fad7a0" font-size="10">iPhone / Android</text>
+  <text x="795" y="165" text-anchor="middle" fill="#fad7a0" font-size="10">AI サーバー / GPU</text>
+  <text x="795" y="179" text-anchor="middle" fill="#fad7a0" font-size="10">自動車 / 産業機器</text>
+  <text x="795" y="193" text-anchor="middle" fill="#fad7a0" font-size="10">軍事・宇宙・医療</text>
+
+  <!-- Support layers -->
+  <!-- Materials (Japan) -->
+  <rect x="12" y="222" width="370" height="72" rx="6" fill="#2c1a1a" stroke="#e74c3c" stroke-width="1.5"/>
+  <text x="197" y="243" text-anchor="middle" fill="#e74c3c" font-size="11" font-weight="bold">材料・化学品 [日本が急所]</text>
+  <text x="197" y="260" text-anchor="middle" fill="#f1948a" font-size="10">フォトレジスト: JSR・東京応化・信越化学 (世界90%超)</text>
+  <text x="197" y="276" text-anchor="middle" fill="#f1948a" font-size="10">フッ化水素: 三菱ケミカル・ステラケミファ</text>
+  <text x="197" y="292" text-anchor="middle" fill="#f1948a" font-size="10">シリコンウェーハ: 信越半導体・SUMCO (世界60%)</text>
+
+  <!-- Equipment -->
+  <rect x="400" y="222" width="476" height="72" rx="6" fill="#1a2a40" stroke="#3498db" stroke-width="1.5"/>
+  <text x="638" y="243" text-anchor="middle" fill="#3498db" font-size="11" font-weight="bold">製造装置</text>
+  <text x="638" y="260" text-anchor="middle" fill="#85c1e9" font-size="10">ASML (蘭): EUVリソグラフィ — 世界唯一</text>
+  <text x="638" y="276" text-anchor="middle" fill="#85c1e9" font-size="10">Tokyo Electron (日) / Shin-Etsu (日): コータ・デベロッパ等</text>
+  <text x="638" y="292" text-anchor="middle" fill="#85c1e9" font-size="10">Applied Materials / Lam Research (米): CVD・エッチング</text>
+
+  <!-- Dashed arrows from support to foundry -->
+  <line x1="197" y1="222" x2="380" y2="200" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="380,200 372,207 383,208" fill="#e74c3c"/>
+  <line x1="590" y1="222" x2="500" y2="200" stroke="#3498db" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="500,200 511,202 508,213" fill="#3498db"/>
+
+  <!-- Bottom note -->
+  <text x="450" y="318" text-anchor="middle" fill="#95a5a6" font-size="10">製造 → 材料 → 装置、すべてがファウンドリ（TSMC）に収束する構造</text>
+</svg>

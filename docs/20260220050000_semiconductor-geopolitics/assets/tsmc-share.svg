@@ -1,0 +1,91 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="420" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="26" text-anchor="middle" fill="#ecf0f1" font-size="14" font-weight="bold">TSMCの市場支配率 — 先端プロセス別ファウンドリシェア</text>
+
+  <!-- Chart area background -->
+  <rect x="80" y="45" width="550" height="300" fill="#111125" rx="6"/>
+
+  <!-- Y axis labels -->
+  <text x="72" y="348" text-anchor="end" fill="#95a5a6" font-size="10">0%</text>
+  <text x="72" y="288" text-anchor="end" fill="#95a5a6" font-size="10">20%</text>
+  <text x="72" y="228" text-anchor="end" fill="#95a5a6" font-size="10">40%</text>
+  <text x="72" y="168" text-anchor="end" fill="#95a5a6" font-size="10">60%</text>
+  <text x="72" y="108" text-anchor="end" fill="#95a5a6" font-size="10">80%</text>
+  <text x="72" y="52" text-anchor="end" fill="#95a5a6" font-size="10">100%</text>
+
+  <!-- Grid lines -->
+  <line x1="80" y1="345" x2="630" y2="345" stroke="#2d3748" stroke-width="1"/>
+  <line x1="80" y1="285" x2="630" y2="285" stroke="#2d3748" stroke-width="1"/>
+  <line x1="80" y1="225" x2="630" y2="225" stroke="#2d3748" stroke-width="1"/>
+  <line x1="80" y1="165" x2="630" y2="165" stroke="#2d3748" stroke-width="1"/>
+  <line x1="80" y1="105" x2="630" y2="105" stroke="#2d3748" stroke-width="1"/>
+  <line x1="80" y1="45" x2="630" y2="45" stroke="#2d3748" stroke-width="1"/>
+
+  <!-- Group 1: 3nm / 5nm (TSMC monopoly) -->
+  <!-- TSMC bar: 92% = 276px -->
+  <rect x="100" y="62" width="40" height="283" rx="3" fill="#2ecc71"/>
+  <text x="120" y="56" text-anchor="middle" fill="#2ecc71" font-size="11" font-weight="bold">92%</text>
+  <!-- Samsung bar: 8% = 24px -->
+  <rect x="148" y="321" width="40" height="24" rx="3" fill="#f39c12"/>
+  <text x="168" y="316" text-anchor="middle" fill="#f39c12" font-size="10">8%</text>
+  <!-- Intel: 0% -->
+  <rect x="196" y="343" width="40" height="2" rx="1" fill="#4a5568"/>
+  <text x="216" y="340" text-anchor="middle" fill="#4a5568" font-size="9">-</text>
+  <!-- X label -->
+  <text x="168" y="380" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">3nm / 5nm</text>
+  <text x="168" y="395" text-anchor="middle" fill="#a9dfbf" font-size="9">先端ロジック</text>
+
+  <!-- Group 2: 7nm / 10nm -->
+  <!-- TSMC: 80% = 240px -->
+  <rect x="275" y="105" width="40" height="240" rx="3" fill="#2ecc71"/>
+  <text x="295" y="99" text-anchor="middle" fill="#2ecc71" font-size="11" font-weight="bold">80%</text>
+  <!-- Samsung: 14% = 42px -->
+  <rect x="323" y="303" width="40" height="42" rx="3" fill="#f39c12"/>
+  <text x="343" y="297" text-anchor="middle" fill="#f39c12" font-size="10">14%</text>
+  <!-- Intel: 6% = 18px -->
+  <rect x="371" y="327" width="40" height="18" rx="3" fill="#e74c3c"/>
+  <text x="391" y="322" text-anchor="middle" fill="#e74c3c" font-size="9">6%</text>
+  <!-- X label -->
+  <text x="343" y="380" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">7nm / 10nm</text>
+  <text x="343" y="395" text-anchor="middle" fill="#a9dfbf" font-size="9">高性能ロジック</text>
+
+  <!-- Group 3: ファウンドリ売上全体 -->
+  <!-- TSMC: 55% = 165px -->
+  <rect x="450" y="180" width="40" height="165" rx="3" fill="#27ae60"/>
+  <text x="470" y="174" text-anchor="middle" fill="#27ae60" font-size="11" font-weight="bold">55%</text>
+  <!-- Samsung: 17% = 51px -->
+  <rect x="498" y="294" width="40" height="51" rx="3" fill="#f39c12"/>
+  <text x="518" y="288" text-anchor="middle" fill="#f39c12" font-size="10">17%</text>
+  <!-- GlobalFoundries: 6% = 18px -->
+  <rect x="546" y="327" width="40" height="18" rx="3" fill="#8e44ad"/>
+  <text x="566" y="322" text-anchor="middle" fill="#8e44ad" font-size="9">6%</text>
+  <!-- Others: 22% -->
+  <text x="470" y="410" text-anchor="middle" fill="#95a5a6" font-size="9">残22%: UMC/SMIC/その他</text>
+  <!-- X label -->
+  <text x="518" y="380" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">ファウンドリ売上全体</text>
+  <text x="518" y="395" text-anchor="middle" fill="#a9dfbf" font-size="9">2023年推計</text>
+
+  <!-- Legend -->
+  <rect x="680" y="60" width="190" height="130" rx="6" fill="#0d1f33" stroke="#2d3748" stroke-width="1"/>
+  <text x="775" y="82" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">凡例</text>
+  <rect x="698" y="94" width="16" height="16" rx="2" fill="#2ecc71"/>
+  <text x="720" y="106" fill="#a9dfbf" font-size="10">TSMC（台湾）</text>
+  <rect x="698" y="118" width="16" height="16" rx="2" fill="#f39c12"/>
+  <text x="720" y="130" fill="#fad7a0" font-size="10">Samsung（韓国）</text>
+  <rect x="698" y="142" width="16" height="16" rx="2" fill="#e74c3c"/>
+  <text x="720" y="154" fill="#f1948a" font-size="10">Intel Foundry（米）</text>
+  <rect x="698" y="166" width="16" height="16" rx="2" fill="#8e44ad"/>
+  <text x="720" y="178" fill="#d7bde2" font-size="10">GlobalFoundries</text>
+
+  <!-- Key insight box -->
+  <rect x="680" y="210" width="190" height="120" rx="6" fill="#145a32" stroke="#2ecc71" stroke-width="1.5"/>
+  <text x="775" y="232" text-anchor="middle" fill="#2ecc71" font-size="11" font-weight="bold">TSMC の核心</text>
+  <text x="775" y="252" text-anchor="middle" fill="#a9dfbf" font-size="10">Apple: 売上の約25%</text>
+  <text x="775" y="268" text-anchor="middle" fill="#a9dfbf" font-size="10">Nvidia H100: 3nm独占</text>
+  <text x="775" y="284" text-anchor="middle" fill="#a9dfbf" font-size="10">先端品5〜7割が</text>
+  <text x="775" y="300" text-anchor="middle" fill="#a9dfbf" font-size="10">TSMC売上を構成</text>
+  <text x="775" y="320" text-anchor="middle" fill="#f39c12" font-size="9">設備投資: 年300〜400億ドル</text>
+
+  <!-- Arrow axis labels -->
+  <text x="80" y="413" fill="#95a5a6" font-size="10">← プロセスノード比較</text>
+</svg>

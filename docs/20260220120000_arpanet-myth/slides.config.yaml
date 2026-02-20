@@ -1,0 +1,17 @@
+topic: "核戦争が生んだインターネット説は嘘だった — ARPANETの本当の動機"
+language: "ja"
+
+output:
+  dir: "docs/20260220120000_arpanet-myth"
+  baseName: "arpanet-myth"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "ARPANETの本当の動機"
+  footer: "© 2026"
+  style: |
+    section { font-size: 1.05em; }
+    section pre code { font-size: 0.58em; line-height: 1.4; }
+    section h1 { font-size: 1.6em; }
+    section h2 { font-size: 1.3em; }

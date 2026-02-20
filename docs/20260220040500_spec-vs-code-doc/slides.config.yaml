@@ -1,0 +1,26 @@
+topic: "「仕様書文化」vs「コード is ドキュメント」― 世代間・文化間の衝突を超えて"
+language: "ja"
+
+output:
+  dir: "docs/20260220040500_spec-vs-code-doc"
+  baseName: "spec-vs-code-doc"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "「仕様書文化」vs「コード is ドキュメント」"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+    section h1 {
+      font-size: 1.6em;
+    }
+    section h2 {
+      font-size: 1.3em;
+    }

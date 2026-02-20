@@ -1,0 +1,106 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="400" fill="#FAFAFA" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-size="20" font-weight="bold" fill="#2C3E50">YAGNI 違反の共通パターン</text>
+
+  <!-- Top path: YAGNI violation -->
+  <text x="50" y="80" font-size="14" font-weight="bold" fill="#E74C3C">❌ YAGNI違反パターン</text>
+
+  <!-- Step 1: 未来予測 -->
+  <rect x="30" y="95" width="155" height="65" fill="#FADBD8" rx="8" stroke="#E74C3C" stroke-width="2"/>
+  <text x="107" y="120" text-anchor="middle" font-size="13" font-weight="bold" fill="#C0392B">① 未来予測</text>
+  <text x="107" y="140" text-anchor="middle" font-size="11" fill="#C0392B">「きっと必要に</text>
+  <text x="107" y="154" text-anchor="middle" font-size="11" fill="#C0392B">なるだろう」</text>
+
+  <!-- Arrow -->
+  <line x1="185" y1="127" x2="225" y2="127" stroke="#E74C3C" stroke-width="2"/>
+  <polygon points="225,127 215,121 215,133" fill="#E74C3C"/>
+
+  <!-- Step 2: 先行投資 -->
+  <rect x="225" y="95" width="155" height="65" fill="#FADBD8" rx="8" stroke="#E74C3C" stroke-width="2"/>
+  <text x="302" y="120" text-anchor="middle" font-size="13" font-weight="bold" fill="#C0392B">② 先行投資</text>
+  <text x="302" y="140" text-anchor="middle" font-size="11" fill="#C0392B">時間・お金・労力</text>
+  <text x="302" y="154" text-anchor="middle" font-size="11" fill="#C0392B">を今すぐ消費</text>
+
+  <!-- Arrow -->
+  <line x1="380" y1="127" x2="420" y2="127" stroke="#E74C3C" stroke-width="2"/>
+  <polygon points="420,127 410,121 410,133" fill="#E74C3C"/>
+
+  <!-- Step 3: 需要なし -->
+  <rect x="420" y="95" width="155" height="65" fill="#FADBD8" rx="8" stroke="#E74C3C" stroke-width="2"/>
+  <text x="497" y="120" text-anchor="middle" font-size="13" font-weight="bold" fill="#C0392B">③ 需要なし</text>
+  <text x="497" y="140" text-anchor="middle" font-size="11" fill="#C0392B">「実際には必要</text>
+  <text x="497" y="154" text-anchor="middle" font-size="11" fill="#C0392B">にならなかった」</text>
+
+  <!-- Arrow -->
+  <line x1="575" y1="127" x2="615" y2="127" stroke="#E74C3C" stroke-width="2"/>
+  <polygon points="615,127 605,121 605,133" fill="#E74C3C"/>
+
+  <!-- Step 4: 損失 -->
+  <rect x="615" y="95" width="155" height="65" fill="#C0392B" rx="8"/>
+  <text x="692" y="120" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">④ 損失確定</text>
+  <text x="692" y="140" text-anchor="middle" font-size="11" fill="#fff">投資が全て無駄に</text>
+  <text x="692" y="154" text-anchor="middle" font-size="11" fill="#fff">+ 機会損失</text>
+
+  <!-- Divider -->
+  <line x1="30" y1="195" x2="870" y2="195" stroke="#ccc" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- Bottom path: YAGNI -->
+  <text x="50" y="225" font-size="14" font-weight="bold" fill="#27AE60">✅ YAGNI パターン</text>
+
+  <!-- Step 1: 課題発生 -->
+  <rect x="30" y="240" width="155" height="65" fill="#D5F5E3" rx="8" stroke="#27AE60" stroke-width="2"/>
+  <text x="107" y="265" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E8449">① 課題発生</text>
+  <text x="107" y="285" text-anchor="middle" font-size="11" fill="#1E8449">「今、これが</text>
+  <text x="107" y="299" text-anchor="middle" font-size="11" fill="#1E8449">必要になった」</text>
+
+  <!-- Arrow -->
+  <line x1="185" y1="272" x2="225" y2="272" stroke="#27AE60" stroke-width="2"/>
+  <polygon points="225,272 215,266 215,278" fill="#27AE60"/>
+
+  <!-- Step 2: 最小投資 -->
+  <rect x="225" y="240" width="155" height="65" fill="#D5F5E3" rx="8" stroke="#27AE60" stroke-width="2"/>
+  <text x="302" y="265" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E8449">② 最小投資</text>
+  <text x="302" y="285" text-anchor="middle" font-size="11" fill="#1E8449">今必要な分だけ</text>
+  <text x="302" y="299" text-anchor="middle" font-size="11" fill="#1E8449">コストを使う</text>
+
+  <!-- Arrow -->
+  <line x1="380" y1="272" x2="420" y2="272" stroke="#27AE60" stroke-width="2"/>
+  <polygon points="420,272 410,266 410,278" fill="#27AE60"/>
+
+  <!-- Step 3: 実際に活用 -->
+  <rect x="420" y="240" width="155" height="65" fill="#D5F5E3" rx="8" stroke="#27AE60" stroke-width="2"/>
+  <text x="497" y="265" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E8449">③ 即時活用</text>
+  <text x="497" y="285" text-anchor="middle" font-size="11" fill="#1E8449">必要になった</text>
+  <text x="497" y="299" text-anchor="middle" font-size="11" fill="#1E8449">から必ず使う</text>
+
+  <!-- Arrow -->
+  <line x1="575" y1="272" x2="615" y2="272" stroke="#27AE60" stroke-width="2"/>
+  <polygon points="615,272 605,266 605,278" fill="#27AE60"/>
+
+  <!-- Step 4: 利益 -->
+  <rect x="615" y="240" width="155" height="65" fill="#1E8449" rx="8"/>
+  <text x="692" y="265" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">④ ROI 最大化</text>
+  <text x="692" y="285" text-anchor="middle" font-size="11" fill="#fff">投資は全て活用</text>
+  <text x="692" y="299" text-anchor="middle" font-size="11" fill="#fff">無駄ゼロ</text>
+
+  <!-- Example column: concrete cases -->
+  <rect x="790" y="95" width="100" height="210" fill="#EBF5FB" rx="8" stroke="#3498DB" stroke-width="1.5"/>
+  <text x="840" y="115" text-anchor="middle" font-size="12" font-weight="bold" fill="#2980B9">実例</text>
+  <text x="840" y="135" text-anchor="middle" font-size="11" fill="#2980B9">積読</text>
+  <text x="840" y="152" text-anchor="middle" font-size="11" fill="#2980B9">ガジェット</text>
+  <text x="840" y="169" text-anchor="middle" font-size="11" fill="#2980B9">資格</text>
+  <text x="840" y="186" text-anchor="middle" font-size="11" fill="#2980B9">過剰準備</text>
+  <text x="840" y="203" text-anchor="middle" font-size="11" fill="#2980B9">使わない</text>
+  <text x="840" y="218" text-anchor="middle" font-size="11" fill="#2980B9">コード</text>
+  <text x="840" y="235" text-anchor="middle" font-size="11" fill="#2980B9">キャリア</text>
+  <text x="840" y="252" text-anchor="middle" font-size="11" fill="#2980B9">迷走</text>
+  <text x="840" y="290" text-anchor="middle" font-size="11" fill="#2980B9">全て同じ</text>
+  <text x="840" y="307" text-anchor="middle" font-size="11" fill="#2980B9">パターン！</text>
+
+  <!-- Summary -->
+  <rect x="30" y="330" width="740" height="55" fill="#FEF9E7" rx="8" stroke="#F39C12" stroke-width="2"/>
+  <text x="400" y="355" text-anchor="middle" font-size="14" font-weight="bold" fill="#D68910">共通の原因: 「未来を予測できる」という過信</text>
+  <text x="400" y="375" text-anchor="middle" font-size="13" fill="#D68910">YAGNI は「需要が来てから動く」ことでこのパターンを根絶する</text>
+</svg>

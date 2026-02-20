@@ -1,0 +1,59 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="420" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="28" text-anchor="middle" fill="#ecf0f1" font-size="15" font-weight="bold">Divio ドキュメント4分類システム</text>
+
+  <!-- Quadrant grid -->
+  <!-- Top-left: Tutorials -->
+  <rect x="60" y="50" width="370" height="160" rx="6" fill="#1e4d2b" stroke="#2ecc71" stroke-width="2"/>
+  <!-- Top-right: How-to -->
+  <rect x="470" y="50" width="370" height="160" rx="6" fill="#1a3a5c" stroke="#3498db" stroke-width="2"/>
+  <!-- Bottom-left: Explanation -->
+  <rect x="60" y="230" width="370" height="155" rx="6" fill="#2c2c1a" stroke="#f39c12" stroke-width="2"/>
+  <!-- Bottom-right: Reference -->
+  <rect x="470" y="230" width="370" height="155" rx="6" fill="#2a1a4a" stroke="#8e44ad" stroke-width="2"/>
+
+  <!-- Quadrant titles -->
+  <text x="245" y="78" text-anchor="middle" fill="#2ecc71" font-size="14" font-weight="bold">Tutorials（チュートリアル）</text>
+  <text x="655" y="78" text-anchor="middle" fill="#3498db" font-size="14" font-weight="bold">How-to Guides（ハウツー）</text>
+  <text x="245" y="258" text-anchor="middle" fill="#f39c12" font-size="14" font-weight="bold">Explanation（解説）</text>
+  <text x="655" y="258" text-anchor="middle" fill="#8e44ad" font-size="14" font-weight="bold">Reference（リファレンス）</text>
+
+  <!-- Tutorials content -->
+  <text x="245" y="100" text-anchor="middle" fill="#a9dfbf" font-size="11">目的: 学習者が「できた！」を体験する</text>
+  <text x="245" y="116" text-anchor="middle" fill="#ecf0f1" font-size="11">→ ハンズオン形式。結果重視</text>
+  <text x="245" y="136" text-anchor="middle" fill="#7dcea0" font-size="11">例: 「30分で Hello World」</text>
+  <text x="245" y="150" text-anchor="middle" fill="#7dcea0" font-size="11">   「初めての DB マイグレーション」</text>
+  <text x="245" y="170" text-anchor="middle" fill="#2ecc71" font-size="10">→ 仕様書文化が苦手な領域</text>
+  <text x="245" y="184" text-anchor="middle" fill="#2ecc71" font-size="10">   コードと連動させて初めて機能する</text>
+
+  <!-- How-to content -->
+  <text x="655" y="100" text-anchor="middle" fill="#85c1e9" font-size="11">目的: 特定の問題を解決する手順を示す</text>
+  <text x="655" y="116" text-anchor="middle" fill="#ecf0f1" font-size="11">→ タスク完了が目標。Why は最小限</text>
+  <text x="655" y="136" text-anchor="middle" fill="#7fb3d3" font-size="11">例: 「デプロイの手順」</text>
+  <text x="655" y="150" text-anchor="middle" fill="#7fb3d3" font-size="11">   「障害対応 Runbook」</text>
+  <text x="655" y="170" text-anchor="middle" fill="#3498db" font-size="10">→ 両文化が同意しやすい領域</text>
+  <text x="655" y="184" text-anchor="middle" fill="#3498db" font-size="10">   「誰かが実際に読む」が前提</text>
+
+  <!-- Explanation content -->
+  <text x="245" y="280" text-anchor="middle" fill="#fad7a0" font-size="11">目的: 背景・WHY・思想を理解させる</text>
+  <text x="245" y="296" text-anchor="middle" fill="#ecf0f1" font-size="11">→ 実装を離れて概念を解説</text>
+  <text x="245" y="316" text-anchor="middle" fill="#f5cba7" font-size="11">例: ADR・アーキテクチャ解説</text>
+  <text x="245" y="330" text-anchor="middle" fill="#f5cba7" font-size="11">   「なぜこの設計を選んだか」</text>
+  <text x="245" y="350" text-anchor="middle" fill="#f39c12" font-size="10">→ コードで表現できない領域</text>
+  <text x="245" y="364" text-anchor="middle" fill="#f39c12" font-size="10">   コード is Doc 文化が最も欠如しがち</text>
+
+  <!-- Reference content -->
+  <text x="655" y="280" text-anchor="middle" fill="#d7bde2" font-size="11">目的: 正確な仕様を確認・参照する</text>
+  <text x="655" y="296" text-anchor="middle" fill="#ecf0f1" font-size="11">→ 完全性・正確性重視。読むより引く</text>
+  <text x="655" y="316" text-anchor="middle" fill="#bb8fce" font-size="11">例: API リファレンス・型定義</text>
+  <text x="655" y="330" text-anchor="middle" fill="#bb8fce" font-size="11">   コマンドリファレンス・スキーマ</text>
+  <text x="655" y="350" text-anchor="middle" fill="#8e44ad" font-size="10">→ 自動生成が最も有効な領域</text>
+  <text x="655" y="364" text-anchor="middle" fill="#8e44ad" font-size="10">   OpenAPI / TSDoc / Javadoc</text>
+
+  <!-- Axis labels -->
+  <text x="450" y="400" text-anchor="middle" fill="#ecf0f1" font-size="12" font-weight="bold">実践的 ←――――――――→ 理論的</text>
+
+  <!-- Left side label -->
+  <text x="22" y="150" text-anchor="middle" fill="#ecf0f1" font-size="11" transform="rotate(-90,22,150)">学習</text>
+  <text x="22" y="310" text-anchor="middle" fill="#ecf0f1" font-size="11" transform="rotate(-90,22,310)">作業</text>
+</svg>

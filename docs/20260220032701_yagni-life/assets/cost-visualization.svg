@@ -1,0 +1,85 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="420" fill="#FAFAFA" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="36" text-anchor="middle" font-size="20" font-weight="bold" fill="#2C3E50">YAGNI 違反の隠れたコスト</text>
+
+  <!-- Header row -->
+  <rect x="20" y="50" width="200" height="35" fill="#2C3E50" rx="4"/>
+  <text x="120" y="72" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">失敗パターン</text>
+  <rect x="225" y="50" width="180" height="35" fill="#E74C3C" rx="4"/>
+  <text x="315" y="72" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">直接コスト</text>
+  <rect x="410" y="50" width="180" height="35" fill="#E67E22" rx="4"/>
+  <text x="500" y="72" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">隠れたコスト</text>
+  <rect x="595" y="50" width="280" height="35" fill="#8E44AD" rx="4"/>
+  <text x="735" y="72" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">YAGNI 的解決策</text>
+
+  <!-- Row 1: 積読 -->
+  <rect x="20" y="88" width="200" height="45" fill="#F9EBEA" rx="4"/>
+  <text x="120" y="110" text-anchor="middle" font-size="13" font-weight="bold" fill="#C0392B">📚 積読</text>
+  <text x="120" y="126" text-anchor="middle" font-size="11" fill="#C0392B">「いつか読もう」</text>
+  <rect x="225" y="88" width="180" height="45" fill="#FDFEFE" rx="4" stroke="#ddd" stroke-width="1"/>
+  <text x="315" y="112" text-anchor="middle" font-size="12" fill="#555">本代 ¥3,000〜/冊</text>
+  <rect x="410" y="88" width="180" height="45" fill="#FDFEFE" rx="4" stroke="#ddd" stroke-width="1"/>
+  <text x="500" y="108" text-anchor="middle" font-size="12" fill="#555">本棚スペース</text>
+  <text x="500" y="126" text-anchor="middle" font-size="12" fill="#555">+ 罪悪感</text>
+  <rect x="595" y="88" width="280" height="45" fill="#EAF7EA" rx="4" stroke="#27AE60" stroke-width="1"/>
+  <text x="735" y="112" text-anchor="middle" font-size="12" fill="#1E8449">困ったとき → 必要な本だけ買う</text>
+
+  <!-- Row 2: ガジェット -->
+  <rect x="20" y="136" width="200" height="45" fill="#F9EBEA" rx="4"/>
+  <text x="120" y="158" text-anchor="middle" font-size="13" font-weight="bold" fill="#C0392B">🎮 ガジェット</text>
+  <text x="120" y="174" text-anchor="middle" font-size="11" fill="#C0392B">「便利そう」</text>
+  <rect x="225" y="136" width="180" height="45" fill="#FDFEFE" rx="4" stroke="#ddd" stroke-width="1"/>
+  <text x="315" y="160" text-anchor="middle" font-size="12" fill="#555">購入費 数万円〜</text>
+  <rect x="410" y="136" width="180" height="45" fill="#FDFEFE" rx="4" stroke="#ddd" stroke-width="1"/>
+  <text x="500" y="156" text-anchor="middle" font-size="12" fill="#555">保管場所</text>
+  <text x="500" y="174" text-anchor="middle" font-size="12" fill="#555">+ 処分の手間</text>
+  <rect x="595" y="136" width="280" height="45" fill="#EAF7EA" rx="4" stroke="#27AE60" stroke-width="1"/>
+  <text x="735" y="160" text-anchor="middle" font-size="12" fill="#1E8449">1ヶ月後も必要なら購入</text>
+
+  <!-- Row 3: 資格 -->
+  <rect x="20" y="184" width="200" height="45" fill="#F9EBEA" rx="4"/>
+  <text x="120" y="206" text-anchor="middle" font-size="13" font-weight="bold" fill="#C0392B">📜 資格</text>
+  <text x="120" y="222" text-anchor="middle" font-size="11" fill="#C0392B">「将来使えそう」</text>
+  <rect x="225" y="184" width="180" height="45" fill="#FDFEFE" rx="4" stroke="#ddd" stroke-width="1"/>
+  <text x="315" y="206" text-anchor="middle" font-size="12" fill="#555">受験費 + 教材費</text>
+  <text x="315" y="222" text-anchor="middle" font-size="11" fill="#555">100〜300時間の勉強</text>
+  <rect x="410" y="184" width="180" height="45" fill="#FDFEFE" rx="4" stroke="#ddd" stroke-width="1"/>
+  <text x="500" y="204" text-anchor="middle" font-size="12" fill="#555">記憶の劣化</text>
+  <text x="500" y="222" text-anchor="middle" font-size="12" fill="#555">+ 本業の機会損失</text>
+  <rect x="595" y="184" width="280" height="45" fill="#EAF7EA" rx="4" stroke="#27AE60" stroke-width="1"/>
+  <text x="735" y="206" text-anchor="middle" font-size="12" fill="#1E8449">業務で必要になったら勉強開始</text>
+
+  <!-- Row 4: 過剰準備 -->
+  <rect x="20" y="232" width="200" height="45" fill="#F9EBEA" rx="4"/>
+  <text x="120" y="254" text-anchor="middle" font-size="13" font-weight="bold" fill="#C0392B">⏳ 過剰準備</text>
+  <text x="120" y="270" text-anchor="middle" font-size="11" fill="#C0392B">「完璧になってから」</text>
+  <rect x="225" y="232" width="180" height="45" fill="#FDFEFE" rx="4" stroke="#ddd" stroke-width="1"/>
+  <text x="315" y="256" text-anchor="middle" font-size="12" fill="#555">準備時間</text>
+  <text x="315" y="272" text-anchor="middle" font-size="11" fill="#555">（月〜年単位）</text>
+  <rect x="410" y="232" width="180" height="45" fill="#FDFEFE" rx="4" stroke="#ddd" stroke-width="1"/>
+  <text x="500" y="252" text-anchor="middle" font-size="12" fill="#555">機会を逃す</text>
+  <text x="500" y="270" text-anchor="middle" font-size="12" fill="#555">+ 行動力の低下</text>
+  <rect x="595" y="232" width="280" height="45" fill="#EAF7EA" rx="4" stroke="#27AE60" stroke-width="1"/>
+  <text x="735" y="256" text-anchor="middle" font-size="12" fill="#1E8449">最小限で始めて後から足す</text>
+
+  <!-- Row 5: 使わないコード -->
+  <rect x="20" y="280" width="200" height="45" fill="#F9EBEA" rx="4"/>
+  <text x="120" y="302" text-anchor="middle" font-size="13" font-weight="bold" fill="#C0392B">💻 先行実装</text>
+  <text x="120" y="318" text-anchor="middle" font-size="11" fill="#C0392B">「将来使うかも」</text>
+  <rect x="225" y="280" width="180" height="45" fill="#FDFEFE" rx="4" stroke="#ddd" stroke-width="1"/>
+  <text x="315" y="302" text-anchor="middle" font-size="12" fill="#555">開発時間</text>
+  <text x="315" y="318" text-anchor="middle" font-size="11" fill="#555">（週〜月単位）</text>
+  <rect x="410" y="280" width="180" height="45" fill="#FDFEFE" rx="4" stroke="#ddd" stroke-width="1"/>
+  <text x="500" y="300" text-anchor="middle" font-size="12" fill="#555">メンテナンス負債</text>
+  <text x="500" y="318" text-anchor="middle" font-size="12" fill="#555">+ 設計の複雑化</text>
+  <rect x="595" y="280" width="280" height="45" fill="#EAF7EA" rx="4" stroke="#27AE60" stroke-width="1"/>
+  <text x="735" y="302" text-anchor="middle" font-size="12" fill="#1E8449">必要になったスプリントで実装</text>
+
+  <!-- Summary -->
+  <rect x="20" y="338" width="855" height="65" fill="#EBF5FB" rx="8" stroke="#3498DB" stroke-width="2"/>
+  <text x="450" y="360" text-anchor="middle" font-size="14" font-weight="bold" fill="#2980B9">直接コストより隠れたコストの方が大きい</text>
+  <text x="450" y="382" text-anchor="middle" font-size="13" fill="#2980B9">お金だけでなく「時間・注意力・機会」という有限リソースを失っている</text>
+  <text x="450" y="398" text-anchor="middle" font-size="12" fill="#2980B9">YAGNI を守ることで、これらの隠れたコストを根絶できる</text>
+</svg>

@@ -1,0 +1,20 @@
+topic: "渋滞はなぜ消えないか"
+language: "ja"
+
+output:
+  dir: "docs/20260220120000_traffic-jam-physics"
+  baseName: "traffic-jam-physics"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "渋滞の物理学 × イベントループ"
+  footer: "© 2026 Workshop — Traffic Flow & Complex Systems"
+  style: |
+    section {
+      font-size: 1.0em;
+    }
+    section pre code {
+      font-size: 0.55em;
+      line-height: 1.4;
+    }

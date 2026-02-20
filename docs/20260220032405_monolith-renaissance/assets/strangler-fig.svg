@@ -1,0 +1,112 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="420" fill="#1a1a2e" rx="12"/>
+
+  <text x="450" y="30" text-anchor="middle" fill="#ecf0f1" font-size="16" font-weight="bold">Strangler Fig Pattern — 段階的移行戦略</text>
+
+  <!-- Phase labels -->
+  <text x="110" y="60" text-anchor="middle" fill="#f39c12" font-size="13" font-weight="bold">Phase 1: 現状</text>
+  <text x="450" y="60" text-anchor="middle" fill="#f39c12" font-size="13" font-weight="bold">Phase 2: Facade 導入</text>
+  <text x="790" y="60" text-anchor="middle" fill="#f39c12" font-size="13" font-weight="bold">Phase 3: 移行完了</text>
+
+  <!-- Phase dividers -->
+  <line x1="280" y1="50" x1="280" y2="410" stroke="#34495e" stroke-width="1" stroke-dasharray="5,4"/>
+  <line x1="280" y1="50" x2="280" y2="410" stroke="#34495e" stroke-width="1" stroke-dasharray="5,4"/>
+  <line x1="620" y1="50" x2="620" y2="410" stroke="#34495e" stroke-width="1" stroke-dasharray="5,4"/>
+
+  <!-- ===================== PHASE 1 ===================== -->
+  <!-- Client -->
+  <rect x="50" y="75" width="120" height="40" rx="6" fill="#2c3e50" stroke="#7f8c8d" stroke-width="1.5"/>
+  <text x="110" y="100" text-anchor="middle" fill="#ecf0f1" font-size="12" font-weight="bold">Client</text>
+  <!-- Arrow to monolith -->
+  <line x1="110" y1="115" x2="110" y2="148" stroke="#e67e22" stroke-width="2"/>
+  <polygon points="105,148 110,158 115,148" fill="#e67e22"/>
+  <!-- Monolith -->
+  <rect x="30" y="158" width="160" height="180" rx="8" fill="#2d1b1b" stroke="#e74c3c" stroke-width="2"/>
+  <text x="110" y="183" text-anchor="middle" fill="#e74c3c" font-size="13" font-weight="bold">Monolith</text>
+  <rect x="45" y="192" width="130" height="25" rx="4" fill="#3d1515"/>
+  <text x="110" y="209" text-anchor="middle" fill="#e74c3c" font-size="10">Feature A</text>
+  <rect x="45" y="222" width="130" height="25" rx="4" fill="#3d1515"/>
+  <text x="110" y="239" text-anchor="middle" fill="#e74c3c" font-size="10">Feature B</text>
+  <rect x="45" y="252" width="130" height="25" rx="4" fill="#3d1515"/>
+  <text x="110" y="269" text-anchor="middle" fill="#e74c3c" font-size="10">Feature C</text>
+  <rect x="45" y="282" width="130" height="25" rx="4" fill="#3d1515"/>
+  <text x="110" y="299" text-anchor="middle" fill="#e74c3c" font-size="10">Feature D</text>
+
+  <text x="110" y="360" text-anchor="middle" fill="#7f8c8d" font-size="10">全機能が1プロセス</text>
+
+  <!-- ===================== PHASE 2 ===================== -->
+  <!-- Client -->
+  <rect x="390" y="75" width="120" height="40" rx="6" fill="#2c3e50" stroke="#7f8c8d" stroke-width="1.5"/>
+  <text x="450" y="100" text-anchor="middle" fill="#ecf0f1" font-size="12" font-weight="bold">Client</text>
+  <!-- Arrow to Facade -->
+  <line x1="450" y1="115" x2="450" y2="148" stroke="#e67e22" stroke-width="2"/>
+  <polygon points="445,148 450,158 455,148" fill="#e67e22"/>
+
+  <!-- Facade/Proxy -->
+  <rect x="370" y="158" width="160" height="45" rx="8" fill="#1a3a5c" stroke="#3498db" stroke-width="2"/>
+  <text x="450" y="178" text-anchor="middle" fill="#3498db" font-size="12" font-weight="bold">API Facade</text>
+  <text x="450" y="194" text-anchor="middle" fill="#85c1e9" font-size="10">ルーティング制御</text>
+
+  <!-- Arrow to Legacy -->
+  <line x1="420" y1="203" x2="370" y2="230" stroke="#e74c3c" stroke-width="1.5"/>
+  <polygon points="368,224 364,234 374,232" fill="#e74c3c"/>
+  <!-- Arrow to New Service -->
+  <line x1="480" y1="203" x2="530" y2="230" stroke="#2ecc71" stroke-width="1.5"/>
+  <polygon points="526,224 534,232 536,222" fill="#2ecc71"/>
+
+  <!-- Legacy Monolith (reduced) -->
+  <rect x="300" y="230" width="120" height="120" rx="8" fill="#2d1b1b" stroke="#e74c3c" stroke-width="2"/>
+  <text x="360" y="253" text-anchor="middle" fill="#e74c3c" font-size="11" font-weight="bold">Monolith</text>
+  <rect x="315" y="262" width="90" height="22" rx="3" fill="#3d1515"/>
+  <text x="360" y="277" text-anchor="middle" fill="#c0392b" font-size="10">Feature B</text>
+  <rect x="315" y="288" width="90" height="22" rx="3" fill="#3d1515"/>
+  <text x="360" y="303" text-anchor="middle" fill="#c0392b" font-size="10">Feature C</text>
+  <rect x="315" y="314" width="90" height="22" rx="3" fill="#3d1515"/>
+  <text x="360" y="329" text-anchor="middle" fill="#c0392b" font-size="10">Feature D</text>
+
+  <!-- New Service (extracted) -->
+  <rect x="470" y="230" width="120" height="60" rx="8" fill="#1b2d1b" stroke="#2ecc71" stroke-width="2"/>
+  <text x="530" y="253" text-anchor="middle" fill="#2ecc71" font-size="11" font-weight="bold">New Service</text>
+  <rect x="485" y="262" width="90" height="22" rx="3" fill="#1e4d2b"/>
+  <text x="530" y="277" text-anchor="middle" fill="#a9dfbf" font-size="10">Feature A ✓</text>
+
+  <text x="450" y="360" text-anchor="middle" fill="#7f8c8d" font-size="10">A を抽出、B-D はモノリスに残る</text>
+
+  <!-- ===================== PHASE 3 ===================== -->
+  <!-- Client -->
+  <rect x="730" y="75" width="120" height="40" rx="6" fill="#2c3e50" stroke="#7f8c8d" stroke-width="1.5"/>
+  <text x="790" y="100" text-anchor="middle" fill="#ecf0f1" font-size="12" font-weight="bold">Client</text>
+  <!-- Arrow to Facade -->
+  <line x1="790" y1="115" x2="790" y2="148" stroke="#e67e22" stroke-width="2"/>
+  <polygon points="785,148 790,158 795,148" fill="#e67e22"/>
+
+  <!-- Facade -->
+  <rect x="710" y="158" width="160" height="45" rx="8" fill="#1a3a5c" stroke="#3498db" stroke-width="2"/>
+  <text x="790" y="178" text-anchor="middle" fill="#3498db" font-size="12" font-weight="bold">API Facade</text>
+  <text x="790" y="194" text-anchor="middle" fill="#85c1e9" font-size="10">最終的には削除可能</text>
+
+  <!-- All to New Services -->
+  <line x1="790" y1="203" x2="790" y2="228" stroke="#2ecc71" stroke-width="2"/>
+  <polygon points="785,228 790,238 795,228" fill="#2ecc71"/>
+
+  <!-- New Monolith or Services -->
+  <rect x="690" y="238" width="200" height="120" rx="8" fill="#1b2d1b" stroke="#2ecc71" stroke-width="2"/>
+  <text x="790" y="260" text-anchor="middle" fill="#2ecc71" font-size="12" font-weight="bold">Modular Monolith</text>
+  <rect x="705" y="270" width="170" height="20" rx="3" fill="#1e4d2b"/>
+  <text x="790" y="284" text-anchor="middle" fill="#a9dfbf" font-size="10">Feature A ✓</text>
+  <rect x="705" y="295" width="170" height="20" rx="3" fill="#1e4d2b"/>
+  <text x="790" y="309" text-anchor="middle" fill="#a9dfbf" font-size="10">Feature B ✓</text>
+  <rect x="705" y="320" width="170" height="20" rx="3" fill="#1e4d2b"/>
+  <text x="790" y="334" text-anchor="middle" fill="#a9dfbf" font-size="10">Feature C + D ✓</text>
+
+  <!-- Old monolith (crossed out / faded) -->
+  <rect x="660" y="240" width="20" height="100" rx="3" fill="#2d1b1b" stroke="#e74c3c" stroke-width="1" opacity="0.4"/>
+  <line x1="650" y1="230" x2="680" y2="360" stroke="#e74c3c" stroke-width="2" opacity="0.5"/>
+  <line x1="680" y1="230" x2="650" y2="360" stroke="#e74c3c" stroke-width="2" opacity="0.5"/>
+
+  <text x="790" y="378" text-anchor="middle" fill="#2ecc71" font-size="10">移行完了 — モノリスは廃止</text>
+
+  <!-- Bottom message -->
+  <rect x="30" y="390" width="840" height="25" fill="#16213e" rx="6"/>
+  <text x="450" y="407" text-anchor="middle" fill="#f39c12" font-size="12">ポイント: Facade で段階的に切り替え — 本番リスクゼロで移行できる</text>
+</svg>

@@ -1,0 +1,92 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="420" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="28" text-anchor="middle" fill="#ecf0f1" font-size="15" font-weight="bold">世代別: ドキュメントへの価値観マップ</text>
+
+  <!-- Axes -->
+  <!-- X axis: キャリア開始年代 (left=ウォーターフォール時代, right=アジャイルネイティブ) -->
+  <!-- Y axis: ドキュメント重視度 (bottom=コード派, top=仕様書派) -->
+
+  <!-- Plot area background -->
+  <rect x="110" y="50" width="740" height="300" fill="#111125" rx="8"/>
+
+  <!-- Quadrant backgrounds -->
+  <rect x="110" y="50" width="370" height="150" fill="#1a2a40" rx="0" opacity="0.6"/>
+  <rect x="480" y="50" width="370" height="150" fill="#1a3020" rx="0" opacity="0.4"/>
+  <rect x="110" y="200" width="370" height="150" fill="#2a1a30" rx="0" opacity="0.4"/>
+  <rect x="480" y="200" width="370" height="150" fill="#1a2a1a" rx="0" opacity="0.3"/>
+
+  <!-- Quadrant labels -->
+  <text x="280" y="80" text-anchor="middle" fill="#3498db" font-size="11" opacity="0.8">「仕様書がなければ設計ではない」</text>
+  <text x="670" y="80" text-anchor="middle" fill="#2ecc71" font-size="11" opacity="0.8">「仕様書 ＋ ADR を両立」</text>
+  <text x="280" y="360" text-anchor="middle" fill="#9b59b6" font-size="11" opacity="0.8">「とにかくコードを書く」</text>
+  <text x="670" y="360" text-anchor="middle" fill="#27ae60" font-size="11" opacity="0.8">「コード＋型＋テストで十分」</text>
+
+  <!-- Y axis -->
+  <line x1="110" y1="50" x2="110" y2="350" stroke="#4a5568" stroke-width="2"/>
+  <!-- Y axis arrow -->
+  <polygon points="110,50 104,62 116,62" fill="#4a5568"/>
+  <!-- Y labels -->
+  <text x="100" y="55" text-anchor="end" fill="#3498db" font-size="10">仕様書重視</text>
+  <text x="100" y="353" text-anchor="end" fill="#2ecc71" font-size="10">コード重視</text>
+  <text x="40" y="205" text-anchor="middle" fill="#95a5a6" font-size="11" transform="rotate(-90,40,205)">ドキュメント優先度</text>
+
+  <!-- X axis -->
+  <line x1="110" y1="350" x2="850" y2="350" stroke="#4a5568" stroke-width="2"/>
+  <!-- X axis arrow -->
+  <polygon points="850,350 838,344 838,356" fill="#4a5568"/>
+  <!-- X labels -->
+  <text x="115" y="370" text-anchor="start" fill="#95a5a6" font-size="10">ウォーターフォール時代</text>
+  <text x="840" y="370" text-anchor="end" fill="#95a5a6" font-size="10">アジャイルネイティブ世代</text>
+  <text x="450" y="390" text-anchor="middle" fill="#95a5a6" font-size="11">キャリア開始年代・技術的バックグラウンド →</text>
+
+  <!-- Divider lines -->
+  <line x1="480" y1="50" x2="480" y2="350" stroke="#2d3748" stroke-width="1" stroke-dasharray="6,4"/>
+  <line x1="110" y1="200" x2="850" y2="200" stroke="#2d3748" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- Data bubbles -->
+  <!-- SIer ベテラン (上左: 仕様書重視 × ウォーターフォール時代) -->
+  <circle cx="210" cy="95" r="36" fill="#1a3a5c" stroke="#3498db" stroke-width="2"/>
+  <text x="210" y="91" text-anchor="middle" fill="#3498db" font-size="11" font-weight="bold">SIer</text>
+  <text x="210" y="104" text-anchor="middle" fill="#85c1e9" font-size="9">ベテラン</text>
+  <text x="210" y="116" text-anchor="middle" fill="#7fb3d3" font-size="9">1980〜90s入社</text>
+
+  <!-- 官公庁エンジニア (上左〜中: 仕様書重視) -->
+  <circle cx="370" cy="115" r="30" fill="#1a3a5c" stroke="#2980b9" stroke-width="2"/>
+  <text x="370" y="111" text-anchor="middle" fill="#2980b9" font-size="10" font-weight="bold">官公庁系</text>
+  <text x="370" y="124" text-anchor="middle" fill="#7fb3d3" font-size="9">エンジニア</text>
+
+  <!-- アジャイル転向組 (上右: 仕様書ベースだが変化中) -->
+  <circle cx="600" cy="100" r="32" fill="#1e4d2b" stroke="#27ae60" stroke-width="2"/>
+  <text x="600" y="96" text-anchor="middle" fill="#27ae60" font-size="10" font-weight="bold">転向アジャイル</text>
+  <text x="600" y="109" text-anchor="middle" fill="#a9dfbf" font-size="9">TL世代</text>
+  <text x="600" y="121" text-anchor="middle" fill="#7dcea0" font-size="9">2000s入社</text>
+
+  <!-- スタートアップ エンジニア (中右) -->
+  <circle cx="700" cy="250" r="32" fill="#1e4d2b" stroke="#2ecc71" stroke-width="2"/>
+  <text x="700" y="246" text-anchor="middle" fill="#2ecc71" font-size="10" font-weight="bold">スタートアップ</text>
+  <text x="700" y="259" text-anchor="middle" fill="#a9dfbf" font-size="9">エンジニア</text>
+
+  <!-- Z世代・アジャイルネイティブ (右下) -->
+  <circle cx="800" cy="300" r="28" fill="#1e3d1e" stroke="#2ecc71" stroke-width="2"/>
+  <text x="800" y="296" text-anchor="middle" fill="#2ecc71" font-size="11" font-weight="bold">Z世代</text>
+  <text x="800" y="308" text-anchor="middle" fill="#a9dfbf" font-size="9">Dev native</text>
+
+  <!-- 元SI 現Web系 (中央〜右中: 橋渡し) -->
+  <circle cx="530" cy="230" r="26" fill="#2c1a3a" stroke="#8e44ad" stroke-width="2"/>
+  <text x="530" y="226" text-anchor="middle" fill="#bb8fce" font-size="10" font-weight="bold">元SI系</text>
+  <text x="530" y="239" text-anchor="middle" fill="#d7bde2" font-size="9">Web転向組</text>
+
+  <!-- オフショアPM (左上: 仕様書が命) -->
+  <circle cx="160" cy="170" r="24" fill="#2c1a1a" stroke="#e74c3c" stroke-width="2"/>
+  <text x="160" y="166" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="bold">PMO/</text>
+  <text x="160" y="179" text-anchor="middle" fill="#f1948a" font-size="9">オフショアPM</text>
+
+  <!-- 下左: 学生上がり「仕様書ってなに」 -->
+  <circle cx="230" cy="300" r="24" fill="#2a1a3a" stroke="#9b59b6" stroke-width="2"/>
+  <text x="230" y="296" text-anchor="middle" fill="#bb8fce" font-size="10" font-weight="bold">新卒</text>
+  <text x="230" y="309" text-anchor="middle" fill="#d7bde2" font-size="9">アジャイル学習中</text>
+
+  <!-- Tension arrow: 衝突ゾーン -->
+  <rect x="340" y="155" width="220" height="26" rx="6" fill="#4a1a1a" stroke="#e74c3c" stroke-width="1.5"/>
+  <text x="450" y="172" text-anchor="middle" fill="#e74c3c" font-size="11" font-weight="bold">⚡ 衝突ゾーン ⚡</text>
+</svg>

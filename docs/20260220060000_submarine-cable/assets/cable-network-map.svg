@@ -1,0 +1,131 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="420" fill="#0d1b2a" rx="12"/>
+  <text x="450" y="22" text-anchor="middle" fill="#ecf0f1" font-size="13" font-weight="bold">世界の海底ケーブルネットワーク — 主要ルートと陸揚げ局</text>
+
+  <!-- Ocean background -->
+  <rect x="15" y="30" width="870" height="340" rx="8" fill="#0a1628"/>
+
+  <!-- Continents (simplified shapes) -->
+  <!-- North America -->
+  <rect x="40" y="80" width="120" height="130" rx="10" fill="#2c3e50"/>
+  <text x="100" y="140" text-anchor="middle" fill="#85c1e9" font-size="10" font-weight="bold">北米</text>
+
+  <!-- South America -->
+  <rect x="90" y="230" width="80" height="110" rx="10" fill="#2c3e50"/>
+  <text x="130" y="290" text-anchor="middle" fill="#85c1e9" font-size="9">南米</text>
+
+  <!-- Europe -->
+  <rect x="370" y="60" width="90" height="80" rx="8" fill="#2c3e50"/>
+  <text x="415" y="103" text-anchor="middle" fill="#85c1e9" font-size="10" font-weight="bold">欧州</text>
+
+  <!-- Africa -->
+  <rect x="380" y="165" width="90" height="130" rx="10" fill="#2c3e50"/>
+  <text x="425" y="235" text-anchor="middle" fill="#85c1e9" font-size="9">アフリカ</text>
+
+  <!-- Middle East -->
+  <rect x="490" y="120" width="60" height="60" rx="6" fill="#2c3e50"/>
+  <text x="520" y="154" text-anchor="middle" fill="#85c1e9" font-size="8">中東</text>
+
+  <!-- South Asia / India -->
+  <rect x="560" y="145" width="60" height="70" rx="8" fill="#2c3e50"/>
+  <text x="590" y="183" text-anchor="middle" fill="#85c1e9" font-size="9">南アジア</text>
+
+  <!-- Southeast Asia -->
+  <rect x="650" y="165" width="60" height="60" rx="6" fill="#2c3e50"/>
+  <text x="680" y="198" text-anchor="middle" fill="#85c1e9" font-size="8">東南アジア</text>
+
+  <!-- East Asia / Japan -->
+  <rect x="720" y="90" width="80" height="90" rx="8" fill="#2c3e50"/>
+  <text x="760" y="133" text-anchor="middle" fill="#85c1e9" font-size="9" font-weight="bold">東アジア</text>
+  <text x="760" y="148" text-anchor="middle" fill="#f39c12" font-size="8">日本・韓国</text>
+
+  <!-- Australia -->
+  <rect x="700" y="285" width="90" height="65" rx="8" fill="#2c3e50"/>
+  <text x="745" y="323" text-anchor="middle" fill="#85c1e9" font-size="9">豪州</text>
+
+  <!-- === CABLE ROUTES === -->
+
+  <!-- Trans-Atlantic (TAT) - North America to Europe -->
+  <!-- Main TAT route -->
+  <path d="M 160 130 Q 270 80 370 100" fill="none" stroke="#3498db" stroke-width="3"/>
+  <!-- TAT-14 parallel -->
+  <path d="M 160 145 Q 265 110 370 120" fill="none" stroke="#2980b9" stroke-width="2"/>
+
+  <!-- Trans-Pacific - NA to East Asia -->
+  <path d="M 40 120 Q -20 130 820 120" fill="none" stroke="#e74c3c" stroke-width="2.5"/>
+  <path d="M 40 135 Q -10 155 760 135" fill="none" stroke="#c0392b" stroke-width="2"/>
+
+  <!-- SEA-ME-WE / FLAG - Europe to Asia (via Middle East) -->
+  <path d="M 415 140 Q 450 175 490 155" fill="none" stroke="#2ecc71" stroke-width="2.5"/>
+  <path d="M 550 160 Q 600 180 650 195" fill="none" stroke="#2ecc71" stroke-width="2.5"/>
+  <path d="M 710 195 Q 730 170 760 170" fill="none" stroke="#2ecc71" stroke-width="2.5"/>
+
+  <!-- 2Africa / EIG - Africa ring -->
+  <path d="M 415 140 Q 425 155 425 165" fill="none" stroke="#f39c12" stroke-width="2"/>
+  <path d="M 380 295 Q 250 320 130 260" fill="none" stroke="#f39c12" stroke-width="2"/>
+  <path d="M 470 295 Q 580 320 700 290" fill="none" stroke="#f39c12" stroke-width="1.5"/>
+
+  <!-- Red Sea chokepoint indicator -->
+  <rect x="482" y="150" width="12" height="20" rx="2" fill="#e74c3c"/>
+  <text x="488" y="183" text-anchor="middle" fill="#e74c3c" font-size="8">紅海</text>
+
+  <!-- Taiwan Strait chokepoint -->
+  <rect x="718" y="162" width="12" height="20" rx="2" fill="#e74c3c"/>
+  <text x="724" y="196" text-anchor="middle" fill="#e74c3c" font-size="8">台湾</text>
+  <text x="724" y="207" text-anchor="middle" fill="#e74c3c" font-size="8">海峡</text>
+
+  <!-- South China Sea chokepoint -->
+  <rect x="662" y="180" width="12" height="18" rx="2" fill="#e74c3c"/>
+  <text x="668" y="211" text-anchor="middle" fill="#e74c3c" font-size="8">南シナ海</text>
+
+  <!-- === LANDING STATIONS === -->
+  <!-- USA East Coast -->
+  <circle cx="162" cy="132" r="6" fill="#3498db" stroke="#ecf0f1" stroke-width="1.5"/>
+  <text x="162" y="120" text-anchor="middle" fill="#85c1e9" font-size="8">NYC</text>
+
+  <!-- USA West Coast -->
+  <circle cx="40" cy="125" r="6" fill="#3498db" stroke="#ecf0f1" stroke-width="1.5"/>
+  <text x="40" y="113" text-anchor="middle" fill="#85c1e9" font-size="8">LA</text>
+
+  <!-- UK -->
+  <circle cx="372" cy="102" r="6" fill="#9b59b6" stroke="#ecf0f1" stroke-width="1.5"/>
+  <text x="372" y="90" text-anchor="middle" fill="#d7bde2" font-size="8">英国</text>
+
+  <!-- France/Spain -->
+  <circle cx="395" cy="138" r="5" fill="#9b59b6" stroke="#ecf0f1" stroke-width="1"/>
+  <text x="395" y="128" text-anchor="middle" fill="#d7bde2" font-size="8">仏</text>
+
+  <!-- Egypt -->
+  <circle cx="485" cy="155" r="5" fill="#e74c3c" stroke="#ecf0f1" stroke-width="1.5"/>
+  <text x="485" y="145" text-anchor="middle" fill="#f1948a" font-size="8">エジプト</text>
+
+  <!-- India (Mumbai/Chennai) -->
+  <circle cx="565" cy="190" r="5" fill="#27ae60" stroke="#ecf0f1" stroke-width="1"/>
+  <text x="565" y="205" text-anchor="middle" fill="#a9dfbf" font-size="8">インド</text>
+
+  <!-- Singapore -->
+  <circle cx="658" cy="218" r="6" fill="#f39c12" stroke="#ecf0f1" stroke-width="1.5"/>
+  <text x="658" y="232" text-anchor="middle" fill="#fad7a0" font-size="8">SG</text>
+
+  <!-- Japan -->
+  <circle cx="790" cy="125" r="6" fill="#e67e22" stroke="#ecf0f1" stroke-width="1.5"/>
+  <text x="790" y="113" text-anchor="middle" fill="#fad7a0" font-size="8">日本</text>
+
+  <!-- HK -->
+  <circle cx="735" cy="168" r="5" fill="#f39c12" stroke="#ecf0f1" stroke-width="1"/>
+  <text x="735" y="182" text-anchor="middle" fill="#fad7a0" font-size="8">HK</text>
+
+  <!-- === LEGEND === -->
+  <rect x="20" y="375" width="870" height="38" rx="6" fill="#0d1f33" stroke="#2d3748" stroke-width="1"/>
+  <line x1="35" y1="391" x2="65" y2="391" stroke="#3498db" stroke-width="3"/>
+  <text x="70" y="395" fill="#85c1e9" font-size="9">大西洋横断（TAT系）</text>
+  <line x1="200" y1="391" x2="230" y2="391" stroke="#e74c3c" stroke-width="2.5"/>
+  <text x="235" y="395" fill="#f1948a" font-size="9">太平洋横断（TPE/FASTER等）</text>
+  <line x1="390" y1="391" x2="420" y2="391" stroke="#2ecc71" stroke-width="2.5"/>
+  <text x="425" y="395" fill="#a9dfbf" font-size="9">SEA-ME-WE系（欧〜中東〜アジア）</text>
+  <line x1="580" y1="391" x2="610" y2="391" stroke="#f39c12" stroke-width="2"/>
+  <text x="615" y="395" fill="#fad7a0" font-size="9">2Africa / EIG（アフリカ環状）</text>
+  <rect x="770" y="384" width="10" height="14" rx="1" fill="#e74c3c"/>
+  <text x="785" y="395" fill="#f1948a" font-size="9">チョークポイント</text>
+  <text x="450" y="407" text-anchor="middle" fill="#95a5a6" font-size="8">世界に400本以上 / 総延長約130万km / 1日10兆ドル以上の金融決済が通過</text>
+</svg>

@@ -1,0 +1,100 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="420" fill="#FAFAFA" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#2C3E50">人間関係: 質 vs 量</text>
+
+  <!-- Left: Quantity approach -->
+  <rect x="20" y="55" width="405" height="340" fill="#FEF9E7" rx="10" stroke="#E74C3C" stroke-width="2"/>
+  <text x="222" y="82" text-anchor="middle" font-size="16" font-weight="bold" fill="#E74C3C">❌ 量重視（YAGNI 違反）</text>
+  <text x="222" y="100" text-anchor="middle" font-size="13" fill="#C0392B">人脈を広げようとし続ける</text>
+
+  <!-- Many nodes with thin lines - center person -->
+  <circle cx="200" cy="200" r="24" fill="#E74C3C" opacity="0.9"/>
+  <text x="200" y="205" text-anchor="middle" font-size="11" fill="#fff">自分</text>
+
+  <!-- Many connections - thin lines -->
+  <!-- Top area -->
+  <circle cx="140" cy="130" r="14" fill="#E74C3C" opacity="0.5"/>
+  <line x1="190" y1="178" x2="148" y2="140" stroke="#E74C3C" stroke-width="1" opacity="0.5"/>
+  <circle cx="200" cy="120" r="14" fill="#E74C3C" opacity="0.5"/>
+  <line x1="200" y1="176" x2="200" y2="134" stroke="#E74C3C" stroke-width="1" opacity="0.5"/>
+  <circle cx="260" cy="130" r="14" fill="#E74C3C" opacity="0.5"/>
+  <line x1="210" y1="178" x2="252" y2="140" stroke="#E74C3C" stroke-width="1" opacity="0.5"/>
+
+  <!-- Right area -->
+  <circle cx="295" cy="180" r="14" fill="#E74C3C" opacity="0.5"/>
+  <line x1="224" y1="196" x2="281" y2="182" stroke="#E74C3C" stroke-width="1" opacity="0.5"/>
+  <circle cx="310" cy="220" r="14" fill="#E74C3C" opacity="0.5"/>
+  <line x1="224" y1="205" x2="296" y2="220" stroke="#E74C3C" stroke-width="1" opacity="0.5"/>
+
+  <!-- Left area -->
+  <circle cx="100" cy="180" r="14" fill="#E74C3C" opacity="0.5"/>
+  <line x1="176" y1="196" x2="114" y2="182" stroke="#E74C3C" stroke-width="1" opacity="0.5"/>
+  <circle cx="90" cy="220" r="14" fill="#E74C3C" opacity="0.5"/>
+  <line x1="176" y1="205" x2="104" y2="220" stroke="#E74C3C" stroke-width="1" opacity="0.5"/>
+
+  <!-- Bottom area -->
+  <circle cx="140" cy="280" r="14" fill="#E74C3C" opacity="0.5"/>
+  <line x1="190" y1="222" x2="148" y2="270" stroke="#E74C3C" stroke-width="1" opacity="0.5"/>
+  <circle cx="200" cy="290" r="14" fill="#E74C3C" opacity="0.5"/>
+  <line x1="200" y1="224" x2="200" y2="276" stroke="#E74C3C" stroke-width="1" opacity="0.5"/>
+  <circle cx="260" cy="280" r="14" fill="#E74C3C" opacity="0.5"/>
+  <line x1="210" y1="222" x2="252" y2="270" stroke="#E74C3C" stroke-width="1" opacity="0.5"/>
+
+  <!-- More extra nodes -->
+  <circle cx="80" cy="140" r="10" fill="#E74C3C" opacity="0.3"/>
+  <line x1="183" y1="183" x2="88" y2="145" stroke="#E74C3C" stroke-width="0.8" opacity="0.3"/>
+  <circle cx="320" cy="145" r="10" fill="#E74C3C" opacity="0.3"/>
+  <line x1="217" y1="183" x2="312" y2="150" stroke="#E74C3C" stroke-width="0.8" opacity="0.3"/>
+  <circle cx="75" cy="255" r="10" fill="#E74C3C" opacity="0.3"/>
+  <line x1="180" y1="214" x2="82" y2="252" stroke="#E74C3C" stroke-width="0.8" opacity="0.3"/>
+  <circle cx="325" cy="260" r="10" fill="#E74C3C" opacity="0.3"/>
+  <line x1="220" y1="214" x2="318" y2="257" stroke="#E74C3C" stroke-width="0.8" opacity="0.3"/>
+  <circle cx="120" cy="300" r="10" fill="#E74C3C" opacity="0.3"/>
+  <line x1="188" y1="222" x2="125" y2="297" stroke="#E74C3C" stroke-width="0.8" opacity="0.3"/>
+  <circle cx="280" cy="305" r="10" fill="#E74C3C" opacity="0.3"/>
+  <line x1="212" y1="222" x2="275" y2="302" stroke="#E74C3C" stroke-width="0.8" opacity="0.3"/>
+
+  <!-- Stats -->
+  <rect x="30" y="310" width="380" height="70" fill="#FADBD8" rx="6"/>
+  <text x="220" y="333" text-anchor="middle" font-size="12" font-weight="bold" fill="#C0392B">繋がり: 多い / 関係の深さ: 浅い</text>
+  <text x="220" y="352" text-anchor="middle" font-size="12" fill="#C0392B">・危機のとき助けを求められない</text>
+  <text x="220" y="370" text-anchor="middle" font-size="12" fill="#C0392B">・SNS フォロワー数 ≠ 本当の人脈</text>
+
+  <!-- Right: Quality approach -->
+  <rect x="465" y="55" width="415" height="340" fill="#EAF7EA" rx="10" stroke="#27AE60" stroke-width="2"/>
+  <text x="672" y="82" text-anchor="middle" font-size="16" font-weight="bold" fill="#27AE60">✅ 質重視（YAGNI 実践）</text>
+  <text x="672" y="100" text-anchor="middle" font-size="13" fill="#1E8449">深い関係を少数と築く</text>
+
+  <!-- Center person -->
+  <circle cx="672" cy="200" r="28" fill="#27AE60" opacity="0.9"/>
+  <text x="672" y="205" text-anchor="middle" font-size="11" fill="#fff">自分</text>
+
+  <!-- Few connections - thick lines -->
+  <circle cx="570" cy="150" r="22" fill="#27AE60" opacity="0.8"/>
+  <text x="570" y="155" text-anchor="middle" font-size="10" fill="#fff">親友A</text>
+  <line x1="649" y1="182" x2="589" y2="161" stroke="#27AE60" stroke-width="4"/>
+
+  <circle cx="780" cy="150" r="22" fill="#27AE60" opacity="0.8"/>
+  <text x="780" y="155" text-anchor="middle" font-size="10" fill="#fff">同僚B</text>
+  <line x1="695" y1="182" x2="761" y2="161" stroke="#27AE60" stroke-width="4"/>
+
+  <circle cx="550" cy="255" r="22" fill="#27AE60" opacity="0.8"/>
+  <text x="550" y="260" text-anchor="middle" font-size="10" fill="#fff">家族C</text>
+  <line x1="648" y1="216" x2="569" y2="248" stroke="#27AE60" stroke-width="4"/>
+
+  <circle cx="800" cy="255" r="22" fill="#27AE60" opacity="0.8"/>
+  <text x="800" y="260" text-anchor="middle" font-size="10" fill="#fff">師匠D</text>
+  <line x1="696" y1="216" x2="781" y2="248" stroke="#27AE60" stroke-width="4"/>
+
+  <circle cx="672" cy="305" r="22" fill="#27AE60" opacity="0.8"/>
+  <text x="672" y="310" text-anchor="middle" font-size="10" fill="#fff">友人E</text>
+  <line x1="672" y1="228" x2="672" y2="283" stroke="#27AE60" stroke-width="4"/>
+
+  <!-- Stats -->
+  <rect x="475" y="310" width="390" height="70" fill="#D5F5E3" rx="6"/>
+  <text x="670" y="333" text-anchor="middle" font-size="12" font-weight="bold" fill="#1E8449">繋がり: 少ない / 関係の深さ: 深い</text>
+  <text x="670" y="352" text-anchor="middle" font-size="12" fill="#1E8449">・困ったとき本当に助けてもらえる</text>
+  <text x="670" y="370" text-anchor="middle" font-size="12" fill="#1E8449">・YAGNI: 今必要な関係だけを深める</text>
+</svg>

@@ -15,7 +15,15 @@ interface PresentationInfo {
 	htmlPath: string; // relative to docs/
 }
 
-type CategoryId = "ai" | "investment" | "career" | "aws" | "other";
+type CategoryId =
+	| "security"
+	| "thinking"
+	| "engineering"
+	| "ai"
+	| "investment"
+	| "career"
+	| "aws"
+	| "other";
 
 interface Category {
 	id: CategoryId;
@@ -27,7 +35,27 @@ interface Category {
 // Category classification
 // ---------------------------------------------------------------------------
 
+// Rules are checked in order — first match wins.
+// Priority: security > thinking > engineering > aws > investment > career > ai > other
 const CATEGORY_RULES: { id: CategoryId; label: string; keywords: RegExp }[] = [
+	{
+		id: "security",
+		label: "Security & Compliance",
+		keywords:
+			/セキュリティ|security|\bisms\b|hipaa|devsecops|oauth|saml|oidc|\bmfa\b|compliance|コンプライアンス|認証|認可|authz|guarduty|waf/i,
+	},
+	{
+		id: "thinking",
+		label: "Thinking & Society",
+		keywords:
+			/バイアス|bias|フェルミ|fermi|ディストピア|ユートピア|dystopia|utopia|ハルシネーション|確証|物理|physics|渋滞|地政学|geopolitics/i,
+	},
+	{
+		id: "engineering",
+		label: "Software Engineering",
+		keywords:
+			/モノリス|monolith|yagni|仕様書|技術選定|スタートアップ|startup|分散|distributed/i,
+	},
 	{
 		id: "aws",
 		label: "AWS",
@@ -47,7 +75,7 @@ const CATEGORY_RULES: { id: CategoryId; label: string; keywords: RegExp }[] = [
 		id: "ai",
 		label: "AI & Technology",
 		keywords:
-			/ai|claude|web技術|技術トレンド|agent|llm|ソフトウェアエンジニア|テクノロジ|アプリケーション/i,
+			/ai|claude|web技術|技術トレンド|agent|llm|ソフトウェアエンジニア|テクノロジ|アプリケーション|rag|transformer|生成/i,
 	},
 ];
 
@@ -451,12 +479,15 @@ async function main() {
 		categoryMap.get(catId)?.push(p);
 	}
 
-	// Build ordered categories
+	// Build ordered categories (display order)
 	const orderedIds: CategoryId[] = [
 		"ai",
+		"security",
+		"engineering",
+		"aws",
 		"investment",
 		"career",
-		"aws",
+		"thinking",
 		"other",
 	];
 	const categories: Category[] = orderedIds

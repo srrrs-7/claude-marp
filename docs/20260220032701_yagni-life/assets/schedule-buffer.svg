@@ -1,0 +1,89 @@
+<svg viewBox="0 0 900 390" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="390" fill="#FAFAFA" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#2C3E50">スケジュールにバッファを持つ</text>
+
+  <!-- Top: NO buffer scenario -->
+  <text x="30" y="68" font-size="15" font-weight="bold" fill="#E74C3C">❌ バッファなし（YAGNI 違反）</text>
+
+  <!-- Timeline blocks -->
+  <rect x="30" y="80" width="120" height="50" fill="#E74C3C" rx="5"/>
+  <text x="90" y="110" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">タスクA</text>
+
+  <rect x="155" y="80" width="120" height="50" fill="#E74C3C" rx="5"/>
+  <text x="215" y="110" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">タスクB</text>
+
+  <rect x="280" y="80" width="120" height="50" fill="#E74C3C" rx="5"/>
+  <text x="340" y="110" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">タスクC</text>
+
+  <rect x="405" y="80" width="120" height="50" fill="#E74C3C" rx="5"/>
+  <text x="465" y="110" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">タスクD</text>
+
+  <rect x="530" y="80" width="120" height="50" fill="#E74C3C" rx="5"/>
+  <text x="590" y="110" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">タスクE</text>
+
+  <rect x="655" y="80" width="120" height="50" fill="#E74C3C" rx="5"/>
+  <text x="715" y="110" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">タスクF</text>
+
+  <!-- Unexpected event -->
+  <rect x="790" y="68" width="90" height="74" fill="#C0392B" rx="5" opacity="0.9"/>
+  <text x="835" y="98" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">突発</text>
+  <text x="835" y="114" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">対応</text>
+  <text x="835" y="130" text-anchor="middle" font-size="10" fill="#fff">入れる場所がない!</text>
+
+  <!-- Warning arrow -->
+  <line x1="790" y1="105" x2="780" y2="105" stroke="#C0392B" stroke-width="2"/>
+  <polygon points="780,105 790,99 790,111" fill="#C0392B"/>
+
+  <text x="450" y="155" text-anchor="middle" font-size="13" fill="#E74C3C">→ スケジュール崩壊、全てが遅延、疲弊</text>
+
+  <!-- Divider -->
+  <line x1="30" y1="175" x2="870" y2="175" stroke="#ddd" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- Bottom: WITH buffer scenario -->
+  <text x="30" y="205" font-size="15" font-weight="bold" fill="#27AE60">✅ バッファあり（YAGNI 実践）</text>
+
+  <!-- Timeline blocks with buffer -->
+  <rect x="30" y="217" width="100" height="50" fill="#27AE60" rx="5"/>
+  <text x="80" y="247" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">タスクA</text>
+
+  <rect x="133" y="217" width="30" height="50" fill="#A9DFBF" rx="5"/>
+
+  <rect x="166" y="217" width="100" height="50" fill="#27AE60" rx="5"/>
+  <text x="216" y="247" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">タスクB</text>
+
+  <rect x="269" y="217" width="30" height="50" fill="#A9DFBF" rx="5"/>
+
+  <rect x="302" y="217" width="100" height="50" fill="#27AE60" rx="5"/>
+  <text x="352" y="247" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">タスクC</text>
+
+  <rect x="405" y="217" width="30" height="50" fill="#A9DFBF" rx="5"/>
+
+  <rect x="438" y="217" width="100" height="50" fill="#27AE60" rx="5"/>
+  <text x="488" y="247" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">タスクD</text>
+
+  <rect x="541" y="217" width="30" height="50" fill="#A9DFBF" rx="5"/>
+
+  <rect x="574" y="217" width="100" height="50" fill="#27AE60" rx="5"/>
+  <text x="624" y="247" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">タスクE</text>
+
+  <rect x="677" y="217" width="30" height="50" fill="#A9DFBF" rx="5"/>
+
+  <!-- Unexpected event absorbed by buffer -->
+  <rect x="710" y="205" width="160" height="74" fill="#A9DFBF" rx="5" stroke="#27AE60" stroke-width="2"/>
+  <text x="790" y="235" text-anchor="middle" font-size="12" fill="#1E8449" font-weight="bold">バッファで</text>
+  <text x="790" y="253" text-anchor="middle" font-size="12" fill="#1E8449" font-weight="bold">突発対応!</text>
+  <text x="790" y="270" text-anchor="middle" font-size="11" fill="#1E8449">スケジュール守れた</text>
+
+  <!-- Legend for buffer -->
+  <rect x="30" y="290" width="20" height="15" fill="#A9DFBF" rx="3"/>
+  <text x="56" y="303" font-size="13" fill="#555">バッファ（余白・ゆとり）</text>
+
+  <text x="450" y="292" text-anchor="middle" font-size="13" fill="#27AE60">→ 予期しない需要を吸収、スケジュール維持、ゆとりある仕事</text>
+
+  <!-- Rule box -->
+  <rect x="30" y="320" width="840" height="55" fill="#EBF5FB" rx="8" stroke="#3498DB" stroke-width="2"/>
+  <text x="450" y="344" text-anchor="middle" font-size="14" font-weight="bold" fill="#2980B9">目安: 予定した作業の 70% だけスケジュールする</text>
+  <text x="450" y="364" text-anchor="middle" font-size="13" fill="#2980B9">残り 30% は「ゆとり」として意図的に空ける — それが YAGNI スケジューリング</text>
+</svg>

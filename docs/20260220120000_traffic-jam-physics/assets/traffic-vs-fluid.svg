@@ -1,0 +1,71 @@
+<svg viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="460" fill="#f8fafc" rx="12"/>
+  <text x="480" y="36" text-anchor="middle" font-size="19" font-weight="bold" fill="#1e293b">交通流 vs 流体力学 vs イベントループ：類似構造</text>
+
+  <!-- Column headers -->
+  <rect x="20" y="55" width="290" height="44" rx="8" fill="#1e3a5f"/>
+  <text x="165" y="83" text-anchor="middle" font-size="15" font-weight="bold" fill="#60a5fa">交通流</text>
+
+  <rect x="335" y="55" width="290" height="44" rx="8" fill="#1a3a2a"/>
+  <text x="480" y="83" text-anchor="middle" font-size="15" font-weight="bold" fill="#4ade80">流体力学</text>
+
+  <rect x="650" y="55" width="290" height="44" rx="8" fill="#3a1a3a"/>
+  <text x="795" y="83" text-anchor="middle" font-size="15" font-weight="bold" fill="#e879f9">イベントループ (JS/Node)</text>
+
+  <!-- Row 1: 基本単位 -->
+  <rect x="20" y="112" width="920" height="38" rx="0" fill="#e2e8f0"/>
+  <text x="480" y="136" text-anchor="middle" font-size="12" font-weight="bold" fill="#475569">基本単位</text>
+  <text x="165" y="136" text-anchor="middle" font-size="13" fill="#1e40af">自動車（vehicle）</text>
+  <text x="480" y="136" text-anchor="middle" font-size="13" fill="#166534">流体粒子（fluid particle）</text>
+  <text x="795" y="136" text-anchor="middle" font-size="13" fill="#6b21a8">タスク / コールバック</text>
+
+  <!-- Row 2: 密度 -->
+  <rect x="20" y="150" width="920" height="38" rx="0" fill="#f8fafc"/>
+  <text x="480" y="174" text-anchor="middle" font-size="12" font-weight="bold" fill="#475569">密度</text>
+  <text x="165" y="174" text-anchor="middle" font-size="13" fill="#1e40af">車両密度 k (台/km)</text>
+  <text x="480" y="174" text-anchor="middle" font-size="13" fill="#166534">流体密度 ρ (kg/m³)</text>
+  <text x="795" y="174" text-anchor="middle" font-size="13" fill="#6b21a8">キュー長（Queue depth）</text>
+
+  <!-- Row 3: 流量 -->
+  <rect x="20" y="188" width="920" height="38" rx="0" fill="#e2e8f0"/>
+  <text x="480" y="212" text-anchor="middle" font-size="12" font-weight="bold" fill="#475569">流量</text>
+  <text x="165" y="212" text-anchor="middle" font-size="13" fill="#1e40af">交通量 q (台/h)</text>
+  <text x="480" y="212" text-anchor="middle" font-size="13" fill="#166534">流量 Q (m³/s)</text>
+  <text x="795" y="212" text-anchor="middle" font-size="13" fill="#6b21a8">スループット (req/s)</text>
+
+  <!-- Row 4: 保存則 -->
+  <rect x="20" y="226" width="920" height="38" rx="0" fill="#f8fafc"/>
+  <text x="480" y="250" text-anchor="middle" font-size="12" font-weight="bold" fill="#475569">保存則</text>
+  <text x="165" y="250" text-anchor="middle" font-size="13" fill="#1e40af">∂k/∂t + ∂q/∂x = 0</text>
+  <text x="480" y="250" text-anchor="middle" font-size="13" fill="#166534">∂ρ/∂t + ∇·(ρu) = 0</text>
+  <text x="795" y="250" text-anchor="middle" font-size="13" fill="#6b21a8">Little's Law: L = λW</text>
+
+  <!-- Row 5: 衝撃波 -->
+  <rect x="20" y="264" width="920" height="38" rx="0" fill="#e2e8f0"/>
+  <text x="480" y="288" text-anchor="middle" font-size="12" font-weight="bold" fill="#475569">衝撃波</text>
+  <text x="165" y="288" text-anchor="middle" font-size="13" fill="#1e40af">渋滞波（上流伝播）</text>
+  <text x="480" y="288" text-anchor="middle" font-size="13" fill="#166534">圧力波 / 衝撃波</text>
+  <text x="795" y="288" text-anchor="middle" font-size="13" fill="#6b21a8">バックプレッシャー</text>
+
+  <!-- Row 6: 臨界状態 -->
+  <rect x="20" y="302" width="920" height="38" rx="0" fill="#f8fafc"/>
+  <text x="480" y="326" text-anchor="middle" font-size="12" font-weight="bold" fill="#475569">臨界状態</text>
+  <text x="165" y="326" text-anchor="middle" font-size="13" fill="#1e40af">臨界密度 k_cr</text>
+  <text x="480" y="326" text-anchor="middle" font-size="13" fill="#166534">音速（Ma = 1）</text>
+  <text x="795" y="326" text-anchor="middle" font-size="13" fill="#6b21a8">キュー飽和点</text>
+
+  <!-- Row 7: 相変化 -->
+  <rect x="20" y="340" width="920" height="38" rx="0" fill="#fee2e2"/>
+  <text x="480" y="364" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">相変化（破綻）</text>
+  <text x="165" y="364" text-anchor="middle" font-size="13" fill="#991b1b">自由流 → 渋滞（非可逆）</text>
+  <text x="480" y="364" text-anchor="middle" font-size="13" fill="#991b1b">層流 → 乱流（非可逆）</text>
+  <text x="795" y="364" text-anchor="middle" font-size="13" fill="#991b1b">応答遅延 → タイムアウト</text>
+
+  <!-- Vertical dividers -->
+  <line x1="310" y1="55" x2="310" y2="378" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="625" y1="55" x2="625" y2="378" stroke="#94a3b8" stroke-width="1.5"/>
+
+  <!-- Bottom note -->
+  <text x="480" y="415" text-anchor="middle" font-size="12" fill="#64748b">3つの系の数学構造は同一 — 「流れ + 密度 + 保存則」で渋滞も輻輳も説明できる</text>
+  <text x="480" y="432" text-anchor="middle" font-size="11" fill="#94a3b8">LWR方程式 ≅ 連続方程式 ≅ Little's Law</text>
+</svg>

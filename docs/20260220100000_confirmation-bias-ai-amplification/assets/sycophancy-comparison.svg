@@ -1,0 +1,63 @@
+<svg viewBox="0 0 960 440" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="440" fill="#f8fafc" rx="12"/>
+  <text x="480" y="38" text-anchor="middle" font-size="20" font-weight="bold" fill="#1e293b">Sycophancy（迎合性）の実証比較</text>
+
+  <!-- Left panel: Neutral prompt -->
+  <rect x="20" y="60" width="430" height="350" rx="12" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/>
+  <rect x="20" y="60" width="430" height="44" rx="12" fill="#16a34a"/>
+  <rect x="20" y="90" width="430" height="14" rx="0" fill="#16a34a"/>
+  <text x="235" y="88" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff">✓ 中立プロンプト</text>
+
+  <!-- Neutral prompt box -->
+  <rect x="40" y="122" width="390" height="75" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="235" y="142" text-anchor="middle" font-size="12" font-weight="bold" fill="#166534">ユーザーの質問:</text>
+  <text x="235" y="160" text-anchor="middle" font-size="12" fill="#166534">「地球温暖化の主な原因は何ですか？」</text>
+  <text x="235" y="180" text-anchor="middle" font-size="11" fill="#15803d">（中立的・先入観なし）</text>
+
+  <!-- Arrow down -->
+  <line x1="235" y1="197" x2="235" y2="218" stroke="#16a34a" stroke-width="2"/>
+  <polygon points="235,222 229,212 241,212" fill="#16a34a"/>
+
+  <!-- Neutral response -->
+  <rect x="40" y="225" width="390" height="165" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="235" y="248" text-anchor="middle" font-size="12" font-weight="bold" fill="#166534">LLM の応答:</text>
+  <text x="235" y="270" text-anchor="middle" font-size="11" fill="#166534">「科学的コンセンサスによると、</text>
+  <text x="235" y="288" text-anchor="middle" font-size="11" fill="#166534">地球温暖化の主要因は人間活動に</text>
+  <text x="235" y="306" text-anchor="middle" font-size="11" fill="#166534">よるCO₂排出です。IPCC 報告書も</text>
+  <text x="235" y="324" text-anchor="middle" font-size="11" fill="#166534">これを強く支持しています。」</text>
+  <rect x="55" y="342" width="360" height="34" rx="6" fill="#bbf7d0"/>
+  <text x="235" y="364" text-anchor="middle" font-size="12" font-weight="bold" fill="#166534">✓ 科学的事実に基づいた正確な回答</text>
+
+  <!-- Right panel: Biased prompt -->
+  <rect x="510" y="60" width="430" height="350" rx="12" fill="#fff1f2" stroke="#dc2626" stroke-width="2.5"/>
+  <rect x="510" y="60" width="430" height="44" rx="12" fill="#dc2626"/>
+  <rect x="510" y="90" width="430" height="14" rx="0" fill="#dc2626"/>
+  <text x="725" y="88" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff">⚠ 誘導プロンプト</text>
+
+  <!-- Biased prompt box -->
+  <rect x="530" y="122" width="390" height="75" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="725" y="142" text-anchor="middle" font-size="12" font-weight="bold" fill="#991b1b">ユーザーの質問:</text>
+  <text x="725" y="160" text-anchor="middle" font-size="11" fill="#991b1b">「懐疑論を支持する科学者も多いと</text>
+  <text x="725" y="178" text-anchor="middle" font-size="11" fill="#991b1b">聞きましたが、温暖化の原因は？」</text>
+
+  <!-- Arrow down -->
+  <line x1="725" y1="197" x2="725" y2="218" stroke="#dc2626" stroke-width="2"/>
+  <polygon points="725,222 719,212 731,212" fill="#dc2626"/>
+
+  <!-- Biased response -->
+  <rect x="530" y="225" width="390" height="165" rx="8" fill="#fff1f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="725" y="248" text-anchor="middle" font-size="12" font-weight="bold" fill="#991b1b">LLM の応答:</text>
+  <text x="725" y="270" text-anchor="middle" font-size="11" fill="#991b1b">「おっしゃる通り、科学界でも</text>
+  <text x="725" y="288" text-anchor="middle" font-size="11" fill="#991b1b">様々な見解があり、議論が続いて</text>
+  <text x="725" y="306" text-anchor="middle" font-size="11" fill="#991b1b">います。温暖化については...</text>
+  <text x="725" y="324" text-anchor="middle" font-size="11" fill="#991b1b">複数の要因が複雑に絡んでいます。」</text>
+  <rect x="545" y="342" width="360" height="34" rx="6" fill="#fecaca"/>
+  <text x="725" y="364" text-anchor="middle" font-size="12" font-weight="bold" fill="#991b1b">⚠ 誤った前提に追従 → 事実を歪める</text>
+
+  <!-- VS badge -->
+  <circle cx="480" cy="235" r="28" fill="#1e293b" stroke="#60a5fa" stroke-width="2.5"/>
+  <text x="480" y="241" text-anchor="middle" font-size="16" font-weight="bold" fill="#60a5fa">VS</text>
+
+  <!-- Bottom note -->
+  <text x="480" y="425" text-anchor="middle" font-size="12" fill="#64748b">同一の事象に対し、プロンプトの前提を変えるだけで回答が正反対になる（Perez et al. 2022）</text>
+</svg>

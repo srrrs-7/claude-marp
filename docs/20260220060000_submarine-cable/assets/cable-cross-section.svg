@@ -1,0 +1,72 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="420" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="26" text-anchor="middle" fill="#ecf0f1" font-size="14" font-weight="bold">海底ケーブルの物理構造 — 7層断面</text>
+
+  <!-- Cable cross-section: concentric circles, left half -->
+  <circle cx="200" cy="220" r="155" fill="#2c3e50" stroke="#7f8c8d" stroke-width="1"/>
+  <!-- Layer 7: Outer PE jacket -->
+  <circle cx="200" cy="220" r="155" fill="none" stroke="#e74c3c" stroke-width="20"/>
+  <!-- Layer 6: Armor wires -->
+  <circle cx="200" cy="220" r="130" fill="none" stroke="#f39c12" stroke-width="22"/>
+  <!-- Layer 5: Inner PE -->
+  <circle cx="200" cy="220" r="104" fill="none" stroke="#f1c40f" stroke-width="14"/>
+  <!-- Layer 4: Copper conductor -->
+  <circle cx="200" cy="220" r="86" fill="none" stroke="#e67e22" stroke-width="14"/>
+  <!-- Layer 3: Polycarbonate tube -->
+  <circle cx="200" cy="220" r="68" fill="none" stroke="#2ecc71" stroke-width="12"/>
+  <!-- Layer 2: Optical fiber bundle -->
+  <circle cx="200" cy="220" r="52" fill="none" stroke="#3498db" stroke-width="18"/>
+  <!-- Layer 1: Core (optical fibers) -->
+  <circle cx="200" cy="220" r="28" fill="#8e44ad"/>
+  <text x="200" y="215" text-anchor="middle" fill="#ecf0f1" font-size="9" font-weight="bold">光</text>
+  <text x="200" y="228" text-anchor="middle" fill="#ecf0f1" font-size="9" font-weight="bold">ファイバ</text>
+
+  <!-- Labels with lines pointing to each layer -->
+  <!-- Layer 1: Optical fiber core -->
+  <line x1="228" y1="205" x2="380" y2="170" stroke="#8e44ad" stroke-width="1.5"/>
+  <rect x="382" y="155" width="200" height="28" rx="4" fill="#1e0a2e" stroke="#8e44ad" stroke-width="1"/>
+  <text x="482" y="170" text-anchor="middle" fill="#8e44ad" font-size="10" font-weight="bold">① 光ファイバ束（コア）</text>
+  <text x="482" y="183" text-anchor="middle" fill="#d7bde2" font-size="9">4〜24本 / 数Tbps伝送</text>
+
+  <!-- Layer 2 -->
+  <line x1="246" y1="180" x2="380" y2="155" stroke="#3498db" stroke-width="1.5"/>
+  <rect x="382" y="115" width="200" height="28" rx="4" fill="#0d1f33" stroke="#3498db" stroke-width="1"/>
+  <text x="482" y="130" text-anchor="middle" fill="#3498db" font-size="10" font-weight="bold">② ジェルチューブ保護</text>
+  <text x="482" y="143" text-anchor="middle" fill="#85c1e9" font-size="9">光ファイバを水・圧力から保護</text>
+
+  <!-- Layer 3 -->
+  <line x1="250" y1="164" x2="380" y2="115" stroke="#2ecc71" stroke-width="1.5"/>
+  <rect x="382" y="75" width="200" height="28" rx="4" fill="#0a2e14" stroke="#2ecc71" stroke-width="1"/>
+  <text x="482" y="90" text-anchor="middle" fill="#2ecc71" font-size="10" font-weight="bold">③ ポリカーボネートチューブ</text>
+  <text x="482" y="103" text-anchor="middle" fill="#a9dfbf" font-size="9">構造支持・防水</text>
+
+  <!-- Layer 4: Copper -->
+  <line x1="246" y1="148" x2="380" y2="90" stroke="#e67e22" stroke-width="1.5"/>
+  <rect x="382" y="40" width="200" height="28" rx="4" fill="#2c1a05" stroke="#e67e22" stroke-width="1"/>
+  <text x="482" y="55" text-anchor="middle" fill="#e67e22" font-size="10" font-weight="bold">④ 銅導体（給電線）</text>
+  <text x="482" y="68" text-anchor="middle" fill="#fad7a0" font-size="9">中継器へ給電（数kV）</text>
+
+  <!-- Right side labels -->
+  <!-- Layer 5: Inner PE -->
+  <line x1="340" y1="235" x2="380" y2="250" stroke="#f1c40f" stroke-width="1.5"/>
+  <rect x="382" y="235" width="200" height="28" rx="4" fill="#2c2a00" stroke="#f1c40f" stroke-width="1"/>
+  <text x="482" y="250" text-anchor="middle" fill="#f1c40f" font-size="10" font-weight="bold">⑤ 内部ポリエチレン層</text>
+  <text x="482" y="263" text-anchor="middle" fill="#f9e79f" font-size="9">絶縁・保護</text>
+
+  <!-- Layer 6: Armor wires -->
+  <line x1="347" y1="272" x2="380" y2="290" stroke="#f39c12" stroke-width="1.5"/>
+  <rect x="382" y="275" width="200" height="28" rx="4" fill="#2c1f00" stroke="#f39c12" stroke-width="1"/>
+  <text x="482" y="290" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="bold">⑥ 鋼鉄アーマーワイヤー</text>
+  <text x="482" y="303" text-anchor="middle" fill="#fad7a0" font-size="9">引っ張り強度・対魚網対策</text>
+
+  <!-- Layer 7: Outer PE -->
+  <line x1="346" y1="315" x2="380" y2="325" stroke="#e74c3c" stroke-width="1.5"/>
+  <rect x="382" y="315" width="200" height="28" rx="4" fill="#2c0a0a" stroke="#e74c3c" stroke-width="1"/>
+  <text x="482" y="330" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="bold">⑦ 外部ポリエチレン被覆</text>
+  <text x="482" y="343" text-anchor="middle" fill="#f1948a" font-size="9">最外層 / 外径: 約69mm（深海型）</text>
+
+  <!-- Cable spec box -->
+  <rect x="30" y="370" width="860" height="40" rx="6" fill="#0d1f33" stroke="#3498db" stroke-width="1"/>
+  <text x="450" y="386" text-anchor="middle" fill="#85c1e9" font-size="10" font-weight="bold">深海型: 直径17〜25mm・重量1〜8kg/m  |  浅海型（アーマー強化）: 直径45〜75mm・重量35〜60kg/m  |  中継器間距離: 約50〜90km</text>
+  <text x="450" y="403" text-anchor="middle" fill="#7fb3d3" font-size="9">中継器（Repeater）: 光信号を増幅 — 電力は銅導体④経由で陸揚げ局から供給</text>
+</svg>

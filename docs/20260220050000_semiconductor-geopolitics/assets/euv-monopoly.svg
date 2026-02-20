@@ -1,0 +1,87 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="420" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="26" text-anchor="middle" fill="#ecf0f1" font-size="14" font-weight="bold">EUVリソグラフィ — ASMLだけが作れる機械</text>
+
+  <!-- Center: ASML -->
+  <rect x="340" y="155" width="220" height="90" rx="8" fill="#145a32" stroke="#2ecc71" stroke-width="3"/>
+  <text x="450" y="182" text-anchor="middle" fill="#2ecc71" font-size="14" font-weight="bold">ASML</text>
+  <text x="450" y="200" text-anchor="middle" fill="#ecf0f1" font-size="11">オランダ・アイントホーフェン</text>
+  <text x="450" y="217" text-anchor="middle" fill="#a9dfbf" font-size="10">EUV装置: 1台 約2億€（300億円）</text>
+  <text x="450" y="232" text-anchor="middle" fill="#f39c12" font-size="10">年産: 50〜60台（世界に1社のみ）</text>
+
+  <!-- Supplier 1: Carl Zeiss (Optics) - top -->
+  <rect x="340" y="30" width="220" height="60" rx="6" fill="#1a3a5c" stroke="#3498db" stroke-width="2"/>
+  <text x="450" y="52" text-anchor="middle" fill="#3498db" font-size="11" font-weight="bold">Carl Zeiss SMT（独）</text>
+  <text x="450" y="67" text-anchor="middle" fill="#85c1e9" font-size="10">光学系・ミラー（EUV専用）</text>
+  <text x="450" y="81" text-anchor="middle" fill="#7fb3d3" font-size="9">ゼロ汚染の超精密反射鏡</text>
+  <!-- Arrow Zeiss→ASML -->
+  <line x1="450" y1="90" x2="450" y2="153" stroke="#3498db" stroke-width="1.5"/>
+  <polygon points="450,153 444,141 456,141" fill="#3498db"/>
+
+  <!-- Supplier 2: Trumpf (Laser) - top-left -->
+  <rect x="60" y="55" width="200" height="60" rx="6" fill="#2c2c1a" stroke="#f39c12" stroke-width="2"/>
+  <text x="160" y="77" text-anchor="middle" fill="#f39c12" font-size="11" font-weight="bold">Trumpf（独）</text>
+  <text x="160" y="93" text-anchor="middle" fill="#fad7a0" font-size="10">CO₂ドライバーレーザー</text>
+  <text x="160" y="107" text-anchor="middle" fill="#fad7a0" font-size="9">EUV光源の「ポンプ」</text>
+  <!-- Arrow Trumpf→ASML -->
+  <line x1="260" y1="85" x2="338" y2="165" stroke="#f39c12" stroke-width="1.5"/>
+  <polygon points="338,165 335,152 347,157" fill="#f39c12"/>
+
+  <!-- Supplier 3: Cymer/ASML (Light Source) - left -->
+  <rect x="30" y="170" width="200" height="60" rx="6" fill="#1e4d2b" stroke="#27ae60" stroke-width="2"/>
+  <text x="130" y="192" text-anchor="middle" fill="#27ae60" font-size="11" font-weight="bold">Cymer（米・ASML傘下）</text>
+  <text x="130" y="208" text-anchor="middle" fill="#a9dfbf" font-size="10">スズ液滴噴射システム</text>
+  <text x="130" y="222" text-anchor="middle" fill="#7dcea0" font-size="9">EUV光 13.5nm 生成</text>
+  <!-- Arrow Cymer→ASML -->
+  <line x1="230" y1="200" x2="338" y2="200" stroke="#27ae60" stroke-width="1.5"/>
+  <polygon points="338,200 326,194 326,206" fill="#27ae60"/>
+
+  <!-- Supplier 4: VDL (Mechanics) - bottom-left -->
+  <rect x="60" y="295" width="200" height="60" rx="6" fill="#2a1a4a" stroke="#8e44ad" stroke-width="2"/>
+  <text x="160" y="317" text-anchor="middle" fill="#8e44ad" font-size="11" font-weight="bold">VDL Group（蘭）</text>
+  <text x="160" y="333" text-anchor="middle" fill="#d7bde2" font-size="10">機械構造・ウェーハステージ</text>
+  <text x="160" y="347" text-anchor="middle" fill="#d7bde2" font-size="9">nm精度の位置決め機構</text>
+  <!-- Arrow VDL→ASML -->
+  <line x1="260" y1="325" x2="338" y2="255" stroke="#8e44ad" stroke-width="1.5"/>
+  <polygon points="338,255 330,262 341,264" fill="#8e44ad"/>
+
+  <!-- Supplier 5: IMEC (R&D) - bottom -->
+  <rect x="340" y="310" width="220" height="60" rx="6" fill="#3d1a1a" stroke="#e74c3c" stroke-width="2"/>
+  <text x="450" y="332" text-anchor="middle" fill="#e74c3c" font-size="11" font-weight="bold">imec（ベルギー）</text>
+  <text x="450" y="348" text-anchor="middle" fill="#f1948a" font-size="10">プロセス研究・アーキテクチャ</text>
+  <text x="450" y="362" text-anchor="middle" fill="#f1948a" font-size="9">欧州半導体研究の中核</text>
+  <!-- Arrow imec→ASML -->
+  <line x1="450" y1="310" x2="450" y2="245" stroke="#e74c3c" stroke-width="1.5"/>
+  <polygon points="450,245 444,257 456,257" fill="#e74c3c"/>
+
+  <!-- Supplier 6: Tokyo Electron (Coater) - top-right -->
+  <rect x="640" y="55" width="200" height="60" rx="6" fill="#2c1a1a" stroke="#e67e22" stroke-width="2"/>
+  <text x="740" y="77" text-anchor="middle" fill="#e67e22" font-size="11" font-weight="bold">Tokyo Electron（日）</text>
+  <text x="740" y="93" text-anchor="middle" fill="#fad7a0" font-size="10">コータ・デベロッパ</text>
+  <text x="740" y="107" text-anchor="middle" fill="#fad7a0" font-size="9">レジスト塗布・現像装置</text>
+  <!-- Arrow TEL→ASML -->
+  <line x1="640" y1="85" x2="562" y2="165" stroke="#e67e22" stroke-width="1.5"/>
+  <polygon points="562,165 566,153 575,160" fill="#e67e22"/>
+
+  <!-- Supplier 7: Applied Materials - right -->
+  <rect x="670" y="170" width="200" height="60" rx="6" fill="#1a3a5c" stroke="#2980b9" stroke-width="2"/>
+  <text x="770" y="192" text-anchor="middle" fill="#2980b9" font-size="11" font-weight="bold">Applied Materials（米）</text>
+  <text x="770" y="208" text-anchor="middle" fill="#85c1e9" font-size="10">CVD・PVD成膜装置</text>
+  <text x="770" y="222" text-anchor="middle" fill="#7fb3d3" font-size="9">薄膜形成の世界最大手</text>
+  <!-- Arrow AMAT→ASML -->
+  <line x1="670" y1="200" x2="562" y2="200" stroke="#2980b9" stroke-width="1.5"/>
+  <polygon points="562,200 574,194 574,206" fill="#2980b9"/>
+
+  <!-- Supplier 8: Shin-Etsu (Pellicles) - bottom-right -->
+  <rect x="640" y="295" width="200" height="60" rx="6" fill="#2c2c1a" stroke="#f5b041" stroke-width="2"/>
+  <text x="740" y="317" text-anchor="middle" fill="#f5b041" font-size="11" font-weight="bold">信越化学（日）</text>
+  <text x="740" y="333" text-anchor="middle" fill="#fad7a0" font-size="10">ペリクル（防塵膜）</text>
+  <text x="740" y="347" text-anchor="middle" fill="#fad7a0" font-size="9">EUV用極薄膜は世界独占</text>
+  <!-- Arrow Shin-Etsu→ASML -->
+  <line x1="640" y1="325" x2="562" y2="255" stroke="#f5b041" stroke-width="1.5"/>
+  <polygon points="562,255 559,243 570,248" fill="#f5b041"/>
+
+  <!-- Bottom key fact -->
+  <rect x="140" y="378" width="620" height="30" rx="6" fill="#1e3d1e" stroke="#2ecc71" stroke-width="1"/>
+  <text x="450" y="398" text-anchor="middle" fill="#2ecc71" font-size="11">ASML 1台のサプライヤー数: 5,000社超 / 輸出禁止 = 中国は先端製造ができない</text>
+</svg>

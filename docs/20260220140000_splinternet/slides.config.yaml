@@ -1,0 +1,26 @@
+topic: "インターネットの分裂"
+language: "ja"
+
+output:
+  dir: "docs/20260220140000_splinternet"
+  baseName: "splinternet"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "インターネットの分裂"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+    section.center {
+      text-align: center;
+    }
+    section table {
+      font-size: 0.82em;
+    }

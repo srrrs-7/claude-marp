@@ -1,0 +1,556 @@
+{
+	"slides": [
+		{
+			"title": "YAGNI原則を人生に適用する",
+			"content": [
+				"You Ain't Gonna Need It",
+				"エンジニアの設計思想が、人生を変える"
+			],
+			"layout": "center"
+		},
+		{
+			"title": "自己紹介",
+			"content": [
+				"エンジニア歴 N 年",
+				"YAGNI に救われた人間",
+				"同時に YAGNI を無視して失敗し続けた人間",
+				"今日は後者の失敗談を中心にお話しします"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "アジェンダ (1/2)",
+			"content": [
+				"**Chapter 1**: YAGNIとは何か — 定義・歴史・認識論",
+				"**Chapter 2**: 失敗誰談 — 私のYAGNI違反史",
+				"**Chapter 3 前半**: 人生への応用 — モノ・時間・学習"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "アジェンダ (2/2)",
+			"content": [
+				"**Chapter 3 後半**: 人生への応用 — キャリア・思考・お金",
+				"**Chapter 4**: 実践法 — 原則・ツール・落とし穴",
+				"**Chapter 5**: まとめ — 哲学・今日からできること"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Chapter 1",
+			"content": ["YAGNIとは何か", "— 定義・歴史・認識論 —"],
+			"layout": "section"
+		},
+		{
+			"title": "YAGNIとは",
+			"content": [
+				"**YAGNI** = You Ain't Gonna Need It",
+				"「それ、必要になると思ってるけど、実際には必要にならないよ」",
+				"ソフトウェア開発の設計原則のひとつ",
+				"「今必要ではない機能は実装するな」",
+				"XP（エクストリームプログラミング）で広まった考え方"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "You Ain't Gonna Need It",
+			"content": [
+				"未来のために今コストを払うな",
+				"必要になったときに実装すればいい",
+				"**YAGNI は予測への懐疑論である**"
+			],
+			"layout": "center"
+		},
+		{
+			"title": "誕生の背景: エクストリームプログラミング",
+			"content": [
+				"1990年代後半、Kent Beck が提唱した開発手法",
+				"「今必要なことだけを、完璧にやる」",
+				"XP の12のプラクティスのひとつとして YAGNI が登場",
+				"「変化に対応できる設計」vs「変化を予測した設計」",
+				"YAGNI は後者を否定する"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Martin Fowler の言葉",
+			"content": [
+				"> Yagni only applies to capabilities built into the software to support a presumptive feature",
+				"— Martin Fowler",
+				"「推測による機能」にコストを払ってはいけない",
+				"必要性が **証明されたとき** だけ実装する"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "コードでの YAGNI 違反",
+			"content": ["「将来的に多言語対応するかもしれないから...」"],
+			"code": "// 「いつか使うかも」な抽象化\nclass UserRepository {\n  // 将来の DB 切り替えに備えて\n  private adapter: DatabaseAdapter;\n  private cache: CacheLayer;      // 未使用\n  private fallback: FallbackStrategy; // 未使用\n\n  // 将来の分散処理に備えて\n  async findAll(options?: {\n    shard?: string;\n    replica?: 'primary' | 'secondary';\n  }) { /* ... */ }\n}",
+			"codeLanguage": "typescript",
+			"layout": "default"
+		},
+		{
+			"title": "コードでの YAGNI 実践",
+			"content": ["「今必要なことだけ書く」"],
+			"code": "// 今必要なことだけ\nclass UserRepository {\n  async findAll(): Promise<User[]> {\n    return db.query('SELECT * FROM users');\n  }\n\n  async findById(id: string): Promise<User | null> {\n    return db.query(\n      'SELECT * FROM users WHERE id = ?',\n      [id]\n    );\n  }\n}",
+			"codeLanguage": "typescript",
+			"layout": "default"
+		},
+		{
+			"title": "なぜ YAGNI が難しいか",
+			"content": [
+				"人間は「将来を予測できる」と思いがち",
+				"不確実性への不安を「準備」で解消しようとする",
+				"「後でやるより今やった方が安い」という誤信",
+				"コードを書くことへの快感（過剰エンジニアリングの誘惑）",
+				"チームへの見せ方（「考えてます」アピール）"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "認知バイアス: 計画の誤謬",
+			"content": ["![w:900 center](assets/planning-fallacy.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "認知バイアス: サンクコスト",
+			"content": ["![w:900 center](assets/sunk-cost.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "本質: 未来への過投資という病",
+			"content": [
+				"YAGNI 違反の正体は「未来への過投資」",
+				"未来は常に不確実 → 投資は必ず一部が無駄になる",
+				"「来た未来」にしかコストを払えなかった",
+				"YAGNI: 来た未来にだけコストを払う",
+				"**「今」を最大限に生きることが最善の未来投資**"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Chapter 2",
+			"content": ["私のYAGNI違反史", "— 失敗から学んだこと —"],
+			"layout": "section"
+		},
+		{
+			"title": "失敗1: 積読",
+			"content": [
+				"「いつか読もう」と買い続けた技術書・ビジネス書",
+				"読んだ本: 全体の 20% 以下",
+				"理由: 「今必要かどうか」ではなく「面白そう」で買っていた",
+				"コスト: 本代 + 本棚スペース + 罪悪感",
+				"**YAGNI 視点**: 必要になったとき、必要な本だけ買えばよかった"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "失敗2: 使わないガジェット購入",
+			"content": [
+				"「いつか使いそう」なガジェットを購入し続けた",
+				"使わなかった率: 約 60%",
+				"「これがあれば生産性が上がる」という幻想",
+				"コスト: 購入費 + 保管場所 + 処分の手間",
+				"**YAGNI 視点**: 「今すぐ使う」でなければ買わない"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "失敗3: 役に立たなかった資格",
+			"content": [
+				"「将来使えそう」な資格を複数取得した",
+				"実際に業務で活用した資格: 半数以下",
+				"勉強時間: 各資格に 100〜300 時間",
+				"「持っておけば安心」という安心感のための資格",
+				"**YAGNI 視点**: 必要になったとき、必要な資格を取る"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "失敗4: 過度な準備で動けなかった",
+			"content": [
+				"副業・ブログ・OSS活動... 「完璧な準備」を待ち続けた",
+				"「もう少し知識が増えてから」「もう少し時間ができてから」",
+				"準備期間中に機会を逃した",
+				"実際には「やりながら学ぶ」方が速かった",
+				"**YAGNI 視点**: 最低限のものだけ準備して、あとは動きながら足す"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "失敗5: 使わないコード機能の実装",
+			"content": ["「将来マルチテナント対応するかも」で実装"],
+			"code": "// 結果: 3年間一度も使われなかった\ninterface TenantConfig {\n  tenantId: string;\n  features: FeatureFlag[];\n  customTheme: ThemeConfig;\n  dataIsolation: 'shared' | 'dedicated';\n}\n\n// 総実装時間: 2週間\n// 削除日: 3年後\n// 後悔度: MAX",
+			"codeLanguage": "typescript",
+			"layout": "default"
+		},
+		{
+			"title": "失敗6: キャリアの迷走",
+			"content": [
+				"「将来 AI が来るから機械学習を勉強しよう」",
+				"「ブロックチェーン エンジニアが稼げるらしい」",
+				"「メタバース開発者が需要あるかも」",
+				"流行に流されて浅く広く学んだ 3 年間",
+				"結果: どれも中途半端、本業のスキルが止まっていた",
+				"**YAGNI 視点**: 今の仕事に必要なスキルを深く伸ばす"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "共通パターン: 未来への賭けに負けた",
+			"content": ["![w:900 center](assets/failure-pattern.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "コストの可視化",
+			"content": ["![w:900 center](assets/cost-visualization.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "教訓: もっと早く失敗すればよかった",
+			"content": [
+				"すべての失敗に共通すること...",
+				"「**やってから判断**すれば、コストが小さかった」",
+				"YAGNI = 「必要になったら対応する」",
+				"= 「失敗を小さく、早く経験する」",
+				"**Fail fast, fail cheap, fail forward.**"
+			],
+			"layout": "center"
+		},
+		{
+			"title": "Chapter 3",
+			"content": ["人生への応用", "— YAGNI を生き方にする —"],
+			"layout": "section"
+		},
+		{
+			"title": "YAGNI の適用領域マップ",
+			"content": ["![w:900 center](assets/yagni-life-map.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "モノ: ワードローブ戦略",
+			"content": [
+				"**YAGNI 違反例**: 「いつか着るかも」な服が溢れる",
+				"クローゼットの 20% の服を 80% の確率で着る（80:20 則）",
+				"**YAGNI 実践**: 今の生活スタイルに必要な服だけ持つ",
+				"「1 着買ったら 1 着捨てる」ルール",
+				"着なかったら即処分する基準を持つ"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "モノ: ガジェット購入ルール",
+			"content": [
+				"**YAGNI 違反例**: スペックへの過投資",
+				"「将来 4K 動画編集するかも」→ 実際はしない",
+				"**YAGNI 実践の購入判断フロー**",
+				"① 今すぐ使うか？ → NO なら買わない",
+				"② 1ヶ月後も使っているか？ → 確認してから検討",
+				"③ 代替手段はないか？ → あるなら買わない"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "モノ: 本の選び方",
+			"content": [
+				"**YAGNI 違反例**: 「面白そう」で買う積読",
+				"**YAGNI 実践**: Just-in-Time 読書",
+				"「今困っていること」に直接関係する本だけ買う",
+				"図書館・電子書籍で「試し読み」してから購入",
+				"読み終えたら手放す（物理的・精神的スペース確保）"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "時間: スケジュールのバッファ",
+			"content": ["![w:900 center](assets/schedule-buffer.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "時間: やらないことリスト",
+			"content": [
+				"**YAGNI 違反例**: Todo リストが無限に増える",
+				"「いつかやる」タスクが溢れて優先度が崩壊",
+				"**YAGNI 実践**: Not Todo リストを作る",
+				"「今の自分に必要ない」ことを明示的に決める",
+				"例: 「今年は新しい趣味を始めない」",
+				"例: 「週3回以上の会食は断る」"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "時間: 「ゆとり」の価値",
+			"content": [
+				"スケジュールをびっちり埋めることは YAGNI 違反",
+				"「ゆとり」= 未来の予期しない需要に応えるバッファ",
+				"急な仕事・チャンス・体調不良に対応できる余白",
+				"認知的な余裕が創造性と判断力を生む",
+				"**「暇」は怠惰ではなく、戦略的空白である**"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "学習: Just-in-Time 学習",
+			"content": ["![w:900 center](assets/jit-learning.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "学習: 技術トレンドとの付き合い方",
+			"content": [
+				"**YAGNI 違反例**: 全トレンドをキャッチアップしようとする",
+				"Hype Cycle の「幻滅期」で消えるものが多い",
+				"**YAGNI 実践の判断基準**",
+				"① 今の仕事で使えるか？",
+				"② 1年後も存在しているか？",
+				"③ 深く学ぶ価値のある基礎技術か？",
+				"→ NO なら「見守り」でよい"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "学習: 深さ vs 広さ",
+			"content": ["![w:900 center](assets/depth-vs-breadth.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "キャリア: 今の仕事に集中する",
+			"content": [
+				"**YAGNI 違反例**: 常に「次のキャリア」を考えて今が疎かに",
+				"「転職活動しながら今の仕事もこなす」の両立失敗",
+				"**YAGNI 実践**: 今の仕事で圧倒的な成果を出す",
+				"優れた成果 → 機会が自然に集まる",
+				"転職は「必要になったとき」に考える"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "キャリア: 転職タイミングの判断",
+			"content": [
+				"**YAGNI 的転職判断**: 「今」必要性が生じているか？",
+				"転職すべきシグナル（YAGNI 的）",
+				"① 今の環境で学べることがなくなった",
+				"② 明確なオファーや機会が目の前にある",
+				"③ 価値観・方向性の根本的なミスマッチ",
+				"転職しなくていいシグナル",
+				"④ 「なんとなく不安」「流行のスタートアップが気になる」"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "人間関係: 質 vs 量",
+			"content": ["![w:900 center](assets/quality-vs-quantity.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "思考: 心配の空振り率",
+			"content": ["![w:900 center](assets/worry-rate.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "思考: 意思決定の簡素化",
+			"content": [
+				"**YAGNI 違反例**: 全ての選択肢を調べ尽くしてから決める",
+				"「完全な情報」を得ようとするが、それは不可能",
+				"**YAGNI 実践の意思決定ルール**",
+				"① 2択で迷ったら「今の自分」にフィットする方",
+				"② 1週間考えても決まらないなら、どちらでもいい",
+				"③ 「十分に良い選択」を素早くする"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "「考えすぎ」をやめる",
+			"content": [
+				"思考もオーバーエンジニアリングする",
+				"「もしこうなったら」の連鎖は止まらない",
+				"**YAGNI の思考版**: 「今必要な思考だけ」",
+				"起きていないことを考えるな",
+				"起きたときに考えればいい"
+			],
+			"layout": "center"
+		},
+		{
+			"title": "お金: YAGNI 的支出判断",
+			"content": [
+				"**YAGNI 違反例**: 「いつか使う日のため」の過剰貯蓄",
+				"または: 「将来のため」という名の衝動買い",
+				"**YAGNI 的支出の判断基準**",
+				"① 今の生活の質を上げるか？",
+				"② 1ヶ月後に後悔しないか？",
+				"③ 「将来のため」の割合が高すぎないか？",
+				"今を生きるために使うお金の価値を認める"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "ライフスタイル: ミニマリズムと YAGNI",
+			"content": [
+				"ミニマリズム = 「今必要なものだけ持つ」",
+				"これは YAGNI そのもの",
+				"モノを減らすメリット",
+				"① 探す時間ゼロ（検索コスト削減）",
+				"② 選択疲れゼロ（認知コスト削減）",
+				"③ 引越し・移動が楽（変更コスト削減）",
+				"エンジニアなら直感的に理解できる思想"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "YAGNI 的ライフデザイン",
+			"content": ["![w:900 center](assets/yagni-life-design.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "人生のリファクタリング",
+			"content": [
+				"コードをリファクタリングするように、人生を整理する",
+				"「使っていないモジュール（習慣・モノ・関係）」を削除",
+				"「複雑になりすぎた関数（役割・義務）」を分解",
+				"「依存関係が強すぎる部分」を疎結合にする",
+				"リファクタリングは一度ではなく、継続的に行う"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "定期的なレビューのすすめ",
+			"content": [
+				"コードレビューと同じように、人生もレビューする",
+				"**月次レビュー**: 今月使ったもの・やったことを振り返る",
+				"**年次レビュー**: 「まだ必要か？」を全てのものに問う",
+				"「積み上げる」よりも「削ぎ落とす」レビューを",
+				"今の自分に必要なものだけを残す"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Chapter 4",
+			"content": ["実践編", "— 今日から YAGNI を生きる —"],
+			"layout": "section"
+		},
+		{
+			"title": "原則1: 今必要なことだけやる",
+			"content": [
+				"**「今」にフォーカスする**",
+				"今日必要なことリストを毎朝作る",
+				"リストにないことは原則やらない",
+				"「将来役に立つかも」は理由にならない",
+				"今日の問題を今日解く — それだけでいい"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "原則2: 捨てる勇気を持つ",
+			"content": [
+				"**「削除」は後退ではなく、前進である**",
+				"使っていないコードを消すように、使っていないものを手放す",
+				"「いつか使うかも」は「使わない」の言い訳",
+				"捨てることで「今必要なもの」が見えてくる",
+				"Git は履歴を残す — でも人生に git blame は不要"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "原則3: 短いフィードバックループ",
+			"content": ["![w:900 center](assets/feedback-loop.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "ツール: 1ヶ月ルール",
+			"content": [
+				"**モノの購入・学習の開始 → 1ヶ月待つ**",
+				"「欲しい！」「やりたい！」と思ったら、メモして 1ヶ月待つ",
+				"1ヶ月後にまだ必要なら、それは本当に必要なもの",
+				"大半の「欲しい」は 1ヶ月後に消える",
+				"**これが最強の YAGNI フィルター**"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "落とし穴: YAGNI は怠惰ではない",
+			"content": [
+				"「今必要なことだけ」 ≠ 「楽をする」",
+				"今必要なことを **完璧に** やることが YAGNI",
+				"XP での YAGNI: 「今のストーリーを完璧に実装する」",
+				"人生での YAGNI: 「今の役割を完璧に果たす」",
+				"**YAGNI は集中の原則であり、省エネの原則ではない**"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "落とし穴: 必要なものまで削らない",
+			"content": [
+				"YAGNI の誤用: 「健康管理」「人間関係」を削る",
+				"基盤となるもの（健康・睡眠・基礎学習）は削ってはいけない",
+				"判断基準: 「今必要か」ではなく「将来も必要か」",
+				"YAGNI の適用範囲は「推測による先行投資」であり、",
+				"「確実に必要な基盤」ではない"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Chapter 5",
+			"content": ["まとめ", "— YAGNI is a Lifestyle —"],
+			"layout": "section"
+		},
+		{
+			"title": "YAGNI と東洋哲学",
+			"content": [
+				"**禅**: 「今ここに集中する」",
+				"余分なものを排して、今この瞬間に全力を注ぐ",
+				"**老子 / 無為自然**: 「為さずして為す」",
+				"余計なことをしないことで、自然の流れに従う",
+				"**YAGNI は西洋工学の原則であり、東洋哲学でもある**",
+				"エンジニアとして YAGNI を学んだ私たちは、古来の知恵を手に入れていた"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "エンジニアの強み: 設計思考の転用",
+			"content": ["![w:900 center](assets/engineer-strength.svg)"],
+			"layout": "default"
+		},
+		{
+			"title": "今日から始める3つのこと",
+			"content": [
+				"**① 1ヶ月ルールを始める**",
+				"欲しいもの・やりたいことをメモして 1ヶ月待つ",
+				"**② 「今日やること」だけのリストを作る**",
+				"「いつかやる」は今日のリストから外す",
+				"**③ 何か一つ捨てる**",
+				"使っていないアプリ・モノ・予定を今日削除する"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "YAGNI is a Lifestyle",
+			"content": [
+				"You Ain't Gonna Need It",
+				"それ、必要にならないから。",
+				"**今を生きよう。**"
+			],
+			"layout": "center"
+		},
+		{
+			"title": "参考文献・リソース",
+			"content": [
+				"**YAGNI・XP 関連**",
+				"[Martin Fowler — Yagni](https://martinfowler.com/bliki/Yagni.html)",
+				"[Extreme Programming Explained — Kent Beck](https://www.informit.com/store/extreme-programming-explained-embrace-change-9780321278654)",
+				"**ミニマリズム・思想**",
+				"[The Life-Changing Magic of Tidying Up — Marie Kondo](https://konmari.com/)",
+				"[エッセンシャル思考 — Greg McKeown](https://gregmckeown.com/books/essentialism/)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "おわりに",
+			"content": [
+				"ご清聴ありがとうございました",
+				"「今必要なことだけ」を伝えようとしたら 60 枚になりました",
+				"YAGNI 違反かもしれません 😅",
+				"質問・ご意見はお気軽にどうぞ"
+			],
+			"layout": "center"
+		}
+	]
+}

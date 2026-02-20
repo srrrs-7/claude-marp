@@ -1,0 +1,83 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="28" text-anchor="middle" fill="#ecf0f1" font-size="15" font-weight="bold">ドキュメントの腐敗サイクル</text>
+
+  <!-- Central label -->
+  <circle cx="450" cy="200" r="48" fill="#2c2c1a" stroke="#f39c12" stroke-width="2"/>
+  <text x="450" y="196" text-anchor="middle" fill="#f39c12" font-size="12" font-weight="bold">負の</text>
+  <text x="450" y="212" text-anchor="middle" fill="#f39c12" font-size="12" font-weight="bold">ループ</text>
+
+  <!-- Node positions (8 nodes in a circle, radius ~160) -->
+  <!-- Node 1: top (0°) -->
+  <rect x="360" y="22" width="180" height="38" rx="8" fill="#1e4d2b" stroke="#2ecc71" stroke-width="2"/>
+  <text x="450" y="39" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">① 仕様書・設計書を書く</text>
+  <text x="450" y="53" text-anchor="middle" fill="#a9dfbf" font-size="10">丁寧に、時間をかけて</text>
+
+  <!-- Node 2: top-right (~45°) -->
+  <rect x="680" y="68" width="180" height="38" rx="8" fill="#1a3a5c" stroke="#3498db" stroke-width="2"/>
+  <text x="770" y="85" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">② 実装が始まる</text>
+  <text x="770" y="99" text-anchor="middle" fill="#85c1e9" font-size="10">コードが動き出す</text>
+
+  <!-- Node 3: right (~90°) -->
+  <rect x="720" y="180" width="168" height="38" rx="8" fill="#4a1a1a" stroke="#e74c3c" stroke-width="2"/>
+  <text x="804" y="197" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">③ 仕様変更が発生</text>
+  <text x="804" y="211" text-anchor="middle" fill="#f1948a" font-size="10">「後で直す」が積み重なる</text>
+
+  <!-- Node 4: bottom-right (~135°) -->
+  <rect x="660" y="290" width="180" height="38" rx="8" fill="#4a1a1a" stroke="#c0392b" stroke-width="2"/>
+  <text x="750" y="307" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">④ ドキュメントが古くなる</text>
+  <text x="750" y="321" text-anchor="middle" fill="#f1948a" font-size="10">コードとの乖離が広がる</text>
+
+  <!-- Node 5: bottom (~180°) -->
+  <rect x="350" y="340" width="200" height="38" rx="8" fill="#4a1a2a" stroke="#e74c3c" stroke-width="2"/>
+  <text x="450" y="357" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">⑤ 誰も信じなくなる</text>
+  <text x="450" y="371" text-anchor="middle" fill="#f1948a" font-size="10">「コード見ればわかる」が口癖に</text>
+
+  <!-- Node 6: bottom-left (~225°) -->
+  <rect x="62" y="290" width="185" height="38" rx="8" fill="#3d1a3a" stroke="#9b59b6" stroke-width="2"/>
+  <text x="155" y="307" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">⑥ 更新をやめる</text>
+  <text x="155" y="321" text-anchor="middle" fill="#d7bde2" font-size="10">「どうせ読まれない」</text>
+
+  <!-- Node 7: left (~270°) -->
+  <rect x="18" y="180" width="185" height="38" rx="8" fill="#2c1a1a" stroke="#e67e22" stroke-width="2"/>
+  <text x="110" y="197" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">⑦ 問題が起きる</text>
+  <text x="110" y="211" text-anchor="middle" fill="#fad7a0" font-size="10">新人が迷子。引き継ぎ失敗</text>
+
+  <!-- Node 8: top-left (~315°) -->
+  <rect x="40" y="68" width="185" height="38" rx="8" fill="#2a1a4a" stroke="#8e44ad" stroke-width="2"/>
+  <text x="132" y="85" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">⑧ 仕方なくまた書く</text>
+  <text x="132" y="99" text-anchor="middle" fill="#d7bde2" font-size="10">義務感・罰則・要求で</text>
+
+  <!-- Arrows: curved arcs approximated with lines + polygons -->
+  <!-- 1→2: top to top-right -->
+  <line x1="540" y1="41" x2="678" y2="78" stroke="#7f8c8d" stroke-width="1.5"/>
+  <polygon points="678,78 666,74 670,86" fill="#7f8c8d"/>
+
+  <!-- 2→3: top-right to right -->
+  <line x1="770" y1="106" x2="804" y2="178" stroke="#7f8c8d" stroke-width="1.5"/>
+  <polygon points="804,178 797,166 808,166" fill="#7f8c8d"/>
+
+  <!-- 3→4: right to bottom-right -->
+  <line x1="780" y1="218" x2="760" y2="288" stroke="#7f8c8d" stroke-width="1.5"/>
+  <polygon points="760,288 754,276 766,276" fill="#7f8c8d"/>
+
+  <!-- 4→5: bottom-right to bottom -->
+  <line x1="660" y1="320" x2="552" y2="352" stroke="#7f8c8d" stroke-width="1.5"/>
+  <polygon points="552,352 560,342 564,354" fill="#7f8c8d"/>
+
+  <!-- 5→6: bottom to bottom-left -->
+  <line x1="350" y1="360" x2="248" y2="328" stroke="#7f8c8d" stroke-width="1.5"/>
+  <polygon points="248,328 256,318 260,330" fill="#7f8c8d"/>
+
+  <!-- 6→7: bottom-left to left -->
+  <line x1="120" y1="290" x2="110" y2="220" stroke="#7f8c8d" stroke-width="1.5"/>
+  <polygon points="110,220 104,232 116,232" fill="#7f8c8d"/>
+
+  <!-- 7→8: left to top-left -->
+  <line x1="130" y1="180" x2="140" y2="108" stroke="#7f8c8d" stroke-width="1.5"/>
+  <polygon points="140,108 134,120 146,118" fill="#7f8c8d"/>
+
+  <!-- 8→1: top-left to top -->
+  <line x1="225" y1="78" x2="358" y2="46" stroke="#7f8c8d" stroke-width="1.5"/>
+  <polygon points="358,46 346,48 350,60" fill="#7f8c8d"/>
+</svg>

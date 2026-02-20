@@ -1,0 +1,80 @@
+<svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="380" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="28" text-anchor="middle" fill="#ecf0f1" font-size="15" font-weight="bold">2つの文化の歴史的背景 — タイムライン</text>
+
+  <!-- Timeline axis -->
+  <line x1="60" y1="190" x2="860" y2="190" stroke="#4a5568" stroke-width="2"/>
+  <!-- Arrow head -->
+  <polygon points="860,190 848,184 848,196" fill="#4a5568"/>
+
+  <!-- Era labels on axis -->
+  <text x="90" y="210" text-anchor="middle" fill="#95a5a6" font-size="10">1970s</text>
+  <text x="200" y="210" text-anchor="middle" fill="#95a5a6" font-size="10">1980s</text>
+  <text x="310" y="210" text-anchor="middle" fill="#95a5a6" font-size="10">1990s</text>
+  <text x="420" y="210" text-anchor="middle" fill="#95a5a6" font-size="10">2001</text>
+  <text x="530" y="210" text-anchor="middle" fill="#95a5a6" font-size="10">2010s</text>
+  <text x="640" y="210" text-anchor="middle" fill="#95a5a6" font-size="10">2020s</text>
+  <text x="780" y="210" text-anchor="middle" fill="#95a5a6" font-size="10">2024+</text>
+
+  <!-- Tick marks -->
+  <line x1="90" y1="185" x2="90" y2="195" stroke="#4a5568" stroke-width="2"/>
+  <line x1="200" y1="185" x2="200" y2="195" stroke="#4a5568" stroke-width="2"/>
+  <line x1="310" y1="185" x2="310" y2="195" stroke="#4a5568" stroke-width="2"/>
+  <line x1="420" y1="185" x2="420" y2="195" stroke="#4a5568" stroke-width="2"/>
+  <line x1="530" y1="185" x2="530" y2="195" stroke="#4a5568" stroke-width="2"/>
+  <line x1="640" y1="185" x2="640" y2="195" stroke="#4a5568" stroke-width="2"/>
+  <line x1="780" y1="185" x2="780" y2="195" stroke="#4a5568" stroke-width="2"/>
+
+  <!-- ABOVE axis: 仕様書文化 events -->
+  <text x="30" y="100" fill="#3498db" font-size="11" font-weight="bold">仕様書文化</text>
+
+  <!-- 1970s: Waterfall -->
+  <line x1="90" y1="190" x2="90" y2="145" stroke="#3498db" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="30" y="110" width="120" height="34" rx="6" fill="#1a3a5c" stroke="#3498db" stroke-width="1.5"/>
+  <text x="90" y="125" text-anchor="middle" fill="#ecf0f1" font-size="10" font-weight="bold">ウォーターフォール誕生</text>
+  <text x="90" y="138" text-anchor="middle" fill="#85c1e9" font-size="9">仕様書が開発の起点に</text>
+
+  <!-- 1980s: DoD/MIL -->
+  <line x1="200" y1="190" x2="200" y2="75" stroke="#3498db" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="140" y="42" width="120" height="34" rx="6" fill="#1a3a5c" stroke="#3498db" stroke-width="1.5"/>
+  <text x="200" y="57" text-anchor="middle" fill="#ecf0f1" font-size="10" font-weight="bold">DoD / MIL-STD</text>
+  <text x="200" y="70" text-anchor="middle" fill="#85c1e9" font-size="9">政府調達で仕様書が必須化</text>
+
+  <!-- 1990s: ISO 9001 / CMMI -->
+  <line x1="310" y1="190" x2="310" y2="110" stroke="#3498db" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="250" y="77" width="120" height="34" rx="6" fill="#1a3a5c" stroke="#3498db" stroke-width="1.5"/>
+  <text x="310" y="92" text-anchor="middle" fill="#ecf0f1" font-size="10" font-weight="bold">ISO 9001 / CMMI</text>
+  <text x="310" y="105" text-anchor="middle" fill="#85c1e9" font-size="9">品質保証として制度化</text>
+
+  <!-- BELOW axis: コード is ドキュメント events -->
+  <text x="30" y="238" fill="#2ecc71" font-size="11" font-weight="bold">コード is Doc</text>
+
+  <!-- 2001: Agile Manifesto -->
+  <line x1="420" y1="190" x2="420" y2="235" stroke="#2ecc71" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="355" y="235" width="130" height="34" rx="6" fill="#1e4d2b" stroke="#2ecc71" stroke-width="2"/>
+  <text x="420" y="250" text-anchor="middle" fill="#ecf0f1" font-size="10" font-weight="bold">Agile Manifesto</text>
+  <text x="420" y="263" text-anchor="middle" fill="#a9dfbf" font-size="9">「動くソフトウェア」を重視</text>
+
+  <!-- 2010s: DevOps / XP -->
+  <line x1="530" y1="190" x2="530" y2="270" stroke="#2ecc71" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="465" y="270" width="130" height="34" rx="6" fill="#1e4d2b" stroke="#2ecc71" stroke-width="2"/>
+  <text x="530" y="285" text-anchor="middle" fill="#ecf0f1" font-size="10" font-weight="bold">DevOps / CI-CD</text>
+  <text x="530" y="298" text-anchor="middle" fill="#a9dfbf" font-size="9">コードが唯一の真実に</text>
+
+  <!-- 2020s: Remote + Global -->
+  <line x1="640" y1="190" x2="640" y2="235" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="570" y="235" width="140" height="34" rx="6" fill="#4a1a1a" stroke="#e74c3c" stroke-width="2"/>
+  <text x="640" y="250" text-anchor="middle" fill="#ecf0f1" font-size="10" font-weight="bold">リモート・グローバル化</text>
+  <text x="640" y="263" text-anchor="middle" fill="#f1948a" font-size="9">両文化の衝突が表面化</text>
+
+  <!-- 2024+: AI coding -->
+  <line x1="780" y1="190" x2="780" y2="270" stroke="#f39c12" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="710" y="270" width="140" height="34" rx="6" fill="#2c2c1a" stroke="#f39c12" stroke-width="2"/>
+  <text x="780" y="285" text-anchor="middle" fill="#ecf0f1" font-size="10" font-weight="bold">AI コーディング普及</text>
+  <text x="780" y="298" text-anchor="middle" fill="#f5cba7" font-size="9">WHY なきコードが激増</text>
+
+  <!-- Bottom note -->
+  <rect x="50" y="320" width="800" height="42" fill="#2c2c1a" rx="8" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="450" y="338" text-anchor="middle" fill="#f39c12" font-size="12" font-weight="bold">衝突の本質: 50年分の「文化の蓄積」がグローバル化・AI で一気に顕在化している</text>
+  <text x="450" y="354" text-anchor="middle" fill="#f5cba7" font-size="11">どちらが「正しい」のではなく、それぞれ異なる問題を解くために生まれた</text>
+</svg>

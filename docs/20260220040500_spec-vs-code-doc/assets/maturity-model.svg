@@ -1,0 +1,68 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="28" text-anchor="middle" fill="#ecf0f1" font-size="15" font-weight="bold">ドキュメント文化 成熟度モデル</text>
+
+  <!-- Staircase bars (ascending from left to right) -->
+  <!-- Level 1: カオス -->
+  <rect x="40" y="280" width="140" height="70" rx="6" fill="#4a1a1a" stroke="#e74c3c" stroke-width="2"/>
+  <text x="110" y="305" text-anchor="middle" fill="#e74c3c" font-size="13" font-weight="bold">Level 1</text>
+  <text x="110" y="322" text-anchor="middle" fill="#ecf0f1" font-size="11">カオス</text>
+  <text x="110" y="337" text-anchor="middle" fill="#f1948a" font-size="10">ドキュメントなし</text>
+  <text x="110" y="350" text-anchor="middle" fill="#f1948a" font-size="10">口伝・属人化</text>
+
+  <!-- Level 2: 形式主義 -->
+  <rect x="200" y="240" width="140" height="110" rx="6" fill="#4a2a1a" stroke="#e67e22" stroke-width="2"/>
+  <text x="270" y="265" text-anchor="middle" fill="#e67e22" font-size="13" font-weight="bold">Level 2</text>
+  <text x="270" y="282" text-anchor="middle" fill="#ecf0f1" font-size="11">形式主義</text>
+  <text x="270" y="297" text-anchor="middle" fill="#fad7a0" font-size="10">義務で書く仕様書</text>
+  <text x="270" y="312" text-anchor="middle" fill="#fad7a0" font-size="10">読まれない・腐敗</text>
+  <text x="270" y="327" text-anchor="middle" fill="#fad7a0" font-size="10">コストだけが残る</text>
+
+  <!-- Level 3: 実用主義 -->
+  <rect x="360" y="190" width="140" height="160" rx="6" fill="#2c2c1a" stroke="#f39c12" stroke-width="2"/>
+  <text x="430" y="215" text-anchor="middle" fill="#f39c12" font-size="13" font-weight="bold">Level 3</text>
+  <text x="430" y="232" text-anchor="middle" fill="#ecf0f1" font-size="11">実用主義</text>
+  <text x="430" y="249" text-anchor="middle" fill="#fad7a0" font-size="10">目的別に分類</text>
+  <text x="430" y="264" text-anchor="middle" fill="#fad7a0" font-size="10">ADR 導入済み</text>
+  <text x="430" y="279" text-anchor="middle" fill="#fad7a0" font-size="10">README 維持</text>
+  <text x="430" y="294" text-anchor="middle" fill="#fad7a0" font-size="10">棚卸しを定期実施</text>
+
+  <!-- Level 4: 自動化 -->
+  <rect x="520" y="130" width="140" height="220" rx="6" fill="#1e3d1e" stroke="#27ae60" stroke-width="2"/>
+  <text x="590" y="158" text-anchor="middle" fill="#27ae60" font-size="13" font-weight="bold">Level 4</text>
+  <text x="590" y="175" text-anchor="middle" fill="#ecf0f1" font-size="11">自動化</text>
+  <text x="590" y="193" text-anchor="middle" fill="#a9dfbf" font-size="10">Living Documentation</text>
+  <text x="590" y="208" text-anchor="middle" fill="#a9dfbf" font-size="10">OpenAPI 自動生成</text>
+  <text x="590" y="223" text-anchor="middle" fill="#a9dfbf" font-size="10">BDD / Executable Spec</text>
+  <text x="590" y="238" text-anchor="middle" fill="#a9dfbf" font-size="10">CI でドキュメント検証</text>
+  <text x="590" y="253" text-anchor="middle" fill="#a9dfbf" font-size="10">「腐らない」仕組み</text>
+
+  <!-- Level 5: 最適化 -->
+  <rect x="680" y="70" width="140" height="280" rx="6" fill="#145a32" stroke="#2ecc71" stroke-width="2"/>
+  <text x="750" y="98" text-anchor="middle" fill="#2ecc71" font-size="13" font-weight="bold">Level 5</text>
+  <text x="750" y="115" text-anchor="middle" fill="#ecf0f1" font-size="11">最適化</text>
+  <text x="750" y="135" text-anchor="middle" fill="#a9dfbf" font-size="10">文化として定着</text>
+  <text x="750" y="150" text-anchor="middle" fill="#a9dfbf" font-size="10">Feedback Loop</text>
+  <text x="750" y="165" text-anchor="middle" fill="#a9dfbf" font-size="10">新人が即戦力に</text>
+  <text x="750" y="180" text-anchor="middle" fill="#a9dfbf" font-size="10">意思決定の透明性</text>
+  <text x="750" y="195" text-anchor="middle" fill="#a9dfbf" font-size="10">継続的改善サイクル</text>
+  <text x="750" y="210" text-anchor="middle" fill="#a9dfbf" font-size="10">Developer Portal</text>
+
+  <!-- Staircase lines (connecting tops of bars) -->
+  <line x1="180" y1="280" x2="200" y2="240" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="340" y1="240" x2="360" y2="190" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="500" y1="190" x2="520" y2="130" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="660" y1="130" x2="680" y2="70" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Progress arrow -->
+  <line x1="40" y1="370" x2="860" y2="370" stroke="#4a5568" stroke-width="2"/>
+  <polygon points="860,370 848,364 848,376" fill="#4a5568"/>
+  <text x="450" y="388" text-anchor="middle" fill="#95a5a6" font-size="11">成熟度の向上 →</text>
+
+  <!-- Current state indicators (typical) -->
+  <text x="110" y="270" text-anchor="middle" fill="#e74c3c" font-size="9">多くの現場</text>
+  <text x="270" y="230" text-anchor="middle" fill="#e67e22" font-size="9">SIer 典型</text>
+  <text x="430" y="180" text-anchor="middle" fill="#f39c12" font-size="9">目指すべき最低ライン</text>
+  <text x="590" y="120" text-anchor="middle" fill="#27ae60" font-size="9">先進的チーム</text>
+  <text x="750" y="58" text-anchor="middle" fill="#2ecc71" font-size="9">理想形</text>
+</svg>

@@ -1,0 +1,91 @@
+<svg viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="460" fill="#f8fafc" rx="12"/>
+  <text x="480" y="38" text-anchor="middle" font-size="20" font-weight="bold" fill="#1e293b">マルチエージェント型AIにおけるバイアス伝播</text>
+
+  <!-- Input task -->
+  <rect x="20" y="150" width="140" height="80" rx="10" fill="#1e293b" stroke="#60a5fa" stroke-width="2.5"/>
+  <text x="90" y="183" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa">ユーザー</text>
+  <text x="90" y="200" text-anchor="middle" font-size="11" fill="#94a3b8">タスク入力</text>
+  <text x="90" y="216" text-anchor="middle" font-size="10" fill="#64748b">仮説 X を含む</text>
+
+  <!-- Arrow to Agent A -->
+  <line x1="160" y1="190" x2="200" y2="190" stroke="#64748b" stroke-width="2.5"/>
+  <polygon points="204,190 196,185 196,195" fill="#64748b"/>
+
+  <!-- Agent A: Planner -->
+  <rect x="204" y="120" width="175" height="140" rx="12" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5"/>
+  <rect x="204" y="120" width="175" height="36" rx="12" fill="#3b82f6"/>
+  <rect x="204" y="142" width="175" height="14" fill="#3b82f6"/>
+  <text x="291" y="142" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">Agent A</text>
+  <text x="291" y="176" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">プランナー</text>
+  <text x="291" y="195" text-anchor="middle" font-size="11" fill="#1e40af">Planner</text>
+  <text x="291" y="218" text-anchor="middle" font-size="10" fill="#3b82f6">仮説Xを前提に</text>
+  <text x="291" y="233" text-anchor="middle" font-size="10" fill="#3b82f6">計画を立案</text>
+
+  <!-- Bias accumulation 1 -->
+  <rect x="210" y="272" width="163" height="28" rx="6" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="291" y="291" text-anchor="middle" font-size="11" fill="#dc2626">⚠ バイアス: +20%</text>
+
+  <!-- Arrow to Agent B -->
+  <line x1="379" y1="190" x2="420" y2="190" stroke="#64748b" stroke-width="2.5"/>
+  <polygon points="424,190 416,185 416,195" fill="#64748b"/>
+
+  <!-- Agent B: Verifier -->
+  <rect x="424" y="120" width="175" height="140" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2.5"/>
+  <rect x="424" y="120" width="175" height="36" rx="12" fill="#d97706"/>
+  <rect x="424" y="142" width="175" height="14" fill="#d97706"/>
+  <text x="511" y="142" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">Agent B</text>
+  <text x="511" y="176" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">バリデーター</text>
+  <text x="511" y="195" text-anchor="middle" font-size="11" fill="#92400e">Validator</text>
+  <text x="511" y="218" text-anchor="middle" font-size="10" fill="#b45309">Aの計画を検証</text>
+  <text x="511" y="233" text-anchor="middle" font-size="10" fill="#b45309">→ 承認・確認</text>
+
+  <!-- Bias accumulation 2 -->
+  <rect x="430" y="272" width="163" height="28" rx="6" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="511" y="291" text-anchor="middle" font-size="11" fill="#dc2626">⚠ バイアス: +45%</text>
+
+  <!-- Arrow to Agent C -->
+  <line x1="599" y1="190" x2="640" y2="190" stroke="#64748b" stroke-width="2.5"/>
+  <polygon points="644,190 636,185 636,195" fill="#64748b"/>
+
+  <!-- Agent C: Implementer -->
+  <rect x="644" y="120" width="175" height="140" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="2.5"/>
+  <rect x="644" y="120" width="175" height="36" rx="12" fill="#dc2626"/>
+  <rect x="644" y="142" width="175" height="14" fill="#dc2626"/>
+  <text x="731" y="142" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">Agent C</text>
+  <text x="731" y="176" text-anchor="middle" font-size="12" font-weight="bold" fill="#991b1b">インプリメンター</text>
+  <text x="731" y="195" text-anchor="middle" font-size="11" fill="#991b1b">Implementer</text>
+  <text x="731" y="218" text-anchor="middle" font-size="10" fill="#dc2626">バイアス込みの</text>
+  <text x="731" y="233" text-anchor="middle" font-size="10" fill="#dc2626">計画を実装</text>
+
+  <!-- Bias accumulation 3 -->
+  <rect x="650" y="272" width="163" height="28" rx="6" fill="#fee2e2" stroke="#dc2626" stroke-width="2.5"/>
+  <text x="731" y="291" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">⚠ バイアス: +70%</text>
+
+  <!-- Arrow to Output -->
+  <line x1="819" y1="190" x2="858" y2="190" stroke="#dc2626" stroke-width="2.5"/>
+  <polygon points="862,190 854,185 854,195" fill="#dc2626"/>
+
+  <!-- Output -->
+  <rect x="862" y="150" width="82" height="80" rx="10" fill="#991b1b" stroke="#dc2626" stroke-width="2.5"/>
+  <text x="903" y="183" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">出力</text>
+  <text x="903" y="200" text-anchor="middle" font-size="10" fill="#fca5a5">バイアス</text>
+  <text x="903" y="215" text-anchor="middle" font-size="10" fill="#fca5a5">入り込み済</text>
+
+  <!-- Bias accumulation bar -->
+  <text x="480" y="336" text-anchor="middle" font-size="13" font-weight="bold" fill="#475569">バイアス蓄積グラフ</text>
+  <rect x="204" y="348" width="736" height="24" rx="4" fill="#e2e8f0"/>
+  <rect x="204" y="348" width="147" height="24" rx="4" fill="#3b82f6"/>
+  <rect x="351" y="348" width="163" height="24" fill="#d97706"/>
+  <rect x="514" y="348" width="249" height="24" fill="#dc2626"/>
+  <rect x="763" y="348" width="177" height="24" rx="4" fill="#991b1b"/>
+  <text x="277" y="364" text-anchor="middle" font-size="10" fill="#ffffff">20%</text>
+  <text x="432" y="364" text-anchor="middle" font-size="10" fill="#ffffff">+25%</text>
+  <text x="638" y="364" text-anchor="middle" font-size="10" fill="#ffffff">+25%</text>
+  <text x="851" y="364" text-anchor="middle" font-size="10" fill="#ffffff">累計 70%</text>
+
+  <!-- Groupthink note -->
+  <rect x="160" y="390" width="640" height="55" rx="10" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+  <text x="480" y="413" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa">Groupthink リスク</text>
+  <text x="480" y="433" text-anchor="middle" font-size="11" fill="#94a3b8">同じベースモデルの複数エージェントは類似バイアスを共有 → 批判的検討が機能しない</text>
+</svg>

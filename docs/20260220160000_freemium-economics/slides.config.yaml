@@ -1,0 +1,20 @@
+topic: "フリーミアムは本当に儲かるか"
+language: "ja"
+
+output:
+  dir: "docs/20260220160000_freemium-economics"
+  baseName: "freemium-economics"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "フリーミアムは本当に儲かるか — 転換率1-5%の経済学"
+  footer: "© 2026 — The Economics of Freemium"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

@@ -1,0 +1,60 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <!-- Background -->
+  <rect width="900" height="420" fill="#FAFAFA" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#2C3E50">計画の誤謬 — 人は楽観的すぎる</text>
+
+  <!-- Legend -->
+  <rect x="580" y="55" width="18" height="18" fill="#3498DB" rx="3"/>
+  <text x="604" y="69" font-size="14" fill="#555">見積もり</text>
+  <rect x="680" y="55" width="18" height="18" fill="#E74C3C" rx="3"/>
+  <text x="704" y="69" font-size="14" fill="#555">実際</text>
+
+  <!-- Axes -->
+  <line x1="120" y1="80" x2="120" y2="360" stroke="#999" stroke-width="2"/>
+  <line x1="120" y1="360" x2="860" y2="360" stroke="#999" stroke-width="2"/>
+
+  <!-- Y-axis label -->
+  <text x="60" y="220" text-anchor="middle" font-size="14" fill="#777" transform="rotate(-90,60,220)">コスト・時間・労力</text>
+
+  <!-- Y-axis ticks -->
+  <text x="115" y="364" text-anchor="end" font-size="12" fill="#888">0%</text>
+  <text x="115" y="284" text-anchor="end" font-size="12" fill="#888">30%</text>
+  <text x="115" y="204" text-anchor="end" font-size="12" fill="#888">60%</text>
+  <text x="115" y="124" text-anchor="end" font-size="12" fill="#888">100%</text>
+  <line x1="118" y1="360" x2="122" y2="360" stroke="#999" stroke-width="1"/>
+  <line x1="118" y1="280" x2="122" y2="280" stroke="#999" stroke-width="1"/>
+  <line x1="118" y1="200" x2="122" y2="200" stroke="#999" stroke-width="1"/>
+  <line x1="118" y1="120" x2="122" y2="120" stroke="#999" stroke-width="1"/>
+
+  <!-- Group 1: 時間 (Time) -->
+  <text x="260" y="385" text-anchor="middle" font-size="15" font-weight="bold" fill="#555">⏱ 時間</text>
+  <!-- Estimate bar: 30% of 240px = 72px tall, starts at 360-72=288 -->
+  <rect x="200" y="288" width="60" height="72" fill="#3498DB" rx="4" opacity="0.85"/>
+  <text x="230" y="283" text-anchor="middle" font-size="13" fill="#3498DB" font-weight="bold">30%</text>
+  <!-- Actual bar: 100% = 240px tall, starts at 360-240=120 -->
+  <rect x="280" y="120" width="60" height="240" fill="#E74C3C" rx="4" opacity="0.85"/>
+  <text x="310" y="115" text-anchor="middle" font-size="13" fill="#E74C3C" font-weight="bold">3.3倍</text>
+
+  <!-- Group 2: コスト (Cost) -->
+  <text x="500" y="385" text-anchor="middle" font-size="15" font-weight="bold" fill="#555">💰 コスト</text>
+  <!-- Estimate bar: 35% = 84px -->
+  <rect x="440" y="276" width="60" height="84" fill="#3498DB" rx="4" opacity="0.85"/>
+  <text x="470" y="271" text-anchor="middle" font-size="13" fill="#3498DB" font-weight="bold">35%</text>
+  <!-- Actual bar: 100% = 240px -->
+  <rect x="520" y="120" width="60" height="240" fill="#E74C3C" rx="4" opacity="0.85"/>
+  <text x="550" y="115" text-anchor="middle" font-size="13" fill="#E74C3C" font-weight="bold">2.9倍</text>
+
+  <!-- Group 3: 労力 (Effort) -->
+  <text x="740" y="385" text-anchor="middle" font-size="15" font-weight="bold" fill="#555">💪 労力</text>
+  <!-- Estimate bar: 40% = 96px -->
+  <rect x="680" y="264" width="60" height="96" fill="#3498DB" rx="4" opacity="0.85"/>
+  <text x="710" y="259" text-anchor="middle" font-size="13" fill="#3498DB" font-weight="bold">40%</text>
+  <!-- Actual bar: 100% = 240px -->
+  <rect x="760" y="120" width="60" height="240" fill="#E74C3C" rx="4" opacity="0.85"/>
+  <text x="790" y="115" text-anchor="middle" font-size="13" fill="#E74C3C" font-weight="bold">2.5倍</text>
+
+  <!-- Footnote -->
+  <text x="450" y="408" text-anchor="middle" font-size="12" fill="#999">※ Hofstadter の法則: かかる時間は必ず予測より長くなる</text>
+</svg>

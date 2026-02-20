@@ -1,0 +1,92 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="400" fill="#FAFAFA" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#2C3E50">Just-in-Time 学習 vs Just-in-Case 学習</text>
+
+  <!-- Left side: JIC (Just-in-Case) -->
+  <rect x="20" y="55" width="410" height="310" fill="#FEF9E7" rx="10" stroke="#E74C3C" stroke-width="2"/>
+  <text x="225" y="85" text-anchor="middle" font-size="16" font-weight="bold" fill="#E74C3C">❌ Just-in-Case (JIC)</text>
+  <text x="225" y="105" text-anchor="middle" font-size="13" fill="#C0392B">「将来使うかもしれない」で学ぶ</text>
+
+  <!-- JIC Timeline -->
+  <!-- Step 1: Learn -->
+  <rect x="40" y="125" width="110" height="50" fill="#E74C3C" rx="6"/>
+  <text x="95" y="147" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">学習</text>
+  <text x="95" y="163" text-anchor="middle" font-size="11" fill="#fff">100〜300h</text>
+
+  <!-- Arrow right -->
+  <line x1="150" y1="150" x2="185" y2="150" stroke="#E74C3C" stroke-width="2"/>
+  <polygon points="185,150 175,144 175,156" fill="#E74C3C"/>
+
+  <!-- Step 2: Wait -->
+  <rect x="185" y="125" width="110" height="50" fill="#E67E22" rx="6"/>
+  <text x="240" y="147" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">待機</text>
+  <text x="240" y="163" text-anchor="middle" font-size="11" fill="#fff">数ヶ月〜数年</text>
+
+  <!-- Arrow right -->
+  <line x1="295" y1="150" x2="330" y2="150" stroke="#999" stroke-width="2"/>
+  <polygon points="330,150 320,144 320,156" fill="#999"/>
+
+  <!-- Step 3: Forget or Not use -->
+  <rect x="330" y="125" width="80" height="50" fill="#95A5A6" rx="6"/>
+  <text x="370" y="147" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">忘却</text>
+  <text x="370" y="163" text-anchor="middle" font-size="11" fill="#fff">or 不使用</text>
+
+  <!-- Retention curve -->
+  <text x="225" y="210" text-anchor="middle" font-size="13" fill="#C0392B">記憶の定着率</text>
+  <!-- Simple retention curve using polyline -->
+  <polyline points="40,240 80,225 130,235 180,248 230,258 280,265 330,268 380,270 420,270" fill="none" stroke="#E74C3C" stroke-width="2.5"/>
+  <text x="420" y="265" font-size="11" fill="#E74C3C">→ほぼゼロ</text>
+  <!-- Y axis labels -->
+  <text x="35" y="243" text-anchor="end" font-size="11" fill="#888">高</text>
+  <text x="35" y="273" text-anchor="end" font-size="11" fill="#888">低</text>
+
+  <!-- Problem note -->
+  <rect x="40" y="290" width="370" height="60" fill="#FADBD8" rx="6"/>
+  <text x="225" y="312" text-anchor="middle" font-size="12" font-weight="bold" fill="#C0392B">問題: 使う頃には忘れている</text>
+  <text x="225" y="330" text-anchor="middle" font-size="12" fill="#C0392B">コスト: 学習時間 + 再学習コスト</text>
+  <text x="225" y="348" text-anchor="middle" font-size="12" fill="#C0392B">+ 機会損失（他のことに使えた時間）</text>
+
+  <!-- Right side: JIT (Just-in-Time) -->
+  <rect x="470" y="55" width="410" height="310" fill="#EAF7EA" rx="10" stroke="#27AE60" stroke-width="2"/>
+  <text x="675" y="85" text-anchor="middle" font-size="16" font-weight="bold" fill="#27AE60">✅ Just-in-Time (JIT)</text>
+  <text x="675" y="105" text-anchor="middle" font-size="13" fill="#1E8449">「必要になった瞬間」に学ぶ</text>
+
+  <!-- JIT Timeline -->
+  <!-- Step 1: Need arises -->
+  <rect x="490" y="125" width="110" height="50" fill="#27AE60" rx="6"/>
+  <text x="545" y="147" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">課題発生</text>
+  <text x="545" y="163" text-anchor="middle" font-size="11" fill="#fff">「今必要」</text>
+
+  <!-- Arrow right -->
+  <line x1="600" y1="150" x2="635" y2="150" stroke="#27AE60" stroke-width="2"/>
+  <polygon points="635,150 625,144 625,156" fill="#27AE60"/>
+
+  <!-- Step 2: Learn -->
+  <rect x="635" y="125" width="110" height="50" fill="#27AE60" rx="6"/>
+  <text x="690" y="147" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">学習</text>
+  <text x="690" y="163" text-anchor="middle" font-size="11" fill="#fff">必要な分だけ</text>
+
+  <!-- Arrow right -->
+  <line x1="745" y1="150" x2="780" y2="150" stroke="#27AE60" stroke-width="2"/>
+  <polygon points="780,150 770,144 770,156" fill="#27AE60"/>
+
+  <!-- Step 3: Use immediately -->
+  <rect x="780" y="125" width="80" height="50" fill="#1E8449" rx="6"/>
+  <text x="820" y="147" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">即実践</text>
+  <text x="820" y="163" text-anchor="middle" font-size="11" fill="#fff">即日使用</text>
+
+  <!-- Retention curve: high because used immediately -->
+  <text x="675" y="210" text-anchor="middle" font-size="13" fill="#1E8449">記憶の定着率</text>
+  <polyline points="490,270 530,230 570,220 620,218 670,215 720,213 760,212 840,210" fill="none" stroke="#27AE60" stroke-width="2.5"/>
+  <text x="845" y="213" font-size="11" fill="#27AE60">→高い</text>
+  <text x="485" y="273" text-anchor="end" font-size="11" fill="#888">高</text>
+  <text x="485" y="213" text-anchor="end" font-size="11" fill="#888">低</text>
+
+  <!-- Benefit note -->
+  <rect x="490" y="290" width="370" height="60" fill="#D5F5E3" rx="6"/>
+  <text x="675" y="312" text-anchor="middle" font-size="12" font-weight="bold" fill="#1E8449">メリット: 学んだことを必ず使う</text>
+  <text x="675" y="330" text-anchor="middle" font-size="12" fill="#1E8449">定着率が高く、無駄な学習ゼロ</text>
+  <text x="675" y="348" text-anchor="middle" font-size="12" fill="#1E8449">必要な深さだけ学べばよい</text>
+</svg>

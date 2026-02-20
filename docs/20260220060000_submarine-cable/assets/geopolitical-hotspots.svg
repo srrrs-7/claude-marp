@@ -1,0 +1,109 @@
+<svg viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="460" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="26" text-anchor="middle" fill="#ecf0f1" font-size="14" font-weight="bold">地政学的ホットスポット — 主要チョークポイントと脅威アクター</text>
+
+  <!-- Background ocean -->
+  <rect x="15" y="38" width="870" height="330" rx="8" fill="#0a1628"/>
+
+  <!-- Continents -->
+  <!-- North America -->
+  <polygon points="40,85 155,78 175,95 185,135 170,185 145,210 120,225 95,215 70,195 58,155 48,115 40,95" fill="#243342" stroke="#3d5a6b" stroke-width="1.5"/>
+  <!-- South America -->
+  <polygon points="120,235 165,228 190,250 197,295 185,345 165,380 142,390 120,375 105,345 100,305 108,268 115,248" fill="#243342" stroke="#3d5a6b" stroke-width="1.5"/>
+  <!-- Europe -->
+  <polygon points="380,68 435,62 455,78 450,108 430,122 405,128 384,118 374,98 378,78" fill="#243342" stroke="#3d5a6b" stroke-width="1.5"/>
+  <!-- Africa -->
+  <polygon points="380,132 438,127 462,148 474,188 470,250 456,310 436,358 410,375 386,365 366,335 358,285 362,225 372,173 376,148" fill="#243342" stroke="#3d5a6b" stroke-width="1.5"/>
+  <!-- Middle East -->
+  <polygon points="448,118 505,112 525,128 520,162 500,177 476,172 455,153 444,133" fill="#243342" stroke="#3d5a6b" stroke-width="1.5"/>
+  <!-- Central/South Asia -->
+  <polygon points="505,78 618,73 655,88 665,108 648,135 618,148 590,153 560,143 530,128 515,108 505,88" fill="#243342" stroke="#3d5a6b" stroke-width="1.5"/>
+  <!-- Indian subcontinent -->
+  <polygon points="538,160 578,156 598,175 592,218 578,248 555,262 534,248 524,218 524,182" fill="#243342" stroke="#3d5a6b" stroke-width="1.5"/>
+  <!-- Southeast Asia -->
+  <polygon points="632,170 678,162 705,172 715,200 700,220 675,225 650,215 633,197" fill="#243342" stroke="#3d5a6b" stroke-width="1.5"/>
+  <!-- East Asia (China etc.) -->
+  <polygon points="618,75 718,68 760,85 770,115 752,145 720,158 690,162 660,150 638,132 628,108 618,88" fill="#243342" stroke="#3d5a6b" stroke-width="1.5"/>
+  <!-- Japan -->
+  <ellipse cx="800" cy="115" rx="22" ry="38" fill="#243342" stroke="#3d5a6b" stroke-width="1.5"/>
+  <!-- Australia -->
+  <polygon points="660,290 752,280 808,298 832,338 822,378 783,398 735,398 694,383 672,352 662,320" fill="#243342" stroke="#3d5a6b" stroke-width="1.5"/>
+  <!-- Scandinavia/Baltic region -->
+  <polygon points="415,45 465,40 475,58 460,72 430,72 415,58" fill="#243342" stroke="#3d5a6b" stroke-width="1.5"/>
+
+  <!-- === HOTSPOT 1: Red Sea / Suez === -->
+  <!-- Glow ring -->
+  <circle cx="470" cy="152" r="28" fill="#e74c3c" opacity="0.15"/>
+  <circle cx="470" cy="152" r="20" fill="none" stroke="#e74c3c" stroke-width="2.5" stroke-dasharray="4,3"/>
+  <circle cx="470" cy="152" r="10" fill="#e74c3c" opacity="0.6"/>
+  <!-- Label box -->
+  <rect x="340" y="162" width="122" height="44" rx="5" fill="#2c0a0a" stroke="#e74c3c" stroke-width="1.5"/>
+  <text x="401" y="178" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="bold">紅海 / スエズ</text>
+  <text x="401" y="192" text-anchor="middle" fill="#f1948a" font-size="8">欧〜アジアの約70%が通過</text>
+  <text x="401" y="203" text-anchor="middle" fill="#f1948a" font-size="8">フーシ派攻撃(2024年)</text>
+  <line x1="450" y1="162" x2="420" y2="166" stroke="#e74c3c" stroke-width="1.5"/>
+
+  <!-- === HOTSPOT 2: Taiwan Strait === -->
+  <circle cx="728" cy="155" r="22" fill="#f39c12" opacity="0.15"/>
+  <circle cx="728" cy="155" r="16" fill="none" stroke="#f39c12" stroke-width="2.5" stroke-dasharray="4,3"/>
+  <circle cx="728" cy="155" r="8" fill="#f39c12" opacity="0.6"/>
+  <!-- Label box -->
+  <rect x="750" y="135" width="118" height="44" rx="5" fill="#2c1f00" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="809" y="151" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="bold">台湾海峡</text>
+  <text x="809" y="165" text-anchor="middle" fill="#fad7a0" font-size="8">台湾有事で即座に孤立</text>
+  <text x="809" y="176" text-anchor="middle" fill="#fad7a0" font-size="8">馬祖ケーブル切断(2023年)</text>
+  <line x1="744" y1="155" x2="750" y2="152" stroke="#f39c12" stroke-width="1.5"/>
+
+  <!-- === HOTSPOT 3: South China Sea === -->
+  <circle cx="690" cy="200" r="20" fill="#e67e22" opacity="0.15"/>
+  <circle cx="690" cy="200" r="14" fill="none" stroke="#e67e22" stroke-width="2" stroke-dasharray="4,3"/>
+  <circle cx="690" cy="200" r="7" fill="#e67e22" opacity="0.6"/>
+  <!-- Label box -->
+  <rect x="714" y="188" width="122" height="36" rx="5" fill="#2c1a00" stroke="#e67e22" stroke-width="1.5"/>
+  <text x="775" y="203" text-anchor="middle" fill="#e67e22" font-size="10" font-weight="bold">南シナ海</text>
+  <text x="775" y="216" text-anchor="middle" fill="#fad7a0" font-size="8">中国実効支配・海上民兵監視</text>
+  <line x1="704" y1="200" x2="714" y2="200" stroke="#e67e22" stroke-width="1.5"/>
+
+  <!-- === HOTSPOT 4: Baltic Sea === -->
+  <circle cx="440" cy="58" r="18" fill="#e74c3c" opacity="0.15"/>
+  <circle cx="440" cy="58" r="13" fill="none" stroke="#e74c3c" stroke-width="2" stroke-dasharray="4,3"/>
+  <circle cx="440" cy="58" r="6" fill="#e74c3c" opacity="0.6"/>
+  <!-- Label box -->
+  <rect x="460" y="43" width="138" height="36" rx="5" fill="#2c0a0a" stroke="#e74c3c" stroke-width="1.5"/>
+  <text x="529" y="58" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="bold">バルト海</text>
+  <text x="529" y="71" text-anchor="middle" fill="#f1948a" font-size="8">Yi Peng 3事件(2024年11月)</text>
+  <line x1="453" y1="58" x2="460" y2="58" stroke="#e74c3c" stroke-width="1.5"/>
+
+  <!-- === Threat Actor: Russia (Yantar) === -->
+  <circle cx="500" cy="65" r="16" fill="#9b59b6" opacity="0.15"/>
+  <circle cx="500" cy="65" r="11" fill="none" stroke="#9b59b6" stroke-width="2" stroke-dasharray="3,3"/>
+  <circle cx="500" cy="65" r="5" fill="#9b59b6" opacity="0.7"/>
+  <!-- Ship icon area -->
+  <rect x="260" y="45" width="138" height="36" rx="5" fill="#1e0a2e" stroke="#9b59b6" stroke-width="1.5"/>
+  <text x="329" y="60" text-anchor="middle" fill="#9b59b6" font-size="10" font-weight="bold">ロシア調査船活動</text>
+  <text x="329" y="73" text-anchor="middle" fill="#d7bde2" font-size="8">ヤンタール号 / Belgorod潜水艦</text>
+  <line x1="489" y1="65" x2="398" y2="65" stroke="#9b59b6" stroke-width="1.5"/>
+
+  <!-- Cable routes (simplified) through hotspots -->
+  <path d="M 185,155 Q 310,140 380,130 Q 420,128 445,148 Q 468,165 505,170 Q 545,175 580,190 Q 630,205 660,205 Q 690,205 720,195 Q 750,182 800,165" stroke="#3498db" stroke-width="2.5" fill="none" opacity="0.7"/>
+  <path d="M 185,165 Q 310,152 380,145 Q 420,140 448,158 Q 470,175 508,180 Q 548,185 582,198 Q 632,213 662,215 Q 692,215 722,205 Q 752,192 800,178" stroke="#2ecc71" stroke-width="2" fill="none" opacity="0.5"/>
+
+  <!-- Stats / Bottom boxes -->
+  <rect x="15" y="375" width="280" height="72" rx="6" fill="#0d1f33" stroke="#e74c3c" stroke-width="1.5"/>
+  <text x="155" y="393" text-anchor="middle" fill="#e74c3c" font-size="11" font-weight="bold">紅海（最高リスク）</text>
+  <text x="155" y="408" text-anchor="middle" fill="#f1948a" font-size="9">欧〜アジア帯域の約70%が通過</text>
+  <text x="155" y="422" text-anchor="middle" fill="#f1948a" font-size="9">2024年2〜3月: 4本同時切断</text>
+  <text x="155" y="436" text-anchor="middle" fill="#f1948a" font-size="9">修復に最長5〜6ヶ月</text>
+
+  <rect x="308" y="375" width="280" height="72" rx="6" fill="#0d1f33" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="448" y="393" text-anchor="middle" fill="#f39c12" font-size="11" font-weight="bold">台湾海峡（有事リスク）</text>
+  <text x="448" y="408" text-anchor="middle" fill="#fad7a0" font-size="9">台湾への主要ケーブルが集中</text>
+  <text x="448" y="422" text-anchor="middle" fill="#fad7a0" font-size="9">2023年: 馬祖島が数週間孤立</text>
+  <text x="448" y="436" text-anchor="middle" fill="#fad7a0" font-size="9">有事では全島孤立のリスク</text>
+
+  <rect x="601" y="375" width="284" height="72" rx="6" fill="#0d1f33" stroke="#9b59b6" stroke-width="1.5"/>
+  <text x="743" y="393" text-anchor="middle" fill="#9b59b6" font-size="11" font-weight="bold">ロシア（グレーゾーン）</text>
+  <text x="743" y="408" text-anchor="middle" fill="#d7bde2" font-size="9">バルト海: 2本同日切断(2024年)</text>
+  <text x="743" y="422" text-anchor="middle" fill="#d7bde2" font-size="9">ヤンタール号: NATOケーブル調査</text>
+  <text x="743" y="436" text-anchor="middle" fill="#d7bde2" font-size="9">「グレーゾーン戦争」の典型事例</text>
+</svg>

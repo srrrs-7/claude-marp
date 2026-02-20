@@ -1,0 +1,123 @@
+<svg viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="440" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="26" text-anchor="middle" fill="#ecf0f1" font-size="14" font-weight="bold">衛星通信 vs 海底ケーブル — 補完関係の実態</text>
+
+  <!-- Column headers -->
+  <rect x="180" y="38" width="250" height="36" rx="6" fill="#1e3a5f" stroke="#3498db" stroke-width="2"/>
+  <text x="305" y="56" text-anchor="middle" fill="#85c1e9" font-size="13" font-weight="bold">衛星（LEO: Starlink等）</text>
+  <text x="305" y="70" text-anchor="middle" fill="#7fb3d3" font-size="9">低軌道衛星コンステレーション</text>
+
+  <rect x="468" y="38" width="250" height="36" rx="6" fill="#0d2e1a" stroke="#2ecc71" stroke-width="2"/>
+  <text x="593" y="56" text-anchor="middle" fill="#a9dfbf" font-size="13" font-weight="bold">海底ケーブル</text>
+  <text x="593" y="70" text-anchor="middle" fill="#7fbf97" font-size="9">光ファイバー海底システム</text>
+
+  <!-- Row separator lines -->
+  <line x1="30" y1="78" x2="870" y2="78" stroke="#2d3748" stroke-width="1"/>
+
+  <!-- Row labels column -->
+  <rect x="30" y="78" width="148" height="290" rx="4" fill="#1a2535"/>
+
+  <!-- Row 1: Bandwidth -->
+  <rect x="30" y="82" width="148" height="55" rx="0" fill="#1a2535"/>
+  <text x="104" y="102" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">帯域幅</text>
+  <text x="104" y="116" text-anchor="middle" fill="#95a5a6" font-size="9">（1本/全体）</text>
+  <text x="104" y="130" text-anchor="middle" fill="#95a5a6" font-size="9">（データ量）</text>
+
+  <!-- Row 2: Latency -->
+  <rect x="30" y="140" width="148" height="45" rx="0" fill="#202d3d"/>
+  <text x="104" y="158" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">遅延（レイテンシ）</text>
+  <text x="104" y="175" text-anchor="middle" fill="#95a5a6" font-size="9">（片道）</text>
+
+  <!-- Row 3: Coverage -->
+  <rect x="30" y="188" width="148" height="45" rx="0" fill="#1a2535"/>
+  <text x="104" y="208" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">カバレッジ</text>
+  <text x="104" y="222" text-anchor="middle" fill="#95a5a6" font-size="9">（地理的範囲）</text>
+
+  <!-- Row 4: Cost -->
+  <rect x="30" y="236" width="148" height="45" rx="0" fill="#202d3d"/>
+  <text x="104" y="256" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">コスト</text>
+  <text x="104" y="270" text-anchor="middle" fill="#95a5a6" font-size="9">（Gbps当たり）</text>
+
+  <!-- Row 5: Resilience -->
+  <rect x="30" y="284" width="148" height="45" rx="0" fill="#1a2535"/>
+  <text x="104" y="304" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">障害耐性</text>
+  <text x="104" y="318" text-anchor="middle" fill="#95a5a6" font-size="9">（単一障害点）</text>
+
+  <!-- Row 6: Use Case -->
+  <rect x="30" y="332" width="148" height="36" rx="0" fill="#202d3d"/>
+  <text x="104" y="352" text-anchor="middle" fill="#ecf0f1" font-size="11" font-weight="bold">最適用途</text>
+
+  <!-- ===== Satellite column ===== -->
+  <!-- Row 1: Bandwidth -->
+  <rect x="180" y="82" width="250" height="55" rx="0" fill="#1a2a40"/>
+  <text x="305" y="100" text-anchor="middle" fill="#e74c3c" font-size="15" font-weight="bold">〜数Gbps / 衛星</text>
+  <text x="305" y="116" text-anchor="middle" fill="#f1948a" font-size="10">Starlink全衛星合計: 数十〜百Tbps規模</text>
+  <text x="305" y="130" text-anchor="middle" fill="#e88080" font-size="9">≒ 海底ケーブル1〜2本分の帯域</text>
+
+  <!-- Row 2: Latency -->
+  <rect x="180" y="140" width="250" height="45" rx="0" fill="#1f2e3f"/>
+  <text x="305" y="160" text-anchor="middle" fill="#f39c12" font-size="15" font-weight="bold">20〜40ms（LEO）</text>
+  <text x="305" y="176" text-anchor="middle" fill="#fad7a0" font-size="9">GEO衛星は500〜700ms（使用不可レベル）</text>
+
+  <!-- Row 3: Coverage -->
+  <rect x="180" y="188" width="250" height="45" rx="0" fill="#1a2a40"/>
+  <text x="305" y="210" text-anchor="middle" fill="#2ecc71" font-size="14" font-weight="bold">全球対応（離島・山岳も可）</text>
+  <text x="305" y="226" text-anchor="middle" fill="#a9dfbf" font-size="9">陸揚げ局不要 — インフラ未整備地域で優位</text>
+
+  <!-- Row 4: Cost -->
+  <rect x="180" y="236" width="250" height="45" rx="0" fill="#1f2e3f"/>
+  <text x="305" y="256" text-anchor="middle" fill="#e74c3c" font-size="14" font-weight="bold">高コスト</text>
+  <text x="305" y="272" text-anchor="middle" fill="#f1948a" font-size="9">端末・月額料金が高い / Gbps単価は高い</text>
+
+  <!-- Row 5: Resilience -->
+  <rect x="180" y="284" width="250" height="45" rx="0" fill="#1a2a40"/>
+  <text x="305" y="304" text-anchor="middle" fill="#2ecc71" font-size="13" font-weight="bold">分散型で高耐性</text>
+  <text x="305" y="320" text-anchor="middle" fill="#a9dfbf" font-size="9">1機の故障でも全体への影響は小さい</text>
+
+  <!-- Row 6: Use Case -->
+  <rect x="180" y="332" width="250" height="36" rx="0" fill="#1f2e3f"/>
+  <text x="305" y="347" text-anchor="middle" fill="#85c1e9" font-size="9">離島・船舶・災害時バックアップ</text>
+  <text x="305" y="360" text-anchor="middle" fill="#85c1e9" font-size="9">ラストマイル補完 / 軍事通信</text>
+
+  <!-- ===== Cable column ===== -->
+  <!-- Row 1: Bandwidth -->
+  <rect x="468" y="82" width="250" height="55" rx="0" fill="#0d2420"/>
+  <text x="593" y="100" text-anchor="middle" fill="#2ecc71" font-size="15" font-weight="bold">数百Tbps / 1本</text>
+  <text x="593" y="116" text-anchor="middle" fill="#a9dfbf" font-size="10">最新ケーブル（2020年代）: 500〜1,000Tbps</text>
+  <text x="593" y="130" text-anchor="middle" fill="#7fbf97" font-size="9">衛星全体の10〜100倍以上の帯域</text>
+
+  <!-- Row 2: Latency -->
+  <rect x="468" y="140" width="250" height="45" rx="0" fill="#102a20"/>
+  <text x="593" y="160" text-anchor="middle" fill="#2ecc71" font-size="15" font-weight="bold">60〜150ms（太平洋横断）</text>
+  <text x="593" y="176" text-anchor="middle" fill="#a9dfbf" font-size="9">物理光速限界 — 金融取引に必須</text>
+
+  <!-- Row 3: Coverage -->
+  <rect x="468" y="188" width="250" height="45" rx="0" fill="#0d2420"/>
+  <text x="593" y="210" text-anchor="middle" fill="#e74c3c" font-size="13" font-weight="bold">陸揚げ局のある沿岸国のみ</text>
+  <text x="593" y="226" text-anchor="middle" fill="#f1948a" font-size="9">内陸国・離島は別途接続手段が必要</text>
+
+  <!-- Row 4: Cost -->
+  <rect x="468" y="236" width="250" height="45" rx="0" fill="#102a20"/>
+  <text x="593" y="256" text-anchor="middle" fill="#2ecc71" font-size="14" font-weight="bold">低コスト（Gbps単価）</text>
+  <text x="593" y="272" text-anchor="middle" fill="#a9dfbf" font-size="9">初期投資大 → 長期運用で圧倒的優位</text>
+
+  <!-- Row 5: Resilience -->
+  <rect x="468" y="284" width="250" height="45" rx="0" fill="#0d2420"/>
+  <text x="593" y="304" text-anchor="middle" fill="#e74c3c" font-size="13" font-weight="bold">物理切断に脆弱</text>
+  <text x="593" y="320" text-anchor="middle" fill="#f1948a" font-size="9">修復に数週間〜数ヶ月かかる</text>
+
+  <!-- Row 6: Use Case -->
+  <rect x="468" y="332" width="250" height="36" rx="0" fill="#102a20"/>
+  <text x="593" y="347" text-anchor="middle" fill="#a9dfbf" font-size="9">国際インターネット / 金融・クラウド</text>
+  <text x="593" y="360" text-anchor="middle" fill="#a9dfbf" font-size="9">大容量データ転送 / CDN基盤</text>
+
+  <!-- VS divider -->
+  <rect x="430" y="78" width="36" height="292" rx="4" fill="#1a1a2e"/>
+  <text x="448" y="228" text-anchor="middle" fill="#7f8c8d" font-size="22" font-weight="bold" transform="rotate(90,448,228)">VS</text>
+
+  <!-- Conclusion box -->
+  <rect x="30" y="378" width="840" height="52" rx="6" fill="#0d1f33" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="450" y="396" text-anchor="middle" fill="#f39c12" font-size="12" font-weight="bold">結論: 衛星は「補完」にはなるが「代替」にはならない</text>
+  <text x="450" y="412" text-anchor="middle" fill="#fad7a0" font-size="10">Starlink全衛星の帯域合計 ≒ 海底ケーブル1〜2本分 — 99%のトラフィックを衛星に移すことは不可能</text>
+  <text x="450" y="426" text-anchor="middle" fill="#e8c57a" font-size="9">有事・災害時の「緊急バックアップ」と「ラストマイル補完」が衛星の現実的な役割</text>
+</svg>

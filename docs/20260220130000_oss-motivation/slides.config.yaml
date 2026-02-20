@@ -1,0 +1,20 @@
+topic: "なぜ人は無料でOSSを作るか"
+language: "ja"
+
+output:
+  dir: "docs/20260220130000_oss-motivation"
+  baseName: "oss-motivation"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "なぜ人は無料でOSSを作るか"
+  footer: "© 2026 Workshop — OSS Motivation & Economics"
+  style: |
+    section {
+      font-size: 1.0em;
+    }
+    section pre code {
+      font-size: 0.55em;
+      line-height: 1.4;
+    }

@@ -1,0 +1,78 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="420" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="26" text-anchor="middle" fill="#ecf0f1" font-size="14" font-weight="bold">半導体地政学マップ — 誰が何を握っているか</text>
+
+  <!-- USA -->
+  <rect x="20" y="42" width="260" height="150" rx="8" fill="#1a3a5c" stroke="#3498db" stroke-width="2"/>
+  <text x="150" y="65" text-anchor="middle" fill="#3498db" font-size="13" font-weight="bold">🇺🇸 アメリカ</text>
+  <text x="150" y="84" text-anchor="middle" fill="#85c1e9" font-size="10" font-weight="bold">【圧倒的強み】</text>
+  <text x="150" y="100" text-anchor="middle" fill="#ecf0f1" font-size="10">EDA（Synopsys/Cadence）独占</text>
+  <text x="150" y="115" text-anchor="middle" fill="#ecf0f1" font-size="10">ファブレス設計（Apple/Nvidia/AMD）</text>
+  <text x="150" y="130" text-anchor="middle" fill="#ecf0f1" font-size="10">AI・クラウド（AWS/Azure/GCP）</text>
+  <text x="150" y="148" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="bold">【弱み】</text>
+  <text x="150" y="163" text-anchor="middle" fill="#f1948a" font-size="10">先端製造能力なし（TSMC依存）</text>
+  <text x="150" y="178" text-anchor="middle" fill="#f1948a" font-size="10">CHIPS Actで国内製造を再建中</text>
+
+  <!-- Taiwan -->
+  <rect x="320" y="42" width="260" height="150" rx="8" fill="#145a32" stroke="#2ecc71" stroke-width="3"/>
+  <text x="450" y="65" text-anchor="middle" fill="#2ecc71" font-size="13" font-weight="bold">🇹🇼 台湾</text>
+  <text x="450" y="84" text-anchor="middle" fill="#a9dfbf" font-size="10" font-weight="bold">【世界最重要ポジション】</text>
+  <text x="450" y="100" text-anchor="middle" fill="#ecf0f1" font-size="10">TSMC: 先端プロセス90%超独占</text>
+  <text x="450" y="115" text-anchor="middle" fill="#ecf0f1" font-size="10">3nm / 5nm / 7nm すべてTSMC</text>
+  <text x="450" y="130" text-anchor="middle" fill="#ecf0f1" font-size="10">MediaTek（設計）・ASE（後工程）</text>
+  <text x="450" y="148" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="bold">【リスク】</text>
+  <text x="450" y="163" text-anchor="middle" fill="#f1948a" font-size="10">台湾海峡の地政学リスク</text>
+  <text x="450" y="178" text-anchor="middle" fill="#f1948a" font-size="10">「シリコンシールド」の両義性</text>
+
+  <!-- Netherlands -->
+  <rect x="620" y="42" width="260" height="150" rx="8" fill="#2a1a4a" stroke="#8e44ad" stroke-width="2"/>
+  <text x="750" y="65" text-anchor="middle" fill="#8e44ad" font-size="13" font-weight="bold">🇳🇱 オランダ</text>
+  <text x="750" y="84" text-anchor="middle" fill="#d7bde2" font-size="10" font-weight="bold">【唯一無二の強み】</text>
+  <text x="750" y="100" text-anchor="middle" fill="#ecf0f1" font-size="10">ASML: EUV装置を世界で唯一製造</text>
+  <text x="750" y="115" text-anchor="middle" fill="#ecf0f1" font-size="10">EUVなしでは3nm以下を作れない</text>
+  <text x="750" y="130" text-anchor="middle" fill="#ecf0f1" font-size="10">1台約300億円 × 年産50〜60台</text>
+  <text x="750" y="148" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="bold">【板挟み】</text>
+  <text x="750" y="163" text-anchor="middle" fill="#f1948a" font-size="10">米国の圧力: 中国輸出禁止を要求</text>
+  <text x="750" y="178" text-anchor="middle" fill="#f1948a" font-size="10">中国は重要顧客（売上の30%超）</text>
+
+  <!-- China -->
+  <rect x="20" y="222" width="260" height="160" rx="8" fill="#4a1a1a" stroke="#e74c3c" stroke-width="2"/>
+  <text x="150" y="245" text-anchor="middle" fill="#e74c3c" font-size="13" font-weight="bold">🇨🇳 中国</text>
+  <text x="150" y="264" text-anchor="middle" fill="#f1948a" font-size="10" font-weight="bold">【野望と現実のギャップ】</text>
+  <text x="150" y="280" text-anchor="middle" fill="#ecf0f1" font-size="10">成熟プロセス（28nm〜）は能力あり</text>
+  <text x="150" y="295" text-anchor="middle" fill="#ecf0f1" font-size="10">スマートフォン世界最大市場</text>
+  <text x="150" y="313" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="bold">【制裁による限界】</text>
+  <text x="150" y="328" text-anchor="middle" fill="#f1948a" font-size="10">EUV: 1台も入手不可</text>
+  <text x="150" y="343" text-anchor="middle" fill="#f1948a" font-size="10">EDA: 米国規制で入手困難</text>
+  <text x="150" y="358" text-anchor="middle" fill="#f1948a" font-size="10">自給率: 目標70% → 実績15〜20%</text>
+  <text x="150" y="372" text-anchor="middle" fill="#f39c12" font-size="9">SMIC N+2: 7nm相当に到達（コスト高）</text>
+
+  <!-- Korea -->
+  <rect x="320" y="222" width="260" height="160" rx="8" fill="#1e4d2b" stroke="#27ae60" stroke-width="2"/>
+  <text x="450" y="245" text-anchor="middle" fill="#27ae60" font-size="13" font-weight="bold">🇰🇷 韓国</text>
+  <text x="450" y="264" text-anchor="middle" fill="#a9dfbf" font-size="10" font-weight="bold">【強み: メモリの王者】</text>
+  <text x="450" y="280" text-anchor="middle" fill="#ecf0f1" font-size="10">Samsung: DRAM/NAND世界1位</text>
+  <text x="450" y="295" text-anchor="middle" fill="#ecf0f1" font-size="10">SK Hynix: HBM (AI向け) が独占供給</text>
+  <text x="450" y="310" text-anchor="middle" fill="#ecf0f1" font-size="10">Nvidia H100はSK HynixのHBM次第</text>
+  <text x="450" y="328" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="bold">【ジレンマ】</text>
+  <text x="450" y="343" text-anchor="middle" fill="#f1948a" font-size="10">中国に巨大工場 → 米国の制裁圧力</text>
+  <text x="450" y="358" text-anchor="middle" fill="#f1948a" font-size="10">Samsung ファウンドリ: TSMC追撃中</text>
+  <text x="450" y="372" text-anchor="middle" fill="#f5b041" font-size="9">Chip4（米日台韓連携）に参加</text>
+
+  <!-- Japan -->
+  <rect x="620" y="222" width="260" height="160" rx="8" fill="#2c2c1a" stroke="#f39c12" stroke-width="2"/>
+  <text x="750" y="245" text-anchor="middle" fill="#f39c12" font-size="13" font-weight="bold">🇯🇵 日本</text>
+  <text x="750" y="264" text-anchor="middle" fill="#fad7a0" font-size="10" font-weight="bold">【隠れた急所ポジション】</text>
+  <text x="750" y="280" text-anchor="middle" fill="#ecf0f1" font-size="10">材料: フォトレジスト・HF・ウェーハ独占</text>
+  <text x="750" y="295" text-anchor="middle" fill="#ecf0f1" font-size="10">装置: Tokyo Electron が世界2位</text>
+  <text x="750" y="310" text-anchor="middle" fill="#ecf0f1" font-size="10">TSMC熊本工場を誘致（JASM）</text>
+  <text x="750" y="328" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="bold">【再建の試み】</text>
+  <text x="750" y="343" text-anchor="middle" fill="#fad7a0" font-size="10">Rapidus: 2nmを2027年量産目標</text>
+  <text x="750" y="358" text-anchor="middle" fill="#fad7a0" font-size="10">国家補助金: 3,300億円以上</text>
+  <text x="750" y="372" text-anchor="middle" fill="#7dcea0" font-size="9">「材料・装置の日本」は現在も健在</text>
+
+  <!-- Central tension arrow between US and China (top) -->
+  <line x1="280" y1="74" x2="320" y2="74" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="320,74 310,69 310,79" fill="#e74c3c"/>
+  <text x="450" y="212" text-anchor="middle" fill="#e74c3c" font-size="11" font-weight="bold">⚡ 米中技術覇権戦争 — 輸出規制・制裁の応酬</text>
+</svg>

@@ -1,0 +1,61 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="28" text-anchor="middle" fill="#ecf0f1" font-size="15" font-weight="bold">テストピラミッド — モノリス vs マイクロサービス</text>
+
+  <!-- LEFT: Monolith pyramid -->
+  <text x="220" y="55" text-anchor="middle" fill="#2ecc71" font-size="13" font-weight="bold">Modular Monolith</text>
+
+  <!-- E2E (top, smallest) -->
+  <polygon points="220,80 170,140 270,140" fill="#e74c3c" opacity="0.85"/>
+  <text x="220" y="117" text-anchor="middle" fill="white" font-size="10" font-weight="bold">E2E Tests</text>
+  <text x="220" y="130" text-anchor="middle" fill="white" font-size="9">10%</text>
+
+  <!-- Integration (middle) -->
+  <polygon points="220,145 130,230 310,230" fill="#f39c12" opacity="0.85"/>
+  <text x="220" y="194" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Integration Tests</text>
+  <text x="220" y="210" text-anchor="middle" fill="white" font-size="10">20% — 同一プロセス内</text>
+  <text x="220" y="224" text-anchor="middle" fill="white" font-size="9">セットアップ: 簡単</text>
+
+  <!-- Unit (base, largest) -->
+  <polygon points="220,235 60,340 380,340" fill="#2ecc71" opacity="0.85"/>
+  <text x="220" y="285" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Unit Tests</text>
+  <text x="220" y="305" text-anchor="middle" fill="white" font-size="11">70% — 高速・安定</text>
+  <text x="220" y="322" text-anchor="middle" fill="white" font-size="10">実行時間: 数十秒</text>
+
+  <!-- Metrics -->
+  <rect x="40" y="352" width="360" height="36" fill="#1e4d2b" rx="6"/>
+  <text x="220" y="368" text-anchor="middle" fill="#2ecc71" font-size="11">統合テスト: DBを含む全モジュールを1プロセスでテスト可能</text>
+  <text x="220" y="382" text-anchor="middle" fill="#a9dfbf" font-size="10">Testcontainers 1個 → テスト完結</text>
+
+  <!-- RIGHT: Microservices pyramid (inverted/problematic) -->
+  <text x="680" y="55" text-anchor="middle" fill="#e74c3c" font-size="13" font-weight="bold">Microservices</text>
+
+  <!-- E2E (top, but much larger - problematic) -->
+  <polygon points="680,80 560,180 800,180" fill="#e74c3c" opacity="0.85"/>
+  <text x="680" y="130" text-anchor="middle" fill="white" font-size="11" font-weight="bold">E2E / Contract Tests</text>
+  <text x="680" y="147" text-anchor="middle" fill="white" font-size="10">35% — サービス間が多く</text>
+  <text x="680" y="162" text-anchor="middle" fill="white" font-size="9">E2Eが必然的に増える</text>
+
+  <!-- Integration -->
+  <polygon points="680,185 590,255 770,255" fill="#f39c12" opacity="0.85"/>
+  <text x="680" y="222" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Integration Tests</text>
+  <text x="680" y="237" text-anchor="middle" fill="white" font-size="9">25% — 複数サービス起動</text>
+  <text x="680" y="250" text-anchor="middle" fill="white" font-size="9">docker-compose + mock必要</text>
+
+  <!-- Unit -->
+  <polygon points="680,260 620,340 740,340" fill="#2ecc71" opacity="0.85"/>
+  <text x="680" y="296" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Unit Tests</text>
+  <text x="680" y="313" text-anchor="middle" fill="white" font-size="10">40% — 小さいが</text>
+  <text x="680" y="328" text-anchor="middle" fill="white" font-size="9">モック地獄になりがち</text>
+
+  <!-- Metrics -->
+  <rect x="500" y="352" width="360" height="36" fill="#4a1a1a" rx="6"/>
+  <text x="680" y="368" text-anchor="middle" fill="#e74c3c" font-size="11">統合テスト環境の再現: 全サービス起動が必要</text>
+  <text x="680" y="382" text-anchor="middle" fill="#f1948a" font-size="10">Testcontainers N個 + Service Mock → 時間・コスト大</text>
+
+  <!-- Divider -->
+  <line x1="450" y1="50" x2="450" y2="390" stroke="#34495e" stroke-width="1" stroke-dasharray="5,4"/>
+
+  <!-- Speed comparison -->
+  <text x="450" y="395" text-anchor="middle" fill="#f39c12" font-size="11">テスト全体実行時間: モノリス ~2-5分 vs マイクロサービス ~20-60分</text>
+</svg>

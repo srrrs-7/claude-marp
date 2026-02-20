@@ -1,0 +1,20 @@
+topic: "産業革命前夜としてのAI時代"
+language: "ja"
+
+output:
+  dir: "docs/20260220150000_ai-industrial-revolution"
+  baseName: "ai-industrial-revolution"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "産業革命前夜としてのAI時代"
+  footer: "© 2026 — AI as the Eve of Industrial Revolution"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

@@ -1,0 +1,68 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="30" text-anchor="middle" fill="#ecf0f1" font-size="15" font-weight="bold">通信レイテンシ比較（対数スケール）</text>
+
+  <!-- Axes -->
+  <line x1="120" y1="340" x2="860" y2="340" stroke="#7f8c8d" stroke-width="2"/>
+  <line x1="120" y1="60" x2="120" y2="340" stroke="#7f8c8d" stroke-width="2"/>
+
+  <!-- Y-axis labels -->
+  <text x="110" y="344" text-anchor="end" fill="#95a5a6" font-size="10">1ns</text>
+  <text x="110" y="294" text-anchor="end" fill="#95a5a6" font-size="10">1μs</text>
+  <text x="110" y="244" text-anchor="end" fill="#95a5a6" font-size="10">1ms</text>
+  <text x="110" y="194" text-anchor="end" fill="#95a5a6" font-size="10">10ms</text>
+  <text x="110" y="144" text-anchor="end" fill="#95a5a6" font-size="10">100ms</text>
+  <text x="110" y="94" text-anchor="end" fill="#95a5a6" font-size="10">1s</text>
+
+  <!-- Y-axis gridlines -->
+  <line x1="120" y1="340" x2="860" y2="340" stroke="#2d3748" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="120" y1="290" x2="860" y2="290" stroke="#2d3748" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="120" y1="240" x2="860" y2="240" stroke="#2d3748" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="120" y1="190" x2="860" y2="190" stroke="#2d3748" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="120" y1="140" x2="860" y2="140" stroke="#2d3748" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="120" y1="90" x2="860" y2="90" stroke="#2d3748" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Bar 1: 関数呼び出し (1-100ns) -->
+  <rect x="155" y="320" width="100" height="20" rx="4" fill="#2ecc71"/>
+  <text x="205" y="315" text-anchor="middle" fill="#2ecc71" font-size="11" font-weight="bold">~10ns</text>
+  <text x="205" y="360" text-anchor="middle" fill="#a9dfbf" font-size="11">関数呼び出し</text>
+  <text x="205" y="374" text-anchor="middle" fill="#7dcea0" font-size="10">(メモリ内)</text>
+
+  <!-- Bar 2: L1キャッシュ (1ns) -->
+  <rect x="285" y="332" width="100" height="8" rx="4" fill="#27ae60"/>
+  <text x="335" y="327" text-anchor="middle" fill="#27ae60" font-size="11" font-weight="bold">~5ns</text>
+  <text x="335" y="360" text-anchor="middle" fill="#a9dfbf" font-size="11">L1キャッシュ</text>
+  <text x="335" y="374" text-anchor="middle" fill="#7dcea0" font-size="10">アクセス</text>
+
+  <!-- Bar 3: DB query local (1-10ms) -->
+  <rect x="415" y="235" width="100" height="105" rx="4" fill="#f39c12"/>
+  <text x="465" y="230" text-anchor="middle" fill="#f39c12" font-size="11" font-weight="bold">~1-5ms</text>
+  <text x="465" y="360" text-anchor="middle" fill="#fad7a0" font-size="11">ローカルDB</text>
+  <text x="465" y="374" text-anchor="middle" fill="#f5cba7" font-size="10">クエリ</text>
+
+  <!-- Bar 4: Same-host HTTP (0.1-1ms) -->
+  <rect x="545" y="248" width="100" height="92" rx="4" fill="#e67e22"/>
+  <text x="595" y="243" text-anchor="middle" fill="#e67e22" font-size="11" font-weight="bold">~0.5ms</text>
+  <text x="595" y="360" text-anchor="middle" fill="#fad7a0" font-size="11">同一ホスト</text>
+  <text x="595" y="374" text-anchor="middle" fill="#f5cba7" font-size="10">HTTP</text>
+
+  <!-- Bar 5: Cross-service gRPC (1-20ms) -->
+  <rect x="675" y="215" width="100" height="125" rx="4" fill="#e74c3c"/>
+  <text x="725" y="210" text-anchor="middle" fill="#e74c3c" font-size="11" font-weight="bold">~5-20ms</text>
+  <text x="725" y="360" text-anchor="middle" fill="#f1948a" font-size="11">クロスサービス</text>
+  <text x="725" y="374" text-anchor="middle" fill="#ec7063" font-size="10">gRPC/HTTP</text>
+
+  <!-- Bar 6: Cross-AZ (10-100ms) -->
+  <rect x="800" y="165" width="45" height="175" rx="4" fill="#8e44ad"/>
+  <text x="822" y="160" text-anchor="middle" fill="#bb8fce" font-size="11" font-weight="bold">~50ms</text>
+  <text x="822" y="360" text-anchor="middle" fill="#d7bde2" font-size="11">クロス</text>
+  <text x="822" y="374" text-anchor="middle" fill="#d7bde2" font-size="10">AZ</text>
+
+  <!-- Annotation: 10 service chain -->
+  <rect x="130" y="60" width="350" height="40" fill="#2a1a1a" rx="6" stroke="#e74c3c" stroke-width="1"/>
+  <text x="305" y="79" text-anchor="middle" fill="#e74c3c" font-size="12">10サービスチェーン最悪ケース:</text>
+  <text x="305" y="95" text-anchor="middle" fill="#c0392b" font-size="12" font-weight="bold">20ms × 10 = 最大 200ms の累積レイテンシ</text>
+
+  <!-- Y-axis title -->
+  <text x="30" y="210" text-anchor="middle" fill="#95a5a6" font-size="12" transform="rotate(-90,30,210)">レイテンシ（対数スケール）</text>
+</svg>

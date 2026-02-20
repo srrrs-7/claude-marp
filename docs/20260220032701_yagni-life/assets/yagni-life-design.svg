@@ -1,0 +1,95 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="420" fill="#FAFAFA" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#2C3E50">YAGNI 的ライフデザイン: Before / After</text>
+
+  <!-- Left: Before -->
+  <rect x="20" y="55" width="400" height="345" fill="#FEF9E7" rx="10" stroke="#E74C3C" stroke-width="2"/>
+  <text x="220" y="82" text-anchor="middle" font-size="16" font-weight="bold" fill="#E74C3C">❌ Before（YAGNI 違反）</text>
+
+  <!-- Cluttered life items -->
+  <rect x="40" y="100" width="80" height="35" fill="#E74C3C" opacity="0.7" rx="4"/>
+  <text x="80" y="122" text-anchor="middle" font-size="11" fill="#fff">積読 x50冊</text>
+
+  <rect x="135" y="100" width="80" height="35" fill="#E74C3C" opacity="0.7" rx="4"/>
+  <text x="175" y="122" text-anchor="middle" font-size="11" fill="#fff">使わない資格</text>
+
+  <rect x="230" y="100" width="80" height="35" fill="#E74C3C" opacity="0.7" rx="4"/>
+  <text x="270" y="122" text-anchor="middle" font-size="11" fill="#fff">謎のガジェット</text>
+
+  <rect x="325" y="100" width="80" height="35" fill="#E74C3C" opacity="0.7" rx="4"/>
+  <text x="365" y="122" text-anchor="middle" font-size="11" fill="#fff">SaaSサブスク</text>
+
+  <rect x="40" y="145" width="80" height="35" fill="#E74C3C" opacity="0.6" rx="4"/>
+  <text x="80" y="167" text-anchor="middle" font-size="11" fill="#fff">いつかの服</text>
+
+  <rect x="135" y="145" width="80" height="35" fill="#E74C3C" opacity="0.6" rx="4"/>
+  <text x="175" y="167" text-anchor="middle" font-size="11" fill="#fff">将来の習い事</text>
+
+  <rect x="230" y="145" width="80" height="35" fill="#E74C3C" opacity="0.6" rx="4"/>
+  <text x="270" y="167" text-anchor="middle" font-size="11" fill="#fff">使わない人脈</text>
+
+  <rect x="325" y="145" width="80" height="35" fill="#E74C3C" opacity="0.6" rx="4"/>
+  <text x="365" y="167" text-anchor="middle" font-size="11" fill="#fff">謎のToDo</text>
+
+  <rect x="40" y="190" width="80" height="35" fill="#E74C3C" opacity="0.5" rx="4"/>
+  <text x="80" y="212" text-anchor="middle" font-size="11" fill="#fff">心配事 x無限</text>
+
+  <rect x="135" y="190" width="80" height="35" fill="#E74C3C" opacity="0.5" rx="4"/>
+  <text x="175" y="212" text-anchor="middle" font-size="11" fill="#fff">将来の計画</text>
+
+  <rect x="230" y="190" width="80" height="35" fill="#E74C3C" opacity="0.5" rx="4"/>
+  <text x="270" y="212" text-anchor="middle" font-size="11" fill="#fff">学んだはずの技術</text>
+
+  <rect x="325" y="190" width="80" height="35" fill="#E74C3C" opacity="0.5" rx="4"/>
+  <text x="365" y="212" text-anchor="middle" font-size="11" fill="#fff">準備中の副業</text>
+
+  <!-- Symptoms -->
+  <rect x="30" y="245" width="375" height="140" fill="#FADBD8" rx="6"/>
+  <text x="217" y="268" text-anchor="middle" font-size="13" font-weight="bold" fill="#C0392B">症状</text>
+  <text x="217" y="288" text-anchor="middle" font-size="12" fill="#C0392B">・何に集中すべきか分からない</text>
+  <text x="217" y="308" text-anchor="middle" font-size="12" fill="#C0392B">・スペースも時間も足りない</text>
+  <text x="217" y="328" text-anchor="middle" font-size="12" fill="#C0392B">・疲弊しているのに成果が出ない</text>
+  <text x="217" y="348" text-anchor="middle" font-size="12" fill="#C0392B">・「今」を楽しめていない</text>
+  <text x="217" y="368" text-anchor="middle" font-size="12" fill="#C0392B">・常に不安感がある</text>
+
+  <!-- Arrow in middle -->
+  <text x="450" y="210" text-anchor="middle" font-size="30" fill="#2C3E50">→</text>
+  <text x="450" y="240" text-anchor="middle" font-size="13" fill="#888">YAGNI</text>
+  <text x="450" y="258" text-anchor="middle" font-size="13" fill="#888">適用</text>
+
+  <!-- Right: After -->
+  <rect x="490" y="55" width="390" height="345" fill="#EAF7EA" rx="10" stroke="#27AE60" stroke-width="2"/>
+  <text x="685" y="82" text-anchor="middle" font-size="16" font-weight="bold" fill="#27AE60">✅ After（YAGNI 実践）</text>
+
+  <!-- Minimal items - few essential things -->
+  <rect x="510" y="100" width="110" height="40" fill="#27AE60" opacity="0.9" rx="6"/>
+  <text x="565" y="115" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">今読んでいる本</text>
+  <text x="565" y="132" text-anchor="middle" font-size="11" fill="#fff">1〜2冊</text>
+
+  <rect x="640" y="100" width="110" height="40" fill="#27AE60" opacity="0.9" rx="6"/>
+  <text x="695" y="115" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">今使うスキル</text>
+  <text x="695" y="132" text-anchor="middle" font-size="11" fill="#fff">1つに集中</text>
+
+  <rect x="510" y="155" width="110" height="40" fill="#27AE60" opacity="0.9" rx="6"/>
+  <text x="565" y="170" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">毎日使うもの</text>
+  <text x="565" y="187" text-anchor="middle" font-size="11" fill="#fff">最小限</text>
+
+  <rect x="640" y="155" width="110" height="40" fill="#27AE60" opacity="0.9" rx="6"/>
+  <text x="695" y="170" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">深い関係</text>
+  <text x="695" y="187" text-anchor="middle" font-size="11" fill="#fff">数人</text>
+
+  <!-- Empty space boxes -->
+  <rect x="510" y="210" width="240" height="25" fill="#A9DFBF" rx="4"/>
+  <text x="630" y="227" text-anchor="middle" font-size="12" fill="#1E8449">余白・ゆとり・余裕</text>
+
+  <!-- Benefits -->
+  <rect x="500" y="250" width="365" height="135" fill="#D5F5E3" rx="6"/>
+  <text x="682" y="273" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E8449">効果</text>
+  <text x="682" y="293" text-anchor="middle" font-size="12" fill="#1E8449">・今に集中できる</text>
+  <text x="682" y="313" text-anchor="middle" font-size="12" fill="#1E8449">・エネルギーが分散しない</text>
+  <text x="682" y="333" text-anchor="middle" font-size="12" fill="#1E8449">・小さな成果が積み重なる</text>
+  <text x="682" y="353" text-anchor="middle" font-size="12" fill="#1E8449">・意思決定が早くなる</text>
+  <text x="682" y="373" text-anchor="middle" font-size="12" fill="#1E8449">・「今」を楽しめる</text>
+</svg>

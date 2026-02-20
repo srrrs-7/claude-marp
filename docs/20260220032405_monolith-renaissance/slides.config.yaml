@@ -1,0 +1,26 @@
+topic: "なぜモノリスは再評価されているか"
+language: "ja"
+
+output:
+  dir: "docs/20260220032405_monolith-renaissance"
+  baseName: "monolith-renaissance"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "なぜモノリスは再評価されているか"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+    section h1 {
+      font-size: 1.6em;
+    }
+    section h2 {
+      font-size: 1.3em;
+    }

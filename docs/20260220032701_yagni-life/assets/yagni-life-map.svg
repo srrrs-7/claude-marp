@@ -1,0 +1,62 @@
+<svg viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="480" fill="#FAFAFA" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="36" text-anchor="middle" font-size="22" font-weight="bold" fill="#2C3E50">YAGNI 人生適用マップ</text>
+
+  <!-- Center circle -->
+  <circle cx="450" cy="255" r="72" fill="#2C3E50"/>
+  <text x="450" y="248" text-anchor="middle" font-size="20" font-weight="bold" fill="#fff">YAGNI</text>
+  <text x="450" y="270" text-anchor="middle" font-size="13" fill="#BDC3C7">今必要なことだけ</text>
+
+  <!-- Sector 1: モノ (top-left) -->
+  <circle cx="220" cy="140" r="72" fill="#E74C3C" opacity="0.9"/>
+  <text x="220" y="130" text-anchor="middle" font-size="20" fill="#fff">📦</text>
+  <text x="220" y="152" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">モノ</text>
+  <text x="220" y="170" text-anchor="middle" font-size="11" fill="#fff">服・ガジェット・本</text>
+  <!-- Connector line -->
+  <line x1="284" y1="163" x2="384" y2="210" stroke="#E74C3C" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <!-- Sector 2: 時間 (top-right) -->
+  <circle cx="680" cy="140" r="72" fill="#3498DB" opacity="0.9"/>
+  <text x="680" y="130" text-anchor="middle" font-size="20" fill="#fff">⏰</text>
+  <text x="680" y="152" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">時間</text>
+  <text x="680" y="170" text-anchor="middle" font-size="11" fill="#fff">スケジュール・余白</text>
+  <!-- Connector line -->
+  <line x1="616" y1="163" x2="516" y2="210" stroke="#3498DB" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <!-- Sector 3: 学習 (left) -->
+  <circle cx="110" cy="285" r="72" fill="#27AE60" opacity="0.9"/>
+  <text x="110" y="275" text-anchor="middle" font-size="20" fill="#fff">📖</text>
+  <text x="110" y="297" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">学習</text>
+  <text x="110" y="315" text-anchor="middle" font-size="11" fill="#fff">スキル・資格</text>
+  <!-- Connector line -->
+  <line x1="180" y1="285" x2="378" y2="255" stroke="#27AE60" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <!-- Sector 4: キャリア (right) -->
+  <circle cx="790" cy="285" r="72" fill="#9B59B6" opacity="0.9"/>
+  <text x="790" y="275" text-anchor="middle" font-size="20" fill="#fff">💼</text>
+  <text x="790" y="297" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">キャリア</text>
+  <text x="790" y="315" text-anchor="middle" font-size="11" fill="#fff">仕事・転職・人脈</text>
+  <!-- Connector line -->
+  <line x1="720" y1="285" x2="522" y2="255" stroke="#9B59B6" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <!-- Sector 5: 思考 (bottom-left) -->
+  <circle cx="220" cy="380" r="72" fill="#E67E22" opacity="0.9"/>
+  <text x="220" y="370" text-anchor="middle" font-size="20" fill="#fff">🧠</text>
+  <text x="220" y="392" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">思考</text>
+  <text x="220" y="410" text-anchor="middle" font-size="11" fill="#fff">心配・意思決定</text>
+  <!-- Connector line -->
+  <line x1="284" y1="357" x2="384" y2="300" stroke="#E67E22" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <!-- Sector 6: お金 (bottom-right) -->
+  <circle cx="680" cy="380" r="72" fill="#1ABC9C" opacity="0.9"/>
+  <text x="680" y="370" text-anchor="middle" font-size="20" fill="#fff">💰</text>
+  <text x="680" y="392" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">お金</text>
+  <text x="680" y="410" text-anchor="middle" font-size="11" fill="#fff">支出・貯蓄・投資</text>
+  <!-- Connector line -->
+  <line x1="616" y1="357" x2="516" y2="300" stroke="#1ABC9C" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <!-- Legend note -->
+  <text x="450" y="466" text-anchor="middle" font-size="12" fill="#999">すべての領域で「今必要なことだけ」の問いを繰り返す</text>
+</svg>

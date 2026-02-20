@@ -1,0 +1,23 @@
+topic: "フェルミ推定でビジネスを読む"
+language: "ja"
+
+output:
+  dir: "docs/20260220120000_fermi-estimation-business"
+  baseName: "fermi-estimation-business"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "フェルミ推定でビジネスを読む"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+    section.center {
+      text-align: center;
+    }

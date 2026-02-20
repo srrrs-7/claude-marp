@@ -1,0 +1,20 @@
+topic: "確証バイアスをAIが増幅する仕組み"
+language: "ja"
+
+output:
+  dir: "docs/20260220100000_confirmation-bias-ai-amplification"
+  baseName: "confirmation-bias-ai-amplification"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "確証バイアス × AI増幅"
+  footer: "© 2026 Symposium — Cognitive Science × LLM"
+  style: |
+    section {
+      font-size: 1.0em;
+    }
+    section pre code {
+      font-size: 0.55em;
+      line-height: 1.4;
+    }

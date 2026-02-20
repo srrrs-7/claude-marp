@@ -1,0 +1,141 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="28" text-anchor="middle" fill="#ecf0f1" font-size="15" font-weight="bold">チームのドキュメント戦略 — いつ何を書くか</text>
+
+  <!-- Phase boxes -->
+  <!-- Phase 1: Discovery / 発見 -->
+  <rect x="30" y="55" width="140" height="50" rx="8" fill="#1a3a5c" stroke="#3498db" stroke-width="2"/>
+  <text x="100" y="77" text-anchor="middle" fill="#ecf0f1" font-size="12" font-weight="bold">Discovery</text>
+  <text x="100" y="93" text-anchor="middle" fill="#85c1e9" font-size="10">要件・課題の発見</text>
+
+  <!-- Arrow -->
+  <line x1="170" y1="80" x2="198" y2="80" stroke="#4a5568" stroke-width="2"/>
+  <polygon points="198,80 188,75 188,85" fill="#4a5568"/>
+
+  <!-- Phase 2: Design -->
+  <rect x="200" y="55" width="140" height="50" rx="8" fill="#1e4d2b" stroke="#2ecc71" stroke-width="2"/>
+  <text x="270" y="77" text-anchor="middle" fill="#ecf0f1" font-size="12" font-weight="bold">Design</text>
+  <text x="270" y="93" text-anchor="middle" fill="#a9dfbf" font-size="10">設計・アーキテクチャ</text>
+
+  <!-- Arrow -->
+  <line x1="340" y1="80" x2="368" y2="80" stroke="#4a5568" stroke-width="2"/>
+  <polygon points="368,80 358,75 358,85" fill="#4a5568"/>
+
+  <!-- Phase 3: Implementation -->
+  <rect x="370" y="55" width="140" height="50" rx="8" fill="#2c2c1a" stroke="#f39c12" stroke-width="2"/>
+  <text x="440" y="77" text-anchor="middle" fill="#ecf0f1" font-size="12" font-weight="bold">Implementation</text>
+  <text x="440" y="93" text-anchor="middle" fill="#fad7a0" font-size="10">実装・コーディング</text>
+
+  <!-- Arrow -->
+  <line x1="510" y1="80" x2="538" y2="80" stroke="#4a5568" stroke-width="2"/>
+  <polygon points="538,80 528,75 528,85" fill="#4a5568"/>
+
+  <!-- Phase 4: Review -->
+  <rect x="540" y="55" width="140" height="50" rx="8" fill="#3d1a1a" stroke="#e74c3c" stroke-width="2"/>
+  <text x="610" y="77" text-anchor="middle" fill="#ecf0f1" font-size="12" font-weight="bold">Review / Test</text>
+  <text x="610" y="93" text-anchor="middle" fill="#f1948a" font-size="10">レビュー・テスト</text>
+
+  <!-- Arrow -->
+  <line x1="680" y1="80" x2="708" y2="80" stroke="#4a5568" stroke-width="2"/>
+  <polygon points="708,80 698,75 698,85" fill="#4a5568"/>
+
+  <!-- Phase 5: Operations -->
+  <rect x="710" y="55" width="140" height="50" rx="8" fill="#2a1a4a" stroke="#8e44ad" stroke-width="2"/>
+  <text x="780" y="77" text-anchor="middle" fill="#ecf0f1" font-size="12" font-weight="bold">Operations</text>
+  <text x="780" y="93" text-anchor="middle" fill="#d7bde2" font-size="10">運用・保守</text>
+
+  <!-- Document rows -->
+  <!-- Row headers -->
+  <text x="10" y="145" fill="#95a5a6" font-size="10" font-weight="bold">ADR</text>
+  <text x="10" y="185" fill="#95a5a6" font-size="10" font-weight="bold">OpenAPI</text>
+  <text x="10" y="225" fill="#95a5a6" font-size="10" font-weight="bold">テスト仕様</text>
+  <text x="10" y="265" fill="#95a5a6" font-size="10" font-weight="bold">Runbook</text>
+  <text x="10" y="305" fill="#95a5a6" font-size="10" font-weight="bold">README</text>
+  <text x="10" y="345" fill="#95a5a6" font-size="10" font-weight="bold">設計書</text>
+
+  <!-- Grid lines -->
+  <line x1="30" y1="120" x2="860" y2="120" stroke="#2d3748" stroke-width="1"/>
+  <line x1="30" y1="160" x2="860" y2="160" stroke="#2d3748" stroke-width="1"/>
+  <line x1="30" y1="200" x2="860" y2="200" stroke="#2d3748" stroke-width="1"/>
+  <line x1="30" y1="240" x2="860" y2="240" stroke="#2d3748" stroke-width="1"/>
+  <line x1="30" y1="280" x2="860" y2="280" stroke="#2d3748" stroke-width="1"/>
+  <line x1="30" y1="320" x2="860" y2="320" stroke="#2d3748" stroke-width="1"/>
+  <line x1="30" y1="360" x2="860" y2="360" stroke="#2d3748" stroke-width="1"/>
+
+  <!-- Column lines -->
+  <line x1="170" y1="120" x2="170" y2="360" stroke="#2d3748" stroke-width="1"/>
+  <line x1="340" y1="120" x2="340" y2="360" stroke="#2d3748" stroke-width="1"/>
+  <line x1="510" y1="120" x2="510" y2="360" stroke="#2d3748" stroke-width="1"/>
+  <line x1="680" y1="120" x2="680" y2="360" stroke="#2d3748" stroke-width="1"/>
+
+  <!-- Legend -->
+  <rect x="760" y="125" width="12" height="12" rx="2" fill="#2ecc71"/>
+  <text x="776" y="136" fill="#a9dfbf" font-size="9">作成タイミング</text>
+  <rect x="760" y="143" width="12" height="12" rx="2" fill="#3498db" opacity="0.5"/>
+  <text x="776" y="154" fill="#85c1e9" font-size="9">更新・維持</text>
+
+  <!-- ADR row (row 1, y=120-160) -->
+  <!-- Discovery: start ADR -->
+  <rect x="33" y="124" width="134" height="32" rx="4" fill="#2ecc71" opacity="0.8"/>
+  <text x="100" y="144" text-anchor="middle" fill="#1a1a1a" font-size="10" font-weight="bold">草案を書く</text>
+  <!-- Design: finalize -->
+  <rect x="173" y="124" width="164" height="32" rx="4" fill="#2ecc71" opacity="0.9"/>
+  <text x="255" y="144" text-anchor="middle" fill="#1a1a1a" font-size="10" font-weight="bold">Accepted / 決定記録</text>
+  <!-- Implementation: reference only -->
+  <rect x="343" y="124" width="164" height="32" rx="4" fill="#3498db" opacity="0.4"/>
+  <text x="425" y="144" text-anchor="middle" fill="#ecf0f1" font-size="10">参照のみ</text>
+
+  <!-- OpenAPI row (row 2, y=160-200) -->
+  <!-- Design: draft -->
+  <rect x="173" y="164" width="164" height="32" rx="4" fill="#2ecc71" opacity="0.7"/>
+  <text x="255" y="184" text-anchor="middle" fill="#1a1a1a" font-size="10" font-weight="bold">スキーマ設計</text>
+  <!-- Implementation: auto-generate -->
+  <rect x="343" y="164" width="164" height="32" rx="4" fill="#2ecc71" opacity="0.9"/>
+  <text x="425" y="184" text-anchor="middle" fill="#1a1a1a" font-size="10" font-weight="bold">自動生成 (CI)</text>
+  <!-- Review: validate -->
+  <rect x="513" y="164" width="164" height="32" rx="4" fill="#3498db" opacity="0.5"/>
+  <text x="595" y="184" text-anchor="middle" fill="#ecf0f1" font-size="10">契約テスト</text>
+  <!-- Ops: always maintained -->
+  <rect x="683" y="164" width="164" height="32" rx="4" fill="#3498db" opacity="0.4"/>
+  <text x="765" y="184" text-anchor="middle" fill="#ecf0f1" font-size="10">常時最新 (自動)</text>
+
+  <!-- Test spec row (row 3, y=200-240) -->
+  <!-- Design: BDD scenarios -->
+  <rect x="173" y="204" width="164" height="32" rx="4" fill="#2ecc71" opacity="0.7"/>
+  <text x="255" y="224" text-anchor="middle" fill="#1a1a1a" font-size="10" font-weight="bold">BDD シナリオ作成</text>
+  <!-- Implementation: implement tests -->
+  <rect x="343" y="204" width="164" height="32" rx="4" fill="#2ecc71" opacity="0.9"/>
+  <text x="425" y="224" text-anchor="middle" fill="#1a1a1a" font-size="10" font-weight="bold">テストコード実装</text>
+  <!-- Review: run -->
+  <rect x="513" y="204" width="164" height="32" rx="4" fill="#2ecc71" opacity="0.9"/>
+  <text x="595" y="224" text-anchor="middle" fill="#1a1a1a" font-size="10" font-weight="bold">CI で自動実行</text>
+  <!-- Ops -->
+  <rect x="683" y="204" width="164" height="32" rx="4" fill="#3498db" opacity="0.4"/>
+  <text x="765" y="224" text-anchor="middle" fill="#ecf0f1" font-size="10">回帰テスト</text>
+
+  <!-- Runbook row (row 4, y=240-280) -->
+  <!-- Ops: main phase -->
+  <rect x="683" y="244" width="164" height="32" rx="4" fill="#2ecc71" opacity="0.9"/>
+  <text x="765" y="264" text-anchor="middle" fill="#1a1a1a" font-size="10" font-weight="bold">障害対応手順を書く</text>
+
+  <!-- README row (row 5, y=280-320) -->
+  <!-- Implementation -->
+  <rect x="343" y="284" width="164" height="32" rx="4" fill="#2ecc71" opacity="0.8"/>
+  <text x="425" y="304" text-anchor="middle" fill="#1a1a1a" font-size="10" font-weight="bold">セットアップ手順</text>
+  <!-- Review -->
+  <rect x="513" y="284" width="164" height="32" rx="4" fill="#3498db" opacity="0.5"/>
+  <text x="595" y="304" text-anchor="middle" fill="#ecf0f1" font-size="10">精度を高める</text>
+  <!-- Ops -->
+  <rect x="683" y="284" width="164" height="32" rx="4" fill="#3498db" opacity="0.4"/>
+  <text x="765" y="304" text-anchor="middle" fill="#ecf0f1" font-size="10">随時更新</text>
+
+  <!-- 設計書 row (row 6, y=320-360) — 必要な場合のみ -->
+  <rect x="33" y="324" width="134" height="32" rx="4" fill="#f39c12" opacity="0.6"/>
+  <text x="100" y="344" text-anchor="middle" fill="#1a1a1a" font-size="10">コンプライアンス</text>
+  <rect x="173" y="324" width="164" height="32" rx="4" fill="#f39c12" opacity="0.7"/>
+  <text x="255" y="344" text-anchor="middle" fill="#1a1a1a" font-size="10">外部委託・要件定義</text>
+  <text x="700" y="344" fill="#f39c12" font-size="9">※ 状況に応じて (必須ではない)</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="385" text-anchor="middle" fill="#95a5a6" font-size="10">緑: 作成タイミング  青: 維持・参照  橙: 条件付き（オフショア・コンプライアンス要件がある場合）</text>
+</svg>
