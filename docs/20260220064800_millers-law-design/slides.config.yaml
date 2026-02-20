@@ -1,0 +1,12 @@
+topic: "マジカルナンバー7±2 — ミラーの法則とデザインの科学"
+language: "ja"
+output:
+  dir: "docs/20260220064800_millers-law-design"
+  baseName: "millers-law-design"
+marp:
+  theme: gaia
+  paginate: true
+  header: "認知限界とUIデザイン"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

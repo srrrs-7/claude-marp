@@ -1,0 +1,12 @@
+topic: "タコの知性とニューラルネット"
+language: "ja"
+output:
+  dir: "docs/20260220053700_octopus-intelligence-neural"
+  baseName: "octopus-intelligence-neural"
+marp:
+  theme: gaia
+  paginate: true
+  header: "分散知性の生物学"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

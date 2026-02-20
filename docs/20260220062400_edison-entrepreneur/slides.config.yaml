@@ -1,0 +1,12 @@
+topic: "エジソンは発明家ではなく起業家だった ― イノベーションの真実"
+language: "ja"
+output:
+  dir: "docs/20260220062400_edison-entrepreneur"
+  baseName: "edison-entrepreneur"
+marp:
+  theme: gaia
+  paginate: true
+  header: "エジソンと起業家精神"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

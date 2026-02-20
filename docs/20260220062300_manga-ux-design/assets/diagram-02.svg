@@ -1,0 +1,58 @@
+<svg viewBox="0 0 900 450" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-size="18" fill="white" font-weight="bold">マンガの感情設計テクニック → UI応用</text>
+
+  <!-- Row 1: Pacing -->
+  <rect x="40" y="60" width="250" height="90" rx="10" fill="#e74c3c" opacity="0.7" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="165" y="90" text-anchor="middle" font-size="14" fill="white" font-weight="bold">間（ま）のテクニック</text>
+  <text x="165" y="112" text-anchor="middle" font-size="10" fill="white">大ゴマ=重要、小ゴマ=速度感</text>
+  <text x="165" y="128" text-anchor="middle" font-size="10" fill="white">余白が「呼吸」を作る</text>
+
+  <line x1="290" y1="105" x2="370" y2="105" stroke="white" stroke-width="2"/>
+  <polygon points="368,99 380,105 368,111" fill="white"/>
+
+  <rect x="380" y="60" width="250" height="90" rx="10" fill="#3498db" opacity="0.7" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="505" y="90" text-anchor="middle" font-size="14" fill="white" font-weight="bold">UIのペーシング</text>
+  <text x="505" y="112" text-anchor="middle" font-size="10" fill="white">ヒーロー=大面積、メタデータ=小</text>
+  <text x="505" y="128" text-anchor="middle" font-size="10" fill="white">ホワイトスペースが可読性を作る</text>
+
+  <rect x="660" y="70" width="210" height="70" rx="8" fill="#2ecc71" opacity="0.5"/>
+  <text x="765" y="100" text-anchor="middle" font-size="11" fill="white" font-weight="bold">視覚的ヒエラルキー</text>
+  <text x="765" y="118" text-anchor="middle" font-size="10" fill="white">サイズ=重要度のシグナル</text>
+
+  <!-- Row 2: Emotional Arc -->
+  <rect x="40" y="180" width="250" height="90" rx="10" fill="#9b59b6" opacity="0.7" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="165" y="210" text-anchor="middle" font-size="14" fill="white" font-weight="bold">感情曲線（起承転結）</text>
+  <text x="165" y="232" text-anchor="middle" font-size="10" fill="white">徐々にテンションを上げて</text>
+  <text x="165" y="248" text-anchor="middle" font-size="10" fill="white">クライマックスで見開き</text>
+
+  <line x1="290" y1="225" x2="370" y2="225" stroke="white" stroke-width="2"/>
+  <polygon points="368,219 380,225 368,231" fill="white"/>
+
+  <rect x="380" y="180" width="250" height="90" rx="10" fill="#e67e22" opacity="0.7" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="505" y="210" text-anchor="middle" font-size="14" fill="white" font-weight="bold">UXのエモーショナルジャーニー</text>
+  <text x="505" y="232" text-anchor="middle" font-size="10" fill="white">オンボーディング→達成感→</text>
+  <text x="505" y="248" text-anchor="middle" font-size="10" fill="white">WOWモーメント</text>
+
+  <rect x="660" y="190" width="210" height="70" rx="8" fill="#2ecc71" opacity="0.5"/>
+  <text x="765" y="220" text-anchor="middle" font-size="11" fill="white" font-weight="bold">感情のアーキテクチャ</text>
+  <text x="765" y="238" text-anchor="middle" font-size="10" fill="white">体験に起伏を設計する</text>
+
+  <!-- Row 3: Focus -->
+  <rect x="40" y="300" width="250" height="90" rx="10" fill="#f39c12" opacity="0.7" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="165" y="330" text-anchor="middle" font-size="14" fill="white" font-weight="bold">集中線・効果線</text>
+  <text x="165" y="352" text-anchor="middle" font-size="10" fill="white">注目させたい要素に視線を集める</text>
+  <text x="165" y="368" text-anchor="middle" font-size="10" fill="white">動きと力の表現</text>
+
+  <line x1="290" y1="345" x2="370" y2="345" stroke="white" stroke-width="2"/>
+  <polygon points="368,339 380,345 368,351" fill="white"/>
+
+  <rect x="380" y="300" width="250" height="90" rx="10" fill="#1abc9c" opacity="0.7" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="505" y="330" text-anchor="middle" font-size="14" fill="white" font-weight="bold">UIのフォーカス誘導</text>
+  <text x="505" y="352" text-anchor="middle" font-size="10" fill="white">コントラスト・アニメーション</text>
+  <text x="505" y="368" text-anchor="middle" font-size="10" fill="white">プログレスバー・ローディング</text>
+
+  <rect x="660" y="310" width="210" height="70" rx="8" fill="#2ecc71" opacity="0.5"/>
+  <text x="765" y="340" text-anchor="middle" font-size="11" fill="white" font-weight="bold">注意の制御</text>
+  <text x="765" y="358" text-anchor="middle" font-size="10" fill="white">見てほしい場所に導く</text>
+</svg>

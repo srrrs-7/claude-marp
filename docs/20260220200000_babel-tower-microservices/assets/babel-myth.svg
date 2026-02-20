@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 420" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Sky background -->
+  <rect width="750" height="420" fill="#1a1a2e"/>
+  <!-- Stars -->
+  <circle cx="50" cy="30" r="1.5" fill="white" opacity="0.7"/>
+  <circle cx="120" cy="55" r="1" fill="white" opacity="0.6"/>
+  <circle cx="200" cy="20" r="1.5" fill="white" opacity="0.8"/>
+  <circle cx="310" cy="40" r="1" fill="white" opacity="0.5"/>
+  <circle cx="420" cy="15" r="1.5" fill="white" opacity="0.7"/>
+  <circle cx="550" cy="35" r="1" fill="white" opacity="0.6"/>
+  <circle cx="660" cy="25" r="1.5" fill="white" opacity="0.8"/>
+  <circle cx="700" cy="60" r="1" fill="white" opacity="0.5"/>
+  <!-- Ground -->
+  <rect x="0" y="360" width="750" height="60" fill="#2d5016"/>
+  <!-- Tower base layers (bottom to top, wider to narrower) -->
+  <!-- Layer 1 - base -->
+  <rect x="225" y="330" width="300" height="35" rx="3" fill="#8B7355" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <rect x="225" y="330" width="300" height="35" rx="3" fill="none" stroke="#6B5335" stroke-width="1"/>
+  <!-- Stone lines layer 1 -->
+  <line x1="275" y1="330" x2="275" y2="365" stroke="#6B5335" stroke-width="1"/>
+  <line x1="325" y1="330" x2="325" y2="365" stroke="#6B5335" stroke-width="1"/>
+  <line x1="375" y1="330" x2="375" y2="365" stroke="#6B5335" stroke-width="1"/>
+  <line x1="425" y1="330" x2="425" y2="365" stroke="#6B5335" stroke-width="1"/>
+  <line x1="475" y1="330" x2="475" y2="365" stroke="#6B5335" stroke-width="1"/>
+  <!-- Layer 2 -->
+  <rect x="245" y="295" width="260" height="38" rx="3" fill="#9B8365"/>
+  <rect x="245" y="295" width="260" height="38" rx="3" fill="none" stroke="#7B6345" stroke-width="1"/>
+  <line x1="295" y1="295" x2="295" y2="333" stroke="#7B6345" stroke-width="1"/>
+  <line x1="350" y1="295" x2="350" y2="333" stroke="#7B6345" stroke-width="1"/>
+  <line x1="405" y1="295" x2="405" y2="333" stroke="#7B6345" stroke-width="1"/>
+  <line x1="455" y1="295" x2="455" y2="333" stroke="#7B6345" stroke-width="1"/>
+  <!-- Layer 3 -->
+  <rect x="265" y="260" width="220" height="38" rx="3" fill="#AB9375"/>
+  <rect x="265" y="260" width="220" height="38" rx="3" fill="none" stroke="#8B7355" stroke-width="1"/>
+  <line x1="310" y1="260" x2="310" y2="298" stroke="#8B7355" stroke-width="1"/>
+  <line x1="375" y1="260" x2="375" y2="298" stroke="#8B7355" stroke-width="1"/>
+  <line x1="440" y1="260" x2="440" y2="298" stroke="#8B7355" stroke-width="1"/>
+  <!-- Layer 4 -->
+  <rect x="285" y="225" width="180" height="38" rx="3" fill="#BBA385"/>
+  <rect x="285" y="225" width="180" height="38" rx="3" fill="none" stroke="#9B8365" stroke-width="1"/>
+  <line x1="335" y1="225" x2="335" y2="263" stroke="#9B8365" stroke-width="1"/>
+  <line x1="375" y1="225" x2="375" y2="263" stroke="#9B8365" stroke-width="1"/>
+  <line x1="415" y1="225" x2="415" y2="263" stroke="#9B8365" stroke-width="1"/>
+  <!-- Layer 5 -->
+  <rect x="305" y="190" width="140" height="38" rx="3" fill="#CBB395"/>
+  <rect x="305" y="190" width="140" height="38" rx="3" fill="none" stroke="#AB9375" stroke-width="1"/>
+  <line x1="345" y1="190" x2="345" y2="228" stroke="#AB9375" stroke-width="1"/>
+  <line x1="405" y1="190" x2="405" y2="228" stroke="#AB9375" stroke-width="1"/>
+  <!-- Layer 6 -->
+  <rect x="320" y="158" width="110" height="35" rx="3" fill="#DBC3A5"/>
+  <rect x="320" y="158" width="110" height="35" rx="3" fill="none" stroke="#BBA385" stroke-width="1"/>
+  <line x1="365" y1="158" x2="365" y2="193" stroke="#BBA385" stroke-width="1"/>
+  <!-- Layer 7 top -->
+  <rect x="338" y="128" width="74" height="33" rx="3" fill="#EBD3B5"/>
+  <!-- Cloud at top -->
+  <ellipse cx="375" cy="110" rx="50" ry="22" fill="white" opacity="0.9"/>
+  <ellipse cx="345" cy="115" rx="30" ry="18" fill="white" opacity="0.9"/>
+  <ellipse cx="405" cy="115" rx="30" ry="18" fill="white" opacity="0.9"/>
+  <!-- Tower label -->
+  <text x="375" y="95" text-anchor="middle" font-family="serif" font-size="11" fill="#333" font-weight="bold">天まで届く...</text>
+  <!-- Dispersing people arrows -->
+  <!-- Left arrows - people dispersing -->
+  <line x1="220" y1="355" x2="120" y2="340" stroke="#FF6B6B" stroke-width="2"/>
+  <polygon points="120,340 135,333 132,345" fill="#FF6B6B"/>
+  <line x1="220" y1="355" x2="100" y2="370" stroke="#FF9B6B" stroke-width="2"/>
+  <polygon points="100,370 116,363 114,375" fill="#FF9B6B"/>
+  <!-- Right arrows - people dispersing -->
+  <line x1="530" y1="355" x2="630" y2="340" stroke="#6BFF6B" stroke-width="2"/>
+  <polygon points="630,340 615,333 618,345" fill="#6BFF6B"/>
+  <line x1="530" y1="355" x2="650" y2="370" stroke="#6BFFB0" stroke-width="2"/>
+  <polygon points="650,370 634,363 636,375" fill="#6BFFB0"/>
+  <!-- People silhouettes left -->
+  <circle cx="100" cy="355" r="8" fill="#FF6B6B" opacity="0.8"/>
+  <rect x="94" y="363" width="12" height="16" rx="2" fill="#FF6B6B" opacity="0.8"/>
+  <circle cx="70" cy="358" r="8" fill="#FF9B6B" opacity="0.8"/>
+  <rect x="64" y="366" width="12" height="16" rx="2" fill="#FF9B6B" opacity="0.8"/>
+  <!-- People silhouettes right -->
+  <circle cx="650" cy="355" r="8" fill="#6BFF6B" opacity="0.8"/>
+  <rect x="644" y="363" width="12" height="16" rx="2" fill="#6BFF6B" opacity="0.8"/>
+  <circle cx="680" cy="358" r="8" fill="#6BFFB0" opacity="0.8"/>
+  <rect x="674" y="366" width="12" height="16" rx="2" fill="#6BFFB0" opacity="0.8"/>
+  <!-- Labels -->
+  <text x="85" y="395" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#FF9B6B">民族A</text>
+  <text x="665" y="395" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#6BFFB0">民族B</text>
+  <!-- Title text -->
+  <text x="375" y="408" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#cccccc">言語の混乱により、人々は世界中に散らばった</text>
+</svg>

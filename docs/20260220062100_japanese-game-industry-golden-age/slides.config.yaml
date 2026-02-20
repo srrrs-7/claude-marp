@@ -1,0 +1,12 @@
+topic: "日本ゲーム産業の黄金時代 ― なぜ80-90年代の日本が世界を制覇したのか"
+language: "ja"
+output:
+  dir: "docs/20260220062100_japanese-game-industry-golden-age"
+  baseName: "japanese-game-industry-golden-age"
+marp:
+  theme: gaia
+  paginate: true
+  header: "日本ゲーム産業の黄金時代"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

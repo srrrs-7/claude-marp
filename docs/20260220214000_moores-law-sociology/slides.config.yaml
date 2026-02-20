@@ -1,0 +1,26 @@
+topic: "ムーアの法則の社会学：予言が法則になった日"
+language: "ja"
+
+slides:
+  count: 21
+  includeTableOfContents: true
+  includeTitleSlide: true
+  includeSummarySlide: true
+
+output:
+  dir: "docs/20260220214000_moores-law-sociology"
+  baseName: "moores-law-sociology"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "ムーアの法則の社会学"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

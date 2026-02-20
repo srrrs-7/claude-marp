@@ -1,0 +1,86 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" rx="12" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" fill="#e0e0e0" font-size="18" font-weight="bold" font-family="Arial, sans-serif">ムーアの法則の変容プロセス</text>
+  <text x="450" y="55" text-anchor="middle" fill="#888" font-size="12" font-family="Arial, sans-serif">観察 → 目標 → 自己実現的予言 → 神話</text>
+
+  <!-- Phase 1: Observation -->
+  <rect x="50" y="100" width="170" height="120" rx="12" fill="#2d3436" stroke="#4ecdc4" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="135" y="130" text-anchor="middle" fill="#4ecdc4" font-size="14" font-weight="bold" font-family="Arial, sans-serif">Phase 1</text>
+  <text x="135" y="150" text-anchor="middle" fill="#e0e0e0" font-size="13" font-weight="bold" font-family="Arial, sans-serif">経験的観察</text>
+  <text x="135" y="172" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">1965年 論文発表</text>
+  <text x="135" y="188" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">「2年で2倍」の</text>
+  <text x="135" y="204" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">トレンドを発見</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="220" y1="160" x2="270" y2="160" stroke="#4ecdc4" stroke-width="2"/>
+  <polygon points="270,155 280,160 270,165" fill="#4ecdc4"/>
+
+  <!-- Phase 2: Goal -->
+  <rect x="280" y="100" width="170" height="120" rx="12" fill="#2d3436" stroke="#ffd93d" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="365" y="130" text-anchor="middle" fill="#ffd93d" font-size="14" font-weight="bold" font-family="Arial, sans-serif">Phase 2</text>
+  <text x="365" y="150" text-anchor="middle" fill="#e0e0e0" font-size="13" font-weight="bold" font-family="Arial, sans-serif">産業目標化</text>
+  <text x="365" y="172" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">1970-80年代</text>
+  <text x="365" y="188" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">半導体ロードマップの</text>
+  <text x="365" y="204" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">基準指標に採用</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="450" y1="160" x2="500" y2="160" stroke="#ffd93d" stroke-width="2"/>
+  <polygon points="500,155 510,160 500,165" fill="#ffd93d"/>
+
+  <!-- Phase 3: Self-fulfilling prophecy -->
+  <rect x="510" y="100" width="170" height="120" rx="12" fill="#2d3436" stroke="#ff6b6b" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="595" y="130" text-anchor="middle" fill="#ff6b6b" font-size="14" font-weight="bold" font-family="Arial, sans-serif">Phase 3</text>
+  <text x="595" y="150" text-anchor="middle" fill="#e0e0e0" font-size="13" font-weight="bold" font-family="Arial, sans-serif">自己実現的予言</text>
+  <text x="595" y="172" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">1990-2010年代</text>
+  <text x="595" y="188" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">予測を達成するため</text>
+  <text x="595" y="204" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">巨額投資が正当化</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="680" y1="160" x2="730" y2="160" stroke="#ff6b6b" stroke-width="2"/>
+  <polygon points="730,155 740,160 730,165" fill="#ff6b6b"/>
+
+  <!-- Phase 4: Myth -->
+  <rect x="740" y="100" width="140" height="120" rx="12" fill="#2d3436" stroke="#a29bfe" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="810" y="130" text-anchor="middle" fill="#a29bfe" font-size="14" font-weight="bold" font-family="Arial, sans-serif">Phase 4</text>
+  <text x="810" y="150" text-anchor="middle" fill="#e0e0e0" font-size="13" font-weight="bold" font-family="Arial, sans-serif">神話化</text>
+  <text x="810" y="172" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">2015年〜</text>
+  <text x="810" y="188" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">物理的限界到達も</text>
+  <text x="810" y="204" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">「法則」として存続</text>
+
+  <!-- Feedback loop arrow -->
+  <path d="M 595,220 L 595,280 L 135,280 L 135,220" fill="none" stroke="#ff9ff3" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <polygon points="130,225 135,215 140,225" fill="#ff9ff3"/>
+  <text x="365" y="300" text-anchor="middle" fill="#ff9ff3" font-size="11" font-family="Arial, sans-serif">フィードバックループ：実績が予測を強化し、予測が投資を呼ぶ</text>
+
+  <!-- Key actors section -->
+  <text x="450" y="345" text-anchor="middle" fill="#e0e0e0" font-size="14" font-weight="bold" font-family="Arial, sans-serif">各フェーズの主要アクター</text>
+
+  <!-- Actor boxes -->
+  <rect x="50" y="365" width="170" height="70" rx="8" fill="#1e3a4f" opacity="0.8"/>
+  <text x="135" y="388" text-anchor="middle" fill="#4ecdc4" font-size="11" font-weight="bold" font-family="Arial, sans-serif">ゴードン・ムーア</text>
+  <text x="135" y="405" text-anchor="middle" fill="#aaa" font-size="9" font-family="Arial, sans-serif">Fairchild → Intel共同創業</text>
+  <text x="135" y="420" text-anchor="middle" fill="#aaa" font-size="9" font-family="Arial, sans-serif">Electronics誌 1965</text>
+
+  <rect x="280" y="365" width="170" height="70" rx="8" fill="#3a3418" opacity="0.8"/>
+  <text x="365" y="388" text-anchor="middle" fill="#ffd93d" font-size="11" font-weight="bold" font-family="Arial, sans-serif">ITRS / SIA</text>
+  <text x="365" y="405" text-anchor="middle" fill="#aaa" font-size="9" font-family="Arial, sans-serif">半導体産業ロードマップ</text>
+  <text x="365" y="420" text-anchor="middle" fill="#aaa" font-size="9" font-family="Arial, sans-serif">目標設定と標準化</text>
+
+  <rect x="510" y="365" width="170" height="70" rx="8" fill="#3a1a1a" opacity="0.8"/>
+  <text x="595" y="388" text-anchor="middle" fill="#ff6b6b" font-size="11" font-weight="bold" font-family="Arial, sans-serif">Intel / TSMC / Samsung</text>
+  <text x="595" y="405" text-anchor="middle" fill="#aaa" font-size="9" font-family="Arial, sans-serif">巨額R&D投資</text>
+  <text x="595" y="420" text-anchor="middle" fill="#aaa" font-size="9" font-family="Arial, sans-serif">プロセス微細化競争</text>
+
+  <rect x="740" y="365" width="140" height="70" rx="8" fill="#2a1a3a" opacity="0.8"/>
+  <text x="810" y="388" text-anchor="middle" fill="#a29bfe" font-size="11" font-weight="bold" font-family="Arial, sans-serif">メディア / VC</text>
+  <text x="810" y="405" text-anchor="middle" fill="#aaa" font-size="9" font-family="Arial, sans-serif">「テクノロジーの法則」</text>
+  <text x="810" y="420" text-anchor="middle" fill="#aaa" font-size="9" font-family="Arial, sans-serif">として一般化・神話化</text>
+
+  <!-- Connecting lines from phases to actors -->
+  <line x1="135" y1="220" x2="135" y2="365" stroke="#4ecdc4" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="365" y1="220" x2="365" y2="365" stroke="#ffd93d" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="595" y1="220" x2="595" y2="365" stroke="#ff6b6b" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="810" y1="220" x2="810" y2="365" stroke="#a29bfe" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+</svg>

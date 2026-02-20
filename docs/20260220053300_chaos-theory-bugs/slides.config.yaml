@@ -1,0 +1,12 @@
+topic: "カオス理論とバグ：バタフライ効果と本番障害"
+language: "ja"
+output:
+  dir: "docs/20260220053300_chaos-theory-bugs"
+  baseName: "chaos-theory-bugs"
+marp:
+  theme: gaia
+  paginate: true
+  header: "カオス理論とソフトウェアバグ"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

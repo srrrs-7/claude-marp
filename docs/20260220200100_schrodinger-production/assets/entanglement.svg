@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="420" fill="#1a1a2e" rx="16"/>
+
+  <!-- Title -->
+  <text x="400" y="32" font-family="monospace" font-size="15" fill="#c084fc" text-anchor="middle" font-weight="bold">量子もつれ = マイクロサービスのカスケード障害</text>
+
+  <!-- Before failure state - top half label -->
+  <text x="200" y="58" font-family="monospace" font-size="12" fill="#4ade80" text-anchor="middle">正常状態</text>
+  <text x="600" y="58" font-family="monospace" font-size="12" fill="#f87171" text-anchor="middle">障害連鎖状態</text>
+  <line x1="400" y1="45" x2="400" y2="400" stroke="#374151" stroke-width="1.5" stroke-dasharray="8,4"/>
+
+  <!-- === LEFT SIDE: Normal state === -->
+
+  <!-- Service A (top) - Normal -->
+  <rect x="155" y="70" width="90" height="55" fill="#14291a" rx="12" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.4))"/>
+  <text x="200" y="94" font-family="monospace" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">Service A</text>
+  <text x="200" y="112" font-family="monospace" font-size="10" fill="#4ade80" text-anchor="middle">● 正常</text>
+
+  <!-- Service B (left) - Normal -->
+  <rect x="60" y="200" width="90" height="55" fill="#14291a" rx="12" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.4))"/>
+  <text x="105" y="224" font-family="monospace" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">Service B</text>
+  <text x="105" y="242" font-family="monospace" font-size="10" fill="#4ade80" text-anchor="middle">● 正常</text>
+
+  <!-- Service C (right) - Normal -->
+  <rect x="255" y="200" width="90" height="55" fill="#14291a" rx="12" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.4))"/>
+  <text x="300" y="224" font-family="monospace" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">Service C</text>
+  <text x="300" y="242" font-family="monospace" font-size="10" fill="#4ade80" text-anchor="middle">● 正常</text>
+
+  <!-- Service D (bottom center) - Normal -->
+  <rect x="155" y="325" width="90" height="55" fill="#14291a" rx="12" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.4))"/>
+  <text x="200" y="349" font-family="monospace" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">Service D</text>
+  <text x="200" y="367" font-family="monospace" font-size="10" fill="#4ade80" text-anchor="middle">● 正常</text>
+
+  <!-- Normal connections -->
+  <!-- A to B -->
+  <line x1="175" y1="125" x2="130" y2="200" stroke="#4ade80" stroke-width="1.5"/>
+  <!-- A to C -->
+  <line x1="225" y1="125" x2="270" y2="200" stroke="#4ade80" stroke-width="1.5"/>
+  <!-- B to D -->
+  <line x1="130" y1="255" x2="175" y2="325" stroke="#4ade80" stroke-width="1.5"/>
+  <!-- C to D -->
+  <line x1="270" y1="255" x2="225" y2="325" stroke="#4ade80" stroke-width="1.5"/>
+  <!-- B to C -->
+  <line x1="150" y1="228" x2="255" y2="228" stroke="#4ade80" stroke-width="1.5"/>
+
+  <!-- === RIGHT SIDE: Failure cascade === -->
+
+  <!-- Service A (top) - FAILED -->
+  <rect x="555" y="70" width="90" height="55" fill="#7f1d1d" rx="12" style="filter: drop-shadow(2px 2px 5px rgba(200,0,0,0.4))"/>
+  <text x="600" y="94" font-family="monospace" font-size="13" fill="#fca5a5" text-anchor="middle" font-weight="bold">Service A</text>
+  <text x="600" y="112" font-family="monospace" font-size="10" fill="#f87171" text-anchor="middle">● 障害!</text>
+
+  <!-- Service B (left) - CASCADING -->
+  <rect x="460" y="200" width="90" height="55" fill="#7f2d00" rx="12" style="filter: drop-shadow(2px 2px 5px rgba(200,80,0,0.4))"/>
+  <text x="505" y="224" font-family="monospace" font-size="13" fill="#fdba74" text-anchor="middle" font-weight="bold">Service B</text>
+  <text x="505" y="242" font-family="monospace" font-size="10" fill="#fb923c" text-anchor="middle">⚠ タイムアウト</text>
+
+  <!-- Service C (right) - CASCADING -->
+  <rect x="655" y="200" width="90" height="55" fill="#7f2d00" rx="12" style="filter: drop-shadow(2px 2px 5px rgba(200,80,0,0.4))"/>
+  <text x="700" y="224" font-family="monospace" font-size="13" fill="#fdba74" text-anchor="middle" font-weight="bold">Service C</text>
+  <text x="700" y="242" font-family="monospace" font-size="10" fill="#fb923c" text-anchor="middle">⚠ 過負荷</text>
+
+  <!-- Service D (bottom) - DOWN -->
+  <rect x="555" y="325" width="90" height="55" fill="#450a0a" rx="12" style="filter: drop-shadow(2px 2px 5px rgba(200,0,0,0.5))"/>
+  <text x="600" y="349" font-family="monospace" font-size="13" fill="#fca5a5" text-anchor="middle" font-weight="bold">Service D</text>
+  <text x="600" y="367" font-family="monospace" font-size="10" fill="#f87171" text-anchor="middle">✗ ダウン</text>
+
+  <!-- Failure cascade arrows (red with explicit polygon arrowheads) -->
+  <!-- A to B cascade -->
+  <line x1="575" y1="125" x2="530" y2="198" stroke="#f87171" stroke-width="2.5"/>
+  <polygon points="524,194 535,196 528,206" fill="#f87171"/>
+
+  <!-- A to C cascade -->
+  <line x1="625" y1="125" x2="670" y2="198" stroke="#f87171" stroke-width="2.5"/>
+  <polygon points="663,194 675,196 668,206" fill="#f87171"/>
+
+  <!-- B to D cascade -->
+  <line x1="530" y1="255" x2="575" y2="323" stroke="#f87171" stroke-width="2.5"/>
+  <polygon points="568,319 580,321 573,331" fill="#f87171"/>
+
+  <!-- C to D cascade -->
+  <line x1="670" y1="255" x2="625" y2="323" stroke="#f87171" stroke-width="2.5"/>
+  <polygon points="632,319 620,321 627,331" fill="#f87171"/>
+
+  <!-- Numbers showing cascade order -->
+  <circle cx="555" cy="160" r="12" fill="#f87171"/>
+  <text x="555" y="165" font-family="monospace" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+  <circle cx="555" cy="290" r="12" fill="#fb923c"/>
+  <text x="555" y="295" font-family="monospace" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">2</text>
+  <circle cx="645" cy="290" r="12" fill="#fb923c"/>
+  <text x="645" y="295" font-family="monospace" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">3</text>
+  <circle cx="600" cy="315" r="12" fill="#991b1b"/>
+  <text x="600" y="320" font-family="monospace" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">4</text>
+
+  <!-- Bottom label -->
+  <rect x="450" y="388" width="310" height="26" fill="#2d1b1b" rx="6"/>
+  <text x="605" y="406" font-family="monospace" font-size="11" fill="#f87171" text-anchor="middle">「独立しているはず」なのに連鎖する量子もつれ</text>
+</svg>

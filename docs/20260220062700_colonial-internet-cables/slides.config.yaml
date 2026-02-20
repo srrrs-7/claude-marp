@@ -1,0 +1,12 @@
+topic: "植民地ルートを走るインターネット ― 海底ケーブルと権力の地理学"
+language: "ja"
+output:
+  dir: "docs/20260220062700_colonial-internet-cables"
+  baseName: "colonial-internet-cables"
+marp:
+  theme: gaia
+  paginate: true
+  header: "海底ケーブルと植民地支配の遺産"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

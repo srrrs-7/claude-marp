@@ -1,0 +1,13 @@
+topic: "コンウェイの法則は熱力学の第二法則か？"
+language: "ja"
+output:
+  dir: "docs/20260220180800_conways-law-thermodynamics"
+  baseName: "conways-law-thermodynamics"
+marp:
+  theme: gaia
+  paginate: true
+  header: "コンウェイの法則と熱力学"
+  footer: "© 2026"
+  style: |
+    section { font-size: 1.05em; }
+    section pre code { font-size: 0.58em; line-height: 1.4; }

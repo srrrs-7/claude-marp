@@ -1,0 +1,12 @@
+topic: "プラセボを知っていても効く — オープンラベルプラセボの謎"
+language: "ja"
+output:
+  dir: "docs/20260220061400_open-label-placebo"
+  baseName: "open-label-placebo"
+marp:
+  theme: gaia
+  paginate: true
+  header: "プラセボ効果の科学"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

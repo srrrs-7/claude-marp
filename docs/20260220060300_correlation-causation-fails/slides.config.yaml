@@ -1,0 +1,12 @@
+topic: "相関と因果の混同 — 「チョコレートを食べると賢くなる」は本当か"
+language: "ja"
+output:
+  dir: "docs/20260220060300_correlation-causation-fails"
+  baseName: "correlation-causation-fails"
+marp:
+  theme: gaia
+  paginate: true
+  header: "相関と因果"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

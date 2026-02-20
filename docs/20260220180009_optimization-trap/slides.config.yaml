@@ -1,0 +1,12 @@
+topic: "最適化の罠 — 効率化するほど脆くなる"
+language: "ja"
+output:
+  dir: "docs/20260220180009_optimization-trap"
+  baseName: "optimization-trap"
+marp:
+  theme: gaia
+  paginate: true
+  header: "最適化の罠"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

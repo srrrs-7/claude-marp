@@ -1,0 +1,12 @@
+topic: "スタートアップが失敗する本当の理由"
+language: "ja"
+output:
+  dir: "docs/20260220064300_startup-failure-real-reasons"
+  baseName: "startup-failure-real-reasons"
+marp:
+  theme: gaia
+  paginate: true
+  header: "スタートアップ失敗の真因"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

@@ -1,0 +1,13 @@
+topic: "明治維新はDXの完全な教科書だ"
+language: "ja"
+output:
+  dir: "docs/20260220180600_meiji-restoration-dx"
+  baseName: "meiji-restoration-dx"
+marp:
+  theme: gaia
+  paginate: true
+  header: "明治維新はDXの教科書だ"
+  footer: "© 2026"
+  style: |
+    section { font-size: 1.05em; }
+    section pre code { font-size: 0.58em; line-height: 1.4; }

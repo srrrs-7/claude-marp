@@ -1,0 +1,46 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">自我消耗モデル vs 新しい知見</text>
+
+  <!-- Left: Old model -->
+  <rect x="50" y="55" width="380" height="410" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="240" y="85" text-anchor="middle" fill="#FF6B6B" font-size="16" font-family="sans-serif" font-weight="bold">旧モデル: 自我消耗 (Ego Depletion)</text>
+  <text x="240" y="105" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">Baumeister et al. (1998)</text>
+
+  <!-- Battery metaphor -->
+  <rect x="180" y="120" width="120" height="200" fill="#2d3436" rx="8" stroke="#636e72" stroke-width="2"/>
+  <rect x="210" y="110" width="60" height="15" fill="#636e72" rx="3"/>
+  <!-- Battery level decreasing -->
+  <rect x="190" y="250" width="100" height="60" fill="#FF6B6B" rx="4" opacity="0.8"/>
+  <text x="240" y="165" text-anchor="middle" fill="#636e72" font-size="24" font-family="sans-serif">LOW</text>
+
+  <text x="240" y="350" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">意志力 = 有限のリソース</text>
+  <text x="240" y="375" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">使うと減る（バッテリーモデル）</text>
+  <text x="240" y="400" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">グルコースが燃料</text>
+  <text x="240" y="425" text-anchor="middle" fill="#FF6B6B" font-size="12" font-family="sans-serif">「朝は意志力が高い、夜は枯渇」</text>
+  <text x="240" y="450" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">→ 再現性危機で大部分が疑問視</text>
+
+  <!-- Right: New understanding -->
+  <rect x="470" y="55" width="380" height="410" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="660" y="85" text-anchor="middle" fill="#4ECDC4" font-size="16" font-family="sans-serif" font-weight="bold">新モデル: 動機とメタ認知</text>
+  <text x="660" y="105" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">Inzlicht & Schmeichel (2012)</text>
+
+  <!-- Circular model -->
+  <circle cx="660" cy="210" r="70" fill="none" stroke="#4ECDC4" stroke-width="2" opacity="0.5"/>
+  <text x="660" y="175" text-anchor="middle" fill="#4ECDC4" font-size="12" font-family="sans-serif" font-weight="bold">動機</text>
+  <text x="660" y="195" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">注意の配分</text>
+  <text x="660" y="215" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">優先度の変化</text>
+  <text x="660" y="235" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">報酬への感度</text>
+
+  <!-- Arrows showing cycle -->
+  <text x="570" y="195" text-anchor="middle" fill="#FFEAA7" font-size="10" font-family="sans-serif">信念</text>
+  <text x="750" y="195" text-anchor="middle" fill="#FFEAA7" font-size="10" font-family="sans-serif">感情</text>
+  <text x="660" y="290" text-anchor="middle" fill="#FFEAA7" font-size="10" font-family="sans-serif">環境</text>
+
+  <text x="660" y="330" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">意志力 = 動機の問題</text>
+  <text x="660" y="355" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">「枯渇」ではなく「優先度の変化」</text>
+  <text x="660" y="380" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">信念（有限と信じる）が影響</text>
+  <text x="660" y="405" text-anchor="middle" fill="#4ECDC4" font-size="12" font-family="sans-serif">「疲れた」は自制心を緩める許可</text>
+  <text x="660" y="430" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">→ メタ分析で消耗効果は d=0.04 (ほぼゼロ)</text>
+  <text x="660" y="450" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">Vohs et al. (2021) 大規模再現実験</text>
+</svg>

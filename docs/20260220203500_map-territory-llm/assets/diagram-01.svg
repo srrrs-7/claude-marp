@@ -1,0 +1,66 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f0e17" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#fffffe" font-size="18" font-family="sans-serif" font-weight="bold">地図（Model）と領土（Reality）の関係</text>
+
+  <!-- Territory (Reality) -->
+  <rect x="50" y="60" width="380" height="380" fill="#1a1a2e" rx="10" stroke="#52b788" stroke-width="2"/>
+  <text x="240" y="90" text-anchor="middle" fill="#52b788" font-size="16" font-family="sans-serif" font-weight="bold">領土（Reality）</text>
+  <text x="240" y="115" text-anchor="middle" fill="#a7a9be" font-size="11" font-family="sans-serif">無限の複雑さ、連続的、常に変化</text>
+
+  <!-- Reality elements -->
+  <rect x="80" y="140" width="130" height="50" fill="#2d6a4f" rx="6" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="145" y="165" text-anchor="middle" fill="#fffffe" font-size="10" font-family="sans-serif">事実A（検証済み）</text>
+  <text x="145" y="180" text-anchor="middle" fill="#52b788" font-size="8" font-family="sans-serif">確実な知識</text>
+
+  <rect x="240" y="150" width="130" height="50" fill="#2d6a4f" rx="6" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="305" y="175" text-anchor="middle" fill="#fffffe" font-size="10" font-family="sans-serif">事実B（検証済み）</text>
+  <text x="305" y="190" text-anchor="middle" fill="#52b788" font-size="8" font-family="sans-serif">確実な知識</text>
+
+  <rect x="100" y="220" width="140" height="50" fill="#40916c" rx="6" opacity="0.6"/>
+  <text x="170" y="245" text-anchor="middle" fill="#fffffe" font-size="10" font-family="sans-serif">文脈C（曖昧）</text>
+  <text x="170" y="260" text-anchor="middle" fill="#a7a9be" font-size="8" font-family="sans-serif">解釈が分かれる領域</text>
+
+  <rect x="260" y="240" width="130" height="50" fill="#52b788" rx="6" opacity="0.4"/>
+  <text x="325" y="265" text-anchor="middle" fill="#fffffe" font-size="10" font-family="sans-serif">未知の領域D</text>
+  <text x="325" y="280" text-anchor="middle" fill="#a7a9be" font-size="8" font-family="sans-serif">まだ発見されていない</text>
+
+  <rect x="130" y="310" width="200" height="50" fill="#1a4731" rx="6" opacity="0.4"/>
+  <text x="230" y="335" text-anchor="middle" fill="#52b788" font-size="10" font-family="sans-serif">関係性（因果 / 相関）</text>
+  <text x="230" y="350" text-anchor="middle" fill="#a7a9be" font-size="8" font-family="sans-serif">複雑で非線形な真の構造</text>
+
+  <!-- Arrow -->
+  <line x1="440" y1="250" x2="480" y2="250" stroke="#e6b422" stroke-width="3"/>
+  <polygon points="478,244 492,250 478,256" fill="#e6b422"/>
+  <text x="460" y="235" text-anchor="middle" fill="#e6b422" font-size="10" font-family="sans-serif" font-weight="bold">モデル化</text>
+  <text x="460" y="270" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">情報損失</text>
+
+  <!-- Map (LLM Model) -->
+  <rect x="500" y="60" width="370" height="380" fill="#1a1a2e" rx="10" stroke="#7c3aed" stroke-width="2"/>
+  <text x="685" y="90" text-anchor="middle" fill="#c4b5fd" font-size="16" font-family="sans-serif" font-weight="bold">地図（LLM Model）</text>
+  <text x="685" y="115" text-anchor="middle" fill="#a7a9be" font-size="11" font-family="sans-serif">統計的近似、離散的、固定時点</text>
+
+  <!-- Model elements -->
+  <rect x="530" y="140" width="130" height="50" fill="#5b21b6" rx="6" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="595" y="165" text-anchor="middle" fill="#fffffe" font-size="10" font-family="sans-serif">事実A'（正確）</text>
+  <text x="595" y="180" text-anchor="middle" fill="#52b788" font-size="8" font-family="sans-serif">正しくマップ</text>
+
+  <rect x="680" y="150" width="130" height="50" fill="#5b21b6" rx="6" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="745" y="175" text-anchor="middle" fill="#fffffe" font-size="10" font-family="sans-serif">事実B'（歪み）</text>
+  <text x="745" y="190" text-anchor="middle" fill="#e6b422" font-size="8" font-family="sans-serif">部分的に不正確</text>
+
+  <rect x="550" y="220" width="140" height="50" fill="#ff6b6b" rx="6" opacity="0.8" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="620" y="245" text-anchor="middle" fill="#fffffe" font-size="10" font-family="sans-serif" font-weight="bold">幻覚X（捏造）</text>
+  <text x="620" y="260" text-anchor="middle" fill="#fffffe" font-size="8" font-family="sans-serif">領土に存在しない!</text>
+
+  <rect x="710" y="240" width="130" height="50" fill="#ff6b6b" rx="6" opacity="0.6"/>
+  <text x="775" y="265" text-anchor="middle" fill="#fffffe" font-size="10" font-family="sans-serif" font-weight="bold">幻覚Y（捏造）</text>
+  <text x="775" y="280" text-anchor="middle" fill="#fffffe" font-size="8" font-family="sans-serif">もっともらしい嘘</text>
+
+  <rect x="580" y="310" width="200" height="50" fill="#7c3aed" rx="6" opacity="0.4"/>
+  <text x="680" y="335" text-anchor="middle" fill="#c4b5fd" font-size="10" font-family="sans-serif">統計的相関（疑似因果）</text>
+  <text x="680" y="350" text-anchor="middle" fill="#a7a9be" font-size="8" font-family="sans-serif">パターンマッチングの限界</text>
+
+  <!-- Bottom: Korzybski quote -->
+  <rect x="50" y="455" width="820" height="35" fill="#e6b422" rx="6" opacity="0.2"/>
+  <text x="460" y="478" text-anchor="middle" fill="#e6b422" font-size="13" font-family="sans-serif" font-weight="bold">"The map is not the territory" — Alfred Korzybski (1933)</text>
+</svg>

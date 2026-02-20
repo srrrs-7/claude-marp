@@ -1,0 +1,12 @@
+topic: "絵文字は言語か ― コミュニケーションの進化論"
+language: "ja"
+output:
+  dir: "docs/20260220064000_emoji-as-language"
+  baseName: "emoji-as-language"
+marp:
+  theme: gaia
+  paginate: true
+  header: "絵文字は言語か"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

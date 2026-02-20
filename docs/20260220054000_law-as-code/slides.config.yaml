@@ -1,0 +1,12 @@
+topic: "法律はコードと同じ構造を持つ"
+language: "ja"
+output:
+  dir: "docs/20260220054000_law-as-code"
+  baseName: "law-as-code"
+marp:
+  theme: gaia
+  paginate: true
+  header: "法とコードの構造的類似"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

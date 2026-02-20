@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 460" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="860" height="460" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="430" y="34" font-family="sans-serif" font-size="17" fill="#e0e0e0" text-anchor="middle" font-weight="bold">OSS貢献インセンティブの4象限マップ</text>
+
+  <!-- Axes -->
+  <!-- X axis -->
+  <line x1="70" y1="240" x2="790" y2="240" stroke="#4cc9f0" stroke-width="2"/>
+  <!-- Y axis -->
+  <line x1="430" y1="55" x2="430" y2="420" stroke="#4cc9f0" stroke-width="2"/>
+
+  <!-- Arrow tips for axes -->
+  <polygon points="793,240 783,235 783,245" fill="#4cc9f0"/>
+  <polygon points="430,52 425,62 435,62" fill="#4cc9f0"/>
+
+  <!-- Axis labels -->
+  <text x="145" y="262" font-family="sans-serif" font-size="13" fill="#4cc9f0" text-anchor="middle">外発的動機</text>
+  <text x="710" y="262" font-family="sans-serif" font-size="13" fill="#4cc9f0" text-anchor="middle">内発的動機</text>
+  <text x="450" y="72" font-family="sans-serif" font-size="13" fill="#4cc9f0">長期利益</text>
+  <text x="450" y="416" font-family="sans-serif" font-size="13" fill="#4cc9f0">短期利益</text>
+
+  <!-- Quadrant labels (subtle) -->
+  <text x="240" y="155" font-family="sans-serif" font-size="11" fill="#334" text-anchor="middle">外発的 × 長期</text>
+  <text x="610" y="155" font-family="sans-serif" font-size="11" fill="#334" text-anchor="middle">内発的 × 長期</text>
+  <text x="240" y="380" font-family="sans-serif" font-size="11" fill="#334" text-anchor="middle">外発的 × 短期</text>
+  <text x="610" y="380" font-family="sans-serif" font-size="11" fill="#334" text-anchor="middle">内発的 × 短期</text>
+
+  <!-- Quadrant 1: External × Long-term = Signaling (top-left) -->
+  <rect x="90" y="75" width="310" height="145" rx="10" fill="#4361ee" opacity="0.18"/>
+  <rect x="90" y="75" width="310" height="145" rx="10" fill="none" stroke="#4361ee" stroke-width="1.5" opacity="0.5"/>
+
+  <text x="245" y="105" font-family="sans-serif" font-size="15" fill="#818cf8" text-anchor="middle" font-weight="bold">シグナリング効果</text>
+  <text x="245" y="128" font-family="sans-serif" font-size="12" fill="#c7d2fe" text-anchor="middle">GitHubの草 = 採用市場で</text>
+  <text x="245" y="146" font-family="sans-serif" font-size="12" fill="#c7d2fe" text-anchor="middle">差別化できるシグナル</text>
+  <text x="245" y="166" font-family="sans-serif" font-size="12" fill="#c7d2fe" text-anchor="middle">スポンサーからの収入</text>
+  <text x="245" y="186" font-family="sans-serif" font-size="12" fill="#c7d2fe" text-anchor="middle">転職・昇進への貢献実績</text>
+
+  <!-- Quadrant 2: Internal × Long-term = Reputation (top-right) -->
+  <rect x="450" y="75" width="310" height="145" rx="10" fill="#f72585" opacity="0.15"/>
+  <rect x="450" y="75" width="310" height="145" rx="10" fill="none" stroke="#f72585" stroke-width="1.5" opacity="0.5"/>
+
+  <text x="605" y="105" font-family="sans-serif" font-size="15" fill="#fb7185" text-anchor="middle" font-weight="bold">評判メカニズム</text>
+  <text x="605" y="128" font-family="sans-serif" font-size="12" fill="#fecdd3" text-anchor="middle">コミュニティでの名声・信頼</text>
+  <text x="605" y="146" font-family="sans-serif" font-size="12" fill="#fecdd3" text-anchor="middle">カンファレンス登壇機会</text>
+  <text x="605" y="166" font-family="sans-serif" font-size="12" fill="#fecdd3" text-anchor="middle">メンテナー権限の付与</text>
+  <text x="605" y="186" font-family="sans-serif" font-size="12" fill="#fecdd3" text-anchor="middle">影響力ある貢献者として認知</text>
+
+  <!-- Quadrant 3: External × Short-term = Self-use (bottom-left) -->
+  <rect x="90" y="260" width="310" height="145" rx="10" fill="#f59e0b" opacity="0.15"/>
+  <rect x="90" y="260" width="310" height="145" rx="10" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="0.5"/>
+
+  <text x="245" y="290" font-family="sans-serif" font-size="15" fill="#fbbf24" text-anchor="middle" font-weight="bold">自己利用・課題解決</text>
+  <text x="245" y="313" font-family="sans-serif" font-size="12" fill="#fde68a" text-anchor="middle">自分が使うツールのバグを直す</text>
+  <text x="245" y="331" font-family="sans-serif" font-size="12" fill="#fde68a" text-anchor="middle">欲しい機能を自分で追加</text>
+  <text x="245" y="349" font-family="sans-serif" font-size="12" fill="#fde68a" text-anchor="middle">企業のOSS戦略（コスト削減）</text>
+  <text x="245" y="367" font-family="sans-serif" font-size="12" fill="#fde68a" text-anchor="middle">依存ライブラリのメンテ継続</text>
+
+  <!-- Quadrant 4: Internal × Short-term = Intrinsic (bottom-right) -->
+  <rect x="450" y="260" width="310" height="145" rx="10" fill="#4ade80" opacity="0.12"/>
+  <rect x="450" y="260" width="310" height="145" rx="10" fill="none" stroke="#4ade80" stroke-width="1.5" opacity="0.5"/>
+
+  <text x="605" y="290" font-family="sans-serif" font-size="15" fill="#4ade80" text-anchor="middle" font-weight="bold">内発的動機</text>
+  <text x="605" y="313" font-family="sans-serif" font-size="12" fill="#bbf7d0" text-anchor="middle">技術的課題への知的興奮</text>
+  <text x="605" y="331" font-family="sans-serif" font-size="12" fill="#bbf7d0" text-anchor="middle">コードを公開する達成感</text>
+  <text x="605" y="349" font-family="sans-serif" font-size="12" fill="#bbf7d0" text-anchor="middle">他者の役に立つ喜び</text>
+  <text x="605" y="367" font-family="sans-serif" font-size="12" fill="#bbf7d0" text-anchor="middle">コミュニティへの帰属意識</text>
+
+  <!-- Center label -->
+  <circle cx="430" cy="240" r="18" fill="#1a1a2e" stroke="#4cc9f0" stroke-width="2"/>
+  <text x="430" y="245" font-family="sans-serif" font-size="11" fill="#4cc9f0" text-anchor="middle" font-weight="bold">OSS</text>
+</svg>

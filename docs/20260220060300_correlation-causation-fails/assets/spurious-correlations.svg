@@ -1,0 +1,57 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">見せかけの相関 (Spurious Correlations)</text>
+
+  <!-- Correlation 1 -->
+  <rect x="50" y="55" width="380" height="190" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="240" y="80" text-anchor="middle" fill="#FF6B6B" font-size="14" font-family="sans-serif" font-weight="bold">ニコラス・ケイジ映画 vs プール溺死</text>
+  <text x="240" y="100" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">r = 0.666</text>
+
+  <!-- Mini line chart 1 -->
+  <polyline points="80,200 130,185 180,170 230,190 280,150 330,165 380,140" stroke="#FF6B6B" stroke-width="2.5" fill="none"/>
+  <polyline points="80,195 130,180 180,175 230,195 280,155 330,170 380,145" stroke="#4ECDC4" stroke-width="2.5" fill="none" stroke-dasharray="6,3"/>
+
+  <circle cx="80" cy="230" r="5" fill="#FF6B6B"/>
+  <text x="95" y="235" fill="white" font-size="10" font-family="sans-serif">ケイジの出演本数</text>
+  <circle cx="250" cy="230" r="5" fill="#4ECDC4"/>
+  <text x="265" y="235" fill="white" font-size="10" font-family="sans-serif">プール溺死者数</text>
+
+  <!-- Correlation 2 -->
+  <rect x="470" y="55" width="380" height="190" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="660" y="80" text-anchor="middle" fill="#e17055" font-size="14" font-family="sans-serif" font-weight="bold">チーズ消費量 vs ベッドシーツ絞殺死</text>
+  <text x="660" y="100" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">r = 0.947</text>
+
+  <!-- Mini line chart 2 -->
+  <polyline points="500,200 550,190 600,180 650,170 700,160 750,150 800,140" stroke="#e17055" stroke-width="2.5" fill="none"/>
+  <polyline points="500,195 550,185 600,178 650,168 700,165 750,148 800,142" stroke="#96CEB4" stroke-width="2.5" fill="none" stroke-dasharray="6,3"/>
+
+  <circle cx="500" cy="230" r="5" fill="#e17055"/>
+  <text x="515" y="235" fill="white" font-size="10" font-family="sans-serif">チーズ消費量</text>
+  <circle cx="670" cy="230" r="5" fill="#96CEB4"/>
+  <text x="685" y="235" fill="white" font-size="10" font-family="sans-serif">シーツ絞殺死</text>
+
+  <!-- Why this happens -->
+  <rect x="50" y="275" width="800" height="200" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="450" y="305" text-anchor="middle" fill="#FFEAA7" font-size="16" font-family="sans-serif" font-weight="bold">なぜ見せかけの相関が生まれるか</text>
+
+  <!-- Three reasons -->
+  <rect x="80" y="325" width="220" height="90" fill="#1a1a2e" rx="8"/>
+  <text x="190" y="350" text-anchor="middle" fill="#4ECDC4" font-size="13" font-family="sans-serif" font-weight="bold">共通の原因</text>
+  <text x="190" y="370" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">A←C→B</text>
+  <text x="190" y="390" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">交絡変数が両方に影響</text>
+  <text x="190" y="405" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">例: 気温→アイス売上 &amp; 犯罪率</text>
+
+  <rect x="340" y="325" width="220" height="90" fill="#1a1a2e" rx="8"/>
+  <text x="450" y="350" text-anchor="middle" fill="#FF6B6B" font-size="13" font-family="sans-serif" font-weight="bold">偶然の一致</text>
+  <text x="450" y="370" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">A ? B</text>
+  <text x="450" y="390" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">十分な変数を調べれば</text>
+  <text x="450" y="405" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">偶然相関するペアが見つかる</text>
+
+  <rect x="600" y="325" width="220" height="90" fill="#1a1a2e" rx="8"/>
+  <text x="710" y="350" text-anchor="middle" fill="#96CEB4" font-size="13" font-family="sans-serif" font-weight="bold">逆因果</text>
+  <text x="710" y="370" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">A←B (AがBの原因ではない)</text>
+  <text x="710" y="390" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">因果の方向が逆</text>
+  <text x="710" y="405" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">例: 消防士数→火災規模?</text>
+
+  <text x="450" y="465" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">出典: Tyler Vigen "Spurious Correlations" — 数千の無意味な相関を収集</text>
+</svg>

@@ -1,0 +1,46 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f0e17" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#fffffe" font-size="18" font-family="sans-serif" font-weight="bold">相変化と技術採用曲線の対応</text>
+
+  <!-- Axes -->
+  <line x1="80" y1="400" x2="850" y2="400" stroke="#a7a9be" stroke-width="2"/>
+  <line x1="80" y1="400" x2="80" y2="60" stroke="#a7a9be" stroke-width="2"/>
+  <polygon points="850,395 862,400 850,405" fill="#a7a9be"/>
+  <polygon points="75,60 80,48 85,60" fill="#a7a9be"/>
+  <text x="460" y="435" text-anchor="middle" fill="#a7a9be" font-size="12" font-family="sans-serif">温度 / 時間 / 投資</text>
+  <text x="40" y="230" text-anchor="middle" fill="#a7a9be" font-size="11" font-family="sans-serif" transform="rotate(-90, 40, 230)">秩序度 / 採用率</text>
+
+  <!-- Phase transition S-curve -->
+  <path d="M100,380 C150,378 200,375 300,370 C350,367 380,360 420,300 C440,260 450,200 460,150 C470,120 490,100 550,95 C650,88 750,85 840,83" stroke="#7ecaff" stroke-width="3" fill="none"/>
+
+  <!-- Phase regions -->
+  <!-- Solid / Innovators -->
+  <rect x="100" y="355" width="200" height="40" fill="#2563eb" rx="4" opacity="0.2"/>
+  <text x="200" y="380" text-anchor="middle" fill="#7ecaff" font-size="11" font-family="sans-serif" font-weight="bold">固体相 / Innovators</text>
+
+  <!-- Transition zone -->
+  <rect x="350" y="130" width="130" height="260" fill="#e6b422" rx="4" opacity="0.15"/>
+  <text x="415" y="160" text-anchor="middle" fill="#e6b422" font-size="12" font-family="sans-serif" font-weight="bold">相転移点</text>
+  <text x="415" y="180" text-anchor="middle" fill="#e6b422" font-size="11" font-family="sans-serif">Critical Point</text>
+
+  <!-- Gas / Mainstream -->
+  <rect x="530" y="72" width="300" height="40" fill="#52b788" rx="4" opacity="0.2"/>
+  <text x="680" y="97" text-anchor="middle" fill="#52b788" font-size="11" font-family="sans-serif" font-weight="bold">気体相 / Mainstream Adoption</text>
+
+  <!-- Critical point marker -->
+  <circle cx="430" cy="280" r="8" fill="#ff6b6b" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="430" y="265" text-anchor="middle" fill="#ff6b6b" font-size="10" font-family="sans-serif" font-weight="bold">臨界点</text>
+
+  <!-- Annotations -->
+  <rect x="100" y="440" width="180" height="50" fill="#1a1a2e" rx="4"/>
+  <text x="190" y="460" text-anchor="middle" fill="#7ecaff" font-size="10" font-family="sans-serif" font-weight="bold">固体: 分子が秩序的</text>
+  <text x="190" y="478" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">= 少数の先進者が使用</text>
+
+  <rect x="360" y="440" width="180" height="50" fill="#1a1a2e" rx="4"/>
+  <text x="450" y="460" text-anchor="middle" fill="#e6b422" font-size="10" font-family="sans-serif" font-weight="bold">相転移: 急激な変化</text>
+  <text x="450" y="478" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">= キャズムを超える瞬間</text>
+
+  <rect x="620" y="440" width="200" height="50" fill="#1a1a2e" rx="4"/>
+  <text x="720" y="460" text-anchor="middle" fill="#52b788" font-size="10" font-family="sans-serif" font-weight="bold">気体: 分子が自由に拡散</text>
+  <text x="720" y="478" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">= 大衆に広く採用</text>
+</svg>

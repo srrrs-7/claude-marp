@@ -1,0 +1,44 @@
+<svg viewBox="0 0 900 450" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-size="18" fill="white" font-weight="bold">定時運行を支える5つのシステム</text>
+
+  <!-- Center: Punctuality -->
+  <circle cx="450" cy="240" r="60" fill="#e74c3c" opacity="0.9" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="450" y="233" text-anchor="middle" font-size="13" fill="white" font-weight="bold">定時運行</text>
+  <text x="450" y="251" text-anchor="middle" font-size="10" fill="white">平均遅延 0.9分</text>
+
+  <!-- System 1: ATC -->
+  <rect x="60" y="60" width="200" height="70" rx="10" fill="#3498db" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="160" y="90" text-anchor="middle" font-size="13" fill="white" font-weight="bold">ATC自動列車制御</text>
+  <text x="160" y="110" text-anchor="middle" font-size="10" fill="white">15秒間隔の自動速度制御</text>
+  <line x1="260" y1="100" x2="393" y2="210" stroke="#3498db" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="391,205 403,212 393,217" fill="#3498db"/>
+
+  <!-- System 2: Signal System -->
+  <rect x="640" y="60" width="200" height="70" rx="10" fill="#2ecc71" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="740" y="90" text-anchor="middle" font-size="13" fill="white" font-weight="bold">ATOS運行管理</text>
+  <text x="740" y="110" text-anchor="middle" font-size="10" fill="white">AIベースのダイヤ自動復旧</text>
+  <line x1="640" y1="100" x2="507" y2="210" stroke="#2ecc71" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="509,205 497,212 507,217" fill="#2ecc71"/>
+
+  <!-- System 3: Platform Design -->
+  <rect x="30" y="310" width="200" height="70" rx="10" fill="#9b59b6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="130" y="340" text-anchor="middle" font-size="13" fill="white" font-weight="bold">ホームドア + 整列乗車</text>
+  <text x="130" y="360" text-anchor="middle" font-size="10" fill="white">乗降時間の短縮・安全確保</text>
+  <line x1="230" y1="340" x2="393" y2="270" stroke="#9b59b6" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="391,265 403,268 393,275" fill="#9b59b6"/>
+
+  <!-- System 4: Crew Training -->
+  <rect x="670" y="310" width="200" height="70" rx="10" fill="#e67e22" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="770" y="340" text-anchor="middle" font-size="13" fill="white" font-weight="bold">乗務員の職人技</text>
+  <text x="770" y="360" text-anchor="middle" font-size="10" fill="white">秒単位の停車位置制御</text>
+  <line x1="670" y1="340" x2="507" y2="270" stroke="#e67e22" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="509,265 497,268 507,275" fill="#e67e22"/>
+
+  <!-- System 5: Culture -->
+  <rect x="350" y="380" width="200" height="60" rx="10" fill="#f39c12" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="450" y="407" text-anchor="middle" font-size="13" fill="white" font-weight="bold">社会的規範</text>
+  <text x="450" y="425" text-anchor="middle" font-size="10" fill="white">「遅延=恥」という文化</text>
+  <line x1="450" y1="380" x2="450" y2="300" stroke="#f39c12" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="443,302 450,290 457,302" fill="#f39c12"/>
+</svg>

@@ -1,0 +1,83 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="380" fill="#f9f9f9" rx="12"/>
+  <text x="400" y="38" font-family="serif" font-size="19" fill="#1a1a2e" text-anchor="middle" font-weight="bold">西洋音楽 vs 能楽：間の設計哲学</text>
+
+  <!-- Left: Western Music -->
+  <rect x="30" y="55" width="350" height="300" fill="#e8eaf8" rx="10" stroke="#5c6bc0" stroke-width="2"/>
+  <text x="205" y="82" font-family="serif" font-size="16" fill="#3949ab" text-anchor="middle" font-weight="bold">西洋音楽</text>
+  <text x="205" y="100" font-family="sans-serif" font-size="11" fill="#5c6bc0" text-anchor="middle">「音符で時間を満たす」</text>
+
+  <!-- Western music bar notation -->
+  <rect x="55" y="115" width="300" height="40" fill="white" rx="4" stroke="#9fa8da" stroke-width="1"/>
+  <line x1="55" y1="125" x2="355" y2="125" stroke="#9fa8da" stroke-width="0.5"/>
+  <line x1="55" y1="132" x2="355" y2="132" stroke="#9fa8da" stroke-width="0.5"/>
+  <line x1="55" y1="139" x2="355" y2="139" stroke="#9fa8da" stroke-width="0.5"/>
+  <line x1="55" y1="146" x2="355" y2="146" stroke="#9fa8da" stroke-width="0.5"/>
+  <!-- Notes filling every beat -->
+  <ellipse cx="80" cy="136" rx="7" ry="5" fill="#3949ab"/>
+  <line x1="87" y1="136" x2="87" y2="116" stroke="#3949ab" stroke-width="1.5"/>
+  <ellipse cx="110" cy="131" rx="7" ry="5" fill="#3949ab"/>
+  <line x1="117" y1="131" x2="117" y2="111" stroke="#3949ab" stroke-width="1.5"/>
+  <ellipse cx="140" cy="139" rx="7" ry="5" fill="#3949ab"/>
+  <line x1="147" y1="139" x2="147" y2="119" stroke="#3949ab" stroke-width="1.5"/>
+  <ellipse cx="170" cy="134" rx="7" ry="5" fill="#3949ab"/>
+  <line x1="177" y1="134" x2="177" y2="114" stroke="#3949ab" stroke-width="1.5"/>
+  <ellipse cx="200" cy="137" rx="7" ry="5" fill="#3949ab"/>
+  <line x1="207" y1="137" x2="207" y2="117" stroke="#3949ab" stroke-width="1.5"/>
+  <ellipse cx="230" cy="130" rx="7" ry="5" fill="#3949ab"/>
+  <line x1="237" y1="130" x2="237" y2="110" stroke="#3949ab" stroke-width="1.5"/>
+  <ellipse cx="260" cy="138" rx="7" ry="5" fill="#3949ab"/>
+  <line x1="267" y1="138" x2="267" y2="118" stroke="#3949ab" stroke-width="1.5"/>
+  <ellipse cx="290" cy="133" rx="7" ry="5" fill="#3949ab"/>
+  <line x1="297" y1="133" x2="297" y2="113" stroke="#3949ab" stroke-width="1.5"/>
+  <ellipse cx="320" cy="136" rx="7" ry="5" fill="#3949ab"/>
+  <line x1="327" y1="136" x2="327" y2="116" stroke="#3949ab" stroke-width="1.5"/>
+
+  <text x="205" y="175" font-family="sans-serif" font-size="11" fill="#3949ab" text-anchor="middle">■ 特徴</text>
+  <text x="205" y="195" font-family="sans-serif" font-size="11" fill="#3a3a5c" text-anchor="middle">・時間を音で充填する</text>
+  <text x="205" y="213" font-family="sans-serif" font-size="11" fill="#3a3a5c" text-anchor="middle">・休符は「休み」として記譜</text>
+  <text x="205" y="231" font-family="sans-serif" font-size="11" fill="#3a3a5c" text-anchor="middle">・緊密な構造で感情を誘導</text>
+  <text x="205" y="249" font-family="sans-serif" font-size="11" fill="#3a3a5c" text-anchor="middle">・演奏者が感情を表現する</text>
+  <text x="205" y="277" font-family="sans-serif" font-size="11" fill="#c0392b" text-anchor="middle" font-weight="bold">→ 観客は「受け取る」</text>
+
+  <!-- Right: Noh -->
+  <rect x="420" y="55" width="350" height="300" fill="#fef6e8" rx="10" stroke="#d4a017" stroke-width="2"/>
+  <text x="595" y="82" font-family="serif" font-size="16" fill="#7a5500" text-anchor="middle" font-weight="bold">能楽</text>
+  <text x="595" y="100" font-family="sans-serif" font-size="11" fill="#9a7520" text-anchor="middle">「間を意図的に設計する」</text>
+
+  <!-- Noh time bar with gaps -->
+  <rect x="445" y="115" width="300" height="40" fill="white" rx="4" stroke="#e0c060" stroke-width="1"/>
+  <line x1="445" y1="125" x2="745" y2="125" stroke="#e0c060" stroke-width="0.5"/>
+  <line x1="445" y1="132" x2="745" y2="132" stroke="#e0c060" stroke-width="0.5"/>
+  <line x1="445" y1="139" x2="745" y2="139" stroke="#e0c060" stroke-width="0.5"/>
+  <line x1="445" y1="146" x2="745" y2="146" stroke="#e0c060" stroke-width="0.5"/>
+  <!-- Sparse notes with intentional gaps -->
+  <ellipse cx="470" cy="134" rx="7" ry="5" fill="#c0920a"/>
+  <line x1="477" y1="134" x2="477" y2="114" stroke="#c0920a" stroke-width="1.5"/>
+  <!-- gap -->
+  <ellipse cx="560" cy="138" rx="7" ry="5" fill="#c0920a"/>
+  <line x1="567" y1="138" x2="567" y2="118" stroke="#c0920a" stroke-width="1.5"/>
+  <ellipse cx="590" cy="132" rx="7" ry="5" fill="#c0920a"/>
+  <line x1="597" y1="132" x2="597" y2="112" stroke="#c0920a" stroke-width="1.5"/>
+  <!-- gap -->
+  <ellipse cx="690" cy="136" rx="7" ry="5" fill="#c0920a"/>
+  <line x1="697" y1="136" x2="697" y2="116" stroke="#c0920a" stroke-width="1.5"/>
+  <ellipse cx="720" cy="131" rx="7" ry="5" fill="#c0920a"/>
+  <line x1="727" y1="131" x2="727" y2="111" stroke="#c0920a" stroke-width="1.5"/>
+  <!-- Mark gaps as "間" -->
+  <rect x="490" y="120" width="60" height="22" fill="#fff8e8" stroke="#d4a017" stroke-width="1" stroke-dasharray="3,2" rx="2"/>
+  <text x="520" y="134" font-family="serif" font-size="13" fill="#c0920a" text-anchor="middle" font-weight="bold">間</text>
+  <rect x="615" y="120" width="65" height="22" fill="#fff8e8" stroke="#d4a017" stroke-width="1" stroke-dasharray="3,2" rx="2"/>
+  <text x="648" y="134" font-family="serif" font-size="13" fill="#c0920a" text-anchor="middle" font-weight="bold">間</text>
+
+  <text x="595" y="175" font-family="sans-serif" font-size="11" fill="#7a5500" text-anchor="middle">■ 特徴</text>
+  <text x="595" y="195" font-family="sans-serif" font-size="11" fill="#3a2c1a" text-anchor="middle">・間は「空白」でなく「緊張」</text>
+  <text x="595" y="213" font-family="sans-serif" font-size="11" fill="#3a2c1a" text-anchor="middle">・観客の想像力を呼び起こす</text>
+  <text x="595" y="231" font-family="sans-serif" font-size="11" fill="#3a2c1a" text-anchor="middle">・型（かた）が意味を生む</text>
+  <text x="595" y="249" font-family="sans-serif" font-size="11" fill="#3a2c1a" text-anchor="middle">・余白が次の動きを強調する</text>
+  <text x="595" y="277" font-family="sans-serif" font-size="11" fill="#c0392b" text-anchor="middle" font-weight="bold">→ 観客は「共創する」</text>
+
+  <!-- VS badge -->
+  <circle cx="400" cy="205" r="28" fill="#1a1a2e"/>
+  <text x="400" y="213" font-family="sans-serif" font-size="16" fill="white" text-anchor="middle" font-weight="bold">VS</text>
+</svg>

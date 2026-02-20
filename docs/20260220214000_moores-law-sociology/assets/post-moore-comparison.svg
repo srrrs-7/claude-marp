@@ -1,0 +1,97 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" rx="12" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" fill="#e0e0e0" font-size="18" font-weight="bold" font-family="Arial, sans-serif">Post-Moore時代の性能向上手法</text>
+
+  <!-- Column headers -->
+  <rect x="50" y="60" width="250" height="35" rx="6" fill="#4ecdc4" opacity="0.2"/>
+  <text x="175" y="83" text-anchor="middle" fill="#4ecdc4" font-size="13" font-weight="bold" font-family="Arial, sans-serif">アーキテクチャ革新</text>
+
+  <rect x="325" y="60" width="250" height="35" rx="6" fill="#ffd93d" opacity="0.2"/>
+  <text x="450" y="83" text-anchor="middle" fill="#ffd93d" font-size="13" font-weight="bold" font-family="Arial, sans-serif">パッケージング革新</text>
+
+  <rect x="600" y="60" width="250" height="35" rx="6" fill="#ff6b6b" opacity="0.2"/>
+  <text x="725" y="83" text-anchor="middle" fill="#ff6b6b" font-size="13" font-weight="bold" font-family="Arial, sans-serif">新パラダイム</text>
+
+  <!-- Architecture Innovation items -->
+  <rect x="60" y="110" width="230" height="55" rx="8" fill="#2d3436" stroke="#4ecdc4" stroke-width="1.5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="175" y="133" text-anchor="middle" fill="#4ecdc4" font-size="12" font-weight="bold" font-family="Arial, sans-serif">チップレットアーキテクチャ</text>
+  <text x="175" y="152" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">AMD EPYC, Apple M-series</text>
+
+  <rect x="60" y="175" width="230" height="55" rx="8" fill="#2d3436" stroke="#4ecdc4" stroke-width="1.5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="175" y="198" text-anchor="middle" fill="#4ecdc4" font-size="12" font-weight="bold" font-family="Arial, sans-serif">ドメイン特化プロセッサ</text>
+  <text x="175" y="217" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">GPU, TPU, NPU, DPU</text>
+
+  <rect x="60" y="240" width="230" height="55" rx="8" fill="#2d3436" stroke="#4ecdc4" stroke-width="1.5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="175" y="263" text-anchor="middle" fill="#4ecdc4" font-size="12" font-weight="bold" font-family="Arial, sans-serif">RISC-V オープン命令セット</text>
+  <text x="175" y="282" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">カスタムシリコン民主化</text>
+
+  <!-- Packaging Innovation items -->
+  <rect x="335" y="110" width="230" height="55" rx="8" fill="#2d3436" stroke="#ffd93d" stroke-width="1.5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="450" y="133" text-anchor="middle" fill="#ffd93d" font-size="12" font-weight="bold" font-family="Arial, sans-serif">3D積層 (3D-IC)</text>
+  <text x="450" y="152" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">TSMC SoIC, Intel Foveros</text>
+
+  <rect x="335" y="175" width="230" height="55" rx="8" fill="#2d3436" stroke="#ffd93d" stroke-width="1.5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="450" y="198" text-anchor="middle" fill="#ffd93d" font-size="12" font-weight="bold" font-family="Arial, sans-serif">UCIe 統一インターコネクト</text>
+  <text x="450" y="217" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">チップレット間標準規格</text>
+
+  <rect x="335" y="240" width="230" height="55" rx="8" fill="#2d3436" stroke="#ffd93d" stroke-width="1.5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="450" y="263" text-anchor="middle" fill="#ffd93d" font-size="12" font-weight="bold" font-family="Arial, sans-serif">先端パッケージング</text>
+  <text x="450" y="282" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">CoWoS, EMIB, HBM統合</text>
+
+  <!-- New Paradigm items -->
+  <rect x="610" y="110" width="230" height="55" rx="8" fill="#2d3436" stroke="#ff6b6b" stroke-width="1.5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="725" y="133" text-anchor="middle" fill="#ff6b6b" font-size="12" font-weight="bold" font-family="Arial, sans-serif">量子コンピューティング</text>
+  <text x="725" y="152" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">IBM, Google, 特定問題で優位</text>
+
+  <rect x="610" y="175" width="230" height="55" rx="8" fill="#2d3436" stroke="#ff6b6b" stroke-width="1.5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="725" y="198" text-anchor="middle" fill="#ff6b6b" font-size="12" font-weight="bold" font-family="Arial, sans-serif">ニューロモルフィック</text>
+  <text x="725" y="217" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">Intel Loihi, 脳型計算</text>
+
+  <rect x="610" y="240" width="230" height="55" rx="8" fill="#2d3436" stroke="#ff6b6b" stroke-width="1.5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2))"/>
+  <text x="725" y="263" text-anchor="middle" fill="#ff6b6b" font-size="12" font-weight="bold" font-family="Arial, sans-serif">光コンピューティング</text>
+  <text x="725" y="282" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">Lightmatter, フォトニクス</text>
+
+  <!-- Bottom comparison bar -->
+  <text x="450" y="330" text-anchor="middle" fill="#e0e0e0" font-size="13" font-weight="bold" font-family="Arial, sans-serif">実用化タイムライン</text>
+
+  <!-- Timeline bar -->
+  <line x1="80" y1="360" x2="820" y2="360" stroke="#444" stroke-width="2"/>
+
+  <!-- Timeline labels -->
+  <text x="80" y="380" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">現在</text>
+  <text x="300" y="380" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">2-3年</text>
+  <text x="550" y="380" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">5-10年</text>
+  <text x="820" y="380" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">10年+</text>
+
+  <!-- Timeline markers -->
+  <circle cx="120" cy="360" r="6" fill="#4ecdc4"/>
+  <text x="120" y="400" text-anchor="middle" fill="#4ecdc4" font-size="9" font-family="Arial, sans-serif">チップレット</text>
+
+  <circle cx="180" cy="360" r="6" fill="#4ecdc4"/>
+  <text x="180" y="415" text-anchor="middle" fill="#4ecdc4" font-size="9" font-family="Arial, sans-serif">DSA</text>
+
+  <circle cx="250" cy="360" r="6" fill="#ffd93d"/>
+  <text x="250" y="400" text-anchor="middle" fill="#ffd93d" font-size="9" font-family="Arial, sans-serif">3D-IC</text>
+
+  <circle cx="350" cy="360" r="6" fill="#ffd93d"/>
+  <text x="350" y="415" text-anchor="middle" fill="#ffd93d" font-size="9" font-family="Arial, sans-serif">UCIe普及</text>
+
+  <circle cx="500" cy="360" r="6" fill="#4ecdc4"/>
+  <text x="500" y="400" text-anchor="middle" fill="#4ecdc4" font-size="9" font-family="Arial, sans-serif">RISC-V主流</text>
+
+  <circle cx="620" cy="360" r="6" fill="#ff6b6b"/>
+  <text x="620" y="415" text-anchor="middle" fill="#ff6b6b" font-size="9" font-family="Arial, sans-serif">量子実用化</text>
+
+  <circle cx="720" cy="360" r="6" fill="#ff6b6b"/>
+  <text x="720" y="400" text-anchor="middle" fill="#ff6b6b" font-size="9" font-family="Arial, sans-serif">ニューロ</text>
+
+  <circle cx="790" cy="360" r="6" fill="#ff6b6b"/>
+  <text x="790" y="415" text-anchor="middle" fill="#ff6b6b" font-size="9" font-family="Arial, sans-serif">光計算</text>
+
+  <!-- Key insight -->
+  <rect x="120" y="440" width="660" height="40" rx="8" fill="#222" opacity="0.8"/>
+  <text x="450" y="460" text-anchor="middle" fill="#e0e0e0" font-size="12" font-family="Arial, sans-serif">ムーアの法則は終わっても、性能向上の「社会的期待」は新たな形で継続する</text>
+  <text x="450" y="475" text-anchor="middle" fill="#ff9ff3" font-size="10" font-family="Arial, sans-serif">「指数関数的成長」の神話は技術パラダイムを超えて存続</text>
+</svg>

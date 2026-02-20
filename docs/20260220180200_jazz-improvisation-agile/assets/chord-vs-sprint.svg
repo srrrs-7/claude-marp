@@ -1,0 +1,81 @@
+<svg viewBox="0 0 860 380" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="860" height="380" fill="#1a1a2e" rx="12"/>
+  <text x="430" y="36" text-anchor="middle" fill="#f5a623" font-size="18" font-weight="bold" font-family="sans-serif">コード進行 vs スプリント：制約の中の自由</text>
+
+  <!-- Left: Jazz Chord Progression -->
+  <rect x="20" y="55" width="400" height="300" fill="#0f3460" rx="10"/>
+  <text x="220" y="82" text-anchor="middle" fill="#7fdbff" font-size="15" font-weight="bold" font-family="sans-serif">ジャズ：コード進行</text>
+
+  <!-- Chord boxes -->
+  <rect x="40" y="100" width="80" height="50" fill="#e94560" rx="6"/>
+  <text x="80" y="122" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold" font-family="sans-serif">Dm7</text>
+  <text x="80" y="140" text-anchor="middle" fill="#ffd" font-size="10" font-family="sans-serif">2小節</text>
+
+  <line x1="120" y1="125" x2="148" y2="125" stroke="#f5a623" stroke-width="2"/>
+  <polygon points="148,119 160,125 148,131" fill="#f5a623"/>
+
+  <rect x="160" y="100" width="80" height="50" fill="#e94560" rx="6"/>
+  <text x="200" y="122" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold" font-family="sans-serif">G7</text>
+  <text x="200" y="140" text-anchor="middle" fill="#ffd" font-size="10" font-family="sans-serif">2小節</text>
+
+  <line x1="240" y1="125" x2="268" y2="125" stroke="#f5a623" stroke-width="2"/>
+  <polygon points="268,119 280,125 268,131" fill="#f5a623"/>
+
+  <rect x="280" y="100" width="80" height="50" fill="#e94560" rx="6"/>
+  <text x="320" y="122" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold" font-family="sans-serif">Cmaj7</text>
+  <text x="320" y="140" text-anchor="middle" fill="#ffd" font-size="10" font-family="sans-serif">4小節</text>
+
+  <!-- Loop arrow back -->
+  <path d="M360 150 Q380 180 360 210 Q220 240 80 210 Q60 195 80 175" stroke="#a8d8ea" stroke-width="1.5" fill="none" stroke-dasharray="5,3"/>
+  <polygon points="80,175 72,185 84,185" fill="#a8d8ea"/>
+
+  <!-- Freedom indicators -->
+  <text x="220" y="185" text-anchor="middle" fill="#f5a623" font-size="12" font-family="sans-serif">各奏者はコードの上で自由に即興</text>
+  <text x="220" y="205" text-anchor="middle" fill="#a8d8ea" font-size="11" font-family="sans-serif">スケール、リズム、フレーズは</text>
+  <text x="220" y="222" text-anchor="middle" fill="#a8d8ea" font-size="11" font-family="sans-serif">演奏者が創造的に決定する</text>
+
+  <rect x="40" y="240" width="340" height="90" fill="#0a1628" rx="6" stroke="#7fdbff" stroke-width="1"/>
+  <text x="210" y="262" text-anchor="middle" fill="#7fdbff" font-size="12" font-weight="bold" font-family="sans-serif">制約：コード進行（変えない）</text>
+  <text x="210" y="280" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">自由：メロディ・リズム・音色・表現</text>
+  <text x="210" y="298" text-anchor="middle" fill="#a8b4c8" font-size="10" font-family="sans-serif">ルールを守りながら、その中で最大限の</text>
+  <text x="210" y="314" text-anchor="middle" fill="#a8b4c8" font-size="10" font-family="sans-serif">創造性を発揮するのがジャズの本質</text>
+
+  <!-- Right: Agile Sprint -->
+  <rect x="440" y="55" width="400" height="300" fill="#16213e" rx="10"/>
+  <text x="640" y="82" text-anchor="middle" fill="#7fdbff" font-size="15" font-weight="bold" font-family="sans-serif">アジャイル：スプリント</text>
+
+  <!-- Sprint boxes -->
+  <rect x="460" y="100" width="80" height="50" fill="#2ecc71" rx="6"/>
+  <text x="500" y="118" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">Sprint 1</text>
+  <text x="500" y="134" text-anchor="middle" fill="#ffd" font-size="10" font-family="sans-serif">2週間</text>
+
+  <line x1="540" y1="125" x2="568" y2="125" stroke="#f5a623" stroke-width="2"/>
+  <polygon points="568,119 580,125 568,131" fill="#f5a623"/>
+
+  <rect x="580" y="100" width="80" height="50" fill="#2ecc71" rx="6"/>
+  <text x="620" y="118" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">Sprint 2</text>
+  <text x="620" y="134" text-anchor="middle" fill="#ffd" font-size="10" font-family="sans-serif">2週間</text>
+
+  <line x1="660" y1="125" x2="688" y2="125" stroke="#f5a623" stroke-width="2"/>
+  <polygon points="688,119 700,125 688,131" fill="#f5a623"/>
+
+  <rect x="700" y="100" width="80" height="50" fill="#2ecc71" rx="6"/>
+  <text x="740" y="118" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">Sprint 3</text>
+  <text x="740" y="134" text-anchor="middle" fill="#ffd" font-size="10" font-family="sans-serif">2週間</text>
+
+  <!-- Loop arrow back -->
+  <path d="M780 150 Q800 180 780 210 Q640 240 500 210 Q480 195 500 175" stroke="#a8d8ea" stroke-width="1.5" fill="none" stroke-dasharray="5,3"/>
+  <polygon points="500,175 492,185 504,185" fill="#a8d8ea"/>
+
+  <!-- Freedom indicators -->
+  <text x="640" y="185" text-anchor="middle" fill="#f5a623" font-size="12" font-family="sans-serif">各メンバーはゴールの中で自由に判断</text>
+  <text x="640" y="205" text-anchor="middle" fill="#a8d8ea" font-size="11" font-family="sans-serif">実装方法、タスク順序、技術選択は</text>
+  <text x="640" y="222" text-anchor="middle" fill="#a8d8ea" font-size="11" font-family="sans-serif">チームが自律的に決定する</text>
+
+  <rect x="460" y="240" width="340" height="90" fill="#0a1628" rx="6" stroke="#7fdbff" stroke-width="1"/>
+  <text x="630" y="262" text-anchor="middle" fill="#7fdbff" font-size="12" font-weight="bold" font-family="sans-serif">制約：スプリントゴール（変えない）</text>
+  <text x="630" y="280" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">自由：実装方法・設計・技術スタック</text>
+  <text x="630" y="298" text-anchor="middle" fill="#a8b4c8" font-size="10" font-family="sans-serif">タイムボックスを守りながら、その中で</text>
+  <text x="630" y="314" text-anchor="middle" fill="#a8b4c8" font-size="10" font-family="sans-serif">チームが最善のアプローチを選択する</text>
+</svg>

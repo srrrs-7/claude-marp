@@ -1,0 +1,12 @@
+topic: "宇宙はニューラルネットワークなのか？ — 物理学と深層学習の驚くべき類似性"
+language: "ja"
+output:
+  dir: "docs/20260220055100_universe-neural-network"
+  baseName: "universe-neural-network"
+marp:
+  theme: gaia
+  paginate: true
+  header: "宇宙とニューラルネットワーク"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

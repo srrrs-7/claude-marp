@@ -1,0 +1,20 @@
+topic: "ポスト量子暗号：量子コンピュータ時代の暗号技術"
+language: "ja"
+
+output:
+  dir: "docs/20260220205500_post-quantum-crypto"
+  baseName: "post-quantum-crypto"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "Post-Quantum Cryptography"
+  footer: "© 2026 Quantum Security"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

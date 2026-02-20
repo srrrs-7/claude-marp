@@ -1,0 +1,111 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="30" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">コミュニケーションラインの爆発</text>
+  <text x="450" y="50" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">n(n-1)/2 = チーム人数が増えると通信線が指数的に増加</text>
+
+  <!-- 3 people = 3 lines -->
+  <rect x="30" y="70" width="200" height="200" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="130" y="95" text-anchor="middle" fill="#4ECDC4" font-size="14" font-family="sans-serif" font-weight="bold">3人 = 3本</text>
+  <circle cx="130" cy="130" r="15" fill="#4ECDC4" opacity="0.6"/>
+  <circle cx="85" cy="210" r="15" fill="#4ECDC4" opacity="0.6"/>
+  <circle cx="175" cy="210" r="15" fill="#4ECDC4" opacity="0.6"/>
+  <line x1="130" y1="145" x2="85" y2="195" stroke="#4ECDC4" stroke-width="1.5" opacity="0.5"/>
+  <line x1="130" y1="145" x2="175" y2="195" stroke="#4ECDC4" stroke-width="1.5" opacity="0.5"/>
+  <line x1="85" y1="210" x2="175" y2="210" stroke="#4ECDC4" stroke-width="1.5" opacity="0.5"/>
+  <text x="130" y="250" text-anchor="middle" fill="#96CEB4" font-size="12" font-family="sans-serif">管理しやすい</text>
+
+  <!-- 6 people = 15 lines -->
+  <rect x="250" y="70" width="200" height="200" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="350" y="95" text-anchor="middle" fill="#FFEAA7" font-size="14" font-family="sans-serif" font-weight="bold">6人 = 15本</text>
+  <circle cx="350" cy="120" r="12" fill="#FFEAA7" opacity="0.6"/>
+  <circle cx="295" cy="155" r="12" fill="#FFEAA7" opacity="0.6"/>
+  <circle cx="405" cy="155" r="12" fill="#FFEAA7" opacity="0.6"/>
+  <circle cx="295" cy="210" r="12" fill="#FFEAA7" opacity="0.6"/>
+  <circle cx="405" cy="210" r="12" fill="#FFEAA7" opacity="0.6"/>
+  <circle cx="350" cy="240" r="12" fill="#FFEAA7" opacity="0.6"/>
+  <!-- Just some representative lines -->
+  <line x1="350" y1="132" x2="295" y2="143" stroke="#FFEAA7" stroke-width="1" opacity="0.3"/>
+  <line x1="350" y1="132" x2="405" y2="143" stroke="#FFEAA7" stroke-width="1" opacity="0.3"/>
+  <line x1="295" y1="155" x2="405" y2="155" stroke="#FFEAA7" stroke-width="1" opacity="0.3"/>
+  <line x1="295" y1="167" x2="295" y2="198" stroke="#FFEAA7" stroke-width="1" opacity="0.3"/>
+  <line x1="405" y1="167" x2="405" y2="198" stroke="#FFEAA7" stroke-width="1" opacity="0.3"/>
+  <line x1="295" y1="222" x2="350" y2="228" stroke="#FFEAA7" stroke-width="1" opacity="0.3"/>
+  <line x1="405" y1="222" x2="350" y2="228" stroke="#FFEAA7" stroke-width="1" opacity="0.3"/>
+  <line x1="350" y1="132" x2="295" y2="198" stroke="#FFEAA7" stroke-width="1" opacity="0.2"/>
+  <line x1="350" y1="132" x2="405" y2="198" stroke="#FFEAA7" stroke-width="1" opacity="0.2"/>
+  <line x1="350" y1="132" x2="350" y2="228" stroke="#FFEAA7" stroke-width="1" opacity="0.2"/>
+  <line x1="295" y1="155" x2="405" y2="210" stroke="#FFEAA7" stroke-width="1" opacity="0.2"/>
+  <line x1="405" y1="155" x2="295" y2="210" stroke="#FFEAA7" stroke-width="1" opacity="0.2"/>
+  <line x1="295" y1="155" x2="350" y2="228" stroke="#FFEAA7" stroke-width="1" opacity="0.2"/>
+  <line x1="405" y1="155" x2="350" y2="228" stroke="#FFEAA7" stroke-width="1" opacity="0.2"/>
+  <line x1="295" y1="210" x2="405" y2="210" stroke="#FFEAA7" stroke-width="1" opacity="0.2"/>
+  <text x="350" y="260" text-anchor="middle" fill="#FFEAA7" font-size="12" font-family="sans-serif">ピザ2枚チーム</text>
+
+  <!-- 12 people = 66 lines -->
+  <rect x="470" y="70" width="200" height="200" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="570" y="95" text-anchor="middle" fill="#FF6B6B" font-size="14" font-family="sans-serif" font-weight="bold">12人 = 66本</text>
+  <!-- 12 circles in a rough arrangement -->
+  <circle cx="540" cy="115" r="8" fill="#FF6B6B" opacity="0.5"/>
+  <circle cx="570" cy="115" r="8" fill="#FF6B6B" opacity="0.5"/>
+  <circle cx="600" cy="115" r="8" fill="#FF6B6B" opacity="0.5"/>
+  <circle cx="520" cy="145" r="8" fill="#FF6B6B" opacity="0.5"/>
+  <circle cx="550" cy="145" r="8" fill="#FF6B6B" opacity="0.5"/>
+  <circle cx="590" cy="145" r="8" fill="#FF6B6B" opacity="0.5"/>
+  <circle cx="620" cy="145" r="8" fill="#FF6B6B" opacity="0.5"/>
+  <circle cx="530" cy="180" r="8" fill="#FF6B6B" opacity="0.5"/>
+  <circle cx="560" cy="180" r="8" fill="#FF6B6B" opacity="0.5"/>
+  <circle cx="590" cy="180" r="8" fill="#FF6B6B" opacity="0.5"/>
+  <circle cx="550" cy="215" r="8" fill="#FF6B6B" opacity="0.5"/>
+  <circle cx="590" cy="215" r="8" fill="#FF6B6B" opacity="0.5"/>
+  <!-- Dense spaghetti of lines -->
+  <line x1="540" y1="115" x2="620" y2="145" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+  <line x1="570" y1="115" x2="530" y2="180" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+  <line x1="600" y1="115" x2="550" y2="215" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+  <line x1="520" y1="145" x2="590" y2="215" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+  <line x1="550" y1="145" x2="590" y2="180" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+  <line x1="590" y1="145" x2="530" y2="180" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+  <line x1="620" y1="145" x2="550" y2="215" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+  <line x1="530" y1="180" x2="590" y2="215" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+  <text x="570" y="250" text-anchor="middle" fill="#FF6B6B" font-size="12" font-family="sans-serif">カオス状態</text>
+
+  <!-- 20 people = 190 lines -->
+  <rect x="690" y="70" width="180" height="200" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="780" y="95" text-anchor="middle" fill="#e17055" font-size="14" font-family="sans-serif" font-weight="bold">20人 = 190本</text>
+  <!-- Solid mess -->
+  <rect x="720" y="110" width="120" height="120" fill="#e17055" opacity="0.15" rx="5"/>
+  <text x="780" y="175" text-anchor="middle" fill="#e17055" font-size="16" font-family="sans-serif" font-weight="bold">!?</text>
+  <text x="780" y="250" text-anchor="middle" fill="#e17055" font-size="12" font-family="sans-serif">完全に破綻</text>
+
+  <!-- Bottom: Chart -->
+  <rect x="50" y="290" width="800" height="190" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="450" y="320" text-anchor="middle" fill="#FFEAA7" font-size="15" font-family="sans-serif" font-weight="bold">人数と通信線の関係: n(n-1)/2</text>
+
+  <!-- Simple data table -->
+  <text x="140" y="355" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">人数</text>
+  <text x="280" y="355" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">通信線</text>
+  <text x="440" y="355" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">人数</text>
+  <text x="580" y="355" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">通信線</text>
+  <text x="730" y="355" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">増加率</text>
+
+  <line x1="80" y1="365" x2="820" y2="365" stroke="white" stroke-width="0.5" opacity="0.2"/>
+
+  <text x="140" y="385" text-anchor="middle" fill="#4ECDC4" font-size="13" font-family="sans-serif">3人</text>
+  <text x="280" y="385" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">3本</text>
+  <text x="440" y="385" text-anchor="middle" fill="#FFEAA7" font-size="13" font-family="sans-serif">7人</text>
+  <text x="580" y="385" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">21本</text>
+  <text x="730" y="385" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">7x</text>
+
+  <text x="140" y="410" text-anchor="middle" fill="#4ECDC4" font-size="13" font-family="sans-serif">5人</text>
+  <text x="280" y="410" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">10本</text>
+  <text x="440" y="410" text-anchor="middle" fill="#FF6B6B" font-size="13" font-family="sans-serif">12人</text>
+  <text x="580" y="410" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">66本</text>
+  <text x="730" y="410" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">22x</text>
+
+  <text x="140" y="435" text-anchor="middle" fill="#FFEAA7" font-size="13" font-family="sans-serif">6人</text>
+  <text x="280" y="435" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">15本</text>
+  <text x="440" y="435" text-anchor="middle" fill="#e17055" font-size="13" font-family="sans-serif">20人</text>
+  <text x="580" y="435" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">190本</text>
+  <text x="730" y="435" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">63x</text>
+
+  <text x="450" y="470" text-anchor="middle" fill="#FF6B6B" font-size="12" font-family="sans-serif">人数を2倍にしても生産性は2倍にならない — コミュニケーションコストが食い潰す</text>
+</svg>

@@ -1,0 +1,12 @@
+topic: "フラクタルは自然界のデザイン原理"
+language: "ja"
+output:
+  dir: "docs/20260220055200_fractals-everywhere"
+  baseName: "fractals-everywhere"
+marp:
+  theme: gaia
+  paginate: true
+  header: "フラクタル幾何学"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

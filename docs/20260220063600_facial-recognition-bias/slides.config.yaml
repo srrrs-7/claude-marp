@@ -1,0 +1,12 @@
+topic: "顔認識AIのバイアス ― テクノロジーは差別を増幅するか"
+language: "ja"
+output:
+  dir: "docs/20260220063600_facial-recognition-bias"
+  baseName: "facial-recognition-bias"
+marp:
+  theme: gaia
+  paginate: true
+  header: "顔認識AIとバイアス"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

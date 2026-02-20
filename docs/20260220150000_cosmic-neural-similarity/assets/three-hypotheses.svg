@@ -1,0 +1,90 @@
+<svg viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="440" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="26" text-anchor="middle" fill="#ecf0f1" font-size="14" font-weight="bold">偶然か必然か？ — 類似の原因をめぐる3つの仮説</text>
+
+  <!-- ===== Column 1: 偶然説 ===== -->
+  <rect x="20" y="38" width="270" height="310" rx="8" fill="#1a1520" stroke="#9b59b6" stroke-width="2"/>
+  <text x="155" y="62" text-anchor="middle" fill="#9b59b6" font-size="13" font-weight="bold">仮説①: 偶然説</text>
+  <text x="155" y="78" text-anchor="middle" fill="#c39bd3" font-size="10">「単なる視覚的錯覚」</text>
+  <rect x="30" y="84" width="250" height="3" rx="2" fill="#9b59b6" opacity="0.5"/>
+
+  <rect x="35" y="94" width="240" height="52" rx="5" fill="#1a0a2e" stroke="#9b59b6" stroke-width="1"/>
+  <text x="155" y="113" text-anchor="middle" fill="#c39bd3" font-size="10" font-weight="bold">主張</text>
+  <text x="155" y="128" text-anchor="middle" fill="#d2b4de" font-size="9">人間の視覚系はパターンを</text>
+  <text x="155" y="140" text-anchor="middle" fill="#d2b4de" font-size="9">見つけすぎる（パレイドリア）</text>
+
+  <rect x="35" y="154" width="240" height="52" rx="5" fill="#1a0a2e" stroke="#9b59b6" stroke-width="1"/>
+  <text x="155" y="173" text-anchor="middle" fill="#c39bd3" font-size="10" font-weight="bold">根拠</text>
+  <text x="155" y="188" text-anchor="middle" fill="#d2b4de" font-size="9">宇宙のノード数は ~10¹¹、</text>
+  <text x="155" y="200" text-anchor="middle" fill="#d2b4de" font-size="9">それ以外にも多くの類似物がある</text>
+
+  <rect x="35" y="214" width="240" height="52" rx="5" fill="#1a0a2e" stroke="#9b59b6" stroke-width="1"/>
+  <text x="155" y="233" text-anchor="middle" fill="#c39bd3" font-size="10" font-weight="bold">批判</text>
+  <text x="155" y="248" text-anchor="middle" fill="#d2b4de" font-size="9">定量指標の一致（C, γ, D_f）は</text>
+  <text x="155" y="260" text-anchor="middle" fill="#d2b4de" font-size="9">視覚的錯覚では説明できない</text>
+
+  <rect x="35" y="274" width="240" height="30" rx="5" fill="#2c1040" stroke="#9b59b6" stroke-width="1"/>
+  <text x="155" y="294" text-anchor="middle" fill="#9b59b6" font-size="9" font-weight="bold">支持者: 懐疑的物理学者の一部</text>
+
+  <text x="155" y="330" text-anchor="middle" fill="#9b59b6" font-size="32" opacity="0.4">?</text>
+
+  <!-- ===== Column 2: 創発説 ===== -->
+  <rect x="315" y="38" width="270" height="310" rx="8" fill="#0d2015" stroke="#2ecc71" stroke-width="2"/>
+  <text x="450" y="62" text-anchor="middle" fill="#2ecc71" font-size="13" font-weight="bold">仮説②: 創発説</text>
+  <text x="450" y="78" text-anchor="middle" fill="#a9dfbf" font-size="10">「同じ数学が同じ形を生む」</text>
+  <rect x="325" y="84" width="250" height="3" rx="2" fill="#2ecc71" opacity="0.5"/>
+
+  <rect x="330" y="94" width="240" height="52" rx="5" fill="#0d2e1a" stroke="#2ecc71" stroke-width="1"/>
+  <text x="450" y="113" text-anchor="middle" fill="#a9dfbf" font-size="10" font-weight="bold">主張</text>
+  <text x="450" y="128" text-anchor="middle" fill="#d5f5e3" font-size="9">スケールフリー成長（優先的選択）と</text>
+  <text x="450" y="140" text-anchor="middle" fill="#d5f5e3" font-size="9">自己組織化が共通して働く</text>
+
+  <rect x="330" y="154" width="240" height="52" rx="5" fill="#0d2e1a" stroke="#2ecc71" stroke-width="1"/>
+  <text x="450" y="173" text-anchor="middle" fill="#a9dfbf" font-size="10" font-weight="bold">根拠</text>
+  <text x="450" y="188" text-anchor="middle" fill="#d5f5e3" font-size="9">BA モデルで重力も神経可塑性も</text>
+  <text x="450" y="200" text-anchor="middle" fill="#d5f5e3" font-size="9">同じべき乗則分布が生じる</text>
+
+  <rect x="330" y="214" width="240" height="52" rx="5" fill="#0d2e1a" stroke="#2ecc71" stroke-width="1"/>
+  <text x="450" y="233" text-anchor="middle" fill="#a9dfbf" font-size="10" font-weight="bold">含意</text>
+  <text x="450" y="248" text-anchor="middle" fill="#d5f5e3" font-size="9">「機能」は異なるが「構造」は</text>
+  <text x="450" y="260" text-anchor="middle" fill="#d5f5e3" font-size="9">同じ最適化原理に収斂した</text>
+
+  <rect x="330" y="274" width="240" height="30" rx="5" fill="#0d3a1a" stroke="#2ecc71" stroke-width="1"/>
+  <text x="450" y="294" text-anchor="middle" fill="#2ecc71" font-size="9" font-weight="bold">支持者: Barabási、複雑ネットワーク研究者</text>
+
+  <text x="450" y="330" text-anchor="middle" fill="#2ecc71" font-size="28" opacity="0.5">✓</text>
+  <text x="450" y="352" text-anchor="middle" fill="#a9dfbf" font-size="9">現在最も広く受け入れられる仮説</text>
+
+  <!-- ===== Column 3: 深い法則説 ===== -->
+  <rect x="610" y="38" width="270" height="310" rx="8" fill="#1a1500" stroke="#f39c12" stroke-width="2"/>
+  <text x="745" y="62" text-anchor="middle" fill="#f39c12" font-size="13" font-weight="bold">仮説③: 深い法則説</text>
+  <text x="745" y="78" text-anchor="middle" fill="#fad7a0" font-size="10">「宇宙の深い情報論的構造」</text>
+  <rect x="620" y="84" width="250" height="3" rx="2" fill="#f39c12" opacity="0.5"/>
+
+  <rect x="625" y="94" width="240" height="52" rx="5" fill="#2c1800" stroke="#f39c12" stroke-width="1"/>
+  <text x="745" y="113" text-anchor="middle" fill="#fad7a0" font-size="10" font-weight="bold">主張</text>
+  <text x="745" y="128" text-anchor="middle" fill="#fdebd0" font-size="9">宇宙自体が情報処理システムであり、</text>
+  <text x="745" y="140" text-anchor="middle" fill="#fdebd0" font-size="9">神経網はその縮図として現れた</text>
+
+  <rect x="625" y="154" width="240" height="52" rx="5" fill="#2c1800" stroke="#f39c12" stroke-width="1"/>
+  <text x="745" y="173" text-anchor="middle" fill="#fad7a0" font-size="10" font-weight="bold">根拠</text>
+  <text x="745" y="188" text-anchor="middle" fill="#fdebd0" font-size="9">「It from Bit」（Wheeler）、</text>
+  <text x="745" y="200" text-anchor="middle" fill="#fdebd0" font-size="9">Tegmark の数学的宇宙仮説</text>
+
+  <rect x="625" y="214" width="240" height="52" rx="5" fill="#2c1800" stroke="#f39c12" stroke-width="1"/>
+  <text x="745" y="233" text-anchor="middle" fill="#fad7a0" font-size="10" font-weight="bold">批判</text>
+  <text x="745" y="248" text-anchor="middle" fill="#fdebd0" font-size="9">検証が難しく、現在は</text>
+  <text x="745" y="260" text-anchor="middle" fill="#fdebd0" font-size="9">哲学・思想の領域に近い</text>
+
+  <rect x="625" y="274" width="240" height="30" rx="5" fill="#3a2000" stroke="#e8c57a" stroke-width="1"/>
+  <text x="745" y="294" text-anchor="middle" fill="#e8c57a" font-size="9" font-weight="bold">支持者: Wheeler, Tegmark, Wolfram</text>
+
+  <text x="745" y="330" text-anchor="middle" fill="#f39c12" font-size="28" opacity="0.4">∞</text>
+
+  <!-- Bottom conclusion -->
+  <rect x="20" y="362" width="860" height="68" rx="6" fill="#0d1f33" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="450" y="382" text-anchor="middle" fill="#f39c12" font-size="11" font-weight="bold">現在の科学的コンセンサス</text>
+  <text x="450" y="400" text-anchor="middle" fill="#fad7a0" font-size="10">仮説②（創発説）が最も証拠に支持されている — スケールフリー成長則と自己組織化が類似の主因</text>
+  <text x="450" y="416" text-anchor="middle" fill="#fad7a0" font-size="10">仮説①は定量指標の一致を説明できない / 仮説③は魅力的だが現時点では検証不能</text>
+  <text x="450" y="432" text-anchor="middle" fill="#e8c57a" font-size="9">いずれの仮説も、類似が「実在する現象」であることは認める — 問いは「なぜか」にある</text>
+</svg>

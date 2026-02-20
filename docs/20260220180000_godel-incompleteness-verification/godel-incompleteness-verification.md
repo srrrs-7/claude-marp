@@ -1,0 +1,258 @@
+---
+marp: true
+theme: gaia
+class: invert
+size: 16:9
+paginate: true
+header: "ゲーデルの不完全性定理とプログラム検証"
+footer: "© 2026"
+style: |
+  section {
+    font-size: 1.05em;
+  }
+  section pre code {
+    font-size: 0.58em;
+    line-height: 1.4;
+  }
+  
+---
+
+<!-- _class: lead -->
+# ゲーデルの不完全性定理とプログラム検証の限界
+
+- **「証明できない真実がある」という衝撃**
+- 
+- 数学の夢を砕いた定理がソフトウェアに何を語るか
+- 
+- *Kurt Gödel (1906–1978) の遺産*
+
+<!--
+1931年、25歳のゲーデルが発表した論文が数学の世界を根底から覆した。その衝撃はソフトウェア工学にも深く及んでいる。
+-->
+
+---
+
+<!-- _class: lead -->
+# 数学の危機
+
+- 20世紀初頭、数学者たちは究極の夢を追っていた
+
+
+---
+
+# ヒルベルトの夢 — 完全で矛盾のない数学
+
+- **ダフィット・ヒルベルト（1900年）の野望:**
+- - **完全性**: すべての数学的真実は証明できる
+- - **無矛盾性**: 矛盾した命題は導出されない
+- - **決定可能性**: 任意の命題の真偽を機械的に判定できる
+- 
+- <svg viewBox="0 0 700 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="50" y="40" width="180" height="120" rx="12" fill="#1565C0" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/><text x="140" y="85" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">完全性</text><text x="140" y="105" text-anchor="middle" fill="#90CAF9" font-size="11" font-family="sans-serif">すべての真実は</text><text x="140" y="120" text-anchor="middle" fill="#90CAF9" font-size="11" font-family="sans-serif">証明可能</text><rect x="260" y="40" width="180" height="120" rx="12" fill="#1565C0" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/><text x="350" y="85" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">無矛盾性</text><text x="350" y="105" text-anchor="middle" fill="#90CAF9" font-size="11" font-family="sans-serif">矛盾は絶対に</text><text x="350" y="120" text-anchor="middle" fill="#90CAF9" font-size="11" font-family="sans-serif">生まれない</text><rect x="470" y="40" width="180" height="120" rx="12" fill="#1565C0" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/><text x="560" y="85" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">決定可能性</text><text x="560" y="105" text-anchor="middle" fill="#90CAF9" font-size="11" font-family="sans-serif">機械的判定が</text><text x="560" y="120" text-anchor="middle" fill="#90CAF9" font-size="11" font-family="sans-serif">可能</text></svg>
+- **→ 数学の「完全な公理化」を目指したヒルベルト計画**
+
+<!--
+1900年のパリ国際数学者会議でヒルベルトが提示した23の問題の根底にあった哲学。
+-->
+
+---
+
+# ゲーデルの登場 — 若き天才が夢を打ち砕く
+
+- <svg viewBox="0 0 760 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><line x1="60" y1="140" x2="700" y2="140" stroke="#546E7A" stroke-width="2"/><circle cx="120" cy="140" r="8" fill="#FF7043"/><text x="120" y="125" text-anchor="middle" fill="#FF7043" font-size="12" font-family="sans-serif" font-weight="bold">1900</text><text x="120" y="165" text-anchor="middle" fill="#CFD8DC" font-size="10" font-family="sans-serif">ヒルベルト</text><text x="120" y="178" text-anchor="middle" fill="#CFD8DC" font-size="10" font-family="sans-serif">計画発表</text><circle cx="240" cy="140" r="8" fill="#FF7043"/><text x="240" y="125" text-anchor="middle" fill="#FF7043" font-size="12" font-family="sans-serif" font-weight="bold">1906</text><text x="240" y="165" text-anchor="middle" fill="#CFD8DC" font-size="10" font-family="sans-serif">ゲーデル</text><text x="240" y="178" text-anchor="middle" fill="#CFD8DC" font-size="10" font-family="sans-serif">誕生</text><circle cx="400" cy="140" r="14" fill="#FFCA28" style="filter:drop-shadow(0 0 6px rgba(255,202,40,0.8))"/><text x="400" y="115" text-anchor="middle" fill="#FFCA28" font-size="13" font-family="sans-serif" font-weight="bold">1931</text><text x="400" y="165" text-anchor="middle" fill="#FFCA28" font-size="11" font-family="sans-serif" font-weight="bold">不完全性定理</text><text x="400" y="180" text-anchor="middle" fill="#FFCA28" font-size="11" font-family="sans-serif" font-weight="bold">論文発表（25歳）</text><circle cx="560" cy="140" r="8" fill="#FF7043"/><text x="560" y="125" text-anchor="middle" fill="#FF7043" font-size="12" font-family="sans-serif" font-weight="bold">1936</text><text x="560" y="165" text-anchor="middle" fill="#CFD8DC" font-size="10" font-family="sans-serif">チューリング</text><text x="560" y="178" text-anchor="middle" fill="#CFD8DC" font-size="10" font-family="sans-serif">停止問題証明</text><circle cx="680" cy="140" r="8" fill="#FF7043"/><text x="680" y="125" text-anchor="middle" fill="#FF7043" font-size="12" font-family="sans-serif" font-weight="bold">1963</text><text x="680" y="165" text-anchor="middle" fill="#CFD8DC" font-size="10" font-family="sans-serif">コーエン</text><text x="680" y="178" text-anchor="middle" fill="#CFD8DC" font-size="10" font-family="sans-serif">連続体仮説独立性</text><polygon points="700,136 712,140 700,144" fill="#546E7A"/></svg>
+- - **1931年**: 25歳のゲーデルが歴史的論文を発表
+- - ヒルベルト計画の**完全性・無矛盾性の両方を不可能と証明**
+- - 数学界に衝撃。ヒルベルトは「ノンセンス！」と叫んだとされる
+
+<!--
+ゲーデルはウィーン大学の博士課程学生だった。論文のタイトルは「Principia Mathematicaおよび関連体系の形式的に決定不可能な命題について」。
+-->
+
+---
+
+# 第一不完全性定理 — 「この文は証明できない」
+
+- <svg viewBox="0 0 760 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="760" height="260" fill="#1A1A2E" rx="8"/><ellipse cx="380" cy="130" rx="200" ry="90" fill="none" stroke="#4FC3F7" stroke-width="2" stroke-dasharray="8 4"/><text x="380" y="75" text-anchor="middle" fill="#4FC3F7" font-size="13" font-family="sans-serif">形式的な数学体系 F</text><rect x="255" y="100" width="250" height="60" rx="8" fill="#B71C1C" style="filter:drop-shadow(0 0 8px rgba(183,28,28,0.6))"/><text x="380" y="126" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">「この文はFで証明できない」</text><text x="380" y="148" text-anchor="middle" fill="#FFCDD2" font-size="11" font-family="sans-serif">ゲーデル文 G</text><text x="380" y="210" text-anchor="middle" fill="#CFD8DC" font-size="12" font-family="sans-serif">もしGが証明できる → Fは矛盾</text><text x="380" y="230" text-anchor="middle" fill="#CFD8DC" font-size="12" font-family="sans-serif">もしGが証明できない → Gは真だが証明不可能</text><text x="100" y="130" text-anchor="middle" fill="#81C784" font-size="32" font-family="sans-serif">∀</text><text x="660" y="130" text-anchor="middle" fill="#FFB74D" font-size="32" font-family="sans-serif">∃</text></svg>
+- **第一不完全性定理（1931）:** 矛盾のない形式体系では、
+- 真だが**その体系内では証明できない命題が必ず存在する**
+- - 「嘘つきのパラドックス」の数学版
+- - ゲーデル数: 命題を自然数に対応させる天才的な手法
+
+<!--
+ゲーデルは命題論理をゲーデル数と呼ばれる自然数に符号化し、数学が自分自身について語れることを示した。この自己言及が核心。
+-->
+
+---
+
+# 第二不完全性定理 — 無矛盾性すら証明できない
+
+- **第二不完全性定理:** 矛盾のない形式体系Fは、**F自身の無矛盾性をFの中では証明できない**
+- 
+- <svg viewBox="0 0 700 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="700" height="200" fill="#0D1B2A" rx="8"/><rect x="30" y="40" width="200" height="120" rx="10" fill="#1B5E20" stroke="#4CAF50" stroke-width="2"/><text x="130" y="90" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">体系 F</text><text x="130" y="115" text-anchor="middle" fill="#A5D6A7" font-size="11" font-family="sans-serif">無矛盾（だと思う）</text><rect x="270" y="70" width="160" height="60" rx="8" fill="#B71C1C" stroke="#EF5350" stroke-width="2"/><text x="350" y="97" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif" font-weight="bold">「Fは無矛盾だ」</text><text x="350" y="115" text-anchor="middle" fill="#FFCDD2" font-size="10" font-family="sans-serif">をFで証明しようとする</text><line x1="230" y1="100" x2="270" y2="100" stroke="#78909C" stroke-width="2"/><polygon points="270,96 282,100 270,104" fill="#78909C"/><rect x="470" y="40" width="200" height="120" rx="10" fill="#1A237E" stroke="#3F51B5" stroke-width="2"/><text x="570" y="90" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">証明不可能</text><text x="570" y="112" text-anchor="middle" fill="#9FA8DA" font-size="11" font-family="sans-serif">もし証明できたなら</text><text x="570" y="127" text-anchor="middle" fill="#9FA8DA" font-size="11" font-family="sans-serif">Fは矛盾している</text><line x1="430" y1="100" x2="470" y2="100" stroke="#78909C" stroke-width="2"/><polygon points="470,96 482,100 470,104" fill="#78909C"/></svg>
+- - **含意**: 「私は正直者です」と自己証明できる人を信用できるか？
+- - より強い体系で証明できても、その体系の無矛盾性も証明不能
+- - **無限後退**: 安全を保証するものを誰が保証するか
+
+<!--
+これはヒルベルト計画への致命的な打撃だった。数学の基盤を内側から保証する方法が存在しないことを示した。
+-->
+
+---
+
+<!-- _class: lead -->
+# ソフトウェアへの衝撃
+
+- 同じ限界がコードの世界にも存在する
+
+
+---
+
+# 停止問題 — 「解けない問題」をチューリングが証明
+
+- <svg viewBox="0 0 760 270" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="760" height="270" fill="#1C1C1C" rx="8"/><rect x="30" y="30" width="200" height="80" rx="8" fill="#263238" stroke="#546E7A" stroke-width="1"/><text x="130" y="58" text-anchor="middle" fill="#80CBC4" font-size="13" font-family="monospace" font-weight="bold">プログラム P</text><text x="130" y="78" text-anchor="middle" fill="#B0BEC5" font-size="11" font-family="monospace">+ 入力 I</text><rect x="30" y="150" width="200" height="80" rx="8" fill="#1A237E" stroke="#3F51B5" stroke-width="2"/><text x="130" y="183" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">停止判定機 H</text><text x="130" y="203" text-anchor="middle" fill="#9FA8DA" font-size="11" font-family="sans-serif">HALTS(P, I) ?</text><line x1="130" y1="110" x2="130" y2="150" stroke="#546E7A" stroke-width="2"/><polygon points="126,148 130,162 134,148" fill="#546E7A"/><rect x="310" y="90" width="160" height="90" rx="8" fill="#4A148C" stroke="#9C27B0" stroke-width="2"/><text x="390" y="120" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif" font-weight="bold">矛盾する！</text><text x="390" y="142" text-anchor="middle" fill="#CE93D8" font-size="10" font-family="sans-serif">H(H, H)を実行すると</text><text x="390" y="158" text-anchor="middle" fill="#CE93D8" font-size="10" font-family="sans-serif">論理的矛盾が発生</text><line x1="230" y1="190" x2="310" y2="135" stroke="#9C27B0" stroke-width="2" stroke-dasharray="6 3"/><rect x="550" y="60" width="180" height="150" rx="8" fill="#B71C1C" stroke="#EF5350" stroke-width="2"/><text x="640" y="100" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">∴ 停止判定機</text><text x="640" y="122" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">は存在しない</text><text x="640" y="155" text-anchor="middle" fill="#FFCDD2" font-size="11" font-family="sans-serif">任意のプログラムが</text><text x="640" y="172" text-anchor="middle" fill="#FFCDD2" font-size="11" font-family="sans-serif">停止するか否かを</text><text x="640" y="189" text-anchor="middle" fill="#FFCDD2" font-size="11" font-family="sans-serif">判定できるAIはない</text><line x1="490" y1="135" x2="550" y2="135" stroke="#EF5350" stroke-width="2"/><polygon points="548,131 562,135 548,139" fill="#EF5350"/></svg>
+- **停止問題（1936年、チューリング）:** 任意のプログラムPと入力Iに対し、
+- 「Pが停止するか否か」を判定する汎用アルゴリズムは**存在しない**
+- - ゲーデルの定理と同型の対角線論法による証明
+- - **ソフトウェアの根本的限界**: 無限ループの一般的検出は不可能
+
+<!--
+チューリングはゲーデルの定理に触発されて停止問題を考案した。「もし停止判定機Hが存在するとしたら」という仮定から矛盾を導く対角線論法。
+-->
+
+---
+
+# テストの本質的限界 — なぜ100%カバレッジでも不十分か
+
+- <svg viewBox="0 0 700 250" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="700" height="250" fill="#121212" rx="8"/><ellipse cx="350" cy="125" rx="300" ry="105" fill="#1A237E" stroke="#3F51B5" stroke-width="2"/><text x="350" y="30" text-anchor="middle" fill="#9FA8DA" font-size="13" font-family="sans-serif">全ての可能な入力空間（無限）</text><ellipse cx="350" cy="130" rx="200" ry="70" fill="#1B5E20" stroke="#4CAF50" stroke-width="2"/><text x="350" y="105" text-anchor="middle" fill="#A5D6A7" font-size="12" font-family="sans-serif">テストでカバーできる空間（有限）</text><ellipse cx="350" cy="135" rx="80" ry="35" fill="#F57F17" stroke="#FFA000" stroke-width="2"/><text x="350" y="130" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">100%コード</text><text x="350" y="147" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">カバレッジ</text><circle cx="580" cy="80" r="12" fill="#B71C1C" style="filter:drop-shadow(0 0 5px rgba(183,28,28,0.7))"/><text x="580" y="76" text-anchor="middle" fill="white" font-size="16" font-family="sans-serif">!</text><text x="580" y="100" text-anchor="middle" fill="#EF9A9A" font-size="10" font-family="sans-serif">未発見バグ</text><circle cx="130" cy="160" r="12" fill="#B71C1C" style="filter:drop-shadow(0 0 5px rgba(183,28,28,0.7))"/><text x="130" y="156" text-anchor="middle" fill="white" font-size="16" font-family="sans-serif">!</text><text x="130" y="178" text-anchor="middle" fill="#EF9A9A" font-size="10" font-family="sans-serif">未発見バグ</text></svg>
+- - **コードカバレッジ100%** ≠ バグゼロ（入力空間は無限大）
+- - **ライス定理**: プログラムの非自明な性質はどれも決定不能
+- - テストは「バグがない」ことを証明できず「バグを見つける」手段
+- - *Dijkstra*: 「テストはバグの存在を示せるが、不在は示せない」
+
+<!--
+ライス定理はゲーデルの定理の直接的帰結。プログラムが「正しく動作する」「特定の出力を返す」といった性質の汎用的判定は不可能。
+-->
+
+---
+
+# 形式検証の壁 — Coq, Haskellでも越えられない限界
+
+- **形式検証とは**: 数学的証明でプログラムの正しさを保証する手法
+- 
+| 手法 | 保証できること | 保証できないこと |
+|------|--------------|----------------|
+| 型システム | 型安全性 | 実行時の意味論的正確さ |
+| Coq / Agda | 証明した性質 | 証明しなかった性質 |
+| モデル検査 | 有限状態の検証 | 無限状態システム |
+| 静的解析 | 特定のパターン | 未知のバグクラス |
+- 
+- **ゲーデルの定理が示す根本限界**:
+- - 十分に強力な体系（算術を含む）は完全に自己検証できない
+- - **証明補助器自体の無矛盾性**もより強い体系に依存する
+
+<!--
+Coqで証明されたプログラムですら、Coqの論理体系自体の無矛盾性は仮定されている。これはゲーデルの第二不完全性定理の直接的帰結。
+-->
+
+---
+
+# バグゼロは不可能か — 理論的限界 vs 実用的限界
+
+- <svg viewBox="0 0 720 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="720" height="260" fill="#0F0F0F" rx="8"/><rect x="30" y="40" width="300" height="180" rx="10" fill="#1A237E" stroke="#3F51B5" stroke-width="2"/><text x="180" y="70" text-anchor="middle" fill="#90CAF9" font-size="14" font-family="sans-serif" font-weight="bold">理論的限界</text><text x="55" y="100" fill="#BBDEFB" font-size="11" font-family="sans-serif">• 停止問題: 決定不能</text><text x="55" y="120" fill="#BBDEFB" font-size="11" font-family="sans-serif">• 汎用バグ検出: 不可能</text><text x="55" y="140" fill="#BBDEFB" font-size="11" font-family="sans-serif">• 完全な自己検証: 不可能</text><text x="55" y="160" fill="#BBDEFB" font-size="11" font-family="sans-serif">• 全入力網羅: 無限で不可能</text><text x="180" y="200" text-anchor="middle" fill="#7986CB" font-size="11" font-family="sans-serif">ゲーデル・チューリングが証明</text><rect x="390" y="40" width="300" height="180" rx="10" fill="#1B5E20" stroke="#4CAF50" stroke-width="2"/><text x="540" y="70" text-anchor="middle" fill="#A5D6A7" font-size="14" font-family="sans-serif" font-weight="bold">実用的限界</text><text x="410" y="100" fill="#C8E6C9" font-size="11" font-family="sans-serif">• ほとんどのバグは発見可能</text><text x="410" y="120" fill="#C8E6C9" font-size="11" font-family="sans-serif">• ドメイン特化の証明は可能</text><text x="410" y="140" fill="#C8E6C9" font-size="11" font-family="sans-serif">• リスクは管理・軽減できる</text><text x="410" y="160" fill="#C8E6C9" font-size="11" font-family="sans-serif">• 十分な信頼性は達成できる</text><text x="540" y="200" text-anchor="middle" fill="#66BB6A" font-size="11" font-family="sans-serif">工学的アプローチで対処可能</text><text x="360" y="140" text-anchor="middle" fill="#FF7043" font-size="22" font-family="sans-serif" font-weight="bold">≠</text></svg>
+- **理論的不可能 ≠ 実用的不可能**
+- - 航空・医療・金融システムは「十分に安全」を実現している
+- - 完璧な証明がなくても**リスクを許容範囲内に収める**ことが工学
+
+<!--
+ゲーデルの定理は絶望を意味しない。数学が不完全でも数学者は研究を続け、有用な定理を証明し続けている。ソフトウェアも同じ。
+-->
+
+---
+
+<!-- _class: lead -->
+# では何ができるか
+
+- 限界を知ることで、賢明な戦略が生まれる
+
+
+---
+
+# 不完全性を受け入れる設計哲学
+
+- <svg viewBox="0 0 760 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="760" height="240" fill="#111827" rx="8"/><rect x="20" y="30" width="220" height="180" rx="10" fill="#7F1D1D" stroke="#DC2626" stroke-width="2"/><text x="130" y="58" text-anchor="middle" fill="#FCA5A5" font-size="13" font-family="sans-serif" font-weight="bold">「完璧主義」の罠</text><text x="40" y="85" fill="#FCA5A5" font-size="11" font-family="sans-serif">✗ バグゼロを目指す</text><text x="40" y="105" fill="#FCA5A5" font-size="11" font-family="sans-serif">✗ 全パターンをテスト</text><text x="40" y="125" fill="#FCA5A5" font-size="11" font-family="sans-serif">✗ 100%カバレッジに固執</text><text x="40" y="145" fill="#FCA5A5" font-size="11" font-family="sans-serif">✗ 証明できないと不安</text><text x="130" y="195" text-anchor="middle" fill="#EF4444" font-size="11" font-family="sans-serif">→ 無限コストと麻痺</text><rect x="270" y="30" width="220" height="180" rx="10" fill="#1E3A5F" stroke="#3B82F6" stroke-width="2"/><text x="380" y="58" text-anchor="middle" fill="#93C5FD" font-size="13" font-family="sans-serif" font-weight="bold">「工学的」アプローチ</text><text x="290" y="85" fill="#BFDBFE" font-size="11" font-family="sans-serif">✓ リスク許容度を定義</text><text x="290" y="105" fill="#BFDBFE" font-size="11" font-family="sans-serif">✓ 重要パスを優先テスト</text><text x="290" y="125" fill="#BFDBFE" font-size="11" font-family="sans-serif">✓ 多層防御で補完</text><text x="290" y="145" fill="#BFDBFE" font-size="11" font-family="sans-serif">✓ 失敗を前提に設計</text><text x="380" y="195" text-anchor="middle" fill="#60A5FA" font-size="11" font-family="sans-serif">→ 実用的な品質保証</text><rect x="520" y="30" width="220" height="180" rx="10" fill="#14532D" stroke="#16A34A" stroke-width="2"/><text x="630" y="58" text-anchor="middle" fill="#86EFAC" font-size="13" font-family="sans-serif" font-weight="bold">哲学的転換</text><text x="540" y="85" fill="#BBF7D0" font-size="11" font-family="sans-serif">✓ 不完全性を受け入れる</text><text x="540" y="105" fill="#BBF7D0" font-size="11" font-family="sans-serif">✓ 証拠を積み重ねる</text><text x="540" y="125" fill="#BBF7D0" font-size="11" font-family="sans-serif">✓ 継続的改善サイクル</text><text x="540" y="145" fill="#BBF7D0" font-size="11" font-family="sans-serif">✓ 観測可能性を高める</text><text x="630" y="195" text-anchor="middle" fill="#4ADE80" font-size="11" font-family="sans-serif">→ レジリエントなシステム</text></svg>
+- **核心**: バグゼロは定理的に不可能。だからこそ**失敗前提の設計**が重要
+- - Circuit Breaker / Chaos Engineering / 冗長化
+- - 「証明」より「観測・検出・回復」に投資する
+
+<!--
+Googleのサイトリライアビリティエンジニアリング（SRE）やNetflixのChaos Monkeyは、この哲学の実践例。
+-->
+
+---
+
+# 証明できなくても「確信度を高める」戦略
+
+- **科学的手法をソフトウェアに適用する:**
+- 
+| 戦略 | 内容 | 確信度への寄与 |
+|------|------|--------------|
+| 仕様ベーステスト | 境界値・等価分割 | 入力空間の代表点を網羅 |
+| プロパティベース | QuickCheck / Hypothesis | ランダムな反例探索 |
+| ミューテーションテスト | バグを意図的に注入 | テスト品質を測定 |
+| 形式仕様 | TLA+, Alloy | 設計レベルの不変条件確認 |
+| ファジング | AFL / libFuzzer | 未知入力への耐性確認 |
+- 
+- **「完全な証明」を諦め、「証拠の多様性」を追求する**
+
+<!--
+統計学と同じ考え方。一つの実験では証明できないが、多様な観点からの証拠を積み重ねることで確信度が高まる。
+-->
+
+---
+
+# 多層テスト戦略の使い分け
+
+- <svg viewBox="0 0 740 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="740" height="260" fill="#0D1B2A" rx="8"/><polygon points="370,20 690,230 50,230" fill="none" stroke="#455A64" stroke-width="1"/><rect x="250" y="20" width="240" height="40" rx="6" fill="#880E4F" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.5))"/><text x="370" y="37" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">形式検証 / 型システム</text><text x="370" y="52" text-anchor="middle" fill="#F48FB1" font-size="10" font-family="sans-serif">Coq, Agda, 依存型 — 高コスト・高保証</text><rect x="180" y="75" width="380" height="38" rx="6" fill="#4A148C" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.5))"/><text x="370" y="91" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">プロパティベーステスト / ファジング</text><text x="370" y="106" text-anchor="middle" fill="#CE93D8" font-size="10" font-family="sans-serif">QuickCheck, Hypothesis, AFL — 広範な入力探索</text><rect x="120" y="128" width="500" height="38" rx="6" fill="#1A237E" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.5))"/><text x="370" y="144" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">統合テスト / E2Eテスト</text><text x="370" y="159" text-anchor="middle" fill="#9FA8DA" font-size="10" font-family="sans-serif">シナリオベース・ユーザー視点での検証</text><rect x="55" y="181" width="630" height="38" rx="6" fill="#1B5E20" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.5))"/><text x="370" y="197" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">ユニットテスト / ミューテーションテスト</text><text x="370" y="212" text-anchor="middle" fill="#A5D6A7" font-size="10" font-family="sans-serif">高速・安価・広範なコードカバレッジ — テスト品質検証</text><text x="30" y="238" fill="#546E7A" font-size="10" font-family="sans-serif">← 低コスト・高速</text><text x="560" y="238" fill="#546E7A" font-size="10" font-family="sans-serif">高コスト・高保証 →</text></svg>
+- **戦略的使い分け**: コストと保証のトレードオフを意識した多層防御
+- - ユニットテストは基盤、形式検証はクリティカルパスのみ
+- - ミューテーションスコア70%以上でテストの有効性を担保
+
+<!--
+テストの種類によって「何に対する証拠か」が異なる。多様な証拠を組み合わせることで全体的な確信度を高める。
+-->
+
+---
+
+<!-- _class: lead -->
+# まとめ — 不完全性は敗北ではなく設計原則
+
+- <svg viewBox="0 0 720 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="720" height="200" fill="#0A1628" rx="10"/><rect x="30" y="25" width="155" height="150" rx="8" fill="#1E3A5F" stroke="#3B82F6" stroke-width="1"/><text x="107" y="55" text-anchor="middle" fill="#93C5FD" font-size="12" font-family="sans-serif" font-weight="bold">理論を知る</text><text x="107" y="78" text-anchor="middle" fill="#BFDBFE" font-size="10" font-family="sans-serif">ゲーデル定理で</text><text x="107" y="95" text-anchor="middle" fill="#BFDBFE" font-size="10" font-family="sans-serif">何が不可能か把握</text><text x="107" y="115" text-anchor="middle" fill="#BFDBFE" font-size="10" font-family="sans-serif">→ 無駄な追求を避け</text><text x="107" y="132" text-anchor="middle" fill="#BFDBFE" font-size="10" font-family="sans-serif">　リソースを最適化</text><line x1="185" y1="100" x2="220" y2="100" stroke="#4B5563" stroke-width="2"/><polygon points="218,96 232,100 218,104" fill="#4B5563"/><rect x="233" y="25" width="155" height="150" rx="8" fill="#14532D" stroke="#16A34A" stroke-width="1"/><text x="310" y="55" text-anchor="middle" fill="#86EFAC" font-size="12" font-family="sans-serif" font-weight="bold">限界を受け入れる</text><text x="310" y="78" text-anchor="middle" fill="#BBF7D0" font-size="10" font-family="sans-serif">完璧を諦め</text><text x="310" y="95" text-anchor="middle" fill="#BBF7D0" font-size="10" font-family="sans-serif">「十分な保証」を目指す</text><text x="310" y="115" text-anchor="middle" fill="#BBF7D0" font-size="10" font-family="sans-serif">→ 失敗前提の設計で</text><text x="310" y="132" text-anchor="middle" fill="#BBF7D0" font-size="10" font-family="sans-serif">　レジリエンスを獲得</text><line x1="388" y1="100" x2="423" y2="100" stroke="#4B5563" stroke-width="2"/><polygon points="421,96 435,100 421,104" fill="#4B5563"/><rect x="436" y="25" width="155" height="150" rx="8" fill="#4C1D95" stroke="#7C3AED" stroke-width="1"/><text x="513" y="55" text-anchor="middle" fill="#C4B5FD" font-size="12" font-family="sans-serif" font-weight="bold">証拠を積み重ねる</text><text x="513" y="78" text-anchor="middle" fill="#DDD6FE" font-size="10" font-family="sans-serif">多様なテスト手法で</text><text x="513" y="95" text-anchor="middle" fill="#DDD6FE" font-size="10" font-family="sans-serif">確信度を高め続ける</text><text x="513" y="115" text-anchor="middle" fill="#DDD6FE" font-size="10" font-family="sans-serif">→ 科学的手法で</text><text x="513" y="132" text-anchor="middle" fill="#DDD6FE" font-size="10" font-family="sans-serif">　品質を継続改善</text><line x1="591" y1="100" x2="626" y2="100" stroke="#FBBF24" stroke-width="2"/><polygon points="624,96 638,100 624,104" fill="#FBBF24"/><rect x="640" y="60" width="68" height="80" rx="8" fill="#92400E" stroke="#F59E0B" stroke-width="2"/><text x="674" y="90" text-anchor="middle" fill="#FDE68A" font-size="11" font-family="sans-serif" font-weight="bold">優れた</text><text x="674" y="108" text-anchor="middle" fill="#FDE68A" font-size="11" font-family="sans-serif" font-weight="bold">ソフト</text><text x="674" y="126" text-anchor="middle" fill="#FDE68A" font-size="11" font-family="sans-serif" font-weight="bold">工学</text></svg>
+- **ゲーデルから学ぶ3つの教訓:**
+- 1. **限界を知ること**がより良い設計の出発点
+- 2. **不完全なシステム**でも価値あるものは作れる
+- 3. **証拠の多様性**が「証明の代替」となる
+
+<!--
+ゲーデル自身も、不完全性定理を発表した後も数学の研究を続けた。限界を知ることは絶望ではなく、より賢明な前進のための知恵。
+-->
+
+---
+
+# 参考文献
+
+- **数学・論理学:**
+- - [Gödel's Incompleteness Theorems (Stanford Encyclopedia)](https://plato.stanford.edu/entries/goedel-incompleteness/)
+- - [On Formally Undecidable Propositions (Gödel, 1931)](https://monoskop.org/images/9/93/Godel_Kurt_1992_On_Formally_Undecidable_Propositions.pdf)
+- - [「ゲーデル・エッシャー・バッハ」ダグラス・ホフスタッター](https://www.amazon.co.jp/dp/4826901259)
+- 
+- **ソフトウェア工学への応用:**
+- - [Halting Problem - Wikipedia](https://en.wikipedia.org/wiki/Halting_problem)
+- - [Rice's Theorem and Software Verification](https://en.wikipedia.org/wiki/Rice%27s_theorem)
+- - [「プログラムはなぜ動くのか」矢沢久雄](https://www.amazon.co.jp/dp/4822283151)
+- 
+- **実践的テスト戦略:**
+- - [QuickCheck: A Lightweight Tool for Random Testing](https://hackage.haskell.org/package/QuickCheck)
+- - [Google SRE Book — Reliability](https://sre.google/sre-book/)
+
+<!--
+特に「ゲーデル・エッシャー・バッハ」は不完全性定理を音楽・美術と絡めて解説した名著。ソフトウェアエンジニアにも強く推薦。
+-->

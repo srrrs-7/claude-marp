@@ -1,0 +1,12 @@
+topic: "平均値という嘘 — データの罠を見破る"
+language: "ja"
+output:
+  dir: "docs/20260220060400_average-lies"
+  baseName: "average-lies"
+marp:
+  theme: gaia
+  paginate: true
+  header: "統計と平均値の罠"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

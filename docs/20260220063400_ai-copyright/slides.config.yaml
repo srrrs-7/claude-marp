@@ -1,0 +1,12 @@
+topic: "AIと著作権 ― 誰が「創作者」なのか"
+language: "ja"
+output:
+  dir: "docs/20260220063400_ai-copyright"
+  baseName: "ai-copyright"
+marp:
+  theme: gaia
+  paginate: true
+  header: "AIと著作権"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

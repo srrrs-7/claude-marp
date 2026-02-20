@@ -1,0 +1,53 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-size="18" fill="white" font-weight="bold">スクランブル交差点 vs 通常交差点の歩行者フロー</text>
+
+  <!-- Left: Normal crossing -->
+  <rect x="30" y="55" width="390" height="410" rx="14" fill="#2c3e50" opacity="0.5"/>
+  <text x="225" y="85" text-anchor="middle" font-size="15" fill="#e74c3c" font-weight="bold">通常の交差点</text>
+
+  <!-- Roads (cross shape) -->
+  <rect x="170" y="100" width="110" height="350" rx="0" fill="#444"/>
+  <rect x="50" y="220" width="350" height="80" rx="0" fill="#444"/>
+
+  <!-- Phase arrows - only N-S or E-W at once -->
+  <line x1="210" y1="150" x2="210" y2="210" stroke="#e74c3c" stroke-width="3"/>
+  <polygon points="203,208 210,220 217,208" fill="#e74c3c"/>
+  <line x1="240" y1="310" x2="240" y2="250" stroke="#e74c3c" stroke-width="3"/>
+  <polygon points="233,252 240,240 247,252" fill="#e74c3c"/>
+
+  <text x="225" y="370" text-anchor="middle" font-size="10" fill="#e74c3c">Phase 1: 南北</text>
+  <text x="225" y="385" text-anchor="middle" font-size="10" fill="#aaa">Phase 2: 東西</text>
+  <text x="225" y="400" text-anchor="middle" font-size="10" fill="#aaa">Phase 3: 南北</text>
+  <text x="225" y="415" text-anchor="middle" font-size="10" fill="#aaa">Phase 4: 東西</text>
+  <text x="225" y="440" text-anchor="middle" font-size="11" fill="#e74c3c">対角線移動 = 2回待ち</text>
+
+  <!-- Right: Scramble crossing -->
+  <rect x="480" y="55" width="390" height="410" rx="14" fill="#2c3e50" opacity="0.5"/>
+  <text x="675" y="85" text-anchor="middle" font-size="15" fill="#2ecc71" font-weight="bold">スクランブル交差点</text>
+
+  <!-- Roads (cross shape) -->
+  <rect x="620" y="100" width="110" height="350" rx="0" fill="#444"/>
+  <rect x="500" y="220" width="350" height="80" rx="0" fill="#444"/>
+
+  <!-- Scramble arrows - all directions at once -->
+  <line x1="660" y1="150" x2="660" y2="210" stroke="#2ecc71" stroke-width="3"/>
+  <polygon points="653,208 660,220 667,208" fill="#2ecc71"/>
+  <line x1="690" y1="310" x2="690" y2="250" stroke="#2ecc71" stroke-width="3"/>
+  <polygon points="683,252 690,240 697,252" fill="#2ecc71"/>
+  <line x1="530" y1="250" x2="610" y2="250" stroke="#2ecc71" stroke-width="3"/>
+  <polygon points="608,243 620,250 608,257" fill="#2ecc71"/>
+  <line x1="820" y1="270" x2="740" y2="270" stroke="#2ecc71" stroke-width="3"/>
+  <polygon points="742,263 730,270 742,277" fill="#2ecc71"/>
+
+  <!-- Diagonal arrows -->
+  <line x1="545" y1="155" x2="615" y2="215" stroke="#f39c12" stroke-width="3"/>
+  <polygon points="610,208 625,218 617,222" fill="#f39c12"/>
+  <line x1="805" y1="155" x2="735" y2="215" stroke="#f39c12" stroke-width="3"/>
+  <polygon points="740,208 725,218 733,222" fill="#f39c12"/>
+
+  <text x="675" y="370" text-anchor="middle" font-size="10" fill="#2ecc71">Phase 1: 全方向歩行者</text>
+  <text x="675" y="385" text-anchor="middle" font-size="10" fill="#aaa">Phase 2: 車両</text>
+  <text x="675" y="415" text-anchor="middle" font-size="11" fill="#2ecc71">対角線移動 = 1回で完了</text>
+  <text x="675" y="440" text-anchor="middle" font-size="13" fill="#f39c12" font-weight="bold">効率 +40%</text>
+</svg>

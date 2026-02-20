@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="480" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="36" font-family="sans-serif" font-size="18" fill="#e0e0e0" text-anchor="middle" font-weight="bold">OSS依存の逆ピラミッド構造</text>
+
+  <!-- Top tier: Big companies -->
+  <rect x="30" y="60" width="180" height="54" rx="8" fill="#4361ee" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="120" y="83" font-family="sans-serif" font-size="14" fill="white" text-anchor="middle" font-weight="bold">Google</text>
+  <text x="120" y="101" font-family="sans-serif" font-size="11" fill="#c0d0ff" text-anchor="middle">数千億円規模の収益</text>
+
+  <rect x="360" y="60" width="180" height="54" rx="8" fill="#4361ee" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="450" y="83" font-family="sans-serif" font-size="14" fill="white" text-anchor="middle" font-weight="bold">Meta</text>
+  <text x="450" y="101" font-family="sans-serif" font-size="11" fill="#c0d0ff" text-anchor="middle">数千億円規模の収益</text>
+
+  <rect x="690" y="60" width="180" height="54" rx="8" fill="#4361ee" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="780" y="83" font-family="sans-serif" font-size="14" fill="white" text-anchor="middle" font-weight="bold">Amazon</text>
+  <text x="780" y="101" font-family="sans-serif" font-size="11" fill="#c0d0ff" text-anchor="middle">数千億円規模の収益</text>
+
+  <!-- Arrow down -->
+  <line x1="450" y1="114" x2="450" y2="148" stroke="#888" stroke-width="2"/>
+  <polygon points="450,155 445,146 455,146" fill="#888"/>
+
+  <!-- Middle tier: Frameworks -->
+  <rect x="60" y="160" width="200" height="50" rx="8" fill="#7209b7" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="160" y="181" font-family="sans-serif" font-size="13" fill="white" text-anchor="middle" font-weight="bold">Linux Kernel</text>
+  <text x="160" y="198" font-family="sans-serif" font-size="11" fill="#e0b0ff" text-anchor="middle">数千のコントリビューター</text>
+
+  <rect x="350" y="160" width="200" height="50" rx="8" fill="#7209b7" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="450" y="181" font-family="sans-serif" font-size="13" fill="white" text-anchor="middle" font-weight="bold">Node.js / React</text>
+  <text x="450" y="198" font-family="sans-serif" font-size="11" fill="#e0b0ff" text-anchor="middle">数百のコントリビューター</text>
+
+  <rect x="640" y="160" width="200" height="50" rx="8" fill="#7209b7" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="740" y="181" font-family="sans-serif" font-size="13" fill="white" text-anchor="middle" font-weight="bold">Python / Django</text>
+  <text x="740" y="198" font-family="sans-serif" font-size="11" fill="#e0b0ff" text-anchor="middle">数百のコントリビューター</text>
+
+  <!-- Arrow down -->
+  <line x1="450" y1="210" x2="450" y2="248" stroke="#888" stroke-width="2"/>
+  <polygon points="450,255 445,246 455,246" fill="#888"/>
+
+  <!-- Lower tier: Core libs -->
+  <rect x="130" y="260" width="200" height="50" rx="8" fill="#f72585" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="230" y="281" font-family="sans-serif" font-size="13" fill="white" text-anchor="middle" font-weight="bold">OpenSSL</text>
+  <text x="230" y="298" font-family="sans-serif" font-size="11" fill="#ffc0e0" text-anchor="middle">少数の無償メンテナー</text>
+
+  <rect x="570" y="260" width="200" height="50" rx="8" fill="#f72585" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="670" y="281" font-family="sans-serif" font-size="13" fill="white" text-anchor="middle" font-weight="bold">curl / log4j</text>
+  <text x="670" y="298" font-family="sans-serif" font-size="11" fill="#ffc0e0" text-anchor="middle">少数の無償メンテナー</text>
+
+  <!-- Arrow down -->
+  <line x1="450" y1="310" x2="450" y2="348" stroke="#888" stroke-width="2"/>
+  <polygon points="450,355 445,346 455,346" fill="#888"/>
+
+  <!-- Bottom: Maintainers -->
+  <rect x="300" y="360" width="300" height="80" rx="10" fill="#e63946" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.6))"/>
+
+  <!-- Person icons -->
+  <!-- Person 1 -->
+  <circle cx="370" cy="390" r="14" fill="#fff" opacity="0.9"/>
+  <rect x="356" y="406" width="28" height="22" rx="6" fill="#fff" opacity="0.9"/>
+
+  <!-- Person 2 -->
+  <circle cx="530" cy="390" r="14" fill="#fff" opacity="0.9"/>
+  <rect x="516" y="406" width="28" height="22" rx="6" fill="#fff" opacity="0.9"/>
+
+  <text x="450" y="388" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle" font-weight="bold">2人のメンテナー</text>
+  <text x="450" y="430" font-family="sans-serif" font-size="11" fill="#ffe0e0" text-anchor="middle">無償・業務外・献身的</text>
+
+  <!-- Inverted pyramid outline -->
+  <polygon points="30,60 870,60 600,480 300,480" fill="none" stroke="#4cc9f0" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.4"/>
+
+  <!-- Label -->
+  <text x="450" y="468" font-family="sans-serif" font-size="12" fill="#4cc9f0" text-anchor="middle" opacity="0.8">「世界インフラ」を支える逆ピラミッド</text>
+</svg>

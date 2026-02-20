@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="1000" height="340" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="500" y="28" fill="#ffd700" font-size="16" text-anchor="middle" font-family="sans-serif" font-weight="bold">AIの盛衰グラフ（1950〜2030年）</text>
+
+  <!-- Axes -->
+  <!-- Y axis -->
+  <line x1="80" y1="50" x2="80" y2="270" stroke="#aaa" stroke-width="2"/>
+  <polygon points="73,50 87,50 80,38" fill="#aaa"/>
+  <!-- X axis -->
+  <line x1="80" y1="270" x2="960" y2="270" stroke="#aaa" stroke-width="2"/>
+  <polygon points="960,263 960,277 972,270" fill="#aaa"/>
+
+  <!-- Y axis label -->
+  <text x="25" y="165" fill="#aaa" font-size="12" text-anchor="middle" font-family="sans-serif" transform="rotate(-90, 25, 165)">研究投資・社会的期待</text>
+
+  <!-- X axis year labels -->
+  <text x="80" y="290" fill="#aaa" font-size="11" text-anchor="middle" font-family="sans-serif">1950</text>
+  <text x="200" y="290" fill="#aaa" font-size="11" text-anchor="middle" font-family="sans-serif">1965</text>
+  <text x="320" y="290" fill="#aaa" font-size="11" text-anchor="middle" font-family="sans-serif">1980</text>
+  <text x="440" y="290" fill="#aaa" font-size="11" text-anchor="middle" font-family="sans-serif">1995</text>
+  <text x="560" y="290" fill="#aaa" font-size="11" text-anchor="middle" font-family="sans-serif">2010</text>
+  <text x="680" y="290" fill="#aaa" font-size="11" text-anchor="middle" font-family="sans-serif">2020</text>
+  <text x="800" y="290" fill="#aaa" font-size="11" text-anchor="middle" font-family="sans-serif">2025</text>
+  <text x="920" y="290" fill="#aaa" font-size="11" text-anchor="middle" font-family="sans-serif">2030</text>
+
+  <!-- Grid lines (horizontal, light) -->
+  <line x1="80" y1="210" x2="955" y2="210" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="80" y1="160" x2="955" y2="160" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="80" y1="110" x2="955" y2="110" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="80" y1="60" x2="955" y2="60" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Y labels -->
+  <text x="72" y="270" fill="#888" font-size="10" text-anchor="end" font-family="sans-serif">低</text>
+  <text x="72" y="60" fill="#888" font-size="10" text-anchor="end" font-family="sans-serif">高</text>
+
+  <!-- The curve: AI hype cycle -->
+  <!-- Points: 1950=80, 1965=200, 1980=320, 1995=440, 2010=560, 2020=680, 2025=800, 2030=920 -->
+  <!-- Y scale: low=265, high=55; midline=165 -->
+  <!-- Curve: start low, rise to 1st peak (~1965), crash AI winter 1 (~1975), rise again (1980), crash AI winter 2 (~1987), slowly rise (1995-2010), big rise (2012-), exponential (2020+) -->
+
+  <!-- X positions by year: x = 80 + (year-1950)/80 * 880 -->
+  <!-- 1950=80, 1956=146, 1965=259, 1970=324, 1975=389, 1980=454, 1987=541, 1993=618, 2000=700, 2006=766, 2012=832, 2017=898, 2022=964 -->
+  <!-- Adjusted to fit 80..955 range with 80=(1950), 955=(2030): range=875, years=80 -->
+  <!-- x(y) = 80 + (year-1950)/80*875 -->
+  <!-- 1950=80, 1956=146, 1965=245, 1970=316, 1975=388, 1980=459, 1987=547, 1993=613, 2000=700, 2006=766, 2012=832, 2017=898, 2022=953 -->
+
+  <!-- The line graph (polyline) -->
+  <polyline
+    points="
+      80,250
+      146,230
+      245,100
+      316,170
+      388,240
+      459,155
+      547,250
+      613,220
+      700,195
+      766,175
+      810,140
+      832,115
+      870,80
+      910,62
+      940,58
+    "
+    fill="none"
+    stroke="#4a9eff"
+    stroke-width="3"
+    stroke-linejoin="round"
+    style="filter: drop-shadow(0 0 6px rgba(74,158,255,0.6))"
+  />
+
+  <!-- Area fill under curve (gradient via layered transparent rects — approximated with polygon) -->
+  <polygon
+    points="
+      80,270
+      80,250
+      146,230
+      245,100
+      316,170
+      388,240
+      459,155
+      547,250
+      613,220
+      700,195
+      766,175
+      810,140
+      832,115
+      870,80
+      910,62
+      940,58
+      955,270
+    "
+    fill="#4a9eff"
+    opacity="0.08"
+  />
+
+  <!-- PEAK 1: First AI Summer (~1965) -->
+  <circle cx="245" cy="100" r="6" fill="#ffd700" style="filter: drop-shadow(0 0 4px rgba(255,215,0,0.8))"/>
+  <line x1="245" y1="94" x2="245" y2="55" stroke="#ffd700" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <rect x="175" y="38" width="140" height="20" rx="4" fill="#332200" stroke="#ffd700" stroke-width="1"/>
+  <text x="245" y="52" fill="#ffd700" font-size="10" text-anchor="middle" font-family="sans-serif">第1次AIブーム</text>
+
+  <!-- VALLEY 1: First AI Winter (~1975) -->
+  <circle cx="388" cy="240" r="6" fill="#ff6b6b" style="filter: drop-shadow(0 0 4px rgba(255,107,107,0.8))"/>
+  <line x1="388" y1="246" x2="388" y2="315" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <rect x="330" y="308" width="116" height="20" rx="4" fill="#330000" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="388" y="322" fill="#ff6b6b" font-size="10" text-anchor="middle" font-family="sans-serif">第1次AIの冬</text>
+
+  <!-- PEAK 2: Expert Systems (~1980) -->
+  <circle cx="459" cy="155" r="6" fill="#ffd700" style="filter: drop-shadow(0 0 4px rgba(255,215,0,0.8))"/>
+  <line x1="459" y1="149" x2="459" y2="55" stroke="#ffd700" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <rect x="387" y="38" width="144" height="20" rx="4" fill="#332200" stroke="#ffd700" stroke-width="1"/>
+  <text x="459" y="52" fill="#ffd700" font-size="10" text-anchor="middle" font-family="sans-serif">第2次AIブーム</text>
+
+  <!-- VALLEY 2: Second AI Winter (~1987) -->
+  <circle cx="547" cy="250" r="6" fill="#ff6b6b" style="filter: drop-shadow(0 0 4px rgba(255,107,107,0.8))"/>
+  <line x1="547" y1="256" x2="547" y2="315" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <rect x="487" y="308" width="120" height="20" rx="4" fill="#330000" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="547" y="322" fill="#ff6b6b" font-size="10" text-anchor="middle" font-family="sans-serif">第2次AIの冬</text>
+
+  <!-- AlexNet 2012 -->
+  <circle cx="832" cy="115" r="7" fill="#a8e063" style="filter: drop-shadow(0 0 5px rgba(168,224,99,0.8))"/>
+  <line x1="832" y1="109" x2="832" y2="68" stroke="#a8e063" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <rect x="772" y="52" width="120" height="20" rx="4" fill="#1a2a0a" stroke="#a8e063" stroke-width="1"/>
+  <text x="832" y="66" fill="#a8e063" font-size="10" text-anchor="middle" font-family="sans-serif">AlexNet (2012)</text>
+
+  <!-- ChatGPT 2022 -->
+  <circle cx="940" cy="58" r="7" fill="#c471ed" style="filter: drop-shadow(0 0 5px rgba(196,113,237,0.8))"/>
+  <line x1="940" y1="52" x2="940" y2="35" stroke="#c471ed" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="940" y="30" fill="#c471ed" font-size="10" text-anchor="middle" font-family="sans-serif">ChatGPT</text>
+</svg>

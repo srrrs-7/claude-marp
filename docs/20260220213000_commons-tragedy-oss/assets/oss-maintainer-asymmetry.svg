@@ -1,0 +1,65 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" fill="#FFEAA7" font-size="20" font-weight="bold" font-family="sans-serif">OSSメンテナと企業の非対称性</text>
+  <!-- Left side: Maintainer -->
+  <rect x="40" y="70" width="360" height="380" fill="#2d3436" rx="12" stroke="#636e72" stroke-width="1"/>
+  <text x="220" y="105" text-anchor="middle" fill="#00b894" font-size="18" font-weight="bold" font-family="sans-serif">OSSメンテナ</text>
+  <!-- Maintainer stats -->
+  <rect x="70" y="125" width="300" height="40" fill="#2d3436" rx="6" stroke="#636e72" stroke-width="1"/>
+  <text x="80" y="150" fill="#b2bec3" font-size="13" font-family="sans-serif">人数</text>
+  <rect x="180" y="135" width="30" height="18" fill="#00b894" rx="3"/>
+  <text x="220" y="150" fill="#dfe6e9" font-size="13" font-family="sans-serif">1〜3人</text>
+  <rect x="70" y="175" width="300" height="40" fill="#2d3436" rx="6" stroke="#636e72" stroke-width="1"/>
+  <text x="80" y="200" fill="#b2bec3" font-size="13" font-family="sans-serif">報酬</text>
+  <rect x="180" y="185" width="15" height="18" fill="#FF6B6B" rx="3"/>
+  <text x="220" y="200" fill="#dfe6e9" font-size="13" font-family="sans-serif">$0〜$500/月</text>
+  <rect x="70" y="225" width="300" height="40" fill="#2d3436" rx="6" stroke="#636e72" stroke-width="1"/>
+  <text x="80" y="250" fill="#b2bec3" font-size="13" font-family="sans-serif">時間</text>
+  <rect x="180" y="235" width="60" height="18" fill="#fdcb6e" rx="3"/>
+  <text x="250" y="250" fill="#dfe6e9" font-size="13" font-family="sans-serif">週末・夜間</text>
+  <rect x="70" y="275" width="300" height="40" fill="#2d3436" rx="6" stroke="#636e72" stroke-width="1"/>
+  <text x="80" y="300" fill="#b2bec3" font-size="13" font-family="sans-serif">責任</text>
+  <rect x="180" y="285" width="170" height="18" fill="#e17055" rx="3"/>
+  <text x="275" y="300" fill="white" font-size="12" font-family="sans-serif">セキュリティ+安定性+互換性</text>
+  <rect x="70" y="325" width="300" height="40" fill="#2d3436" rx="6" stroke="#636e72" stroke-width="1"/>
+  <text x="80" y="350" fill="#b2bec3" font-size="13" font-family="sans-serif">燃え尽き</text>
+  <rect x="180" y="335" width="150" height="18" fill="#d63031" rx="3"/>
+  <text x="265" y="350" fill="white" font-size="12" font-family="sans-serif">極めて高い</text>
+  <rect x="70" y="375" width="300" height="40" fill="#2d3436" rx="6" stroke="#636e72" stroke-width="1"/>
+  <text x="80" y="400" fill="#b2bec3" font-size="13" font-family="sans-serif">感謝</text>
+  <rect x="180" y="385" width="10" height="18" fill="#636e72" rx="3"/>
+  <text x="220" y="400" fill="#dfe6e9" font-size="13" font-family="sans-serif">ほぼなし</text>
+  <!-- Right side: Corporation -->
+  <rect x="500" y="70" width="360" height="380" fill="#2d3436" rx="12" stroke="#636e72" stroke-width="1"/>
+  <text x="680" y="105" text-anchor="middle" fill="#e17055" font-size="18" font-weight="bold" font-family="sans-serif">利用企業</text>
+  <!-- Corporation stats -->
+  <rect x="530" y="125" width="300" height="40" fill="#2d3436" rx="6" stroke="#636e72" stroke-width="1"/>
+  <text x="540" y="150" fill="#b2bec3" font-size="13" font-family="sans-serif">従業員</text>
+  <rect x="640" y="135" width="160" height="18" fill="#6c5ce7" rx="3"/>
+  <text x="680" y="150" fill="white" font-size="12" font-family="sans-serif">数千〜数十万人</text>
+  <rect x="530" y="175" width="300" height="40" fill="#2d3436" rx="6" stroke="#636e72" stroke-width="1"/>
+  <text x="540" y="200" fill="#b2bec3" font-size="13" font-family="sans-serif">収益</text>
+  <rect x="640" y="185" width="170" height="18" fill="#e17055" rx="3"/>
+  <text x="680" y="200" fill="white" font-size="12" font-family="sans-serif">数十億〜数兆ドル</text>
+  <rect x="530" y="225" width="300" height="40" fill="#2d3436" rx="6" stroke="#636e72" stroke-width="1"/>
+  <text x="540" y="250" fill="#b2bec3" font-size="13" font-family="sans-serif">OSS貢献</text>
+  <rect x="640" y="235" width="20" height="18" fill="#fdcb6e" rx="3"/>
+  <text x="670" y="250" fill="#dfe6e9" font-size="13" font-family="sans-serif">ごく一部</text>
+  <rect x="530" y="275" width="300" height="40" fill="#2d3436" rx="6" stroke="#636e72" stroke-width="1"/>
+  <text x="540" y="300" fill="#b2bec3" font-size="13" font-family="sans-serif">OSS依存度</text>
+  <rect x="640" y="285" width="170" height="18" fill="#0984e3" rx="3"/>
+  <text x="680" y="300" fill="white" font-size="12" font-family="sans-serif">コードベースの70-90%</text>
+  <rect x="530" y="325" width="300" height="40" fill="#2d3436" rx="6" stroke="#636e72" stroke-width="1"/>
+  <text x="540" y="350" fill="#b2bec3" font-size="13" font-family="sans-serif">脆弱性対応</text>
+  <rect x="640" y="335" width="80" height="18" fill="#FF6B6B" rx="3"/>
+  <text x="730" y="350" fill="#dfe6e9" font-size="13" font-family="sans-serif">メンテナに依頼</text>
+  <rect x="530" y="375" width="300" height="40" fill="#2d3436" rx="6" stroke="#636e72" stroke-width="1"/>
+  <text x="540" y="400" fill="#b2bec3" font-size="13" font-family="sans-serif">スポンサー</text>
+  <rect x="640" y="385" width="40" height="18" fill="#636e72" rx="3"/>
+  <text x="690" y="400" fill="#dfe6e9" font-size="13" font-family="sans-serif">稀（PR目的）</text>
+  <!-- VS Arrow -->
+  <text x="450" y="265" text-anchor="middle" fill="#FF6B6B" font-size="28" font-weight="bold" font-family="sans-serif">VS</text>
+  <!-- Bottom label -->
+  <text x="450" y="478" text-anchor="middle" fill="#b2bec3" font-size="14" font-style="italic" font-family="sans-serif">「フリーライダー問題が構造化された世界」</text>
+</svg>

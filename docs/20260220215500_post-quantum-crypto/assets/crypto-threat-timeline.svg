@@ -1,0 +1,53 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="10"/>
+  <text x="450" y="35" text-anchor="middle" fill="#e94560" font-size="20" font-family="sans-serif" font-weight="bold">量子脅威タイムライン：Q-Day はいつ来るか</text>
+  <!-- Timeline bar -->
+  <rect x="80" y="70" width="780" height="50" fill="#0f3460" rx="8"/>
+  <!-- Year markers -->
+  <text x="120" y="100" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">2024</text>
+  <text x="237" y="100" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">2026</text>
+  <text x="354" y="100" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">2028</text>
+  <text x="471" y="100" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">2030</text>
+  <text x="588" y="100" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">2032</text>
+  <text x="705" y="100" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">2035</text>
+  <text x="822" y="100" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">2040</text>
+  <!-- Current position -->
+  <rect x="225" y="60" width="24" height="70" fill="rgba(233,69,96,0.3)" rx="3"/>
+  <text x="237" y="55" text-anchor="middle" fill="#e94560" font-size="11" font-family="sans-serif" font-weight="bold">現在</text>
+  <!-- Prediction ranges -->
+  <text x="450" y="145" text-anchor="middle" fill="#fff" font-size="15" font-family="sans-serif" font-weight="bold">専門家予測の分布</text>
+  <!-- Optimistic -->
+  <rect x="300" y="165" width="270" height="40" fill="rgba(233,69,96,0.2)" rx="5" stroke="#e94560" stroke-width="1"/>
+  <text x="435" y="190" text-anchor="middle" fill="#e94560" font-size="12" font-family="sans-serif" font-weight="bold">楽観的シナリオ: 2028-2033</text>
+  <!-- Moderate -->
+  <rect x="400" y="215" width="300" height="40" fill="rgba(254,202,87,0.2)" rx="5" stroke="#feca57" stroke-width="1"/>
+  <text x="550" y="240" text-anchor="middle" fill="#feca57" font-size="12" font-family="sans-serif" font-weight="bold">中間シナリオ: 2030-2035</text>
+  <!-- Conservative -->
+  <rect x="500" y="265" width="340" height="40" fill="rgba(0,210,211,0.2)" rx="5" stroke="#00d2d3" stroke-width="1"/>
+  <text x="670" y="290" text-anchor="middle" fill="#00d2d3" font-size="12" font-family="sans-serif" font-weight="bold">保守的シナリオ: 2035-2045</text>
+  <!-- Key milestones -->
+  <text x="450" y="335" text-anchor="middle" fill="#fff" font-size="15" font-family="sans-serif" font-weight="bold">量子コンピュータの進展</text>
+  <!-- IBM -->
+  <rect x="60" y="355" width="190" height="60" fill="#16213e" rx="8" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="155" y="378" text-anchor="middle" fill="#00d2d3" font-size="12" font-family="sans-serif" font-weight="bold">IBM (2023)</text>
+  <text x="155" y="398" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">1,121量子ビット達成</text>
+  <text x="155" y="410" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">Condor プロセッサ</text>
+  <!-- Google -->
+  <rect x="270" y="355" width="190" height="60" fill="#16213e" rx="8" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="365" y="378" text-anchor="middle" fill="#00d2d3" font-size="12" font-family="sans-serif" font-weight="bold">Google (2024)</text>
+  <text x="365" y="398" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">Willow: エラー訂正の進展</text>
+  <text x="365" y="410" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">量子誤り訂正のブレイクスルー</text>
+  <!-- RSA Target -->
+  <rect x="480" y="355" width="190" height="60" fill="#16213e" rx="8" stroke="#e94560" stroke-width="1" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="575" y="378" text-anchor="middle" fill="#e94560" font-size="12" font-family="sans-serif" font-weight="bold">RSA-2048 解読に必要</text>
+  <text x="575" y="398" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">約4,000論理量子ビット</text>
+  <text x="575" y="410" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">(数百万の物理量子ビット)</text>
+  <!-- Prediction -->
+  <rect x="690" y="355" width="170" height="60" fill="rgba(254,202,87,0.1)" rx="8" stroke="#feca57" stroke-width="1"/>
+  <text x="775" y="378" text-anchor="middle" fill="#feca57" font-size="12" font-family="sans-serif" font-weight="bold">予測 (2030s)</text>
+  <text x="775" y="398" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">暗号解読能力を持つ</text>
+  <text x="775" y="410" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">量子コンピュータ出現</text>
+  <!-- Bottom warning -->
+  <rect x="100" y="440" width="700" height="40" fill="rgba(233,69,96,0.15)" rx="8" stroke="#e94560" stroke-width="1"/>
+  <text x="450" y="465" text-anchor="middle" fill="#e94560" font-size="13" font-family="sans-serif" font-weight="bold">暗号移行には5-10年必要 → 移行開始のデッドラインは既に過ぎている可能性</text>
+</svg>

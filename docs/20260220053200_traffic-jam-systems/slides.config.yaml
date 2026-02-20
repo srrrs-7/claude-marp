@@ -1,0 +1,12 @@
+topic: "渋滞はなぜ消えないか"
+language: "ja"
+output:
+  dir: "docs/20260220053200_traffic-jam-systems"
+  baseName: "traffic-jam-systems"
+marp:
+  theme: gaia
+  paginate: true
+  header: "渋滞の科学"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

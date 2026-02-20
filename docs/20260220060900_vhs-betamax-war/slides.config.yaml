@@ -1,0 +1,12 @@
+topic: "VHSとベータマックスの戦争 — 優れた技術が負ける理由"
+language: "ja"
+output:
+  dir: "docs/20260220060900_vhs-betamax-war"
+  baseName: "vhs-betamax-war"
+marp:
+  theme: gaia
+  paginate: true
+  header: "規格戦争の経済学"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

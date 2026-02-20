@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="38" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#f5f5f5">コード進行 ＝ API設計</text>
+
+  <!-- ===== Jazz side ===== -->
+  <rect x="20" y="55" width="400" height="320" fill="#16213e" rx="10"/>
+  <text x="220" y="83" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f5a623">ジャズ: II-V-I 進行</text>
+
+  <!-- Chord boxes -->
+  <!-- Dm7 -->
+  <rect x="40" y="100" width="90" height="90" fill="#2d3561" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="85" y="128" text-anchor="middle" font-family="monospace" font-size="22" font-weight="bold" fill="#7eb8f7">Dm7</text>
+  <text x="85" y="148" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">ii</text>
+  <text x="85" y="166" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">D-F-A-C</text>
+  <text x="85" y="183" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#666">緊張の始まり</text>
+
+  <!-- Arrow -->
+  <line x1="130" y1="145" x2="155" y2="145" stroke="#f5a623" stroke-width="2"/>
+  <polygon points="162,141 150,145 162,149" fill="#f5a623"/>
+
+  <!-- G7 -->
+  <rect x="165" y="100" width="90" height="90" fill="#3d2a5e" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="210" y="128" text-anchor="middle" font-family="monospace" font-size="22" font-weight="bold" fill="#c77dff">G7</text>
+  <text x="210" y="148" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">V</text>
+  <text x="210" y="166" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">G-B-D-F</text>
+  <text x="210" y="183" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#666">最大の緊張</text>
+
+  <!-- Arrow -->
+  <line x1="255" y1="145" x2="280" y2="145" stroke="#f5a623" stroke-width="2"/>
+  <polygon points="287,141 275,145 287,149" fill="#f5a623"/>
+
+  <!-- Cmaj7 -->
+  <rect x="290" y="100" width="90" height="90" fill="#1a4a2e" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="335" y="122" text-anchor="middle" font-family="monospace" font-size="17" font-weight="bold" fill="#4ecdc4">Cmaj7</text>
+  <text x="335" y="142" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">I</text>
+  <text x="335" y="160" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">C-E-G-B</text>
+  <text x="335" y="178" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#666">解決・安定</text>
+
+  <!-- Tension arc label -->
+  <path d="M85,102 Q210,65 335,102" fill="none" stroke="#f5a623" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="210" y="82" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f5a623">緊張 → 解決</text>
+
+  <!-- Blues scale info -->
+  <rect x="40" y="215" width="340" height="50" fill="#0d1a30" rx="6"/>
+  <text x="210" y="236" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#aaa">ブルースコード: I-IV-V のシンプルな制約</text>
+  <text x="210" y="255" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">制約が少ない ＝ 即興の幅が広い</text>
+
+  <!-- Key insight jazz -->
+  <rect x="40" y="282" width="340" height="75" fill="#1e2d45" rx="6"/>
+  <text x="210" y="305" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#f5a623">コード進行 = 制約と自由のバランス</text>
+  <text x="210" y="325" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">制約多すぎ → 窮屈な演奏</text>
+  <text x="210" y="343" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">制約少なすぎ → 混乱・不協和音</text>
+
+  <!-- ===== Center Divider ===== -->
+  <line x1="450" y1="60" x2="450" y2="380" stroke="#334" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="450" y="208" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#555" transform="rotate(-90 450 208)">対応</text>
+
+  <!-- ===== API side ===== -->
+  <rect x="480" y="55" width="400" height="320" fill="#16213e" rx="10"/>
+  <text x="680" y="83" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#4ecdc4">API設計: RESTful構造</text>
+
+  <!-- Endpoint boxes -->
+  <!-- Request -->
+  <rect x="500" y="100" width="110" height="90" fill="#1a2e4a" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="555" y="122" text-anchor="middle" font-family="monospace" font-size="13" font-weight="bold" fill="#7eb8f7">REQUEST</text>
+  <text x="555" y="142" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">Endpoint</text>
+  <text x="555" y="158" text-anchor="middle" font-family="monospace" font-size="10" fill="#888">GET /api/v1</text>
+  <text x="555" y="174" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#666">/users/{id}</text>
+
+  <!-- Arrow -->
+  <line x1="610" y1="145" x2="635" y2="145" stroke="#4ecdc4" stroke-width="2"/>
+  <polygon points="642,141 630,145 642,149" fill="#4ecdc4"/>
+
+  <!-- Process -->
+  <rect x="640" y="100" width="110" height="90" fill="#2a1a4a" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="695" y="122" text-anchor="middle" font-family="monospace" font-size="13" font-weight="bold" fill="#c77dff">PROCESS</text>
+  <text x="695" y="142" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">Method</text>
+  <text x="695" y="158" text-anchor="middle" font-family="monospace" font-size="10" fill="#888">auth +</text>
+  <text x="695" y="174" text-anchor="middle" font-family="monospace" font-size="10" fill="#888">query</text>
+
+  <!-- Arrow -->
+  <line x1="750" y1="145" x2="775" y2="145" stroke="#4ecdc4" stroke-width="2"/>
+  <polygon points="782,141 770,145 782,149" fill="#4ecdc4"/>
+
+  <!-- Response -->
+  <rect x="780" y="100" width="80" height="90" fill="#1a4a2e" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="820" y="122" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#4ecdc4">RESPONSE</text>
+  <text x="820" y="142" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">JSON</text>
+  <text x="820" y="158" text-anchor="middle" font-family="monospace" font-size="9" fill="#888">200 OK</text>
+  <text x="820" y="174" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#666">{ data }</text>
+
+  <!-- Contract arc label -->
+  <path d="M500,102 Q680,65 860,102" fill="none" stroke="#4ecdc4" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="680" y="82" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#4ecdc4">コントラクト = 制約</text>
+
+  <!-- REST Standards -->
+  <rect x="500" y="215" width="360" height="50" fill="#0d1a30" rx="6"/>
+  <text x="680" y="236" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#aaa">RESTful = スタンダードナンバー（共通言語）</text>
+  <text x="680" y="255" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">OpenAPI = リードシート（実装の自由）</text>
+
+  <!-- Key insight API -->
+  <rect x="500" y="282" width="360" height="75" fill="#1e2d45" rx="6"/>
+  <text x="680" y="305" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#4ecdc4">API設計 = 制約と自由のバランス</text>
+  <text x="680" y="325" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">過剰なバリデーション → 使いにくいAPI</text>
+  <text x="680" y="343" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">制約ゼロ → 混乱・バグの温床</text>
+</svg>

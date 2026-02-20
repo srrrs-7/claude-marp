@@ -1,0 +1,71 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">記憶 = 録画ではなく再構成</text>
+
+  <!-- Top: Wrong model -->
+  <rect x="50" y="55" width="800" height="100" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="80" y="80" fill="#FF6B6B" font-size="14" font-family="sans-serif" font-weight="bold">X 誤ったモデル: ビデオカメラ</text>
+  <rect x="80" y="95" width="120" height="45" fill="#FF6B6B" opacity="0.3" rx="6"/>
+  <text x="140" y="122" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">体験</text>
+  <line x1="210" y1="117" x2="270" y2="117" stroke="#FF6B6B" stroke-width="2"/>
+  <polygon points="270,113 280,117 270,121" fill="#FF6B6B"/>
+  <rect x="290" y="95" width="120" height="45" fill="#FF6B6B" opacity="0.3" rx="6"/>
+  <text x="350" y="122" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">保存(録画)</text>
+  <line x1="420" y1="117" x2="480" y2="117" stroke="#FF6B6B" stroke-width="2"/>
+  <polygon points="480,113 490,117 480,121" fill="#FF6B6B"/>
+  <rect x="500" y="95" width="120" height="45" fill="#FF6B6B" opacity="0.3" rx="6"/>
+  <text x="560" y="122" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">再生(正確)</text>
+  <text x="700" y="122" text-anchor="middle" fill="#FF6B6B" font-size="12" font-family="sans-serif">← 75%の人がこう信じている</text>
+
+  <!-- Bottom: Correct model -->
+  <rect x="50" y="180" width="800" height="300" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="80" y="210" fill="#4ECDC4" font-size="14" font-family="sans-serif" font-weight="bold">正しいモデル: 再構成プロセス</text>
+
+  <!-- Encoding -->
+  <rect x="80" y="230" width="140" height="80" fill="#4ECDC4" opacity="0.3" rx="8" stroke="#4ECDC4" stroke-width="2"/>
+  <text x="150" y="260" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">符号化</text>
+  <text x="150" y="280" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">注意 → 選択的記録</text>
+  <text x="150" y="295" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">既に不完全</text>
+
+  <line x1="230" y1="270" x2="280" y2="270" stroke="#FFEAA7" stroke-width="2"/>
+  <polygon points="280,266 290,270 280,274" fill="#FFEAA7"/>
+
+  <!-- Storage -->
+  <rect x="300" y="230" width="140" height="80" fill="#FFEAA7" opacity="0.2" rx="8" stroke="#FFEAA7" stroke-width="2"/>
+  <text x="370" y="260" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">貯蔵</text>
+  <text x="370" y="280" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">統合 → 変容 → 減衰</text>
+  <text x="370" y="295" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">時間とともに変化</text>
+
+  <line x1="450" y1="270" x2="500" y2="270" stroke="#FFEAA7" stroke-width="2"/>
+  <polygon points="500,266 510,270 500,274" fill="#FFEAA7"/>
+
+  <!-- Retrieval -->
+  <rect x="520" y="230" width="140" height="80" fill="#FF6B6B" opacity="0.2" rx="8" stroke="#FF6B6B" stroke-width="2"/>
+  <text x="590" y="260" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">検索(再構成)</text>
+  <text x="590" y="280" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">手がかり → 推論 → 補完</text>
+  <text x="590" y="295" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">毎回作り直す</text>
+
+  <line x1="670" y1="270" x2="720" y2="270" stroke="#FFEAA7" stroke-width="2"/>
+  <polygon points="720,266 730,270 720,274" fill="#FFEAA7"/>
+
+  <!-- Output -->
+  <rect x="740" y="230" width="90" height="80" fill="#96CEB4" opacity="0.3" rx="8" stroke="#96CEB4" stroke-width="2"/>
+  <text x="785" y="265" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">想起</text>
+  <text x="785" y="285" text-anchor="middle" fill="#96CEB4" font-size="9" font-family="sans-serif">元とは異なる</text>
+
+  <!-- Influence arrows -->
+  <text x="150" y="345" text-anchor="middle" fill="#e17055" font-size="11" font-family="sans-serif">感情状態</text>
+  <line x1="150" y1="350" x2="590" y2="320" stroke="#e17055" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+
+  <text x="370" y="345" text-anchor="middle" fill="#e17055" font-size="11" font-family="sans-serif">後から得た情報</text>
+  <line x1="370" y1="350" x2="590" y2="315" stroke="#e17055" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+
+  <text x="590" y="345" text-anchor="middle" fill="#e17055" font-size="11" font-family="sans-serif">質問の仕方</text>
+  <line x1="590" y1="340" x2="590" y2="315" stroke="#e17055" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+
+  <!-- Key insight -->
+  <text x="450" y="400" text-anchor="middle" fill="#FFEAA7" font-size="14" font-family="sans-serif" font-weight="bold">記憶の3段階すべてで歪みが発生する</text>
+  <text x="450" y="425" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">特に「検索」段階: 毎回断片から再構成 → 毎回異なる記憶が生まれる</text>
+  <text x="450" y="450" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">想起するたびに記憶は書き換えられる（再固定化 reconsolidation）</text>
+  <text x="450" y="470" text-anchor="middle" fill="#96CEB4" font-size="11" font-family="sans-serif">記憶はHDDではなくWikipedia — 誰でも編集できる</text>
+</svg>

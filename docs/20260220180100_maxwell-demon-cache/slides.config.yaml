@@ -1,0 +1,20 @@
+topic: "マクスウェルの悪魔とキャッシュ無効化"
+language: "ja"
+
+output:
+  dir: "docs/20260220180100_maxwell-demon-cache"
+  baseName: "maxwell-demon-cache"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "マクスウェルの悪魔とキャッシュ無効化"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

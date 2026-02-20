@@ -1,0 +1,71 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">ダークパターンの分類</text>
+
+  <!-- Type 1 -->
+  <rect x="30" y="55" width="270" height="130" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="30" y="55" width="270" height="28" fill="#FF6B6B" rx="10"/>
+  <rect x="30" y="68" width="270" height="15" fill="#FF6B6B"/>
+  <text x="165" y="75" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif" font-weight="bold">ゴキブリホイホイ (Roach Motel)</text>
+  <text x="165" y="105" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">入るのは簡単、出るのは困難</text>
+  <text x="165" y="125" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">例: Amazonプライム解約</text>
+  <text x="165" y="145" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">ワンクリック入会、15ステップ解約</text>
+  <text x="165" y="170" text-anchor="middle" fill="#FF6B6B" font-size="10" font-family="sans-serif">入口: 1クリック → 出口: 迷路</text>
+
+  <!-- Type 2 -->
+  <rect x="315" y="55" width="270" height="130" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="315" y="55" width="270" height="28" fill="#e17055" rx="10"/>
+  <rect x="315" y="68" width="270" height="15" fill="#e17055"/>
+  <text x="450" y="75" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif" font-weight="bold">確認シェイミング (Confirmshaming)</text>
+  <text x="450" y="105" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">断ると罪悪感を与える選択肢</text>
+  <text x="450" y="125" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">例:「いいえ、節約したくないです」</text>
+  <text x="450" y="145" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">「学びたくないので結構です」</text>
+  <text x="450" y="170" text-anchor="middle" fill="#e17055" font-size="10" font-family="sans-serif">自己否定的な文言で拒否を躊躇させる</text>
+
+  <!-- Type 3 -->
+  <rect x="600" y="55" width="270" height="130" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="600" y="55" width="270" height="28" fill="#FFEAA7" rx="10"/>
+  <rect x="600" y="68" width="270" height="15" fill="#FFEAA7"/>
+  <text x="735" y="75" text-anchor="middle" fill="#1a1a2e" font-size="12" font-family="sans-serif" font-weight="bold">スニーキング (Sneaking)</text>
+  <text x="735" y="105" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">こっそりカートに追加</text>
+  <text x="735" y="125" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">例: 保険、寄付、追加サービスが</text>
+  <text x="735" y="145" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">デフォルトでチェック済み</text>
+  <text x="735" y="170" text-anchor="middle" fill="#FFEAA7" font-size="10" font-family="sans-serif">気づかないうちに料金が増える</text>
+
+  <!-- Type 4 -->
+  <rect x="30" y="205" width="270" height="130" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="30" y="205" width="270" height="28" fill="#4ECDC4" rx="10"/>
+  <rect x="30" y="218" width="270" height="15" fill="#4ECDC4"/>
+  <text x="165" y="225" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif" font-weight="bold">ミスディレクション</text>
+  <text x="165" y="255" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">注意をそらして高い選択へ誘導</text>
+  <text x="165" y="275" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">例: 「おすすめ」プランを目立たせ</text>
+  <text x="165" y="295" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">安いプランを見つけにくくする</text>
+  <text x="165" y="320" text-anchor="middle" fill="#4ECDC4" font-size="10" font-family="sans-serif">視覚的ヒエラルキーの悪用</text>
+
+  <!-- Type 5 -->
+  <rect x="315" y="205" width="270" height="130" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="315" y="205" width="270" height="28" fill="#96CEB4" rx="10"/>
+  <rect x="315" y="218" width="270" height="15" fill="#96CEB4"/>
+  <text x="450" y="225" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif" font-weight="bold">偽りの緊急性 (Urgency)</text>
+  <text x="450" y="255" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">「残り2部屋！」「あと3時間で終了」</text>
+  <text x="450" y="275" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">例: Booking.com の</text>
+  <text x="450" y="295" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">「今この瞬間 7人が閲覧中」</text>
+  <text x="450" y="320" text-anchor="middle" fill="#96CEB4" font-size="10" font-family="sans-serif">FOMO (取り残される恐怖) を利用</text>
+
+  <!-- Type 6 -->
+  <rect x="600" y="205" width="270" height="130" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="600" y="205" width="270" height="28" fill="#45B7D1" rx="10"/>
+  <rect x="600" y="218" width="270" height="15" fill="#45B7D1"/>
+  <text x="735" y="225" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif" font-weight="bold">強制的連続性 (Forced)</text>
+  <text x="735" y="255" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">無料トライアル → 自動課金</text>
+  <text x="735" y="275" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">例: クレジットカード必須の</text>
+  <text x="735" y="295" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">「無料お試し」サービス</text>
+  <text x="735" y="320" text-anchor="middle" fill="#45B7D1" font-size="10" font-family="sans-serif">解約忘れを狙ったビジネスモデル</text>
+
+  <!-- Bottom: Impact -->
+  <rect x="50" y="360" width="800" height="120" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="450" y="390" text-anchor="middle" fill="#FFEAA7" font-size="16" font-family="sans-serif" font-weight="bold">ダークパターンの経済規模</text>
+  <text x="450" y="415" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">Eコマースサイトの約11%がダークパターンを使用 (Princeton, 2019)</text>
+  <text x="450" y="440" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">ユーザーの約64%が気づかずに意図しない購入を経験</text>
+  <text x="450" y="465" text-anchor="middle" fill="#FF6B6B" font-size="13" font-family="sans-serif">EU、カリフォルニア州で規制が強化中</text>
+</svg>

@@ -1,0 +1,71 @@
+<svg viewBox="0 0 900 450" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="450" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#e0e0e0">問題空間が解空間を決定する</text>
+
+  <!-- Left: Problem Space -->
+  <rect x="30" y="60" width="370" height="350" rx="12" fill="rgba(248,113,113,0.1)" stroke="#f87171" stroke-width="2"/>
+  <text x="215" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#f87171">問題空間 (Problem Space)</text>
+
+  <!-- Problem items -->
+  <rect x="55" y="110" width="320" height="42" rx="6" fill="#7f1d1d" opacity="0.4"/>
+  <text x="215" y="128" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#fca5a5">水中で高速移動する</text>
+  <text x="215" y="144" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">制約: 流体力学、エネルギー効率</text>
+
+  <rect x="55" y="162" width="320" height="42" rx="6" fill="#7f1d1d" opacity="0.4"/>
+  <text x="215" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#fca5a5">大規模Webアプリを構築する</text>
+  <text x="215" y="196" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">制約: ブラウザ、DOMの限界、状態管理</text>
+
+  <rect x="55" y="214" width="320" height="42" rx="6" fill="#7f1d1d" opacity="0.4"/>
+  <text x="215" y="232" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#fca5a5">分散システムの整合性を保つ</text>
+  <text x="215" y="248" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">制約: ネットワーク遅延、部分障害</text>
+
+  <rect x="55" y="266" width="320" height="42" rx="6" fill="#7f1d1d" opacity="0.4"/>
+  <text x="215" y="284" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#fca5a5">オブジェクト間の依存を管理する</text>
+  <text x="215" y="300" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">制約: 変更容易性、テスト可能性</text>
+
+  <rect x="55" y="318" width="320" height="42" rx="6" fill="#7f1d1d" opacity="0.4"/>
+  <text x="215" y="336" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#fca5a5">非同期イベントを処理する</text>
+  <text x="215" y="352" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">制約: 順序性、エラー回復、スケール</text>
+
+  <!-- Arrows -->
+  <line x1="405" y1="130" x2="500" y2="130" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="500,130 488,124 488,136" fill="#fbbf24"/>
+  <line x1="405" y1="182" x2="500" y2="182" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="500,182 488,176 488,188" fill="#fbbf24"/>
+  <line x1="405" y1="234" x2="500" y2="234" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="500,234 488,228 488,240" fill="#fbbf24"/>
+  <line x1="405" y1="286" x2="500" y2="286" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="500,286 488,280 488,292" fill="#fbbf24"/>
+  <line x1="405" y1="338" x2="500" y2="338" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="500,338 488,332 488,344" fill="#fbbf24"/>
+
+  <!-- Right: Solution Space -->
+  <rect x="500" y="60" width="370" height="350" rx="12" fill="rgba(74,222,128,0.1)" stroke="#4ade80" stroke-width="2"/>
+  <text x="685" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#4ade80">解空間 (Solution Space)</text>
+
+  <rect x="525" y="110" width="320" height="42" rx="6" fill="#14532d" opacity="0.4"/>
+  <text x="685" y="128" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#86efac">流線型の体 (紡錘形)</text>
+  <text x="685" y="144" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">サメ、イルカ、魚竜が独立に到達</text>
+
+  <rect x="525" y="162" width="320" height="42" rx="6" fill="#14532d" opacity="0.4"/>
+  <text x="685" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#86efac">コンポーネント + リアクティビティ</text>
+  <text x="685" y="196" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">React, Vue, Angular が独立に到達</text>
+
+  <rect x="525" y="214" width="320" height="42" rx="6" fill="#14532d" opacity="0.4"/>
+  <text x="685" y="232" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#86efac">Saga / Event Sourcing</text>
+  <text x="685" y="248" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">AWS, Azure, GCP が独立に実装</text>
+
+  <rect x="525" y="266" width="320" height="42" rx="6" fill="#14532d" opacity="0.4"/>
+  <text x="685" y="284" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#86efac">依存性逆転 (DIP / IoC)</text>
+  <text x="685" y="300" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">Java, C#, Go が独立に採用</text>
+
+  <rect x="525" y="318" width="320" height="42" rx="6" fill="#14532d" opacity="0.4"/>
+  <text x="685" y="336" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#86efac">Pub/Sub + Message Queue</text>
+  <text x="685" y="352" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">Kafka, RabbitMQ, SQS が独立に到達</text>
+
+  <!-- Bottom insight -->
+  <rect x="130" y="415" width="640" height="25" rx="5" fill="rgba(251,191,36,0.15)"/>
+  <text x="450" y="433" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">デザインパターンは「発明」ではなく「収束の記録」— 問題が解を決める</text>
+</svg>

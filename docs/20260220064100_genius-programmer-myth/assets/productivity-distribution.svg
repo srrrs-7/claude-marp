@@ -1,0 +1,57 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">プログラマーの生産性分布</text>
+
+  <!-- Left: Myth -->
+  <rect x="30" y="55" width="410" height="420" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="235" y="85" text-anchor="middle" fill="#FF6B6B" font-size="15" font-family="sans-serif" font-weight="bold">神話: 10x の差がある</text>
+  <text x="235" y="105" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">Sackman et al. (1968)</text>
+
+  <!-- Bar chart showing 10x -->
+  <line x1="80" y1="380" x2="380" y2="380" stroke="white" stroke-width="1" opacity="0.3"/>
+  <line x1="80" y1="380" x2="80" y2="130" stroke="white" stroke-width="1" opacity="0.3"/>
+
+  <rect x="110" y="350" width="50" height="30" fill="#FF6B6B" rx="3" opacity="0.7"/>
+  <text x="135" y="370" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">1x</text>
+  <text x="135" y="400" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">遅い人</text>
+
+  <rect x="190" y="290" width="50" height="90" fill="#FFEAA7" rx="3" opacity="0.7"/>
+  <text x="215" y="340" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">3x</text>
+  <text x="215" y="400" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">平均</text>
+
+  <rect x="270" y="140" width="50" height="240" fill="#4ECDC4" rx="3" opacity="0.7"/>
+  <text x="295" y="260" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">10x</text>
+  <text x="295" y="400" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">天才</text>
+
+  <text x="235" y="440" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">「最も速い人は最も遅い人の</text>
+  <text x="235" y="460" text-anchor="middle" fill="#FF6B6B" font-size="11" font-family="sans-serif">10倍の生産性がある」</text>
+
+  <!-- Right: Reality -->
+  <rect x="460" y="55" width="410" height="420" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="665" y="85" text-anchor="middle" fill="#4ECDC4" font-size="15" font-family="sans-serif" font-weight="bold">現実: もっと複雑</text>
+  <text x="665" y="105" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">現代の研究 (2020s)</text>
+
+  <!-- Multiple dimensions -->
+  <rect x="490" y="120" width="350" height="50" fill="#1a1a2e" rx="6"/>
+  <text x="520" y="150" fill="#4ECDC4" font-size="12" font-family="sans-serif" font-weight="bold">1.</text>
+  <text x="540" y="150" fill="white" font-size="11" font-family="sans-serif">生産性はコード行数では測れない</text>
+
+  <rect x="490" y="180" width="350" height="50" fill="#1a1a2e" rx="6"/>
+  <text x="520" y="210" fill="#4ECDC4" font-size="12" font-family="sans-serif" font-weight="bold">2.</text>
+  <text x="540" y="210" fill="white" font-size="11" font-family="sans-serif">同一人物でもタスクで10倍差がある</text>
+
+  <rect x="490" y="240" width="350" height="50" fill="#1a1a2e" rx="6"/>
+  <text x="520" y="270" fill="#4ECDC4" font-size="12" font-family="sans-serif" font-weight="bold">3.</text>
+  <text x="540" y="270" fill="white" font-size="11" font-family="sans-serif">環境・ツール・チームが生産性を決める</text>
+
+  <rect x="490" y="300" width="350" height="50" fill="#1a1a2e" rx="6"/>
+  <text x="520" y="330" fill="#4ECDC4" font-size="12" font-family="sans-serif" font-weight="bold">4.</text>
+  <text x="540" y="330" fill="white" font-size="11" font-family="sans-serif">「10x」は個人ではなくシステムの特性</text>
+
+  <rect x="490" y="360" width="350" height="50" fill="#1a1a2e" rx="6"/>
+  <text x="520" y="390" fill="#4ECDC4" font-size="12" font-family="sans-serif" font-weight="bold">5.</text>
+  <text x="540" y="390" fill="white" font-size="11" font-family="sans-serif">1968年の研究手法に重大な欠陥あり</text>
+
+  <text x="665" y="440" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">「天才個人」ではなく</text>
+  <text x="665" y="460" text-anchor="middle" fill="#4ECDC4" font-size="11" font-family="sans-serif">「良いチーム・良い環境」が10xを生む</text>
+</svg>

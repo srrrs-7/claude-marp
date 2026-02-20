@@ -1,0 +1,12 @@
+topic: "沈黙のコミュニケーション — 言葉にならないメッセージの力"
+language: "ja"
+output:
+  dir: "docs/20260220064900_silence-communication"
+  baseName: "silence-communication"
+marp:
+  theme: gaia
+  paginate: true
+  header: "非言語コミュニケーション"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

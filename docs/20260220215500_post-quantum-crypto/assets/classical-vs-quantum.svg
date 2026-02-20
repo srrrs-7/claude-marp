@@ -1,0 +1,61 @@
+<svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="520" fill="#1a1a2e" rx="10"/>
+  <text x="450" y="35" text-anchor="middle" fill="#e94560" font-size="20" font-family="sans-serif" font-weight="bold">古典コンピュータ vs 量子コンピュータ：計算量比較</text>
+  <!-- Axes -->
+  <line x1="100" y1="55" x2="100" y2="440" stroke="#555" stroke-width="2"/>
+  <line x1="100" y1="440" x2="860" y2="440" stroke="#555" stroke-width="2"/>
+  <!-- Y-axis label -->
+  <text x="30" y="250" text-anchor="middle" fill="#aaa" font-size="14" font-family="sans-serif" transform="rotate(-90,30,250)">解読に必要な時間（対数スケール）</text>
+  <!-- X-axis label -->
+  <text x="480" y="480" text-anchor="middle" fill="#aaa" font-size="14" font-family="sans-serif">暗号鍵の長さ（ビット）</text>
+  <!-- Y-axis ticks -->
+  <text x="90" y="430" text-anchor="end" fill="#aaa" font-size="10" font-family="sans-serif">秒</text>
+  <text x="90" y="370" text-anchor="end" fill="#aaa" font-size="10" font-family="sans-serif">分</text>
+  <text x="90" y="310" text-anchor="end" fill="#aaa" font-size="10" font-family="sans-serif">時間</text>
+  <text x="90" y="250" text-anchor="end" fill="#aaa" font-size="10" font-family="sans-serif">年</text>
+  <text x="90" y="190" text-anchor="end" fill="#aaa" font-size="10" font-family="sans-serif">千年</text>
+  <text x="90" y="130" text-anchor="end" fill="#aaa" font-size="10" font-family="sans-serif">百万年</text>
+  <text x="90" y="70" text-anchor="end" fill="#aaa" font-size="10" font-family="sans-serif">宇宙年齢</text>
+  <!-- Grid lines -->
+  <line x1="100" y1="370" x2="860" y2="370" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="100" y1="310" x2="860" y2="310" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="100" y1="250" x2="860" y2="250" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="100" y1="190" x2="860" y2="190" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="100" y1="130" x2="860" y2="130" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="100" y1="70" x2="860" y2="70" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+  <!-- X-axis ticks -->
+  <text x="200" y="460" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">128</text>
+  <text x="350" y="460" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">256</text>
+  <text x="500" y="460" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">512</text>
+  <text x="650" y="460" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">1024</text>
+  <text x="800" y="460" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">2048</text>
+  <!-- Classical computer line (exponential growth - steep) -->
+  <polyline points="200,400 350,310 500,190 650,100 800,65" fill="none" stroke="#00d2d3" stroke-width="3"/>
+  <circle cx="200" cy="400" r="5" fill="#00d2d3"/>
+  <circle cx="350" cy="310" r="5" fill="#00d2d3"/>
+  <circle cx="500" cy="190" r="5" fill="#00d2d3"/>
+  <circle cx="650" cy="100" r="5" fill="#00d2d3"/>
+  <circle cx="800" cy="65" r="5" fill="#00d2d3"/>
+  <!-- Quantum computer line (polynomial - much flatter) -->
+  <polyline points="200,420 350,400 500,380 650,360 800,340" fill="none" stroke="#e94560" stroke-width="3"/>
+  <circle cx="200" cy="420" r="5" fill="#e94560"/>
+  <circle cx="350" cy="400" r="5" fill="#e94560"/>
+  <circle cx="500" cy="380" r="5" fill="#e94560"/>
+  <circle cx="650" cy="360" r="5" fill="#e94560"/>
+  <circle cx="800" cy="340" r="5" fill="#e94560"/>
+  <!-- Annotations -->
+  <rect x="620" y="75" width="200" height="40" fill="rgba(0,210,211,0.15)" rx="5" stroke="#00d2d3" stroke-width="1"/>
+  <text x="720" y="100" text-anchor="middle" fill="#00d2d3" font-size="12" font-family="sans-serif" font-weight="bold">古典: 指数時間 O(2^n)</text>
+  <rect x="620" y="345" width="220" height="40" fill="rgba(233,69,96,0.15)" rx="5" stroke="#e94560" stroke-width="1"/>
+  <text x="730" y="370" text-anchor="middle" fill="#e94560" font-size="12" font-family="sans-serif" font-weight="bold">量子(Shor): 多項式時間 O(n^3)</text>
+  <!-- RSA-2048 annotation -->
+  <line x1="800" y1="65" x2="800" y2="340" stroke="#feca57" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="830" y="200" text-anchor="start" fill="#feca57" font-size="11" font-family="sans-serif" font-weight="bold" transform="rotate(90,830,200)">RSA-2048の差</text>
+  <!-- Legend -->
+  <rect x="180" y="497" width="16" height="3" fill="#00d2d3"/>
+  <text x="202" y="502" fill="#aaa" font-size="11" font-family="sans-serif">古典コンピュータ</text>
+  <rect x="340" y="497" width="16" height="3" fill="#e94560"/>
+  <text x="362" y="502" fill="#aaa" font-size="11" font-family="sans-serif">量子コンピュータ（Shorアルゴリズム）</text>
+  <rect x="600" y="497" width="16" height="3" fill="#feca57" stroke-dasharray="4,2"/>
+  <text x="622" y="502" fill="#aaa" font-size="11" font-family="sans-serif">セキュリティギャップ</text>
+</svg>

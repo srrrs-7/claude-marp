@@ -1,0 +1,71 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" fill="#FFEAA7" font-size="20" font-weight="bold" font-family="sans-serif">LLMの内部表現 = 世界の「地図」</text>
+  <!-- Input: Text Corpus -->
+  <rect x="30" y="70" width="180" height="360" fill="#2d3436" rx="10" stroke="#6c5ce7" stroke-width="2"/>
+  <text x="120" y="95" text-anchor="middle" fill="#6c5ce7" font-size="14" font-weight="bold" font-family="sans-serif">訓練データ</text>
+  <text x="120" y="120" text-anchor="middle" fill="#dfe6e9" font-size="11" font-family="sans-serif">Web全体のテキスト</text>
+  <text x="120" y="145" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">Wikipedia</text>
+  <text x="120" y="165" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">書籍・論文</text>
+  <text x="120" y="185" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">ニュース記事</text>
+  <text x="120" y="205" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">SNS・フォーラム</text>
+  <text x="120" y="225" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">コードベース</text>
+  <text x="120" y="255" text-anchor="middle" fill="#FF6B6B" font-size="10" font-family="sans-serif">偏りあり:</text>
+  <text x="120" y="275" text-anchor="middle" fill="#FF6B6B" font-size="10" font-family="sans-serif">英語偏重</text>
+  <text x="120" y="295" text-anchor="middle" fill="#FF6B6B" font-size="10" font-family="sans-serif">Western視点</text>
+  <text x="120" y="315" text-anchor="middle" fill="#FF6B6B" font-size="10" font-family="sans-serif">2023年以前</text>
+  <text x="120" y="345" text-anchor="middle" fill="#fdcb6e" font-size="11" font-family="sans-serif">現実の一部の</text>
+  <text x="120" y="365" text-anchor="middle" fill="#fdcb6e" font-size="11" font-family="sans-serif">テキスト化された</text>
+  <text x="120" y="385" text-anchor="middle" fill="#fdcb6e" font-size="11" font-family="sans-serif">断片のみ</text>
+  <!-- Arrow -->
+  <line x1="210" y1="250" x2="250" y2="250" stroke="#636e72" stroke-width="2"/>
+  <polygon points="250,245 260,250 250,255" fill="#636e72"/>
+  <!-- Middle: Transformer -->
+  <rect x="260" y="70" width="380" height="360" fill="#2d3436" rx="10" stroke="#4ECDC4" stroke-width="2"/>
+  <text x="450" y="95" text-anchor="middle" fill="#4ECDC4" font-size="14" font-weight="bold" font-family="sans-serif">Transformer (LLM)</text>
+  <!-- Embedding Space -->
+  <rect x="290" y="115" width="320" height="130" fill="#16213e" rx="8"/>
+  <text x="450" y="138" text-anchor="middle" fill="#45B7D1" font-size="12" font-weight="bold" font-family="sans-serif">埋め込み空間 (Embedding Space)</text>
+  <!-- Vector dots representing concepts -->
+  <circle cx="340" cy="170" r="6" fill="#4ECDC4" opacity="0.8"/>
+  <text x="340" y="195" text-anchor="middle" fill="#b2bec3" font-size="9" font-family="sans-serif">猫</text>
+  <circle cx="370" cy="165" r="6" fill="#4ECDC4" opacity="0.8"/>
+  <text x="370" y="190" text-anchor="middle" fill="#b2bec3" font-size="9" font-family="sans-serif">犬</text>
+  <circle cx="440" cy="180" r="6" fill="#FF6B6B" opacity="0.8"/>
+  <text x="440" y="205" text-anchor="middle" fill="#b2bec3" font-size="9" font-family="sans-serif">東京</text>
+  <circle cx="480" cy="175" r="6" fill="#FF6B6B" opacity="0.8"/>
+  <text x="480" y="200" text-anchor="middle" fill="#b2bec3" font-size="9" font-family="sans-serif">大阪</text>
+  <circle cx="540" cy="160" r="6" fill="#96CEB4" opacity="0.8"/>
+  <text x="540" y="185" text-anchor="middle" fill="#b2bec3" font-size="9" font-family="sans-serif">Python</text>
+  <circle cx="560" cy="175" r="6" fill="#96CEB4" opacity="0.8"/>
+  <text x="560" y="200" text-anchor="middle" fill="#b2bec3" font-size="9" font-family="sans-serif">Java</text>
+  <!-- Attention layers -->
+  <rect x="290" y="260" width="320" height="80" fill="#16213e" rx="8"/>
+  <text x="450" y="283" text-anchor="middle" fill="#fdcb6e" font-size="12" font-weight="bold" font-family="sans-serif">注意機構 (Attention)</text>
+  <text x="450" y="303" text-anchor="middle" fill="#dfe6e9" font-size="10" font-family="sans-serif">トークン間の統計的関係を学習</text>
+  <text x="450" y="323" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">「パリ」→「フランス」の確率 = 0.92</text>
+  <!-- Key insight -->
+  <text x="450" y="370" text-anchor="middle" fill="#FF6B6B" font-size="12" font-weight="bold" font-family="sans-serif">統計的パターン ≠ 理解</text>
+  <text x="450" y="395" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">「世界」ではなく「テキストの共起パターン」</text>
+  <text x="450" y="415" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">を圧縮した高次元の地図</text>
+  <!-- Arrow -->
+  <line x1="640" y1="250" x2="680" y2="250" stroke="#636e72" stroke-width="2"/>
+  <polygon points="680,245 690,250 680,255" fill="#636e72"/>
+  <!-- Output -->
+  <rect x="690" y="70" width="180" height="360" fill="#2d3436" rx="10" stroke="#FF6B6B" stroke-width="2"/>
+  <text x="780" y="95" text-anchor="middle" fill="#FF6B6B" font-size="14" font-weight="bold" font-family="sans-serif">出力テキスト</text>
+  <text x="780" y="125" text-anchor="middle" fill="#dfe6e9" font-size="11" font-family="sans-serif">流暢な自然言語</text>
+  <text x="780" y="155" text-anchor="middle" fill="#00b894" font-size="11" font-family="sans-serif">正しい場合:</text>
+  <text x="780" y="175" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">パターンが現実と一致</text>
+  <text x="780" y="225" text-anchor="middle" fill="#FF6B6B" font-size="11" font-family="sans-serif">ハルシネーション:</text>
+  <text x="780" y="245" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">地図にない場所を</text>
+  <text x="780" y="265" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">「推定」で補完</text>
+  <text x="780" y="305" text-anchor="middle" fill="#fdcb6e" font-size="11" font-family="sans-serif">問題:</text>
+  <text x="780" y="325" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">正しいか間違いか</text>
+  <text x="780" y="345" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">区別できない</text>
+  <text x="780" y="375" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">自信満々に</text>
+  <text x="780" y="395" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">嘘をつく</text>
+  <!-- Bottom -->
+  <text x="450" y="468" text-anchor="middle" fill="#FFEAA7" font-size="13" font-style="italic" font-family="sans-serif">LLMは「世界を理解」しているのではなく、「テキストの地図」を持っているだけ</text>
+</svg>

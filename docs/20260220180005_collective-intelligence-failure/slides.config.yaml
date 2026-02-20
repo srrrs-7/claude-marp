@@ -1,0 +1,12 @@
+topic: "集合知はなぜ失敗するか"
+language: "ja"
+output:
+  dir: "docs/20260220180005_collective-intelligence-failure"
+  baseName: "collective-intelligence-failure"
+marp:
+  theme: gaia
+  paginate: true
+  header: "集合知の失敗条件"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

@@ -1,0 +1,12 @@
+topic: "QWERTYキーボードのロックイン — なぜ非効率が生き残るのか"
+language: "ja"
+output:
+  dir: "docs/20260220061000_qwerty-lock-in"
+  baseName: "qwerty-lock-in"
+marp:
+  theme: gaia
+  paginate: true
+  header: "経路依存と技術ロックイン"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

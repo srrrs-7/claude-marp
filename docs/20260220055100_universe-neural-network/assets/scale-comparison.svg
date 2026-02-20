@@ -1,0 +1,50 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">スケール比較: 宇宙 vs 脳</text>
+
+  <!-- Scale bars -->
+  <!-- Universe side -->
+  <rect x="50" y="70" width="380" height="180" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="240" y="100" text-anchor="middle" fill="#4ECDC4" font-size="16" font-family="sans-serif" font-weight="bold">観測可能な宇宙</text>
+  <text x="240" y="130" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">銀河の数: ~2000億 (2 x 10^11)</text>
+  <text x="240" y="155" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">フィラメント長: ~数億光年</text>
+  <text x="240" y="180" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">暗黒物質: 全質量の ~27%</text>
+  <text x="240" y="205" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">バリオン物質: ~5% のみ</text>
+  <text x="240" y="235" text-anchor="middle" fill="#4ECDC4" font-size="13" font-family="sans-serif">直径: 930億光年</text>
+
+  <!-- Brain side -->
+  <rect x="470" y="70" width="380" height="180" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="660" y="100" text-anchor="middle" fill="#FF6B6B" font-size="16" font-family="sans-serif" font-weight="bold">人間の脳</text>
+  <text x="660" y="130" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">ニューロン数: ~860億 (8.6 x 10^10)</text>
+  <text x="660" y="155" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">シナプス接続: ~100兆</text>
+  <text x="660" y="180" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">水分: 全質量の ~73%</text>
+  <text x="660" y="205" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">活動ニューロン: ~5-10%</text>
+  <text x="660" y="235" text-anchor="middle" fill="#FF6B6B" font-size="13" font-family="sans-serif">サイズ: ~15cm</text>
+
+  <!-- Comparison metrics -->
+  <rect x="100" y="280" width="700" height="190" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="450" y="310" text-anchor="middle" fill="#FFEAA7" font-size="16" font-family="sans-serif" font-weight="bold">驚くべき一致</text>
+
+  <!-- Metric rows -->
+  <text x="180" y="345" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">指標</text>
+  <text x="420" y="345" text-anchor="middle" fill="#4ECDC4" font-size="12" font-family="sans-serif">宇宙</text>
+  <text x="660" y="345" text-anchor="middle" fill="#FF6B6B" font-size="12" font-family="sans-serif">脳</text>
+
+  <line x1="120" y1="355" x2="780" y2="355" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+
+  <text x="180" y="380" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">ノード数</text>
+  <text x="420" y="380" text-anchor="middle" fill="#4ECDC4" font-size="13" font-family="sans-serif">~10^11</text>
+  <text x="660" y="380" text-anchor="middle" fill="#FF6B6B" font-size="13" font-family="sans-serif">~10^11</text>
+
+  <text x="180" y="410" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">活動比率</text>
+  <text x="420" y="410" text-anchor="middle" fill="#4ECDC4" font-size="13" font-family="sans-serif">~5%</text>
+  <text x="660" y="410" text-anchor="middle" fill="#FF6B6B" font-size="13" font-family="sans-serif">~5-10%</text>
+
+  <text x="180" y="440" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">ネットワーク構造</text>
+  <text x="420" y="440" text-anchor="middle" fill="#4ECDC4" font-size="13" font-family="sans-serif">スケールフリー</text>
+  <text x="660" y="440" text-anchor="middle" fill="#FF6B6B" font-size="13" font-family="sans-serif">スケールフリー</text>
+
+  <text x="180" y="465" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">パワースペクトル</text>
+  <text x="420" y="465" text-anchor="middle" fill="#4ECDC4" font-size="13" font-family="sans-serif">一致</text>
+  <text x="660" y="465" text-anchor="middle" fill="#FF6B6B" font-size="13" font-family="sans-serif">一致</text>
+</svg>

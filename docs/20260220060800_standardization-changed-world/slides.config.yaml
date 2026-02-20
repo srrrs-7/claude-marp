@@ -1,0 +1,12 @@
+topic: "標準化が変えた世界 — コンテナ・時刻・単位の革命"
+language: "ja"
+output:
+  dir: "docs/20260220060800_standardization-changed-world"
+  baseName: "standardization-changed-world"
+marp:
+  theme: gaia
+  paginate: true
+  header: "標準化の経済学"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

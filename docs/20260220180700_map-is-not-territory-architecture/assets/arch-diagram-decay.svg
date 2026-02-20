@@ -1,0 +1,71 @@
+<svg viewBox="0 0 800 430" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="430" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" fill="#ffd700" font-size="15" font-weight="bold" font-family="sans-serif">アーキテクチャ図の劣化タイムライン</text>
+
+  <!-- Timeline axis -->
+  <line x1="60" y1="360" x2="740" y2="360" stroke="#444" stroke-width="2"/>
+  <!-- Arrow at end -->
+  <polygon points="740,353 760,360 740,367" fill="#444"/>
+  <text x="765" y="364" fill="#888" font-size="11" font-family="sans-serif">時間</text>
+
+  <!-- Phase markers -->
+  <!-- T=0: Design -->
+  <line x1="120" y1="355" x2="120" y2="365" stroke="#aaa" stroke-width="2"/>
+  <text x="120" y="382" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">設計時</text>
+
+  <!-- T=1: Release -->
+  <line x1="290" y1="355" x2="290" y2="365" stroke="#aaa" stroke-width="2"/>
+  <text x="290" y="382" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">リリース</text>
+
+  <!-- T=2: 6 months -->
+  <line x1="460" y1="355" x2="460" y2="365" stroke="#aaa" stroke-width="2"/>
+  <text x="460" y="382" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">6ヶ月後</text>
+
+  <!-- T=3: 2 years -->
+  <line x1="630" y1="355" x2="630" y2="365" stroke="#aaa" stroke-width="2"/>
+  <text x="630" y="382" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">2年後</text>
+
+  <!-- Accuracy curve (starts high, drops) -->
+  <path d="M 120,80 C 180,85 240,100 290,130 C 360,175 410,240 460,280 C 530,330 580,340 630,345 C 680,348 710,350 740,351" stroke="#4a9eff" stroke-width="3" fill="none"/>
+
+  <!-- Complexity curve (starts low, rises) -->
+  <path d="M 120,300 C 180,295 240,280 290,260 C 360,230 410,180 460,155 C 530,120 580,100 630,90 C 680,82 710,80 740,78" stroke="#ff6b6b" stroke-width="3" fill="none"/>
+
+  <!-- Legend -->
+  <line x1="80" y1="55" x2="115" y2="55" stroke="#4a9eff" stroke-width="3"/>
+  <text x="120" y="60" fill="#4a9eff" font-size="12" font-family="sans-serif">図の正確性</text>
+  <line x1="240" y1="55" x2="275" y2="55" stroke="#ff6b6b" stroke-width="3"/>
+  <text x="280" y="60" fill="#ff6b6b" font-size="12" font-family="sans-serif">実際の複雑性</text>
+
+  <!-- T=0 diagram snapshot -->
+  <rect x="85" y="90" width="70" height="55" rx="5" fill="#16213e" stroke="#4a9eff" stroke-width="1" opacity="0.9"/>
+  <text x="120" y="112" text-anchor="middle" fill="#4a9eff" font-size="9" font-family="sans-serif">設計図</text>
+  <text x="120" y="127" text-anchor="middle" fill="#90ee90" font-size="9" font-family="sans-serif">✓ 正確</text>
+  <text x="120" y="140" text-anchor="middle" fill="#90ee90" font-size="9" font-family="sans-serif">✓ 一致</text>
+
+  <!-- T=1 diagram snapshot -->
+  <rect x="255" y="135" width="70" height="55" rx="5" fill="#16213e" stroke="#f7c59f" stroke-width="1" opacity="0.9"/>
+  <text x="290" y="157" text-anchor="middle" fill="#f7c59f" font-size="9" font-family="sans-serif">リリース後</text>
+  <text x="290" y="172" text-anchor="middle" fill="#f7c59f" font-size="9" font-family="sans-serif">△ やや古い</text>
+  <text x="290" y="185" text-anchor="middle" fill="#f7c59f" font-size="9" font-family="sans-serif">新機能未反映</text>
+
+  <!-- T=2 diagram snapshot -->
+  <rect x="425" y="183" width="70" height="55" rx="5" fill="#16213e" stroke="#ff9966" stroke-width="1" opacity="0.9"/>
+  <text x="460" y="205" text-anchor="middle" fill="#ff9966" font-size="9" font-family="sans-serif">6ヶ月後</text>
+  <text x="460" y="220" text-anchor="middle" fill="#ff9966" font-size="9" font-family="sans-serif">✗ 危険</text>
+  <text x="460" y="233" text-anchor="middle" fill="#ff9966" font-size="9" font-family="sans-serif">改修多数漏れ</text>
+
+  <!-- T=3 diagram snapshot -->
+  <rect x="595" y="348" width="70" height="55" rx="5" fill="#16213e" stroke="#ff6b6b" stroke-width="1" opacity="0.9"/>
+  <text x="630" y="367" text-anchor="middle" fill="#ff6b6b" font-size="9" font-family="sans-serif">2年後</text>
+  <text x="630" y="382" text-anchor="middle" fill="#ff6b6b" font-size="9" font-family="sans-serif">✗✗ 有害</text>
+  <text x="630" y="395" text-anchor="middle" fill="#ff6b6b" font-size="9" font-family="sans-serif">嘘の設計書</text>
+
+  <!-- Gap annotation at T=3 -->
+  <line x1="630" y1="88" x2="630" y2="343" stroke="#ffd700" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="650" y="215" fill="#ffd700" font-size="11" font-family="sans-serif">乖離</text>
+  <polygon points="635,88 643,100 627,100" fill="#ffd700"/>
+  <polygon points="635,343 643,331 627,331" fill="#ffd700"/>
+</svg>

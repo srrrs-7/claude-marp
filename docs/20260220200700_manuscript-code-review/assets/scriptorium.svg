@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background room -->
+  <rect width="900" height="400" fill="#f5f0e8"/>
+
+  <!-- Stone wall texture -->
+  <rect x="0" y="0" width="900" height="50" fill="#c8b99a"/>
+  <rect x="0" y="350" width="900" height="50" fill="#c8b99a"/>
+
+  <!-- Window with light rays -->
+  <rect x="380" y="10" width="140" height="100" fill="#d4eaf7" rx="10" ry="10" style="filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.2))"/>
+  <rect x="382" y="12" width="136" height="96" fill="#a8d4f0" rx="8" ry="8"/>
+  <!-- Window cross -->
+  <rect x="448" y="12" width="4" height="96" fill="#8b7355"/>
+  <rect x="382" y="58" width="136" height="4" fill="#8b7355"/>
+  <!-- Light rays from window -->
+  <polygon points="380,110 320,280 440,280" fill="rgba(255,240,180,0.25)"/>
+  <polygon points="520,110 460,280 580,280" fill="rgba(255,240,180,0.15)"/>
+
+  <!-- Desk 1 (left) -->
+  <rect x="60" y="220" width="200" height="20" fill="#8b6914" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <rect x="70" y="240" width="10" height="80" fill="#7a5c10"/>
+  <rect x="240" y="240" width="10" height="80" fill="#7a5c10"/>
+  <!-- Parchment on desk 1 -->
+  <rect x="80" y="190" width="160" height="30" fill="#f0e8c8" rx="2" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <!-- Lines on parchment -->
+  <line x1="90" y1="198" x2="230" y2="198" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+  <line x1="90" y1="205" x2="230" y2="205" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+  <line x1="90" y1="212" x2="200" y2="212" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+
+  <!-- Scribe 1 silhouette (left) -->
+  <!-- Head -->
+  <circle cx="160" cy="155" r="22" fill="#5c4a32"/>
+  <!-- Hood -->
+  <ellipse cx="160" cy="148" rx="26" ry="20" fill="#4a3828"/>
+  <!-- Body/robe -->
+  <rect x="130" y="175" width="60" height="50" fill="#4a3828" rx="5"/>
+  <!-- Arms -->
+  <rect x="130" y="185" width="50" height="12" fill="#4a3828" rx="5"/>
+  <!-- Quill pen -->
+  <rect x="175" y="195" width="40" height="3" fill="#d4a843" rx="2" transform="rotate(-20,175,195)"/>
+  <polygon points="209,188 215,196 205,196" fill="#c8963c"/>
+
+  <!-- Ink pot desk 1 -->
+  <ellipse cx="250" cy="218" rx="12" ry="8" fill="#2c1810"/>
+  <rect x="240" y="210" width="20" height="8" fill="#3d2415" rx="3"/>
+
+  <!-- Desk 2 (center) -->
+  <rect x="350" y="220" width="200" height="20" fill="#8b6914" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <rect x="360" y="240" width="10" height="80" fill="#7a5c10"/>
+  <rect x="530" y="240" width="10" height="80" fill="#7a5c10"/>
+  <!-- Parchment on desk 2 -->
+  <rect x="365" y="190" width="170" height="30" fill="#f0e8c8" rx="2" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <!-- Decorated initial capital (red) -->
+  <text x="372" y="212" font-family="serif" font-size="20" fill="#8b1a1a" font-weight="bold">I</text>
+  <line x1="385" y1="198" x2="525" y2="198" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+  <line x1="385" y1="205" x2="525" y2="205" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+  <line x1="385" y1="212" x2="500" y2="212" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+
+  <!-- Scribe 2 silhouette (center) -->
+  <circle cx="450" cy="155" r="22" fill="#5c4a32"/>
+  <ellipse cx="450" cy="148" rx="26" ry="20" fill="#3a2d20"/>
+  <rect x="420" y="175" width="60" height="50" fill="#3a2d20" rx="5"/>
+  <rect x="420" y="185" width="50" height="12" fill="#3a2d20" rx="5"/>
+  <!-- Quill -->
+  <rect x="465" y="195" width="40" height="3" fill="#d4a843" rx="2" transform="rotate(-15,465,195)"/>
+  <polygon points="499,190 506,198 496,198" fill="#c8963c"/>
+
+  <!-- Desk 3 (right) -->
+  <rect x="640" y="220" width="200" height="20" fill="#8b6914" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <rect x="650" y="240" width="10" height="80" fill="#7a5c10"/>
+  <rect x="820" y="240" width="10" height="80" fill="#7a5c10"/>
+  <!-- Parchment on desk 3 with correction marks -->
+  <rect x="655" y="190" width="170" height="30" fill="#f0e8c8" rx="2" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <line x1="665" y1="198" x2="815" y2="198" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+  <line x1="665" y1="205" x2="815" y2="205" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+  <!-- Correction mark (red) -->
+  <line x1="700" y1="195" x2="720" y2="195" stroke="#cc2200" stroke-width="2"/>
+  <text x="698" y="192" font-family="serif" font-size="8" fill="#cc2200">Sic</text>
+
+  <!-- Scribe 3 silhouette (right, Corrector) -->
+  <circle cx="740" cy="155" r="22" fill="#5c4a32"/>
+  <ellipse cx="740" cy="148" rx="26" ry="20" fill="#2d3a28"/>
+  <rect x="710" y="175" width="60" height="50" fill="#2d3a28" rx="5"/>
+  <rect x="710" y="185" width="50" height="12" fill="#2d3a28" rx="5"/>
+  <!-- Red quill (Corrector) -->
+  <rect x="755" y="193" width="40" height="3" fill="#cc2200" rx="2" transform="rotate(-20,755,193)"/>
+  <polygon points="789,185 796,193 786,193" fill="#aa1800"/>
+
+  <!-- Labels -->
+  <text x="160" y="310" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#4a3828" font-weight="bold">Scribe（写本師）</text>
+  <text x="450" y="310" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#3a2d20" font-weight="bold">Scribe（写本師）</text>
+  <text x="740" y="310" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#2d3a28" font-weight="bold">Corrector（校正者）</text>
+
+  <!-- Title banner -->
+  <rect x="200" y="360" width="500" height="30" fill="#8b6914" rx="5" opacity="0.85"/>
+  <text x="450" y="381" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#f5f0e8" font-weight="bold">中世写字室（Scriptorium）〜知識の守護者たち</text>
+</svg>

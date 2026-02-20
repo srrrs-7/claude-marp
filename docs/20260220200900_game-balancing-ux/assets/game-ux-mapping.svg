@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="450" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" fill="#e0e0ff" font-size="18" font-weight="bold" font-family="sans-serif">ゲームバランシング → プロダクトUX設計への応用</text>
+
+  <!-- Game side -->
+  <rect x="30" y="55" width="400" height="370" fill="#16213e" rx="10" style="filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.4))"/>
+  <text x="230" y="85" text-anchor="middle" fill="#ff9900" font-size="16" font-weight="bold" font-family="sans-serif">ゲームデザイン</text>
+
+  <!-- Game elements -->
+  <rect x="60" y="100" width="160" height="50" fill="#533483" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="140" y="130" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">難易度カーブ</text>
+
+  <rect x="60" y="165" width="160" height="50" fill="#533483" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="140" y="195" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">報酬スケジュール</text>
+
+  <rect x="60" y="230" width="160" height="50" fill="#533483" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="140" y="260" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">プレイヤーテスト</text>
+
+  <rect x="60" y="295" width="160" height="50" fill="#533483" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="140" y="325" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">動的難易度調整</text>
+
+  <rect x="60" y="360" width="160" height="50" fill="#533483" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="140" y="390" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">チュートリアル設計</text>
+
+  <!-- Product side -->
+  <rect x="470" y="55" width="400" height="370" fill="#16213e" rx="10" style="filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.4))"/>
+  <text x="670" y="85" text-anchor="middle" fill="#4cc9f0" font-size="16" font-weight="bold" font-family="sans-serif">プロダクトUX</text>
+
+  <rect x="680" y="100" width="160" height="50" fill="#1a6b3a" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="760" y="130" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">学習曲線設計</text>
+
+  <rect x="680" y="165" width="160" height="50" fill="#1a6b3a" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="760" y="195" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">エンゲージメント設計</text>
+
+  <rect x="680" y="230" width="160" height="50" fill="#1a6b3a" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="760" y="260" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">ユーザビリティテスト</text>
+
+  <rect x="680" y="295" width="160" height="50" fill="#1a6b3a" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="760" y="325" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">パーソナライゼーション</text>
+
+  <rect x="680" y="360" width="160" height="50" fill="#1a6b3a" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="760" y="390" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">オンボーディング</text>
+
+  <!-- Arrows connecting -->
+  <line x1="220" y1="125" x2="680" y2="125" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="680,119 694,125 680,131" fill="#e8c6f5"/>
+
+  <line x1="220" y1="190" x2="680" y2="190" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="680,184 694,190 680,196" fill="#e8c6f5"/>
+
+  <line x1="220" y1="255" x2="680" y2="255" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="680,249 694,255 680,261" fill="#e8c6f5"/>
+
+  <line x1="220" y1="320" x2="680" y2="320" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="680,314 694,320 680,326" fill="#e8c6f5"/>
+
+  <line x1="220" y1="385" x2="680" y2="385" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="680,379 694,385 680,391" fill="#e8c6f5"/>
+
+  <!-- Center labels -->
+  <text x="450" y="120" text-anchor="middle" fill="#e8c6f5" font-size="10" font-family="sans-serif">同じ原理</text>
+  <text x="450" y="185" text-anchor="middle" fill="#e8c6f5" font-size="10" font-family="sans-serif">同じ心理学</text>
+  <text x="450" y="250" text-anchor="middle" fill="#e8c6f5" font-size="10" font-family="sans-serif">同じ手法</text>
+  <text x="450" y="315" text-anchor="middle" fill="#e8c6f5" font-size="10" font-family="sans-serif">同じ目標</text>
+  <text x="450" y="380" text-anchor="middle" fill="#e8c6f5" font-size="10" font-family="sans-serif">同じ設計思想</text>
+</svg>

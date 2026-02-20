@@ -1,0 +1,188 @@
+---
+marp: true
+theme: gaia
+class: invert
+size: 16:9
+paginate: true
+header: "エターナル・セプテンバー"
+footer: "© 2026"
+style: |
+  section pre code { font-size: 0.58em; line-height: 1.4; }
+  
+---
+
+<!-- _class: lead -->
+# エターナル・セプテンバー
+
+- ## コミュニティはなぜ死ぬか
+- **スケールがコミュニティを殺す瞬間**
+- 急成長が暗黙知を破壊するメカニズムを解剖する
+
+
+---
+
+<!-- _class: lead -->
+# 1993年9月の出来事
+
+- インターネット文化の転換点
+
+
+---
+
+# USENETの黄金時代
+
+- - 1980年代〜1993年: 大学・研究機関のネットワーク
+- - 毎年9月に新入生が参入 → 混乱が起きる
+- - 10月には先輩ユーザーが教育し、秩序が回復
+- - **季節的な「新規参入→学習→安定」サイクル**
+- <svg viewBox='0 0 800 280' style='max-height:60vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='20' y='200' width='760' height='2' fill='#888'/><text x='60' y='240' fill='#ccc' font-size='13'>9月</text><text x='200' y='240' fill='#ccc' font-size='13'>10月</text><text x='340' y='240' fill='#ccc' font-size='13'>11月</text><text x='480' y='240' fill='#ccc' font-size='13'>12月</text><text x='620' y='240' fill='#ccc' font-size='13'>1月</text><path d='M60,80 C120,180 160,190 200,160 C280,100 400,70 500,60 C600,55 700,50 740,50' stroke='#2ecc71' stroke-width='3' fill='none'/><text x='60' y='65' fill='#2ecc71' font-size='12' font-weight='bold'>コミュニティ品質</text><path d='M60,190 C100,120 140,100 200,140 C280,170 350,185 450,190 C550,195 650,195 740,195' stroke='#e74c3c' stroke-width='3' fill='none' stroke-dasharray='6,4'/><text x='60' y='260' fill='#e74c3c' font-size='12' font-weight='bold'>新規ユーザー順応度</text><rect x='540' y='20' width='220' height='55' rx='6' fill='rgba(46,204,113,0.15)' stroke='#2ecc71' stroke-width='1'/><text x='555' y='42' fill='#2ecc71' font-size='12' font-weight='bold'>毎年回復するサイクル</text><text x='555' y='58' fill='#aaa' font-size='11'>先輩が教育 → 秩序安定</text></svg>
+
+
+---
+
+# AOLの一般開放 — 9月が終わらなくなった日
+
+- - **1993年9月**: AOLがUSENETアクセスを一般ユーザーに開放
+- - 数百万人のインターネット未経験者が一斉に流入
+- - 教育が追いつかず、「9月が永遠に終わらない」状態に
+- - Dave Fischer が名付けた **"Eternal September"**
+- <svg viewBox='0 0 800 300' style='max-height:60vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='50' y='260' width='700' height='2' fill='#888'/><text x='80' y='285' fill='#ccc' font-size='12'>1990</text><text x='200' y='285' fill='#ccc' font-size='12'>1991</text><text x='320' y='285' fill='#ccc' font-size='12'>1992</text><text x='440' y='285' fill='#ccc' font-size='12'>1993</text><text x='560' y='285' fill='#ccc' font-size='12'>1994</text><text x='680' y='285' fill='#ccc' font-size='12'>1995</text><path d='M80,240 L200,235 L320,230 L420,225' stroke='#3498db' stroke-width='3' fill='none'/><path d='M420,225 L440,140 L500,60 L560,40 L680,30' stroke='#e74c3c' stroke-width='3' fill='none'/><line x1='430' y1='20' x2='430' y2='260' stroke='#f39c12' stroke-width='2' stroke-dasharray='6,4'/><text x='435' y='18' fill='#f39c12' font-size='13' font-weight='bold'>AOL開放</text><circle cx='430' cy='220' r='5' fill='#f39c12'/><rect x='500' y='70' width='200' height='50' rx='6' fill='rgba(231,76,60,0.15)' stroke='#e74c3c' stroke-width='1'/><text x='515' y='90' fill='#e74c3c' font-size='12' font-weight='bold'>爆発的増加</text><text x='515' y='108' fill='#aaa' font-size='11'>教育が追いつかない</text><text x='85' y='218' fill='#3498db' font-size='11'>緩やかな成長期</text></svg>
+
+
+---
+
+# 暗黙知の希釈メカニズム
+
+- - コミュニティの規範は **暗黙知** で伝承される
+- - 新規流入速度 > 規範学習速度 → **規範崩壊**
+- - 既存メンバーが「教える」コストに疲弊
+- - 結果: 最古参メンバーから順に離脱する
+- <svg viewBox='0 0 800 300' style='max-height:60vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='50' y='260' width='700' height='2' fill='#888'/><text x='50' y='20' fill='#ccc' font-size='12'>速度</text><text x='720' y='280' fill='#ccc' font-size='12'>時間</text><path d='M80,200 L200,190 L350,170 L500,140 L650,90 L730,50' stroke='#e74c3c' stroke-width='3' fill='none'/><text x='600' y='40' fill='#e74c3c' font-size='12' font-weight='bold'>新規流入速度</text><path d='M80,220 L200,200 L350,180 L450,170 L550,165 L650,163 L730,162' stroke='#2ecc71' stroke-width='3' fill='none'/><text x='600' y='155' fill='#2ecc71' font-size='12' font-weight='bold'>規範学習速度</text><line x1='420' y1='30' x2='420' y2='260' stroke='#f39c12' stroke-width='2' stroke-dasharray='5,4'/><text x='425' y='45' fill='#f39c12' font-size='12' font-weight='bold'>崩壊ポイント</text><rect x='425' y='55' width='180' height='40' rx='5' fill='rgba(243,156,18,0.15)' stroke='#f39c12' stroke-width='1'/><text x='435' y='73' fill='#f39c12' font-size='11'>流入 > 学習 → 規範崩壊</text><text x='435' y='88' fill='#aaa' font-size='10'>古参メンバー離脱開始</text></svg>
+
+
+---
+
+<!-- _class: lead -->
+# 現代のエターナル・セプテンバー
+
+- SNS・OSSに繰り返される同じパターン
+
+
+---
+
+# Twitterの変質 — 3つの時代
+
+- <svg viewBox='0 0 800 260' style='max-height:55vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='30' y='30' width='220' height='190' rx='10' fill='#1a3a4a' stroke='#2ecc71' stroke-width='2' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='140' y='60' text-anchor='middle' fill='#2ecc71' font-size='15' font-weight='bold'>2006–2012</text><text x='140' y='85' text-anchor='middle' fill='#ccc' font-size='12'>テック・アーリーアダプター期</text><text x='50' y='115' fill='#aaa' font-size='11'>• 140字の制約が創造性を生む</text><text x='50' y='135' fill='#aaa' font-size='11'>• 専門家同士の対話</text><text x='50' y='155' fill='#aaa' font-size='11'>• ハッシュタグ文化の誕生</text><text x='50' y='175' fill='#aaa' font-size='11'>• 暗黙のエチケット共有</text><text x='50' y='200' fill='#2ecc71' font-size='11' font-weight='bold'>〜5000万人</text><polygon points='260,125 285,115 285,135' fill='#888'/><rect x='295' y='30' width='220' height='190' rx='10' fill='#3a2a1a' stroke='#f39c12' stroke-width='2' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='405' y='60' text-anchor='middle' fill='#f39c12' font-size='15' font-weight='bold'>2012–2020</text><text x='405' y='85' text-anchor='middle' fill='#ccc' font-size='12'>マス化・政治化</text><text x='315' y='115' fill='#aaa' font-size='11'>• アルゴリズムTL導入</text><text x='315' y='135' fill='#aaa' font-size='11'>• 炎上がエンゲージメント</text><text x='315' y='155' fill='#aaa' font-size='11'>• Bot・荒らしの増加</text><text x='315' y='175' fill='#aaa' font-size='11'>• 専門家が沈黙し始める</text><text x='315' y='200' fill='#f39c12' font-size='11' font-weight='bold'>〜3.5億人</text><polygon points='525,125 550,115 550,135' fill='#888'/><rect x='560' y='30' width='220' height='190' rx='10' fill='#3a1a1a' stroke='#e74c3c' stroke-width='2' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='670' y='60' text-anchor='middle' fill='#e74c3c' font-size='15' font-weight='bold'>2022–現在</text><text x='670' y='85' text-anchor='middle' fill='#ccc' font-size='12'>分断・流出</text><text x='580' y='115' fill='#aaa' font-size='11'>• 買収と方針転換</text><text x='580' y='135' fill='#aaa' font-size='11'>• 青バッジの意味変容</text><text x='580' y='155' fill='#aaa' font-size='11'>• Bluesky/Mastodonへ移住</text><text x='580' y='175' fill='#aaa' font-size='11'>• コミュニティの断片化</text><text x='580' y='200' fill='#e74c3c' font-size='11' font-weight='bold'>流出加速</text></svg>
+
+
+---
+
+# Redditのスケール問題
+
+- - **デフォルトサブレディット**が最初に荒廃した
+- - r/IAmA 運営者追放事件 (2015) — ボランティアの疲弊
+- - サブレディットの「分裂」: r/gaming → r/Games → r/truegaming
+- - 規模が大きいほど**ノイズ比率**が上昇する
+- <svg viewBox='0 0 800 220' style='max-height:50vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='30' y='40' width='200' height='70' rx='8' fill='#e74c3c' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='130' y='70' text-anchor='middle' fill='white' font-size='14' font-weight='bold'>r/gaming</text><text x='130' y='90' text-anchor='middle' fill='#fdd' font-size='11'>3800万人 — 低品質</text><polygon points='240,75 265,65 265,85' fill='#888'/><rect x='280' y='20' width='200' height='70' rx='8' fill='#f39c12' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='380' y='50' text-anchor='middle' fill='white' font-size='14' font-weight='bold'>r/Games</text><text x='380' y='70' text-anchor='middle' fill='#fec' font-size='11'>340万人 — 中品質</text><rect x='280' y='110' width='200' height='70' rx='8' fill='#2ecc71' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='380' y='140' text-anchor='middle' fill='white' font-size='14' font-weight='bold'>r/truegaming</text><text x='380' y='160' text-anchor='middle' fill='#cfc' font-size='11'>170万人 — 高品質</text><polygon points='240,75 265,45 265,55' fill='#888'/><polygon points='240,75 265,130 265,140' fill='#888'/><rect x='560' y='60' width='210' height='100' rx='8' fill='rgba(255,255,255,0.05)' stroke='#888' stroke-width='1'/><text x='575' y='85' fill='#ccc' font-size='12' font-weight='bold'>パターン</text><text x='575' y='108' fill='#aaa' font-size='11'>大 → 分裂 → 小コミュニティ</text><text x='575' y='128' fill='#aaa' font-size='11'>品質を求めて移住が続く</text><text x='575' y='148' fill='#aaa' font-size='11'>→ 「Eternal September」の連鎖</text></svg>
+
+
+---
+
+# Discord / Slackの同じ運命
+
+- - クローズドに見えるが、同じパターンが発生する
+- - サーバー規模が **1,000人** を超えると変質が始まる
+- - 「古参の内輪感」vs「新参の疎外感」
+- - モデレーターの燃え尽き症候群が加速
+- <svg viewBox='0 0 800 240' style='max-height:50vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='40' y='30' width='140' height='80' rx='10' fill='#2ecc71' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='110' y='65' text-anchor='middle' fill='white' font-size='13' font-weight='bold'>〜100人</text><text x='110' y='85' text-anchor='middle' fill='#cfc' font-size='11'>親密・自治的</text><polygon points='190,70 215,60 215,80' fill='#888'/><rect x='230' y='30' width='160' height='80' rx='10' fill='#f39c12' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='310' y='65' text-anchor='middle' fill='white' font-size='13' font-weight='bold'>100〜1000人</text><text x='310' y='85' text-anchor='middle' fill='#fec' font-size='11'>ルール化が必要</text><polygon points='400,70 425,60 425,80' fill='#888'/><rect x='440' y='30' width='160' height='80' rx='10' fill='#e74c3c' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='520' y='65' text-anchor='middle' fill='white' font-size='13' font-weight='bold'>1000人〜</text><text x='520' y='85' text-anchor='middle' fill='#fdd' font-size='11'>変質・分裂リスク</text><polygon points='610,70 635,60 635,80' fill='#888'/><rect x='650' y='30' width='130' height='80' rx='10' fill='#8e44ad' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='715' y='60' text-anchor='middle' fill='white' font-size='13' font-weight='bold'>分裂</text><text x='715' y='80' text-anchor='middle' fill='#dbb' font-size='11'>新サーバー</text><text x='715' y='95' text-anchor='middle' fill='#dbb' font-size='11'>誕生</text><rect x='40' y='140' width='740' height='55' rx='6' fill='rgba(255,255,255,0.05)' stroke='#888' stroke-width='1'/><text x='60' y='165' fill='#f39c12' font-size='13' font-weight='bold'>共通パターン:</text><text x='210' y='165' fill='#aaa' font-size='12'>オープンでもクローズドでも、人数増加 → 暗黙知の希釈 → 文化崩壊 のサイクルは同じ</text></svg>
+
+
+---
+
+# OSSコミュニティへの適用
+
+- - GitHub Issue/PR の質が人気度に反比例する現象
+- - 「+1」コメント、重複Issue、低品質PRの洪水
+- - コアメンテナーの **バーンアウト** が深刻化
+- - 事例: left-pad事件、core-js メンテナーの悲鳴
+- <svg viewBox='0 0 800 250' style='max-height:55vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='30' y='30' width='350' height='80' rx='8' fill='#1a2a3a' stroke='#3498db' stroke-width='2' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='205' y='55' text-anchor='middle' fill='#3498db' font-size='14' font-weight='bold'>スター数 ★ 増加</text><text x='205' y='78' text-anchor='middle' fill='#aaa' font-size='12'>認知度↑ → Issue/PR 流入↑</text><polygon points='390,70 415,60 415,80' fill='#888'/><rect x='430' y='30' width='350' height='80' rx='8' fill='#3a1a1a' stroke='#e74c3c' stroke-width='2' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='605' y='55' text-anchor='middle' fill='#e74c3c' font-size='14' font-weight='bold'>メンテナー疲弊</text><text x='605' y='78' text-anchor='middle' fill='#aaa' font-size='12'>レビュー負荷 → バーンアウト</text><rect x='200' y='140' width='400' height='80' rx='8' fill='#2a2a1a' stroke='#f39c12' stroke-width='2' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='400' y='170' text-anchor='middle' fill='#f39c12' font-size='14' font-weight='bold'>結果: プロジェクト放棄 or 閉鎖的に</text><text x='400' y='195' text-anchor='middle' fill='#aaa' font-size='12'>Archive化 / CODEOWNERS制限 / Bot自動クローズ</text><polygon points='600,118 400,132 410,132' fill='#888'/><polygon points='205,118 400,132 390,132' fill='#888'/></svg>
+
+
+---
+
+<!-- _class: lead -->
+# スケールとコミュニティ設計
+
+- 死なないコミュニティの設計パターン
+
+
+---
+
+# ダンバー数との接続
+
+- - **ダンバー数**: 人間が安定的に維持できる関係は約 **150人**
+- - 150人を超えると「顔が見える関係」→「制度的関係」へ移行
+- - 制度なしにスケールすると → 無秩序化
+- <svg viewBox='0 0 800 260' style='max-height:55vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><circle cx='150' cy='130' r='70' fill='none' stroke='#2ecc71' stroke-width='2' stroke-dasharray='5,3'/><text x='150' y='125' text-anchor='middle' fill='#2ecc71' font-size='14' font-weight='bold'>〜150人</text><text x='150' y='145' text-anchor='middle' fill='#aaa' font-size='11'>信頼ベース</text><circle cx='400' cy='130' r='100' fill='none' stroke='#f39c12' stroke-width='2' stroke-dasharray='5,3'/><text x='400' y='120' text-anchor='middle' fill='#f39c12' font-size='14' font-weight='bold'>150〜1000人</text><text x='400' y='140' text-anchor='middle' fill='#aaa' font-size='11'>制度が必要</text><text x='400' y='160' text-anchor='middle' fill='#aaa' font-size='10'>評判システム・モデレーション</text><circle cx='660' cy='130' r='110' fill='none' stroke='#e74c3c' stroke-width='2' stroke-dasharray='5,3'/><text x='660' y='115' text-anchor='middle' fill='#e74c3c' font-size='14' font-weight='bold'>1000人〜</text><text x='660' y='135' text-anchor='middle' fill='#aaa' font-size='11'>制度+技術的制約</text><text x='660' y='155' text-anchor='middle' fill='#aaa' font-size='10'>自動化・段階的権限</text><text x='660' y='175' text-anchor='middle' fill='#aaa' font-size='10'>or サブグループ分割</text><polygon points='225,130 250,120 250,140' fill='#888'/><polygon points='505,130 530,120 530,140' fill='#888'/></svg>
+
+
+---
+
+# 「小さいままでいる」戦略
+
+- - **Hacker News**: 招待制の名残、厳格なモデレーション
+- - **Lobsters**: 招待制を維持、招待ツリーが可視化
+- - **Tildes**: 意図的なスケール制限、少人数での深い議論
+- - 共通点: **成長を目標にしない** という明確な意思決定
+- <svg viewBox='0 0 800 220' style='max-height:50vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='30' y='30' width='230' height='160' rx='10' fill='#1a3a2a' stroke='#2ecc71' stroke-width='2' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='145' y='60' text-anchor='middle' fill='#2ecc71' font-size='15' font-weight='bold'>Hacker News</text><text x='50' y='90' fill='#aaa' font-size='11'>• 厳格なモデレーション</text><text x='50' y='110' fill='#aaa' font-size='11'>• フレーム検出アルゴリズム</text><text x='50' y='130' fill='#aaa' font-size='11'>• ダウンボートは一定カルマ以上</text><text x='50' y='155' fill='#2ecc71' font-size='11' font-weight='bold'>結果: 17年間の持続</text><rect x='285' y='30' width='230' height='160' rx='10' fill='#1a2a3a' stroke='#3498db' stroke-width='2' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='400' y='60' text-anchor='middle' fill='#3498db' font-size='15' font-weight='bold'>Lobsters</text><text x='305' y='90' fill='#aaa' font-size='11'>• 完全招待制</text><text x='305' y='110' fill='#aaa' font-size='11'>• 招待ツリー公開で責任感</text><text x='305' y='130' fill='#aaa' font-size='11'>• 技術トピック限定</text><text x='305' y='155' fill='#3498db' font-size='11' font-weight='bold'>結果: 高品質を維持</text><rect x='540' y='30' width='230' height='160' rx='10' fill='#2a1a3a' stroke='#9b59b6' stroke-width='2' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='655' y='60' text-anchor='middle' fill='#9b59b6' font-size='15' font-weight='bold'>Tildes</text><text x='560' y='90' fill='#aaa' font-size='11'>• 意図的な小規模運営</text><text x='560' y='110' fill='#aaa' font-size='11'>• コメントラベリング機能</text><text x='560' y='130' fill='#aaa' font-size='11'>• 「成長しない」が方針</text><text x='560' y='155' fill='#9b59b6' font-size='11' font-weight='bold'>結果: 深い議論が成立</text></svg>
+
+
+---
+
+# 段階的エントリーシステム
+
+- - **Stack Overflow**: 評判ポイントで権限が段階的に解放
+- - **Reddit**: カルマベースの投稿制限
+- - **Wikipedia**: 編集回数に応じた信頼レベル
+- - 原則: **参加コストを徐々に下げる**ことで学習を促す
+- <svg viewBox='0 0 800 260' style='max-height:55vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='30' y='180' width='740' height='50' rx='8' fill='#1a3a2a' stroke='#2ecc71' stroke-width='1'/><text x='400' y='200' text-anchor='middle' fill='#2ecc71' font-size='13' font-weight='bold'>Level 1: 閲覧・検索 (0 pts)</text><text x='400' y='218' text-anchor='middle' fill='#aaa' font-size='11'>誰でもアクセス可能</text><rect x='100' y='120' width='600' height='50' rx='8' fill='#1a2a3a' stroke='#3498db' stroke-width='1'/><text x='400' y='140' text-anchor='middle' fill='#3498db' font-size='13' font-weight='bold'>Level 2: 質問・回答 (15+ pts)</text><text x='400' y='158' text-anchor='middle' fill='#aaa' font-size='11'>基本的な参加権限</text><rect x='180' y='60' width='440' height='50' rx='8' fill='#2a2a1a' stroke='#f39c12' stroke-width='1'/><text x='400' y='80' text-anchor='middle' fill='#f39c12' font-size='13' font-weight='bold'>Level 3: 編集・投票 (2000+ pts)</text><text x='400' y='98' text-anchor='middle' fill='#aaa' font-size='11'>コミュニティ運営に参加</text><rect x='280' y='5' width='240' height='45' rx='8' fill='#3a1a2a' stroke='#e74c3c' stroke-width='1'/><text x='400' y='25' text-anchor='middle' fill='#e74c3c' font-size='13' font-weight='bold'>Level 4: モデレーション</text><text x='400' y='42' text-anchor='middle' fill='#aaa' font-size='11'>10000+ pts</text></svg>
+
+
+---
+
+# エンジニアリングチームへの含意
+
+- - チームが **7→15→50人** に成長する時、文化は3回死ぬ
+- - オンボーディング設計 = コミュニティ規範の**明示化**
+- - ルールブックより **ペアリング・メンタリング** が効果的
+- - 「全員がすべてを知る」から「信頼の委譲」へ
+- <svg viewBox='0 0 800 240' style='max-height:50vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='30' y='40' width='160' height='160' rx='10' fill='#1a3a2a' stroke='#2ecc71' stroke-width='2' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='110' y='70' text-anchor='middle' fill='#2ecc71' font-size='14' font-weight='bold'>〜7人</text><text x='110' y='95' text-anchor='middle' fill='#aaa' font-size='11'>暗黙知で十分</text><text x='110' y='115' text-anchor='middle' fill='#aaa' font-size='11'>全員が全部知る</text><text x='110' y='140' text-anchor='middle' fill='#aaa' font-size='10'>口頭伝達OK</text><polygon points='200,120 225,110 225,130' fill='#888'/><rect x='240' y='40' width='180' height='160' rx='10' fill='#2a2a1a' stroke='#f39c12' stroke-width='2' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='330' y='70' text-anchor='middle' fill='#f39c12' font-size='14' font-weight='bold'>8〜15人</text><text x='330' y='95' text-anchor='middle' fill='#aaa' font-size='11'>文書化が必要</text><text x='330' y='115' text-anchor='middle' fill='#aaa' font-size='11'>オンボーディング設計</text><text x='330' y='140' text-anchor='middle' fill='#aaa' font-size='10'>ADR・コーディング規約</text><polygon points='430,120 455,110 455,130' fill='#888'/><rect x='470' y='40' width='180' height='160' rx='10' fill='#3a1a2a' stroke='#e74c3c' stroke-width='2' style='filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='560' y='70' text-anchor='middle' fill='#e74c3c' font-size='14' font-weight='bold'>16〜50人</text><text x='560' y='95' text-anchor='middle' fill='#aaa' font-size='11'>制度的設計が必須</text><text x='560' y='115' text-anchor='middle' fill='#aaa' font-size='11'>チーム分割・権限委譲</text><text x='560' y='140' text-anchor='middle' fill='#aaa' font-size='10'>文化の「番人」を置く</text></svg>
+
+
+---
+
+<!-- _class: lead -->
+# まとめ — コミュニティは生き物
+
+- **コミュニティの死は「悪い人が来る」のではなく**
+- **「良い仕組みがスケールしない」ことで起こる**
+- 
+- スケールは必ずしも成功ではなく、時に死を意味する
+- 
+- 設計すべきは「成長」ではなく「持続可能な規模」
+- そしてその規模を超えた時の **移行戦略**
+
+
+---
+
+# 参考文献
+
+- - **歴史・理論:**
+-   - Dave Fischer, "September that never ended" (1993)
+-   - Robin Dunbar, "Neocortex size as a constraint on group size" (1992)
+-   - Clay Shirky, "A Group Is Its Own Worst Enemy" (2003)
+- - **事例研究:**
+-   - [Hacker News Guidelines](https://news.ycombinator.com/newsguidelines.html)
+-   - [Stack Overflow Privileges](https://stackoverflow.com/help/privileges)
+-   - Nadia Eghbal, "Working in Public" (2020)
+

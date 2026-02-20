@@ -1,0 +1,73 @@
+<svg viewBox="0 0 900 450" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="450" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#e0e0e0">移行戦略の比較: 生物学的アナロジー</text>
+
+  <!-- Strategy 1: Big Bang (Catastrophic Molt) -->
+  <rect x="30" y="65" width="260" height="320" rx="10" fill="#7f1d1d" opacity="0.5" stroke="#f87171" stroke-width="2"/>
+  <text x="160" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="bold" fill="#f87171">Big Bang Rewrite</text>
+  <text x="160" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fca5a5">= 脱皮型（不完全変態）</text>
+
+  <text x="160" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="30">🦗</text>
+  <text x="160" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#e0e0e0">古い殻を一気に脱ぎ捨てる</text>
+
+  <rect x="50" y="195" width="220" height="28" rx="4" fill="#991b1b" opacity="0.4"/>
+  <text x="160" y="214" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fca5a5">旧システムを止めて新へ切替</text>
+
+  <rect x="50" y="230" width="220" height="28" rx="4" fill="#991b1b" opacity="0.4"/>
+  <text x="160" y="249" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fca5a5">ロールバック = 旧システム再起動</text>
+
+  <rect x="50" y="265" width="220" height="28" rx="4" fill="#991b1b" opacity="0.4"/>
+  <text x="160" y="284" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fca5a5">失敗率: 70%+ (Netscape教訓)</text>
+
+  <rect x="70" y="310" width="180" height="50" rx="6" fill="rgba(248,113,113,0.2)" stroke="#f87171" stroke-width="1"/>
+  <text x="160" y="335" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#f87171">リスク: 極高</text>
+  <text x="160" y="353" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">脱皮中に捕食される危険</text>
+
+  <!-- Strategy 2: Strangler Fig (Complete Metamorphosis) -->
+  <rect x="320" y="65" width="260" height="320" rx="10" fill="#14532d" opacity="0.5" stroke="#4ade80" stroke-width="2"/>
+  <text x="450" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="bold" fill="#4ade80">Strangler Fig</text>
+  <text x="450" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#86efac">= 完全変態</text>
+
+  <text x="450" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="30">🦋</text>
+  <text x="450" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#e0e0e0">蛹の中で徐々に再構築</text>
+
+  <rect x="340" y="195" width="220" height="28" rx="4" fill="#166534" opacity="0.4"/>
+  <text x="450" y="214" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#86efac">機能ごとに段階的に移行</text>
+
+  <rect x="340" y="230" width="220" height="28" rx="4" fill="#166534" opacity="0.4"/>
+  <text x="450" y="249" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#86efac">新旧共存 → 徐々に切替</text>
+
+  <rect x="340" y="265" width="220" height="28" rx="4" fill="#166534" opacity="0.4"/>
+  <text x="450" y="284" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#86efac">各段階でロールバック可能</text>
+
+  <rect x="360" y="310" width="180" height="50" rx="6" fill="rgba(74,222,128,0.2)" stroke="#4ade80" stroke-width="1"/>
+  <text x="450" y="335" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4ade80">リスク: 管理可能</text>
+  <text x="450" y="353" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#86efac">蛹の殻が保護を提供</text>
+
+  <!-- Strategy 3: Parallel Run (Asexual Reproduction) -->
+  <rect x="610" y="65" width="260" height="320" rx="10" fill="#1e3a5f" opacity="0.5" stroke="#3b82f6" stroke-width="2"/>
+  <text x="740" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="bold" fill="#60a5fa">Parallel Run</text>
+  <text x="740" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#93c5fd">= 分裂型（細胞分裂）</text>
+
+  <text x="740" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="30">🧬</text>
+  <text x="740" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#e0e0e0">新旧を並列実行して比較</text>
+
+  <rect x="630" y="195" width="220" height="28" rx="4" fill="#1e40af" opacity="0.4"/>
+  <text x="740" y="214" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">新旧に同じリクエストを送信</text>
+
+  <rect x="630" y="230" width="220" height="28" rx="4" fill="#1e40af" opacity="0.4"/>
+  <text x="740" y="249" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">結果を比較 → 差異を検出</text>
+
+  <rect x="630" y="265" width="220" height="28" rx="4" fill="#1e40af" opacity="0.4"/>
+  <text x="740" y="284" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">確信を得てから切替 (GitHub Scientist)</text>
+
+  <rect x="650" y="310" width="180" height="50" rx="6" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="740" y="335" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#60a5fa">リスク: 最低</text>
+  <text x="740" y="353" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">コスト: 最高（二重運用）</text>
+
+  <!-- Bottom -->
+  <text x="450" y="415" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#fbbf24">完全変態 (Strangler Fig) がリスクとコストのバランスで最適解</text>
+  <text x="450" y="440" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#aaa">自然界が40億年かけて到達した戦略に学ぶ</text>
+</svg>

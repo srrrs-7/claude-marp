@@ -1,0 +1,13 @@
+topic: "ジャズ即興演奏とアジャイル開発"
+language: "ja"
+output:
+  dir: "docs/20260220180200_jazz-improvisation-agile"
+  baseName: "jazz-improvisation-agile"
+marp:
+  theme: gaia
+  paginate: true
+  header: "ジャズ即興演奏とアジャイル開発"
+  footer: "© 2026"
+  style: |
+    section { font-size: 1.05em; }
+    section pre code { font-size: 0.58em; line-height: 1.4; }

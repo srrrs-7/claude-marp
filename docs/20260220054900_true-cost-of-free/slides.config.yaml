@@ -1,0 +1,12 @@
+topic: "「無料」の本当のコスト計算"
+language: "ja"
+output:
+  dir: "docs/20260220054900_true-cost-of-free"
+  baseName: "true-cost-of-free"
+marp:
+  theme: gaia
+  paginate: true
+  header: "注意経済と無料の代償"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

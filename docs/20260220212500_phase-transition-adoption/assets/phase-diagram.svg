@@ -1,0 +1,85 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="30" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">物質の相図と技術普及の相図</text>
+
+  <!-- Physics phase diagram -->
+  <rect x="30" y="50" width="410" height="420" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="235" y="80" text-anchor="middle" fill="#4ECDC4" font-size="15" font-family="sans-serif" font-weight="bold">水の相図 (H2O)</text>
+
+  <!-- Axes -->
+  <line x1="80" y1="100" x2="80" y2="420" stroke="#aaa" stroke-width="1"/>
+  <line x1="80" y1="420" x2="400" y2="420" stroke="#aaa" stroke-width="1"/>
+  <text x="60" y="260" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif" transform="rotate(-90,60,260)">圧力</text>
+  <text x="240" y="445" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">温度</text>
+
+  <!-- Ice region -->
+  <polygon points="80,100 80,350 200,250 160,100" fill="#0984e3" opacity="0.3"/>
+  <text x="120" y="220" text-anchor="middle" fill="#0984e3" font-size="14" font-family="sans-serif" font-weight="bold">固体</text>
+  <text x="120" y="240" text-anchor="middle" fill="#0984e3" font-size="11" font-family="sans-serif">(氷)</text>
+
+  <!-- Water region -->
+  <polygon points="200,250 80,350 80,420 300,420 300,150 160,100 200,250" fill="#4ECDC4" opacity="0.2"/>
+  <text x="210" y="360" text-anchor="middle" fill="#4ECDC4" font-size="14" font-family="sans-serif" font-weight="bold">液体</text>
+  <text x="210" y="380" text-anchor="middle" fill="#4ECDC4" font-size="11" font-family="sans-serif">(水)</text>
+
+  <!-- Steam region -->
+  <polygon points="300,150 300,420 400,420 400,100 300,150" fill="#FF6B6B" opacity="0.2"/>
+  <text x="360" y="300" text-anchor="middle" fill="#FF6B6B" font-size="14" font-family="sans-serif" font-weight="bold">気体</text>
+  <text x="360" y="320" text-anchor="middle" fill="#FF6B6B" font-size="11" font-family="sans-serif">(蒸気)</text>
+
+  <!-- Phase boundaries -->
+  <polyline points="200,250 160,100" fill="none" stroke="white" stroke-width="2"/>
+  <polyline points="200,250 80,350" fill="none" stroke="white" stroke-width="2"/>
+  <polyline points="200,250 300,150" fill="none" stroke="white" stroke-width="2"/>
+
+  <!-- Triple point -->
+  <circle cx="200" cy="250" r="6" fill="#FFEAA7"/>
+  <text x="230" y="248" fill="#FFEAA7" font-size="10" font-family="sans-serif">三重点</text>
+
+  <!-- Critical point -->
+  <circle cx="300" cy="150" r="6" fill="#FF6B6B"/>
+  <text x="315" y="145" fill="#FF6B6B" font-size="10" font-family="sans-serif">臨界点</text>
+
+  <text x="235" y="460" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">臨界点を超えると「突然」相が変わる</text>
+
+  <!-- Technology phase diagram -->
+  <rect x="460" y="50" width="410" height="420" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="665" y="80" text-anchor="middle" fill="#FFEAA7" font-size="15" font-family="sans-serif" font-weight="bold">技術普及の相図</text>
+
+  <!-- Axes -->
+  <line x1="510" y1="100" x2="510" y2="420" stroke="#aaa" stroke-width="1"/>
+  <line x1="510" y1="420" x2="830" y2="420" stroke="#aaa" stroke-width="1"/>
+  <text x="490" y="260" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif" transform="rotate(-90,490,260)">ネットワーク効果</text>
+  <text x="670" y="445" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">技術成熟度</text>
+
+  <!-- Niche region -->
+  <polygon points="510,100 510,350 640,250 600,100" fill="#0984e3" opacity="0.3"/>
+  <text x="560" y="220" text-anchor="middle" fill="#0984e3" font-size="13" font-family="sans-serif" font-weight="bold">ニッチ</text>
+  <text x="560" y="240" text-anchor="middle" fill="#0984e3" font-size="10" font-family="sans-serif">アーリー</text>
+  <text x="560" y="255" text-anchor="middle" fill="#0984e3" font-size="10" font-family="sans-serif">アダプター</text>
+
+  <!-- Growth region -->
+  <polygon points="640,250 510,350 510,420 730,420 730,150 600,100 640,250" fill="#4ECDC4" opacity="0.2"/>
+  <text x="640" y="360" text-anchor="middle" fill="#4ECDC4" font-size="13" font-family="sans-serif" font-weight="bold">急成長</text>
+  <text x="640" y="380" text-anchor="middle" fill="#4ECDC4" font-size="10" font-family="sans-serif">マス採用</text>
+
+  <!-- Saturation region -->
+  <polygon points="730,150 730,420 830,420 830,100 730,150" fill="#FF6B6B" opacity="0.2"/>
+  <text x="785" y="300" text-anchor="middle" fill="#FF6B6B" font-size="13" font-family="sans-serif" font-weight="bold">飽和</text>
+  <text x="785" y="320" text-anchor="middle" fill="#FF6B6B" font-size="10" font-family="sans-serif">コモディティ</text>
+
+  <!-- Phase boundaries -->
+  <polyline points="640,250 600,100" fill="none" stroke="white" stroke-width="2"/>
+  <polyline points="640,250 510,350" fill="none" stroke="white" stroke-width="2"/>
+  <polyline points="640,250 730,150" fill="none" stroke="white" stroke-width="2"/>
+
+  <!-- Tipping point -->
+  <circle cx="640" cy="250" r="6" fill="#FFEAA7"/>
+  <text x="660" y="248" fill="#FFEAA7" font-size="10" font-family="sans-serif">臨界点</text>
+
+  <!-- Critical mass -->
+  <circle cx="730" cy="150" r="6" fill="#FF6B6B"/>
+  <text x="750" y="145" fill="#FF6B6B" font-size="10" font-family="sans-serif">飽和点</text>
+
+  <text x="665" y="460" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">臨界点(ティッピングポイント)で爆発的普及が起きる</text>
+</svg>

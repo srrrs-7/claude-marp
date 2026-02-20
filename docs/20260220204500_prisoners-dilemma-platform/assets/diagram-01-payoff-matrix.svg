@@ -1,0 +1,50 @@
+<svg viewBox="0 0 800 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="480" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#e0e0e0">囚人のジレンマ 利得行列</text>
+
+  <!-- Column headers -->
+  <text x="470" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="bold" fill="#22d3ee">プラットフォーム B</text>
+  <text x="370" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#22d3ee">協調 (標準準拠)</text>
+  <text x="580" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#22d3ee">裏切り (囲い込み)</text>
+
+  <!-- Row headers -->
+  <text x="100" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="bold" fill="#f472b6" transform="rotate(-90 100 240)">プラットフォーム A</text>
+  <text x="195" y="210" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#f472b6">協調</text>
+  <text x="195" y="320" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#f472b6">裏切り</text>
+
+  <!-- Grid lines -->
+  <line x1="260" y1="130" x2="260" y2="390" stroke="#555" stroke-width="2"/>
+  <line x1="470" y1="130" x2="470" y2="390" stroke="#555" stroke-width="2"/>
+  <line x1="680" y1="130" x2="680" y2="390" stroke="#555" stroke-width="2"/>
+  <line x1="260" y1="130" x2="680" y2="130" stroke="#555" stroke-width="2"/>
+  <line x1="260" y1="260" x2="680" y2="260" stroke="#555" stroke-width="2"/>
+  <line x1="260" y1="390" x2="680" y2="390" stroke="#555" stroke-width="2"/>
+
+  <!-- Cell: Cooperate/Cooperate (best collective) -->
+  <rect x="262" y="132" width="206" height="126" fill="#14532d" opacity="0.5"/>
+  <text x="365" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="bold" fill="#4ade80">+3, +3</text>
+  <text x="365" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#86efac">相互運用で市場拡大</text>
+  <text x="365" y="245" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#86efac" style="filter: drop-shadow(0px 0px 4px rgba(74,222,128,0.5))">WIN-WIN</text>
+
+  <!-- Cell: Cooperate/Defect -->
+  <rect x="472" y="132" width="206" height="126" fill="#7f1d1d" opacity="0.5"/>
+  <text x="575" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="bold" fill="#f87171">0, +5</text>
+  <text x="575" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fca5a5">Bが独占、Aはシェア喪失</text>
+
+  <!-- Cell: Defect/Cooperate -->
+  <rect x="262" y="262" width="206" height="126" fill="#7f1d1d" opacity="0.5"/>
+  <text x="365" y="315" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="bold" fill="#f87171">+5, 0</text>
+  <text x="365" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fca5a5">Aが独占、Bはシェア喪失</text>
+
+  <!-- Cell: Defect/Defect (Nash equilibrium) -->
+  <rect x="472" y="262" width="206" height="126" fill="#713f12" opacity="0.5"/>
+  <text x="575" y="315" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="bold" fill="#fbbf24">+1, +1</text>
+  <text x="575" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fde68a">相互囲い込みで市場縮小</text>
+  <text x="575" y="375" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fbbf24" style="filter: drop-shadow(0px 0px 4px rgba(251,191,36,0.5))">Nash Equilibrium</text>
+
+  <!-- Bottom annotation -->
+  <text x="400" y="430" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#aaa">個人の合理性 (裏切り) ≠ 集団の最適解 (協調)</text>
+  <text x="400" y="455" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#888">ナッシュ均衡 (+1,+1) < パレート最適 (+3,+3)</text>
+</svg>

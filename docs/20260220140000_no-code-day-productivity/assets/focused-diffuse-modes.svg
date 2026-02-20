@@ -1,0 +1,81 @@
+<svg viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="460" fill="#0f172a" rx="12"/>
+  <text x="480" y="34" text-anchor="middle" font-size="18" font-weight="bold" fill="#e2e8f0">集中モード（Focused）と拡散モード（Diffuse）</text>
+
+  <!-- Divider -->
+  <line x1="480" y1="55" x2="480" y2="430" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- === LEFT: Focused Mode === -->
+  <rect x="20" y="55" width="440" height="375" rx="10" fill="#0c1a2e" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="240" y="85" text-anchor="middle" font-size="15" font-weight="bold" fill="#93c5fd">集中モード（Focused Mode）</text>
+
+  <!-- Brain shape - focused, narrow beam -->
+  <ellipse cx="240" cy="210" rx="80" ry="90" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2"/>
+  <ellipse cx="240" cy="210" rx="50" ry="58" fill="#1d4ed8" opacity="0.6"/>
+  <ellipse cx="240" cy="210" rx="22" ry="28" fill="#60a5fa" opacity="0.9"/>
+
+  <!-- Narrow beam rays -->
+  <line x1="240" y1="120" x2="240" y2="70" stroke="#60a5fa" stroke-width="3"/>
+  <line x1="260" y1="124" x2="272" y2="76" stroke="#60a5fa" stroke-width="2" opacity="0.7"/>
+  <line x1="220" y1="124" x2="208" y2="76" stroke="#60a5fa" stroke-width="2" opacity="0.7"/>
+
+  <!-- Features -->
+  <rect x="40" y="318" width="400" height="100" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="1"/>
+  <text x="240" y="340" text-anchor="middle" font-size="12" font-weight="bold" fill="#93c5fd">特徴</text>
+  <text x="60" y="360" font-size="11" fill="#bfdbfe">・順序立てた問題解決（線形思考）</text>
+  <text x="60" y="378" font-size="11" fill="#bfdbfe">・既知のパターンを素早く適用</text>
+  <text x="60" y="396" font-size="11" fill="#bfdbfe">・コーディング・デバッグに向く</text>
+  <text x="60" y="412" font-size="11" fill="#bfdbfe">・中断に弱い（23分の回復コスト）</text>
+
+  <!-- Focused label -->
+  <text x="240" y="268" text-anchor="middle" font-size="11" fill="#60a5fa">前頭前皮質が主導</text>
+  <text x="240" y="285" text-anchor="middle" font-size="11" fill="#60a5fa">高い認知負荷・疲弊しやすい</text>
+
+  <!-- === RIGHT: Diffuse Mode === -->
+  <rect x="500" y="55" width="440" height="375" rx="10" fill="#1a1a0a" stroke="#f97316" stroke-width="1.5"/>
+  <text x="720" y="85" text-anchor="middle" font-size="15" font-weight="bold" fill="#fdba74">拡散モード（Diffuse Mode）</text>
+
+  <!-- Brain shape - diffuse, spread beams -->
+  <ellipse cx="720" cy="210" rx="80" ry="90" fill="#3d1f00" stroke="#f97316" stroke-width="2"/>
+
+  <!-- Scattered nodes representing distributed activation -->
+  <circle cx="685" cy="185" r="8" fill="#fb923c" opacity="0.8"/>
+  <circle cx="750" cy="175" r="6" fill="#fbbf24" opacity="0.8"/>
+  <circle cx="700" cy="225" r="10" fill="#f97316" opacity="0.7"/>
+  <circle cx="745" cy="235" r="7" fill="#fb923c" opacity="0.8"/>
+  <circle cx="710" cy="250" r="5" fill="#fde68a" opacity="0.7"/>
+  <circle cx="660" cy="210" r="9" fill="#f59e0b" opacity="0.6"/>
+  <circle cx="770" cy="210" r="8" fill="#fb923c" opacity="0.7"/>
+
+  <!-- Connections between nodes -->
+  <line x1="685" y1="185" x2="750" y2="175" stroke="#f97316" stroke-width="1.2" opacity="0.5"/>
+  <line x1="685" y1="185" x2="700" y2="225" stroke="#f97316" stroke-width="1.2" opacity="0.5"/>
+  <line x1="750" y1="175" x2="745" y2="235" stroke="#fbbf24" stroke-width="1.2" opacity="0.5"/>
+  <line x1="700" y1="225" x2="745" y2="235" stroke="#f97316" stroke-width="1.2" opacity="0.5"/>
+  <line x1="660" y1="210" x2="685" y2="185" stroke="#f59e0b" stroke-width="1.2" opacity="0.4"/>
+  <line x1="770" y1="210" x2="745" y2="235" stroke="#fb923c" stroke-width="1.2" opacity="0.4"/>
+
+  <!-- Spread rays (many directions) -->
+  <line x1="720" y1="120" x2="720" y2="72" stroke="#f97316" stroke-width="1.5" opacity="0.6"/>
+  <line x1="740" y1="122" x2="770" y2="78" stroke="#f97316" stroke-width="1.5" opacity="0.5"/>
+  <line x1="700" y1="122" x2="670" y2="78" stroke="#f97316" stroke-width="1.5" opacity="0.5"/>
+  <line x1="755" y1="130" x2="800" y2="95" stroke="#f97316" stroke-width="1" opacity="0.4"/>
+  <line x1="685" y1="130" x2="640" y2="95" stroke="#f97316" stroke-width="1" opacity="0.4"/>
+
+  <!-- Features -->
+  <rect x="520" y="318" width="400" height="100" rx="8" fill="#2d1b00" stroke="#f97316" stroke-width="1"/>
+  <text x="720" y="340" text-anchor="middle" font-size="12" font-weight="bold" fill="#fdba74">特徴</text>
+  <text x="540" y="360" font-size="11" fill="#fed7aa">・分散した「ぼんやり」した思考</text>
+  <text x="540" y="378" font-size="11" fill="#fed7aa">・記憶の統合・新しい接続を生成</text>
+  <text x="540" y="396" font-size="11" fill="#fed7aa">・休憩・散歩・入浴中に活性化</text>
+  <text x="540" y="412" font-size="11" fill="#fed7aa">・DMN（デフォルトモードネットワーク）</text>
+
+  <!-- Diffuse label -->
+  <text x="720" y="268" text-anchor="middle" font-size="11" fill="#f97316">DMN が主導</text>
+  <text x="720" y="285" text-anchor="middle" font-size="11" fill="#f97316">低い認知負荷・「インキュベーション」</text>
+
+  <!-- Center insight box -->
+  <rect x="330" y="400" width="300" height="48" rx="8" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+  <text x="480" y="419" text-anchor="middle" font-size="11" font-weight="bold" fill="#e2e8f0">両モードを交互に使うことが「学習と創造」を最大化</text>
+  <text x="480" y="437" text-anchor="middle" font-size="10" fill="#94a3b8">Barbara Oakley『Learning How to Learn』(2014)</text>
+</svg>

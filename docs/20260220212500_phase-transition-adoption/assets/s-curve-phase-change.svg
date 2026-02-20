@@ -1,0 +1,68 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="28" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">S字曲線と相変化のアナロジー</text>
+
+  <!-- Chart area -->
+  <rect x="50" y="50" width="800" height="320" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+
+  <!-- Axes -->
+  <line x1="110" y1="80" x2="110" y2="340" stroke="#aaa" stroke-width="1"/>
+  <line x1="110" y1="340" x2="810" y2="340" stroke="#aaa" stroke-width="1"/>
+  <text x="80" y="210" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif" transform="rotate(-90,80,210)">普及率 (%)</text>
+  <text x="460" y="360" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">時間</text>
+
+  <!-- Y axis labels -->
+  <text x="105" y="340" text-anchor="end" fill="#aaa" font-size="10" font-family="sans-serif">0%</text>
+  <text x="105" y="275" text-anchor="end" fill="#aaa" font-size="10" font-family="sans-serif">25%</text>
+  <text x="105" y="210" text-anchor="end" fill="#aaa" font-size="10" font-family="sans-serif">50%</text>
+  <text x="105" y="145" text-anchor="end" fill="#aaa" font-size="10" font-family="sans-serif">75%</text>
+  <text x="105" y="85" text-anchor="end" fill="#aaa" font-size="10" font-family="sans-serif">100%</text>
+
+  <!-- S-curve -->
+  <path d="M 130,335 C 200,330 250,325 320,310 C 380,295 420,260 460,210 C 500,160 540,120 600,100 C 660,85 720,82 790,80" fill="none" stroke="#4ECDC4" stroke-width="3"/>
+
+  <!-- Phase regions -->
+  <!-- Subcritical (slow) -->
+  <rect x="130" y="75" width="190" height="265" fill="#0984e3" opacity="0.08"/>
+  <text x="225" y="100" text-anchor="middle" fill="#0984e3" font-size="12" font-family="sans-serif" font-weight="bold">準安定相</text>
+  <text x="225" y="118" text-anchor="middle" fill="#0984e3" font-size="10" font-family="sans-serif">ゆっくり加熱中</text>
+  <text x="225" y="136" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">イノベーター + EA</text>
+
+  <!-- Critical transition zone -->
+  <rect x="320" y="75" width="160" height="265" fill="#FFEAA7" opacity="0.1"/>
+  <text x="400" y="100" text-anchor="middle" fill="#FFEAA7" font-size="12" font-family="sans-serif" font-weight="bold">相転移領域</text>
+  <text x="400" y="118" text-anchor="middle" fill="#FFEAA7" font-size="10" font-family="sans-serif">臨界点突破!</text>
+  <text x="400" y="136" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">爆発的普及</text>
+
+  <!-- Supercritical (fast then plateau) -->
+  <rect x="480" y="75" width="310" height="265" fill="#FF6B6B" opacity="0.08"/>
+  <text x="635" y="100" text-anchor="middle" fill="#FF6B6B" font-size="12" font-family="sans-serif" font-weight="bold">新しい安定相</text>
+  <text x="635" y="118" text-anchor="middle" fill="#FF6B6B" font-size="10" font-family="sans-serif">飽和・定着</text>
+  <text x="635" y="136" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">マジョリティ + ラガード</text>
+
+  <!-- Tipping point annotation -->
+  <line x1="400" y1="210" x2="400" y2="340" stroke="#FFEAA7" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <circle cx="400" cy="210" r="8" fill="#FFEAA7" opacity="0.5"/>
+  <circle cx="400" cy="210" r="4" fill="#FFEAA7"/>
+  <text x="400" y="355" text-anchor="middle" fill="#FFEAA7" font-size="11" font-family="sans-serif" font-weight="bold">ティッピングポイント (臨界点)</text>
+
+  <!-- Bottom: Examples -->
+  <rect x="50" y="385" width="800" height="100" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="450" y="410" text-anchor="middle" fill="#FFEAA7" font-size="14" font-family="sans-serif" font-weight="bold">技術の「相転移」実例</text>
+
+  <text x="80" y="435" fill="#4ECDC4" font-size="11" font-family="sans-serif" font-weight="bold">ChatGPT</text>
+  <text x="80" y="452" fill="#aaa" font-size="10" font-family="sans-serif">5日で100万ユーザー</text>
+  <text x="80" y="467" fill="#aaa" font-size="10" font-family="sans-serif">2ヶ月で1億ユーザー</text>
+
+  <text x="260" y="435" fill="#4ECDC4" font-size="11" font-family="sans-serif" font-weight="bold">iPhone</text>
+  <text x="260" y="452" fill="#aaa" font-size="10" font-family="sans-serif">2007: ニッチなガジェット</text>
+  <text x="260" y="467" fill="#aaa" font-size="10" font-family="sans-serif">2012: 世界標準に相転移</text>
+
+  <text x="450" y="435" fill="#4ECDC4" font-size="11" font-family="sans-serif" font-weight="bold">Zoom</text>
+  <text x="450" y="452" fill="#aaa" font-size="10" font-family="sans-serif">COVID-19で臨界点突破</text>
+  <text x="450" y="467" fill="#aaa" font-size="10" font-family="sans-serif">1000万→3億DAU (3ヶ月)</text>
+
+  <text x="650" y="435" fill="#4ECDC4" font-size="11" font-family="sans-serif" font-weight="bold">Bitcoin</text>
+  <text x="650" y="452" fill="#aaa" font-size="10" font-family="sans-serif">2009-2016: ニッチ</text>
+  <text x="650" y="467" fill="#aaa" font-size="10" font-family="sans-serif">2017: $20K突破で相転移</text>
+</svg>

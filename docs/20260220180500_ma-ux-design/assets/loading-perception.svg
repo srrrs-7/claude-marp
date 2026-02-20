@@ -1,0 +1,51 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#f8f9fa" rx="12"/>
+  <text x="400" y="38" font-family="serif" font-size="19" fill="#1a1a2e" text-anchor="middle" font-weight="bold">ローディングの「間」— 体感時間 vs 実時間</text>
+
+  <!-- Timeline axis -->
+  <line x1="60" y1="120" x2="740" y2="120" stroke="#ccc" stroke-width="2"/>
+  <!-- Time markers -->
+  <line x1="60" y1="115" x2="60" y2="125" stroke="#999" stroke-width="1.5"/>
+  <text x="60" y="140" font-family="sans-serif" font-size="10" fill="#666" text-anchor="middle">0s</text>
+  <line x1="228" y1="115" x2="228" y2="125" stroke="#999" stroke-width="1.5"/>
+  <text x="228" y="140" font-family="sans-serif" font-size="10" fill="#666" text-anchor="middle">1s</text>
+  <line x1="396" y1="115" x2="396" y2="125" stroke="#999" stroke-width="1.5"/>
+  <text x="396" y="140" font-family="sans-serif" font-size="10" fill="#666" text-anchor="middle">2s</text>
+  <line x1="564" y1="115" x2="564" y2="125" stroke="#999" stroke-width="1.5"/>
+  <text x="564" y="140" font-family="sans-serif" font-size="10" fill="#666" text-anchor="middle">3s</text>
+  <line x1="740" y1="115" x2="740" y2="125" stroke="#999" stroke-width="1.5"/>
+  <text x="740" y="140" font-family="sans-serif" font-size="10" fill="#666" text-anchor="middle">4s</text>
+
+  <!-- Pattern A: No feedback (spinner only) -->
+  <text x="30" y="175" font-family="sans-serif" font-size="12" fill="#e74c3c" font-weight="bold">A: フィードバックなし</text>
+  <rect x="60" y="180" width="680" height="34" fill="#fdecea" rx="4"/>
+  <!-- Actual 2s load time in gray -->
+  <rect x="60" y="180" width="340" height="34" fill="#e74c3c" rx="4" opacity="0.6"/>
+  <text x="230" y="202" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle">処理中...</text>
+  <!-- Perceived longer -->
+  <line x1="400" y1="197" x2="700" y2="197" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="550" y="192" font-family="sans-serif" font-size="9" fill="#e74c3c" text-anchor="middle">体感時間（さらに長く感じる）</text>
+  <text x="60" y="230" font-family="sans-serif" font-size="11" fill="#e74c3c">実時間 2秒 → 体感 3〜4秒（不安・離脱率高）</text>
+
+  <!-- Pattern B: Progress bar -->
+  <text x="30" y="275" font-family="sans-serif" font-size="12" fill="#f39c12" font-weight="bold">B: プログレスバーあり</text>
+  <rect x="60" y="280" width="680" height="34" fill="#fef9e7" rx="4"/>
+  <rect x="60" y="280" width="340" height="34" fill="#f39c12" rx="4" opacity="0.7"/>
+  <text x="230" y="302" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle">50% 読み込み中...</text>
+  <!-- Perceived shorter -->
+  <line x1="400" y1="297" x2="480" y2="297" stroke="#f39c12" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="440" y="292" font-family="sans-serif" font-size="9" fill="#f39c12" text-anchor="middle">体感短縮</text>
+  <text x="60" y="330" font-family="sans-serif" font-size="11" fill="#f39c12">実時間 2秒 → 体感 1.5秒（安心感・継続率向上）</text>
+
+  <!-- Pattern C: Skeleton + progress -->
+  <text x="30" y="360" font-family="sans-serif" font-size="12" fill="#27ae60" font-weight="bold">C: スケルトン UI + インジケータ</text>
+  <!-- (description only, no visual bar since slide is getting complex) -->
+  <text x="60" y="380" font-family="sans-serif" font-size="11" fill="#27ae60">実時間 2秒 → 体感 0.8秒（コンテンツが見え始め、待機感ゼロ）</text>
+
+  <!-- Key insight -->
+  <rect x="530" y="260" width="220" height="90" fill="#fff8e8" stroke="#d4a017" stroke-width="1.5" rx="8"/>
+  <text x="640" y="282" font-family="serif" font-size="12" fill="#7a5500" text-anchor="middle" font-weight="bold">能楽との対応</text>
+  <text x="640" y="300" font-family="sans-serif" font-size="10" fill="#3a2c1a" text-anchor="middle">待ちの「間」にも</text>
+  <text x="640" y="316" font-family="sans-serif" font-size="10" fill="#3a2c1a" text-anchor="middle">意味と形を与える</text>
+  <text x="640" y="332" font-family="sans-serif" font-size="10" fill="#c0392b" text-anchor="middle">→ 間を設計する</text>
+</svg>

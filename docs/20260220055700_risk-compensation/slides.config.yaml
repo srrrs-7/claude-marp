@@ -1,0 +1,12 @@
+topic: "リスク補償効果：安全装置が危険を増す逆説"
+language: "ja"
+output:
+  dir: "docs/20260220055700_risk-compensation"
+  baseName: "risk-compensation"
+marp:
+  theme: gaia
+  paginate: true
+  header: "リスク補償理論"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

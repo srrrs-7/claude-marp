@@ -1,0 +1,12 @@
+topic: "ノーコードデーは本当に生産的か？"
+language: "ja"
+output:
+  dir: "docs/20260220064200_no-code-productive-days"
+  baseName: "no-code-productive-days"
+marp:
+  theme: gaia
+  paginate: true
+  header: "ノーコードデー"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

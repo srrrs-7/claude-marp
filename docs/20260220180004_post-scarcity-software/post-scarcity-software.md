@@ -1,0 +1,199 @@
+---
+marp: true
+theme: gaia
+class: invert
+size: 16:9
+paginate: true
+header: "ポスト希少性ソフトウェア"
+footer: "© 2026"
+style: |
+  section pre code { font-size: 0.58em; line-height: 1.4; }
+  
+---
+
+<!-- _class: lead -->
+# ポスト希少性ソフトウェア
+
+- コードが無料になる日
+- 
+- AIがコードを無制限生成できるなら、何に価値が宿るか
+
+
+---
+
+<!-- _class: lead -->
+# 希少性の崩壊
+
+- ソフトウェア生産の限界費用がゼロに近づくとき
+
+
+---
+
+# コード生成の現在地
+
+- - 2021: GitHub Copilot プレビュー — コード補完の革命
+- - 2023: GPT-4 — 関数単位の生成が実用レベルに
+- - 2024: Claude Code, Cursor — プロジェクト全体の理解と修正
+- - 2025-26: エージェント型AI — 要件から実装まで自動化
+- 
+- <svg viewBox='0 0 800 220' style='max-height:45vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='800' height='220' fill='none'/><line x1='80' y1='180' x2='750' y2='180' stroke='#555' stroke-width='2'/><line x1='80' y1='180' x2='80' y2='30' stroke='#555' stroke-width='2'/><text x='40' y='110' text-anchor='middle' fill='#999' font-size='11' transform='rotate(-90 40 110)'>生成品質</text><text x='415' y='210' text-anchor='middle' fill='#999' font-size='11'>年</text><circle cx='180' cy='160' r='6' fill='#e74c3c'/><text x='180' y='195' text-anchor='middle' fill='#aaa' font-size='10'>2021</text><circle cx='310' cy='130' r='6' fill='#e67e22'/><text x='310' y='195' text-anchor='middle' fill='#aaa' font-size='10'>2023</text><circle cx='440' cy='90' r='6' fill='#f1c40f'/><text x='440' y='195' text-anchor='middle' fill='#aaa' font-size='10'>2024</text><circle cx='570' cy='55' r='6' fill='#2ecc71'/><text x='570' y='195' text-anchor='middle' fill='#aaa' font-size='10'>2025</text><circle cx='700' cy='40' r='6' fill='#3498db'/><text x='700' y='195' text-anchor='middle' fill='#aaa' font-size='10'>2026</text><polyline points='180,160 310,130 440,90 570,55 700,40' fill='none' stroke='#3498db' stroke-width='3'/><text x='180' y='150' text-anchor='middle' fill='#e74c3c' font-size='9'>Copilot</text><text x='310' y='120' text-anchor='middle' fill='#e67e22' font-size='9'>GPT-4</text><text x='440' y='80' text-anchor='middle' fill='#f1c40f' font-size='9'>Claude/Cursor</text><text x='570' y='45' text-anchor='middle' fill='#2ecc71' font-size='9'>Agent AI</text></svg>
+
+
+---
+
+# 限界費用ゼロへの収束
+
+- - リフキン「限界費用ゼロ社会」(2014)の予言が現実に
+- - 物理財 → デジタル財 → **コード生成** の順に限界費用が崩壊
+- - 1行のコードを追加生成するコスト ≈ API呼び出し数セント
+- - オープンソースの「無料」とは質的に異なる革命
+- 
+- <svg viewBox='0 0 800 220' style='max-height:45vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='800' height='220' fill='none'/><line x1='80' y1='180' x2='750' y2='180' stroke='#555' stroke-width='2'/><line x1='80' y1='180' x2='80' y2='30' stroke='#555' stroke-width='2'/><text x='40' y='110' text-anchor='middle' fill='#999' font-size='11' transform='rotate(-90 40 110)'>限界費用</text><text x='415' y='210' text-anchor='middle' fill='#999' font-size='11'>時間</text><path d='M 100,50 Q 250,55 350,100 Q 450,140 550,165 Q 650,175 740,178' fill='none' stroke='#e74c3c' stroke-width='3'/><text x='200' y='45' fill='#e74c3c' font-size='11'>物理財</text><path d='M 100,50 Q 200,52 280,80 Q 380,140 500,170 Q 600,178 740,179' fill='none' stroke='#f39c12' stroke-width='3'/><text x='160' y='65' fill='#f39c12' font-size='11'>デジタル財</text><path d='M 100,120 Q 200,125 300,140 Q 400,165 500,175 Q 600,179 740,180' fill='none' stroke='#2ecc71' stroke-width='3'/><text x='140' y='115' fill='#2ecc71' font-size='11'>コード生成</text><line x1='80' y1='178' x2='750' y2='178' stroke='#3498db' stroke-width='1' stroke-dasharray='6,4'/><text x='760' y='178' fill='#3498db' font-size='9' text-anchor='start'>≈0</text></svg>
+
+
+---
+
+# 既存の価値観の崩壊
+
+- - 「コードが書ける」= 希少スキル → **コモディティ化**
+- - プログラミング言語の習熟度が差別化要因ではなくなる
+- - StackOverflow の月間訪問数が2023年以降急減
+- - コーディングブートキャンプのビジネスモデルが変容
+- 
+- <svg viewBox='0 0 800 200' style='max-height:40vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='800' height='200' fill='none'/><rect x='50' y='30' width='200' height='140' rx='10' fill='#1a1a2e' stroke='#e74c3c' stroke-width='2'/><text x='150' y='55' text-anchor='middle' fill='#e74c3c' font-size='14' font-weight='bold'>過去の価値</text><text x='150' y='80' text-anchor='middle' fill='#aaa' font-size='11'>言語の習熟度</text><text x='150' y='100' text-anchor='middle' fill='#aaa' font-size='11'>アルゴリズム知識</text><text x='150' y='120' text-anchor='middle' fill='#aaa' font-size='11'>タイピング速度</text><text x='150' y='140' text-anchor='middle' fill='#aaa' font-size='11'>フレームワーク経験</text><polygon points='270,100 300,85 300,115' fill='#ecf0f1'/><rect x='310' y='30' width='200' height='140' rx='10' fill='#1a1a2e' stroke='#f39c12' stroke-width='2'/><text x='410' y='55' text-anchor='middle' fill='#f39c12' font-size='14' font-weight='bold'>過渡期の価値</text><text x='410' y='80' text-anchor='middle' fill='#aaa' font-size='11'>プロンプト設計</text><text x='410' y='100' text-anchor='middle' fill='#aaa' font-size='11'>AI出力の検証</text><text x='410' y='120' text-anchor='middle' fill='#aaa' font-size='11'>ツール選定</text><text x='410' y='140' text-anchor='middle' fill='#aaa' font-size='11'>統合能力</text><polygon points='530,100 560,85 560,115' fill='#ecf0f1'/><rect x='570' y='30' width='200' height='140' rx='10' fill='#1a1a2e' stroke='#2ecc71' stroke-width='2'/><text x='670' y='55' text-anchor='middle' fill='#2ecc71' font-size='14' font-weight='bold'>未来の価値</text><text x='670' y='80' text-anchor='middle' fill='#aaa' font-size='11'>問題の発見・定義</text><text x='670' y='100' text-anchor='middle' fill='#aaa' font-size='11'>トレードオフ判断</text><text x='670' y='120' text-anchor='middle' fill='#aaa' font-size='11'>倫理的審査</text><text x='670' y='140' text-anchor='middle' fill='#aaa' font-size='11'>信頼構築</text></svg>
+
+
+---
+
+<!-- _class: lead -->
+# 価値の移動先
+
+- コードの生産が無料になったとき、何が高くなるか
+
+
+---
+
+# 要求定義・仕様の価値爆発
+
+- - 「何を作るか」を正確に伝える能力が最も希少な資源に
+- - 曖昧な仕様 → 大量の無駄コード生成 → コスト増大
+- - ドメイン知識 × 言語化能力 = 新しいコアコンピタンス
+- 
+- <svg viewBox='0 0 800 240' style='max-height:48vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='800' height='240' fill='none'/><rect x='50' y='140' width='180' height='70' rx='10' fill='#3498db' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='140' y='175' text-anchor='middle' fill='white' font-size='14' font-weight='bold'>コード実装</text><text x='140' y='195' text-anchor='middle' fill='#d4e6f1' font-size='11'>価値: 低下中</text><rect x='310' y='80' width='180' height='70' rx='10' fill='#f39c12' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='400' y='115' text-anchor='middle' fill='white' font-size='14' font-weight='bold'>仕様・設計</text><text x='400' y='135' text-anchor='middle' fill='#fef5e7' font-size='11'>価値: 急上昇</text><rect x='570' y='30' width='180' height='70' rx='10' fill='#e74c3c' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='660' y='65' text-anchor='middle' fill='white' font-size='14' font-weight='bold'>目的・Why</text><text x='660' y='85' text-anchor='middle' fill='#fadbd8' font-size='11'>価値: 最高</text><polygon points='240,160 300,115 300,125 245,165' fill='#f39c12' opacity='0.6'/><polygon points='500,100 560,65 560,75 505,105' fill='#e74c3c' opacity='0.6'/><text x='400' y='230' text-anchor='middle' fill='#999' font-size='12'>価値は「How」から「What」、そして「Why」へ移動</text></svg>
+
+
+---
+
+# アーキテクチャ判断の不可代替性
+
+- - AIが生成できないもの: **トレードオフ判断**
+- - 「モノリス vs マイクロサービス」は文脈依存の判断
+- - 組織の制約、チームのスキル、ビジネスの成長速度
+- - アーキテクチャは「正解」ではなく「組織に適合する解」
+- 
+- <svg viewBox='0 0 800 180' style='max-height:35vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='800' height='180' fill='none'/><rect x='50' y='20' width='700' height='140' rx='10' fill='#1a1a2e' stroke='#9b59b6' stroke-width='2'/><text x='400' y='50' text-anchor='middle' fill='#9b59b6' font-size='15' font-weight='bold'>アーキテクチャ判断のフレームワーク</text><rect x='80' y='70' width='150' height='70' rx='8' fill='#2c3e50'/><text x='155' y='95' text-anchor='middle' fill='#e74c3c' font-size='12' font-weight='bold'>技術的制約</text><text x='155' y='115' text-anchor='middle' fill='#aaa' font-size='10'>性能・スケール</text><text x='155' y='130' text-anchor='middle' fill='#aaa' font-size='10'>信頼性要件</text><rect x='260' y='70' width='150' height='70' rx='8' fill='#2c3e50'/><text x='335' y='95' text-anchor='middle' fill='#f39c12' font-size='12' font-weight='bold'>組織的制約</text><text x='335' y='115' text-anchor='middle' fill='#aaa' font-size='10'>チーム構成</text><text x='335' y='130' text-anchor='middle' fill='#aaa' font-size='10'>スキルセット</text><rect x='440' y='70' width='150' height='70' rx='8' fill='#2c3e50'/><text x='515' y='95' text-anchor='middle' fill='#2ecc71' font-size='12' font-weight='bold'>ビジネス制約</text><text x='515' y='115' text-anchor='middle' fill='#aaa' font-size='10'>市場投入速度</text><text x='515' y='130' text-anchor='middle' fill='#aaa' font-size='10'>成長予測</text><rect x='620' y='70' width='110' height='70' rx='8' fill='#2c3e50'/><text x='675' y='95' text-anchor='middle' fill='#3498db' font-size='12' font-weight='bold'>時間的制約</text><text x='675' y='115' text-anchor='middle' fill='#aaa' font-size='10'>長期メンテ</text><text x='675' y='130' text-anchor='middle' fill='#aaa' font-size='10'>技術負債</text></svg>
+
+
+---
+
+# 倫理・安全・法的判断
+
+- - 生成コードのセキュリティ脆弱性の検出と修正
+- - 著作権: AI生成コードのライセンス問題は未解決
+- - プライバシー: 個人情報の取り扱いはドメイン知識が不可欠
+- - バイアス: AI学習データに含まれる偏りの検出
+- - **判断の責任は常に人間に帰属する**
+
+
+---
+
+# 信頼の希少性
+
+- - コード量が無限 → 「このコードは信頼できるか」が核心に
+- - コードレビューの再定義: 生成の検証 → 意図の検証
+- - テスト戦略: AI生成コード専用のファジングと形式検証
+- - 人間がレビューした「認証済みコード」の価値上昇
+- 
+- <svg viewBox='0 0 800 180' style='max-height:35vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='800' height='180' fill='none'/><circle cx='200' cy='90' r='70' fill='none' stroke='#e74c3c' stroke-width='2' stroke-dasharray='8,4'/><text x='200' y='80' text-anchor='middle' fill='#e74c3c' font-size='13' font-weight='bold'>AI生成コード</text><text x='200' y='100' text-anchor='middle' fill='#aaa' font-size='10'>無限・安価</text><circle cx='600' cy='90' r='70' fill='none' stroke='#2ecc71' stroke-width='3'/><text x='600' y='80' text-anchor='middle' fill='#2ecc71' font-size='13' font-weight='bold'>検証済みコード</text><text x='600' y='100' text-anchor='middle' fill='#aaa' font-size='10'>有限・高価値</text><polygon points='290,90 360,75 360,105' fill='#f39c12'/><rect x='370' y='65' width='120' height='50' rx='8' fill='#f39c12' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='430' y='85' text-anchor='middle' fill='white' font-size='11' font-weight='bold'>人間の審査</text><text x='430' y='102' text-anchor='middle' fill='#fff8e1' font-size='9'>信頼のボトルネック</text><polygon points='500,90 520,75 520,105' fill='#2ecc71'/></svg>
+
+
+---
+
+<!-- _class: lead -->
+# 組織とキャリアの再設計
+
+- ポスト希少性時代のエンジニアリング組織
+
+
+---
+
+# エンジニアの役割変容
+
+- - コード生産者 → **ソフトウェアキュレーター・アーキテクト**
+- - 「書く」から「選ぶ」「組み合わせる」「捨てる」へ
+- - 博物館のキュレーターのように、価値あるものを選別
+- 
+- <svg viewBox='0 0 800 200' style='max-height:40vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='800' height='200' fill='none'/><rect x='30' y='30' width='160' height='140' rx='10' fill='#1a1a2e' stroke='#e74c3c' stroke-width='2'/><text x='110' y='55' text-anchor='middle' fill='#e74c3c' font-size='13' font-weight='bold'>2020年代前半</text><text x='110' y='80' text-anchor='middle' fill='#aaa' font-size='11'>コーダー</text><text x='110' y='100' text-anchor='middle' fill='#aaa' font-size='11'>コード量 = 成果</text><text x='110' y='120' text-anchor='middle' fill='#aaa' font-size='11'>言語スキル重視</text><text x='110' y='140' text-anchor='middle' fill='#aaa' font-size='11'>個人の生産性</text><polygon points='205,100 235,85 235,115' fill='#ecf0f1'/><rect x='250' y='30' width='160' height='140' rx='10' fill='#1a1a2e' stroke='#f39c12' stroke-width='2'/><text x='330' y='55' text-anchor='middle' fill='#f39c12' font-size='13' font-weight='bold'>2020年代後半</text><text x='330' y='80' text-anchor='middle' fill='#aaa' font-size='11'>AI協業者</text><text x='330' y='100' text-anchor='middle' fill='#aaa' font-size='11'>AI活用度 = 成果</text><text x='330' y='120' text-anchor='middle' fill='#aaa' font-size='11'>プロンプト設計</text><text x='330' y='140' text-anchor='middle' fill='#aaa' font-size='11'>チームの増幅</text><polygon points='425,100 455,85 455,115' fill='#ecf0f1'/><rect x='470' y='30' width='160' height='140' rx='10' fill='#1a1a2e' stroke='#2ecc71' stroke-width='2'/><text x='550' y='55' text-anchor='middle' fill='#2ecc71' font-size='13' font-weight='bold'>2030年代</text><text x='550' y='80' text-anchor='middle' fill='#aaa' font-size='11'>キュレーター</text><text x='550' y='100' text-anchor='middle' fill='#aaa' font-size='11'>判断の質 = 成果</text><text x='550' y='120' text-anchor='middle' fill='#aaa' font-size='11'>ドメイン知識</text><text x='550' y='140' text-anchor='middle' fill='#aaa' font-size='11'>組織への影響力</text></svg>
+
+
+---
+
+# 「10倍エンジニア」の再定義
+
+- - 旧定義: コードを10倍速く書ける人
+- - 新定義: **正しい問いを立てられる人**
+- - 10倍の速度でコードを書くより、不要な10機能を見抜く方が価値が高い
+- - プロンプトエンジニアリングの限界:
+-   - 「何を聞くか」を知らなければ、答えも得られない
+-   - ドメインの深い理解なしにはプロンプトは書けない
+
+
+---
+
+# 組織構造への影響
+
+- - 開発チームの縮小:「判断チーム」の拡大
+- - エンジニアリングマネジメントの変容
+- - 「何人のエンジニアが要るか」→「何人の判断者が要るか」
+- 
+- <svg viewBox='0 0 800 220' style='max-height:45vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='800' height='220' fill='none'/><text x='200' y='25' text-anchor='middle' fill='#e74c3c' font-size='14' font-weight='bold'>従来型</text><text x='600' y='25' text-anchor='middle' fill='#2ecc71' font-size='14' font-weight='bold'>ポスト希少性型</text><rect x='70' y='40' width='260' height='30' rx='5' fill='#9b59b6'/><text x='200' y='60' text-anchor='middle' fill='white' font-size='11'>PM / アーキテクト (2名)</text><rect x='70' y='80' width='260' height='80' rx='5' fill='#3498db'/><text x='200' y='115' text-anchor='middle' fill='white' font-size='11'>開発者 (8名)</text><text x='200' y='135' text-anchor='middle' fill='#d4e6f1' font-size='10'>コード実装がメイン</text><rect x='70' y='170' width='260' height='30' rx='5' fill='#27ae60'/><text x='200' y='190' text-anchor='middle' fill='white' font-size='11'>QA (2名)</text><rect x='470' y='40' width='260' height='80' rx='5' fill='#9b59b6'/><text x='600' y='75' text-anchor='middle' fill='white' font-size='11'>判断チーム (5名)</text><text x='600' y='95' text-anchor='middle' fill='#e8daef' font-size='10'>仕様・設計・倫理審査</text><rect x='470' y='130' width='260' height='30' rx='5' fill='#f39c12'/><text x='600' y='150' text-anchor='middle' fill='white' font-size='11'>AI + 検証担当 (2名)</text><rect x='470' y='170' width='260' height='30' rx='5' fill='#3498db'/><text x='600' y='190' text-anchor='middle' fill='white' font-size='11'>開発者 (2名) — AI監督</text></svg>
+
+
+---
+
+# ポスト希少性の逆説
+
+- - 無限のコードが生成できるほど「**削除する判断**」が重要になる
+- - 「作らない判断」= 最も高度なエンジニアリング
+- - デジタルごみの爆発: AI生成コードのメンテナンスコスト
+- - YAGNI (You Aren't Gonna Need It) 原則の再評価
+- - 無料のコードには「注意」というコストがかかる
+
+
+---
+
+<!-- _class: lead -->
+# まとめ
+
+- コードは空気のように無料になる
+- 
+- 希少なのは
+- **「なぜ作るか」を知っている人間**
+- 
+- 書く技術の時代から、判断する技術の時代へ
+
+
+---
+
+# 参考文献
+
+- - **Books & Papers:**
+-   - [Rifkin "The Zero Marginal Cost Society" (2014)](https://www.thezeromarginalcostsociety.com/)
+-   - [GitHub "Research: Quantifying Copilot's Impact" (2022)](https://github.blog/2022-09-07-research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/)
+- - **Industry Analysis:**
+-   - ["The Death of the Junior Developer" (Various, 2024)](https://www.businessinsider.com/junior-developer-jobs-ai-coding-tools-2024)
+-   - [Stack Overflow Developer Survey 2025](https://survey.stackoverflow.co/2025/)
+- - **Further Reading:**
+-   - ["Software 2.0" (Karpathy, 2017)](https://karpathy.medium.com/software-2-0-a64152b37c35)
+-   - ["The Bitter Lesson" (Sutton, 2019)](http://www.incompleteideas.net/IncsightIdea/BitterLesson.html)
+

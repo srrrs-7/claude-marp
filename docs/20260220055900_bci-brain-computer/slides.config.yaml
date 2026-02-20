@@ -1,0 +1,12 @@
+topic: "BMI技術の最前線と倫理 — 脳とコンピュータの接続"
+language: "ja"
+output:
+  dir: "docs/20260220055900_bci-brain-computer"
+  baseName: "bci-brain-computer"
+marp:
+  theme: gaia
+  paginate: true
+  header: "ブレイン・マシン・インタフェース"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

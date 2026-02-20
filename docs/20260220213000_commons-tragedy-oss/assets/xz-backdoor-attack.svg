@@ -1,0 +1,55 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" fill="#FFEAA7" font-size="20" font-weight="bold" font-family="sans-serif">xz-utils バックドア攻撃 (CVE-2024-3094)</text>
+  <!-- Phase 1 -->
+  <rect x="30" y="70" width="195" height="150" fill="#2d3436" rx="10" stroke="#0984e3" stroke-width="2"/>
+  <text x="128" y="95" text-anchor="middle" fill="#0984e3" font-size="14" font-weight="bold" font-family="sans-serif">Phase 1: 潜入</text>
+  <text x="128" y="118" text-anchor="middle" fill="#dfe6e9" font-size="11" font-family="sans-serif">「Jia Tan」が</text>
+  <text x="128" y="136" text-anchor="middle" fill="#dfe6e9" font-size="11" font-family="sans-serif">2年間かけて信頼構築</text>
+  <text x="128" y="158" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">有用なPRを多数提出</text>
+  <text x="128" y="175" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">レビュー・メンテナンス参加</text>
+  <text x="128" y="195" text-anchor="middle" fill="#fdcb6e" font-size="10" font-family="sans-serif">2021〜2023年</text>
+  <!-- Arrow 1-2 -->
+  <line x1="225" y1="145" x2="255" y2="145" stroke="#636e72" stroke-width="2"/>
+  <polygon points="255,140 265,145 255,150" fill="#636e72"/>
+  <!-- Phase 2 -->
+  <rect x="265" y="70" width="195" height="150" fill="#2d3436" rx="10" stroke="#fdcb6e" stroke-width="2"/>
+  <text x="363" y="95" text-anchor="middle" fill="#fdcb6e" font-size="14" font-weight="bold" font-family="sans-serif">Phase 2: 圧力</text>
+  <text x="363" y="118" text-anchor="middle" fill="#dfe6e9" font-size="11" font-family="sans-serif">ソックパペットが</text>
+  <text x="363" y="136" text-anchor="middle" fill="#dfe6e9" font-size="11" font-family="sans-serif">元メンテナを攻撃</text>
+  <text x="363" y="158" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">「対応が遅い」と批判</text>
+  <text x="363" y="175" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">メンテナの精神的疲弊</text>
+  <text x="363" y="195" text-anchor="middle" fill="#FF6B6B" font-size="10" font-family="sans-serif">→ 権限委譲を促進</text>
+  <!-- Arrow 2-3 -->
+  <line x1="460" y1="145" x2="490" y2="145" stroke="#636e72" stroke-width="2"/>
+  <polygon points="490,140 500,145 490,150" fill="#636e72"/>
+  <!-- Phase 3 -->
+  <rect x="500" y="70" width="195" height="150" fill="#2d3436" rx="10" stroke="#e17055" stroke-width="2"/>
+  <text x="598" y="95" text-anchor="middle" fill="#e17055" font-size="14" font-weight="bold" font-family="sans-serif">Phase 3: 奪取</text>
+  <text x="598" y="118" text-anchor="middle" fill="#dfe6e9" font-size="11" font-family="sans-serif">Jia Tanが</text>
+  <text x="598" y="136" text-anchor="middle" fill="#dfe6e9" font-size="11" font-family="sans-serif">メンテナ権限を取得</text>
+  <text x="598" y="158" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">リリース権限</text>
+  <text x="598" y="175" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">コードマージ権限</text>
+  <text x="598" y="195" text-anchor="middle" fill="#fdcb6e" font-size="10" font-family="sans-serif">2023年中盤</text>
+  <!-- Arrow 3-4 -->
+  <line x1="695" y1="145" x2="725" y2="145" stroke="#636e72" stroke-width="2"/>
+  <polygon points="725,140 735,145 725,150" fill="#636e72"/>
+  <!-- Phase 4 -->
+  <rect x="735" y="70" width="145" height="150" fill="#2d3436" rx="10" stroke="#d63031" stroke-width="2"/>
+  <text x="808" y="95" text-anchor="middle" fill="#d63031" font-size="14" font-weight="bold" font-family="sans-serif">Phase 4: 注入</text>
+  <text x="808" y="118" text-anchor="middle" fill="#dfe6e9" font-size="11" font-family="sans-serif">バックドア</text>
+  <text x="808" y="136" text-anchor="middle" fill="#dfe6e9" font-size="11" font-family="sans-serif">を挿入</text>
+  <text x="808" y="158" text-anchor="middle" fill="#FF6B6B" font-size="10" font-family="sans-serif">sshd経由で</text>
+  <text x="808" y="175" text-anchor="middle" fill="#FF6B6B" font-size="10" font-family="sans-serif">リモート実行</text>
+  <text x="808" y="195" text-anchor="middle" fill="#fdcb6e" font-size="10" font-family="sans-serif">2024年2月</text>
+  <!-- Discovery section -->
+  <rect x="200" y="260" width="500" height="100" fill="#2d3436" rx="10" stroke="#00b894" stroke-width="2"/>
+  <text x="450" y="290" text-anchor="middle" fill="#00b894" font-size="16" font-weight="bold" font-family="sans-serif">偶然の発見 — Andres Freund (Microsoft)</text>
+  <text x="450" y="315" text-anchor="middle" fill="#dfe6e9" font-size="12" font-family="sans-serif">SSH接続が500ms遅いことに気づく → ベンチマークで異常検出</text>
+  <text x="450" y="338" text-anchor="middle" fill="#b2bec3" font-size="11" font-family="sans-serif">2024年3月29日 — 「たまたま性能テスト中だった」</text>
+  <!-- Lesson -->
+  <rect x="100" y="390" width="700" height="80" fill="none" stroke="#FF6B6B" stroke-width="2" rx="10" stroke-dasharray="6,3"/>
+  <text x="450" y="418" text-anchor="middle" fill="#FFEAA7" font-size="14" font-weight="bold" font-family="sans-serif">教訓: ソーシャルエンジニアリング + メンテナ疲弊 = 最大の脆弱性</text>
+  <text x="450" y="445" text-anchor="middle" fill="#b2bec3" font-size="12" font-family="sans-serif">技術的な脆弱性ではなく、人間の善意と疲労を悪用した国家レベルの攻撃</text>
+</svg>

@@ -1,0 +1,88 @@
+<svg viewBox="0 0 860 360" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="860" height="360" fill="#1a1a2e" rx="12"/>
+  <text x="430" y="36" text-anchor="middle" fill="#f5a623" font-size="18" font-weight="bold" font-family="sans-serif">"Yes, And..." コール&amp;レスポンス vs チームコミュニケーション</text>
+
+  <!-- Jazz side -->
+  <rect x="20" y="55" width="390" height="285" fill="#0f3460" rx="10"/>
+  <text x="215" y="78" text-anchor="middle" fill="#7fdbff" font-size="14" font-weight="bold" font-family="sans-serif">ジャズ：コール&amp;レスポンス</text>
+
+  <!-- Trumpet call -->
+  <rect x="40" y="95" width="150" height="45" fill="#e94560" rx="6"/>
+  <text x="115" y="113" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">トランペット（コール）</text>
+  <text x="115" y="131" text-anchor="middle" fill="#ffd" font-size="10" font-family="sans-serif">フレーズAを提示</text>
+
+  <!-- Arrow right -->
+  <line x1="190" y1="117" x2="218" y2="117" stroke="#f5a623" stroke-width="2"/>
+  <polygon points="218,111 230,117 218,123" fill="#f5a623"/>
+
+  <!-- Sax response -->
+  <rect x="230" y="95" width="150" height="45" fill="#2ecc71" rx="6"/>
+  <text x="305" y="113" text-anchor="middle" fill="#1a1a2e" font-size="11" font-weight="bold" font-family="sans-serif">サックス（レスポンス）</text>
+  <text x="305" y="131" text-anchor="middle" fill="#1a1a2e" font-size="10" font-family="sans-serif">"Yes, And" で拡張</text>
+
+  <!-- Arrow down-right -->
+  <line x1="305" y1="140" x2="305" y2="162" stroke="#f5a623" stroke-width="2"/>
+  <polygon points="299,162 305,174 311,162" fill="#f5a623"/>
+
+  <!-- Piano response 2 -->
+  <rect x="230" y="174" width="150" height="45" fill="#e94560" rx="6"/>
+  <text x="305" y="192" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">ピアノ（コール）</text>
+  <text x="305" y="210" text-anchor="middle" fill="#ffd" font-size="10" font-family="sans-serif">さらに発展させる</text>
+
+  <!-- Arrow left -->
+  <line x1="230" y1="197" x2="202" y2="197" stroke="#f5a623" stroke-width="2"/>
+  <polygon points="202,191 190,197 202,203" fill="#f5a623"/>
+
+  <!-- Bass response -->
+  <rect x="40" y="174" width="150" height="45" fill="#2ecc71" rx="6"/>
+  <text x="115" y="192" text-anchor="middle" fill="#1a1a2e" font-size="11" font-weight="bold" font-family="sans-serif">ベース（レスポンス）</text>
+  <text x="115" y="210" text-anchor="middle" fill="#1a1a2e" font-size="10" font-family="sans-serif">グルーヴで支える</text>
+
+  <!-- "Yes, And" label -->
+  <rect x="40" y="245" width="330" height="80" fill="#0a1628" rx="6" stroke="#f5a623" stroke-width="1.5"/>
+  <text x="205" y="268" text-anchor="middle" fill="#f5a623" font-size="13" font-weight="bold" font-family="sans-serif">"Yes, And..." の原則</text>
+  <text x="205" y="288" text-anchor="middle" fill="#a8d8ea" font-size="11" font-family="sans-serif">相手のフレーズを否定せず受け入れ</text>
+  <text x="205" y="308" text-anchor="middle" fill="#a8d8ea" font-size="11" font-family="sans-serif">自分のアイデアで上積みして返す</text>
+
+  <!-- Agile side -->
+  <rect x="450" y="55" width="390" height="285" fill="#16213e" rx="10"/>
+  <text x="645" y="78" text-anchor="middle" fill="#7fdbff" font-size="14" font-weight="bold" font-family="sans-serif">アジャイル：インクリメンタル改善</text>
+
+  <!-- PR proposal -->
+  <rect x="470" y="95" width="150" height="45" fill="#e94560" rx="6"/>
+  <text x="545" y="113" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">開発者（提案）</text>
+  <text x="545" y="131" text-anchor="middle" fill="#ffd" font-size="10" font-family="sans-serif">PRで実装を提示</text>
+
+  <!-- Arrow right -->
+  <line x1="620" y1="117" x2="648" y2="117" stroke="#f5a623" stroke-width="2"/>
+  <polygon points="648,111 660,117 648,123" fill="#f5a623"/>
+
+  <!-- Review -->
+  <rect x="660" y="95" width="150" height="45" fill="#2ecc71" rx="6"/>
+  <text x="735" y="113" text-anchor="middle" fill="#1a1a2e" font-size="11" font-weight="bold" font-family="sans-serif">レビュワー（応答）</text>
+  <text x="735" y="131" text-anchor="middle" fill="#1a1a2e" font-size="10" font-family="sans-serif">"Yes, And" でフィードバック</text>
+
+  <!-- Arrow down-left -->
+  <line x1="735" y1="140" x2="735" y2="162" stroke="#f5a623" stroke-width="2"/>
+  <polygon points="729,162 735,174 741,162" fill="#f5a623"/>
+
+  <!-- Improved PR -->
+  <rect x="660" y="174" width="150" height="45" fill="#e94560" rx="6"/>
+  <text x="735" y="192" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">開発者（改善）</text>
+  <text x="735" y="210" text-anchor="middle" fill="#ffd" font-size="10" font-family="sans-serif">フィードバックを取り込む</text>
+
+  <!-- Arrow left -->
+  <line x1="660" y1="197" x2="632" y2="197" stroke="#f5a623" stroke-width="2"/>
+  <polygon points="632,191 620,197 632,203" fill="#f5a623"/>
+
+  <!-- Approve -->
+  <rect x="470" y="174" width="150" height="45" fill="#2ecc71" rx="6"/>
+  <text x="545" y="192" text-anchor="middle" fill="#1a1a2e" font-size="11" font-weight="bold" font-family="sans-serif">チーム（承認）</text>
+  <text x="545" y="210" text-anchor="middle" fill="#1a1a2e" font-size="10" font-family="sans-serif">マージ &amp; デプロイ</text>
+
+  <!-- Agile label -->
+  <rect x="470" y="245" width="330" height="80" fill="#0a1628" rx="6" stroke="#f5a623" stroke-width="1.5"/>
+  <text x="635" y="268" text-anchor="middle" fill="#f5a623" font-size="13" font-weight="bold" font-family="sans-serif">アジャイルの"Yes, And..."</text>
+  <text x="635" y="288" text-anchor="middle" fill="#a8d8ea" font-size="11" font-family="sans-serif">提案を批判せず受け止め、改善案を追加</text>
+  <text x="635" y="308" text-anchor="middle" fill="#a8d8ea" font-size="11" font-family="sans-serif">心理的安全性がイノベーションを生む</text>
+</svg>

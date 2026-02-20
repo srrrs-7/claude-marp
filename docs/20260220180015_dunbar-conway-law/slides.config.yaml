@@ -1,0 +1,12 @@
+topic: "ダンバー数とコンウェイの法則 — チームサイズがアーキテクチャを決める"
+language: "ja"
+output:
+  dir: "docs/20260220180015_dunbar-conway-law"
+  baseName: "dunbar-conway-law"
+marp:
+  theme: gaia
+  paginate: true
+  header: "ダンバー数とコンウェイの法則"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

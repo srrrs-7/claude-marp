@@ -1,0 +1,12 @@
+topic: "2050年の仕事 ― AIに奪われる職業、AIが創る職業"
+language: "ja"
+output:
+  dir: "docs/20260220063700_jobs-2050"
+  baseName: "jobs-2050"
+marp:
+  theme: gaia
+  paginate: true
+  header: "2050年の仕事"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

@@ -1,0 +1,267 @@
+---
+marp: true
+theme: gaia
+class: invert
+size: 16:9
+paginate: true
+header: "Wood Wide Web とマイクロサービス"
+footer: "© 2026"
+style: |
+  section { font-size: 1.05em; }
+  section pre code { font-size: 0.58em; line-height: 1.4; }
+  
+---
+
+<!-- _class: lead -->
+# 森の木々はインターネットを使っている
+
+- 菌根ネットワーク（Wood Wide Web）とマイクロサービス
+- 自然界の分散協調設計から学ぶ
+- © 2026
+
+<!--
+自然の分散協調システムとソフトウェアアーキテクチャの驚くべき類似性を探ります。
+-->
+
+---
+
+<!-- _class: lead -->
+# Wood Wide Web とは
+
+- 地下に広がる菌根の通信網
+
+
+---
+
+# 地下に広がる菌根ネットワーク
+
+- 森の隠れた通信網 — 木々は菌根菌を介して接続されている
+- <svg viewBox='0 0 780 340' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='780' height='340' fill='#1a1a2e'/><rect x='0' y='0' width='780' height='160' fill='#2d5016' rx='0'/><rect x='0' y='155' width='780' height='185' fill='#3d1f00'/><text x='390' y='20' fill='#a8d8a8' font-size='12' text-anchor='middle' font-family='sans-serif'>地上部（樹冠）</text><text x='390' y='210' fill='#c4956a' font-size='12' text-anchor='middle' font-family='sans-serif'>地下部（菌根ネットワーク）</text><rect x='60' y='30' width='18' height='90' fill='#4a7c2f'/><rect x='51' y='30' width='36' height='60' fill='#5a9c3f' rx='18'/><rect x='200' y='50' width='14' height='70' fill='#4a7c2f'/><rect x='193' y='50' width='28' height='50' fill='#5a9c3f' rx='14'/><rect x='350' y='25' width='20' height='100' fill='#4a7c2f'/><rect x='340' y='25' width='40' height='70' fill='#5a9c3f' rx='20'/><rect x='520' y='40' width='16' height='80' fill='#4a7c2f'/><rect x='512' y='40' width='32' height='55' fill='#5a9c3f' rx='16'/><rect x='670' y='35' width='18' height='85' fill='#4a7c2f'/><rect x='661' y='35' width='36' height='60' fill='#5a9c3f' rx='18'/><line x1='69' y1='165' x2='100' y2='200' stroke='#f4a460' stroke-width='1.5' opacity='0.7'/><line x1='69' y1='165' x2='150' y2='230' stroke='#f4a460' stroke-width='1.5' opacity='0.7'/><line x1='207' y1='160' x2='180' y2='220' stroke='#f4a460' stroke-width='1.5' opacity='0.7'/><line x1='207' y1='160' x2='280' y2='210' stroke='#f4a460' stroke-width='1.5' opacity='0.7'/><line x1='360' y1='165' x2='330' y2='215' stroke='#f4a460' stroke-width='1.5' opacity='0.7'/><line x1='360' y1='165' x2='400' y2='240' stroke='#f4a460' stroke-width='1.5' opacity='0.7'/><line x1='528' y1='160' x2='500' y2='220' stroke='#f4a460' stroke-width='1.5' opacity='0.7'/><line x1='528' y1='160' x2='590' y2='235' stroke='#f4a460' stroke-width='1.5' opacity='0.7'/><line x1='679' y1='160' x2='650' y2='215' stroke='#f4a460' stroke-width='1.5' opacity='0.7'/><line x1='679' y1='160' x2='700' y2='240' stroke='#f4a460' stroke-width='1.5' opacity='0.7'/><path d='M100,200 Q180,180 280,210 Q360,230 400,240' stroke='#e8b86d' stroke-width='2' fill='none' opacity='0.9'/><path d='M150,230 Q200,250 280,210' stroke='#e8b86d' stroke-width='1.5' fill='none' opacity='0.8'/><path d='M280,210 Q330,215 400,240 Q470,260 500,220' stroke='#e8b86d' stroke-width='2' fill='none' opacity='0.9'/><path d='M400,240 Q480,265 590,235 Q640,225 650,215' stroke='#e8b86d' stroke-width='2' fill='none' opacity='0.9'/><path d='M500,220 Q570,240 650,215 Q680,205 700,240' stroke='#e8b86d' stroke-width='1.5' fill='none' opacity='0.8'/><circle cx='100' cy='200' r='5' fill='#ffd700' opacity='0.9'/><circle cx='280' cy='210' r='5' fill='#ffd700' opacity='0.9'/><circle cx='400' cy='240' r='5' fill='#ffd700' opacity='0.9'/><circle cx='500' cy='220' r='5' fill='#ffd700' opacity='0.9'/><circle cx='650' cy='215' r='5' fill='#ffd700' opacity='0.9'/><circle cx='180' cy='245' r='3' fill='#ffaa00' opacity='0.7'/><circle cx='330' cy='250' r='3' fill='#ffaa00' opacity='0.7'/><circle cx='590' cy='235' r='3' fill='#ffaa00' opacity='0.7'/><text x='100' y='195' fill='#ffd700' font-size='9' text-anchor='middle' font-family='sans-serif'>A</text><text x='280' y='205' fill='#ffd700' font-size='9' text-anchor='middle' font-family='sans-serif'>B</text><text x='400' y='235' fill='#ffd700' font-size='9' text-anchor='middle' font-family='sans-serif'>C</text><text x='500' y='215' fill='#ffd700' font-size='9' text-anchor='middle' font-family='sans-serif'>D</text><text x='650' y='210' fill='#ffd700' font-size='9' text-anchor='middle' font-family='sans-serif'>E</text><rect x='10' y='280' width='12' height='4' fill='#e8b86d'/><text x='28' y='288' fill='#c4956a' font-size='10' font-family='sans-serif'>菌根ネットワーク</text><circle cx='16' cy='300' r='4' fill='#ffd700'/><text x='28' y='304' fill='#c4956a' font-size='10' font-family='sans-serif'>接続ノード（木の根）</text></svg>
+- 菌類は炭素（糖）を受け取り、リンや窒素を提供する共生関係
+- 1本の木が数百本の他の木と接続することもある
+
+<!--
+菌根ネットワークは木々の根と菌類が共生する地下ネットワーク。これがサービスメッシュに驚くほど類似している。
+-->
+
+---
+
+# 糖・栄養・シグナルの交換 — APIコールと何が違うか
+
+- **菌根ネットワークの通信:**
+- - 炭素（糖分）: 光合成産物を周辺木へ転送
+- - リン・窒素: 土壌栄養素を根へ配送
+- - 化学シグナル: 害虫攻撃・乾燥ストレスの警告
+- **マイクロサービスとの対応:**
+- - REST/gRPC リクエスト = 栄養素の交換
+- - イベントバス（Kafka）= 化学シグナルの伝播
+- - バックプレッシャー = 過剰栄養の調整機構
+
+<!--
+自然の通信プロトコルはREST/gRPCと驚くほど類似した役割分担がある。
+-->
+
+---
+
+# 「母の木」と優先ルーティング
+
+- 弱いノードへの優先送信 — 自然のロードバランシング
+- <svg viewBox='0 0 760 300' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='760' height='300' fill='#0d1117'/><circle cx='380' cy='130' r='50' fill='#1f4e1f' stroke='#4caf50' stroke-width='3' style='filter:drop-shadow(0 0 12px #4caf50)'/><text x='380' y='125' fill='#a5d6a7' font-size='13' text-anchor='middle' font-family='sans-serif' font-weight='bold'>母の木</text><text x='380' y='145' fill='#81c784' font-size='11' text-anchor='middle' font-family='sans-serif'>(Hub Node)</text><circle cx='120' cy='60' r='28' fill='#1a3a1a' stroke='#66bb6a' stroke-width='2'/><text x='120' y='55' fill='#a5d6a7' font-size='10' text-anchor='middle' font-family='sans-serif'>若木A</text><text x='120' y='70' fill='#81c784' font-size='9' text-anchor='middle' font-family='sans-serif'>20%</text><circle cx='640' cy='60' r='28' fill='#1a3a1a' stroke='#66bb6a' stroke-width='2'/><text x='640' y='55' fill='#a5d6a7' font-size='10' text-anchor='middle' font-family='sans-serif'>若木B</text><text x='640' y='70' fill='#81c784' font-size='9' text-anchor='middle' font-family='sans-serif'>25%</text><circle cx='100' cy='220' r='32' fill='#2d1f0a' stroke='#ff7043' stroke-width='2.5' style='filter:drop-shadow(0 0 8px #ff4500)'/><text x='100' y='215' fill='#ffab91' font-size='10' text-anchor='middle' font-family='sans-serif'>弱体化した木</text><text x='100' y='230' fill='#ff7043' font-size='9' text-anchor='middle' font-family='sans-serif'>優先受信</text><circle cx='660' cy='220' r='28' fill='#1a3a1a' stroke='#66bb6a' stroke-width='2'/><text x='660' y='215' fill='#a5d6a7' font-size='10' text-anchor='middle' font-family='sans-serif'>成木C</text><text x='660' y='230' fill='#81c784' font-size='9' text-anchor='middle' font-family='sans-serif'>15%</text><circle cx='380' cy='260' r='25' fill='#1a3a1a' stroke='#42a5f5' stroke-width='2'/><text x='380' y='255' fill='#90caf9' font-size='10' text-anchor='middle' font-family='sans-serif'>実生D</text><text x='380' y='270' fill='#64b5f6' font-size='9' text-anchor='middle' font-family='sans-serif'>30%</text><line x1='332' y1='112' x2='148' y2='76' stroke='#4caf50' stroke-width='2' opacity='0.7'/><line x1='428' y1='112' x2='612' y2='76' stroke='#4caf50' stroke-width='2' opacity='0.7'/><line x1='340' y1='155' x2='132' y2='200' stroke='#ff7043' stroke-width='4' opacity='0.9'/><polygon points='130,195 115,210 145,210' fill='#ff7043'/><line x1='420' y1='155' x2='632' y2='200' stroke='#4caf50' stroke-width='1.5' opacity='0.6'/><line x1='380' y1='180' x2='380' y2='235' stroke='#42a5f5' stroke-width='3' opacity='0.8'/><polygon points='375,230 385,230 380,242' fill='#42a5f5'/><text x='205' y='195' fill='#ff7043' font-size='11' font-family='sans-serif' font-weight='bold'>優先ルーティング</text><text x='490' y='185' fill='#81c784' font-size='10' font-family='sans-serif'>通常転送</text></svg>
+- 弱体化した木（障害サービス）へ優先的にリソースを配分
+- これはサービスメッシュの **Weighted Load Balancing** と同じ原理
+
+<!--
+母の木（Hub Node）は弱いノードへ優先的に栄養を送る。これはKubernetesのリソース優先度と類似。
+-->
+
+---
+
+<!-- _class: lead -->
+# マイクロサービスとの対応
+
+- 自然のアーキテクチャをコードに翻訳する
+
+
+---
+
+# サービスメッシュ = 菌根ネットワーク
+
+- Istio/Envoy と菌根ネットワークの構造的等価性
+- <svg viewBox='0 0 760 310' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='760' height='310' fill='#0d1117'/><rect x='10' y='10' width='360' height='285' fill='#0f1f0f' stroke='#2e7d32' stroke-width='1.5' rx='8'/><text x='190' y='35' fill='#66bb6a' font-size='13' text-anchor='middle' font-family='sans-serif' font-weight='bold'>菌根ネットワーク</text><circle cx='90' cy='100' r='28' fill='#1b3a1b' stroke='#4caf50' stroke-width='2'/><text x='90' y='95' fill='#a5d6a7' font-size='10' text-anchor='middle' font-family='sans-serif'>木 A</text><text x='90' y='110' fill='#81c784' font-size='9' text-anchor='middle' font-family='sans-serif'>根・菌糸</text><circle cx='280' cy='100' r='28' fill='#1b3a1b' stroke='#4caf50' stroke-width='2'/><text x='280' y='95' fill='#a5d6a7' font-size='10' text-anchor='middle' font-family='sans-serif'>木 B</text><text x='280' y='110' fill='#81c784' font-size='9' text-anchor='middle' font-family='sans-serif'>根・菌糸</text><circle cx='90' cy='220' r='28' fill='#1b3a1b' stroke='#4caf50' stroke-width='2'/><text x='90' y='215' fill='#a5d6a7' font-size='10' text-anchor='middle' font-family='sans-serif'>木 C</text><text x='90' y='230' fill='#81c784' font-size='9' text-anchor='middle' font-family='sans-serif'>根・菌糸</text><circle cx='280' cy='220' r='28' fill='#1b3a1b' stroke='#4caf50' stroke-width='2'/><text x='280' y='215' fill='#a5d6a7' font-size='10' text-anchor='middle' font-family='sans-serif'>木 D</text><text x='280' y='230' fill='#81c784' font-size='9' text-anchor='middle' font-family='sans-serif'>根・菌糸</text><ellipse cx='185' cy='160' rx='55' ry='45' fill='#0a2a0a' stroke='#e8b86d' stroke-width='2' stroke-dasharray='4,2'/><text x='185' y='155' fill='#e8b86d' font-size='10' text-anchor='middle' font-family='sans-serif'>菌根菌</text><text x='185' y='170' fill='#c4956a' font-size='9' text-anchor='middle' font-family='sans-serif'>(仲介層)</text><line x1='113' y1='115' x2='145' y2='135' stroke='#e8b86d' stroke-width='1.5'/><line x1='255' y1='115' x2='225' y2='135' stroke='#e8b86d' stroke-width='1.5'/><line x1='113' y1='205' x2='145' y2='185' stroke='#e8b86d' stroke-width='1.5'/><line x1='255' y1='205' x2='225' y2='185' stroke='#e8b86d' stroke-width='1.5'/><rect x='390' y='10' width='360' height='285' fill='#0d1a2a' stroke='#1565c0' stroke-width='1.5' rx='8'/><text x='570' y='35' fill='#42a5f5' font-size='13' text-anchor='middle' font-family='sans-serif' font-weight='bold'>Istio / Envoy</text><circle cx='470' cy='100' r='28' fill='#0d2040' stroke='#1976d2' stroke-width='2'/><text x='470' y='95' fill='#90caf9' font-size='10' text-anchor='middle' font-family='sans-serif'>Service A</text><text x='470' y='110' fill='#64b5f6' font-size='9' text-anchor='middle' font-family='sans-serif'>+Sidecar</text><circle cx='660' cy='100' r='28' fill='#0d2040' stroke='#1976d2' stroke-width='2'/><text x='660' y='95' fill='#90caf9' font-size='10' text-anchor='middle' font-family='sans-serif'>Service B</text><text x='660' y='110' fill='#64b5f6' font-size='9' text-anchor='middle' font-family='sans-serif'>+Sidecar</text><circle cx='470' cy='220' r='28' fill='#0d2040' stroke='#1976d2' stroke-width='2'/><text x='470' y='215' fill='#90caf9' font-size='10' text-anchor='middle' font-family='sans-serif'>Service C</text><text x='470' y='230' fill='#64b5f6' font-size='9' text-anchor='middle' font-family='sans-serif'>+Sidecar</text><circle cx='660' cy='220' r='28' fill='#0d2040' stroke='#1976d2' stroke-width='2'/><text x='660' y='215' fill='#90caf9' font-size='10' text-anchor='middle' font-family='sans-serif'>Service D</text><text x='660' y='230' fill='#64b5f6' font-size='9' text-anchor='middle' font-family='sans-serif'>+Sidecar</text><ellipse cx='565' cy='160' rx='55' ry='45' fill='#0a1525' stroke='#42a5f5' stroke-width='2' stroke-dasharray='4,2'/><text x='565' y='155' fill='#42a5f5' font-size='10' text-anchor='middle' font-family='sans-serif'>Control</text><text x='565' y='170' fill='#64b5f6' font-size='9' text-anchor='middle' font-family='sans-serif'>Plane</text><line x1='493' y1='115' x2='525' y2='135' stroke='#42a5f5' stroke-width='1.5'/><line x1='635' y1='115' x2='605' y2='135' stroke='#42a5f5' stroke-width='1.5'/><line x1='493' y1='205' x2='525' y2='185' stroke='#42a5f5' stroke-width='1.5'/><line x1='635' y1='205' x2='605' y2='185' stroke='#42a5f5' stroke-width='1.5'/><text x='380' y='160' fill='#888' font-size='18' text-anchor='middle' font-family='sans-serif'>=</text></svg>
+- 菌根菌（仲介層）= Envoy Sidecar Proxy
+- 菌根ネットワーク全体 = Service Mesh（Istio Control Plane）
+
+<!--
+菌根菌がサイドカープロキシと同じ役割を果たす。木々（サービス）は直接通信せず、菌根（Envoy）を介して通信する。
+-->
+
+---
+
+# サービスディスカバリ — 木が互いを認識する仕組み
+
+- **化学的サービスディスカバリ（自然）:**
+- - 菌糸が根の分泌する化学物質を感知して接続
+- - 同種の木は優先的に菌根ネットワークで繋がる
+- - 新しい木が植わると数週間で既存ネットワークに接続
+- **技術的サービスディスカバリ（Kubernetes）:**
+- - CoreDNS による DNS ベースのサービス解決
+- - Consul による健全性チェック付き登録・発見
+- - Envoy の xDS プロトコルによる動的設定配信
+
+<!--
+自然のサービスディスカバリは化学的シグナルによるもの。Kubernetesでは CoreDNS や Consul が同様の役割を担う。
+-->
+
+---
+
+# 耐障害性 — 一本枯れても森は死なない
+
+- 障害時の迂回ルート — 自然のサーキットブレーカー
+- <svg viewBox='0 0 760 300' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='760' height='300' fill='#0d1117'/><circle cx='100' cy='150' r='32' fill='#1b3a1b' stroke='#4caf50' stroke-width='2'/><text x='100' y='145' fill='#a5d6a7' font-size='11' text-anchor='middle' font-family='sans-serif'>Node A</text><text x='100' y='162' fill='#81c784' font-size='9' text-anchor='middle' font-family='sans-serif'>正常</text><circle cx='660' cy='150' r='32' fill='#1b3a1b' stroke='#4caf50' stroke-width='2'/><text x='660' cy='145' fill='#a5d6a7' font-size='11' text-anchor='middle' font-family='sans-serif'>Node E</text><text x='660' y='145' fill='#a5d6a7' font-size='11' text-anchor='middle' font-family='sans-serif'>Node E</text><text x='660' y='162' fill='#81c784' font-size='9' text-anchor='middle' font-family='sans-serif'>正常</text><circle cx='280' cy='80' r='28' fill='#1b3a1b' stroke='#4caf50' stroke-width='2'/><text x='280' y='75' fill='#a5d6a7' font-size='10' text-anchor='middle' font-family='sans-serif'>Node B</text><text x='280' y='90' fill='#81c784' font-size='9' text-anchor='middle' font-family='sans-serif'>正常</text><circle cx='380' cy='150' r='35' fill='#3d0000' stroke='#f44336' stroke-width='3' style='filter:drop-shadow(0 0 10px #f44336)'/><text x='380' y='143' fill='#ef9a9a' font-size='11' text-anchor='middle' font-family='sans-serif'>Node C</text><text x='380' y='160' fill='#f44336' font-size='10' text-anchor='middle' font-family='sans-serif'>障害発生</text><text x='380' y='175' fill='#ef5350' font-size='9' text-anchor='middle' font-family='sans-serif'>CIRCUIT OPEN</text><circle cx='500' cy='80' r='28' fill='#1b3a1b' stroke='#4caf50' stroke-width='2'/><text x='500' y='75' fill='#a5d6a7' font-size='10' text-anchor='middle' font-family='sans-serif'>Node D</text><text x='500' y='90' fill='#81c784' font-size='9' text-anchor='middle' font-family='sans-serif'>正常</text><line x1='132' y1='140' x2='252' y2='90' stroke='#4caf50' stroke-width='2' opacity='0.7'/><line x1='132' y1='152' x2='345' y2='152' stroke='#f44336' stroke-width='2' stroke-dasharray='6,4' opacity='0.5'/><text x='238' y='168' fill='#f44336' font-size='10' font-family='sans-serif'>ブロック</text><line x1='308' y1='80' x2='472' y2='80' stroke='#00e676' stroke-width='3'/><polygon points='465,74 480,80 465,86' fill='#00e676'/><line x1='528' y1='90' x2='630' y2='138' stroke='#4caf50' stroke-width='2' opacity='0.7'/><text x='330' y='55' fill='#00e676' font-size='12' font-family='sans-serif' font-weight='bold'>迂回ルート（自動）</text><circle cx='380' cy='235' r='22' fill='#1a2a3a' stroke='#42a5f5' stroke-width='2'/><text x='380' y='230' fill='#90caf9' font-size='9' text-anchor='middle' font-family='sans-serif'>Node F</text><text x='380' y='244' fill='#64b5f6' font-size='8' text-anchor='middle' font-family='sans-serif'>バックアップ</text><line x1='132' y1='165' x2='358' y2='228' stroke='#42a5f5' stroke-width='2' stroke-dasharray='4,3'/><line x1='402' y1='228' x2='630' y2='162' stroke='#42a5f5' stroke-width='2' stroke-dasharray='4,3'/><text x='200' y='220' fill='#42a5f5' font-size='10' font-family='sans-serif'>代替経路</text></svg>
+- 障害ノードを自動回避し、代替ルートで通信を継続
+- Resilience4J の **Circuit Breaker** と同じ自己回復メカニズム
+
+<!--
+菌根ネットワークは1つのノードが枯れても代替経路を自動的に構築する。これはサーキットブレーカーパターンと同じ。
+-->
+
+---
+
+# バックプレッシャーと栄養調整
+
+- 過負荷時の自然なフロー制御メカニズム
+- <svg viewBox='0 0 760 270' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='760' height='270' fill='#0d1117'/><rect x='10' y='10' width='360' height='245' fill='#0f1a0f' stroke='#2e7d32' stroke-width='1' rx='6'/><text x='190' y='35' fill='#66bb6a' font-size='12' text-anchor='middle' font-family='sans-serif' font-weight='bold'>自然：栄養調整</text><rect x='30' y='55' width='80' height='40' fill='#1b4a1b' stroke='#4caf50' stroke-width='1.5' rx='4'/><text x='70' y='70' fill='#a5d6a7' font-size='10' text-anchor='middle' font-family='sans-serif'>光合成旺盛</text><text x='70' y='85' fill='#81c784' font-size='9' text-anchor='middle' font-family='sans-serif'>（高負荷Source）</text><rect x='245' y='55' width='80' height='40' fill='#4a1b1b' stroke='#f44336' stroke-width='1.5' rx='4'/><text x='285' y='70' fill='#ef9a9a' font-size='10' text-anchor='middle' font-family='sans-serif'>栄養過多</text><text x='285' y='85' fill='#e57373' font-size='9' text-anchor='middle' font-family='sans-serif'>（受信過負荷）</text><rect x='30' y='145' width='80' height='35' fill='#1b2a4a' stroke='#1976d2' stroke-width='1.5' rx='4'/><text x='70' y='160' fill='#90caf9' font-size='10' text-anchor='middle' font-family='sans-serif'>弱木・実生</text><text x='70' y='175' fill='#64b5f6' font-size='9' text-anchor='middle' font-family='sans-serif'>（優先受信先）</text><rect x='245' y='145' width='80' height='35' fill='#1b3a1b' stroke='#4caf50' stroke-width='1.5' rx='4'/><text x='285' y='160' fill='#a5d6a7' font-size='10' text-anchor='middle' font-family='sans-serif'>健全な成木</text><text x='285' y='175' fill='#81c784' font-size='9' text-anchor='middle' font-family='sans-serif'>（受信制限）</text><ellipse cx='160' cy='120' rx='40' ry='30' fill='#0a2a0a' stroke='#e8b86d' stroke-width='1.5'/><text x='160' y='115' fill='#e8b86d' font-size='9' text-anchor='middle' font-family='sans-serif'>菌根菌</text><text x='160' y='130' fill='#c4956a' font-size='8' text-anchor='middle' font-family='sans-serif'>調整弁</text><line x1='110' y1='75' x2='125' y2='100' stroke='#e8b86d' stroke-width='1.5'/><line x1='200' y1='100' x2='245' y2='75' stroke='#f44336' stroke-width='2.5'/><polygon points='242,72 252,80 238,82' fill='#f44336'/><line x1='145' y1='145' x2='110' y2='162' stroke='#42a5f5' stroke-width='2'/><polygon points='113,158 100,165 116,170' fill='#42a5f5'/><line x1='175' y1='145' x2='245' y2='162' stroke='#4caf50' stroke-width='1'/><text x='210' y='85' fill='#f44336' font-size='9' font-family='sans-serif'>制限</text><text x='100' y='155' fill='#42a5f5' font-size='9' font-family='sans-serif'>優先</text><rect x='390' y='10' width='360' height='245' fill='#0d1525' stroke='#1565c0' stroke-width='1' rx='6'/><text x='570' y='35' fill='#42a5f5' font-size='12' text-anchor='middle' font-family='sans-serif' font-weight='bold'>技術：Backpressure</text><rect x='410' y='55' width='90' height='40' fill='#0d2540' stroke='#1976d2' stroke-width='1.5' rx='4'/><text x='455' y='70' fill='#90caf9' font-size='10' text-anchor='middle' font-family='sans-serif'>高速Producer</text><text x='455' y='85' fill='#64b5f6' font-size='9' text-anchor='middle' font-family='sans-serif'>（Kafka/gRPC）</text><rect x='620' y='55' width='90' height='40' fill='#40200a' stroke='#ff9800' stroke-width='1.5' rx='4'/><text x='665' y='70' fill='#ffcc80' font-size='10' text-anchor='middle' font-family='sans-serif'>飽和Consumer</text><text x='665' y='85' fill='#ffb74d' font-size='9' text-anchor='middle' font-family='sans-serif'>（Over Capacity）</text><rect x='410' y='150' width='90' height='35' fill='#0d2540' stroke='#1976d2' stroke-width='1.5' rx='4'/><text x='455' y='165' fill='#90caf9' font-size='10' text-anchor='middle' font-family='sans-serif'>低速Consumer</text><text x='455' y='180' fill='#64b5f6' font-size='9' text-anchor='middle' font-family='sans-serif'>（優先処理）</text><rect x='620' y='150' width='90' height='35' fill='#0a2a0a' stroke='#4caf50' stroke-width='1.5' rx='4'/><text x='665' y='165' fill='#a5d6a7' font-size='10' text-anchor='middle' font-family='sans-serif'>高速Consumer</text><text x='665' y='180' fill='#81c784' font-size='9' text-anchor='middle' font-family='sans-serif'>（制限受信）</text><ellipse cx='540' cy='120' rx='42' ry='30' fill='#0a1525' stroke='#42a5f5' stroke-width='1.5'/><text x='540' y='115' fill='#42a5f5' font-size='9' text-anchor='middle' font-family='sans-serif'>Rate Limiter</text><text x='540' y='130' fill='#64b5f6' font-size='8' text-anchor='middle' font-family='sans-serif'>/ Queue</text><line x1='500' y1='75' x2='503' y2='94' stroke='#42a5f5' stroke-width='1.5'/><line x1='580' y1='100' x2='620' y2='75' stroke='#ff9800' stroke-width='2.5'/><polygon points='617,72 628,80 613,82' fill='#ff9800'/><line x1='523' y1='148' x2='500' y2='168' stroke='#42a5f5' stroke-width='2'/><polygon points='503,164 490,170 506,176' fill='#42a5f5'/><line x1='558' y1='148' x2='620' y2='165' stroke='#4caf50' stroke-width='1'/></svg>
+- 菌根菌が栄養フローを調整 ≒ Rate Limiter / Backpressure
+- 受信側の状態に応じて送信量を動的制御
+
+<!--
+自然のバックプレッシャーは栄養過多を防ぐ仕組み。技術ではKafkaのコンシューマーラグ、gRPCのフロー制御が同等。
+-->
+
+---
+
+<!-- _class: lead -->
+# アリの巣との違い
+
+- 能動的探索 vs 受動的分散協調
+
+
+---
+
+# 能動的探索(アリ) vs 受動的分散協調(菌根)
+
+- 2つの自然的分散アルゴリズムの比較
+- <svg viewBox='0 0 760 270' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='760' height='270' fill='#0d1117'/><rect x='10' y='10' width='360' height='250' fill='#1a1000' stroke='#f57f17' stroke-width='1.5' rx='8'/><text x='190' y='35' fill='#ffca28' font-size='13' text-anchor='middle' font-family='sans-serif' font-weight='bold'>アリの巣（Ant Colony）</text><text x='190' y='55' fill='#ffe082' font-size='10' text-anchor='middle' font-family='sans-serif'>能動的探索 / フェロモン誘導</text><circle cx='100' cy='120' r='8' fill='#ff8f00'/><circle cx='140' cy='100' r='8' fill='#ff8f00'/><circle cx='180' cy='130' r='8' fill='#ff8f00'/><circle cx='220' cy='105' r='8' fill='#ff8f00'/><circle cx='260' cy='125' r='8' fill='#ff8f00'/><circle cx='300' cy='100' r='8' fill='#ff8f00'/><path d='M100,120 Q120,80 140,100 Q160,115 180,130 Q200,115 220,105 Q240,115 260,125 Q280,112 300,100' stroke='#ffd54f' stroke-width='2.5' fill='none'/><text x='100' y='148' fill='#ff8f00' font-size='9' text-anchor='middle' font-family='sans-serif'>Scout</text><text x='300' y='118' fill='#ff8f00' font-size='9' text-anchor='middle' font-family='sans-serif'>Scout</text><rect x='30' y='165' width='310' height='75' fill='#0d0a00' rx='4'/><text x='45' y='183' fill='#ffe082' font-size='10' font-family='sans-serif' font-weight='bold'>特性:</text><text x='45' y='198' fill='#ffca28' font-size='9' font-family='sans-serif'>+ 動的経路最適化（ACO アルゴリズム）</text><text x='45' y='212' fill='#ffca28' font-size='9' font-family='sans-serif'>+ 障害物を自動回避、最短路収束</text><text x='45' y='226' fill='#ff8a65' font-size='9' font-family='sans-serif'>- 揮発性（フェロモンが薄れると経路消滅）</text><text x='45' y='240' fill='#ff8a65' font-size='9' font-family='sans-serif'>- 探索コスト高（能動的エージェント必要）</text><rect x='390' y='10' width='360' height='250' fill='#0f1a0f' stroke='#2e7d32' stroke-width='1.5' rx='8'/><text x='570' y='35' fill='#66bb6a' font-size='13' text-anchor='middle' font-family='sans-serif' font-weight='bold'>菌根ネットワーク</text><text x='570' y='55' fill='#a5d6a7' font-size='10' text-anchor='middle' font-family='sans-serif'>受動的分散協調 / 化学勾配</text><circle cx='450' cy='100' r='15' fill='#1b4a1b' stroke='#4caf50' stroke-width='2'/><circle cx='540' cy='130' r='15' fill='#1b4a1b' stroke='#4caf50' stroke-width='2'/><circle cx='630' cy='100' r='15' fill='#1b4a1b' stroke='#4caf50' stroke-width='2'/><circle cx='490' cy='165' r='12' fill='#1b4a1b' stroke='#66bb6a' stroke-width='1.5'/><circle cx='590' cy='165' r='12' fill='#1b4a1b' stroke='#66bb6a' stroke-width='1.5'/><line x1='462' y1='110' x2='527' y2='125' stroke='#e8b86d' stroke-width='2'/><line x1='555' y1='125' x2='618' y2='108' stroke='#e8b86d' stroke-width='2'/><line x1='456' y1='113' x2='482' y2='155' stroke='#e8b86d' stroke-width='1.5'/><line x1='540' y1='145' x2='495' y2='158' stroke='#e8b86d' stroke-width='1.5'/><line x1='540' y1='145' x2='586' y2='156' stroke='#e8b86d' stroke-width='1.5'/><line x1='622' y1='110' x2='598' y2='155' stroke='#e8b86d' stroke-width='1.5'/><rect x='410' y='165' width='310' height='75' fill='#0a1a0a' rx='4'/><text x='425' y='183' fill='#a5d6a7' font-size='10' font-family='sans-serif' font-weight='bold'>特性:</text><text x='425' y='198' fill='#66bb6a' font-size='9' font-family='sans-serif'>+ 持続的接続（菌糸は長期存在）</text><text x='425' y='212' fill='#66bb6a' font-size='9' font-family='sans-serif'>+ 低エネルギー（受動的拡散）</text><text x='425' y='226' fill='#ef9a9a' font-size='9' font-family='sans-serif'>- 動的再構成が遅い</text><text x='425' y='240' fill='#ef9a9a' font-size='9' font-family='sans-serif'>- 範囲は物理的接続に依存</text></svg>
+- ACOアルゴリズム（アリ）→ サービスメッシュの動的ルーティング最適化
+- 菌根ネットワーク（菌根）→ 永続的接続・低オーバーヘッドの基盤通信
+
+<!--
+アリのコロニー最適化と菌根ネットワークは根本的に異なるアプローチ。前者は能動的探索、後者は受動的な化学勾配拡散。
+-->
+
+---
+
+# どちらを選ぶべきか — ユースケース別指針
+
+- **菌根型（Service Mesh / 永続接続）が適する場面:**
+- - 安定したサービス間通信（低レイテンシ必須）
+- - 長期間変化しないトポロジー（基盤インフラ）
+- - 観測性・セキュリティポリシーの一元管理
+- **アリ型（ACO / 動的最適化）が適する場面:**
+- - 頻繁に変化するルーティング（CDN、エッジ）
+- - 大規模分散タスクスケジューリング
+- - 未知環境での経路探索（ロボティクス、倉庫物流）
+
+<!--
+両者はトレードオフがある。実際のシステムでは組み合わせることが多い（例：Istio + カスタムルーティングロジック）。
+-->
+
+---
+
+<!-- _class: lead -->
+# 実装への示唆
+
+- 森の知恵をコードに落とし込む
+
+
+---
+
+# Resilience4J / Hystrix — 防御の菌根
+
+- サーキットブレーカーパターンの実装例
+- 障害ノードを自動遮断し、森全体を守る菌根の知恵
+
+```java
+// Resilience4J Circuit Breaker — 菌根型耐障害性
+import io.github.resilience4j.circuitbreaker.CircuitBreaker;
+import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
+
+CircuitBreakerConfig config = CircuitBreakerConfig.custom()
+    .failureRateThreshold(50)           // 失敗率50%でOpen
+    .waitDurationInOpenState(Duration.ofSeconds(30)) // 30秒待機
+    .permittedCallsInHalfOpenState(3)   // Half-Open時の試行数
+    .slidingWindowSize(10)              // 直近10リクエストで判定
+    .build();
+
+CircuitBreaker cb = CircuitBreaker.of("nutrient-relay", config);
+
+// 菌根ネットワーク経由の栄養転送（= API call）
+Supplier<NutrientPacket> decorated = CircuitBreaker
+    .decorateSupplier(cb, () -> downstreamService.relay(packet));
+
+Try.ofSupplier(decorated)
+    .recover(CallNotPermittedException.class,
+        ex -> NutrientPacket.fallback()); // 代替経路へフォールバック
+```
+
+<!--
+Resilience4Jのサーキットブレーカーは菌根ネットワークの障害分離メカニズムと同じ。50%の失敗率でOpen状態に移行し、ネットワーク全体を保護する。
+-->
+
+---
+
+# ヘルスチェックと「栄養状態」監視
+
+- マイクロサービスの健康状態を可視化するモニタリング構成
+- <svg viewBox='0 0 760 280' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='760' height='280' fill='#0d1117'/><rect x='10' y='10' width='200' height='255' fill='#0d1525' stroke='#1565c0' stroke-width='1.5' rx='6'/><text x='110' y='35' fill='#42a5f5' font-size='12' text-anchor='middle' font-family='sans-serif' font-weight='bold'>Services</text><rect x='25' y='50' width='170' height='38' fill='#0d2540' stroke='#4caf50' stroke-width='1.5' rx='4'/><text x='110' y='65' fill='#a5d6a7' font-size='10' text-anchor='middle' font-family='sans-serif'>Service A</text><text x='110' y='79' fill='#66bb6a' font-size='9' text-anchor='middle' font-family='sans-serif'>Healthy (100%)</text><rect x='25' y='98' width='170' height='38' fill='#2a1500' stroke='#ff9800' stroke-width='1.5' rx='4'/><text x='110' y='113' fill='#ffcc80' font-size='10' text-anchor='middle' font-family='sans-serif'>Service B</text><text x='110' y='127' fill='#ffa726' font-size='9' text-anchor='middle' font-family='sans-serif'>Degraded (60%)</text><rect x='25' y='146' width='170' height='38' fill='#3d0000' stroke='#f44336' stroke-width='1.5' rx='4'/><text x='110' y='161' fill='#ef9a9a' font-size='10' text-anchor='middle' font-family='sans-serif'>Service C</text><text x='110' y='175' fill='#f44336' font-size='9' text-anchor='middle' font-family='sans-serif'>Unhealthy (0%)</text><rect x='25' y='194' width='170' height='38' fill='#0d2540' stroke='#42a5f5' stroke-width='1.5' rx='4'/><text x='110' y='209' fill='#90caf9' font-size='10' text-anchor='middle' font-family='sans-serif'>Service D</text><text x='110' y='223' fill='#64b5f6' font-size='9' text-anchor='middle' font-family='sans-serif'>Healthy (95%)</text><rect x='240' y='10' width='180' height='255' fill='#0a1a0a' stroke='#2e7d32' stroke-width='1.5' rx='6'/><text x='330' y='35' fill='#66bb6a' font-size='12' text-anchor='middle' font-family='sans-serif' font-weight='bold'>Prometheus</text><text x='330' y='52' fill='#4caf50' font-size='9' text-anchor='middle' font-family='sans-serif'>メトリクス収集</text><rect x='255' y='65' width='150' height='28' fill='#0d2a0d' stroke='#388e3c' stroke-width='1' rx='3'/><text x='330' y='83' fill='#81c784' font-size='9' text-anchor='middle' font-family='sans-serif'>health_score{svc=&quot;A&quot;} 1.0</text><rect x='255' y='100' width='150' height='28' fill='#2a1a00' stroke='#f57f17' stroke-width='1' rx='3'/><text x='330' y='118' fill='#ffca28' font-size='9' text-anchor='middle' font-family='sans-serif'>health_score{svc=&quot;B&quot;} 0.6</text><rect x='255' y='135' width='150' height='28' fill='#2a0000' stroke='#c62828' stroke-width='1' rx='3'/><text x='330' y='153' fill='#ef9a9a' font-size='9' text-anchor='middle' font-family='sans-serif'>health_score{svc=&quot;C&quot;} 0.0</text><rect x='255' y='170' width='150' height='28' fill='#0d2a0d' stroke='#388e3c' stroke-width='1' rx='3'/><text x='330' y='188' fill='#81c784' font-size='9' text-anchor='middle' font-family='sans-serif'>health_score{svc=&quot;D&quot;} 0.95</text><rect x='255' y='210' width='150' height='45' fill='#0a1a0a' stroke='#1b5e20' stroke-width='1' rx='3'/><text x='330' y='228' fill='#4caf50' font-size='8' text-anchor='middle' font-family='sans-serif'>自動アラート:</text><text x='330' y='244' fill='#4caf50' font-size='8' text-anchor='middle' font-family='sans-serif'>health_score &lt; 0.7</text><rect x='450' y='10' width='160' height='120' fill='#1a0d2a' stroke='#7b1fa2' stroke-width='1.5' rx='6'/><text x='530' y='35' fill='#ce93d8' font-size='12' text-anchor='middle' font-family='sans-serif' font-weight='bold'>Grafana</text><text x='530' y='52' fill='#ba68c8' font-size='9' text-anchor='middle' font-family='sans-serif'>可視化ダッシュボード</text><rect x='465' y='62' width='130' height='55' fill='#120820' stroke='#6a1b9a' stroke-width='1' rx='3'/><text x='530' y='79' fill='#e1bee7' font-size='8' text-anchor='middle' font-family='sans-serif'>Forest Health Overview</text><rect x='472' y='86' width='20' height='22' fill='#4caf50' rx='1'/><rect x='497' y='96' width='20' height='12' fill='#ff9800' rx='1'/><rect x='522' y='104' width='20' height='4' fill='#f44336' rx='1'/><rect x='547' y='87' width='20' height='21' fill='#2196f3' rx='1'/><rect x='450' y='145' width='160' height='120' fill='#1a1500' stroke='#f57f17' stroke-width='1.5' rx='6'/><text x='530' y='165' fill='#ffca28' font-size='12' text-anchor='middle' font-family='sans-serif' font-weight='bold'>AlertManager</text><rect x='465' y='178' width='130' height='35' fill='#2a1000' stroke='#e65100' stroke-width='1' rx='3'/><text x='530' y='193' fill='#ffab40' font-size='8' text-anchor='middle' font-family='sans-serif'>CRITICAL: Service C</text><text x='530' y='205' fill='#ff8a65' font-size='8' text-anchor='middle' font-family='sans-serif'>health_score = 0.0</text><rect x='465' y='220' width='130' height='35' fill='#1a1200' stroke='#f9a825' stroke-width='1' rx='3'/><text x='530' y='235' fill='#ffe082' font-size='8' text-anchor='middle' font-family='sans-serif'>WARN: Service B</text><text x='530' y='247' fill='#ffd54f' font-size='8' text-anchor='middle' font-family='sans-serif'>health_score = 0.6</text><rect x='630' y='10' width='120' height='255' fill='#0d1525' stroke='#1565c0' stroke-width='1.5' rx='6'/><text x='690' y='35' fill='#42a5f5' font-size='11' text-anchor='middle' font-family='sans-serif' font-weight='bold'>PagerDuty</text><text x='690' y='52' fill='#64b5f6' font-size='8' text-anchor='middle' font-family='sans-serif'>オンコール通知</text><rect x='642' y='65' width='95' height='30' fill='#2a0010' stroke='#c62828' stroke-width='1' rx='3'/><text x='689' y='84' fill='#ef9a9a' font-size='8' text-anchor='middle' font-family='sans-serif'>PAGE: on-call eng</text><rect x='642' y='105' width='95' height='30' fill='#1a1000' stroke='#f57f17' stroke-width='1' rx='3'/><text x='689' y='124' fill='#ffcc80' font-size='8' text-anchor='middle' font-family='sans-serif'>WARN: team-lead</text><line x1='210' y1='130' x2='240' y2='130' stroke='#42a5f5' stroke-width='1.5'/><polygon points='237,126 247,130 237,134' fill='#42a5f5'/><line x1='420' y1='80' x2='450' y2='75' stroke='#7b1fa2' stroke-width='1.5'/><polygon points='447,71 457,75 447,79' fill='#7b1fa2'/><line x1='420' y1='155' x2='450' y2='175' stroke='#f57f17' stroke-width='1.5'/><polygon points='447,171 457,175 447,179' fill='#f57f17'/><line x1='610' y1='175' x2='630' y2='110' stroke='#1565c0' stroke-width='1.5'/><polygon points='627,106 637,110 627,114' fill='#1565c0'/></svg>
+- Prometheus による health_score は木の「栄養状態」に相当
+- 閾値以下で AlertManager が自動通知 → 人間（森林管理者）が介入
+
+<!--
+Prometheusのhealth_scoreメトリクスは菌根ネットワークが感知する木の栄養状態に相当。異常を検知したらAlertManagerが通知する。
+-->
+
+---
+
+<!-- _class: lead -->
+# まとめ：森から学ぶ分散システム設計
+
+- **自然界 → ソフトウェアアーキテクチャの対応表:**
+- 菌根ネットワーク = Service Mesh（Istio/Envoy）
+- 母の木 = Hub Node / Priority Routing
+- 障害木の回避 = Circuit Breaker（Resilience4J）
+- 栄養調整 = Backpressure / Rate Limiting
+- 化学シグナル = Event Bus（Kafka/SNS）
+- **キーメッセージ:** 40億年の進化が証明した分散設計原則は、今日のクラウドネイティブアーキテクチャに直接応用できる
+
+<!--
+自然から学ぶ分散システム設計。菌根ネットワークはマイクロサービスの理想的なリファレンスアーキテクチャ。
+-->
+
+---
+
+# 参考文献
+
+- **Research & Data:**
+- [Simard et al. (1997) Net transfer of carbon between ectomycorrhizal tree species](https://www.nature.com/articles/41557)
+- [Beiler et al. (2010) Architecture of the wood-wide web](https://nph.onlinelibrary.wiley.com/doi/10.1111/j.1469-8137.2009.03069.x)
+- **Microservices Architecture:**
+- [Istio Service Mesh Documentation](https://istio.io/latest/docs/)
+- [Resilience4J Circuit Breaker Guide](https://resilience4j.readme.io/docs/circuitbreaker)
+- **Biomimicry in Software Design:**
+- [Ant Colony Optimization (Dorigo, 1992)](https://scholar.google.com/scholar?q=ant+colony+optimization+dorigo+1992)
+- [Nature-Inspired Computing Survey (2020)](https://arxiv.org/abs/2003.01722)
+
+<!--
+菌根ネットワーク研究とマイクロサービスアーキテクチャの主要参考文献。
+-->

@@ -1,0 +1,12 @@
+topic: "英語はなぜ世界標準になったのか ― 言語帝国主義の歴史"
+language: "ja"
+output:
+  dir: "docs/20260220063800_english-global-standard"
+  baseName: "english-global-standard"
+marp:
+  theme: gaia
+  paginate: true
+  header: "英語の世界標準化"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

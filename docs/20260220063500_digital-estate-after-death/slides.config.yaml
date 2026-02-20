@@ -1,0 +1,12 @@
+topic: "死後のデジタル遺産 ― アカウントは誰が相続するのか"
+language: "ja"
+output:
+  dir: "docs/20260220063500_digital-estate-after-death"
+  baseName: "digital-estate-after-death"
+marp:
+  theme: gaia
+  paginate: true
+  header: "デジタル遺産の行方"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

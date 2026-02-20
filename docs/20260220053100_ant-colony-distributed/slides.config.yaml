@@ -1,0 +1,12 @@
+topic: "アリのコロニーに学ぶ分散システム設計"
+language: "ja"
+output:
+  dir: "docs/20260220053100_ant-colony-distributed"
+  baseName: "ant-colony-distributed"
+marp:
+  theme: gaia
+  paginate: true
+  header: "アリのコロニーと分散システム"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

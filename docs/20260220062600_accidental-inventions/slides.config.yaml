@@ -1,0 +1,12 @@
+topic: "偶然の発明 ― セレンディピティが変えた世界"
+language: "ja"
+output:
+  dir: "docs/20260220062600_accidental-inventions"
+  baseName: "accidental-inventions"
+marp:
+  theme: gaia
+  paginate: true
+  header: "偶然の発明"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

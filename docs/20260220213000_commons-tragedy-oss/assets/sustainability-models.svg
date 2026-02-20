@@ -1,0 +1,59 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" fill="#FFEAA7" font-size="20" font-weight="bold" font-family="sans-serif">OSSの持続可能性モデル比較</text>
+  <!-- Model 1: Corporate Sponsorship -->
+  <rect x="30" y="65" width="260" height="180" fill="#2d3436" rx="10" stroke="#6c5ce7" stroke-width="2" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="160" y="92" text-anchor="middle" fill="#6c5ce7" font-size="14" font-weight="bold" font-family="sans-serif">企業スポンサーシップ</text>
+  <text x="160" y="115" text-anchor="middle" fill="#dfe6e9" font-size="11" font-family="sans-serif">例: Linux Foundation, CNCF</text>
+  <text x="50" y="140" fill="#00b894" font-size="12" font-family="sans-serif">+ 安定した資金源</text>
+  <text x="50" y="158" fill="#00b894" font-size="12" font-family="sans-serif">+ フルタイムメンテナ雇用</text>
+  <text x="50" y="180" fill="#FF6B6B" font-size="12" font-family="sans-serif">- 企業の影響力偏重</text>
+  <text x="50" y="198" fill="#FF6B6B" font-size="12" font-family="sans-serif">- 小規模PJは対象外</text>
+  <text x="50" y="225" fill="#fdcb6e" font-size="11" font-family="sans-serif">有効性: ★★★★☆</text>
+  <!-- Model 2: Foundation -->
+  <rect x="320" y="65" width="260" height="180" fill="#2d3436" rx="10" stroke="#0984e3" stroke-width="2" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="450" y="92" text-anchor="middle" fill="#0984e3" font-size="14" font-weight="bold" font-family="sans-serif">GitHub Sponsors / OpenCollective</text>
+  <text x="450" y="115" text-anchor="middle" fill="#dfe6e9" font-size="11" font-family="sans-serif">例: Vue.js, Babel, webpack</text>
+  <text x="340" y="140" fill="#00b894" font-size="12" font-family="sans-serif">+ 個人でも参加可能</text>
+  <text x="340" y="158" fill="#00b894" font-size="12" font-family="sans-serif">+ コミュニティ直接支援</text>
+  <text x="340" y="180" fill="#FF6B6B" font-size="12" font-family="sans-serif">- 収入が不安定</text>
+  <text x="340" y="198" fill="#FF6B6B" font-size="12" font-family="sans-serif">- 有名PJに偏る</text>
+  <text x="340" y="225" fill="#fdcb6e" font-size="11" font-family="sans-serif">有効性: ★★★☆☆</text>
+  <!-- Model 3: Dual License -->
+  <rect x="610" y="65" width="260" height="180" fill="#2d3436" rx="10" stroke="#00b894" stroke-width="2" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="740" y="92" text-anchor="middle" fill="#00b894" font-size="14" font-weight="bold" font-family="sans-serif">デュアルライセンス</text>
+  <text x="740" y="115" text-anchor="middle" fill="#dfe6e9" font-size="11" font-family="sans-serif">例: Qt, MySQL, MongoDB</text>
+  <text x="630" y="140" fill="#00b894" font-size="12" font-family="sans-serif">+ 持続的な収益</text>
+  <text x="630" y="158" fill="#00b894" font-size="12" font-family="sans-serif">+ 商用利用に対価</text>
+  <text x="630" y="180" fill="#FF6B6B" font-size="12" font-family="sans-serif">- コミュニティ分断リスク</text>
+  <text x="630" y="198" fill="#FF6B6B" font-size="12" font-family="sans-serif">- ライセンス変更の反発</text>
+  <text x="630" y="225" fill="#fdcb6e" font-size="11" font-family="sans-serif">有効性: ★★★★☆</text>
+  <!-- Model 4: Government Funding -->
+  <rect x="30" y="280" width="260" height="180" fill="#2d3436" rx="10" stroke="#e17055" stroke-width="2" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="160" y="307" text-anchor="middle" fill="#e17055" font-size="14" font-weight="bold" font-family="sans-serif">政府資金・公共投資</text>
+  <text x="160" y="330" text-anchor="middle" fill="#dfe6e9" font-size="11" font-family="sans-serif">例: Sovereign Tech Fund (独)</text>
+  <text x="50" y="355" fill="#00b894" font-size="12" font-family="sans-serif">+ 公共財としての認識</text>
+  <text x="50" y="373" fill="#00b894" font-size="12" font-family="sans-serif">+ 重要インフラへの投資</text>
+  <text x="50" y="395" fill="#FF6B6B" font-size="12" font-family="sans-serif">- 官僚的プロセス</text>
+  <text x="50" y="413" fill="#FF6B6B" font-size="12" font-family="sans-serif">- 政治的影響のリスク</text>
+  <text x="50" y="440" fill="#fdcb6e" font-size="11" font-family="sans-serif">有効性: ★★★★☆ (新興)</text>
+  <!-- Model 5: Security Audit Mandate -->
+  <rect x="320" y="280" width="260" height="180" fill="#2d3436" rx="10" stroke="#4ECDC4" stroke-width="2" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="450" y="307" text-anchor="middle" fill="#4ECDC4" font-size="14" font-weight="bold" font-family="sans-serif">セキュリティ監査義務化</text>
+  <text x="450" y="330" text-anchor="middle" fill="#dfe6e9" font-size="11" font-family="sans-serif">例: EU Cyber Resilience Act</text>
+  <text x="340" y="355" fill="#00b894" font-size="12" font-family="sans-serif">+ サプライチェーン保護</text>
+  <text x="340" y="373" fill="#00b894" font-size="12" font-family="sans-serif">+ 企業に責任を課す</text>
+  <text x="340" y="395" fill="#FF6B6B" font-size="12" font-family="sans-serif">- メンテナへの負担増</text>
+  <text x="340" y="413" fill="#FF6B6B" font-size="12" font-family="sans-serif">- 法的リスクで参入障壁</text>
+  <text x="340" y="440" fill="#fdcb6e" font-size="11" font-family="sans-serif">有効性: ★★★☆☆ (議論中)</text>
+  <!-- Conclusion -->
+  <rect x="610" y="280" width="260" height="180" fill="#2d3436" rx="10" stroke="#FFEAA7" stroke-width="2" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="740" y="307" text-anchor="middle" fill="#FFEAA7" font-size="14" font-weight="bold" font-family="sans-serif">複合アプローチ</text>
+  <text x="740" y="335" text-anchor="middle" fill="#dfe6e9" font-size="12" font-family="sans-serif">単一の解決策では不十分</text>
+  <text x="630" y="360" fill="#4ECDC4" font-size="12" font-family="sans-serif">1. 企業の義務的貢献</text>
+  <text x="630" y="380" fill="#4ECDC4" font-size="12" font-family="sans-serif">2. 政府の公共投資</text>
+  <text x="630" y="400" fill="#4ECDC4" font-size="12" font-family="sans-serif">3. 個人寄付の文化</text>
+  <text x="630" y="420" fill="#4ECDC4" font-size="12" font-family="sans-serif">4. ライセンスの多様化</text>
+  <text x="630" y="440" fill="#4ECDC4" font-size="12" font-family="sans-serif">5. セキュリティ基準策定</text>
+</svg>

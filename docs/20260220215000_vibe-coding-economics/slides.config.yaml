@@ -1,0 +1,20 @@
+topic: "バイブコーディングの経済学：速く作れるが速く壊れる時代"
+language: "ja"
+
+output:
+  dir: "docs/20260220215000_vibe-coding-economics"
+  baseName: "vibe-coding-economics"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "Vibe Coding Economics"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

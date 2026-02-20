@@ -1,0 +1,3334 @@
+<!DOCTYPE html><html lang="en-US"><head><title>エントロピーは技術的負債と同じ法則に従う</title><meta property="og:title" content="エントロピーは技術的負債と同じ法則に従う"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{appearance:none;background-color:initial;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear;-webkit-tap-highlight-color:transparent}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNNDAgNzBIMjBWNTBtMjAgMEwyMCA3MG00MC00MGgyMHYyMG0tMjAgMCAyMC0yMCIgY2xhc3M9ImEiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNMjAgNTBoMjB2MjBtLTIwIDAgMjAtMjBtNDAgMEg2MFYzMG0yMCAwTDYwIDUwIiBjbGFzcz0iYSIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODBNNTIgOTBWMTAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}@keyframes __bespoke_marp_transition_reduced_outgoing__{0%{opacity:1}to{opacity:0}}@keyframes __bespoke_marp_transition_reduced_incoming__{0%{mix-blend-mode:plus-lighter;opacity:0}to{mix-blend-mode:plus-lighter;opacity:1}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{::view-transition-group(*){animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-timing-function:ease}::view-transition-new(*),::view-transition-old(*){animation-delay:0s;animation-direction:var(--marp-bespoke-transition-animation-direction,normal);animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-fill-mode:both;animation-name:var(--marp-bespoke-transition-animation-name,var(--marp-bespoke-transition-animation-name-fallback,__bespoke_marp_transition_no_animation__));mix-blend-mode:normal}::view-transition-old(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_outgoing__;animation-timing-function:ease}::view-transition-new(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_incoming__;animation-timing-function:ease}::view-transition-new(root),::view-transition-old(root){animation-timing-function:linear}::view-transition-new(__bespoke_marp_transition_osc__),::view-transition-old(__bespoke_marp_transition_osc__){animation-duration:0s!important;animation-name:__bespoke_marp_transition_osc__!important}::view-transition-new(__bespoke_marp_transition_osc__){opacity:0!important}.bespoke-marp-transition-warming-up::view-transition-group(*),.bespoke-marp-transition-warming-up::view-transition-new(*),.bespoke-marp-transition-warming-up::view-transition-old(*){animation-play-state:paused!important}body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide:not(.bespoke-marp-active) *{view-transition-name:none!important}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}}@media screen and (prefers-reduced-motion:reduce){svg.bespoke-marp-slide *{view-transition-name:none!important}}@media screen{[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{inset:0;position:absolute}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{background:#000000a6;border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1;view-transition-name:__bespoke_marp_transition_osc__}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:#0000}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:#0000;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{display:block;inset:0;position:absolute}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:#000000a6;border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;white-space:pre-wrap;width:calc(100% - 40px);word-wrap:break-word;scrollbar-color:#eeeeee80 #0000;scrollbar-width:thin}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:#0000}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:#eeeeee80;border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>@charset "UTF-8";@import "https://fonts.bunny.net/css?family=Lato:400,900|Roboto+Mono:400,700&display=swap";div#\:\$p > svg > foreignObject > section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center;-webkit-text-size-adjust:100%;text-size-adjust:100%}div#\:\$p > svg > foreignObject > section::after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#\:\$p > svg > foreignObject > section:not([data-marpit-pagination])::after{display:none}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:2em;margin-block:0.67em}div#\:\$p > svg > foreignObject > section video::-webkit-media-controls{will-change:transform}@page {size:1280px 720px;margin:0}@media print{html, body{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#\:\$p > svg > foreignObject > section{page-break-before:always;break-before:page}div#\:\$p > svg > foreignObject > section, div#\:\$p > svg > foreignObject > section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;print-color-adjust:exact!important;transition:none!important}div#\:\$p > svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#\:\$p > svg > foreignObject > :where(section){container-type:size}div#\:\$p > svg > foreignObject > section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}/*!
+ * Marp / Marpit Gaia theme.
+ *
+ * @theme gaia
+ * @author Yuki Hattori
+ *
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ * @size 4:3 960px 720px
+ */div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code.hljs{display:block;overflow-x:auto;padding:1em}div#\:\$p > svg > foreignObject > section code.hljs{padding:3px 5px}div#\:\$p > svg > foreignObject > section .hljs{background:#000;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-comment,div#\:\$p > svg > foreignObject > section .hljs-quote{color:#aeaeae;font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-keyword,div#\:\$p > svg > foreignObject > section .hljs-selector-tag,div#\:\$p > svg > foreignObject > section .hljs-type{color:#e28964}div#\:\$p > svg > foreignObject > section .hljs-string{color:#65b042}div#\:\$p > svg > foreignObject > section .hljs-subst{color:#daefa3}div#\:\$p > svg > foreignObject > section .hljs-link,div#\:\$p > svg > foreignObject > section .hljs-regexp{color:#e9c062}div#\:\$p > svg > foreignObject > section .hljs-name,div#\:\$p > svg > foreignObject > section .hljs-section,div#\:\$p > svg > foreignObject > section .hljs-tag,div#\:\$p > svg > foreignObject > section .hljs-title{color:#89bdff}div#\:\$p > svg > foreignObject > section .hljs-class .hljs-title,div#\:\$p > svg > foreignObject > section .hljs-doctag,div#\:\$p > svg > foreignObject > section .hljs-title.class_{text-decoration:underline}div#\:\$p > svg > foreignObject > section .hljs-bullet,div#\:\$p > svg > foreignObject > section .hljs-number,div#\:\$p > svg > foreignObject > section .hljs-symbol{color:#3387cc}div#\:\$p > svg > foreignObject > section .hljs-params,div#\:\$p > svg > foreignObject > section .hljs-template-variable,div#\:\$p > svg > foreignObject > section .hljs-variable{color:#3e87e3}div#\:\$p > svg > foreignObject > section .hljs-attribute{color:#cda869}div#\:\$p > svg > foreignObject > section .hljs-meta{color:#8996a8}div#\:\$p > svg > foreignObject > section .hljs-formula{background-color:#0e2231;color:#f8f8f8;font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-addition{background-color:#253b22;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-deletion{background-color:#420e09;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-selector-class{color:#9b703f}div#\:\$p > svg > foreignObject > section .hljs-selector-id{color:#8b98ab}div#\:\$p > svg > foreignObject > section .hljs-emphasis{font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-strong{font-weight:700}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){margin:.5em 0 0}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{font-weight:inherit}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6)::part(auto-scaling){max-height:580px}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:1.8em}div#\:\$p > svg > foreignObject > section :is(h2, marp-h2){font-size:1.5em}div#\:\$p > svg > foreignObject > section :is(h3, marp-h3){font-size:1.3em}div#\:\$p > svg > foreignObject > section :is(h4, marp-h4){font-size:1.1em}div#\:\$p > svg > foreignObject > section :is(h5, marp-h5){font-size:1em}div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){font-size:.9em}div#\:\$p > svg > foreignObject > section blockquote,div#\:\$p > svg > foreignObject > section p{margin:1em 0 0}div#\:\$p > svg > foreignObject > section ol>li,div#\:\$p > svg > foreignObject > section ul>li{margin:.3em 0 0}div#\:\$p > svg > foreignObject > section ol>li>p,div#\:\$p > svg > foreignObject > section ul>li>p{margin:.6em 0 0}div#\:\$p > svg > foreignObject > section code{display:inline-block;font-family:Roboto Mono,monospace;font-size:.8em;letter-spacing:0;margin:-.1em .15em;padding:.1em .2em;vertical-align:baseline}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){display:block;margin:1em 0 0;overflow:visible}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{box-sizing:border-box;font-size:.7em;margin:0;min-width:100%;padding:.5em}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)::part(auto-scaling){max-height:calc(580px - 1em)}div#\:\$p > svg > foreignObject > section blockquote{margin:1em 0 0;padding:0 1em;position:relative}div#\:\$p > svg > foreignObject > section blockquote:after,div#\:\$p > svg > foreignObject > section blockquote:before{content:"“";display:block;font-family:Times New Roman,serif;font-weight:700;position:absolute}div#\:\$p > svg > foreignObject > section blockquote:before{left:0;top:0}div#\:\$p > svg > foreignObject > section blockquote:after{bottom:0;right:0;transform:rotate(180deg)}div#\:\$p > svg > foreignObject > section blockquote>:first-child{margin-top:0}div#\:\$p > svg > foreignObject > section mark{background:transparent}div#\:\$p > svg > foreignObject > section table{border-collapse:collapse;border-spacing:0;margin:1em 0 0}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{border-style:solid;border-width:1px;padding:.2em .4em}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header,div#\:\$p > svg > foreignObject > section:after{box-sizing:border-box;font-size:66%;height:70px;line-height:50px;overflow:hidden;padding:10px 25px;position:absolute}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:66%}div#\:\$p > svg > foreignObject > section header{top:0}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header{left:0;right:0}div#\:\$p > svg > foreignObject > section footer{bottom:0}div#\:\$p > svg > foreignObject > section{--color-background:light-dark(#fff8e1, #455a64);--color-background-stripe:light-dark(
+    rgba(69,90,100,.1),
+    rgba(255,248,225,.1)
+  );--color-foreground:light-dark(#455a64, #fff8e1);--color-dimmed:light-dark(
+    #6a7a7d,
+    #dad8c8
+  );--color-highlight:light-dark(#0288d1, #81d4fa);background-color:var(--color-background);background-image:linear-gradient(135deg, hsla(0,0%,53%,0), hsla(0,0%,53%,.02) 50%, hsla(0,0%,100%,0) 0, hsla(0,0%,100%,.05));color:var(--color-foreground);color-scheme:light;font-family:Lato,Avenir Next,Avenir,Trebuchet MS,Segoe UI,sans-serif;font-size:35px;height:720px;letter-spacing:1.25px;line-height:1.35;overflow-wrap:break-word;padding:70px;width:1280px}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size:35px}div#\:\$p > svg > foreignObject > section:after{bottom:0;font-size:80%;right:0}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:80%}div#\:\$p > svg > foreignObject > section a,div#\:\$p > svg > foreignObject > section mark{color:var(--color-highlight)}div#\:\$p > svg > foreignObject > section code{background:var(--color-dimmed);color:var(--color-background)}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{color:var(--color-highlight)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){background:var(--color-foreground)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)>code{background:transparent}div#\:\$p > svg > foreignObject > section blockquote:after,div#\:\$p > svg > foreignObject > section blockquote:before,div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header,div#\:\$p > svg > foreignObject > section section:after{color:var(--color-dimmed)}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{border-color:var(--color-foreground)}div#\:\$p > svg > foreignObject > section table thead th{background:var(--color-foreground);color:var(--color-background)}div#\:\$p > svg > foreignObject > section table tbody>tr:nth-child(odd) td,div#\:\$p > svg > foreignObject > section table tbody>tr:nth-child(odd) th{background:var(--color-background-stripe, transparent)}div#\:\$p > svg > foreignObject > section>:first-child,div#\:\$p > svg > foreignObject > section>header:first-child+*{margin-top:0}div#\:\$p > svg > foreignObject > section:where(.invert){color-scheme:dark}div#\:\$p > svg > foreignObject > section:where(.gaia){--color-background:#0288d1;--color-background-stripe:rgba(255,248,225,.1);--color-foreground:#fff8e1;--color-dimmed:#cce2de;--color-highlight:#81d4fa;}div#\:\$p > svg > foreignObject > section:where(.lead){align-items:stretch;flex-flow:column nowrap;place-content:safe center center}div#\:\$p > svg > foreignObject > section:where(.lead) :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h6, marp-h6){text-align:center}div#\:\$p > svg > foreignObject > section:where(.lead) p{text-align:center}div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h1, marp-h1),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h2, marp-h2),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h3, marp-h3),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h4, marp-h4),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h5, marp-h5),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h6, marp-h6),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>p{text-align:left}div#\:\$p > svg > foreignObject > section:where(.lead) ol>li>p,div#\:\$p > svg > foreignObject > section:where(.lead) ul>li>p{text-align:left}div#\:\$p > svg > foreignObject > section:where(.lead) table{margin-left:auto;margin-right:auto}div#\:\$p > svg > foreignObject > section{width:1280px;height:720px}div#\:\$p > svg > foreignObject > section{font-size:1.05em}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size: 1.05em}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{font-size:0.58em;line-height:1.4}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]{columns:initial!important;display:block!important;padding:0!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::after, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::after{display:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction="vertical"]{flex-direction:column}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split] > div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split, 50%)}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split="right"] > div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure > figcaption{position:absolute;border:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;white-space:nowrap;width:1px}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"], div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"]{background:transparent!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"], div#\:\$p > svg[data-marpit-svg] > foreignObject[data-marpit-advanced-background="pseudo"]{pointer-events:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background-split]{width:100%;height:100%}
+</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id=":$p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-class="lead" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="1" style="--class:lead;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+
+<h1 id="%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E3%81%AF%E6%8A%80%E8%A1%93%E7%9A%84%E8%B2%A0%E5%82%B5%E3%81%A8%E5%90%8C%E3%81%98%E6%B3%95%E5%89%87%E3%81%AB%E5%BE%93%E3%81%86">エントロピーは技術的負債と同じ法則に従う</h1>
+<ul>
+<li>熱力学第二法則でコードを語る</li>
+<li></li>
+<li>対象：テックリード・アーキテクト</li>
+<li>形式：ワークショップ 90分</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="2" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E5%95%8F%E3%81%84%E3%81%8B%E3%81%91%E3%81%AA%E3%81%9C%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E8%85%90%E3%82%8B%E3%81%AE%E3%81%8B">問いかけ：なぜコードは腐るのか？</h1>
+<ul>
+<li><strong>誰も「腐らせよう」とは思っていない</strong></li>
+<li>
+<ul>
+<li>丁寧に書いたはずのコードがなぜ数年で手をつけられなくなるのか</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>技術的負債は「悪い開発者」のせいなのか？</li>
+</ul>
+</li>
+<li></li>
+<li><strong>このワークショップの問い</strong></li>
+<li>
+<ul>
+<li>コードの劣化は <strong>物理法則</strong> と同じメカニズムで動いているのではないか？</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>そうだとすれば、どう「抵抗」すればよいか？</li>
+</ul>
+</li>
+<li></li>
+<li><strong>ゴール</strong></li>
+<li>
+<ul>
+<li>エントロピーと技術的負債を統一フレームで理解する</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>計測・隔離・エネルギー投入の3戦略を身につける</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="3" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%82%A2%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%80">アジェンダ</h1>
+<ul>
+<li><strong>Part 1</strong> — 熱力学第二法則とエントロピー（理論基盤）</li>
+<li><strong>Part 2</strong> — 技術的負債とエントロピーの対応関係</li>
+<li><strong>Part 3</strong> — 技術的負債の計測・定量化</li>
+<li><strong>Part 4</strong> — リファクタリング・負債返済の実践戦略</li>
+<li><strong>Part 5</strong> — 組織・プロセス・パターン比較事例</li>
+<li><strong>Part 6</strong> — まとめ・Q&amp;A</li>
+<li></li>
+<li>演習タイム: Part 4に組み込み（自システムのエントロピーマップ）</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-class="lead" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="4" style="--class:lead;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+
+<h1 id="part-1-%E7%86%B1%E5%8A%9B%E5%AD%A6%E7%AC%AC%E4%BA%8C%E6%B3%95%E5%89%87%E3%81%A8%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC">Part 1: 熱力学第二法則とエントロピー</h1>
+<ul>
+<li>物理学の原理からソフトウェアの本質を読み解く</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="5" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E7%86%B1%E5%8A%9B%E5%AD%A6%E7%AC%AC%E4%BA%8C%E6%B3%95%E5%89%87%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B">熱力学第二法則とは何か</h1>
+<ul>
+<li><strong>第一法則（エネルギー保存）</strong>: エネルギーは生まれも消えもしない</li>
+<li><strong>第二法則（エントロピー増大）</strong>: 孤立系のエントロピーは増大し続ける</li>
+<li></li>
+<li><strong>直感的な意味</strong></li>
+<li>
+<ul>
+<li>散らかった部屋は放置すれば「勝手に」整理整頓されない</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>熱は冷たい方向へ流れる（逆は起きない）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>割れたガラスは自然に元に戻らない</li>
+</ul>
+</li>
+<li></li>
+<li><strong>核心</strong>: 「無秩序の方向」へは自然に進む。秩序を作るにはエネルギーが必要</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="6" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E3%81%AE%E5%AE%9A%E7%BE%A9s--k_b-%C3%97-ln%CF%89">エントロピーの定義：S = k_B × ln(Ω)</h1>
+<ul>
+<li><strong>ボルツマンの式</strong>: S = k_B × ln(Ω)</li>
+<li>
+<ul>
+<li>S：エントロピー（無秩序の度合い）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>k_B：ボルツマン定数（1.38 × 10⁻²³ J/K）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Ω：マクロ状態を実現できるミクロ状態の数</li>
+</ul>
+</li>
+<li></li>
+<li><strong>ソフトウェアへのアナロジー</strong></li>
+<li>
+<ul>
+<li>Ω = 同じ「機能を満たす」コードの書き方のバリエーション数</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>正しく動くコードの書き方は無数にある → Ω は指数的に大きい</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「読みやすく・変更しやすいコード」の状態数は少ない → エントロピーが低い</li>
+</ul>
+</li>
+<li></li>
+<li><strong>結論</strong>: 何もしなければコードは「より多くの書き方が存在する」方向——すなわち混沌へ向かう</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="7" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E9%96%89%E3%81%98%E3%81%9F%E7%B3%BB%E3%81%A7%E3%81%AF%E7%84%A1%E7%A7%A9%E5%BA%8F%E3%81%AF%E5%A2%97%E5%A4%A7%E3%81%99%E3%82%8B">閉じた系では無秩序は増大する</h1>
+<ul>
+<li><strong>孤立系（Isolated System）の定義</strong></li>
+<li>
+<ul>
+<li>外部とエネルギーも物質もやり取りしない系</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>第二法則：孤立系のエントロピーは ΔS ≥ 0 で単調増加</li>
+</ul>
+</li>
+<li></li>
+<li><strong>開放系（Open System）ならば</strong></li>
+<li>
+<ul>
+<li>外部からエネルギーを注入することで局所的に秩序を作れる</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>生命体・都市・企業はすべて開放系として秩序を維持している</li>
+</ul>
+</li>
+<li></li>
+<li><strong>問い：あなたのコードベースはどちら？</strong></li>
+<li>
+<ul>
+<li>誰も触らないコードは孤立系に近づく → エントロピー増大</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>リファクタリング＝外部エネルギー（開発者の労力）の注入</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="8" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E6%83%85%E5%A0%B1%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E3%82%B7%E3%83%A3%E3%83%8E%E3%83%B3%E3%81%B8%E3%81%AE%E6%8B%A1%E5%BC%B5">情報エントロピー（シャノン）への拡張</h1>
+<ul>
+<li><strong>シャノンのエントロピー（1948年）</strong></li>
+<li>H(X) = -Σ p(x) × log₂ p(x)</li>
+<li></li>
+<li>
+<ul>
+<li>情報の「不確実性」または「乱雑さ」を定量化</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>予測可能なメッセージ → H = 0（秩序）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>完全にランダムなメッセージ → H = log₂ n（最大）</li>
+</ul>
+</li>
+<li></li>
+<li><strong>コードへの対応</strong></li>
+<li>
+<ul>
+<li>命名の一貫性・パターンの予測可能性 → 情報エントロピーが低い</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>命名が不統一・処理が散在 → 読む側が次の行を予測できない → H が高い</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>レビュアーの認知負荷 = コードの情報エントロピーに比例</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="9" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%AF%E5%AD%A4%E7%AB%8B%E7%B3%BB%E3%81%8B">ソフトウェアは孤立系か？</h1>
+<ul>
+<li><strong>物理学では孤立系は理想化モデル</strong></li>
+<li>
+<ul>
+<li>現実には完全な孤立系は存在しない</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>ただし「ほぼ孤立」になると法則は強く働く</li>
+</ul>
+</li>
+<li></li>
+<li><strong>コードベースの「孤立度」を決める要因</strong></li>
+<li>
+<ul>
+<li>開発者の入れ替わり（知識の流出）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>テストの欠如（変更コストが高く触れない）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>ドキュメントの欠如（意図が失われる）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>依存関係の複雑化（変更の影響が見えない）</li>
+</ul>
+</li>
+<li></li>
+<li><strong>最も危険なシナリオ</strong>: 「動いているから触るな」というレガシーコード → 完全な孤立系</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="10" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E7%8A%B6%E6%85%8B%E6%95%B0%E3%82%92%E8%80%83%E3%81%88%E3%82%8B">コードの「状態数」を考える</h1>
+<ul>
+<li><strong>ボルツマン的視点でコードを見る</strong></li>
+<li></li>
+<li>同じ「ユーザーを取得する」処理に何通りの書き方があるか？</li>
+<li>
+<ul>
+<li>変数名のバリエーション: user / u / usr / userData / userObj / ...（無数）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>エラー処理の場所: 呼び出し元 / 関数内 / グローバル / 混在 ...</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>副作用の有無: 純粋関数 / DBアクセス内包 / キャッシュ参照 ...</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>型の表現: 具体型 / any / unknown / Union型 / アサーション ...</li>
+</ul>
+</li>
+<li></li>
+<li><strong>Ω は指数爆発する</strong>: 関数が増えるほど「状態の組み合わせ」は加速度的に増大</li>
+<li></li>
+<li><strong>コーディング規約・パターン</strong> = Ω を意図的に制限してエントロピーを下げる設計</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="11" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="svg%E5%9B%B3-%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E5%A2%97%E5%A4%A7%E6%9B%B2%E7%B7%9A-vs-%E3%82%B3%E3%83%BC%E3%83%89%E5%93%81%E8%B3%AA%E5%8A%A3%E5%8C%96%E6%9B%B2%E7%B7%9A">SVG図: エントロピー増大曲線 vs コード品質劣化曲線</h1>
+<ul>
+<li>
+<svg viewBox='0 0 760 380' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li>
+<defs>
+</li>
+<li>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;style&gt;.ax{stroke:#aaa;stroke-width:1.5;fill:none}.lb{font-family:sans-serif;font-size:13px;fill:#ddd}.hl{font-family:sans-serif;font-size:11px;fill:#aaa}.tt{font-family:sans-serif;font-size:15px;font-weight:bold;fill:#fff}&lt;/style&gt;
+</code></pre>
+</li>
+<li>
+</defs>
+</li>
+<li></li>
+<li>
+<line x1='60' y1='320' x2='720' y2='320' class='ax' />
+</li>
+<li>
+<line x1='60' y1='40' x2='60' y2='320' class='ax' />
+</li>
+<li></li>
+<li><text x='390' y='360' text-anchor='middle' class='lb'>時間 / スプリント数</text></li>
+<li><text x='20' y='180' text-anchor='middle' class='lb' transform='rotate(-90,20,180)'>値</text></li>
+<li></li>
+<li>
+<path d='M 60 300 Q 200 280 350 220 Q 500 150 660 80 Q 690 68 720 60' stroke='#ef4444' stroke-width='2.5' fill='none' />
+</li>
+<li></li>
+<li>
+<path d='M 60 80 Q 150 90 280 130 Q 420 180 560 240 Q 640 280 720 300' stroke='#3b82f6' stroke-width='2.5' fill='none' />
+</li>
+<li></li>
+<li>
+<rect x='480' y='55' width='225' height='70' rx='6' fill='#1e293b' opacity='0.85' />
+</li>
+<li>
+<line x1='495' y1='78' x2='530' y2='78' stroke='#ef4444' stroke-width='2.5' />
+</li>
+<li><text x='538' y='82' class='hl'>システムエントロピー（増大）</text></li>
+<li>
+<line x1='495' y1='105' x2='530' y2='105' stroke='#3b82f6' stroke-width='2.5' />
+</li>
+<li><text x='538' y='109' class='hl'>コード品質スコア（劣化）</text></li>
+<li></li>
+<li><text x='350' y='195' class='hl' fill='#fbbf24'>← 形が鏡像になっている</text></li>
+<li></li>
+<li><text x='50' y='85' text-anchor='end' class='hl'>高</text></li>
+<li><text x='50' y='325' text-anchor='end' class='hl'>低</text></li>
+<li></li>
+<li><text x='390' y='25' text-anchor='middle' class='tt'>エントロピー増大曲線とコード品質劣化曲線</text></li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="12" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%82%A8%E3%83%8D%E3%83%AB%E3%82%AE%E3%83%BC%E6%8A%95%E5%85%A5%E3%81%A7%E5%B1%80%E6%89%80%E7%9A%84%E7%A7%A9%E5%BA%8F%E3%82%92%E4%BD%9C%E3%82%8C%E3%82%8B">エネルギー投入で局所的秩序を作れる</h1>
+<ul>
+<li><strong>熱力学の解法：開放系として「エネルギーを注ぐ」</strong></li>
+<li></li>
+<li>
+<ul>
+<li>冷蔵庫は内部の熱を外部に排出することで「局所的な低温」を維持</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>生命は食物（エネルギー）を摂取して体内の秩序を維持し、廃熱・廃棄物を外部へ</li>
+</ul>
+</li>
+<li></li>
+<li><strong>ソフトウェアへの対応</strong></li>
+<li>
+<ul>
+<li>リファクタリング ＝ 開発者のエネルギー（工数）を注入して秩序を回復</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>ただし「廃熱」も出る：削除されたコード、廃止されたパターン、旧テスト</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>エネルギー注入がゼロなら、どんなコードベースも第二法則に従う</li>
+</ul>
+</li>
+<li></li>
+<li><strong>重要な含意</strong>: リファクタリングは「きれい好きの趣味」ではなく <strong>物理法則への抵抗</strong> である</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-class="lead" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="13" style="--class:lead;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+
+<h1 id="part-2-%E6%8A%80%E8%A1%93%E7%9A%84%E8%B2%A0%E5%82%B5%E3%81%A8%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E3%81%AE%E5%AF%BE%E5%BF%9C%E9%96%A2%E4%BF%82">Part 2: 技術的負債とエントロピーの対応関係</h1>
+<ul>
+<li>物理学の概念とソフトウェア工学の概念を対応させる</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="14" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E6%8A%80%E8%A1%93%E7%9A%84%E8%B2%A0%E5%82%B5%E3%81%AE%E5%AE%9A%E7%BE%A9ward-cunningham">技術的負債の定義（Ward Cunningham）</h1>
+<ul>
+<li><strong>Ward Cunninghamの原義（1992年）</strong></li>
+<li>「今の不完全な理解で書いたコードは、より深い理解を得たときに返済が必要な『借り』だ」</li>
+<li></li>
+<li><strong>Martin Fowlerによる分類</strong></li>
+<li>
+<ul>
+<li>意図的×無謀: 「設計なんか後で考えよう」</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>意図的×慎重: 「今は間に合わせで進めよう、後でリファクタする」</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>不注意×無謀: 「レイヤー設計って何？」</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>不注意×慎重: 「後になってあの設計が問題だったと気づいた」</li>
+</ul>
+</li>
+<li></li>
+<li><strong>共通点</strong>: すべての負債は <strong>蓄積し、利子（変更コスト）を生む</strong></li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="15" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="svg%E5%9B%B3-%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E2%86%94%E6%8A%80%E8%A1%93%E7%9A%84%E8%B2%A0%E5%82%B5%E3%81%AE%E5%AF%BE%E5%BF%9C%E8%A1%A8">SVG図: エントロピー<img class="emoji" draggable="false" alt="↔" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2194.svg" data-marp-twemoji=""/>技術的負債の対応表</h1>
+<ul>
+<li>
+<svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li>
+<defs>
+</li>
+<li>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;style&gt;.hd{font-family:sans-serif;font-size:13px;font-weight:bold;fill:#1e293b}.cl{font-family:sans-serif;font-size:12px;fill:#ddd}.ch{font-family:sans-serif;font-size:13px;font-weight:bold;fill:#fff}&lt;/style&gt;
+</code></pre>
+</li>
+<li>
+</defs>
+</li>
+<li></li>
+<li>
+<rect x='30' y='20' width='340' height='40' rx='4' fill='#ef4444' opacity='0.85' />
+</li>
+<li><text x='200' y='46' text-anchor='middle' class='ch'>熱力学・情報理論</text></li>
+<li>
+<rect x='390' y='20' width='340' height='40' rx='4' fill='#3b82f6' opacity='0.85' />
+</li>
+<li><text x='560' y='46' text-anchor='middle' class='ch'>ソフトウェア工学</text></li>
+<li></li>
+<li>
+<rect x='30' y='68' width='340' height='36' rx='3' fill='#1e293b' />
+</li>
+<li><text x='200' y='91' text-anchor='middle' class='cl'>孤立系（Isolated System）</text></li>
+<li>
+<rect x='390' y='68' width='340' height='36' rx='3' fill='#1e293b' />
+</li>
+<li><text x='560' y='91' text-anchor='middle' class='cl'>メンテされないレガシーコード</text></li>
+<li>
+<rect x='30' y='112' width='340' height='36' rx='3' fill='#0f172a' />
+</li>
+<li><text x='200' y='135' text-anchor='middle' class='cl'>エントロピー S = k_B ln(Ω)</text></li>
+<li>
+<rect x='390' y='112' width='340' height='36' rx='3' fill='#0f172a' />
+</li>
+<li><text x='560' y='135' text-anchor='middle' class='cl'>技術的負債の蓄積量</text></li>
+<li>
+<rect x='30' y='156' width='340' height='36' rx='3' fill='#1e293b' />
+</li>
+<li><text x='200' y='179' text-anchor='middle' class='cl'>ミクロ状態数 Ω</text></li>
+<li>
+<rect x='390' y='156' width='340' height='36' rx='3' fill='#1e293b' />
+</li>
+<li><text x='560' y='179' text-anchor='middle' class='cl'>コードの書き方のバリエーション数</text></li>
+<li>
+<rect x='30' y='200' width='340' height='36' rx='3' fill='#0f172a' />
+</li>
+<li><text x='200' y='223' text-anchor='middle' class='cl'>外部エネルギー投入</text></li>
+<li>
+<rect x='390' y='200' width='340' height='36' rx='3' fill='#0f172a' />
+</li>
+<li><text x='560' y='223' text-anchor='middle' class='cl'>リファクタリング工数</text></li>
+<li>
+<rect x='30' y='244' width='340' height='36' rx='3' fill='#1e293b' />
+</li>
+<li><text x='200' y='267' text-anchor='middle' class='cl'>局所的秩序（低エントロピー状態）</text></li>
+<li>
+<rect x='390' y='244' width='340' height='36' rx='3' fill='#1e293b' />
+</li>
+<li><text x='560' y='267' text-anchor='middle' class='cl'>クリーンアーキテクチャ・高凝集</text></li>
+<li>
+<rect x='30' y='288' width='340' height='36' rx='3' fill='#0f172a' />
+</li>
+<li><text x='200' y='311' text-anchor='middle' class='cl'>熱死（Heat Death）</text></li>
+<li>
+<rect x='390' y='288' width='340' height='36' rx='3' fill='#0f172a' />
+</li>
+<li><text x='560' y='311' text-anchor='middle' class='cl'>開発停止・全面書き直し</text></li>
+<li></li>
+<li><text x='375' y='91' text-anchor='middle' class='cl' fill='#fbbf24'>⟷</text></li>
+<li><text x='375' y='135' text-anchor='middle' class='cl' fill='#fbbf24'>⟷</text></li>
+<li><text x='375' y='179' text-anchor='middle' class='cl' fill='#fbbf24'>⟷</text></li>
+<li><text x='375' y='223' text-anchor='middle' class='cl' fill='#fbbf24'>⟷</text></li>
+<li><text x='375' y='267' text-anchor='middle' class='cl' fill='#fbbf24'>⟷</text></li>
+<li><text x='375' y='311' text-anchor='middle' class='cl' fill='#fbbf24'>⟷</text></li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="16" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E6%84%8F%E5%9B%B3%E7%9A%84%E8%B2%A0%E5%82%B5vs%E4%B8%8D%E5%8F%AF%E9%81%BF%E3%81%AA%E8%A4%87%E9%9B%91%E6%80%A7">「意図的負債」vs「不可避な複雑性」</h1>
+<ul>
+<li><strong>Accidental Complexity（偶発的複雑性）</strong></li>
+<li>= 意図せず・不注意で生まれた負債 → <strong>エントロピーの自然増大</strong></li>
+<li>
+<ul>
+<li>重複コード、無意味な命名、巨大な関数、コメントアウトの残骸</li>
+</ul>
+</li>
+<li></li>
+<li><strong>Essential Complexity（本質的複雑性）</strong></li>
+<li>= 問題領域が本質的に持つ複雑さ → <strong>避けられない物理的エントロピー</strong></li>
+<li>
+<ul>
+<li>税務計算・医療プロトコル・金融リスク計算は「そもそも複雑」</li>
+</ul>
+</li>
+<li></li>
+<li><strong>戦略の分岐点</strong></li>
+<li>
+<ul>
+<li>Accidental は除去できる（リファクタリングで投資回収）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Essential は管理できる（ドメインモデルで隔離・可視化）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>混同すると「必要な複雑さまで削ろうとする」誤りが起きる</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="17" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="connascence%E7%B5%90%E5%90%88%E5%BA%A6%E3%81%A8%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC">Connascence：結合度とエントロピー</h1>
+<ul>
+<li><strong>Connascence（連鎖性）</strong>: 一方を変えると他方も変えなければならない関係</li>
+<li></li>
+<li><strong>強さの順（エントロピーの度合い）</strong></li>
+<li>
+<ul>
+<li>CoN（名前の連鎖）: 最も弱い ← コントロール可能</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>CoT（型の連鎖）: 型変更で伝播</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>CoV（値の連鎖）: 定数の重複</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>CoA（アルゴリズムの連鎖）: 同じロジックが散在</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>CoEx（実行順序の連鎖）: 暗黙的な順序依存</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>CoI（アイデンティティの連鎖）: 参照共有 ← 最も強い</li>
+</ul>
+</li>
+<li></li>
+<li><strong>エントロピー則</strong>: 強い Connascence が増えるほど Ω（変更パターン）が爆発し、エントロピーが急増</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="18" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E7%8A%B6%E6%85%8B%E9%81%B7%E7%A7%BB%E7%A7%A9%E5%BA%8F%E2%86%92%E6%B7%B7%E6%B2%8C%E3%81%AE%E5%AE%9F%E4%BE%8B">コードの状態遷移：秩序→混沌の実例</h1>
+<ul>
+<li><strong>リリース1週目（秩序）</strong></li>
+<li>
+<ul>
+<li>3層アーキテクチャが明確、循環依存なし、命名統一</li>
+</ul>
+</li>
+<li></li>
+<li><strong>6ヶ月後（エントロピー増大開始）</strong></li>
+<li>
+<ul>
+<li>例外処理のため「とりあえず」の直接DB呼び出しが2箇所</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>設定値がコードに直書きされ始める</li>
+</ul>
+</li>
+<li></li>
+<li><strong>2年後（エントロピー高進）</strong></li>
+<li>
+<ul>
+<li>Service層とRepository層の区別が曖昧に</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「なんとなく動く」理由が誰もわからないロジック</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>変更するとどこかが壊れる、でもテストがない</li>
+</ul>
+</li>
+<li></li>
+<li><strong>これは「悪い人が書いた」のではなく、エントロピーが増大した結果</strong></li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="19" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="svg%E5%9B%B3-%E6%8A%80%E8%A1%93%E7%9A%84%E8%B2%A0%E5%82%B5%E8%93%84%E7%A9%8D%E3%83%A2%E3%83%87%E3%83%AB%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E5%A2%97%E5%A4%A7%E3%81%A8%E3%81%97%E3%81%A6">SVG図: 技術的負債蓄積モデル（エントロピー増大として）</h1>
+<ul>
+<li>
+<svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li>
+<defs>
+</li>
+<li>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;style&gt;.lb{font-family:sans-serif;font-size:12px;fill:#ddd}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}.ax{stroke:#555;stroke-width:1.5;fill:none}&lt;/style&gt;
+</code></pre>
+</li>
+<li>
+</defs>
+</li>
+<li></li>
+<li>
+<line x1='60' y1='300' x2='700' y2='300' class='ax' />
+</li>
+<li>
+<line x1='60' y1='50' x2='60' y2='300' class='ax' />
+</li>
+<li><text x='380' y='340' text-anchor='middle' class='lb'>時間（スプリント）</text></li>
+<li><text x='18' y='175' text-anchor='middle' class='lb' transform='rotate(-90,18,175)'>負債量・変更コスト</text></li>
+<li></li>
+<li>
+<path d='M60,290 L120,275 L160,260 L200,240 L200,220 L240,210 L280,195 L320,175 L320,158 L360,148 L400,130 L440,112 L440,98 L480,88 L520,75 L560,62 L600,52' stroke='#ef4444' stroke-width='2.5' fill='none' />
+</li>
+<li></li>
+<li>
+<line x1='200' y1='240' x2='200' y2='220' stroke='#22c55e' stroke-width='2' stroke-dasharray='4,3' />
+</li>
+<li>
+<line x1='320' y1='175' x2='320' y2='158' stroke='#22c55e' stroke-width='2' stroke-dasharray='4,3' />
+</li>
+<li>
+<line x1='440' y1='112' x2='440' y2='98' stroke='#22c55e' stroke-width='2' stroke-dasharray='4,3' />
+</li>
+<li></li>
+<li><text x='205' y='215' class='lb' fill='#22c55e'>↑RF</text></li>
+<li><text x='325' y='153' class='lb' fill='#22c55e'>↑RF</text></li>
+<li><text x='445' y='93' class='lb' fill='#22c55e'>↑RF</text></li>
+<li></li>
+<li><text x='610' y='48' class='lb' fill='#ef4444'>実態の負債</text></li>
+<li></li>
+<li>
+<path d='M60,290 L600,270' stroke='#3b82f6' stroke-width='1.5' stroke-dasharray='6,4' fill='none' />
+</li>
+<li><text x='610' y='270' class='lb' fill='#3b82f6'>理想（定期投資）</text></li>
+<li></li>
+<li>
+<path d='M60,290 Q300,200 600,60' stroke='#7c3aed' stroke-width='1.5' stroke-dasharray='6,4' fill='none' />
+</li>
+<li><text x='610' y='60' class='lb' fill='#7c3aed'>放置シナリオ</text></li>
+<li></li>
+<li><text x='380' y='28' text-anchor='middle' class='tt'>技術的負債の蓄積モデル（RF = リファクタリング）</text></li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="20" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%81%AA%E3%81%9C%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%81%AF%E8%B2%A0%E5%82%B5%E3%82%92%E8%A6%8B%E8%90%BD%E3%81%A8%E3%81%99%E3%81%AE%E3%81%8B">なぜエンジニアは負債を見落とすのか</h1>
+<ul>
+<li><strong>認知バイアスとエントロピーの見えにくさ</strong></li>
+<li></li>
+<li>
+<ul>
+<li><strong>現状維持バイアス</strong>: 今動いているコードは「正常」に見える</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>ゆでガエル効果</strong>: 毎日少しずつ悪化するため変化に気づかない</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>確証バイアス</strong>: 「自分のコードは綺麗」と思いたい</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>埋没費用</strong>: 長時間かけて書いたコードを「捨てる」のが惜しい</li>
+</ul>
+</li>
+<li></li>
+<li><strong>計測されないものは管理できない</strong></li>
+<li>
+<ul>
+<li>エントロピーは目に見えない → Complexity Metricsで可視化が必要</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「なんとなくヤバい」ではなく数値で語る文化が必要</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-class="lead" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="21" style="--class:lead;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+
+<h1 id="part-3-%E6%8A%80%E8%A1%93%E7%9A%84%E8%B2%A0%E5%82%B5%E3%81%AE%E8%A8%88%E6%B8%AC%E3%83%BB%E5%AE%9A%E9%87%8F%E5%8C%96">Part 3: 技術的負債の計測・定量化</h1>
+<ul>
+<li>エントロピーを数値で捕らえ、管理可能にする</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="22" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E8%A8%88%E6%B8%AC%E3%81%AA%E3%81%8F%E3%81%97%E3%81%A6%E7%AE%A1%E7%90%86%E3%81%AA%E3%81%97">計測なくして管理なし</h1>
+<ul>
+<li><strong>「測れないものは改善できない」— Lord Kelvin</strong></li>
+<li></li>
+<li><strong>計測のゴール</strong></li>
+<li>
+<ul>
+<li>どこにエントロピーが集中しているかを特定する</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>リファクタリング投資の優先順位を決める</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>改善の効果を定量的に示す（ステークホルダーへの説明責任）</li>
+</ul>
+</li>
+<li></li>
+<li><strong>代表的な計測アプローチ</strong></li>
+<li>
+<ul>
+<li>構造的複雑度（Cyclomatic Complexity）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>認知的複雑度（Cognitive Complexity）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>変更頻度 × 複雑度のホットスポット分析</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>依存グラフの循環検出</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>DORA Metrics（変更障害率・リードタイム）</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="23" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="cyclomatic-complexity%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E7%8A%B6%E6%85%8B%E6%95%B0">Cyclomatic Complexity：コードの「状態数」</h1>
+<ul>
+<li><strong>定義（McCabe, 1976年）</strong></li>
+<li>CC = E - N + 2P</li>
+<li>（E=エッジ数, N=ノード数, P=連結成分数）</li>
+<li></li>
+<li><strong>簡易計算</strong>: 条件分岐（if / else if / case / while / for / catch）の数 + 1</li>
+<li></li>
+<li><strong>目安</strong></li>
+<li>
+<ul>
+<li>CC 1-10: 単純・テスト容易</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>CC 11-20: 複雑さあり・注意</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>CC 21-50: 高複雑・リファクタ推奨</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>CC 51+: テスト不能レベル・危険</li>
+</ul>
+</li>
+<li></li>
+<li><strong>エントロピー解釈</strong>: CC ≈ そのコードが取りうる実行パス数 = ミクロ状態数 Ω の近似</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="24" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E8%AA%8D%E7%9F%A5%E7%9A%84%E8%A4%87%E9%9B%91%E5%BA%A6cognitive-complexity">認知的複雑度（Cognitive Complexity）</h1>
+<ul>
+<li><strong>Sonarqube が提唱（2018年、G. Ann Campbell）</strong></li>
+<li></li>
+<li>Cyclomatic の限界：ループのネストを考慮しない → 読みにくさを過小評価</li>
+<li></li>
+<li><strong>ルール</strong></li>
+<li>
+<ul>
+<li>ネストが深くなるたびにペナルティ +n（深さに比例）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>break / continue ラベル・再帰も加点</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>メソッドチェーン・三項演算子は加点なし（読みやすい）</li>
+</ul>
+</li>
+<li></li>
+<li><strong>例</strong>: CC=5でも Cognitive Complexity=18 になりうる（深いネストのため）</li>
+<li></li>
+<li><strong>エントロピー解釈</strong>: 人間が「次の行を予測する」ための情報エントロピー H(X) に対応</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="25" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="svg%E5%9B%B3-%E8%A4%87%E9%9B%91%E5%BA%A6%E3%81%A8%E3%83%90%E3%82%B0%E7%8E%87%E3%81%AE%E7%9B%B8%E9%96%A2">SVG図: 複雑度とバグ率の相関</h1>
+<ul>
+<li>
+<svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li>
+<defs>
+</li>
+<li>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;style&gt;.lb{font-family:sans-serif;font-size:12px;fill:#ddd}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}.ax{stroke:#555;stroke-width:1.5;fill:none}&lt;/style&gt;
+</code></pre>
+</li>
+<li>
+</defs>
+</li>
+<li></li>
+<li>
+<line x1='70' y1='300' x2='700' y2='300' class='ax' />
+</li>
+<li>
+<line x1='70' y1='50' x2='70' y2='300' class='ax' />
+</li>
+<li><text x='385' y='340' text-anchor='middle' class='lb'>Cyclomatic Complexity (CC)</text></li>
+<li><text x='20' y='175' text-anchor='middle' class='lb' transform='rotate(-90,20,175)'>バグ密度（bugs/KLOC）</text></li>
+<li></li>
+<li><text x='115' y='318' text-anchor='middle' class='lb'>5</text></li>
+<li><text x='205' y='318' text-anchor='middle' class='lb'>10</text></li>
+<li><text x='295' y='318' text-anchor='middle' class='lb'>15</text></li>
+<li><text x='385' y='318' text-anchor='middle' class='lb'>20</text></li>
+<li><text x='475' y='318' text-anchor='middle' class='lb'>25</text></li>
+<li><text x='565' y='318' text-anchor='middle' class='lb'>30</text></li>
+<li><text x='655' y='318' text-anchor='middle' class='lb'>35</text></li>
+<li></li>
+<li>
+<circle cx='100' cy='285' r='5' fill='#22c55e' opacity='0.8' />
+</li>
+<li>
+<circle cx='115' cy='278' r='5' fill='#22c55e' opacity='0.8' />
+</li>
+<li>
+<circle cx='130' cy='270' r='5' fill='#22c55e' opacity='0.8' />
+</li>
+<li>
+<circle cx='150' cy='265' r='5' fill='#22c55e' opacity='0.8' />
+</li>
+<li>
+<circle cx='170' cy='260' r='5' fill='#3b82f6' opacity='0.8' />
+</li>
+<li>
+<circle cx='185' cy='255' r='5' fill='#3b82f6' opacity='0.8' />
+</li>
+<li>
+<circle cx='200' cy='245' r='5' fill='#3b82f6' opacity='0.8' />
+</li>
+<li>
+<circle cx='215' cy='235' r='5' fill='#3b82f6' opacity='0.8' />
+</li>
+<li>
+<circle cx='240' cy='225' r='6' fill='#fbbf24' opacity='0.8' />
+</li>
+<li>
+<circle cx='260' cy='210' r='6' fill='#fbbf24' opacity='0.8' />
+</li>
+<li>
+<circle cx='285' cy='195' r='6' fill='#fbbf24' opacity='0.8' />
+</li>
+<li>
+<circle cx='310' cy='178' r='7' fill='#f97316' opacity='0.8' />
+</li>
+<li>
+<circle cx='340' cy='160' r='7' fill='#f97316' opacity='0.8' />
+</li>
+<li>
+<circle cx='375' cy='138' r='8' fill='#ef4444' opacity='0.8' />
+</li>
+<li>
+<circle cx='410' cy='115' r='8' fill='#ef4444' opacity='0.8' />
+</li>
+<li>
+<circle cx='450' cy='95' r='9' fill='#ef4444' opacity='0.9' />
+</li>
+<li>
+<circle cx='495' cy='76' r='9' fill='#ef4444' opacity='0.9' />
+</li>
+<li>
+<circle cx='540' cy='62' r='10' fill='#dc2626' opacity='0.9' />
+</li>
+<li></li>
+<li>
+<path d='M85,290 Q300,200 600,55' stroke='#fff' stroke-width='1.5' stroke-dasharray='5,4' fill='none' />
+</li>
+<li></li>
+<li><text x='110' y='245' class='lb' fill='#22c55e'>低リスク</text></li>
+<li><text x='190' y='205' class='lb' fill='#fbbf24'>要注意</text></li>
+<li><text x='350' y='115' class='lb' fill='#ef4444'>高リスク</text></li>
+<li><text x='470' y='62' class='lb' fill='#dc2626'>危険域</text></li>
+<li><text x='385' y='25' text-anchor='middle' class='tt'>Cyclomatic Complexity とバグ密度の相関</text></li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="26" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E5%A4%89%E6%9B%B4%E9%A0%BB%E5%BA%A6-%C3%97-%E8%A4%87%E9%9B%91%E5%BA%A6%E3%81%AE%E3%83%9B%E3%83%83%E3%83%88%E3%82%B9%E3%83%9D%E3%83%83%E3%83%88%E5%88%86%E6%9E%90">変更頻度 × 複雑度のホットスポット分析</h1>
+<ul>
+<li><strong>Adam Thornhillの手法（「Your Code as a Crime Scene」）</strong></li>
+<li></li>
+<li>
+<ul>
+<li><strong>X軸</strong>: Cyclomatic Complexity（構造的複雑度）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>Y軸</strong>: git変更頻度（過去N週間のコミット数）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>バブルサイズ</strong>: コード行数</li>
+</ul>
+</li>
+<li></li>
+<li><strong>4象限の解釈</strong></li>
+<li>
+<ul>
+<li>高複雑 × 高頻度 = <strong>ホットスポット（最優先リファクタ対象）</strong></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>高複雑 × 低頻度 = 「眠れる地雷」（急がないが管理が必要）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>低複雑 × 高頻度 = 健全（よく変わるが単純）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>低複雑 × 低頻度 = 安定（放置可）</li>
+</ul>
+</li>
+<li></li>
+<li><strong>実装</strong>: <code>git log --format='%H' -- &lt;file&gt; | wc -l</code> × <code>lizard &lt;file&gt;</code></li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="27" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="typescript-%E8%A4%87%E9%9B%91%E5%BA%A6%E8%A8%88%E7%AE%97%E3%81%AE%E5%AE%9F%E8%A3%85%E4%BE%8B">TypeScript: 複雑度計算の実装例</h1>
+<ul>
+<li>複雑度とgit変更頻度からホットスポットスコアを算出する実装例</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">import</span> { execSync } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;node:child_process&#x27;</span>;
+
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">HotspotScore</span> {
+  <span class="hljs-attr">file</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">cyclomaticComplexity</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">changeFrequency</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">hotspotScore</span>: <span class="hljs-built_in">number</span>;  <span class="hljs-comment">// complexity × frequency</span>
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">calcChangeFrequency</span>(<span class="hljs-params"><span class="hljs-attr">file</span>: <span class="hljs-built_in">string</span>, weeks = <span class="hljs-number">26</span></span>): <span class="hljs-built_in">number</span> {
+  <span class="hljs-keyword">const</span> since = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>();
+  since.<span class="hljs-title function_">setDate</span>(since.<span class="hljs-title function_">getDate</span>() - weeks * <span class="hljs-number">7</span>);
+  <span class="hljs-keyword">const</span> log = <span class="hljs-title function_">execSync</span>(
+    <span class="hljs-string">`git log --since=&#x27;<span class="hljs-subst">${since.toISOString()}</span>&#x27; --format=&#x27;%H&#x27; -- <span class="hljs-subst">${file}</span>`</span>
+  ).<span class="hljs-title function_">toString</span>();
+  <span class="hljs-keyword">return</span> log.<span class="hljs-title function_">trim</span>().<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;\n&#x27;</span>).<span class="hljs-title function_">filter</span>(<span class="hljs-title class_">Boolean</span>).<span class="hljs-property">length</span>;
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">calcCyclomaticComplexity</span>(<span class="hljs-params"><span class="hljs-attr">src</span>: <span class="hljs-built_in">string</span></span>): <span class="hljs-built_in">number</span> {
+  <span class="hljs-comment">// Count decision points: if/else if/for/while/case/catch/&amp;&amp;/||</span>
+  <span class="hljs-keyword">const</span> patterns = <span class="hljs-regexp">/\b(if|else if|for|while|case|catch)\b|&amp;&amp;|\|\|/g</span>;
+  <span class="hljs-keyword">return</span> (src.<span class="hljs-title function_">match</span>(patterns)?.<span class="hljs-property">length</span> ?? <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">rankHotspots</span>(<span class="hljs-params"><span class="hljs-attr">files</span>: <span class="hljs-built_in">string</span>[]</span>): <span class="hljs-title class_">HotspotScore</span>[] {
+  <span class="hljs-keyword">return</span> files
+    .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">file</span>) =&gt;</span> {
+      <span class="hljs-keyword">const</span> src = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>).<span class="hljs-title function_">readFileSync</span>(file, <span class="hljs-string">&#x27;utf-8&#x27;</span>);
+      <span class="hljs-keyword">const</span> cc = <span class="hljs-title function_">calcCyclomaticComplexity</span>(src);
+      <span class="hljs-keyword">const</span> freq = <span class="hljs-title function_">calcChangeFrequency</span>(file);
+      <span class="hljs-keyword">return</span> { file, <span class="hljs-attr">cyclomaticComplexity</span>: cc, <span class="hljs-attr">changeFrequency</span>: freq,
+               <span class="hljs-attr">hotspotScore</span>: cc * freq };
+    })
+    .<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> b.<span class="hljs-property">hotspotScore</span> - a.<span class="hljs-property">hotspotScore</span>);
+}
+</code></pre>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="28" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E4%BE%9D%E5%AD%98%E3%82%B0%E3%83%A9%E3%83%95%E3%81%A8%E5%BE%AA%E7%92%B0%E4%BE%9D%E5%AD%98%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E7%88%86%E7%99%BA">依存グラフと循環依存（エントロピー爆発）</h1>
+<ul>
+<li><strong>循環依存 = 熱力学的な「閉じた系」</strong></li>
+<li>
+<ul>
+<li>A → B → C → A: 変更が環状に伝播し収束しない</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「どこからでも影響を受ける」= ミクロ状態数 Ω の爆発</li>
+</ul>
+</li>
+<li></li>
+<li><strong>検出コマンド</strong></li>
+<li>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash"></code></pre>
+</li>
+<li>npx madge --circular src/           # 循環依存の一覧</li>
+<li>npx dependency-cruiser --validate .dependency-cruiser.js src/</li>
+<li>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code></code></pre>
+</li>
+<li></li>
+<li><strong>対処法: 依存逆転（DIP）</strong></li>
+<li>
+<ul>
+<li>具体的実装ではなくインターフェースに依存させる</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>循環を「一方向グラフ」に変換してエントロピーを制限</li>
+</ul>
+</li>
+<li></li>
+<li><strong>目標</strong>: モジュール依存グラフが DAG（有向非巡回グラフ）であること</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="29" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="dora-metrics%E3%81%A8%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E3%81%AE%E9%96%A2%E4%BF%82">DORA Metricsとエントロピーの関係</h1>
+<ul>
+<li><strong>4つのDORA Metrics（DevOps Research and Assessment）</strong></li>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>メトリクス</th>
+<th>低エントロピー組織</th>
+<th>高エントロピー組織</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>デプロイ頻度</td>
+<td>毎日〜週複数回</td>
+<td>月1回以下</td>
+</tr>
+<tr>
+<td>変更リードタイム</td>
+<td>1時間〜1日</td>
+<td>1週間〜1ヶ月</td>
+</tr>
+<tr>
+<td><strong>変更障害率</strong></td>
+<td><strong>&lt; 15%</strong></td>
+<td><strong>&gt; 45%</strong></td>
+</tr>
+<tr>
+<td>回復時間（MTTR）</td>
+<td>&lt; 1時間</td>
+<td>1週間以上</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li></li>
+<li><strong>エントロピー解釈</strong></li>
+<li>
+<ul>
+<li>変更障害率 ↑ = 変更の副作用が広がる = 依存エントロピーが高い</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>回復時間 ↑ = 障害の原因特定が困難 = 構造エントロピーが高い</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="30" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="svg%E5%9B%B3-%E6%8A%80%E8%A1%93%E7%9A%84%E8%B2%A0%E5%82%B5%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%83%9C%E3%83%BC%E3%83%89%E6%A7%8B%E6%88%90">SVG図: 技術的負債ダッシュボード構成</h1>
+<ul>
+<li>
+<svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li>
+<defs>
+</li>
+<li>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;style&gt;.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.kv{font-family:sans-serif;font-size:22px;font-weight:bold;fill:#fff}.kl{font-family:sans-serif;font-size:11px;fill:#aaa}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}&lt;/style&gt;
+</code></pre>
+</li>
+<li>
+</defs>
+</li>
+<li><text x='380' y='22' text-anchor='middle' class='tt'>技術的負債 エントロピーダッシュボード</text></li>
+<li></li>
+<li>
+<rect x='20' y='35' width='160' height='65' rx='6' fill='#1e3a5f' />
+</li>
+<li><text x='100' y='57' text-anchor='middle' class='kl'>平均 Cyclomatic CC</text></li>
+<li><text x='100' y='85' text-anchor='middle' class='kv' fill='#ef4444'>18.4</text></li>
+<li>
+<rect x='200' y='35' width='160' height='65' rx='6' fill='#1e3a5f' />
+</li>
+<li><text x='280' y='57' text-anchor='middle' class='kl'>ホットスポット数</text></li>
+<li><text x='280' y='85' text-anchor='middle' class='kv' fill='#f97316'>23</text></li>
+<li>
+<rect x='380' y='35' width='160' height='65' rx='6' fill='#1e3a5f' />
+</li>
+<li><text x='460' y='57' text-anchor='middle' class='kl'>循環依存</text></li>
+<li><text x='460' y='85' text-anchor='middle' class='kv' fill='#ef4444'>7</text></li>
+<li>
+<rect x='560' y='35' width='160' height='65' rx='6' fill='#1e3a5f' />
+</li>
+<li><text x='640' y='57' text-anchor='middle' class='kl'>変更障害率</text></li>
+<li><text x='640' y='85' text-anchor='middle' class='kv' fill='#fbbf24'>32%</text></li>
+<li></li>
+<li><text x='20' y='130' class='lb' fill='#aaa'>ホットスポット上位5ファイル（CC × 変更頻度）</text></li>
+<li>
+<rect x='20' y='140' width='500' height='14' rx='3' fill='#ef4444' />
+</li>
+<li><text x='525' y='152' class='lb'>UserService.ts  (score: 840)</text></li>
+<li>
+<rect x='20' y='162' width='390' height='14' rx='3' fill='#f97316' />
+</li>
+<li><text x='525' y='174' class='lb'>OrderProcessor.ts  (score: 650)</text></li>
+<li>
+<rect x='20' y='184' width='300' height='14' rx='3' fill='#fbbf24' />
+</li>
+<li><text x='525' y='196' class='lb'>PaymentGateway.ts  (score: 500)</text></li>
+<li>
+<rect x='20' y='206' width='220' height='14' rx='3' fill='#22c55e' />
+</li>
+<li><text x='525' y='218' class='lb'>AuthMiddleware.ts  (score: 370)</text></li>
+<li>
+<rect x='20' y='228' width='150' height='14' rx='3' fill='#3b82f6' />
+</li>
+<li><text x='525' y='240' class='lb'>CacheManager.ts  (score: 250)</text></li>
+<li></li>
+<li><text x='20' y='275' class='lb' fill='#aaa'>DORA Metrics</text></li>
+<li>
+<rect x='20' y='285' width='165' height='55' rx='5' fill='#0f172a' />
+</li>
+<li><text x='102' y='305' text-anchor='middle' class='kl'>デプロイ頻度</text></li>
+<li><text x='102' y='328' text-anchor='middle' class='lb' fill='#fbbf24'>週1〜2回</text></li>
+<li>
+<rect x='197' y='285' width='165' height='55' rx='5' fill='#0f172a' />
+</li>
+<li><text x='279' y='305' text-anchor='middle' class='kl'>リードタイム</text></li>
+<li><text x='279' y='328' text-anchor='middle' class='lb' fill='#fbbf24'>3〜5日</text></li>
+<li>
+<rect x='374' y='285' width='165' height='55' rx='5' fill='#0f172a' />
+</li>
+<li><text x='456' y='305' text-anchor='middle' class='kl'>変更障害率</text></li>
+<li><text x='456' y='328' text-anchor='middle' class='lb' fill='#ef4444'>32% ↑</text></li>
+<li>
+<rect x='551' y='285' width='165' height='55' rx='5' fill='#0f172a' />
+</li>
+<li><text x='633' y='305' text-anchor='middle' class='kl'>MTTR</text></li>
+<li><text x='633' y='328' text-anchor='middle' class='lb' fill='#fbbf24'>4時間</text></li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-class="lead" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="31" style="--class:lead;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+
+<h1 id="part-4-%E3%83%AA%E3%83%95%E3%82%A1%E3%82%AF%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0%E3%83%BB%E8%B2%A0%E5%82%B5%E8%BF%94%E6%B8%88%E3%81%AE%E5%AE%9F%E8%B7%B5%E6%88%A6%E7%95%A5">Part 4: リファクタリング・負債返済の実践戦略</h1>
+<ul>
+<li>エントロピーに「抵抗」するための具体的な手法</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="32" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%82%B9%E3%83%88%E3%83%A9%E3%83%86%E3%82%B8%E3%83%BC1-%E3%83%9C%E3%83%BC%E3%82%A4%E3%82%B9%E3%82%AB%E3%82%A6%E3%83%88%E3%83%AB%E3%83%BC%E3%83%AB">ストラテジー1: ボーイスカウトルール</h1>
+<ul>
+<li><strong>「キャンプ場を去るときには、来た時よりきれいにせよ」— ロバート・C・マーティン</strong></li>
+<li></li>
+<li><strong>実践: 触ったコードを少しだけ改善する</strong></li>
+<li>
+<ul>
+<li>バグ修正のついでに命名を改善</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>機能追加のついでに関数を分割</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「ついで」の改善を PR レビューで称賛する文化</li>
+</ul>
+</li>
+<li></li>
+<li><strong>熱力学的意味</strong>: 毎回少量のエネルギーを注入して、エントロピーの自然増大を相殺する</li>
+<li></li>
+<li><strong>計測</strong>: Cognitive Complexity の週次トレンドをグラフ化</li>
+<li>
+<ul>
+<li>上昇トレンド → ボーイスカウトが機能していない</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>横ばい〜下降 → エネルギー投入が自然増大を上回っている</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="33" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%82%B9%E3%83%88%E3%83%A9%E3%83%86%E3%82%B8%E3%83%BC2-%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B0%E3%83%A9%E3%83%BC%E3%83%95%E3%82%A3%E3%82%B0%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">ストラテジー2: ストラングラーフィグパターン</h1>
+<ul>
+<li><strong>由来</strong>: 絞め殺しイチジクは宿主木を包み込みながら成長し、やがて宿主を置換する</li>
+<li></li>
+<li><strong>手順</strong></li>
+<li>
+<ol>
+<li>新しい機能は新しいコンポーネントに実装する</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>レガシーコードへの呼び出しをファサード（Facade）で包む</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>段階的にファサードの実装を新コードに差し替えていく</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>レガシーが完全に包まれたら削除する</li>
+</ol>
+</li>
+<li></li>
+<li><strong>エントロピー的意味</strong></li>
+<li>
+<ul>
+<li>高エントロピーな旧系を <strong>隔離</strong> し、低エントロピーな新系で置換</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>全書き直し（Big Bang Rewrite）は失敗率が高い ← 系全体を一度に再構築はコスト過大</li>
+</ul>
+</li>
+<li></li>
+<li><strong>適用条件</strong>: レガシーAPIが明確に定義されていること</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="34" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%82%B9%E3%83%88%E3%83%A9%E3%83%86%E3%82%B8%E3%83%BC3-adrarchitecture-decision-records">ストラテジー3: ADR（Architecture Decision Records）</h1>
+<ul>
+<li><strong>ADR とは</strong>: アーキテクチャ上の意思決定を記録するMarkdownドキュメント</li>
+<li></li>
+<li><strong>なぜエントロピー対策か？</strong></li>
+<li>
+<ul>
+<li>「なぜこの設計にしたか」の文脈が失われると、後から変更できなくなる</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>文脈の消失 = 知識エントロピーの増大</li>
+</ul>
+</li>
+<li></li>
+<li><strong>テンプレート</strong></li>
+<li>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-markdown"></code></pre>
+</li>
+<li>
+<h1 id="adr-0012-userservice-%E3%81%AE%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E6%88%A6%E7%95%A5">ADR-0012: UserService のキャッシュ戦略</h1>
+</li>
+<li>Status: Accepted</li>
+<li>Context: 月次レポートのクエリが N+1 問題を引き起こしていた</li>
+<li>Decision: Redis のスライディングウィンドウキャッシュを採用</li>
+<li>Consequences: キャッシュ整合性の責任をサービス層に持たせる</li>
+<li>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code></code></pre>
+</li>
+<li></li>
+<li><strong>保管場所</strong>: <code>docs/adr/</code> にコードと同じリポジトリで管理する</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="35" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="svg%E5%9B%B3-%E8%B2%A0%E5%82%B5%E8%BF%94%E6%B8%88%E3%83%AD%E3%83%BC%E3%83%89%E3%83%9E%E3%83%83%E3%83%97%E8%A8%AD%E8%A8%88">SVG図: 負債返済ロードマップ設計</h1>
+<ul>
+<li>
+<svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li>
+<defs>
+</li>
+<li>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;style&gt;.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.hd{font-family:sans-serif;font-size:12px;font-weight:bold;fill:#fff}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}&lt;/style&gt;
+</code></pre>
+</li>
+<li>
+</defs>
+</li>
+<li><text x='380' y='22' text-anchor='middle' class='tt'>負債返済ロードマップ（4フェーズ）</text></li>
+<li></li>
+<li>
+<rect x='20' y='40' width='160' height='290' rx='8' fill='#1e3a5f' />
+</li>
+<li>
+<rect x='20' y='40' width='160' height='36' rx='8' fill='#3b82f6' />
+</li>
+<li><text x='100' y='64' text-anchor='middle' class='hd'>Phase 1</text></li>
+<li><text x='100' y='96' text-anchor='middle' class='lb' fill='#93c5fd'>計測・可視化</text></li>
+<li><text x='100' y='116' text-anchor='middle' class='lb'>（Sprint 1-2）</text></li>
+<li><text x='35' y='145' class='lb'>• CC計測ツール導入</text></li>
+<li><text x='35' y='163' class='lb'>• ホットスポット特定</text></li>
+<li><text x='35' y='181' class='lb'>• 循環依存の洗い出し</text></li>
+<li><text x='35' y='199' class='lb'>• DORA計測開始</text></li>
+<li><text x='35' y='217' class='lb'>• ADRテンプレート設置</text></li>
+<li></li>
+<li>
+<rect x='200' y='40' width='160' height='290' rx='8' fill='#1e3a5f' />
+</li>
+<li>
+<rect x='200' y='40' width='160' height='36' rx='8' fill='#22c55e' />
+</li>
+<li><text x='280' y='64' text-anchor='middle' class='hd'>Phase 2</text></li>
+<li><text x='280' y='96' text-anchor='middle' class='lb' fill='#86efac'>隔離・安定化</text></li>
+<li><text x='280' y='116' text-anchor='middle' class='lb'>（Sprint 3-6）</text></li>
+<li><text x='215' y='145' class='lb'>• ホットスポストに</text></li>
+<li><text x='215' y='163' class='lb'>  テスト追加</text></li>
+<li><text x='215' y='181' class='lb'>• Strangler Facade</text></li>
+<li><text x='215' y='199' class='lb'>  をレガシーに被せる</text></li>
+<li><text x='215' y='217' class='lb'>• 循環依存を解消</text></li>
+<li><text x='215' y='235' class='lb'>• モジュール境界整備</text></li>
+<li></li>
+<li>
+<rect x='380' y='40' width='160' height='290' rx='8' fill='#1e3a5f' />
+</li>
+<li>
+<rect x='380' y='40' width='160' height='36' rx='8' fill='#f97316' />
+</li>
+<li><text x='460' y='64' text-anchor='middle' class='hd'>Phase 3</text></li>
+<li><text x='460' y='96' text-anchor='middle' class='lb' fill='#fed7aa'>置換・最適化</text></li>
+<li><text x='460' y='116' text-anchor='middle' class='lb'>（Sprint 7-12）</text></li>
+<li><text x='395' y='145' class='lb'>• Strangler実装を</text></li>
+<li><text x='395' y='163' class='lb'>  新設計に移行</text></li>
+<li><text x='395' y='181' class='lb'>• ボーイスカウト定着</text></li>
+<li><text x='395' y='199' class='lb'>• 命名・型を統一</text></li>
+<li><text x='395' y='217' class='lb'>• CC目標値を設定</text></li>
+<li></li>
+<li>
+<rect x='560' y='40' width='160' height='290' rx='8' fill='#1e3a5f' />
+</li>
+<li>
+<rect x='560' y='40' width='160' height='36' rx='8' fill='#8b5cf6' />
+</li>
+<li><text x='640' y='64' text-anchor='middle' class='hd'>Phase 4</text></li>
+<li><text x='640' y='96' text-anchor='middle' class='lb' fill='#c4b5fd'>予防・文化</text></li>
+<li><text x='640' y='116' text-anchor='middle' class='lb'>（継続）</text></li>
+<li><text x='575' y='145' class='lb'>• CIにCC閾値ゲート</text></li>
+<li><text x='575' y='163' class='lb'>• 週次エントロピー</text></li>
+<li><text x='575' y='181' class='lb'>  レポート</text></li>
+<li><text x='575' y='199' class='lb'>• ホットスポット</text></li>
+<li><text x='575' y='217' class='lb'>  ゼロ目標</text></li>
+<li><text x='575' y='235' class='lb'>• ADR義務化</text></li>
+<li></li>
+<li>
+<polygon points='186,185 198,179 198,191' fill='#aaa' />
+</li>
+<li>
+<polygon points='366,185 378,179 378,191' fill='#aaa' />
+</li>
+<li>
+<polygon points='546,185 558,179 558,191' fill='#aaa' />
+</li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="36" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%83%AA%E3%83%95%E3%82%A1%E3%82%AF%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%AE%E5%86%B7%E5%8D%B4%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB">リファクタリングの「冷却」サイクル</h1>
+<ul>
+<li><strong>熱力学アナロジー：冷却には時間とエネルギーが必要</strong></li>
+<li></li>
+<li><strong>Sprint配分のモデル</strong></li>
+<li>
+<ul>
+<li>開発 70% / リファクタリング 20% / 探索・学習 10%（Google '20%ルール'）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>ただし「リファクタリング専用スプリント」は危険 ← ビジネス価値ゼロに見える</li>
+</ul>
+</li>
+<li></li>
+<li><strong>推奨</strong>: 機能開発と一体化（ボーイスカウト＋ホットスポット優先）</li>
+<li></li>
+<li><strong>「技術的負債の利子」を計算する</strong></li>
+<li>
+<ul>
+<li>変更1件あたりの余計な工数 × 変更頻度 = 月次コスト</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>これがリファクタリング投資の上限額</li>
+</ul>
+</li>
+<li></li>
+<li><strong>ステークホルダーへの伝え方</strong></li>
+<li>「CC=30のモジュールは CC=8に比べて変更コストが約4倍かかっています」</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="37" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="typescript-%E4%BE%9D%E5%AD%98%E6%80%A7%E9%80%86%E8%BB%A2%E3%81%A7%E7%B5%90%E5%90%88%E5%BA%A6%E3%82%92%E4%B8%8B%E3%81%92%E3%82%8B">TypeScript: 依存性逆転で結合度を下げる</h1>
+<ul>
+<li>依存性逆転（DIP）でモジュール間の循環依存を解消する実装例</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-comment">// Before: 高エントロピー（UserService が DB に直接依存）</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> {
+  <span class="hljs-keyword">private</span> db = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PostgresDatabase</span>();  <span class="hljs-comment">// 具象クラスに依存</span>
+  <span class="hljs-keyword">async</span> <span class="hljs-title function_">getUser</span>(<span class="hljs-params"><span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">db</span>.<span class="hljs-title function_">query</span>(<span class="hljs-string">`SELECT * FROM users WHERE id = $1`</span>, [id]);
+  }
+}
+
+<span class="hljs-comment">// After: 低エントロピー（インターフェース経由で依存を反転）</span>
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserRepository</span> {
+  <span class="hljs-title function_">findById</span>(<span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span>): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">User</span> | <span class="hljs-literal">null</span>&gt;;
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> <span class="hljs-attr">repo</span>: <span class="hljs-title class_">UserRepository</span></span>) {}  <span class="hljs-comment">// 抽象に依存</span>
+  <span class="hljs-keyword">async</span> <span class="hljs-title function_">getUser</span>(<span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span>): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">User</span> | <span class="hljs-literal">null</span>&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">repo</span>.<span class="hljs-title function_">findById</span>(id);
+  }
+}
+
+<span class="hljs-comment">// テスト時は MockUserRepository を注入</span>
+<span class="hljs-comment">// 本番は PostgresUserRepository を注入</span>
+<span class="hljs-comment">// → 変更の伝播が止まり、Connascence が CoN（最弱）に削減</span>
+</code></pre>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="38" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%83%86%E3%82%B9%E3%83%88%E3%81%AF%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E3%81%AE%E6%96%AD%E7%86%B1%E6%9D%90">テストはエントロピーの「断熱材」</h1>
+<ul>
+<li><strong>断熱材の役割</strong>: 内部の秩序を外部環境の乱れから守る</li>
+<li></li>
+<li><strong>テストスイートの「断熱効果」</strong></li>
+<li>
+<ul>
+<li>変更後にテストが通る → 秩序が維持されたことの証明</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>テストがない = 変更がエントロピーを増大させてもフィードバックがない</li>
+</ul>
+</li>
+<li></li>
+<li><strong>テストピラミッドとエントロピー</strong></li>
+<li>
+<ul>
+<li>ユニットテスト（底辺）: 局所的エントロピーをチェック</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>インテグレーションテスト（中段）: モジュール間のエントロピー伝播を検知</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>E2Eテスト（頂点）: システム全体のエントロピー増大を検知（遅い）</li>
+</ul>
+</li>
+<li></li>
+<li><strong>目標</strong>: カバレッジよりも「変更が壊れたことを即座に検知できる」テスト設計</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="39" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E5%A2%83%E7%95%8C%E3%81%A7%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E3%82%92%E9%96%89%E3%81%98%E8%BE%BC%E3%82%81%E3%82%8B">モジュール境界でエントロピーを閉じ込める</h1>
+<ul>
+<li><strong>物理学のアナロジー：断熱壁で系を分割する</strong></li>
+<li>
+<ul>
+<li>壁があることで、一方の系のエントロピー増大が他方に伝播しない</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>宇宙全体のエントロピーは増大しても、箱の中は管理できる</li>
+</ul>
+</li>
+<li></li>
+<li><strong>モジュール境界の設計原則</strong></li>
+<li>
+<ul>
+<li>公開APIは最小限（Public Surface）← 壁の「穴」を小さくする</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>内部実装は隠蔽（詳細は変わりやすい = 高エントロピー源）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>依存方向は単一方向（DAG）</li>
+</ul>
+</li>
+<li></li>
+<li><strong>Barrel Export の罠</strong></li>
+<li>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"></code></pre>
+</li>
+<li>// NG: すべてを公開 → 壁に無数の穴</li>
+<li>export * from './internal';</li>
+<li>// OK: 意図した公開APIのみ</li>
+<li>export { UserService } from './user-service';</li>
+<li>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>
+
+</code></pre>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="40" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="typescript-%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E5%A2%83%E7%95%8C%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%81%AE%E5%AE%9F%E8%A3%85">TypeScript: モジュール境界チェックの実装</h1>
+<ul>
+<li>依存クルーザーを使ったモジュール境界の自動検証設定例</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript"><span class="hljs-comment">// .dependency-cruiser.js — 許可される依存方向を宣言</span>
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-attr">forbidden</span>: [
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;no-circular&#x27;</span>,
+      <span class="hljs-attr">severity</span>: <span class="hljs-string">&#x27;error&#x27;</span>,
+      <span class="hljs-attr">comment</span>: <span class="hljs-string">&#x27;Circular dependencies increase entropy&#x27;</span>,
+      <span class="hljs-attr">from</span>: {},
+      <span class="hljs-attr">to</span>: { <span class="hljs-attr">circular</span>: <span class="hljs-literal">true</span> },
+    },
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;no-cross-domain&#x27;</span>,
+      <span class="hljs-attr">severity</span>: <span class="hljs-string">&#x27;warn&#x27;</span>,
+      <span class="hljs-attr">comment</span>: <span class="hljs-string">&#x27;Domain A must not import from Domain B directly&#x27;</span>,
+      <span class="hljs-attr">from</span>: { <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;^src/domain-a&#x27;</span> },
+      <span class="hljs-attr">to</span>: { <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;^src/domain-b&#x27;</span> },
+    },
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;no-infrastructure-in-domain&#x27;</span>,
+      <span class="hljs-attr">severity</span>: <span class="hljs-string">&#x27;error&#x27;</span>,
+      <span class="hljs-attr">comment</span>: <span class="hljs-string">&#x27;Domain layer must not depend on infrastructure&#x27;</span>,
+      <span class="hljs-attr">from</span>: { <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;^src/domain&#x27;</span> },
+      <span class="hljs-attr">to</span>: { <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;^src/infrastructure&#x27;</span> },
+    },
+  ],
+  <span class="hljs-attr">options</span>: { <span class="hljs-attr">tsPreCompilationDeps</span>: <span class="hljs-literal">true</span> },
+};
+</code></pre>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="41" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="svg%E5%9B%B3-%E3%83%9E%E3%82%A4%E3%82%AF%E3%83%AD%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AB%E3%82%88%E3%82%8B%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E9%9A%94%E9%9B%A2">SVG図: マイクロサービスによるエントロピー隔離</h1>
+<ul>
+<li>
+<svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li>
+<defs>
+</li>
+<li>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;style&gt;.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.hd{font-family:sans-serif;font-size:12px;font-weight:bold;fill:#fff}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}&lt;/style&gt;
+</code></pre>
+</li>
+<li>
+</defs>
+</li>
+<li><text x='380' y='22' text-anchor='middle' class='tt'>モジュール境界によるエントロピー隔離</text></li>
+<li></li>
+<li>
+<rect x='20' y='40' width='320' height='300' rx='8' fill='#1e293b' stroke='#ef4444' stroke-width='2' />
+</li>
+<li><text x='180' y='62' text-anchor='middle' class='hd' fill='#ef4444'>モノリス（高エントロピー）</text></li>
+<li>
+<rect x='40' y='75' width='260' height='50' rx='4' fill='#7f1d1d' opacity='0.9' />
+</li>
+<li><text x='170' y='105' text-anchor='middle' class='lb'>UserService（CC=28, 循環依存あり）</text></li>
+<li>
+<rect x='40' y='135' width='260' height='50' rx='4' fill='#7f1d1d' opacity='0.9' />
+</li>
+<li><text x='170' y='165' text-anchor='middle' class='lb'>OrderService（CC=35, テストなし）</text></li>
+<li>
+<rect x='40' y='195' width='260' height='50' rx='4' fill='#7f1d1d' opacity='0.9' />
+</li>
+<li><text x='170' y='225' text-anchor='middle' class='lb'>PaymentService（CC=22, 密結合）</text></li>
+<li><text x='170' y='275' text-anchor='middle' class='lb' fill='#ef4444'>→ 1箇所の変更が全体に伝播</text></li>
+<li><text x='170' y='295' text-anchor='middle' class='lb' fill='#ef4444'>→ エントロピーが共有される</text></li>
+<li></li>
+<li>
+<polygon points='350,185 370,179 370,191' fill='#22c55e' />
+</li>
+<li><text x='360' y='177' text-anchor='middle' class='lb' fill='#22c55e'>分割</text></li>
+<li></li>
+<li>
+<rect x='385' y='40' width='350' height='300' rx='8' fill='#0f172a' stroke='#22c55e' stroke-width='2' />
+</li>
+<li><text x='560' y='62' text-anchor='middle' class='hd' fill='#22c55e'>マイクロサービス（隔離）</text></li>
+<li>
+<rect x='400' y='75' width='140' height='65' rx='4' fill='#14532d' stroke='#22c55e' stroke-width='1' />
+</li>
+<li><text x='470' y='102' text-anchor='middle' class='lb'>User MS</text></li>
+<li><text x='470' y='118' text-anchor='middle' class='lb' fill='#86efac'>CC=8, 境界明確</text></li>
+<li>
+<rect x='555' y='75' width='140' height='65' rx='4' fill='#14532d' stroke='#22c55e' stroke-width='1' />
+</li>
+<li><text x='625' y='102' text-anchor='middle' class='lb'>Order MS</text></li>
+<li><text x='625' y='118' text-anchor='middle' class='lb' fill='#86efac'>CC=12, API明確</text></li>
+<li>
+<rect x='400' y='155' width='140' height='65' rx='4' fill='#14532d' stroke='#22c55e' stroke-width='1' />
+</li>
+<li><text x='470' y='182' text-anchor='middle' class='lb'>Payment MS</text></li>
+<li><text x='470' y='198' text-anchor='middle' class='lb' fill='#86efac'>CC=10, 独立</text></li>
+<li>
+<rect x='555' y='155' width='140' height='65' rx='4' fill='#1e3a5f' stroke='#3b82f6' stroke-width='1' />
+</li>
+<li><text x='625' y='182' text-anchor='middle' class='lb'>Notif MS</text></li>
+<li><text x='625' y='198' text-anchor='middle' class='lb' fill='#93c5fd'>CC=6, 新設計</text></li>
+<li><text x='560' y='265' text-anchor='middle' class='lb' fill='#22c55e'>→ 変更は各サービス内に閉じる</text></li>
+<li><text x='560' y='285' text-anchor='middle' class='lb' fill='#22c55e'>→ エントロピーが隔離される</text></li>
+<li></li>
+<li><text x='560' y='330' text-anchor='middle' class='lb' fill='#aaa'>API Gateway / Event Bus で疎結合通信</text></li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="42" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97%E6%BC%94%E7%BF%92%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AE%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AE%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E3%83%9E%E3%83%83%E3%83%97">ワークショップ演習：あなたのシステムのエントロピーマップ</h1>
+<ul>
+<li><strong>15分間の演習</strong></li>
+<li></li>
+<li><strong>Step 1: 現状スキャン（5分）</strong></li>
+<li>
+<ul>
+<li>自チームのリポジトリで最もホットスポットだと感じるモジュールを3つ挙げよ</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「変更のたびに怖い」「誰も触りたがらない」ファイルを特定する</li>
+</ul>
+</li>
+<li></li>
+<li><strong>Step 2: エントロピー分類（5分）</strong></li>
+<li>
+<ul>
+<li>それぞれのモジュールについて：</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Accidental（偶発的）か Essential（本質的）か？</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>孤立系化しているか？（テストなし・文書なし・知っている人がいない）</li>
+</ul>
+</li>
+<li></li>
+<li><strong>Step 3: ロードマップ設計（5分）</strong></li>
+<li>
+<ul>
+<li>最優先ホットスポットに対する3アクションを書き出す</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「今日から始められること」を1つ決める</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-class="lead" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="43" style="--class:lead;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+
+<h1 id="part-5-%E7%B5%84%E7%B9%94%E3%83%BB%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%E3%83%BB%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E6%AF%94%E8%BC%83%E4%BA%8B%E4%BE%8B">Part 5: 組織・プロセス・パターン比較事例</h1>
+<ul>
+<li>エントロピーは個人ではなく組織とプロセスによって決まる</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="44" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%82%B3%E3%83%B3%E3%82%A6%E3%82%A7%E3%82%A4%E3%81%AE%E6%B3%95%E5%89%87%E7%B5%84%E7%B9%94%E6%A7%8B%E9%80%A0%E3%81%8C%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E3%82%92%E6%B1%BA%E3%82%81%E3%82%8B">コンウェイの法則：組織構造がエントロピーを決める</h1>
+<ul>
+<li><strong>コンウェイの法則（1968年）</strong></li>
+<li>「システムを設計する組織は、その組織のコミュニケーション構造を写したシステムを作る」</li>
+<li></li>
+<li><strong>エントロピー解釈</strong></li>
+<li>
+<ul>
+<li>組織のコミュニケーション経路 = コードの依存グラフ</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>部門間のサイロ = モジュール間の不明確な境界</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>情報が流れない組織 = 知識エントロピーが高い組織</li>
+</ul>
+</li>
+<li></li>
+<li><strong>逆コンウェイ戦略（Inverse Conway Maneuver）</strong></li>
+<li>
+<ul>
+<li>欲しいアーキテクチャに合わせてチームを設計する</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>マイクロサービス採用 → まずサービス単位でチームを分割する</li>
+</ul>
+</li>
+<li></li>
+<li><strong>実践</strong>: Team Topologies の4チームタイプ（Stream-aligned / Platform / Enabling / Complicated Subsystem）</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="45" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%83%81%E3%83%BC%E3%83%A0%E3%81%AE%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E4%BA%BA%E5%93%A1%E5%85%A5%E3%82%8C%E6%9B%BF%E3%81%88%E3%81%A8%E3%82%B3%E3%83%BC%E3%83%89%E5%8A%A3%E5%8C%96">チームのエントロピー：人員入れ替えとコード劣化</h1>
+<ul>
+<li><strong>知識の「蒸発」とエントロピー</strong></li>
+<li>
+<ul>
+<li>チームメンバーの退職・異動 → 暗黙知が失われる = 知識エントロピー増大</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>新しいメンバーが既存コードの「意図」を把握できない → 複雑な修正が増える</li>
+</ul>
+</li>
+<li></li>
+<li><strong>Bus Factor（バスファクター）</strong></li>
+<li>
+<ul>
+<li>「バスに轢かれた場合にプロジェクトが停止する人数」</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Bus Factor = 1 → 極めて高い知識エントロピーの警告サイン</li>
+</ul>
+</li>
+<li></li>
+<li><strong>対策</strong></li>
+<li>
+<ul>
+<li>ADR でアーキテクチャ意図を記録</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>ペアプログラミング・モブプログラミングで知識を分散</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>コードレビューで「知識の共有」を必須プロセスに</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>オンボーディングドキュメントの定期更新</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="46" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="svg%E5%9B%B3-%E3%82%B9%E3%83%97%E3%83%AA%E3%83%B3%E3%83%88%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB%E3%81%A8%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E3%81%AE%E5%A2%97%E6%B8%9B">SVG図: スプリントサイクルとエントロピーの増減</h1>
+<ul>
+<li>
+<svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li>
+<defs>
+</li>
+<li>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;style&gt;.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}.ax{stroke:#555;stroke-width:1.5;fill:none}&lt;/style&gt;
+</code></pre>
+</li>
+<li>
+</defs>
+</li>
+<li><text x='380' y='22' text-anchor='middle' class='tt'>スプリントサイクルとエントロピーの増減</text></li>
+<li></li>
+<li>
+<line x1='60' y1='300' x2='720' y2='300' class='ax' />
+</li>
+<li>
+<line x1='60' y1='50' x2='60' y2='300' class='ax' />
+</li>
+<li><text x='390' y='340' text-anchor='middle' class='lb'>スプリント番号</text></li>
+<li><text x='20' y='175' text-anchor='middle' class='lb' transform='rotate(-90,20,175)'>エントロピー</text></li>
+<li></li>
+<li>
+<path d='M60,260 L120,240 L120,255 L180,232 L180,248 L240,222 L240,218 L300,200 L300,215 L360,188 L360,185 L420,165 L420,162 L480,148 L480,145 L540,132 L540,128 L600,118 L600,114 L660,105' stroke='#3b82f6' stroke-width='2' fill='none' />
+</li>
+<li></li>
+<li>
+<path d='M60,260 Q200,200 400,130 Q550,80 660,60' stroke='#ef4444' stroke-width='1.5' stroke-dasharray='6,4' fill='none' />
+</li>
+<li></li>
+<li><text x='90' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S1</text></li>
+<li><text x='150' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S2</text></li>
+<li><text x='210' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S3</text></li>
+<li><text x='270' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S4</text></li>
+<li><text x='330' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S5</text></li>
+<li><text x='390' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S6</text></li>
+<li><text x='450' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S7</text></li>
+<li><text x='510' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S8</text></li>
+<li><text x='570' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S9</text></li>
+<li><text x='630' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S10</text></li>
+<li></li>
+<li><text x='120' y='228' class='lb' fill='#22c55e'>↓RF</text></li>
+<li><text x='300' y='185' class='lb' fill='#22c55e'>↓RF</text></li>
+<li><text x='480' y='118' class='lb' fill='#22c55e'>↓RF</text></li>
+<li></li>
+<li>
+<rect x='480' y='55' width='240' height='65' rx='5' fill='#1e293b' opacity='0.85' />
+</li>
+<li>
+<line x1='495' y1='78' x2='525' y2='78' stroke='#3b82f6' stroke-width='2' />
+</li>
+<li><text x='532' y='82' class='lb'>定期RF込みのエントロピー</text></li>
+<li>
+<line x1='495' y1='100' x2='525' y2='100' stroke='#ef4444' stroke-width='1.5' stroke-dasharray='5,4' />
+</li>
+<li><text x='532' y='104' class='lb'>RF無し（放置シナリオ）</text></li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="47" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%E3%81%AF%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E3%81%B8%E3%81%AE%E6%8A%B5%E6%8A%97%E5%8A%9B">レビュープロセスはエントロピーへの抵抗力</h1>
+<ul>
+<li><strong>コードレビューの熱力学的意味</strong></li>
+<li>
+<ul>
+<li>「外部の目」= 外部エネルギー源</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>レビュアーが指摘 = エントロピー増大の事前防止</li>
+</ul>
+</li>
+<li></li>
+<li><strong>効果的なレビューの焦点（エントロピー視点）</strong></li>
+<li>
+<ul>
+<li>命名の一貫性（情報エントロピーを下げる）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>新たな循環依存の導入を防ぐ（構造エントロピー）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>重複ロジックの指摘（Ω の増大を防ぐ）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「なぜこの設計か」の説明を求める（知識エントロピー）</li>
+</ul>
+</li>
+<li></li>
+<li><strong>アンチパターン</strong></li>
+<li>
+<ul>
+<li>スタイルだけのレビュー（Formatter に任せるべき）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>LGTM 連発（エントロピーを見逃す）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「後でリファクタするから」承認（負債を正式に増やす）</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="48" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E5%9F%BA%E7%9B%A4%E7%9A%84%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E5%88%B6%E5%BE%A1">プラットフォームエンジニアリング：基盤的エントロピー制御</h1>
+<ul>
+<li><strong>プラットフォームエンジニアリングとは</strong></li>
+<li>
+<ul>
+<li>開発チームが自律的にデプロイ・運用できる「舗装道路（Golden Path）」を構築</li>
+</ul>
+</li>
+<li></li>
+<li><strong>エントロピー制御の仕組み</strong></li>
+<li>
+<ul>
+<li>テンプレートとスキャフォールディング → 開始状態の Ω を制限</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>共通ライブラリ（ロギング・認証・観測性）→ 実装バリアントを減らす</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>CI/CDパイプライン → ゲートでエントロピー増大を自動検出</li>
+</ul>
+</li>
+<li></li>
+<li><strong>効果</strong></li>
+<li>
+<ul>
+<li>各チームが「ゼロから決める」バリアントを最小化 → Ω 抑制</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>良い設計が「デフォルト」になる → エントロピー増大率が組織全体で下がる</li>
+</ul>
+</li>
+<li></li>
+<li><strong>IDP（Internal Developer Platform）</strong>: Backstage / Port / Cortex などのツール活用</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="49" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="svg%E5%9B%B3-%E7%B5%84%E7%B9%94%E3%83%BB%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%E3%83%BB%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E7%9B%B8%E4%BA%92%E4%BD%9C%E7%94%A8">SVG図: 組織・プロセス・コードのエントロピー相互作用</h1>
+<ul>
+<li>
+<svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li>
+<defs>
+</li>
+<li>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;style&gt;.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.hd{font-family:sans-serif;font-size:13px;font-weight:bold;fill:#fff}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}&lt;/style&gt;
+</code></pre>
+</li>
+<li>
+</defs>
+</li>
+<li><text x='380' y='22' text-anchor='middle' class='tt'>組織・プロセス・コードの3層エントロピーモデル</text></li>
+<li></li>
+<li>
+<rect x='40' y='40' width='680' height='75' rx='8' fill='#1e3a5f' stroke='#3b82f6' stroke-width='1.5' />
+</li>
+<li><text x='380' y='65' text-anchor='middle' class='hd' fill='#93c5fd'>Layer 3: 組織エントロピー</text></li>
+<li><text x='380' y='85' text-anchor='middle' class='lb'>チーム構造・コミュニケーション・知識分布・Bus Factor・意思決定速度</text></li>
+<li><text x='380' y='103' text-anchor='middle' class='lb' fill='#60a5fa'>制御手段: Team Topologies, ADR, ドキュメント, ペアプロ</text></li>
+<li></li>
+<li>
+<polygon points='375,122 385,122 380,136' fill='#aaa' />
+</li>
+<li></li>
+<li>
+<rect x='40' y='143' width='680' height='75' rx='8' fill='#1e293b' stroke='#f97316' stroke-width='1.5' />
+</li>
+<li><text x='380' y='168' text-anchor='middle' class='hd' fill='#fed7aa'>Layer 2: プロセスエントロピー</text></li>
+<li><text x='380' y='188' text-anchor='middle' class='lb'>スプリント設計・レビュー文化・CI/CD・デプロイ頻度・変更障害率</text></li>
+<li><text x='380' y='206' text-anchor='middle' class='lb' fill='#fb923c'>制御手段: DORA計測, ボーイスカウト文化, プラットフォームエンジニアリング</text></li>
+<li></li>
+<li>
+<polygon points='375,225 385,225 380,239' fill='#aaa' />
+</li>
+<li></li>
+<li>
+<rect x='40' y='246' width='680' height='75' rx='8' fill='#0f172a' stroke='#22c55e' stroke-width='1.5' />
+</li>
+<li><text x='380' y='271' text-anchor='middle' class='hd' fill='#86efac'>Layer 1: コードエントロピー</text></li>
+<li><text x='380' y='291' text-anchor='middle' class='lb'>Cyclomatic Complexity・循環依存・Connascence・情報エントロピー</text></li>
+<li><text x='380' y='309' text-anchor='middle' class='lb' fill='#4ade80'>制御手段: Strangler Fig, DIP, モジュール境界, テスト断熱材</text></li>
+<li></li>
+<li><text x='715' y='195' text-anchor='middle' class='lb' fill='#aaa' transform='rotate(90,715,195)'>← フィードバック（ボトムアップ）</text></li>
+<li>
+<line x1='723' y1='320' x2='723' y2='68' stroke='#555' stroke-width='1' stroke-dasharray='4,3' />
+</li>
+<li>
+<polygon points='718,68 728,68 723,55' fill='#555' />
+</li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="50" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="50" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E4%BA%8B%E4%BE%8B%E6%AF%94%E8%BC%83%E4%BD%8E%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E7%B5%84%E7%B9%94-vs-%E9%AB%98%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E7%B5%84%E7%B9%94">事例比較：低エントロピー組織 vs 高エントロピー組織</h1>
+<table>
+<thead>
+<tr>
+<th>観点</th>
+<th>低エントロピー組織</th>
+<th>高エントロピー組織</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>デプロイ</td>
+<td>毎日・自動</td>
+<td>月1回・手動承認</td>
+</tr>
+<tr>
+<td>レビュー</td>
+<td>設計議論あり</td>
+<td>LGTM多発</td>
+</tr>
+<tr>
+<td>ドキュメント</td>
+<td>ADRがコミット</td>
+<td>口伝のみ</td>
+</tr>
+<tr>
+<td>新人参加</td>
+<td>2週間で独立</td>
+<td>3ヶ月間影響待ち</td>
+</tr>
+<tr>
+<td>障害対応</td>
+<td>原因特定 &lt; 1時間</td>
+<td>数日間迷走</td>
+</tr>
+<tr>
+<td>リファクタ</td>
+<td>機能に組み込み</td>
+<td>「いつかやる」</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li></li>
+<li><strong>典型的な転落パターン</strong></li>
+<li>「初期は低エントロピー → 急成長期に人員増加 → 秩序が追いつかず高エントロピー化」</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="51" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="51" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="ddd%E5%A2%83%E7%95%8C%E3%82%B3%E3%83%B3%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%81%AF%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E3%81%AE%E5%AE%B9%E5%99%A8">DDD：境界コンテキストはエントロピーの「容器」</h1>
+<ul>
+<li><strong>ドメイン駆動設計（DDD）のBounded Context</strong></li>
+<li>
+<ul>
+<li>同じ言葉が異なるドメインで異なる意味を持つことを明示的に扱う</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>例：「注文」は受注管理と配送管理で構造が異なる</li>
+</ul>
+</li>
+<li></li>
+<li><strong>エントロピー的意味</strong></li>
+<li>
+<ul>
+<li>Bounded Context = 「容器」でエントロピーを閉じ込める</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Context Map でドメイン間の依存を管理 → 相互エントロピー伝播を防ぐ</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Ubiquitous Language = そのContext内の情報エントロピーを最小化する共通言語</li>
+</ul>
+</li>
+<li></li>
+<li><strong>マイクロサービスとの関係</strong></li>
+<li>
+<ul>
+<li>「1マイクロサービス = 1Bounded Context」が基本原則</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>ただし Context の境界が曖昧なまま分割すると逆にエントロピーが増大する</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="52" data-class="lead" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="52" style="--class:lead;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+
+<h1 id="part-6-%E3%81%BE%E3%81%A8%E3%82%81%E3%83%BBqa">Part 6: まとめ・Q&amp;A</h1>
+<ul>
+<li>エントロピーフレームワークで技術的負債を再定義する</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="53" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="53" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="svg%E5%9B%B3-%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E3%81%A8%E6%8A%80%E8%A1%93%E7%9A%84%E8%B2%A0%E5%82%B5%E3%81%AE%E7%B5%B1%E4%B8%80%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF">SVG図: エントロピーと技術的負債の統一フレームワーク</h1>
+<ul>
+<li>
+<svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li>
+<defs>
+</li>
+<li>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>&lt;style&gt;.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.hd{font-family:sans-serif;font-size:12px;font-weight:bold;fill:#fff}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}&lt;/style&gt;
+</code></pre>
+</li>
+<li>
+</defs>
+</li>
+<li><text x='380' y='22' text-anchor='middle' class='tt'>エントロピー・技術的負債 統一フレームワーク</text></li>
+<li></li>
+<li>
+<circle cx='380' cy='185' r='60' fill='#1e3a5f' stroke='#3b82f6' stroke-width='2' />
+</li>
+<li><text x='380' y='178' text-anchor='middle' class='hd' fill='#93c5fd'>熱力学</text></li>
+<li><text x='380' y='194' text-anchor='middle' class='hd' fill='#93c5fd'>第二法則</text></li>
+<li><text x='380' y='210' text-anchor='middle' class='lb'>ΔS ≥ 0</text></li>
+<li></li>
+<li>
+<rect x='20' y='60' width='145' height='55' rx='6' fill='#14532d' stroke='#22c55e' stroke-width='1.5' />
+</li>
+<li><text x='92' y='83' text-anchor='middle' class='hd' fill='#86efac'>計測</text></li>
+<li><text x='92' y='100' text-anchor='middle' class='lb'>CC・認知的複雑度</text></li>
+<li><text x='92' y='114' text-anchor='middle' class='lb'>ホットスポット分析</text></li>
+<li></li>
+<li>
+<rect x='595' y='60' width='145' height='55' rx='6' fill='#78350f' stroke='#f97316' stroke-width='1.5' />
+</li>
+<li><text x='667' y='83' text-anchor='middle' class='hd' fill='#fed7aa'>隔離</text></li>
+<li><text x='667' y='100' text-anchor='middle' class='lb'>Bounded Context</text></li>
+<li><text x='667' y='114' text-anchor='middle' class='lb'>モジュール境界・DIP</text></li>
+<li></li>
+<li>
+<rect x='20' y='265' width='145' height='55' rx='6' fill='#581c87' stroke='#a855f7' stroke-width='1.5' />
+</li>
+<li><text x='92' y='288' text-anchor='middle' class='hd' fill='#d8b4fe'>エネルギー投入</text></li>
+<li><text x='92' y='305' text-anchor='middle' class='lb'>Refactoring</text></li>
+<li><text x='92' y='319' text-anchor='middle' class='lb'>ボーイスカウト</text></li>
+<li></li>
+<li>
+<rect x='595' y='265' width='145' height='55' rx='6' fill='#1e3a5f' stroke='#3b82f6' stroke-width='1.5' />
+</li>
+<li><text x='667' y='288' text-anchor='middle' class='hd' fill='#93c5fd'>文化・組織</text></li>
+<li><text x='667' y='305' text-anchor='middle' class='lb'>Conway対策・ADR</text></li>
+<li><text x='667' y='319' text-anchor='middle' class='lb'>Platform Engineering</text></li>
+<li></li>
+<li>
+<line x1='325' y1='155' x2='165' y2='105' stroke='#aaa' stroke-width='1' />
+</li>
+<li>
+<line x1='435' y1='155' x2='595' y2='105' stroke='#aaa' stroke-width='1' />
+</li>
+<li>
+<line x1='325' y1='215' x2='165' y2='275' stroke='#aaa' stroke-width='1' />
+</li>
+<li>
+<line x1='435' y1='215' x2='595' y2='275' stroke='#aaa' stroke-width='1' />
+</li>
+<li></li>
+<li><text x='380' y='355' text-anchor='middle' class='lb' fill='#aaa'>4要素の組み合わせで技術的負債に抵抗する</text></li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="54" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="54" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="3%E3%81%A4%E3%81%AE%E5%8E%9F%E5%89%87%E6%B8%AC%E3%82%8C%E3%83%BB%E9%9A%94%E9%9B%A2%E3%81%9B%E3%82%88%E3%83%BB%E6%B3%A8%E3%82%A8%E3%83%8D%E3%83%AB%E3%82%AE%E3%83%BC%E3%81%97%E7%B6%9A%E3%81%91%E3%82%88">3つの原則：測れ・隔離せよ・注エネルギーし続けよ</h1>
+<ul>
+<li><strong>原則1：測れ（Measure）</strong></li>
+<li>
+<ul>
+<li>見えないエントロピーは管理できない</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Cyclomatic Complexity / Cognitive Complexity / DORA Metrics を継続計測</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>ホットスポットマップを週次で更新し、チームで共有する</li>
+</ul>
+</li>
+<li></li>
+<li><strong>原則2：隔離せよ（Isolate）</strong></li>
+<li>
+<ul>
+<li>高エントロピーな領域を他の系から切り離す</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Bounded Context / モジュール境界 / Strangler Fig Pattern</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>循環依存の排除は最優先のアーキテクチャ品質指標</li>
+</ul>
+</li>
+<li></li>
+<li><strong>原則3：注エネルギーし続けよ（Inject Energy Continuously）</strong></li>
+<li>
+<ul>
+<li>リファクタリングは一時イベントではなく継続プロセス</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>スプリントごとにボーイスカウトコストを予算に組み込む</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>テスト・レビュー・ADR は「エネルギー貯蔵装置」</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="55" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="55" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E6%98%8E%E6%97%A5%E3%81%8B%E3%82%89%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%97%E3%83%A9%E3%83%B3">明日からできるアクションプラン</h1>
+<ul>
+<li><strong>今週できること（工数0〜2時間）</strong></li>
+<li>
+<ul>
+<li>[ ] <code>npx madge --circular src/</code> を実行して循環依存の数を把握する</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>[ ] 最もホットスポットだと感じるファイルのCC値を計測する</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>[ ] <code>docs/adr/</code> ディレクトリを作って最初のADRを書く</li>
+</ul>
+</li>
+<li></li>
+<li><strong>来月できること（1〜2スプリント）</strong></li>
+<li>
+<ul>
+<li>[ ] CI/CD に CC 閾値チェックを追加する（PR で CC &gt; 15 を警告）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>[ ] ホットスポット上位3ファイルにテストを追加する</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>[ ] チームで「ボーイスカウトルール」を明示的に合意する</li>
+</ul>
+</li>
+<li></li>
+<li><strong>3ヶ月以内（組織的取り組み）</strong></li>
+<li>
+<ul>
+<li>[ ] 週次エントロピーレポートをチームダッシュボードに組み込む</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>[ ] Team Topologies の観点でチーム構造を見直す</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="56" data-class="invert" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="56" style="--class:invert;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+<h1 id="%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E3%83%BB%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9">参考文献・リソース</h1>
+<ul>
+<li><strong>書籍</strong></li>
+<li>
+<ul>
+<li><a href="https://www.oreilly.com/library/view/clean-code-a/9780136083238/">Clean Code — Robert C. Martin</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://pragprog.com/titles/atcrime2/your-code-as-a-crime-scene-second-edition/">Your Code as a Crime Scene — Adam Thornhill</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://teamtopologies.com/book">Team Topologies — Skelton &amp; Pais</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://itrevolution.com/accelerate-book/">Accelerate — Nicole Forsgren et al.</a></li>
+</ul>
+</li>
+<li></li>
+<li><strong>論文・記事</strong></li>
+<li>
+<ul>
+<li><a href="http://c2.com/doc/oopsla92.html">Technical Debt — Ward Cunningham (1992)</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://martinfowler.com/bliki/TechnicalDebtQuadrant.html">A Taxonomy of Tech Debt — Martin Fowler</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://connascence.io/">Connascence — Meilir Page-Jones</a></li>
+</ul>
+</li>
+<li></li>
+<li><strong>ツール</strong></li>
+<li>
+<ul>
+<li><a href="https://github.com/pahen/madge">Madge（循環依存検出）</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://github.com/sverweij/dependency-cruiser">dependency-cruiser（依存ルール検証）</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://github.com/terryyin/lizard">Lizard（CC計測）</a></li>
+</ul>
+</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="57" data-class="lead" data-paginate="true" data-header="エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る" data-footer="© 2026 — Entropy &amp; Technical Debt" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="57" style="--class:lead;--paginate:true;--header:エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る;--footer:© 2026 — Entropy &amp; Technical Debt;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="57" data-size="16:9">
+<header>エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る</header>
+
+<h1 id="qa--%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3">Q&amp;A / ディスカッション</h1>
+<ul>
+<li><strong>ご質問・ディスカッション</strong></li>
+<li></li>
+<li>「エントロピーは増大する。抵抗は可能だが、ゼロにはできない。</li>
+<li>だから私たちはエンジニアであり続ける」</li>
+<li></li>
+<li>ありがとうございました</li>
+</ul>
+<footer>© 2026 — Entropy &amp; Technical Debt</footer>
+</section>
+<script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{container;containerSize;containerObserver;svg;svgComputedStyle;svgPreserveAspectRatio="xMinYMid meet";wrapper;wrapperSize;wrapperObserver;constructor(){super();const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=this.shadowRoot.querySelector(`div[${e}]`)??void 0;const t=this.svg;this.svg=this.wrapper?.querySelector(`svg[${i}]`)??void 0,this.svg!==t&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=this.svg?.querySelector(`span[${n}]`)??void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame(()=>{t.style.display=""}))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){let t=Math.ceil(this.containerSize?.width??0);const e=Math.ceil(this.containerSize?.height??0);void 0!==this.dataset.downscaleOnly&&(t=Math.max(t,this.wrapperSize?.width??0));const i=this.svg?.querySelector(":scope > foreignObject");if(i?.setAttribute("width",`${t}`),i?.setAttribute("height",`${e}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${t} ${e}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=t<=0||e<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const r=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this._shadow()}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_shadow(){if(!this.shadowRoot)try{this.attachShadow({mode:"open"})}catch(t){if(!(t instanceof Error&&"NotSupportedError"===t.name))throw t}return this.shadowRoot}_update(){const t=this._shadow();if(t){const e=i?`<style>:host { ${i} }</style>`:"";let n="<slot></slot>";const{autoScaling:s}=this.dataset;if(void 0!==s){n=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===s?"data-downscale-only":""}>${n}</marp-auto-scaling>`}t.innerHTML=e+n}}};let o;const a=Symbol(),l=()=>o??(o=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is"),o);let c;const d="marpitSVGPolyfill:setZoomFactor,",h=Symbol(),g=Symbol();const p=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[v]:[],i={then:e=>(t?(async()=>{if(void 0===c){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise(t=>{i.addEventListener("load",()=>t())});i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),c=e.getImageData(5,5,1,1).data[3]<128}return c})().then(t=>{null==e||e(t?[v]:[])}):null==e||e([]),i)};return Object.assign(e,i)};let m,u;function v(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(d)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(u=i)}}catch(t){console.error(t)}}));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),t=>{var e,s,r,o;t.style.transform||(t.style.transform="translateZ(0)");const a=i||u||t.currentScale||1;m!==a&&(m=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(o=null===(r=n.y)||void 0===r?void 0:r.baseVal.value)&&void 0!==o?o:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}}),!1!==n&&Array.from(e.querySelectorAll("iframe"),({contentWindow:t})=>{null==t||t.postMessage(`${d}${n}`,"null"===window.origin?"*":window.origin)})}function w({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[h])return t[h];let e=!0;const i=()=>{e=!1,delete t[h]};Object.defineProperty(t,h,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await p()}finally{s=!0}})();const r=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(r)};return r(),i}(e);return t?(i(),()=>{}):i}m=1,u=void 0;const b=Symbol(),y=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,o=t[n].proto();l()&&o!==HTMLElement?i||customElements.define(s,r(o,{style:t[n].style}),{extends:n}):(i||customElements.define(s,r(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach(t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)}))}window[a]=!0})(e),e[b])return e[b];const i=w({target:e}),n=()=>{i(),delete e[b]},o=Object.assign(n,{cleanup:n,update:()=>y(e)});return Object.defineProperty(e,b,{configurable:!0,value:o}),o},f=document.currentScript;y(f?f.getRootNode():document)}();
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="10" tabindex="0"><p>axes</p><p>axis labels</p><p>Entropy curve (rising)</p><p>Code quality curve (falling)</p><p>Legend</p><p>annotation</p><p>y-ticks</p><p>title</p></div><div class="bespoke-marp-note" data-index="14" tabindex="0"><p>header row</p><p>rows</p><p>arrows between columns</p></div><div class="bespoke-marp-note" data-index="18" tabindex="0"><p>axes</p><p>debt accumulation curve with refactoring dips</p><p>refactoring drops</p><p>refactoring labels</p><p>trend annotation</p><p>ideal line</p><p>no action line</p><p>title</p></div><div class="bespoke-marp-note" data-index="24" tabindex="0"><p>axes</p><p>x-axis labels</p><p>scatter dots</p><p>trend line</p><p>risk zones</p></div><div class="bespoke-marp-note" data-index="29" tabindex="0"><p>KPI cards row 1</p><p>hotspot bar chart</p><p>DORA metrics</p></div><div class="bespoke-marp-note" data-index="34" tabindex="0"><p>Phase 1</p><p>Phase 2</p><p>Phase 3</p><p>Phase 4</p><p>arrows between phases</p></div><div class="bespoke-marp-note" data-index="40" tabindex="0"><p>Monolith</p><p>Arrow</p><p>Microservices</p><p>API Gateway label</p></div><div class="bespoke-marp-note" data-index="45" tabindex="0"><p>axes</p><p>Sprint cycles (saw-tooth with refactoring)</p><p>no-refactoring curve</p><p>sprint phase labels</p><p>refactoring drops annotation</p><p>legend</p></div><div class="bespoke-marp-note" data-index="48" tabindex="0"><p>Layer 3: Organization</p><p>Arrow down</p><p>Layer 2: Process</p><p>Arrow down</p><p>Layer 1: Code</p><p>feedback arrow up</p></div><div class="bespoke-marp-note" data-index="52" tabindex="0"><p>Center circle: Second Law</p><p>Node: Measure</p><p>Node: Isolate</p><p>Node: Inject Energy</p><p>Node: Culture</p><p>Lines from center to nodes</p><p>outer ring label</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@4.2.3/lib/bespoke.js.LICENSE.txt */
+!function(){"use strict";function e(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var t,n,r=(n||(n=1,t={from:function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),o=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,function(e){return"SCRIPT"!==e.nodeName}),a={},i=function(e,t){return(t=t||{}).index=o.indexOf(e),t.slide=e,t},s=function(e,t){a[e]=(a[e]||[]).filter(function(e){return e!==t})},c=function(e,t){return(a[e]||[]).reduce(function(e,n){return e&&!1!==n(t)},!0)},l=function(e,t){o[e]&&(n&&c("deactivate",i(n,t)),n=o[e],c("activate",i(n,t)))},d=function(e,t){var r=o.indexOf(n)+e;c(e>0?"next":"prev",i(n,t))&&l(r,t)},u={off:s,on:function(e,t){return(a[e]||(a[e]=[])).push(t),s.bind(null,e,t)},fire:c,slide:function(e,t){if(!arguments.length)return o.indexOf(n);c("slide",i(o[e],t))&&l(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:o,destroy:function(e){c("destroy",i(n,e)),a={}}};return(t||[]).forEach(function(e){e(u)}),n||l(0),u}}),t),o=e(r);const a=document.body,i=(...e)=>history.replaceState(...e),s="",c="presenter",l="next",d=["",c,l],u="bespoke-marp-",f=`data-${u}`,m=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},g=()=>a.dataset.bespokeView,p=e=>new URLSearchParams(location.search).get(e),v=(e,t={})=>{const n={location,setter:i,...t},r=new URLSearchParams(n.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?r.set(t,n):r.delete(t)}try{n.setter({...window.history.state??{}},"",m(r,n.location))}catch(e){console.error(e)}},h=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch{return!1}})(),y=e=>{try{return localStorage.getItem(e)}catch{return null}},b=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch{return!1}},w=e=>{try{return localStorage.removeItem(e),!0}catch{return!1}},x=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},k=e=>{e.parent.classList.add(`${u}parent`),e.slides.forEach(e=>e.classList.add(`${u}slide`)),e.on("activate",t=>{const n=`${u}active`,r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach(e=>{e.classList.remove(n),x(e,!0)}),o.add(n),x(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}})},$=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=o;e.setAttribute(`${f}fragment`,(a?"":"in")+"active");const i=`${f}current-fragment`;t===r&&n===o?e.setAttribute(i,"current"):e.removeAttribute(i)})}),e.fragmentIndex=o;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",a)};e.on("next",({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}}),e.on("prev",({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)}),o(0,0)},E=document,L=()=>!(!E.fullscreenEnabled&&!E.webkitFullscreenEnabled),S=()=>!(!E.fullscreenElement&&!E.webkitFullscreenElement),P=e=>{e.fullscreen=()=>{L()&&(async()=>{S()?(E.exitFullscreen||E.webkitExitFullscreen)?.call(E):((e=E.body)=>{(e.requestFullscreen||e.webkitRequestFullscreen)?.call(e)})()})()},document.addEventListener("keydown",t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!L()||(e.fullscreen(),t.preventDefault())})},_=`${u}inactive`,T=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout(()=>{r.add(_),o()},e),r.contains(_)&&(r.remove(_),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},I=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],M=e=>{e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(I.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})},O=e=>{window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("marp-auto-scaling, [data-auto-scaling], [data-marp-fitting]");t.setAttribute(`${f}load`,e?"":"hideable")}})},A=({interval:e=250}={})=>t=>{document.addEventListener("keydown",e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()});let n,r,o=0;t.parent.addEventListener("wheel",a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),e?.parentElement&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const c=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<12)return;r&&clearTimeout(r),r=setTimeout(()=>{n=0},e);const l=Date.now()-o<e,d=c<=n;if(n=c,l||d)return;let u;(a.deltaX>0||a.deltaY>0)&&(u="next"),(a.deltaX<0||a.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())})},C=(e=`.${u}osc`)=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${f}osc=${JSON.stringify(e)}]`).forEach(n)};return L()||n("fullscreen",e=>e.style.display="none"),h||n("presenter",e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."}),e=>{t.addEventListener("click",t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?e?.fullscreen():"presenter"===n&&e.openPresenterView()}}),e.parent.appendChild(t),e.on("activate",({index:t})=>{n("page",n=>n.textContent=`Page ${t+1} of ${e.slides.length}`)}),e.on("fragment",({index:t,fragments:r,fragmentIndex:o})=>{n("prev",e=>e.disabled=0===t&&0===o),n("next",n=>n.disabled=t===e.slides.length-1&&o===r.length-1)}),e.on("marp-active",()=>x(t,!1)),e.on("marp-inactive",()=>x(t,!0)),L()&&(e=>{for(const t of["","webkit"])E.addEventListener(t+"fullscreenchange",e)})(()=>n("fullscreen",e=>e.classList.toggle("exit",L()&&S())))}},D=e=>{window.addEventListener("message",t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}})};var N,B,q,K,F,j,V,U={exports:{}},X=(N||(N=1,U.exports=(B=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"],q=function(e){return String(e).replace(/[&<>"']/g,function(e){return"&"+K[e]+";"})},K={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},F="dangerouslySetInnerHTML",j={className:"class",htmlFor:"for"},V={},function(e,t){var n=[],r="";t=t||{};for(var o=arguments.length;o-- >2;)n.push(arguments[o]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(var a in t)!1!==t[a]&&null!=t[a]&&a!==F&&(r+=" "+(j[a]?j[a]:q(a))+'="'+q(t[a])+'"');r+=">"}if(-1===B.indexOf(e)){if(t[F])r+=t[F].__html;else for(;n.length;){var i=n.pop();if(i)if(i.pop)for(var s=i.length;s--;)n.push(i[s]);else r+=!0===V[i]?i:q(i)}r+=e?"</"+e+">":""}return V[r]=!0,r})),U.exports),H=e(X);const R=({children:e})=>H(null,null,...e),W=`${u}presenter-`,J={container:`${W}container`,dragbar:`${W}dragbar-container`,next:`${W}next`,nextContainer:`${W}next-container`,noteContainer:`${W}note-container`,noteWrapper:`${W}note-wrapper`,noteButtons:`${W}note-buttons`,infoContainer:`${W}info-container`,infoPage:`${W}info-page`,infoPageText:`${W}info-page-text`,infoPagePrev:`${W}info-page-prev`,infoPageNext:`${W}info-page-next`,noteButtonsBigger:`${W}note-bigger`,noteButtonsSmaller:`${W}note-smaller`,infoTime:`${W}info-time`,infoTimer:`${W}info-timer`},Y=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=J.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",H(R,null,H("div",{class:J.nextContainer},H("iframe",{class:J.next,src:"?view=next"})),H("div",{class:J.dragbar}),H("div",{class:J.noteContainer},H("div",{class:J.noteWrapper}),H("div",{class:J.noteButtons},H("button",{class:J.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),H("button",{class:J.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),H("div",{class:J.infoContainer},H("div",{class:J.infoPage},H("button",{class:J.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),H("span",{class:J.infoPageText}),H("button",{class:J.infoPageNext,tabindex:"-1",title:"Next"},"Next")),H("time",{class:J.infoTime,title:"Current time"}),H("time",{class:J.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(J.dragbar).addEventListener("mousedown",()=>{t=!0,r(J.dragbar).classList.add("active")}),window.addEventListener("mouseup",()=>{t=!1,r(J.dragbar).classList.remove("active")}),window.addEventListener("mousemove",e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(J.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)}),r(J.nextContainer).addEventListener("click",()=>e.next());const n=r(J.next),o=(a=n,(e,t)=>a.contentWindow?.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin));var a;n.addEventListener("load",()=>{r(J.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",({index:e,fragmentIndex:t})=>o(e,t))});const i=document.querySelectorAll(".bespoke-marp-note");i.forEach(e=>{e.addEventListener("keydown",e=>e.stopPropagation()),r(J.noteWrapper).appendChild(e)}),e.on("activate",()=>i.forEach(t=>t.classList.toggle("active",t.dataset.index==e.slide())));let s=0;const c=e=>{s=Math.max(-5,s+e),r(J.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},l=()=>c(1),d=()=>c(-1),u=r(J.noteButtonsBigger),f=r(J.noteButtonsSmaller);u.addEventListener("click",()=>{u.blur(),l()}),f.addEventListener("click",()=>{f.blur(),d()}),document.addEventListener("keydown",e=>{"+"===e.key&&l(),"-"===e.key&&d()},!0),e.on("activate",({index:t})=>{r(J.infoPageText).textContent=`${t+1} / ${e.slides.length}`});const m=r(J.infoPagePrev),g=r(J.infoPageNext);m.addEventListener("click",t=>{m.blur(),e.prev({fragment:!t.shiftKey})}),g.addEventListener("click",t=>{g.blur(),e.next({fragment:!t.shiftKey})}),e.on("fragment",({index:t,fragments:n,fragmentIndex:r})=>{m.disabled=0===t&&0===r,g.disabled=t===e.slides.length-1&&r===n.length-1});let p=new Date;const v=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-p.getTime(),o=t(n/1e3%60),a=t(n/1e3/60%60),i=t(n/36e5%24);r(J.infoTime).textContent=e.toLocaleTimeString(),r(J.infoTimer).textContent=`${i}:${a}:${o}`};v(),setInterval(v,250),r(J.infoTimer).addEventListener("click",()=>{p=new Date})})(e)},z=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:G},presenterUrl:{enumerable:!0,get:Q}}),h&&document.addEventListener("keydown",t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())})};function G(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,W+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function Q(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),m(e)}const Z=e=>{const t=g();return t===l&&e.appendChild(document.createElement("span")),{[s]:z,[c]:Y,[l]:D}[t]},ee=e=>{e.on("activate",t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach(n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"})})},te=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},ne=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{let n=t.fragment?te(p("f")||""):null;((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),c=o(0,r(n||0,a[s].length-1));s===e.slide()&&c===e.fragmentIndex||e.slide(s,{fragment:c})})((()=>{if(location.hash){const[t]=location.hash.slice(1).split(":~:");if(/^\d+$/.test(t))return(te(t)??1)-1;const r=document.getElementById(t)||document.querySelector(`a[name="${CSS.escape(t)}"]`);if(r){const{length:t}=e.slides;for(let o=0;o<t;o+=1)if(e.slides[o].contains(r)){const t=e.fragments?.[o],a=r.closest("[data-marpit-fragment]");if(t&&a){const e=t.indexOf(a);e>=0&&(n=e)}return o}}}return 0})(),n)};e.on("fragment",({index:e,fragmentIndex:r})=>{n||v({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})}),setTimeout(()=>{o(),window.addEventListener("hashchange",()=>r(()=>{o({fragment:!1}),v({f:void 0})})),window.addEventListener("popstate",()=>{n||r(()=>o())}),n=!1},0)}},re=(e={})=>{const t=e.key||window.history.state?.marpBespokeSyncKey||Math.random().toString(36).slice(2),n=`bespoke-marp-sync-${t}`;var r;r={marpBespokeSyncKey:t},v({},{setter:(e,...t)=>i({...e,...r},...t)});const o=()=>{const e=y(n);return e?JSON.parse(e):Object.create(null)},a=e=>{const t=o(),r={...t,...e(t)};return b(n,JSON.stringify(r)),r},s=()=>{window.removeEventListener("pageshow",s),a(e=>({reference:(e.reference||0)+1}))};return e=>{s(),Object.defineProperty(e,"syncKey",{value:t,enumerable:!0});let r=!0;setTimeout(()=>{e.on("fragment",e=>{r&&a(()=>({index:e.index,fragmentIndex:e.fragmentIndex}))})},0),window.addEventListener("storage",t=>{if(t.key===n&&t.oldValue&&t.newValue){const n=JSON.parse(t.oldValue),o=JSON.parse(t.newValue);if(n.index!==o.index||n.fragmentIndex!==o.fragmentIndex)try{r=!1,e.slide(o.index,{fragment:o.fragmentIndex,forSync:!0})}finally{r=!0}}});const i=()=>{const{reference:e}=o();void 0===e||e<=1?w(n):a(()=>({reference:e-1}))};window.addEventListener("pagehide",e=>{e.persisted&&window.addEventListener("pageshow",s),i()}),e.on("destroy",i)}},{PI:oe,abs:ae,sqrt:ie,atan2:se}=Math,ce={passive:!0},le=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",({touches:e})=>{r=1===e.length?a(e[0]):void 0},ce),o.addEventListener("touchmove",e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=ie(ae(n)**2+ae(o)**2),r.radian=se(n,o)}else r=void 0}),o.addEventListener("touchend",o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+oe)%(2*oe)-oe;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}},ce)},de=new Map;de.clear(),de.set("none",{backward:{both:void 0,incoming:void 0,outgoing:void 0},forward:{both:void 0,incoming:void 0,outgoing:void 0}});const ue={both:"",outgoing:"outgoing-",incoming:"incoming-"},fe={forward:"",backward:"-backward"},me=e=>`--marp-bespoke-transition-animation-${e}`,ge=e=>`--marp-transition-${e}`,pe=me("name"),ve=me("duration"),he=e=>new Promise(t=>{const n={},r=document.createElement("div"),o=e=>{r.remove(),t(e)};r.addEventListener("animationstart",()=>o(n)),Object.assign(r.style,{animationName:e,animationDuration:"1s",animationFillMode:"both",animationPlayState:"paused",position:"absolute",pointerEvents:"none"}),document.body.appendChild(r);const a=getComputedStyle(r).getPropertyValue(ge("duration"));a&&Number.parseFloat(a)>=0&&(n.defaultDuration=a),((e,t)=>{requestAnimationFrame(()=>{e.style.animationPlayState="running",requestAnimationFrame(()=>t(void 0))})})(r,o)}),ye=async e=>de.has(e)?de.get(e):(e=>{const t={},n=[];for(const[r,o]of Object.entries(ue))for(const[a,i]of Object.entries(fe)){const s=`marp-${o}transition${i}-${e}`;n.push(he(s).then(e=>{t[a]=t[a]||{},t[a][r]=e?{...e,name:s}:void 0}))}return Promise.all(n).then(()=>t)})(e).then(t=>(de.set(e,t),t)),be=e=>Object.values(e).flatMap(Object.values).every(e=>!e),we=(e,{type:t,backward:n})=>{const r=e[n?"backward":"forward"],o=(()=>{const e=r[t],n=e=>({[pe]:e.name});if(e)return n(e);if(r.both){const e=n(r.both);return"incoming"===t&&(e[me("direction")]="reverse"),e}})();return!o&&n?we(e,{type:t,backward:!1}):o||{[pe]:"__bespoke_marp_transition_no_animation__"}},xe=e=>{if(e)try{const t=JSON.parse(e);if((e=>{if("object"!=typeof e)return!1;const t=e;return"string"==typeof t.name&&(void 0===t.duration||"string"==typeof t.duration)})(t))return t}catch{}},ke="_tSId",$e="_tA",Ee="bespoke-marp-transition-warming-up",Le=window.matchMedia("(prefers-reduced-motion: reduce)"),Se="__bespoke_marp_transition_reduced_outgoing__",Pe="__bespoke_marp_transition_reduced_incoming__",_e={forward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}},backward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}}},Te=e=>{if(!document.startViewTransition)return;const t=t=>(void 0!==t&&(e._tD=t),e._tD);let n;t(!1),((...e)=>{CSS.registerProperty({name:ge("duration"),syntax:"<time>",inherits:!0,initialValue:"-1s"});const t=[...new Set(e).values()];return Promise.all(t.map(e=>ye(e))).then()})(...Array.from(document.querySelectorAll("section[data-transition], section[data-transition-back]")).flatMap(e=>[e.dataset.transition,e.dataset.transitionBack].flatMap(e=>{const t=xe(e);return[t?.name,t?.builtinFallback?`__builtin__${t.name}`:void 0]}).filter(e=>!!e))).then(()=>{document.querySelectorAll("style").forEach(e=>{e.innerHTML=e.innerHTML.replace(/--marp-transition-duration:[^;}]*[;}]/g,e=>e.slice(0,-1)+"!important"+e.slice(-1))})});const r=(n,{back:r,cond:o})=>a=>{const i=t();if(i)return!!a[$e]||!("object"!=typeof i||(i.skipTransition(),!a.forSync));if(!o(a))return!0;const s=e.slides[e.slide()],c=()=>a.back??r,l="data-transition"+(c()?"-back":""),d=s.querySelector(`section[${l}]`);if(!d)return!0;const u=xe(d.getAttribute(l)??void 0);return!u||((async(e,{builtinFallback:t=!0}={})=>{let n=await ye(e);if(be(n)){if(!t)return;return n=await ye(`__builtin__${e}`),be(n)?void 0:n}return n})(u.name,{builtinFallback:u.builtinFallback}).then(e=>{if(!e){t(!0);try{n(a)}finally{t(!1)}return}let r=e;Le.matches&&(console.warn("Use a constant animation to transition because preferring reduced motion by viewer has detected."),r=_e);const o=document.getElementById(ke);o&&o.remove();const i=document.createElement("style");i.id=ke,document.head.appendChild(i),((e,t)=>{const n=[`:root{${ge("direction")}:${t.backward?-1:1};}`,":root:has(.bespoke-marp-inactive){cursor:none;}"],r=t=>{const n=e[t].both?.defaultDuration||e[t].outgoing?.defaultDuration||e[t].incoming?.defaultDuration;return"forward"===t?n:n||r("forward")},o=t.duration||r(t.backward?"backward":"forward");void 0!==o&&n.push(`::view-transition-group(*){${ve}:${o};}`);const a=e=>Object.entries(e).map(([e,t])=>`${e}:${t};`).join("");return n.push(`::view-transition-old(root){${a(we(e,{...t,type:"outgoing"}))}}`,`::view-transition-new(root){${a(we(e,{...t,type:"incoming"}))}}`),n})(r,{backward:c(),duration:u.duration}).forEach(e=>i.sheet?.insertRule(e));const s=document.documentElement.classList;s.add(Ee);let l=!1;const d=()=>{l||(n(a),l=!0,s.remove(Ee))},f=()=>{t(!1),i.remove(),s.remove(Ee)};try{t(!0);const e=document.startViewTransition(d);t(e),e.finished.finally(f)}catch(e){console.error(e),d(),f()}}),!1)};e.on("prev",r(t=>e.prev({...t,[$e]:!0}),{back:!0,cond:e=>e.index>0&&!((e.fragment??1)&&n.fragmentIndex>0)})),e.on("next",r(t=>e.next({...t,[$e]:!0}),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout(()=>{e.on("slide",r(t=>e.slide(t.index,{...t,[$e]:!0}),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))},0),e.on("fragment",e=>{n=e})};let Ie;const Me=()=>(void 0===Ie&&(Ie="wakeLock"in navigator&&navigator.wakeLock),Ie),Oe=async()=>{const e=Me();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},Ae=async()=>{if(!Me())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&Oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await Oe(),e};((e=document.getElementById(":$p"))=>{(()=>{const e=p("view");a.dataset.bespokeView=e===l||e===c?e:""})();const t=(e=>{const t=p(e);return v({[e]:void 0}),t})("sync")||void 0;o.from(e,((...e)=>{const t=d.findIndex(e=>g()===e);return e.map(([e,n])=>e[t]&&n).filter(e=>e)})([[1,1,0],re({key:t})],[[1,1,1],Z(e)],[[1,1,0],M],[[1,1,1],k],[[1,0,0],T()],[[1,1,1],O],[[1,1,1],ne({history:!1})],[[1,1,0],A()],[[1,1,0],P],[[1,0,0],ee],[[1,1,0],le()],[[1,0,0],C()],[[1,0,0],Te],[[1,1,1],$],[[1,1,0],Ae]))})()}();</script></body></html>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="380" fill="#1a1a2e" rx="16"/>
+
+  <!-- Left panel: Quantum World -->
+  <rect x="20" y="20" width="320" height="340" fill="#162447" rx="12" style="filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.5))"/>
+  <text x="180" y="55" font-family="monospace" font-size="16" fill="#7ec8e3" text-anchor="middle" font-weight="bold">量子の世界</text>
+
+  <!-- Schrodinger box -->
+  <rect x="60" y="80" width="240" height="130" fill="#0f3460" rx="8" stroke="#7ec8e3" stroke-width="2"/>
+  <text x="180" y="105" font-family="monospace" font-size="13" fill="#e0e0e0" text-anchor="middle">シュレーディンガーの箱</text>
+
+  <!-- Cat alive/dead symbols -->
+  <text x="120" y="155" font-family="monospace" font-size="28" fill="#4ade80" text-anchor="middle">🐱</text>
+  <text x="180" y="165" font-family="monospace" font-size="22" fill="#7ec8e3" text-anchor="middle">+</text>
+  <text x="240" y="155" font-family="monospace" font-size="28" fill="#f87171" text-anchor="middle">💀</text>
+  <text x="180" y="195" font-family="monospace" font-size="11" fill="#a0aec0" text-anchor="middle">同時に「生きている」かつ「死んでいる」</text>
+
+  <!-- Quantum states -->
+  <text x="180" y="240" font-family="monospace" font-size="18" fill="#c084fc" text-anchor="middle">|ψ⟩ = |0⟩ + |1⟩</text>
+  <text x="180" y="270" font-family="monospace" font-size="12" fill="#94a3b8" text-anchor="middle">観測前は重ね合わせ状態</text>
+
+  <!-- Wave lines -->
+  <path d="M60 310 Q90 295 120 310 Q150 325 180 310 Q210 295 240 310 Q270 325 300 310" fill="none" stroke="#7ec8e3" stroke-width="2"/>
+  <path d="M60 330 Q90 315 120 330 Q150 345 180 330 Q210 315 240 330 Q270 345 300 330" fill="none" stroke="#c084fc" stroke-width="2" stroke-dasharray="6,3"/>
+
+  <!-- Center equals sign -->
+  <text x="400" y="200" font-family="monospace" font-size="40" fill="#fbbf24" text-anchor="middle" font-weight="bold">≈</text>
+  <text x="400" y="230" font-family="monospace" font-size="11" fill="#94a3b8" text-anchor="middle">同じ構造</text>
+
+  <!-- Right panel: DevOps World -->
+  <rect x="460" y="20" width="320" height="340" fill="#1a3d1a" rx="12" style="filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.5))"/>
+  <text x="620" y="55" font-family="monospace" font-size="16" fill="#4ade80" text-anchor="middle" font-weight="bold">DevOpsの世界</text>
+
+  <!-- Code box -->
+  <rect x="500" y="80" width="240" height="130" fill="#14291a" rx="8" stroke="#4ade80" stroke-width="2"/>
+  <text x="620" y="105" font-family="monospace" font-size="13" fill="#e0e0e0" text-anchor="middle">デプロイ前のコード</text>
+
+  <!-- Deploy states -->
+  <text x="560" y="155" font-family="monospace" font-size="20" fill="#4ade80" text-anchor="middle">✅</text>
+  <text x="620" y="165" font-family="monospace" font-size="22" fill="#4ade80" text-anchor="middle">+</text>
+  <text x="680" y="155" font-family="monospace" font-size="20" fill="#f87171" text-anchor="middle">💥</text>
+  <text x="620" y="195" font-family="monospace" font-size="11" fill="#a0aec0" text-anchor="middle">同時に「動く」かつ「壊れる」</text>
+
+  <!-- Server state -->
+  <text x="620" y="240" font-family="monospace" font-size="15" fill="#86efac" text-anchor="middle">本番 = Unknown State</text>
+  <text x="620" y="265" font-family="monospace" font-size="12" fill="#94a3b8" text-anchor="middle">デプロイするまでわからない</text>
+
+  <!-- Deploy arrow -->
+  <rect x="510" y="285" width="220" height="40" fill="#166534" rx="6"/>
+  <text x="620" y="310" font-family="monospace" font-size="13" fill="#4ade80" text-anchor="middle">$ git push → 運命の観測</text>
+</svg>

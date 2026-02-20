@@ -1,0 +1,68 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="10"/>
+  <text x="450" y="35" text-anchor="middle" fill="#e94560" font-size="20" font-family="sans-serif" font-weight="bold">Shorのアルゴリズム：RSA暗号の天敵</text>
+  <!-- RSA box -->
+  <rect x="50" y="60" width="350" height="120" fill="#16213e" rx="10" stroke="#00d2d3" stroke-width="1.5" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="225" y="90" text-anchor="middle" fill="#00d2d3" font-size="16" font-family="sans-serif" font-weight="bold">RSA暗号の安全性</text>
+  <text x="225" y="118" text-anchor="middle" fill="#ccc" font-size="13" font-family="sans-serif">「巨大な数の素因数分解は</text>
+  <text x="225" y="140" text-anchor="middle" fill="#ccc" font-size="13" font-family="sans-serif">古典コンピュータでは不可能」</text>
+  <text x="225" y="168" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">RSA-2048: 古典計算で約10^18年</text>
+  <!-- Shor box -->
+  <rect x="500" y="60" width="350" height="120" fill="#16213e" rx="10" stroke="#e94560" stroke-width="1.5" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="675" y="90" text-anchor="middle" fill="#e94560" font-size="16" font-family="sans-serif" font-weight="bold">Shorのアルゴリズム</text>
+  <text x="675" y="118" text-anchor="middle" fill="#ccc" font-size="13" font-family="sans-serif">「量子コンピュータなら</text>
+  <text x="675" y="140" text-anchor="middle" fill="#ccc" font-size="13" font-family="sans-serif">素因数分解が多項式時間」</text>
+  <text x="675" y="168" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">RSA-2048: 量子計算で約8時間（理論値）</text>
+  <!-- Arrow breaking RSA -->
+  <line x1="400" y1="120" x2="500" y2="120" stroke="#e94560" stroke-width="3"/>
+  <polygon points="490,112 510,120 490,128" fill="#e94560"/>
+  <!-- Process flow -->
+  <text x="450" y="220" text-anchor="middle" fill="#fff" font-size="16" font-family="sans-serif" font-weight="bold">Shorアルゴリズムの仕組み</text>
+  <!-- Step 1 -->
+  <rect x="50" y="245" width="180" height="80" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="140" y="272" text-anchor="middle" fill="#feca57" font-size="13" font-family="sans-serif" font-weight="bold">Step 1</text>
+  <text x="140" y="295" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">ランダムな数 a を選択</text>
+  <text x="140" y="313" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">gcd(a, N) = 1 を確認</text>
+  <!-- Arrow -->
+  <line x1="230" y1="285" x2="270" y2="285" stroke="#555" stroke-width="2"/>
+  <polygon points="270,280 280,285 270,290" fill="#555"/>
+  <!-- Step 2 -->
+  <rect x="280" y="245" width="180" height="80" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="370" y="272" text-anchor="middle" fill="#feca57" font-size="13" font-family="sans-serif" font-weight="bold">Step 2</text>
+  <text x="370" y="295" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">量子フーリエ変換で</text>
+  <text x="370" y="313" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">a^x mod N の周期 r を発見</text>
+  <!-- Arrow -->
+  <line x1="460" y1="285" x2="500" y2="285" stroke="#555" stroke-width="2"/>
+  <polygon points="500,280 510,285 500,290" fill="#555"/>
+  <!-- Step 3 -->
+  <rect x="510" y="245" width="180" height="80" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="600" y="272" text-anchor="middle" fill="#feca57" font-size="13" font-family="sans-serif" font-weight="bold">Step 3</text>
+  <text x="600" y="295" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">周期 r から因数を計算</text>
+  <text x="600" y="313" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">gcd(a^(r/2) ± 1, N)</text>
+  <!-- Arrow -->
+  <line x1="690" y1="285" x2="730" y2="285" stroke="#555" stroke-width="2"/>
+  <polygon points="730,280 740,285 730,290" fill="#555"/>
+  <!-- Step 4 -->
+  <rect x="740" y="245" width="120" height="80" fill="rgba(233,69,96,0.2)" rx="10" stroke="#e94560" stroke-width="2"/>
+  <text x="800" y="272" text-anchor="middle" fill="#e94560" font-size="13" font-family="sans-serif" font-weight="bold">解読!</text>
+  <text x="800" y="295" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">秘密鍵を</text>
+  <text x="800" y="313" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">取得</text>
+  <!-- Quantum advantage highlight -->
+  <rect x="270" y="340" width="200" height="35" fill="rgba(0,210,211,0.15)" rx="5" stroke="#00d2d3" stroke-width="1"/>
+  <text x="370" y="363" text-anchor="middle" fill="#00d2d3" font-size="12" font-family="sans-serif" font-weight="bold">量子の超並列性を活用</text>
+  <line x1="370" y1="340" x2="370" y2="325" stroke="#00d2d3" stroke-width="1" stroke-dasharray="3,3"/>
+  <!-- Impact table -->
+  <text x="450" y="405" text-anchor="middle" fill="#fff" font-size="15" font-family="sans-serif" font-weight="bold">破壊される暗号方式</text>
+  <rect x="80" y="420" width="180" height="50" fill="rgba(233,69,96,0.15)" rx="8" stroke="#e94560" stroke-width="1"/>
+  <text x="170" y="440" text-anchor="middle" fill="#e94560" font-size="13" font-family="sans-serif" font-weight="bold">RSA</text>
+  <text x="170" y="460" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">素因数分解問題</text>
+  <rect x="280" y="420" width="180" height="50" fill="rgba(233,69,96,0.15)" rx="8" stroke="#e94560" stroke-width="1"/>
+  <text x="370" y="440" text-anchor="middle" fill="#e94560" font-size="13" font-family="sans-serif" font-weight="bold">ECDSA / ECDH</text>
+  <text x="370" y="460" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">楕円曲線離散対数問題</text>
+  <rect x="480" y="420" width="180" height="50" fill="rgba(233,69,96,0.15)" rx="8" stroke="#e94560" stroke-width="1"/>
+  <text x="570" y="440" text-anchor="middle" fill="#e94560" font-size="13" font-family="sans-serif" font-weight="bold">Diffie-Hellman</text>
+  <text x="570" y="460" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">離散対数問題</text>
+  <rect x="680" y="420" width="180" height="50" fill="rgba(0,210,211,0.15)" rx="8" stroke="#00d2d3" stroke-width="1"/>
+  <text x="770" y="440" text-anchor="middle" fill="#00d2d3" font-size="13" font-family="sans-serif" font-weight="bold">AES-256</text>
+  <text x="770" y="460" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">安全（Groverで半減のみ）</text>
+</svg>

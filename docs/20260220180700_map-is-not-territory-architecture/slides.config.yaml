@@ -1,0 +1,13 @@
+topic: "地図は現実ではない：アーキテクチャ図という必要な嘘"
+language: "ja"
+output:
+  dir: "docs/20260220180700_map-is-not-territory-architecture"
+  baseName: "map-is-not-territory-architecture"
+marp:
+  theme: gaia
+  paginate: true
+  header: "地図は現実ではない"
+  footer: "© 2026"
+  style: |
+    section { font-size: 1.05em; }
+    section pre code { font-size: 0.58em; line-height: 1.4; }

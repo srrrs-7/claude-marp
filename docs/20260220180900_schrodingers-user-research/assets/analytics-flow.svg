@@ -1,0 +1,66 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#0f172a" rx="12"/>
+  <text x="400" y="30" text-anchor="middle" fill="#e2e8f0" font-size="17" font-family="sans-serif" font-weight="bold">プロダクトアナリティクス：「弱い観測」のフロー</text>
+
+  <!-- User action -->
+  <rect x="30" y="70" width="130" height="70" rx="8" fill="#1e293b" stroke="#6c63ff" stroke-width="2"/>
+  <text x="95" y="100" text-anchor="middle" fill="#e2e8f0" font-size="12" font-family="sans-serif" font-weight="bold">ユーザー行動</text>
+  <text x="95" y="118" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">（自然状態）</text>
+
+  <!-- Arrow 1 -->
+  <line x1="160" y1="105" x2="196" y2="105" stroke="#22d3ee" stroke-width="2"/>
+  <polygon points="210,105 194,97 194,113" fill="#22d3ee"/>
+
+  <!-- Event tracking -->
+  <rect x="210" y="70" width="130" height="70" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+  <text x="275" y="100" text-anchor="middle" fill="#22d3ee" font-size="12" font-family="sans-serif" font-weight="bold">イベント</text>
+  <text x="275" y="118" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">自動ログ収集</text>
+
+  <!-- Arrow 2 -->
+  <line x1="340" y1="105" x2="376" y2="105" stroke="#22d3ee" stroke-width="2"/>
+  <polygon points="390,105 374,97 374,113" fill="#22d3ee"/>
+
+  <!-- Data pipeline -->
+  <rect x="390" y="70" width="130" height="70" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+  <text x="455" y="100" text-anchor="middle" fill="#22d3ee" font-size="12" font-family="sans-serif" font-weight="bold">データパイプライン</text>
+  <text x="455" y="118" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">集計・変換</text>
+
+  <!-- Arrow 3 -->
+  <line x1="520" y1="105" x2="556" y2="105" stroke="#22d3ee" stroke-width="2"/>
+  <polygon points="570,105 554,97 554,113" fill="#22d3ee"/>
+
+  <!-- Dashboard -->
+  <rect x="570" y="70" width="200" height="70" rx="8" fill="#1e293b" stroke="#4ade80" stroke-width="2"/>
+  <text x="670" y="100" text-anchor="middle" fill="#4ade80" font-size="12" font-family="sans-serif" font-weight="bold">ダッシュボード</text>
+  <text x="670" y="118" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">可視化・分析</text>
+
+  <!-- Metrics below -->
+  <text x="400" y="175" text-anchor="middle" fill="#fbbf24" font-size="13" font-family="sans-serif" font-weight="bold">主要計測指標（ユーザーは気づかずに「観測」されている）</text>
+
+  <!-- Metric cards -->
+  <rect x="30" y="195" width="160" height="80" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="110" y="220" text-anchor="middle" fill="#22d3ee" font-size="22" font-family="sans-serif" font-weight="bold">DAU/MAU</text>
+  <text x="110" y="242" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">アクティブ率</text>
+  <text x="110" y="262" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">「使っている」の実態</text>
+
+  <rect x="210" y="195" width="160" height="80" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="290" y="220" text-anchor="middle" fill="#4ade80" font-size="22" font-family="sans-serif" font-weight="bold">Retention</text>
+  <text x="290" y="242" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">継続率</text>
+  <text x="290" y="262" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">「戻ってくる」の実態</text>
+
+  <rect x="390" y="195" width="160" height="80" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="470" y="220" text-anchor="middle" fill="#a78bfa" font-size="22" font-family="sans-serif" font-weight="bold">Funnel</text>
+  <text x="470" y="242" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">転換率</text>
+  <text x="470" y="262" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">「どこで離脱」の実態</text>
+
+  <rect x="570" y="195" width="200" height="80" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="670" y="220" text-anchor="middle" fill="#fb923c" font-size="18" font-family="sans-serif" font-weight="bold">Session Recording</text>
+  <text x="670" y="242" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">操作録画</text>
+  <text x="670" y="262" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">「実際の動作」の実態</text>
+
+  <!-- Key insight -->
+  <rect x="30" y="298" width="740" height="82" rx="8" fill="#1e1b4b" stroke="#6c63ff" stroke-width="2"/>
+  <text x="400" y="322" text-anchor="middle" fill="#c4b5fd" font-size="13" font-family="sans-serif" font-weight="bold">「弱い観測」の量子的利点</text>
+  <text x="400" y="344" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">ユーザーはログが収集されていることを意識しない</text>
+  <text x="400" y="364" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">→ ホーソン効果が最小限 → 「自然状態」の行動に最も近い</text>
+</svg>

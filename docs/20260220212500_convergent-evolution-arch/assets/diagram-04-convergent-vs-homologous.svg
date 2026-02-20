@@ -1,0 +1,78 @@
+<svg viewBox="0 0 900 430" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="430" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#e0e0e0">収束進化 vs 相同構造 — アーキテクチャの系統学</text>
+
+  <!-- Left: Convergent (different origin, same result) -->
+  <rect x="30" y="65" width="400" height="310" rx="10" fill="#14532d" opacity="0.4" stroke="#4ade80" stroke-width="2"/>
+  <text x="230" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#4ade80">収束進化 (Convergent)</text>
+  <text x="230" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#86efac">異なる起源 → 同じ解</text>
+
+  <!-- Biology example -->
+  <rect x="50" y="135" width="170" height="70" rx="6" fill="#1e3a5f" opacity="0.6"/>
+  <text x="135" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">鳥の翼</text>
+  <text x="135" y="175" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">恐竜から進化</text>
+  <text x="135" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="18">🐦</text>
+
+  <rect x="240" y="135" width="170" height="70" rx="6" fill="#581c87" opacity="0.6"/>
+  <text x="325" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#a78bfa">コウモリの翼</text>
+  <text x="325" y="175" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">哺乳類から進化</text>
+  <text x="325" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="18">🦇</text>
+
+  <text x="230" y="225" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#4ade80">= 独立に「飛行」を獲得</text>
+
+  <!-- Software example -->
+  <rect x="50" y="240" width="170" height="60" rx="6" fill="#713f12" opacity="0.5"/>
+  <text x="135" y="263" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">React Hooks</text>
+  <text x="135" y="280" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">Class → Function + Hook</text>
+  <text x="135" y="293" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">useState, useEffect</text>
+
+  <rect x="240" y="240" width="170" height="60" rx="6" fill="#713f12" opacity="0.5"/>
+  <text x="325" y="263" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">Vue Composition API</text>
+  <text x="325" y="280" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">Options → Composition</text>
+  <text x="325" y="293" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">ref(), computed()</text>
+
+  <text x="230" y="325" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#4ade80">= 独立に「関数型リアクティビティ」を獲得</text>
+
+  <rect x="70" y="340" width="320" height="25" rx="4" fill="rgba(74,222,128,0.2)"/>
+  <text x="230" y="357" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#4ade80">内部構造は異なるが同じ機能を実現</text>
+
+  <!-- Right: Homologous (same origin, different result) -->
+  <rect x="470" y="65" width="400" height="310" rx="10" fill="#1e3a5f" opacity="0.4" stroke="#3b82f6" stroke-width="2"/>
+  <text x="670" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#60a5fa">相同構造 (Homologous)</text>
+  <text x="670" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#93c5fd">同じ起源 → 異なる結果</text>
+
+  <!-- Biology example -->
+  <rect x="490" y="135" width="170" height="70" rx="6" fill="#14532d" opacity="0.5"/>
+  <text x="575" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4ade80">人間の腕</text>
+  <text x="575" y="175" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">物を掴む</text>
+  <text x="575" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="18">🦴</text>
+
+  <rect x="680" y="135" width="170" height="70" rx="6" fill="#7f1d1d" opacity="0.5"/>
+  <text x="765" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#f87171">クジラのヒレ</text>
+  <text x="765" y="175" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">泳ぐ</text>
+  <text x="765" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="18">🐋</text>
+
+  <text x="670" y="225" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#60a5fa">= 同じ骨格構造が異なる機能に分化</text>
+
+  <!-- Software example -->
+  <rect x="490" y="240" width="170" height="60" rx="6" fill="#713f12" opacity="0.5"/>
+  <text x="575" y="263" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">Express.js</text>
+  <text x="575" y="280" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">Web API サーバー</text>
+  <text x="575" y="293" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">Node.js ミドルウェア</text>
+
+  <rect x="680" y="240" width="170" height="60" rx="6" fill="#713f12" opacity="0.5"/>
+  <text x="765" y="263" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">Electron</text>
+  <text x="765" y="280" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">デスクトップアプリ</text>
+  <text x="765" y="293" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">同じ Node.js 基盤</text>
+
+  <text x="670" y="325" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#60a5fa">= 同じ Node.js が異なるドメインに適用</text>
+
+  <rect x="510" y="340" width="320" height="25" rx="4" fill="rgba(59,130,246,0.2)"/>
+  <text x="670" y="357" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#60a5fa">同じ基盤技術が異なる目的に進化</text>
+
+  <!-- Bottom insight -->
+  <text x="450" y="405" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#fbbf24">収束進化 = 問題が解を決める / 相同構造 = 起源が可能性を決める</text>
+  <text x="450" y="425" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#aaa">アーキテクチャ選定で重要: 問題空間の分析 &gt; 既存資産の活用</text>
+</svg>

@@ -1,0 +1,12 @@
+topic: "グレシャムの法則とコードベース — 悪いコードが良いコードを駆逐する"
+language: "ja"
+output:
+  dir: "docs/20260220180006_greshams-law-codebase"
+  baseName: "greshams-law-codebase"
+marp:
+  theme: gaia
+  paginate: true
+  header: "グレシャムの法則とコード"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

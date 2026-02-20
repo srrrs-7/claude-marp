@@ -1,0 +1,49 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">エイブラハム・ウォルドの洞察 (1943)</text>
+
+  <!-- Aircraft silhouette -->
+  <ellipse cx="450" cy="260" rx="250" ry="50" fill="#2d3436" stroke="#636e72" stroke-width="2"/>
+  <!-- Wings -->
+  <rect x="350" y="210" width="200" height="20" fill="#2d3436" stroke="#636e72" stroke-width="2" rx="3"/>
+  <!-- Tail -->
+  <rect x="670" y="230" width="20" height="60" fill="#2d3436" stroke="#636e72" stroke-width="2" rx="3"/>
+
+  <!-- Bullet holes on returning planes (body and wings) -->
+  <circle cx="280" cy="255" r="5" fill="#FF6B6B" opacity="0.8"/>
+  <circle cx="310" cy="270" r="4" fill="#FF6B6B" opacity="0.8"/>
+  <circle cx="350" cy="250" r="5" fill="#FF6B6B" opacity="0.8"/>
+  <circle cx="380" cy="215" r="4" fill="#FF6B6B" opacity="0.8"/>
+  <circle cx="420" cy="220" r="5" fill="#FF6B6B" opacity="0.8"/>
+  <circle cx="460" cy="215" r="4" fill="#FF6B6B" opacity="0.8"/>
+  <circle cx="500" cy="218" r="5" fill="#FF6B6B" opacity="0.8"/>
+  <circle cx="340" cy="265" r="4" fill="#FF6B6B" opacity="0.8"/>
+  <circle cx="550" cy="260" r="5" fill="#FF6B6B" opacity="0.8"/>
+  <circle cx="580" cy="255" r="4" fill="#FF6B6B" opacity="0.8"/>
+  <circle cx="520" cy="270" r="5" fill="#FF6B6B" opacity="0.8"/>
+  <circle cx="260" cy="260" r="4" fill="#FF6B6B" opacity="0.8"/>
+
+  <!-- Clean areas (engine, cockpit) -->
+  <ellipse cx="400" cy="260" rx="30" ry="25" fill="none" stroke="#4ECDC4" stroke-width="3" stroke-dasharray="6,4"/>
+  <text x="400" y="300" text-anchor="middle" fill="#4ECDC4" font-size="10" font-family="sans-serif">エンジン</text>
+
+  <ellipse cx="240" cy="260" rx="25" ry="20" fill="none" stroke="#4ECDC4" stroke-width="3" stroke-dasharray="6,4"/>
+  <text x="240" y="295" text-anchor="middle" fill="#4ECDC4" font-size="10" font-family="sans-serif">コックピット</text>
+
+  <!-- Legend -->
+  <rect x="50" y="340" width="380" height="140" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="240" y="370" text-anchor="middle" fill="#FF6B6B" font-size="14" font-family="sans-serif" font-weight="bold">軍の分析（間違い）</text>
+  <circle cx="80" cy="395" r="5" fill="#FF6B6B"/>
+  <text x="95" y="400" fill="white" font-size="12" font-family="sans-serif">被弾箇所 = 装甲を強化すべき場所</text>
+  <text x="240" y="430" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">「帰還した機体の被弾箇所を</text>
+  <text x="240" y="450" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">補強しよう」</text>
+  <text x="240" y="470" text-anchor="middle" fill="#FF6B6B" font-size="11" font-family="sans-serif">→ 見えるデータだけで判断</text>
+
+  <rect x="470" y="340" width="380" height="140" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="660" y="370" text-anchor="middle" fill="#4ECDC4" font-size="14" font-family="sans-serif" font-weight="bold">ウォルドの洞察（正解）</text>
+  <ellipse cx="500" cy="395" rx="7" ry="7" fill="none" stroke="#4ECDC4" stroke-width="2" stroke-dasharray="3,3"/>
+  <text x="515" y="400" fill="white" font-size="12" font-family="sans-serif">被弾していない箇所 = 致命的な場所</text>
+  <text x="660" y="430" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">「帰ってこなかった機体は</text>
+  <text x="660" y="450" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">この箇所に被弾したから」</text>
+  <text x="660" y="470" text-anchor="middle" fill="#4ECDC4" font-size="11" font-family="sans-serif">→ 見えないデータを考慮</text>
+</svg>

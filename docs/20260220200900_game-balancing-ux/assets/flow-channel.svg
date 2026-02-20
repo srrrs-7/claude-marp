@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" fill="#e0e0ff" font-size="20" font-weight="bold" font-family="sans-serif">フロー理論 -- チクセントミハイのフローチャネル</text>
+
+  <!-- Axes -->
+  <line x1="120" y1="430" x2="820" y2="430" stroke="#666" stroke-width="2"/>
+  <line x1="120" y1="430" x2="120" y2="70" stroke="#666" stroke-width="2"/>
+
+  <!-- Axis labels -->
+  <text x="470" y="470" text-anchor="middle" fill="#aaa" font-size="14" font-family="sans-serif">スキルレベル (Skill)</text>
+  <text x="60" y="250" text-anchor="middle" fill="#aaa" font-size="14" font-family="sans-serif" transform="rotate(-90,60,250)">チャレンジレベル (Challenge)</text>
+
+  <!-- Anxiety zone (top-left) -->
+  <path d="M120 70 L120 250 Q300 200 450 70 Z" fill="#6b1a1a" opacity="0.4"/>
+  <text x="200" y="160" fill="#ff6666" font-size="15" font-weight="bold" font-family="sans-serif">不安</text>
+  <text x="200" y="180" fill="#ff9999" font-size="12" font-family="sans-serif">(Anxiety)</text>
+
+  <!-- Boredom zone (bottom-right) -->
+  <path d="M450 430 Q600 360 820 430 L450 430 Z" fill="#1a4a1a" opacity="0.4"/>
+  <path d="M300 430 Q500 350 820 430 L300 430 Z" fill="#1a4a1a" opacity="0.3"/>
+  <text x="650" y="410" fill="#66cc66" font-size="15" font-weight="bold" font-family="sans-serif">退屈</text>
+  <text x="650" y="428" fill="#99cc99" font-size="12" font-family="sans-serif">(Boredom)</text>
+
+  <!-- Flow channel -->
+  <path d="M120 300 Q300 230 500 200 Q650 175 820 120" stroke="#4cc9f0" stroke-width="3" fill="none"/>
+  <path d="M120 380 Q300 310 500 280 Q650 255 820 200" stroke="#4cc9f0" stroke-width="3" fill="none"/>
+
+  <!-- Flow zone fill -->
+  <path d="M120 300 Q300 230 500 200 Q650 175 820 120 L820 200 Q650 255 500 280 Q300 310 120 380 Z" fill="#1a3a6b" opacity="0.5"/>
+
+  <!-- Flow label -->
+  <text x="500" y="250" text-anchor="middle" fill="#4cc9f0" font-size="20" font-weight="bold" font-family="sans-serif">FLOW</text>
+  <text x="500" y="270" text-anchor="middle" fill="#80d0ff" font-size="12" font-family="sans-serif">最適体験ゾーン</text>
+
+  <!-- Example points -->
+  <circle cx="250" cy="340" r="8" fill="#ffcc00" style="filter: drop-shadow(1px 1px 3px rgba(255,200,0,0.5))"/>
+  <text x="270" y="345" fill="#ffcc00" font-size="12" font-family="sans-serif">チュートリアル</text>
+
+  <circle cx="470" cy="240" r="8" fill="#ff6600" style="filter: drop-shadow(1px 1px 3px rgba(255,100,0,0.5))"/>
+  <text x="490" y="245" fill="#ff6600" font-size="12" font-family="sans-serif">中盤</text>
+
+  <circle cx="700" cy="165" r="8" fill="#ff0066" style="filter: drop-shadow(1px 1px 3px rgba(255,0,100,0.5))"/>
+  <text x="720" y="170" fill="#ff0066" font-size="12" font-family="sans-serif">エンドゲーム</text>
+
+  <!-- Arrow (difficulty curve) -->
+  <path d="M240 345 Q380 290 460 245" stroke="#ffcc00" stroke-width="1.5" fill="none" stroke-dasharray="5,3"/>
+  <path d="M480 238 Q600 195 690 172" stroke="#ff6600" stroke-width="1.5" fill="none" stroke-dasharray="5,3"/>
+
+  <!-- Legend -->
+  <rect x="620" y="290" width="250" height="120" fill="#0d1b30" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="745" y="315" text-anchor="middle" fill="#e0e0e0" font-size="13" font-weight="bold" font-family="sans-serif">ゲーム設計の目標</text>
+  <line x1="640" y1="325" x2="850" y2="325" stroke="#444" stroke-width="1"/>
+  <text x="650" y="348" fill="#4cc9f0" font-size="12" font-family="sans-serif">プレイヤーをフローに維持する</text>
+  <text x="650" y="370" fill="#ff6666" font-size="12" font-family="sans-serif">不安ゾーン → 難易度を下げる</text>
+  <text x="650" y="392" fill="#66cc66" font-size="12" font-family="sans-serif">退屈ゾーン → 挑戦を増やす</text>
+</svg>

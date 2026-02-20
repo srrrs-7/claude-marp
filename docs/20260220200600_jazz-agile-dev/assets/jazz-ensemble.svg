@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="440" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="36" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#f5f5f5">ジャズカルテット ＝ 開発チーム</text>
+
+  <!-- Stage area -->
+  <ellipse cx="450" cy="200" rx="280" ry="140" fill="#0d1a30" style="filter: drop-shadow(0 0 12px rgba(245,166,35,0.2))"/>
+  <text x="450" y="370" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#555">ステージ</text>
+
+  <!-- ===== Jazz instruments ===== -->
+
+  <!-- Piano (left) -->
+  <rect x="130" y="150" width="90" height="55" fill="#2d3561" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <!-- Piano keys simplified -->
+  <rect x="134" y="175" width="82" height="26" fill="#1a1a2e" rx="2"/>
+  <rect x="138" y="175" width="10" height="16" fill="white" rx="1"/>
+  <rect x="152" y="175" width="10" height="16" fill="white" rx="1"/>
+  <rect x="166" y="175" width="10" height="16" fill="white" rx="1"/>
+  <rect x="180" y="175" width="10" height="16" fill="white" rx="1"/>
+  <rect x="194" y="175" width="10" height="16" fill="white" rx="1"/>
+  <rect x="144" y="175" width="7" height="11" fill="#333" rx="1"/>
+  <rect x="160" y="175" width="7" height="11" fill="#333" rx="1"/>
+  <rect x="182" y="175" width="7" height="11" fill="#333" rx="1"/>
+  <rect x="198" y="175" width="7" height="11" fill="#333" rx="1"/>
+  <text x="175" y="165" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f5a623">ピアノ</text>
+
+  <!-- Bass (bottom left) -->
+  <g transform="translate(200,270)">
+    <!-- Bass body -->
+    <ellipse cx="30" cy="50" rx="22" ry="30" fill="#8b5e3c"/>
+    <ellipse cx="30" cy="20" rx="14" ry="18" fill="#8b5e3c"/>
+    <rect x="27" y="0" width="6" height="25" fill="#6b4423"/>
+    <!-- f-holes -->
+    <text x="26" y="42" font-family="serif" font-size="14" fill="#5a3520">f</text>
+    <text x="32" y="42" font-family="serif" font-size="14" fill="#5a3520" transform="scale(-1,1) translate(-88,0)">f</text>
+  </g>
+  <text x="230" y="268" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f5a623">ベース</text>
+
+  <!-- Drums (right) -->
+  <g transform="translate(620,145)">
+    <!-- Bass drum -->
+    <ellipse cx="40" cy="80" rx="38" ry="22" fill="#c0392b"/>
+    <ellipse cx="40" cy="80" rx="32" ry="16" fill="#922b21"/>
+    <!-- Snare -->
+    <ellipse cx="0" cy="55" rx="24" ry="8" fill="#e67e22"/>
+    <rect x="-24" y="42" width="48" height="14" fill="#d35400"/>
+    <!-- Hi-hat -->
+    <ellipse cx="80" cy="30" rx="20" ry="6" fill="#888"/>
+    <ellipse cx="80" cy="26" rx="20" ry="6" fill="#aaa"/>
+    <!-- Cymbal -->
+    <ellipse cx="-10" cy="20" rx="24" ry="7" fill="#888" transform="rotate(-10 -10 20)"/>
+  </g>
+  <text x="660" y="145" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f5a623">ドラム</text>
+
+  <!-- Saxophone (top) -->
+  <g transform="translate(415,90)">
+    <rect x="25" y="0" width="10" height="55" rx="5" fill="#c0a060"/>
+    <rect x="10" y="50" width="38" height="10" rx="5" fill="#c0a060"/>
+    <rect x="10" y="55" width="10" height="60" rx="5" fill="#c0a060"/>
+    <ellipse cx="22" cy="118" rx="14" ry="8" fill="#c0a060"/>
+    <path d="M10 115 Q-5 130 -10 148 Q15 158 45 143 Q50 123 40 115 Z" fill="#c0a060"/>
+    <circle cx="30" cy="22" r="3" fill="#8b6914"/>
+    <circle cx="30" cy="37" r="3" fill="#8b6914"/>
+  </g>
+  <text x="450" y="85" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f5a623">サックス（リード）</text>
+
+  <!-- ===== Interaction arrows ===== -->
+  <!-- Piano -> Sax -->
+  <line x1="220" y1="175" x2="420" y2="135" stroke="#f5a623" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="420,129 408,133 413,143" fill="#f5a623"/>
+
+  <!-- Sax -> Drums -->
+  <line x1="480" y1="135" x2="625" y2="175" stroke="#f5a623" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="625,175 614,166 621,177" fill="#f5a623"/>
+
+  <!-- Bass -> Piano -->
+  <line x1="230" y1="295" x2="175" y2="205" stroke="#4ecdc4" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="175,205 180,218 170,215" fill="#4ecdc4"/>
+
+  <!-- Bass -> Drums -->
+  <line x1="265" y1="310" x2="625" y2="235" stroke="#4ecdc4" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="625,235 612,228 616,240" fill="#4ecdc4"/>
+
+  <!-- Listen label -->
+  <text x="360" y="265" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f5a623">♪ 互いを聴き合う</text>
+
+  <!-- ===== Team mapping panel ===== -->
+  <!-- Column headers -->
+  <text x="70" y="415" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">楽器</text>
+  <text x="200" y="415" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">役割</text>
+  <text x="370" y="415" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">チームでの対応</text>
+  <text x="600" y="415" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">アクション</text>
+
+  <!-- Piano row -->
+  <text x="70" y="432" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#7eb8f7">ピアノ</text>
+  <text x="200" y="432" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">ハーモニー・コンピング</text>
+  <text x="370" y="432" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">バックエンド開発者</text>
+  <text x="600" y="432" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">コードレビュー・サポート</text>
+</svg>

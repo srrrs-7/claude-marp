@@ -1,0 +1,13 @@
+topic: "シュレーディンガーのユーザー：観測するまで存在しない"
+language: "ja"
+output:
+  dir: "docs/20260220180900_schrodingers-user-research"
+  baseName: "schrodingers-user-research"
+marp:
+  theme: gaia
+  paginate: true
+  header: "シュレーディンガーのユーザー"
+  footer: "© 2026"
+  style: |
+    section { font-size: 1.05em; }
+    section pre code { font-size: 0.58em; line-height: 1.4; }

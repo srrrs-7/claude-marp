@@ -1,0 +1,69 @@
+<svg viewBox="0 0 900 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="480" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#e0e0e0">生物の収束進化: 独立した起源、同じ解</text>
+
+  <!-- Left: Different Origins -->
+  <text x="150" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#f472b6">異なる起源</text>
+
+  <!-- Shark -->
+  <rect x="30" y="95" width="180" height="105" rx="10" fill="#1e3a5f" opacity="0.6" stroke="#3b82f6" stroke-width="2"/>
+  <text x="120" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="28">🦈</text>
+  <text x="120" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#60a5fa">サメ（魚類）</text>
+  <text x="120" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">4.5億年前に分岐</text>
+  <text x="120" y="188" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">軟骨魚綱</text>
+
+  <!-- Dolphin -->
+  <rect x="30" y="215" width="180" height="105" rx="10" fill="#581c87" opacity="0.6" stroke="#a78bfa" stroke-width="2"/>
+  <text x="120" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="28">🐬</text>
+  <text x="120" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#a78bfa">イルカ（哺乳類）</text>
+  <text x="120" y="288" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#c4b5fd">5000万年前に海に戻った</text>
+  <text x="120" y="308" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">鯨偶蹄目</text>
+
+  <!-- Ichthyosaur -->
+  <rect x="30" y="335" width="180" height="105" rx="10" fill="#713f12" opacity="0.6" stroke="#fbbf24" stroke-width="2"/>
+  <text x="120" y="360" text-anchor="middle" font-family="Arial,sans-serif" font-size="28">🦎</text>
+  <text x="120" y="388" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#fbbf24">魚竜（爬虫類）</text>
+  <text x="120" y="408" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fde68a">2.5億年前（絶滅）</text>
+  <text x="120" y="428" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">魚竜目</text>
+
+  <!-- Convergence arrows -->
+  <line x1="215" y1="147" x2="370" y2="240" stroke="#60a5fa" stroke-width="2"/>
+  <line x1="215" y1="267" x2="370" y2="240" stroke="#a78bfa" stroke-width="2"/>
+  <line x1="215" y1="387" x2="370" y2="260" stroke="#fbbf24" stroke-width="2"/>
+
+  <!-- Center: Same Solution -->
+  <rect x="370" y="170" width="180" height="140" rx="15" fill="#14532d" opacity="0.7" stroke="#4ade80" stroke-width="3"/>
+  <text x="460" y="205" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#4ade80">同じ解:</text>
+  <text x="460" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="bold" fill="#fff">流線型の体</text>
+  <text x="460" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#86efac">背びれ・尾びれ</text>
+  <text x="460" y="275" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#86efac">紡錘形の胴体</text>
+  <text x="460" y="295" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">流体力学の最適解</text>
+
+  <!-- Right: Why Convergence -->
+  <line x1="555" y1="240" x2="620" y2="240" stroke="#4ade80" stroke-width="2"/>
+  <polygon points="620,240 608,234 608,246" fill="#4ade80"/>
+
+  <rect x="625" y="90" width="250" height="340" rx="10" fill="rgba(0,0,0,0.4)" stroke="#666" stroke-width="1"/>
+  <text x="750" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#e0e0e0">なぜ収束するのか</text>
+
+  <text x="645" y="155" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4ade80">問題空間の制約:</text>
+  <text x="660" y="178" font-family="Arial,sans-serif" font-size="11" fill="#aaa">水中を高速移動する必要</text>
+  <text x="660" y="198" font-family="Arial,sans-serif" font-size="11" fill="#aaa">流体抵抗を最小化する圧力</text>
+
+  <text x="645" y="230" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">物理法則の拘束:</text>
+  <text x="660" y="253" font-family="Arial,sans-serif" font-size="11" fill="#aaa">レイノルズ数が形状を決定</text>
+  <text x="660" y="273" font-family="Arial,sans-serif" font-size="11" fill="#aaa">最適解は一つに収束する</text>
+
+  <text x="645" y="305" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#f472b6">核心的洞察:</text>
+  <text x="660" y="328" font-family="Arial,sans-serif" font-size="12" fill="#f9a8d4">問題が同じなら</text>
+  <text x="660" y="348" font-family="Arial,sans-serif" font-size="12" fill="#f9a8d4">解も同じに</text>
+  <text x="660" y="368" font-family="Arial,sans-serif" font-size="12" fill="#f9a8d4">なる</text>
+
+  <text x="750" y="405" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#aaa">= デザインパターンの</text>
+  <text x="750" y="420" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#aaa">根本原理</text>
+
+  <!-- Bottom -->
+  <text x="300" y="465" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#fbbf24">3つの異なる系統が、数億年の間隔をおいて、独立して同じ形態に到達した</text>
+</svg>

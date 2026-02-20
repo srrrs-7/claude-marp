@@ -1,0 +1,212 @@
+---
+marp: true
+theme: gaia
+class: invert
+size: 16:9
+paginate: true
+header: "Convergent Evolution × Architecture"
+footer: "© 2026 Evolutionary Design Patterns"
+style: |
+  section {
+    font-size: 1.05em;
+  }
+  section pre code {
+    font-size: 0.58em;
+    line-height: 1.4;
+  }
+  
+---
+
+<!-- _class: lead -->
+# 収束進化：なぜ異なるチームが同じアーキテクチャに辿り着くのか
+
+- Convergent Evolution × Architecture Patterns
+- 
+- 問題空間が同じなら、解空間も同じに収束する
+
+
+---
+
+# Agenda
+
+- - 1. 収束進化とは何か
+- - 2. 生物界の収束進化の例
+- - 3. ソフトウェアにおける収束進化
+- - 4. デザインパターンは「発見」である
+- - 5. 収束進化 vs 相同構造
+- - 6. アーキテクチャ選定への示唆
+
+
+---
+
+<!-- _class: lead -->
+# 収束進化とは何か
+
+- Chapter 1: What is Convergent Evolution?
+
+
+---
+
+# 収束進化の定義
+
+- - **収束進化**: 異なる系統の生物が、類似した環境圧に応じて類似した特徴を独立に進化させること
+- - 共通の祖先を持たない生物が **同じ形態** に到達する
+- - サメ（魚類）とイルカ（哺乳類）: 4億年以上の系統的距離
+- - しかし外見は驚くほど似ている: 流線型、背びれ、紡錘形の胴体
+- - 理由: **問題空間が同じ** (水中高速移動) → **解も同じ** に収束
+- - 物理法則が設計を決定する（流体力学のレイノルズ数）
+
+
+---
+
+<!-- _class: lead -->
+# 生物界の収束進化の例
+
+- Chapter 2: Biological Examples
+
+
+---
+
+# 独立した起源、同じ解
+
+![w:800 center](assets/diagram-01-biological-convergence.svg)
+
+
+---
+
+# さらなる収束の例
+
+- - **眼の進化**: 独立して **40回以上** 進化した（軟体動物、脊椎動物、節足動物）
+- - **翼の進化**: 鳥類、コウモリ、翼竜、昆虫が独立に飛行を獲得
+- - **サボテン vs トウダイグサ**: 異なる大陸で同じ多肉植物の形態に
+- - **有袋類 vs 有胎盤類**: オオカミ vs タスマニアタイガー（絶滅）
+- - 共通点: 環境の **制約条件** が設計の **最適解** を決定する
+- - 「自然は同じ問題に同じ答えを何度も見つける」
+
+
+---
+
+<!-- _class: lead -->
+# ソフトウェアにおける収束進化
+
+- Chapter 3: Convergence in Software
+
+
+---
+
+# フレームワークの収束
+
+![w:800 center](assets/diagram-02-framework-convergence.svg)
+
+
+---
+
+# アーキテクチャパターンの収束
+
+- - **MVC**: Smalltalk (1979) → Ruby on Rails → Django → Spring → 全フレームワークが採用
+- - **Pub/Sub**: IBM MQ (1993) → Kafka → RabbitMQ → SQS → 全メッセージングが採用
+- - **Container Orchestration**: Mesos → Docker Swarm → Kubernetes → 全てK8s的に収束
+- - **Serverless**: AWS Lambda → Azure Functions → Cloud Functions → 同じモデルに収束
+- - **Edge Computing**: CDN → Cloudflare Workers → Vercel Edge → Deno Deploy
+- - 異なる企業、異なる時代、異なる技術基盤 → **同じパターン** に到達
+
+
+---
+
+<!-- _class: lead -->
+# デザインパターンは「発見」である
+
+- Chapter 4: Patterns are Discoveries
+
+
+---
+
+# GoFパターンは「発明」ではなく「収束の記録」
+
+- - Gang of Four (1994): 23のデザインパターンを **記録** した
+- - パターンは著者が **発明** したのではなく、各地で **独立に発生** していた
+- - Observer Pattern: GUI (Smalltalk) と電話交換機で独立に発生
+- - Strategy Pattern: 税計算 (金融) とルート探索 (地図) で独立に発生
+- - 「パターンは繰り返し現れる問題への繰り返し現れる解」— Christopher Alexander
+- - 収束進化の観点: パターンは **問題空間の物理法則** である
+
+
+---
+
+# 問題空間が解空間を決定する
+
+![w:800 center](assets/diagram-03-problem-solution-space.svg)
+
+
+---
+
+# なぜ同じ解に辿り着くのか
+
+- - **制約条件**: ブラウザのDOM、HTTPの無状態性、ネットワーク遅延
+- - **最適化圧力**: パフォーマンス、メンテナンス性、スケーラビリティ
+- - **人間の認知限界**: チームサイズ、コードの理解可能性
+- - これらの「物理法則」が **解空間を狭める**
+- - 十分な時間と反復があれば、どのチームも同じ解に到達する
+- - Conway's Law: 組織構造も同様の制約を課す
+
+
+---
+
+<!-- _class: lead -->
+# 収束進化 vs 相同構造
+
+- Chapter 5: Convergent vs Homologous
+
+
+---
+
+# 2種類の類似性
+
+![w:800 center](assets/diagram-04-convergent-vs-homologous.svg)
+
+
+---
+
+# ソフトウェアでの判別法
+
+- - **収束進化** (Analogous): 異なるコードベースが同じパターンに到達
+- - 例: React Hooks と Vue Composition API — 異なる実装、同じ概念
+- - **相同構造** (Homologous): 同じコードベースから分岐
+- - 例: Node.js → Express, Koa, Fastify — 同じランタイムの派生
+- - 判別法: 「内部構造は同じか?」→ No なら収束進化
+- - 収束進化で到達したパターンは **より本質的** である（問題が解を決めた証拠）
+
+
+---
+
+<!-- _class: lead -->
+# アーキテクチャ選定への示唆
+
+- Chapter 6: Implications for Architecture
+
+
+---
+
+# 収束進化から学ぶアーキテクチャ選定
+
+- - 1. **問題空間を徹底分析**: 解を探す前に制約条件を理解せよ
+- - 2. **多数のチームが辿り着いた解を信頼**: 収束進化の証拠
+- - 3. **独自の解に警戒**: 誰もやっていない = 問題の理解が不足?
+- - 4. **パターンの「なぜ」を理解**: 制約条件が変われば最適解も変わる
+- - 5. **技術選定 ≠ 最新 / 流行**: 問題空間に適したパターンを選ぶ
+- - 6. **新しいパターンの出現 = 新しい制約の出現**: AI, Edge, Quantum
+
+
+---
+
+<!-- _class: lead -->
+# まとめ：デザインパターンは自然法則である
+
+- サメとイルカが独立して流線型に進化したように
+- React, Vue, Angular は独立してコンポーネントに収束した
+- 
+- デザインパターンは「発明」ではなく「発見」
+- 問題空間の制約が解空間を決定する
+- 
+- **問題を正しく理解すれば、解は自ずと収束する**
+

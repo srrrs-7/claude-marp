@@ -1,0 +1,105 @@
+<svg viewBox="0 0 900 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="480" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#e0e0e0">Strangler Fig Pattern: 蛹の中のイマジナル細胞</text>
+
+  <!-- Phase labels -->
+  <text x="150" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#60a5fa">Phase 1: 初期</text>
+  <text x="450" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#fbbf24">Phase 2: 移行中</text>
+  <text x="750" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#4ade80">Phase 3: 完了</text>
+
+  <!-- Phase 1: Monolith dominant -->
+  <rect x="50" y="95" width="200" height="280" rx="10" fill="#1e3a5f" opacity="0.6" stroke="#3b82f6" stroke-width="2"/>
+
+  <!-- Old system (large) -->
+  <rect x="70" y="115" width="160" height="200" rx="8" fill="#1e40af" opacity="0.7"/>
+  <text x="150" y="175" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#93c5fd">旧モノリス</text>
+  <text x="150" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#7dd3fc">100%トラフィック</text>
+  <text x="150" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">Auth / API / DB</text>
+  <text x="150" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">Billing / UI</text>
+  <text x="150" y="256" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">Search / Notify</text>
+  <text x="150" y="290" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#60a5fa">全て密結合</text>
+
+  <!-- Small new (imaginal cells) -->
+  <rect x="80" y="330" width="45" height="30" rx="4" fill="#4ade80" opacity="0.5" stroke="#4ade80" stroke-width="1"/>
+  <text x="102" y="349" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#4ade80">New</text>
+
+  <text x="150" y="395" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">イマジナル細胞</text>
+  <text x="150" y="410" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">= 新サービスの芽</text>
+
+  <!-- Arrow -->
+  <polygon points="265,235 290,220 290,250" fill="#fbbf24"/>
+
+  <!-- Phase 2: Coexistence (pupa) -->
+  <rect x="310" y="95" width="280" height="340" rx="10" fill="#713f12" opacity="0.4" stroke="#fbbf24" stroke-width="2"/>
+
+  <!-- Facade/Proxy -->
+  <rect x="330" y="110" width="240" height="35" rx="6" fill="#92400e" opacity="0.7"/>
+  <text x="450" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">Facade / API Gateway</text>
+
+  <!-- Routing arrows -->
+  <line x1="390" y1="145" x2="390" y2="165" stroke="#fbbf24" stroke-width="1.5"/>
+  <line x1="510" y1="145" x2="510" y2="165" stroke="#4ade80" stroke-width="1.5"/>
+
+  <!-- Old system (shrinking) -->
+  <rect x="330" y="170" width="120" height="160" rx="8" fill="#1e40af" opacity="0.5"/>
+  <text x="390" y="210" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#93c5fd">旧モノリス</text>
+  <text x="390" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#7dd3fc">60%</text>
+  <text x="390" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">Auth / DB</text>
+  <text x="390" y="272" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">Billing</text>
+  <text x="390" y="310" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">縮小中</text>
+
+  <!-- New services (growing) -->
+  <rect x="465" y="170" width="110" height="50" rx="6" fill="#14532d" opacity="0.8" stroke="#4ade80" stroke-width="1.5"/>
+  <text x="520" y="192" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4ade80">Search Service</text>
+  <text x="520" y="208" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#86efac">新サービス</text>
+
+  <rect x="465" y="230" width="110" height="50" rx="6" fill="#14532d" opacity="0.8" stroke="#4ade80" stroke-width="1.5"/>
+  <text x="520" y="252" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4ade80">Notify Service</text>
+  <text x="520" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#86efac">新サービス</text>
+
+  <rect x="465" y="290" width="110" height="50" rx="6" fill="#14532d" opacity="0.8" stroke="#4ade80" stroke-width="1.5"/>
+  <text x="520" y="312" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4ade80">API Service</text>
+  <text x="520" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#86efac">新サービス</text>
+
+  <!-- Danger warning -->
+  <rect x="340" y="350" width="230" height="35" rx="4" fill="rgba(248,113,113,0.2)" stroke="#f87171" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="455" y="372" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#f87171">⚠️ 蛹期: 新旧が同居する最も脆弱な状態</text>
+
+  <text x="450" y="415" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fbbf24">40% 新サービスへ移行済み</text>
+
+  <!-- Arrow -->
+  <polygon points="605,235 630,220 630,250" fill="#4ade80"/>
+
+  <!-- Phase 3: New system complete -->
+  <rect x="650" y="95" width="220" height="280" rx="10" fill="#14532d" opacity="0.5" stroke="#4ade80" stroke-width="2"/>
+
+  <rect x="670" y="115" width="180" height="35" rx="6" fill="#166534" opacity="0.7"/>
+  <text x="760" y="137" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4ade80">API Gateway</text>
+
+  <rect x="670" y="160" width="85" height="45" rx="6" fill="#14532d" opacity="0.8" stroke="#4ade80" stroke-width="1.5"/>
+  <text x="712" y="187" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4ade80">Auth Svc</text>
+
+  <rect x="765" y="160" width="85" height="45" rx="6" fill="#14532d" opacity="0.8" stroke="#4ade80" stroke-width="1.5"/>
+  <text x="807" y="187" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4ade80">API Svc</text>
+
+  <rect x="670" y="215" width="85" height="45" rx="6" fill="#14532d" opacity="0.8" stroke="#4ade80" stroke-width="1.5"/>
+  <text x="712" y="242" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4ade80">Search Svc</text>
+
+  <rect x="765" y="215" width="85" height="45" rx="6" fill="#14532d" opacity="0.8" stroke="#4ade80" stroke-width="1.5"/>
+  <text x="807" y="242" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4ade80">Notify Svc</text>
+
+  <rect x="670" y="270" width="85" height="45" rx="6" fill="#14532d" opacity="0.8" stroke="#4ade80" stroke-width="1.5"/>
+  <text x="712" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4ade80">Billing Svc</text>
+
+  <rect x="765" y="270" width="85" height="45" rx="6" fill="#14532d" opacity="0.8" stroke="#4ade80" stroke-width="1.5"/>
+  <text x="807" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4ade80">DB Svc</text>
+
+  <text x="760" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#4ade80">100% マイクロサービス</text>
+  <text x="760" y="365" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#86efac">旧モノリスは完全に消滅</text>
+
+  <!-- Bottom -->
+  <text x="450" y="455" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#e0e0e0">イマジナル細胞 = 新サービス — 旧組織を内部から徐々に置き換える</text>
+  <text x="450" y="475" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">Martin Fowler: Strangler Fig Application (2004)</text>
+</svg>

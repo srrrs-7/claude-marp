@@ -1,0 +1,31 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-size="18" fill="white" font-weight="bold">セレンディピティの3条件</text>
+
+  <!-- Three overlapping circles (Venn diagram style) -->
+  <!-- Circle 1: Preparation -->
+  <circle cx="330" cy="210" r="130" fill="#e74c3c" opacity="0.25"/>
+  <text x="270" y="160" text-anchor="middle" font-size="14" fill="#e74c3c" font-weight="bold">準備された心</text>
+  <text x="270" y="180" text-anchor="middle" font-size="10" fill="white">専門知識があるからこそ</text>
+  <text x="270" y="196" text-anchor="middle" font-size="10" fill="white">異常に「気づく」</text>
+
+  <!-- Circle 2: Accident -->
+  <circle cx="570" cy="210" r="130" fill="#3498db" opacity="0.25"/>
+  <text x="630" y="160" text-anchor="middle" font-size="14" fill="#3498db" font-weight="bold">偶然の出来事</text>
+  <text x="630" y="180" text-anchor="middle" font-size="10" fill="white">予期しないエラー</text>
+  <text x="630" y="196" text-anchor="middle" font-size="10" fill="white">失敗・汚染・間違い</text>
+
+  <!-- Circle 3: Sagacity -->
+  <circle cx="450" cy="360" r="130" fill="#2ecc71" opacity="0.25"/>
+  <text x="450" y="420" text-anchor="middle" font-size="14" fill="#2ecc71" font-weight="bold">洞察力</text>
+  <text x="450" y="440" text-anchor="middle" font-size="10" fill="white">偶然を「意味あるもの」として</text>
+  <text x="450" y="456" text-anchor="middle" font-size="10" fill="white">解釈し、追求する力</text>
+
+  <!-- Center: Serendipity -->
+  <circle cx="450" cy="260" r="45" fill="#f39c12" opacity="0.9" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="450" y="255" text-anchor="middle" font-size="12" fill="white" font-weight="bold">セレンディ</text>
+  <text x="450" y="271" text-anchor="middle" font-size="12" fill="white" font-weight="bold">ピティ</text>
+
+  <!-- Quote -->
+  <text x="450" y="490" text-anchor="middle" font-size="11" fill="#aaa" font-style="italic">"In the fields of observation, chance favors only the prepared mind." - Louis Pasteur</text>
+</svg>

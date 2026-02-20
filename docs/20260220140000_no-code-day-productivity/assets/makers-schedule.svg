@@ -1,0 +1,69 @@
+<svg viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="460" fill="#0f172a" rx="12"/>
+  <text x="480" y="32" text-anchor="middle" font-size="18" font-weight="bold" fill="#e2e8f0">Maker's Schedule vs Manager's Schedule</text>
+
+  <!-- LEFT: Maker's Schedule -->
+  <rect x="30" y="50" width="420" height="390" rx="10" fill="#0c1a2e" stroke="#3b82f6" stroke-width="2"/>
+  <text x="240" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#93c5fd">Maker's Schedule（作る人）</text>
+  <text x="240" y="94" text-anchor="middle" font-size="11" fill="#bfdbfe">半日〜1日単位の大きなブロックで動く</text>
+
+  <!-- Time blocks for Maker -->
+  <!-- 9:00 - 12:00 deep work block -->
+  <rect x="80" y="108" width="320" height="72" rx="6" fill="#1d4ed8" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="240" y="136" text-anchor="middle" font-size="12" font-weight="bold" fill="#dbeafe">9:00 〜 12:00</text>
+  <text x="240" y="154" text-anchor="middle" font-size="11" fill="#bfdbfe">ディープワーク・コーディング</text>
+  <text x="240" y="170" text-anchor="middle" font-size="10" fill="#93c5fd">（中断なし・3時間ブロック）</text>
+
+  <!-- 12:00 - 13:00 lunch -->
+  <rect x="80" y="188" width="320" height="36" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="240" y="211" text-anchor="middle" font-size="11" fill="#94a3b8">12:00 〜 13:00  ランチ・休憩</text>
+
+  <!-- 13:00 - 17:00 design/thinking block -->
+  <rect x="80" y="232" width="320" height="72" rx="6" fill="#0f3460" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="240" y="260" text-anchor="middle" font-size="12" font-weight="bold" fill="#c7d2fe">13:00 〜 17:00</text>
+  <text x="240" y="278" text-anchor="middle" font-size="11" fill="#a5b4fc">設計・RFC・コードリーディング</text>
+  <text x="240" y="294" text-anchor="middle" font-size="10" fill="#818cf8">（思考型の非コーディング作業）</text>
+
+  <!-- 17:00 - 18:00 optional meeting -->
+  <rect x="80" y="312" width="320" height="36" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="240" y="335" text-anchor="middle" font-size="11" fill="#86efac">17:00 〜 18:00  1on1 / チームシンク（任意）</text>
+
+  <!-- Result box -->
+  <rect x="55" y="360" width="370" height="65" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="240" y="382" text-anchor="middle" font-size="12" font-weight="bold" fill="#93c5fd">成果</text>
+  <text x="240" y="400" text-anchor="middle" font-size="11" fill="#bfdbfe">「フロー」状態に入れる時間が多い</text>
+  <text x="240" y="416" text-anchor="middle" font-size="11" fill="#bfdbfe">1回の割り込みで半日が消える</text>
+
+  <!-- RIGHT: Manager's Schedule -->
+  <rect x="510" y="50" width="420" height="390" rx="10" fill="#1a0a0a" stroke="#ef4444" stroke-width="2"/>
+  <text x="720" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#fca5a5">Manager's Schedule（管理する人）</text>
+  <text x="720" y="94" text-anchor="middle" font-size="11" fill="#fecaca">1時間単位でスケジュールが埋まる</text>
+
+  <!-- 1-hour slots for Manager -->
+  <rect x="560" y="108" width="320" height="30" rx="4" fill="#7f1d1d" stroke="#ef4444" stroke-width="1"/>
+  <text x="720" y="128" text-anchor="middle" font-size="11" fill="#fecaca">9:00  スタンドアップ・ミーティング（30分）</text>
+
+  <rect x="560" y="144" width="320" height="30" rx="4" fill="#451a03" stroke="#f97316" stroke-width="1"/>
+  <text x="720" y="164" text-anchor="middle" font-size="11" fill="#fed7aa">10:00  1on1 × 2名（計60分）</text>
+
+  <rect x="560" y="180" width="320" height="30" rx="4" fill="#7f1d1d" stroke="#ef4444" stroke-width="1"/>
+  <text x="720" y="200" text-anchor="middle" font-size="11" fill="#fecaca">11:00  プロジェクトレビュー（60分）</text>
+
+  <rect x="560" y="216" width="320" height="30" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="720" y="236" text-anchor="middle" font-size="11" fill="#94a3b8">12:00  ランチ（慌ただしく）</text>
+
+  <rect x="560" y="252" width="320" height="30" rx="4" fill="#451a03" stroke="#f97316" stroke-width="1"/>
+  <text x="720" y="272" text-anchor="middle" font-size="11" fill="#fed7aa">13:00  採用面接（60分）</text>
+
+  <rect x="560" y="288" width="320" height="30" rx="4" fill="#7f1d1d" stroke="#ef4444" stroke-width="1"/>
+  <text x="720" y="308" text-anchor="middle" font-size="11" fill="#fecaca">14:00  ステークホルダー報告（60分）</text>
+
+  <rect x="560" y="324" width="320" height="30" rx="4" fill="#451a03" stroke="#f97316" stroke-width="1"/>
+  <text x="720" y="344" text-anchor="middle" font-size="11" fill="#fed7aa">15:00  スプリント計画（60分）</text>
+
+  <!-- Result box -->
+  <rect x="535" y="360" width="370" height="65" rx="8" fill="#7f1d1d" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="720" y="382" text-anchor="middle" font-size="12" font-weight="bold" fill="#fca5a5">成果</text>
+  <text x="720" y="400" text-anchor="middle" font-size="11" fill="#fecaca">「30分でコード書こう」→ 中断される</text>
+  <text x="720" y="416" text-anchor="middle" font-size="11" fill="#fecaca">深い思考の時間がゼロになる</text>
+</svg>

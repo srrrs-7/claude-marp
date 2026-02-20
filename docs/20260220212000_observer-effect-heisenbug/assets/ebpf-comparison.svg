@@ -1,0 +1,78 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="30" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">観測手法の侵襲度比較</text>
+  <text x="450" y="50" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">低侵襲ほど「真の状態」に近い観測が可能</text>
+
+  <!-- Invasiveness spectrum bar -->
+  <rect x="80" y="70" width="740" height="40" rx="20" fill="#2d3436"/>
+  <rect x="80" y="70" width="185" height="40" rx="20" fill="#00b894" opacity="0.5"/>
+  <rect x="265" y="70" width="185" height="40" fill="#FFEAA7" opacity="0.3"/>
+  <rect x="450" y="70" width="185" height="40" fill="#e17055" opacity="0.3"/>
+  <rect x="635" y="70" width="185" height="40" rx="20" fill="#FF6B6B" opacity="0.4"/>
+  <text x="172" y="95" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif" font-weight="bold">低侵襲</text>
+  <text x="357" y="95" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">中程度</text>
+  <text x="542" y="95" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">高め</text>
+  <text x="727" y="95" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif" font-weight="bold">高侵襲</text>
+
+  <!-- eBPF -->
+  <rect x="50" y="130" width="190" height="160" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="50" y="130" width="190" height="30" fill="#00b894" rx="10" opacity="0.4"/>
+  <text x="145" y="152" text-anchor="middle" fill="#00b894" font-size="14" font-family="sans-serif" font-weight="bold">eBPF</text>
+  <text x="65" y="180" fill="white" font-size="11" font-family="sans-serif">オーバーヘッド: 1-3%</text>
+  <text x="65" y="200" fill="#aaa" font-size="10" font-family="sans-serif">カーネル内で直接実行</text>
+  <text x="65" y="218" fill="#aaa" font-size="10" font-family="sans-serif">サンドボックス化で安全</text>
+  <text x="65" y="236" fill="#aaa" font-size="10" font-family="sans-serif">本番環境で常時稼働可</text>
+  <text x="65" y="258" fill="#00b894" font-size="11" font-family="sans-serif">例: bpftrace, Cilium</text>
+  <text x="65" y="278" fill="#4ECDC4" font-size="11" font-family="sans-serif" font-weight="bold">Heisenbug発見率: 高</text>
+
+  <!-- Sampling profiler -->
+  <rect x="260" y="130" width="190" height="160" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="260" y="130" width="190" height="30" fill="#FFEAA7" rx="10" opacity="0.3"/>
+  <text x="355" y="152" text-anchor="middle" fill="#FFEAA7" font-size="14" font-family="sans-serif" font-weight="bold">サンプリング</text>
+  <text x="275" y="180" fill="white" font-size="11" font-family="sans-serif">オーバーヘッド: 3-10%</text>
+  <text x="275" y="200" fill="#aaa" font-size="10" font-family="sans-serif">定期的にスタックを記録</text>
+  <text x="275" y="218" fill="#aaa" font-size="10" font-family="sans-serif">統計的に正確</text>
+  <text x="275" y="236" fill="#aaa" font-size="10" font-family="sans-serif">本番でも利用可能</text>
+  <text x="275" y="258" fill="#FFEAA7" font-size="11" font-family="sans-serif">例: perf, async-profiler</text>
+  <text x="275" y="278" fill="#4ECDC4" font-size="11" font-family="sans-serif" font-weight="bold">Heisenbug発見率: 中</text>
+
+  <!-- Instrumentation -->
+  <rect x="470" y="130" width="190" height="160" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="470" y="130" width="190" height="30" fill="#e17055" rx="10" opacity="0.3"/>
+  <text x="565" y="152" text-anchor="middle" fill="#e17055" font-size="14" font-family="sans-serif" font-weight="bold">インストルメント</text>
+  <text x="485" y="180" fill="white" font-size="11" font-family="sans-serif">オーバーヘッド: 10-50%</text>
+  <text x="485" y="200" fill="#aaa" font-size="10" font-family="sans-serif">コードにフックを挿入</text>
+  <text x="485" y="218" fill="#aaa" font-size="10" font-family="sans-serif">詳細だが重い</text>
+  <text x="485" y="236" fill="#aaa" font-size="10" font-family="sans-serif">開発環境向き</text>
+  <text x="485" y="258" fill="#e17055" font-size="11" font-family="sans-serif">例: JProfiler, Valgrind</text>
+  <text x="485" y="278" fill="#4ECDC4" font-size="11" font-family="sans-serif" font-weight="bold">Heisenbug発見率: 低</text>
+
+  <!-- Debugger -->
+  <rect x="680" y="130" width="190" height="160" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="680" y="130" width="190" height="30" fill="#FF6B6B" rx="10" opacity="0.4"/>
+  <text x="775" y="152" text-anchor="middle" fill="#FF6B6B" font-size="14" font-family="sans-serif" font-weight="bold">デバッガ</text>
+  <text x="695" y="180" fill="white" font-size="11" font-family="sans-serif">オーバーヘッド: 100x+</text>
+  <text x="695" y="200" fill="#aaa" font-size="10" font-family="sans-serif">プロセスを完全停止</text>
+  <text x="695" y="218" fill="#aaa" font-size="10" font-family="sans-serif">タイミングを完全に破壊</text>
+  <text x="695" y="236" fill="#aaa" font-size="10" font-family="sans-serif">開発環境のみ</text>
+  <text x="695" y="258" fill="#FF6B6B" font-size="11" font-family="sans-serif">例: gdb, lldb, IDE</text>
+  <text x="695" y="278" fill="#4ECDC4" font-size="11" font-family="sans-serif" font-weight="bold">Heisenbug発見率: 最低</text>
+
+  <!-- Bottom insight -->
+  <rect x="50" y="310" width="800" height="170" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="450" y="340" text-anchor="middle" fill="#FFEAA7" font-size="15" font-family="sans-serif" font-weight="bold">eBPF: 量子力学の「弱い測定」に相当</text>
+
+  <rect x="80" y="355" width="350" height="105" fill="#16213e" rx="8"/>
+  <text x="255" y="380" text-anchor="middle" fill="#00b894" font-size="13" font-family="sans-serif" font-weight="bold">eBPFが革命的な理由</text>
+  <text x="95" y="400" fill="#aaa" font-size="11" font-family="sans-serif">- カーネル空間で直接実行 (コンテキストスイッチなし)</text>
+  <text x="95" y="418" fill="#aaa" font-size="11" font-family="sans-serif">- JITコンパイルで高速実行</text>
+  <text x="95" y="436" fill="#aaa" font-size="11" font-family="sans-serif">- verifierで安全性を保証</text>
+  <text x="95" y="454" fill="#aaa" font-size="11" font-family="sans-serif">- 本番環境で常時稼働可能</text>
+
+  <rect x="470" y="355" width="350" height="105" fill="#16213e" rx="8"/>
+  <text x="645" y="380" text-anchor="middle" fill="#FF6B6B" font-size="13" font-family="sans-serif" font-weight="bold">デバッガのパラドックス</text>
+  <text x="485" y="400" fill="#aaa" font-size="11" font-family="sans-serif">- ブレークポイント = プロセス停止</text>
+  <text x="485" y="418" fill="#aaa" font-size="11" font-family="sans-serif">- マルチスレッドのタイミング完全破壊</text>
+  <text x="485" y="436" fill="#aaa" font-size="11" font-family="sans-serif">- 最も詳しいが、最もバグを隠す</text>
+  <text x="485" y="454" fill="#aaa" font-size="11" font-family="sans-serif">- 「観測するために状態を壊す」典型例</text>
+</svg>

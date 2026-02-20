@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="460" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="270" y="34" font-family="sans-serif" font-size="17" fill="#e0e0e0" text-anchor="middle" font-weight="bold">囚人のジレンマ — 利得行列</text>
+
+  <!-- Prisoner B header -->
+  <text x="270" y="62" font-family="sans-serif" font-size="14" fill="#4cc9f0" text-anchor="middle">囚人 B</text>
+  <text x="170" y="88" font-family="sans-serif" font-size="13" fill="#a0c0ff" text-anchor="middle">黙秘（協力）</text>
+  <text x="370" y="88" font-family="sans-serif" font-size="13" fill="#ff9999" text-anchor="middle">自白（裏切り）</text>
+
+  <!-- Prisoner A header -->
+  <text x="45" y="200" font-family="sans-serif" font-size="14" fill="#4cc9f0" text-anchor="middle" transform="rotate(-90,45,200)">囚人 A</text>
+  <text x="82" y="160" font-family="sans-serif" font-size="13" fill="#a0c0ff" text-anchor="middle">黙秘</text>
+  <text x="82" y="268" font-family="sans-serif" font-size="13" fill="#ff9999" text-anchor="middle">自白</text>
+
+  <!-- Matrix cells -->
+  <!-- Cell: A黙秘 B黙秘 (best mutual) -->
+  <rect x="110" y="100" width="210" height="110" rx="8" fill="#1a6b3a" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="215" y="133" font-family="sans-serif" font-size="16" fill="white" text-anchor="middle" font-weight="bold">A: −1年</text>
+  <text x="215" y="155" font-family="sans-serif" font-size="16" fill="white" text-anchor="middle" font-weight="bold">B: −1年</text>
+  <text x="215" y="198" font-family="sans-serif" font-size="11" fill="#80ffb0" text-anchor="middle">最善の結果</text>
+
+  <!-- Cell: A黙秘 B自白 -->
+  <rect x="330" y="100" width="210" height="110" rx="8" fill="#6b1a1a" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="435" y="133" font-family="sans-serif" font-size="16" fill="white" text-anchor="middle" font-weight="bold">A: −10年</text>
+  <text x="435" y="155" font-family="sans-serif" font-size="16" fill="white" text-anchor="middle" font-weight="bold">B:   0年</text>
+  <text x="435" y="198" font-family="sans-serif" font-size="11" fill="#ff8080" text-anchor="middle">Bが裏切り得する</text>
+
+  <!-- Cell: A自白 B黙秘 -->
+  <rect x="110" y="220" width="210" height="110" rx="8" fill="#6b1a1a" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="215" y="253" font-family="sans-serif" font-size="16" fill="white" text-anchor="middle" font-weight="bold">A:   0年</text>
+  <text x="215" y="275" font-family="sans-serif" font-size="16" fill="white" text-anchor="middle" font-weight="bold">B: −10年</text>
+  <text x="215" y="318" font-family="sans-serif" font-size="11" fill="#ff8080" text-anchor="middle">Aが裏切り得する</text>
+
+  <!-- Cell: A自白 B自白 (Nash equilibrium - highlighted) -->
+  <rect x="330" y="220" width="210" height="110" rx="8" fill="#7b2d00" style="filter: drop-shadow(2px 2px 4px rgba(255,100,0,0.6))"/>
+  <rect x="330" y="220" width="210" height="110" rx="8" fill="none" stroke="#ff6a00" stroke-width="3"/>
+  <text x="435" y="253" font-family="sans-serif" font-size="16" fill="white" text-anchor="middle" font-weight="bold">A: −5年</text>
+  <text x="435" y="275" font-family="sans-serif" font-size="16" fill="white" text-anchor="middle" font-weight="bold">B: −5年</text>
+  <text x="435" y="300" font-family="sans-serif" font-size="11" fill="#ffcc00" text-anchor="middle" font-weight="bold">Nash均衡</text>
+  <text x="435" y="318" font-family="sans-serif" font-size="11" fill="#ff9966" text-anchor="middle">合理的 → 最悪の結果</text>
+
+  <!-- Dividers -->
+  <line x1="110" y1="215" x2="540" y2="215" stroke="#4cc9f0" stroke-width="1.5" opacity="0.5"/>
+  <line x1="325" y1="100" x2="325" y2="330" stroke="#4cc9f0" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- OSS Analogy panel -->
+  <rect x="580" y="60" width="300" height="310" rx="10" fill="#0d2240" style="filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.6))"/>
+  <text x="730" y="90" font-family="sans-serif" font-size="14" fill="#4cc9f0" text-anchor="middle" font-weight="bold">OSSとの類比</text>
+  <line x1="600" y1="100" x2="860" y2="100" stroke="#4cc9f0" stroke-width="1" opacity="0.5"/>
+
+  <text x="600" y="126" font-family="sans-serif" font-size="12" fill="#a0d0ff">貢献（協力）= 黙秘</text>
+  <text x="600" y="148" font-family="sans-serif" font-size="12" fill="#ff9999">フリーライド（自白）= 裏切り</text>
+
+  <!-- OSS matrix cells small -->
+  <rect x="620" y="165" width="110" height="55" rx="5" fill="#1a6b3a"/>
+  <text x="675" y="186" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle">全員貢献</text>
+  <text x="675" y="204" font-family="sans-serif" font-size="11" fill="#80ffb0" text-anchor="middle">エコシステム繁栄</text>
+
+  <rect x="740" y="165" width="110" height="55" rx="5" fill="#6b1a1a"/>
+  <text x="795" y="186" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle">誰かだけ貢献</text>
+  <text x="795" y="204" font-family="sans-serif" font-size="11" fill="#ff9999" text-anchor="middle">不公平な搾取</text>
+
+  <rect x="620" y="228" width="110" height="55" rx="5" fill="#6b1a1a"/>
+  <text x="675" y="249" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle">自分だけ享受</text>
+  <text x="675" y="267" font-family="sans-serif" font-size="11" fill="#ff9999" text-anchor="middle">他者を搾取</text>
+
+  <rect x="740" y="228" width="110" height="55" rx="5" fill="#7b2d00" stroke="#ff6a00" stroke-width="2"/>
+  <text x="795" y="249" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle">誰も貢献しない</text>
+  <text x="795" y="267" font-family="sans-serif" font-size="11" fill="#ffcc00" text-anchor="middle">OSS崩壊 ←Nash</text>
+
+  <text x="730" y="315" font-family="sans-serif" font-size="12" fill="#ff9966" text-anchor="middle">「合理的」行動が最悪の結果を</text>
+  <text x="730" y="333" font-family="sans-serif" font-size="12" fill="#ff9966" text-anchor="middle">生む — これがOSSの危機</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="420" font-family="sans-serif" font-size="13" fill="#888" text-anchor="middle">Nash均衡: 相手の戦略を所与として自分の戦略を最適化した時の均衡点</text>
+</svg>

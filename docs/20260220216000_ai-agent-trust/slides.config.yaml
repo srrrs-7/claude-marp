@@ -1,0 +1,20 @@
+topic: "AIエージェントの信頼問題〜いつSUDO権限を与えるのか〜"
+language: "ja"
+
+output:
+  dir: "docs/20260220216000_ai-agent-trust"
+  baseName: "ai-agent-trust"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "AIエージェントの信頼問題"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

@@ -1,0 +1,79 @@
+<svg viewBox="0 0 900 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="480" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#e0e0e0">フレームワークの収束進化: 3つの独立した起源</text>
+
+  <!-- React -->
+  <rect x="30" y="65" width="260" height="320" rx="10" fill="#1e3a5f" opacity="0.6" stroke="#3b82f6" stroke-width="2"/>
+  <text x="160" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#60a5fa">React</text>
+  <text x="160" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#93c5fd">Facebook (2013)</text>
+
+  <rect x="50" y="135" width="220" height="28" rx="4" fill="#1e40af" opacity="0.4"/>
+  <text x="160" y="154" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">起源: PHP テンプレートの限界</text>
+
+  <text x="50" y="190" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">独自の道:</text>
+  <text x="60" y="210" font-family="Arial,sans-serif" font-size="11" fill="#aaa">JSX (HTML in JS)</text>
+  <text x="60" y="228" font-family="Arial,sans-serif" font-size="11" fill="#aaa">Virtual DOM</text>
+  <text x="60" y="246" font-family="Arial,sans-serif" font-size="11" fill="#aaa">useState / useEffect</text>
+  <text x="60" y="264" font-family="Arial,sans-serif" font-size="11" fill="#aaa">Flux → Redux → Zustand</text>
+
+  <rect x="50" y="285" width="220" height="45" rx="6" fill="#14532d" opacity="0.5" stroke="#4ade80" stroke-width="1"/>
+  <text x="160" y="305" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4ade80">収束先:</text>
+  <text x="160" y="322" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#86efac">コンポーネント + リアクティビティ</text>
+
+  <text x="160" y="365" text-anchor="middle" font-family="Arial,sans-serif" font-size="24">⚛️</text>
+
+  <!-- Vue -->
+  <rect x="320" y="65" width="260" height="320" rx="10" fill="#14532d" opacity="0.5" stroke="#4ade80" stroke-width="2"/>
+  <text x="450" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#4ade80">Vue</text>
+  <text x="450" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#86efac">Evan You (2014)</text>
+
+  <rect x="340" y="135" width="220" height="28" rx="4" fill="#166534" opacity="0.4"/>
+  <text x="450" y="154" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#86efac">起源: Angular の複雑さへの反発</text>
+
+  <text x="340" y="190" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4ade80">独自の道:</text>
+  <text x="350" y="210" font-family="Arial,sans-serif" font-size="11" fill="#aaa">SFC (Single File Component)</text>
+  <text x="350" y="228" font-family="Arial,sans-serif" font-size="11" fill="#aaa">Proxy-based Reactivity</text>
+  <text x="350" y="246" font-family="Arial,sans-serif" font-size="11" fill="#aaa">ref() / reactive()</text>
+  <text x="350" y="264" font-family="Arial,sans-serif" font-size="11" fill="#aaa">Vuex → Pinia</text>
+
+  <rect x="340" y="285" width="220" height="45" rx="6" fill="#14532d" opacity="0.5" stroke="#4ade80" stroke-width="1"/>
+  <text x="450" y="305" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4ade80">収束先:</text>
+  <text x="450" y="322" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#86efac">コンポーネント + リアクティビティ</text>
+
+  <text x="450" y="365" text-anchor="middle" font-family="Arial,sans-serif" font-size="24">💚</text>
+
+  <!-- Angular -->
+  <rect x="610" y="65" width="260" height="320" rx="10" fill="#7f1d1d" opacity="0.5" stroke="#f87171" stroke-width="2"/>
+  <text x="740" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#f87171">Angular</text>
+  <text x="740" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fca5a5">Google (2010/2016)</text>
+
+  <rect x="630" y="135" width="220" height="28" rx="4" fill="#991b1b" opacity="0.4"/>
+  <text x="740" y="154" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fca5a5">起源: エンタープライズMVCの拡張</text>
+
+  <text x="630" y="190" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#f87171">独自の道:</text>
+  <text x="640" y="210" font-family="Arial,sans-serif" font-size="11" fill="#aaa">TypeScript + DI + Decorators</text>
+  <text x="640" y="228" font-family="Arial,sans-serif" font-size="11" fill="#aaa">Zone.js → Signals</text>
+  <text x="640" y="246" font-family="Arial,sans-serif" font-size="11" fill="#aaa">@Component / @Input</text>
+  <text x="640" y="264" font-family="Arial,sans-serif" font-size="11" fill="#aaa">NgRx → Signal Store</text>
+
+  <rect x="630" y="285" width="220" height="45" rx="6" fill="#14532d" opacity="0.5" stroke="#4ade80" stroke-width="1"/>
+  <text x="740" y="305" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4ade80">収束先:</text>
+  <text x="740" y="322" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#86efac">コンポーネント + リアクティビティ</text>
+
+  <text x="740" y="365" text-anchor="middle" font-family="Arial,sans-serif" font-size="24">🅰️</text>
+
+  <!-- Bottom convergence zone -->
+  <rect x="100" y="395" width="700" height="55" rx="8" fill="rgba(74,222,128,0.15)" stroke="#4ade80" stroke-width="2"/>
+  <text x="450" y="420" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#4ade80">収束した共通パターン</text>
+  <text x="450" y="440" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#86efac">宣言的UI + コンポーネント + リアクティブ状態管理 + Signals (2024-)</text>
+
+  <!-- Convergence arrows -->
+  <line x1="160" y1="385" x2="250" y2="400" stroke="#60a5fa" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="450" y1="385" x2="450" y2="395" stroke="#4ade80" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="740" y1="385" x2="650" y2="400" stroke="#f87171" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <!-- Bottom -->
+  <text x="450" y="470" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#aaa">問題空間 (ブラウザUI構築) が同じ → 解空間 (コンポーネント+リアクティビティ) も同じに収束</text>
+</svg>

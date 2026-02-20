@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="480" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" fill="#e0e0ff" font-size="18" font-weight="bold" font-family="sans-serif">完全変態 × ソフトウェアマイグレーション対応図</text>
+
+  <!-- Headers -->
+  <rect x="50" y="50" width="390" height="35" fill="#533483" rx="6"/>
+  <text x="245" y="73" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="sans-serif">昆虫の完全変態</text>
+  <rect x="460" y="50" width="410" height="35" fill="#1a6b3a" rx="6"/>
+  <text x="665" y="73" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="sans-serif">ソフトウェアマイグレーション</text>
+
+  <!-- Row 1: Egg = Design -->
+  <rect x="50" y="95" width="390" height="85" fill="#16213e" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <rect x="60" y="105" width="60" height="60" fill="#ffcc00" rx="30" opacity="0.3"/>
+  <ellipse cx="90" cy="135" rx="15" ry="20" fill="#e8d8a0"/>
+  <text x="160" y="125" fill="#ffcc00" font-size="14" font-weight="bold" font-family="sans-serif">卵 (Egg)</text>
+  <text x="160" y="145" fill="#aaa" font-size="11" font-family="sans-serif">DNA = 完成形の設計図</text>
+  <text x="160" y="163" fill="#aaa" font-size="11" font-family="sans-serif">環境条件で発生が始まる</text>
+
+  <rect x="460" y="95" width="410" height="85" fill="#16213e" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="480" y="125" fill="#ffcc00" font-size="14" font-weight="bold" font-family="sans-serif">設計・MVP</text>
+  <text x="480" y="145" fill="#aaa" font-size="11" font-family="sans-serif">アーキテクチャ決定 = DNA設計</text>
+  <text x="480" y="163" fill="#aaa" font-size="11" font-family="sans-serif">市場投入で「孵化」する</text>
+
+  <!-- Arrow -->
+  <text x="448" y="137" text-anchor="middle" fill="#e8c6f5" font-size="16" font-family="sans-serif">=</text>
+
+  <!-- Row 2: Larva = Monolith -->
+  <rect x="50" y="190" width="390" height="85" fill="#16213e" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <circle cx="80" cy="232" r="10" fill="#66aa44"/>
+  <circle cx="98" cy="232" r="10" fill="#77bb55"/>
+  <circle cx="116" cy="232" r="10" fill="#66aa44"/>
+  <text x="160" y="220" fill="#66ff66" font-size="14" font-weight="bold" font-family="sans-serif">幼虫 (Larva)</text>
+  <text x="160" y="240" fill="#aaa" font-size="11" font-family="sans-serif">ひたすら食べて巨大化</text>
+  <text x="160" y="258" fill="#aaa" font-size="11" font-family="sans-serif">脱皮(5回) = バージョンアップ</text>
+
+  <rect x="460" y="190" width="410" height="85" fill="#16213e" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="480" y="220" fill="#66ff66" font-size="14" font-weight="bold" font-family="sans-serif">モノリス成長期</text>
+  <text x="480" y="240" fill="#aaa" font-size="11" font-family="sans-serif">機能追加で巨大化する一枚岩</text>
+  <text x="480" y="258" fill="#aaa" font-size="11" font-family="sans-serif">リリース = 脱皮サイクル</text>
+
+  <text x="448" y="232" text-anchor="middle" fill="#e8c6f5" font-size="16" font-family="sans-serif">=</text>
+
+  <!-- Row 3: Pupa = Strangler Fig -->
+  <rect x="50" y="285" width="390" height="85" fill="#16213e" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <ellipse cx="90" cy="327" rx="15" ry="25" fill="#2a6a5a"/>
+  <ellipse cx="90" cy="320" rx="8" ry="15" fill="#3a8a7a" opacity="0.5"/>
+  <text x="160" y="315" fill="#4cc9f0" font-size="14" font-weight="bold" font-family="sans-serif">蛹 (Pupa / Chrysalis)</text>
+  <text x="160" y="335" fill="#aaa" font-size="11" font-family="sans-serif">外殻の中で体を完全に分解</text>
+  <text x="160" y="353" fill="#aaa" font-size="11" font-family="sans-serif">imaginal discから再構築</text>
+
+  <rect x="460" y="285" width="410" height="85" fill="#16213e" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="480" y="315" fill="#4cc9f0" font-size="14" font-weight="bold" font-family="sans-serif">Strangler Fig Pattern</text>
+  <text x="480" y="335" fill="#aaa" font-size="11" font-family="sans-serif">旧システムを徐々に置き換え</text>
+  <text x="480" y="353" fill="#aaa" font-size="11" font-family="sans-serif">新旧共存 → 旧を段階的に除去</text>
+
+  <text x="448" y="327" text-anchor="middle" fill="#e8c6f5" font-size="16" font-family="sans-serif">=</text>
+
+  <!-- Row 4: Adult = Microservices -->
+  <rect x="50" y="380" width="390" height="85" fill="#16213e" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <!-- Mini butterfly -->
+  <ellipse cx="80" cy="420" rx="18" ry="12" fill="#cc44aa" opacity="0.7" transform="rotate(-25,80,420)"/>
+  <ellipse cx="108" cy="420" rx="18" ry="12" fill="#cc44aa" opacity="0.7" transform="rotate(25,108,420)"/>
+  <ellipse cx="94" cy="425" rx="3" ry="10" fill="#333"/>
+  <text x="160" y="410" fill="#ff6699" font-size="14" font-weight="bold" font-family="sans-serif">成虫 (Adult / Imago)</text>
+  <text x="160" y="430" fill="#aaa" font-size="11" font-family="sans-serif">飛行能力 = 分散・スケーラブル</text>
+  <text x="160" y="448" fill="#aaa" font-size="11" font-family="sans-serif">生殖 = 新サービスを生み出す</text>
+
+  <rect x="460" y="380" width="410" height="85" fill="#16213e" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="480" y="410" fill="#ff6699" font-size="14" font-weight="bold" font-family="sans-serif">マイクロサービス</text>
+  <text x="480" y="430" fill="#aaa" font-size="11" font-family="sans-serif">独立デプロイ = 飛行能力</text>
+  <text x="480" y="448" fill="#aaa" font-size="11" font-family="sans-serif">各サービスが自律的に進化</text>
+
+  <text x="448" y="422" text-anchor="middle" fill="#e8c6f5" font-size="16" font-family="sans-serif">=</text>
+</svg>

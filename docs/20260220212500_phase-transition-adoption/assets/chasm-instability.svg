@@ -1,0 +1,67 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="28" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">キャズムと不安定領域</text>
+  <text x="450" y="48" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">相転移の「不安定相」= キャズム（深い溝）</text>
+
+  <!-- Main chart area -->
+  <rect x="40" y="60" width="820" height="280" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+
+  <!-- Bell curve segments (adoption lifecycle) -->
+  <!-- Innovators -->
+  <path d="M 80,310 C 100,305 115,290 130,260 C 140,240 150,225 160,225" fill="none" stroke="#6c5ce7" stroke-width="3"/>
+  <rect x="80" y="315" width="80" height="18" fill="#6c5ce7" rx="3" opacity="0.5"/>
+  <text x="120" y="328" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">イノベーター</text>
+  <text x="120" y="345" text-anchor="middle" fill="#6c5ce7" font-size="9" font-family="sans-serif">2.5%</text>
+
+  <!-- Early Adopters -->
+  <path d="M 160,225 C 180,180 210,130 250,95 C 270,80 290,90 310,120" fill="none" stroke="#0984e3" stroke-width="3"/>
+  <rect x="170" y="315" width="120" height="18" fill="#0984e3" rx="3" opacity="0.5"/>
+  <text x="230" y="328" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">アーリーアダプター</text>
+  <text x="230" y="345" text-anchor="middle" fill="#0984e3" font-size="9" font-family="sans-serif">13.5%</text>
+
+  <!-- THE CHASM -->
+  <rect x="305" y="80" width="40" height="230" fill="#FF6B6B" opacity="0.15"/>
+  <line x1="305" y1="80" x2="305" y2="310" stroke="#FF6B6B" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="345" y1="80" x2="345" y2="310" stroke="#FF6B6B" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="325" y="75" text-anchor="middle" fill="#FF6B6B" font-size="13" font-family="sans-serif" font-weight="bold">CHASM</text>
+
+  <!-- Early Majority -->
+  <path d="M 345,140 C 370,105 420,80 470,75 C 520,72 560,85 590,120" fill="none" stroke="#4ECDC4" stroke-width="3"/>
+  <rect x="360" y="315" width="150" height="18" fill="#4ECDC4" rx="3" opacity="0.5"/>
+  <text x="435" y="328" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">アーリーマジョリティ</text>
+  <text x="435" y="345" text-anchor="middle" fill="#4ECDC4" font-size="9" font-family="sans-serif">34%</text>
+
+  <!-- Late Majority -->
+  <path d="M 590,120 C 620,155 650,200 680,240 C 700,260 720,275 740,285" fill="none" stroke="#FFEAA7" stroke-width="3"/>
+  <rect x="590" y="315" width="130" height="18" fill="#FFEAA7" rx="3" opacity="0.4"/>
+  <text x="655" y="328" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">レイトマジョリティ</text>
+  <text x="655" y="345" text-anchor="middle" fill="#FFEAA7" font-size="9" font-family="sans-serif">34%</text>
+
+  <!-- Laggards -->
+  <path d="M 740,285 C 760,295 780,302 800,307 C 820,310 840,310 840,310" fill="none" stroke="#e17055" stroke-width="3"/>
+  <rect x="750" y="315" width="90" height="18" fill="#e17055" rx="3" opacity="0.5"/>
+  <text x="795" y="328" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">ラガード</text>
+  <text x="795" y="345" text-anchor="middle" fill="#e17055" font-size="9" font-family="sans-serif">16%</text>
+
+  <!-- Phase transition annotation -->
+  <text x="235" y="260" text-anchor="middle" fill="#0984e3" font-size="11" font-family="sans-serif" font-weight="bold">過冷却状態</text>
+  <text x="235" y="278" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">エネルギー蓄積中</text>
+
+  <text x="470" y="260" text-anchor="middle" fill="#4ECDC4" font-size="11" font-family="sans-serif" font-weight="bold">相転移完了</text>
+  <text x="470" y="278" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">新しい安定相</text>
+
+  <!-- Bottom: Comparison boxes -->
+  <rect x="40" y="365" width="400" height="120" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="240" y="390" text-anchor="middle" fill="#FF6B6B" font-size="14" font-family="sans-serif" font-weight="bold">キャズム = 不安定領域</text>
+  <text x="60" y="412" fill="#aaa" font-size="11" font-family="sans-serif">- 物理: 過冷却水 → 核が形成されるまで凍らない</text>
+  <text x="60" y="432" fill="#aaa" font-size="11" font-family="sans-serif">- 技術: EA→EMの間に「深い溝」が存在</text>
+  <text x="60" y="452" fill="#aaa" font-size="11" font-family="sans-serif">- 溝を越えるには「核形成」= キラーユースケースが必要</text>
+  <text x="60" y="472" fill="#FFEAA7" font-size="11" font-family="sans-serif">- 多くの技術がここで死ぬ (Google Glass, 3D TV...)</text>
+
+  <rect x="460" y="365" width="400" height="120" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="660" y="390" text-anchor="middle" fill="#4ECDC4" font-size="14" font-family="sans-serif" font-weight="bold">キャズム越えの条件</text>
+  <text x="480" y="412" fill="#aaa" font-size="11" font-family="sans-serif">- 物理: 臨界核サイズを超える → 連鎖的に結晶化</text>
+  <text x="480" y="432" fill="#aaa" font-size="11" font-family="sans-serif">- 技術: 実用的ユースケース + ネットワーク効果</text>
+  <text x="480" y="452" fill="#aaa" font-size="11" font-family="sans-serif">- Slack: IT部門→全社へ (ボトムアップ浸透)</text>
+  <text x="480" y="472" fill="#FFEAA7" font-size="11" font-family="sans-serif">- ChatGPT: 「誰でも使える」UXが臨界核に</text>
+</svg>

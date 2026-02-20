@@ -1,0 +1,12 @@
+topic: "「時間」は存在しないか — 物理学が語る時間の正体"
+language: "ja"
+output:
+  dir: "docs/20260220055400_time-does-not-exist"
+  baseName: "time-does-not-exist"
+marp:
+  theme: gaia
+  paginate: true
+  header: "時間の物理学"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

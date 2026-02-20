@@ -1,0 +1,33 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <text x="450" y="35" text-anchor="middle" font-size="18" fill="white" font-weight="bold">ダークパターンの分類</text>
+  <rect x="40" y="60" width="250" height="100" rx="12" fill="#e74c3c" opacity="0.7" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="165" y="95" text-anchor="middle" font-size="14" fill="white" font-weight="bold">強制（Forced）</text>
+  <text x="165" y="115" text-anchor="middle" font-size="10" fill="white">望まない選択を強制する</text>
+  <text x="165" y="133" text-anchor="middle" font-size="9" fill="white">例: アカウント削除を極端に困難に</text>
+  <rect x="330" y="60" width="250" height="100" rx="12" fill="#e67e22" opacity="0.7" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="455" y="95" text-anchor="middle" font-size="14" fill="white" font-weight="bold">欺瞞（Sneaking）</text>
+  <text x="455" y="115" text-anchor="middle" font-size="10" fill="white">気づかれずに操作する</text>
+  <text x="455" y="133" text-anchor="middle" font-size="9" fill="white">例: カートに勝手に追加される商品</text>
+  <rect x="620" y="60" width="250" height="100" rx="12" fill="#f39c12" opacity="0.7" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="745" y="95" text-anchor="middle" font-size="14" fill="white" font-weight="bold">緊急性（Urgency）</text>
+  <text x="745" y="115" text-anchor="middle" font-size="10" fill="white">急がせて判断を誤らせる</text>
+  <text x="745" y="133" text-anchor="middle" font-size="9" fill="white">例: 偽のカウントダウンタイマー</text>
+  <rect x="40" y="200" width="250" height="100" rx="12" fill="#9b59b6" opacity="0.7" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="165" y="235" text-anchor="middle" font-size="14" fill="white" font-weight="bold">妨害（Obstruction）</text>
+  <text x="165" y="255" text-anchor="middle" font-size="10" fill="white">望む行動を妨げる</text>
+  <text x="165" y="273" text-anchor="middle" font-size="9" fill="white">例: 解約に20ステップ必要</text>
+  <rect x="330" y="200" width="250" height="100" rx="12" fill="#3498db" opacity="0.7" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="455" y="235" text-anchor="middle" font-size="14" fill="white" font-weight="bold">社会的証明（Social）</text>
+  <text x="455" y="255" text-anchor="middle" font-size="10" fill="white">偽の人気を演出する</text>
+  <text x="455" y="273" text-anchor="middle" font-size="9" fill="white">例:「今12人が閲覧中」の嘘</text>
+  <rect x="620" y="200" width="250" height="100" rx="12" fill="#1abc9c" opacity="0.7" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="745" y="235" text-anchor="middle" font-size="14" fill="white" font-weight="bold">インターフェース干渉</text>
+  <text x="745" y="255" text-anchor="middle" font-size="10" fill="white">UIで誤操作を誘導する</text>
+  <text x="745" y="273" text-anchor="middle" font-size="9" fill="white">例: 目立つ「同意」薄い「拒否」</text>
+  <rect x="200" y="360" width="500" height="80" rx="12" fill="#2c3e50" opacity="0.8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="450" y="395" text-anchor="middle" font-size="14" fill="#e74c3c" font-weight="bold">共通原理：ユーザーの認知バイアスを悪用する</text>
+  <text x="450" y="420" text-anchor="middle" font-size="11" fill="#aaa">損失回避・現状維持バイアス・選択過負荷・社会的証明</text>
+  <line x1="165" y1="160" x2="350" y2="360" stroke="#555" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="455" y1="300" x2="450" y2="360" stroke="#555" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="745" y1="300" x2="550" y2="360" stroke="#555" stroke-width="1" stroke-dasharray="3,3"/>
+</svg>

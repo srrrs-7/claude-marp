@@ -1,0 +1,57 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f0e17" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#fffffe" font-size="18" font-family="sans-serif" font-weight="bold">バグの量子力学分類</text>
+
+  <!-- Bohrbug -->
+  <rect x="30" y="60" width="260" height="190" fill="#1a1a2e" rx="8" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.4))"/>
+  <rect x="30" y="60" width="260" height="40" fill="#2563eb" rx="8"/>
+  <rect x="30" y="90" width="260" height="10" fill="#2563eb"/>
+  <text x="160" y="86" text-anchor="middle" fill="#fffffe" font-size="14" font-family="sans-serif" font-weight="bold">Bohrbug</text>
+  <text x="160" y="125" text-anchor="middle" fill="#7ecaff" font-size="11" font-family="sans-serif">再現可能、予測可能</text>
+  <text x="160" y="148" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">観察しても振る舞いが変わらない</text>
+  <text x="160" y="168" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">ボーアの原子模型のように確定的</text>
+  <text x="160" y="195" text-anchor="middle" fill="#52b788" font-size="11" font-family="sans-serif" font-weight="bold">例: NullPointerException</text>
+  <text x="160" y="215" text-anchor="middle" fill="#52b788" font-size="11" font-family="sans-serif" font-weight="bold">例: Off-by-one Error</text>
+  <text x="160" y="240" text-anchor="middle" fill="#7ecaff" font-size="14" font-family="sans-serif">難易度: ★☆☆</text>
+
+  <!-- Heisenbug -->
+  <rect x="320" y="60" width="260" height="190" fill="#1a1a2e" rx="8" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.4))"/>
+  <rect x="320" y="60" width="260" height="40" fill="#7c3aed" rx="8"/>
+  <rect x="320" y="90" width="260" height="10" fill="#7c3aed"/>
+  <text x="450" y="86" text-anchor="middle" fill="#fffffe" font-size="14" font-family="sans-serif" font-weight="bold">Heisenbug</text>
+  <text x="450" y="125" text-anchor="middle" fill="#c4b5fd" font-size="11" font-family="sans-serif">観察すると消える / 変化する</text>
+  <text x="450" y="148" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">デバッガ接続でタイミングが変わる</text>
+  <text x="450" y="168" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">ハイゼンベルクの不確定性原理</text>
+  <text x="450" y="195" text-anchor="middle" fill="#ff6b6b" font-size="11" font-family="sans-serif" font-weight="bold">例: Race Condition</text>
+  <text x="450" y="215" text-anchor="middle" fill="#ff6b6b" font-size="11" font-family="sans-serif" font-weight="bold">例: Timing-dependent bugs</text>
+  <text x="450" y="240" text-anchor="middle" fill="#c4b5fd" font-size="14" font-family="sans-serif">難易度: ★★★</text>
+
+  <!-- Mandelbug -->
+  <rect x="610" y="60" width="260" height="190" fill="#1a1a2e" rx="8" style="filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.4))"/>
+  <rect x="610" y="60" width="260" height="40" fill="#dc2626" rx="8"/>
+  <rect x="610" y="90" width="260" height="10" fill="#dc2626"/>
+  <text x="740" y="86" text-anchor="middle" fill="#fffffe" font-size="14" font-family="sans-serif" font-weight="bold">Mandelbug</text>
+  <text x="740" y="125" text-anchor="middle" fill="#fca5a5" font-size="11" font-family="sans-serif">原因が複雑すぎて理解不能</text>
+  <text x="740" y="148" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">フラクタルのように無限の複雑さ</text>
+  <text x="740" y="168" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">マンデルブロ集合の自己相似性</text>
+  <text x="740" y="195" text-anchor="middle" fill="#ff6b6b" font-size="11" font-family="sans-serif" font-weight="bold">例: 分散システムの障害連鎖</text>
+  <text x="740" y="215" text-anchor="middle" fill="#ff6b6b" font-size="11" font-family="sans-serif" font-weight="bold">例: メモリリーク連鎖</text>
+  <text x="740" y="240" text-anchor="middle" fill="#fca5a5" font-size="14" font-family="sans-serif">難易度: ★★★★★</text>
+
+  <!-- Spectrum bar -->
+  <rect x="30" y="280" width="840" height="40" rx="6"/>
+  <rect x="30" y="280" width="280" height="40" fill="#2563eb" rx="6" opacity="0.5"/>
+  <rect x="310" y="280" width="280" height="40" fill="#7c3aed" opacity="0.5"/>
+  <rect x="590" y="280" width="280" height="40" fill="#dc2626" rx="6" opacity="0.5"/>
+  <text x="170" y="305" text-anchor="middle" fill="#fffffe" font-size="11" font-family="sans-serif">確定的</text>
+  <text x="450" y="305" text-anchor="middle" fill="#fffffe" font-size="11" font-family="sans-serif">観察依存的</text>
+  <text x="730" y="305" text-anchor="middle" fill="#fffffe" font-size="11" font-family="sans-serif">カオス的</text>
+
+  <!-- Schrodinger -->
+  <rect x="30" y="340" width="840" height="145" fill="#1a1a2e" rx="8"/>
+  <text x="450" y="368" text-anchor="middle" fill="#e6b422" font-size="14" font-family="sans-serif" font-weight="bold">Schrodingbug（シュレーディンガーバグ）</text>
+  <text x="450" y="395" text-anchor="middle" fill="#a7a9be" font-size="12" font-family="sans-serif">コードを読むまでは正常に動作しているが、読んだ瞬間に壊れるバグ</text>
+  <text x="450" y="418" text-anchor="middle" fill="#a7a9be" font-size="11" font-family="sans-serif">「なぜこれが動いていたのか？」→ 観察した瞬間にバグが顕在化</text>
+  <text x="450" y="442" text-anchor="middle" fill="#a7a9be" font-size="11" font-family="sans-serif">量子力学の重ね合わせ: バグは観察されるまで「バグでもあり正常でもある」</text>
+  <text x="450" y="470" text-anchor="middle" fill="#e6b422" font-size="12" font-family="sans-serif" font-weight="bold">シュレーディンガーの猫 = 箱を開けるまで生死が重ね合わせ状態</text>
+</svg>

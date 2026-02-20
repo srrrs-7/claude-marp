@@ -1,0 +1,85 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="30" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">グリンパティック系: 脳の洗浄システム</text>
+
+  <!-- Brain cross section area -->
+  <rect x="50" y="45" width="400" height="430" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="250" y="70" text-anchor="middle" fill="#4ECDC4" font-size="14" font-family="sans-serif" font-weight="bold">脳の断面（簡略図）</text>
+
+  <!-- Blood vessel -->
+  <rect x="100" y="110" width="40" height="300" fill="#FF6B6B" opacity="0.4" rx="20"/>
+  <text x="120" y="100" text-anchor="middle" fill="#FF6B6B" font-size="10" font-family="sans-serif">動脈</text>
+
+  <!-- Perivascular space -->
+  <rect x="150" y="120" width="25" height="280" fill="#45B7D1" opacity="0.3" rx="12"/>
+  <text x="162" y="100" text-anchor="middle" fill="#45B7D1" font-size="9" font-family="sans-serif">血管周囲腔</text>
+
+  <!-- CSF flow arrows -->
+  <line x1="162" y1="130" x2="162" y2="180" stroke="#45B7D1" stroke-width="2"/>
+  <polygon points="158,180 162,190 166,180" fill="#45B7D1"/>
+  <line x1="162" y1="200" x2="162" y2="250" stroke="#45B7D1" stroke-width="2"/>
+  <polygon points="158,250 162,260 166,250" fill="#45B7D1"/>
+  <line x1="162" y1="270" x2="162" y2="320" stroke="#45B7D1" stroke-width="2"/>
+  <polygon points="158,320 162,330 166,320" fill="#45B7D1"/>
+
+  <!-- Astrocyte (star shape) -->
+  <circle cx="250" cy="250" r="35" fill="#96CEB4" opacity="0.3" stroke="#96CEB4" stroke-width="2"/>
+  <text x="250" y="255" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif" font-weight="bold">アストロ</text>
+  <text x="250" y="268" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif" font-weight="bold">サイト</text>
+  <!-- AQP4 channels -->
+  <line x1="215" y1="250" x2="180" y2="250" stroke="#96CEB4" stroke-width="2"/>
+  <text x="197" y="242" text-anchor="middle" fill="#96CEB4" font-size="8" font-family="sans-serif">AQP4</text>
+
+  <!-- Neurons -->
+  <circle cx="340" cy="180" r="20" fill="#FFEAA7" opacity="0.3" stroke="#FFEAA7" stroke-width="2"/>
+  <text x="340" y="184" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">神経細胞</text>
+  <circle cx="340" cy="320" r="20" fill="#FFEAA7" opacity="0.3" stroke="#FFEAA7" stroke-width="2"/>
+  <text x="340" y="324" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">神経細胞</text>
+
+  <!-- Waste particles -->
+  <circle cx="300" cy="200" r="4" fill="#e17055" opacity="0.8"/>
+  <circle cx="280" cy="280" r="4" fill="#e17055" opacity="0.8"/>
+  <circle cx="320" cy="250" r="4" fill="#e17055" opacity="0.8"/>
+  <circle cx="290" cy="350" r="4" fill="#e17055" opacity="0.8"/>
+  <text x="350" y="260" fill="#e17055" font-size="9" font-family="sans-serif">老廃物</text>
+  <text x="350" y="273" fill="#e17055" font-size="8" font-family="sans-serif">(Aβ, タウ)</text>
+
+  <!-- Flow direction: ISF to venous -->
+  <rect x="380" y="120" width="25" height="280" fill="#4ECDC4" opacity="0.2" rx="12"/>
+  <line x1="392" y1="380" x2="392" y2="330" stroke="#4ECDC4" stroke-width="2"/>
+  <polygon points="388,330 392,320 396,330" fill="#4ECDC4"/>
+  <text x="392" y="410" text-anchor="middle" fill="#4ECDC4" font-size="9" font-family="sans-serif">排出</text>
+
+  <!-- Right side: Explanation -->
+  <rect x="470" y="45" width="390" height="200" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="665" y="75" text-anchor="middle" fill="#FFEAA7" font-size="15" font-family="sans-serif" font-weight="bold">睡眠中に何が起きるか</text>
+  <text x="665" y="105" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">1. 脳細胞が60%収縮する（間質腔が拡大）</text>
+  <text x="665" y="130" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">2. 脳脊髄液(CSF)が血管周囲腔を流れる</text>
+  <text x="665" y="155" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">3. AQP4チャネルを通じて脳実質に浸透</text>
+  <text x="665" y="180" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">4. 老廃物(Aβ, タウ)を洗い流す</text>
+  <text x="665" y="205" text-anchor="middle" fill="#4ECDC4" font-size="12" font-family="sans-serif">5. 静脈周囲腔から排出 → リンパ系へ</text>
+  <text x="665" y="230" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">覚醒時の排出効率: 睡眠時の約1/10</text>
+
+  <!-- Sleep comparison -->
+  <rect x="470" y="265" width="185" height="210" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="562" y="290" text-anchor="middle" fill="#4ECDC4" font-size="13" font-family="sans-serif" font-weight="bold">睡眠時</text>
+  <rect x="500" y="305" width="120" height="30" fill="#4ECDC4" opacity="0.5" rx="4"/>
+  <text x="560" y="325" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">間質腔 60%拡大</text>
+  <rect x="500" y="345" width="120" height="30" fill="#4ECDC4" opacity="0.5" rx="4"/>
+  <text x="560" y="365" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">CSF流量 10倍</text>
+  <rect x="500" y="385" width="120" height="30" fill="#4ECDC4" opacity="0.5" rx="4"/>
+  <text x="560" y="405" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">Aβ排出 2倍速</text>
+  <text x="562" y="445" text-anchor="middle" fill="#4ECDC4" font-size="11" font-family="sans-serif">脳は「洗浄モード」</text>
+  <text x="562" y="465" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">深い睡眠(NREM)で最大</text>
+
+  <rect x="675" y="265" width="185" height="210" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="767" y="290" text-anchor="middle" fill="#FF6B6B" font-size="13" font-family="sans-serif" font-weight="bold">覚醒時</text>
+  <rect x="705" y="305" width="120" height="30" fill="#FF6B6B" opacity="0.3" rx="4"/>
+  <text x="765" y="325" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">間質腔 狭い</text>
+  <rect x="705" y="345" width="120" height="30" fill="#FF6B6B" opacity="0.3" rx="4"/>
+  <text x="765" y="365" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">CSF流量 最小</text>
+  <rect x="705" y="385" width="120" height="30" fill="#FF6B6B" opacity="0.3" rx="4"/>
+  <text x="765" y="405" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">老廃物が蓄積</text>
+  <text x="767" y="445" text-anchor="middle" fill="#FF6B6B" font-size="11" font-family="sans-serif">脳は「活動モード」</text>
+  <text x="767" y="465" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">洗浄は後回し</text>
+</svg>

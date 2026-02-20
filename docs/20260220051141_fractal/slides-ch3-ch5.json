@@ -1,0 +1,248 @@
+{
+	"slides": [
+		{
+			"title": "Ch.3　金融・戦略への応用",
+			"layout": "section",
+			"content": ["— マーケット・リスク管理・ビジネス戦略 —"]
+		},
+		{
+			"title": "マーケットチャートのフラクタル性",
+			"layout": "default",
+			"content": [
+				"株価チャートは**スケール不変**なフラクタル構造を持つ",
+				"",
+				"<svg viewBox=\"0 0 760 220\" style=\"max-height:55vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">  <rect width=\"760\" height=\"220\" fill=\"#f5f5f5\"/>  <!-- パネル1: 1日 -->  <rect x=\"20\" y=\"20\" width=\"220\" height=\"160\" rx=\"6\" fill=\"white\" stroke=\"#ddd\" stroke-width=\"1\"/>  <text x=\"130\" y=\"44\" font-size=\"13\" font-weight=\"bold\" fill=\"#555\" text-anchor=\"middle\">1日</text>  <polyline points=\"35,130 57,110 79,125 101,90 123,105 145,75 167,95 189,80 211,100 225,85\" fill=\"none\" stroke=\"#e94560\" stroke-width=\"2.5\" stroke-linejoin=\"round\"/>  <line x1=\"35\" y1=\"160\" x2=\"225\" y2=\"160\" stroke=\"#bbb\" stroke-width=\"1\"/>  <line x1=\"35\" y1=\"55\" x2=\"35\" y2=\"160\" stroke=\"#bbb\" stroke-width=\"1\"/>  <text x=\"130\" y=\"188\" font-size=\"11\" fill=\"#888\" text-anchor=\"middle\">時間 →</text>  <!-- パネル2: 1週間 -->  <rect x=\"270\" y=\"20\" width=\"220\" height=\"160\" rx=\"6\" fill=\"white\" stroke=\"#ddd\" stroke-width=\"1\"/>  <text x=\"380\" y=\"44\" font-size=\"13\" font-weight=\"bold\" fill=\"#555\" text-anchor=\"middle\">1週間</text>  <polyline points=\"285,100 307,125 329,95 351,140 373,115 395,80 417,100 439,70 461,90 475,105\" fill=\"none\" stroke=\"#e94560\" stroke-width=\"2.5\" stroke-linejoin=\"round\"/>  <line x1=\"285\" y1=\"160\" x2=\"475\" y2=\"160\" stroke=\"#bbb\" stroke-width=\"1\"/>  <line x1=\"285\" y1=\"55\" x2=\"285\" y2=\"160\" stroke=\"#bbb\" stroke-width=\"1\"/>  <text x=\"380\" y=\"188\" font-size=\"11\" fill=\"#888\" text-anchor=\"middle\">時間 →</text>  <!-- パネル3: 1ヶ月 -->  <rect x=\"520\" y=\"20\" width=\"220\" height=\"160\" rx=\"6\" fill=\"white\" stroke=\"#ddd\" stroke-width=\"1\"/>  <text x=\"630\" y=\"44\" font-size=\"13\" font-weight=\"bold\" fill=\"#555\" text-anchor=\"middle\">1ヶ月</text>  <polyline points=\"535,120 557,95 579,130 601,85 623,110 645,75 667,100 689,65 711,90 725,80\" fill=\"none\" stroke=\"#e94560\" stroke-width=\"2.5\" stroke-linejoin=\"round\"/>  <line x1=\"535\" y1=\"160\" x2=\"725\" y2=\"160\" stroke=\"#bbb\" stroke-width=\"1\"/>  <line x1=\"535\" y1=\"55\" x2=\"535\" y2=\"160\" stroke=\"#bbb\" stroke-width=\"1\"/>  <text x=\"630\" y=\"188\" font-size=\"11\" fill=\"#888\" text-anchor=\"middle\">時間 →</text>  <!-- 価格ラベル -->  <text x=\"12\" y=\"125\" font-size=\"9\" fill=\"#999\" text-anchor=\"middle\">価格</text>  <text x=\"262\" y=\"125\" font-size=\"9\" fill=\"#999\" text-anchor=\"middle\">価格</text>  <text x=\"512\" y=\"125\" font-size=\"9\" fill=\"#999\" text-anchor=\"middle\">価格</text></svg>",
+				"",
+				"→ 3つのチャートを並べても、**どれが日足か月足かわからない**",
+				"→ これがフラクタルの「スケール不変性」"
+			]
+		},
+		{
+			"title": "マンデルブロット「市場の（誤）行動」",
+			"layout": "default",
+			"content": [
+				"2004年出版、マンデルブロット最大の警告",
+				"",
+				"| 従来の金融理論 | マンデルブロットの主張 |",
+				"|---|---|",
+				"| 価格変動は**正規分布**に従う | 価格変動は**べき乗分布**に従う |",
+				"| 大暴落は「100年に1度」 | 大暴落は正規分布より**はるかに頻繁** |",
+				"| 過去データで未来を予測できる | 市場は本質的に**予測不能** |",
+				"",
+				"→ **2008年リーマンショック**は「あり得ない確率」の出来事ではなかった",
+				"→ フラクタル理論なら「想定内」の揺れだった"
+			]
+		},
+		{
+			"title": "ブラックスワンとフラクタル次元",
+			"layout": "default",
+			"content": [
+				"**ブラックスワン**（ナシーム・タレブ）= 極めて稀だが甚大な影響を持つ出来事",
+				"",
+				"- 正規分布ではブラックスワンは「確率ゼロに近い」",
+				"- フラクタル分布（べき乗則）では**テールが厚い**",
+				"  → 1929年、1987年、2000年、2008年の暴落が説明できる",
+				"",
+				"**べき乗則の例：**",
+				"- 1日で±1%の変動：年間200〜250日",
+				"- 1日で±5%の変動：年間5〜10日（正規分布なら1〜2回）",
+				"- 1日で±10%の変動：数年に1回（正規分布なら「ほぼあり得ない」）",
+				"",
+				"→ フラクタル思考はリスク管理を**根本から変える**"
+			]
+		},
+		{
+			"title": "ビジネス戦略のフラクタル思考",
+			"layout": "default",
+			"content": [
+				"**フラクタル思考**：ミクロとマクロを同じ枠組みで見る",
+				"",
+				"- **組織設計**：チームの構造が部署の構造を反映し、会社全体の構造を反映する",
+				"  → OKR・アジャイルチームのフラクタル的スケーリング",
+				"- **顧客対応**：個々の顧客接点のパターンがブランド全体の印象を形成する",
+				"  → 「1回の電話対応」が「企業文化」のフラクタル",
+				"- **リスク管理**：小さなリスクの積み重ねが大きな危機を予兆する",
+				"  → ヒヤリハット（ハインリッヒの法則）はフラクタル的",
+				"",
+				"→ **「部分を見れば全体がわかる」** = フラクタル思考の実践"
+			]
+		},
+		{
+			"title": "リスク管理：トレーダーが使うフラクタル指標",
+			"layout": "default",
+			"content": [
+				"**ビル・ウィリアムズのフラクタル指標**",
+				"",
+				"- 5本のローソク足を並べ、中央が最高値（または最安値）になるパターン",
+				"- これを「フラクタル」と呼び、相場の転換点を示すシグナルとして使用",
+				"",
+				"**ハースト指数（H）**",
+				"- 0.5 = ランダムウォーク（予測不能）",
+				"- 0.5〜1.0 = トレンドが持続（フラクタル的）",
+				"- 0〜0.5 = 平均回帰（逆フラクタル）",
+				"",
+				"→ 多くの資産クラスのH指数は **0.6〜0.7**",
+				"→ 市場は「完全ランダム」ではなく「フラクタル的規則性」がある"
+			]
+		},
+		{
+			"title": "金融フラクタルまとめ",
+			"layout": "default",
+			"content": [
+				"**「正規分布」→「フラクタル分布」への思考転換**",
+				"",
+				"| 観点 | 正規分布モデル | フラクタルモデル |",
+				"|---|---|---|",
+				"| 暴落の頻度 | 稀（100年に1度） | 頻繁（数年に1度） |",
+				"| リスク管理 | VaRで計算可能 | 真のリスクは計算不能 |",
+				"| 予測 | 統計的に予測可能 | 本質的に不確実 |",
+				"| 対策 | ヘッジで管理 | 強靭性（レジリエンス）で対処 |",
+				"",
+				"→ 完璧な予測より **「どんな揺れにも耐えられる設計」** が重要"
+			]
+		},
+		{
+			"title": "Ch.4　CGアート・ゲームへの応用",
+			"layout": "section",
+			"content": ["— プロシージャル生成・映画・ゲーム —"]
+		},
+		{
+			"title": "プロシージャル地形生成",
+			"layout": "default",
+			"content": [
+				"**フラクタルノイズ**（パーリンノイズ）で地形を自動生成",
+				"",
+				"アルゴリズム（疑似コード）：",
+				"",
+				"→ **同じアルゴリズム**で山脈・丘・平原・海底を生成できる",
+				"",
+				"- 初期の乱数（シード値）を変えるだけで全く異なる地形",
+				"- スケールを変えれば山にも岩にも砂粒にも",
+				"- 映画・ゲームで使われる地形の多くはこの方法で生成"
+			],
+			"code": "height(x, y) =\n  noise(x, y) * 1.0        // 大きな起伏（山脈）\n+ noise(x*2, y*2) * 0.5    // 中程度の起伏（丘）\n+ noise(x*4, y*4) * 0.25   // 小さな起伏（岩）\n+ noise(x*8, y*8) * 0.125  // 細かい質感（砂）",
+			"codeLanguage": "python"
+		},
+		{
+			"title": "映画の山脈・森 ― CG製作の舞台裏",
+			"layout": "default",
+			"content": [
+				"**スター・ウォーズ（1980年代〜）**",
+				"- 惑星の地形・宇宙の星雲 → フラクタルノイズで生成",
+				"- Death Star の表面テクスチャ → 反復パターン",
+				"",
+				"**ロード・オブ・ザ・リング（2001-2003）**",
+				"- モルドールの荒野・裂け谷の森 → プロシージャル生成",
+				"- 数万本の木を1本1本配置せず、フラクタルツリーアルゴリズムで自動生成",
+				"",
+				"**アバター（2009）**",
+				"- パンドラの浮遊山脈・植物 → 全てフラクタルベース",
+				"",
+				"→ 現代の3D映画でフラクタルを使わない作品はほぼ存在しない"
+			]
+		},
+		{
+			"title": "ゲームのワールド生成",
+			"layout": "default",
+			"content": [
+				"**Minecraft（2011〜）**",
+				"- ワールドは「シード値」から全てフラクタル的に生成",
+				"- 山・洞窟・鉱石の分布 → パーリンノイズ + フラクタル",
+				"- 同じシード値を入れれば全く同じワールドが再現できる",
+				"",
+				"**No Man's Sky（2016〜）**",
+				"- **1京8000兆個**の惑星を全てアルゴリズムで生成",
+				"- 地形・植物・生物・大気 → フラクタルと手続き的生成",
+				"",
+				"**Dwarf Fortress（2006〜）**",
+				"- 地質・気候・文明の歴史まで全てプロシージャル生成",
+				"",
+				"→ フラクタルにより「無限のコンテンツ」を有限のコードで実現"
+			]
+		},
+		{
+			"title": "フラクタルアートの世界",
+			"layout": "default",
+			"content": [
+				"数式から生まれる無限の美",
+				"",
+				"<svg viewBox=\"0 0 760 280\" style=\"max-height:58vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">  <!-- 背景 -->  <rect width=\"760\" height=\"280\" fill=\"#0a0a1a\"/>  <!-- スパイラル（ジュリア集合のイメージ） -->  <!-- 同心円状のグロー -->  <circle cx=\"190\" cy=\"140\" r=\"100\" fill=\"none\" stroke=\"#7b2d8b\" stroke-width=\"25\" opacity=\"0.3\"/>  <circle cx=\"190\" cy=\"140\" r=\"80\" fill=\"none\" stroke=\"#c0392b\" stroke-width=\"18\" opacity=\"0.35\"/>  <circle cx=\"190\" cy=\"140\" r=\"60\" fill=\"none\" stroke=\"#e67e22\" stroke-width=\"12\" opacity=\"0.4\"/>  <circle cx=\"190\" cy=\"140\" r=\"42\" fill=\"none\" stroke=\"#f1c40f\" stroke-width=\"8\" opacity=\"0.5\"/>  <circle cx=\"190\" cy=\"140\" r=\"26\" fill=\"none\" stroke=\"#2ecc71\" stroke-width=\"5\" opacity=\"0.6\"/>  <circle cx=\"190\" cy=\"140\" r=\"14\" fill=\"none\" stroke=\"#3498db\" stroke-width=\"3\" opacity=\"0.8\"/>  <circle cx=\"190\" cy=\"140\" r=\"6\" fill=\"#fff\" opacity=\"0.9\"/>  <!-- ドラゴンカーブのイメージ（折り紙フラクタル） -->  <polyline points=\"420,40 460,80 420,120 460,160 420,200 460,240\" fill=\"none\" stroke=\"#3498db\" stroke-width=\"2\" opacity=\"0.8\"/>  <polyline points=\"460,80 500,40 540,80 500,120 540,160 500,200 540,240\" fill=\"none\" stroke=\"#9b59b6\" stroke-width=\"2\" opacity=\"0.8\"/>  <polyline points=\"420,120 380,160 420,200 380,240\" fill=\"none\" stroke=\"#1abc9c\" stroke-width=\"2\" opacity=\"0.8\"/>  <!-- シダ植物（バーンズリーのシダ） -->  <text x=\"590\" y=\"25\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\">バーンズリーのシダ</text>  <line x1=\"590\" y1=\"270\" x2=\"590\" y2=\"220\" stroke=\"#27ae60\" stroke-width=\"3\"/>  <line x1=\"590\" y1=\"240\" x2=\"566\" y2=\"218\" stroke=\"#27ae60\" stroke-width=\"1.5\"/>  <line x1=\"590\" y1=\"240\" x2=\"614\" y2=\"218\" stroke=\"#27ae60\" stroke-width=\"1.5\"/>  <line x1=\"590\" y1=\"220\" x2=\"572\" y2=\"196\" stroke=\"#2ecc71\" stroke-width=\"1.2\"/>  <line x1=\"590\" y1=\"220\" x2=\"608\" y2=\"196\" stroke=\"#2ecc71\" stroke-width=\"1.2\"/>  <line x1=\"566\" y1=\"218\" x2=\"552\" y2=\"200\" stroke=\"#27ae60\" stroke-width=\"1\"/>  <line x1=\"566\" y1=\"218\" x2=\"574\" y2=\"200\" stroke=\"#27ae60\" stroke-width=\"1\"/>  <line x1=\"614\" y1=\"218\" x2=\"606\" y2=\"200\" stroke=\"#27ae60\" stroke-width=\"1\"/>  <line x1=\"614\" y1=\"218\" x2=\"628\" y2=\"200\" stroke=\"#27ae60\" stroke-width=\"1\"/>  <line x1=\"572\" y1=\"196\" x2=\"560\" y2=\"178\" stroke=\"#2ecc71\" stroke-width=\"0.8\"/>  <line x1=\"572\" y1=\"196\" x2=\"580\" y2=\"178\" stroke=\"#2ecc71\" stroke-width=\"0.8\"/>  <line x1=\"608\" y1=\"196\" x2=\"600\" y2=\"178\" stroke=\"#2ecc71\" stroke-width=\"0.8\"/>  <line x1=\"608\" y1=\"196\" x2=\"616\" y2=\"178\" stroke=\"#2ecc71\" stroke-width=\"0.8\"/>  <line x1=\"590\" y1=\"220\" x2=\"590\" y2=\"170\" stroke=\"#27ae60\" stroke-width=\"1.5\"/>  <line x1=\"590\" y1=\"185\" x2=\"576\" y2=\"165\" stroke=\"#2ecc71\" stroke-width=\"1\"/>  <line x1=\"590\" y1=\"185\" x2=\"604\" y2=\"165\" stroke=\"#2ecc71\" stroke-width=\"1\"/>  <line x1=\"590\" y1=\"170\" x2=\"578\" y2=\"148\" stroke=\"#27ae60\" stroke-width=\"0.8\"/>  <line x1=\"590\" y1=\"170\" x2=\"602\" y2=\"148\" stroke=\"#27ae60\" stroke-width=\"0.8\"/>  <line x1=\"590\" y1=\"150\" x2=\"584\" y2=\"132\" stroke=\"#2ecc71\" stroke-width=\"0.6\"/>  <line x1=\"590\" y1=\"150\" x2=\"596\" y2=\"132\" stroke=\"#2ecc71\" stroke-width=\"0.6\"/>  <!-- ラベル -->  <text x=\"190\" y=\"268\" font-size=\"10\" fill=\"#888\" text-anchor=\"middle\">ジュリア集合（円形展開）</text>  <text x=\"480\" y=\"268\" font-size=\"10\" fill=\"#888\" text-anchor=\"middle\">ドラゴン曲線</text></svg>",
+				"",
+				"→ 4つの数式だけで生まれた、無限に続くアート"
+			]
+		},
+		{
+			"title": "AI生成画像とフラクタル",
+			"layout": "default",
+			"content": [
+				"**拡散モデル（Stable Diffusion, Midjourney等）の潜在空間はフラクタル的**",
+				"",
+				"- AIが学習した「意味の空間」に自己相似的な構造が存在する",
+				"- 「犬」の概念の周囲に「猫」「動物」「ペット」が入れ子状に分布",
+				"- 画像生成の「ノイズ除去プロセス」自体がフラクタル的な多スケール処理",
+				"",
+				"**プロシージャル生成との連携：**",
+				"- ゲーム地形 → フラクタルノイズで生成 → AIでテクスチャを付加",
+				"- 無限のコンテンツ生成パイプライン",
+				"",
+				"→ フラクタルはAI時代においても**最も基本的な生成アルゴリズム**の一つ"
+			]
+		},
+		{
+			"title": "Ch.5　まとめ・振り返り",
+			"layout": "section",
+			"content": ["— キーメッセージと参考文献 —"]
+		},
+		{
+			"title": "3つのキーメッセージ",
+			"layout": "default",
+			"content": [
+				"**1. 自然界のコピー&ペースト**",
+				"   → 自然はフラクタルという「同じルール」を使い回して複雑さを作る",
+				"",
+				"**2. スケールを超えた統一法則**",
+				"   → ブロッコリー・海岸線・金融チャート・宇宙が「同じ数式」で記述できる",
+				"",
+				"**3. 不確実性との付き合い方**",
+				"   → 完璧な予測は不可能。でもフラクタル思考で「揺れのパターン」を理解できる"
+			]
+		},
+		{
+			"title": "「同じ数式」が繋ぐもの",
+			"layout": "default",
+			"content": [
+				"",
+				"<svg viewBox=\"0 0 760 300\" style=\"max-height:60vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">  <!-- 中央：数式ボックス -->  <rect x=\"290\" y=\"110\" width=\"180\" height=\"80\" rx=\"12\" fill=\"#2c3e50\" stroke=\"#f39c12\" stroke-width=\"3\"/>  <text x=\"380\" y=\"145\" font-size=\"18\" font-weight=\"bold\" fill=\"#f39c12\" text-anchor=\"middle\">z → z² + c</text>  <text x=\"380\" y=\"170\" font-size=\"12\" fill=\"#ecf0f1\" text-anchor=\"middle\">自己相似のルール</text>  <!-- ブロッコリー（左上） -->  <rect x=\"30\" y=\"20\" width=\"150\" height=\"70\" rx=\"8\" fill=\"#27ae60\" opacity=\"0.85\"/>  <text x=\"105\" y=\"50\" font-size=\"14\" font-weight=\"bold\" fill=\"white\" text-anchor=\"middle\">ロマネスコ</text>  <text x=\"105\" y=\"72\" font-size=\"11\" fill=\"#d5f5e3\" text-anchor=\"middle\">螺旋の反復</text>  <!-- 海岸線（右上） -->  <rect x=\"580\" y=\"20\" width=\"150\" height=\"70\" rx=\"8\" fill=\"#2980b9\" opacity=\"0.85\"/>  <text x=\"655\" y=\"50\" font-size=\"14\" font-weight=\"bold\" fill=\"white\" text-anchor=\"middle\">海岸線</text>  <text x=\"655\" y=\"72\" font-size=\"11\" fill=\"#d6eaf8\" text-anchor=\"middle\">凸凹の凸凹</text>  <!-- 金融チャート（左下） -->  <rect x=\"30\" y=\"210\" width=\"150\" height=\"70\" rx=\"8\" fill=\"#e74c3c\" opacity=\"0.85\"/>  <text x=\"105\" y=\"240\" font-size=\"14\" font-weight=\"bold\" fill=\"white\" text-anchor=\"middle\">金融チャート</text>  <text x=\"105\" y=\"262\" font-size=\"11\" fill=\"#fadbd8\" text-anchor=\"middle\">価格変動の自己相似</text>  <!-- CGゲーム（右下） -->  <rect x=\"580\" y=\"210\" width=\"150\" height=\"70\" rx=\"8\" fill=\"#8e44ad\" opacity=\"0.85\"/>  <text x=\"655\" y=\"240\" font-size=\"14\" font-weight=\"bold\" fill=\"white\" text-anchor=\"middle\">CGゲーム</text>  <text x=\"655\" y=\"262\" font-size=\"11\" fill=\"#e8daef\" text-anchor=\"middle\">プロシージャル生成</text>  <!-- 矢印：左上→中央 -->  <line x1=\"180\" y1=\"55\" x2=\"285\" y2=\"138\" stroke=\"#f39c12\" stroke-width=\"2\"/>  <polygon points=\"285,138 272,130 278,144\" fill=\"#f39c12\"/>  <!-- 矢印：右上→中央 -->  <line x1=\"580\" y1=\"55\" x2=\"475\" y2=\"138\" stroke=\"#f39c12\" stroke-width=\"2\"/>  <polygon points=\"475,138 488,130 482,144\" fill=\"#f39c12\"/>  <!-- 矢印：左下→中央 -->  <line x1=\"180\" y1=\"245\" x2=\"285\" y2=\"165\" stroke=\"#f39c12\" stroke-width=\"2\"/>  <polygon points=\"285,165 272,158 278,172\" fill=\"#f39c12\"/>  <!-- 矢印：右下→中央 -->  <line x1=\"580\" y1=\"245\" x2=\"475\" y2=\"165\" stroke=\"#f39c12\" stroke-width=\"2\"/>  <polygon points=\"475,165 488,158 482,172\" fill=\"#f39c12\"/>  <!-- 人体（上中） -->  <rect x=\"305\" y=\"18\" width=\"150\" height=\"70\" rx=\"8\" fill=\"#e67e22\" opacity=\"0.85\"/>  <text x=\"380\" y=\"47\" font-size=\"14\" font-weight=\"bold\" fill=\"white\" text-anchor=\"middle\">人体</text>  <text x=\"380\" y=\"69\" font-size=\"11\" fill=\"#fdebd0\" text-anchor=\"middle\">肺・血管・神経</text>  <!-- 矢印：上中→中央 -->  <line x1=\"380\" y1=\"88\" x2=\"380\" y2=\"108\" stroke=\"#f39c12\" stroke-width=\"2\"/>  <polygon points=\"380,108 374,95 386,95\" fill=\"#f39c12\"/></svg>",
+				"",
+				"→ 全てを繋ぐ「自己相似のルール」— これがフラクタルの本質"
+			]
+		},
+		{
+			"title": "参考文献・さらに学ぶために",
+			"layout": "default",
+			"content": [
+				"**書籍：**",
+				"- [フラクタル幾何学（マンデルブロット）](https://www.amazon.co.jp/) — フラクタル理論の原典",
+				"- [市場の（誤）行動（マンデルブロット）](https://www.amazon.co.jp/) — 金融フラクタルの入門",
+				"- [ブラックスワン（ナシーム・タレブ）](https://www.amazon.co.jp/) — リスクとフラクタル思考",
+				"- [カオスの紡ぐ夢の中で（ジェームズ・グリック）](https://www.amazon.co.jp/) — カオス理論の一般書",
+				"",
+				"**オンライン：**",
+				"- [Fractal Foundation](https://fractalfoundation.org/) — 教育向けフラクタル入門",
+				"- [Mandelbrot Set Explorer](https://mandelbrot.site/) — インタラクティブ探索",
+				"- [3Blue1Brown: Fractals are typically not self-similar](https://www.youtube.com/watch?v=gB9n2gHsHN4) — 動画解説"
+			]
+		},
+		{
+			"title": "Q&A",
+			"layout": "center",
+			"content": [
+				"ご質問・ご感想をお聞かせください",
+				"",
+				"**「同じ数式が、自然界のあらゆるものを繋いでいる」**",
+				"",
+				"フラクタル：自然界のコピー&ペースト"
+			]
+		}
+	]
+}

@@ -1,0 +1,676 @@
+<!DOCTYPE html><html lang="en-US"><head><title>ゲーデルの不完全性定理とプログラム検証の限界</title><meta property="og:title" content="ゲーデルの不完全性定理とプログラム検証の限界"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{appearance:none;background-color:initial;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear;-webkit-tap-highlight-color:transparent}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNNDAgNzBIMjBWNTBtMjAgMEwyMCA3MG00MC00MGgyMHYyMG0tMjAgMCAyMC0yMCIgY2xhc3M9ImEiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNMjAgNTBoMjB2MjBtLTIwIDAgMjAtMjBtNDAgMEg2MFYzMG0yMCAwTDYwIDUwIiBjbGFzcz0iYSIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODBNNTIgOTBWMTAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}@keyframes __bespoke_marp_transition_reduced_outgoing__{0%{opacity:1}to{opacity:0}}@keyframes __bespoke_marp_transition_reduced_incoming__{0%{mix-blend-mode:plus-lighter;opacity:0}to{mix-blend-mode:plus-lighter;opacity:1}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{::view-transition-group(*){animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-timing-function:ease}::view-transition-new(*),::view-transition-old(*){animation-delay:0s;animation-direction:var(--marp-bespoke-transition-animation-direction,normal);animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-fill-mode:both;animation-name:var(--marp-bespoke-transition-animation-name,var(--marp-bespoke-transition-animation-name-fallback,__bespoke_marp_transition_no_animation__));mix-blend-mode:normal}::view-transition-old(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_outgoing__;animation-timing-function:ease}::view-transition-new(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_incoming__;animation-timing-function:ease}::view-transition-new(root),::view-transition-old(root){animation-timing-function:linear}::view-transition-new(__bespoke_marp_transition_osc__),::view-transition-old(__bespoke_marp_transition_osc__){animation-duration:0s!important;animation-name:__bespoke_marp_transition_osc__!important}::view-transition-new(__bespoke_marp_transition_osc__){opacity:0!important}.bespoke-marp-transition-warming-up::view-transition-group(*),.bespoke-marp-transition-warming-up::view-transition-new(*),.bespoke-marp-transition-warming-up::view-transition-old(*){animation-play-state:paused!important}body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide:not(.bespoke-marp-active) *{view-transition-name:none!important}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}}@media screen and (prefers-reduced-motion:reduce){svg.bespoke-marp-slide *{view-transition-name:none!important}}@media screen{[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{inset:0;position:absolute}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{background:#000000a6;border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1;view-transition-name:__bespoke_marp_transition_osc__}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:#0000}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:#0000;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{display:block;inset:0;position:absolute}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:#000000a6;border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;white-space:pre-wrap;width:calc(100% - 40px);word-wrap:break-word;scrollbar-color:#eeeeee80 #0000;scrollbar-width:thin}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:#0000}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:#eeeeee80;border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>@charset "UTF-8";@import "https://fonts.bunny.net/css?family=Lato:400,900|Roboto+Mono:400,700&display=swap";div#\:\$p > svg > foreignObject > section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center;-webkit-text-size-adjust:100%;text-size-adjust:100%}div#\:\$p > svg > foreignObject > section::after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#\:\$p > svg > foreignObject > section:not([data-marpit-pagination])::after{display:none}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:2em;margin-block:0.67em}div#\:\$p > svg > foreignObject > section video::-webkit-media-controls{will-change:transform}@page {size:1280px 720px;margin:0}@media print{html, body{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#\:\$p > svg > foreignObject > section{page-break-before:always;break-before:page}div#\:\$p > svg > foreignObject > section, div#\:\$p > svg > foreignObject > section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;print-color-adjust:exact!important;transition:none!important}div#\:\$p > svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#\:\$p > svg > foreignObject > :where(section){container-type:size}div#\:\$p > svg > foreignObject > section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}/*!
+ * Marp / Marpit Gaia theme.
+ *
+ * @theme gaia
+ * @author Yuki Hattori
+ *
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ * @size 4:3 960px 720px
+ */div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code.hljs{display:block;overflow-x:auto;padding:1em}div#\:\$p > svg > foreignObject > section code.hljs{padding:3px 5px}div#\:\$p > svg > foreignObject > section .hljs{background:#000;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-comment,div#\:\$p > svg > foreignObject > section .hljs-quote{color:#aeaeae;font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-keyword,div#\:\$p > svg > foreignObject > section .hljs-selector-tag,div#\:\$p > svg > foreignObject > section .hljs-type{color:#e28964}div#\:\$p > svg > foreignObject > section .hljs-string{color:#65b042}div#\:\$p > svg > foreignObject > section .hljs-subst{color:#daefa3}div#\:\$p > svg > foreignObject > section .hljs-link,div#\:\$p > svg > foreignObject > section .hljs-regexp{color:#e9c062}div#\:\$p > svg > foreignObject > section .hljs-name,div#\:\$p > svg > foreignObject > section .hljs-section,div#\:\$p > svg > foreignObject > section .hljs-tag,div#\:\$p > svg > foreignObject > section .hljs-title{color:#89bdff}div#\:\$p > svg > foreignObject > section .hljs-class .hljs-title,div#\:\$p > svg > foreignObject > section .hljs-doctag,div#\:\$p > svg > foreignObject > section .hljs-title.class_{text-decoration:underline}div#\:\$p > svg > foreignObject > section .hljs-bullet,div#\:\$p > svg > foreignObject > section .hljs-number,div#\:\$p > svg > foreignObject > section .hljs-symbol{color:#3387cc}div#\:\$p > svg > foreignObject > section .hljs-params,div#\:\$p > svg > foreignObject > section .hljs-template-variable,div#\:\$p > svg > foreignObject > section .hljs-variable{color:#3e87e3}div#\:\$p > svg > foreignObject > section .hljs-attribute{color:#cda869}div#\:\$p > svg > foreignObject > section .hljs-meta{color:#8996a8}div#\:\$p > svg > foreignObject > section .hljs-formula{background-color:#0e2231;color:#f8f8f8;font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-addition{background-color:#253b22;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-deletion{background-color:#420e09;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-selector-class{color:#9b703f}div#\:\$p > svg > foreignObject > section .hljs-selector-id{color:#8b98ab}div#\:\$p > svg > foreignObject > section .hljs-emphasis{font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-strong{font-weight:700}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){margin:.5em 0 0}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{font-weight:inherit}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6)::part(auto-scaling){max-height:580px}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:1.8em}div#\:\$p > svg > foreignObject > section :is(h2, marp-h2){font-size:1.5em}div#\:\$p > svg > foreignObject > section :is(h3, marp-h3){font-size:1.3em}div#\:\$p > svg > foreignObject > section :is(h4, marp-h4){font-size:1.1em}div#\:\$p > svg > foreignObject > section :is(h5, marp-h5){font-size:1em}div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){font-size:.9em}div#\:\$p > svg > foreignObject > section blockquote,div#\:\$p > svg > foreignObject > section p{margin:1em 0 0}div#\:\$p > svg > foreignObject > section ol>li,div#\:\$p > svg > foreignObject > section ul>li{margin:.3em 0 0}div#\:\$p > svg > foreignObject > section ol>li>p,div#\:\$p > svg > foreignObject > section ul>li>p{margin:.6em 0 0}div#\:\$p > svg > foreignObject > section code{display:inline-block;font-family:Roboto Mono,monospace;font-size:.8em;letter-spacing:0;margin:-.1em .15em;padding:.1em .2em;vertical-align:baseline}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){display:block;margin:1em 0 0;overflow:visible}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{box-sizing:border-box;font-size:.7em;margin:0;min-width:100%;padding:.5em}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)::part(auto-scaling){max-height:calc(580px - 1em)}div#\:\$p > svg > foreignObject > section blockquote{margin:1em 0 0;padding:0 1em;position:relative}div#\:\$p > svg > foreignObject > section blockquote:after,div#\:\$p > svg > foreignObject > section blockquote:before{content:"“";display:block;font-family:Times New Roman,serif;font-weight:700;position:absolute}div#\:\$p > svg > foreignObject > section blockquote:before{left:0;top:0}div#\:\$p > svg > foreignObject > section blockquote:after{bottom:0;right:0;transform:rotate(180deg)}div#\:\$p > svg > foreignObject > section blockquote>:first-child{margin-top:0}div#\:\$p > svg > foreignObject > section mark{background:transparent}div#\:\$p > svg > foreignObject > section table{border-collapse:collapse;border-spacing:0;margin:1em 0 0}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{border-style:solid;border-width:1px;padding:.2em .4em}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header,div#\:\$p > svg > foreignObject > section:after{box-sizing:border-box;font-size:66%;height:70px;line-height:50px;overflow:hidden;padding:10px 25px;position:absolute}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:66%}div#\:\$p > svg > foreignObject > section header{top:0}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header{left:0;right:0}div#\:\$p > svg > foreignObject > section footer{bottom:0}div#\:\$p > svg > foreignObject > section{--color-background:light-dark(#fff8e1, #455a64);--color-background-stripe:light-dark(
+    rgba(69,90,100,.1),
+    rgba(255,248,225,.1)
+  );--color-foreground:light-dark(#455a64, #fff8e1);--color-dimmed:light-dark(
+    #6a7a7d,
+    #dad8c8
+  );--color-highlight:light-dark(#0288d1, #81d4fa);background-color:var(--color-background);background-image:linear-gradient(135deg, hsla(0,0%,53%,0), hsla(0,0%,53%,.02) 50%, hsla(0,0%,100%,0) 0, hsla(0,0%,100%,.05));color:var(--color-foreground);color-scheme:light;font-family:Lato,Avenir Next,Avenir,Trebuchet MS,Segoe UI,sans-serif;font-size:35px;height:720px;letter-spacing:1.25px;line-height:1.35;overflow-wrap:break-word;padding:70px;width:1280px}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size:35px}div#\:\$p > svg > foreignObject > section:after{bottom:0;font-size:80%;right:0}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:80%}div#\:\$p > svg > foreignObject > section a,div#\:\$p > svg > foreignObject > section mark{color:var(--color-highlight)}div#\:\$p > svg > foreignObject > section code{background:var(--color-dimmed);color:var(--color-background)}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{color:var(--color-highlight)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){background:var(--color-foreground)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)>code{background:transparent}div#\:\$p > svg > foreignObject > section blockquote:after,div#\:\$p > svg > foreignObject > section blockquote:before,div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header,div#\:\$p > svg > foreignObject > section section:after{color:var(--color-dimmed)}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{border-color:var(--color-foreground)}div#\:\$p > svg > foreignObject > section table thead th{background:var(--color-foreground);color:var(--color-background)}div#\:\$p > svg > foreignObject > section table tbody>tr:nth-child(odd) td,div#\:\$p > svg > foreignObject > section table tbody>tr:nth-child(odd) th{background:var(--color-background-stripe, transparent)}div#\:\$p > svg > foreignObject > section>:first-child,div#\:\$p > svg > foreignObject > section>header:first-child+*{margin-top:0}div#\:\$p > svg > foreignObject > section:where(.invert){color-scheme:dark}div#\:\$p > svg > foreignObject > section:where(.gaia){--color-background:#0288d1;--color-background-stripe:rgba(255,248,225,.1);--color-foreground:#fff8e1;--color-dimmed:#cce2de;--color-highlight:#81d4fa;}div#\:\$p > svg > foreignObject > section:where(.lead){align-items:stretch;flex-flow:column nowrap;place-content:safe center center}div#\:\$p > svg > foreignObject > section:where(.lead) :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h6, marp-h6){text-align:center}div#\:\$p > svg > foreignObject > section:where(.lead) p{text-align:center}div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h1, marp-h1),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h2, marp-h2),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h3, marp-h3),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h4, marp-h4),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h5, marp-h5),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h6, marp-h6),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>p{text-align:left}div#\:\$p > svg > foreignObject > section:where(.lead) ol>li>p,div#\:\$p > svg > foreignObject > section:where(.lead) ul>li>p{text-align:left}div#\:\$p > svg > foreignObject > section:where(.lead) table{margin-left:auto;margin-right:auto}div#\:\$p > svg > foreignObject > section{width:1280px;height:720px}div#\:\$p > svg > foreignObject > section{font-size:1.05em}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size: 1.05em}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{font-size:0.58em;line-height:1.4}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]{columns:initial!important;display:block!important;padding:0!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::after, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::after{display:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction="vertical"]{flex-direction:column}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split] > div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split, 50%)}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split="right"] > div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure > figcaption{position:absolute;border:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;white-space:nowrap;width:1px}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"], div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"]{background:transparent!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"], div#\:\$p > svg[data-marpit-svg] > foreignObject[data-marpit-advanced-background="pseudo"]{pointer-events:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background-split]{width:100%;height:100%}
+</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id=":$p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-class="lead" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="1" style="--class:lead;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+
+<h1 id="%E3%82%B2%E3%83%BC%E3%83%87%E3%83%AB%E3%81%AE%E4%B8%8D%E5%AE%8C%E5%85%A8%E6%80%A7%E5%AE%9A%E7%90%86%E3%81%A8%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E6%A4%9C%E8%A8%BC%E3%81%AE%E9%99%90%E7%95%8C">ゲーデルの不完全性定理とプログラム検証の限界</h1>
+<ul>
+<li><strong>「証明できない真実がある」という衝撃</strong></li>
+<li></li>
+<li>数学の夢を砕いた定理がソフトウェアに何を語るか</li>
+<li></li>
+<li><em>Kurt Gödel (1906–1978) の遺産</em></li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-class="lead" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="2" style="--class:lead;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+
+<h1 id="%E6%95%B0%E5%AD%A6%E3%81%AE%E5%8D%B1%E6%A9%9F">数学の危機</h1>
+<ul>
+<li>20世紀初頭、数学者たちは究極の夢を追っていた</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-class="invert" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="3" style="--class:invert;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+<h1 id="%E3%83%92%E3%83%AB%E3%83%99%E3%83%AB%E3%83%88%E3%81%AE%E5%A4%A2--%E5%AE%8C%E5%85%A8%E3%81%A7%E7%9F%9B%E7%9B%BE%E3%81%AE%E3%81%AA%E3%81%84%E6%95%B0%E5%AD%A6">ヒルベルトの夢 — 完全で矛盾のない数学</h1>
+<ul>
+<li><strong>ダフィット・ヒルベルト（1900年）の野望:</strong></li>
+<li>
+<ul>
+<li><strong>完全性</strong>: すべての数学的真実は証明できる</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>無矛盾性</strong>: 矛盾した命題は導出されない</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>決定可能性</strong>: 任意の命題の真偽を機械的に判定できる</li>
+</ul>
+</li>
+<li></li>
+<li><svg viewBox="0 0 700 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="50" y="40" width="180" height="120" rx="12" fill="#1565C0" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))" /><text x="140" y="85" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">完全性</text><text x="140" y="105" text-anchor="middle" fill="#90CAF9" font-size="11" font-family="sans-serif">すべての真実は</text><text x="140" y="120" text-anchor="middle" fill="#90CAF9" font-size="11" font-family="sans-serif">証明可能</text><rect x="260" y="40" width="180" height="120" rx="12" fill="#1565C0" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))" /><text x="350" y="85" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">無矛盾性</text><text x="350" y="105" text-anchor="middle" fill="#90CAF9" font-size="11" font-family="sans-serif">矛盾は絶対に</text><text x="350" y="120" text-anchor="middle" fill="#90CAF9" font-size="11" font-family="sans-serif">生まれない</text><rect x="470" y="40" width="180" height="120" rx="12" fill="#1565C0" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))" /><text x="560" y="85" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">決定可能性</text><text x="560" y="105" text-anchor="middle" fill="#90CAF9" font-size="11" font-family="sans-serif">機械的判定が</text><text x="560" y="120" text-anchor="middle" fill="#90CAF9" font-size="11" font-family="sans-serif">可能</text></svg></li>
+<li><strong>→ 数学の「完全な公理化」を目指したヒルベルト計画</strong></li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-class="invert" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="4" style="--class:invert;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+<h1 id="%E3%82%B2%E3%83%BC%E3%83%87%E3%83%AB%E3%81%AE%E7%99%BB%E5%A0%B4--%E8%8B%A5%E3%81%8D%E5%A4%A9%E6%89%8D%E3%81%8C%E5%A4%A2%E3%82%92%E6%89%93%E3%81%A1%E7%A0%95%E3%81%8F">ゲーデルの登場 — 若き天才が夢を打ち砕く</h1>
+<ul>
+<li><svg viewBox="0 0 760 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><line x1="60" y1="140" x2="700" y2="140" stroke="#546E7A" stroke-width="2" /><circle cx="120" cy="140" r="8" fill="#FF7043" /><text x="120" y="125" text-anchor="middle" fill="#FF7043" font-size="12" font-family="sans-serif" font-weight="bold">1900</text><text x="120" y="165" text-anchor="middle" fill="#CFD8DC" font-size="10" font-family="sans-serif">ヒルベルト</text><text x="120" y="178" text-anchor="middle" fill="#CFD8DC" font-size="10" font-family="sans-serif">計画発表</text><circle cx="240" cy="140" r="8" fill="#FF7043" /><text x="240" y="125" text-anchor="middle" fill="#FF7043" font-size="12" font-family="sans-serif" font-weight="bold">1906</text><text x="240" y="165" text-anchor="middle" fill="#CFD8DC" font-size="10" font-family="sans-serif">ゲーデル</text><text x="240" y="178" text-anchor="middle" fill="#CFD8DC" font-size="10" font-family="sans-serif">誕生</text><circle cx="400" cy="140" r="14" fill="#FFCA28" style="filter:drop-shadow(0 0 6px rgba(255,202,40,0.8))" /><text x="400" y="115" text-anchor="middle" fill="#FFCA28" font-size="13" font-family="sans-serif" font-weight="bold">1931</text><text x="400" y="165" text-anchor="middle" fill="#FFCA28" font-size="11" font-family="sans-serif" font-weight="bold">不完全性定理</text><text x="400" y="180" text-anchor="middle" fill="#FFCA28" font-size="11" font-family="sans-serif" font-weight="bold">論文発表（25歳）</text><circle cx="560" cy="140" r="8" fill="#FF7043" /><text x="560" y="125" text-anchor="middle" fill="#FF7043" font-size="12" font-family="sans-serif" font-weight="bold">1936</text><text x="560" y="165" text-anchor="middle" fill="#CFD8DC" font-size="10" font-family="sans-serif">チューリング</text><text x="560" y="178" text-anchor="middle" fill="#CFD8DC" font-size="10" font-family="sans-serif">停止問題証明</text><circle cx="680" cy="140" r="8" fill="#FF7043" /><text x="680" y="125" text-anchor="middle" fill="#FF7043" font-size="12" font-family="sans-serif" font-weight="bold">1963</text><text x="680" y="165" text-anchor="middle" fill="#CFD8DC" font-size="10" font-family="sans-serif">コーエン</text><text x="680" y="178" text-anchor="middle" fill="#CFD8DC" font-size="10" font-family="sans-serif">連続体仮説独立性</text><polygon points="700,136 712,140 700,144" fill="#546E7A" /></svg></li>
+<li>
+<ul>
+<li><strong>1931年</strong>: 25歳のゲーデルが歴史的論文を発表</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>ヒルベルト計画の<strong>完全性・無矛盾性の両方を不可能と証明</strong></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>数学界に衝撃。ヒルベルトは「ノンセンス！」と叫んだとされる</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-class="invert" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="5" style="--class:invert;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+<h1 id="%E7%AC%AC%E4%B8%80%E4%B8%8D%E5%AE%8C%E5%85%A8%E6%80%A7%E5%AE%9A%E7%90%86--%E3%81%93%E3%81%AE%E6%96%87%E3%81%AF%E8%A8%BC%E6%98%8E%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84">第一不完全性定理 — 「この文は証明できない」</h1>
+<ul>
+<li><svg viewBox="0 0 760 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="760" height="260" fill="#1A1A2E" rx="8" /><ellipse cx="380" cy="130" rx="200" ry="90" fill="none" stroke="#4FC3F7" stroke-width="2" stroke-dasharray="8 4" /><text x="380" y="75" text-anchor="middle" fill="#4FC3F7" font-size="13" font-family="sans-serif">形式的な数学体系 F</text><rect x="255" y="100" width="250" height="60" rx="8" fill="#B71C1C" style="filter:drop-shadow(0 0 8px rgba(183,28,28,0.6))" /><text x="380" y="126" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">「この文はFで証明できない」</text><text x="380" y="148" text-anchor="middle" fill="#FFCDD2" font-size="11" font-family="sans-serif">ゲーデル文 G</text><text x="380" y="210" text-anchor="middle" fill="#CFD8DC" font-size="12" font-family="sans-serif">もしGが証明できる → Fは矛盾</text><text x="380" y="230" text-anchor="middle" fill="#CFD8DC" font-size="12" font-family="sans-serif">もしGが証明できない → Gは真だが証明不可能</text><text x="100" y="130" text-anchor="middle" fill="#81C784" font-size="32" font-family="sans-serif">∀</text><text x="660" y="130" text-anchor="middle" fill="#FFB74D" font-size="32" font-family="sans-serif">∃</text></svg></li>
+<li><strong>第一不完全性定理（1931）:</strong> 矛盾のない形式体系では、</li>
+<li>真だが<strong>その体系内では証明できない命題が必ず存在する</strong></li>
+<li>
+<ul>
+<li>「嘘つきのパラドックス」の数学版</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>ゲーデル数: 命題を自然数に対応させる天才的な手法</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-class="invert" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="6" style="--class:invert;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+<h1 id="%E7%AC%AC%E4%BA%8C%E4%B8%8D%E5%AE%8C%E5%85%A8%E6%80%A7%E5%AE%9A%E7%90%86--%E7%84%A1%E7%9F%9B%E7%9B%BE%E6%80%A7%E3%81%99%E3%82%89%E8%A8%BC%E6%98%8E%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84">第二不完全性定理 — 無矛盾性すら証明できない</h1>
+<ul>
+<li><strong>第二不完全性定理:</strong> 矛盾のない形式体系Fは、<strong>F自身の無矛盾性をFの中では証明できない</strong></li>
+<li></li>
+<li><svg viewBox="0 0 700 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="700" height="200" fill="#0D1B2A" rx="8" /><rect x="30" y="40" width="200" height="120" rx="10" fill="#1B5E20" stroke="#4CAF50" stroke-width="2" /><text x="130" y="90" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">体系 F</text><text x="130" y="115" text-anchor="middle" fill="#A5D6A7" font-size="11" font-family="sans-serif">無矛盾（だと思う）</text><rect x="270" y="70" width="160" height="60" rx="8" fill="#B71C1C" stroke="#EF5350" stroke-width="2" /><text x="350" y="97" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif" font-weight="bold">「Fは無矛盾だ」</text><text x="350" y="115" text-anchor="middle" fill="#FFCDD2" font-size="10" font-family="sans-serif">をFで証明しようとする</text><line x1="230" y1="100" x2="270" y2="100" stroke="#78909C" stroke-width="2" /><polygon points="270,96 282,100 270,104" fill="#78909C" /><rect x="470" y="40" width="200" height="120" rx="10" fill="#1A237E" stroke="#3F51B5" stroke-width="2" /><text x="570" y="90" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">証明不可能</text><text x="570" y="112" text-anchor="middle" fill="#9FA8DA" font-size="11" font-family="sans-serif">もし証明できたなら</text><text x="570" y="127" text-anchor="middle" fill="#9FA8DA" font-size="11" font-family="sans-serif">Fは矛盾している</text><line x1="430" y1="100" x2="470" y2="100" stroke="#78909C" stroke-width="2" /><polygon points="470,96 482,100 470,104" fill="#78909C" /></svg></li>
+<li>
+<ul>
+<li><strong>含意</strong>: 「私は正直者です」と自己証明できる人を信用できるか？</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>より強い体系で証明できても、その体系の無矛盾性も証明不能</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>無限後退</strong>: 安全を保証するものを誰が保証するか</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-class="lead" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="7" style="--class:lead;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+
+<h1 id="%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%B8%E3%81%AE%E8%A1%9D%E6%92%83">ソフトウェアへの衝撃</h1>
+<ul>
+<li>同じ限界がコードの世界にも存在する</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-class="invert" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="8" style="--class:invert;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+<h1 id="%E5%81%9C%E6%AD%A2%E5%95%8F%E9%A1%8C--%E8%A7%A3%E3%81%91%E3%81%AA%E3%81%84%E5%95%8F%E9%A1%8C%E3%82%92%E3%83%81%E3%83%A5%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%8C%E8%A8%BC%E6%98%8E">停止問題 — 「解けない問題」をチューリングが証明</h1>
+<ul>
+<li><svg viewBox="0 0 760 270" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="760" height="270" fill="#1C1C1C" rx="8" /><rect x="30" y="30" width="200" height="80" rx="8" fill="#263238" stroke="#546E7A" stroke-width="1" /><text x="130" y="58" text-anchor="middle" fill="#80CBC4" font-size="13" font-family="monospace" font-weight="bold">プログラム P</text><text x="130" y="78" text-anchor="middle" fill="#B0BEC5" font-size="11" font-family="monospace">+ 入力 I</text><rect x="30" y="150" width="200" height="80" rx="8" fill="#1A237E" stroke="#3F51B5" stroke-width="2" /><text x="130" y="183" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">停止判定機 H</text><text x="130" y="203" text-anchor="middle" fill="#9FA8DA" font-size="11" font-family="sans-serif">HALTS(P, I) ?</text><line x1="130" y1="110" x2="130" y2="150" stroke="#546E7A" stroke-width="2" /><polygon points="126,148 130,162 134,148" fill="#546E7A" /><rect x="310" y="90" width="160" height="90" rx="8" fill="#4A148C" stroke="#9C27B0" stroke-width="2" /><text x="390" y="120" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif" font-weight="bold">矛盾する！</text><text x="390" y="142" text-anchor="middle" fill="#CE93D8" font-size="10" font-family="sans-serif">H(H, H)を実行すると</text><text x="390" y="158" text-anchor="middle" fill="#CE93D8" font-size="10" font-family="sans-serif">論理的矛盾が発生</text><line x1="230" y1="190" x2="310" y2="135" stroke="#9C27B0" stroke-width="2" stroke-dasharray="6 3" /><rect x="550" y="60" width="180" height="150" rx="8" fill="#B71C1C" stroke="#EF5350" stroke-width="2" /><text x="640" y="100" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">∴ 停止判定機</text><text x="640" y="122" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">は存在しない</text><text x="640" y="155" text-anchor="middle" fill="#FFCDD2" font-size="11" font-family="sans-serif">任意のプログラムが</text><text x="640" y="172" text-anchor="middle" fill="#FFCDD2" font-size="11" font-family="sans-serif">停止するか否かを</text><text x="640" y="189" text-anchor="middle" fill="#FFCDD2" font-size="11" font-family="sans-serif">判定できるAIはない</text><line x1="490" y1="135" x2="550" y2="135" stroke="#EF5350" stroke-width="2" /><polygon points="548,131 562,135 548,139" fill="#EF5350" /></svg></li>
+<li><strong>停止問題（1936年、チューリング）:</strong> 任意のプログラムPと入力Iに対し、</li>
+<li>「Pが停止するか否か」を判定する汎用アルゴリズムは<strong>存在しない</strong></li>
+<li>
+<ul>
+<li>ゲーデルの定理と同型の対角線論法による証明</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>ソフトウェアの根本的限界</strong>: 無限ループの一般的検出は不可能</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-class="invert" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="9" style="--class:invert;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+<h1 id="%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E6%9C%AC%E8%B3%AA%E7%9A%84%E9%99%90%E7%95%8C--%E3%81%AA%E3%81%9C100%E3%82%AB%E3%83%90%E3%83%AC%E3%83%83%E3%82%B8%E3%81%A7%E3%82%82%E4%B8%8D%E5%8D%81%E5%88%86%E3%81%8B">テストの本質的限界 — なぜ100%カバレッジでも不十分か</h1>
+<ul>
+<li><svg viewBox="0 0 700 250" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="700" height="250" fill="#121212" rx="8" /><ellipse cx="350" cy="125" rx="300" ry="105" fill="#1A237E" stroke="#3F51B5" stroke-width="2" /><text x="350" y="30" text-anchor="middle" fill="#9FA8DA" font-size="13" font-family="sans-serif">全ての可能な入力空間（無限）</text><ellipse cx="350" cy="130" rx="200" ry="70" fill="#1B5E20" stroke="#4CAF50" stroke-width="2" /><text x="350" y="105" text-anchor="middle" fill="#A5D6A7" font-size="12" font-family="sans-serif">テストでカバーできる空間（有限）</text><ellipse cx="350" cy="135" rx="80" ry="35" fill="#F57F17" stroke="#FFA000" stroke-width="2" /><text x="350" y="130" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">100%コード</text><text x="350" y="147" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">カバレッジ</text><circle cx="580" cy="80" r="12" fill="#B71C1C" style="filter:drop-shadow(0 0 5px rgba(183,28,28,0.7))" /><text x="580" y="76" text-anchor="middle" fill="white" font-size="16" font-family="sans-serif">!</text><text x="580" y="100" text-anchor="middle" fill="#EF9A9A" font-size="10" font-family="sans-serif">未発見バグ</text><circle cx="130" cy="160" r="12" fill="#B71C1C" style="filter:drop-shadow(0 0 5px rgba(183,28,28,0.7))" /><text x="130" y="156" text-anchor="middle" fill="white" font-size="16" font-family="sans-serif">!</text><text x="130" y="178" text-anchor="middle" fill="#EF9A9A" font-size="10" font-family="sans-serif">未発見バグ</text></svg></li>
+<li>
+<ul>
+<li><strong>コードカバレッジ100%</strong> ≠ バグゼロ（入力空間は無限大）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>ライス定理</strong>: プログラムの非自明な性質はどれも決定不能</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>テストは「バグがない」ことを証明できず「バグを見つける」手段</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>Dijkstra</em>: 「テストはバグの存在を示せるが、不在は示せない」</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-class="invert" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="10" style="--class:invert;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+<h1 id="%E5%BD%A2%E5%BC%8F%E6%A4%9C%E8%A8%BC%E3%81%AE%E5%A3%81--coq-haskell%E3%81%A7%E3%82%82%E8%B6%8A%E3%81%88%E3%82%89%E3%82%8C%E3%81%AA%E3%81%84%E9%99%90%E7%95%8C">形式検証の壁 — Coq, Haskellでも越えられない限界</h1>
+<ul>
+<li><strong>形式検証とは</strong>: 数学的証明でプログラムの正しさを保証する手法</li>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>手法</th>
+<th>保証できること</th>
+<th>保証できないこと</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>型システム</td>
+<td>型安全性</td>
+<td>実行時の意味論的正確さ</td>
+</tr>
+<tr>
+<td>Coq / Agda</td>
+<td>証明した性質</td>
+<td>証明しなかった性質</td>
+</tr>
+<tr>
+<td>モデル検査</td>
+<td>有限状態の検証</td>
+<td>無限状態システム</td>
+</tr>
+<tr>
+<td>静的解析</td>
+<td>特定のパターン</td>
+<td>未知のバグクラス</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li></li>
+<li><strong>ゲーデルの定理が示す根本限界</strong>:</li>
+<li>
+<ul>
+<li>十分に強力な体系（算術を含む）は完全に自己検証できない</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>証明補助器自体の無矛盾性</strong>もより強い体系に依存する</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-class="invert" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="11" style="--class:invert;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+<h1 id="%E3%83%90%E3%82%B0%E3%82%BC%E3%83%AD%E3%81%AF%E4%B8%8D%E5%8F%AF%E8%83%BD%E3%81%8B--%E7%90%86%E8%AB%96%E7%9A%84%E9%99%90%E7%95%8C-vs-%E5%AE%9F%E7%94%A8%E7%9A%84%E9%99%90%E7%95%8C">バグゼロは不可能か — 理論的限界 vs 実用的限界</h1>
+<ul>
+<li><svg viewBox="0 0 720 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="720" height="260" fill="#0F0F0F" rx="8" /><rect x="30" y="40" width="300" height="180" rx="10" fill="#1A237E" stroke="#3F51B5" stroke-width="2" /><text x="180" y="70" text-anchor="middle" fill="#90CAF9" font-size="14" font-family="sans-serif" font-weight="bold">理論的限界</text><text x="55" y="100" fill="#BBDEFB" font-size="11" font-family="sans-serif">• 停止問題: 決定不能</text><text x="55" y="120" fill="#BBDEFB" font-size="11" font-family="sans-serif">• 汎用バグ検出: 不可能</text><text x="55" y="140" fill="#BBDEFB" font-size="11" font-family="sans-serif">• 完全な自己検証: 不可能</text><text x="55" y="160" fill="#BBDEFB" font-size="11" font-family="sans-serif">• 全入力網羅: 無限で不可能</text><text x="180" y="200" text-anchor="middle" fill="#7986CB" font-size="11" font-family="sans-serif">ゲーデル・チューリングが証明</text><rect x="390" y="40" width="300" height="180" rx="10" fill="#1B5E20" stroke="#4CAF50" stroke-width="2" /><text x="540" y="70" text-anchor="middle" fill="#A5D6A7" font-size="14" font-family="sans-serif" font-weight="bold">実用的限界</text><text x="410" y="100" fill="#C8E6C9" font-size="11" font-family="sans-serif">• ほとんどのバグは発見可能</text><text x="410" y="120" fill="#C8E6C9" font-size="11" font-family="sans-serif">• ドメイン特化の証明は可能</text><text x="410" y="140" fill="#C8E6C9" font-size="11" font-family="sans-serif">• リスクは管理・軽減できる</text><text x="410" y="160" fill="#C8E6C9" font-size="11" font-family="sans-serif">• 十分な信頼性は達成できる</text><text x="540" y="200" text-anchor="middle" fill="#66BB6A" font-size="11" font-family="sans-serif">工学的アプローチで対処可能</text><text x="360" y="140" text-anchor="middle" fill="#FF7043" font-size="22" font-family="sans-serif" font-weight="bold">≠</text></svg></li>
+<li><strong>理論的不可能 ≠ 実用的不可能</strong></li>
+<li>
+<ul>
+<li>航空・医療・金融システムは「十分に安全」を実現している</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>完璧な証明がなくても<strong>リスクを許容範囲内に収める</strong>ことが工学</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-class="lead" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="12" style="--class:lead;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+
+<h1 id="%E3%81%A7%E3%81%AF%E4%BD%95%E3%81%8C%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%8B">では何ができるか</h1>
+<ul>
+<li>限界を知ることで、賢明な戦略が生まれる</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-class="invert" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="13" style="--class:invert;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+<h1 id="%E4%B8%8D%E5%AE%8C%E5%85%A8%E6%80%A7%E3%82%92%E5%8F%97%E3%81%91%E5%85%A5%E3%82%8C%E3%82%8B%E8%A8%AD%E8%A8%88%E5%93%B2%E5%AD%A6">不完全性を受け入れる設計哲学</h1>
+<ul>
+<li><svg viewBox="0 0 760 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="760" height="240" fill="#111827" rx="8" /><rect x="20" y="30" width="220" height="180" rx="10" fill="#7F1D1D" stroke="#DC2626" stroke-width="2" /><text x="130" y="58" text-anchor="middle" fill="#FCA5A5" font-size="13" font-family="sans-serif" font-weight="bold">「完璧主義」の罠</text><text x="40" y="85" fill="#FCA5A5" font-size="11" font-family="sans-serif">✗ バグゼロを目指す</text><text x="40" y="105" fill="#FCA5A5" font-size="11" font-family="sans-serif">✗ 全パターンをテスト</text><text x="40" y="125" fill="#FCA5A5" font-size="11" font-family="sans-serif">✗ 100%カバレッジに固執</text><text x="40" y="145" fill="#FCA5A5" font-size="11" font-family="sans-serif">✗ 証明できないと不安</text><text x="130" y="195" text-anchor="middle" fill="#EF4444" font-size="11" font-family="sans-serif">→ 無限コストと麻痺</text><rect x="270" y="30" width="220" height="180" rx="10" fill="#1E3A5F" stroke="#3B82F6" stroke-width="2" /><text x="380" y="58" text-anchor="middle" fill="#93C5FD" font-size="13" font-family="sans-serif" font-weight="bold">「工学的」アプローチ</text><text x="290" y="85" fill="#BFDBFE" font-size="11" font-family="sans-serif">✓ リスク許容度を定義</text><text x="290" y="105" fill="#BFDBFE" font-size="11" font-family="sans-serif">✓ 重要パスを優先テスト</text><text x="290" y="125" fill="#BFDBFE" font-size="11" font-family="sans-serif">✓ 多層防御で補完</text><text x="290" y="145" fill="#BFDBFE" font-size="11" font-family="sans-serif">✓ 失敗を前提に設計</text><text x="380" y="195" text-anchor="middle" fill="#60A5FA" font-size="11" font-family="sans-serif">→ 実用的な品質保証</text><rect x="520" y="30" width="220" height="180" rx="10" fill="#14532D" stroke="#16A34A" stroke-width="2" /><text x="630" y="58" text-anchor="middle" fill="#86EFAC" font-size="13" font-family="sans-serif" font-weight="bold">哲学的転換</text><text x="540" y="85" fill="#BBF7D0" font-size="11" font-family="sans-serif">✓ 不完全性を受け入れる</text><text x="540" y="105" fill="#BBF7D0" font-size="11" font-family="sans-serif">✓ 証拠を積み重ねる</text><text x="540" y="125" fill="#BBF7D0" font-size="11" font-family="sans-serif">✓ 継続的改善サイクル</text><text x="540" y="145" fill="#BBF7D0" font-size="11" font-family="sans-serif">✓ 観測可能性を高める</text><text x="630" y="195" text-anchor="middle" fill="#4ADE80" font-size="11" font-family="sans-serif">→ レジリエントなシステム</text></svg></li>
+<li><strong>核心</strong>: バグゼロは定理的に不可能。だからこそ<strong>失敗前提の設計</strong>が重要</li>
+<li>
+<ul>
+<li>Circuit Breaker / Chaos Engineering / 冗長化</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「証明」より「観測・検出・回復」に投資する</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-class="invert" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="14" style="--class:invert;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+<h1 id="%E8%A8%BC%E6%98%8E%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%8F%E3%81%A6%E3%82%82%E7%A2%BA%E4%BF%A1%E5%BA%A6%E3%82%92%E9%AB%98%E3%82%81%E3%82%8B%E6%88%A6%E7%95%A5">証明できなくても「確信度を高める」戦略</h1>
+<ul>
+<li><strong>科学的手法をソフトウェアに適用する:</strong></li>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>戦略</th>
+<th>内容</th>
+<th>確信度への寄与</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>仕様ベーステスト</td>
+<td>境界値・等価分割</td>
+<td>入力空間の代表点を網羅</td>
+</tr>
+<tr>
+<td>プロパティベース</td>
+<td>QuickCheck / Hypothesis</td>
+<td>ランダムな反例探索</td>
+</tr>
+<tr>
+<td>ミューテーションテスト</td>
+<td>バグを意図的に注入</td>
+<td>テスト品質を測定</td>
+</tr>
+<tr>
+<td>形式仕様</td>
+<td>TLA+, Alloy</td>
+<td>設計レベルの不変条件確認</td>
+</tr>
+<tr>
+<td>ファジング</td>
+<td>AFL / libFuzzer</td>
+<td>未知入力への耐性確認</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li></li>
+<li><strong>「完全な証明」を諦め、「証拠の多様性」を追求する</strong></li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-class="invert" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="15" style="--class:invert;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+<h1 id="%E5%A4%9A%E5%B1%A4%E3%83%86%E3%82%B9%E3%83%88%E6%88%A6%E7%95%A5%E3%81%AE%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91">多層テスト戦略の使い分け</h1>
+<ul>
+<li><svg viewBox="0 0 740 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="740" height="260" fill="#0D1B2A" rx="8" /><polygon points="370,20 690,230 50,230" fill="none" stroke="#455A64" stroke-width="1" /><rect x="250" y="20" width="240" height="40" rx="6" fill="#880E4F" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.5))" /><text x="370" y="37" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">形式検証 / 型システム</text><text x="370" y="52" text-anchor="middle" fill="#F48FB1" font-size="10" font-family="sans-serif">Coq, Agda, 依存型 — 高コスト・高保証</text><rect x="180" y="75" width="380" height="38" rx="6" fill="#4A148C" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.5))" /><text x="370" y="91" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">プロパティベーステスト / ファジング</text><text x="370" y="106" text-anchor="middle" fill="#CE93D8" font-size="10" font-family="sans-serif">QuickCheck, Hypothesis, AFL — 広範な入力探索</text><rect x="120" y="128" width="500" height="38" rx="6" fill="#1A237E" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.5))" /><text x="370" y="144" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">統合テスト / E2Eテスト</text><text x="370" y="159" text-anchor="middle" fill="#9FA8DA" font-size="10" font-family="sans-serif">シナリオベース・ユーザー視点での検証</text><rect x="55" y="181" width="630" height="38" rx="6" fill="#1B5E20" style="filter:drop-shadow(1px 1px 3px rgba(0,0,0,0.5))" /><text x="370" y="197" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">ユニットテスト / ミューテーションテスト</text><text x="370" y="212" text-anchor="middle" fill="#A5D6A7" font-size="10" font-family="sans-serif">高速・安価・広範なコードカバレッジ — テスト品質検証</text><text x="30" y="238" fill="#546E7A" font-size="10" font-family="sans-serif">← 低コスト・高速</text><text x="560" y="238" fill="#546E7A" font-size="10" font-family="sans-serif">高コスト・高保証 →</text></svg></li>
+<li><strong>戦略的使い分け</strong>: コストと保証のトレードオフを意識した多層防御</li>
+<li>
+<ul>
+<li>ユニットテストは基盤、形式検証はクリティカルパスのみ</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>ミューテーションスコア70%以上でテストの有効性を担保</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-class="lead" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="16" style="--class:lead;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+
+<h1 id="%E3%81%BE%E3%81%A8%E3%82%81--%E4%B8%8D%E5%AE%8C%E5%85%A8%E6%80%A7%E3%81%AF%E6%95%97%E5%8C%97%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%8F%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87">まとめ — 不完全性は敗北ではなく設計原則</h1>
+<ul>
+<li><svg viewBox="0 0 720 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="720" height="200" fill="#0A1628" rx="10" /><rect x="30" y="25" width="155" height="150" rx="8" fill="#1E3A5F" stroke="#3B82F6" stroke-width="1" /><text x="107" y="55" text-anchor="middle" fill="#93C5FD" font-size="12" font-family="sans-serif" font-weight="bold">理論を知る</text><text x="107" y="78" text-anchor="middle" fill="#BFDBFE" font-size="10" font-family="sans-serif">ゲーデル定理で</text><text x="107" y="95" text-anchor="middle" fill="#BFDBFE" font-size="10" font-family="sans-serif">何が不可能か把握</text><text x="107" y="115" text-anchor="middle" fill="#BFDBFE" font-size="10" font-family="sans-serif">→ 無駄な追求を避け</text><text x="107" y="132" text-anchor="middle" fill="#BFDBFE" font-size="10" font-family="sans-serif">　リソースを最適化</text><line x1="185" y1="100" x2="220" y2="100" stroke="#4B5563" stroke-width="2" /><polygon points="218,96 232,100 218,104" fill="#4B5563" /><rect x="233" y="25" width="155" height="150" rx="8" fill="#14532D" stroke="#16A34A" stroke-width="1" /><text x="310" y="55" text-anchor="middle" fill="#86EFAC" font-size="12" font-family="sans-serif" font-weight="bold">限界を受け入れる</text><text x="310" y="78" text-anchor="middle" fill="#BBF7D0" font-size="10" font-family="sans-serif">完璧を諦め</text><text x="310" y="95" text-anchor="middle" fill="#BBF7D0" font-size="10" font-family="sans-serif">「十分な保証」を目指す</text><text x="310" y="115" text-anchor="middle" fill="#BBF7D0" font-size="10" font-family="sans-serif">→ 失敗前提の設計で</text><text x="310" y="132" text-anchor="middle" fill="#BBF7D0" font-size="10" font-family="sans-serif">　レジリエンスを獲得</text><line x1="388" y1="100" x2="423" y2="100" stroke="#4B5563" stroke-width="2" /><polygon points="421,96 435,100 421,104" fill="#4B5563" /><rect x="436" y="25" width="155" height="150" rx="8" fill="#4C1D95" stroke="#7C3AED" stroke-width="1" /><text x="513" y="55" text-anchor="middle" fill="#C4B5FD" font-size="12" font-family="sans-serif" font-weight="bold">証拠を積み重ねる</text><text x="513" y="78" text-anchor="middle" fill="#DDD6FE" font-size="10" font-family="sans-serif">多様なテスト手法で</text><text x="513" y="95" text-anchor="middle" fill="#DDD6FE" font-size="10" font-family="sans-serif">確信度を高め続ける</text><text x="513" y="115" text-anchor="middle" fill="#DDD6FE" font-size="10" font-family="sans-serif">→ 科学的手法で</text><text x="513" y="132" text-anchor="middle" fill="#DDD6FE" font-size="10" font-family="sans-serif">　品質を継続改善</text><line x1="591" y1="100" x2="626" y2="100" stroke="#FBBF24" stroke-width="2" /><polygon points="624,96 638,100 624,104" fill="#FBBF24" /><rect x="640" y="60" width="68" height="80" rx="8" fill="#92400E" stroke="#F59E0B" stroke-width="2" /><text x="674" y="90" text-anchor="middle" fill="#FDE68A" font-size="11" font-family="sans-serif" font-weight="bold">優れた</text><text x="674" y="108" text-anchor="middle" fill="#FDE68A" font-size="11" font-family="sans-serif" font-weight="bold">ソフト</text><text x="674" y="126" text-anchor="middle" fill="#FDE68A" font-size="11" font-family="sans-serif" font-weight="bold">工学</text></svg></li>
+<li><strong>ゲーデルから学ぶ3つの教訓:</strong></li>
+<li>
+<ol>
+<li><strong>限界を知ること</strong>がより良い設計の出発点</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li><strong>不完全なシステム</strong>でも価値あるものは作れる</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li><strong>証拠の多様性</strong>が「証明の代替」となる</li>
+</ol>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-class="invert" data-paginate="true" data-header="ゲーデルの不完全性定理とプログラム検証" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="17" style="--class:invert;--paginate:true;--header:ゲーデルの不完全性定理とプログラム検証;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>ゲーデルの不完全性定理とプログラム検証</header>
+<h1 id="%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</h1>
+<ul>
+<li><strong>数学・論理学:</strong></li>
+<li>
+<ul>
+<li><a href="https://plato.stanford.edu/entries/goedel-incompleteness/">Gödel's Incompleteness Theorems (Stanford Encyclopedia)</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://monoskop.org/images/9/93/Godel_Kurt_1992_On_Formally_Undecidable_Propositions.pdf">On Formally Undecidable Propositions (Gödel, 1931)</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://www.amazon.co.jp/dp/4826901259">「ゲーデル・エッシャー・バッハ」ダグラス・ホフスタッター</a></li>
+</ul>
+</li>
+<li></li>
+<li><strong>ソフトウェア工学への応用:</strong></li>
+<li>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Halting_problem">Halting Problem - Wikipedia</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Rice%27s_theorem">Rice's Theorem and Software Verification</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://www.amazon.co.jp/dp/4822283151">「プログラムはなぜ動くのか」矢沢久雄</a></li>
+</ul>
+</li>
+<li></li>
+<li><strong>実践的テスト戦略:</strong></li>
+<li>
+<ul>
+<li><a href="https://hackage.haskell.org/package/QuickCheck">QuickCheck: A Lightweight Tool for Random Testing</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://sre.google/sre-book/">Google SRE Book — Reliability</a></li>
+</ul>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+<script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{container;containerSize;containerObserver;svg;svgComputedStyle;svgPreserveAspectRatio="xMinYMid meet";wrapper;wrapperSize;wrapperObserver;constructor(){super();const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=this.shadowRoot.querySelector(`div[${e}]`)??void 0;const t=this.svg;this.svg=this.wrapper?.querySelector(`svg[${i}]`)??void 0,this.svg!==t&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=this.svg?.querySelector(`span[${n}]`)??void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame(()=>{t.style.display=""}))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){let t=Math.ceil(this.containerSize?.width??0);const e=Math.ceil(this.containerSize?.height??0);void 0!==this.dataset.downscaleOnly&&(t=Math.max(t,this.wrapperSize?.width??0));const i=this.svg?.querySelector(":scope > foreignObject");if(i?.setAttribute("width",`${t}`),i?.setAttribute("height",`${e}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${t} ${e}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=t<=0||e<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const r=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this._shadow()}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_shadow(){if(!this.shadowRoot)try{this.attachShadow({mode:"open"})}catch(t){if(!(t instanceof Error&&"NotSupportedError"===t.name))throw t}return this.shadowRoot}_update(){const t=this._shadow();if(t){const e=i?`<style>:host { ${i} }</style>`:"";let n="<slot></slot>";const{autoScaling:s}=this.dataset;if(void 0!==s){n=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===s?"data-downscale-only":""}>${n}</marp-auto-scaling>`}t.innerHTML=e+n}}};let o;const a=Symbol(),l=()=>o??(o=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is"),o);let c;const d="marpitSVGPolyfill:setZoomFactor,",h=Symbol(),g=Symbol();const p=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[v]:[],i={then:e=>(t?(async()=>{if(void 0===c){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise(t=>{i.addEventListener("load",()=>t())});i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),c=e.getImageData(5,5,1,1).data[3]<128}return c})().then(t=>{null==e||e(t?[v]:[])}):null==e||e([]),i)};return Object.assign(e,i)};let m,u;function v(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(d)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(u=i)}}catch(t){console.error(t)}}));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),t=>{var e,s,r,o;t.style.transform||(t.style.transform="translateZ(0)");const a=i||u||t.currentScale||1;m!==a&&(m=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(o=null===(r=n.y)||void 0===r?void 0:r.baseVal.value)&&void 0!==o?o:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}}),!1!==n&&Array.from(e.querySelectorAll("iframe"),({contentWindow:t})=>{null==t||t.postMessage(`${d}${n}`,"null"===window.origin?"*":window.origin)})}function w({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[h])return t[h];let e=!0;const i=()=>{e=!1,delete t[h]};Object.defineProperty(t,h,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await p()}finally{s=!0}})();const r=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(r)};return r(),i}(e);return t?(i(),()=>{}):i}m=1,u=void 0;const b=Symbol(),y=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,o=t[n].proto();l()&&o!==HTMLElement?i||customElements.define(s,r(o,{style:t[n].style}),{extends:n}):(i||customElements.define(s,r(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach(t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)}))}window[a]=!0})(e),e[b])return e[b];const i=w({target:e}),n=()=>{i(),delete e[b]},o=Object.assign(n,{cleanup:n,update:()=>y(e)});return Object.defineProperty(e,b,{configurable:!0,value:o}),o},f=document.currentScript;y(f?f.getRootNode():document)}();
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="0" tabindex="0"><p>1931年、25歳のゲーデルが発表した論文が数学の世界を根底から覆した。その衝撃はソフトウェア工学にも深く及んでいる。</p></div><div class="bespoke-marp-note" data-index="2" tabindex="0"><p>1900年のパリ国際数学者会議でヒルベルトが提示した23の問題の根底にあった哲学。</p></div><div class="bespoke-marp-note" data-index="3" tabindex="0"><p>ゲーデルはウィーン大学の博士課程学生だった。論文のタイトルは「Principia Mathematicaおよび関連体系の形式的に決定不可能な命題について」。</p></div><div class="bespoke-marp-note" data-index="4" tabindex="0"><p>ゲーデルは命題論理をゲーデル数と呼ばれる自然数に符号化し、数学が自分自身について語れることを示した。この自己言及が核心。</p></div><div class="bespoke-marp-note" data-index="5" tabindex="0"><p>これはヒルベルト計画への致命的な打撃だった。数学の基盤を内側から保証する方法が存在しないことを示した。</p></div><div class="bespoke-marp-note" data-index="7" tabindex="0"><p>チューリングはゲーデルの定理に触発されて停止問題を考案した。「もし停止判定機Hが存在するとしたら」という仮定から矛盾を導く対角線論法。</p></div><div class="bespoke-marp-note" data-index="8" tabindex="0"><p>ライス定理はゲーデルの定理の直接的帰結。プログラムが「正しく動作する」「特定の出力を返す」といった性質の汎用的判定は不可能。</p></div><div class="bespoke-marp-note" data-index="9" tabindex="0"><p>Coqで証明されたプログラムですら、Coqの論理体系自体の無矛盾性は仮定されている。これはゲーデルの第二不完全性定理の直接的帰結。</p></div><div class="bespoke-marp-note" data-index="10" tabindex="0"><p>ゲーデルの定理は絶望を意味しない。数学が不完全でも数学者は研究を続け、有用な定理を証明し続けている。ソフトウェアも同じ。</p></div><div class="bespoke-marp-note" data-index="12" tabindex="0"><p>Googleのサイトリライアビリティエンジニアリング（SRE）やNetflixのChaos Monkeyは、この哲学の実践例。</p></div><div class="bespoke-marp-note" data-index="13" tabindex="0"><p>統計学と同じ考え方。一つの実験では証明できないが、多様な観点からの証拠を積み重ねることで確信度が高まる。</p></div><div class="bespoke-marp-note" data-index="14" tabindex="0"><p>テストの種類によって「何に対する証拠か」が異なる。多様な証拠を組み合わせることで全体的な確信度を高める。</p></div><div class="bespoke-marp-note" data-index="15" tabindex="0"><p>ゲーデル自身も、不完全性定理を発表した後も数学の研究を続けた。限界を知ることは絶望ではなく、より賢明な前進のための知恵。</p></div><div class="bespoke-marp-note" data-index="16" tabindex="0"><p>特に「ゲーデル・エッシャー・バッハ」は不完全性定理を音楽・美術と絡めて解説した名著。ソフトウェアエンジニアにも強く推薦。</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@4.2.3/lib/bespoke.js.LICENSE.txt */
+!function(){"use strict";function e(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var t,n,r=(n||(n=1,t={from:function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),o=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,function(e){return"SCRIPT"!==e.nodeName}),a={},i=function(e,t){return(t=t||{}).index=o.indexOf(e),t.slide=e,t},s=function(e,t){a[e]=(a[e]||[]).filter(function(e){return e!==t})},c=function(e,t){return(a[e]||[]).reduce(function(e,n){return e&&!1!==n(t)},!0)},l=function(e,t){o[e]&&(n&&c("deactivate",i(n,t)),n=o[e],c("activate",i(n,t)))},d=function(e,t){var r=o.indexOf(n)+e;c(e>0?"next":"prev",i(n,t))&&l(r,t)},u={off:s,on:function(e,t){return(a[e]||(a[e]=[])).push(t),s.bind(null,e,t)},fire:c,slide:function(e,t){if(!arguments.length)return o.indexOf(n);c("slide",i(o[e],t))&&l(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:o,destroy:function(e){c("destroy",i(n,e)),a={}}};return(t||[]).forEach(function(e){e(u)}),n||l(0),u}}),t),o=e(r);const a=document.body,i=(...e)=>history.replaceState(...e),s="",c="presenter",l="next",d=["",c,l],u="bespoke-marp-",f=`data-${u}`,m=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},g=()=>a.dataset.bespokeView,p=e=>new URLSearchParams(location.search).get(e),v=(e,t={})=>{const n={location,setter:i,...t},r=new URLSearchParams(n.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?r.set(t,n):r.delete(t)}try{n.setter({...window.history.state??{}},"",m(r,n.location))}catch(e){console.error(e)}},h=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch{return!1}})(),y=e=>{try{return localStorage.getItem(e)}catch{return null}},b=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch{return!1}},w=e=>{try{return localStorage.removeItem(e),!0}catch{return!1}},x=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},k=e=>{e.parent.classList.add(`${u}parent`),e.slides.forEach(e=>e.classList.add(`${u}slide`)),e.on("activate",t=>{const n=`${u}active`,r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach(e=>{e.classList.remove(n),x(e,!0)}),o.add(n),x(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}})},$=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=o;e.setAttribute(`${f}fragment`,(a?"":"in")+"active");const i=`${f}current-fragment`;t===r&&n===o?e.setAttribute(i,"current"):e.removeAttribute(i)})}),e.fragmentIndex=o;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",a)};e.on("next",({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}}),e.on("prev",({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)}),o(0,0)},E=document,L=()=>!(!E.fullscreenEnabled&&!E.webkitFullscreenEnabled),S=()=>!(!E.fullscreenElement&&!E.webkitFullscreenElement),P=e=>{e.fullscreen=()=>{L()&&(async()=>{S()?(E.exitFullscreen||E.webkitExitFullscreen)?.call(E):((e=E.body)=>{(e.requestFullscreen||e.webkitRequestFullscreen)?.call(e)})()})()},document.addEventListener("keydown",t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!L()||(e.fullscreen(),t.preventDefault())})},_=`${u}inactive`,T=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout(()=>{r.add(_),o()},e),r.contains(_)&&(r.remove(_),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},I=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],M=e=>{e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(I.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})},O=e=>{window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("marp-auto-scaling, [data-auto-scaling], [data-marp-fitting]");t.setAttribute(`${f}load`,e?"":"hideable")}})},A=({interval:e=250}={})=>t=>{document.addEventListener("keydown",e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()});let n,r,o=0;t.parent.addEventListener("wheel",a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),e?.parentElement&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const c=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<12)return;r&&clearTimeout(r),r=setTimeout(()=>{n=0},e);const l=Date.now()-o<e,d=c<=n;if(n=c,l||d)return;let u;(a.deltaX>0||a.deltaY>0)&&(u="next"),(a.deltaX<0||a.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())})},C=(e=`.${u}osc`)=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${f}osc=${JSON.stringify(e)}]`).forEach(n)};return L()||n("fullscreen",e=>e.style.display="none"),h||n("presenter",e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."}),e=>{t.addEventListener("click",t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?e?.fullscreen():"presenter"===n&&e.openPresenterView()}}),e.parent.appendChild(t),e.on("activate",({index:t})=>{n("page",n=>n.textContent=`Page ${t+1} of ${e.slides.length}`)}),e.on("fragment",({index:t,fragments:r,fragmentIndex:o})=>{n("prev",e=>e.disabled=0===t&&0===o),n("next",n=>n.disabled=t===e.slides.length-1&&o===r.length-1)}),e.on("marp-active",()=>x(t,!1)),e.on("marp-inactive",()=>x(t,!0)),L()&&(e=>{for(const t of["","webkit"])E.addEventListener(t+"fullscreenchange",e)})(()=>n("fullscreen",e=>e.classList.toggle("exit",L()&&S())))}},D=e=>{window.addEventListener("message",t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}})};var N,B,q,K,F,j,V,U={exports:{}},X=(N||(N=1,U.exports=(B=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"],q=function(e){return String(e).replace(/[&<>"']/g,function(e){return"&"+K[e]+";"})},K={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},F="dangerouslySetInnerHTML",j={className:"class",htmlFor:"for"},V={},function(e,t){var n=[],r="";t=t||{};for(var o=arguments.length;o-- >2;)n.push(arguments[o]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(var a in t)!1!==t[a]&&null!=t[a]&&a!==F&&(r+=" "+(j[a]?j[a]:q(a))+'="'+q(t[a])+'"');r+=">"}if(-1===B.indexOf(e)){if(t[F])r+=t[F].__html;else for(;n.length;){var i=n.pop();if(i)if(i.pop)for(var s=i.length;s--;)n.push(i[s]);else r+=!0===V[i]?i:q(i)}r+=e?"</"+e+">":""}return V[r]=!0,r})),U.exports),H=e(X);const R=({children:e})=>H(null,null,...e),W=`${u}presenter-`,J={container:`${W}container`,dragbar:`${W}dragbar-container`,next:`${W}next`,nextContainer:`${W}next-container`,noteContainer:`${W}note-container`,noteWrapper:`${W}note-wrapper`,noteButtons:`${W}note-buttons`,infoContainer:`${W}info-container`,infoPage:`${W}info-page`,infoPageText:`${W}info-page-text`,infoPagePrev:`${W}info-page-prev`,infoPageNext:`${W}info-page-next`,noteButtonsBigger:`${W}note-bigger`,noteButtonsSmaller:`${W}note-smaller`,infoTime:`${W}info-time`,infoTimer:`${W}info-timer`},Y=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=J.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",H(R,null,H("div",{class:J.nextContainer},H("iframe",{class:J.next,src:"?view=next"})),H("div",{class:J.dragbar}),H("div",{class:J.noteContainer},H("div",{class:J.noteWrapper}),H("div",{class:J.noteButtons},H("button",{class:J.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),H("button",{class:J.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),H("div",{class:J.infoContainer},H("div",{class:J.infoPage},H("button",{class:J.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),H("span",{class:J.infoPageText}),H("button",{class:J.infoPageNext,tabindex:"-1",title:"Next"},"Next")),H("time",{class:J.infoTime,title:"Current time"}),H("time",{class:J.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(J.dragbar).addEventListener("mousedown",()=>{t=!0,r(J.dragbar).classList.add("active")}),window.addEventListener("mouseup",()=>{t=!1,r(J.dragbar).classList.remove("active")}),window.addEventListener("mousemove",e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(J.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)}),r(J.nextContainer).addEventListener("click",()=>e.next());const n=r(J.next),o=(a=n,(e,t)=>a.contentWindow?.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin));var a;n.addEventListener("load",()=>{r(J.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",({index:e,fragmentIndex:t})=>o(e,t))});const i=document.querySelectorAll(".bespoke-marp-note");i.forEach(e=>{e.addEventListener("keydown",e=>e.stopPropagation()),r(J.noteWrapper).appendChild(e)}),e.on("activate",()=>i.forEach(t=>t.classList.toggle("active",t.dataset.index==e.slide())));let s=0;const c=e=>{s=Math.max(-5,s+e),r(J.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},l=()=>c(1),d=()=>c(-1),u=r(J.noteButtonsBigger),f=r(J.noteButtonsSmaller);u.addEventListener("click",()=>{u.blur(),l()}),f.addEventListener("click",()=>{f.blur(),d()}),document.addEventListener("keydown",e=>{"+"===e.key&&l(),"-"===e.key&&d()},!0),e.on("activate",({index:t})=>{r(J.infoPageText).textContent=`${t+1} / ${e.slides.length}`});const m=r(J.infoPagePrev),g=r(J.infoPageNext);m.addEventListener("click",t=>{m.blur(),e.prev({fragment:!t.shiftKey})}),g.addEventListener("click",t=>{g.blur(),e.next({fragment:!t.shiftKey})}),e.on("fragment",({index:t,fragments:n,fragmentIndex:r})=>{m.disabled=0===t&&0===r,g.disabled=t===e.slides.length-1&&r===n.length-1});let p=new Date;const v=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-p.getTime(),o=t(n/1e3%60),a=t(n/1e3/60%60),i=t(n/36e5%24);r(J.infoTime).textContent=e.toLocaleTimeString(),r(J.infoTimer).textContent=`${i}:${a}:${o}`};v(),setInterval(v,250),r(J.infoTimer).addEventListener("click",()=>{p=new Date})})(e)},z=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:G},presenterUrl:{enumerable:!0,get:Q}}),h&&document.addEventListener("keydown",t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())})};function G(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,W+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function Q(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),m(e)}const Z=e=>{const t=g();return t===l&&e.appendChild(document.createElement("span")),{[s]:z,[c]:Y,[l]:D}[t]},ee=e=>{e.on("activate",t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach(n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"})})},te=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},ne=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{let n=t.fragment?te(p("f")||""):null;((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),c=o(0,r(n||0,a[s].length-1));s===e.slide()&&c===e.fragmentIndex||e.slide(s,{fragment:c})})((()=>{if(location.hash){const[t]=location.hash.slice(1).split(":~:");if(/^\d+$/.test(t))return(te(t)??1)-1;const r=document.getElementById(t)||document.querySelector(`a[name="${CSS.escape(t)}"]`);if(r){const{length:t}=e.slides;for(let o=0;o<t;o+=1)if(e.slides[o].contains(r)){const t=e.fragments?.[o],a=r.closest("[data-marpit-fragment]");if(t&&a){const e=t.indexOf(a);e>=0&&(n=e)}return o}}}return 0})(),n)};e.on("fragment",({index:e,fragmentIndex:r})=>{n||v({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})}),setTimeout(()=>{o(),window.addEventListener("hashchange",()=>r(()=>{o({fragment:!1}),v({f:void 0})})),window.addEventListener("popstate",()=>{n||r(()=>o())}),n=!1},0)}},re=(e={})=>{const t=e.key||window.history.state?.marpBespokeSyncKey||Math.random().toString(36).slice(2),n=`bespoke-marp-sync-${t}`;var r;r={marpBespokeSyncKey:t},v({},{setter:(e,...t)=>i({...e,...r},...t)});const o=()=>{const e=y(n);return e?JSON.parse(e):Object.create(null)},a=e=>{const t=o(),r={...t,...e(t)};return b(n,JSON.stringify(r)),r},s=()=>{window.removeEventListener("pageshow",s),a(e=>({reference:(e.reference||0)+1}))};return e=>{s(),Object.defineProperty(e,"syncKey",{value:t,enumerable:!0});let r=!0;setTimeout(()=>{e.on("fragment",e=>{r&&a(()=>({index:e.index,fragmentIndex:e.fragmentIndex}))})},0),window.addEventListener("storage",t=>{if(t.key===n&&t.oldValue&&t.newValue){const n=JSON.parse(t.oldValue),o=JSON.parse(t.newValue);if(n.index!==o.index||n.fragmentIndex!==o.fragmentIndex)try{r=!1,e.slide(o.index,{fragment:o.fragmentIndex,forSync:!0})}finally{r=!0}}});const i=()=>{const{reference:e}=o();void 0===e||e<=1?w(n):a(()=>({reference:e-1}))};window.addEventListener("pagehide",e=>{e.persisted&&window.addEventListener("pageshow",s),i()}),e.on("destroy",i)}},{PI:oe,abs:ae,sqrt:ie,atan2:se}=Math,ce={passive:!0},le=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",({touches:e})=>{r=1===e.length?a(e[0]):void 0},ce),o.addEventListener("touchmove",e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=ie(ae(n)**2+ae(o)**2),r.radian=se(n,o)}else r=void 0}),o.addEventListener("touchend",o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+oe)%(2*oe)-oe;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}},ce)},de=new Map;de.clear(),de.set("none",{backward:{both:void 0,incoming:void 0,outgoing:void 0},forward:{both:void 0,incoming:void 0,outgoing:void 0}});const ue={both:"",outgoing:"outgoing-",incoming:"incoming-"},fe={forward:"",backward:"-backward"},me=e=>`--marp-bespoke-transition-animation-${e}`,ge=e=>`--marp-transition-${e}`,pe=me("name"),ve=me("duration"),he=e=>new Promise(t=>{const n={},r=document.createElement("div"),o=e=>{r.remove(),t(e)};r.addEventListener("animationstart",()=>o(n)),Object.assign(r.style,{animationName:e,animationDuration:"1s",animationFillMode:"both",animationPlayState:"paused",position:"absolute",pointerEvents:"none"}),document.body.appendChild(r);const a=getComputedStyle(r).getPropertyValue(ge("duration"));a&&Number.parseFloat(a)>=0&&(n.defaultDuration=a),((e,t)=>{requestAnimationFrame(()=>{e.style.animationPlayState="running",requestAnimationFrame(()=>t(void 0))})})(r,o)}),ye=async e=>de.has(e)?de.get(e):(e=>{const t={},n=[];for(const[r,o]of Object.entries(ue))for(const[a,i]of Object.entries(fe)){const s=`marp-${o}transition${i}-${e}`;n.push(he(s).then(e=>{t[a]=t[a]||{},t[a][r]=e?{...e,name:s}:void 0}))}return Promise.all(n).then(()=>t)})(e).then(t=>(de.set(e,t),t)),be=e=>Object.values(e).flatMap(Object.values).every(e=>!e),we=(e,{type:t,backward:n})=>{const r=e[n?"backward":"forward"],o=(()=>{const e=r[t],n=e=>({[pe]:e.name});if(e)return n(e);if(r.both){const e=n(r.both);return"incoming"===t&&(e[me("direction")]="reverse"),e}})();return!o&&n?we(e,{type:t,backward:!1}):o||{[pe]:"__bespoke_marp_transition_no_animation__"}},xe=e=>{if(e)try{const t=JSON.parse(e);if((e=>{if("object"!=typeof e)return!1;const t=e;return"string"==typeof t.name&&(void 0===t.duration||"string"==typeof t.duration)})(t))return t}catch{}},ke="_tSId",$e="_tA",Ee="bespoke-marp-transition-warming-up",Le=window.matchMedia("(prefers-reduced-motion: reduce)"),Se="__bespoke_marp_transition_reduced_outgoing__",Pe="__bespoke_marp_transition_reduced_incoming__",_e={forward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}},backward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}}},Te=e=>{if(!document.startViewTransition)return;const t=t=>(void 0!==t&&(e._tD=t),e._tD);let n;t(!1),((...e)=>{CSS.registerProperty({name:ge("duration"),syntax:"<time>",inherits:!0,initialValue:"-1s"});const t=[...new Set(e).values()];return Promise.all(t.map(e=>ye(e))).then()})(...Array.from(document.querySelectorAll("section[data-transition], section[data-transition-back]")).flatMap(e=>[e.dataset.transition,e.dataset.transitionBack].flatMap(e=>{const t=xe(e);return[t?.name,t?.builtinFallback?`__builtin__${t.name}`:void 0]}).filter(e=>!!e))).then(()=>{document.querySelectorAll("style").forEach(e=>{e.innerHTML=e.innerHTML.replace(/--marp-transition-duration:[^;}]*[;}]/g,e=>e.slice(0,-1)+"!important"+e.slice(-1))})});const r=(n,{back:r,cond:o})=>a=>{const i=t();if(i)return!!a[$e]||!("object"!=typeof i||(i.skipTransition(),!a.forSync));if(!o(a))return!0;const s=e.slides[e.slide()],c=()=>a.back??r,l="data-transition"+(c()?"-back":""),d=s.querySelector(`section[${l}]`);if(!d)return!0;const u=xe(d.getAttribute(l)??void 0);return!u||((async(e,{builtinFallback:t=!0}={})=>{let n=await ye(e);if(be(n)){if(!t)return;return n=await ye(`__builtin__${e}`),be(n)?void 0:n}return n})(u.name,{builtinFallback:u.builtinFallback}).then(e=>{if(!e){t(!0);try{n(a)}finally{t(!1)}return}let r=e;Le.matches&&(console.warn("Use a constant animation to transition because preferring reduced motion by viewer has detected."),r=_e);const o=document.getElementById(ke);o&&o.remove();const i=document.createElement("style");i.id=ke,document.head.appendChild(i),((e,t)=>{const n=[`:root{${ge("direction")}:${t.backward?-1:1};}`,":root:has(.bespoke-marp-inactive){cursor:none;}"],r=t=>{const n=e[t].both?.defaultDuration||e[t].outgoing?.defaultDuration||e[t].incoming?.defaultDuration;return"forward"===t?n:n||r("forward")},o=t.duration||r(t.backward?"backward":"forward");void 0!==o&&n.push(`::view-transition-group(*){${ve}:${o};}`);const a=e=>Object.entries(e).map(([e,t])=>`${e}:${t};`).join("");return n.push(`::view-transition-old(root){${a(we(e,{...t,type:"outgoing"}))}}`,`::view-transition-new(root){${a(we(e,{...t,type:"incoming"}))}}`),n})(r,{backward:c(),duration:u.duration}).forEach(e=>i.sheet?.insertRule(e));const s=document.documentElement.classList;s.add(Ee);let l=!1;const d=()=>{l||(n(a),l=!0,s.remove(Ee))},f=()=>{t(!1),i.remove(),s.remove(Ee)};try{t(!0);const e=document.startViewTransition(d);t(e),e.finished.finally(f)}catch(e){console.error(e),d(),f()}}),!1)};e.on("prev",r(t=>e.prev({...t,[$e]:!0}),{back:!0,cond:e=>e.index>0&&!((e.fragment??1)&&n.fragmentIndex>0)})),e.on("next",r(t=>e.next({...t,[$e]:!0}),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout(()=>{e.on("slide",r(t=>e.slide(t.index,{...t,[$e]:!0}),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))},0),e.on("fragment",e=>{n=e})};let Ie;const Me=()=>(void 0===Ie&&(Ie="wakeLock"in navigator&&navigator.wakeLock),Ie),Oe=async()=>{const e=Me();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},Ae=async()=>{if(!Me())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&Oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await Oe(),e};((e=document.getElementById(":$p"))=>{(()=>{const e=p("view");a.dataset.bespokeView=e===l||e===c?e:""})();const t=(e=>{const t=p(e);return v({[e]:void 0}),t})("sync")||void 0;o.from(e,((...e)=>{const t=d.findIndex(e=>g()===e);return e.map(([e,n])=>e[t]&&n).filter(e=>e)})([[1,1,0],re({key:t})],[[1,1,1],Z(e)],[[1,1,0],M],[[1,1,1],k],[[1,0,0],T()],[[1,1,1],O],[[1,1,1],ne({history:!1})],[[1,1,0],A()],[[1,1,0],P],[[1,0,0],ee],[[1,1,0],le()],[[1,0,0],C()],[[1,0,0],Te],[[1,1,1],$],[[1,1,0],Ae]))})()}();</script></body></html>

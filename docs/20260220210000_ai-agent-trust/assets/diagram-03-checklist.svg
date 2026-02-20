@@ -1,0 +1,66 @@
+<svg viewBox="0 0 900 450" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="450" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#e0e0e0">AIエージェント信頼設計の6原則</text>
+
+  <!-- 6 cards in 2x3 grid -->
+  <!-- Row 1 -->
+  <!-- 1. Least Privilege -->
+  <rect x="30" y="60" width="270" height="160" rx="10" fill="#14532d" opacity="0.6" stroke="#4ade80" stroke-width="2"/>
+  <text x="165" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#4ade80">1</text>
+  <text x="165" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#4ade80">権限の最小化</text>
+  <text x="165" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#86efac">Principle of Least Privilege</text>
+  <text x="165" y="165" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">必要最小限の権限のみ付与</text>
+  <text x="165" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">Read-Only をデフォルトに</text>
+  <text x="165" y="205" text-anchor="middle" font-family="Arial,sans-serif" font-size="20">🔒</text>
+
+  <!-- 2. Gradual Trust -->
+  <rect x="315" y="60" width="270" height="160" rx="10" fill="#1e3a5f" opacity="0.6" stroke="#3b82f6" stroke-width="2"/>
+  <text x="450" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#60a5fa">2</text>
+  <text x="450" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#60a5fa">段階的信頼</text>
+  <text x="450" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#93c5fd">Trust Escalation</text>
+  <text x="450" y="165" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">実績に基づいて権限拡大</text>
+  <text x="450" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">L0→L1→L2→L3→L4</text>
+  <text x="450" y="205" text-anchor="middle" font-family="Arial,sans-serif" font-size="20">📈</text>
+
+  <!-- 3. Observability -->
+  <rect x="600" y="60" width="270" height="160" rx="10" fill="#581c87" opacity="0.6" stroke="#a78bfa" stroke-width="2"/>
+  <text x="735" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#a78bfa">3</text>
+  <text x="735" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#a78bfa">可観測性</text>
+  <text x="735" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#c4b5fd">Observability</text>
+  <text x="735" y="165" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">全行動をログに記録</text>
+  <text x="735" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">監査可能な行動履歴</text>
+  <text x="735" y="205" text-anchor="middle" font-family="Arial,sans-serif" font-size="20">📊</text>
+
+  <!-- Row 2 -->
+  <!-- 4. Rollback -->
+  <rect x="30" y="240" width="270" height="160" rx="10" fill="#713f12" opacity="0.6" stroke="#fbbf24" stroke-width="2"/>
+  <text x="165" y="270" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#fbbf24">4</text>
+  <text x="165" y="295" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#fbbf24">ロールバック</text>
+  <text x="165" y="320" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fde68a">Rollback Capability</text>
+  <text x="165" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">全操作を元に戻せる設計</text>
+  <text x="165" y="365" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">不可逆操作は人間承認必須</text>
+  <text x="165" y="385" text-anchor="middle" font-family="Arial,sans-serif" font-size="20">⏪</text>
+
+  <!-- 5. Kill Switch -->
+  <rect x="315" y="240" width="270" height="160" rx="10" fill="#7f1d1d" opacity="0.6" stroke="#f87171" stroke-width="2"/>
+  <text x="450" y="270" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#f87171">5</text>
+  <text x="450" y="295" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#f87171">Kill Switch</text>
+  <text x="450" y="320" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fca5a5">Emergency Stop</text>
+  <text x="450" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">緊急停止メカニズム</text>
+  <text x="450" y="365" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">即座にAIを停止できる</text>
+  <text x="450" y="385" text-anchor="middle" font-family="Arial,sans-serif" font-size="20">🛑</text>
+
+  <!-- 6. Periodic Review -->
+  <rect x="600" y="240" width="270" height="160" rx="10" fill="#164e63" opacity="0.6" stroke="#22d3ee" stroke-width="2"/>
+  <text x="735" y="270" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#22d3ee">6</text>
+  <text x="735" y="295" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#22d3ee">定期レビュー</text>
+  <text x="735" y="320" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#67e8f9">Periodic Review</text>
+  <text x="735" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">権限レベルを定期的に見直し</text>
+  <text x="735" y="365" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#aaa">過剰権限の発見と是正</text>
+  <text x="735" y="385" text-anchor="middle" font-family="Arial,sans-serif" font-size="20">🔄</text>
+
+  <!-- Bottom -->
+  <text x="450" y="430" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#fbbf24">信頼は「感情」ではなく「設計」の問題 — Trust but Verify</text>
+</svg>

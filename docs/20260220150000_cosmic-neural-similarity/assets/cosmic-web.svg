@@ -1,0 +1,141 @@
+<svg viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="440" fill="#030812" rx="12"/>
+  <text x="450" y="24" text-anchor="middle" fill="#ecf0f1" font-size="13" font-weight="bold">コズミックウェブの三要素 — フィラメント・ノード・ボイド</text>
+
+  <!-- Background stars -->
+  <circle cx="42" cy="55" r="0.8" fill="#ffffff" opacity="0.5"/>
+  <circle cx="88" cy="95" r="0.6" fill="#ffffff" opacity="0.4"/>
+  <circle cx="130" cy="68" r="0.9" fill="#ffffff" opacity="0.5"/>
+  <circle cx="200" cy="48" r="0.7" fill="#ffffff" opacity="0.4"/>
+  <circle cx="320" cy="60" r="0.8" fill="#ffffff" opacity="0.5"/>
+  <circle cx="400" cy="45" r="0.6" fill="#ffffff" opacity="0.3"/>
+  <circle cx="480" cy="70" r="0.8" fill="#ffffff" opacity="0.4"/>
+  <circle cx="560" cy="52" r="0.7" fill="#ffffff" opacity="0.5"/>
+  <circle cx="640" cy="75" r="0.6" fill="#ffffff" opacity="0.4"/>
+  <circle cx="720" cy="55" r="0.9" fill="#ffffff" opacity="0.5"/>
+  <circle cx="800" cy="65" r="0.7" fill="#ffffff" opacity="0.3"/>
+  <circle cx="855" cy="90" r="0.6" fill="#ffffff" opacity="0.4"/>
+  <circle cx="75" cy="380" r="0.8" fill="#ffffff" opacity="0.4"/>
+  <circle cx="160" cy="400" r="0.6" fill="#ffffff" opacity="0.5"/>
+  <circle cx="780" cy="390" r="0.7" fill="#ffffff" opacity="0.4"/>
+  <circle cx="840" cy="370" r="0.8" fill="#ffffff" opacity="0.5"/>
+  <circle cx="700" cy="410" r="0.6" fill="#ffffff" opacity="0.3"/>
+  <circle cx="50" cy="200" r="0.7" fill="#ffffff" opacity="0.4"/>
+  <circle cx="870" cy="200" r="0.8" fill="#ffffff" opacity="0.4"/>
+  <circle cx="420" cy="380" r="0.6" fill="#ffffff" opacity="0.4"/>
+  <circle cx="550" cy="400" r="0.7" fill="#ffffff" opacity="0.3"/>
+
+  <!-- ===== Filaments (lines between nodes) ===== -->
+  <!-- Opacity and width give sense of matter density -->
+  <!-- Major filament: left supercluster chain -->
+  <line x1="195" y1="165" x2="310" y2="195" stroke="#7ec8e3" stroke-width="1.5" opacity="0.7"/>
+  <line x1="310" y1="195" x2="430" y2="155" stroke="#7ec8e3" stroke-width="1.5" opacity="0.7"/>
+  <line x1="430" y1="155" x2="570" y2="170" stroke="#7ec8e3" stroke-width="2" opacity="0.8"/>
+  <line x1="570" y1="170" x2="690" y2="148" stroke="#7ec8e3" stroke-width="1.5" opacity="0.7"/>
+  <line x1="690" y1="148" x2="790" y2="175" stroke="#7ec8e3" stroke-width="1.2" opacity="0.6"/>
+  <!-- Secondary filament: lower chain -->
+  <line x1="195" y1="165" x2="260" y2="275" stroke="#5ba3c9" stroke-width="1.2" opacity="0.6"/>
+  <line x1="260" y1="275" x2="380" y2="300" stroke="#5ba3c9" stroke-width="1.5" opacity="0.65"/>
+  <line x1="380" y1="300" x2="500" y2="285" stroke="#5ba3c9" stroke-width="1.8" opacity="0.75"/>
+  <line x1="500" y1="285" x2="640" y2="310" stroke="#5ba3c9" stroke-width="1.5" opacity="0.65"/>
+  <line x1="640" y1="310" x2="790" y2="175" stroke="#5ba3c9" stroke-width="1.2" opacity="0.6"/>
+  <!-- Cross filaments -->
+  <line x1="310" y1="195" x2="380" y2="300" stroke="#4a90b8" stroke-width="1" opacity="0.55"/>
+  <line x1="430" y1="155" x2="500" y2="285" stroke="#4a90b8" stroke-width="1.2" opacity="0.6"/>
+  <line x1="570" y1="170" x2="640" y2="310" stroke="#4a90b8" stroke-width="1" opacity="0.55"/>
+  <line x1="260" y1="275" x2="310" y2="195" stroke="#3a7a9c" stroke-width="0.8" opacity="0.4"/>
+  <!-- Faint outer filaments -->
+  <line x1="100" y1="220" x2="195" y2="165" stroke="#3a6a8a" stroke-width="1" opacity="0.5"/>
+  <line x1="100" y1="220" x2="260" y2="275" stroke="#3a6a8a" stroke-width="0.8" opacity="0.4"/>
+  <line x1="790" y1="175" x2="840" y2="260" stroke="#3a6a8a" stroke-width="0.8" opacity="0.4"/>
+  <line x1="640" y1="310" x2="700" y2="370" stroke="#3a6a8a" stroke-width="0.8" opacity="0.4"/>
+  <line x1="380" y1="300" x2="340" y2="370" stroke="#3a6a8a" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- ===== Nodes (galaxy clusters / superclusters) ===== -->
+  <!-- Glow effect using multiple circles (no url(#id)) -->
+  <circle cx="570" cy="170" r="22" fill="#7ec8e3" opacity="0.08"/>
+  <circle cx="570" cy="170" r="14" fill="#7ec8e3" opacity="0.15"/>
+  <circle cx="570" cy="170" r="8" fill="#aee3f5" opacity="0.6"/>
+  <circle cx="570" cy="170" r="4" fill="#ffffff" opacity="0.9"/>
+
+  <circle cx="430" cy="155" r="18" fill="#7ec8e3" opacity="0.08"/>
+  <circle cx="430" cy="155" r="11" fill="#7ec8e3" opacity="0.15"/>
+  <circle cx="430" cy="155" r="6" fill="#aee3f5" opacity="0.6"/>
+  <circle cx="430" cy="155" r="3" fill="#ffffff" opacity="0.9"/>
+
+  <circle cx="500" cy="285" r="20" fill="#7ec8e3" opacity="0.1"/>
+  <circle cx="500" cy="285" r="12" fill="#7ec8e3" opacity="0.18"/>
+  <circle cx="500" cy="285" r="7" fill="#aee3f5" opacity="0.65"/>
+  <circle cx="500" cy="285" r="3.5" fill="#ffffff" opacity="0.9"/>
+
+  <circle cx="195" cy="165" r="16" fill="#7ec8e3" opacity="0.08"/>
+  <circle cx="195" cy="165" r="10" fill="#7ec8e3" opacity="0.15"/>
+  <circle cx="195" cy="165" r="5" fill="#aee3f5" opacity="0.6"/>
+  <circle cx="195" cy="165" r="2.5" fill="#ffffff" opacity="0.9"/>
+
+  <circle cx="310" cy="195" r="14" fill="#7ec8e3" opacity="0.08"/>
+  <circle cx="310" cy="195" r="8" fill="#7ec8e3" opacity="0.12"/>
+  <circle cx="310" cy="195" r="4.5" fill="#aee3f5" opacity="0.55"/>
+  <circle cx="310" cy="195" r="2" fill="#ffffff" opacity="0.85"/>
+
+  <circle cx="690" cy="148" r="16" fill="#7ec8e3" opacity="0.08"/>
+  <circle cx="690" cy="148" r="9" fill="#7ec8e3" opacity="0.12"/>
+  <circle cx="690" cy="148" r="5" fill="#aee3f5" opacity="0.55"/>
+  <circle cx="690" cy="148" r="2.5" fill="#ffffff" opacity="0.85"/>
+
+  <circle cx="790" cy="175" r="18" fill="#7ec8e3" opacity="0.1"/>
+  <circle cx="790" cy="175" r="11" fill="#7ec8e3" opacity="0.15"/>
+  <circle cx="790" cy="175" r="6" fill="#aee3f5" opacity="0.6"/>
+  <circle cx="790" cy="175" r="3" fill="#ffffff" opacity="0.9"/>
+
+  <circle cx="260" cy="275" r="14" fill="#7ec8e3" opacity="0.07"/>
+  <circle cx="260" cy="275" r="8" fill="#7ec8e3" opacity="0.12"/>
+  <circle cx="260" cy="275" r="4" fill="#aee3f5" opacity="0.5"/>
+  <circle cx="260" cy="275" r="2" fill="#ffffff" opacity="0.8"/>
+
+  <circle cx="380" cy="300" r="14" fill="#7ec8e3" opacity="0.07"/>
+  <circle cx="380" cy="300" r="8" fill="#7ec8e3" opacity="0.12"/>
+  <circle cx="380" cy="300" r="4" fill="#aee3f5" opacity="0.5"/>
+  <circle cx="380" cy="300" r="2" fill="#ffffff" opacity="0.8"/>
+
+  <circle cx="640" cy="310" r="15" fill="#7ec8e3" opacity="0.08"/>
+  <circle cx="640" cy="310" r="9" fill="#7ec8e3" opacity="0.13"/>
+  <circle cx="640" cy="310" r="5" fill="#aee3f5" opacity="0.55"/>
+  <circle cx="640" cy="310" r="2.5" fill="#ffffff" opacity="0.85"/>
+
+  <circle cx="100" cy="220" r="12" fill="#7ec8e3" opacity="0.07"/>
+  <circle cx="100" cy="220" r="7" fill="#7ec8e3" opacity="0.1"/>
+  <circle cx="100" cy="220" r="3.5" fill="#aee3f5" opacity="0.45"/>
+  <circle cx="100" cy="220" r="1.8" fill="#ffffff" opacity="0.75"/>
+
+  <!-- ===== Void region annotation (dashed outline) ===== -->
+  <ellipse cx="490" cy="355" rx="110" ry="48" fill="none" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.7"/>
+  <ellipse cx="165" cy="330" rx="70" ry="45" fill="none" stroke="#e74c3c" stroke-width="1.2" stroke-dasharray="6,4" opacity="0.55"/>
+
+  <!-- ===== Callout labels ===== -->
+  <!-- フィラメント label -->
+  <line x1="400" y1="145" x2="400" y2="100" stroke="#f39c12" stroke-width="1.5"/>
+  <polygon points="396,107 400,97 404,107" fill="#f39c12"/>
+  <rect x="320" y="70" width="160" height="30" rx="5" fill="#1a1200" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="400" y="82" text-anchor="middle" fill="#f39c12" font-size="11" font-weight="bold">フィラメント</text>
+  <text x="400" y="96" text-anchor="middle" fill="#fad7a0" font-size="9">銀河・ガスが線状に集積</text>
+
+  <!-- ノード label -->
+  <line x1="570" y1="148" x2="620" y2="110" stroke="#2ecc71" stroke-width="1.5"/>
+  <polygon points="616,116 620,106 624,116" fill="#2ecc71"/>
+  <rect x="618" y="78" width="180" height="30" rx="5" fill="#0a1a0a" stroke="#2ecc71" stroke-width="1.5"/>
+  <text x="708" y="90" text-anchor="middle" fill="#2ecc71" font-size="11" font-weight="bold">ノード / 銀河団</text>
+  <text x="708" y="103" text-anchor="middle" fill="#a9dfbf" font-size="9">フィラメントの交点に集積</text>
+
+  <!-- ボイド label -->
+  <line x1="490" y1="355" x2="490" y2="415" stroke="#e74c3c" stroke-width="1.5"/>
+  <polygon points="486,408 490,418 494,408" fill="#e74c3c"/>
+  <rect x="400" y="415" width="180" height="20" rx="4" fill="#1a0a0a" stroke="#e74c3c" stroke-width="1.2"/>
+  <text x="490" y="429" text-anchor="middle" fill="#e74c3c" font-size="11" font-weight="bold">ボイド — 広大な空洞領域</text>
+
+  <!-- Key insight bottom -->
+  <rect x="30" y="40" width="65" height="16" rx="4" fill="#0d1b2a" stroke="#95a5a6" stroke-width="1"/>
+  <text x="62" y="52" text-anchor="middle" fill="#95a5a6" font-size="8">宇宙全体の</text>
+  <text x="62" y="62" text-anchor="middle" fill="#95a5a6" font-size="8">約80%</text>
+  <text x="62" y="72" text-anchor="middle" fill="#7f8c8d" font-size="7">はボイド</text>
+</svg>

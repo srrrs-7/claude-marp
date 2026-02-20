@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="460" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" fill="#e0e0ff" font-size="18" font-weight="bold" font-family="sans-serif">ハルシネーションのメカニズム -- 地図の空白地帯</text>
+
+  <!-- Step 1: Input -->
+  <rect x="30" y="60" width="200" height="120" fill="#16213e" rx="10" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="130" y="85" text-anchor="middle" fill="#4cc9f0" font-size="13" font-weight="bold" font-family="sans-serif">1. 質問</text>
+  <rect x="50" y="95" width="160" height="35" fill="#1a3a5a" rx="5"/>
+  <text x="130" y="117" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">「X教授の2025年の</text>
+  <text x="130" y="132" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">論文について教えて」</text>
+  <text x="130" y="165" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">訓練データにない情報</text>
+
+  <!-- Arrow 1 -->
+  <line x1="230" y1="120" x2="270" y2="120" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="270,114 284,120 270,126" fill="#e8c6f5"/>
+
+  <!-- Step 2: Pattern Matching -->
+  <rect x="280" y="60" width="200" height="120" fill="#16213e" rx="10" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="380" y="85" text-anchor="middle" fill="#ff9900" font-size="13" font-weight="bold" font-family="sans-serif">2. パターン検索</text>
+  <text x="380" y="110" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">「教授」「論文」「2025」</text>
+  <text x="380" y="130" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">に関連するパターンを検索</text>
+  <text x="380" y="155" text-anchor="middle" fill="#ff9999" font-size="11" font-family="sans-serif">完全一致なし →</text>
+  <text x="380" y="170" text-anchor="middle" fill="#ff9999" font-size="11" font-family="sans-serif">類似パターンで補間</text>
+
+  <!-- Arrow 2 -->
+  <line x1="480" y1="120" x2="520" y2="120" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="520,114 534,120 520,126" fill="#e8c6f5"/>
+
+  <!-- Step 3: Interpolation -->
+  <rect x="530" y="60" width="200" height="120" fill="#16213e" rx="10" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="630" y="85" text-anchor="middle" fill="#ff6666" font-size="13" font-weight="bold" font-family="sans-serif">3. 補間/捏造</text>
+  <text x="630" y="110" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">既知のパターンを組合わせ</text>
+  <text x="630" y="130" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">尤もらしい回答を生成</text>
+  <text x="630" y="155" text-anchor="middle" fill="#ff6666" font-size="12" font-weight="bold" font-family="sans-serif">「地図にない場所を</text>
+  <text x="630" y="170" text-anchor="middle" fill="#ff6666" font-size="12" font-weight="bold" font-family="sans-serif">描いてしまう」</text>
+
+  <!-- Arrow 3 -->
+  <line x1="730" y1="120" x2="765" y2="120" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="765,114 779,120 765,126" fill="#e8c6f5"/>
+
+  <!-- Step 4: Output -->
+  <rect x="770" y="60" width="110" height="120" fill="#4a1a1a" rx="10" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="825" y="85" text-anchor="middle" fill="#ff4444" font-size="13" font-weight="bold" font-family="sans-serif">4. 幻覚</text>
+  <text x="825" y="110" text-anchor="middle" fill="#ff8888" font-size="10" font-family="sans-serif">存在しない</text>
+  <text x="825" y="125" text-anchor="middle" fill="#ff8888" font-size="10" font-family="sans-serif">論文タイトル</text>
+  <text x="825" y="145" text-anchor="middle" fill="#ff8888" font-size="10" font-family="sans-serif">架空のDOI</text>
+  <text x="825" y="165" text-anchor="middle" fill="#ff8888" font-size="10" font-family="sans-serif">偽の引用数</text>
+
+  <!-- Map metaphor section -->
+  <rect x="30" y="200" width="840" height="115" fill="#0d2240" rx="10" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="450" y="225" text-anchor="middle" fill="#e0e0e0" font-size="15" font-weight="bold" font-family="sans-serif">地図のメタファーで理解する3種類のエラー</text>
+
+  <!-- Type 1 -->
+  <rect x="50" y="240" width="240" height="60" fill="#1a4a1a" rx="6"/>
+  <text x="170" y="260" text-anchor="middle" fill="#66ff66" font-size="12" font-weight="bold" font-family="sans-serif">古い地図</text>
+  <text x="170" y="280" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">カットオフ以降の情報がない</text>
+  <text x="170" y="295" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">例: 最新ニュースを知らない</text>
+
+  <!-- Type 2 -->
+  <rect x="330" y="240" width="240" height="60" fill="#4a3a1a" rx="6"/>
+  <text x="450" y="260" text-anchor="middle" fill="#ffcc00" font-size="12" font-weight="bold" font-family="sans-serif">不正確な地図</text>
+  <text x="450" y="280" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">訓練データの誤情報を学習</text>
+  <text x="450" y="295" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">例: Webの誤った記述を再生産</text>
+
+  <!-- Type 3 -->
+  <rect x="610" y="240" width="240" height="60" fill="#4a1a1a" rx="6"/>
+  <text x="730" y="260" text-anchor="middle" fill="#ff6666" font-size="12" font-weight="bold" font-family="sans-serif">架空の地図</text>
+  <text x="730" y="280" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">パターン補間で存在しない情報を生成</text>
+  <text x="730" y="295" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">例: 架空の論文・人物を創作</text>
+
+  <!-- RAG solution -->
+  <rect x="30" y="330" width="840" height="115" fill="#16213e" rx="10" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="450" y="360" text-anchor="middle" fill="#4cc9f0" font-size="15" font-weight="bold" font-family="sans-serif">解決策: 地図を現実と照合する = RAG (Retrieval-Augmented Generation)</text>
+
+  <line x1="50" y1="370" x2="850" y2="370" stroke="#333" stroke-width="1"/>
+
+  <!-- RAG flow -->
+  <rect x="60" y="385" width="130" height="40" fill="#533483" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="125" y="410" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">質問</text>
+
+  <line x1="190" y1="405" x2="230" y2="405" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="230,399 244,405 230,411" fill="#e8c6f5"/>
+
+  <rect x="240" y="385" width="130" height="40" fill="#1a6b3a" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="305" y="405" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">外部DB検索</text>
+  <text x="305" y="420" text-anchor="middle" fill="#80ff80" font-size="9" font-family="sans-serif">(領土を確認)</text>
+
+  <line x1="370" y1="405" x2="410" y2="405" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="410,399 424,405 410,411" fill="#e8c6f5"/>
+
+  <rect x="420" y="385" width="130" height="40" fill="#ff9900" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="485" y="405" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">コンテキスト付与</text>
+  <text x="485" y="420" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">(最新の地図提供)</text>
+
+  <line x1="550" y1="405" x2="590" y2="405" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="590,399 604,405 590,411" fill="#e8c6f5"/>
+
+  <rect x="600" y="385" width="130" height="40" fill="#4cc9f0" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="665" y="405" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">LLM生成</text>
+  <text x="665" y="420" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">(地図+領土で回答)</text>
+
+  <line x1="730" y1="405" x2="770" y2="405" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="770,399 784,405 770,411" fill="#e8c6f5"/>
+
+  <rect x="780" y="385" width="80" height="40" fill="#1a6b3a" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="820" y="410" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">正確な回答</text>
+</svg>

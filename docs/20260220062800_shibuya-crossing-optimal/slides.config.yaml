@@ -1,0 +1,12 @@
+topic: "渋谷スクランブル交差点の最適化 ― 3,000人が45秒で渡れる理由"
+language: "ja"
+output:
+  dir: "docs/20260220062800_shibuya-crossing-optimal"
+  baseName: "shibuya-crossing-optimal"
+marp:
+  theme: gaia
+  paginate: true
+  header: "渋谷スクランブル交差点の最適化"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

@@ -1,0 +1,20 @@
+topic: "バイブコーディングの経済学：AIペアプログラミングのROI分析"
+language: "ja"
+
+output:
+  dir: "docs/20260220205000_vibe-coding-economics"
+  baseName: "vibe-coding-economics"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "Vibe Coding Economics"
+  footer: "© 2026 AI-Assisted Development"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

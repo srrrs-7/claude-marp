@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="480" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" fill="#e0e0ff" font-size="18" font-weight="bold" font-family="sans-serif">Strangler Fig Pattern -- 絞め殺しイチジクの知恵</text>
+
+  <!-- Phase 1 -->
+  <text x="150" y="65" text-anchor="middle" fill="#ffcc00" font-size="14" font-weight="bold" font-family="sans-serif">Phase 1: 共生開始</text>
+
+  <!-- Old tree (monolith) -->
+  <rect x="110" y="160" width="80" height="200" fill="#8B6914" rx="5"/>
+  <text x="150" y="270" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="sans-serif" transform="rotate(-90,150,270)">MONOLITH</text>
+  <!-- Small vine starting -->
+  <path d="M135 160 Q130 140 140 120 Q145 100 140 80" stroke="#2a8a3a" stroke-width="3" fill="none"/>
+  <circle cx="140" cy="80" r="8" fill="#3aaa4a" opacity="0.7"/>
+  <!-- Crown -->
+  <ellipse cx="150" cy="100" rx="60" ry="40" fill="#5a7a2a" opacity="0.5"/>
+
+  <text x="150" y="385" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">宿主(モノリス)は健在</text>
+  <text x="150" y="400" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">新サービスが寄生開始</text>
+  <text x="150" y="420" text-anchor="middle" fill="#ffcc00" font-size="10" font-family="sans-serif">蛹の中: imaginal disc形成</text>
+
+  <!-- Phase 2 -->
+  <text x="375" y="65" text-anchor="middle" fill="#4cc9f0" font-size="14" font-weight="bold" font-family="sans-serif">Phase 2: 浸食進行</text>
+
+  <!-- Old tree being wrapped -->
+  <rect x="335" y="160" width="80" height="200" fill="#8B6914" rx="5" opacity="0.7"/>
+  <text x="375" y="270" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="sans-serif" transform="rotate(-90,375,270)">MONOLITH</text>
+  <!-- Vine growing around -->
+  <path d="M340 360 Q320 300 335 240 Q340 200 330 160 Q325 120 340 80" stroke="#2a8a3a" stroke-width="4" fill="none"/>
+  <path d="M415 360 Q430 300 420 240 Q415 200 425 160 Q430 120 415 80" stroke="#2a8a3a" stroke-width="4" fill="none"/>
+  <path d="M360 360 Q345 320 355 280 Q360 240 350 200" stroke="#3aaa4a" stroke-width="3" fill="none"/>
+  <path d="M390 360 Q400 320 395 280 Q390 240 400 200" stroke="#3aaa4a" stroke-width="3" fill="none"/>
+  <!-- Crown mixed -->
+  <ellipse cx="375" cy="90" rx="65" ry="45" fill="#3a8a3a" opacity="0.5"/>
+
+  <text x="375" y="385" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">新サービスがルートを</text>
+  <text x="375" y="400" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">モノリスに巻きつける</text>
+  <text x="375" y="420" text-anchor="middle" fill="#4cc9f0" font-size="10" font-family="sans-serif">蛹の中: 組織の再構築中</text>
+
+  <!-- Phase 3 -->
+  <text x="600" y="65" text-anchor="middle" fill="#ff9900" font-size="14" font-weight="bold" font-family="sans-serif">Phase 3: 置換完了</text>
+
+  <!-- Dead tree, vine is the new trunk -->
+  <rect x="560" y="200" width="80" height="120" fill="#5a4a2a" rx="5" opacity="0.3"/>
+  <!-- Vine network is now the structure -->
+  <path d="M560 360 Q540 300 555 240 Q560 200 545 140 Q535 100 555 65" stroke="#1a6b3a" stroke-width="6" fill="none"/>
+  <path d="M640 360 Q660 300 645 240 Q640 200 655 140 Q665 100 645 65" stroke="#1a6b3a" stroke-width="6" fill="none"/>
+  <path d="M580 360 Q570 300 580 240 Q585 200 575 140" stroke="#2a8a3a" stroke-width="5" fill="none"/>
+  <path d="M620 360 Q625 300 620 240 Q615 200 625 140" stroke="#2a8a3a" stroke-width="5" fill="none"/>
+  <path d="M600 350 Q598 320 600 280" stroke="#3aaa4a" stroke-width="4" fill="none"/>
+  <!-- New crown -->
+  <ellipse cx="600" cy="75" rx="70" ry="50" fill="#2a8a3a" opacity="0.6"/>
+
+  <text x="600" y="385" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">モノリスは朽ちて消滅</text>
+  <text x="600" y="400" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">新アーキテクチャが自立</text>
+  <text x="600" y="420" text-anchor="middle" fill="#ff9900" font-size="10" font-family="sans-serif">羽化: 成虫として飛び立つ</text>
+
+  <!-- Bottom: Technical steps -->
+  <rect x="700" y="65" width="180" height="395" fill="#0d2240" rx="10" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="790" y="90" text-anchor="middle" fill="#e0e0e0" font-size="13" font-weight="bold" font-family="sans-serif">実装手順</text>
+  <line x1="715" y1="100" x2="865" y2="100" stroke="#333" stroke-width="1"/>
+
+  <text x="720" y="125" fill="#ffcc00" font-size="11" font-family="sans-serif">1. Facade導入</text>
+  <text x="720" y="145" fill="#888" font-size="10" font-family="sans-serif">  旧APIの前にプロキシ</text>
+
+  <text x="720" y="175" fill="#66ff66" font-size="11" font-family="sans-serif">2. 機能抽出</text>
+  <text x="720" y="195" fill="#888" font-size="10" font-family="sans-serif">  1機能ずつ新サービスへ</text>
+
+  <text x="720" y="225" fill="#4cc9f0" font-size="11" font-family="sans-serif">3. ルーティング切替</text>
+  <text x="720" y="245" fill="#888" font-size="10" font-family="sans-serif">  トラフィックを徐々に移行</text>
+
+  <text x="720" y="275" fill="#ff9900" font-size="11" font-family="sans-serif">4. データ移行</text>
+  <text x="720" y="295" fill="#888" font-size="10" font-family="sans-serif">  共有DBを分割</text>
+
+  <text x="720" y="325" fill="#ff6699" font-size="11" font-family="sans-serif">5. 旧システム除去</text>
+  <text x="720" y="345" fill="#888" font-size="10" font-family="sans-serif">  モノリスを段階的に廃止</text>
+
+  <text x="720" y="385" fill="#e0e0e0" font-size="11" font-weight="bold" font-family="sans-serif">Key Principle:</text>
+  <text x="720" y="405" fill="#aaa" font-size="10" font-family="sans-serif">一度も止まらない</text>
+  <text x="720" y="425" fill="#aaa" font-size="10" font-family="sans-serif">幼虫は蛹の中でも</text>
+  <text x="720" y="445" fill="#aaa" font-size="10" font-family="sans-serif">生きている</text>
+
+  <!-- Arrows between phases -->
+  <line x1="210" y1="260" x2="310" y2="260" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="310,254 324,260 310,266" fill="#e8c6f5"/>
+  <line x1="440" y1="260" x2="540" y2="260" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="540,254 554,260 540,266" fill="#e8c6f5"/>
+</svg>

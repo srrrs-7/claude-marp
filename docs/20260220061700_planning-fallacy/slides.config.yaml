@@ -1,0 +1,12 @@
+topic: "計画錯誤 — なぜプロジェクトは常に遅れるのか"
+language: "ja"
+output:
+  dir: "docs/20260220061700_planning-fallacy"
+  baseName: "planning-fallacy"
+marp:
+  theme: gaia
+  paginate: true
+  header: "計画錯誤とプロジェクト管理"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

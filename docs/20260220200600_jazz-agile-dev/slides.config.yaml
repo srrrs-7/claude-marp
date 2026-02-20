@@ -1,0 +1,18 @@
+topic: "ジャズと即興的開発〜コード進行から学ぶアジャイル開発の哲学〜"
+language: "ja"
+output:
+  dir: "docs/20260220200600_jazz-agile-dev"
+  baseName: "jazz-agile-dev"
+marp:
+  theme: gaia
+  paginate: true
+  header: "ジャズと即興的開発"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

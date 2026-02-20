@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" fill="#e0e0ff" font-size="18" font-weight="bold" font-family="sans-serif">AIエージェント権限段階図 -- 5段階の信頼レベル</text>
+
+  <!-- Level 1: Read -->
+  <rect x="50" y="60" width="160" height="400" fill="#16213e" rx="10" style="filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.4))"/>
+  <rect x="50" y="60" width="160" height="50" fill="#1a6b3a" rx="10"/>
+  <rect x="50" y="100" width="160" height="10" fill="#1a6b3a"/>
+  <text x="130" y="90" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="sans-serif">Lv.1 読む</text>
+  <text x="130" y="130" text-anchor="middle" fill="#4cc9f0" font-size="12" font-weight="bold" font-family="sans-serif">Read</text>
+  <text x="130" y="155" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">コード閲覧</text>
+  <text x="130" y="175" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">ログ参照</text>
+  <text x="130" y="195" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">ドキュメント読解</text>
+  <rect x="65" y="220" width="130" height="30" fill="#0d2240" rx="5"/>
+  <text x="130" y="240" text-anchor="middle" fill="#80ffb0" font-size="10" font-family="sans-serif">リスク: 極低</text>
+  <text x="130" y="270" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Claude Code</text>
+  <text x="130" y="285" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Read tool</text>
+  <rect x="65" y="310" width="130" height="6" fill="#1a6b3a" rx="3"/>
+  <text x="130" y="340" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">副作用なし</text>
+  <text x="130" y="360" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">情報漏洩のみ注意</text>
+  <rect x="65" y="400" width="130" height="40" fill="#1a6b3a" rx="6"/>
+  <text x="130" y="420" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">即座に付与可能</text>
+  <text x="130" y="440" text-anchor="middle" fill="#80ffb0" font-size="9" font-family="sans-serif">信頼不要</text>
+
+  <!-- Level 2: Suggest -->
+  <rect x="220" y="60" width="160" height="400" fill="#16213e" rx="10" style="filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.4))"/>
+  <rect x="220" y="60" width="160" height="50" fill="#2a5a8a" rx="10"/>
+  <rect x="220" y="100" width="160" height="10" fill="#2a5a8a"/>
+  <text x="300" y="90" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="sans-serif">Lv.2 提案</text>
+  <text x="300" y="130" text-anchor="middle" fill="#4cc9f0" font-size="12" font-weight="bold" font-family="sans-serif">Suggest</text>
+  <text x="300" y="155" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">コード提案</text>
+  <text x="300" y="175" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">PR下書き作成</text>
+  <text x="300" y="195" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">設計レビュー</text>
+  <rect x="235" y="220" width="130" height="30" fill="#0d2240" rx="5"/>
+  <text x="300" y="240" text-anchor="middle" fill="#80b0ff" font-size="10" font-family="sans-serif">リスク: 低</text>
+  <text x="300" y="270" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Copilot</text>
+  <text x="300" y="285" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Code suggestion</text>
+  <rect x="235" y="310" width="130" height="6" fill="#2a5a8a" rx="3"/>
+  <text x="300" y="340" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">人間が最終判断</text>
+  <text x="300" y="360" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">Accept/Rejectを選択</text>
+  <rect x="235" y="400" width="130" height="40" fill="#2a5a8a" rx="6"/>
+  <text x="300" y="420" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">初期段階で付与</text>
+  <text x="300" y="440" text-anchor="middle" fill="#80b0ff" font-size="9" font-family="sans-serif">最小限の信頼</text>
+
+  <!-- Level 3: Write -->
+  <rect x="390" y="60" width="160" height="400" fill="#16213e" rx="10" style="filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.4))"/>
+  <rect x="390" y="60" width="160" height="50" fill="#533483" rx="10"/>
+  <rect x="390" y="100" width="160" height="10" fill="#533483"/>
+  <text x="470" y="90" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="sans-serif">Lv.3 書く</text>
+  <text x="470" y="130" text-anchor="middle" fill="#d4b0ff" font-size="12" font-weight="bold" font-family="sans-serif">Write</text>
+  <text x="470" y="155" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">ファイル編集</text>
+  <text x="470" y="175" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">コード生成</text>
+  <text x="470" y="195" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">設定変更</text>
+  <rect x="405" y="220" width="130" height="30" fill="#0d2240" rx="5"/>
+  <text x="470" y="240" text-anchor="middle" fill="#d4b0ff" font-size="10" font-family="sans-serif">リスク: 中</text>
+  <text x="470" y="270" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Claude Code</text>
+  <text x="470" y="285" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Edit/Write tools</text>
+  <rect x="405" y="310" width="130" height="6" fill="#533483" rx="3"/>
+  <text x="470" y="340" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">ローカル変更のみ</text>
+  <text x="470" y="360" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">git revertで復元可能</text>
+  <rect x="405" y="400" width="130" height="40" fill="#533483" rx="6"/>
+  <text x="470" y="420" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">実績ベースで付与</text>
+  <text x="470" y="440" text-anchor="middle" fill="#d4b0ff" font-size="9" font-family="sans-serif">段階的信頼</text>
+
+  <!-- Level 4: Execute -->
+  <rect x="560" y="60" width="160" height="400" fill="#16213e" rx="10" style="filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.4))"/>
+  <rect x="560" y="60" width="160" height="50" fill="#cc6600" rx="10"/>
+  <rect x="560" y="100" width="160" height="10" fill="#cc6600"/>
+  <text x="640" y="90" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="sans-serif">Lv.4 実行</text>
+  <text x="640" y="130" text-anchor="middle" fill="#ffcc66" font-size="12" font-weight="bold" font-family="sans-serif">Execute</text>
+  <text x="640" y="155" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">シェルコマンド</text>
+  <text x="640" y="175" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">テスト実行</text>
+  <text x="640" y="195" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">ビルド・パッケージ</text>
+  <rect x="575" y="220" width="130" height="30" fill="#0d2240" rx="5"/>
+  <text x="640" y="240" text-anchor="middle" fill="#ffcc66" font-size="10" font-family="sans-serif">リスク: 高</text>
+  <text x="640" y="270" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Claude Code</text>
+  <text x="640" y="285" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Bash tool</text>
+  <rect x="575" y="310" width="130" height="6" fill="#cc6600" rx="3"/>
+  <text x="640" y="340" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">システムへの副作用</text>
+  <text x="640" y="360" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">サンドボックス推奨</text>
+  <rect x="575" y="400" width="130" height="40" fill="#cc6600" rx="6"/>
+  <text x="640" y="420" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">十分な実績後</text>
+  <text x="640" y="440" text-anchor="middle" fill="#ffcc66" font-size="9" font-family="sans-serif">条件付き信頼</text>
+
+  <!-- Level 5: Deploy -->
+  <rect x="730" y="60" width="140" height="400" fill="#16213e" rx="10" style="filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.4))"/>
+  <rect x="730" y="60" width="140" height="50" fill="#6b1a1a" rx="10"/>
+  <rect x="730" y="100" width="140" height="10" fill="#6b1a1a"/>
+  <text x="800" y="90" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="sans-serif">Lv.5 デプロイ</text>
+  <text x="800" y="130" text-anchor="middle" fill="#ff8888" font-size="12" font-weight="bold" font-family="sans-serif">Deploy</text>
+  <text x="800" y="155" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">本番環境操作</text>
+  <text x="800" y="175" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">git push</text>
+  <text x="800" y="195" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">インフラ変更</text>
+  <rect x="745" y="220" width="110" height="30" fill="#0d2240" rx="5"/>
+  <text x="800" y="240" text-anchor="middle" fill="#ff8888" font-size="10" font-family="sans-serif">リスク: 極高</text>
+  <text x="800" y="270" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">CI/CD</text>
+  <text x="800" y="285" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">IaC automation</text>
+  <rect x="745" y="310" width="110" height="6" fill="#6b1a1a" rx="3"/>
+  <text x="800" y="340" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">不可逆な変更</text>
+  <text x="800" y="360" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">ユーザー影響大</text>
+  <rect x="745" y="400" width="110" height="40" fill="#6b1a1a" rx="6"/>
+  <text x="800" y="420" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">人間の承認必須</text>
+  <text x="800" y="440" text-anchor="middle" fill="#ff8888" font-size="9" font-family="sans-serif">制度的信頼</text>
+
+  <!-- Bottom arrow -->
+  <line x1="100" y1="475" x2="830" y2="475" stroke="#4cc9f0" stroke-width="2"/>
+  <polygon points="830,469 844,475 830,481" fill="#4cc9f0"/>
+  <text x="450" y="493" text-anchor="middle" fill="#4cc9f0" font-size="12" font-family="sans-serif">信頼レベル &amp; リスク →</text>
+</svg>

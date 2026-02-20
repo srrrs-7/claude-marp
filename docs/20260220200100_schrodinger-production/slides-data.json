@@ -1,0 +1,142 @@
+{
+	"slides": [
+		{
+			"title": "シュレーディンガーの本番環境",
+			"content": [
+				"〜量子力学で読み解くDevOps〜",
+				"観測するまで本番は「動いている」かつ「落ちている」"
+			],
+			"layout": "center"
+		},
+		{
+			"title": "量子力学とDevOpsの意外な共通点",
+			"content": [
+				"**量子力学**: 観測するまで状態が確定しない",
+				"**本番環境**: デプロイするまで動くかわからない",
+				"「理論上は正しい」が口癖のエンジニアへ",
+				"![w:700 center](assets/quantum-devops.svg)"
+			],
+			"layout": "center"
+		},
+		{
+			"title": "原理1：重ね合わせの状態",
+			"content": [],
+			"layout": "section"
+		},
+		{
+			"title": "重ね合わせ〜デプロイ前の「どちらでもある」状態",
+			"content": [
+				"**量子**: 観測前は |0⟩+|1⟩ の重ね合わせ状態",
+				"**本番**: デプロイ前は「動く」+「壊れる」が同時に存在",
+				"**ブルーグリーンデプロイ** = 重ね合わせを維持したまま切り替える",
+				"**カナリアリリース** = 少数のユーザーで波動関数を部分収束",
+				"![w:800 center](assets/superposition.svg)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "原理2：観測問題とハイゼンバグ",
+			"content": [],
+			"layout": "section"
+		},
+		{
+			"title": "ハイゼンバグ〜観測するとバグが消える",
+			"content": [
+				"**量子**: 観測行為が状態を変える（コペンハーゲン解釈）",
+				"`console.log` を追加したらバグが消えた",
+				"ログレベルを変えたら再現しなくなった",
+				"これは「測定問題」そのもの",
+				"![w:800 center](assets/heisenbug.svg)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "観測問題の解決策〜Observabilityという「測定装置」",
+			"content": [
+				"**Prometheus**: 量子的測定器 — 状態を定期的にサンプリング",
+				"**Distributed Tracing**: 波動関数の経路記録 — リクエストの軌跡を追う",
+				"**ログ集約**: 状態の観測記録 — 過去の状態を再現可能にする",
+				"**設計原則**: 観測がシステムの振る舞いを変えないように設計せよ",
+				"測定のオーバーヘッドを最小化し、副作用のない観測を目指す"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "原理3：不確定性原理",
+			"content": [],
+			"layout": "section"
+		},
+		{
+			"title": "不確定性原理〜パフォーマンスとコストのトレードオフ",
+			"content": [
+				"**ハイゼンベルク**: 位置と運動量を同時に正確に測定できない",
+				"**システム**: レイテンシとスループットを同時に最小化できない",
+				"コストとパフォーマンスは相反する — 「全部最適」は存在しない",
+				"![w:700 center](assets/uncertainty.svg)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "量子もつれ〜マイクロサービスの隠れた依存",
+			"content": [
+				"**量子もつれ**: 離れた粒子が瞬時に相関する",
+				"**マイクロサービス**: A障害 → B障害 → C障害… カスケード障害",
+				"「独立しているはず」のサービス間の見えない依存関係",
+				"Circuit Breaker パターン = もつれを切断する観測装置",
+				"![w:850 center](assets/entanglement.svg)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "デコヒーレンス〜時間とともに劣化するシステム",
+			"content": [
+				"**量子デコヒーレンス**: 量子状態は環境との相互作用で古典的状態に崩壊する",
+				"**システム**: 時間とともに設計意図から乖離し、複雑化・脆弱化する",
+				"「動いているが理由がわからない」レガシーシステムの正体",
+				"**Entropy増大則**: 技術的負債は必然 — 放置すれば増大し続ける",
+				"定期的なリファクタリング = コヒーレンスの維持（孤立系を守る）"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "解決策：Chaos Engineeringという量子実験",
+			"content": [],
+			"layout": "section"
+		},
+		{
+			"title": "Chaos Monkey〜意図的な観測実験",
+			"content": [
+				"シュレーディンガーは箱を開けるのを恐れた — DevOpsは積極的に開ける",
+				"**Netflix Chaos Monkey**: ランダムな障害注入で耐障害性を検証",
+				"**Game Day**: 計画的な障害実験でチームの対応力を鍛える",
+				"「壊れることを前提に設計する」= 量子の不確定性を受け入れる",
+				"![w:750 center](assets/chaos-engineering.svg)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "実践的なObservability設計",
+			"content": [
+				"**Three Pillars**: Metrics / Traces / Logs — 三方向からの観測",
+				"**SLO（Service Level Objective）** = 許容される「不確定性の範囲」",
+				"**Error Budget** = 量子的不確定性への余裕 — 使い切ったら凍結",
+				"**Alert疲労の回避**: シグナルとノイズの分離 — 重要な観測だけに集中",
+				"観測コストを下げることで、より多くの状態を把握できる"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "まとめ〜量子力学から学ぶDevOpsの心得",
+			"content": [
+				"「正常」は観測によって初めて確定する — 継続的な監視が前提",
+				"測定コストゼロを目指す設計を — 副作用のないObservability",
+				"不確定性は排除できない → 受け入れて設計せよ（Chaos Engineering）",
+				"ハイゼンバグを「観測する」ためのObservability投資を惜しむな",
+				"**参考文献**:",
+				"[Accelerate (Forsgren et al.)](https://itrevolution.com/accelerate-book/)",
+				"[Site Reliability Engineering (Google)](https://sre.google/sre-book/table-of-contents/)"
+			],
+			"layout": "default"
+		}
+	]
+}

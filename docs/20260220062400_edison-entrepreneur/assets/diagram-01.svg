@@ -1,0 +1,54 @@
+<svg viewBox="0 0 900 450" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-size="18" fill="white" font-weight="bold">エジソンのビジネスモデル ― 発明ファクトリー</text>
+
+  <!-- Center: Edison -->
+  <circle cx="450" cy="230" r="55" fill="#f39c12" opacity="0.9" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="450" y="222" text-anchor="middle" font-size="13" fill="white" font-weight="bold">エジソン</text>
+  <text x="450" y="240" text-anchor="middle" font-size="10" fill="white">CEO + プロデューサー</text>
+
+  <!-- Input: Talent -->
+  <rect x="40" y="70" width="170" height="65" rx="10" fill="#3498db" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="125" y="97" text-anchor="middle" font-size="12" fill="white" font-weight="bold">優秀な人材</text>
+  <text x="125" y="115" text-anchor="middle" font-size="10" fill="white">数学者・機械工・化学者</text>
+  <line x1="210" y1="102" x2="398" y2="210" stroke="#3498db" stroke-width="2"/>
+  <polygon points="396,205 408,212 398,217" fill="#3498db"/>
+
+  <!-- Input: Capital -->
+  <rect x="40" y="310" width="170" height="65" rx="10" fill="#2ecc71" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="125" y="337" text-anchor="middle" font-size="12" fill="white" font-weight="bold">投資家の資金</text>
+  <text x="125" y="355" text-anchor="middle" font-size="10" fill="white">JP Morgan, Vanderbilt</text>
+  <line x1="210" y1="342" x2="398" y2="252" stroke="#2ecc71" stroke-width="2"/>
+  <polygon points="396,247 408,250 398,257" fill="#2ecc71"/>
+
+  <!-- Input: Patents -->
+  <rect x="40" y="190" width="170" height="65" rx="10" fill="#9b59b6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="125" y="217" text-anchor="middle" font-size="12" fill="white" font-weight="bold">既存の発明・技術</text>
+  <text x="125" y="235" text-anchor="middle" font-size="10" fill="white">他者の特許を改良</text>
+  <line x1="210" y1="222" x2="393" y2="228" stroke="#9b59b6" stroke-width="2"/>
+  <polygon points="391,223 403,228 391,233" fill="#9b59b6"/>
+
+  <!-- Output: Products -->
+  <rect x="690" y="70" width="170" height="65" rx="10" fill="#e74c3c" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="775" y="97" text-anchor="middle" font-size="12" fill="white" font-weight="bold">製品化</text>
+  <text x="775" y="115" text-anchor="middle" font-size="10" fill="white">電球・蓄音機・映画</text>
+  <line x1="502" y1="210" x2="688" y2="102" stroke="#e74c3c" stroke-width="2"/>
+  <polygon points="686,97 698,100 688,107" fill="#e74c3c"/>
+
+  <!-- Output: Infrastructure -->
+  <rect x="690" y="190" width="170" height="65" rx="10" fill="#e67e22" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="775" y="217" text-anchor="middle" font-size="12" fill="white" font-weight="bold">インフラ構築</text>
+  <text x="775" y="235" text-anchor="middle" font-size="10" fill="white">発電所・送電網</text>
+  <line x1="507" y1="228" x2="688" y2="222" stroke="#e67e22" stroke-width="2"/>
+  <polygon points="686,217 698,222 686,227" fill="#e67e22"/>
+
+  <!-- Output: Monopoly -->
+  <rect x="690" y="310" width="170" height="65" rx="10" fill="#1abc9c" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="775" y="337" text-anchor="middle" font-size="12" fill="white" font-weight="bold">特許 + 独占</text>
+  <text x="775" y="355" text-anchor="middle" font-size="10" fill="white">1,093件の米国特許</text>
+  <line x1="502" y1="252" x2="688" y2="342" stroke="#1abc9c" stroke-width="2"/>
+  <polygon points="686,337 698,342 686,347" fill="#1abc9c"/>
+
+  <!-- Label -->
+  <text x="450" y="430" text-anchor="middle" font-size="12" fill="#aaa">メンロパーク研究所 = 世界初の「イノベーション工場」</text>
+</svg>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="340" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="32" fill="#ffd700" font-size="17" text-anchor="middle" font-family="sans-serif" font-weight="bold">賢者の石 vs AGI — 構造的類似性</text>
+
+  <!-- Column headers -->
+  <rect x="40" y="50" width="340" height="38" rx="8" fill="#553300" stroke="#ffd700" stroke-width="2"/>
+  <text x="210" y="74" fill="#ffd700" font-size="15" text-anchor="middle" font-family="sans-serif" font-weight="bold">賢者の石（Philosopher's Stone）</text>
+
+  <rect x="520" y="50" width="340" height="38" rx="8" fill="#1e3a5f" stroke="#4a9eff" stroke-width="2"/>
+  <text x="690" y="74" fill="#4a9eff" font-size="15" text-anchor="middle" font-family="sans-serif" font-weight="bold">AGI（汎用人工知能）</text>
+
+  <!-- Center equals symbol -->
+  <text x="450" y="195" fill="#a8e063" font-size="48" text-anchor="middle" font-family="sans-serif" font-weight="bold">≈</text>
+
+  <!-- Row 1 -->
+  <rect x="40" y="102" width="340" height="46" rx="6" fill="#2a1a00" stroke="#cc8844" stroke-width="1.5"/>
+  <text x="60" y="121" fill="#ffcc88" font-size="13" font-family="sans-serif" font-weight="bold">あらゆる物質を変換する</text>
+  <text x="60" y="140" fill="#ffcc88" font-size="12" font-family="sans-serif">— 万能の変換物質</text>
+
+  <rect x="520" y="102" width="340" height="46" rx="6" fill="#0d2137" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="540" y="121" fill="#56ccf2" font-size="13" font-family="sans-serif" font-weight="bold">あらゆるタスクをこなす</text>
+  <text x="540" y="140" fill="#56ccf2" font-size="12" font-family="sans-serif">— 汎用的な知的エージェント</text>
+
+  <!-- Row 2 -->
+  <rect x="40" y="160" width="340" height="46" rx="6" fill="#2a1a00" stroke="#cc8844" stroke-width="1.5"/>
+  <text x="60" y="179" fill="#ffcc88" font-size="13" font-family="sans-serif" font-weight="bold">不老不死の霊薬（エリクサー）</text>
+  <text x="60" y="198" fill="#ffcc88" font-size="12" font-family="sans-serif">— 死の克服・永遠の命</text>
+
+  <rect x="520" y="160" width="340" height="46" rx="6" fill="#0d2137" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="540" y="179" fill="#56ccf2" font-size="13" font-family="sans-serif" font-weight="bold">老化の解明・長寿研究</text>
+  <text x="540" y="198" fill="#56ccf2" font-size="12" font-family="sans-serif">— Longevity Tech, AlphaFold</text>
+
+  <!-- Row 3 -->
+  <rect x="40" y="218" width="340" height="46" rx="6" fill="#2a1a00" stroke="#cc8844" stroke-width="1.5"/>
+  <text x="60" y="237" fill="#ffcc88" font-size="13" font-family="sans-serif" font-weight="bold">宇宙の真理の理解</text>
+  <text x="60" y="256" fill="#ffcc88" font-size="12" font-family="sans-serif">— Macrocosm-Microcosm</text>
+
+  <rect x="520" y="218" width="340" height="46" rx="6" fill="#0d2137" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="540" y="237" fill="#56ccf2" font-size="13" font-family="sans-serif" font-weight="bold">世界モデルの構築</text>
+  <text x="540" y="256" fill="#56ccf2" font-size="12" font-family="sans-serif">— World Models, 物理シミュレーション</text>
+
+  <!-- Row 4 -->
+  <rect x="40" y="276" width="340" height="46" rx="6" fill="#2a1a00" stroke="#cc8844" stroke-width="1.5"/>
+  <text x="60" y="295" fill="#ffcc88" font-size="13" font-family="sans-serif" font-weight="bold">数百年かけて求め続けた</text>
+  <text x="60" y="314" fill="#ffcc88" font-size="12" font-family="sans-serif">— 未達成の究極の目標</text>
+
+  <rect x="520" y="276" width="340" height="46" rx="6" fill="#0d2137" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="540" y="295" fill="#56ccf2" font-size="13" font-family="sans-serif" font-weight="bold">数十年かけて求め続けている</text>
+  <text x="540" y="314" fill="#56ccf2" font-size="12" font-family="sans-serif">— 到達目標が常に遠のく</text>
+
+  <!-- Connecting lines between rows -->
+  <line x1="383" y1="125" x2="418" y2="125" stroke="#a8e063" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="383" y1="183" x2="418" y2="183" stroke="#a8e063" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="383" y1="241" x2="418" y2="241" stroke="#a8e063" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="383" y1="299" x2="418" y2="299" stroke="#a8e063" stroke-width="1.5" stroke-dasharray="4,3"/>
+</svg>

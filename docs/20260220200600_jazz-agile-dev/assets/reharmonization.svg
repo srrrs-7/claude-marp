@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="36" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#f5f5f5">リハーモナイゼーション ＝ リファクタリング</text>
+  <text x="450" y="58" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#888">同じメロディ（機能）に新しいハーモニー（コード）を</text>
+
+  <!-- ===== Timeline axis ===== -->
+  <line x1="60" y1="220" x2="840" y2="220" stroke="#444" stroke-width="2"/>
+  <!-- Arrow at end -->
+  <polygon points="848,216 836,220 848,224" fill="#444"/>
+  <text x="860" y="224" font-family="sans-serif" font-size="11" fill="#666">時間</text>
+
+  <!-- Beat markers -->
+  <line x1="120" y1="215" x2="120" y2="225" stroke="#555" stroke-width="1"/>
+  <line x1="240" y1="215" x2="240" y2="225" stroke="#555" stroke-width="1"/>
+  <line x1="360" y1="215" x2="360" y2="225" stroke="#555" stroke-width="1"/>
+  <line x1="480" y1="215" x2="480" y2="225" stroke="#555" stroke-width="1"/>
+  <line x1="600" y1="215" x2="600" y2="225" stroke="#555" stroke-width="1"/>
+  <line x1="720" y1="215" x2="720" y2="225" stroke="#555" stroke-width="1"/>
+  <line x1="840" y1="215" x2="840" y2="225" stroke="#555" stroke-width="1"/>
+
+  <!-- ===== Melody line (fixed) ===== -->
+  <!-- Melody path: same in both versions -->
+  <polyline points="80,190 120,170 160,150 200,160 240,140 280,155 320,145 360,160 400,170 440,155 480,165 520,155 560,140 600,150 640,165 680,155 720,160 760,175 800,180 840,170"
+    fill="none" stroke="#f5f5f5" stroke-width="3"/>
+
+  <!-- Melody label -->
+  <text x="60" y="135" font-family="sans-serif" font-size="12" fill="#f5f5f5">メロディ</text>
+  <text x="60" y="150" font-family="sans-serif" font-size="10" fill="#888">（変わらない）</text>
+  <!-- Arrow pointing to melody -->
+  <line x1="110" y1="152" x2="130" y2="165" stroke="#f5f5f5" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- Melody note dots -->
+  <circle cx="120" cy="170" r="5" fill="#f5f5f5"/>
+  <circle cx="240" cy="140" r="5" fill="#f5f5f5"/>
+  <circle cx="360" cy="160" r="5" fill="#f5f5f5"/>
+  <circle cx="480" cy="165" r="5" fill="#f5f5f5"/>
+  <circle cx="600" cy="150" r="5" fill="#f5f5f5"/>
+  <circle cx="720" cy="160" r="5" fill="#f5f5f5"/>
+  <circle cx="840" cy="170" r="5" fill="#f5f5f5"/>
+
+  <!-- ===== Original chords (blue) ===== -->
+  <!-- Original chord bars below axis -->
+  <rect x="80" y="235" width="110" height="36" fill="#1e3a6e" rx="5" stroke="#3a7bd5" stroke-width="1.5"/>
+  <text x="135" y="252" text-anchor="middle" font-family="monospace" font-size="14" fill="#7eb8f7">Dm7</text>
+  <text x="135" y="265" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#5a8fd5">オリジナル</text>
+
+  <rect x="200" y="235" width="110" height="36" fill="#1e3a6e" rx="5" stroke="#3a7bd5" stroke-width="1.5"/>
+  <text x="255" y="252" text-anchor="middle" font-family="monospace" font-size="14" fill="#7eb8f7">G7</text>
+  <text x="255" y="265" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#5a8fd5">オリジナル</text>
+
+  <rect x="320" y="235" width="110" height="36" fill="#1a4a2e" rx="5" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="375" y="252" text-anchor="middle" font-family="monospace" font-size="13" fill="#4ecdc4">Cmaj7</text>
+  <text x="375" y="265" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#27ae60">オリジナル</text>
+
+  <rect x="440" y="235" width="110" height="36" fill="#1e3a6e" rx="5" stroke="#3a7bd5" stroke-width="1.5"/>
+  <text x="495" y="252" text-anchor="middle" font-family="monospace" font-size="14" fill="#7eb8f7">Am7</text>
+  <text x="495" y="265" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#5a8fd5">オリジナル</text>
+
+  <!-- ===== New chords (orange) — reharmonized ===== -->
+  <rect x="80" y="290" width="110" height="36" fill="#3d2000" rx="5" stroke="#f5a623" stroke-width="1.5"/>
+  <text x="135" y="307" text-anchor="middle" font-family="monospace" font-size="14" fill="#f5a623">Dm9</text>
+  <text x="135" y="320" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#d4830a">リハーモ</text>
+
+  <rect x="200" y="290" width="110" height="36" fill="#3d2000" rx="5" stroke="#f5a623" stroke-width="1.5"/>
+  <text x="255" y="307" text-anchor="middle" font-family="monospace" font-size="13" fill="#f5a623">Db7#11</text>
+  <text x="255" y="320" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#d4830a">♭IIの代理</text>
+
+  <rect x="320" y="290" width="110" height="36" fill="#3a1a4a" rx="5" stroke="#c77dff" stroke-width="1.5"/>
+  <text x="375" y="307" text-anchor="middle" font-family="monospace" font-size="12" fill="#c77dff">Cmaj7#11</text>
+  <text x="375" y="320" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#9b59b6">lydian色</text>
+
+  <rect x="440" y="290" width="110" height="36" fill="#3d2000" rx="5" stroke="#f5a623" stroke-width="1.5"/>
+  <text x="495" y="307" text-anchor="middle" font-family="monospace" font-size="14" fill="#f5a623">F#m7</text>
+  <text x="495" y="320" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#d4830a">代理コード</text>
+
+  <!-- ===== Legend ===== -->
+  <rect x="570" y="235" width="20" height="12" fill="#1e3a6e" rx="2" stroke="#3a7bd5" stroke-width="1"/>
+  <text x="596" y="246" font-family="sans-serif" font-size="11" fill="#7eb8f7">元のコード（青）</text>
+  <rect x="570" y="258" width="20" height="12" fill="#3d2000" rx="2" stroke="#f5a623" stroke-width="1"/>
+  <text x="596" y="269" font-family="sans-serif" font-size="11" fill="#f5a623">新しいコード（オレンジ）</text>
+  <line x1="570" y1="286" x2="590" y2="286" stroke="#f5f5f5" stroke-width="3"/>
+  <circle cx="580" cy="286" r="4" fill="#f5f5f5"/>
+  <text x="596" y="291" font-family="sans-serif" font-size="11" fill="#f5f5f5">メロディ（共通）</text>
+
+  <!-- ===== Refactoring analogy ===== -->
+  <rect x="570" y="310" width="310" height="72" fill="#16213e" rx="8"/>
+  <text x="725" y="330" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#4ecdc4">リファクタリングとの対応</text>
+  <text x="725" y="350" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">メロディ = 外部から見た機能（変えない）</text>
+  <text x="725" y="368" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">コード = 内部実装（改善する）</text>
+
+  <!-- Bottom summary -->
+  <rect x="60" y="345" width="490" height="40" fill="#0d1a30" rx="6"/>
+  <text x="305" y="362" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f5a623">Miles Davis の革新 = アーキテクチャの刷新</text>
+  <text x="305" y="378" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">テーマは変わらず、アプローチが進化する</text>
+</svg>

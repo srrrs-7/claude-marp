@@ -1,0 +1,106 @@
+<svg viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="440" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="26" text-anchor="middle" fill="#ecf0f1" font-size="14" font-weight="bold">イノベーションの実際のドライバー — ARPANETが覆す「軍事技術の副産物」神話</text>
+
+  <!-- ===== Column 1: Myth ===== -->
+  <rect x="20" y="40" width="265" height="280" rx="8" fill="#1a2535" stroke="#e74c3c" stroke-width="2"/>
+  <text x="152" y="65" text-anchor="middle" fill="#e74c3c" font-size="12" font-weight="bold">神話のモデル</text>
+  <text x="152" y="82" text-anchor="middle" fill="#f1948a" font-size="10">「軍事技術→民間転用」</text>
+  <rect x="30" y="90" width="245" height="4" rx="2" fill="#e74c3c" opacity="0.5"/>
+
+  <!-- Myth flow -->
+  <rect x="50" y="104" width="205" height="36" rx="5" fill="#2c0a0a" stroke="#e74c3c" stroke-width="1"/>
+  <text x="152" y="120" text-anchor="middle" fill="#e74c3c" font-size="10">① 軍事的脅威（核戦争）</text>
+  <text x="152" y="133" text-anchor="middle" fill="#f1948a" font-size="9">国家安全保障への対応</text>
+
+  <line x1="152" y1="140" x2="152" y2="160" stroke="#e74c3c" stroke-width="2"/>
+  <polygon points="148,157 152,167 156,157" fill="#e74c3c"/>
+
+  <rect x="50" y="164" width="205" height="36" rx="5" fill="#2c0a0a" stroke="#e74c3c" stroke-width="1"/>
+  <text x="152" y="180" text-anchor="middle" fill="#e74c3c" font-size="10">② 軍が技術開発に投資</text>
+  <text x="152" y="193" text-anchor="middle" fill="#f1948a" font-size="9">ARPA経由で研究費を配布</text>
+
+  <line x1="152" y1="200" x2="152" y2="220" stroke="#e74c3c" stroke-width="2"/>
+  <polygon points="148,217 152,227 156,217" fill="#e74c3c"/>
+
+  <rect x="50" y="224" width="205" height="36" rx="5" fill="#2c0a0a" stroke="#e74c3c" stroke-width="1"/>
+  <text x="152" y="240" text-anchor="middle" fill="#e74c3c" font-size="10">③ 核耐性ネットワークを設計</text>
+  <text x="152" y="253" text-anchor="middle" fill="#f1948a" font-size="9">分散型 = 核サバイバル</text>
+
+  <line x1="152" y1="260" x2="152" y2="280" stroke="#e74c3c" stroke-width="2"/>
+  <polygon points="148,277 152,287 156,277" fill="#e74c3c"/>
+
+  <rect x="50" y="284" width="205" height="28" rx="5" fill="#2c0a0a" stroke="#e74c3c" stroke-width="1"/>
+  <text x="152" y="302" text-anchor="middle" fill="#e74c3c" font-size="10">④ 後にインターネットへ</text>
+
+  <!-- Cross mark -->
+  <line x1="30" y1="50" x2="275" y2="310" stroke="#e74c3c" stroke-width="2" opacity="0.3"/>
+  <line x1="275" y1="50" x2="30" y2="310" stroke="#e74c3c" stroke-width="2" opacity="0.3"/>
+  <text x="152" y="330" text-anchor="middle" fill="#e74c3c" font-size="28" opacity="0.5">✗</text>
+
+  <!-- ===== Column 2: Reality ===== -->
+  <rect x="315" y="40" width="265" height="280" rx="8" fill="#0d2420" stroke="#2ecc71" stroke-width="2"/>
+  <text x="447" y="65" text-anchor="middle" fill="#2ecc71" font-size="12" font-weight="bold">実際のモデル</text>
+  <text x="447" y="82" text-anchor="middle" fill="#a9dfbf" font-size="10">「研究者の問題解決→世界的インフラ」</text>
+  <rect x="325" y="90" width="245" height="4" rx="2" fill="#2ecc71" opacity="0.5"/>
+
+  <!-- Reality flow -->
+  <rect x="345" y="104" width="205" height="36" rx="5" fill="#0d2e1a" stroke="#2ecc71" stroke-width="1"/>
+  <text x="447" y="120" text-anchor="middle" fill="#2ecc71" font-size="10">① 研究者の日常の不便</text>
+  <text x="447" y="133" text-anchor="middle" fill="#a9dfbf" font-size="9">「3台の端末が使いにくい」</text>
+
+  <line x1="447" y1="140" x2="447" y2="160" stroke="#2ecc71" stroke-width="2"/>
+  <polygon points="443,157 447,167 451,157" fill="#2ecc71"/>
+
+  <rect x="345" y="164" width="205" height="36" rx="5" fill="#0d2e1a" stroke="#2ecc71" stroke-width="1"/>
+  <text x="447" y="180" text-anchor="middle" fill="#2ecc71" font-size="10">② 工学的問題として設定</text>
+  <text x="447" y="193" text-anchor="middle" fill="#a9dfbf" font-size="9">「コンピュータのリソース共有」</text>
+
+  <line x1="447" y1="200" x2="447" y2="220" stroke="#2ecc71" stroke-width="2"/>
+  <polygon points="443,217 447,227 451,217" fill="#2ecc71"/>
+
+  <rect x="345" y="224" width="205" height="36" rx="5" fill="#0d2e1a" stroke="#2ecc71" stroke-width="1"/>
+  <text x="447" y="240" text-anchor="middle" fill="#2ecc71" font-size="10">③ パケット交換の採用</text>
+  <text x="447" y="253" text-anchor="middle" fill="#a9dfbf" font-size="9">効率・拡張性・相互運用性のため</text>
+
+  <line x1="447" y1="260" x2="447" y2="280" stroke="#2ecc71" stroke-width="2"/>
+  <polygon points="443,277 447,287 451,277" fill="#2ecc71"/>
+
+  <rect x="345" y="284" width="205" height="28" rx="5" fill="#0d2e1a" stroke="#2ecc71" stroke-width="1"/>
+  <text x="447" y="302" text-anchor="middle" fill="#2ecc71" font-size="10">④ 世界規模のインターネットへ</text>
+
+  <!-- Check mark -->
+  <text x="447" y="330" text-anchor="middle" fill="#2ecc71" font-size="28" opacity="0.5">✓</text>
+
+  <!-- ===== Column 3: Implications ===== -->
+  <rect x="610" y="40" width="270" height="280" rx="8" fill="#1a2010" stroke="#f39c12" stroke-width="2"/>
+  <text x="745" y="65" text-anchor="middle" fill="#f39c12" font-size="12" font-weight="bold">示唆するもの</text>
+  <text x="745" y="82" text-anchor="middle" fill="#fad7a0" font-size="10">正確な歴史から学べること</text>
+  <rect x="620" y="90" width="250" height="4" rx="2" fill="#f39c12" opacity="0.5"/>
+
+  <rect x="630" y="104" width="238" height="48" rx="5" fill="#2c1a00" stroke="#f39c12" stroke-width="1"/>
+  <text x="749" y="120" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="bold">研究者の不便が技術を生む</text>
+  <text x="749" y="134" text-anchor="middle" fill="#fad7a0" font-size="9">「使いにくい」という感覚が</text>
+  <text x="749" y="146" text-anchor="middle" fill="#fad7a0" font-size="9">世界規模のイノベーションの源泉に</text>
+
+  <rect x="630" y="162" width="238" height="48" rx="5" fill="#2c1a00" stroke="#f39c12" stroke-width="1"/>
+  <text x="749" y="178" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="bold">副作用が「本物の価値」になる</text>
+  <text x="749" y="192" text-anchor="middle" fill="#fad7a0" font-size="9">耐障害性は目的ではなかったが</text>
+  <text x="749" y="204" text-anchor="middle" fill="#fad7a0" font-size="9">インターネットの強みになった</text>
+
+  <rect x="630" y="220" width="238" height="48" rx="5" fill="#2c1a00" stroke="#f39c12" stroke-width="1"/>
+  <text x="749" y="236" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="bold">軍事目的は必須ではない</text>
+  <text x="749" y="250" text-anchor="middle" fill="#fad7a0" font-size="9">英Davies（民間）も同じ技術を発明</text>
+  <text x="749" y="262" text-anchor="middle" fill="#fad7a0" font-size="9">→ 時代の必然として生まれた</text>
+
+  <rect x="630" y="278" width="238" height="34" rx="5" fill="#2c1a00" stroke="#e8c57a" stroke-width="1"/>
+  <text x="749" y="294" text-anchor="middle" fill="#e8c57a" font-size="10" font-weight="bold">基礎研究への投資が鍵</text>
+  <text x="749" y="308" text-anchor="middle" fill="#fad7a0" font-size="9">軍事応用より普遍的な正当化根拠</text>
+
+  <!-- Bottom conclusion -->
+  <rect x="20" y="334" width="860" height="90" rx="6" fill="#0d1f33" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="450" y="355" text-anchor="middle" fill="#f39c12" font-size="12" font-weight="bold">ARPANETの真実が示す最大の教訓</text>
+  <text x="450" y="375" text-anchor="middle" fill="#fad7a0" font-size="10">「研究者が自分たちの日常の問題を解こうとした純粋な工学的努力が、半世紀後に20億人のインフラになった」</text>
+  <text x="450" y="393" text-anchor="middle" fill="#fad7a0" font-size="10">これは「軍事技術が民間に流れた」より、はるかに力強い基礎研究投資の根拠である</text>
+  <text x="450" y="413" text-anchor="middle" fill="#e8c57a" font-size="10">神話を訂正することは、ARPANETを貶めるのではなく — より正確で、より感動的な物語を取り戻すことだ</text>
+</svg>

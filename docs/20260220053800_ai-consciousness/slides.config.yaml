@@ -1,0 +1,12 @@
+topic: "AIに意識はあるか：クオリアと哲学的ゾンビ"
+language: "ja"
+output:
+  dir: "docs/20260220053800_ai-consciousness"
+  baseName: "ai-consciousness"
+marp:
+  theme: gaia
+  paginate: true
+  header: "意識のハードプロブレム"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

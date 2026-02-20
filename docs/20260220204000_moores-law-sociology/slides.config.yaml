@@ -1,0 +1,20 @@
+topic: "ムーアの法則の社会学：指数関数的成長が社会を変えるメカニズム"
+language: "ja"
+
+output:
+  dir: "docs/20260220204000_moores-law-sociology"
+  baseName: "moores-law-sociology"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "Moore's Law Sociology"
+  footer: "© 2026 Exponential Society"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

@@ -1,0 +1,20 @@
+topic: "収束進化：なぜ異なるチームが同じアーキテクチャに辿り着くのか"
+language: "ja"
+
+output:
+  dir: "docs/20260220212500_convergent-evolution-arch"
+  baseName: "convergent-evolution-arch"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "Convergent Evolution × Architecture"
+  footer: "© 2026 Evolutionary Design Patterns"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

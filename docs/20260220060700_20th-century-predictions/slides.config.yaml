@@ -1,0 +1,12 @@
+topic: "20世紀の予測と21世紀の現実 — 技術楽観主義の光と影"
+language: "ja"
+output:
+  dir: "docs/20260220060700_20th-century-predictions"
+  baseName: "20th-century-predictions"
+marp:
+  theme: gaia
+  paginate: true
+  header: "技術予測の検証"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

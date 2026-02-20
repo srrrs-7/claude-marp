@@ -1,0 +1,12 @@
+topic: "デジタル人民元の本当の狙い"
+language: "ja"
+output:
+  dir: "docs/20260220054400_digital-yuan-strategy"
+  baseName: "digital-yuan-strategy"
+marp:
+  theme: gaia
+  paginate: true
+  header: "通貨覇権と制裁回避"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

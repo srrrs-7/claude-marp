@@ -1,0 +1,20 @@
+topic: "囚人のジレンマ × プラットフォーム競争：協調と裏切りの戦略論"
+language: "ja"
+
+output:
+  dir: "docs/20260220204500_prisoners-dilemma-platform"
+  baseName: "prisoners-dilemma-platform"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "Prisoner's Dilemma × Platform"
+  footer: "© 2026 Game Theory"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

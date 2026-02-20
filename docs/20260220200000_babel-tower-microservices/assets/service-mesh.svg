@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="420" fill="#0d1117"/>
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#8b949e">サービスメッシュ: 自動「通訳」レイヤー</text>
+  <!-- ===== Service A (top-left) ===== -->
+  <!-- Main service box -->
+  <rect x="60" y="55" width="120" height="60" rx="6" fill="#1a3a5c" style="filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.6))"/>
+  <rect x="60" y="55" width="120" height="60" rx="6" fill="none" stroke="#2a6aac" stroke-width="1.5"/>
+  <text x="120" y="81" text-anchor="middle" font-family="monospace" font-size="12" fill="#79c0ff" font-weight="bold">Service A</text>
+  <text x="120" y="97" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#58a6ff">Frontend</text>
+  <!-- Sidecar proxy A -->
+  <circle cx="195" cy="85" r="16" fill="#d29922" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <circle cx="195" cy="85" r="16" fill="none" stroke="#f0b030" stroke-width="1.5"/>
+  <text x="195" y="82" text-anchor="middle" font-family="monospace" font-size="8" fill="#1a1a00" font-weight="bold">Envoy</text>
+  <text x="195" y="93" text-anchor="middle" font-family="monospace" font-size="8" fill="#1a1a00">proxy</text>
+  <!-- ===== Service B (top-right) ===== -->
+  <rect x="620" y="55" width="120" height="60" rx="6" fill="#1a5c2a" style="filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.6))"/>
+  <rect x="620" y="55" width="120" height="60" rx="6" fill="none" stroke="#2a8c4a" stroke-width="1.5"/>
+  <text x="680" y="81" text-anchor="middle" font-family="monospace" font-size="12" fill="#56d364" font-weight="bold">Service B</text>
+  <text x="680" y="97" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#7ee787">Auth API</text>
+  <!-- Sidecar proxy B -->
+  <circle cx="605" cy="85" r="16" fill="#d29922" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <circle cx="605" cy="85" r="16" fill="none" stroke="#f0b030" stroke-width="1.5"/>
+  <text x="605" y="82" text-anchor="middle" font-family="monospace" font-size="8" fill="#1a1a00" font-weight="bold">Envoy</text>
+  <text x="605" y="93" text-anchor="middle" font-family="monospace" font-size="8" fill="#1a1a00">proxy</text>
+  <!-- ===== Service C (bottom-left) ===== -->
+  <rect x="60" y="300" width="120" height="60" rx="6" fill="#5c1a1a" style="filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.6))"/>
+  <rect x="60" y="300" width="120" height="60" rx="6" fill="none" stroke="#8c2a2a" stroke-width="1.5"/>
+  <text x="120" y="326" text-anchor="middle" font-family="monospace" font-size="12" fill="#ff7b72" font-weight="bold">Service C</text>
+  <text x="120" y="342" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ffa09a">Payment</text>
+  <!-- Sidecar proxy C -->
+  <circle cx="195" cy="330" r="16" fill="#d29922" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <circle cx="195" cy="330" r="16" fill="none" stroke="#f0b030" stroke-width="1.5"/>
+  <text x="195" y="327" text-anchor="middle" font-family="monospace" font-size="8" fill="#1a1a00" font-weight="bold">Envoy</text>
+  <text x="195" y="338" text-anchor="middle" font-family="monospace" font-size="8" fill="#1a1a00">proxy</text>
+  <!-- ===== Service D (bottom-right) ===== -->
+  <rect x="620" y="300" width="120" height="60" rx="6" fill="#3a1a5c" style="filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.6))"/>
+  <rect x="620" y="300" width="120" height="60" rx="6" fill="none" stroke="#6a3a8c" stroke-width="1.5"/>
+  <text x="680" y="326" text-anchor="middle" font-family="monospace" font-size="12" fill="#b792ff" font-weight="bold">Service D</text>
+  <text x="680" y="342" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#d2b3ff">Orders</text>
+  <!-- Sidecar proxy D -->
+  <circle cx="605" cy="330" r="16" fill="#d29922" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <circle cx="605" cy="330" r="16" fill="none" stroke="#f0b030" stroke-width="1.5"/>
+  <text x="605" y="327" text-anchor="middle" font-family="monospace" font-size="8" fill="#1a1a00" font-weight="bold">Envoy</text>
+  <text x="605" y="338" text-anchor="middle" font-family="monospace" font-size="8" fill="#1a1a00">proxy</text>
+  <!-- ===== Control Plane (center) ===== -->
+  <rect x="300" y="170" width="200" height="80" rx="8" fill="#2a1a3c" style="filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.7))"/>
+  <rect x="300" y="170" width="200" height="80" rx="8" fill="none" stroke="#7a3aac" stroke-width="2"/>
+  <text x="400" y="200" text-anchor="middle" font-family="monospace" font-size="13" fill="#d2b3ff" font-weight="bold">Control Plane</text>
+  <text x="400" y="218" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#b792ff">Istio / Linkerd</text>
+  <text x="400" y="236" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#8b6abf">設定・証明書・ポリシー配布</text>
+  <!-- Mesh connections between proxies (dashed mesh layer) -->
+  <!-- Proxy A <-> Proxy B (top horizontal) -->
+  <line x1="211" y1="85" x2="589" y2="85" stroke="#d29922" stroke-width="2" stroke-dasharray="8,4"/>
+  <polygon points="589,85 577,80 577,90" fill="#d29922"/>
+  <!-- Proxy A <-> Proxy C (left vertical) -->
+  <line x1="195" y1="101" x2="195" y2="314" stroke="#d29922" stroke-width="2" stroke-dasharray="8,4"/>
+  <polygon points="195,314 190,302 200,302" fill="#d29922"/>
+  <!-- Proxy B <-> Proxy D (right vertical) -->
+  <line x1="605" y1="101" x2="605" y2="314" stroke="#d29922" stroke-width="2" stroke-dasharray="8,4"/>
+  <polygon points="605,314 600,302 610,302" fill="#d29922"/>
+  <!-- Proxy C <-> Proxy D (bottom horizontal) -->
+  <line x1="211" y1="330" x2="589" y2="330" stroke="#d29922" stroke-width="2" stroke-dasharray="8,4"/>
+  <polygon points="589,330 577,325 577,335" fill="#d29922"/>
+  <!-- Control Plane connections to proxies (dotted) -->
+  <line x1="300" y1="195" x2="212" y2="100" stroke="#7a3aac" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="212,100 216,112 206,110" fill="#7a3aac"/>
+  <line x1="500" y1="195" x2="588" y2="100" stroke="#7a3aac" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="588,100 584,112 594,110" fill="#7a3aac"/>
+  <line x1="300" y1="235" x2="212" y2="318" stroke="#7a3aac" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="212,318 216,306 206,308" fill="#7a3aac"/>
+  <line x1="500" y1="235" x2="588" y2="318" stroke="#7a3aac" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="588,318 584,306 594,308" fill="#7a3aac"/>
+  <!-- Features labels -->
+  <text x="400" y="135" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#56d364">mTLS暗号化</text>
+  <text x="60" y="210" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#79c0ff">Load</text>
+  <text x="60" y="224" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#79c0ff">Balancing</text>
+  <text x="740" y="210" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#79c0ff">Circuit</text>
+  <text x="740" y="224" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#79c0ff">Breaker</text>
+  <text x="400" y="290" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#d29922">Observability / Tracing</text>
+  <!-- Legend -->
+  <line x1="240" y1="390" x2="280" y2="390" stroke="#d29922" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="290" y="395" font-family="sans-serif" font-size="11" fill="#d29922">データプレーン</text>
+  <line x1="420" y1="390" x2="460" y2="390" stroke="#7a3aac" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="470" y="395" font-family="sans-serif" font-size="11" fill="#7a3aac">コントロールプレーン</text>
+  <!-- Caption -->
+  <text x="400" y="413" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#8b949e">サービスメッシュ = 「自動通訳者」がすべての通信を仲介する</text>
+</svg>

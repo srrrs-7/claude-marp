@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="480" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" fill="#e0e0ff" font-size="18" font-weight="bold" font-family="sans-serif">LLMの「世界モデル」 -- 統計的パターンの地図</text>
+
+  <!-- Training Data (left) -->
+  <rect x="30" y="55" width="250" height="180" fill="#16213e" rx="10" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="155" y="80" text-anchor="middle" fill="#4cc9f0" font-size="14" font-weight="bold" font-family="sans-serif">訓練データ</text>
+  <!-- Text snippets -->
+  <rect x="50" y="95" width="210" height="18" fill="#1a3a5a" rx="3"/>
+  <text x="60" y="108" fill="#888" font-size="10" font-family="monospace">The cat sat on the mat...</text>
+  <rect x="50" y="118" width="210" height="18" fill="#1a3a5a" rx="3"/>
+  <text x="60" y="131" fill="#888" font-size="10" font-family="monospace">Paris is the capital of...</text>
+  <rect x="50" y="141" width="210" height="18" fill="#1a3a5a" rx="3"/>
+  <text x="60" y="154" fill="#888" font-size="10" font-family="monospace">Water boils at 100°C...</text>
+  <rect x="50" y="164" width="210" height="18" fill="#1a3a5a" rx="3"/>
+  <text x="60" y="177" fill="#888" font-size="10" font-family="monospace">JavaScript is a lang...</text>
+  <rect x="50" y="187" width="210" height="18" fill="#1a3a5a" rx="3"/>
+  <text x="60" y="200" fill="#888" font-size="10" font-family="monospace">... trillions of tokens</text>
+  <text x="155" y="225" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">インターネット上のテキスト</text>
+
+  <!-- Arrow -->
+  <line x1="280" y1="145" x2="340" y2="145" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="340,139 354,145 340,151" fill="#e8c6f5"/>
+  <text x="310" y="135" text-anchor="middle" fill="#e8c6f5" font-size="10" font-family="sans-serif">学習</text>
+
+  <!-- LLM Internal Model (center) -->
+  <rect x="350" y="55" width="210" height="180" fill="#16213e" rx="10" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="455" y="80" text-anchor="middle" fill="#ff9900" font-size="14" font-weight="bold" font-family="sans-serif">内部表現 (Embedding)</text>
+  <!-- Neural network nodes -->
+  <circle cx="400" cy="120" r="12" fill="#533483" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.4))"/>
+  <circle cx="455" cy="105" r="12" fill="#533483" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.4))"/>
+  <circle cx="510" cy="120" r="12" fill="#533483" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.4))"/>
+  <circle cx="380" cy="165" r="12" fill="#7b2d8e" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.4))"/>
+  <circle cx="440" cy="155" r="12" fill="#7b2d8e" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.4))"/>
+  <circle cx="500" cy="170" r="12" fill="#7b2d8e" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.4))"/>
+  <circle cx="455" cy="200" r="12" fill="#9b4dce" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.4))"/>
+  <!-- Connections -->
+  <line x1="400" y1="132" x2="380" y2="153" stroke="#666" stroke-width="1"/>
+  <line x1="400" y1="132" x2="440" y2="143" stroke="#666" stroke-width="1"/>
+  <line x1="455" y1="117" x2="440" y2="143" stroke="#666" stroke-width="1"/>
+  <line x1="455" y1="117" x2="500" y2="158" stroke="#666" stroke-width="1"/>
+  <line x1="510" y1="132" x2="500" y2="158" stroke="#666" stroke-width="1"/>
+  <line x1="380" y1="177" x2="455" y2="188" stroke="#666" stroke-width="1"/>
+  <line x1="440" y1="167" x2="455" y2="188" stroke="#666" stroke-width="1"/>
+  <line x1="500" y1="182" x2="455" y2="188" stroke="#666" stroke-width="1"/>
+  <text x="455" y="225" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">統計的パターンの集合</text>
+
+  <!-- Arrow -->
+  <line x1="560" y1="145" x2="620" y2="145" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="620,139 634,145 620,151" fill="#e8c6f5"/>
+  <text x="590" y="135" text-anchor="middle" fill="#e8c6f5" font-size="10" font-family="sans-serif">生成</text>
+
+  <!-- Output (right) -->
+  <rect x="630" y="55" width="240" height="180" fill="#16213e" rx="10" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="750" y="80" text-anchor="middle" fill="#66ff66" font-size="14" font-weight="bold" font-family="sans-serif">出力テキスト</text>
+  <rect x="650" y="95" width="200" height="45" fill="#1a4a1a" rx="6"/>
+  <text x="750" y="115" text-anchor="middle" fill="#80ff80" font-size="11" font-family="sans-serif">「フランスの首都はパリ」</text>
+  <text x="750" y="130" text-anchor="middle" fill="#66cc66" font-size="9" font-family="sans-serif">事実と一致 (正確)</text>
+
+  <rect x="650" y="150" width="200" height="45" fill="#4a1a1a" rx="6"/>
+  <text x="750" y="170" text-anchor="middle" fill="#ff8080" font-size="11" font-family="sans-serif">「東京タワーは1920年建設」</text>
+  <text x="750" y="185" text-anchor="middle" fill="#ff6666" font-size="9" font-family="sans-serif">事実と不一致 (幻覚)</text>
+
+  <text x="750" y="225" text-anchor="middle" fill="#666" font-size="10" font-family="sans-serif">尤もらしいが検証なし</text>
+
+  <!-- Bottom: Key insight -->
+  <rect x="30" y="260" width="840" height="200" fill="#0d2240" rx="10" style="filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.4))"/>
+  <text x="450" y="290" text-anchor="middle" fill="#e0e0e0" font-size="16" font-weight="bold" font-family="sans-serif">核心的洞察: LLMの「知識」は地図である</text>
+  <line x1="50" y1="300" x2="850" y2="300" stroke="#444" stroke-width="1"/>
+
+  <text x="225" y="330" text-anchor="middle" fill="#4cc9f0" font-size="13" font-weight="bold" font-family="sans-serif">地図の特性</text>
+  <text x="225" y="355" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">現実の抽象化</text>
+  <text x="225" y="375" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">有用だが不完全</text>
+  <text x="225" y="395" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">作成時点の情報に依存</text>
+  <text x="225" y="415" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">領土の変化を反映しない</text>
+
+  <text x="675" y="330" text-anchor="middle" fill="#ff9900" font-size="13" font-weight="bold" font-family="sans-serif">LLMの特性</text>
+  <text x="675" y="355" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">テキストパターンの抽象化</text>
+  <text x="675" y="375" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">有用だが幻覚を含む</text>
+  <text x="675" y="395" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">訓練データに依存</text>
+  <text x="675" y="415" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">新しい事実を反映しない</text>
+
+  <!-- Equals sign -->
+  <text x="450" y="380" text-anchor="middle" fill="#e8c6f5" font-size="30" font-family="sans-serif">≈</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="450" text-anchor="middle" fill="#ffcc00" font-size="13" font-weight="bold" font-family="sans-serif">「LLMは世界を理解していない。世界の地図を持っているだけだ。」</text>
+</svg>

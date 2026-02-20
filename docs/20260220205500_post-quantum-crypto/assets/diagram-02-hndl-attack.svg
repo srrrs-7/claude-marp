@@ -1,0 +1,53 @@
+<svg viewBox="0 0 900 420" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="420" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#e0e0e0">Harvest Now, Decrypt Later (HNDL) 攻撃</text>
+
+  <!-- Timeline arrow -->
+  <line x1="60" y1="200" x2="840" y2="200" stroke="#666" stroke-width="3"/>
+  <polygon points="840,200 825,190 825,210" fill="#666"/>
+
+  <!-- Time markers -->
+  <line x1="200" y1="185" x2="200" y2="215" stroke="#888" stroke-width="2"/>
+  <text x="200" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#aaa">2026年 (現在)</text>
+
+  <line x1="550" y1="185" x2="550" y2="215" stroke="#888" stroke-width="2"/>
+  <text x="550" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#aaa">2035年頃?</text>
+
+  <!-- Phase 1: Harvest (left) -->
+  <rect x="60" y="65" width="280" height="110" rx="10" fill="#713f12" opacity="0.6" stroke="#fbbf24" stroke-width="2"/>
+  <text x="200" y="92" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="bold" fill="#fbbf24">Phase 1: Harvest Now</text>
+  <text x="200" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fde68a">暗号化された通信を大量に傍受・保存</text>
+  <text x="200" y="138" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#bbb">国家機関がTLS通信、VPN、</text>
+  <text x="200" y="155" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#bbb">メール暗号文を蓄積中</text>
+
+  <!-- Stored data (middle) -->
+  <rect x="360" y="70" width="140" height="105" rx="8" fill="#1e3a5f" opacity="0.7" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="430" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#60a5fa">暗号化データ</text>
+  <text x="430" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="24">🗄️</text>
+  <text x="430" y="145" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">何年も保存可能</text>
+  <text x="430" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">ストレージは安価</text>
+
+  <!-- Arrow from harvest to storage -->
+  <line x1="340" y1="120" x2="358" y2="120" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="358,120 350,114 350,126" fill="#fbbf24"/>
+
+  <!-- Arrow from storage to decrypt -->
+  <line x1="500" y1="120" x2="545" y2="120" stroke="#f87171" stroke-width="2"/>
+  <polygon points="545,120 537,114 537,126" fill="#f87171"/>
+
+  <!-- Phase 2: Decrypt (right) -->
+  <rect x="550" y="65" width="310" height="110" rx="10" fill="#7f1d1d" opacity="0.6" stroke="#f87171" stroke-width="2"/>
+  <text x="705" y="92" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="bold" fill="#f87171">Phase 2: Decrypt Later</text>
+  <text x="705" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fca5a5">量子コンピュータで一括復号</text>
+  <text x="705" y="138" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#bbb">過去数十年分の機密情報が露出</text>
+  <text x="705" y="155" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#bbb">医療記録、国家機密、知的財産</text>
+
+  <!-- Danger zone -->
+  <rect x="100" y="265" width="700" height="120" rx="10" fill="rgba(127,29,29,0.3)" stroke="#f87171" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="450" y="295" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#f87171">危険な条件:</text>
+  <text x="450" y="320" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#e0e0e0">データの機密保持期間 (例: 25年)  &gt;  量子コンピュータ実用化までの時間 (例: 10年)</text>
+  <text x="450" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#fbbf24">= 今日暗号化したデータは、量子時代に復号される可能性がある</text>
+  <text x="450" y="375" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#aaa">NSA, CISA 推奨: 2030年までにポスト量子暗号 (PQC) へ移行</text>
+</svg>

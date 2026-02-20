@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 430" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="430" fill="#0d1117"/>
+  <!-- Central service -->
+  <rect x="325" y="175" width="150" height="80" rx="8" fill="#1a3a5c" style="filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.6))"/>
+  <rect x="325" y="175" width="150" height="80" rx="8" fill="none" stroke="#2a6aac" stroke-width="2"/>
+  <text x="400" y="208" text-anchor="middle" font-family="monospace" font-size="14" fill="#79c0ff" font-weight="bold">Central</text>
+  <text x="400" y="226" text-anchor="middle" font-family="monospace" font-size="14" fill="#79c0ff" font-weight="bold">Service</text>
+  <text x="400" y="244" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#8b949e">v3.2.1</text>
+  <!-- REST endpoint (top-left) -->
+  <rect x="60" y="40" width="160" height="70" rx="6" fill="#1a5c2a"/>
+  <rect x="60" y="40" width="160" height="70" rx="6" fill="none" stroke="#2a8c4a" stroke-width="2"/>
+  <text x="140" y="68" text-anchor="middle" font-family="monospace" font-size="14" fill="#56d364" font-weight="bold">REST</text>
+  <text x="140" y="86" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#7ee787">JSON / HTTP</text>
+  <text x="140" y="102" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#56d364">v1 / v2 / v3 / v4</text>
+  <!-- Arrow from REST to center -->
+  <line x1="220" y1="88" x2="322" y2="195" stroke="#56d364" stroke-width="2.5"/>
+  <polygon points="322,195 313,186 320,180" fill="#56d364"/>
+  <!-- gRPC endpoint (top-right) -->
+  <rect x="580" y="40" width="160" height="70" rx="6" fill="#3a1a5c"/>
+  <rect x="580" y="40" width="160" height="70" rx="6" fill="none" stroke="#6a3a8c" stroke-width="2"/>
+  <text x="660" y="68" text-anchor="middle" font-family="monospace" font-size="14" fill="#b792ff" font-weight="bold">gRPC</text>
+  <text x="660" y="86" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#d2b3ff">Protocol Buffers</text>
+  <text x="660" y="102" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#b792ff">proto3 / streaming</text>
+  <!-- Arrow from gRPC to center -->
+  <line x1="580" y1="88" x2="478" y2="195" stroke="#b792ff" stroke-width="2.5"/>
+  <polygon points="478,195 481,182 489,188" fill="#b792ff"/>
+  <!-- GraphQL endpoint (bottom-left) -->
+  <rect x="60" y="320" width="160" height="70" rx="6" fill="#5c3a1a"/>
+  <rect x="60" y="320" width="160" height="70" rx="6" fill="none" stroke="#8c6a2a" stroke-width="2"/>
+  <text x="140" y="348" text-anchor="middle" font-family="monospace" font-size="14" fill="#e88c3a" font-weight="bold">GraphQL</text>
+  <text x="140" y="366" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#d29922">Schema / Resolver</text>
+  <text x="140" y="382" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#e88c3a">SDL / Introspection</text>
+  <!-- Arrow from GraphQL to center -->
+  <line x1="220" y1="342" x2="322" y2="242" stroke="#e88c3a" stroke-width="2.5"/>
+  <polygon points="322,242 319,229 328,231" fill="#e88c3a"/>
+  <!-- Thrift endpoint (bottom-right) -->
+  <rect x="580" y="320" width="160" height="70" rx="6" fill="#5c1a1a"/>
+  <rect x="580" y="320" width="160" height="70" rx="6" fill="none" stroke="#8c2a2a" stroke-width="2"/>
+  <text x="660" y="348" text-anchor="middle" font-family="monospace" font-size="14" fill="#ff7b72" font-weight="bold">Thrift</text>
+  <text x="660" y="366" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ffa09a">Apache Thrift</text>
+  <text x="660" y="382" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ff7b72">Binary / Compact</text>
+  <!-- Arrow from Thrift to center -->
+  <line x1="580" y1="342" x2="478" y2="242" stroke="#ff7b72" stroke-width="2.5"/>
+  <polygon points="478,242 483,229 487,240" fill="#ff7b72"/>
+  <!-- Avro endpoint (left middle) -->
+  <rect x="30" y="180" width="130" height="60" rx="6" fill="#1a4a5c"/>
+  <rect x="30" y="180" width="130" height="60" rx="6" fill="none" stroke="#2a7a8c" stroke-width="2"/>
+  <text x="95" y="206" text-anchor="middle" font-family="monospace" font-size="13" fill="#79c0ff" font-weight="bold">Avro</text>
+  <text x="95" y="224" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#58a6ff">Schema Registry</text>
+  <!-- Arrow from Avro to center -->
+  <line x1="160" y1="210" x2="322" y2="215" stroke="#79c0ff" stroke-width="2"/>
+  <polygon points="322,215 310,210 310,220" fill="#79c0ff"/>
+  <!-- WebSocket (right middle) -->
+  <rect x="640" y="180" width="130" height="60" rx="6" fill="#3a5c1a"/>
+  <rect x="640" y="180" width="130" height="60" rx="6" fill="none" stroke="#5a8c2a" stroke-width="2"/>
+  <text x="705" y="206" text-anchor="middle" font-family="monospace" font-size="13" fill="#7ee787" font-weight="bold">WebSocket</text>
+  <text x="705" y="224" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#56d364">Real-time / Push</text>
+  <!-- Arrow from WebSocket to center -->
+  <line x1="640" y1="210" x2="478" y2="215" stroke="#7ee787" stroke-width="2"/>
+  <polygon points="478,215 490,210 490,220" fill="#7ee787"/>
+  <!-- Confusion label -->
+  <text x="400" y="408" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#ff7b72" font-weight="bold">「これはバベルの塔だ」 — 誰も全体を把握できない</text>
+  <!-- Version chaos labels -->
+  <text x="400" y="155" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#8b949e">↑ 互換性のないプロトコルが乱立 ↑</text>
+</svg>

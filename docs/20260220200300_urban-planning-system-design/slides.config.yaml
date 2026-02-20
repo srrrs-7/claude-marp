@@ -1,0 +1,20 @@
+topic: "都市計画とシステム設計〜ジェイン・ジェイコブスに学ぶソフトウェアアーキテクチャ〜"
+language: "ja"
+
+output:
+  dir: "docs/20260220200300_urban-planning-system-design"
+  baseName: "urban-planning-system-design"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "都市計画とシステム設計"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

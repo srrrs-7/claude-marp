@@ -1,0 +1,12 @@
+topic: "相変化：技術普及はなぜ突然起きるのか"
+language: "ja"
+output:
+  dir: "docs/20260220212500_phase-transition-adoption"
+  baseName: "phase-transition-adoption"
+marp:
+  theme: gaia
+  paginate: true
+  header: "相変化 × 技術採用"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

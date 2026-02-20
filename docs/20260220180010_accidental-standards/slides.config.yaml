@@ -1,0 +1,12 @@
+topic: "偶然生まれた標準 — インターネットを支える「仮決め」の歴史"
+language: "ja"
+output:
+  dir: "docs/20260220180010_accidental-standards"
+  baseName: "accidental-standards"
+marp:
+  theme: gaia
+  paginate: true
+  header: "偶然生まれた標準"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

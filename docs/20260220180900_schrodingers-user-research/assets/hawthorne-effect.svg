@@ -1,0 +1,71 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#0f172a" rx="12"/>
+  <text x="400" y="30" text-anchor="middle" fill="#e2e8f0" font-size="17" font-family="sans-serif" font-weight="bold">ホーソン効果：観察が行動を変える</text>
+
+  <!-- Left panel: Under observation -->
+  <rect x="30" y="55" width="340" height="290" rx="10" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+  <text x="200" y="80" text-anchor="middle" fill="#fbbf24" font-size="14" font-family="sans-serif" font-weight="bold">観察・インタビュー中</text>
+
+  <!-- Person being watched -->
+  <circle cx="200" cy="140" r="28" fill="#fbbf24" opacity="0.3" stroke="#fbbf24" stroke-width="2"/>
+  <circle cx="200" cy="124" r="16" fill="#e2e8f0"/>
+  <ellipse cx="200" cy="160" rx="22" ry="14" fill="#e2e8f0"/>
+
+  <!-- Eye icon watching -->
+  <ellipse cx="120" cy="130" rx="30" ry="18" fill="none" stroke="#fbbf24" stroke-width="2"/>
+  <circle cx="120" cy="130" r="9" fill="#fbbf24"/>
+  <circle cx="116" cy="128" r="4" fill="#0f172a"/>
+  <!-- Lines from eye to person -->
+  <line x1="150" y1="130" x2="170" y2="133" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Camera icon -->
+  <rect x="255" y="112" width="50" height="38" rx="5" fill="none" stroke="#fbbf24" stroke-width="2"/>
+  <circle cx="280" cy="131" r="12" fill="none" stroke="#fbbf24" stroke-width="2"/>
+  <circle cx="280" cy="131" r="6" fill="#fbbf24" opacity="0.4"/>
+  <rect x="257" y="106" width="16" height="8" rx="2" fill="none" stroke="#fbbf24" stroke-width="2"/>
+
+  <!-- Behavior metrics during observation -->
+  <text x="60" y="200" fill="#e2e8f0" font-size="12" font-family="sans-serif">行動特性（観察中）:</text>
+  <text x="60" y="220" fill="#4ade80" font-size="12" font-family="sans-serif">• 丁寧に操作する</text>
+  <text x="60" y="238" fill="#4ade80" font-size="12" font-family="sans-serif">• 正しい手順を踏む</text>
+  <text x="60" y="256" fill="#4ade80" font-size="12" font-family="sans-serif">• 目的を言語化する</text>
+  <text x="60" y="274" fill="#4ade80" font-size="12" font-family="sans-serif">• エラーを避けようとする</text>
+  <text x="60" y="292" fill="#4ade80" font-size="12" font-family="sans-serif">• 「こう使うべき」で行動</text>
+
+  <rect x="50" y="312" width="290" height="22" rx="5" fill="#451a03" stroke="#fbbf24" stroke-width="1"/>
+  <text x="195" y="328" text-anchor="middle" fill="#fbbf24" font-size="11" font-family="sans-serif">量子：観測が波動関数を崩壊させる</text>
+
+  <!-- Middle arrow -->
+  <text x="400" y="175" text-anchor="middle" fill="#64748b" font-size="22" font-family="sans-serif">≠</text>
+  <text x="400" y="210" text-anchor="middle" fill="#64748b" font-size="12" font-family="sans-serif">乖離</text>
+
+  <!-- Right panel: Natural state -->
+  <rect x="430" y="55" width="340" height="290" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <text x="600" y="80" text-anchor="middle" fill="#a78bfa" font-size="14" font-family="sans-serif" font-weight="bold">通常の使用（自然状態）</text>
+
+  <!-- Person relaxed -->
+  <circle cx="600" cy="140" r="28" fill="#a78bfa" opacity="0.2" stroke="#a78bfa" stroke-width="2" stroke-dasharray="5,3"/>
+  <circle cx="600" cy="124" r="16" fill="#94a3b8"/>
+  <ellipse cx="600" cy="160" rx="22" ry="14" fill="#94a3b8"/>
+  <!-- Relaxed posture - slouching -->
+  <path d="M 580 148 Q 600 165 620 148" stroke="#94a3b8" stroke-width="3" fill="none"/>
+
+  <!-- No eye -->
+  <ellipse cx="520" cy="130" rx="30" ry="18" fill="none" stroke="#334155" stroke-width="2" opacity="0.4"/>
+  <line x1="500" y1="114" x2="548" y2="148" stroke="#f87171" stroke-width="2"/>
+  <line x1="548" y1="114" x2="500" y2="148" stroke="#f87171" stroke-width="2"/>
+
+  <!-- Behavior in natural state -->
+  <text x="450" y="200" fill="#e2e8f0" font-size="12" font-family="sans-serif">行動特性（自然状態）:</text>
+  <text x="450" y="220" fill="#f87171" font-size="12" font-family="sans-serif">• 雑に・直感的に操作</text>
+  <text x="450" y="238" fill="#f87171" font-size="12" font-family="sans-serif">• ショートカットや裏技を使う</text>
+  <text x="450" y="256" fill="#fbbf24" font-size="12" font-family="sans-serif">• 目的が曖昧なまま使う</text>
+  <text x="450" y="274" fill="#f87171" font-size="12" font-family="sans-serif">• エラーを気にしない</text>
+  <text x="450" y="292" fill="#f87171" font-size="12" font-family="sans-serif">• 「こう使いたい」で行動</text>
+
+  <rect x="450" y="312" width="290" height="22" rx="5" fill="#2e1065" stroke="#a78bfa" stroke-width="1"/>
+  <text x="595" y="328" text-anchor="middle" fill="#c4b5fd" font-size="11" font-family="sans-serif">これが「本当のユーザー行動」</text>
+
+  <!-- Bottom -->
+  <text x="400" y="378" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">ユーザーテストで見えるのは「観測された自分」であって「本当の使い方」ではない</text>
+</svg>

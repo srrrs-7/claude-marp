@@ -1,0 +1,12 @@
+topic: "半導体戦争の地政学"
+language: "ja"
+output:
+  dir: "docs/20260220054100_semiconductor-geopolitics"
+  baseName: "semiconductor-geopolitics"
+marp:
+  theme: gaia
+  paginate: true
+  header: "半導体と覇権争い"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

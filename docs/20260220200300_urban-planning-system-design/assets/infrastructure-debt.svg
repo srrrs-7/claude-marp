@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 420" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="860" height="420" fill="#efebe9" rx="12"/>
+
+  <!-- Title -->
+  <text x="430" y="35" text-anchor="middle" font-size="17" font-weight="bold" fill="#3e2723" font-family="sans-serif">地下インフラの断面図〜技術的負債の地層</text>
+
+  <!-- Ground surface -->
+  <rect x="30" y="60" width="800" height="25" fill="#8d6e63" rx="4"/>
+  <text x="430" y="77" text-anchor="middle" font-size="13" fill="white" font-family="sans-serif">地表（現在のシステム）</text>
+
+  <!-- Soil layers -->
+  <rect x="30" y="85" width="800" height="320" fill="#d7ccc8" rx="4"/>
+
+  <!-- Era 1: 1960s - Deepest layer -->
+  <rect x="30" y="340" width="800" height="55" fill="#795548" rx="4"/>
+  <text x="430" y="362" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">1960年代の基盤インフラ（レガシーコア）</text>
+  <text x="430" y="382" text-anchor="middle" font-size="11" fill="#efebe9" font-family="sans-serif">誰も完全には理解していないが、止められない</text>
+
+  <!-- 1960s pipes -->
+  <rect x="60" y="344" width="55" height="16" fill="#ff7043" rx="8"/>
+  <rect x="160" y="344" width="55" height="16" fill="#ff7043" rx="8"/>
+  <rect x="300" y="344" width="55" height="16" fill="#ff5722" rx="8"/>
+  <rect x="500" y="344" width="55" height="16" fill="#ff7043" rx="8"/>
+  <rect x="650" y="344" width="55" height="16" fill="#ff5722" rx="8"/>
+  <rect x="760" y="344" width="40" height="16" fill="#ff7043" rx="8"/>
+
+  <!-- Era 2: 1980s layer -->
+  <rect x="50" y="240" width="760" height="80" fill="#a1887f" rx="4" opacity="0.7"/>
+  <text x="430" y="270" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">1980年代の拡張（初期マイクロサービス前夜）</text>
+  <text x="430" y="292" text-anchor="middle" font-size="11" fill="#efebe9" font-family="sans-serif">元の設計を無視した追加と改修</text>
+
+  <!-- 1980s pipes - different colors, crossing -->
+  <rect x="80" y="248" width="680" height="14" fill="#7986cb" rx="7"/>
+  <rect x="100" y="266" width="200" height="14" fill="#4db6ac" rx="7"/>
+  <rect x="400" y="266" width="300" height="14" fill="#4db6ac" rx="7"/>
+
+  <!-- Crossing pipes (vertical) -->
+  <rect x="200" y="240" width="14" height="80" fill="#ef9a9a" rx="7"/>
+  <rect x="400" y="240" width="14" height="80" fill="#ef9a9a" rx="7"/>
+  <rect x="600" y="240" width="14" height="80" fill="#ef9a9a" rx="7"/>
+
+  <!-- Era 3: 2000s layer -->
+  <rect x="50" y="140" width="760" height="80" fill="#bcaaa4" rx="4" opacity="0.7"/>
+  <text x="430" y="168" text-anchor="middle" font-size="13" font-weight="bold" fill="#3e2723" font-family="sans-serif">2000年代の近代化試み（未完のリプレイス）</text>
+  <text x="430" y="190" text-anchor="middle" font-size="11" fill="#4e342e" font-family="sans-serif">新旧システムが混在し、境界が不明瞭</text>
+
+  <!-- 2000s pipes - newer, cleaner but tangled -->
+  <rect x="70" y="148" width="350" height="12" fill="#81c784" rx="6"/>
+  <rect x="450" y="148" width="340" height="12" fill="#81c784" rx="6"/>
+  <rect x="150" y="164" width="500" height="12" fill="#aed581" rx="6"/>
+
+  <!-- Crossing vertical connections -->
+  <rect x="250" y="140" width="12" height="80" fill="#fff176" rx="6"/>
+  <rect x="500" y="140" width="12" height="80" fill="#fff176" rx="6"/>
+  <rect x="700" y="140" width="12" height="80" fill="#fff176" rx="6"/>
+
+  <!-- Era labels (badges) -->
+  <rect x="30" y="90" width="100" height="26" fill="#b71c1c" rx="4"/>
+  <text x="80" y="108" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">2020年代</text>
+
+  <rect x="30" y="142" width="100" height="26" fill="#0d47a1" rx="4"/>
+  <text x="80" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">2000年代</text>
+
+  <rect x="30" y="243" width="100" height="26" fill="#1b5e20" rx="4"/>
+  <text x="80" y="261" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">1980年代</text>
+
+  <rect x="30" y="342" width="100" height="26" fill="#4e342e" rx="4"/>
+  <text x="80" y="360" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">1960年代</text>
+
+  <!-- 2020s minimal layer (newest, thin) -->
+  <rect x="50" y="93" width="760" height="36" fill="#e0e0e0" rx="4" opacity="0.8"/>
+  <rect x="100" y="99" width="600" height="10" fill="#42a5f5" rx="5"/>
+  <text x="700" y="111" text-anchor="middle" font-size="11" fill="#1565c0" font-family="sans-serif">最新API層</text>
+</svg>

@@ -1,0 +1,12 @@
+topic: "都市のスケーリング則 — 人口が2倍になると何が起きるか"
+language: "ja"
+output:
+  dir: "docs/20260220055800_urban-scaling-laws"
+  baseName: "urban-scaling-laws"
+marp:
+  theme: gaia
+  paginate: true
+  header: "都市科学"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

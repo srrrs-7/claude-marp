@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="420" fill="#0d1117"/>
+
+  <!-- Left side: Palace floor plan -->
+  <text x="175" y="28" font-size="16" fill="#c8a96e" text-anchor="middle" font-family="sans-serif" font-weight="bold">記憶の宮殿</text>
+
+  <!-- Palace outer wall -->
+  <rect x="20" y="40" width="330" height="330" rx="6" fill="none" stroke="#c8a96e" stroke-width="2"/>
+
+  <!-- Rooms -->
+  <!-- Entry -->
+  <rect x="30" y="50" width="100" height="80" rx="4" fill="#1e2a1e" stroke="#6aaa6a" stroke-width="1.5"/>
+  <text x="80" y="76" font-size="11" fill="#6aaa6a" text-anchor="middle" font-family="sans-serif">玄関</text>
+  <text x="80" y="110" font-size="18" text-anchor="middle">🚪</text>
+
+  <!-- Corridor 1 (horizontal) -->
+  <rect x="130" y="75" width="100" height="30" fill="#1a2030" stroke="#c8a96e" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="180" y="94" font-size="10" fill="#c8a96e" text-anchor="middle" font-family="sans-serif">廊下</text>
+
+  <!-- Room 2 -->
+  <rect x="230" y="50" width="110" height="80" rx="4" fill="#1e1e2d" stroke="#7080dd" stroke-width="1.5"/>
+  <text x="285" y="76" font-size="11" fill="#7080dd" text-anchor="middle" font-family="sans-serif">書斎</text>
+  <text x="285" y="110" font-size="18" text-anchor="middle">📚</text>
+
+  <!-- Corridor 2 (vertical) -->
+  <rect x="255" y="130" width="30" height="80" fill="#1a2030" stroke="#c8a96e" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="270" y="175" font-size="10" fill="#c8a96e" text-anchor="middle" font-family="sans-serif" writing-mode="tb">廊下</text>
+
+  <!-- Room 3 -->
+  <rect x="30" y="145" width="210" height="90" rx="4" fill="#2d1e1e" stroke="#dd7070" stroke-width="1.5"/>
+  <text x="135" y="170" font-size="11" fill="#dd7070" text-anchor="middle" font-family="sans-serif">大広間</text>
+  <text x="135" y="208" font-size="18" text-anchor="middle">🏛️</text>
+
+  <!-- Room 4 -->
+  <rect x="30" y="250" width="310" height="110" rx="4" fill="#2a1e2a" stroke="#cc66cc" stroke-width="1.5"/>
+  <text x="185" y="278" font-size="11" fill="#cc66cc" text-anchor="middle" font-family="sans-serif">地下室（倉庫）</text>
+  <text x="185" y="315" font-size="18" text-anchor="middle">🗄️ 🗂️ 📦</text>
+
+  <!-- Room labels: furniture -->
+  <rect x="55" y="170" width="50" height="30" rx="3" fill="#8b4513" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.4))"/>
+  <text x="80" y="190" font-size="10" fill="#d4a080" text-anchor="middle" font-family="sans-serif">棚</text>
+  <rect x="120" y="170" width="50" height="30" rx="3" fill="#4a7a4a" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.4))"/>
+  <text x="145" y="190" font-size="10" fill="#80cc80" text-anchor="middle" font-family="sans-serif">テーブル</text>
+
+  <!-- Right side: Codebase structure -->
+  <text x="620" y="28" font-size="16" fill="#58a6ff" text-anchor="middle" font-family="sans-serif" font-weight="bold">コードベース</text>
+
+  <!-- Directory tree -->
+  <!-- Root -->
+  <rect x="450" y="45" width="300" height="35" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="460" y="62" font-size="13" fill="#58a6ff" font-family="monospace" font-weight="bold">📁 /src</text>
+  <text x="625" y="72" font-size="10" fill="#8b949e" font-family="sans-serif">ルートディレクトリ</text>
+
+  <!-- Branch lines from root -->
+  <line x1="500" y1="80" x2="500" y2="105" stroke="#30363d" stroke-width="1.5"/>
+  <line x1="500" y1="105" x2="530" y2="105" stroke="#30363d" stroke-width="1.5"/>
+  <line x1="500" y1="105" x2="500" y2="155" stroke="#30363d" stroke-width="1.5"/>
+  <line x1="500" y1="155" x2="530" y2="155" stroke="#30363d" stroke-width="1.5"/>
+  <line x1="500" y1="155" x2="500" y2="205" stroke="#30363d" stroke-width="1.5"/>
+  <line x1="500" y1="205" x2="530" y2="205" stroke="#30363d" stroke-width="1.5"/>
+
+  <!-- Dir: user -->
+  <rect x="530" y="92" width="220" height="30" rx="4" fill="#1e2d1e" stroke="#6aaa6a" stroke-width="1.5"/>
+  <text x="542" y="112" font-size="12" fill="#6aaa6a" font-family="monospace">📁 user/</text>
+  <text x="660" y="112" font-size="10" fill="#6aaa6a" font-family="sans-serif">部屋（玄関）</text>
+
+  <!-- Dir: library -->
+  <rect x="530" y="143" width="220" height="30" rx="4" fill="#1e1e2d" stroke="#7080dd" stroke-width="1.5"/>
+  <text x="542" y="163" font-size="12" fill="#7080dd" font-family="monospace">📁 services/</text>
+  <text x="665" y="163" font-size="10" fill="#7080dd" font-family="sans-serif">部屋（書斎）</text>
+
+  <!-- Dir: storage -->
+  <rect x="530" y="193" width="220" height="30" rx="4" fill="#2d1e1e" stroke="#dd7070" stroke-width="1.5"/>
+  <text x="542" y="213" font-size="12" fill="#dd7070" font-family="monospace">📁 models/</text>
+  <text x="660" y="213" font-size="10" fill="#dd7070" font-family="sans-serif">部屋（大広間）</text>
+
+  <!-- Files under user -->
+  <line x1="600" y1="122" x2="600" y2="145" stroke="#6aaa6a" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="600" y1="133" x2="625" y2="133" stroke="#6aaa6a" stroke-width="1" stroke-dasharray="3,2"/>
+  <rect x="625" y="125" width="120" height="22" rx="3" fill="#0d1117" stroke="#6aaa6a" stroke-width="1"/>
+  <text x="635" y="140" font-size="10" fill="#6aaa6a" font-family="monospace">📄 auth.ts</text>
+
+  <!-- Files under services -->
+  <line x1="600" y1="173" x2="600" y2="195" stroke="#7080dd" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="600" y1="183" x2="625" y2="183" stroke="#7080dd" stroke-width="1" stroke-dasharray="3,2"/>
+  <rect x="625" y="175" width="120" height="22" rx="3" fill="#0d1117" stroke="#7080dd" stroke-width="1"/>
+  <text x="635" y="190" font-size="10" fill="#7080dd" font-family="monospace">📄 payment.ts</text>
+
+  <!-- Codebase lower section: functions as furniture -->
+  <rect x="450" y="250" width="305" height="120" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="600" y="272" font-size="12" fill="#8b949e" text-anchor="middle" font-family="sans-serif">ファイル内の構造</text>
+
+  <rect x="465" y="282" width="130" height="25" rx="3" fill="#2d1e1e" stroke="#dd7070" stroke-width="1"/>
+  <text x="530" y="299" font-size="11" fill="#dd7070" text-anchor="middle" font-family="monospace">class UserService</text>
+
+  <rect x="465" y="315" width="100" height="22" rx="3" fill="#1e1e2d" stroke="#7080dd" stroke-width="1"/>
+  <text x="515" y="331" font-size="10" fill="#7080dd" text-anchor="middle" font-family="monospace">login()</text>
+
+  <rect x="575" y="315" width="100" height="22" rx="3" fill="#1e1e2d" stroke="#7080dd" stroke-width="1"/>
+  <text x="625" y="331" font-size="10" fill="#7080dd" text-anchor="middle" font-family="monospace">logout()</text>
+
+  <rect x="465" y="345" width="80" height="18" rx="2" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="505" y="358" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">userId: string</text>
+
+  <rect x="555" y="345" width="80" height="18" rx="2" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="595" y="358" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">token: string</text>
+
+  <text x="700" y="295" font-size="10" fill="#8b949e" text-anchor="start" font-family="sans-serif">← 家具</text>
+  <text x="700" y="331" font-size="10" fill="#8b949e" text-anchor="start" font-family="sans-serif">← 棚</text>
+  <text x="700" y="358" font-size="10" fill="#8b949e" text-anchor="start" font-family="sans-serif">← ラベル</text>
+
+  <!-- Connecting dotted lines between palace and codebase -->
+  <!-- Entry <-> /src/user/ -->
+  <line x1="345" y1="85" x2="445" y2="107" stroke="#ffd700" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.7"/>
+  <!-- Large hall <-> /src/models/ -->
+  <line x1="345" y1="192" x2="445" y2="208" stroke="#dd7070" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.7"/>
+  <!-- Shelf <-> function -->
+  <line x1="345" y1="280" x2="445" y2="295" stroke="#c8a96e" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.7"/>
+
+  <!-- Correspondence labels -->
+  <text x="385" y="90" font-size="10" fill="#ffd700" text-anchor="middle" font-family="sans-serif" transform="rotate(-8,385,90)">部屋</text>
+  <text x="385" y="200" font-size="10" fill="#dd7070" text-anchor="middle" font-family="sans-serif" transform="rotate(-3,385,200)">部屋</text>
+  <text x="385" y="275" font-size="10" fill="#c8a96e" text-anchor="middle" font-family="sans-serif" transform="rotate(-5,385,275)">家具</text>
+
+  <!-- Bottom legend -->
+  <rect x="20" y="380" width="760" height="32" rx="4" fill="rgba(0,0,0,0.4)" stroke="#30363d" stroke-width="1"/>
+  <line x1="35" y1="396" x2="65" y2="396" stroke="#ffd700" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.8"/>
+  <text x="72" y="400" font-size="12" fill="#c8a96e" font-family="sans-serif">対応関係: 部屋 = ディレクトリ / 家具 = クラス・関数 / ラベル = 変数名 / 廊下 = import パス</text>
+</svg>

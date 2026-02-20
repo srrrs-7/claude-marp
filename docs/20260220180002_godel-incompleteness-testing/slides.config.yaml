@@ -1,0 +1,12 @@
+topic: "ゲーデルの不完全性定理とテストの限界"
+language: "ja"
+output:
+  dir: "docs/20260220180002_godel-incompleteness-testing"
+  baseName: "godel-incompleteness-testing"
+marp:
+  theme: gaia
+  paginate: true
+  header: "ゲーデルとテスト"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

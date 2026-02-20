@@ -1,0 +1,12 @@
+topic: "記憶は再構成される — あなたの思い出は本当か？"
+language: "ja"
+output:
+  dir: "docs/20260220061200_memory-reconstruction"
+  baseName: "memory-reconstruction"
+marp:
+  theme: gaia
+  paginate: true
+  header: "記憶の再構成"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

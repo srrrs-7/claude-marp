@@ -1,0 +1,15 @@
+topic: "コードを書かない日のほうが生産的な理由"
+language: "ja"
+
+output:
+  dir: "docs/20260220140000_no-code-day-productivity"
+  baseName: "no-code-day-productivity"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "コードを書かない日のほうが生産的な理由"
+  footer: "© 2026 Engineer Productivity Workshop"
+  style: |
+    section { font-size: 1.0em; }
+    section pre code { font-size: 0.55em; line-height: 1.4; }

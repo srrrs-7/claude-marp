@@ -1,0 +1,46 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="10"/>
+  <text x="450" y="40" text-anchor="middle" fill="#e94560" font-size="20" font-family="sans-serif" font-weight="bold">バイブコーディングとは何か</text>
+  <!-- Central concept -->
+  <rect x="320" y="70" width="260" height="80" fill="#0f3460" rx="15" style="filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.5))"/>
+  <text x="450" y="105" text-anchor="middle" fill="#e94560" font-size="18" font-family="sans-serif" font-weight="bold">Vibe Coding</text>
+  <text x="450" y="130" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">Karpathy (Feb 2025)</text>
+  <!-- Left branch: Input -->
+  <rect x="40" y="200" width="220" height="70" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="150" y="228" text-anchor="middle" fill="#00d2d3" font-size="15" font-family="sans-serif" font-weight="bold">入力</text>
+  <text x="150" y="252" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">自然言語の指示のみ</text>
+  <!-- Arrow from center to left -->
+  <line x1="320" y1="135" x2="260" y2="200" stroke="#555" stroke-width="2"/>
+  <polygon points="260,195 253,205 267,205" fill="#555"/>
+  <!-- Center branch: Process -->
+  <rect x="340" y="200" width="220" height="70" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="450" y="228" text-anchor="middle" fill="#feca57" font-size="15" font-family="sans-serif" font-weight="bold">プロセス</text>
+  <text x="450" y="252" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">LLMが全コードを生成</text>
+  <!-- Arrow from center to center -->
+  <line x1="450" y1="150" x2="450" y2="200" stroke="#555" stroke-width="2"/>
+  <polygon points="444,200 456,200 450,210" fill="#555"/>
+  <!-- Right branch: Output -->
+  <rect x="640" y="200" width="220" height="70" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="750" y="228" text-anchor="middle" fill="#e94560" font-size="15" font-family="sans-serif" font-weight="bold">特徴</text>
+  <text x="750" y="252" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">コードを読まない</text>
+  <!-- Arrow from center to right -->
+  <line x1="580" y1="135" x2="640" y2="200" stroke="#555" stroke-width="2"/>
+  <polygon points="640,195 647,205 633,205" fill="#555"/>
+  <!-- Quote box -->
+  <rect x="100" y="310" width="700" height="70" fill="rgba(233,69,96,0.1)" rx="10" stroke="#e94560" stroke-width="1"/>
+  <text x="450" y="340" text-anchor="middle" fill="#fff" font-size="15" font-family="sans-serif" font-style="italic">"I just see things, say things, run things, and copy-paste things,</text>
+  <text x="450" y="363" text-anchor="middle" fill="#fff" font-size="15" font-family="sans-serif" font-style="italic">and it mostly works." — Andrej Karpathy</text>
+  <!-- Bottom boxes: key points -->
+  <rect x="60" y="410" width="190" height="60" fill="#0f3460" rx="8"/>
+  <text x="155" y="435" text-anchor="middle" fill="#00d2d3" font-size="13" font-family="sans-serif" font-weight="bold">超高速プロトタイプ</text>
+  <text x="155" y="455" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">数時間でMVP完成</text>
+  <rect x="280" y="410" width="190" height="60" fill="#0f3460" rx="8"/>
+  <text x="375" y="435" text-anchor="middle" fill="#feca57" font-size="13" font-family="sans-serif" font-weight="bold">参入障壁の消滅</text>
+  <text x="375" y="455" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">非エンジニアもアプリ開発</text>
+  <rect x="500" y="410" width="190" height="60" fill="#0f3460" rx="8"/>
+  <text x="595" y="435" text-anchor="middle" fill="#e94560" font-size="13" font-family="sans-serif" font-weight="bold">品質のブラックボックス</text>
+  <text x="595" y="455" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">生成コードの理解不在</text>
+  <rect x="720" y="410" width="160" height="60" fill="#0f3460" rx="8"/>
+  <text x="800" y="435" text-anchor="middle" fill="#e94560" font-size="13" font-family="sans-serif" font-weight="bold">技術的負債</text>
+  <text x="800" y="455" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">保守コスト急増</text>
+</svg>

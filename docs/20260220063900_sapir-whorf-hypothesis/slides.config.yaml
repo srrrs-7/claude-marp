@@ -1,0 +1,12 @@
+topic: "言語が思考を決める — サピア＝ウォーフ仮説の現代的検証"
+language: "ja"
+output:
+  dir: "docs/20260220063900_sapir-whorf-hypothesis"
+  baseName: "sapir-whorf-hypothesis"
+marp:
+  theme: gaia
+  paginate: true
+  header: "言語と認知の関係"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

@@ -1,0 +1,20 @@
+topic: "完全変態：昆虫のメタモルフォーゼに学ぶソフトウェアマイグレーション"
+language: "ja"
+
+output:
+  dir: "docs/20260220201000_metamorphosis-migration"
+  baseName: "metamorphosis-migration"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "Metamorphosis × Migration"
+  footer: "© 2026 Software Metamorphosis"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

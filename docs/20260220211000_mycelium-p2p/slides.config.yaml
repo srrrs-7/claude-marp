@@ -1,0 +1,20 @@
+topic: "森のインターネット：菌糸ネットワークが先取りしていた分散システム設計"
+language: "ja"
+
+output:
+  dir: "docs/20260220211000_mycelium-p2p"
+  baseName: "mycelium-p2p"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "Mycelium Network × P2P"
+  footer: "© 2026 Forest Internet"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

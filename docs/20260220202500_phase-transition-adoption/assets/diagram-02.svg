@@ -1,0 +1,96 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f0e17" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#fffffe" font-size="18" font-family="sans-serif" font-weight="bold">技術の相変化マップ：歴史的事例</text>
+
+  <!-- Timeline -->
+  <line x1="50" y1="250" x2="860" y2="250" stroke="#a7a9be" stroke-width="2"/>
+  <polygon points="858,245 870,250 858,255" fill="#a7a9be"/>
+
+  <!-- Event 1: Web -->
+  <rect x="60" y="80" width="140" height="130" fill="#1a1a2e" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <rect x="60" y="80" width="140" height="30" fill="#2563eb" rx="6"/>
+  <rect x="60" y="103" width="140" height="7" fill="#2563eb"/>
+  <text x="130" y="100" text-anchor="middle" fill="#fffffe" font-size="10" font-family="sans-serif" font-weight="bold">World Wide Web</text>
+  <text x="130" y="130" text-anchor="middle" fill="#7ecaff" font-size="9" font-family="sans-serif">固体: 1991-1994</text>
+  <text x="130" y="148" text-anchor="middle" fill="#e6b422" font-size="9" font-family="sans-serif">臨界点: 1995 (Netscape)</text>
+  <text x="130" y="166" text-anchor="middle" fill="#52b788" font-size="9" font-family="sans-serif">気体: 1996- 爆発的普及</text>
+  <text x="130" y="190" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">潜伏期: 4年</text>
+  <line x1="130" y1="210" x2="130" y2="245" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="130" cy="250" r="5" fill="#2563eb"/>
+  <text x="130" y="270" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">1995</text>
+
+  <!-- Event 2: iPhone/Smartphone -->
+  <rect x="230" y="80" width="140" height="130" fill="#1a1a2e" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <rect x="230" y="80" width="140" height="30" fill="#7c3aed" rx="6"/>
+  <rect x="230" y="103" width="140" height="7" fill="#7c3aed"/>
+  <text x="300" y="100" text-anchor="middle" fill="#fffffe" font-size="10" font-family="sans-serif" font-weight="bold">Smartphone</text>
+  <text x="300" y="130" text-anchor="middle" fill="#c4b5fd" font-size="9" font-family="sans-serif">固体: 1999-2006 (PDA)</text>
+  <text x="300" y="148" text-anchor="middle" fill="#e6b422" font-size="9" font-family="sans-serif">臨界点: 2007 (iPhone)</text>
+  <text x="300" y="166" text-anchor="middle" fill="#52b788" font-size="9" font-family="sans-serif">気体: 2008- App Store</text>
+  <text x="300" y="190" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">潜伏期: 8年</text>
+  <line x1="300" y1="210" x2="300" y2="245" stroke="#7c3aed" stroke-width="2"/>
+  <circle cx="300" cy="250" r="5" fill="#7c3aed"/>
+  <text x="300" y="270" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">2007</text>
+
+  <!-- Event 3: Cloud -->
+  <rect x="400" y="80" width="140" height="130" fill="#1a1a2e" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <rect x="400" y="80" width="140" height="30" fill="#dc2626" rx="6"/>
+  <rect x="400" y="103" width="140" height="7" fill="#dc2626"/>
+  <text x="470" y="100" text-anchor="middle" fill="#fffffe" font-size="10" font-family="sans-serif" font-weight="bold">Cloud Computing</text>
+  <text x="470" y="130" text-anchor="middle" fill="#fca5a5" font-size="9" font-family="sans-serif">固体: 1999-2005 (ASP)</text>
+  <text x="470" y="148" text-anchor="middle" fill="#e6b422" font-size="9" font-family="sans-serif">臨界点: 2006 (AWS EC2)</text>
+  <text x="470" y="166" text-anchor="middle" fill="#52b788" font-size="9" font-family="sans-serif">気体: 2010- 標準化</text>
+  <text x="470" y="190" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">潜伏期: 7年</text>
+  <line x1="470" y1="210" x2="470" y2="245" stroke="#dc2626" stroke-width="2"/>
+  <circle cx="470" cy="250" r="5" fill="#dc2626"/>
+  <text x="470" y="270" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">2006</text>
+
+  <!-- Event 4: Docker -->
+  <rect x="570" y="80" width="140" height="130" fill="#1a1a2e" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <rect x="570" y="80" width="140" height="30" fill="#52b788" rx="6"/>
+  <rect x="570" y="103" width="140" height="7" fill="#52b788"/>
+  <text x="640" y="100" text-anchor="middle" fill="#fffffe" font-size="10" font-family="sans-serif" font-weight="bold">Containers</text>
+  <text x="640" y="130" text-anchor="middle" fill="#52b788" font-size="9" font-family="sans-serif">固体: 1979-2012 (chroot)</text>
+  <text x="640" y="148" text-anchor="middle" fill="#e6b422" font-size="9" font-family="sans-serif">臨界点: 2013 (Docker)</text>
+  <text x="640" y="166" text-anchor="middle" fill="#52b788" font-size="9" font-family="sans-serif">気体: 2015- K8s普及</text>
+  <text x="640" y="190" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">潜伏期: 34年!</text>
+  <line x1="640" y1="210" x2="640" y2="245" stroke="#52b788" stroke-width="2"/>
+  <circle cx="640" cy="250" r="5" fill="#52b788"/>
+  <text x="640" y="270" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">2013</text>
+
+  <!-- Event 5: GenAI -->
+  <rect x="740" y="80" width="130" height="130" fill="#1a1a2e" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <rect x="740" y="80" width="130" height="30" fill="#e6b422" rx="6"/>
+  <rect x="740" y="103" width="130" height="7" fill="#e6b422"/>
+  <text x="805" y="100" text-anchor="middle" fill="#0f0e17" font-size="10" font-family="sans-serif" font-weight="bold">Generative AI</text>
+  <text x="805" y="130" text-anchor="middle" fill="#e6b422" font-size="9" font-family="sans-serif">固体: 2017-2022</text>
+  <text x="805" y="148" text-anchor="middle" fill="#e6b422" font-size="9" font-family="sans-serif">臨界点: 2022 (ChatGPT)</text>
+  <text x="805" y="166" text-anchor="middle" fill="#52b788" font-size="9" font-family="sans-serif">気体: 2023- 全産業浸透</text>
+  <text x="805" y="190" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">潜伏期: 5年</text>
+  <line x1="805" y1="210" x2="805" y2="245" stroke="#e6b422" stroke-width="2"/>
+  <circle cx="805" cy="250" r="5" fill="#e6b422"/>
+  <text x="805" y="270" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">2022</text>
+
+  <!-- Bottom: Pattern -->
+  <rect x="50" y="300" width="810" height="75" fill="#1a1a2e" rx="8"/>
+  <text x="455" y="325" text-anchor="middle" fill="#fffffe" font-size="13" font-family="sans-serif" font-weight="bold">共通パターン：長い潜伏期 → 突然の相転移 → 急速な拡散</text>
+  <text x="455" y="350" text-anchor="middle" fill="#a7a9be" font-size="11" font-family="sans-serif">相転移のトリガー = UX革新 + コスト低下 + キラーアプリ + ネットワーク効果</text>
+  <text x="455" y="368" text-anchor="middle" fill="#e6b422" font-size="11" font-family="sans-serif">潜伏期の長さは予測困難 — 「まだ早い」が突然「遅すぎる」に変わる</text>
+
+  <!-- Bottom row: factors -->
+  <rect x="50" y="390" width="200" height="45" fill="#2563eb" rx="4" opacity="0.3"/>
+  <text x="150" y="412" text-anchor="middle" fill="#7ecaff" font-size="10" font-family="sans-serif" font-weight="bold">UXの臨界質量</text>
+  <text x="150" y="428" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">使いやすさが閾値を超える</text>
+
+  <rect x="260" y="390" width="200" height="45" fill="#7c3aed" rx="4" opacity="0.3"/>
+  <text x="360" y="412" text-anchor="middle" fill="#c4b5fd" font-size="10" font-family="sans-serif" font-weight="bold">コストの臨界質量</text>
+  <text x="360" y="428" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">価格が閾値を下回る</text>
+
+  <rect x="470" y="390" width="200" height="45" fill="#52b788" rx="4" opacity="0.3"/>
+  <text x="570" y="412" text-anchor="middle" fill="#52b788" font-size="10" font-family="sans-serif" font-weight="bold">ネットワーク効果</text>
+  <text x="570" y="428" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">利用者増加が価値を増幅</text>
+
+  <rect x="680" y="390" width="180" height="45" fill="#e6b422" rx="4" opacity="0.3"/>
+  <text x="770" y="412" text-anchor="middle" fill="#e6b422" font-size="10" font-family="sans-serif" font-weight="bold">キラーアプリ</text>
+  <text x="770" y="428" text-anchor="middle" fill="#a7a9be" font-size="9" font-family="sans-serif">具体的価値の実証</text>
+</svg>

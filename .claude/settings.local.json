@@ -10,7 +10,8 @@
 			"Bash(xargs -I{} sh -c 'test {} -eq 0 && echo \"\"OK: url\\(#id\\)なし\"\" || echo \"\"FAIL: url\\(#id\\)検出 {} 件\"\"' echo \"=== 4. mermaid残存確認 ===\" grep -c '^\\\\`\\\\`\\\\`mermaid' \"$DIR/aws-advanced-networking-specialty.md\")",
 			"Bash(echo \"OK: mermaidなし\" echo \"=== 5. HTML出力確認 ===\" ls -lh \"$HTML\")",
 			"Bash(wc:*)",
-			"Bash(node -e:*)"
+			"Bash(node -e:*)",
+			"Bash(bun:*)"
 		]
 	}
 }

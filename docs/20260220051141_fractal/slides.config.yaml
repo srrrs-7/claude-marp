@@ -1,0 +1,26 @@
+topic: "フラクタル：ブロッコリーと海岸線と金融チャートの同じ数式"
+language: "ja"
+
+output:
+  dir: "docs/20260220051141_fractal"
+  baseName: "fractal"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "フラクタル：自然界のコピー&ペースト"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+    section.center {
+      text-align: center;
+    }
+    section table {
+      font-size: 0.82em;
+    }

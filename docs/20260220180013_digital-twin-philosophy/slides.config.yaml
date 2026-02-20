@@ -1,0 +1,12 @@
+topic: "デジタルツインの哲学的問題"
+language: "ja"
+output:
+  dir: "docs/20260220180013_digital-twin-philosophy"
+  baseName: "digital-twin-philosophy"
+marp:
+  theme: gaia
+  paginate: true
+  header: "デジタルツインの哲学"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

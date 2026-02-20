@@ -1,0 +1,13 @@
+topic: "能の「間（ま）」と最高のUXデザイン"
+language: "ja"
+output:
+  dir: "docs/20260220180500_ma-ux-design"
+  baseName: "ma-ux-design"
+marp:
+  theme: default
+  paginate: true
+  header: "能の「間」とUXデザイン"
+  footer: "© 2026"
+  style: |
+    section { font-size: 1.05em; }
+    section pre code { font-size: 0.58em; line-height: 1.4; }

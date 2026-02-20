@@ -1,0 +1,20 @@
+topic: "地図は領土ではない〜LLMの世界モデルという幻想〜"
+language: "ja"
+
+output:
+  dir: "docs/20260220213500_map-territory-llm"
+  baseName: "map-territory-llm"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "地図は領土ではない"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

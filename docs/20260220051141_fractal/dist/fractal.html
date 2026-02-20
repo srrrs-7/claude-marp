@@ -1,0 +1,1900 @@
+<!DOCTYPE html><html lang="en-US"><head><title>フラクタル</title><meta property="og:title" content="フラクタル"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{appearance:none;background-color:initial;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear;-webkit-tap-highlight-color:transparent}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNNDAgNzBIMjBWNTBtMjAgMEwyMCA3MG00MC00MGgyMHYyMG0tMjAgMCAyMC0yMCIgY2xhc3M9ImEiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNMjAgNTBoMjB2MjBtLTIwIDAgMjAtMjBtNDAgMEg2MFYzMG0yMCAwTDYwIDUwIiBjbGFzcz0iYSIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODBNNTIgOTBWMTAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}@keyframes __bespoke_marp_transition_reduced_outgoing__{0%{opacity:1}to{opacity:0}}@keyframes __bespoke_marp_transition_reduced_incoming__{0%{mix-blend-mode:plus-lighter;opacity:0}to{mix-blend-mode:plus-lighter;opacity:1}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{::view-transition-group(*){animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-timing-function:ease}::view-transition-new(*),::view-transition-old(*){animation-delay:0s;animation-direction:var(--marp-bespoke-transition-animation-direction,normal);animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-fill-mode:both;animation-name:var(--marp-bespoke-transition-animation-name,var(--marp-bespoke-transition-animation-name-fallback,__bespoke_marp_transition_no_animation__));mix-blend-mode:normal}::view-transition-old(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_outgoing__;animation-timing-function:ease}::view-transition-new(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_incoming__;animation-timing-function:ease}::view-transition-new(root),::view-transition-old(root){animation-timing-function:linear}::view-transition-new(__bespoke_marp_transition_osc__),::view-transition-old(__bespoke_marp_transition_osc__){animation-duration:0s!important;animation-name:__bespoke_marp_transition_osc__!important}::view-transition-new(__bespoke_marp_transition_osc__){opacity:0!important}.bespoke-marp-transition-warming-up::view-transition-group(*),.bespoke-marp-transition-warming-up::view-transition-new(*),.bespoke-marp-transition-warming-up::view-transition-old(*){animation-play-state:paused!important}body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide:not(.bespoke-marp-active) *{view-transition-name:none!important}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}}@media screen and (prefers-reduced-motion:reduce){svg.bespoke-marp-slide *{view-transition-name:none!important}}@media screen{[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{inset:0;position:absolute}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{background:#000000a6;border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1;view-transition-name:__bespoke_marp_transition_osc__}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:#0000}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:#0000;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{display:block;inset:0;position:absolute}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:#000000a6;border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;white-space:pre-wrap;width:calc(100% - 40px);word-wrap:break-word;scrollbar-color:#eeeeee80 #0000;scrollbar-width:thin}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:#0000}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:#eeeeee80;border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>@charset "UTF-8";@import "https://fonts.bunny.net/css?family=Lato:400,900|Roboto+Mono:400,700&display=swap";div#\:\$p > svg > foreignObject > section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center;-webkit-text-size-adjust:100%;text-size-adjust:100%}div#\:\$p > svg > foreignObject > section::after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#\:\$p > svg > foreignObject > section:not([data-marpit-pagination])::after{display:none}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:2em;margin-block:0.67em}div#\:\$p > svg > foreignObject > section video::-webkit-media-controls{will-change:transform}@page {size:1280px 720px;margin:0}@media print{html, body{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#\:\$p > svg > foreignObject > section{page-break-before:always;break-before:page}div#\:\$p > svg > foreignObject > section, div#\:\$p > svg > foreignObject > section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;print-color-adjust:exact!important;transition:none!important}div#\:\$p > svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#\:\$p > svg > foreignObject > :where(section){container-type:size}div#\:\$p > svg > foreignObject > section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}/*!
+ * Marp / Marpit Gaia theme.
+ *
+ * @theme gaia
+ * @author Yuki Hattori
+ *
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ * @size 4:3 960px 720px
+ */div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code.hljs{display:block;overflow-x:auto;padding:1em}div#\:\$p > svg > foreignObject > section code.hljs{padding:3px 5px}div#\:\$p > svg > foreignObject > section .hljs{background:#000;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-comment,div#\:\$p > svg > foreignObject > section .hljs-quote{color:#aeaeae;font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-keyword,div#\:\$p > svg > foreignObject > section .hljs-selector-tag,div#\:\$p > svg > foreignObject > section .hljs-type{color:#e28964}div#\:\$p > svg > foreignObject > section .hljs-string{color:#65b042}div#\:\$p > svg > foreignObject > section .hljs-subst{color:#daefa3}div#\:\$p > svg > foreignObject > section .hljs-link,div#\:\$p > svg > foreignObject > section .hljs-regexp{color:#e9c062}div#\:\$p > svg > foreignObject > section .hljs-name,div#\:\$p > svg > foreignObject > section .hljs-section,div#\:\$p > svg > foreignObject > section .hljs-tag,div#\:\$p > svg > foreignObject > section .hljs-title{color:#89bdff}div#\:\$p > svg > foreignObject > section .hljs-class .hljs-title,div#\:\$p > svg > foreignObject > section .hljs-doctag,div#\:\$p > svg > foreignObject > section .hljs-title.class_{text-decoration:underline}div#\:\$p > svg > foreignObject > section .hljs-bullet,div#\:\$p > svg > foreignObject > section .hljs-number,div#\:\$p > svg > foreignObject > section .hljs-symbol{color:#3387cc}div#\:\$p > svg > foreignObject > section .hljs-params,div#\:\$p > svg > foreignObject > section .hljs-template-variable,div#\:\$p > svg > foreignObject > section .hljs-variable{color:#3e87e3}div#\:\$p > svg > foreignObject > section .hljs-attribute{color:#cda869}div#\:\$p > svg > foreignObject > section .hljs-meta{color:#8996a8}div#\:\$p > svg > foreignObject > section .hljs-formula{background-color:#0e2231;color:#f8f8f8;font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-addition{background-color:#253b22;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-deletion{background-color:#420e09;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-selector-class{color:#9b703f}div#\:\$p > svg > foreignObject > section .hljs-selector-id{color:#8b98ab}div#\:\$p > svg > foreignObject > section .hljs-emphasis{font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-strong{font-weight:700}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){margin:.5em 0 0}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{font-weight:inherit}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6)::part(auto-scaling){max-height:580px}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:1.8em}div#\:\$p > svg > foreignObject > section :is(h2, marp-h2){font-size:1.5em}div#\:\$p > svg > foreignObject > section :is(h3, marp-h3){font-size:1.3em}div#\:\$p > svg > foreignObject > section :is(h4, marp-h4){font-size:1.1em}div#\:\$p > svg > foreignObject > section :is(h5, marp-h5){font-size:1em}div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){font-size:.9em}div#\:\$p > svg > foreignObject > section blockquote,div#\:\$p > svg > foreignObject > section p{margin:1em 0 0}div#\:\$p > svg > foreignObject > section ol>li,div#\:\$p > svg > foreignObject > section ul>li{margin:.3em 0 0}div#\:\$p > svg > foreignObject > section ol>li>p,div#\:\$p > svg > foreignObject > section ul>li>p{margin:.6em 0 0}div#\:\$p > svg > foreignObject > section code{display:inline-block;font-family:Roboto Mono,monospace;font-size:.8em;letter-spacing:0;margin:-.1em .15em;padding:.1em .2em;vertical-align:baseline}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){display:block;margin:1em 0 0;overflow:visible}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{box-sizing:border-box;font-size:.7em;margin:0;min-width:100%;padding:.5em}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)::part(auto-scaling){max-height:calc(580px - 1em)}div#\:\$p > svg > foreignObject > section blockquote{margin:1em 0 0;padding:0 1em;position:relative}div#\:\$p > svg > foreignObject > section blockquote:after,div#\:\$p > svg > foreignObject > section blockquote:before{content:"“";display:block;font-family:Times New Roman,serif;font-weight:700;position:absolute}div#\:\$p > svg > foreignObject > section blockquote:before{left:0;top:0}div#\:\$p > svg > foreignObject > section blockquote:after{bottom:0;right:0;transform:rotate(180deg)}div#\:\$p > svg > foreignObject > section blockquote>:first-child{margin-top:0}div#\:\$p > svg > foreignObject > section mark{background:transparent}div#\:\$p > svg > foreignObject > section table{border-collapse:collapse;border-spacing:0;margin:1em 0 0}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{border-style:solid;border-width:1px;padding:.2em .4em}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header,div#\:\$p > svg > foreignObject > section:after{box-sizing:border-box;font-size:66%;height:70px;line-height:50px;overflow:hidden;padding:10px 25px;position:absolute}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:66%}div#\:\$p > svg > foreignObject > section header{top:0}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header{left:0;right:0}div#\:\$p > svg > foreignObject > section footer{bottom:0}div#\:\$p > svg > foreignObject > section{--color-background:light-dark(#fff8e1, #455a64);--color-background-stripe:light-dark(
+    rgba(69,90,100,.1),
+    rgba(255,248,225,.1)
+  );--color-foreground:light-dark(#455a64, #fff8e1);--color-dimmed:light-dark(
+    #6a7a7d,
+    #dad8c8
+  );--color-highlight:light-dark(#0288d1, #81d4fa);background-color:var(--color-background);background-image:linear-gradient(135deg, hsla(0,0%,53%,0), hsla(0,0%,53%,.02) 50%, hsla(0,0%,100%,0) 0, hsla(0,0%,100%,.05));color:var(--color-foreground);color-scheme:light;font-family:Lato,Avenir Next,Avenir,Trebuchet MS,Segoe UI,sans-serif;font-size:35px;height:720px;letter-spacing:1.25px;line-height:1.35;overflow-wrap:break-word;padding:70px;width:1280px}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size:35px}div#\:\$p > svg > foreignObject > section:after{bottom:0;font-size:80%;right:0}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:80%}div#\:\$p > svg > foreignObject > section a,div#\:\$p > svg > foreignObject > section mark{color:var(--color-highlight)}div#\:\$p > svg > foreignObject > section code{background:var(--color-dimmed);color:var(--color-background)}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{color:var(--color-highlight)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){background:var(--color-foreground)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)>code{background:transparent}div#\:\$p > svg > foreignObject > section blockquote:after,div#\:\$p > svg > foreignObject > section blockquote:before,div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header,div#\:\$p > svg > foreignObject > section section:after{color:var(--color-dimmed)}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{border-color:var(--color-foreground)}div#\:\$p > svg > foreignObject > section table thead th{background:var(--color-foreground);color:var(--color-background)}div#\:\$p > svg > foreignObject > section table tbody>tr:nth-child(odd) td,div#\:\$p > svg > foreignObject > section table tbody>tr:nth-child(odd) th{background:var(--color-background-stripe, transparent)}div#\:\$p > svg > foreignObject > section>:first-child,div#\:\$p > svg > foreignObject > section>header:first-child+*{margin-top:0}div#\:\$p > svg > foreignObject > section:where(.invert){color-scheme:dark}div#\:\$p > svg > foreignObject > section:where(.gaia){--color-background:#0288d1;--color-background-stripe:rgba(255,248,225,.1);--color-foreground:#fff8e1;--color-dimmed:#cce2de;--color-highlight:#81d4fa;}div#\:\$p > svg > foreignObject > section:where(.lead){align-items:stretch;flex-flow:column nowrap;place-content:safe center center}div#\:\$p > svg > foreignObject > section:where(.lead) :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h6, marp-h6){text-align:center}div#\:\$p > svg > foreignObject > section:where(.lead) p{text-align:center}div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h1, marp-h1),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h2, marp-h2),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h3, marp-h3),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h4, marp-h4),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h5, marp-h5),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h6, marp-h6),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>p{text-align:left}div#\:\$p > svg > foreignObject > section:where(.lead) ol>li>p,div#\:\$p > svg > foreignObject > section:where(.lead) ul>li>p{text-align:left}div#\:\$p > svg > foreignObject > section:where(.lead) table{margin-left:auto;margin-right:auto}div#\:\$p > svg > foreignObject > section{width:1280px;height:720px}div#\:\$p > svg > foreignObject > section{font-size:1.05em}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size: 1.05em}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{font-size:0.58em;line-height:1.4}div#\:\$p > svg > foreignObject > section.center{text-align:center}div#\:\$p > svg > foreignObject > section table{font-size:0.82em}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]{columns:initial!important;display:block!important;padding:0!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::after, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::after{display:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction="vertical"]{flex-direction:column}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split] > div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split, 50%)}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split="right"] > div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure > figcaption{position:absolute;border:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;white-space:nowrap;width:1px}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"], div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"]{background:transparent!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"], div#\:\$p > svg[data-marpit-svg] > foreignObject[data-marpit-advanced-background="pseudo"]{pointer-events:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background-split]{width:100%;height:100%}
+</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id=":$p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-class="lead" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" class="lead" data-marpit-pagination="1" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--class:lead;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+
+<h1 id="%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB">フラクタル</h1>
+<ul>
+<li>ブロッコリーと海岸線と金融チャートの同じ数式</li>
+<li>自然界のコピー&amp;ペースト</li>
+<li>— 90分 講義 —</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="2" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E4%BB%8A%E6%97%A5%E3%81%AE%E5%95%8F%E3%81%84">今日の問い</h1>
+<ul>
+<li><strong>「なぜ全く違うものが、同じ数式で描けるのか？」</strong></li>
+<li></li>
+<li>
+<ul>
+<li>ロマネスコブロッコリーの渦</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>イギリスの海岸線の長さ</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>株式市場のチャート</li>
+</ul>
+</li>
+<li></li>
+<li>→ 答えは <strong>フラクタル</strong> という概念にある</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="3" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E6%9C%AC%E6%97%A5%E3%81%AE%E3%82%A2%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%80">本日のアジェンダ</h1>
+<ul>
+<li><strong>Ch.1</strong> フラクタルとは？ — 定義と歴史</li>
+<li><strong>Ch.2</strong> 自然界のコピー&amp;ペースト</li>
+<li><strong>Ch.3</strong> 金融・戦略への応用</li>
+<li><strong>Ch.4</strong> CGアート・ゲームへの応用</li>
+<li><strong>Ch.5</strong> まとめ・振り返り</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-class="lead" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" class="lead" data-marpit-pagination="4" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--class:lead;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+
+<h1 id="ch1-%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB%E3%81%A8%E3%81%AF">Ch.1　フラクタルとは？</h1>
+<ul>
+<li>— 定義・歴史 —</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="5" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E8%87%AA%E5%B7%B1%E7%9B%B8%E4%BC%BC%E6%80%A7-%E2%80%95-%E9%83%A8%E5%88%86%E3%81%8C%E5%85%A8%E4%BD%93%E3%81%A8%E4%BC%BC%E3%81%A6%E3%81%84%E3%82%8B">自己相似性 ― 「部分が全体と似ている」</h1>
+<ul>
+<li>フラクタルの核心は <strong>自己相似性</strong> にある</li>
+<li></li>
+<li>
+<ul>
+<li>拡大しても縮小しても、<strong>同じパターン</strong>が繰り返し現れる</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「部分」が「全体」の縮小コピーになっている</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>まるで無限にズームインできる構造</li>
+</ul>
+</li>
+<li></li>
+<li><img class="emoji" draggable="false" alt="💡" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f4a1.svg" data-marp-twemoji=""/> ブロッコリーを切ると、小さいブロッコリーが出てくる</li>
+<li><img class="emoji" draggable="false" alt="💡" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f4a1.svg" data-marp-twemoji=""/> 木の枝を切ると、小さい木が出てくる</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="6" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E3%83%9E%E3%83%B3%E3%83%87%E3%83%AB%E3%83%96%E3%83%AD%E3%83%83%E3%83%88%E3%81%AE%E7%99%BA%E8%A6%8B1975">マンデルブロットの発見（1975）</h1>
+<ul>
+<li><strong>Benoît Mandelbrot</strong>（1924–2010）：ポーランド生まれの数学者・経済学者</li>
+<li></li>
+<li>
+<ul>
+<li>もともと <strong>金融市場の価格変動</strong> を研究していた</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「なぜ綿花の価格変動は予測できないのか？」</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>研究の途中で <strong>海岸線の長さの問題</strong> に出会う</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「イギリスの海岸線はどのくらい長いか？」→ <strong>答えがない！</strong></li>
+</ul>
+</li>
+<li></li>
+<li>→ この問いから <strong>フラクタル幾何学</strong> が生まれた</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="7" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E6%B5%B7%E5%B2%B8%E7%B7%9A%E3%81%AE%E3%83%91%E3%83%A9%E3%83%89%E3%83%83%E3%82%AF%E3%82%B9">海岸線のパラドックス</h1>
+<ul>
+<li><strong>「イギリスの海岸線の長さは？」</strong></li>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>物差しの長さ</th>
+<th>測定結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200 km</td>
+<td>約 2,400 km</td>
+</tr>
+<tr>
+<td>50 km</td>
+<td>約 3,400 km</td>
+</tr>
+<tr>
+<td>1 km</td>
+<td>約 17,820 km</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li></li>
+<li>→ 物差しが短くなるほど、長さが<strong>無限大</strong>に近づく</li>
+<li>→ 海岸線には<strong>決まった長さが存在しない</strong></li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="8" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB%E6%AC%A1%E5%85%83-%E2%80%95-%E5%B0%8F%E6%95%B0%E3%81%AE%E6%AC%A1%E5%85%83">フラクタル次元 ― 小数の次元</h1>
+<ul>
+<li>普通の図形：<strong>整数次元</strong></li>
+<li>
+<ul>
+<li>直線 = 1次元、面 = 2次元、立体 = 3次元</li>
+</ul>
+</li>
+<li></li>
+<li>フラクタル：<strong>分数（小数）次元</strong></li>
+<li>
+<ul>
+<li>コッホ曲線 ≈ <strong>1.26次元</strong>（線より複雑、面より単純）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>海岸線 ≈ <strong>1.02〜1.58次元</strong>（場所による）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>ロマネスコブロッコリー ≈ <strong>2.66次元</strong></li>
+</ul>
+</li>
+<li></li>
+<li>→ 次元が大きいほど「複雑でギザギザ」している</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="9" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E6%9C%89%E5%90%8D%E3%81%AA%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB%E5%9B%B3%E5%BD%A2">有名なフラクタル図形</h1>
+<ul>
+<li>以下のSVGは代表的なフラクタル図形の構造を示す</li>
+<li></li>
+<li><svg viewBox="0 0 780 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><text x="10" y="22" font-size="14" font-weight="bold" fill="#333">コッホ曲線（反復ごとに複雑化）</text><text x="10" y="50" font-size="11" fill="#666">Step 0</text><line x1="10" y1="70" x2="190" y2="70" stroke="#4a90d9" stroke-width="2" /><text x="10" y="100" font-size="11" fill="#666">Step 1</text><polyline points="10,130 70,130 100,95 130,130 190,130" fill="none" stroke="#4a90d9" stroke-width="2" /><text x="10" y="160" font-size="11" fill="#666">Step 2</text><polyline points="10,200 30,200 40,185 50,200 70,200 80,167 90,150 100,167 110,185 90,185 80,200 100,200 130,200 140,185 150,200 190,200" fill="none" stroke="#4a90d9" stroke-width="2" /><text x="250" y="22" font-size="14" font-weight="bold" fill="#333">シェルピンスキーの三角形</text><polygon points="390,240 270,40 510,40" fill="none" stroke="#e07820" stroke-width="2" /><polygon points="390,40 330,140 450,140" fill="#e07820" stroke="none" /><polygon points="300,140 270,90 330,90" fill="#e07820" stroke="none" /><polygon points="480,140 450,90 510,90" fill="#e07820" stroke="none" /><polygon points="390,240 360,190 420,190" fill="#e07820" stroke="none" /><text x="340" y="270" font-size="11" fill="#666">反復のたびに三角形が増える</text><text x="540" y="22" font-size="14" font-weight="bold" fill="#333">フラクタルツリー</text><line x1="660" y1="280" x2="660" y2="220" stroke="#2e8b57" stroke-width="4" /><line x1="660" y1="220" x2="630" y2="175" stroke="#2e8b57" stroke-width="3" /><line x1="660" y1="220" x2="690" y2="175" stroke="#2e8b57" stroke-width="3" /><line x1="630" y1="175" x2="615" y2="145" stroke="#2e8b57" stroke-width="2" /><line x1="630" y1="175" x2="645" y2="145" stroke="#2e8b57" stroke-width="2" /><line x1="690" y1="175" x2="675" y2="145" stroke="#2e8b57" stroke-width="2" /><line x1="690" y1="175" x2="705" y2="145" stroke="#2e8b57" stroke-width="2" /><line x1="615" y1="145" x2="605" y2="125" stroke="#2e8b57" stroke-width="1.5" /><line x1="615" y1="145" x2="622" y2="125" stroke="#2e8b57" stroke-width="1.5" /><line x1="645" y1="145" x2="638" y2="125" stroke="#2e8b57" stroke-width="1.5" /><line x1="645" y1="145" x2="652" y2="125" stroke="#2e8b57" stroke-width="1.5" /><line x1="675" y1="145" x2="668" y2="125" stroke="#2e8b57" stroke-width="1.5" /><line x1="675" y1="145" x2="682" y2="125" stroke="#2e8b57" stroke-width="1.5" /><line x1="705" y1="145" x2="698" y2="125" stroke="#2e8b57" stroke-width="1.5" /><line x1="705" y1="145" x2="712" y2="125" stroke="#2e8b57" stroke-width="1.5" /><text x="615" y="310" font-size="11" fill="#666">枝が枝を生む</text></svg></li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="10" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E3%83%9E%E3%83%B3%E3%83%87%E3%83%AB%E3%83%96%E3%83%AD%E3%83%83%E3%83%88%E9%9B%86%E5%90%88">マンデルブロット集合</h1>
+<ul>
+<li><strong>z → z² + c</strong> ただ1つの数式が生む無限の複雑さ</li>
+<li></li>
+<li><svg viewBox="0 0 760 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="380" height="300" fill="#0f3460" /><ellipse cx="155" cy="150" rx="85" ry="75" fill="#1a1a2e" /><circle cx="65" cy="150" r="45" fill="#1a1a2e" /><circle cx="155" cy="68" r="22" fill="#1a1a2e" /><circle cx="155" cy="232" r="22" fill="#1a1a2e" /><circle cx="230" cy="90" r="12" fill="#1a1a2e" /><circle cx="230" cy="210" r="12" fill="#1a1a2e" /><circle cx="17" cy="150" r="10" fill="#1a1a2e" /><ellipse cx="155" cy="150" rx="92" ry="82" fill="none" stroke="#e94560" stroke-width="3" opacity="0.6" /><ellipse cx="155" cy="150" rx="105" ry="95" fill="none" stroke="#f5a623" stroke-width="2" opacity="0.4" /><ellipse cx="155" cy="150" rx="118" ry="108" fill="none" stroke="#7ed321" stroke-width="1.5" opacity="0.3" /><text x="10" y="295" font-size="10" fill="#aaa">黒：集合に含まれる（収束）</text><text x="200" y="295" font-size="10" fill="#e94560">色：発散の速さ</text><rect x="400" y="10" width="350" height="280" fill="#f8f9fa" rx="8" /><text x="420" y="40" font-size="15" font-weight="bold" fill="#1a1a2e">数式: z → z² + c</text><text x="420" y="70" font-size="12" fill="#333">・z と c は複素数（2次元の数）</text><text x="420" y="95" font-size="12" fill="#333">・この計算を無限に繰り返す</text><text x="420" y="120" font-size="12" fill="#333">・発散しない c の集合 → 黒い図形</text><text x="420" y="155" font-size="13" font-weight="bold" fill="#e94560">→ 境界線はどこまで拡大しても</text><text x="420" y="178" font-size="13" font-weight="bold" fill="#e94560">　 複雑なままで終わりがない</text><text x="420" y="215" font-size="12" fill="#666">たった1行の数式が</text><text x="420" y="235" font-size="12" fill="#666">宇宙より複雑な図形を生む</text></svg></li>
+<li></li>
+<li>
+<ul>
+<li>境界を拡大するほど、新たなパターンが無限に現れる</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="11" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB%E3%81%AE%E5%AE%9A%E7%BE%A9%E3%81%BE%E3%81%A8%E3%82%81">フラクタルの定義まとめ</h1>
+<table>
+<thead>
+<tr>
+<th>特徴</th>
+<th>内容</th>
+<th>具体例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>自己相似性</strong></td>
+<td>部分が全体を縮小したコピー</td>
+<td>ブロッコリー・雪の結晶</td>
+</tr>
+<tr>
+<td><strong>スケール不変性</strong></td>
+<td>拡大・縮小しても同じパターン</td>
+<td>海岸線・山脈</td>
+</tr>
+<tr>
+<td><strong>フラクタル次元</strong></td>
+<td>1〜2の小数次元</td>
+<td>コッホ曲線：1.26次元</td>
+</tr>
+<tr>
+<td><strong>反復生成</strong></td>
+<td>簡単なルールを繰り返す</td>
+<td>z → z²+c</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li></li>
+<li>→ フラクタルとは「<strong>簡単なルールの無限の繰り返しが生む複雑さ</strong>」</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-class="lead" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" class="lead" data-marpit-pagination="12" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--class:lead;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+
+<h1 id="ch2-%E8%87%AA%E7%84%B6%E7%95%8C%E3%81%AE%E3%82%B3%E3%83%94%E3%83%BC%E3%83%9A%E3%83%BC%E3%82%B9%E3%83%88">Ch.2　自然界のコピー&amp;ペースト</h1>
+<ul>
+<li>— ブロッコリー・海岸線・雪の結晶 —</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="13" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E3%83%96%E3%83%AD%E3%83%83%E3%82%B3%E3%83%AA%E3%83%BC%E3%83%AD%E3%83%9E%E3%83%8D%E3%82%B9%E3%82%B3%E3%81%AE%E7%A7%98%E5%AF%86">ブロッコリー（ロマネスコ）の秘密</h1>
+<ul>
+<li>ロマネスコは <strong>フィボナッチ数列</strong> と <strong>フラクタル</strong> の完璧な融合</li>
+<li></li>
+<li>
+<ul>
+<li>全体の螺旋は <strong>13本と21本</strong>（連続フィボナッチ数）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>各「塔」は小さな螺旋の集合</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>さらにその「塔」も、もっと小さな塔の集合</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>3段階以上の入れ子構造</strong> が肉眼で確認できる</li>
+</ul>
+</li>
+<li></li>
+<li><strong>なぜ？</strong> → 成長のアルゴリズムが自己相似的</li>
+<li>芽が分裂するとき、親と<strong>同じルール</strong>で新しい芽を作る</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="14" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E6%9E%9D%E5%88%86%E3%81%8B%E3%82%8C%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%81%AE%E5%85%B1%E9%80%9A%E3%83%AB%E3%83%BC%E3%83%AB">枝分かれパターンの共通ルール</h1>
+<ul>
+<li>木・葉脈・川・血管 — 全て同じアルゴリズム</li>
+<li></li>
+<li><svg viewBox="0 0 760 290" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><text x="90" y="20" font-size="12" font-weight="bold" fill="#2e8b57" text-anchor="middle">木</text><line x1="90" y1="230" x2="90" y2="170" stroke="#2e8b57" stroke-width="5" /><line x1="90" y1="170" x2="60" y2="130" stroke="#2e8b57" stroke-width="3.5" /><line x1="90" y1="170" x2="120" y2="130" stroke="#2e8b57" stroke-width="3.5" /><line x1="60" y1="130" x2="44" y2="100" stroke="#2e8b57" stroke-width="2.5" /><line x1="60" y1="130" x2="72" y2="100" stroke="#2e8b57" stroke-width="2.5" /><line x1="120" y1="130" x2="108" y2="100" stroke="#2e8b57" stroke-width="2.5" /><line x1="120" y1="130" x2="136" y2="100" stroke="#2e8b57" stroke-width="2.5" /><line x1="44" y1="100" x2="36" y2="78" stroke="#2e8b57" stroke-width="1.5" /><line x1="44" y1="100" x2="50" y2="78" stroke="#2e8b57" stroke-width="1.5" /><line x1="72" y1="100" x2="66" y2="78" stroke="#2e8b57" stroke-width="1.5" /><line x1="72" y1="100" x2="78" y2="78" stroke="#2e8b57" stroke-width="1.5" /><line x1="108" y1="100" x2="102" y2="78" stroke="#2e8b57" stroke-width="1.5" /><line x1="108" y1="100" x2="114" y2="78" stroke="#2e8b57" stroke-width="1.5" /><line x1="136" y1="100" x2="130" y2="78" stroke="#2e8b57" stroke-width="1.5" /><line x1="136" y1="100" x2="142" y2="78" stroke="#2e8b57" stroke-width="1.5" /><text x="300" y="20" font-size="12" font-weight="bold" fill="#4a7c3f" text-anchor="middle">葉脈</text><ellipse cx="300" cy="140" rx="80" ry="100" fill="#d4edda" stroke="#4a7c3f" stroke-width="1.5" /><line x1="300" y1="40" x2="300" y2="230" stroke="#4a7c3f" stroke-width="2.5" /><line x1="300" y1="90" x2="240" y2="130" stroke="#4a7c3f" stroke-width="1.2" /><line x1="300" y1="90" x2="360" y2="130" stroke="#4a7c3f" stroke-width="1.2" /><line x1="300" y1="115" x2="248" y2="148" stroke="#4a7c3f" stroke-width="1" /><line x1="300" y1="115" x2="352" y2="148" stroke="#4a7c3f" stroke-width="1" /><line x1="300" y1="140" x2="242" y2="160" stroke="#4a7c3f" stroke-width="0.8" /><line x1="300" y1="140" x2="358" y2="160" stroke="#4a7c3f" stroke-width="0.8" /><line x1="300" y1="165" x2="248" y2="178" stroke="#4a7c3f" stroke-width="0.8" /><line x1="300" y1="165" x2="352" y2="178" stroke="#4a7c3f" stroke-width="0.8" /><text x="590" y="20" font-size="12" font-weight="bold" fill="#1565c0" text-anchor="middle">川のデルタ</text><line x1="590" y1="40" x2="590" y2="100" stroke="#1565c0" stroke-width="4" /><line x1="590" y1="100" x2="540" y2="150" stroke="#1565c0" stroke-width="2.5" /><line x1="590" y1="100" x2="640" y2="150" stroke="#1565c0" stroke-width="2.5" /><line x1="540" y1="150" x2="510" y2="195" stroke="#1565c0" stroke-width="1.8" /><line x1="540" y1="150" x2="555" y2="195" stroke="#1565c0" stroke-width="1.8" /><line x1="640" y1="150" x2="625" y2="195" stroke="#1565c0" stroke-width="1.8" /><line x1="640" y1="150" x2="670" y2="195" stroke="#1565c0" stroke-width="1.8" /><line x1="510" y1="195" x2="498" y2="230" stroke="#1565c0" stroke-width="1.2" /><line x1="510" y1="195" x2="517" y2="230" stroke="#1565c0" stroke-width="1.2" /><line x1="555" y1="195" x2="546" y2="230" stroke="#1565c0" stroke-width="1.2" /><line x1="555" y1="195" x2="563" y2="230" stroke="#1565c0" stroke-width="1.2" /><line x1="625" y1="195" x2="617" y2="230" stroke="#1565c0" stroke-width="1.2" /><line x1="625" y1="195" x2="634" y2="230" stroke="#1565c0" stroke-width="1.2" /><line x1="670" y1="195" x2="662" y2="230" stroke="#1565c0" stroke-width="1.2" /><line x1="670" y1="195" x2="678" y2="230" stroke="#1565c0" stroke-width="1.2" /><text x="380" y="260" font-size="11" fill="#555" text-anchor="middle">共通ルール：</text><text x="380" y="278" font-size="11" fill="#c0392b" font-weight="bold" text-anchor="middle">1本が2本に → その2本がさらに2本に → 無限に繰り返す</text></svg></li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="15" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E9%9B%AA%E3%81%AE%E7%B5%90%E6%99%B6-%E2%80%95-%E3%82%B3%E3%83%83%E3%83%9B%E6%9B%B2%E7%B7%9A%E3%81%A8%E5%90%8C%E3%81%98%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9">雪の結晶 ― コッホ曲線と同じプロセス</h1>
+<ul>
+<li>雪の結晶の成長は<strong>コッホ曲線の生成</strong>と全く同じメカニズム</li>
+<li></li>
+<li>
+<ol>
+<li>水分子が六角形に整列する（Step 0：基本形）</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>各辺の中央が突起を作る（Step 1）</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>突起の各辺が新たな突起を作る（Step 2）</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>これを繰り返す → 無限に細かい雪の結晶</li>
+</ol>
+</li>
+<li></li>
+<li>
+<ul>
+<li><strong>温度・湿度の微差</strong>で形が全く変わる</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「同じ雪の結晶は存在しない」= 初期条件への鋭敏な依存性</li>
+</ul>
+</li>
+<li></li>
+<li>→ コッホ曲線（数式）と自然（分子の物理）が<strong>同じ答え</strong>を出す</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="16" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E4%BA%BA%E4%BD%93%E3%81%AE%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB-%E2%80%95-%E5%8A%B9%E7%8E%87%E6%9C%80%E5%A4%A7%E5%8C%96%E3%81%AE%E8%A8%AD%E8%A8%88">人体のフラクタル ― 効率最大化の設計</h1>
+<table>
+<thead>
+<tr>
+<th>器官</th>
+<th>フラクタル構造</th>
+<th>なぜフラクタル？</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>肺</strong></td>
+<td>気管支が23回分岐</td>
+<td>表面積を最大化（テニスコート1面分）</td>
+</tr>
+<tr>
+<td><strong>血管</strong></td>
+<td>動脈→毛細血管へ無限分岐</td>
+<td>全細胞に酸素を届ける最短経路</td>
+</tr>
+<tr>
+<td><strong>神経</strong></td>
+<td>ニューロンが樹状に枝分かれ</td>
+<td>信号伝達の並列処理を最大化</td>
+</tr>
+<tr>
+<td><strong>腸</strong></td>
+<td>絨毛が表面積を600倍に</td>
+<td>限られた空間で吸収面積を拡大</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li></li>
+<li>→ 人体は「<strong>コンパクトな空間に最大の機能</strong>」を詰め込むために</li>
+<li>フラクタル構造を進化で獲得した</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="17" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E8%87%AA%E7%84%B6%E7%95%8C%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB%E6%AF%94%E8%BC%83%E8%A1%A8">自然界フラクタル比較表</h1>
+<table>
+<thead>
+<tr>
+<th>対象</th>
+<th>フラクタル次元</th>
+<th>反復ルール</th>
+<th>スケール範囲</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ロマネスコ</td>
+<td>約2.66</td>
+<td>螺旋の螺旋</td>
+<td>mm〜cm</td>
+</tr>
+<tr>
+<td>海岸線（英）</td>
+<td>1.02〜1.58</td>
+<td>凸凹の凸凹</td>
+<td>m〜km</td>
+</tr>
+<tr>
+<td>雪の結晶</td>
+<td>約1.26</td>
+<td>突起の突起</td>
+<td>μm〜mm</td>
+</tr>
+<tr>
+<td>肺気管支</td>
+<td>約2.97</td>
+<td>二股分岐</td>
+<td>mm〜20cm</td>
+</tr>
+<tr>
+<td>稲妻</td>
+<td>約1.74</td>
+<td>電荷の分岐</td>
+<td>cm〜km</td>
+</tr>
+<tr>
+<td>河川流域</td>
+<td>1.6〜1.8</td>
+<td>侵食による分岐</td>
+<td>m〜100km</td>
+</tr>
+</tbody>
+</table>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="18" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E3%81%AA%E3%81%9C%E8%87%AA%E7%84%B6%E3%81%AF%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB%E3%82%92%E9%81%B8%E3%81%B6%E3%81%AE%E3%81%8B">なぜ自然はフラクタルを選ぶのか</h1>
+<ul>
+<li><strong>答え：エネルギーと空間の効率最適化</strong></li>
+<li></li>
+<li>
+<ul>
+<li><strong>最小エネルギーで最大面積</strong>を確保できる</li>
+</ul>
+</li>
+<li>→ 肺：胸の中に体育館1枚分の表面積</li>
+<li>
+<ul>
+<li><strong>簡単な遺伝子情報</strong>で複雑な構造を作れる</li>
+</ul>
+</li>
+<li>→ ゲノムはフラクタルの「ルール」を持つだけでよい</li>
+<li>
+<ul>
+<li><strong>環境への適応性</strong>が高い</li>
+</ul>
+</li>
+<li>→ 同じルールで、違うスケールの環境に対応できる</li>
+<li></li>
+<li><img class="emoji" draggable="false" alt="💡" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f4a1.svg" data-marp-twemoji=""/> 自然界は「コードをコピー&amp;ペーストする」ことで複雑な形を作っている</li>
+<li>これがフラクタルの本質</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-class="lead" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" class="lead" data-marpit-pagination="19" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--class:lead;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+
+<h1 id="ch3-%E9%87%91%E8%9E%8D%E3%83%BB%E6%88%A6%E7%95%A5%E3%81%B8%E3%81%AE%E5%BF%9C%E7%94%A8">Ch.3　金融・戦略への応用</h1>
+<ul>
+<li>— マーケット・リスク管理・ビジネス戦略 —</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="20" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E3%83%9E%E3%83%BC%E3%82%B1%E3%83%83%E3%83%88%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88%E3%81%AE%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB%E6%80%A7">マーケットチャートのフラクタル性</h1>
+<ul>
+<li>株価チャートは<strong>スケール不変</strong>なフラクタル構造を持つ</li>
+<li></li>
+<li><svg viewBox="0 0 760 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">  <rect width="760" height="220" fill="#f5f5f5" />    <rect x="20" y="20" width="220" height="160" rx="6" fill="white" stroke="#ddd" stroke-width="1" />  <text x="130" y="44" font-size="13" font-weight="bold" fill="#555" text-anchor="middle">1日</text>  <polyline points="35,130 57,110 79,125 101,90 123,105 145,75 167,95 189,80 211,100 225,85" fill="none" stroke="#e94560" stroke-width="2.5" stroke-linejoin="round" />  <line x1="35" y1="160" x2="225" y2="160" stroke="#bbb" stroke-width="1" />  <line x1="35" y1="55" x2="35" y2="160" stroke="#bbb" stroke-width="1" />  <text x="130" y="188" font-size="11" fill="#888" text-anchor="middle">時間 →</text>    <rect x="270" y="20" width="220" height="160" rx="6" fill="white" stroke="#ddd" stroke-width="1" />  <text x="380" y="44" font-size="13" font-weight="bold" fill="#555" text-anchor="middle">1週間</text>  <polyline points="285,100 307,125 329,95 351,140 373,115 395,80 417,100 439,70 461,90 475,105" fill="none" stroke="#e94560" stroke-width="2.5" stroke-linejoin="round" />  <line x1="285" y1="160" x2="475" y2="160" stroke="#bbb" stroke-width="1" />  <line x1="285" y1="55" x2="285" y2="160" stroke="#bbb" stroke-width="1" />  <text x="380" y="188" font-size="11" fill="#888" text-anchor="middle">時間 →</text>    <rect x="520" y="20" width="220" height="160" rx="6" fill="white" stroke="#ddd" stroke-width="1" />  <text x="630" y="44" font-size="13" font-weight="bold" fill="#555" text-anchor="middle">1ヶ月</text>  <polyline points="535,120 557,95 579,130 601,85 623,110 645,75 667,100 689,65 711,90 725,80" fill="none" stroke="#e94560" stroke-width="2.5" stroke-linejoin="round" />  <line x1="535" y1="160" x2="725" y2="160" stroke="#bbb" stroke-width="1" />  <line x1="535" y1="55" x2="535" y2="160" stroke="#bbb" stroke-width="1" />  <text x="630" y="188" font-size="11" fill="#888" text-anchor="middle">時間 →</text>    <text x="12" y="125" font-size="9" fill="#999" text-anchor="middle">価格</text>  <text x="262" y="125" font-size="9" fill="#999" text-anchor="middle">価格</text>  <text x="512" y="125" font-size="9" fill="#999" text-anchor="middle">価格</text></svg></li>
+<li></li>
+<li>→ 3つのチャートを並べても、<strong>どれが日足か月足かわからない</strong></li>
+<li>→ これがフラクタルの「スケール不変性」</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="21" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E3%83%9E%E3%83%B3%E3%83%87%E3%83%AB%E3%83%96%E3%83%AD%E3%83%83%E3%83%88%E5%B8%82%E5%A0%B4%E3%81%AE%E8%AA%A4%E8%A1%8C%E5%8B%95">マンデルブロット「市場の（誤）行動」</h1>
+<ul>
+<li>2004年出版、マンデルブロット最大の警告</li>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>従来の金融理論</th>
+<th>マンデルブロットの主張</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>価格変動は<strong>正規分布</strong>に従う</td>
+<td>価格変動は<strong>べき乗分布</strong>に従う</td>
+</tr>
+<tr>
+<td>大暴落は「100年に1度」</td>
+<td>大暴落は正規分布より<strong>はるかに頻繁</strong></td>
+</tr>
+<tr>
+<td>過去データで未来を予測できる</td>
+<td>市場は本質的に<strong>予測不能</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li></li>
+<li>→ <strong>2008年リーマンショック</strong>は「あり得ない確率」の出来事ではなかった</li>
+<li>→ フラクタル理論なら「想定内」の揺れだった</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="22" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E3%82%B9%E3%83%AF%E3%83%B3%E3%81%A8%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB%E6%AC%A1%E5%85%83">ブラックスワンとフラクタル次元</h1>
+<ul>
+<li><strong>ブラックスワン</strong>（ナシーム・タレブ）= 極めて稀だが甚大な影響を持つ出来事</li>
+<li></li>
+<li>
+<ul>
+<li>正規分布ではブラックスワンは「確率ゼロに近い」</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>フラクタル分布（べき乗則）では<strong>テールが厚い</strong></li>
+</ul>
+</li>
+<li>→ 1929年、1987年、2000年、2008年の暴落が説明できる</li>
+<li></li>
+<li><strong>べき乗則の例：</strong></li>
+<li>
+<ul>
+<li>1日で±1%の変動：年間200〜250日</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>1日で±5%の変動：年間5〜10日（正規分布なら1〜2回）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>1日で±10%の変動：数年に1回（正規分布なら「ほぼあり得ない」）</li>
+</ul>
+</li>
+<li></li>
+<li>→ フラクタル思考はリスク管理を<strong>根本から変える</strong></li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="23" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E6%88%A6%E7%95%A5%E3%81%AE%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB%E6%80%9D%E8%80%83">ビジネス戦略のフラクタル思考</h1>
+<ul>
+<li><strong>フラクタル思考</strong>：ミクロとマクロを同じ枠組みで見る</li>
+<li></li>
+<li>
+<ul>
+<li><strong>組織設計</strong>：チームの構造が部署の構造を反映し、会社全体の構造を反映する</li>
+</ul>
+</li>
+<li>→ OKR・アジャイルチームのフラクタル的スケーリング</li>
+<li>
+<ul>
+<li><strong>顧客対応</strong>：個々の顧客接点のパターンがブランド全体の印象を形成する</li>
+</ul>
+</li>
+<li>→ 「1回の電話対応」が「企業文化」のフラクタル</li>
+<li>
+<ul>
+<li><strong>リスク管理</strong>：小さなリスクの積み重ねが大きな危機を予兆する</li>
+</ul>
+</li>
+<li>→ ヒヤリハット（ハインリッヒの法則）はフラクタル的</li>
+<li></li>
+<li>→ <strong>「部分を見れば全体がわかる」</strong> = フラクタル思考の実践</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="24" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E3%83%AA%E3%82%B9%E3%82%AF%E7%AE%A1%E7%90%86%E3%83%88%E3%83%AC%E3%83%BC%E3%83%80%E3%83%BC%E3%81%8C%E4%BD%BF%E3%81%86%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB%E6%8C%87%E6%A8%99">リスク管理：トレーダーが使うフラクタル指標</h1>
+<ul>
+<li><strong>ビル・ウィリアムズのフラクタル指標</strong></li>
+<li></li>
+<li>
+<ul>
+<li>5本のローソク足を並べ、中央が最高値（または最安値）になるパターン</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>これを「フラクタル」と呼び、相場の転換点を示すシグナルとして使用</li>
+</ul>
+</li>
+<li></li>
+<li><strong>ハースト指数（H）</strong></li>
+<li>
+<ul>
+<li>0.5 = ランダムウォーク（予測不能）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>0.5〜1.0 = トレンドが持続（フラクタル的）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>0〜0.5 = 平均回帰（逆フラクタル）</li>
+</ul>
+</li>
+<li></li>
+<li>→ 多くの資産クラスのH指数は <strong>0.6〜0.7</strong></li>
+<li>→ 市場は「完全ランダム」ではなく「フラクタル的規則性」がある</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="25" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E9%87%91%E8%9E%8D%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB%E3%81%BE%E3%81%A8%E3%82%81">金融フラクタルまとめ</h1>
+<ul>
+<li><strong>「正規分布」→「フラクタル分布」への思考転換</strong></li>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>観点</th>
+<th>正規分布モデル</th>
+<th>フラクタルモデル</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>暴落の頻度</td>
+<td>稀（100年に1度）</td>
+<td>頻繁（数年に1度）</td>
+</tr>
+<tr>
+<td>リスク管理</td>
+<td>VaRで計算可能</td>
+<td>真のリスクは計算不能</td>
+</tr>
+<tr>
+<td>予測</td>
+<td>統計的に予測可能</td>
+<td>本質的に不確実</td>
+</tr>
+<tr>
+<td>対策</td>
+<td>ヘッジで管理</td>
+<td>強靭性（レジリエンス）で対処</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li></li>
+<li>→ 完璧な予測より <strong>「どんな揺れにも耐えられる設計」</strong> が重要</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-class="lead" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" class="lead" data-marpit-pagination="26" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--class:lead;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+
+<h1 id="ch4-cg%E3%82%A2%E3%83%BC%E3%83%88%E3%83%BB%E3%82%B2%E3%83%BC%E3%83%A0%E3%81%B8%E3%81%AE%E5%BF%9C%E7%94%A8">Ch.4　CGアート・ゲームへの応用</h1>
+<ul>
+<li>— プロシージャル生成・映画・ゲーム —</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="27" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E3%83%97%E3%83%AD%E3%82%B7%E3%83%BC%E3%82%B8%E3%83%A3%E3%83%AB%E5%9C%B0%E5%BD%A2%E7%94%9F%E6%88%90">プロシージャル地形生成</h1>
+<ul>
+<li><strong>フラクタルノイズ</strong>（パーリンノイズ）で地形を自動生成</li>
+<li></li>
+<li>アルゴリズム（疑似コード）：</li>
+<li></li>
+<li>→ <strong>同じアルゴリズム</strong>で山脈・丘・平原・海底を生成できる</li>
+<li></li>
+<li>
+<ul>
+<li>初期の乱数（シード値）を変えるだけで全く異なる地形</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>スケールを変えれば山にも岩にも砂粒にも</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>映画・ゲームで使われる地形の多くはこの方法で生成</li>
+</ul>
+</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">height(x, y) =
+  noise(x, y) * <span class="hljs-number">1.0</span>        // 大きな起伏（山脈）
++ noise(x*<span class="hljs-number">2</span>, y*<span class="hljs-number">2</span>) * <span class="hljs-number">0.5</span>    // 中程度の起伏（丘）
++ noise(x*<span class="hljs-number">4</span>, y*<span class="hljs-number">4</span>) * <span class="hljs-number">0.25</span>   // 小さな起伏（岩）
++ noise(x*<span class="hljs-number">8</span>, y*<span class="hljs-number">8</span>) * <span class="hljs-number">0.125</span>  // 細かい質感（砂）
+</code></pre>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="28" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E6%98%A0%E7%94%BB%E3%81%AE%E5%B1%B1%E8%84%88%E3%83%BB%E6%A3%AE-%E2%80%95-cg%E8%A3%BD%E4%BD%9C%E3%81%AE%E8%88%9E%E5%8F%B0%E8%A3%8F">映画の山脈・森 ― CG製作の舞台裏</h1>
+<ul>
+<li><strong>スター・ウォーズ（1980年代〜）</strong></li>
+<li>
+<ul>
+<li>惑星の地形・宇宙の星雲 → フラクタルノイズで生成</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Death Star の表面テクスチャ → 反復パターン</li>
+</ul>
+</li>
+<li></li>
+<li><strong>ロード・オブ・ザ・リング（2001-2003）</strong></li>
+<li>
+<ul>
+<li>モルドールの荒野・裂け谷の森 → プロシージャル生成</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>数万本の木を1本1本配置せず、フラクタルツリーアルゴリズムで自動生成</li>
+</ul>
+</li>
+<li></li>
+<li><strong>アバター（2009）</strong></li>
+<li>
+<ul>
+<li>パンドラの浮遊山脈・植物 → 全てフラクタルベース</li>
+</ul>
+</li>
+<li></li>
+<li>→ 現代の3D映画でフラクタルを使わない作品はほぼ存在しない</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="29" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E3%82%B2%E3%83%BC%E3%83%A0%E3%81%AE%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E7%94%9F%E6%88%90">ゲームのワールド生成</h1>
+<ul>
+<li><strong>Minecraft（2011〜）</strong></li>
+<li>
+<ul>
+<li>ワールドは「シード値」から全てフラクタル的に生成</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>山・洞窟・鉱石の分布 → パーリンノイズ + フラクタル</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>同じシード値を入れれば全く同じワールドが再現できる</li>
+</ul>
+</li>
+<li></li>
+<li><strong>No Man's Sky（2016〜）</strong></li>
+<li>
+<ul>
+<li><strong>1京8000兆個</strong>の惑星を全てアルゴリズムで生成</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>地形・植物・生物・大気 → フラクタルと手続き的生成</li>
+</ul>
+</li>
+<li></li>
+<li><strong>Dwarf Fortress（2006〜）</strong></li>
+<li>
+<ul>
+<li>地質・気候・文明の歴史まで全てプロシージャル生成</li>
+</ul>
+</li>
+<li></li>
+<li>→ フラクタルにより「無限のコンテンツ」を有限のコードで実現</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="30" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB%E3%82%A2%E3%83%BC%E3%83%88%E3%81%AE%E4%B8%96%E7%95%8C">フラクタルアートの世界</h1>
+<ul>
+<li>数式から生まれる無限の美</li>
+<li></li>
+<li><svg viewBox="0 0 760 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">    <rect width="760" height="280" fill="#0a0a1a" />      <circle cx="190" cy="140" r="100" fill="none" stroke="#7b2d8b" stroke-width="25" opacity="0.3" />  <circle cx="190" cy="140" r="80" fill="none" stroke="#c0392b" stroke-width="18" opacity="0.35" />  <circle cx="190" cy="140" r="60" fill="none" stroke="#e67e22" stroke-width="12" opacity="0.4" />  <circle cx="190" cy="140" r="42" fill="none" stroke="#f1c40f" stroke-width="8" opacity="0.5" />  <circle cx="190" cy="140" r="26" fill="none" stroke="#2ecc71" stroke-width="5" opacity="0.6" />  <circle cx="190" cy="140" r="14" fill="none" stroke="#3498db" stroke-width="3" opacity="0.8" />  <circle cx="190" cy="140" r="6" fill="#fff" opacity="0.9" />    <polyline points="420,40 460,80 420,120 460,160 420,200 460,240" fill="none" stroke="#3498db" stroke-width="2" opacity="0.8" />  <polyline points="460,80 500,40 540,80 500,120 540,160 500,200 540,240" fill="none" stroke="#9b59b6" stroke-width="2" opacity="0.8" />  <polyline points="420,120 380,160 420,200 380,240" fill="none" stroke="#1abc9c" stroke-width="2" opacity="0.8" />    <text x="590" y="25" font-size="11" fill="#aaa" text-anchor="middle">バーンズリーのシダ</text>  <line x1="590" y1="270" x2="590" y2="220" stroke="#27ae60" stroke-width="3" />  <line x1="590" y1="240" x2="566" y2="218" stroke="#27ae60" stroke-width="1.5" />  <line x1="590" y1="240" x2="614" y2="218" stroke="#27ae60" stroke-width="1.5" />  <line x1="590" y1="220" x2="572" y2="196" stroke="#2ecc71" stroke-width="1.2" />  <line x1="590" y1="220" x2="608" y2="196" stroke="#2ecc71" stroke-width="1.2" />  <line x1="566" y1="218" x2="552" y2="200" stroke="#27ae60" stroke-width="1" />  <line x1="566" y1="218" x2="574" y2="200" stroke="#27ae60" stroke-width="1" />  <line x1="614" y1="218" x2="606" y2="200" stroke="#27ae60" stroke-width="1" />  <line x1="614" y1="218" x2="628" y2="200" stroke="#27ae60" stroke-width="1" />  <line x1="572" y1="196" x2="560" y2="178" stroke="#2ecc71" stroke-width="0.8" />  <line x1="572" y1="196" x2="580" y2="178" stroke="#2ecc71" stroke-width="0.8" />  <line x1="608" y1="196" x2="600" y2="178" stroke="#2ecc71" stroke-width="0.8" />  <line x1="608" y1="196" x2="616" y2="178" stroke="#2ecc71" stroke-width="0.8" />  <line x1="590" y1="220" x2="590" y2="170" stroke="#27ae60" stroke-width="1.5" />  <line x1="590" y1="185" x2="576" y2="165" stroke="#2ecc71" stroke-width="1" />  <line x1="590" y1="185" x2="604" y2="165" stroke="#2ecc71" stroke-width="1" />  <line x1="590" y1="170" x2="578" y2="148" stroke="#27ae60" stroke-width="0.8" />  <line x1="590" y1="170" x2="602" y2="148" stroke="#27ae60" stroke-width="0.8" />  <line x1="590" y1="150" x2="584" y2="132" stroke="#2ecc71" stroke-width="0.6" />  <line x1="590" y1="150" x2="596" y2="132" stroke="#2ecc71" stroke-width="0.6" />    <text x="190" y="268" font-size="10" fill="#888" text-anchor="middle">ジュリア集合（円形展開）</text>  <text x="480" y="268" font-size="10" fill="#888" text-anchor="middle">ドラゴン曲線</text></svg></li>
+<li></li>
+<li>→ 4つの数式だけで生まれた、無限に続くアート</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="31" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="ai%E7%94%9F%E6%88%90%E7%94%BB%E5%83%8F%E3%81%A8%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB">AI生成画像とフラクタル</h1>
+<ul>
+<li><strong>拡散モデル（Stable Diffusion, Midjourney等）の潜在空間はフラクタル的</strong></li>
+<li></li>
+<li>
+<ul>
+<li>AIが学習した「意味の空間」に自己相似的な構造が存在する</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>「犬」の概念の周囲に「猫」「動物」「ペット」が入れ子状に分布</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>画像生成の「ノイズ除去プロセス」自体がフラクタル的な多スケール処理</li>
+</ul>
+</li>
+<li></li>
+<li><strong>プロシージャル生成との連携：</strong></li>
+<li>
+<ul>
+<li>ゲーム地形 → フラクタルノイズで生成 → AIでテクスチャを付加</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>無限のコンテンツ生成パイプライン</li>
+</ul>
+</li>
+<li></li>
+<li>→ フラクタルはAI時代においても<strong>最も基本的な生成アルゴリズム</strong>の一つ</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-class="lead" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" class="lead" data-marpit-pagination="32" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--class:lead;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+
+<h1 id="ch5-%E3%81%BE%E3%81%A8%E3%82%81%E3%83%BB%E6%8C%AF%E3%82%8A%E8%BF%94%E3%82%8A">Ch.5　まとめ・振り返り</h1>
+<ul>
+<li>— キーメッセージと参考文献 —</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="33" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="3%E3%81%A4%E3%81%AE%E3%82%AD%E3%83%BC%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8">3つのキーメッセージ</h1>
+<ul>
+<li><strong>1. 自然界のコピー&amp;ペースト</strong></li>
+<li>→ 自然はフラクタルという「同じルール」を使い回して複雑さを作る</li>
+<li></li>
+<li><strong>2. スケールを超えた統一法則</strong></li>
+<li>→ ブロッコリー・海岸線・金融チャート・宇宙が「同じ数式」で記述できる</li>
+<li></li>
+<li><strong>3. 不確実性との付き合い方</strong></li>
+<li>→ 完璧な予測は不可能。でもフラクタル思考で「揺れのパターン」を理解できる</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="34" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E5%90%8C%E3%81%98%E6%95%B0%E5%BC%8F%E3%81%8C%E7%B9%8B%E3%81%90%E3%82%82%E3%81%AE">「同じ数式」が繋ぐもの</h1>
+<ul>
+<li></li>
+<li><svg viewBox="0 0 760 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">    <rect x="290" y="110" width="180" height="80" rx="12" fill="#2c3e50" stroke="#f39c12" stroke-width="3" />  <text x="380" y="145" font-size="18" font-weight="bold" fill="#f39c12" text-anchor="middle">z → z² + c</text>  <text x="380" y="170" font-size="12" fill="#ecf0f1" text-anchor="middle">自己相似のルール</text>    <rect x="30" y="20" width="150" height="70" rx="8" fill="#27ae60" opacity="0.85" />  <text x="105" y="50" font-size="14" font-weight="bold" fill="white" text-anchor="middle">ロマネスコ</text>  <text x="105" y="72" font-size="11" fill="#d5f5e3" text-anchor="middle">螺旋の反復</text>    <rect x="580" y="20" width="150" height="70" rx="8" fill="#2980b9" opacity="0.85" />  <text x="655" y="50" font-size="14" font-weight="bold" fill="white" text-anchor="middle">海岸線</text>  <text x="655" y="72" font-size="11" fill="#d6eaf8" text-anchor="middle">凸凹の凸凹</text>    <rect x="30" y="210" width="150" height="70" rx="8" fill="#e74c3c" opacity="0.85" />  <text x="105" y="240" font-size="14" font-weight="bold" fill="white" text-anchor="middle">金融チャート</text>  <text x="105" y="262" font-size="11" fill="#fadbd8" text-anchor="middle">価格変動の自己相似</text>    <rect x="580" y="210" width="150" height="70" rx="8" fill="#8e44ad" opacity="0.85" />  <text x="655" y="240" font-size="14" font-weight="bold" fill="white" text-anchor="middle">CGゲーム</text>  <text x="655" y="262" font-size="11" fill="#e8daef" text-anchor="middle">プロシージャル生成</text>    <line x1="180" y1="55" x2="285" y2="138" stroke="#f39c12" stroke-width="2" />  <polygon points="285,138 272,130 278,144" fill="#f39c12" />    <line x1="580" y1="55" x2="475" y2="138" stroke="#f39c12" stroke-width="2" />  <polygon points="475,138 488,130 482,144" fill="#f39c12" />    <line x1="180" y1="245" x2="285" y2="165" stroke="#f39c12" stroke-width="2" />  <polygon points="285,165 272,158 278,172" fill="#f39c12" />    <line x1="580" y1="245" x2="475" y2="165" stroke="#f39c12" stroke-width="2" />  <polygon points="475,165 488,158 482,172" fill="#f39c12" />    <rect x="305" y="18" width="150" height="70" rx="8" fill="#e67e22" opacity="0.85" />  <text x="380" y="47" font-size="14" font-weight="bold" fill="white" text-anchor="middle">人体</text>  <text x="380" y="69" font-size="11" fill="#fdebd0" text-anchor="middle">肺・血管・神経</text>    <line x1="380" y1="88" x2="380" y2="108" stroke="#f39c12" stroke-width="2" />  <polygon points="380,108 374,95 386,95" fill="#f39c12" /></svg></li>
+<li></li>
+<li>→ 全てを繋ぐ「自己相似のルール」— これがフラクタルの本質</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" data-marpit-pagination="35" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+<h1 id="%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E3%83%BB%E3%81%95%E3%82%89%E3%81%AB%E5%AD%A6%E3%81%B6%E3%81%9F%E3%82%81%E3%81%AB">参考文献・さらに学ぶために</h1>
+<ul>
+<li><strong>書籍：</strong></li>
+<li>
+<ul>
+<li><a href="https://www.amazon.co.jp/">フラクタル幾何学（マンデルブロット）</a> — フラクタル理論の原典</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://www.amazon.co.jp/">市場の（誤）行動（マンデルブロット）</a> — 金融フラクタルの入門</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://www.amazon.co.jp/">ブラックスワン（ナシーム・タレブ）</a> — リスクとフラクタル思考</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://www.amazon.co.jp/">カオスの紡ぐ夢の中で（ジェームズ・グリック）</a> — カオス理論の一般書</li>
+</ul>
+</li>
+<li></li>
+<li><strong>オンライン：</strong></li>
+<li>
+<ul>
+<li><a href="https://fractalfoundation.org/">Fractal Foundation</a> — 教育向けフラクタル入門</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://mandelbrot.site/">Mandelbrot Set Explorer</a> — インタラクティブ探索</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=gB9n2gHsHN4">3Blue1Brown: Fractals are typically not self-similar</a> — 動画解説</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-paginate="true" data-header="フラクタル：自然界のコピー&amp;ペースト" data-footer="© 2026" data-class="lead" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+" lang="en-US" class="lead" data-marpit-pagination="36" style="--paginate:true;--header:フラクタル：自然界のコピー&amp;ペースト;--footer:© 2026;--class:lead;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.center {
+  text-align: center;
+}
+section table {
+  font-size: 0.82em;
+}
+;" data-marpit-pagination-total="36" data-size="16:9">
+<header>フラクタル：自然界のコピー&amp;ペースト</header>
+
+<h1 id="qa">Q&amp;A</h1>
+<ul>
+<li>ご質問・ご感想をお聞かせください</li>
+<li></li>
+<li><strong>「同じ数式が、自然界のあらゆるものを繋いでいる」</strong></li>
+<li></li>
+<li>フラクタル：自然界のコピー&amp;ペースト</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+<script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{container;containerSize;containerObserver;svg;svgComputedStyle;svgPreserveAspectRatio="xMinYMid meet";wrapper;wrapperSize;wrapperObserver;constructor(){super();const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=this.shadowRoot.querySelector(`div[${e}]`)??void 0;const t=this.svg;this.svg=this.wrapper?.querySelector(`svg[${i}]`)??void 0,this.svg!==t&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=this.svg?.querySelector(`span[${n}]`)??void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame(()=>{t.style.display=""}))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){let t=Math.ceil(this.containerSize?.width??0);const e=Math.ceil(this.containerSize?.height??0);void 0!==this.dataset.downscaleOnly&&(t=Math.max(t,this.wrapperSize?.width??0));const i=this.svg?.querySelector(":scope > foreignObject");if(i?.setAttribute("width",`${t}`),i?.setAttribute("height",`${e}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${t} ${e}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=t<=0||e<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const r=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this._shadow()}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_shadow(){if(!this.shadowRoot)try{this.attachShadow({mode:"open"})}catch(t){if(!(t instanceof Error&&"NotSupportedError"===t.name))throw t}return this.shadowRoot}_update(){const t=this._shadow();if(t){const e=i?`<style>:host { ${i} }</style>`:"";let n="<slot></slot>";const{autoScaling:s}=this.dataset;if(void 0!==s){n=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===s?"data-downscale-only":""}>${n}</marp-auto-scaling>`}t.innerHTML=e+n}}};let o;const a=Symbol(),l=()=>o??(o=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is"),o);let c;const d="marpitSVGPolyfill:setZoomFactor,",h=Symbol(),g=Symbol();const p=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[v]:[],i={then:e=>(t?(async()=>{if(void 0===c){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise(t=>{i.addEventListener("load",()=>t())});i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),c=e.getImageData(5,5,1,1).data[3]<128}return c})().then(t=>{null==e||e(t?[v]:[])}):null==e||e([]),i)};return Object.assign(e,i)};let m,u;function v(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(d)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(u=i)}}catch(t){console.error(t)}}));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),t=>{var e,s,r,o;t.style.transform||(t.style.transform="translateZ(0)");const a=i||u||t.currentScale||1;m!==a&&(m=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(o=null===(r=n.y)||void 0===r?void 0:r.baseVal.value)&&void 0!==o?o:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}}),!1!==n&&Array.from(e.querySelectorAll("iframe"),({contentWindow:t})=>{null==t||t.postMessage(`${d}${n}`,"null"===window.origin?"*":window.origin)})}function w({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[h])return t[h];let e=!0;const i=()=>{e=!1,delete t[h]};Object.defineProperty(t,h,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await p()}finally{s=!0}})();const r=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(r)};return r(),i}(e);return t?(i(),()=>{}):i}m=1,u=void 0;const b=Symbol(),y=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,o=t[n].proto();l()&&o!==HTMLElement?i||customElements.define(s,r(o,{style:t[n].style}),{extends:n}):(i||customElements.define(s,r(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach(t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)}))}window[a]=!0})(e),e[b])return e[b];const i=w({target:e}),n=()=>{i(),delete e[b]},o=Object.assign(n,{cleanup:n,update:()=>y(e)});return Object.defineProperty(e,b,{configurable:!0,value:o}),o},f=document.currentScript;y(f?f.getRootNode():document)}();
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="19" tabindex="0"><p>パネル1: 1日</p><p>パネル2: 1週間</p><p>パネル3: 1ヶ月</p><p>価格ラベル</p></div><div class="bespoke-marp-note" data-index="29" tabindex="0"><p>背景</p><p>スパイラル（ジュリア集合のイメージ）</p><p>同心円状のグロー</p><p>ドラゴンカーブのイメージ（折り紙フラクタル）</p><p>シダ植物（バーンズリーのシダ）</p><p>ラベル</p></div><div class="bespoke-marp-note" data-index="33" tabindex="0"><p>中央：数式ボックス</p><p>ブロッコリー（左上）</p><p>海岸線（右上）</p><p>金融チャート（左下）</p><p>CGゲーム（右下）</p><p>矢印：左上→中央</p><p>矢印：右上→中央</p><p>矢印：左下→中央</p><p>矢印：右下→中央</p><p>人体（上中）</p><p>矢印：上中→中央</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@4.2.3/lib/bespoke.js.LICENSE.txt */
+!function(){"use strict";function e(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var t,n,r=(n||(n=1,t={from:function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),o=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,function(e){return"SCRIPT"!==e.nodeName}),a={},i=function(e,t){return(t=t||{}).index=o.indexOf(e),t.slide=e,t},s=function(e,t){a[e]=(a[e]||[]).filter(function(e){return e!==t})},c=function(e,t){return(a[e]||[]).reduce(function(e,n){return e&&!1!==n(t)},!0)},l=function(e,t){o[e]&&(n&&c("deactivate",i(n,t)),n=o[e],c("activate",i(n,t)))},d=function(e,t){var r=o.indexOf(n)+e;c(e>0?"next":"prev",i(n,t))&&l(r,t)},u={off:s,on:function(e,t){return(a[e]||(a[e]=[])).push(t),s.bind(null,e,t)},fire:c,slide:function(e,t){if(!arguments.length)return o.indexOf(n);c("slide",i(o[e],t))&&l(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:o,destroy:function(e){c("destroy",i(n,e)),a={}}};return(t||[]).forEach(function(e){e(u)}),n||l(0),u}}),t),o=e(r);const a=document.body,i=(...e)=>history.replaceState(...e),s="",c="presenter",l="next",d=["",c,l],u="bespoke-marp-",f=`data-${u}`,m=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},g=()=>a.dataset.bespokeView,p=e=>new URLSearchParams(location.search).get(e),v=(e,t={})=>{const n={location,setter:i,...t},r=new URLSearchParams(n.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?r.set(t,n):r.delete(t)}try{n.setter({...window.history.state??{}},"",m(r,n.location))}catch(e){console.error(e)}},h=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch{return!1}})(),y=e=>{try{return localStorage.getItem(e)}catch{return null}},b=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch{return!1}},w=e=>{try{return localStorage.removeItem(e),!0}catch{return!1}},x=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},k=e=>{e.parent.classList.add(`${u}parent`),e.slides.forEach(e=>e.classList.add(`${u}slide`)),e.on("activate",t=>{const n=`${u}active`,r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach(e=>{e.classList.remove(n),x(e,!0)}),o.add(n),x(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}})},$=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=o;e.setAttribute(`${f}fragment`,(a?"":"in")+"active");const i=`${f}current-fragment`;t===r&&n===o?e.setAttribute(i,"current"):e.removeAttribute(i)})}),e.fragmentIndex=o;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",a)};e.on("next",({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}}),e.on("prev",({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)}),o(0,0)},E=document,L=()=>!(!E.fullscreenEnabled&&!E.webkitFullscreenEnabled),S=()=>!(!E.fullscreenElement&&!E.webkitFullscreenElement),P=e=>{e.fullscreen=()=>{L()&&(async()=>{S()?(E.exitFullscreen||E.webkitExitFullscreen)?.call(E):((e=E.body)=>{(e.requestFullscreen||e.webkitRequestFullscreen)?.call(e)})()})()},document.addEventListener("keydown",t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!L()||(e.fullscreen(),t.preventDefault())})},_=`${u}inactive`,T=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout(()=>{r.add(_),o()},e),r.contains(_)&&(r.remove(_),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},I=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],M=e=>{e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(I.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})},O=e=>{window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("marp-auto-scaling, [data-auto-scaling], [data-marp-fitting]");t.setAttribute(`${f}load`,e?"":"hideable")}})},A=({interval:e=250}={})=>t=>{document.addEventListener("keydown",e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()});let n,r,o=0;t.parent.addEventListener("wheel",a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),e?.parentElement&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const c=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<12)return;r&&clearTimeout(r),r=setTimeout(()=>{n=0},e);const l=Date.now()-o<e,d=c<=n;if(n=c,l||d)return;let u;(a.deltaX>0||a.deltaY>0)&&(u="next"),(a.deltaX<0||a.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())})},C=(e=`.${u}osc`)=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${f}osc=${JSON.stringify(e)}]`).forEach(n)};return L()||n("fullscreen",e=>e.style.display="none"),h||n("presenter",e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."}),e=>{t.addEventListener("click",t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?e?.fullscreen():"presenter"===n&&e.openPresenterView()}}),e.parent.appendChild(t),e.on("activate",({index:t})=>{n("page",n=>n.textContent=`Page ${t+1} of ${e.slides.length}`)}),e.on("fragment",({index:t,fragments:r,fragmentIndex:o})=>{n("prev",e=>e.disabled=0===t&&0===o),n("next",n=>n.disabled=t===e.slides.length-1&&o===r.length-1)}),e.on("marp-active",()=>x(t,!1)),e.on("marp-inactive",()=>x(t,!0)),L()&&(e=>{for(const t of["","webkit"])E.addEventListener(t+"fullscreenchange",e)})(()=>n("fullscreen",e=>e.classList.toggle("exit",L()&&S())))}},D=e=>{window.addEventListener("message",t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}})};var N,B,q,K,F,j,V,U={exports:{}},X=(N||(N=1,U.exports=(B=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"],q=function(e){return String(e).replace(/[&<>"']/g,function(e){return"&"+K[e]+";"})},K={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},F="dangerouslySetInnerHTML",j={className:"class",htmlFor:"for"},V={},function(e,t){var n=[],r="";t=t||{};for(var o=arguments.length;o-- >2;)n.push(arguments[o]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(var a in t)!1!==t[a]&&null!=t[a]&&a!==F&&(r+=" "+(j[a]?j[a]:q(a))+'="'+q(t[a])+'"');r+=">"}if(-1===B.indexOf(e)){if(t[F])r+=t[F].__html;else for(;n.length;){var i=n.pop();if(i)if(i.pop)for(var s=i.length;s--;)n.push(i[s]);else r+=!0===V[i]?i:q(i)}r+=e?"</"+e+">":""}return V[r]=!0,r})),U.exports),H=e(X);const R=({children:e})=>H(null,null,...e),W=`${u}presenter-`,J={container:`${W}container`,dragbar:`${W}dragbar-container`,next:`${W}next`,nextContainer:`${W}next-container`,noteContainer:`${W}note-container`,noteWrapper:`${W}note-wrapper`,noteButtons:`${W}note-buttons`,infoContainer:`${W}info-container`,infoPage:`${W}info-page`,infoPageText:`${W}info-page-text`,infoPagePrev:`${W}info-page-prev`,infoPageNext:`${W}info-page-next`,noteButtonsBigger:`${W}note-bigger`,noteButtonsSmaller:`${W}note-smaller`,infoTime:`${W}info-time`,infoTimer:`${W}info-timer`},Y=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=J.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",H(R,null,H("div",{class:J.nextContainer},H("iframe",{class:J.next,src:"?view=next"})),H("div",{class:J.dragbar}),H("div",{class:J.noteContainer},H("div",{class:J.noteWrapper}),H("div",{class:J.noteButtons},H("button",{class:J.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),H("button",{class:J.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),H("div",{class:J.infoContainer},H("div",{class:J.infoPage},H("button",{class:J.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),H("span",{class:J.infoPageText}),H("button",{class:J.infoPageNext,tabindex:"-1",title:"Next"},"Next")),H("time",{class:J.infoTime,title:"Current time"}),H("time",{class:J.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(J.dragbar).addEventListener("mousedown",()=>{t=!0,r(J.dragbar).classList.add("active")}),window.addEventListener("mouseup",()=>{t=!1,r(J.dragbar).classList.remove("active")}),window.addEventListener("mousemove",e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(J.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)}),r(J.nextContainer).addEventListener("click",()=>e.next());const n=r(J.next),o=(a=n,(e,t)=>a.contentWindow?.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin));var a;n.addEventListener("load",()=>{r(J.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",({index:e,fragmentIndex:t})=>o(e,t))});const i=document.querySelectorAll(".bespoke-marp-note");i.forEach(e=>{e.addEventListener("keydown",e=>e.stopPropagation()),r(J.noteWrapper).appendChild(e)}),e.on("activate",()=>i.forEach(t=>t.classList.toggle("active",t.dataset.index==e.slide())));let s=0;const c=e=>{s=Math.max(-5,s+e),r(J.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},l=()=>c(1),d=()=>c(-1),u=r(J.noteButtonsBigger),f=r(J.noteButtonsSmaller);u.addEventListener("click",()=>{u.blur(),l()}),f.addEventListener("click",()=>{f.blur(),d()}),document.addEventListener("keydown",e=>{"+"===e.key&&l(),"-"===e.key&&d()},!0),e.on("activate",({index:t})=>{r(J.infoPageText).textContent=`${t+1} / ${e.slides.length}`});const m=r(J.infoPagePrev),g=r(J.infoPageNext);m.addEventListener("click",t=>{m.blur(),e.prev({fragment:!t.shiftKey})}),g.addEventListener("click",t=>{g.blur(),e.next({fragment:!t.shiftKey})}),e.on("fragment",({index:t,fragments:n,fragmentIndex:r})=>{m.disabled=0===t&&0===r,g.disabled=t===e.slides.length-1&&r===n.length-1});let p=new Date;const v=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-p.getTime(),o=t(n/1e3%60),a=t(n/1e3/60%60),i=t(n/36e5%24);r(J.infoTime).textContent=e.toLocaleTimeString(),r(J.infoTimer).textContent=`${i}:${a}:${o}`};v(),setInterval(v,250),r(J.infoTimer).addEventListener("click",()=>{p=new Date})})(e)},z=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:G},presenterUrl:{enumerable:!0,get:Q}}),h&&document.addEventListener("keydown",t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())})};function G(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,W+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function Q(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),m(e)}const Z=e=>{const t=g();return t===l&&e.appendChild(document.createElement("span")),{[s]:z,[c]:Y,[l]:D}[t]},ee=e=>{e.on("activate",t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach(n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"})})},te=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},ne=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{let n=t.fragment?te(p("f")||""):null;((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),c=o(0,r(n||0,a[s].length-1));s===e.slide()&&c===e.fragmentIndex||e.slide(s,{fragment:c})})((()=>{if(location.hash){const[t]=location.hash.slice(1).split(":~:");if(/^\d+$/.test(t))return(te(t)??1)-1;const r=document.getElementById(t)||document.querySelector(`a[name="${CSS.escape(t)}"]`);if(r){const{length:t}=e.slides;for(let o=0;o<t;o+=1)if(e.slides[o].contains(r)){const t=e.fragments?.[o],a=r.closest("[data-marpit-fragment]");if(t&&a){const e=t.indexOf(a);e>=0&&(n=e)}return o}}}return 0})(),n)};e.on("fragment",({index:e,fragmentIndex:r})=>{n||v({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})}),setTimeout(()=>{o(),window.addEventListener("hashchange",()=>r(()=>{o({fragment:!1}),v({f:void 0})})),window.addEventListener("popstate",()=>{n||r(()=>o())}),n=!1},0)}},re=(e={})=>{const t=e.key||window.history.state?.marpBespokeSyncKey||Math.random().toString(36).slice(2),n=`bespoke-marp-sync-${t}`;var r;r={marpBespokeSyncKey:t},v({},{setter:(e,...t)=>i({...e,...r},...t)});const o=()=>{const e=y(n);return e?JSON.parse(e):Object.create(null)},a=e=>{const t=o(),r={...t,...e(t)};return b(n,JSON.stringify(r)),r},s=()=>{window.removeEventListener("pageshow",s),a(e=>({reference:(e.reference||0)+1}))};return e=>{s(),Object.defineProperty(e,"syncKey",{value:t,enumerable:!0});let r=!0;setTimeout(()=>{e.on("fragment",e=>{r&&a(()=>({index:e.index,fragmentIndex:e.fragmentIndex}))})},0),window.addEventListener("storage",t=>{if(t.key===n&&t.oldValue&&t.newValue){const n=JSON.parse(t.oldValue),o=JSON.parse(t.newValue);if(n.index!==o.index||n.fragmentIndex!==o.fragmentIndex)try{r=!1,e.slide(o.index,{fragment:o.fragmentIndex,forSync:!0})}finally{r=!0}}});const i=()=>{const{reference:e}=o();void 0===e||e<=1?w(n):a(()=>({reference:e-1}))};window.addEventListener("pagehide",e=>{e.persisted&&window.addEventListener("pageshow",s),i()}),e.on("destroy",i)}},{PI:oe,abs:ae,sqrt:ie,atan2:se}=Math,ce={passive:!0},le=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",({touches:e})=>{r=1===e.length?a(e[0]):void 0},ce),o.addEventListener("touchmove",e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=ie(ae(n)**2+ae(o)**2),r.radian=se(n,o)}else r=void 0}),o.addEventListener("touchend",o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+oe)%(2*oe)-oe;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}},ce)},de=new Map;de.clear(),de.set("none",{backward:{both:void 0,incoming:void 0,outgoing:void 0},forward:{both:void 0,incoming:void 0,outgoing:void 0}});const ue={both:"",outgoing:"outgoing-",incoming:"incoming-"},fe={forward:"",backward:"-backward"},me=e=>`--marp-bespoke-transition-animation-${e}`,ge=e=>`--marp-transition-${e}`,pe=me("name"),ve=me("duration"),he=e=>new Promise(t=>{const n={},r=document.createElement("div"),o=e=>{r.remove(),t(e)};r.addEventListener("animationstart",()=>o(n)),Object.assign(r.style,{animationName:e,animationDuration:"1s",animationFillMode:"both",animationPlayState:"paused",position:"absolute",pointerEvents:"none"}),document.body.appendChild(r);const a=getComputedStyle(r).getPropertyValue(ge("duration"));a&&Number.parseFloat(a)>=0&&(n.defaultDuration=a),((e,t)=>{requestAnimationFrame(()=>{e.style.animationPlayState="running",requestAnimationFrame(()=>t(void 0))})})(r,o)}),ye=async e=>de.has(e)?de.get(e):(e=>{const t={},n=[];for(const[r,o]of Object.entries(ue))for(const[a,i]of Object.entries(fe)){const s=`marp-${o}transition${i}-${e}`;n.push(he(s).then(e=>{t[a]=t[a]||{},t[a][r]=e?{...e,name:s}:void 0}))}return Promise.all(n).then(()=>t)})(e).then(t=>(de.set(e,t),t)),be=e=>Object.values(e).flatMap(Object.values).every(e=>!e),we=(e,{type:t,backward:n})=>{const r=e[n?"backward":"forward"],o=(()=>{const e=r[t],n=e=>({[pe]:e.name});if(e)return n(e);if(r.both){const e=n(r.both);return"incoming"===t&&(e[me("direction")]="reverse"),e}})();return!o&&n?we(e,{type:t,backward:!1}):o||{[pe]:"__bespoke_marp_transition_no_animation__"}},xe=e=>{if(e)try{const t=JSON.parse(e);if((e=>{if("object"!=typeof e)return!1;const t=e;return"string"==typeof t.name&&(void 0===t.duration||"string"==typeof t.duration)})(t))return t}catch{}},ke="_tSId",$e="_tA",Ee="bespoke-marp-transition-warming-up",Le=window.matchMedia("(prefers-reduced-motion: reduce)"),Se="__bespoke_marp_transition_reduced_outgoing__",Pe="__bespoke_marp_transition_reduced_incoming__",_e={forward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}},backward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}}},Te=e=>{if(!document.startViewTransition)return;const t=t=>(void 0!==t&&(e._tD=t),e._tD);let n;t(!1),((...e)=>{CSS.registerProperty({name:ge("duration"),syntax:"<time>",inherits:!0,initialValue:"-1s"});const t=[...new Set(e).values()];return Promise.all(t.map(e=>ye(e))).then()})(...Array.from(document.querySelectorAll("section[data-transition], section[data-transition-back]")).flatMap(e=>[e.dataset.transition,e.dataset.transitionBack].flatMap(e=>{const t=xe(e);return[t?.name,t?.builtinFallback?`__builtin__${t.name}`:void 0]}).filter(e=>!!e))).then(()=>{document.querySelectorAll("style").forEach(e=>{e.innerHTML=e.innerHTML.replace(/--marp-transition-duration:[^;}]*[;}]/g,e=>e.slice(0,-1)+"!important"+e.slice(-1))})});const r=(n,{back:r,cond:o})=>a=>{const i=t();if(i)return!!a[$e]||!("object"!=typeof i||(i.skipTransition(),!a.forSync));if(!o(a))return!0;const s=e.slides[e.slide()],c=()=>a.back??r,l="data-transition"+(c()?"-back":""),d=s.querySelector(`section[${l}]`);if(!d)return!0;const u=xe(d.getAttribute(l)??void 0);return!u||((async(e,{builtinFallback:t=!0}={})=>{let n=await ye(e);if(be(n)){if(!t)return;return n=await ye(`__builtin__${e}`),be(n)?void 0:n}return n})(u.name,{builtinFallback:u.builtinFallback}).then(e=>{if(!e){t(!0);try{n(a)}finally{t(!1)}return}let r=e;Le.matches&&(console.warn("Use a constant animation to transition because preferring reduced motion by viewer has detected."),r=_e);const o=document.getElementById(ke);o&&o.remove();const i=document.createElement("style");i.id=ke,document.head.appendChild(i),((e,t)=>{const n=[`:root{${ge("direction")}:${t.backward?-1:1};}`,":root:has(.bespoke-marp-inactive){cursor:none;}"],r=t=>{const n=e[t].both?.defaultDuration||e[t].outgoing?.defaultDuration||e[t].incoming?.defaultDuration;return"forward"===t?n:n||r("forward")},o=t.duration||r(t.backward?"backward":"forward");void 0!==o&&n.push(`::view-transition-group(*){${ve}:${o};}`);const a=e=>Object.entries(e).map(([e,t])=>`${e}:${t};`).join("");return n.push(`::view-transition-old(root){${a(we(e,{...t,type:"outgoing"}))}}`,`::view-transition-new(root){${a(we(e,{...t,type:"incoming"}))}}`),n})(r,{backward:c(),duration:u.duration}).forEach(e=>i.sheet?.insertRule(e));const s=document.documentElement.classList;s.add(Ee);let l=!1;const d=()=>{l||(n(a),l=!0,s.remove(Ee))},f=()=>{t(!1),i.remove(),s.remove(Ee)};try{t(!0);const e=document.startViewTransition(d);t(e),e.finished.finally(f)}catch(e){console.error(e),d(),f()}}),!1)};e.on("prev",r(t=>e.prev({...t,[$e]:!0}),{back:!0,cond:e=>e.index>0&&!((e.fragment??1)&&n.fragmentIndex>0)})),e.on("next",r(t=>e.next({...t,[$e]:!0}),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout(()=>{e.on("slide",r(t=>e.slide(t.index,{...t,[$e]:!0}),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))},0),e.on("fragment",e=>{n=e})};let Ie;const Me=()=>(void 0===Ie&&(Ie="wakeLock"in navigator&&navigator.wakeLock),Ie),Oe=async()=>{const e=Me();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},Ae=async()=>{if(!Me())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&Oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await Oe(),e};((e=document.getElementById(":$p"))=>{(()=>{const e=p("view");a.dataset.bespokeView=e===l||e===c?e:""})();const t=(e=>{const t=p(e);return v({[e]:void 0}),t})("sync")||void 0;o.from(e,((...e)=>{const t=d.findIndex(e=>g()===e);return e.map(([e,n])=>e[t]&&n).filter(e=>e)})([[1,1,0],re({key:t})],[[1,1,1],Z(e)],[[1,1,0],M],[[1,1,1],k],[[1,0,0],T()],[[1,1,1],O],[[1,1,1],ne({history:!1})],[[1,1,0],A()],[[1,1,0],P],[[1,0,0],ee],[[1,1,0],le()],[[1,0,0],C()],[[1,0,0],Te],[[1,1,1],$],[[1,1,0],Ae]))})()}();</script></body></html>

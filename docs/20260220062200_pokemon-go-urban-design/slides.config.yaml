@@ -1,0 +1,12 @@
+topic: "Pokemon GOと都市デザイン ― 拡張現実が変えた街の歩き方"
+language: "ja"
+output:
+  dir: "docs/20260220062200_pokemon-go-urban-design"
+  baseName: "pokemon-go-urban-design"
+marp:
+  theme: gaia
+  paginate: true
+  header: "Pokemon GOと都市デザイン"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

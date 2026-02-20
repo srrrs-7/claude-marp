@@ -1,0 +1,181 @@
+{
+	"slides": [
+		{
+			"title": "完全変態：昆虫のメタモルフォーゼに学ぶソフトウェアマイグレーション",
+			"layout": "center",
+			"content": [
+				"Metamorphosis × Software Migration",
+				"",
+				"蛹の中で全てが溶解し再構築される — それはリプレースと同じ"
+			]
+		},
+		{
+			"title": "Agenda",
+			"layout": "default",
+			"content": [
+				"- 1. 完全変態とは何か",
+				"- 2. 4ステージモデル：卵→幼虫→蛹→成虫",
+				"- 3. Imaginal Discs パターン",
+				"- 4. 不完全変態 vs 完全変態 vs 過変態",
+				"- 5. マイグレーション戦略の選択基準",
+				"- 6. 実践：変態を成功させるための教訓"
+			]
+		},
+		{
+			"title": "完全変態とは何か",
+			"layout": "section",
+			"content": ["Chapter 1: What is Complete Metamorphosis?"]
+		},
+		{
+			"title": "完全変態（Holometaboly）の驚異",
+			"layout": "default",
+			"content": [
+				"- 昆虫の約 **80%** が完全変態を行う（甲虫、蝶、蜂、蠅）",
+				"- 幼虫と成虫は **形態も機能も完全に異なる** 生物",
+				"- 蛹の中で幼虫の組織は **一度完全に溶解** する",
+				"- 溶解した細胞から **全く新しい体** が再構築される",
+				"- この過程は約 **3億年前** に進化した",
+				"- 進化的成功：完全変態する昆虫は種数で最大グループ"
+			],
+			"speakerNotes": "完全変態は進化的に極めて成功した戦略。ソフトウェアマイグレーションでも「一度壊して再構築」は時に最善策となる。"
+		},
+		{
+			"title": "4ステージモデル × マイグレーションフェーズ",
+			"layout": "default",
+			"content": ["![w:900 center](assets/diagram-01.svg)"]
+		},
+		{
+			"title": "4ステージモデル",
+			"layout": "section",
+			"content": ["Chapter 2: The Four Stages"]
+		},
+		{
+			"title": "Stage 1 - 卵（Egg）= 計画フェーズ",
+			"layout": "default",
+			"content": [
+				"- 卵の中に **全ての遺伝情報** が格納されている",
+				"- ソフトウェア: 要件定義、アーキテクチャ設計、技術選定",
+				"- この段階の品質が後の全段階を決定する",
+				"- 卵が不健全 → 幼虫が育たない = 要件が曖昧 → 実装が迷走",
+				"- **投資対効果が最も高い** フェーズ",
+				"- 計画に全体工数の **20-30%** を割くべき"
+			]
+		},
+		{
+			"title": "Stage 2 - 幼虫（Larva）= 実装フェーズ",
+			"layout": "default",
+			"content": [
+				"- 幼虫の目的はただひとつ：**食べて成長する**",
+				"- ソフトウェア: 機能を貪欲に構築、MVP → プロダクトへ",
+				"- 幼虫は成虫と全く違う形態（イモムシ ≠ 蝶）",
+				"- 初期コードは最終形態と大きく異なっていてよい",
+				"- 技術的負債 = 幼虫が蓄えた脂肪（変態のエネルギー源）",
+				"- 脱皮（リファクタリング）を繰り返しながら成長"
+			]
+		},
+		{
+			"title": "Stage 3 - 蛹（Pupa）= 変態フェーズ",
+			"layout": "default",
+			"content": [
+				"- 蛹の中で **全ての組織が溶解** し、再構築される",
+				"- **外からは静止して見える** が、内部は激変の最中",
+				"- ソフトウェア: 大規模リファクタリング / マイグレーション期間",
+				"- ステークホルダーには「何も動いていない」ように見える",
+				"- **最もリスクが高い** フェーズ — 中断すると死ぬ",
+				"- 完了まで外部干渉を最小化する必要がある"
+			],
+			"speakerNotes": "蛹の段階を途中でやめることはできない。マイグレーションも同様。コミットした以上は完遂が必須。"
+		},
+		{
+			"title": "Stage 4 - 成虫（Adult）= 新システム稼働",
+			"layout": "default",
+			"content": [
+				"- 羽化（Eclosion）= カットオーバー / Go-Live",
+				"- 成虫は幼虫とは **完全に異なる能力** を持つ（飛翔）",
+				"- 新システムは旧システムにない能力を獲得（スケーラビリティ）",
+				"- 羽化直後は翅が乾くまで **脆弱** = 初期障害のリスク",
+				"- ハイパーケア期間（翅を乾かす時間）が必要",
+				"- 成功すれば **全く新しい生態的ニッチ** を獲得"
+			]
+		},
+		{
+			"title": "Imaginal Discs パターン",
+			"layout": "section",
+			"content": ["Chapter 3: Imaginal Discs Pattern"]
+		},
+		{
+			"title": "Imaginal Discs：新旧システムの共存",
+			"layout": "default",
+			"content": ["![w:900 center](assets/diagram-02.svg)"]
+		},
+		{
+			"title": "Imaginal Discsの教訓",
+			"layout": "default",
+			"content": [
+				"- 成虫原基（Imaginal Discs）は **幼虫の段階から** 体内に存在",
+				"- 変態時に溶解せず、新しい器官の **核** となる",
+				"- ソフトウェア: 新サービスのPOC/プロトタイプを旧システム内で育てる",
+				"- マイグレーション前に **実証済みのコンポーネント** を用意",
+				"- Feature Flagで新機能を旧システム内で段階的にテスト",
+				"- 全面切替時に「成虫原基」が新システムのコアとなる"
+			]
+		},
+		{
+			"title": "変態タイプ別マイグレーション戦略",
+			"layout": "section",
+			"content": ["Chapter 4: Migration Strategy Types"]
+		},
+		{
+			"title": "マイグレーション戦略の比較",
+			"layout": "default",
+			"content": ["![w:900 center](assets/diagram-03.svg)"]
+		},
+		{
+			"title": "実装パターン：Blue-Green Deployment",
+			"layout": "default",
+			"content": ["- 完全変態型の代表的実装パターン"],
+			"code": "// Blue-Green Deployment (Complete Metamorphosis)\nconst deployment = {\n  blue: { status: 'active', version: 'v1.0-larva' },\n  green: { status: 'standby', version: 'v2.0-adult' },\n};\n\nasync function metamorphose() {\n  await green.deploy();      // 蛹の中で新システム構築\n  await green.healthCheck();  // 羽化前の最終確認\n  await switchTraffic('green'); // 羽化 = トラフィック切替\n  blue.status = 'deprecated';   // 幼虫の殻を脱ぎ捨てる\n}",
+			"codeLanguage": "typescript"
+		},
+		{
+			"title": "実践：変態を成功させるための教訓",
+			"layout": "section",
+			"content": ["Chapter 5: Lessons Learned"]
+		},
+		{
+			"title": "変態失敗のアンチパターン",
+			"layout": "default",
+			"content": [
+				"- **蛹の中断**: マイグレーション途中で方針変更 → 中途半端な状態",
+				"- **栄養不足**: 技術的負債を返済せず変態開始 → エネルギー切れ",
+				"- **寄生**: 外部要因（組織変更、予算削減）が蛹を食い荒らす",
+				"- **温度異常**: スケジュール圧力で変態を急ぎすぎる",
+				"- **成虫原基なし**: POCなしでいきなり全面リプレース",
+				"- **幼虫回帰**: 新システムに問題発生→旧システムに戻って再構築断念"
+			]
+		},
+		{
+			"title": "成功する変態の5原則",
+			"layout": "default",
+			"content": [
+				"- 1. **Imaginal Discs First**: POCを旧システム内で事前に育てる",
+				"- 2. **十分な脂肪を蓄える**: リファクタリング予算を確保してから変態開始",
+				"- 3. **蛹の保護**: マイグレーション期間中は外部干渉を最小化",
+				"- 4. **羽化の準備**: ハイパーケア計画とロールバック手順を事前策定",
+				"- 5. **変態タイプの選択**: 組織の体力と制約に応じた戦略を選ぶ"
+			]
+		},
+		{
+			"title": "まとめ：メタモルフォーゼの知恵",
+			"layout": "center",
+			"content": [
+				"蛹の中の溶解は破壊ではなく再創造である",
+				"",
+				"3億年の進化が証明した「壊して再構築」の戦略を",
+				"ソフトウェアマイグレーションに活かす",
+				"",
+				"**成虫原基を育て、適切な時に変態する勇気を**"
+			]
+		}
+	]
+}

@@ -1,0 +1,56 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="450" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" fill="#ffd700" font-size="16" font-weight="bold" font-family="sans-serif">アーキテクチャ図の4種類の嘘</text>
+
+  <!-- Quadrant dividers -->
+  <line x1="400" y1="55" x2="400" y2="420" stroke="#333" stroke-width="1.5"/>
+  <line x1="60" y1="237" x2="740" y2="237" stroke="#333" stroke-width="1.5"/>
+
+  <!-- Axes labels -->
+  <text x="200" y="52" text-anchor="middle" fill="#888" font-size="12" font-family="sans-serif">意図的</text>
+  <text x="600" y="52" text-anchor="middle" fill="#888" font-size="12" font-family="sans-serif">無意識</text>
+  <text x="32" y="153" text-anchor="middle" fill="#888" font-size="12" font-family="sans-serif" transform="rotate(-90, 32, 153)">有益</text>
+  <text x="32" y="323" text-anchor="middle" fill="#888" font-size="12" font-family="sans-serif" transform="rotate(-90, 32, 323)">有害</text>
+
+  <!-- Quadrant 1: Top-left - 省略 (Intentional + Beneficial) -->
+  <rect x="65" y="60" width="325" height="168" rx="8" fill="#16213e" stroke="#90ee90" stroke-width="2"/>
+  <text x="227" y="88" text-anchor="middle" fill="#90ee90" font-size="15" font-weight="bold" font-family="sans-serif">① 省略の嘘</text>
+  <text x="227" y="110" text-anchor="middle" fill="#a0b4c8" font-size="12" font-family="sans-serif">Lies of Omission</text>
+  <text x="227" y="135" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">目的に不要な詳細を</text>
+  <text x="227" y="153" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">意図的に省略する</text>
+  <text x="227" y="178" text-anchor="middle" fill="#90ee90" font-size="11" font-family="sans-serif" font-style="italic">例: ロードバランサーを省いた</text>
+  <text x="227" y="196" text-anchor="middle" fill="#90ee90" font-size="11" font-family="sans-serif" font-style="italic">シーケンス図</text>
+  <text x="340" y="222" text-anchor="end" fill="#90ee90" font-size="18" font-family="sans-serif">必要な嘘</text>
+
+  <!-- Quadrant 2: Top-right - 抽象化 (Unintentional + Beneficial) -->
+  <rect x="410" y="60" width="325" height="168" rx="8" fill="#16213e" stroke="#4a9eff" stroke-width="2"/>
+  <text x="572" y="88" text-anchor="middle" fill="#4a9eff" font-size="15" font-weight="bold" font-family="sans-serif">② 抽象化の嘘</text>
+  <text x="572" y="110" text-anchor="middle" fill="#a0b4c8" font-size="12" font-family="sans-serif">Lies of Abstraction</text>
+  <text x="572" y="135" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">実装の複雑さを隠して</text>
+  <text x="572" y="153" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">概念的に表現する</text>
+  <text x="572" y="178" text-anchor="middle" fill="#4a9eff" font-size="11" font-family="sans-serif" font-style="italic">例: 「DBサーバー」と書いて</text>
+  <text x="572" y="196" text-anchor="middle" fill="#4a9eff" font-size="11" font-family="sans-serif" font-style="italic">レプリカ構成を省略</text>
+  <text x="460" y="222" text-anchor="start" fill="#4a9eff" font-size="18" font-family="sans-serif">必要な嘘</text>
+
+  <!-- Quadrant 3: Bottom-left - 過去形 (Intentional + Harmful) -->
+  <rect x="65" y="246" width="325" height="168" rx="8" fill="#16213e" stroke="#ff9966" stroke-width="2"/>
+  <text x="227" y="274" text-anchor="middle" fill="#ff9966" font-size="15" font-weight="bold" font-family="sans-serif">③ 過去形の嘘</text>
+  <text x="227" y="296" text-anchor="middle" fill="#a0b4c8" font-size="12" font-family="sans-serif">Lies of the Past</text>
+  <text x="227" y="321" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">一度作ったら更新されない</text>
+  <text x="227" y="339" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">陳腐化した設計図</text>
+  <text x="227" y="364" text-anchor="middle" fill="#ff9966" font-size="11" font-family="sans-serif" font-style="italic">例: 2年前の構成図を</text>
+  <text x="227" y="382" text-anchor="middle" fill="#ff9966" font-size="11" font-family="sans-serif" font-style="italic">「現行システム図」として提示</text>
+  <text x="340" y="408" text-anchor="end" fill="#ff6b6b" font-size="18" font-family="sans-serif">有害な嘘</text>
+
+  <!-- Quadrant 4: Bottom-right - 理想 (Unintentional + Harmful) -->
+  <rect x="410" y="246" width="325" height="168" rx="8" fill="#16213e" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="572" y="274" text-anchor="middle" fill="#ff6b6b" font-size="15" font-weight="bold" font-family="sans-serif">④ 理想の嘘</text>
+  <text x="572" y="296" text-anchor="middle" fill="#a0b4c8" font-size="12" font-family="sans-serif">Lies of the Ideal</text>
+  <text x="572" y="321" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">実装されなかった理想を</text>
+  <text x="572" y="339" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">実装済みとして描く</text>
+  <text x="572" y="364" text-anchor="middle" fill="#ff6b6b" font-size="11" font-family="sans-serif" font-style="italic">例: SPOFが存在するのに</text>
+  <text x="572" y="382" text-anchor="middle" fill="#ff6b6b" font-size="11" font-family="sans-serif" font-style="italic">冗長構成図を提示</text>
+  <text x="460" y="408" text-anchor="start" fill="#ff6b6b" font-size="18" font-family="sans-serif">有害な嘘</text>
+</svg>

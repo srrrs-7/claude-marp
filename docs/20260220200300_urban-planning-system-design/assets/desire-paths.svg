@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background (park) -->
+  <rect width="800" height="420" fill="#c8e6c9" rx="12"/>
+
+  <!-- Park label -->
+  <text x="400" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#1b5e20" font-family="sans-serif">公園の設計：計画された経路 vs 実際の踏み跡</text>
+
+  <!-- Planned paved paths (blue) -->
+  <!-- Horizontal path -->
+  <rect x="60" y="185" width="680" height="22" fill="#1565c0" rx="6" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <!-- Vertical path -->
+  <rect x="389" y="55" width="22" height="310" fill="#1565c0" rx="6" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+
+  <!-- Center circle (fountain/plaza) -->
+  <circle cx="400" cy="196" r="35" fill="#42a5f5" stroke="#1565c0" stroke-width="3"/>
+  <circle cx="400" cy="196" r="20" fill="#64b5f6"/>
+  <text x="400" y="200" text-anchor="middle" font-size="10" fill="white" font-family="sans-serif">広場</text>
+
+  <!-- Diagonal "desire paths" (orange/worn grass) -->
+  <!-- NW to SE diagonal -->
+  <line x1="80" y1="65" x2="365" y2="180" stroke="#e65100" stroke-width="12" stroke-linecap="round" opacity="0.75"/>
+  <line x1="80" y1="65" x2="365" y2="180" stroke="#ff8f00" stroke-width="6" stroke-linecap="round" opacity="0.6" stroke-dasharray="8,4"/>
+
+  <!-- SE to NW continuing -->
+  <line x1="435" y1="212" x2="720" y2="355" stroke="#e65100" stroke-width="12" stroke-linecap="round" opacity="0.75"/>
+  <line x1="435" y1="212" x2="720" y2="355" stroke="#ff8f00" stroke-width="6" stroke-linecap="round" opacity="0.6" stroke-dasharray="8,4"/>
+
+  <!-- NE to SW diagonal -->
+  <line x1="720" y1="65" x2="435" y2="180" stroke="#e65100" stroke-width="12" stroke-linecap="round" opacity="0.75"/>
+  <line x1="720" y1="65" x2="435" y2="180" stroke="#ff8f00" stroke-width="6" stroke-linecap="round" opacity="0.6" stroke-dasharray="8,4"/>
+
+  <!-- SW to NE continuing -->
+  <line x1="365" y1="212" x2="80" y2="355" stroke="#e65100" stroke-width="12" stroke-linecap="round" opacity="0.75"/>
+  <line x1="365" y1="212" x2="80" y2="355" stroke="#ff8f00" stroke-width="6" stroke-linecap="round" opacity="0.6" stroke-dasharray="8,4"/>
+
+  <!-- Trees (decorative) -->
+  <circle cx="150" cy="120" r="18" fill="#388e3c" style="filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2))"/>
+  <circle cx="650" cy="120" r="18" fill="#388e3c" style="filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2))"/>
+  <circle cx="150" cy="280" r="18" fill="#388e3c" style="filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2))"/>
+  <circle cx="650" cy="280" r="18" fill="#388e3c" style="filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2))"/>
+  <circle cx="240" cy="90" r="14" fill="#43a047"/>
+  <circle cx="560" cy="90" r="14" fill="#43a047"/>
+  <circle cx="240" cy="305" r="14" fill="#43a047"/>
+  <circle cx="560" cy="305" r="14" fill="#43a047"/>
+
+  <!-- Legend boxes -->
+  <rect x="50" y="380" width="300" height="32" fill="#1565c0" rx="6"/>
+  <rect x="60" y="388" width="20" height="16" fill="#1565c0" rx="2"/>
+  <text x="205" y="401" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">計画された舗装路（設計者の意図）</text>
+
+  <rect x="450" y="380" width="300" height="32" fill="#e65100" rx="6"/>
+  <text x="600" y="401" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">踏み跡 = Desire Path（実際の行動）</text>
+
+  <!-- Arrow indicators showing direction of desire paths -->
+  <!-- NW corner pointer -->
+  <polygon points="80,58 95,68 75,72" fill="#bf360c"/>
+  <!-- SE corner pointer -->
+  <polygon points="720,362 705,352 725,348" fill="#bf360c"/>
+</svg>

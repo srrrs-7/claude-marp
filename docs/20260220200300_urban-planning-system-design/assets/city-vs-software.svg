@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="400" fill="#f8f9fa" rx="12"/>
+
+  <!-- Left panel: City -->
+  <rect x="20" y="20" width="400" height="360" fill="#e8f4f8" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="220" y="55" text-anchor="middle" font-size="18" font-weight="bold" fill="#2c3e50" font-family="sans-serif">都市（City）</text>
+
+  <!-- Roads -->
+  <rect x="40" y="80" width="360" height="8" fill="#b0bec5" rx="2"/>
+  <rect x="40" y="200" width="360" height="8" fill="#b0bec5" rx="2"/>
+  <rect x="40" y="320" width="360" height="8" fill="#b0bec5" rx="2"/>
+  <rect x="150" y="70" width="8" height="270" fill="#b0bec5" rx="2"/>
+  <rect x="270" y="70" width="8" height="270" fill="#b0bec5" rx="2"/>
+  <rect x="390" y="70" width="8" height="270" fill="#b0bec5" rx="2"/>
+
+  <!-- Buildings left panel -->
+  <rect x="55" y="95" width="55" height="95" fill="#5c6bc0" rx="3" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <rect x="120" y="110" width="40" height="80" fill="#7e57c2" rx="3" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <rect x="175" y="100" width="70" height="90" fill="#5c6bc0" rx="3" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <rect x="285" y="98" width="65" height="92" fill="#7e57c2" rx="3" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <rect x="360" y="108" width="45" height="82" fill="#5c6bc0" rx="3" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+
+  <rect x="55" y="218" width="55" height="90" fill="#26a69a" rx="3" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <rect x="120" y="225" width="40" height="83" fill="#5c6bc0" rx="3" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <rect x="175" y="215" width="70" height="93" fill="#26a69a" rx="3" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <rect x="285" y="220" width="65" height="88" fill="#7e57c2" rx="3" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+  <rect x="360" y="222" width="45" height="86" fill="#26a69a" rx="3" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2))"/>
+
+  <text x="220" y="355" text-anchor="middle" font-size="13" fill="#546e7a" font-family="sans-serif">建物・道路・人の相互作用</text>
+
+  <!-- Equals sign in center -->
+  <text x="450" y="195" text-anchor="middle" font-size="48" font-weight="bold" fill="#ff7043" font-family="sans-serif">≈</text>
+  <text x="450" y="230" text-anchor="middle" font-size="12" fill="#78909c" font-family="sans-serif">類比</text>
+
+  <!-- Right panel: Software -->
+  <rect x="480" y="20" width="400" height="360" fill="#e8f5e9" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="680" y="55" text-anchor="middle" font-size="18" font-weight="bold" fill="#2c3e50" font-family="sans-serif">ソフトウェア（Software）</text>
+
+  <!-- Service boxes -->
+  <rect x="510" y="75" width="110" height="70" fill="#66bb6a" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="565" y="108" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">API Gateway</text>
+  <text x="565" y="128" text-anchor="middle" font-size="11" fill="#e8f5e9" font-family="sans-serif">入口</text>
+
+  <rect x="650" y="75" width="110" height="70" fill="#42a5f5" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="705" y="108" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">Auth Service</text>
+  <text x="705" y="128" text-anchor="middle" font-size="11" fill="#e3f2fd" font-family="sans-serif">認証</text>
+
+  <rect x="510" y="190" width="110" height="70" fill="#ffa726" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="565" y="223" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">User Service</text>
+  <text x="565" y="243" text-anchor="middle" font-size="11" fill="#fff3e0" font-family="sans-serif">ユーザー管理</text>
+
+  <rect x="650" y="190" width="110" height="70" fill="#ab47bc" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="705" y="223" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">Order Service</text>
+  <text x="705" y="243" text-anchor="middle" font-size="11" fill="#f3e5f5" font-family="sans-serif">注文処理</text>
+
+  <rect x="580" y="300" width="120" height="55" fill="#ef5350" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <text x="640" y="326" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="sans-serif">Database</text>
+  <text x="640" y="346" text-anchor="middle" font-size="11" fill="#ffebee" font-family="sans-serif">データ基盤</text>
+
+  <!-- Connection lines -->
+  <line x1="565" y1="145" x2="565" y2="190" stroke="#546e7a" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="620" y1="110" x2="650" y2="110" stroke="#546e7a" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="705" y1="145" x2="705" y2="190" stroke="#546e7a" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="620" y1="225" x2="650" y2="225" stroke="#546e7a" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="565" y1="260" x2="610" y2="300" stroke="#546e7a" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="705" y1="260" x2="670" y2="300" stroke="#546e7a" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <text x="680" y="380" text-anchor="middle" font-size="13" fill="#546e7a" font-family="sans-serif">サービス・API・データの相互作用</text>
+</svg>

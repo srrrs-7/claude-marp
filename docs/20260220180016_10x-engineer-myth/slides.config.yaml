@@ -1,0 +1,12 @@
+topic: "10倍エンジニアは実在するか — 生産性研究の結論"
+language: "ja"
+output:
+  dir: "docs/20260220180016_10x-engineer-myth"
+  baseName: "10x-engineer-myth"
+marp:
+  theme: gaia
+  paginate: true
+  header: "10倍エンジニア神話"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

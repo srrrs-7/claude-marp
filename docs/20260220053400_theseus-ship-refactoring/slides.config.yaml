@@ -1,0 +1,12 @@
+topic: "テセウスの船とリファクタリング"
+language: "ja"
+output:
+  dir: "docs/20260220053400_theseus-ship-refactoring"
+  baseName: "theseus-ship-refactoring"
+marp:
+  theme: gaia
+  paginate: true
+  header: "ソフトウェアのアイデンティティ問題"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

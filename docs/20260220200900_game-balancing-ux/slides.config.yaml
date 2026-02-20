@@ -1,0 +1,18 @@
+topic: "ゲームバランシングとUX設計〜フロー理論から学ぶプロダクト設計〜"
+language: "ja"
+output:
+  dir: "docs/20260220200900_game-balancing-ux"
+  baseName: "game-balancing-ux"
+marp:
+  theme: gaia
+  paginate: true
+  header: "ゲームバランシングとUX設計"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

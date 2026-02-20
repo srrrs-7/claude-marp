@@ -1,0 +1,65 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">p値の正しい意味と誤解</text>
+
+  <!-- Correct interpretation -->
+  <rect x="50" y="60" width="380" height="190" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="50" y="60" width="380" height="35" fill="#96CEB4" rx="10"/>
+  <rect x="50" y="80" width="380" height="15" fill="#96CEB4"/>
+  <text x="240" y="85" text-anchor="middle" fill="white" font-size="15" font-family="sans-serif" font-weight="bold">p値の正しい定義</text>
+  <text x="240" y="120" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">「帰無仮説が真であると仮定した場合に、</text>
+  <text x="240" y="140" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">観測されたデータ以上に極端な結果が</text>
+  <text x="240" y="160" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">得られる確率」</text>
+  <text x="240" y="195" text-anchor="middle" fill="#96CEB4" font-size="12" font-family="sans-serif">P(Data | H0) であり</text>
+  <text x="240" y="215" text-anchor="middle" fill="#96CEB4" font-size="12" font-family="sans-serif">P(H0 | Data) ではない！</text>
+  <text x="240" y="240" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">データの確率 ≠ 仮説の確率</text>
+
+  <!-- Wrong interpretations -->
+  <rect x="470" y="60" width="380" height="190" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="470" y="60" width="380" height="35" fill="#FF6B6B" rx="10"/>
+  <rect x="470" y="80" width="380" height="15" fill="#FF6B6B"/>
+  <text x="660" y="85" text-anchor="middle" fill="white" font-size="15" font-family="sans-serif" font-weight="bold">よくある誤解</text>
+  <text x="500" y="120" fill="#FF6B6B" font-size="14" font-family="sans-serif">x</text>
+  <text x="520" y="120" fill="white" font-size="12" font-family="sans-serif">「効果がある確率が95%」</text>
+  <text x="500" y="150" fill="#FF6B6B" font-size="14" font-family="sans-serif">x</text>
+  <text x="520" y="150" fill="white" font-size="12" font-family="sans-serif">「帰無仮説が偽である確率」</text>
+  <text x="500" y="180" fill="#FF6B6B" font-size="14" font-family="sans-serif">x</text>
+  <text x="520" y="180" fill="white" font-size="12" font-family="sans-serif">「結果が再現される確率」</text>
+  <text x="500" y="210" fill="#FF6B6B" font-size="14" font-family="sans-serif">x</text>
+  <text x="520" y="210" fill="white" font-size="12" font-family="sans-serif">「効果の大きさを示す指標」</text>
+  <text x="660" y="240" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">全て間違い — だが広く信じられている</text>
+
+  <!-- P-hacking pipeline -->
+  <rect x="50" y="280" width="800" height="195" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="450" y="310" text-anchor="middle" fill="#FFEAA7" font-size="16" font-family="sans-serif" font-weight="bold">p-hacking: p値を操作する手口</text>
+
+  <!-- Steps -->
+  <rect x="80" y="330" width="140" height="60" fill="#e17055" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="150" y="355" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">データ除外</text>
+  <text x="150" y="375" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">「外れ値」を恣意的に除去</text>
+
+  <line x1="220" y1="360" x2="250" y2="360" stroke="#FFEAA7" stroke-width="2"/>
+  <polygon points="250,356 258,360 250,364" fill="#FFEAA7"/>
+
+  <rect x="260" y="330" width="140" height="60" fill="#e17055" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="330" y="355" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">多重比較</text>
+  <text x="330" y="375" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">20変数試して1つ当たる</text>
+
+  <line x1="400" y1="360" x2="430" y2="360" stroke="#FFEAA7" stroke-width="2"/>
+  <polygon points="430,356 438,360 430,364" fill="#FFEAA7"/>
+
+  <rect x="440" y="330" width="140" height="60" fill="#e17055" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="510" y="355" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">途中解析</text>
+  <text x="510" y="375" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">p&lt;0.05になったら停止</text>
+
+  <line x1="580" y1="360" x2="610" y2="360" stroke="#FFEAA7" stroke-width="2"/>
+  <polygon points="610,356 618,360 610,364" fill="#FFEAA7"/>
+
+  <rect x="620" y="330" width="140" height="60" fill="#e17055" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="690" y="355" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">HARKing</text>
+  <text x="690" y="375" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">結果の後に仮説を作る</text>
+
+  <text x="450" y="425" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">結果: 偽陽性率が 5% → 実質 30-50% に膨張</text>
+  <text x="450" y="450" text-anchor="middle" fill="#FF6B6B" font-size="13" font-family="sans-serif" font-weight="bold">「有意」な結果の多くは統計的アーティファクト</text>
+  <text x="450" y="470" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">HARKing = Hypothesizing After Results are Known</text>
+</svg>

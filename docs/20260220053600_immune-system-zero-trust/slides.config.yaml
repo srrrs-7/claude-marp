@@ -1,0 +1,12 @@
+topic: "免疫システムとゼロトラストセキュリティ"
+language: "ja"
+output:
+  dir: "docs/20260220053600_immune-system-zero-trust"
+  baseName: "immune-system-zero-trust"
+marp:
+  theme: gaia
+  paginate: true
+  header: "生物の知恵をセキュリティに"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

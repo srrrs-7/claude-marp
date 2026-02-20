@@ -1,0 +1,12 @@
+topic: "シンガポール ― 設計された都市国家の実験"
+language: "ja"
+output:
+  dir: "docs/20260220063000_singapore-city-experiment"
+  baseName: "singapore-city-experiment"
+marp:
+  theme: gaia
+  paginate: true
+  header: "シンガポールの都市実験"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

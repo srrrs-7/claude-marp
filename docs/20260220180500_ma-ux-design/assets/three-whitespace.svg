@@ -1,0 +1,42 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa" rx="12"/>
+  <text x="400" y="38" font-family="serif" font-size="19" fill="#1a1a2e" text-anchor="middle" font-weight="bold">余白の3原則 — 機能的・視覚的・感情的</text>
+
+  <!-- Layer 1: Functional whitespace (outer) -->
+  <rect x="40" y="65" width="720" height="310" fill="#e8f4fd" rx="16" stroke="#2980b9" stroke-width="2.5"/>
+  <text x="400" y="92" font-family="serif" font-size="15" fill="#1a6ba0" text-anchor="middle" font-weight="bold">感情的余白（Emotional Whitespace）</text>
+  <text x="400" y="110" font-family="sans-serif" font-size="11" fill="#2980b9" text-anchor="middle">ブランドの「間」— 沈黙が品格を伝える / Apple, 高級ホテル</text>
+
+  <!-- Layer 2: Visual whitespace (middle) -->
+  <rect x="90" y="120" width="620" height="220" fill="#eaf7ea" rx="12" stroke="#27ae60" stroke-width="2"/>
+  <text x="400" y="146" font-family="serif" font-size="14" fill="#1a7a40" text-anchor="middle" font-weight="bold">視覚的余白（Visual Whitespace）</text>
+  <text x="400" y="163" font-family="sans-serif" font-size="11" fill="#27ae60" text-anchor="middle">グループと分離 — 視線の流れを設計する</text>
+
+  <!-- Layer 3: Functional whitespace (inner) -->
+  <rect x="150" y="178" width="500" height="140" fill="#fef9e7" rx="8" stroke="#f39c12" stroke-width="2"/>
+  <text x="400" y="204" font-family="serif" font-size="13" fill="#9a6500" text-anchor="middle" font-weight="bold">機能的余白（Functional Whitespace）</text>
+  <text x="400" y="221" font-family="sans-serif" font-size="11" fill="#f39c12" text-anchor="middle">クリック領域・可読性・操作性の確保</text>
+
+  <!-- Inner examples -->
+  <rect x="175" y="238" width="110" height="36" fill="white" rx="6" stroke="#f39c12" stroke-width="1"/>
+  <text x="230" y="260" font-family="sans-serif" font-size="11" fill="#1a1a2e" text-anchor="middle">ボタン余白</text>
+  <text x="230" y="274" font-family="sans-serif" font-size="9" fill="#999" text-anchor="middle">padding: 12px 24px</text>
+
+  <rect x="310" y="238" width="110" height="36" fill="white" rx="6" stroke="#f39c12" stroke-width="1"/>
+  <text x="365" y="260" font-family="sans-serif" font-size="11" fill="#1a1a2e" text-anchor="middle">行間の余白</text>
+  <text x="365" y="274" font-family="sans-serif" font-size="9" fill="#999" text-anchor="middle">line-height: 1.6〜1.8</text>
+
+  <rect x="445" y="238" width="110" height="36" fill="white" rx="6" stroke="#f39c12" stroke-width="1"/>
+  <text x="500" y="260" font-family="sans-serif" font-size="11" fill="#1a1a2e" text-anchor="middle">グリッド余白</text>
+  <text x="500" y="274" font-family="sans-serif" font-size="9" fill="#999" text-anchor="middle">margin: 8px grid</text>
+
+  <!-- Connection to Noh -->
+  <text x="400" y="358" font-family="serif" font-size="13" fill="#1a1a2e" text-anchor="middle">
+    能の「間」= 機能的（型の間）+ 視覚的（舞台の余白）+ 感情的（沈黙の深さ）
+  </text>
+
+  <!-- Labels on sides -->
+  <text x="55" y="225" font-family="sans-serif" font-size="9" fill="#2980b9" text-anchor="middle" transform="rotate(-90, 55, 225)">ブランド体験</text>
+  <text x="105" y="225" font-family="sans-serif" font-size="9" fill="#27ae60" text-anchor="middle" transform="rotate(-90, 105, 225)">視線制御</text>
+  <text x="165" y="248" font-family="sans-serif" font-size="9" fill="#f39c12" text-anchor="middle" transform="rotate(-90, 165, 248)">操作性</text>
+</svg>

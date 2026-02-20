@@ -1,0 +1,67 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">フラクタルの実用的応用</text>
+
+  <!-- Application boxes -->
+  <rect x="50" y="60" width="240" height="120" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="50" y="60" width="240" height="30" fill="#4ECDC4" rx="10"/>
+  <rect x="50" y="75" width="240" height="15" fill="#4ECDC4"/>
+  <text x="170" y="82" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">アンテナ設計</text>
+  <text x="170" y="110" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">フラクタルアンテナは</text>
+  <text x="170" y="130" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">コンパクトで多帯域対応</text>
+  <text x="170" y="150" text-anchor="middle" fill="#4ECDC4" font-size="11" font-family="sans-serif">スマホに内蔵されている</text>
+  <text x="170" y="170" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">Koch曲線型</text>
+
+  <rect x="330" y="60" width="240" height="120" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="330" y="60" width="240" height="30" fill="#FF6B6B" rx="10"/>
+  <rect x="330" y="75" width="240" height="15" fill="#FF6B6B"/>
+  <text x="450" y="82" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">医療診断</text>
+  <text x="450" y="110" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">網膜血管のフラクタル次元で</text>
+  <text x="450" y="130" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">糖尿病・高血圧を早期発見</text>
+  <text x="450" y="150" text-anchor="middle" fill="#FF6B6B" font-size="11" font-family="sans-serif">がん組織の不規則性も検出</text>
+  <text x="450" y="170" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">フラクタル次元解析</text>
+
+  <rect x="610" y="60" width="240" height="120" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="610" y="60" width="240" height="30" fill="#96CEB4" rx="10"/>
+  <rect x="610" y="75" width="240" height="15" fill="#96CEB4"/>
+  <text x="730" y="82" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">画像圧縮</text>
+  <text x="730" y="110" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">自己相似パターンを利用した</text>
+  <text x="730" y="130" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">フラクタル圧縮アルゴリズム</text>
+  <text x="730" y="150" text-anchor="middle" fill="#96CEB4" font-size="11" font-family="sans-serif">高圧縮率でスケーラブル</text>
+  <text x="730" y="170" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">IFS (反復関数系)</text>
+
+  <!-- Second row -->
+  <rect x="50" y="210" width="240" height="120" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="50" y="210" width="240" height="30" fill="#e17055" rx="10"/>
+  <rect x="50" y="225" width="240" height="15" fill="#e17055"/>
+  <text x="170" y="232" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">金融市場分析</text>
+  <text x="170" y="260" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">株価変動はフラクタル的</text>
+  <text x="170" y="280" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">マンデルブロの市場モデル</text>
+  <text x="170" y="300" text-anchor="middle" fill="#e17055" font-size="11" font-family="sans-serif">リスク評価の精度向上</text>
+  <text x="170" y="320" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">マルチフラクタル解析</text>
+
+  <rect x="330" y="210" width="240" height="120" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="330" y="210" width="240" height="30" fill="#45B7D1" rx="10"/>
+  <rect x="330" y="225" width="240" height="15" fill="#45B7D1"/>
+  <text x="450" y="232" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">CG・映画</text>
+  <text x="450" y="260" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">山岳、雲、植生の生成</text>
+  <text x="450" y="280" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">少ないデータで無限の詳細</text>
+  <text x="450" y="300" text-anchor="middle" fill="#45B7D1" font-size="11" font-family="sans-serif">L-system で植物を生成</text>
+  <text x="450" y="320" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">手続き的生成</text>
+
+  <rect x="610" y="210" width="240" height="120" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="610" y="210" width="240" height="30" fill="#FFEAA7" rx="10"/>
+  <rect x="610" y="225" width="240" height="15" fill="#FFEAA7"/>
+  <text x="730" y="232" text-anchor="middle" fill="#1a1a2e" font-size="14" font-family="sans-serif" font-weight="bold">地震予測</text>
+  <text x="730" y="260" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">地殻の断層構造はフラクタル</text>
+  <text x="730" y="280" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">グーテンベルグ・リヒター法則</text>
+  <text x="730" y="300" text-anchor="middle" fill="#FFEAA7" font-size="11" font-family="sans-serif">べき乗則で発生頻度を予測</text>
+  <text x="730" y="320" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">スケーリング則</text>
+
+  <!-- Bottom insight -->
+  <rect x="100" y="365" width="700" height="115" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="450" y="395" text-anchor="middle" fill="#FFEAA7" font-size="16" font-family="sans-serif" font-weight="bold">フラクタルが実用的な理由</text>
+  <text x="450" y="425" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">自然界の複雑さを少数のパラメータで記述できる</text>
+  <text x="450" y="450" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">スケール不変性 → どのスケールでも同じ法則が適用可能</text>
+  <text x="450" y="475" text-anchor="middle" fill="#96CEB4" font-size="12" font-family="sans-serif">複雑に見えるものが実は単純なルールから生まれる</text>
+</svg>

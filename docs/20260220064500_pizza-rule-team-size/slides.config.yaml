@@ -1,0 +1,12 @@
+topic: "ピザ2枚ルール — チームサイズの科学"
+language: "ja"
+output:
+  dir: "docs/20260220064500_pizza-rule-team-size"
+  baseName: "pizza-rule-team-size"
+marp:
+  theme: gaia
+  paginate: true
+  header: "ピザ2枚ルール"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

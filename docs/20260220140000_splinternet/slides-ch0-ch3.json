@@ -1,0 +1,261 @@
+{
+	"slides": [
+		{
+			"title": "インターネットの分裂",
+			"layout": "center",
+			"content": [
+				"## スプリンターネット化の進行マップ",
+				"",
+				"エンジニアのための地政学 × テクノロジー",
+				"",
+				"2026年版"
+			]
+		},
+		{
+			"title": "「インターネットはひとつ」という神話",
+			"layout": "default",
+			"content": [
+				"**1969年〜2010年代**: ひとつのグローバルネットワークという理想",
+				"**現実**: 中国・ロシア・欧州・米国がそれぞれ「自国のインターネット」を構築中",
+				"**スプリンターネット** = 地政学・規制・市場によって分断されたインターネット",
+				"",
+				"**今日の問い**: 我々エンジニアは分断された世界でどう設計するか？"
+			]
+		},
+		{
+			"title": "アジェンダ",
+			"layout": "default",
+			"content": [
+				"**Ch.1** スプリンターネットとは何か（定義・歴史・構造）",
+				"**Ch.2** 地政学的背景（中国・ロシア・欧州・その他）",
+				"**Ch.3** 技術的インパクト（BGP・DNS・TLS・クラウド）",
+				"**Ch.4** グローバルサービスへの影響（AWS・GCP・SaaS）",
+				"**Ch.5** エンジニアの対応策（設計パターン・チェックリスト）",
+				"**Ch.6** まとめ・未来シナリオ"
+			]
+		},
+		{
+			"title": "Ch.1 スプリンターネットとは何か",
+			"layout": "section",
+			"content": ["定義・歴史・3つの分断軸"]
+		},
+		{
+			"title": "スプリンターネットの定義",
+			"layout": "default",
+			"content": [
+				"**Splinternet** = 「Splinter（分裂）」+ 「Internet」の造語",
+				"地政学・規制・市場競争によって、単一のグローバルネットワークが複数の**閉じたサブネットワーク**へ分断される現象",
+				"",
+				"| 分断の種類 | 例 |",
+				"|---|---|",
+				"| **政治的** | GFW、Runet、コンテンツブロック |",
+				"| **法的・規制的** | GDPR、データローカライゼーション |",
+				"| **技術的** | 独自プロトコル、国家PKI |",
+				"| **市場的** | 国産プラットフォーム優遇 |"
+			]
+		},
+		{
+			"title": "分裂の歴史年表",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 760 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><text x=\"380\" y=\"30\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#222\">スプリンターネット化の歴史</text><text x=\"380\" y=\"50\" text-anchor=\"middle\" font-size=\"11\" fill=\"#666\">2000年代〜現在：段階的な分断の進行</text><line x1=\"40\" y1=\"150\" x2=\"720\" y2=\"150\" stroke=\"#555\" stroke-width=\"2\"/><polygon points=\"716,144 716,156 726,150\" fill=\"#555\"/><circle cx=\"80\" cy=\"150\" r=\"6\" fill=\"#4CAF50\"/><text x=\"80\" y=\"140\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">2000</text><text x=\"80\" y=\"175\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">中国GFW</text><text x=\"80\" y=\"187\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">本格稼働</text><circle cx=\"200\" cy=\"150\" r=\"6\" fill=\"#2196F3\"/><text x=\"200\" y=\"140\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">2013</text><text x=\"200\" y=\"175\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">スノーデン暴露</text><text x=\"200\" y=\"187\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">データ主権台頭</text><circle cx=\"320\" cy=\"150\" r=\"6\" fill=\"#FF9800\"/><text x=\"320\" y=\"140\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">2018</text><text x=\"320\" y=\"175\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">GDPR施行</text><text x=\"320\" y=\"187\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">欧州データ主権</text><circle cx=\"440\" cy=\"150\" r=\"6\" fill=\"#E91E63\"/><text x=\"440\" y=\"140\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">2019</text><text x=\"440\" y=\"175\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">ロシアRunet法</text><text x=\"440\" y=\"187\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">自律化開始</text><circle cx=\"560\" cy=\"150\" r=\"6\" fill=\"#9C27B0\"/><text x=\"560\" y=\"140\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">2020</text><text x=\"560\" y=\"175\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">米中5G分断</text><text x=\"560\" y=\"187\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">TikTok問題</text><circle cx=\"660\" cy=\"150\" r=\"6\" fill=\"#F44336\"/><text x=\"660\" y=\"140\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">2022〜</text><text x=\"660\" y=\"175\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">ロシア制裁</text><text x=\"660\" y=\"187\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">加速する分断</text></svg>"
+			]
+		},
+		{
+			"title": "3つの分断軸",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 760 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><text x=\"380\" y=\"35\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#222\">スプリンターネット 3つの分断軸</text><rect x=\"30\" y=\"60\" width=\"200\" height=\"180\" rx=\"10\" fill=\"#E3F2FD\" stroke=\"#1565C0\" stroke-width=\"2\"/><text x=\"130\" y=\"95\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#1565C0\">技術</text><text x=\"130\" y=\"120\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">BGP・DNS・TLS</text><text x=\"130\" y=\"138\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">独自プロトコル</text><text x=\"130\" y=\"156\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">国家PKI</text><text x=\"130\" y=\"174\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">クラウドリージョン</text><text x=\"130\" y=\"222\" text-anchor=\"middle\" font-size=\"10\" fill=\"#888\">インフラレイヤー</text><rect x=\"280\" y=\"60\" width=\"200\" height=\"180\" rx=\"10\" fill=\"#FFF8E1\" stroke=\"#E65100\" stroke-width=\"2\"/><text x=\"380\" y=\"95\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#E65100\">政策</text><text x=\"380\" y=\"120\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">コンテンツ規制</text><text x=\"380\" y=\"138\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">データローカライゼーション</text><text x=\"380\" y=\"156\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">越境データ制限</text><text x=\"380\" y=\"174\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">国家安全保障法</text><text x=\"380\" y=\"222\" text-anchor=\"middle\" font-size=\"10\" fill=\"#888\">規制レイヤー</text><rect x=\"530\" y=\"60\" width=\"200\" height=\"180\" rx=\"10\" fill=\"#F3E5F5\" stroke=\"#6A1B9A\" stroke-width=\"2\"/><text x=\"630\" y=\"95\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#6A1B9A\">市場</text><text x=\"630\" y=\"120\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">国産プラットフォーム</text><text x=\"630\" y=\"138\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">補助金・優遇政策</text><text x=\"630\" y=\"156\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">外資参入規制</text><text x=\"630\" y=\"174\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">デジタル覇権競争</text><text x=\"630\" y=\"222\" text-anchor=\"middle\" font-size=\"10\" fill=\"#888\">市場レイヤー</text></svg>"
+			]
+		},
+		{
+			"title": "世界インターネット規制マップ",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 760 310\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><text x=\"380\" y=\"30\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#222\">世界インターネット規制マップ（2026年版）</text><rect x=\"20\" y=\"50\" width=\"720\" height=\"240\" rx=\"8\" fill=\"#F5F5F5\" stroke=\"#ccc\" stroke-width=\"1\"/><rect x=\"60\" y=\"90\" width=\"120\" height=\"60\" rx=\"6\" fill=\"#F44336\" stroke=\"#C62828\" stroke-width=\"2\"/><text x=\"120\" y=\"118\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"white\">中国</text><text x=\"120\" y=\"134\" text-anchor=\"middle\" font-size=\"10\" fill=\"#FFCDD2\">閉鎖型・最高度規制</text><rect x=\"200\" y=\"90\" width=\"120\" height=\"60\" rx=\"6\" fill=\"#E53935\" stroke=\"#B71C1C\" stroke-width=\"2\"/><text x=\"260\" y=\"118\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"white\">ロシア</text><text x=\"260\" y=\"134\" text-anchor=\"middle\" font-size=\"10\" fill=\"#FFCDD2\">自律化・分離志向</text><rect x=\"340\" y=\"90\" width=\"120\" height=\"60\" rx=\"6\" fill=\"#FF9800\" stroke=\"#E65100\" stroke-width=\"2\"/><text x=\"400\" y=\"118\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"white\">欧州</text><text x=\"400\" y=\"134\" text-anchor=\"middle\" font-size=\"10\" fill=\"#FFF3E0\">GDPR・データ主権</text><rect x=\"480\" y=\"90\" width=\"120\" height=\"60\" rx=\"6\" fill=\"#2196F3\" stroke=\"#0D47A1\" stroke-width=\"2\"/><text x=\"540\" y=\"118\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"white\">米国</text><text x=\"540\" y=\"134\" text-anchor=\"middle\" font-size=\"10\" fill=\"#E3F2FD\">輸出規制・安保重視</text><rect x=\"620\" y=\"90\" width=\"120\" height=\"60\" rx=\"6\" fill=\"#FF5722\" stroke=\"#BF360C\" stroke-width=\"2\"/><text x=\"680\" y=\"118\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"white\">イラン・北朝鮮</text><text x=\"680\" y=\"134\" text-anchor=\"middle\" font-size=\"10\" fill=\"#FBE9E7\">完全閉鎖型</text><rect x=\"60\" y=\"190\" width=\"120\" height=\"60\" rx=\"6\" fill=\"#FF9800\" stroke=\"#F57F17\" stroke-width=\"1\"/><text x=\"120\" y=\"218\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"white\">インド</text><text x=\"120\" y=\"234\" text-anchor=\"middle\" font-size=\"10\" fill=\"#FFF8E1\">アプリ禁止・規制強化</text><rect x=\"200\" y=\"190\" width=\"120\" height=\"60\" rx=\"6\" fill=\"#FFC107\" stroke=\"#FF8F00\" stroke-width=\"1\"/><text x=\"260\" y=\"218\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#333\">ブラジル</text><text x=\"260\" y=\"234\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">データ法（LGPD）</text><rect x=\"340\" y=\"190\" width=\"120\" height=\"60\" rx=\"6\" fill=\"#8BC34A\" stroke=\"#33691E\" stroke-width=\"1\"/><text x=\"400\" y=\"218\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"white\">日本・韓国</text><text x=\"400\" y=\"234\" text-anchor=\"middle\" font-size=\"10\" fill=\"#F1F8E9\">比較的オープン</text><rect x=\"60\" y=\"270\" width=\"15\" height=\"10\" fill=\"#F44336\"/><text x=\"82\" y=\"280\" font-size=\"10\" fill=\"#333\">閉鎖・高規制</text><rect x=\"180\" y=\"270\" width=\"15\" height=\"10\" fill=\"#FF9800\"/><text x=\"202\" y=\"280\" font-size=\"10\" fill=\"#333\">中規制・主権志向</text><rect x=\"330\" y=\"270\" width=\"15\" height=\"10\" fill=\"#8BC34A\"/><text x=\"352\" y=\"280\" font-size=\"10\" fill=\"#333\">比較的オープン</text></svg>"
+			]
+		},
+		{
+			"title": "Ch.2 地政学的背景",
+			"layout": "section",
+			"content": ["中国・ロシア・欧州・その他地域の規制実態"]
+		},
+		{
+			"title": "中国：グレートファイアウォール（GFW）",
+			"layout": "default",
+			"content": [
+				"**概要**: 2000年代初頭から本格稼働。世界最大規模のコンテンツフィルタリングシステム",
+				"",
+				"**ブロック対象**: Google・Facebook・YouTube・Twitter・WhatsApp・GitHub（一時）",
+				"**技術手法**: DNS汚染、IP遮断、Deep Packet Inspection（DPI）、SNI検査",
+				"**規模**: 推定50万〜100万ドメインをブロック。常時更新される動的リスト",
+				"",
+				"**エンジニアへの影響**:",
+				"- npm / PyPI / Docker Hub へのアクセス不安定",
+				"- HTTPS接続がDPIで遮断されるケースあり",
+				"- VPN利用は技術的に可能だが法的グレーゾーン"
+			]
+		},
+		{
+			"title": "ロシア：Runet 自律インターネット法",
+			"layout": "default",
+			"content": [
+				"**2019年**: 「主権インターネット法」成立 → インターネットの国内自律運用を義務化",
+				"**目標**: 外部との接続を遮断しても機能するロシア国内インターネット（Runet）の構築",
+				"",
+				"**実装内容**:",
+				"- ТСПУ（トラフィック管理装置）をISPに設置義務化",
+				"- 国家管理DNSルートサーバーの構築",
+				"- BGPルートの国内優先制御",
+				"",
+				"**2022年以降**: ウクライナ侵攻後の西側制裁 → Facebook・Instagram・Twitter遮断",
+				"- Cloudflare・一部AWSサービスへの影響も発生"
+			]
+		},
+		{
+			"title": "欧州：GDPR・DSA・データ主権",
+			"layout": "default",
+			"content": [
+				"**GDPR（2018年〜）**: EU市民データの域外移転を厳格規制",
+				"- 米国企業との「データ移転枠組み」が繰り返し無効化される問題（Schrems I/II）",
+				"- 日本は十分性認定済みだが、条件変更リスクあり",
+				"",
+				"**DSA/DMA（2022〜2023年〜）**: プラットフォーム規制の強化",
+				"- 大規模プラットフォームへのアルゴリズム透明性・相互運用性要求",
+				"",
+				"**EU Cyber Resilience Act**: IoT・ソフトウェアへのセキュリティ要件義務化（2027年〜）",
+				"",
+				"**エンジニアへの影響**: EU向けサービスは**設計段階からコンプライアンス対応**が必要"
+			]
+		},
+		{
+			"title": "その他地域の動向",
+			"layout": "default",
+			"content": [
+				"| 国・地域 | 主な規制・動向 | エンジニアへの影響 |",
+				"|---|---|---|",
+				"| **インド** | 中国系アプリ200以上禁止、データ保護法（DPDP） | インド向けデータの国内保存要件 |",
+				"| **ブラジル** | LGPD（GDPR類似）、クラウド行政データの国内化 | 南米市場でのデータ主権対応 |",
+				"| **イラン** | 独自イントラネット（NIN）、ほぼ完全閉鎖 | サービス提供不可に近い状況 |",
+				"| **トルコ** | SNS・VPN規制強化、TwitterやWikipedia一時遮断 | 可用性の不安定化 |",
+				"| **東南アジア** | タイ・ベトナム等でデータローカライゼーション法 | リージョン戦略の見直し必要 |"
+			]
+		},
+		{
+			"title": "分断加速要因：米中デカップリング",
+			"layout": "default",
+			"content": [
+				"**テック覇権争い** = インターネット分断の最大エンジン",
+				"",
+				"**米国側の動き**:",
+				"- Huawei・ZTE・ByteDance等への輸出規制・禁止",
+				"- CHIPS法（2022）：半導体の中国輸出制限",
+				"- TikTok強制売却法（2024）",
+				"",
+				"**中国側の動き**:",
+				"- 「技術自立自強」政策：国産OS・CPU・クラウドへの置き換え",
+				"- 独自規格・プロトコル標準化（IPv6拡張等）",
+				"",
+				"**結果**: 技術スタックが「西側系」と「中国系」に2分化しつつある"
+			]
+		},
+		{
+			"title": "Ch.3 技術的インパクト",
+			"layout": "section",
+			"content": ["BGP・DNS・TLS・クラウドへの具体的影響"]
+		},
+		{
+			"title": "BGP ルーティングの地政学化",
+			"layout": "default",
+			"content": [
+				"**BGP（Border Gateway Protocol）** = インターネットの「道路地図」",
+				"",
+				"**通常**: 最短・最安定経路を自律選択（政治的意図なし）",
+				"**分断後**: 国家がルーティングポリシーに介入",
+				"",
+				"**実際の事件**:",
+				"- **2010年**: 中国Telecom が米国トラフィックを15分間ハイジャック（BGP誤設定）",
+				"- **2019年**: ロシアMTS が複数AS経路を国内迂回",
+				"- **2022年**: ロシア制裁後、BGP経路変更による一部サービス遅延",
+				"",
+				"**リスク**: 意図的なルート変更 → 中間者攻撃・盗聴・遅延の可能性",
+				"**対策**: RPKI（Resource Public Key Infrastructure）による経路正当性検証"
+			]
+		},
+		{
+			"title": "DNS 分断：独自 TLD と国家 DNS",
+			"layout": "default",
+			"content": [
+				"**DNS** = インターネットの「電話帳」。分断されると名前解決が機能しなくなる",
+				"",
+				"**中国の独自TLD**: `.政務`（.zhengwu）等の国内専用ドメイン",
+				"**ロシアの試み**: 国家管理DNSルートサーバー（ICCANから独立可能な構造）",
+				"**DoH/DoT（DNS over HTTPS/TLS）**: プライバシー保護目的だが、国家フィルタリングを回避するため規制の対象に",
+				"",
+				"**DNSハイジャック事例**:",
+				"- イランの国内ISPによるGoogle・Facebook DNSレスポンス改ざん",
+				"- GFWによる海外ドメインへのNXDOMAIN返却",
+				"",
+				"**エンジニア対策**: DNS冗長化・DoH/DoT活用・フォールバック設計"
+			]
+		},
+		{
+			"title": "TLS/PKI 信頼チェーンの断絶リスク",
+			"layout": "default",
+			"content": [
+				"**TLS** = HTTPS通信の暗号化基盤。**PKI** = 証明書の信頼チェーン",
+				"",
+				"**問題**: 国家が「自国認証局（CA）」をルートCAとして強制インストールさせるリスク",
+				"",
+				"**実例:**",
+				"- **カザフスタン（2019・2020年）**: 政府がISPに国家ルートCA証明書の強制インストールを要求 → Mozillaが拒否・対抗措置",
+				"- **中国**: 政府系CA（CNNIC等）がルートストアに存在",
+				"",
+				"**影響**: 国家CAが信頼されると中間者攻撃（MITM）が技術的に可能になる",
+				"**対策**: Certificate Transparency（CT）ログ監視、CAA レコード設定、証明書ピンニング"
+			]
+		},
+		{
+			"title": "クラウドリージョン戦略の変化",
+			"layout": "default",
+			"content": [
+				"**データ主権要件** = クラウドリージョン戦略を根本から変える",
+				"",
+				"**主要クラウドの対応:**",
+				"| クラウド | 対応 |",
+				"|---|---|",
+				"| **AWS** | GovCloud、中国リージョン（Sinnet運営）、EU主権クラウド計画 |",
+				"| **Azure** | ドイツ・中国は現地法人運営、「Azure Government」 |",
+				"| **GCP** | Assured Workloads、欧州主権クラウド（T-Systems連携） |",
+				"",
+				"**重要**: 中国リージョンは**別アカウント・別契約**。グローバルアカウントでは利用不可",
+				"**重要**: EU向けデータは**EU外に出てはならない**ケースが増加中"
+			]
+		},
+		{
+			"title": "CDN・エッジの再配置",
+			"layout": "default",
+			"content": [
+				"**CDN** = コンテンツ配信ネットワーク。エッジサーバーの地理的配置が規制に直撃",
+				"",
+				"**Cloudflare の対応:**",
+				"- ロシア制裁後もサービス継続 vs ウクライナからの撤退要求 → ポリシー対応",
+				"- 「Content Blocking」機能：地域単位でコンテンツをブロック",
+				"",
+				"**Fastly・Akamai**: 国家の要求に応じた地域ブロック機能を提供",
+				"",
+				"**技術的考慮点:**",
+				"- CDNのエッジがどの国の管轄下にあるか",
+				"- TLSターミネーションがどの国で行われるか（傍受リスク）",
+				"- エッジキャッシュと規制対象コンテンツの関係"
+			]
+		},
+		{
+			"title": "技術レイヤー別インパクトまとめ",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 760 310\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><text x=\"380\" y=\"30\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#222\">技術レイヤー別スプリンターネット影響</text><rect x=\"30\" y=\"50\" width=\"700\" height=\"42\" rx=\"5\" fill=\"#FFCDD2\" stroke=\"#E53935\" stroke-width=\"1\"/><text x=\"130\" y=\"76\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#B71C1C\">アプリ / コンテンツ</text><text x=\"430\" y=\"70\" font-size=\"11\" fill=\"#333\">SNS・動画サービスのブロック、コンテンツフィルタリング、アプリ禁止</text><text x=\"430\" y=\"84\" font-size=\"11\" fill=\"#333\">影響度: ★★★★★</text><rect x=\"30\" y=\"100\" width=\"700\" height=\"42\" rx=\"5\" fill=\"#FFE0B2\" stroke=\"#E65100\" stroke-width=\"1\"/><text x=\"130\" y=\"126\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#E65100\">TLS / PKI</text><text x=\"430\" y=\"120\" font-size=\"11\" fill=\"#333\">国家認証局による信頼チェーン操作、MITM リスク</text><text x=\"430\" y=\"134\" font-size=\"11\" fill=\"#333\">影響度: ★★★★☆</text><rect x=\"30\" y=\"150\" width=\"700\" height=\"42\" rx=\"5\" fill=\"#FFF9C4\" stroke=\"#F9A825\" stroke-width=\"1\"/><text x=\"130\" y=\"176\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#F57F17\">DNS</text><text x=\"430\" y=\"170\" font-size=\"11\" fill=\"#333\">DNSハイジャック、国家DNSルートサーバー、独自TLD</text><text x=\"430\" y=\"184\" font-size=\"11\" fill=\"#333\">影響度: ★★★★☆</text><rect x=\"30\" y=\"200\" width=\"700\" height=\"42\" rx=\"5\" fill=\"#E8F5E9\" stroke=\"#2E7D32\" stroke-width=\"1\"/><text x=\"130\" y=\"226\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#2E7D32\">BGP / ルーティング</text><text x=\"430\" y=\"220\" font-size=\"11\" fill=\"#333\">経路ハイジャック、国家介入ルーティング、RPKI未整備リスク</text><text x=\"430\" y=\"234\" font-size=\"11\" fill=\"#333\">影響度: ★★★☆☆</text><rect x=\"30\" y=\"250\" width=\"700\" height=\"42\" rx=\"5\" fill=\"#E3F2FD\" stroke=\"#1565C0\" stroke-width=\"1\"/><text x=\"130\" y=\"276\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#1565C0\">物理 / 海底ケーブル</text><text x=\"430\" y=\"270\" font-size=\"11\" fill=\"#333\">海底ケーブルの地政学（米中対立）、着陸点の国家管理</text><text x=\"430\" y=\"284\" font-size=\"11\" fill=\"#333\">影響度: ★★☆☆☆</text></svg>"
+			]
+		}
+	]
+}

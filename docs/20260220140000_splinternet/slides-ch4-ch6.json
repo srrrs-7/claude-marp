@@ -1,0 +1,187 @@
+{
+	"slides": [
+		{
+			"layout": "section",
+			"title": "Ch.4 グローバルサービスへの影響",
+			"content": ["クラウド・SaaS・グローバルプロダクトへの実態"]
+		},
+		{
+			"layout": "default",
+			"title": "クラウドプロバイダーの対応戦略",
+			"content": [
+				"<svg viewBox=\"0 0 760 290\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><text x=\"380\" y=\"28\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#222\">クラウドプロバイダー 地域対応比較</text><rect x=\"30\" y=\"45\" width=\"220\" height=\"210\" rx=\"8\" fill=\"#FFF8E1\" stroke=\"#FF6F00\" stroke-width=\"2\"/><text x=\"140\" y=\"72\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#E65100\">AWS</text><text x=\"140\" y=\"95\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">中国リージョン</text><text x=\"140\" y=\"110\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">（Sinnet/NWCD運営）</text><text x=\"140\" y=\"130\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">GovCloud（US）</text><text x=\"140\" y=\"148\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">EU Sovereign Cloud計画</text><text x=\"140\" y=\"168\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">中東・アフリカ展開</text><text x=\"140\" y=\"230\" text-anchor=\"middle\" font-size=\"10\" fill=\"#E65100\" font-weight=\"bold\">⚠ 中国は別契約必須</text><rect x=\"270\" y=\"45\" width=\"220\" height=\"210\" rx=\"8\" fill=\"#E3F2FD\" stroke=\"#1565C0\" stroke-width=\"2\"/><text x=\"380\" y=\"72\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0D47A1\">Azure</text><text x=\"380\" y=\"95\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">中国リージョン</text><text x=\"380\" y=\"110\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">（21Vianet運営）</text><text x=\"380\" y=\"130\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">ドイツ主権クラウド</text><text x=\"380\" y=\"148\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">（T-Systems管理）</text><text x=\"380\" y=\"168\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">Azure Government</text><text x=\"380\" y=\"230\" text-anchor=\"middle\" font-size=\"10\" fill=\"#0D47A1\" font-weight=\"bold\">⚠ EU規制対応強化中</text><rect x=\"510\" y=\"45\" width=\"220\" height=\"210\" rx=\"8\" fill=\"#E8F5E9\" stroke=\"#2E7D32\" stroke-width=\"2\"/><text x=\"620\" y=\"72\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#1B5E20\">GCP</text><text x=\"620\" y=\"95\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">Assured Workloads</text><text x=\"620\" y=\"113\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">欧州主権クラウド</text><text x=\"620\" y=\"128\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">（T-Systems連携）</text><text x=\"620\" y=\"148\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">Confidential Computing</text><text x=\"620\" y=\"168\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">中国リージョンなし</text><text x=\"620\" y=\"230\" text-anchor=\"middle\" font-size=\"10\" fill=\"#1B5E20\" font-weight=\"bold\">⚠ 中国市場は事実上撤退</text></svg>"
+			]
+		},
+		{
+			"layout": "default",
+			"title": "データローカライゼーション要件",
+			"content": [
+				"**定義**: 特定カテゴリのデータを、収集した国内に保存・処理することを義務付ける法律",
+				"",
+				"| 国・地域 | 対象データ | 要件 |",
+				"|---|---|---|",
+				"| **EU（GDPR）** | 全個人データ | 十分性認定国への移転のみ許可 |",
+				"| **中国（データセキュリティ法）** | 重要データ・個人情報 | 原則国内保存、越境は当局審査 |",
+				"| **ロシア（個人情報保護法）** | ロシア市民の個人データ | 国内サーバーへの保存義務 |",
+				"| **インド（DPDP法）** | 機微個人データ | 国内処理優先、越境制限 |",
+				"",
+				"**エンジニアへの影響**: 「1つのグローバルDB」設計は通用しない → **地域分離ストレージ**が必須"
+			]
+		},
+		{
+			"layout": "default",
+			"title": "ケーススタディ：TikTok / Zoom / WhatsApp",
+			"content": [
+				"**TikTok（ByteDance）**:",
+				"- 米国でのデータが中国政府にアクセス可能との懸念 → 強制売却法（2024）",
+				"- 対応: 「Project Texas」米国データをOracle US管理に移行、コードの分離",
+				"",
+				"**Zoom**:",
+				"- コロナ禍でのデータ中国経由ルーティング問題（2020年発覚）",
+				"- 対応: 有料ユーザーはデータセンター地域を選択可能に、E2E暗号化強化",
+				"",
+				"**WhatsApp（Meta）**:",
+				"- EU vs Meta：EUデータの米国移転が繰り返し問題化",
+				"- インドの「重大SNS仲介者」規制 → 政府要求へのコンテンツ開示義務",
+				"",
+				"**共通教訓**: グローバルアーキテクチャは**地政学リスクを内包している**"
+			]
+		},
+		{
+			"layout": "default",
+			"title": "サービス設計の分岐点",
+			"content": [
+				"<svg viewBox=\"0 0 760 290\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><text x=\"380\" y=\"28\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#222\">グローバル一元 vs 地域分離アーキテクチャ</text><rect x=\"30\" y=\"50\" width=\"320\" height=\"200\" rx=\"8\" fill=\"#FFEBEE\" stroke=\"#C62828\" stroke-width=\"2\"/><text x=\"190\" y=\"78\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#C62828\">グローバル一元型（旧来）</text><text x=\"190\" y=\"100\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">単一DBに全ユーザーデータ</text><text x=\"190\" y=\"118\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">グローバルCDN・単一エンドポイント</text><text x=\"190\" y=\"136\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">コスト最小・管理簡単</text><text x=\"190\" y=\"160\" text-anchor=\"middle\" font-size=\"11\" fill=\"#C62828\">✗ GDPR違反リスク</text><text x=\"190\" y=\"178\" text-anchor=\"middle\" font-size=\"11\" fill=\"#C62828\">✗ 中国・ロシアから遮断</text><text x=\"190\" y=\"196\" text-anchor=\"middle\" font-size=\"11\" fill=\"#C62828\">✗ 規制変更に脆弱</text><rect x=\"410\" y=\"50\" width=\"320\" height=\"200\" rx=\"8\" fill=\"#E8F5E9\" stroke=\"#2E7D32\" stroke-width=\"2\"/><text x=\"570\" y=\"78\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#2E7D32\">地域分離型（現代）</text><text x=\"570\" y=\"100\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">リージョン別データストア</text><text x=\"570\" y=\"118\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">地域ごとのエンドポイント</text><text x=\"570\" y=\"136\" text-anchor=\"middle\" font-size=\"11\" fill=\"#333\">コンプライアンス・バイ・デザイン</text><text x=\"570\" y=\"160\" text-anchor=\"middle\" font-size=\"11\" fill=\"#2E7D32\">✓ GDPR対応済み</text><text x=\"570\" y=\"178\" text-anchor=\"middle\" font-size=\"11\" fill=\"#2E7D32\">✓ 規制変更に対応しやすい</text><text x=\"570\" y=\"196\" text-anchor=\"middle\" font-size=\"11\" fill=\"#FF8F00\">△ 運用コスト増・データ同期複雑</text><polygon points=\"355,150 405,140 405,160\" fill=\"#555\"/><text x=\"380\" y=\"148\" text-anchor=\"middle\" font-size=\"20\" fill=\"#555\">→</text></svg>"
+			]
+		},
+		{
+			"layout": "section",
+			"title": "Ch.5 エンジニアの対応策",
+			"content": ["分断された世界での設計パターン"]
+		},
+		{
+			"layout": "default",
+			"title": "設計パターン①：リージョン分離アーキテクチャ",
+			"content": [
+				"**原則**: データの物理的な所在地を設計の第一級概念として扱う",
+				"",
+				"**実装パターン:**",
+				"- **Cell-based Architecture**: ユーザーを地域ごとの「セル」に割り当て、データが他セルに漏れない設計",
+				"- **Geo-sharding**: DBシャードを地域単位で分割。EU shard / US shard / APAC shard",
+				"- **Federated Identity**: 地域をまたいだSSO不要の設計（各リージョンで独立認証）",
+				"",
+				"**考慮点:**",
+				"- ユーザーの地域変更時のデータ移行ポリシー",
+				"- グローバルな集計分析のための匿名化・集約パイプライン",
+				"- 「どのデータが規制対象か」の分類（機微 / 非機微）"
+			]
+		},
+		{
+			"layout": "default",
+			"title": "設計パターン②：コンプライアンス・バイ・デザイン",
+			"content": [
+				"**「後付けコンプライアンス」の問題**: 規制対応をリリース後に行うと改修コストが10倍以上になる",
+				"",
+				"**設計段階での組み込み:**",
+				"- **Data Classification Layer**: 全データに `sensitivity`, `jurisdiction`, `retention` をタグ付け",
+				"- **Policy Engine**: データアクセス時にリアルタイムで規制ポリシーを評価（Open Policy Agent等）",
+				"- **Audit Log**: 規制当局への説明責任のためのイミュータブルな操作ログ",
+				"",
+				"**実装例（OPA ポリシー）:**",
+				"",
+				"```rego\nallow {\n  input.user.jurisdiction == input.data.jurisdiction\n  not data.restricted_countries[input.user.country]\n}\n```"
+			]
+		},
+		{
+			"layout": "default",
+			"title": "設計パターン③：フォールバック戦略",
+			"content": [
+				"**前提**: 特定地域からの接続が突然切断されることを「通常の障害」として設計する",
+				"",
+				"**縮退設計の原則:**",
+				"- **Circuit Breaker**: 外部サービスへの依存を監視し、遮断時に代替フローへ切替",
+				"- **Graceful Degradation**: CDN遮断 → オリジンサーバー直接、外部OAuth → 内部認証",
+				"- **Feature Flags by Region**: 地域ごとに機能のON/OFFを動的に切替",
+				"",
+				"**テスト戦略:**",
+				"- 「中国からのアクセスをシミュレート」するChaos Engineering",
+				"- GFW相当のDPI・DNS汚染をローカル環境で再現するツール（GFW-Knocker等）",
+				"- 定期的な「制裁シナリオ」演習"
+			]
+		},
+		{
+			"layout": "default",
+			"title": "実践チェックリスト",
+			"content": [
+				"<svg viewBox=\"0 0 760 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><text x=\"380\" y=\"28\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#222\">スプリンターネット対応 5ステップフレームワーク</text><rect x=\"30\" y=\"50\" width=\"140\" height=\"210\" rx=\"8\" fill=\"#E3F2FD\" stroke=\"#1565C0\" stroke-width=\"2\"/><text x=\"100\" y=\"80\" text-anchor=\"middle\" font-size=\"28\" font-weight=\"bold\" fill=\"#1565C0\">①</text><text x=\"100\" y=\"105\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#1565C0\">データ分類</text><text x=\"100\" y=\"125\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">機微・非機微</text><text x=\"100\" y=\"140\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">管轄区分</text><text x=\"100\" y=\"155\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">保持期間</text><rect x=\"182\" y=\"50\" width=\"140\" height=\"210\" rx=\"8\" fill=\"#FFF8E1\" stroke=\"#F57F17\" stroke-width=\"2\"/><text x=\"252\" y=\"80\" text-anchor=\"middle\" font-size=\"28\" font-weight=\"bold\" fill=\"#F57F17\">②</text><text x=\"252\" y=\"105\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#F57F17\">リージョン設計</text><text x=\"252\" y=\"125\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">Cell-based</text><text x=\"252\" y=\"140\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">Geo-sharding</text><text x=\"252\" y=\"155\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">Federated ID</text><rect x=\"334\" y=\"50\" width=\"140\" height=\"210\" rx=\"8\" fill=\"#F3E5F5\" stroke=\"#7B1FA2\" stroke-width=\"2\"/><text x=\"404\" y=\"80\" text-anchor=\"middle\" font-size=\"28\" font-weight=\"bold\" fill=\"#7B1FA2\">③</text><text x=\"404\" y=\"105\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#7B1FA2\">ポリシーエンジン</text><text x=\"404\" y=\"125\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">OPA導入</text><text x=\"404\" y=\"140\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">Audit Log</text><text x=\"404\" y=\"155\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">アクセス制御</text><rect x=\"486\" y=\"50\" width=\"140\" height=\"210\" rx=\"8\" fill=\"#E8F5E9\" stroke=\"#2E7D32\" stroke-width=\"2\"/><text x=\"556\" y=\"80\" text-anchor=\"middle\" font-size=\"28\" font-weight=\"bold\" fill=\"#2E7D32\">④</text><text x=\"556\" y=\"105\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#2E7D32\">フォールバック</text><text x=\"556\" y=\"125\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">Circuit Breaker</text><text x=\"556\" y=\"140\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">Feature Flag</text><text x=\"556\" y=\"155\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">縮退設計</text><rect x=\"590\" y=\"50\" width=\"140\" height=\"210\" rx=\"8\" fill=\"#FCE4EC\" stroke=\"#C62828\" stroke-width=\"2\"/><text x=\"660\" y=\"80\" text-anchor=\"middle\" font-size=\"28\" font-weight=\"bold\" fill=\"#C62828\">⑤</text><text x=\"660\" y=\"105\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#C62828\">継続的監視</text><text x=\"660\" y=\"125\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">規制変更追跡</text><text x=\"660\" y=\"140\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">Chaos Testing</text><text x=\"660\" y=\"155\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">年次レビュー</text></svg>"
+			]
+		},
+		{
+			"layout": "default",
+			"title": "グループディスカッション",
+			"content": [
+				"**課題**: あなたの担当サービスに置き換えて考えてみよう",
+				"",
+				"**ディスカッション Q1**: 自分のサービスで「規制対象になりうるデータ」はどれか？",
+				"- 個人情報・決済情報・位置情報・通信内容 etc.",
+				"",
+				"**ディスカッション Q2**: 中国またはEUからのアクセスが突然遮断されたとき、何が壊れるか？",
+				"- CDN・外部OAuth・サードパーティAPI・分析基盤 etc.",
+				"",
+				"**ディスカッション Q3**: 今すぐできる対応と、長期的に必要な設計変更は何か？",
+				"",
+				"**時間**: 15分 → グループ発表 5分"
+			]
+		},
+		{
+			"layout": "section",
+			"title": "Ch.6 まとめ",
+			"content": ["今日学んだこと・未来シナリオ"]
+		},
+		{
+			"layout": "default",
+			"title": "今日学んだこと",
+			"content": [
+				"**スプリンターネットは「起きるかもしれない話」ではなく、今まさに進行中**",
+				"",
+				"1. **地政学的背景**: 中国・ロシア・欧州・米国が異なる動機でインターネットを分断",
+				"2. **技術的現実**: BGP・DNS・TLS・クラウドリージョンの全レイヤーに影響",
+				"3. **グローバルサービスへの影響**: 「グローバル一元設計」はもはや機能しない",
+				"4. **エンジニアの責任**: データ分類・リージョン設計・フォールバック・継続監視",
+				"",
+				"**「インターネットはひとつ」という前提を捨てることが、現代エンジニアの第一歩**"
+			]
+		},
+		{
+			"layout": "default",
+			"title": "インターネットの未来シナリオ",
+			"content": [
+				"<svg viewBox=\"0 0 760 280\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><text x=\"380\" y=\"28\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#222\">3つの未来シナリオ</text><rect x=\"30\" y=\"50\" width=\"210\" height=\"190\" rx=\"8\" fill=\"#FFEBEE\" stroke=\"#C62828\" stroke-width=\"2\"/><text x=\"135\" y=\"78\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#C62828\">シナリオA</text><text x=\"135\" y=\"95\" text-anchor=\"middle\" font-size=\"12\" fill=\"#C62828\">完全分断型</text><text x=\"135\" y=\"118\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">米・欧・中・露が</text><text x=\"135\" y=\"133\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">それぞれ独立した</text><text x=\"135\" y=\"148\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">インターネットを運用</text><text x=\"135\" y=\"170\" text-anchor=\"middle\" font-size=\"10\" fill=\"#C62828\">可能性: 中</text><text x=\"135\" y=\"188\" text-anchor=\"middle\" font-size=\"10\" fill=\"#888\">相互接続は</text><text x=\"135\" y=\"203\" text-anchor=\"middle\" font-size=\"10\" fill=\"#888\">例外的措置に</text><rect x=\"275\" y=\"50\" width=\"210\" height=\"190\" rx=\"8\" fill=\"#E8F5E9\" stroke=\"#2E7D32\" stroke-width=\"2\"/><text x=\"380\" y=\"78\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#2E7D32\">シナリオB</text><text x=\"380\" y=\"95\" text-anchor=\"middle\" font-size=\"12\" fill=\"#2E7D32\">ハイブリッド型</text><text x=\"380\" y=\"118\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">技術的には接続を維持</text><text x=\"380\" y=\"133\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">しながらも法的・</text><text x=\"380\" y=\"148\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">規制的に分断が進む</text><text x=\"380\" y=\"170\" text-anchor=\"middle\" font-size=\"10\" fill=\"#2E7D32\">可能性: 高（現状延長）</text><text x=\"380\" y=\"188\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">最も現実的な</text><text x=\"380\" y=\"203\" text-anchor=\"middle\" font-size=\"10\" fill=\"#555\">シナリオ</text><rect x=\"520\" y=\"50\" width=\"210\" height=\"190\" rx=\"8\" fill=\"#E3F2FD\" stroke=\"#1565C0\" stroke-width=\"2\"/><text x=\"625\" y=\"78\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#1565C0\">シナリオC</text><text x=\"625\" y=\"95\" text-anchor=\"middle\" font-size=\"12\" fill=\"#1565C0\">再統合型</text><text x=\"625\" y=\"118\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">国際的なデジタル条約</text><text x=\"625\" y=\"133\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">による標準化・</text><text x=\"625\" y=\"148\" text-anchor=\"middle\" font-size=\"10\" fill=\"#333\">相互運用性の回復</text><text x=\"625\" y=\"170\" text-anchor=\"middle\" font-size=\"10\" fill=\"#1565C0\">可能性: 低</text><text x=\"625\" y=\"188\" text-anchor=\"middle\" font-size=\"10\" fill=\"#888\">政治的合意が</text><text x=\"625\" y=\"203\" text-anchor=\"middle\" font-size=\"10\" fill=\"#888\">必要</text></svg>",
+				"",
+				"**エンジニアの合理的選択**: シナリオBを前提に設計し、AにもCにも対応できる柔軟性を持つ"
+			]
+		},
+		{
+			"layout": "default",
+			"title": "参考文献・Q&A",
+			"content": [
+				"**地政学・政策:**",
+				"- [Freedom on the Net 2024 – Freedom House](https://freedomhouse.org/report/freedom-on-the-net)",
+				"- [The Splinternet – CFR Backgrounder](https://www.cfr.org/backgrounder/splinternet)",
+				"",
+				"**技術・インフラ:**",
+				"- [RPKI – RIPE NCC](https://www.ripe.net/manage-ips-and-asns/resource-management/rpki)",
+				"- [Certificate Transparency – Google](https://certificate.transparency.dev/)",
+				"- [BGP Hijacking – MANRS Observatory](https://observatory.manrs.org/)",
+				"",
+				"**設計パターン:**",
+				"- [Cell-based Architecture – AWS Whitepaper](https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/cell-based-architecture.html)",
+				"- [Open Policy Agent – OPA Docs](https://www.openpolicyagent.org/docs/)",
+				"",
+				"---",
+				"",
+				"**Q&A**"
+			]
+		}
+	]
+}

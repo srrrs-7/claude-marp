@@ -1,0 +1,86 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f0e17" rx="12"/>
+  <text x="450" y="40" text-anchor="middle" fill="#fffffe" font-size="18" font-family="sans-serif" font-weight="bold">菌糸ネットワーク（Mycorrhizal Network）の構造</text>
+
+  <!-- Tree 1 -->
+  <rect x="60" y="100" width="50" height="80" fill="#8B4513" rx="4"/>
+  <circle cx="85" cy="75" r="45" fill="#2d6a4f" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="85" y="80" text-anchor="middle" fill="#fffffe" font-size="11" font-family="sans-serif">Tree A</text>
+  <text x="85" y="200" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">Mother Tree</text>
+
+  <!-- Tree 2 -->
+  <rect x="260" y="120" width="40" height="60" fill="#8B4513" rx="4"/>
+  <circle cx="280" cy="100" r="35" fill="#40916c" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="280" y="105" text-anchor="middle" fill="#fffffe" font-size="10" font-family="sans-serif">Tree B</text>
+
+  <!-- Tree 3 -->
+  <rect x="440" y="90" width="45" height="70" fill="#8B4513" rx="4"/>
+  <circle cx="462" cy="65" r="40" fill="#52b788" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="462" y="70" text-anchor="middle" fill="#fffffe" font-size="10" font-family="sans-serif">Tree C</text>
+
+  <!-- Tree 4 -->
+  <rect x="640" y="110" width="42" height="65" fill="#8B4513" rx="4"/>
+  <circle cx="661" cy="88" r="37" fill="#2d6a4f" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="661" y="93" text-anchor="middle" fill="#fffffe" font-size="10" font-family="sans-serif">Tree D</text>
+
+  <!-- Tree 5 -->
+  <rect x="800" y="100" width="44" height="70" fill="#8B4513" rx="4"/>
+  <circle cx="822" cy="75" r="38" fill="#40916c" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="822" y="80" text-anchor="middle" fill="#fffffe" font-size="10" font-family="sans-serif">Tree E</text>
+
+  <!-- Underground zone -->
+  <rect x="20" y="220" width="860" height="260" fill="#1a1a2e" rx="8" opacity="0.7"/>
+  <text x="450" y="248" text-anchor="middle" fill="#a7a9be" font-size="13" font-family="sans-serif">--- Underground Mycorrhizal Network ---</text>
+
+  <!-- Fungal hub 1 -->
+  <ellipse cx="180" cy="310" rx="40" ry="25" fill="#e6b422" opacity="0.8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="180" y="315" text-anchor="middle" fill="#0f0e17" font-size="10" font-family="sans-serif" font-weight="bold">Fungal Hub</text>
+
+  <!-- Fungal hub 2 -->
+  <ellipse cx="450" cy="340" rx="45" ry="28" fill="#e6b422" opacity="0.8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="450" y="345" text-anchor="middle" fill="#0f0e17" font-size="10" font-family="sans-serif" font-weight="bold">Fungal Hub</text>
+
+  <!-- Fungal hub 3 -->
+  <ellipse cx="720" cy="310" rx="40" ry="25" fill="#e6b422" opacity="0.8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="720" y="315" text-anchor="middle" fill="#0f0e17" font-size="10" font-family="sans-serif" font-weight="bold">Fungal Hub</text>
+
+  <!-- Mycelium connections (curvy lines) -->
+  <!-- Tree A root to Hub 1 -->
+  <path d="M85,180 Q85,250 180,310" stroke="#e6b422" stroke-width="2.5" fill="none" stroke-dasharray="6,3" opacity="0.7"/>
+  <!-- Tree B root to Hub 1 -->
+  <path d="M280,180 Q230,260 180,310" stroke="#e6b422" stroke-width="2" fill="none" stroke-dasharray="6,3" opacity="0.7"/>
+  <!-- Tree B root to Hub 2 -->
+  <path d="M280,180 Q360,280 450,340" stroke="#e6b422" stroke-width="2" fill="none" stroke-dasharray="6,3" opacity="0.7"/>
+  <!-- Tree C root to Hub 2 -->
+  <path d="M462,160 Q456,260 450,340" stroke="#e6b422" stroke-width="2.5" fill="none" stroke-dasharray="6,3" opacity="0.7"/>
+  <!-- Tree D root to Hub 2 -->
+  <path d="M661,175 Q560,280 450,340" stroke="#e6b422" stroke-width="2" fill="none" stroke-dasharray="6,3" opacity="0.7"/>
+  <!-- Tree D root to Hub 3 -->
+  <path d="M661,175 Q690,260 720,310" stroke="#e6b422" stroke-width="2" fill="none" stroke-dasharray="6,3" opacity="0.7"/>
+  <!-- Tree E root to Hub 3 -->
+  <path d="M822,170 Q770,260 720,310" stroke="#e6b422" stroke-width="2.5" fill="none" stroke-dasharray="6,3" opacity="0.7"/>
+  <!-- Hub to Hub connections -->
+  <path d="M220,310 Q320,380 410,340" stroke="#ff6b6b" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M490,340 Q600,380 680,310" stroke="#ff6b6b" stroke-width="2" fill="none" opacity="0.6"/>
+
+  <!-- Resource flow arrows -->
+  <text x="300" y="400" text-anchor="middle" fill="#ff6b6b" font-size="11" font-family="sans-serif">Carbon / Nutrients</text>
+  <line x1="220" y1="395" x2="250" y2="395" stroke="#ff6b6b" stroke-width="1.5"/>
+  <polygon points="250,392 258,395 250,398" fill="#ff6b6b"/>
+
+  <!-- Signal flow -->
+  <text x="620" y="400" text-anchor="middle" fill="#7ecaff" font-size="11" font-family="sans-serif">Chemical Signals</text>
+  <line x1="560" y1="395" x2="570" y2="395" stroke="#7ecaff" stroke-width="1.5"/>
+  <polygon points="570,392 578,395 570,398" fill="#7ecaff"/>
+
+  <!-- Legend -->
+  <rect x="30" y="440" width="840" height="45" fill="#0f0e17" rx="6" opacity="0.8"/>
+  <ellipse cx="70" cy="462" rx="12" ry="8" fill="#e6b422" opacity="0.8"/>
+  <text x="90" y="467" fill="#a7a9be" font-size="10" font-family="sans-serif">Fungal Hub (Relay Node)</text>
+  <circle cx="260" cy="462" r="8" fill="#2d6a4f"/>
+  <text x="275" y="467" fill="#a7a9be" font-size="10" font-family="sans-serif">Tree (Peer Node)</text>
+  <line x1="410" y1="462" x2="440" y2="462" stroke="#e6b422" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="450" y="467" fill="#a7a9be" font-size="10" font-family="sans-serif">Mycelium (Network Link)</text>
+  <line x1="620" y1="462" x2="650" y2="462" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="660" y="467" fill="#a7a9be" font-size="10" font-family="sans-serif">Resource Flow</text>
+</svg>

@@ -1,0 +1,13 @@
+topic: "菌根ネットワーク(Wood Wide Web)とマイクロサービス"
+language: "ja"
+output:
+  dir: "docs/20260220180300_mycorrhizal-network-microservices"
+  baseName: "mycorrhizal-network-microservices"
+marp:
+  theme: gaia
+  paginate: true
+  header: "Wood Wide Web とマイクロサービス"
+  footer: "© 2026"
+  style: |
+    section { font-size: 1.05em; }
+    section pre code { font-size: 0.58em; line-height: 1.4; }

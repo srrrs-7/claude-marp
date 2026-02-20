@@ -1,0 +1,86 @@
+<svg viewBox="0 0 860 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="860" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="430" y="36" text-anchor="middle" fill="#f5a623" font-size="18" font-weight="bold" font-family="sans-serif">ジャズバンド vs スクラムチーム</text>
+
+  <!-- Jazz Band side -->
+  <rect x="20" y="55" width="390" height="325" fill="#0f3460" rx="10"/>
+  <text x="215" y="80" text-anchor="middle" fill="#7fdbff" font-size="15" font-weight="bold" font-family="sans-serif">ジャズバンド</text>
+
+  <!-- Pianist -->
+  <rect x="40" y="95" width="100" height="55" fill="#e94560" rx="6"/>
+  <text x="90" y="117" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">ピアニスト</text>
+  <text x="90" y="133" text-anchor="middle" fill="#ffd" font-size="9" font-family="sans-serif">ハーモニー</text>
+  <text x="90" y="147" text-anchor="middle" fill="#ffd" font-size="9" font-family="sans-serif">コード維持</text>
+
+  <!-- Bassist -->
+  <rect x="155" y="95" width="100" height="55" fill="#e94560" rx="6"/>
+  <text x="205" y="117" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">ベーシスト</text>
+  <text x="205" y="133" text-anchor="middle" fill="#ffd" font-size="9" font-family="sans-serif">リズム</text>
+  <text x="205" y="147" text-anchor="middle" fill="#ffd" font-size="9" font-family="sans-serif">グルーヴ</text>
+
+  <!-- Drummer -->
+  <rect x="270" y="95" width="100" height="55" fill="#e94560" rx="6"/>
+  <text x="320" y="117" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">ドラマー</text>
+  <text x="320" y="133" text-anchor="middle" fill="#ffd" font-size="9" font-family="sans-serif">テンポ</text>
+  <text x="320" y="147" text-anchor="middle" fill="#ffd" font-size="9" font-family="sans-serif">ダイナミクス</text>
+
+  <!-- Soloist -->
+  <rect x="110" y="175" width="140" height="55" fill="#f5a623" rx="6"/>
+  <text x="180" y="197" text-anchor="middle" fill="#1a1a2e" font-size="11" font-weight="bold" font-family="sans-serif">ソロイスト</text>
+  <text x="180" y="213" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="sans-serif">現在の主役</text>
+  <text x="180" y="227" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="sans-serif">順番に交代</text>
+
+  <!-- Lines from top to soloist -->
+  <line x1="90" y1="150" x2="150" y2="175" stroke="#a8d8ea" stroke-width="1.5"/>
+  <line x1="205" y1="150" x2="200" y2="175" stroke="#a8d8ea" stroke-width="1.5"/>
+  <line x1="320" y1="150" x2="250" y2="175" stroke="#a8d8ea" stroke-width="1.5"/>
+
+  <!-- Jazz features -->
+  <rect x="40" y="248" width="330" height="115" fill="#0a1628" rx="6" stroke="#7fdbff" stroke-width="1"/>
+  <text x="205" y="270" text-anchor="middle" fill="#7fdbff" font-size="12" font-weight="bold" font-family="sans-serif">ジャズの特徴</text>
+  <text x="55" y="292" fill="#a8d8ea" font-size="11" font-family="sans-serif">- 互いの演奏を聴きながら即興</text>
+  <text x="55" y="312" fill="#a8d8ea" font-size="11" font-family="sans-serif">- 役割は流動的（全員がリード可）</text>
+  <text x="55" y="332" fill="#a8d8ea" font-size="11" font-family="sans-serif">- 失敗も即興の一部として吸収</text>
+  <text x="55" y="352" fill="#a8d8ea" font-size="11" font-family="sans-serif">- ソロは順番に全員が担当</text>
+
+  <!-- Scrum Team side -->
+  <rect x="450" y="55" width="390" height="325" fill="#16213e" rx="10"/>
+  <text x="645" y="80" text-anchor="middle" fill="#7fdbff" font-size="15" font-weight="bold" font-family="sans-serif">スクラムチーム</text>
+
+  <!-- FE Developer -->
+  <rect x="470" y="95" width="100" height="55" fill="#2ecc71" rx="6"/>
+  <text x="520" y="117" text-anchor="middle" fill="#1a1a2e" font-size="11" font-weight="bold" font-family="sans-serif">FE開発者</text>
+  <text x="520" y="133" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="sans-serif">UI実装</text>
+  <text x="520" y="147" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="sans-serif">UX最適化</text>
+
+  <!-- BE Developer -->
+  <rect x="585" y="95" width="100" height="55" fill="#2ecc71" rx="6"/>
+  <text x="635" y="117" text-anchor="middle" fill="#1a1a2e" font-size="11" font-weight="bold" font-family="sans-serif">BE開発者</text>
+  <text x="635" y="133" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="sans-serif">API設計</text>
+  <text x="635" y="147" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="sans-serif">DB管理</text>
+
+  <!-- Infra Engineer -->
+  <rect x="700" y="95" width="100" height="55" fill="#2ecc71" rx="6"/>
+  <text x="750" y="117" text-anchor="middle" fill="#1a1a2e" font-size="11" font-weight="bold" font-family="sans-serif">インフラ</text>
+  <text x="750" y="133" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="sans-serif">CI/CD</text>
+  <text x="750" y="147" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="sans-serif">デプロイ</text>
+
+  <!-- Current Driver (Mob Programming) -->
+  <rect x="540" y="175" width="140" height="55" fill="#f5a623" rx="6"/>
+  <text x="610" y="197" text-anchor="middle" fill="#1a1a2e" font-size="11" font-weight="bold" font-family="sans-serif">現在のドライバー</text>
+  <text x="610" y="213" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="sans-serif">モブプログラミング</text>
+  <text x="610" y="227" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="sans-serif">15分ローテ</text>
+
+  <!-- Lines from top to driver -->
+  <line x1="520" y1="150" x2="580" y2="175" stroke="#a8d8ea" stroke-width="1.5"/>
+  <line x1="635" y1="150" x2="630" y2="175" stroke="#a8d8ea" stroke-width="1.5"/>
+  <line x1="750" y1="150" x2="680" y2="175" stroke="#a8d8ea" stroke-width="1.5"/>
+
+  <!-- Scrum features -->
+  <rect x="470" y="248" width="330" height="115" fill="#0a1628" rx="6" stroke="#7fdbff" stroke-width="1"/>
+  <text x="635" y="270" text-anchor="middle" fill="#7fdbff" font-size="12" font-weight="bold" font-family="sans-serif">スクラムの特徴</text>
+  <text x="485" y="292" fill="#a8d8ea" font-size="11" font-family="sans-serif">- デイリースクラムで状況共有</text>
+  <text x="485" y="312" fill="#a8d8ea" font-size="11" font-family="sans-serif">- T字型スキルで越境支援</text>
+  <text x="485" y="332" fill="#a8d8ea" font-size="11" font-family="sans-serif">- 失敗はレトロスペクティブで改善</text>
+  <text x="485" y="352" fill="#a8d8ea" font-size="11" font-family="sans-serif">- タスクは全員が担当可能</text>
+</svg>

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Sky background -->
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <!-- Ground -->
+  <rect x="0" y="320" width="800" height="80" fill="#2d4a1e"/>
+
+  <!-- Greek Temple -->
+  <!-- Pediment (triangle roof) -->
+  <polygon points="180,80 520,80 620,150 80,150" fill="#c8a96e" style="filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.5))"/>
+  <!-- Frieze -->
+  <rect x="80" y="150" width="540" height="25" fill="#d4b483"/>
+  <!-- Columns -->
+  <rect x="100" y="175" width="35" height="145" fill="#e8d5a3" rx="3"/>
+  <rect x="175" y="175" width="35" height="145" fill="#e8d5a3" rx="3"/>
+  <rect x="250" y="175" width="35" height="145" fill="#e8d5a3" rx="3"/>
+  <rect x="325" y="175" width="35" height="145" fill="#e8d5a3" rx="3"/>
+  <rect x="400" y="175" width="35" height="145" fill="#e8d5a3" rx="3"/>
+  <rect x="475" y="175" width="35" height="145" fill="#e8d5a3" rx="3"/>
+  <rect x="550" y="175" width="35" height="145" fill="#e8d5a3" rx="3"/>
+  <rect x="570" y="175" width="35" height="145" fill="#e8d5a3" rx="3"/>
+  <!-- Column capitals -->
+  <rect x="97" y="172" width="41" height="6" fill="#c8a96e"/>
+  <rect x="172" y="172" width="41" height="6" fill="#c8a96e"/>
+  <rect x="247" y="172" width="41" height="6" fill="#c8a96e"/>
+  <rect x="322" y="172" width="41" height="6" fill="#c8a96e"/>
+  <rect x="397" y="172" width="41" height="6" fill="#c8a96e"/>
+  <rect x="472" y="172" width="41" height="6" fill="#c8a96e"/>
+  <rect x="547" y="172" width="41" height="6" fill="#c8a96e"/>
+  <rect x="567" y="172" width="41" height="6" fill="#c8a96e"/>
+  <!-- Stylobate (steps) -->
+  <rect x="70" y="320" width="560" height="12" fill="#b89650"/>
+  <rect x="80" y="308" width="540" height="12" fill="#c8a96e"/>
+
+  <!-- Stars -->
+  <circle cx="50" cy="40" r="2" fill="white" opacity="0.8"/>
+  <circle cx="120" cy="20" r="1.5" fill="white" opacity="0.7"/>
+  <circle cx="650" cy="30" r="2" fill="white" opacity="0.9"/>
+  <circle cx="720" cy="15" r="1.5" fill="white" opacity="0.6"/>
+  <circle cx="760" cy="50" r="2" fill="white" opacity="0.8"/>
+  <circle cx="30" cy="80" r="1.5" fill="white" opacity="0.7"/>
+
+  <!-- Simonides figure (left side, looking at temple) -->
+  <!-- Body/robe -->
+  <ellipse cx="670" cy="280" rx="22" ry="45" fill="#8b6914"/>
+  <!-- Head -->
+  <circle cx="670" cy="225" r="20" fill="#d4a574"/>
+  <!-- Hair/beard -->
+  <ellipse cx="670" cy="240" rx="20" ry="8" fill="#5a3e1b"/>
+  <!-- Arm pointing -->
+  <line x1="658" y1="265" x2="620" y2="250" stroke="#d4a574" stroke-width="6" stroke-linecap="round"/>
+  <!-- Staff -->
+  <line x1="690" y1="270" x2="690" y2="325" stroke="#8b6914" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Thought bubble / memory items floating -->
+  <circle cx="590" cy="160" r="5" fill="rgba(255,215,100,0.6)"/>
+  <circle cx="575" cy="145" r="7" fill="rgba(255,215,100,0.5)"/>
+  <circle cx="555" cy="125" r="10" fill="rgba(255,215,100,0.4)"/>
+  <!-- Memory symbol in bubble -->
+  <text x="545" y="130" font-size="12" fill="#ffd700" text-anchor="middle" font-family="serif">🏺</text>
+
+  <!-- Labels -->
+  <text x="350" y="50" font-size="22" fill="#ffd700" text-anchor="middle" font-family="serif" font-weight="bold">Simonides of Ceos</text>
+  <text x="350" y="74" font-size="14" fill="#c8a96e" text-anchor="middle" font-family="sans-serif">BC 556–468　記憶術の父</text>
+
+  <!-- Label for figure -->
+  <text x="670" y="355" font-size="13" fill="#a0c080" text-anchor="middle" font-family="sans-serif">シモニデス</text>
+
+  <!-- Quote box -->
+  <rect x="30" y="220" width="290" height="75" rx="8" fill="rgba(0,0,0,0.5)" stroke="#ffd700" stroke-width="1.5"/>
+  <text x="45" y="240" font-size="12" fill="#ffd700" font-family="serif" font-style="italic">"場所に記憶を置き、</text>
+  <text x="45" y="258" font-size="12" fill="#ffd700" font-family="serif" font-style="italic">歩くことで思い出す"</text>
+  <text x="45" y="280" font-size="11" fill="#c8a96e" font-family="sans-serif">— Method of Loci の原点</text>
+</svg>

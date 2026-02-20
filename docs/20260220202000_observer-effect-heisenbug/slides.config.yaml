@@ -1,0 +1,20 @@
+topic: "観察者効果とHeisenbug：見ると消えるバグの量子力学"
+language: "ja"
+
+output:
+  dir: "docs/20260220202000_observer-effect-heisenbug"
+  baseName: "observer-effect-heisenbug"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "Observer Effect × Heisenbug"
+  footer: "© 2026 Quantum Debugging"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

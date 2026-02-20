@@ -1,0 +1,62 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="10"/>
+  <text x="450" y="35" text-anchor="middle" fill="#e94560" font-size="20" font-family="sans-serif" font-weight="bold">開発ワークフロー比較</text>
+  <!-- Traditional -->
+  <text x="450" y="70" text-anchor="middle" fill="#888" font-size="14" font-family="sans-serif" font-weight="bold">従来型開発</text>
+  <rect x="50" y="85" width="130" height="50" fill="#0f3460" rx="8"/>
+  <text x="115" y="115" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">要件定義</text>
+  <line x1="180" y1="110" x2="210" y2="110" stroke="#555" stroke-width="2"/>
+  <polygon points="210,105 220,110 210,115" fill="#555"/>
+  <rect x="220" y="85" width="130" height="50" fill="#0f3460" rx="8"/>
+  <text x="285" y="115" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">設計</text>
+  <line x1="350" y1="110" x2="380" y2="110" stroke="#555" stroke-width="2"/>
+  <polygon points="380,105 390,110 380,115" fill="#555"/>
+  <rect x="390" y="85" width="130" height="50" fill="#0f3460" rx="8"/>
+  <text x="455" y="115" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">実装</text>
+  <line x1="520" y1="110" x2="550" y2="110" stroke="#555" stroke-width="2"/>
+  <polygon points="550,105 560,110 550,115" fill="#555"/>
+  <rect x="560" y="85" width="130" height="50" fill="#0f3460" rx="8"/>
+  <text x="625" y="115" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">テスト</text>
+  <line x1="690" y1="110" x2="720" y2="110" stroke="#555" stroke-width="2"/>
+  <polygon points="720,105 730,110 720,115" fill="#555"/>
+  <rect x="730" y="85" width="130" height="50" fill="#0f3460" rx="8"/>
+  <text x="795" y="115" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">デプロイ</text>
+  <text x="810" y="155" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">数週間〜数ヶ月</text>
+  <!-- AI-Assisted -->
+  <text x="450" y="200" text-anchor="middle" fill="#00d2d3" font-size="14" font-family="sans-serif" font-weight="bold">AI支援開発</text>
+  <rect x="80" y="215" width="150" height="50" fill="#16213e" rx="8" stroke="#00d2d3" stroke-width="1"/>
+  <text x="155" y="245" text-anchor="middle" fill="#00d2d3" font-size="12" font-family="sans-serif">要件 + AI設計</text>
+  <line x1="230" y1="240" x2="270" y2="240" stroke="#00d2d3" stroke-width="2"/>
+  <polygon points="270,235 280,240 270,245" fill="#00d2d3"/>
+  <rect x="280" y="215" width="150" height="50" fill="#16213e" rx="8" stroke="#00d2d3" stroke-width="1"/>
+  <text x="355" y="245" text-anchor="middle" fill="#00d2d3" font-size="12" font-family="sans-serif">AI実装 + レビュー</text>
+  <line x1="430" y1="240" x2="470" y2="240" stroke="#00d2d3" stroke-width="2"/>
+  <polygon points="470,235 480,240 470,245" fill="#00d2d3"/>
+  <rect x="480" y="215" width="150" height="50" fill="#16213e" rx="8" stroke="#00d2d3" stroke-width="1"/>
+  <text x="555" y="245" text-anchor="middle" fill="#00d2d3" font-size="12" font-family="sans-serif">テスト + 修正</text>
+  <line x1="630" y1="240" x2="670" y2="240" stroke="#00d2d3" stroke-width="2"/>
+  <polygon points="670,235 680,240 670,245" fill="#00d2d3"/>
+  <rect x="680" y="215" width="150" height="50" fill="#16213e" rx="8" stroke="#00d2d3" stroke-width="1"/>
+  <text x="755" y="245" text-anchor="middle" fill="#00d2d3" font-size="12" font-family="sans-serif">デプロイ</text>
+  <text x="810" y="285" text-anchor="middle" fill="#00d2d3" font-size="11" font-family="sans-serif">数日〜数週間</text>
+  <!-- Vibe Coding -->
+  <text x="450" y="330" text-anchor="middle" fill="#e94560" font-size="14" font-family="sans-serif" font-weight="bold">バイブコーディング</text>
+  <rect x="150" y="345" width="200" height="55" fill="#16213e" rx="8" stroke="#e94560" stroke-width="2"/>
+  <text x="250" y="368" text-anchor="middle" fill="#e94560" font-size="13" font-family="sans-serif" font-weight="bold">「こういうの作って」</text>
+  <text x="250" y="388" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">自然言語で指示</text>
+  <line x1="350" y1="372" x2="410" y2="372" stroke="#e94560" stroke-width="2.5"/>
+  <polygon points="410,366 425,372 410,378" fill="#e94560"/>
+  <rect x="430" y="345" width="200" height="55" fill="#16213e" rx="8" stroke="#e94560" stroke-width="2"/>
+  <text x="530" y="368" text-anchor="middle" fill="#e94560" font-size="13" font-family="sans-serif" font-weight="bold">LLMが全自動生成</text>
+  <text x="530" y="388" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">設計〜実装〜テスト</text>
+  <line x1="630" y1="372" x2="690" y2="372" stroke="#e94560" stroke-width="2.5"/>
+  <polygon points="690,366 705,372 690,378" fill="#e94560"/>
+  <rect x="710" y="345" width="130" height="55" fill="#16213e" rx="8" stroke="#e94560" stroke-width="2"/>
+  <text x="775" y="375" text-anchor="middle" fill="#e94560" font-size="13" font-family="sans-serif" font-weight="bold">完成！</text>
+  <text x="810" y="420" text-anchor="middle" fill="#e94560" font-size="11" font-family="sans-serif">数分〜数時間</text>
+  <!-- Bottom comparison bar -->
+  <rect x="50" y="450" width="800" height="35" fill="#0f3460" rx="5"/>
+  <text x="150" y="473" text-anchor="middle" fill="#888" font-size="12" font-family="sans-serif">従来: 品質◎ 速度×</text>
+  <text x="450" y="473" text-anchor="middle" fill="#00d2d3" font-size="12" font-family="sans-serif">AI支援: 品質○ 速度○</text>
+  <text x="750" y="473" text-anchor="middle" fill="#e94560" font-size="12" font-family="sans-serif">Vibe: 品質？ 速度◎</text>
+</svg>

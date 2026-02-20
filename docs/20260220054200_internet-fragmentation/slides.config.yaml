@@ -1,0 +1,12 @@
+topic: "インターネットのスプリンターネット化"
+language: "ja"
+output:
+  dir: "docs/20260220054200_internet-fragmentation"
+  baseName: "internet-fragmentation"
+marp:
+  theme: gaia
+  paginate: true
+  header: "インターネットの分裂"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

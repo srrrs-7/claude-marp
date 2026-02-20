@@ -1,0 +1,12 @@
+topic: "「1時間会議」のデフォルトが組織を壊す — 会議の経済学"
+language: "ja"
+output:
+  dir: "docs/20260220064700_one-hour-meeting-default"
+  baseName: "one-hour-meeting-default"
+marp:
+  theme: gaia
+  paginate: true
+  header: "会議の時間経済学"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

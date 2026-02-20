@@ -1,0 +1,41 @@
+<svg viewBox="0 0 900 450" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="450" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#e0e0e0">70:20:10 — バイブコーディング時代の開発時間配分</text>
+
+  <!-- Large bar chart style -->
+  <!-- 70% bar -->
+  <rect x="80" y="80" width="630" height="100" rx="8" fill="#3b82f6" opacity="0.8"/>
+  <text x="395" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="32" font-weight="bold" fill="#fff">70%</text>
+  <text x="395" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#dbeafe">コード生成 — AI がほぼ自動化</text>
+  <text x="730" y="130" font-family="Arial,sans-serif" font-size="13" fill="#60a5fa">AI が高速化</text>
+  <polygon points="718,130 730,125 730,135" fill="#60a5fa"/>
+
+  <!-- 20% bar -->
+  <rect x="80" y="200" width="180" height="100" rx="8" fill="#f472b6" opacity="0.8"/>
+  <text x="170" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="bold" fill="#fff">20%</text>
+  <text x="170" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#fce7f3">レビュー・デバッグ・修正</text>
+  <text x="280" y="250" font-family="Arial,sans-serif" font-size="13" fill="#f472b6">むしろ複雑化</text>
+  <polygon points="268,250 280,245 280,255" fill="#f472b6"/>
+
+  <!-- 10% bar -->
+  <rect x="80" y="320" width="90" height="100" rx="8" fill="#fbbf24" opacity="0.8"/>
+  <text x="125" y="360" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="bold" fill="#1a1a2e">10%</text>
+  <text x="125" y="388" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#713f12">要件理解・設計</text>
+  <text x="190" y="370" font-family="Arial,sans-serif" font-size="13" fill="#fbbf24">最高価値の知的労働</text>
+  <polygon points="178,370 190,365 190,375" fill="#fbbf24"/>
+
+  <!-- Right side annotations -->
+  <rect x="530" y="210" width="340" height="200" rx="8" fill="rgba(0,0,0,0.4)" stroke="#666" stroke-width="1"/>
+  <text x="700" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#e0e0e0">ROI の計算式</text>
+
+  <text x="550" y="275" font-family="Arial,sans-serif" font-size="13" fill="#60a5fa">70%の効率化</text>
+  <text x="550" y="295" font-family="Arial,sans-serif" font-size="12" fill="#aaa">  = 開発速度 2-3x 向上</text>
+
+  <text x="550" y="325" font-family="Arial,sans-serif" font-size="13" fill="#f472b6">30%の複雑化コスト</text>
+  <text x="550" y="345" font-family="Arial,sans-serif" font-size="12" fill="#aaa">  = レビュー負荷 + バグ修正増</text>
+
+  <line x1="550" y1="360" x2="840" y2="360" stroke="#666" stroke-width="1"/>
+  <text x="550" y="385" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#fbbf24">Net ROI = 戦略と規律に依存</text>
+</svg>

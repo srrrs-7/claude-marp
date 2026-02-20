@@ -1,0 +1,12 @@
+topic: "エターナル・セプテンバー — コミュニティはなぜ死ぬか"
+language: "ja"
+output:
+  dir: "docs/20260220180011_eternal-september"
+  baseName: "eternal-september"
+marp:
+  theme: gaia
+  paginate: true
+  header: "エターナル・セプテンバー"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

@@ -1,0 +1,52 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="30" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">スタートアップ失敗理由 Top 10</text>
+  <text x="450" y="50" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">CB Insights (2021) 111社の失敗分析より</text>
+
+  <!-- Bar chart -->
+  <rect x="280" y="65" width="360" height="22" fill="#FF6B6B" rx="3" opacity="0.9"/>
+  <text x="275" y="81" text-anchor="end" fill="white" font-size="11" font-family="sans-serif">市場ニーズなし</text>
+  <text x="645" y="81" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">42%</text>
+
+  <rect x="280" y="93" width="250" height="22" fill="#e17055" rx="3" opacity="0.9"/>
+  <text x="275" y="109" text-anchor="end" fill="white" font-size="11" font-family="sans-serif">資金切れ</text>
+  <text x="535" y="109" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">29%</text>
+
+  <rect x="280" y="121" width="200" height="22" fill="#fdcb6e" rx="3" opacity="0.9"/>
+  <text x="275" y="137" text-anchor="end" fill="white" font-size="11" font-family="sans-serif">チーム不適切</text>
+  <text x="485" y="137" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">23%</text>
+
+  <rect x="280" y="149" width="170" height="22" fill="#00b894" rx="3" opacity="0.9"/>
+  <text x="275" y="165" text-anchor="end" fill="white" font-size="11" font-family="sans-serif">競合に負け</text>
+  <text x="455" y="165" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">19%</text>
+
+  <rect x="280" y="177" width="155" height="22" fill="#0984e3" rx="3" opacity="0.9"/>
+  <text x="275" y="193" text-anchor="end" fill="white" font-size="11" font-family="sans-serif">価格設定ミス</text>
+  <text x="440" y="193" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">18%</text>
+
+  <rect x="280" y="205" width="145" height="22" fill="#6c5ce7" rx="3" opacity="0.9"/>
+  <text x="275" y="221" text-anchor="end" fill="white" font-size="11" font-family="sans-serif">ユーザー無視</text>
+  <text x="430" y="221" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">17%</text>
+
+  <rect x="280" y="233" width="130" height="22" fill="#a29bfe" rx="3" opacity="0.9"/>
+  <text x="275" y="249" text-anchor="end" fill="white" font-size="11" font-family="sans-serif">タイミング悪い</text>
+  <text x="415" y="249" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">15%</text>
+
+  <rect x="280" y="261" width="120" height="22" fill="#4ECDC4" rx="3" opacity="0.9"/>
+  <text x="275" y="277" text-anchor="end" fill="white" font-size="11" font-family="sans-serif">ピボット失敗</text>
+  <text x="405" y="277" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">14%</text>
+
+  <!-- Bottom insight -->
+  <rect x="50" y="310" width="800" height="170" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="450" y="340" text-anchor="middle" fill="#FFEAA7" font-size="15" font-family="sans-serif" font-weight="bold">注目すべき発見</text>
+
+  <rect x="80" y="355" width="350" height="100" fill="#16213e" rx="8"/>
+  <text x="255" y="380" text-anchor="middle" fill="#FF6B6B" font-size="14" font-family="sans-serif" font-weight="bold">技術的失敗はTop 10に入らない</text>
+  <text x="255" y="400" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">「技術が劣っていた」は失敗理由の</text>
+  <text x="255" y="420" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">わずか 6% — ほぼ無関係</text>
+
+  <rect x="470" y="355" width="350" height="100" fill="#16213e" rx="8"/>
+  <text x="645" y="380" text-anchor="middle" fill="#4ECDC4" font-size="14" font-family="sans-serif" font-weight="bold">失敗の本質は「人と市場」</text>
+  <text x="645" y="400" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">Top 3 はすべてビジネス・チーム要因</text>
+  <text x="645" y="420" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">技術ではなく「何を誰に」が鍵</text>
+</svg>

@@ -1,0 +1,70 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f0e17" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#fffffe" font-size="18" font-family="sans-serif" font-weight="bold">アーキテクチャパターンの収束進化マップ</text>
+
+  <!-- Central: Universal Patterns -->
+  <ellipse cx="450" cy="250" rx="120" ry="60" fill="#e6b422" opacity="0.2" stroke="#e6b422" stroke-width="2"/>
+  <text x="450" y="240" text-anchor="middle" fill="#e6b422" font-size="14" font-family="sans-serif" font-weight="bold">普遍的</text>
+  <text x="450" y="260" text-anchor="middle" fill="#e6b422" font-size="14" font-family="sans-serif" font-weight="bold">パターン</text>
+
+  <!-- Pattern nodes converging to center -->
+  <!-- Top: Event-Driven -->
+  <rect x="370" y="60" width="160" height="45" fill="#2563eb" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="450" y="87" text-anchor="middle" fill="#fffffe" font-size="11" font-family="sans-serif" font-weight="bold">Event-Driven</text>
+  <line x1="450" y1="105" x2="450" y2="188" stroke="#2563eb" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="445,186 450,196 455,186" fill="#2563eb"/>
+
+  <!-- Left: Pub/Sub -->
+  <rect x="50" y="120" width="150" height="45" fill="#7c3aed" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="125" y="147" text-anchor="middle" fill="#fffffe" font-size="11" font-family="sans-serif" font-weight="bold">Pub/Sub</text>
+  <line x1="200" y1="145" x2="332" y2="230" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="328,225 338,234 335,222" fill="#7c3aed"/>
+
+  <!-- Right: CQRS -->
+  <rect x="700" y="120" width="150" height="45" fill="#dc2626" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="775" y="147" text-anchor="middle" fill="#fffffe" font-size="11" font-family="sans-serif" font-weight="bold">CQRS</text>
+  <line x1="700" y1="145" x2="568" y2="230" stroke="#dc2626" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="565,222 572,234 578,225" fill="#dc2626"/>
+
+  <!-- Bottom-left: Microservices -->
+  <rect x="60" y="320" width="150" height="45" fill="#52b788" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="135" y="347" text-anchor="middle" fill="#fffffe" font-size="11" font-family="sans-serif" font-weight="bold">Microservices</text>
+  <line x1="210" y1="340" x2="335" y2="275" stroke="#52b788" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="332,269 340,279 338,267" fill="#52b788"/>
+
+  <!-- Bottom-right: Serverless -->
+  <rect x="690" y="320" width="150" height="45" fill="#f59e0b" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="765" y="347" text-anchor="middle" fill="#0f0e17" font-size="11" font-family="sans-serif" font-weight="bold">Serverless</text>
+  <line x1="690" y1="340" x2="565" y2="275" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="562,267 568,279 572,269" fill="#f59e0b"/>
+
+  <!-- Bottom: Actor Model -->
+  <rect x="370" y="390" width="160" height="45" fill="#06b6d4" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="450" y="417" text-anchor="middle" fill="#fffffe" font-size="11" font-family="sans-serif" font-weight="bold">Actor Model</text>
+  <line x1="450" y1="390" x2="450" y2="312" stroke="#06b6d4" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="445,314 450,304 455,314" fill="#06b6d4"/>
+
+  <!-- Far left: SOA -->
+  <rect x="30" y="225" width="120" height="45" fill="#84cc16" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="90" y="252" text-anchor="middle" fill="#0f0e17" font-size="11" font-family="sans-serif" font-weight="bold">SOA</text>
+  <line x1="150" y1="248" x2="330" y2="248" stroke="#84cc16" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="328,243 338,248 328,253" fill="#84cc16"/>
+
+  <!-- Far right: Hexagonal -->
+  <rect x="750" y="225" width="130" height="45" fill="#ec4899" rx="8" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="815" y="252" text-anchor="middle" fill="#fffffe" font-size="11" font-family="sans-serif" font-weight="bold">Hexagonal</text>
+  <line x1="750" y1="248" x2="572" y2="248" stroke="#ec4899" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="574,253 564,248 574,243" fill="#ec4899"/>
+
+  <!-- Center labels -->
+  <text x="450" y="205" text-anchor="middle" fill="#e6b422" font-size="10" font-family="sans-serif">疎結合</text>
+  <text x="450" y="298" text-anchor="middle" fill="#e6b422" font-size="10" font-family="sans-serif">メッセージ駆動</text>
+  <text x="370" y="252" text-anchor="middle" fill="#e6b422" font-size="10" font-family="sans-serif">関心の</text>
+  <text x="370" y="264" text-anchor="middle" fill="#e6b422" font-size="10" font-family="sans-serif">分離</text>
+  <text x="530" y="252" text-anchor="middle" fill="#e6b422" font-size="10" font-family="sans-serif">単一</text>
+  <text x="530" y="264" text-anchor="middle" fill="#e6b422" font-size="10" font-family="sans-serif">責任</text>
+
+  <!-- Bottom text -->
+  <text x="450" y="468" text-anchor="middle" fill="#a7a9be" font-size="12" font-family="sans-serif">全てのパターンは「疎結合」「関心の分離」「メッセージ駆動」に収束する</text>
+  <text x="450" y="490" text-anchor="middle" fill="#e6b422" font-size="11" font-family="sans-serif">= 異なる種が「翼」という同じ解に収束するのと同じ原理</text>
+</svg>

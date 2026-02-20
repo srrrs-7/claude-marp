@@ -1,0 +1,53 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="30" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">バグの量子力学的分類</text>
+  <text x="450" y="50" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">観測との関係で分類される4種のバグ</text>
+
+  <!-- Heisenbug -->
+  <rect x="30" y="70" width="410" height="190" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="30" y="70" width="410" height="35" fill="#FF6B6B" rx="10" opacity="0.3"/>
+  <rect x="30" y="95" width="410" height="0" fill="transparent"/>
+  <text x="235" y="95" text-anchor="middle" fill="#FF6B6B" font-size="15" font-family="sans-serif" font-weight="bold">Heisenbug (ハイゼンバグ)</text>
+  <text x="50" y="125" fill="white" font-size="12" font-family="sans-serif">デバッガを起動すると消えるバグ</text>
+  <text x="50" y="148" fill="#aaa" font-size="11" font-family="sans-serif">原因: タイミング依存、最適化、メモリレイアウト変化</text>
+  <text x="50" y="168" fill="#aaa" font-size="11" font-family="sans-serif">例: レースコンディション — デバッガの遅延で消える</text>
+  <text x="50" y="188" fill="#aaa" font-size="11" font-family="sans-serif">例: コンパイラ最適化バグ — -O0 で再現しない</text>
+  <text x="50" y="210" fill="#4ECDC4" font-size="11" font-family="sans-serif">語源: Werner Heisenberg (不確定性原理)</text>
+  <text x="50" y="235" fill="#FFEAA7" font-size="12" font-family="sans-serif" font-weight="bold">対策: ログ/トレース、eBPF、統計的再現</text>
+
+  <!-- Bohrbug -->
+  <rect x="460" y="70" width="410" height="190" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="460" y="70" width="410" height="35" fill="#4ECDC4" rx="10" opacity="0.3"/>
+  <rect x="460" y="95" width="410" height="0" fill="transparent"/>
+  <text x="665" y="95" text-anchor="middle" fill="#4ECDC4" font-size="15" font-family="sans-serif" font-weight="bold">Bohrbug (ボーアバグ)</text>
+  <text x="480" y="125" fill="white" font-size="12" font-family="sans-serif">安定的に再現するバグ</text>
+  <text x="480" y="148" fill="#aaa" font-size="11" font-family="sans-serif">原因: ロジックエラー、境界値ミス</text>
+  <text x="480" y="168" fill="#aaa" font-size="11" font-family="sans-serif">例: off-by-one エラー — 常に同じ条件で発生</text>
+  <text x="480" y="188" fill="#aaa" font-size="11" font-family="sans-serif">例: null参照 — 確実にクラッシュする</text>
+  <text x="480" y="210" fill="#4ECDC4" font-size="11" font-family="sans-serif">語源: Niels Bohr (古典的原子モデル)</text>
+  <text x="480" y="235" fill="#FFEAA7" font-size="12" font-family="sans-serif" font-weight="bold">対策: ステップ実行、ユニットテスト</text>
+
+  <!-- Mandelbug -->
+  <rect x="30" y="280" width="410" height="190" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="30" y="280" width="410" height="35" fill="#6c5ce7" rx="10" opacity="0.3"/>
+  <rect x="30" y="305" width="410" height="0" fill="transparent"/>
+  <text x="235" y="305" text-anchor="middle" fill="#a29bfe" font-size="15" font-family="sans-serif" font-weight="bold">Mandelbug (マンデルバグ)</text>
+  <text x="50" y="335" fill="white" font-size="12" font-family="sans-serif">原因が複雑すぎて追跡困難なバグ</text>
+  <text x="50" y="358" fill="#aaa" font-size="11" font-family="sans-serif">原因: 複数システムの相互作用、カオス的挙動</text>
+  <text x="50" y="378" fill="#aaa" font-size="11" font-family="sans-serif">例: 分散システムの間欠的障害</text>
+  <text x="50" y="398" fill="#aaa" font-size="11" font-family="sans-serif">例: 特定の日付×タイムゾーン×ロケールの組み合わせ</text>
+  <text x="50" y="420" fill="#a29bfe" font-size="11" font-family="sans-serif">語源: Benoit Mandelbrot (フラクタル)</text>
+  <text x="50" y="445" fill="#FFEAA7" font-size="12" font-family="sans-serif" font-weight="bold">対策: 分散トレーシング、カオスエンジニアリング</text>
+
+  <!-- Schrodinbug -->
+  <rect x="460" y="280" width="410" height="190" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <rect x="460" y="280" width="410" height="35" fill="#fdcb6e" rx="10" opacity="0.3"/>
+  <rect x="460" y="305" width="410" height="0" fill="transparent"/>
+  <text x="665" y="305" text-anchor="middle" fill="#fdcb6e" font-size="15" font-family="sans-serif" font-weight="bold">Schrodinbug (シュレディンバグ)</text>
+  <text x="480" y="335" fill="white" font-size="12" font-family="sans-serif">コードを読んだ瞬間に「発見」されるバグ</text>
+  <text x="480" y="358" fill="#aaa" font-size="11" font-family="sans-serif">原因: 本来動くはずのないコードが偶然動いていた</text>
+  <text x="480" y="378" fill="#aaa" font-size="11" font-family="sans-serif">例: 未初期化変数がたまたま0だった</text>
+  <text x="480" y="398" fill="#aaa" font-size="11" font-family="sans-serif">例: バッファオーバーフローが無害な領域を上書き</text>
+  <text x="480" y="420" fill="#fdcb6e" font-size="11" font-family="sans-serif">語源: Erwin Schrodinger (猫のパラドックス)</text>
+  <text x="480" y="445" fill="#FFEAA7" font-size="12" font-family="sans-serif" font-weight="bold">対策: コードレビュー、静的解析、Fuzzing</text>
+</svg>

@@ -1,0 +1,93 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <defs></defs>
+  <rect width="900" height="500" rx="12" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" fill="#e0e0e0" font-size="18" font-weight="bold" font-family="Arial, sans-serif">トランジスタ数の推移（対数スケール）</text>
+
+  <!-- Y-axis label -->
+  <text x="25" y="270" text-anchor="middle" fill="#aaa" font-size="12" font-family="Arial, sans-serif" transform="rotate(-90,25,270)">トランジスタ数</text>
+
+  <!-- X-axis label -->
+  <text x="470" y="490" text-anchor="middle" fill="#aaa" font-size="12" font-family="Arial, sans-serif">年</text>
+
+  <!-- Grid lines (horizontal) -->
+  <line x1="100" y1="80" x2="850" y2="80" stroke="#333" stroke-width="0.5"/>
+  <line x1="100" y1="140" x2="850" y2="140" stroke="#333" stroke-width="0.5"/>
+  <line x1="100" y1="200" x2="850" y2="200" stroke="#333" stroke-width="0.5"/>
+  <line x1="100" y1="260" x2="850" y2="260" stroke="#333" stroke-width="0.5"/>
+  <line x1="100" y1="320" x2="850" y2="320" stroke="#333" stroke-width="0.5"/>
+  <line x1="100" y1="380" x2="850" y2="380" stroke="#333" stroke-width="0.5"/>
+  <line x1="100" y1="440" x2="850" y2="440" stroke="#333" stroke-width="0.5"/>
+
+  <!-- Y-axis labels (log scale) -->
+  <text x="90" y="444" text-anchor="end" fill="#aaa" font-size="10" font-family="Arial, sans-serif">10^3</text>
+  <text x="90" y="384" text-anchor="end" fill="#aaa" font-size="10" font-family="Arial, sans-serif">10^4</text>
+  <text x="90" y="324" text-anchor="end" fill="#aaa" font-size="10" font-family="Arial, sans-serif">10^5</text>
+  <text x="90" y="264" text-anchor="end" fill="#aaa" font-size="10" font-family="Arial, sans-serif">10^6</text>
+  <text x="90" y="204" text-anchor="end" fill="#aaa" font-size="10" font-family="Arial, sans-serif">10^7</text>
+  <text x="90" y="144" text-anchor="end" fill="#aaa" font-size="10" font-family="Arial, sans-serif">10^8</text>
+  <text x="90" y="84" text-anchor="end" fill="#aaa" font-size="10" font-family="Arial, sans-serif">10^9</text>
+
+  <!-- X-axis labels -->
+  <text x="130" y="465" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">1971</text>
+  <text x="230" y="465" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">1980</text>
+  <text x="350" y="465" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">1990</text>
+  <text x="470" y="465" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">2000</text>
+  <text x="590" y="465" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">2010</text>
+  <text x="710" y="465" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">2020</text>
+  <text x="830" y="465" text-anchor="middle" fill="#aaa" font-size="10" font-family="Arial, sans-serif">2025</text>
+
+  <!-- Axes -->
+  <line x1="100" y1="50" x2="100" y2="450" stroke="#666" stroke-width="1.5"/>
+  <line x1="100" y1="450" x2="860" y2="450" stroke="#666" stroke-width="1.5"/>
+
+  <!-- Moore's Law prediction line (dashed) -->
+  <line x1="130" y1="430" x2="830" y2="60" stroke="#ff6b6b" stroke-width="2" stroke-dasharray="8,4" opacity="0.7"/>
+  <text x="770" y="55" fill="#ff6b6b" font-size="10" font-family="Arial, sans-serif">ムーアの予測線</text>
+
+  <!-- Data points and line (actual transistor counts) -->
+  <!-- 4004(1971):2300 → 8080(1974):4500 → 8086(1978):29K → 286(1982):134K → 386(1985):275K → 486(1989):1.2M → Pentium(1993):3.1M → PII(1997):7.5M → PIII(1999):9.5M → P4(2000):42M → Core2(2006):291M → i7(2008):731M → Sandy(2011):1.16B → Haswell(2013):1.4B → Apple M1(2020):16B → M2 Ultra(2023):134B -->
+  <polyline points="130,430 160,415 200,390 240,360 270,345 310,310 350,280 390,260 410,255 430,230 520,195 550,180 590,165 620,158 710,110 780,80" fill="none" stroke="#4ecdc4" stroke-width="2.5"/>
+
+  <!-- Data point circles -->
+  <circle cx="130" cy="430" r="4" fill="#4ecdc4"/>
+  <circle cx="160" cy="415" r="4" fill="#4ecdc4"/>
+  <circle cx="200" cy="390" r="4" fill="#4ecdc4"/>
+  <circle cx="240" cy="360" r="4" fill="#4ecdc4"/>
+  <circle cx="270" cy="345" r="4" fill="#4ecdc4"/>
+  <circle cx="310" cy="310" r="4" fill="#4ecdc4"/>
+  <circle cx="350" cy="280" r="4" fill="#4ecdc4"/>
+  <circle cx="390" cy="260" r="4" fill="#4ecdc4"/>
+  <circle cx="430" cy="230" r="4" fill="#4ecdc4"/>
+  <circle cx="520" cy="195" r="4" fill="#4ecdc4"/>
+  <circle cx="550" cy="180" r="4" fill="#4ecdc4"/>
+  <circle cx="590" cy="165" r="4" fill="#4ecdc4"/>
+  <circle cx="620" cy="158" r="4" fill="#4ecdc4"/>
+  <circle cx="710" cy="110" r="4" fill="#4ecdc4"/>
+  <circle cx="780" cy="80" r="5" fill="#ffd93d"/>
+
+  <!-- Key chip labels -->
+  <text x="130" y="448" text-anchor="middle" fill="#4ecdc4" font-size="8" font-family="Arial, sans-serif">4004</text>
+  <text x="310" y="300" text-anchor="middle" fill="#4ecdc4" font-size="8" font-family="Arial, sans-serif">486</text>
+  <text x="350" y="270" text-anchor="middle" fill="#4ecdc4" font-size="8" font-family="Arial, sans-serif">Pentium</text>
+  <text x="430" y="220" text-anchor="middle" fill="#4ecdc4" font-size="8" font-family="Arial, sans-serif">Pentium 4</text>
+  <text x="590" y="155" text-anchor="middle" fill="#4ecdc4" font-size="8" font-family="Arial, sans-serif">Sandy Bridge</text>
+  <text x="710" y="100" text-anchor="middle" fill="#ffd93d" font-size="9" font-family="Arial, sans-serif">Apple M1</text>
+  <text x="780" y="72" text-anchor="middle" fill="#ffd93d" font-size="9" font-family="Arial, sans-serif">M2 Ultra</text>
+
+  <!-- Annotation: key eras -->
+  <rect x="130" y="52" width="180" height="18" rx="3" fill="#ff6b6b" opacity="0.2"/>
+  <text x="220" y="65" text-anchor="middle" fill="#ff6b6b" font-size="9" font-family="Arial, sans-serif">Dennardスケーリング時代</text>
+
+  <rect x="520" y="52" width="200" height="18" rx="3" fill="#ffd93d" opacity="0.2"/>
+  <text x="620" y="65" text-anchor="middle" fill="#ffd93d" font-size="9" font-family="Arial, sans-serif">マルチコア・チップレット時代</text>
+
+  <!-- Legend -->
+  <rect x="620" y="410" width="220" height="40" rx="6" fill="#222" opacity="0.8"/>
+  <line x1="635" y1="425" x2="665" y2="425" stroke="#4ecdc4" stroke-width="2"/>
+  <circle cx="650" cy="425" r="3" fill="#4ecdc4"/>
+  <text x="670" y="429" fill="#e0e0e0" font-size="10" font-family="Arial, sans-serif">実際のトランジスタ数</text>
+  <line x1="635" y1="440" x2="665" y2="440" stroke="#ff6b6b" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="670" y="444" fill="#e0e0e0" font-size="10" font-family="Arial, sans-serif">ムーアの法則(予測)</text>
+</svg>

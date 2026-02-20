@@ -1,0 +1,54 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="30" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">年収と幸福度の関係</text>
+
+  <!-- Chart area -->
+  <rect x="80" y="50" width="780" height="300" fill="#16213e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+
+  <!-- Y axis -->
+  <line x1="140" y1="80" x2="140" y2="320" stroke="#aaa" stroke-width="1"/>
+  <text x="100" y="200" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif" transform="rotate(-90,100,200)">幸福度</text>
+  <text x="135" y="95" text-anchor="end" fill="#aaa" font-size="10" font-family="sans-serif">高い</text>
+  <text x="135" y="315" text-anchor="end" fill="#aaa" font-size="10" font-family="sans-serif">低い</text>
+
+  <!-- X axis -->
+  <line x1="140" y1="320" x2="820" y2="320" stroke="#aaa" stroke-width="1"/>
+  <text x="480" y="345" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">年収</text>
+  <text x="200" y="335" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">300万</text>
+  <text x="340" y="335" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">500万</text>
+  <text x="480" y="335" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">750万</text>
+  <text x="610" y="335" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">1000万</text>
+  <text x="750" y="335" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">2000万+</text>
+
+  <!-- Emotional wellbeing curve (Kahneman) - logarithmic, plateaus -->
+  <polyline points="160,290 230,230 310,180 400,145 500,125 600,115 700,112 800,110" fill="none" stroke="#4ECDC4" stroke-width="3"/>
+  <text x="810" y="100" fill="#4ECDC4" font-size="11" font-family="sans-serif">日々の感情的幸福</text>
+
+  <!-- Life evaluation curve (linear) -->
+  <polyline points="160,280 230,250 310,220 400,190 500,165 600,140 700,115 800,90" fill="none" stroke="#FFEAA7" stroke-width="3"/>
+  <text x="810" y="80" fill="#FFEAA7" font-size="11" font-family="sans-serif">人生の評価</text>
+
+  <!-- Satiation point annotation -->
+  <line x1="480" y1="80" x2="480" y2="320" stroke="#FF6B6B" stroke-width="1" stroke-dasharray="5,5" opacity="0.6"/>
+  <text x="480" y="75" text-anchor="middle" fill="#FF6B6B" font-size="12" font-family="sans-serif" font-weight="bold">飽和点 ~$75K</text>
+  <text x="480" y="90" text-anchor="middle" fill="#FF6B6B" font-size="10" font-family="sans-serif">(Kahneman 2010)</text>
+
+  <!-- Bottom insight boxes -->
+  <rect x="50" y="370" width="260" height="110" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="180" y="395" text-anchor="middle" fill="#4ECDC4" font-size="13" font-family="sans-serif" font-weight="bold">Kahneman (2010)</text>
+  <text x="180" y="415" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">年収$75K(約750万円)で</text>
+  <text x="180" y="435" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">日常の幸福感は飽和する</text>
+  <text x="180" y="460" text-anchor="middle" fill="#4ECDC4" font-size="11" font-family="sans-serif">それ以上は「慣れ」が支配</text>
+
+  <rect x="330" y="370" width="260" height="110" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="460" y="395" text-anchor="middle" fill="#FFEAA7" font-size="13" font-family="sans-serif" font-weight="bold">Killingsworth (2021)</text>
+  <text x="460" y="415" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">$100K以上でも幸福度は</text>
+  <text x="460" y="435" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">上がり続けるという反論</text>
+  <text x="460" y="460" text-anchor="middle" fill="#FFEAA7" font-size="11" font-family="sans-serif">ただし対数的に鈍化する</text>
+
+  <rect x="610" y="370" width="260" height="110" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="740" y="395" text-anchor="middle" fill="#FF6B6B" font-size="13" font-family="sans-serif" font-weight="bold">統合見解 (2023)</text>
+  <text x="740" y="415" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">両者が共同論文で合意:</text>
+  <text x="740" y="435" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">「不幸な人」は$75Kで飽和</text>
+  <text x="740" y="460" text-anchor="middle" fill="#FF6B6B" font-size="11" font-family="sans-serif">「幸福な人」は上がり続ける</text>
+</svg>

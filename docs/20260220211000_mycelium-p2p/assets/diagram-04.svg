@@ -1,0 +1,105 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f0e17" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#fffffe" font-size="18" font-family="sans-serif" font-weight="bold">自然 × テクノロジー：設計パターン対応表</text>
+
+  <!-- Column headers -->
+  <rect x="40" y="55" width="260" height="40" fill="#2d6a4f" rx="6"/>
+  <text x="170" y="80" text-anchor="middle" fill="#fffffe" font-size="14" font-family="sans-serif" font-weight="bold">菌糸ネットワーク</text>
+
+  <rect x="320" y="55" width="260" height="40" fill="#2563eb" rx="6"/>
+  <text x="450" y="80" text-anchor="middle" fill="#fffffe" font-size="14" font-family="sans-serif" font-weight="bold">P2P / 分散システム</text>
+
+  <rect x="600" y="55" width="260" height="40" fill="#7c3aed" rx="6"/>
+  <text x="730" y="80" text-anchor="middle" fill="#fffffe" font-size="14" font-family="sans-serif" font-weight="bold">共通原理</text>
+
+  <!-- Row 1: Communication -->
+  <rect x="40" y="105" width="260" height="60" fill="#1a1a2e" rx="4" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="170" y="130" text-anchor="middle" fill="#52b788" font-size="12" font-family="sans-serif" font-weight="bold">化学シグナル伝達</text>
+  <text x="170" y="150" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">隣接ノードに分子で情報伝播</text>
+
+  <rect x="320" y="105" width="260" height="60" fill="#1a1a2e" rx="4" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="450" y="130" text-anchor="middle" fill="#7ecaff" font-size="12" font-family="sans-serif" font-weight="bold">Gossip Protocol</text>
+  <text x="450" y="150" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">ランダムピアにメッセージ伝播</text>
+
+  <rect x="600" y="105" width="260" height="60" fill="#2a1a3e" rx="4" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="730" y="130" text-anchor="middle" fill="#c4b5fd" font-size="12" font-family="sans-serif" font-weight="bold">Epidemic Broadcast</text>
+  <text x="730" y="150" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">局所的伝達で全体に波及</text>
+
+  <!-- Arrow connectors row 1 -->
+  <line x1="300" y1="135" x2="318" y2="135" stroke="#a7a9be" stroke-width="1.5"/>
+  <polygon points="316,131 324,135 316,139" fill="#a7a9be"/>
+  <line x1="580" y1="135" x2="598" y2="135" stroke="#a7a9be" stroke-width="1.5"/>
+  <polygon points="596,131 604,135 596,139" fill="#a7a9be"/>
+
+  <!-- Row 2: Resource sharing -->
+  <rect x="40" y="180" width="260" height="60" fill="#1a1a2e" rx="4" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="170" y="205" text-anchor="middle" fill="#52b788" font-size="12" font-family="sans-serif" font-weight="bold">炭素・栄養素の再分配</text>
+  <text x="170" y="225" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">余剰リソースを不足ノードへ</text>
+
+  <rect x="320" y="180" width="260" height="60" fill="#1a1a2e" rx="4" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="450" y="205" text-anchor="middle" fill="#7ecaff" font-size="12" font-family="sans-serif" font-weight="bold">Load Balancing</text>
+  <text x="450" y="225" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">負荷分散で均等処理</text>
+
+  <rect x="600" y="180" width="260" height="60" fill="#2a1a3e" rx="4" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="730" y="205" text-anchor="middle" fill="#c4b5fd" font-size="12" font-family="sans-serif" font-weight="bold">Resource Redistribution</text>
+  <text x="730" y="225" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">全体最適のための再配分</text>
+
+  <line x1="300" y1="210" x2="318" y2="210" stroke="#a7a9be" stroke-width="1.5"/>
+  <polygon points="316,206 324,210 316,214" fill="#a7a9be"/>
+  <line x1="580" y1="210" x2="598" y2="210" stroke="#a7a9be" stroke-width="1.5"/>
+  <polygon points="596,206 604,210 596,214" fill="#a7a9be"/>
+
+  <!-- Row 3: Fault tolerance -->
+  <rect x="40" y="255" width="260" height="60" fill="#1a1a2e" rx="4" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="170" y="280" text-anchor="middle" fill="#52b788" font-size="12" font-family="sans-serif" font-weight="bold">冗長経路 + 自己修復</text>
+  <text x="170" y="300" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">損傷時に新菌糸で迂回</text>
+
+  <rect x="320" y="255" width="260" height="60" fill="#1a1a2e" rx="4" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="450" y="280" text-anchor="middle" fill="#7ecaff" font-size="12" font-family="sans-serif" font-weight="bold">Replication + Failover</text>
+  <text x="450" y="300" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">データ複製と自動切替</text>
+
+  <rect x="600" y="255" width="260" height="60" fill="#2a1a3e" rx="4" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="730" y="280" text-anchor="middle" fill="#c4b5fd" font-size="12" font-family="sans-serif" font-weight="bold">Resilience Pattern</text>
+  <text x="730" y="300" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">単一障害点の排除</text>
+
+  <line x1="300" y1="285" x2="318" y2="285" stroke="#a7a9be" stroke-width="1.5"/>
+  <polygon points="316,281 324,285 316,289" fill="#a7a9be"/>
+  <line x1="580" y1="285" x2="598" y2="285" stroke="#a7a9be" stroke-width="1.5"/>
+  <polygon points="596,281 604,285 596,289" fill="#a7a9be"/>
+
+  <!-- Row 4: Discovery -->
+  <rect x="40" y="330" width="260" height="60" fill="#1a1a2e" rx="4" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="170" y="355" text-anchor="middle" fill="#52b788" font-size="12" font-family="sans-serif" font-weight="bold">化学走性（Chemotaxis）</text>
+  <text x="170" y="375" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">化学勾配に沿って成長</text>
+
+  <rect x="320" y="330" width="260" height="60" fill="#1a1a2e" rx="4" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="450" y="355" text-anchor="middle" fill="#7ecaff" font-size="12" font-family="sans-serif" font-weight="bold">Service Discovery</text>
+  <text x="450" y="375" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">DNS/mDNSでノード発見</text>
+
+  <rect x="600" y="330" width="260" height="60" fill="#2a1a3e" rx="4" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="730" y="355" text-anchor="middle" fill="#c4b5fd" font-size="12" font-family="sans-serif" font-weight="bold">Auto Discovery</text>
+  <text x="730" y="375" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">環境応答型ノード探索</text>
+
+  <line x1="300" y1="360" x2="318" y2="360" stroke="#a7a9be" stroke-width="1.5"/>
+  <polygon points="316,356 324,360 316,364" fill="#a7a9be"/>
+  <line x1="580" y1="360" x2="598" y2="360" stroke="#a7a9be" stroke-width="1.5"/>
+  <polygon points="596,356 604,360 596,364" fill="#a7a9be"/>
+
+  <!-- Row 5: Incentives -->
+  <rect x="40" y="405" width="260" height="60" fill="#1a1a2e" rx="4" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="170" y="430" text-anchor="middle" fill="#52b788" font-size="12" font-family="sans-serif" font-weight="bold">相利共生（Mutualism）</text>
+  <text x="170" y="450" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">木: 炭素 / 菌: リン・水</text>
+
+  <rect x="320" y="405" width="260" height="60" fill="#1a1a2e" rx="4" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="450" y="430" text-anchor="middle" fill="#7ecaff" font-size="12" font-family="sans-serif" font-weight="bold">Token Economics</text>
+  <text x="450" y="450" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">貢献に応じた報酬設計</text>
+
+  <rect x="600" y="405" width="260" height="60" fill="#2a1a3e" rx="4" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="730" y="430" text-anchor="middle" fill="#c4b5fd" font-size="12" font-family="sans-serif" font-weight="bold">Incentive Alignment</text>
+  <text x="730" y="450" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">参加者全員が利益を得る構造</text>
+
+  <line x1="300" y1="435" x2="318" y2="435" stroke="#a7a9be" stroke-width="1.5"/>
+  <polygon points="316,431 324,435 316,439" fill="#a7a9be"/>
+  <line x1="580" y1="435" x2="598" y2="435" stroke="#a7a9be" stroke-width="1.5"/>
+  <polygon points="596,431 604,435 596,439" fill="#a7a9be"/>
+</svg>

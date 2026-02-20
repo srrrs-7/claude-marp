@@ -1,0 +1,12 @@
+topic: "確証バイアスとコードレビュー ― 見たいものしか見えない問題"
+language: "ja"
+output:
+  dir: "docs/20260220063200_confirmation-bias-code-review"
+  baseName: "confirmation-bias-code-review"
+marp:
+  theme: gaia
+  paginate: true
+  header: "確証バイアスとコードレビュー"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

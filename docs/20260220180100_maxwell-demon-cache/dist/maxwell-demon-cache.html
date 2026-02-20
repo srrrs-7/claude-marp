@@ -1,0 +1,1122 @@
+<!DOCTYPE html><html lang="en-US"><head><title>マクスウェルの悪魔とキャッシュ無効化</title><meta property="og:title" content="マクスウェルの悪魔とキャッシュ無効化"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{appearance:none;background-color:initial;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear;-webkit-tap-highlight-color:transparent}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNNDAgNzBIMjBWNTBtMjAgMEwyMCA3MG00MC00MGgyMHYyMG0tMjAgMCAyMC0yMCIgY2xhc3M9ImEiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNMjAgNTBoMjB2MjBtLTIwIDAgMjAtMjBtNDAgMEg2MFYzMG0yMCAwTDYwIDUwIiBjbGFzcz0iYSIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODBNNTIgOTBWMTAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}@keyframes __bespoke_marp_transition_reduced_outgoing__{0%{opacity:1}to{opacity:0}}@keyframes __bespoke_marp_transition_reduced_incoming__{0%{mix-blend-mode:plus-lighter;opacity:0}to{mix-blend-mode:plus-lighter;opacity:1}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{::view-transition-group(*){animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-timing-function:ease}::view-transition-new(*),::view-transition-old(*){animation-delay:0s;animation-direction:var(--marp-bespoke-transition-animation-direction,normal);animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-fill-mode:both;animation-name:var(--marp-bespoke-transition-animation-name,var(--marp-bespoke-transition-animation-name-fallback,__bespoke_marp_transition_no_animation__));mix-blend-mode:normal}::view-transition-old(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_outgoing__;animation-timing-function:ease}::view-transition-new(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_incoming__;animation-timing-function:ease}::view-transition-new(root),::view-transition-old(root){animation-timing-function:linear}::view-transition-new(__bespoke_marp_transition_osc__),::view-transition-old(__bespoke_marp_transition_osc__){animation-duration:0s!important;animation-name:__bespoke_marp_transition_osc__!important}::view-transition-new(__bespoke_marp_transition_osc__){opacity:0!important}.bespoke-marp-transition-warming-up::view-transition-group(*),.bespoke-marp-transition-warming-up::view-transition-new(*),.bespoke-marp-transition-warming-up::view-transition-old(*){animation-play-state:paused!important}body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide:not(.bespoke-marp-active) *{view-transition-name:none!important}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}}@media screen and (prefers-reduced-motion:reduce){svg.bespoke-marp-slide *{view-transition-name:none!important}}@media screen{[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{inset:0;position:absolute}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{background:#000000a6;border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1;view-transition-name:__bespoke_marp_transition_osc__}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:#0000}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:#0000;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{display:block;inset:0;position:absolute}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:#000000a6;border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;white-space:pre-wrap;width:calc(100% - 40px);word-wrap:break-word;scrollbar-color:#eeeeee80 #0000;scrollbar-width:thin}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:#0000}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:#eeeeee80;border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>@charset "UTF-8";@import "https://fonts.bunny.net/css?family=Lato:400,900|Roboto+Mono:400,700&display=swap";div#\:\$p > svg > foreignObject > section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center;-webkit-text-size-adjust:100%;text-size-adjust:100%}div#\:\$p > svg > foreignObject > section::after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#\:\$p > svg > foreignObject > section:not([data-marpit-pagination])::after{display:none}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:2em;margin-block:0.67em}div#\:\$p > svg > foreignObject > section video::-webkit-media-controls{will-change:transform}@page {size:1280px 720px;margin:0}@media print{html, body{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#\:\$p > svg > foreignObject > section{page-break-before:always;break-before:page}div#\:\$p > svg > foreignObject > section, div#\:\$p > svg > foreignObject > section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;print-color-adjust:exact!important;transition:none!important}div#\:\$p > svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#\:\$p > svg > foreignObject > :where(section){container-type:size}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"]{direction:ltr}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"] > svg{overflow:visible;min-height:1px;min-width:1px}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"] > svg a{fill:blue;stroke:blue}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"][display="true"]{display:block;text-align:center;margin:1em 0}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"][display="true"][width="full"]{display:flex}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"][justify="left"]{text-align:left}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"][justify="right"]{text-align:right}div#\:\$p > svg > foreignObject > section g[data-mml-node="merror"] > g{fill:red;stroke:red}div#\:\$p > svg > foreignObject > section g[data-mml-node="merror"] > rect[data-background]{fill:yellow;stroke:none}div#\:\$p > svg > foreignObject > section g[data-mml-node="mtable"] > line[data-line], div#\:\$p > svg > foreignObject > section svg[data-table] > g > line[data-line]{stroke-width:70px;fill:none}div#\:\$p > svg > foreignObject > section g[data-mml-node="mtable"] > rect[data-frame], div#\:\$p > svg > foreignObject > section svg[data-table] > g > rect[data-frame]{stroke-width:70px;fill:none}div#\:\$p > svg > foreignObject > section g[data-mml-node="mtable"] > .mjx-dashed, div#\:\$p > svg > foreignObject > section svg[data-table] > g > .mjx-dashed{stroke-dasharray:140}div#\:\$p > svg > foreignObject > section g[data-mml-node="mtable"] > .mjx-dotted, div#\:\$p > svg > foreignObject > section svg[data-table] > g > .mjx-dotted{stroke-linecap:round;stroke-dasharray:0,140}div#\:\$p > svg > foreignObject > section g[data-mml-node="mtable"] > g > svg{overflow:visible}div#\:\$p > svg > foreignObject > section [jax="SVG"] mjx-tool{display:inline-block;position:relative;width:0;height:0}div#\:\$p > svg > foreignObject > section [jax="SVG"] mjx-tool > mjx-tip{position:absolute;top:0;left:0}div#\:\$p > svg > foreignObject > section mjx-tool > mjx-tip{display:inline-block;padding:.2em;border:1px solid #888;font-size:70%;background-color:#F8F8F8;color:black;box-shadow:2px 2px 5px #AAAAAA}div#\:\$p > svg > foreignObject > section g[data-mml-node="maction"][data-toggle]{cursor:pointer}div#\:\$p > svg > foreignObject > section mjx-status{display:block;position:fixed;left:1em;bottom:1em;min-width:25%;padding:.2em .4em;border:1px solid #888;font-size:90%;background-color:#F8F8F8;color:black}div#\:\$p > svg > foreignObject > section foreignObject[data-mjx-xml]{font-family:initial;line-height:normal;overflow:visible}div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"] path[data-c], div#\:\$p > svg > foreignObject > section mjx-container[jax="SVG"] use[data-c]{stroke-width:3}@media print{div#\:\$p > svg > foreignObject > section mjx-container[jax=SVG] path[data-c],div#\:\$p > svg > foreignObject > section mjx-container[jax=SVG] use[data-c]{stroke-width:0}}div#\:\$p > svg > foreignObject > section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}/*!
+ * Marp / Marpit Gaia theme.
+ *
+ * @theme gaia
+ * @author Yuki Hattori
+ *
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ * @size 4:3 960px 720px
+ */div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code.hljs{display:block;overflow-x:auto;padding:1em}div#\:\$p > svg > foreignObject > section code.hljs{padding:3px 5px}div#\:\$p > svg > foreignObject > section .hljs{background:#000;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-comment,div#\:\$p > svg > foreignObject > section .hljs-quote{color:#aeaeae;font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-keyword,div#\:\$p > svg > foreignObject > section .hljs-selector-tag,div#\:\$p > svg > foreignObject > section .hljs-type{color:#e28964}div#\:\$p > svg > foreignObject > section .hljs-string{color:#65b042}div#\:\$p > svg > foreignObject > section .hljs-subst{color:#daefa3}div#\:\$p > svg > foreignObject > section .hljs-link,div#\:\$p > svg > foreignObject > section .hljs-regexp{color:#e9c062}div#\:\$p > svg > foreignObject > section .hljs-name,div#\:\$p > svg > foreignObject > section .hljs-section,div#\:\$p > svg > foreignObject > section .hljs-tag,div#\:\$p > svg > foreignObject > section .hljs-title{color:#89bdff}div#\:\$p > svg > foreignObject > section .hljs-class .hljs-title,div#\:\$p > svg > foreignObject > section .hljs-doctag,div#\:\$p > svg > foreignObject > section .hljs-title.class_{text-decoration:underline}div#\:\$p > svg > foreignObject > section .hljs-bullet,div#\:\$p > svg > foreignObject > section .hljs-number,div#\:\$p > svg > foreignObject > section .hljs-symbol{color:#3387cc}div#\:\$p > svg > foreignObject > section .hljs-params,div#\:\$p > svg > foreignObject > section .hljs-template-variable,div#\:\$p > svg > foreignObject > section .hljs-variable{color:#3e87e3}div#\:\$p > svg > foreignObject > section .hljs-attribute{color:#cda869}div#\:\$p > svg > foreignObject > section .hljs-meta{color:#8996a8}div#\:\$p > svg > foreignObject > section .hljs-formula{background-color:#0e2231;color:#f8f8f8;font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-addition{background-color:#253b22;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-deletion{background-color:#420e09;color:#f8f8f8}div#\:\$p > svg > foreignObject > section .hljs-selector-class{color:#9b703f}div#\:\$p > svg > foreignObject > section .hljs-selector-id{color:#8b98ab}div#\:\$p > svg > foreignObject > section .hljs-emphasis{font-style:italic}div#\:\$p > svg > foreignObject > section .hljs-strong{font-weight:700}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){margin:.5em 0 0}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{font-weight:inherit}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h2, marp-h2)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h3, marp-h3)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h4, marp-h4)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h5, marp-h5)::part(auto-scaling),div#\:\$p > svg > foreignObject > section :is(h6, marp-h6)::part(auto-scaling){max-height:580px}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:1.8em}div#\:\$p > svg > foreignObject > section :is(h2, marp-h2){font-size:1.5em}div#\:\$p > svg > foreignObject > section :is(h3, marp-h3){font-size:1.3em}div#\:\$p > svg > foreignObject > section :is(h4, marp-h4){font-size:1.1em}div#\:\$p > svg > foreignObject > section :is(h5, marp-h5){font-size:1em}div#\:\$p > svg > foreignObject > section :is(h6, marp-h6){font-size:.9em}div#\:\$p > svg > foreignObject > section blockquote,div#\:\$p > svg > foreignObject > section p{margin:1em 0 0}div#\:\$p > svg > foreignObject > section ol>li,div#\:\$p > svg > foreignObject > section ul>li{margin:.3em 0 0}div#\:\$p > svg > foreignObject > section ol>li>p,div#\:\$p > svg > foreignObject > section ul>li>p{margin:.6em 0 0}div#\:\$p > svg > foreignObject > section code{display:inline-block;font-family:Roboto Mono,monospace;font-size:.8em;letter-spacing:0;margin:-.1em .15em;padding:.1em .2em;vertical-align:baseline}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){display:block;margin:1em 0 0;overflow:visible}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{box-sizing:border-box;font-size:.7em;margin:0;min-width:100%;padding:.5em}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)::part(auto-scaling){max-height:calc(580px - 1em)}div#\:\$p > svg > foreignObject > section blockquote{margin:1em 0 0;padding:0 1em;position:relative}div#\:\$p > svg > foreignObject > section blockquote:after,div#\:\$p > svg > foreignObject > section blockquote:before{content:"“";display:block;font-family:Times New Roman,serif;font-weight:700;position:absolute}div#\:\$p > svg > foreignObject > section blockquote:before{left:0;top:0}div#\:\$p > svg > foreignObject > section blockquote:after{bottom:0;right:0;transform:rotate(180deg)}div#\:\$p > svg > foreignObject > section blockquote>:first-child{margin-top:0}div#\:\$p > svg > foreignObject > section mark{background:transparent}div#\:\$p > svg > foreignObject > section table{border-collapse:collapse;border-spacing:0;margin:1em 0 0}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{border-style:solid;border-width:1px;padding:.2em .4em}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header,div#\:\$p > svg > foreignObject > section:after{box-sizing:border-box;font-size:66%;height:70px;line-height:50px;overflow:hidden;padding:10px 25px;position:absolute}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:66%}div#\:\$p > svg > foreignObject > section header{top:0}div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header{left:0;right:0}div#\:\$p > svg > foreignObject > section footer{bottom:0}div#\:\$p > svg > foreignObject > section{--color-background:light-dark(#fff8e1, #455a64);--color-background-stripe:light-dark(
+    rgba(69,90,100,.1),
+    rgba(255,248,225,.1)
+  );--color-foreground:light-dark(#455a64, #fff8e1);--color-dimmed:light-dark(
+    #6a7a7d,
+    #dad8c8
+  );--color-highlight:light-dark(#0288d1, #81d4fa);background-color:var(--color-background);background-image:linear-gradient(135deg, hsla(0,0%,53%,0), hsla(0,0%,53%,.02) 50%, hsla(0,0%,100%,0) 0, hsla(0,0%,100%,.05));color:var(--color-foreground);color-scheme:light;font-family:Lato,Avenir Next,Avenir,Trebuchet MS,Segoe UI,sans-serif;font-size:35px;height:720px;letter-spacing:1.25px;line-height:1.35;overflow-wrap:break-word;padding:70px;width:1280px}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size:35px}div#\:\$p > svg > foreignObject > section:after{bottom:0;font-size:80%;right:0}div#\:\$p > svg > foreignObject > section:after{--marpit-root-font-size:80%}div#\:\$p > svg > foreignObject > section a,div#\:\$p > svg > foreignObject > section mark{color:var(--color-highlight)}div#\:\$p > svg > foreignObject > section code{background:var(--color-dimmed);color:var(--color-background)}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1) strong,div#\:\$p > svg > foreignObject > section :is(h2, marp-h2) strong,div#\:\$p > svg > foreignObject > section :is(h3, marp-h3) strong,div#\:\$p > svg > foreignObject > section :is(h4, marp-h4) strong,div#\:\$p > svg > foreignObject > section :is(h5, marp-h5) strong,div#\:\$p > svg > foreignObject > section :is(h6, marp-h6) strong{color:var(--color-highlight)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){background:var(--color-foreground)}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre)>code{background:transparent}div#\:\$p > svg > foreignObject > section blockquote:after,div#\:\$p > svg > foreignObject > section blockquote:before,div#\:\$p > svg > foreignObject > section footer,div#\:\$p > svg > foreignObject > section header,div#\:\$p > svg > foreignObject > section section:after{color:var(--color-dimmed)}div#\:\$p > svg > foreignObject > section table td,div#\:\$p > svg > foreignObject > section table th{border-color:var(--color-foreground)}div#\:\$p > svg > foreignObject > section table thead th{background:var(--color-foreground);color:var(--color-background)}div#\:\$p > svg > foreignObject > section table tbody>tr:nth-child(odd) td,div#\:\$p > svg > foreignObject > section table tbody>tr:nth-child(odd) th{background:var(--color-background-stripe, transparent)}div#\:\$p > svg > foreignObject > section>:first-child,div#\:\$p > svg > foreignObject > section>header:first-child+*{margin-top:0}div#\:\$p > svg > foreignObject > section:where(.invert){color-scheme:dark}div#\:\$p > svg > foreignObject > section:where(.gaia){--color-background:#0288d1;--color-background-stripe:rgba(255,248,225,.1);--color-foreground:#fff8e1;--color-dimmed:#cce2de;--color-highlight:#81d4fa;}div#\:\$p > svg > foreignObject > section:where(.lead){align-items:stretch;flex-flow:column nowrap;place-content:safe center center}div#\:\$p > svg > foreignObject > section:where(.lead) :is(h1, marp-h1),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h2, marp-h2),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h3, marp-h3),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h4, marp-h4),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h5, marp-h5),div#\:\$p > svg > foreignObject > section:where(.lead) :is(h6, marp-h6){text-align:center}div#\:\$p > svg > foreignObject > section:where(.lead) p{text-align:center}div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h1, marp-h1),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h2, marp-h2),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h3, marp-h3),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h4, marp-h4),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h5, marp-h5),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>:is(h6, marp-h6),div#\:\$p > svg > foreignObject > section:where(.lead) blockquote>p{text-align:left}div#\:\$p > svg > foreignObject > section:where(.lead) ol>li>p,div#\:\$p > svg > foreignObject > section:where(.lead) ul>li>p{text-align:left}div#\:\$p > svg > foreignObject > section:where(.lead) table{margin-left:auto;margin-right:auto}div#\:\$p > svg > foreignObject > section{width:1280px;height:720px}div#\:\$p > svg > foreignObject > section{font-size:1.05em}div#\:\$p > svg > foreignObject > section{--marpit-root-font-size: 1.05em}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{font-size:0.58em;line-height:1.4}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]{columns:initial!important;display:block!important;padding:0!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::after, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::after{display:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction="vertical"]{flex-direction:column}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split] > div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split, 50%)}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split="right"] > div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure > figcaption{position:absolute;border:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;white-space:nowrap;width:1px}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"], div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"]{background:transparent!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"], div#\:\$p > svg[data-marpit-svg] > foreignObject[data-marpit-advanced-background="pseudo"]{pointer-events:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background-split]{width:100%;height:100%}
+</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id=":$p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-class="lead" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="1" style="--class:lead;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+
+<h1 id="%E3%83%9E%E3%82%AF%E3%82%B9%E3%82%A6%E3%82%A7%E3%83%AB%E3%81%AE%E6%82%AA%E9%AD%94%E3%81%A8%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E7%84%A1%E5%8A%B9%E5%8C%96">マクスウェルの悪魔とキャッシュ無効化</h1>
+<ul>
+<li><strong>CSで最も難しい問題：キャッシュ無効化</strong></li>
+<li></li>
+<li>
+<blockquote>
+<p>&quot;There are only two hard things in Computer Science:</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>cache invalidation and naming things.&quot;</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>— Phil Karlton</p>
+</blockquote>
+</li>
+<li></li>
+<li>なぜキャッシュ無効化は難しいのか？</li>
+<li>1867年の物理学に答えがある</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-class="lead" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="2" style="--class:lead;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+
+<h1 id="%E3%83%9E%E3%82%AF%E3%82%B9%E3%82%A6%E3%82%A7%E3%83%AB%E3%81%AE%E6%82%AA%E9%AD%94%E3%81%A8%E3%81%AF">マクスウェルの悪魔とは</h1>
+<ul>
+<li>1867年 ジェームズ・クラーク・マクスウェルの思考実験</li>
+<li>熱力学第二法則への挑戦</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-class="invert" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="3" style="--class:invert;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+<h1 id="1867%E5%B9%B4%E3%81%AE%E6%80%9D%E8%80%83%E5%AE%9F%E9%A8%93%E7%86%B1%E5%8A%9B%E5%AD%A6%E7%AC%AC%E4%BA%8C%E6%B3%95%E5%89%87%E3%82%92%E7%A0%B4%E3%82%8C%E3%82%8B%E3%81%8B">1867年の思考実験：熱力学第二法則を破れるか？</h1>
+<ul>
+<li>
+<svg viewBox='0 0 700 320' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li></li>
+<li>
+<rect x='30' y='40' width='270' height='240' rx='8' fill='#1a3a5c' stroke='#4a9eff' stroke-width='2' />
+</li>
+<li><text x='165' y='30' text-anchor='middle' fill='#4a9eff' font-size='14' font-family='sans-serif'>室 A（熱い）</text></li>
+<li></li>
+<li>
+<circle cx='80' cy='120' r='12' fill='#ff6b6b' style='filter:drop-shadow(0 0 4px rgba(255,100,100,0.8))' />
+</li>
+<li>
+<circle cx='150' cy='90' r='12' fill='#ff6b6b' style='filter:drop-shadow(0 0 4px rgba(255,100,100,0.8))' />
+</li>
+<li>
+<circle cx='220' cy='140' r='12' fill='#ff6b6b' style='filter:drop-shadow(0 0 4px rgba(255,100,100,0.8))' />
+</li>
+<li>
+<circle cx='100' cy='200' r='12' fill='#ff6b6b' style='filter:drop-shadow(0 0 4px rgba(255,100,100,0.8))' />
+</li>
+<li>
+<circle cx='240' cy='220' r='12' fill='#ff6b6b' style='filter:drop-shadow(0 0 4px rgba(255,100,100,0.8))' />
+</li>
+<li><text x='165' y='270' text-anchor='middle' fill='#ff6b6b' font-size='12' font-family='sans-serif'>高速分子（高温）</text></li>
+<li></li>
+<li>
+<rect x='298' y='40' width='4' height='95' fill='#888' />
+</li>
+<li>
+<rect x='298' y='185' width='4' height='95' fill='#888' />
+</li>
+<li>
+<rect x='294' y='135' width='12' height='50' rx='3' fill='#ffd700' style='filter:drop-shadow(0 0 6px rgba(255,215,0,0.8))' />
+</li>
+<li></li>
+<li>
+<circle cx='300' cy='160' r='20' fill='#9b59b6' style='filter:drop-shadow(0 0 8px rgba(155,89,182,0.8))' />
+</li>
+<li><text x='300' y='165' text-anchor='middle' fill='white' font-size='16' font-family='sans-serif'><img class="emoji" draggable="false" alt="👁" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f441.svg" data-marp-twemoji=""/></text></li>
+<li><text x='300' y='220' text-anchor='middle' fill='#9b59b6' font-size='11' font-family='sans-serif'>悪魔</text></li>
+<li></li>
+<li>
+<rect x='400' y='40' width='270' height='240' rx='8' fill='#1a2a3a' stroke='#64b5f6' stroke-width='2' />
+</li>
+<li><text x='535' y='30' text-anchor='middle' fill='#64b5f6' font-size='14' font-family='sans-serif'>室 B（冷たい）</text></li>
+<li></li>
+<li>
+<circle cx='450' cy='110' r='10' fill='#64b5f6' />
+</li>
+<li>
+<circle cx='520' cy='150' r='10' fill='#64b5f6' />
+</li>
+<li>
+<circle cx='600' cy='100' r='10' fill='#64b5f6' />
+</li>
+<li>
+<circle cx='480' cy='210' r='10' fill='#64b5f6' />
+</li>
+<li>
+<circle cx='620' cy='190' r='10' fill='#64b5f6' />
+</li>
+<li><text x='535' y='270' text-anchor='middle' fill='#64b5f6' font-size='12' font-family='sans-serif'>低速分子（低温）</text></li>
+<li></li>
+<li><text x='350' y='305' text-anchor='middle' fill='#aaa' font-size='11' font-family='sans-serif'>悪魔は速い分子だけを左→右に通す。エネルギーなしで温度差を作れる？</text></li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-class="invert" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="4" style="--class:invert;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+<h1 id="%E6%82%AA%E9%AD%94%E3%81%AE%E3%82%B8%E3%83%AC%E3%83%B3%E3%83%9E%E6%83%85%E5%A0%B1%E3%82%92%E8%A6%9A%E3%81%88%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AB%E3%82%B3%E3%82%B9%E3%83%88%E3%81%8C%E3%81%8B%E3%81%8B%E3%82%8B">悪魔のジレンマ：情報を覚えることにコストがかかる</h1>
+<ul>
+<li><strong>シラードの解決（1929年）</strong></li>
+<li></li>
+<li>
+<svg viewBox='0 0 700 280' style='max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li></li>
+<li>
+<rect x='20' y='30' width='180' height='120' rx='8' fill='#1a3a1a' stroke='#4caf50' stroke-width='2' />
+</li>
+<li><text x='110' y='55' text-anchor='middle' fill='#4caf50' font-size='13' font-family='sans-serif' font-weight='bold'>① 観測</text></li>
+<li><text x='110' y='80' text-anchor='middle' fill='#ccc' font-size='11' font-family='sans-serif'>分子の速度を測定</text></li>
+<li><text x='110' y='100' text-anchor='middle' fill='#ccc' font-size='11' font-family='sans-serif'>情報をメモリに記録</text></li>
+<li><text x='110' y='120' text-anchor='middle' fill='#ffd700' font-size='11' font-family='sans-serif'>→ エントロピー減少</text></li>
+<li><text x='110' y='140' text-anchor='middle' fill='#ff9800' font-size='11' font-family='sans-serif'>（一時的に秩序増大）</text></li>
+<li></li>
+<li>
+<line x1='200' y1='90' x2='240' y2='90' stroke='#aaa' stroke-width='2' />
+</li>
+<li>
+<polygon points='240,85 252,90 240,95' fill='#aaa' />
+</li>
+<li></li>
+<li>
+<rect x='252' y='30' width='180' height='120' rx='8' fill='#3a2a1a' stroke='#ff9800' stroke-width='2' />
+</li>
+<li><text x='342' y='55' text-anchor='middle' fill='#ff9800' font-size='13' font-family='sans-serif' font-weight='bold'>② 扉の制御</text></li>
+<li><text x='342' y='80' text-anchor='middle' fill='#ccc' font-size='11' font-family='sans-serif'>記録した情報を使い</text></li>
+<li><text x='342' y='100' text-anchor='middle' fill='#ccc' font-size='11' font-family='sans-serif'>扉を開閉する</text></li>
+<li><text x='342' y='120' text-anchor='middle' fill='#ffd700' font-size='11' font-family='sans-serif'>→ 仕事を取り出す</text></li>
+<li><text x='342' y='140' text-anchor='middle' fill='#ff9800' font-size='11' font-family='sans-serif'>（見かけ上無償）</text></li>
+<li></li>
+<li>
+<line x1='432' y1='90' x2='472' y2='90' stroke='#aaa' stroke-width='2' />
+</li>
+<li>
+<polygon points='472,85 484,90 472,95' fill='#aaa' />
+</li>
+<li></li>
+<li>
+<rect x='484' y='30' width='196' height='120' rx='8' fill='#3a1a1a' stroke='#f44336' stroke-width='2' />
+</li>
+<li><text x='582' y='55' text-anchor='middle' fill='#f44336' font-size='13' font-family='sans-serif' font-weight='bold'>③ メモリ消去</text></li>
+<li><text x='582' y='80' text-anchor='middle' fill='#ccc' font-size='11' font-family='sans-serif'>記録を消すときに</text></li>
+<li><text x='582' y='100' text-anchor='middle' fill='#ccc' font-size='11' font-family='sans-serif'>熱を放出（必須！）</text></li>
+<li><text x='582' y='120' text-anchor='middle' fill='#ffd700' font-size='11' font-family='sans-serif'>→ エントロピー増大</text></li>
+<li><text x='582' y='140' text-anchor='middle' fill='#f44336' font-size='11' font-family='sans-serif'>（法則は守られる）</text></li>
+<li></li>
+<li>
+<rect x='100' y='185' width='500' height='70' rx='8' fill='#1a1a3a' stroke='#7986cb' stroke-width='2' />
+</li>
+<li><text x='350' y='210' text-anchor='middle' fill='#7986cb' font-size='14' font-family='sans-serif' font-weight='bold'>シラードの結論</text></li>
+<li><text x='350' y='235' text-anchor='middle' fill='#ccc' font-size='12' font-family='sans-serif'>「情報を消去するときに必ずエネルギーコストが発生する」</text></li>
+<li><text x='350' y='250' text-anchor='middle' fill='#aaa' font-size='11' font-family='sans-serif'>観測（情報取得）ではなく、忘却（情報消去）がエントロピー増大の源</text></li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-class="invert" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="5" style="--class:invert;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+<h1 id="%E6%83%85%E5%A0%B1%E3%81%AF%E7%89%A9%E7%90%86%E9%87%8F%E3%81%A0%E3%83%A9%E3%83%B3%E3%83%80%E3%82%A6%E3%82%A2%E3%83%BC%E5%8E%9F%E7%90%86">情報は物理量だ：ランダウアー原理</h1>
+<ul>
+<li>
+<svg viewBox='0 0 700 320' style='max-height:68vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li></li>
+<li>
+<rect x='0' y='0' width='700' height='40' rx='4' fill='#1a1a3a' />
+</li>
+<li><text x='350' y='26' text-anchor='middle' fill='#7986cb' font-size='15' font-family='sans-serif' font-weight='bold'>ランダウアー原理（1961年）</text></li>
+<li></li>
+<li>
+<rect x='180' y='55' width='340' height='60' rx='8' fill='#0d1117' stroke='#ffd700' stroke-width='2' />
+</li>
+<li><text x='350' y='80' text-anchor='middle' fill='#ffd700' font-size='18' font-family='sans-serif' font-weight='bold'>E ≥ k_B × T × ln(2)</text></li>
+<li><text x='350' y='103' text-anchor='middle' fill='#aaa' font-size='11' font-family='sans-serif'>1ビット消去あたりの最小エネルギーコスト</text></li>
+<li></li>
+<li><text x='50' y='145' fill='#4caf50' font-size='12' font-family='sans-serif'>k_B = ボルツマン定数 (1.38×10⁻²³ J/K)</text></li>
+<li><text x='50' y='165' fill='#64b5f6' font-size='12' font-family='sans-serif'>T   = 温度（ケルビン）</text></li>
+<li><text x='50' y='185' fill='#ff9800' font-size='12' font-family='sans-serif'>ln2 ≈ 0.693</text></li>
+<li></li>
+<li>
+<rect x='30' y='205' width='300' height='100' rx='8' fill='#1a3a1a' stroke='#4caf50' stroke-width='1.5' />
+</li>
+<li><text x='180' y='228' text-anchor='middle' fill='#4caf50' font-size='13' font-family='sans-serif' font-weight='bold'>物理的意味</text></li>
+<li><text x='180' y='250' text-anchor='middle' fill='#ccc' font-size='11' font-family='sans-serif'>室温(300K)で約3×10⁻²¹ J/bit</text></li>
+<li><text x='180' y='270' text-anchor='middle' fill='#ccc' font-size='11' font-family='sans-serif'>現代CPUはこの限界の</text></li>
+<li><text x='180' y='290' text-anchor='middle' fill='#ffd700' font-size='12' font-family='sans-serif'>約1000倍のエネルギーを消費</text></li>
+<li>
+<rect x='370' y='205' width='300' height='100' rx='8' fill='#1a1a3a' stroke='#7986cb' stroke-width='1.5' />
+</li>
+<li><text x='520' y='228' text-anchor='middle' fill='#7986cb' font-size='13' font-family='sans-serif' font-weight='bold'>情報理論との融合</text></li>
+<li><text x='520' y='250' text-anchor='middle' fill='#ccc' font-size='11' font-family='sans-serif'>情報は「実体」を持つ</text></li>
+<li><text x='520' y='270' text-anchor='middle' fill='#ccc' font-size='11' font-family='sans-serif'>キャッシュの「忘却」も</text></li>
+<li><text x='520' y='290' text-anchor='middle' fill='#ffd700' font-size='12' font-family='sans-serif'>物理的コストを払う</text></li>
+<li>
+</svg>
+</li>
+<li><strong>キーメッセージ:</strong> ビット情報の消去 = エントロピー生産 = 物理的コスト</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-class="lead" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="6" style="--class:lead;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+
+<h1 id="%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E3%81%AE%E6%9C%AC%E8%B3%AA%E7%9A%84%E5%9B%B0%E9%9B%A3">キャッシュの本質的困難</h1>
+<ul>
+<li>なぜキャッシュ無効化は「2大難問」なのか</li>
+<li>物理学と情報理論から読み解く</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-class="invert" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="7" style="--class:invert;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+<h1 id="cs%E3%81%A7%E6%9C%80%E3%82%82%E9%9B%A3%E3%81%97%E3%81%842%E3%81%A4%E3%81%AE%E5%95%8F%E9%A1%8C%E3%81%AE%E8%B5%B7%E6%BA%90">「CSで最も難しい2つの問題」の起源</h1>
+<ul>
+<li><strong>Phil Karlton (Netscape) の名言</strong></li>
+<li></li>
+<li>
+<blockquote>
+<p>&quot;There are only two hard things in Computer Science:</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>cache invalidation and naming things.&quot;</p>
+</blockquote>
+</li>
+<li></li>
+<li><strong>なぜキャッシュ無効化が難しいか：3つの根本的理由</strong></li>
+<li>
+<ul>
+<li><strong>時間の非対称性</strong> — データは変わるが、コピーの存在を忘れる</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>分散の不確実性</strong> — どこに何のコピーがあるか把握不能</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>完全性の不可能</strong> — 全コピーを即時更新するコストは無限大</li>
+</ul>
+</li>
+<li></li>
+<li>これはまさに<strong>マクスウェルの悪魔の問題</strong>と同型：</li>
+<li>「情報（キャッシュ）を持つことの代償は、その整合性維持コスト」</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-class="invert" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="8" style="--class:invert;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+<h1 id="%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E6%95%B4%E5%90%88%E6%80%A7%E3%81%AE%E7%8A%B6%E6%85%8B%E9%81%B7%E7%A7%BB">キャッシュ整合性の状態遷移</h1>
+<ul>
+<li>
+<svg viewBox='0 0 700 330' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li></li>
+<li>
+<circle cx='350' cy='80' r='50' fill='#1a3a1a' stroke='#4caf50' stroke-width='3' />
+</li>
+<li><text x='350' y='75' text-anchor='middle' fill='#4caf50' font-size='14' font-family='sans-serif' font-weight='bold'>Fresh</text></li>
+<li><text x='350' y='93' text-anchor='middle' fill='#ccc' font-size='10' font-family='sans-serif'>有効な状態</text></li>
+<li></li>
+<li>
+<circle cx='140' cy='230' r='50' fill='#3a3a1a' stroke='#ffd700' stroke-width='3' />
+</li>
+<li><text x='140' y='225' text-anchor='middle' fill='#ffd700' font-size='14' font-family='sans-serif' font-weight='bold'>Stale</text></li>
+<li><text x='140' y='243' text-anchor='middle' fill='#ccc' font-size='10' font-family='sans-serif'>期限切れ</text></li>
+<li></li>
+<li>
+<circle cx='560' cy='230' r='50' fill='#1a2a3a' stroke='#64b5f6' stroke-width='3' />
+</li>
+<li><text x='560' y='225' text-anchor='middle' fill='#64b5f6' font-size='14' font-family='sans-serif' font-weight='bold'>Updating</text></li>
+<li><text x='560' y='243' text-anchor='middle' fill='#ccc' font-size='10' font-family='sans-serif'>更新中</text></li>
+<li></li>
+<li>
+<circle cx='350' cy='290' r='40' fill='#3a1a1a' stroke='#f44336' stroke-width='3' />
+</li>
+<li><text x='350' y='286' text-anchor='middle' fill='#f44336' font-size='13' font-family='sans-serif' font-weight='bold'>Invalid</text></li>
+<li><text x='350' y='303' text-anchor='middle' fill='#ccc' font-size='10' font-family='sans-serif'>無効</text></li>
+<li></li>
+<li>
+<line x1='305' y1='115' x2='180' y2='188' stroke='#ffd700' stroke-width='2' />
+</li>
+<li>
+<polygon points='178,190 170,178 182,180' fill='#ffd700' />
+</li>
+<li><text x='220' y='145' fill='#ffd700' font-size='10' font-family='sans-serif'>TTL期限</text></li>
+<li></li>
+<li>
+<line x1='395' y1='115' x2='518' y2='188' stroke='#64b5f6' stroke-width='2' />
+</li>
+<li>
+<polygon points='520,190 516,177 524,180' fill='#64b5f6' />
+</li>
+<li><text x='468' y='145' fill='#64b5f6' font-size='10' font-family='sans-serif'>変更検知</text></li>
+<li></li>
+<li>
+<line x1='175' y1='265' x2='308' y2='290' stroke='#f44336' stroke-width='2' />
+</li>
+<li>
+<polygon points='310,292 300,284 302,294' fill='#f44336' />
+</li>
+<li><text x='210' y='290' fill='#f44336' font-size='10' font-family='sans-serif'>強制無効化</text></li>
+<li></li>
+<li>
+<line x1='535' y1='182' x2='395' y2='118' stroke='#4caf50' stroke-width='2' />
+</li>
+<li>
+<polygon points='393,116 400,128 390,126' fill='#4caf50' />
+</li>
+<li><text x='478' y='163' fill='#4caf50' font-size='10' font-family='sans-serif'>更新完了</text></li>
+<li></li>
+<li>
+<line x1='525' y1='265' x2='388' y2='290' stroke='#f44336' stroke-width='2' />
+</li>
+<li>
+<polygon points='386,292 393,281 394,292' fill='#f44336' />
+</li>
+<li><text x='450' y='295' fill='#f44336' font-size='10' font-family='sans-serif'>更新失敗</text></li>
+<li></li>
+<li>
+<line x1='350' y1='250' x2='350' y2='132' stroke='#4caf50' stroke-width='2' stroke-dasharray='6,3' />
+</li>
+<li>
+<polygon points='345,130 350,118 355,130' fill='#4caf50' />
+</li>
+<li><text x='358' y='200' fill='#4caf50' font-size='10' font-family='sans-serif'>再取得</text></li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-class="invert" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="9" style="--class:invert;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+<h1 id="%E5%88%86%E6%95%A3%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E3%81%AE%E7%9F%9B%E7%9B%BEcap%E3%81%A8%E3%81%AE%E8%A1%9D%E7%AA%81">分散キャッシュの矛盾：CAPとの衝突</h1>
+<ul>
+<li>
+<svg viewBox='0 0 700 320' style='max-height:68vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li></li>
+<li></li>
+<li>
+<polygon points='350,30 300,120 400,120' fill='#1a1a3a' stroke='#7986cb' stroke-width='2' />
+</li>
+<li>
+<circle cx='350' cy='40' r='45' fill='#1a1a3a' stroke='#7986cb' stroke-width='3' />
+</li>
+<li><text x='350' y='35' text-anchor='middle' fill='#7986cb' font-size='14' font-family='sans-serif' font-weight='bold'>C</text></li>
+<li><text x='350' y='53' text-anchor='middle' fill='#7986cb' font-size='11' font-family='sans-serif'>一貫性</text></li>
+<li><text x='350' y='68' text-anchor='middle' fill='#aaa' font-size='9' font-family='sans-serif'>Consistency</text></li>
+<li></li>
+<li>
+<circle cx='150' cy='250' r='45' fill='#1a3a1a' stroke='#4caf50' stroke-width='3' />
+</li>
+<li><text x='150' y='245' text-anchor='middle' fill='#4caf50' font-size='14' font-family='sans-serif' font-weight='bold'>A</text></li>
+<li><text x='150' y='263' text-anchor='middle' fill='#4caf50' font-size='11' font-family='sans-serif'>可用性</text></li>
+<li><text x='150' y='278' text-anchor='middle' fill='#aaa' font-size='9' font-family='sans-serif'>Availability</text></li>
+<li></li>
+<li>
+<circle cx='550' cy='250' r='45' fill='#3a1a1a' stroke='#f44336' stroke-width='3' />
+</li>
+<li><text x='550' y='245' text-anchor='middle' fill='#f44336' font-size='14' font-family='sans-serif' font-weight='bold'>P</text></li>
+<li><text x='550' y='263' text-anchor='middle' fill='#f44336' font-size='11' font-family='sans-serif'>分断耐性</text></li>
+<li><text x='550' y='278' text-anchor='middle' fill='#aaa' font-size='9' font-family='sans-serif'>Partition Tolerance</text></li>
+<li></li>
+<li>
+<line x1='350' y1='85' x2='195' y2='210' stroke='#555' stroke-width='2' />
+</li>
+<li>
+<line x1='350' y1='85' x2='505' y2='210' stroke='#555' stroke-width='2' />
+</li>
+<li>
+<line x1='195' y1='250' x2='505' y2='250' stroke='#555' stroke-width='2' />
+</li>
+<li></li>
+<li>
+<circle cx='350' cy='185' r='15' fill='#ffd700' style='filter:drop-shadow(0 0 8px rgba(255,215,0,0.8))' />
+</li>
+<li><text x='350' y='190' text-anchor='middle' fill='#000' font-size='10' font-family='sans-serif' font-weight='bold'>$</text></li>
+<li></li>
+<li><text x='350' y='308' text-anchor='middle' fill='#ffd700' font-size='12' font-family='sans-serif'>キャッシュは常に「C vs A」のトレードオフの中心にいる</text></li>
+<li></li>
+<li><text x='220' y='160' fill='#aaa' font-size='10' font-family='sans-serif' transform='rotate(-45,220,160)'>C+A: 強整合性</text></li>
+<li><text x='480' y='160' fill='#aaa' font-size='10' font-family='sans-serif' transform='rotate(45,480,160)'>C+P: 強一貫性</text></li>
+<li><text x='350' y='270' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>A+P: 最終的整合性</text></li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-class="invert" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="10" style="--class:invert;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+<h1 id="%E6%82%AA%E9%AD%94%E3%81%A8%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E3%81%AE%E5%AF%BE%E5%BF%9C%E9%96%A2%E4%BF%82">悪魔とキャッシュの対応関係</h1>
+<ul>
+<li>
+<svg viewBox='0 0 700 310' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li></li>
+<li>
+<rect x='0' y='0' width='340' height='35' rx='4' fill='#3a1a5a' />
+</li>
+<li><text x='170' y='23' text-anchor='middle' fill='#ce93d8' font-size='14' font-family='sans-serif' font-weight='bold'>マクスウェルの悪魔</text></li>
+<li>
+<rect x='360' y='0' width='340' height='35' rx='4' fill='#1a3a5a' />
+</li>
+<li><text x='530' y='23' text-anchor='middle' fill='#64b5f6' font-size='14' font-family='sans-serif' font-weight='bold'>キャッシュシステム</text></li>
+<li></li>
+<li>
+<rect x='0' y='45' width='340' height='50' rx='4' fill='#1a1a2a' stroke='#444' stroke-width='1' />
+</li>
+<li><text x='170' y='65' text-anchor='middle' fill='#ce93d8' font-size='12' font-family='sans-serif'>分子の状態（速い/遅い）を観測</text></li>
+<li><text x='170' y='84' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>観測 = 情報の取得</text></li>
+<li>
+<rect x='360' y='45' width='340' height='50' rx='4' fill='#1a1a2a' stroke='#444' stroke-width='1' />
+</li>
+<li><text x='530' y='65' text-anchor='middle' fill='#64b5f6' font-size='12' font-family='sans-serif'>オリジンからデータを取得</text></li>
+<li><text x='530' y='84' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>Cache-Miss = 最新情報の取得</text></li>
+<li><text x='350' y='73' text-anchor='middle' fill='#ffd700' font-size='18' font-family='sans-serif'>≡</text></li>
+<li></li>
+<li>
+<rect x='0' y='105' width='340' height='50' rx='4' fill='#1a1a2a' stroke='#444' stroke-width='1' />
+</li>
+<li><text x='170' y='125' text-anchor='middle' fill='#ce93d8' font-size='12' font-family='sans-serif'>悪魔のメモリに状態を記録</text></li>
+<li><text x='170' y='144' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>情報を保持 = エントロピー減少</text></li>
+<li>
+<rect x='360' y='105' width='340' height='50' rx='4' fill='#1a1a2a' stroke='#444' stroke-width='1' />
+</li>
+<li><text x='530' y='125' text-anchor='middle' fill='#64b5f6' font-size='12' font-family='sans-serif'>キャッシュにデータを保存</text></li>
+<li><text x='530' y='144' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>Cache-Hit = 高速応答の恩恵</text></li>
+<li><text x='350' y='133' text-anchor='middle' fill='#ffd700' font-size='18' font-family='sans-serif'>≡</text></li>
+<li></li>
+<li>
+<rect x='0' y='165' width='340' height='50' rx='4' fill='#1a1a2a' stroke='#444' stroke-width='1' />
+</li>
+<li><text x='170' y='185' text-anchor='middle' fill='#ce93d8' font-size='12' font-family='sans-serif'>メモリの消去 = 熱の放出</text></li>
+<li><text x='170' y='204' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>忘却のコスト（ランダウアー原理）</text></li>
+<li>
+<rect x='360' y='165' width='340' height='50' rx='4' fill='#1a1a2a' stroke='#444' stroke-width='1' />
+</li>
+<li><text x='530' y='185' text-anchor='middle' fill='#64b5f6' font-size='12' font-family='sans-serif'>キャッシュの無効化</text></li>
+<li><text x='530' y='204' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>Eviction = 計算・通信コスト</text></li>
+<li><text x='350' y='193' text-anchor='middle' fill='#ffd700' font-size='18' font-family='sans-serif'>≡</text></li>
+<li></li>
+<li>
+<rect x='0' y='225' width='700' height='70' rx='8' fill='#2a1a0a' stroke='#ff9800' stroke-width='2' />
+</li>
+<li><text x='350' y='250' text-anchor='middle' fill='#ff9800' font-size='14' font-family='sans-serif' font-weight='bold'>根本的矛盾（どちらも同じ問題）</text></li>
+<li><text x='350' y='272' text-anchor='middle' fill='#ccc' font-size='12' font-family='sans-serif'>「情報を保持するコスト」と「情報の鮮度を保つコスト」は両立しない</text></li>
+<li><text x='350' y='288' text-anchor='middle' fill='#aaa' font-size='11' font-family='sans-serif'>これは物理法則ではなく情報理論の根本問題 → 完全な解決策は存在しない</text></li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-class="lead" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="11" style="--class:lead;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+
+<h1 id="%E7%8F%BE%E4%BB%A3%E3%81%AE%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E6%88%A6%E7%95%A5">現代のキャッシュ戦略</h1>
+<ul>
+<li>悪魔を飼い慣らす実践的アプローチ</li>
+<li>HTTP キャッシュ / CDN / エッジキャッシュ</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-class="invert" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="12" style="--class:invert;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+<h1 id="cache-control-%E3%83%98%E3%83%83%E3%83%80%E3%83%BC%E5%BE%B9%E5%BA%95%E8%A7%A3%E8%AA%AC">Cache-Control ヘッダー徹底解説</h1>
+<ul>
+<li><strong>HTTPキャッシュの制御メカニズム</strong></li>
+<li>
+<ul>
+<li><code>max-age=N</code> — N秒間は再検証不要（鮮度の明示）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>stale-while-revalidate=N</code> — 古くても使い、バックグラウンドで更新</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>immutable</code> — ハッシュURLは永遠に変わらない宣言</li>
+</ul>
+</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-http"># 静的アセット（コンテントハッシュ付き）
+<span class="hljs-attribute">Cache-Control</span><span class="hljs-punctuation">: </span>public, max-age=31536000, immutable
+# → 1年間キャッシュ、変更時はURL自体を変える
+
+# APIレスポンス（動的コンテンツ）
+<span class="hljs-attribute">Cache-Control</span><span class="hljs-punctuation">: </span>private, max-age=0, must-revalidate
+# → ブラウザキャッシュのみ、毎回検証
+
+# CDNフレンドリー（stale-while-revalidate）
+<span class="hljs-attribute">Cache-Control</span><span class="hljs-punctuation">: </span>public, max-age=60, stale-while-revalidate=3600
+# → 60秒Fresh、以降はStaleで応答しつつ更新
+
+# CDN専用（s-maxage）
+<span class="hljs-attribute">Cache-Control</span><span class="hljs-punctuation">: </span>public, s-maxage=86400, max-age=300
+# → CDN: 24時間, ブラウザ: 5分
+</code></pre>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-class="invert" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="13" style="--class:invert;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+<h1 id="etags%E3%81%A8%E6%9D%A1%E4%BB%B6%E4%BB%98%E3%81%8D%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E8%B3%A2%E3%81%84%E6%A4%9C%E8%A8%BC%E3%83%A1%E3%82%AB%E3%83%8B%E3%82%BA%E3%83%A0">ETagsと条件付きリクエスト：賢い検証メカニズム</h1>
+<ul>
+<li>
+<svg viewBox='0 0 700 310' style='max-height:68vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li></li>
+<li>
+<rect x='20' y='20' width='120' height='40' rx='6' fill='#1a3a1a' stroke='#4caf50' stroke-width='2' />
+</li>
+<li><text x='80' y='43' text-anchor='middle' fill='#4caf50' font-size='12' font-family='sans-serif' font-weight='bold'>クライアント</text></li>
+<li></li>
+<li>
+<rect x='560' y='20' width='120' height='40' rx='6' fill='#1a1a3a' stroke='#7986cb' stroke-width='2' />
+</li>
+<li><text x='620' y='43' text-anchor='middle' fill='#7986cb' font-size='12' font-family='sans-serif' font-weight='bold'>サーバー</text></li>
+<li></li>
+<li>
+<line x1='80' y1='60' x2='80' y2='300' stroke='#4caf50' stroke-width='1' stroke-dasharray='4,4' />
+</li>
+<li>
+<line x1='620' y1='60' x2='620' y2='300' stroke='#7986cb' stroke-width='1' stroke-dasharray='4,4' />
+</li>
+<li></li>
+<li>
+<line x1='80' y1='90' x2='600' y2='90' stroke='#ccc' stroke-width='2' />
+</li>
+<li>
+<polygon points='600,85 615,90 600,95' fill='#ccc' />
+</li>
+<li><text x='340' y='83' text-anchor='middle' fill='#ccc' font-size='11' font-family='sans-serif'>① GET /api/data</text></li>
+<li></li>
+<li>
+<line x1='620' y1='120' x2='100' y2='120' stroke='#7986cb' stroke-width='2' />
+</li>
+<li>
+<polygon points='100,115 85,120 100,125' fill='#7986cb' />
+</li>
+<li><text x='340' y='113' text-anchor='middle' fill='#7986cb' font-size='11' font-family='sans-serif'>② 200 OK + ETag: &quot;abc123&quot; + データ本体</text></li>
+<li></li>
+<li>
+<rect x='20' y='135' width='120' height='30' rx='4' fill='#0d2a0d' stroke='#4caf50' stroke-width='1' />
+</li>
+<li><text x='80' y='154' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>ETag保存 + キャッシュ</text></li>
+<li></li>
+<li>
+<line x1='80' y1='185' x2='600' y2='185' stroke='#ffd700' stroke-width='2' />
+</li>
+<li>
+<polygon points='600,180 615,185 600,190' fill='#ffd700' />
+</li>
+<li><text x='340' y='178' text-anchor='middle' fill='#ffd700' font-size='11' font-family='sans-serif'>③ GET /api/data  If-None-Match: &quot;abc123&quot;</text></li>
+<li></li>
+<li>
+<line x1='620' y1='215' x2='100' y2='215' stroke='#4caf50' stroke-width='2' />
+</li>
+<li>
+<polygon points='100,210 85,215 100,220' fill='#4caf50' />
+</li>
+<li><text x='340' y='208' text-anchor='middle' fill='#4caf50' font-size='11' font-family='sans-serif'>④a 304 Not Modified（ボディなし、転送量ゼロ）</text></li>
+<li></li>
+<li>
+<line x1='620' y1='248' x2='100' y2='248' stroke='#f44336' stroke-width='2' stroke-dasharray='6,3' />
+</li>
+<li>
+<polygon points='100,243 85,248 100,253' fill='#f44336' />
+</li>
+<li><text x='340' y='241' text-anchor='middle' fill='#f44336' font-size='11' font-family='sans-serif'>④b 200 OK + ETag: &quot;xyz789&quot; + 新データ本体</text></li>
+<li></li>
+<li>
+<rect x='0' y='265' width='700' height='35' rx='4' fill='#1a1a1a' />
+</li>
+<li><text x='350' y='287' text-anchor='middle' fill='#aaa' font-size='11' font-family='sans-serif'>ETagは「情報の同一性証明」= 悪魔の観測メカニズムをHTTPで実装</text></li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-class="invert" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="14" style="--class:invert;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+<h1 id="cdn%E3%81%A8%E3%82%A8%E3%83%83%E3%82%B8%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E5%9C%B0%E7%90%86%E7%9A%84%E5%88%86%E6%95%A3%E3%81%AE%E6%8C%91%E6%88%A6">CDNとエッジキャッシュ：地理的分散の挑戦</h1>
+<ul>
+<li>
+<svg viewBox='0 0 700 300' style='max-height:68vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li></li>
+<li>
+<circle cx='350' cy='150' r='40' fill='#1a1a3a' stroke='#7986cb' stroke-width='3' />
+</li>
+<li><text x='350' y='145' text-anchor='middle' fill='#7986cb' font-size='12' font-family='sans-serif' font-weight='bold'>Origin</text></li>
+<li><text x='350' y='162' text-anchor='middle' fill='#7986cb' font-size='10' font-family='sans-serif'>Server</text></li>
+<li></li>
+<li>
+<circle cx='100' cy='80' r='32' fill='#1a3a1a' stroke='#4caf50' stroke-width='2' />
+</li>
+<li><text x='100' y='76' text-anchor='middle' fill='#4caf50' font-size='11' font-family='sans-serif' font-weight='bold'>Edge</text></li>
+<li><text x='100' y='92' text-anchor='middle' fill='#4caf50' font-size='9' font-family='sans-serif'>Tokyo</text></li>
+<li></li>
+<li>
+<circle cx='600' cy='80' r='32' fill='#1a3a1a' stroke='#4caf50' stroke-width='2' />
+</li>
+<li><text x='600' y='76' text-anchor='middle' fill='#4caf50' font-size='11' font-family='sans-serif' font-weight='bold'>Edge</text></li>
+<li><text x='600' y='92' text-anchor='middle' fill='#4caf50' font-size='9' font-family='sans-serif'>New York</text></li>
+<li></li>
+<li>
+<circle cx='100' cy='230' r='32' fill='#1a3a1a' stroke='#4caf50' stroke-width='2' />
+</li>
+<li><text x='100' y='226' text-anchor='middle' fill='#4caf50' font-size='11' font-family='sans-serif' font-weight='bold'>Edge</text></li>
+<li><text x='100' y='242' text-anchor='middle' fill='#4caf50' font-size='9' font-family='sans-serif'>London</text></li>
+<li></li>
+<li>
+<circle cx='600' cy='230' r='32' fill='#1a3a1a' stroke='#4caf50' stroke-width='2' />
+</li>
+<li><text x='600' y='226' text-anchor='middle' fill='#4caf50' font-size='11' font-family='sans-serif' font-weight='bold'>Edge</text></li>
+<li><text x='600' y='242' text-anchor='middle' fill='#4caf50' font-size='9' font-family='sans-serif'>Sydney</text></li>
+<li></li>
+<li>
+<line x1='310' y1='130' x2='132' y2='98' stroke='#555' stroke-width='2' />
+</li>
+<li>
+<line x1='390' y1='130' x2='568' y2='98' stroke='#555' stroke-width='2' />
+</li>
+<li>
+<line x1='310' y1='168' x2='132' y2='212' stroke='#555' stroke-width='2' />
+</li>
+<li>
+<line x1='390' y1='168' x2='568' y2='212' stroke='#555' stroke-width='2' />
+</li>
+<li></li>
+<li>
+<rect x='220' y='200' width='260' height='50' rx='6' fill='#2a1a0a' stroke='#ff9800' stroke-width='2' />
+</li>
+<li><text x='350' y='220' text-anchor='middle' fill='#ff9800' font-size='12' font-family='sans-serif' font-weight='bold'>Cache Purge の課題</text></li>
+<li><text x='350' y='240' text-anchor='middle' fill='#ccc' font-size='10' font-family='sans-serif'>全エッジに伝播するまでタイムラグあり</text></li>
+<li></li>
+<li>
+<circle cx='30' cy='60' r='12' fill='#555' stroke='#aaa' stroke-width='1' />
+</li>
+<li><text x='30' y='64' text-anchor='middle' fill='#aaa' font-size='9' font-family='sans-serif'>U</text></li>
+<li>
+<line x1='42' y1='65' x2='68' y2='77' stroke='#aaa' stroke-width='1' stroke-dasharray='3,2' />
+</li>
+<li>
+<circle cx='668' cy='60' r='12' fill='#555' stroke='#aaa' stroke-width='1' />
+</li>
+<li><text x='668' y='64' text-anchor='middle' fill='#aaa' font-size='9' font-family='sans-serif'>U</text></li>
+<li>
+<line x1='656' y1='65' x2='632' y2='77' stroke='#aaa' stroke-width='1' stroke-dasharray='3,2' />
+</li>
+<li>
+</svg>
+</li>
+<li>
+<ul>
+<li><strong>Cache Purge</strong> — オリジン変更を全エッジに即時伝播（コストが高い）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>Surrogate-Key</strong> — タグベースで関連キャッシュを一括無効化</li>
+</ul>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-class="invert" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="15" style="--class:invert;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+<h1 id="%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E3%83%90%E3%82%B9%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E6%88%A6%E7%95%A5%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%88%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5">キャッシュバスティング戦略：コンテントハッシュ</h1>
+<ul>
+<li>
+<svg viewBox='0 0 700 280' style='max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+</li>
+<li></li>
+<li>
+<rect x='10' y='10' width='320' height='120' rx='8' fill='#3a1a1a' stroke='#f44336' stroke-width='2' />
+</li>
+<li><text x='170' y='35' text-anchor='middle' fill='#f44336' font-size='13' font-family='sans-serif' font-weight='bold'>従来の方法（問題あり）</text></li>
+<li><text x='170' y='58' text-anchor='middle' fill='#ccc' font-size='11' font-family='sans-serif'>/static/app.js</text></li>
+<li><text x='170' y='78' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>→ ブラウザがキャッシュ。更新しても</text></li>
+<li><text x='170' y='94' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>古いファイルが使われ続ける</text></li>
+<li><text x='170' y='113' text-anchor='middle' fill='#f44336' font-size='11' font-family='sans-serif'>手動で「Ctrl+F5」を要求…</text></li>
+<li></li>
+<li>
+<rect x='370' y='10' width='320' height='120' rx='8' fill='#1a3a1a' stroke='#4caf50' stroke-width='2' />
+</li>
+<li><text x='530' y='35' text-anchor='middle' fill='#4caf50' font-size='13' font-family='sans-serif' font-weight='bold'>コンテントハッシュ（解決策）</text></li>
+<li><text x='530' y='58' text-anchor='middle' fill='#ffd700' font-size='11' font-family='sans-serif'>/static/app.a3f2c1d9.js</text></li>
+<li><text x='530' y='78' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>→ URLが変わる = 新しいリソース</text></li>
+<li><text x='530' y='94' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>旧URLは永遠にキャッシュ可能</text></li>
+<li><text x='530' y='113' text-anchor='middle' fill='#4caf50' font-size='11' font-family='sans-serif'>Cache-Control: immutable  OK</text></li>
+<li></li>
+<li>
+<rect x='10' y='150' width='680' height='110' rx='8' fill='#1a1a2a' stroke='#7986cb' stroke-width='2' />
+</li>
+<li><text x='350' y='172' text-anchor='middle' fill='#7986cb' font-size='13' font-family='sans-serif' font-weight='bold'>ビルドパイプラインによる自動化</text></li>
+<li></li>
+<li>
+<rect x='30' y='185' width='110' height='60' rx='4' fill='#1a2a3a' stroke='#64b5f6' stroke-width='1' />
+</li>
+<li><text x='85' y='210' text-anchor='middle' fill='#64b5f6' font-size='11' font-family='sans-serif'>ソース</text></li>
+<li><text x='85' y='228' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>app.js</text></li>
+<li>
+<line x1='140' y1='215' x2='168' y2='215' stroke='#aaa' stroke-width='2' />
+</li>
+<li>
+<polygon points='168,210 180,215 168,220' fill='#aaa' />
+</li>
+<li>
+<rect x='180' y='185' width='110' height='60' rx='4' fill='#1a2a3a' stroke='#64b5f6' stroke-width='1' />
+</li>
+<li><text x='235' y='210' text-anchor='middle' fill='#64b5f6' font-size='11' font-family='sans-serif'>ハッシュ計算</text></li>
+<li><text x='235' y='228' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>SHA256(content)</text></li>
+<li>
+<line x1='290' y1='215' x2='318' y2='215' stroke='#aaa' stroke-width='2' />
+</li>
+<li>
+<polygon points='318,210 330,215 318,220' fill='#aaa' />
+</li>
+<li>
+<rect x='330' y='185' width='130' height='60' rx='4' fill='#1a2a3a' stroke='#64b5f6' stroke-width='1' />
+</li>
+<li><text x='395' y='210' text-anchor='middle' fill='#64b5f6' font-size='11' font-family='sans-serif'>リネーム</text></li>
+<li><text x='395' y='228' text-anchor='middle' fill='#ffd700' font-size='10' font-family='sans-serif'>app.a3f2c1d9.js</text></li>
+<li>
+<line x1='460' y1='215' x2='488' y2='215' stroke='#aaa' stroke-width='2' />
+</li>
+<li>
+<polygon points='488,210 500,215 488,220' fill='#aaa' />
+</li>
+<li>
+<rect x='500' y='185' width='160' height='60' rx='4' fill='#1a3a1a' stroke='#4caf50' stroke-width='1' />
+</li>
+<li><text x='580' y='210' text-anchor='middle' fill='#4caf50' font-size='11' font-family='sans-serif'>マニフェスト更新</text></li>
+<li><text x='580' y='228' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>asset-manifest.json</text></li>
+<li>
+</svg>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-class="lead" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="lead" data-marpit-pagination="16" style="--class:lead;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+
+<h1 id="%E3%81%BE%E3%81%A8%E3%82%81%E6%82%AA%E9%AD%94%E3%82%92%E9%A3%BC%E3%81%84%E6%85%A3%E3%82%89%E3%81%99%E8%A8%AD%E8%A8%88%E5%93%B2%E5%AD%A6">まとめ：悪魔を飼い慣らす設計哲学</h1>
+<ul>
+<li><strong>情報理論が教える4つの設計原則</strong></li>
+<li></li>
+<li>
+<ol>
+<li><strong>明示的な有効期限</strong> — TTLで「忘却のスケジュール」を決める</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li><strong>不変性の活用</strong> — コンテントハッシュで「変化を排除」する</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li><strong>検証の最小化</strong> — ETagで「変化したものだけ」を更新する</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li><strong>トレードオフの受容</strong> — 一貫性か可用性か、意図的に選ぶ</li>
+</ol>
+</li>
+<li></li>
+<li>
+<blockquote>
+<p>キャッシュの無効化が難しいのは実装の問題ではなく、</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p><strong>情報の物理的性質</strong>に由来する根本的困難である</p>
+</blockquote>
+</li>
+<li></li>
+<li>マクスウェルの悪魔は155年前から答えを知っていた：</li>
+<li><strong>「忘却にはコストがかかる」</strong></li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-class="invert" data-paginate="true" data-header="マクスウェルの悪魔とキャッシュ無効化" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+" lang="en-US" class="invert" data-marpit-pagination="17" style="--class:invert;--paginate:true;--header:マクスウェルの悪魔とキャッシュ無効化;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+;" data-marpit-pagination-total="17" data-size="16:9">
+<header>マクスウェルの悪魔とキャッシュ無効化</header>
+<h1 id="%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</h1>
+<ul>
+<li><strong>物理学・情報理論:</strong></li>
+<li>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Maxwell%27s_demon">Maxwell's Demon (1867) - Wikipedia</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Landauer%27s_principle">Landauer's Principle - IBM Research (1961)</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Szil%C3%A1rd_engine">Szilard Engine - Physical Review (1929)</a></li>
+</ul>
+</li>
+<li></li>
+<li><strong>キャッシュ理論・実装:</strong></li>
+<li>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching">HTTP Caching - MDN Web Docs</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/CAP_theorem">CAP Theorem - Brewer (2000)</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://www.rfc-editor.org/rfc/rfc7234">Cache-Control - RFC 7234</a></li>
+</ul>
+</li>
+<li></li>
+<li><strong>設計パターン:</strong></li>
+<li>
+<ul>
+<li><a href="https://www.fastly.com/blog/surrogate-keys-part-1">Surrogate Keys in CDN Caching - Fastly</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="https://www.rfc-editor.org/rfc/rfc5861">stale-while-revalidate - RFC 5861</a></li>
+</ul>
+</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+<script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{container;containerSize;containerObserver;svg;svgComputedStyle;svgPreserveAspectRatio="xMinYMid meet";wrapper;wrapperSize;wrapperObserver;constructor(){super();const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=this.shadowRoot.querySelector(`div[${e}]`)??void 0;const t=this.svg;this.svg=this.wrapper?.querySelector(`svg[${i}]`)??void 0,this.svg!==t&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=this.svg?.querySelector(`span[${n}]`)??void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame(()=>{t.style.display=""}))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){let t=Math.ceil(this.containerSize?.width??0);const e=Math.ceil(this.containerSize?.height??0);void 0!==this.dataset.downscaleOnly&&(t=Math.max(t,this.wrapperSize?.width??0));const i=this.svg?.querySelector(":scope > foreignObject");if(i?.setAttribute("width",`${t}`),i?.setAttribute("height",`${e}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${t} ${e}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=t<=0||e<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const r=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this._shadow()}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_shadow(){if(!this.shadowRoot)try{this.attachShadow({mode:"open"})}catch(t){if(!(t instanceof Error&&"NotSupportedError"===t.name))throw t}return this.shadowRoot}_update(){const t=this._shadow();if(t){const e=i?`<style>:host { ${i} }</style>`:"";let n="<slot></slot>";const{autoScaling:s}=this.dataset;if(void 0!==s){n=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===s?"data-downscale-only":""}>${n}</marp-auto-scaling>`}t.innerHTML=e+n}}};let o;const a=Symbol(),l=()=>o??(o=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is"),o);let c;const d="marpitSVGPolyfill:setZoomFactor,",h=Symbol(),g=Symbol();const p=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[v]:[],i={then:e=>(t?(async()=>{if(void 0===c){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise(t=>{i.addEventListener("load",()=>t())});i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),c=e.getImageData(5,5,1,1).data[3]<128}return c})().then(t=>{null==e||e(t?[v]:[])}):null==e||e([]),i)};return Object.assign(e,i)};let m,u;function v(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(d)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(u=i)}}catch(t){console.error(t)}}));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),t=>{var e,s,r,o;t.style.transform||(t.style.transform="translateZ(0)");const a=i||u||t.currentScale||1;m!==a&&(m=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(o=null===(r=n.y)||void 0===r?void 0:r.baseVal.value)&&void 0!==o?o:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}}),!1!==n&&Array.from(e.querySelectorAll("iframe"),({contentWindow:t})=>{null==t||t.postMessage(`${d}${n}`,"null"===window.origin?"*":window.origin)})}function w({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[h])return t[h];let e=!0;const i=()=>{e=!1,delete t[h]};Object.defineProperty(t,h,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await p()}finally{s=!0}})();const r=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(r)};return r(),i}(e);return t?(i(),()=>{}):i}m=1,u=void 0;const b=Symbol(),y=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,o=t[n].proto();l()&&o!==HTMLElement?i||customElements.define(s,r(o,{style:t[n].style}),{extends:n}):(i||customElements.define(s,r(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach(t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)}))}window[a]=!0})(e),e[b])return e[b];const i=w({target:e}),n=()=>{i(),delete e[b]},o=Object.assign(n,{cleanup:n,update:()=>y(e)});return Object.defineProperty(e,b,{configurable:!0,value:o}),o},f=document.currentScript;y(f?f.getRootNode():document)}();
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="0" tabindex="0"><p>キャッシュ無効化の困難さを物理学の視点から解説するプレゼンテーション</p></div><div class="bespoke-marp-note" data-index="2" tabindex="0"><p>左の部屋（熱い分子）</p><p>熱い分子（赤い円）</p><p>壁と扉</p><p>悪魔</p><p>右の部屋（冷たい分子）</p><p>冷たい分子（青い円）</p><p>説明テキスト</p><p>マクスウェルの悪魔は1867年に提唱された思考実験。悪魔が分子を選別することで熱力学第二法則（エントロピー増大則）を破れるように見える</p></div><div class="bespoke-marp-note" data-index="3" tabindex="0"><p>ステップ1</p><p>矢印1</p><p>ステップ2</p><p>矢印2</p><p>ステップ3</p><p>結論</p><p>1929年、レオ・シラードが悪魔のパラドックスを解決。観測自体ではなく、メモリを消去する際に熱が放出され熱力学第二法則が保たれる</p></div><div class="bespoke-marp-note" data-index="4" tabindex="0"><p>タイトルバー</p><p>数式ボックス</p><p>凡例</p><p>現代への影響</p><p>ランダウアーが1961年に証明。情報消去には物理的エネルギーコストが必ず伴う。これはコンピューティングの根本的限界を示す</p></div><div class="bespoke-marp-note" data-index="6" tabindex="0"><p>Phil Karltonの名言はその後Tim Petersが拡張した。実際にはキャッシュ無効化は分散システム理論の中核問題</p></div><div class="bespoke-marp-note" data-index="7" tabindex="0"><p>Fresh状態</p><p>Stale状態</p><p>Updating状態</p><p>Invalid状態</p><p>矢印: Fresh → Stale (TTL期限)</p><p>矢印: Fresh → Updating (変更検知)</p><p>矢印: Stale → Invalid (強制無効化)</p><p>矢印: Updating → Fresh (更新完了)</p><p>矢印: Updating → Invalid (更新失敗)</p><p>矢印: Invalid → Fresh (再取得)</p><p>キャッシュには4つの主要状態がある。状態遷移の複雑さが分散環境での整合性問題の核心</p></div><div class="bespoke-marp-note" data-index="8" tabindex="0"><p>三角形の頂点</p><p>C: 一貫性 (上)</p><p>A: 可用性 (左下)</p><p>P: 分断耐性 (右下)</p><p>三角形の辺</p><p>キャッシュの位置マーカー</p><p>説明</p><p>ラベル</p><p>CAPの定理はキャッシュ設計に直接影響する。一貫性と可用性はトレードオフであり、キャッシュはその狭間に存在する</p></div><div class="bespoke-marp-note" data-index="9" tabindex="0"><p>ヘッダー</p><p>行1</p><p>行2</p><p>行3</p><p>行4: 根本的矛盾</p><p>マクスウェルの悪魔とキャッシュシステムの対応関係を見ると、両者が同じ情報理論的問題を共有していることがわかる</p></div><div class="bespoke-marp-note" data-index="11" tabindex="0"><p>Cache-Controlはキャッシュの振る舞いを細かく制御できる。stale-while-revalidateはマクスウェルの悪魔の「古い情報を使いながら更新」戦略に対応</p></div><div class="bespoke-marp-note" data-index="12" tabindex="0"><p>クライアント</p><p>サーバー</p><p>ライフライン</p><p>ステップ1: 初回リクエスト</p><p>ステップ2: レスポンス+ETag</p><p>キャッシュ保存</p><p>ステップ3: 条件付きリクエスト</p><p>ステップ4a: 未変更の場合</p><p>ステップ4b: 変更あり</p><p>凡例</p><p>ETagは条件付きリクエストを実現する。変更がなければ304で帯域を節約し、変更があれば新しいデータを取得する。これはマクスウェルの悪魔が「変化した分子だけ」を通す仕組みと対応</p></div><div class="bespoke-marp-note" data-index="13" tabindex="0"><p>オリジンサーバー（中央）</p><p>エッジノード（東京）</p><p>エッジノード（NY）</p><p>エッジノード（ロンドン）</p><p>エッジノード（シドニー）</p><p>接続線</p><p>パージ問題の表示</p><p>ユーザー（ミニ）</p><p>CDNはキャッシュの地理的分散。エッジが多いほど無効化の伝播が困難になる。これはマクスウェルの悪魔の問題がスケールする版</p></div><div class="bespoke-marp-note" data-index="14" tabindex="0"><p>従来の問題</p><p>解決策</p><p>ビルドパイプライン</p><p>フロー</p><p>コンテントハッシュはキャッシュ無効化の根本的解決策の一つ。URLが変わることで新旧を明確に区別できる</p></div><div class="bespoke-marp-note" data-index="15" tabindex="0"><p>キャッシュ無効化の困難さは情報理論の根本に由来する。完全な解決はないが、設計原則によりトレードオフを管理できる</p></div><div class="bespoke-marp-note" data-index="16" tabindex="0"><p>参考文献一覧</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@4.2.3/lib/bespoke.js.LICENSE.txt */
+!function(){"use strict";function e(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var t,n,r=(n||(n=1,t={from:function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),o=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,function(e){return"SCRIPT"!==e.nodeName}),a={},i=function(e,t){return(t=t||{}).index=o.indexOf(e),t.slide=e,t},s=function(e,t){a[e]=(a[e]||[]).filter(function(e){return e!==t})},c=function(e,t){return(a[e]||[]).reduce(function(e,n){return e&&!1!==n(t)},!0)},l=function(e,t){o[e]&&(n&&c("deactivate",i(n,t)),n=o[e],c("activate",i(n,t)))},d=function(e,t){var r=o.indexOf(n)+e;c(e>0?"next":"prev",i(n,t))&&l(r,t)},u={off:s,on:function(e,t){return(a[e]||(a[e]=[])).push(t),s.bind(null,e,t)},fire:c,slide:function(e,t){if(!arguments.length)return o.indexOf(n);c("slide",i(o[e],t))&&l(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:o,destroy:function(e){c("destroy",i(n,e)),a={}}};return(t||[]).forEach(function(e){e(u)}),n||l(0),u}}),t),o=e(r);const a=document.body,i=(...e)=>history.replaceState(...e),s="",c="presenter",l="next",d=["",c,l],u="bespoke-marp-",f=`data-${u}`,m=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},g=()=>a.dataset.bespokeView,p=e=>new URLSearchParams(location.search).get(e),v=(e,t={})=>{const n={location,setter:i,...t},r=new URLSearchParams(n.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?r.set(t,n):r.delete(t)}try{n.setter({...window.history.state??{}},"",m(r,n.location))}catch(e){console.error(e)}},h=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch{return!1}})(),y=e=>{try{return localStorage.getItem(e)}catch{return null}},b=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch{return!1}},w=e=>{try{return localStorage.removeItem(e),!0}catch{return!1}},x=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},k=e=>{e.parent.classList.add(`${u}parent`),e.slides.forEach(e=>e.classList.add(`${u}slide`)),e.on("activate",t=>{const n=`${u}active`,r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach(e=>{e.classList.remove(n),x(e,!0)}),o.add(n),x(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}})},$=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=o;e.setAttribute(`${f}fragment`,(a?"":"in")+"active");const i=`${f}current-fragment`;t===r&&n===o?e.setAttribute(i,"current"):e.removeAttribute(i)})}),e.fragmentIndex=o;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",a)};e.on("next",({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}}),e.on("prev",({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)}),o(0,0)},E=document,L=()=>!(!E.fullscreenEnabled&&!E.webkitFullscreenEnabled),S=()=>!(!E.fullscreenElement&&!E.webkitFullscreenElement),P=e=>{e.fullscreen=()=>{L()&&(async()=>{S()?(E.exitFullscreen||E.webkitExitFullscreen)?.call(E):((e=E.body)=>{(e.requestFullscreen||e.webkitRequestFullscreen)?.call(e)})()})()},document.addEventListener("keydown",t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!L()||(e.fullscreen(),t.preventDefault())})},_=`${u}inactive`,T=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout(()=>{r.add(_),o()},e),r.contains(_)&&(r.remove(_),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},I=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],M=e=>{e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(I.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})},O=e=>{window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("marp-auto-scaling, [data-auto-scaling], [data-marp-fitting]");t.setAttribute(`${f}load`,e?"":"hideable")}})},A=({interval:e=250}={})=>t=>{document.addEventListener("keydown",e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()});let n,r,o=0;t.parent.addEventListener("wheel",a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),e?.parentElement&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const c=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<12)return;r&&clearTimeout(r),r=setTimeout(()=>{n=0},e);const l=Date.now()-o<e,d=c<=n;if(n=c,l||d)return;let u;(a.deltaX>0||a.deltaY>0)&&(u="next"),(a.deltaX<0||a.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())})},C=(e=`.${u}osc`)=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${f}osc=${JSON.stringify(e)}]`).forEach(n)};return L()||n("fullscreen",e=>e.style.display="none"),h||n("presenter",e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."}),e=>{t.addEventListener("click",t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?e?.fullscreen():"presenter"===n&&e.openPresenterView()}}),e.parent.appendChild(t),e.on("activate",({index:t})=>{n("page",n=>n.textContent=`Page ${t+1} of ${e.slides.length}`)}),e.on("fragment",({index:t,fragments:r,fragmentIndex:o})=>{n("prev",e=>e.disabled=0===t&&0===o),n("next",n=>n.disabled=t===e.slides.length-1&&o===r.length-1)}),e.on("marp-active",()=>x(t,!1)),e.on("marp-inactive",()=>x(t,!0)),L()&&(e=>{for(const t of["","webkit"])E.addEventListener(t+"fullscreenchange",e)})(()=>n("fullscreen",e=>e.classList.toggle("exit",L()&&S())))}},D=e=>{window.addEventListener("message",t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}})};var N,B,q,K,F,j,V,U={exports:{}},X=(N||(N=1,U.exports=(B=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"],q=function(e){return String(e).replace(/[&<>"']/g,function(e){return"&"+K[e]+";"})},K={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},F="dangerouslySetInnerHTML",j={className:"class",htmlFor:"for"},V={},function(e,t){var n=[],r="";t=t||{};for(var o=arguments.length;o-- >2;)n.push(arguments[o]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(var a in t)!1!==t[a]&&null!=t[a]&&a!==F&&(r+=" "+(j[a]?j[a]:q(a))+'="'+q(t[a])+'"');r+=">"}if(-1===B.indexOf(e)){if(t[F])r+=t[F].__html;else for(;n.length;){var i=n.pop();if(i)if(i.pop)for(var s=i.length;s--;)n.push(i[s]);else r+=!0===V[i]?i:q(i)}r+=e?"</"+e+">":""}return V[r]=!0,r})),U.exports),H=e(X);const R=({children:e})=>H(null,null,...e),W=`${u}presenter-`,J={container:`${W}container`,dragbar:`${W}dragbar-container`,next:`${W}next`,nextContainer:`${W}next-container`,noteContainer:`${W}note-container`,noteWrapper:`${W}note-wrapper`,noteButtons:`${W}note-buttons`,infoContainer:`${W}info-container`,infoPage:`${W}info-page`,infoPageText:`${W}info-page-text`,infoPagePrev:`${W}info-page-prev`,infoPageNext:`${W}info-page-next`,noteButtonsBigger:`${W}note-bigger`,noteButtonsSmaller:`${W}note-smaller`,infoTime:`${W}info-time`,infoTimer:`${W}info-timer`},Y=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=J.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",H(R,null,H("div",{class:J.nextContainer},H("iframe",{class:J.next,src:"?view=next"})),H("div",{class:J.dragbar}),H("div",{class:J.noteContainer},H("div",{class:J.noteWrapper}),H("div",{class:J.noteButtons},H("button",{class:J.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),H("button",{class:J.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),H("div",{class:J.infoContainer},H("div",{class:J.infoPage},H("button",{class:J.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),H("span",{class:J.infoPageText}),H("button",{class:J.infoPageNext,tabindex:"-1",title:"Next"},"Next")),H("time",{class:J.infoTime,title:"Current time"}),H("time",{class:J.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(J.dragbar).addEventListener("mousedown",()=>{t=!0,r(J.dragbar).classList.add("active")}),window.addEventListener("mouseup",()=>{t=!1,r(J.dragbar).classList.remove("active")}),window.addEventListener("mousemove",e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(J.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)}),r(J.nextContainer).addEventListener("click",()=>e.next());const n=r(J.next),o=(a=n,(e,t)=>a.contentWindow?.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin));var a;n.addEventListener("load",()=>{r(J.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",({index:e,fragmentIndex:t})=>o(e,t))});const i=document.querySelectorAll(".bespoke-marp-note");i.forEach(e=>{e.addEventListener("keydown",e=>e.stopPropagation()),r(J.noteWrapper).appendChild(e)}),e.on("activate",()=>i.forEach(t=>t.classList.toggle("active",t.dataset.index==e.slide())));let s=0;const c=e=>{s=Math.max(-5,s+e),r(J.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},l=()=>c(1),d=()=>c(-1),u=r(J.noteButtonsBigger),f=r(J.noteButtonsSmaller);u.addEventListener("click",()=>{u.blur(),l()}),f.addEventListener("click",()=>{f.blur(),d()}),document.addEventListener("keydown",e=>{"+"===e.key&&l(),"-"===e.key&&d()},!0),e.on("activate",({index:t})=>{r(J.infoPageText).textContent=`${t+1} / ${e.slides.length}`});const m=r(J.infoPagePrev),g=r(J.infoPageNext);m.addEventListener("click",t=>{m.blur(),e.prev({fragment:!t.shiftKey})}),g.addEventListener("click",t=>{g.blur(),e.next({fragment:!t.shiftKey})}),e.on("fragment",({index:t,fragments:n,fragmentIndex:r})=>{m.disabled=0===t&&0===r,g.disabled=t===e.slides.length-1&&r===n.length-1});let p=new Date;const v=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-p.getTime(),o=t(n/1e3%60),a=t(n/1e3/60%60),i=t(n/36e5%24);r(J.infoTime).textContent=e.toLocaleTimeString(),r(J.infoTimer).textContent=`${i}:${a}:${o}`};v(),setInterval(v,250),r(J.infoTimer).addEventListener("click",()=>{p=new Date})})(e)},z=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:G},presenterUrl:{enumerable:!0,get:Q}}),h&&document.addEventListener("keydown",t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())})};function G(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,W+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function Q(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),m(e)}const Z=e=>{const t=g();return t===l&&e.appendChild(document.createElement("span")),{[s]:z,[c]:Y,[l]:D}[t]},ee=e=>{e.on("activate",t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach(n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"})})},te=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},ne=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{let n=t.fragment?te(p("f")||""):null;((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),c=o(0,r(n||0,a[s].length-1));s===e.slide()&&c===e.fragmentIndex||e.slide(s,{fragment:c})})((()=>{if(location.hash){const[t]=location.hash.slice(1).split(":~:");if(/^\d+$/.test(t))return(te(t)??1)-1;const r=document.getElementById(t)||document.querySelector(`a[name="${CSS.escape(t)}"]`);if(r){const{length:t}=e.slides;for(let o=0;o<t;o+=1)if(e.slides[o].contains(r)){const t=e.fragments?.[o],a=r.closest("[data-marpit-fragment]");if(t&&a){const e=t.indexOf(a);e>=0&&(n=e)}return o}}}return 0})(),n)};e.on("fragment",({index:e,fragmentIndex:r})=>{n||v({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})}),setTimeout(()=>{o(),window.addEventListener("hashchange",()=>r(()=>{o({fragment:!1}),v({f:void 0})})),window.addEventListener("popstate",()=>{n||r(()=>o())}),n=!1},0)}},re=(e={})=>{const t=e.key||window.history.state?.marpBespokeSyncKey||Math.random().toString(36).slice(2),n=`bespoke-marp-sync-${t}`;var r;r={marpBespokeSyncKey:t},v({},{setter:(e,...t)=>i({...e,...r},...t)});const o=()=>{const e=y(n);return e?JSON.parse(e):Object.create(null)},a=e=>{const t=o(),r={...t,...e(t)};return b(n,JSON.stringify(r)),r},s=()=>{window.removeEventListener("pageshow",s),a(e=>({reference:(e.reference||0)+1}))};return e=>{s(),Object.defineProperty(e,"syncKey",{value:t,enumerable:!0});let r=!0;setTimeout(()=>{e.on("fragment",e=>{r&&a(()=>({index:e.index,fragmentIndex:e.fragmentIndex}))})},0),window.addEventListener("storage",t=>{if(t.key===n&&t.oldValue&&t.newValue){const n=JSON.parse(t.oldValue),o=JSON.parse(t.newValue);if(n.index!==o.index||n.fragmentIndex!==o.fragmentIndex)try{r=!1,e.slide(o.index,{fragment:o.fragmentIndex,forSync:!0})}finally{r=!0}}});const i=()=>{const{reference:e}=o();void 0===e||e<=1?w(n):a(()=>({reference:e-1}))};window.addEventListener("pagehide",e=>{e.persisted&&window.addEventListener("pageshow",s),i()}),e.on("destroy",i)}},{PI:oe,abs:ae,sqrt:ie,atan2:se}=Math,ce={passive:!0},le=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",({touches:e})=>{r=1===e.length?a(e[0]):void 0},ce),o.addEventListener("touchmove",e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=ie(ae(n)**2+ae(o)**2),r.radian=se(n,o)}else r=void 0}),o.addEventListener("touchend",o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+oe)%(2*oe)-oe;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}},ce)},de=new Map;de.clear(),de.set("none",{backward:{both:void 0,incoming:void 0,outgoing:void 0},forward:{both:void 0,incoming:void 0,outgoing:void 0}});const ue={both:"",outgoing:"outgoing-",incoming:"incoming-"},fe={forward:"",backward:"-backward"},me=e=>`--marp-bespoke-transition-animation-${e}`,ge=e=>`--marp-transition-${e}`,pe=me("name"),ve=me("duration"),he=e=>new Promise(t=>{const n={},r=document.createElement("div"),o=e=>{r.remove(),t(e)};r.addEventListener("animationstart",()=>o(n)),Object.assign(r.style,{animationName:e,animationDuration:"1s",animationFillMode:"both",animationPlayState:"paused",position:"absolute",pointerEvents:"none"}),document.body.appendChild(r);const a=getComputedStyle(r).getPropertyValue(ge("duration"));a&&Number.parseFloat(a)>=0&&(n.defaultDuration=a),((e,t)=>{requestAnimationFrame(()=>{e.style.animationPlayState="running",requestAnimationFrame(()=>t(void 0))})})(r,o)}),ye=async e=>de.has(e)?de.get(e):(e=>{const t={},n=[];for(const[r,o]of Object.entries(ue))for(const[a,i]of Object.entries(fe)){const s=`marp-${o}transition${i}-${e}`;n.push(he(s).then(e=>{t[a]=t[a]||{},t[a][r]=e?{...e,name:s}:void 0}))}return Promise.all(n).then(()=>t)})(e).then(t=>(de.set(e,t),t)),be=e=>Object.values(e).flatMap(Object.values).every(e=>!e),we=(e,{type:t,backward:n})=>{const r=e[n?"backward":"forward"],o=(()=>{const e=r[t],n=e=>({[pe]:e.name});if(e)return n(e);if(r.both){const e=n(r.both);return"incoming"===t&&(e[me("direction")]="reverse"),e}})();return!o&&n?we(e,{type:t,backward:!1}):o||{[pe]:"__bespoke_marp_transition_no_animation__"}},xe=e=>{if(e)try{const t=JSON.parse(e);if((e=>{if("object"!=typeof e)return!1;const t=e;return"string"==typeof t.name&&(void 0===t.duration||"string"==typeof t.duration)})(t))return t}catch{}},ke="_tSId",$e="_tA",Ee="bespoke-marp-transition-warming-up",Le=window.matchMedia("(prefers-reduced-motion: reduce)"),Se="__bespoke_marp_transition_reduced_outgoing__",Pe="__bespoke_marp_transition_reduced_incoming__",_e={forward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}},backward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}}},Te=e=>{if(!document.startViewTransition)return;const t=t=>(void 0!==t&&(e._tD=t),e._tD);let n;t(!1),((...e)=>{CSS.registerProperty({name:ge("duration"),syntax:"<time>",inherits:!0,initialValue:"-1s"});const t=[...new Set(e).values()];return Promise.all(t.map(e=>ye(e))).then()})(...Array.from(document.querySelectorAll("section[data-transition], section[data-transition-back]")).flatMap(e=>[e.dataset.transition,e.dataset.transitionBack].flatMap(e=>{const t=xe(e);return[t?.name,t?.builtinFallback?`__builtin__${t.name}`:void 0]}).filter(e=>!!e))).then(()=>{document.querySelectorAll("style").forEach(e=>{e.innerHTML=e.innerHTML.replace(/--marp-transition-duration:[^;}]*[;}]/g,e=>e.slice(0,-1)+"!important"+e.slice(-1))})});const r=(n,{back:r,cond:o})=>a=>{const i=t();if(i)return!!a[$e]||!("object"!=typeof i||(i.skipTransition(),!a.forSync));if(!o(a))return!0;const s=e.slides[e.slide()],c=()=>a.back??r,l="data-transition"+(c()?"-back":""),d=s.querySelector(`section[${l}]`);if(!d)return!0;const u=xe(d.getAttribute(l)??void 0);return!u||((async(e,{builtinFallback:t=!0}={})=>{let n=await ye(e);if(be(n)){if(!t)return;return n=await ye(`__builtin__${e}`),be(n)?void 0:n}return n})(u.name,{builtinFallback:u.builtinFallback}).then(e=>{if(!e){t(!0);try{n(a)}finally{t(!1)}return}let r=e;Le.matches&&(console.warn("Use a constant animation to transition because preferring reduced motion by viewer has detected."),r=_e);const o=document.getElementById(ke);o&&o.remove();const i=document.createElement("style");i.id=ke,document.head.appendChild(i),((e,t)=>{const n=[`:root{${ge("direction")}:${t.backward?-1:1};}`,":root:has(.bespoke-marp-inactive){cursor:none;}"],r=t=>{const n=e[t].both?.defaultDuration||e[t].outgoing?.defaultDuration||e[t].incoming?.defaultDuration;return"forward"===t?n:n||r("forward")},o=t.duration||r(t.backward?"backward":"forward");void 0!==o&&n.push(`::view-transition-group(*){${ve}:${o};}`);const a=e=>Object.entries(e).map(([e,t])=>`${e}:${t};`).join("");return n.push(`::view-transition-old(root){${a(we(e,{...t,type:"outgoing"}))}}`,`::view-transition-new(root){${a(we(e,{...t,type:"incoming"}))}}`),n})(r,{backward:c(),duration:u.duration}).forEach(e=>i.sheet?.insertRule(e));const s=document.documentElement.classList;s.add(Ee);let l=!1;const d=()=>{l||(n(a),l=!0,s.remove(Ee))},f=()=>{t(!1),i.remove(),s.remove(Ee)};try{t(!0);const e=document.startViewTransition(d);t(e),e.finished.finally(f)}catch(e){console.error(e),d(),f()}}),!1)};e.on("prev",r(t=>e.prev({...t,[$e]:!0}),{back:!0,cond:e=>e.index>0&&!((e.fragment??1)&&n.fragmentIndex>0)})),e.on("next",r(t=>e.next({...t,[$e]:!0}),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout(()=>{e.on("slide",r(t=>e.slide(t.index,{...t,[$e]:!0}),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))},0),e.on("fragment",e=>{n=e})};let Ie;const Me=()=>(void 0===Ie&&(Ie="wakeLock"in navigator&&navigator.wakeLock),Ie),Oe=async()=>{const e=Me();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},Ae=async()=>{if(!Me())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&Oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await Oe(),e};((e=document.getElementById(":$p"))=>{(()=>{const e=p("view");a.dataset.bespokeView=e===l||e===c?e:""})();const t=(e=>{const t=p(e);return v({[e]:void 0}),t})("sync")||void 0;o.from(e,((...e)=>{const t=d.findIndex(e=>g()===e);return e.map(([e,n])=>e[t]&&n).filter(e=>e)})([[1,1,0],re({key:t})],[[1,1,1],Z(e)],[[1,1,0],M],[[1,1,1],k],[[1,0,0],T()],[[1,1,1],O],[[1,1,1],ne({history:!1})],[[1,1,0],A()],[[1,1,0],P],[[1,0,0],ee],[[1,1,0],le()],[[1,0,0],C()],[[1,0,0],Te],[[1,1,1],$],[[1,1,0],Ae]))})()}();</script></body></html>

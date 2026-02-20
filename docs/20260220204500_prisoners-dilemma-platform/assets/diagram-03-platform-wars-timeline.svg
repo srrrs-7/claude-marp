@@ -1,0 +1,65 @@
+<svg viewBox="0 0 900 420" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="420" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#e0e0e0">プラットフォーム戦争の歴史: 囚人のジレンマの繰り返し</text>
+
+  <!-- Timeline axis -->
+  <line x1="60" y1="360" x2="860" y2="360" stroke="#666" stroke-width="2"/>
+
+  <!-- Era markers -->
+  <text x="150" y="390" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#888">1990s</text>
+  <text x="350" y="390" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#888">2000s</text>
+  <text x="550" y="390" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#888">2010s</text>
+  <text x="750" y="390" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#888">2020s</text>
+
+  <!-- Tick marks -->
+  <line x1="150" y1="355" x2="150" y2="365" stroke="#888" stroke-width="2"/>
+  <line x1="350" y1="355" x2="350" y2="365" stroke="#888" stroke-width="2"/>
+  <line x1="550" y1="355" x2="550" y2="365" stroke="#888" stroke-width="2"/>
+  <line x1="750" y1="355" x2="750" y2="365" stroke="#888" stroke-width="2"/>
+
+  <!-- Event 1: Browser Wars -->
+  <line x1="150" y1="330" x2="150" y2="255" stroke="#f87171" stroke-width="2" stroke-dasharray="4,4"/>
+  <rect x="60" y="70" width="180" height="185" rx="8" fill="#7f1d1d" opacity="0.5" stroke="#f87171" stroke-width="1.5"/>
+  <text x="150" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#f87171">ブラウザ戦争</text>
+  <text x="150" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fca5a5">IE vs Netscape</text>
+  <text x="150" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bbb">独自拡張の応酬</text>
+  <text x="150" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bbb">3E戦略で IE が勝利</text>
+  <text x="150" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fbbf24">結果: Web停滞</text>
+  <rect x="95" y="200" width="110" height="25" rx="4" fill="#7f1d1d"/>
+  <text x="150" y="217" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#f87171">裏切り勝利</text>
+
+  <!-- Event 2: Mobile OS -->
+  <line x1="350" y1="330" x2="350" y2="255" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4,4"/>
+  <rect x="260" y="70" width="180" height="185" rx="8" fill="#713f12" opacity="0.5" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="350" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#fbbf24">モバイル OS</text>
+  <text x="350" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fde68a">iOS vs Android</text>
+  <text x="350" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bbb">囲い込み vs オープン</text>
+  <text x="350" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bbb">デュオポリーに収束</text>
+  <text x="350" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fbbf24">結果: 2社独占</text>
+  <rect x="295" y="200" width="110" height="25" rx="4" fill="#713f12"/>
+  <text x="350" y="217" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fbbf24">部分的協調</text>
+
+  <!-- Event 3: Cloud/OSS -->
+  <line x1="550" y1="330" x2="550" y2="255" stroke="#22d3ee" stroke-width="2" stroke-dasharray="4,4"/>
+  <rect x="460" y="70" width="180" height="185" rx="8" fill="#164e63" opacity="0.5" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="550" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#22d3ee">Cloud × OSS</text>
+  <text x="550" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#67e8f9">Elastic vs AWS</text>
+  <text x="550" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bbb">ライセンス変更 vs Fork</text>
+  <text x="550" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bbb">しっぺ返しの実例</text>
+  <text x="550" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fbbf24">結果: 分裂</text>
+  <rect x="495" y="200" width="110" height="25" rx="4" fill="#164e63"/>
+  <text x="550" y="217" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#22d3ee">報復サイクル</text>
+
+  <!-- Event 4: AI APIs -->
+  <line x1="750" y1="330" x2="750" y2="255" stroke="#a78bfa" stroke-width="2" stroke-dasharray="4,4"/>
+  <rect x="660" y="70" width="180" height="185" rx="8" fill="#4c1d95" opacity="0.5" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="750" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#a78bfa">AI API 戦争</text>
+  <text x="750" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#c4b5fd">OpenAI vs Anthropic vs Google</text>
+  <text x="750" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bbb">互換性なし</text>
+  <text x="750" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bbb">MCP = 標準化の芽?</text>
+  <text x="750" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fbbf24">結果: 進行中</text>
+  <rect x="695" y="200" width="110" height="25" rx="4" fill="#4c1d95"/>
+  <text x="750" y="217" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">未確定</text>
+</svg>

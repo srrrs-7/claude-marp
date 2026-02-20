@@ -1,0 +1,18 @@
+topic: "写本文化とコードレビュー〜中世の写字室から学ぶ知識継承の技法〜"
+language: "ja"
+output:
+  dir: "docs/20260220200700_manuscript-code-review"
+  baseName: "manuscript-code-review"
+marp:
+  theme: default
+  paginate: true
+  header: "写本文化とコードレビュー"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

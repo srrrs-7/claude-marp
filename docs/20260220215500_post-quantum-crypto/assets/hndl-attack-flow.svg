@@ -1,0 +1,62 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="10"/>
+  <text x="450" y="35" text-anchor="middle" fill="#e94560" font-size="20" font-family="sans-serif" font-weight="bold">Harvest Now, Decrypt Later (HNDL) 攻撃フロー</text>
+  <!-- Timeline arrow -->
+  <line x1="60" y1="250" x2="850" y2="250" stroke="#555" stroke-width="2"/>
+  <polygon points="850,244 865,250 850,256" fill="#555"/>
+  <text x="870" y="255" fill="#aaa" font-size="12" font-family="sans-serif">時間</text>
+  <!-- Phase 1: Harvest (Now) -->
+  <rect x="60" y="80" width="230" height="140" fill="#16213e" rx="10" stroke="#e94560" stroke-width="2" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="175" y="110" text-anchor="middle" fill="#e94560" font-size="16" font-family="sans-serif" font-weight="bold">Phase 1: 収集（現在）</text>
+  <text x="175" y="138" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">暗号化された通信を</text>
+  <text x="175" y="158" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">大量に傍受・保存</text>
+  <rect x="90" y="170" width="170" height="30" fill="rgba(233,69,96,0.2)" rx="5"/>
+  <text x="175" y="190" text-anchor="middle" fill="#e94560" font-size="11" font-family="sans-serif">国家機関 / APT攻撃者</text>
+  <!-- Arrow to Phase 2 -->
+  <line x1="290" y1="150" x2="335" y2="150" stroke="#e94560" stroke-width="2"/>
+  <polygon points="335,144 348,150 335,156" fill="#e94560"/>
+  <!-- Phase 2: Store -->
+  <rect x="350" y="80" width="210" height="140" fill="#16213e" rx="10" stroke="#feca57" stroke-width="2" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="455" y="110" text-anchor="middle" fill="#feca57" font-size="16" font-family="sans-serif" font-weight="bold">Phase 2: 保管</text>
+  <text x="455" y="138" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">解読不能なデータを</text>
+  <text x="455" y="158" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">長期間保存し待機</text>
+  <rect x="375" y="170" width="160" height="30" fill="rgba(254,202,87,0.2)" rx="5"/>
+  <text x="455" y="190" text-anchor="middle" fill="#feca57" font-size="11" font-family="sans-serif">数年〜数十年</text>
+  <!-- Arrow to Phase 3 -->
+  <line x1="560" y1="150" x2="605" y2="150" stroke="#feca57" stroke-width="2"/>
+  <polygon points="605,144 618,150 605,156" fill="#feca57"/>
+  <!-- Phase 3: Decrypt (Later) -->
+  <rect x="620" y="80" width="230" height="140" fill="#16213e" rx="10" stroke="#00d2d3" stroke-width="2" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="735" y="110" text-anchor="middle" fill="#00d2d3" font-size="16" font-family="sans-serif" font-weight="bold">Phase 3: 解読（未来）</text>
+  <text x="735" y="138" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">量子コンピュータで</text>
+  <text x="735" y="158" text-anchor="middle" fill="#ccc" font-size="12" font-family="sans-serif">過去の暗号を一括解読</text>
+  <rect x="650" y="170" width="170" height="30" fill="rgba(0,210,211,0.2)" rx="5"/>
+  <text x="735" y="190" text-anchor="middle" fill="#00d2d3" font-size="11" font-family="sans-serif">暗号鍵が数分で破られる</text>
+  <!-- Timeline markers -->
+  <circle cx="175" cy="250" r="8" fill="#e94560"/>
+  <text x="175" y="278" text-anchor="middle" fill="#e94560" font-size="12" font-family="sans-serif" font-weight="bold">2020-2026</text>
+  <text x="175" y="296" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">大規模傍受活動</text>
+  <circle cx="455" cy="250" r="8" fill="#feca57"/>
+  <text x="455" y="278" text-anchor="middle" fill="#feca57" font-size="12" font-family="sans-serif" font-weight="bold">2026-2035</text>
+  <text x="455" y="296" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">データ蓄積期間</text>
+  <circle cx="735" cy="250" r="8" fill="#00d2d3"/>
+  <text x="735" y="278" text-anchor="middle" fill="#00d2d3" font-size="12" font-family="sans-serif" font-weight="bold">2035-2040?</text>
+  <text x="735" y="296" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">量子コンピュータ実用化</text>
+  <!-- Targets -->
+  <text x="450" y="340" text-anchor="middle" fill="#fff" font-size="15" font-family="sans-serif" font-weight="bold">標的となるデータ</text>
+  <rect x="60" y="360" width="160" height="50" fill="#0f3460" rx="8"/>
+  <text x="140" y="382" text-anchor="middle" fill="#e94560" font-size="12" font-family="sans-serif" font-weight="bold">外交・軍事通信</text>
+  <text x="140" y="400" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">国家安全保障情報</text>
+  <rect x="240" y="360" width="160" height="50" fill="#0f3460" rx="8"/>
+  <text x="320" y="382" text-anchor="middle" fill="#e94560" font-size="12" font-family="sans-serif" font-weight="bold">金融取引データ</text>
+  <text x="320" y="400" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">銀行間通信・決済</text>
+  <rect x="420" y="360" width="160" height="50" fill="#0f3460" rx="8"/>
+  <text x="500" y="382" text-anchor="middle" fill="#e94560" font-size="12" font-family="sans-serif" font-weight="bold">医療・個人情報</text>
+  <text x="500" y="400" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">電子カルテ・DNA</text>
+  <rect x="600" y="360" width="160" height="50" fill="#0f3460" rx="8"/>
+  <text x="680" y="382" text-anchor="middle" fill="#e94560" font-size="12" font-family="sans-serif" font-weight="bold">知的財産</text>
+  <text x="680" y="400" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">企業秘密・特許</text>
+  <!-- Warning -->
+  <rect x="150" y="430" width="600" height="40" fill="rgba(233,69,96,0.15)" rx="8" stroke="#e94560" stroke-width="1"/>
+  <text x="450" y="455" text-anchor="middle" fill="#e94560" font-size="13" font-family="sans-serif" font-weight="bold">今日の暗号化では、長期秘匿が必要なデータを守れない</text>
+</svg>

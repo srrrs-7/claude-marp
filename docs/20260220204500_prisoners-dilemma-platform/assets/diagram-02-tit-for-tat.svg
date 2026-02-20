@@ -1,0 +1,42 @@
+<svg viewBox="0 0 900 450" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="450" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#e0e0e0">しっぺ返し戦略 (Tit for Tat) の4原則</text>
+
+  <!-- 4 quadrants -->
+  <!-- Top-left: Nice -->
+  <rect x="40" y="60" width="400" height="160" rx="10" fill="#14532d" opacity="0.6" stroke="#4ade80" stroke-width="2"/>
+  <text x="240" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#4ade80">1. 善良 (Nice)</text>
+  <text x="240" y="125" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#86efac">最初は必ず協調する</text>
+  <text x="240" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#a0c8a0">先に裏切らない = 信頼の基盤を構築</text>
+  <text x="240" y="175" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#889988">例: OSSとして公開、標準APIを採用</text>
+  <text x="240" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="24">🤝</text>
+
+  <!-- Top-right: Retaliatory -->
+  <rect x="460" y="60" width="400" height="160" rx="10" fill="#7f1d1d" opacity="0.6" stroke="#f87171" stroke-width="2"/>
+  <text x="660" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#f87171">2. 報復的 (Retaliatory)</text>
+  <text x="660" y="125" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#fca5a5">裏切りには即座に報復する</text>
+  <text x="660" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#c8a0a0">搾取を許さない = 抑止力として機能</text>
+  <text x="660" y="175" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#998888">例: AWS OpenSearch Fork (Elastic裏切りへの報復)</text>
+  <text x="660" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="24">⚔️</text>
+
+  <!-- Bottom-left: Forgiving -->
+  <rect x="40" y="240" width="400" height="160" rx="10" fill="#1e3a5f" opacity="0.6" stroke="#60a5fa" stroke-width="2"/>
+  <text x="240" y="275" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#60a5fa">3. 寛容 (Forgiving)</text>
+  <text x="240" y="305" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#93c5fd">相手が協調に戻ったら許す</text>
+  <text x="240" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#a0a8c8">永続的な報復をしない = 協調復帰の余地</text>
+  <text x="240" y="355" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#888899">例: Microsoft のOSS転向を受け入れたコミュニティ</text>
+  <text x="240" y="380" text-anchor="middle" font-family="Arial,sans-serif" font-size="24">🕊️</text>
+
+  <!-- Bottom-right: Clear -->
+  <rect x="460" y="240" width="400" height="160" rx="10" fill="#581c87" opacity="0.6" stroke="#a78bfa" stroke-width="2"/>
+  <text x="660" y="275" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#a78bfa">4. 明瞭 (Clear)</text>
+  <text x="660" y="305" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#c4b5fd">行動パターンが予測可能</text>
+  <text x="660" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b0a0c8">相手に理解しやすい = 協調を促進</text>
+  <text x="660" y="355" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#889088">例: 明確なライセンス条項、Code of Conduct</text>
+  <text x="660" y="380" text-anchor="middle" font-family="Arial,sans-serif" font-size="24">📋</text>
+
+  <!-- Footer -->
+  <text x="450" y="430" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#aaa">Axelrod (1984): 最も単純な戦略が最強 — 複雑さは勝利の条件ではない</text>
+</svg>

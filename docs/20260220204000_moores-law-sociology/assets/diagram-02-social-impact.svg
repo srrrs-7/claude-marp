@@ -1,0 +1,60 @@
+<svg viewBox="0 0 900 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="480" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#e0e0e0">ムーアの法則の社会的波及効果</text>
+
+  <!-- Center node -->
+  <circle cx="450" cy="240" r="65" fill="#3b82f6" opacity="0.85"/>
+  <text x="450" y="232" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#fff">ムーアの法則</text>
+  <text x="450" y="252" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#e0e0e0">2年で2倍</text>
+
+  <!-- Surrounding impact nodes -->
+  <!-- Top: Consumer Culture -->
+  <line x1="450" y1="175" x2="450" y2="100" stroke="#f472b6" stroke-width="2"/>
+  <rect x="365" y="60" width="170" height="45" rx="8" fill="#831843" opacity="0.9"/>
+  <text x="450" y="80" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#f472b6">消費文化</text>
+  <text x="450" y="96" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e0a0c0">計画的陳腐化・2年更新</text>
+
+  <!-- Top-right: SW Industry -->
+  <line x1="505" y1="195" x2="680" y2="110" stroke="#a78bfa" stroke-width="2"/>
+  <rect x="620" y="70" width="190" height="45" rx="8" fill="#4c1d95" opacity="0.9"/>
+  <text x="715" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#a78bfa">ソフトウェア産業</text>
+  <text x="715" y="106" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b0e0">最適化軽視・肥大化</text>
+
+  <!-- Right: Geopolitics -->
+  <line x1="515" y1="240" x2="680" y2="240" stroke="#22d3ee" stroke-width="2"/>
+  <rect x="620" y="218" width="190" height="45" rx="8" fill="#164e63" opacity="0.9"/>
+  <text x="715" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#22d3ee">地政学</text>
+  <text x="715" y="254" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#80d0e0">半導体覇権・CHIPS法</text>
+
+  <!-- Bottom-right: Environment -->
+  <line x1="505" y1="285" x2="680" y2="370" stroke="#4ade80" stroke-width="2"/>
+  <rect x="620" y="350" width="190" height="45" rx="8" fill="#14532d" opacity="0.9"/>
+  <text x="715" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4ade80">環境問題</text>
+  <text x="715" y="386" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#90e0b0">電子廃棄物・エネルギー</text>
+
+  <!-- Bottom: Education -->
+  <line x1="450" y1="305" x2="450" y2="380" stroke="#fbbf24" stroke-width="2"/>
+  <rect x="365" y="375" width="170" height="45" rx="8" fill="#713f12" opacity="0.9"/>
+  <text x="450" y="395" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">教育・スキル</text>
+  <text x="450" y="411" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e0c870">CS教育・リスキリング</text>
+
+  <!-- Bottom-left: Economy -->
+  <line x1="395" y1="285" x2="220" y2="370" stroke="#fb923c" stroke-width="2"/>
+  <rect x="90" y="350" width="190" height="45" rx="8" fill="#7c2d12" opacity="0.9"/>
+  <text x="185" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fb923c">経済構造</text>
+  <text x="185" y="386" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e0b090">デジタル経済・格差</text>
+
+  <!-- Left: Expectation -->
+  <line x1="385" y1="240" x2="220" y2="240" stroke="#f87171" stroke-width="2"/>
+  <rect x="90" y="218" width="190" height="45" rx="8" fill="#7f1d1d" opacity="0.9"/>
+  <text x="185" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#f87171">社会的期待</text>
+  <text x="185" y="254" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e0a0a0">「計算は無料」信仰</text>
+
+  <!-- Top-left: Innovation Pressure -->
+  <line x1="395" y1="195" x2="220" y2="110" stroke="#e879f9" stroke-width="2"/>
+  <rect x="90" y="70" width="190" height="45" rx="8" fill="#581c87" opacity="0.9"/>
+  <text x="185" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#e879f9">イノベーション圧力</text>
+  <text x="185" y="106" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d0a0e0">VC投資・スタートアップ</text>
+</svg>

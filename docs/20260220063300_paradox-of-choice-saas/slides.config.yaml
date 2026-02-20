@@ -1,0 +1,12 @@
+topic: "選択のパラドックス × SaaS ― なぜ多機能ツールは使われないのか"
+language: "ja"
+output:
+  dir: "docs/20260220063300_paradox-of-choice-saas"
+  baseName: "paradox-of-choice-saas"
+marp:
+  theme: gaia
+  paginate: true
+  header: "選択のパラドックスとSaaS"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

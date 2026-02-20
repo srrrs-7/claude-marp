@@ -1,0 +1,12 @@
+topic: "スライム菌が東京の地下鉄を設計した話"
+language: "ja"
+output:
+  dir: "docs/20260220180001_slime-mold-optimization"
+  baseName: "slime-mold-optimization"
+marp:
+  theme: gaia
+  paginate: true
+  header: "スライム菌の最適化"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

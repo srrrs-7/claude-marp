@@ -1,0 +1,12 @@
+topic: "成功が失敗を生む瞬間 — イノベーターのジレンマ実例集"
+language: "ja"
+output:
+  dir: "docs/20260220180007_success-breeds-failure"
+  baseName: "success-breeds-failure"
+marp:
+  theme: gaia
+  paginate: true
+  header: "成功が失敗を生む"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

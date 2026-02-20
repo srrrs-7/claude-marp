@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="480" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" fill="#e0e0ff" font-size="18" font-weight="bold" font-family="sans-serif">信頼の委譲チェーン -- 人間 → AI への権限移行</text>
+
+  <!-- Human -->
+  <rect x="50" y="70" width="160" height="100" fill="#1a6b3a" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/>
+  <text x="130" y="105" text-anchor="middle" fill="white" font-size="15" font-weight="bold" font-family="sans-serif">人間 (Human)</text>
+  <text x="130" y="125" text-anchor="middle" fill="#80ffb0" font-size="11" font-family="sans-serif">完全な意思決定権</text>
+  <text x="130" y="145" text-anchor="middle" fill="#80ffb0" font-size="11" font-family="sans-serif">最終責任者</text>
+
+  <!-- Arrow 1 -->
+  <line x1="210" y1="120" x2="270" y2="120" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="270,114 284,120 270,126" fill="#e8c6f5"/>
+  <text x="240" y="108" text-anchor="middle" fill="#e8c6f5" font-size="9" font-family="sans-serif">信頼</text>
+
+  <!-- AI Assistant -->
+  <rect x="280" y="70" width="160" height="100" fill="#533483" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/>
+  <text x="360" y="105" text-anchor="middle" fill="white" font-size="15" font-weight="bold" font-family="sans-serif">AIアシスタント</text>
+  <text x="360" y="125" text-anchor="middle" fill="#d4b0ff" font-size="11" font-family="sans-serif">提案・補助</text>
+  <text x="360" y="145" text-anchor="middle" fill="#d4b0ff" font-size="11" font-family="sans-serif">人間が承認</text>
+
+  <!-- Arrow 2 -->
+  <line x1="440" y1="120" x2="500" y2="120" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="500,114 514,120 500,126" fill="#e8c6f5"/>
+  <text x="470" y="108" text-anchor="middle" fill="#e8c6f5" font-size="9" font-family="sans-serif">委譲</text>
+
+  <!-- AI Agent -->
+  <rect x="510" y="70" width="160" height="100" fill="#ff9900" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/>
+  <text x="590" y="105" text-anchor="middle" fill="white" font-size="15" font-weight="bold" font-family="sans-serif">AIエージェント</text>
+  <text x="590" y="125" text-anchor="middle" fill="#fff0cc" font-size="11" font-family="sans-serif">自律的に実行</text>
+  <text x="590" y="145" text-anchor="middle" fill="#fff0cc" font-size="11" font-family="sans-serif">制約の範囲内</text>
+
+  <!-- Arrow 3 -->
+  <line x1="670" y1="120" x2="730" y2="120" stroke="#e8c6f5" stroke-width="2"/>
+  <polygon points="730,114 744,120 730,126" fill="#e8c6f5"/>
+  <text x="700" y="108" text-anchor="middle" fill="#e8c6f5" font-size="9" font-family="sans-serif">???</text>
+
+  <!-- Autonomous AI -->
+  <rect x="740" y="70" width="130" height="100" fill="#6b1a1a" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/>
+  <text x="805" y="100" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="sans-serif">完全自律AI</text>
+  <text x="805" y="120" text-anchor="middle" fill="#ff9999" font-size="11" font-family="sans-serif">自己判断で行動</text>
+  <text x="805" y="140" text-anchor="middle" fill="#ff9999" font-size="11" font-family="sans-serif">人間の監督なし</text>
+  <text x="805" y="162" text-anchor="middle" fill="#ff4444" font-size="10" font-weight="bold" font-family="sans-serif">危険ゾーン</text>
+
+  <!-- Trust gradient bar -->
+  <text x="450" y="205" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">信頼レベル</text>
+  <rect x="50" y="215" width="200" height="20" fill="#1a6b3a" rx="4"/>
+  <rect x="250" y="215" width="200" height="20" fill="#533483" rx="4"/>
+  <rect x="450" y="215" width="200" height="20" fill="#ff9900" rx="4"/>
+  <rect x="650" y="215" width="220" height="20" fill="#6b1a1a" rx="4"/>
+  <text x="150" y="230" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">低リスク</text>
+  <text x="350" y="230" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">中リスク</text>
+  <text x="550" y="230" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">高リスク</text>
+  <text x="760" y="230" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">極高リスク</text>
+
+  <!-- Luhmann's Trust Theory -->
+  <rect x="50" y="260" width="400" height="200" fill="#0d2240" rx="10" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="250" y="290" text-anchor="middle" fill="#4cc9f0" font-size="15" font-weight="bold" font-family="sans-serif">Luhmannの信頼論</text>
+  <line x1="70" y1="300" x2="430" y2="300" stroke="#333" stroke-width="1"/>
+
+  <text x="70" y="325" fill="#e0e0e0" font-size="12" font-family="sans-serif">信頼 = 複雑性の縮減メカニズム</text>
+  <text x="70" y="350" fill="#aaa" font-size="11" font-family="sans-serif">1. 信頼は段階的に構築される</text>
+  <text x="70" y="370" fill="#aaa" font-size="11" font-family="sans-serif">2. 信頼は裏切りで一瞬で崩壊する</text>
+  <text x="70" y="390" fill="#aaa" font-size="11" font-family="sans-serif">3. 信頼にはリスクの引き受けが必要</text>
+  <text x="70" y="410" fill="#aaa" font-size="11" font-family="sans-serif">4. 制度的信頼 vs 人格的信頼</text>
+  <text x="70" y="440" fill="#ffcc00" font-size="12" font-weight="bold" font-family="sans-serif">→ AIへの信頼も同じ原理で動く</text>
+
+  <!-- Principle of Least Privilege -->
+  <rect x="480" y="260" width="390" height="200" fill="#0d2240" rx="10" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="675" y="290" text-anchor="middle" fill="#ff9900" font-size="15" font-weight="bold" font-family="sans-serif">Principle of Least Privilege</text>
+  <line x1="500" y1="300" x2="850" y2="300" stroke="#333" stroke-width="1"/>
+
+  <text x="500" y="325" fill="#e0e0e0" font-size="12" font-family="sans-serif">最小権限の原則</text>
+  <text x="500" y="350" fill="#aaa" font-size="11" font-family="sans-serif">1. 必要最小限の権限のみ付与</text>
+  <text x="500" y="370" fill="#aaa" font-size="11" font-family="sans-serif">2. 権限は一時的 &amp; スコープ限定</text>
+  <text x="500" y="390" fill="#aaa" font-size="11" font-family="sans-serif">3. 監査ログで行動を追跡</text>
+  <text x="500" y="410" fill="#aaa" font-size="11" font-family="sans-serif">4. 定期的な権限レビュー</text>
+  <text x="500" y="440" fill="#ffcc00" font-size="12" font-weight="bold" font-family="sans-serif">→ AIエージェントにも同じ原則を適用</text>
+</svg>

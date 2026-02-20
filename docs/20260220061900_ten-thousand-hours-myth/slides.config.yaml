@@ -1,0 +1,12 @@
+topic: "1万時間の法則の嘘と真実"
+language: "ja"
+output:
+  dir: "docs/20260220061900_ten-thousand-hours-myth"
+  baseName: "ten-thousand-hours-myth"
+marp:
+  theme: gaia
+  paginate: true
+  header: "熟達と練習の科学"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

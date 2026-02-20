@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="380" fill="#fafaf8"/>
+
+  <!-- Top section label -->
+  <rect x="10" y="10" width="880" height="170" fill="#f5f0e8" rx="8" stroke="#c8b99a" stroke-width="1.5"/>
+  <text x="450" y="35" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#5c4a32" font-weight="bold">写本の連鎖〜エラーの伝播</text>
+
+  <!-- Original manuscript -->
+  <rect x="40" y="50" width="130" height="90" fill="#f0e8c8" rx="5" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <rect x="40" y="50" width="130" height="20" fill="#8b6914" rx="5"/>
+  <text x="105" y="65" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f5f0e8" font-weight="bold">Original</text>
+  <line x1="55" y1="85" x2="160" y2="85" stroke="#8b7355" stroke-width="1.5" opacity="0.7"/>
+  <line x1="55" y1="95" x2="160" y2="95" stroke="#8b7355" stroke-width="1.5" opacity="0.7"/>
+  <line x1="55" y1="105" x2="160" y2="105" stroke="#8b7355" stroke-width="1.5" opacity="0.7"/>
+  <line x1="55" y1="115" x2="140" y2="115" stroke="#8b7355" stroke-width="1.5" opacity="0.7"/>
+  <text x="105" y="135" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#5c4a32">原典（正確）</text>
+
+  <!-- Arrow 1 -->
+  <line x1="172" y1="95" x2="218" y2="95" stroke="#7a5c10" stroke-width="2"/>
+  <polygon points="218,90 230,95 218,100" fill="#7a5c10"/>
+  <text x="200" y="88" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#7a5c10">複写</text>
+
+  <!-- Copy 1 -->
+  <rect x="232" y="50" width="130" height="90" fill="#f0e8c8" rx="5" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <rect x="232" y="50" width="130" height="20" fill="#8b7355" rx="5"/>
+  <text x="297" y="65" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f5f0e8" font-weight="bold">Copy 1</text>
+  <line x1="247" y1="85" x2="352" y2="85" stroke="#8b7355" stroke-width="1.5" opacity="0.7"/>
+  <line x1="247" y1="95" x2="352" y2="95" stroke="#8b7355" stroke-width="1.5" opacity="0.7"/>
+  <!-- First error (red) -->
+  <line x1="247" y1="105" x2="300" y2="105" stroke="#cc2200" stroke-width="2"/>
+  <line x1="305" y1="105" x2="352" y2="105" stroke="#8b7355" stroke-width="1.5" opacity="0.7"/>
+  <circle cx="302" cy="105" r="5" fill="#cc2200" opacity="0.8"/>
+  <text x="302" y="102" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white" font-weight="bold">!</text>
+  <line x1="247" y1="115" x2="332" y2="115" stroke="#8b7355" stroke-width="1.5" opacity="0.7"/>
+  <text x="297" y="135" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cc2200">エラー 1個</text>
+
+  <!-- Arrow 2 -->
+  <line x1="364" y1="95" x2="410" y2="95" stroke="#7a5c10" stroke-width="2"/>
+  <polygon points="410,90 422,95 410,100" fill="#7a5c10"/>
+  <text x="392" y="88" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#7a5c10">複写</text>
+
+  <!-- Copy 2 -->
+  <rect x="424" y="50" width="130" height="90" fill="#f0e8c8" rx="5" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <rect x="424" y="50" width="130" height="20" fill="#9c6060" rx="5"/>
+  <text x="489" y="65" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f5f0e8" font-weight="bold">Copy 2</text>
+  <!-- Two errors -->
+  <line x1="439" y1="85" x2="544" y2="85" stroke="#cc2200" stroke-width="2"/>
+  <line x1="439" y1="95" x2="544" y2="95" stroke="#8b7355" stroke-width="1.5" opacity="0.7"/>
+  <circle cx="460" cy="85" r="5" fill="#cc2200" opacity="0.8"/>
+  <text x="460" y="82" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white" font-weight="bold">!</text>
+  <line x1="439" y1="105" x2="490" y2="105" stroke="#cc2200" stroke-width="2"/>
+  <line x1="496" y1="105" x2="544" y2="105" stroke="#8b7355" stroke-width="1.5" opacity="0.7"/>
+  <circle cx="493" cy="105" r="5" fill="#cc2200" opacity="0.8"/>
+  <text x="493" y="102" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white" font-weight="bold">!</text>
+  <line x1="439" y1="115" x2="520" y2="115" stroke="#8b7355" stroke-width="1.5" opacity="0.7"/>
+  <text x="489" y="135" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cc2200">エラー 3個</text>
+
+  <!-- Arrow 3 -->
+  <line x1="556" y1="95" x2="602" y2="95" stroke="#7a5c10" stroke-width="2"/>
+  <polygon points="602,90 614,95 602,100" fill="#7a5c10"/>
+  <text x="584" y="88" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#7a5c10">複写</text>
+
+  <!-- Copy 3 -->
+  <rect x="616" y="50" width="130" height="90" fill="#f0e8c8" rx="5" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"/>
+  <rect x="616" y="50" width="130" height="20" fill="#8b1a1a" rx="5"/>
+  <text x="681" y="65" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f5f0e8" font-weight="bold">Copy 3</text>
+  <!-- Many errors -->
+  <line x1="631" y1="85" x2="736" y2="85" stroke="#cc2200" stroke-width="2"/>
+  <circle cx="645" cy="85" r="5" fill="#cc2200" opacity="0.9"/>
+  <text x="645" y="82" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white" font-weight="bold">!</text>
+  <circle cx="670" cy="85" r="5" fill="#cc2200" opacity="0.9"/>
+  <text x="670" y="82" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white" font-weight="bold">!</text>
+  <line x1="631" y1="95" x2="736" y2="95" stroke="#cc2200" stroke-width="2"/>
+  <circle cx="690" cy="95" r="5" fill="#8b1a1a" opacity="0.9"/>
+  <text x="690" y="92" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white" font-weight="bold">!</text>
+  <line x1="631" y1="105" x2="736" y2="105" stroke="#cc2200" stroke-width="2"/>
+  <circle cx="655" cy="105" r="5" fill="#8b1a1a" opacity="0.9"/>
+  <text x="655" y="102" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white" font-weight="bold">!</text>
+  <circle cx="715" cy="105" r="5" fill="#8b1a1a" opacity="0.9"/>
+  <text x="715" y="102" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white" font-weight="bold">!</text>
+  <line x1="631" y1="115" x2="736" y2="115" stroke="#cc2200" stroke-width="2"/>
+  <text x="681" y="135" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#8b1a1a" font-weight="bold">エラー 7個!</text>
+
+  <!-- Century label -->
+  <text x="105" y="155" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#8b7355">5世紀</text>
+  <text x="297" y="155" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#8b7355">8世紀</text>
+  <text x="489" y="155" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#8b7355">11世紀</text>
+  <text x="681" y="155" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#8b7355">14世紀</text>
+
+  <!-- Divider -->
+  <line x1="20" y1="195" x2="880" y2="195" stroke="#c8b99a" stroke-width="1.5" stroke-dasharray="8,4"/>
+
+  <!-- Bottom section: Code analogy -->
+  <rect x="10" y="200" width="880" height="165" fill="#f0f4f8" rx="8" stroke="#6b8cba" stroke-width="1.5"/>
+  <text x="450" y="225" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#2c4a7c" font-weight="bold">コードへの類比〜バグのコピー&amp;ペースト伝播</text>
+
+  <!-- Code block boxes -->
+  <!-- Original code -->
+  <rect x="40" y="240" width="160" height="100" fill="#1e2d3d" rx="5" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="120" y="258" text-anchor="middle" font-family="monospace" font-size="10" fill="#6b8cba">// Original</text>
+  <text x="55" y="272" font-family="monospace" font-size="10" fill="#7ec8a0">function</text>
+  <text x="55" y="286" font-family="monospace" font-size="10" fill="#c8d8e8">  calc(x) {</text>
+  <text x="55" y="300" font-family="monospace" font-size="10" fill="#c8d8e8">    return x*2;</text>
+  <text x="55" y="314" font-family="monospace" font-size="10" fill="#c8d8e8">  }</text>
+  <text x="120" y="333" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#7ec8a0">正常</text>
+
+  <!-- Arrow -->
+  <line x1="202" y1="290" x2="248" y2="290" stroke="#6b8cba" stroke-width="2"/>
+  <polygon points="248,285 262,290 248,295" fill="#6b8cba"/>
+  <text x="232" y="283" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#6b8cba">C&amp;P</text>
+
+  <!-- Copy 1 code with bug -->
+  <rect x="264" y="240" width="160" height="100" fill="#1e2d3d" rx="5" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="344" y="258" text-anchor="middle" font-family="monospace" font-size="10" fill="#cc6644">// Module A</text>
+  <text x="279" y="272" font-family="monospace" font-size="10" fill="#7ec8a0">function</text>
+  <text x="279" y="286" font-family="monospace" font-size="10" fill="#c8d8e8">  calc(x) {</text>
+  <text x="279" y="300" font-family="monospace" font-size="10" fill="#e8a0a0">    return x*2+1;</text>
+  <text x="279" y="314" font-family="monospace" font-size="10" fill="#c8d8e8">  }</text>
+  <text x="344" y="333" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cc6644">バグ混入</text>
+
+  <!-- Arrow -->
+  <line x1="426" y1="290" x2="472" y2="290" stroke="#6b8cba" stroke-width="2"/>
+  <polygon points="472,285 486,290 472,295" fill="#6b8cba"/>
+  <text x="456" y="283" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#6b8cba">C&amp;P</text>
+
+  <!-- Copy 2 code with more bugs -->
+  <rect x="488" y="240" width="160" height="100" fill="#1e2d3d" rx="5" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="568" y="258" text-anchor="middle" font-family="monospace" font-size="10" fill="#cc6644">// Module B</text>
+  <text x="503" y="272" font-family="monospace" font-size="10" fill="#7ec8a0">function</text>
+  <text x="503" y="286" font-family="monospace" font-size="10" fill="#e8a0a0">  calc(x,y) {</text>
+  <text x="503" y="300" font-family="monospace" font-size="10" fill="#e8a0a0">    return x*2+1;</text>
+  <text x="503" y="314" font-family="monospace" font-size="10" fill="#c8d8e8">  }</text>
+  <text x="568" y="333" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cc3300" font-weight="bold">バグ拡大!</text>
+
+  <!-- Arrow -->
+  <line x1="650" y1="290" x2="696" y2="290" stroke="#6b8cba" stroke-width="2"/>
+  <polygon points="696,285 710,290 696,295" fill="#6b8cba"/>
+  <text x="680" y="283" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#6b8cba">C&amp;P</text>
+
+  <!-- Copy 3 - broken -->
+  <rect x="712" y="240" width="160" height="100" fill="#3d1e1e" rx="5" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="792" y="258" text-anchor="middle" font-family="monospace" font-size="10" fill="#ff6644">// Module C</text>
+  <text x="727" y="272" font-family="monospace" font-size="10" fill="#e8a0a0">function</text>
+  <text x="727" y="286" font-family="monospace" font-size="10" fill="#e8a0a0">  calc(x,y,z) {</text>
+  <text x="727" y="300" font-family="monospace" font-size="10" fill="#ff8888">  return?????</text>
+  <text x="727" y="314" font-family="monospace" font-size="10" fill="#e8a0a0">  }</text>
+  <text x="792" y="333" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ff4444" font-weight="bold">修正不能!</text>
+
+  <!-- Bottom message -->
+  <text x="450" y="358" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#2c4a7c" font-weight="bold">コードレビューなき複製は、写本エラーの現代版</text>
+</svg>

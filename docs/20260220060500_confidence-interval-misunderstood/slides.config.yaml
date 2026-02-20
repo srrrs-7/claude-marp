@@ -1,0 +1,12 @@
+topic: "信頼区間の誤解 — 「95%信頼区間」は何を意味するのか"
+language: "ja"
+output:
+  dir: "docs/20260220060500_confidence-interval-misunderstood"
+  baseName: "confidence-interval-misunderstood"
+marp:
+  theme: gaia
+  paginate: true
+  header: "統計的推定の誤解"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

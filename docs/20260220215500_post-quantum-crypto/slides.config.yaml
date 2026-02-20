@@ -1,0 +1,20 @@
+topic: "ポスト量子暗号：今日の秘密は明日解読される"
+language: "ja"
+
+output:
+  dir: "docs/20260220215500_post-quantum-crypto"
+  baseName: "post-quantum-crypto"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "Post-Quantum Cryptography"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

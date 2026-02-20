@@ -1,0 +1,43 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" fill="#FFEAA7" font-size="20" font-weight="bold" font-family="sans-serif">コモンズの悲劇モデル</text>
+  <!-- Central Commons -->
+  <ellipse cx="450" cy="250" rx="120" ry="80" fill="#2d3436" stroke="#4ECDC4" stroke-width="3" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="450" y="240" text-anchor="middle" fill="#4ECDC4" font-size="16" font-weight="bold" font-family="sans-serif">共有資源</text>
+  <text x="450" y="262" text-anchor="middle" fill="#dfe6e9" font-size="13" font-family="sans-serif">(OSS / 牧草地)</text>
+  <!-- Actor 1: Corporations -->
+  <rect x="50" y="80" width="160" height="90" fill="#e17055" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="130" y="115" text-anchor="middle" fill="white" font-size="15" font-weight="bold" font-family="sans-serif">大企業A</text>
+  <text x="130" y="137" text-anchor="middle" fill="#ffeaa7" font-size="12" font-family="sans-serif">利用: 最大</text>
+  <text x="130" y="157" text-anchor="middle" fill="#ffeaa7" font-size="12" font-family="sans-serif">貢献: 最小</text>
+  <!-- Arrow from Corp A -->
+  <line x1="210" y1="135" x2="330" y2="220" stroke="#e17055" stroke-width="2.5" stroke-dasharray="8,4"/>
+  <polygon points="330,215 335,226 325,224" fill="#e17055"/>
+  <!-- Actor 2: Corporations B -->
+  <rect x="690" y="80" width="160" height="90" fill="#e17055" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="770" y="115" text-anchor="middle" fill="white" font-size="15" font-weight="bold" font-family="sans-serif">大企業B</text>
+  <text x="770" y="137" text-anchor="middle" fill="#ffeaa7" font-size="12" font-family="sans-serif">利用: 最大</text>
+  <text x="770" y="157" text-anchor="middle" fill="#ffeaa7" font-size="12" font-family="sans-serif">貢献: 最小</text>
+  <!-- Arrow from Corp B -->
+  <line x1="690" y1="135" x2="570" y2="220" stroke="#e17055" stroke-width="2.5" stroke-dasharray="8,4"/>
+  <polygon points="570,215 575,224 565,226" fill="#e17055"/>
+  <!-- Actor 3: Individual Maintainer -->
+  <rect x="50" y="340" width="160" height="90" fill="#00b894" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="130" y="375" text-anchor="middle" fill="white" font-size="15" font-weight="bold" font-family="sans-serif">個人メンテナ</text>
+  <text x="130" y="397" text-anchor="middle" fill="#ffeaa7" font-size="12" font-family="sans-serif">利用: 少量</text>
+  <text x="130" y="417" text-anchor="middle" fill="#ffeaa7" font-size="12" font-family="sans-serif">貢献: 全力</text>
+  <!-- Arrow from Maintainer -->
+  <line x1="210" y1="375" x2="340" y2="290" stroke="#00b894" stroke-width="2.5"/>
+  <polygon points="340,285 345,296 335,294" fill="#00b894"/>
+  <!-- Actor 4: Startup -->
+  <rect x="690" y="340" width="160" height="90" fill="#fdcb6e" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="770" y="375" text-anchor="middle" fill="#2d3436" font-size="15" font-weight="bold" font-family="sans-serif">スタートアップ</text>
+  <text x="770" y="397" text-anchor="middle" fill="#2d3436" font-size="12" font-family="sans-serif">利用: 中程度</text>
+  <text x="770" y="417" text-anchor="middle" fill="#2d3436" font-size="12" font-family="sans-serif">貢献: わずか</text>
+  <!-- Arrow from Startup -->
+  <line x1="690" y1="375" x2="560" y2="290" stroke="#fdcb6e" stroke-width="2.5" stroke-dasharray="8,4"/>
+  <polygon points="560,285 565,294 555,296" fill="#fdcb6e"/>
+  <!-- Depletion indicator -->
+  <text x="450" y="470" text-anchor="middle" fill="#FF6B6B" font-size="14" font-weight="bold" font-family="sans-serif">⚠ 過剰利用 → メンテナ疲弊 → プロジェクト放棄</text>
+</svg>

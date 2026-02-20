@@ -1,0 +1,50 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#0f172a" rx="12"/>
+  <text x="400" y="30" text-anchor="middle" fill="#e2e8f0" font-size="17" font-family="sans-serif" font-weight="bold">ペルソナ vs 実際のユーザー行動</text>
+
+  <!-- Left: Persona (idealized) -->
+  <rect x="40" y="50" width="330" height="300" rx="10" fill="#1e293b" stroke="#6c63ff" stroke-width="2"/>
+  <text x="205" y="78" text-anchor="middle" fill="#a78bfa" font-size="14" font-family="sans-serif" font-weight="bold">ペルソナ（想定ユーザー）</text>
+
+  <!-- Avatar idealized -->
+  <circle cx="205" cy="130" r="35" fill="#6c63ff" opacity="0.4" stroke="#6c63ff" stroke-width="2"/>
+  <circle cx="205" cy="115" r="18" fill="#a78bfa"/>
+  <ellipse cx="205" cy="155" rx="28" ry="18" fill="#a78bfa"/>
+
+  <!-- Traits -->
+  <text x="75" y="190" fill="#4ade80" font-size="12" font-family="sans-serif">✓ 毎日使う</text>
+  <text x="75" y="210" fill="#4ade80" font-size="12" font-family="sans-serif">✓ 機能を全て把握</text>
+  <text x="75" y="230" fill="#4ade80" font-size="12" font-family="sans-serif">✓ 目的意識が明確</text>
+  <text x="75" y="250" fill="#4ade80" font-size="12" font-family="sans-serif">✓ フィードバックを提供</text>
+  <text x="75" y="270" fill="#4ade80" font-size="12" font-family="sans-serif">✓ 論理的に行動する</text>
+
+  <rect x="60" y="295" width="290" height="40" rx="6" fill="#312e81" stroke="#6c63ff" stroke-width="1"/>
+  <text x="205" y="311" text-anchor="middle" fill="#c4b5fd" font-size="11" font-family="sans-serif">→ 調査票・インタビューで描いた像</text>
+  <text x="205" y="328" text-anchor="middle" fill="#c4b5fd" font-size="11" font-family="sans-serif">→ 観測者が期待した「あるべき姿」</text>
+
+  <!-- VS -->
+  <text x="400" y="218" text-anchor="middle" fill="#fbbf24" font-size="28" font-family="sans-serif" font-weight="bold">vs</text>
+
+  <!-- Right: Real user -->
+  <rect x="430" y="50" width="330" height="300" rx="10" fill="#1e293b" stroke="#f87171" stroke-width="2"/>
+  <text x="595" y="78" text-anchor="middle" fill="#f87171" font-size="14" font-family="sans-serif" font-weight="bold">実際のユーザー</text>
+
+  <!-- Avatar real (messy) -->
+  <circle cx="595" cy="130" r="35" fill="#f87171" opacity="0.2" stroke="#f87171" stroke-width="2" stroke-dasharray="5,3"/>
+  <circle cx="595" cy="115" r="18" fill="#94a3b8"/>
+  <ellipse cx="595" cy="155" rx="28" ry="18" fill="#94a3b8"/>
+
+  <!-- Real traits -->
+  <text x="450" y="190" fill="#f87171" font-size="12" font-family="sans-serif">✗ 週1回だけ使う</text>
+  <text x="450" y="210" fill="#f87171" font-size="12" font-family="sans-serif">✗ 一部の機能しか知らない</text>
+  <text x="450" y="230" fill="#fbbf24" font-size="12" font-family="sans-serif">△ なんとなく使っている</text>
+  <text x="450" y="250" fill="#f87171" font-size="12" font-family="sans-serif">✗ フィードバックしない</text>
+  <text x="450" y="270" fill="#f87171" font-size="12" font-family="sans-serif">✗ 気分・状況で変わる</text>
+
+  <rect x="450" y="295" width="290" height="40" rx="6" fill="#450a0a" stroke="#f87171" stroke-width="1"/>
+  <text x="595" y="311" text-anchor="middle" fill="#fca5a5" font-size="11" font-family="sans-serif">→ アナリティクス・実観察で見えてきた像</text>
+  <text x="595" y="328" text-anchor="middle" fill="#fca5a5" font-size="11" font-family="sans-serif">→ 観測設計が歪みを産んでいた</text>
+
+  <!-- Bottom note -->
+  <text x="400" y="375" text-anchor="middle" fill="#64748b" font-size="12" font-family="sans-serif">ペルソナは「観測が生み出した幻想」である可能性がある</text>
+</svg>

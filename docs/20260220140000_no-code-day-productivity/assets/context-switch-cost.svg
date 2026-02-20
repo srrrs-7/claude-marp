@@ -1,0 +1,85 @@
+<svg viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="460" fill="#0f172a" rx="12"/>
+  <text x="480" y="32" text-anchor="middle" font-size="18" font-weight="bold" fill="#e2e8f0">文脈切り替えのコスト</text>
+
+  <!-- Axes -->
+  <line x1="60" y1="360" x2="920" y2="360" stroke="#475569" stroke-width="2"/>
+  <polygon points="924,360 914,355 914,365" fill="#475569"/>
+  <text x="492" y="390" text-anchor="middle" font-size="11" fill="#94a3b8">時間軸 →</text>
+
+  <line x1="60" y1="60" x2="60" y2="365" stroke="#475569" stroke-width="2"/>
+  <polygon points="60,56 55,66 65,66" fill="#475569"/>
+  <text x="36" y="215" text-anchor="middle" font-size="11" fill="#94a3b8" transform="rotate(-90,36,215)">集中度 →</text>
+
+  <!-- Y-axis labels -->
+  <text x="52" y="110" text-anchor="end" font-size="10" fill="#64748b">高</text>
+  <text x="52" y="360" text-anchor="end" font-size="10" fill="#64748b">低</text>
+
+  <!-- === Productivity curve === -->
+  <!-- Phase 1: Building up deep focus on Task A -->
+  <path d="M 80,340 C 100,335 130,290 160,200 C 185,130 200,110 230,105"
+        fill="none" stroke="#3b82f6" stroke-width="3"/>
+
+  <!-- Phase 2: Interruption - steep drop -->
+  <path d="M 230,105 C 250,100 280,320 300,345"
+        fill="none" stroke="#ef4444" stroke-width="3" stroke-dasharray="6,3"/>
+
+  <!-- Phase 3: Brief Task B work (shallow) -->
+  <path d="M 300,345 C 320,330 360,310 400,295"
+        fill="none" stroke="#22c55e" stroke-width="3"/>
+
+  <!-- Phase 4: Second interruption - drop again -->
+  <path d="M 400,295 C 420,290 450,340 470,350"
+        fill="none" stroke="#ef4444" stroke-width="3" stroke-dasharray="6,3"/>
+
+  <!-- Phase 5: Recovery on Task A - slow rebuild -->
+  <path d="M 470,350 C 510,345 570,280 640,200 C 700,140 740,115 800,108"
+        fill="none" stroke="#3b82f6" stroke-width="3"/>
+
+  <!-- 23 min recovery zone shading -->
+  <rect x="470" y="100" width="230" height="260" rx="4" fill="#ef4444" opacity="0.07"/>
+  <rect x="470" y="100" width="230" height="260" rx="4" fill="none" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- 23 min label -->
+  <line x1="470" y1="80" x2="700" y2="80" stroke="#ef4444" stroke-width="1.5"/>
+  <polygon points="470,80 480,75 480,85" fill="#ef4444"/>
+  <polygon points="700,80 690,75 690,85" fill="#ef4444"/>
+  <text x="585" y="73" text-anchor="middle" font-size="12" font-weight="bold" fill="#fca5a5">平均 23分 6秒の回復時間</text>
+
+  <!-- Task A blocks -->
+  <rect x="80" y="345" width="145" height="22" rx="4" fill="#1d4ed8" opacity="0.8"/>
+  <text x="152" y="360" text-anchor="middle" font-size="11" font-weight="bold" fill="#e0e7ff">タスクA（深い作業）</text>
+
+  <!-- Interruption markers -->
+  <line x1="235" y1="60" x2="235" y2="368" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+  <text x="235" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#fca5a5">割り込み</text>
+
+  <!-- Task B block -->
+  <rect x="295" y="345" width="110" height="22" rx="4" fill="#16a34a" opacity="0.8"/>
+  <text x="350" y="360" text-anchor="middle" font-size="11" font-weight="bold" fill="#dcfce7">タスクB</text>
+
+  <!-- Second interruption -->
+  <line x1="410" y1="60" x2="410" y2="368" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+  <text x="440" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#fca5a5">割り込み2</text>
+
+  <!-- Return to Task A block -->
+  <rect x="465" y="345" width="340" height="22" rx="4" fill="#1d4ed8" opacity="0.8"/>
+  <text x="635" y="360" text-anchor="middle" font-size="11" font-weight="bold" fill="#e0e7ff">タスクA に戻る（集中回復に 23分）</text>
+
+  <!-- Deep focus level line -->
+  <line x1="80" y1="108" x2="910" y2="108" stroke="#64748b" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="68" y="112" text-anchor="end" font-size="10" fill="#64748b">最高</text>
+  <text x="68" y="125" text-anchor="end" font-size="10" fill="#64748b">集中</text>
+
+  <!-- Right insight box -->
+  <rect x="820" y="130" width="120" height="110" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="880" y="150" text-anchor="middle" font-size="10" font-weight="bold" fill="#fca5a5">影響</text>
+  <text x="880" y="168" text-anchor="middle" font-size="10" fill="#f1f5f9">1日3回の</text>
+  <text x="880" y="183" text-anchor="middle" font-size="10" fill="#f1f5f9">割り込みで</text>
+  <text x="880" y="198" text-anchor="middle" font-size="10" fill="#fca5a5" font-weight="bold">約70分の</text>
+  <text x="880" y="213" text-anchor="middle" font-size="10" fill="#f1f5f9">深い作業が</text>
+  <text x="880" y="228" text-anchor="middle" font-size="10" fill="#fca5a5" font-weight="bold">消える</text>
+
+  <!-- Bottom citation -->
+  <text x="480" y="418" text-anchor="middle" font-size="10" fill="#64748b">Gloria Mark, UC Irvine (2005) — 「It's Not Just About Frustration: The Role of Computer-Mediated Interruptions」</text>
+</svg>

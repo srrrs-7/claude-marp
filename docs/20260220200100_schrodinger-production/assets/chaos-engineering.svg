@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 480" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="700" height="480" fill="#1a1a2e" rx="16"/>
+
+  <!-- Title -->
+  <text x="350" y="32" font-family="monospace" font-size="15" fill="#fbbf24" text-anchor="middle" font-weight="bold">Chaos Engineering サイクル</text>
+
+  <!-- Central circle -->
+  <circle cx="350" cy="250" r="55" fill="#1f1f3a" stroke="#374151" stroke-width="2"/>
+  <text x="350" y="245" font-family="monospace" font-size="12" fill="#94a3b8" text-anchor="middle">Chaos</text>
+  <text x="350" y="263" font-family="monospace" font-size="12" fill="#94a3b8" text-anchor="middle">Loop</text>
+
+  <!-- Node positions (6 nodes in a circle) -->
+  <!-- Node 1: 仮説設定 (top) -->
+  <rect x="270" y="55" width="160" height="62" fill="#1e3a5f" rx="12" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="350" y="80" font-family="monospace" font-size="13" fill="#93c5fd" text-anchor="middle" font-weight="bold">1. 仮説設定</text>
+  <text x="350" y="99" font-family="monospace" font-size="10" fill="#60a5fa" text-anchor="middle">「このサービスが落ちても</text>
+  <text x="350" y="112" font-family="monospace" font-size="10" fill="#60a5fa" text-anchor="middle">システムは継続するはず」</text>
+
+  <!-- Node 2: 実験設計 (top-right) -->
+  <rect x="530" y="135" width="150" height="62" fill="#1a3d1a" rx="12" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="605" y="160" font-family="monospace" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">2. 実験設計</text>
+  <text x="605" y="179" font-family="monospace" font-size="10" fill="#86efac" text-anchor="middle">最小爆発範囲で</text>
+  <text x="605" y="192" font-family="monospace" font-size="10" fill="#86efac" text-anchor="middle">実験を計画</text>
+
+  <!-- Node 3: 障害注入 (bottom-right) -->
+  <rect x="530" y="285" width="150" height="62" fill="#7f1d1d" rx="12" style="filter: drop-shadow(3px 3px 6px rgba(200,0,0,0.3))"/>
+  <text x="605" y="310" font-family="monospace" font-size="13" fill="#fca5a5" text-anchor="middle" font-weight="bold">3. 障害注入</text>
+  <text x="605" y="329" font-family="monospace" font-size="10" fill="#f87171" text-anchor="middle">Chaos Monkey</text>
+  <text x="605" y="342" font-family="monospace" font-size="10" fill="#f87171" text-anchor="middle">ランダム終了</text>
+
+  <!-- Node 4: 観測・記録 (bottom) -->
+  <rect x="270" y="370" width="160" height="62" fill="#2d1b69" rx="12" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="350" y="395" font-family="monospace" font-size="13" fill="#c084fc" text-anchor="middle" font-weight="bold">4. 観測・記録</text>
+  <text x="350" y="414" font-family="monospace" font-size="10" fill="#a78bfa" text-anchor="middle">Metrics / Logs</text>
+  <text x="350" y="427" font-family="monospace" font-size="10" fill="#a78bfa" text-anchor="middle">波動関数の記録</text>
+
+  <!-- Node 5: 学習 (bottom-left) -->
+  <rect x="20" y="285" width="150" height="62" fill="#1c1a00" rx="12" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="95" y="310" font-family="monospace" font-size="13" fill="#fbbf24" text-anchor="middle" font-weight="bold">5. 学習</text>
+  <text x="95" y="329" font-family="monospace" font-size="10" fill="#d97706" text-anchor="middle">仮説の検証</text>
+  <text x="95" y="342" font-family="monospace" font-size="10" fill="#d97706" text-anchor="middle">弱点を発見</text>
+
+  <!-- Node 6: 改善 (top-left) -->
+  <rect x="20" y="135" width="150" height="62" fill="#1f2937" rx="12" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4))"/>
+  <text x="95" y="160" font-family="monospace" font-size="13" fill="#e2e8f0" text-anchor="middle" font-weight="bold">6. 改善</text>
+  <text x="95" y="179" font-family="monospace" font-size="10" fill="#94a3b8" text-anchor="middle">耐障害性を強化</text>
+  <text x="95" y="192" font-family="monospace" font-size="10" fill="#94a3b8" text-anchor="middle">Circuit Breaker等</text>
+
+  <!-- Arrows between nodes (clockwise) using lines + polygon arrowheads -->
+  <!-- 1 → 2 (top → top-right) -->
+  <line x1="430" y1="86" x2="528" y2="152" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="521,147 532,150 525,161" fill="#60a5fa"/>
+
+  <!-- 2 → 3 (top-right → bottom-right) -->
+  <line x1="605" y1="197" x2="605" y2="283" stroke="#4ade80" stroke-width="2"/>
+  <polygon points="599,281 611,281 605,293" fill="#4ade80"/>
+
+  <!-- 3 → 4 (bottom-right → bottom) -->
+  <line x1="528" y1="316" x2="432" y2="380" stroke="#f87171" stroke-width="2"/>
+  <polygon points="437,373 426,378 433,389" fill="#f87171"/>
+
+  <!-- 4 → 5 (bottom → bottom-left) -->
+  <line x1="270" y1="401" x2="172" y2="340" stroke="#c084fc" stroke-width="2"/>
+  <polygon points="177,333 166,338 172,350" fill="#c084fc"/>
+
+  <!-- 5 → 6 (bottom-left → top-left) -->
+  <line x1="95" y1="285" x2="95" y2="197" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="89,199 101,199 95,187" fill="#fbbf24"/>
+
+  <!-- 6 → 1 (top-left → top) -->
+  <line x1="172" y1="166" x2="268" y2="104" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="262,99 274,103 268,114" fill="#94a3b8"/>
+
+  <!-- Center label -->
+  <text x="350" y="460" font-family="monospace" font-size="11" fill="#6b7280" text-anchor="middle">Netflix Chaos Monkey が実践する「積極的な観測」</text>
+</svg>

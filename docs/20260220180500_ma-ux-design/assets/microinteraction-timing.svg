@@ -1,0 +1,54 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="380" fill="#f8f9ff" rx="12"/>
+  <text x="400" y="38" font-family="serif" font-size="19" fill="#1a1a2e" text-anchor="middle" font-weight="bold">マイクロインタラクション — 0.3秒の「間」</text>
+
+  <!-- Duration axis -->
+  <text x="30" y="75" font-family="sans-serif" font-size="11" fill="#666">持続時間</text>
+  <line x1="80" y1="80" x2="750" y2="80" stroke="#ccc" stroke-width="1.5"/>
+  <text x="80" y="95" font-family="sans-serif" font-size="9" fill="#999">0ms</text>
+  <text x="210" y="95" font-family="sans-serif" font-size="9" fill="#999">100ms</text>
+  <text x="340" y="95" font-family="sans-serif" font-size="9" fill="#999">200ms</text>
+  <text x="470" y="95" font-family="sans-serif" font-size="9" fill="#999">300ms</text>
+  <text x="600" y="95" font-family="sans-serif" font-size="9" fill="#999">400ms</text>
+  <text x="730" y="95" font-family="sans-serif" font-size="9" fill="#999">500ms</text>
+
+  <!-- Row 1: Too fast -->
+  <text x="30" y="130" font-family="sans-serif" font-size="11" fill="#e74c3c">速すぎ</text>
+  <rect x="80" y="113" width="50" height="26" fill="#e74c3c" rx="4"/>
+  <text x="105" y="130" font-family="sans-serif" font-size="9" fill="white" text-anchor="middle">50ms</text>
+  <text x="145" y="130" font-family="sans-serif" font-size="11" fill="#e74c3c">→ 変化に気づかない / 動きが荒く感じる</text>
+
+  <!-- Row 2: Good range -->
+  <text x="30" y="180" font-family="sans-serif" font-size="11" fill="#27ae60" font-weight="bold">最適</text>
+  <rect x="80" y="163" width="390" height="26" fill="#27ae60" rx="4" opacity="0.8"/>
+  <text x="275" y="180" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="bold">100ms — 400ms（推奨ゾーン）</text>
+  <!-- Highlight 300ms -->
+  <line x1="470" y1="155" x2="470" y2="200" stroke="#1a7a40" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="470" y="210" font-family="sans-serif" font-size="10" fill="#1a7a40" text-anchor="middle">300ms</text>
+  <text x="470" y="222" font-family="sans-serif" font-size="10" fill="#1a7a40" text-anchor="middle">（能の「型」と同じ）</text>
+
+  <!-- Row 3: Slightly slow -->
+  <text x="30" y="255" font-family="sans-serif" font-size="11" fill="#f39c12">やや遅い</text>
+  <rect x="80" y="238" width="460" height="26" fill="#f39c12" rx="4" opacity="0.7"/>
+  <text x="310" y="255" font-family="sans-serif" font-size="9" fill="white" text-anchor="middle">400ms〜 → 少しもたついた印象</text>
+
+  <!-- Row 4: Too slow -->
+  <text x="30" y="305" font-family="sans-serif" font-size="11" fill="#95a5a6">遅すぎ</text>
+  <rect x="80" y="288" width="670" height="26" fill="#95a5a6" rx="4"/>
+  <text x="415" y="305" font-family="sans-serif" font-size="9" fill="white" text-anchor="middle">1000ms〜 → ストレス / 不具合と誤解される</text>
+
+  <!-- Easing curve description box -->
+  <rect x="500" y="145" width="265" height="120" fill="white" stroke="#3498db" stroke-width="1.5" rx="8"/>
+  <text x="632" y="166" font-family="sans-serif" font-size="12" fill="#2980b9" text-anchor="middle" font-weight="bold">イージング（緩急）</text>
+  <text x="515" y="186" font-family="sans-serif" font-size="11" fill="#1a1a2e">ease-in-out:</text>
+  <text x="515" y="202" font-family="sans-serif" font-size="10" fill="#555">  ゆっくり始まり、ゆっくり終わる</text>
+  <text x="515" y="218" font-family="sans-serif" font-size="10" fill="#555">  → 能の「型」の緩急に対応</text>
+  <text x="515" y="238" font-family="sans-serif" font-size="11" fill="#1a1a2e">ease-out:</text>
+  <text x="515" y="254" font-family="sans-serif" font-size="10" fill="#555">  素早く動き出し、静かに止まる</text>
+
+  <!-- Noh connection -->
+  <rect x="80" y="338" width="670" height="32" fill="#fff8e8" stroke="#d4a017" stroke-width="1" rx="6"/>
+  <text x="415" y="358" font-family="sans-serif" font-size="12" fill="#7a5500" text-anchor="middle">
+    能の「型」: ゆっくり動き出し → 一瞬の静止（間）→ 次の動作へ = ease-in-out + pause
+  </text>
+</svg>

@@ -1,0 +1,85 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f0e17" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#fffffe" font-size="18" font-family="sans-serif" font-weight="bold">観察者効果：デバッグが状態を変える</text>
+
+  <!-- Left: Without observation -->
+  <text x="225" y="65" text-anchor="middle" fill="#ff6b6b" font-size="14" font-family="sans-serif" font-weight="bold">観察なし（本番環境）</text>
+
+  <!-- Timeline without debugger -->
+  <line x1="50" y1="100" x2="400" y2="100" stroke="#a7a9be" stroke-width="2"/>
+  <text x="45" y="95" fill="#a7a9be" font-size="9" font-family="sans-serif">t</text>
+
+  <!-- Thread A -->
+  <rect x="60" y="120" width="80" height="30" fill="#2563eb" rx="4" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="100" y="140" text-anchor="middle" fill="#fffffe" font-size="9" font-family="sans-serif">Thread A</text>
+  <rect x="145" y="120" width="50" height="30" fill="#2563eb" rx="4" opacity="0.6"/>
+  <text x="170" y="140" text-anchor="middle" fill="#fffffe" font-size="8" font-family="sans-serif">read</text>
+
+  <!-- Thread B -->
+  <rect x="100" y="170" width="80" height="30" fill="#7c3aed" rx="4" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="140" y="190" text-anchor="middle" fill="#fffffe" font-size="9" font-family="sans-serif">Thread B</text>
+  <rect x="130" y="170" width="50" height="30" fill="#ff6b6b" rx="4" opacity="0.8"/>
+  <text x="155" y="190" text-anchor="middle" fill="#fffffe" font-size="8" font-family="sans-serif">write</text>
+
+  <!-- Collision marker -->
+  <text x="160" y="155" text-anchor="middle" fill="#ff6b6b" font-size="20" font-family="sans-serif" font-weight="bold">X</text>
+  <text x="160" y="230" text-anchor="middle" fill="#ff6b6b" font-size="11" font-family="sans-serif" font-weight="bold">Race Condition!</text>
+  <text x="160" y="250" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">read/write が競合</text>
+
+  <!-- Divider -->
+  <line x1="450" y1="55" x2="450" y2="280" stroke="#a7a9be" stroke-width="1" stroke-dasharray="8,4" opacity="0.4"/>
+
+  <!-- Right: With observation -->
+  <text x="675" y="65" text-anchor="middle" fill="#52b788" font-size="14" font-family="sans-serif" font-weight="bold">観察あり（デバッガ接続）</text>
+
+  <!-- Timeline with debugger -->
+  <line x1="500" y1="100" x2="850" y2="100" stroke="#a7a9be" stroke-width="2"/>
+  <text x="495" y="95" fill="#a7a9be" font-size="9" font-family="sans-serif">t</text>
+
+  <!-- Thread A with delay -->
+  <rect x="510" y="120" width="80" height="30" fill="#2563eb" rx="4" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="550" y="140" text-anchor="middle" fill="#fffffe" font-size="9" font-family="sans-serif">Thread A</text>
+
+  <!-- Breakpoint delay -->
+  <rect x="595" y="115" width="60" height="40" fill="#e6b422" rx="4" stroke="#e6b422" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="625" y="130" text-anchor="middle" fill="#0f0e17" font-size="8" font-family="sans-serif" font-weight="bold">BREAK</text>
+  <text x="625" y="145" text-anchor="middle" fill="#0f0e17" font-size="8" font-family="sans-serif">POINT</text>
+
+  <rect x="660" y="120" width="50" height="30" fill="#2563eb" rx="4" opacity="0.6"/>
+  <text x="685" y="140" text-anchor="middle" fill="#fffffe" font-size="8" font-family="sans-serif">read</text>
+
+  <!-- Thread B completes first -->
+  <rect x="530" y="170" width="80" height="30" fill="#7c3aed" rx="4" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"/>
+  <text x="570" y="190" text-anchor="middle" fill="#fffffe" font-size="9" font-family="sans-serif">Thread B</text>
+  <rect x="560" y="170" width="50" height="30" fill="#52b788" rx="4" opacity="0.8"/>
+  <text x="585" y="190" text-anchor="middle" fill="#fffffe" font-size="8" font-family="sans-serif">write</text>
+
+  <!-- No collision -->
+  <text x="675" y="230" text-anchor="middle" fill="#52b788" font-size="11" font-family="sans-serif" font-weight="bold">Bug disappears!</text>
+  <text x="675" y="250" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">breakpointの遅延で順序が変わる</text>
+
+  <!-- Bottom explanation -->
+  <rect x="30" y="285" width="840" height="200" fill="#1a1a2e" rx="8"/>
+  <text x="450" y="315" text-anchor="middle" fill="#fffffe" font-size="14" font-family="sans-serif" font-weight="bold">観察者効果の発生メカニズム</text>
+
+  <!-- Mechanism list -->
+  <rect x="50" y="335" width="240" height="60" fill="#2563eb" rx="6" opacity="0.3"/>
+  <text x="170" y="358" text-anchor="middle" fill="#7ecaff" font-size="11" font-family="sans-serif" font-weight="bold">タイミング変化</text>
+  <text x="170" y="378" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">デバッガがスレッド実行を遅延</text>
+
+  <rect x="310" y="335" width="280" height="60" fill="#7c3aed" rx="6" opacity="0.3"/>
+  <text x="450" y="358" text-anchor="middle" fill="#c4b5fd" font-size="11" font-family="sans-serif" font-weight="bold">メモリレイアウト変化</text>
+  <text x="450" y="378" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">デバッグシンボルがメモリ配置を変更</text>
+
+  <rect x="610" y="335" width="240" height="60" fill="#dc2626" rx="6" opacity="0.3"/>
+  <text x="730" y="358" text-anchor="middle" fill="#fca5a5" font-size="11" font-family="sans-serif" font-weight="bold">最適化無効化</text>
+  <text x="730" y="378" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">-O0 でコンパイラ最適化が消える</text>
+
+  <rect x="50" y="410" width="380" height="60" fill="#e6b422" rx="6" opacity="0.2"/>
+  <text x="240" y="433" text-anchor="middle" fill="#e6b422" font-size="11" font-family="sans-serif" font-weight="bold">I/Oバッファリング変化</text>
+  <text x="240" y="453" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">printf デバッグがバッファフラッシュを強制</text>
+
+  <rect x="450" y="410" width="400" height="60" fill="#52b788" rx="6" opacity="0.2"/>
+  <text x="650" y="433" text-anchor="middle" fill="#52b788" font-size="11" font-family="sans-serif" font-weight="bold">キャッシュ・GC挙動変化</text>
+  <text x="650" y="453" text-anchor="middle" fill="#a7a9be" font-size="10" font-family="sans-serif">プロファイラがGCタイミングを変更</text>
+</svg>

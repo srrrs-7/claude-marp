@@ -1,0 +1,20 @@
+topic: "コードの地層：地質学が教えるレガシーシステム考古学"
+language: "ja"
+
+output:
+  dir: "docs/20260220211500_geological-strata-legacy"
+  baseName: "geological-strata-legacy"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "Geological Strata × Legacy Code"
+  footer: "© 2026 Code Archaeology"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

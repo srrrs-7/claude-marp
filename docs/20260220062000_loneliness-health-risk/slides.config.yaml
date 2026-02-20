@@ -1,0 +1,12 @@
+topic: "孤独は喫煙より危険 — 孤立が健康に与える衝撃"
+language: "ja"
+output:
+  dir: "docs/20260220062000_loneliness-health-risk"
+  baseName: "loneliness-health-risk"
+marp:
+  theme: gaia
+  paginate: true
+  header: "孤独の健康科学"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

@@ -1,0 +1,12 @@
+topic: "なぜ人は無料でOSSを作るか"
+language: "ja"
+output:
+  dir: "docs/20260220054500_why-oss-is-free"
+  baseName: "why-oss-is-free"
+marp:
+  theme: gaia
+  paginate: true
+  header: "オープンソースの経済学"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

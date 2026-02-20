@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="380" fill="#eceff1" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-size="17" font-weight="bold" fill="#b71c1c" font-family="sans-serif">ル・コルビュジエの「輝く都市」—整然と、しかし無人</text>
+
+  <!-- Green grass areas -->
+  <rect x="30" y="60" width="840" height="290" fill="#c8e6c9" rx="6"/>
+
+  <!-- Wide roads -->
+  <rect x="30" y="180" width="840" height="22" fill="#90a4ae" rx="2"/>
+  <rect x="210" y="60" width="20" height="290" fill="#90a4ae" rx="2"/>
+  <rect x="450" y="60" width="20" height="290" fill="#90a4ae" rx="2"/>
+  <rect x="680" y="60" width="20" height="290" fill="#90a4ae" rx="2"/>
+
+  <!-- Block 1: Top-left towers -->
+  <rect x="55" y="70" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="105" y="70" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="155" y="70" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <!-- Windows -->
+  <rect x="62" y="80" width="8" height="6" fill="#b0bec5" rx="1"/>
+  <rect x="78" y="80" width="8" height="6" fill="#b0bec5" rx="1"/>
+  <rect x="62" y="96" width="8" height="6" fill="#b0bec5" rx="1"/>
+  <rect x="78" y="96" width="8" height="6" fill="#b0bec5" rx="1"/>
+  <rect x="112" y="80" width="8" height="6" fill="#b0bec5" rx="1"/>
+  <rect x="128" y="80" width="8" height="6" fill="#b0bec5" rx="1"/>
+  <rect x="162" y="80" width="8" height="6" fill="#b0bec5" rx="1"/>
+  <rect x="178" y="80" width="8" height="6" fill="#b0bec5" rx="1"/>
+
+  <!-- Block 2: Top-center towers -->
+  <rect x="245" y="70" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="295" y="70" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="345" y="70" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="395" y="70" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="252" y="80" width="8" height="6" fill="#b0bec5" rx="1"/>
+  <rect x="268" y="80" width="8" height="6" fill="#b0bec5" rx="1"/>
+  <rect x="302" y="80" width="8" height="6" fill="#b0bec5" rx="1"/>
+  <rect x="318" y="80" width="8" height="6" fill="#b0bec5" rx="1"/>
+
+  <!-- Block 3: Top-right towers -->
+  <rect x="490" y="70" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="540" y="70" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="590" y="70" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="640" y="70" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+
+  <!-- Block 4 - far right towers -->
+  <rect x="715" y="70" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="765" y="70" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="815" y="70" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+
+  <!-- Bottom blocks (mirror) -->
+  <rect x="55" y="212" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="105" y="212" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="155" y="212" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="245" y="212" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="295" y="212" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="395" y="212" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="490" y="212" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="590" y="212" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="715" y="212" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+  <rect x="815" y="212" width="40" height="100" fill="#546e7a" rx="3" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25))"/>
+
+  <!-- "No people" indicator - empty streets annotation -->
+  <rect x="300" y="155" width="300" height="30" fill="#ef5350" rx="4" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3))"/>
+  <text x="450" y="175" text-anchor="middle" font-size="14" font-weight="bold" fill="white" font-family="sans-serif">人がいない広大な緑地と道路</text>
+
+  <!-- Labels -->
+  <rect x="30" y="330" width="220" height="32" fill="#1565c0" rx="4"/>
+  <text x="140" y="351" text-anchor="middle" font-size="13" fill="white" font-family="sans-serif">整然とした美しさ（計画者視点）</text>
+
+  <rect x="340" y="330" width="220" height="32" fill="#b71c1c" rx="4"/>
+  <text x="450" y="351" text-anchor="middle" font-size="13" fill="white" font-family="sans-serif">→ Pruitt-Igoe: 1972年爆破解体</text>
+
+  <rect x="650" y="330" width="220" height="32" fill="#4e342e" rx="4"/>
+  <text x="760" y="351" text-anchor="middle" font-size="13" fill="white" font-family="sans-serif">実際: 犯罪と荒廃の温床</text>
+</svg>

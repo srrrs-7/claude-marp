@@ -1,0 +1,71 @@
+<svg viewBox="0 0 900 450" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="450" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#e0e0e0">NIST PQC 標準化アルゴリズム (2024)</text>
+
+  <!-- ML-KEM -->
+  <rect x="30" y="65" width="270" height="300" rx="10" fill="#1e3a5f" opacity="0.6" stroke="#3b82f6" stroke-width="2"/>
+  <text x="165" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#60a5fa">ML-KEM</text>
+  <text x="165" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#93c5fd">FIPS 203 (旧 CRYSTALS-Kyber)</text>
+
+  <text x="165" y="145" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#e0e0e0">用途: 鍵カプセル化 (KEM)</text>
+  <text x="165" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#aaa">TLS鍵交換を置き換え</text>
+
+  <rect x="50" y="190" width="230" height="28" rx="4" fill="#1e40af" opacity="0.4"/>
+  <text x="165" y="209" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#93c5fd">基盤: Module Learning With Errors</text>
+
+  <rect x="50" y="228" width="230" height="28" rx="4" fill="#1e40af" opacity="0.4"/>
+  <text x="165" y="247" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#93c5fd">鍵サイズ: 800-1568 bytes</text>
+
+  <rect x="50" y="266" width="230" height="28" rx="4" fill="#1e40af" opacity="0.4"/>
+  <text x="165" y="285" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#93c5fd">速度: 非常に高速</text>
+
+  <rect x="50" y="304" width="230" height="28" rx="4" fill="#14532d" opacity="0.6"/>
+  <text x="165" y="323" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#4ade80">Chrome 131+, AWS KMS 対応</text>
+
+  <!-- ML-DSA -->
+  <rect x="315" y="65" width="270" height="300" rx="10" fill="#4c1d95" opacity="0.5" stroke="#a78bfa" stroke-width="2"/>
+  <text x="450" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#a78bfa">ML-DSA</text>
+  <text x="450" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#c4b5fd">FIPS 204 (旧 CRYSTALS-Dilithium)</text>
+
+  <text x="450" y="145" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#e0e0e0">用途: 電子署名</text>
+  <text x="450" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#aaa">TLS証明書、コード署名を置き換え</text>
+
+  <rect x="335" y="190" width="230" height="28" rx="4" fill="#581c87" opacity="0.4"/>
+  <text x="450" y="209" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#c4b5fd">基盤: Module Learning With Errors</text>
+
+  <rect x="335" y="228" width="230" height="28" rx="4" fill="#581c87" opacity="0.4"/>
+  <text x="450" y="247" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#c4b5fd">署名サイズ: 2420-4627 bytes</text>
+
+  <rect x="335" y="266" width="230" height="28" rx="4" fill="#581c87" opacity="0.4"/>
+  <text x="450" y="285" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#c4b5fd">速度: 高速</text>
+
+  <rect x="335" y="304" width="230" height="28" rx="4" fill="#14532d" opacity="0.6"/>
+  <text x="450" y="323" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#4ade80">第一推奨の署名アルゴリズム</text>
+
+  <!-- SLH-DSA -->
+  <rect x="600" y="65" width="270" height="300" rx="10" fill="#713f12" opacity="0.5" stroke="#fbbf24" stroke-width="2"/>
+  <text x="735" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#fbbf24">SLH-DSA</text>
+  <text x="735" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fde68a">FIPS 205 (旧 SPHINCS+)</text>
+
+  <text x="735" y="145" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#e0e0e0">用途: 電子署名 (バックアップ)</text>
+  <text x="735" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#aaa">格子暗号が破られた場合の保険</text>
+
+  <rect x="620" y="190" width="230" height="28" rx="4" fill="#92400e" opacity="0.4"/>
+  <text x="735" y="209" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fde68a">基盤: ハッシュ関数のみ</text>
+
+  <rect x="620" y="228" width="230" height="28" rx="4" fill="#92400e" opacity="0.4"/>
+  <text x="735" y="247" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fde68a">署名サイズ: 7856-49856 bytes</text>
+
+  <rect x="620" y="266" width="230" height="28" rx="4" fill="#92400e" opacity="0.4"/>
+  <text x="735" y="285" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fde68a">速度: 遅い (署名が大きい)</text>
+
+  <rect x="620" y="304" width="230" height="28" rx="4" fill="#14532d" opacity="0.6"/>
+  <text x="735" y="323" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#4ade80">最も保守的 (数学的仮定が少ない)</text>
+
+  <!-- Bottom: Hybrid recommendation -->
+  <rect x="100" y="385" width="700" height="45" rx="8" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="450" y="408" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#60a5fa">推奨: ハイブリッドモード (古典暗号 + PQC) で段階的に移行</text>
+  <text x="450" y="425" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">X25519 + ML-KEM-768 (鍵交換) / ECDSA + ML-DSA (署名)</text>
+</svg>

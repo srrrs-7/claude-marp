@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="460" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="34" font-family="sans-serif" font-size="17" fill="#e0e0e0" text-anchor="middle" font-weight="bold">Tit-for-Tat戦略 — アクセルロッドのトーナメント結果</text>
+
+  <!-- Strategy sequence table -->
+  <!-- Headers -->
+  <rect x="30" y="55" width="560" height="38" rx="6" fill="#1a3050"/>
+  <text x="120" y="80" font-family="sans-serif" font-size="13" fill="#4cc9f0" text-anchor="middle" font-weight="bold">戦略</text>
+
+  <!-- Round headers -->
+  <text x="240" y="80" font-family="sans-serif" font-size="12" fill="#a0b0c0" text-anchor="middle">R1</text>
+  <text x="300" y="80" font-family="sans-serif" font-size="12" fill="#a0b0c0" text-anchor="middle">R2</text>
+  <text x="360" y="80" font-family="sans-serif" font-size="12" fill="#a0b0c0" text-anchor="middle">R3</text>
+  <text x="420" y="80" font-family="sans-serif" font-size="12" fill="#a0b0c0" text-anchor="middle">R4</text>
+  <text x="480" y="80" font-family="sans-serif" font-size="12" fill="#a0b0c0" text-anchor="middle">R5</text>
+  <text x="555" y="80" font-family="sans-serif" font-size="12" fill="#a0b0c0" text-anchor="middle">合計得点</text>
+
+  <!-- Tit-for-Tat row -->
+  <rect x="30" y="100" width="560" height="52" rx="4" fill="#0d3020"/>
+  <rect x="30" y="100" width="560" height="52" rx="4" fill="none" stroke="#4ade80" stroke-width="2"/>
+  <text x="120" y="121" font-family="sans-serif" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">Tit-for-Tat</text>
+  <text x="120" y="139" font-family="sans-serif" font-size="11" fill="#80e0a0" text-anchor="middle">最初に協力→模倣</text>
+
+  <!-- TfT sequence: C, C, C, C, C (vs cooperator) -->
+  <rect x="214" y="110" width="42" height="32" rx="4" fill="#166534"/>
+  <text x="235" y="131" font-family="sans-serif" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">C</text>
+  <rect x="274" y="110" width="42" height="32" rx="4" fill="#166534"/>
+  <text x="295" y="131" font-family="sans-serif" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">C</text>
+  <rect x="334" y="110" width="42" height="32" rx="4" fill="#166534"/>
+  <text x="355" y="131" font-family="sans-serif" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">C</text>
+  <rect x="394" y="110" width="42" height="32" rx="4" fill="#166534"/>
+  <text x="415" y="131" font-family="sans-serif" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">C</text>
+  <rect x="454" y="110" width="42" height="32" rx="4" fill="#166534"/>
+  <text x="475" y="131" font-family="sans-serif" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">C</text>
+  <text x="555" y="131" font-family="sans-serif" font-size="16" fill="#ffcc00" text-anchor="middle" font-weight="bold">★ 1位</text>
+
+  <!-- Always-Defect row -->
+  <rect x="30" y="158" width="560" height="52" rx="4" fill="#2d0a0a"/>
+  <text x="120" y="179" font-family="sans-serif" font-size="13" fill="#f87171" text-anchor="middle" font-weight="bold">Always Defect</text>
+  <text x="120" y="197" font-family="sans-serif" font-size="11" fill="#fca5a5" text-anchor="middle">常に裏切る</text>
+
+  <rect x="214" y="168" width="42" height="32" rx="4" fill="#7f1d1d"/>
+  <text x="235" y="189" font-family="sans-serif" font-size="13" fill="#f87171" text-anchor="middle" font-weight="bold">D</text>
+  <rect x="274" y="168" width="42" height="32" rx="4" fill="#7f1d1d"/>
+  <text x="295" y="189" font-family="sans-serif" font-size="13" fill="#f87171" text-anchor="middle" font-weight="bold">D</text>
+  <rect x="334" y="168" width="42" height="32" rx="4" fill="#7f1d1d"/>
+  <text x="355" y="189" font-family="sans-serif" font-size="13" fill="#f87171" text-anchor="middle" font-weight="bold">D</text>
+  <rect x="394" y="168" width="42" height="32" rx="4" fill="#7f1d1d"/>
+  <text x="415" y="189" font-family="sans-serif" font-size="13" fill="#f87171" text-anchor="middle" font-weight="bold">D</text>
+  <rect x="454" y="168" width="42" height="32" rx="4" fill="#7f1d1d"/>
+  <text x="475" y="189" font-family="sans-serif" font-size="13" fill="#f87171" text-anchor="middle" font-weight="bold">D</text>
+  <text x="555" y="189" font-family="sans-serif" font-size="14" fill="#f87171" text-anchor="middle">最下位</text>
+
+  <!-- Random row -->
+  <rect x="30" y="216" width="560" height="52" rx="4" fill="#1a1a30"/>
+  <text x="120" y="237" font-family="sans-serif" font-size="13" fill="#a0a0e0" text-anchor="middle" font-weight="bold">Random</text>
+  <text x="120" y="255" font-family="sans-serif" font-size="11" fill="#8080c0" text-anchor="middle">ランダム選択</text>
+
+  <rect x="214" y="226" width="42" height="32" rx="4" fill="#166534"/>
+  <text x="235" y="247" font-family="sans-serif" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">C</text>
+  <rect x="274" y="226" width="42" height="32" rx="4" fill="#7f1d1d"/>
+  <text x="295" y="247" font-family="sans-serif" font-size="13" fill="#f87171" text-anchor="middle" font-weight="bold">D</text>
+  <rect x="334" y="226" width="42" height="32" rx="4" fill="#166534"/>
+  <text x="355" y="247" font-family="sans-serif" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">C</text>
+  <rect x="394" y="226" width="42" height="32" rx="4" fill="#7f1d1d"/>
+  <text x="415" y="247" font-family="sans-serif" font-size="13" fill="#f87171" text-anchor="middle" font-weight="bold">D</text>
+  <rect x="454" y="226" width="42" height="32" rx="4" fill="#166534"/>
+  <text x="475" y="247" font-family="sans-serif" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">C</text>
+  <text x="555" y="247" font-family="sans-serif" font-size="14" fill="#a0a0e0" text-anchor="middle">中間</text>
+
+  <!-- TfT vs Defector row -->
+  <rect x="30" y="274" width="560" height="52" rx="4" fill="#2d1a00"/>
+  <text x="120" y="295" font-family="sans-serif" font-size="13" fill="#fb923c" text-anchor="middle" font-weight="bold">TfT vs 裏切り者</text>
+  <text x="120" y="313" font-family="sans-serif" font-size="11" fill="#fed7aa" text-anchor="middle">報復→回復のサイクル</text>
+
+  <rect x="214" y="284" width="42" height="32" rx="4" fill="#166534"/>
+  <text x="235" y="305" font-family="sans-serif" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">C</text>
+  <rect x="274" y="284" width="42" height="32" rx="4" fill="#7f1d1d"/>
+  <text x="295" y="305" font-family="sans-serif" font-size="13" fill="#f87171" text-anchor="middle" font-weight="bold">D</text>
+  <rect x="334" y="284" width="42" height="32" rx="4" fill="#7f1d1d"/>
+  <text x="355" y="305" font-family="sans-serif" font-size="13" fill="#f87171" text-anchor="middle" font-weight="bold">D</text>
+  <rect x="394" y="284" width="42" height="32" rx="4" fill="#166534"/>
+  <text x="415" y="305" font-family="sans-serif" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">C</text>
+  <rect x="454" y="284" width="42" height="32" rx="4" fill="#166534"/>
+  <text x="475" y="305" font-family="sans-serif" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="bold">C</text>
+  <text x="553" y="305" font-family="sans-serif" font-size="11" fill="#fb923c" text-anchor="middle">相手次第で</text>
+  <text x="553" y="319" font-family="sans-serif" font-size="11" fill="#fb923c" text-anchor="middle">回復する</text>
+
+  <!-- Right panel: OSS application -->
+  <rect x="610" y="100" width="270" height="230" rx="8" fill="#0d2240" style="filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.6))"/>
+  <text x="745" y="126" font-family="sans-serif" font-size="14" fill="#4cc9f0" text-anchor="middle" font-weight="bold">OSSへの応用</text>
+  <line x1="625" y1="134" x2="865" y2="134" stroke="#4cc9f0" stroke-width="1" opacity="0.4"/>
+
+  <text x="625" y="158" font-family="sans-serif" font-size="12" fill="#4ade80">C = コントリビュート・PR送付</text>
+  <text x="625" y="178" font-family="sans-serif" font-size="12" fill="#f87171">D = フリーライド・無視</text>
+
+  <line x1="625" y1="192" x2="865" y2="192" stroke="#334" stroke-width="1"/>
+
+  <text x="625" y="212" font-family="sans-serif" font-size="12" fill="#e0e0e0">TfT的行動の例:</text>
+  <text x="635" y="232" font-family="sans-serif" font-size="11" fill="#a0d0ff">• PRを受け取ったら返す</text>
+  <text x="635" y="252" font-family="sans-serif" font-size="11" fill="#a0d0ff">• レビューには感謝する</text>
+  <text x="635" y="272" font-family="sans-serif" font-size="11" fill="#a0d0ff">• 悪意あるPRは却下する</text>
+  <text x="635" y="292" font-family="sans-serif" font-size="11" fill="#a0d0ff">• スポンサー提供者を優遇</text>
+  <text x="635" y="312" font-family="sans-serif" font-size="11" fill="#ffcc00">→ 協力文化が自然発生する</text>
+
+  <!-- Bottom -->
+  <rect x="30" y="345" width="840" height="46" rx="6" fill="#0d2240"/>
+  <text x="450" y="363" font-family="sans-serif" font-size="13" fill="#4cc9f0" text-anchor="middle" font-weight="bold">Axelrod (1984) "The Evolution of Cooperation"</text>
+  <text x="450" y="383" font-family="sans-serif" font-size="12" fill="#a0b0c0" text-anchor="middle">14種の戦略が参加したトーナメントで、最もシンプルなTit-for-Tatが最高得点を達成</text>
+</svg>

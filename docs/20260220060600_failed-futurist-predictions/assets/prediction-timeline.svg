@@ -1,0 +1,92 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="30" text-anchor="middle" fill="#FFEAA7" font-size="18" font-family="sans-serif" font-weight="bold">歴史に残る外れた予測</text>
+
+  <!-- Timeline -->
+  <line x1="80" y1="75" x2="820" y2="75" stroke="#FFEAA7" stroke-width="2" opacity="0.5"/>
+
+  <!-- 1876 -->
+  <circle cx="120" cy="75" r="6" fill="#FF6B6B" style="filter: drop-shadow(0 0 4px rgba(255,107,107,0.5))"/>
+  <rect x="60" y="90" width="120" height="115" fill="#16213e" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="120" y="60" text-anchor="middle" fill="#FF6B6B" font-size="10" font-family="sans-serif" font-weight="bold">1876</text>
+  <text x="120" y="108" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">Western Union社</text>
+  <text x="120" y="125" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">「電話は</text>
+  <text x="120" y="140" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">あまりにも</text>
+  <text x="120" y="155" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">欠陥が多く</text>
+  <text x="120" y="170" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">通信手段として</text>
+  <text x="120" y="185" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">真剣に考慮</text>
+  <text x="120" y="198" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">できない」</text>
+
+  <!-- 1943 -->
+  <circle cx="280" cy="75" r="6" fill="#e17055" style="filter: drop-shadow(0 0 4px rgba(225,112,85,0.5))"/>
+  <rect x="220" y="90" width="120" height="115" fill="#16213e" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="280" y="60" text-anchor="middle" fill="#e17055" font-size="10" font-family="sans-serif" font-weight="bold">1943</text>
+  <text x="280" y="108" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">IBM会長</text>
+  <text x="280" y="125" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">Thomas Watson</text>
+  <text x="280" y="145" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">「世界の</text>
+  <text x="280" y="160" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">コンピュータ</text>
+  <text x="280" y="175" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">市場は</text>
+  <text x="280" y="190" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">5台程度」</text>
+
+  <!-- 1977 -->
+  <circle cx="440" cy="75" r="6" fill="#FFEAA7" style="filter: drop-shadow(0 0 4px rgba(255,234,167,0.5))"/>
+  <rect x="380" y="90" width="120" height="115" fill="#16213e" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="440" y="60" text-anchor="middle" fill="#FFEAA7" font-size="10" font-family="sans-serif" font-weight="bold">1977</text>
+  <text x="440" y="108" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">DEC創業者</text>
+  <text x="440" y="125" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">Ken Olsen</text>
+  <text x="440" y="145" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">「個人が家に</text>
+  <text x="440" y="160" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">コンピュータを</text>
+  <text x="440" y="175" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">持つ理由は</text>
+  <text x="440" y="190" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">ない」</text>
+
+  <!-- 1995 -->
+  <circle cx="600" cy="75" r="6" fill="#4ECDC4" style="filter: drop-shadow(0 0 4px rgba(78,205,196,0.5))"/>
+  <rect x="540" y="90" width="120" height="115" fill="#16213e" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="600" y="60" text-anchor="middle" fill="#4ECDC4" font-size="10" font-family="sans-serif" font-weight="bold">1995</text>
+  <text x="600" y="108" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">Newsweek</text>
+  <text x="600" y="128" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">「インターネットは</text>
+  <text x="600" y="143" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">ビジネスや</text>
+  <text x="600" y="158" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">政府、教育に</text>
+  <text x="600" y="173" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">革命を</text>
+  <text x="600" y="188" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">起こさない」</text>
+
+  <!-- 2007 -->
+  <circle cx="760" cy="75" r="6" fill="#96CEB4" style="filter: drop-shadow(0 0 4px rgba(150,206,180,0.5))"/>
+  <rect x="700" y="90" width="120" height="115" fill="#16213e" rx="6" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3))"/>
+  <text x="760" y="60" text-anchor="middle" fill="#96CEB4" font-size="10" font-family="sans-serif" font-weight="bold">2007</text>
+  <text x="760" y="108" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">MS CEO</text>
+  <text x="760" y="125" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">Steve Ballmer</text>
+  <text x="760" y="145" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">「iPhoneに</text>
+  <text x="760" y="160" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">シェアを</text>
+  <text x="760" y="175" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">取られることは</text>
+  <text x="760" y="190" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">ない」</text>
+
+  <!-- Bottom: Pattern analysis -->
+  <rect x="50" y="230" width="800" height="250" fill="#0f3460" rx="10" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3))"/>
+  <text x="450" y="260" text-anchor="middle" fill="#FFEAA7" font-size="16" font-family="sans-serif" font-weight="bold">予測失敗の共通パターン</text>
+
+  <rect x="80" y="280" width="220" height="80" fill="#1a1a2e" rx="8"/>
+  <text x="190" y="305" text-anchor="middle" fill="#FF6B6B" font-size="13" font-family="sans-serif" font-weight="bold">線形外挿</text>
+  <text x="190" y="325" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">現状のトレンドが</text>
+  <text x="190" y="345" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">そのまま続くと仮定</text>
+
+  <rect x="340" y="280" width="220" height="80" fill="#1a1a2e" rx="8"/>
+  <text x="450" y="305" text-anchor="middle" fill="#4ECDC4" font-size="13" font-family="sans-serif" font-weight="bold">想像力の限界</text>
+  <text x="450" y="325" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">用途・需要の変化を</text>
+  <text x="450" y="345" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">予測できない</text>
+
+  <rect x="600" y="280" width="220" height="80" fill="#1a1a2e" rx="8"/>
+  <text x="710" y="305" text-anchor="middle" fill="#96CEB4" font-size="13" font-family="sans-serif" font-weight="bold">既存勢力の偏見</text>
+  <text x="710" y="325" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">自分のビジネスを</text>
+  <text x="710" y="345" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">脅かすものを過小評価</text>
+
+  <rect x="180" y="380" width="220" height="80" fill="#1a1a2e" rx="8"/>
+  <text x="290" y="405" text-anchor="middle" fill="#e17055" font-size="13" font-family="sans-serif" font-weight="bold">指数関数的成長の無視</text>
+  <text x="290" y="425" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">技術の指数的進歩を</text>
+  <text x="290" y="445" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">直感で捉えられない</text>
+
+  <rect x="500" y="380" width="220" height="80" fill="#1a1a2e" rx="8"/>
+  <text x="610" y="405" text-anchor="middle" fill="#FFEAA7" font-size="13" font-family="sans-serif" font-weight="bold">社会変化の過小評価</text>
+  <text x="610" y="425" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">技術だけでなく</text>
+  <text x="610" y="445" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">人の行動変化を見逃す</text>
+</svg>

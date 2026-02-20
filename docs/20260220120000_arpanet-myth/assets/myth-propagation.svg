@@ -1,0 +1,90 @@
+<svg viewBox="0 0 900 430" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="430" fill="#1a1a2e" rx="12"/>
+  <text x="450" y="26" text-anchor="middle" fill="#ecf0f1" font-size="14" font-weight="bold">神話の伝播経路 — 「核戦争のため」説はどう広がったか</text>
+
+  <!-- ===== SOURCE (top center) ===== -->
+  <!-- Paul Baran 1964 -->
+  <rect x="310" y="42" width="280" height="52" rx="6" fill="#1a3a5c" stroke="#3498db" stroke-width="2"/>
+  <text x="450" y="62" text-anchor="middle" fill="#3498db" font-size="11" font-weight="bold">Paul Baran (RAND, 1964)</text>
+  <text x="450" y="76" text-anchor="middle" fill="#85c1e9" font-size="9">分散型ネットワーク研究（軍の電話網向け）</text>
+  <text x="450" y="88" text-anchor="middle" fill="#7fb3d3" font-size="8">→ 本物の核耐性研究。ただし採用されず</text>
+
+  <!-- Downward arrows from Baran -->
+  <!-- Arrow to Stewart Brand -->
+  <line x1="390" y1="94" x2="280" y2="148" stroke="#e74c3c" stroke-width="2"/>
+  <polygon points="276,144 284,152 272,156" fill="#e74c3c"/>
+
+  <!-- Arrow to ARPANET designers -->
+  <line x1="510" y1="94" x2="620" y2="148" stroke="#f39c12" stroke-width="2"/>
+  <polygon points="616,144 624,152 628,144" fill="#f39c12"/>
+
+  <!-- ===== LEVEL 2 ===== -->
+  <!-- Stewart Brand -->
+  <rect x="100" y="152" width="230" height="52" rx="6" fill="#2c0a0a" stroke="#e74c3c" stroke-width="1.5"/>
+  <text x="215" y="171" text-anchor="middle" fill="#e74c3c" font-size="11" font-weight="bold">Stewart Brand（1970s〜）</text>
+  <text x="215" y="185" text-anchor="middle" fill="#f1948a" font-size="9">「The Media Lab」などで</text>
+  <text x="215" y="197" text-anchor="middle" fill="#f1948a" font-size="9">「核戦争対策」の物語を広める</text>
+
+  <!-- ARPANET designers (correctly remember) -->
+  <rect x="560" y="152" width="240" height="52" rx="6" fill="#0a2e1a" stroke="#2ecc71" stroke-width="1.5"/>
+  <text x="680" y="171" text-anchor="middle" fill="#2ecc71" font-size="11" font-weight="bold">ARPANET設計者たち</text>
+  <text x="680" y="185" text-anchor="middle" fill="#a9dfbf" font-size="9">「リソース共有が目的だった」と証言</text>
+  <text x="680" y="197" text-anchor="middle" fill="#a9dfbf" font-size="9">→ 正確な記憶・一次資料が存在</text>
+
+  <!-- Arrows from Brand -->
+  <line x1="215" y1="204" x2="180" y2="258" stroke="#e74c3c" stroke-width="2"/>
+  <polygon points="176,254 184,262 172,266" fill="#e74c3c"/>
+
+  <line x1="260" y1="204" x2="420" y2="258" stroke="#e74c3c" stroke-width="2"/>
+  <polygon points="416,254 424,262 428,254" fill="#e74c3c"/>
+
+  <!-- Arrow from designers (correct info ignored) -->
+  <line x1="680" y1="204" x2="680" y2="245" stroke="#2ecc71" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="710" y="234" fill="#95a5a6" font-size="9">訂正の声は届きにくい</text>
+
+  <!-- ===== LEVEL 3 ===== -->
+  <!-- TIME/Newsweek -->
+  <rect x="55" y="262" width="205" height="52" rx="6" fill="#2c1a00" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="157" y="281" text-anchor="middle" fill="#f39c12" font-size="11" font-weight="bold">TIME・Newsweek（1980s〜）</text>
+  <text x="157" y="295" text-anchor="middle" fill="#fad7a0" font-size="9">インターネット特集で繰り返し引用</text>
+  <text x="157" y="307" text-anchor="middle" fill="#fad7a0" font-size="9">権威付けが進む</text>
+
+  <!-- Wikipedia / Web -->
+  <rect x="335" y="262" width="205" height="52" rx="6" fill="#2c1a00" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="437" y="281" text-anchor="middle" fill="#f39c12" font-size="11" font-weight="bold">Wikipedia（1990s後半〜）</text>
+  <text x="437" y="295" text-anchor="middle" fill="#fad7a0" font-size="9">草創期に「事実」として記述</text>
+  <text x="437" y="307" text-anchor="middle" fill="#fad7a0" font-size="9">世界中にコピー・引用が拡散</text>
+
+  <!-- Where Wizards... debunks (1996) -->
+  <rect x="615" y="262" width="240" height="52" rx="6" fill="#0a2e1a" stroke="#2ecc71" stroke-width="1.5"/>
+  <text x="735" y="278" text-anchor="middle" fill="#2ecc71" font-size="10" font-weight="bold">「Where Wizards Stay Up Late」</text>
+  <text x="735" y="292" text-anchor="middle" fill="#a9dfbf" font-size="9">1996年: 神話を学術的に否定</text>
+  <text x="735" y="306" text-anchor="middle" fill="#a9dfbf" font-size="9">→ しかし一般には広まらず</text>
+
+  <!-- Arrows to bottom -->
+  <line x1="157" y1="314" x2="300" y2="358" stroke="#e74c3c" stroke-width="2"/>
+  <polygon points="296,354 304,362 308,354" fill="#e74c3c"/>
+  <line x1="437" y1="314" x2="400" y2="358" stroke="#e74c3c" stroke-width="2"/>
+  <polygon points="396,354 404,362 392,356" fill="#e74c3c"/>
+
+  <!-- ===== LEVEL 4: Result ===== -->
+  <rect x="155" y="362" width="435" height="42" rx="6" fill="#4a0a0a" stroke="#e74c3c" stroke-width="2"/>
+  <text x="372" y="381" text-anchor="middle" fill="#e74c3c" font-size="11" font-weight="bold">教科書・大学講義・講演の「常識」へ</text>
+  <text x="372" y="397" text-anchor="middle" fill="#f1948a" font-size="10">エンジニアが「ARPANETは核戦争対策だった」と信じて伝え続ける</text>
+
+  <!-- Correction arrow -->
+  <line x1="615" y1="340" x2="590" y2="370" stroke="#2ecc71" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="586,368 592,376 598,366" fill="#2ecc71"/>
+  <text x="640" y="360" fill="#2ecc71" font-size="9">訂正</text>
+
+  <!-- Bottom note -->
+  <rect x="30" y="380" width="125" height="38" rx="4" fill="#0a2e1a" stroke="#2ecc71" stroke-width="1"/>
+  <text x="92" y="396" text-anchor="middle" fill="#2ecc71" font-size="9">伝言ゲームの構造:</text>
+  <text x="92" y="410" text-anchor="middle" fill="#a9dfbf" font-size="9">正確な情報は届きにくい</text>
+
+  <!-- Right note -->
+  <rect x="740" y="362" width="125" height="52" rx="4" fill="#0d1520" stroke="#95a5a6" stroke-width="1"/>
+  <text x="802" y="378" text-anchor="middle" fill="#95a5a6" font-size="9">現状（2020s）:</text>
+  <text x="802" y="392" text-anchor="middle" fill="#95a5a6" font-size="9">Wikipediaは修正済み</text>
+  <text x="802" y="406" text-anchor="middle" fill="#95a5a6" font-size="9">しかしコピーは残存</text>
+</svg>

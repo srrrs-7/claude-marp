@@ -1,0 +1,240 @@
+---
+marp: true
+theme: gaia
+class: invert
+size: 16:9
+paginate: true
+header: "職人気質とソフトウェアクラフトマンシップ"
+footer: "© 2026"
+style: |
+  section { font-size: 1.05em; }
+  section pre code { font-size: 0.58em; line-height: 1.4; }
+
+---
+
+<!-- _class: lead -->
+# 職人気質(Shokunin)とソフトウェアクラフトマンシップ
+
+- 米を炊くのに10年かける職人から学ぶソフトウェア設計
+- 
+- 「どう作るか」にプライドを持つエンジニアになるために
+
+<!--
+日本の職人文化とソフトウェアエンジニアリングの本質的な共通点を探る。単に動くコードを書くのではなく、誇りを持って作ることの意味を問い直す。
+-->
+
+---
+
+<!-- _class: lead -->
+# 職人(Shokunin)とは何か
+
+- 技術・誇り・絶え間ない改善の追求
+
+
+---
+
+# 小野二郎の世界 — 50年間、寿司だけを作り続ける
+
+- 「夢を持ち続けろ。情熱を注ぎ込め。仕事に恋をしろ」 — 小野二郎
+- 85歳でミシュラン三ツ星を維持し続ける唯一の職人
+- 弟子入りから独立まで平均10年以上の修行期間
+- <svg viewBox='0 0 900 280' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">  <defs>    <style>      .stage-box { rx: 8; ry: 8; }    </style>  </defs>  <!-- Timeline base line -->  <line x1='60' y1='140' x2='860' y2='140' stroke='#4a90d9' stroke-width='3'/>  <!-- Stage 1: 入門 -->  <rect x='40' y='100' width='130' height='80' rx='8' ry='8' fill='#e8f4fd' stroke='#4a90d9' stroke-width='2'/>  <text x='105' y='130' text-anchor='middle' font-size='15' font-weight='bold' fill='#2c5f8a'>入門</text>  <text x='105' y='150' text-anchor='middle' font-size='12' fill='#555'>雑用・掃除</text>  <text x='105' y='168' text-anchor='middle' font-size='11' fill='#888'>1〜2年</text>  <!-- Arrow 1 -->  <polygon points='185,136 175,130 175,142' fill='#4a90d9'/>  <!-- Stage 2: 見習い -->  <rect x='195' y='100' width='130' height='80' rx='8' ry='8' fill='#d4edda' stroke='#28a745' stroke-width='2'/>  <text x='260' y='130' text-anchor='middle' font-size='15' font-weight='bold' fill='#155724'>見習い</text>  <text x='260' y='150' text-anchor='middle' font-size='12' fill='#555'>基本技術習得</text>  <text x='260' y='168' text-anchor='middle' font-size='11' fill='#888'>3〜4年</text>  <!-- Arrow 2 -->  <polygon points='340,136 330,130 330,142' fill='#28a745'/>  <!-- Stage 3: 修行 -->  <rect x='350' y='100' width='130' height='80' rx='8' ry='8' fill='#fff3cd' stroke='#ffc107' stroke-width='2'/>  <text x='415' y='130' text-anchor='middle' font-size='15' font-weight='bold' fill='#856404'>修行</text>  <text x='415' y='150' text-anchor='middle' font-size='12' fill='#555'>応用・深化</text>  <text x='415' y='168' text-anchor='middle' font-size='11' fill='#888'>3〜5年</text>  <!-- Arrow 3 -->  <polygon points='495,136 485,130 485,142' fill='#ffc107'/>  <!-- Stage 4: 熟練 -->  <rect x='505' y='100' width='130' height='80' rx='8' ry='8' fill='#f8d7da' stroke='#dc3545' stroke-width='2'/>  <text x='570' y='130' text-anchor='middle' font-size='15' font-weight='bold' fill='#721c24'>熟練</text>  <text x='570' y='150' text-anchor='middle' font-size='12' fill='#555'>独自スタイル</text>  <text x='570' y='168' text-anchor='middle' font-size='11' fill='#888'>5〜10年</text>  <!-- Arrow 4 -->  <polygon points='650,136 640,130 640,142' fill='#dc3545'/>  <!-- Stage 5: 職人 -->  <rect x='660' y='85' width='160' height='110' rx='8' ry='8' fill='#cce5ff' stroke='#004085' stroke-width='3'/>  <text x='740' y='120' text-anchor='middle' font-size='16' font-weight='bold' fill='#004085'>職人</text>  <text x='740' y='142' text-anchor='middle' font-size='13' fill='#333'>極み・創造</text>  <text x='740' y='162' text-anchor='middle' font-size='12' fill='#004085'>10年以上</text>  <text x='740' y='180' text-anchor='middle' font-size='11' fill='#666'>終わりなき道</text>  <!-- Timeline labels -->  <text x='60' y='210' text-anchor='middle' font-size='11' fill='#999'>0年</text>  <text x='830' y='210' text-anchor='middle' font-size='11' fill='#999'>10年+</text>  <text x='450' y='250' text-anchor='middle' font-size='13' font-style='italic' fill='#4a90d9'>「職人への道は終わりがない」</text></svg>
+
+<!--
+小野二郎は「すきやばし次郎」の創業者。Jiro Dreams of Sushi（2011年ドキュメンタリー）で世界的に知られる。職人修行のタイムラインは一般的な日本の職人文化を示している。
+-->
+
+---
+
+# 職人の3つの要素
+
+- 技術・誇り・絶え間ない改善が螺旋状に絡み合う
+- <svg viewBox='0 0 820 380' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">  <!-- Central circle -->  <circle cx='410' cy='190' r='70' fill='#2c5f8a' style='filter:drop-shadow(0 4px 8px rgba(0,0,0,0.25))'/>  <text x='410' y='183' text-anchor='middle' font-size='16' font-weight='bold' fill='white'>職人</text>  <text x='410' y='203' text-anchor='middle' font-size='14' fill='#cce5ff'>Shokunin</text>  <!-- Element 1: 技術 (Skill) -->  <circle cx='200' cy='90' r='80' fill='#e8f4fd' stroke='#4a90d9' stroke-width='3' style='filter:drop-shadow(0 3px 6px rgba(0,0,0,0.15))'/>  <text x='200' y='80' text-anchor='middle' font-size='18' font-weight='bold' fill='#2c5f8a'>技術</text>  <text x='200' y='100' text-anchor='middle' font-size='13' fill='#555'>Skill</text>  <text x='200' y='118' text-anchor='middle' font-size='11' fill='#777'>繰り返しで</text>  <text x='200' y='134' text-anchor='middle' font-size='11' fill='#777'>体に染み込む</text>  <!-- Element 2: 誇り (Pride) -->  <circle cx='620' cy='90' r='80' fill='#fff3cd' stroke='#ffc107' stroke-width='3' style='filter:drop-shadow(0 3px 6px rgba(0,0,0,0.15))'/>  <text x='620' y='80' text-anchor='middle' font-size='18' font-weight='bold' fill='#856404'>誇り</text>  <text x='620' y='100' text-anchor='middle' font-size='13' fill='#555'>Pride</text>  <text x='620' y='118' text-anchor='middle' font-size='11' fill='#777'>作品に自分の</text>  <text x='620' y='134' text-anchor='middle' font-size='11' fill='#777'>名前を刻む</text>  <!-- Element 3: 改善 (Kaizen) -->  <circle cx='410' cy='330' r='80' fill='#d4edda' stroke='#28a745' stroke-width='3' style='filter:drop-shadow(0 3px 6px rgba(0,0,0,0.15))'/>  <text x='410' y='318' text-anchor='middle' font-size='18' font-weight='bold' fill='#155724'>改善</text>  <text x='410' y='338' text-anchor='middle' font-size='13' fill='#555'>Kaizen</text>  <text x='410' y='356' text-anchor='middle' font-size='11' fill='#777'>昨日より今日を</text>  <!-- Connecting lines -->  <line x1='270' y1='120' x2='350' y2='148' stroke='#4a90d9' stroke-width='2' stroke-dasharray='6,3'/>  <line x1='550' y1='120' x2='470' y2='148' stroke='#ffc107' stroke-width='2' stroke-dasharray='6,3'/>  <line x1='410' y1='260' x2='410' y2='310' stroke='#28a745' stroke-width='2' stroke-dasharray='6,3'/>  <!-- Arrows on connections -->  <polygon points='354,146 344,140 350,153' fill='#4a90d9'/>  <polygon points='466,150 476,144 472,157' fill='#ffc107'/>  <polygon points='408,305 402,295 414,295' fill='#28a745'/>  <!-- Labels on connections -->  <text x='290' y='138' font-size='10' fill='#4a90d9' transform='rotate(-25,290,138)'>鍛錬</text>  <text x='500' y='138' font-size='10' fill='#856404' transform='rotate(25,500,138)'>責任</text>  <text x='425' y='285' font-size='10' fill='#155724'>反省</text></svg>
+
+<!--
+職人気質の三位一体。技術は体で覚えるもの、誇りは品質への責任感、改善は終わりなき自己更新。これらが相互に強化し合う。
+-->
+
+---
+
+# 見えない品質 — なぜ職人の仕事は「感じる」のか
+
+- 刃物職人の包丁: 目に見えない0.1mmの違いが手に伝わる
+- 「見えない部分こそ丁寧に」 — 伝統建築の隠し釘
+- **ソフトウェアの見えない品質:**
+- - コードの可読性と保守性
+- - エラーハンドリングの堅牢さ
+- - テストカバレッジと安心感
+- - パフォーマンス余裕と将来への拡張性
+- **職人とは：使う人が意識しないほど完璧に動くものを作る人**
+
+<!--
+宮大工の話：見えない梁の裏面まで丁寧に仕上げる。神社仏閣の建築では500年後に修理する職人のことを考えて施工する。ソフトウェアも同じ。
+-->
+
+---
+
+<!-- _class: lead -->
+# ソフトウェアクラフトマンシップ運動
+
+- "We are raising the bar of professional software development"
+
+
+---
+
+# 2009年 Software Craftsmanship Manifesto
+
+- アジャイルマニフェストの精神を引き継ぎ、「どう作るか」に焦点を当てた宣言
+- <svg viewBox='0 0 860 340' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">  <!-- Left column: We value X -->  <rect x='30' y='20' width='370' height='300' rx='10' ry='10' fill='#f8f9fa' stroke='#dee2e6' stroke-width='2'/>  <rect x='30' y='20' width='370' height='50' rx='10' ry='10' fill='#6c757d'/>  <rect x='30' y='50' width='370' height='20' fill='#6c757d'/>  <text x='215' y='52' text-anchor='middle' font-size='14' font-weight='bold' fill='white'>アジャイルが重視するもの</text>  <!-- Agile items -->  <text x='60' y='100' font-size='14' fill='#495057'>動くソフトウェア</text>  <text x='60' y='140' font-size='14' fill='#495057'>変化への対応</text>  <text x='60' y='180' font-size='14' fill='#495057'>顧客との協調</text>  <text x='60' y='220' font-size='14' fill='#495057'>個人とインタラクション</text>  <!-- Right column: We also value Y -->  <rect x='460' y='20' width='370' height='300' rx='10' ry='10' fill='#e8f4fd' stroke='#4a90d9' stroke-width='3' style='filter:drop-shadow(0 4px 12px rgba(74,144,217,0.3))'/>  <rect x='460' y='20' width='370' height='50' rx='10' ry='10' fill='#2c5f8a'/>  <rect x='460' y='50' width='370' height='20' fill='#2c5f8a'/>  <text x='645' y='52' text-anchor='middle' font-size='14' font-weight='bold' fill='white'>クラフトマンシップが追加するもの</text>  <!-- Craftsmanship items -->  <text x='490' y='96' font-size='13' fill='#2c5f8a' font-weight='bold'>「よく作られた」ソフトウェア</text>  <text x='490' y='116' font-size='11' fill='#555'>Well-crafted software</text>  <text x='490' y='148' font-size='13' fill='#2c5f8a' font-weight='bold'>継続的な価値の提供</text>  <text x='490' y='168' font-size='11' fill='#555'>Steadily adding value</text>  <text x='490' y='200' font-size='13' fill='#2c5f8a' font-weight='bold'>プロのコミュニティ</text>  <text x='490' y='220' font-size='11' fill='#555'>Community of professionals</text>  <text x='490' y='252' font-size='13' fill='#2c5f8a' font-weight='bold'>生産的なパートナーシップ</text>  <text x='490' y='272' font-size='11' fill='#555'>Productive partnerships</text>  <!-- Not only ... but also arrows -->  <text x='415' y='105' text-anchor='middle' font-size='11' fill='#999'>だけでなく</text>  <text x='415' y='155' text-anchor='middle' font-size='11' fill='#999'>だけでなく</text>  <text x='415' y='205' text-anchor='middle' font-size='11' fill='#999'>だけでなく</text>  <text x='415' y='255' text-anchor='middle' font-size='11' fill='#999'>だけでなく</text>  <!-- Plus signs -->  <text x='417' y='107' text-anchor='middle' font-size='20' fill='#4a90d9'>+</text>  <text x='417' y='157' text-anchor='middle' font-size='20' fill='#4a90d9'>+</text>  <text x='417' y='207' text-anchor='middle' font-size='20' fill='#4a90d9'>+</text>  <text x='417' y='257' text-anchor='middle' font-size='20' fill='#4a90d9'>+</text></svg>
+- 署名者にはRobert C. Martin、Martin Fowlerら著名エンジニアが含まれる
+
+<!--
+manifesto.softwarecraftsmanship.org で公開。アジャイルマニフェストと同様の構造を持つ。「Not only...but also」という形式が特徴的。
+-->
+
+---
+
+# 「動くコード」vs「よく作られたソフトウェア」の違い
+
+- **動くコード (Working Code)**
+- - 要件を満たす: YES
+- - 6ヶ月後に修正できる: 不明
+- - 新メンバーが理解できる: 難しい
+- - 本番障害の頻度: 高い
+- 
+- **よく作られたソフトウェア (Well-crafted Software)**
+- - 要件を満たす: YES
+- - 6ヶ月後に修正できる: YES
+- - 新メンバーが理解できる: YES
+- - 本番障害の頻度: 低い
+- 
+- クラフトマンシップは「余分なコスト」ではなく「長期投資」
+
+<!--
+技術的負債の比喩：職人がコーナーを切り取って手抜き工事をすると、後で建物全体のリフォームが必要になる。ソフトウェアも同様。
+-->
+
+---
+
+# Deliberate Practice — 意図的な練習の科学
+
+- K. Anders Ericssonの研究：「1万時間の法則」の本当の意味
+- 単なる反復ではなく「意図的な練習」が熟達を生む
+- <svg viewBox='0 0 820 320' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">  <!-- Y axis -->  <line x1='80' y1='20' x2='80' y2='270' stroke='#333' stroke-width='2'/>  <!-- X axis -->  <line x1='80' y1='270' x2='780' y2='270' stroke='#333' stroke-width='2'/>  <!-- Y axis arrow -->  <polygon points='80,18 74,30 86,30' fill='#333'/>  <!-- X axis arrow -->  <polygon points='782,270 770,264 770,276' fill='#333'/>  <!-- Axis labels -->  <text x='30' y='150' text-anchor='middle' font-size='13' fill='#555' transform='rotate(-90,30,150)'>スキルレベル</text>  <text x='430' y='298' text-anchor='middle' font-size='13' fill='#555'>練習時間</text>  <!-- Curve 1: Naive practice (slow plateau) -->  <path d='M80,250 C200,200 300,170 400,160 C500,152 600,148 780,145' stroke='#aaa' stroke-width='2.5' fill='none' stroke-dasharray='8,4'/>  <text x='680' y='135' font-size='11' fill='#888'>普通の反復練習</text>  <!-- Curve 2: Deliberate practice (steeper) -->  <path d='M80,250 C180,180 280,120 380,80 C480,45 580,28 780,20' stroke='#4a90d9' stroke-width='3' fill='none'/>  <text x='590' y='18' font-size='11' fill='#2c5f8a' font-weight='bold'>意図的な練習</text>  <!-- Milestones on deliberate practice curve -->  <circle cx='200' cy='195' r='7' fill='#4a90d9'/>  <text x='210' y='185' font-size='10' fill='#333'>コードカタ</text>  <circle cx='340' cy='118' r='7' fill='#4a90d9'/>  <text x='350' y='108' font-size='10' fill='#333'>ペアプログラミング</text>  <circle cx='500' cy='60' r='7' fill='#4a90d9'/>  <text x='510' y='50' font-size='10' fill='#333'>メンタリング</text>  <!-- Plateau zones -->  <rect x='550' y='120' width='200' height='45' rx='5' ry='5' fill='#fff3cd' stroke='#ffc107' stroke-width='1.5'/>  <text x='650' y='138' text-anchor='middle' font-size='11' fill='#856404'>コンフォートゾーンを</text>  <text x='650' y='155' text-anchor='middle' font-size='11' fill='#856404'>抜け出す挑戦が必要</text>  <!-- Grid lines -->  <line x1='80' y1='270' x2='780' y2='270' stroke='#eee' stroke-width='1'/>  <line x1='80' y1='180' x2='780' y2='180' stroke='#eee' stroke-width='1'/>  <line x1='80' y1='90' x2='780' y2='90' stroke='#eee' stroke-width='1'/></svg>
+
+<!--
+Ericssonの研究（Peak: Secrets from the New Science of Expertise）。職人の修行は意図的な練習の最古の形。師匠がフィードバックを与え、弟子が限界を押し広げる。
+-->
+
+---
+
+<!-- _class: lead -->
+# 現代の弟子制度
+
+- デジタル時代の師弟関係
+
+
+---
+
+# ペアプログラミング = 親方と弟子
+
+- 伝統的な師弟関係をソフトウェア開発に応用する
+- <svg viewBox='0 0 820 300' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">  <!-- Traditional side -->  <rect x='30' y='20' width='340' height='260' rx='12' ry='12' fill='#fff8e6' stroke='#e6a817' stroke-width='2'/>  <text x='200' y='55' text-anchor='middle' font-size='14' font-weight='bold' fill='#856404'>伝統的な師弟関係</text>  <!-- Master -->  <circle cx='130' cy='130' r='40' fill='#e6a817' style='filter:drop-shadow(0 3px 6px rgba(0,0,0,0.2))'/>  <text x='130' y='125' text-anchor='middle' font-size='13' font-weight='bold' fill='white'>親方</text>  <text x='130' y='143' text-anchor='middle' font-size='11' fill='white'>Master</text>  <!-- Apprentice -->  <circle cx='270' cy='130' r='40' fill='#f8d77a' stroke='#e6a817' stroke-width='2'/>  <text x='270' y='125' text-anchor='middle' font-size='13' font-weight='bold' fill='#856404'>弟子</text>  <text x='270' y='143' text-anchor='middle' font-size='11' fill='#856404'>Apprentice</text>  <!-- Arrow: guidance -->  <line x1='170' y1='120' x2='228' y2='120' stroke='#e6a817' stroke-width='2'/>  <polygon points='230,120 220,114 220,126' fill='#e6a817'/>  <text x='200' y='112' text-anchor='middle' font-size='10' fill='#856404'>技術伝承</text>  <!-- Arrow: feedback -->  <line x1='228' y1='140' x2='170' y2='140' stroke='#aaa' stroke-width='1.5'/>  <polygon points='168,140 178,134 178,146' fill='#aaa'/>  <text x='200' y='155' text-anchor='middle' font-size='10' fill='#888'>観察・模倣</text>  <!-- Traditional labels -->  <text x='130' y='185' text-anchor='middle' font-size='11' fill='#777'>言語化されない</text>  <text x='130' y='200' text-anchor='middle' font-size='11' fill='#777'>暗黙知の伝達</text>  <text x='270' y='185' text-anchor='middle' font-size='11' fill='#777'>見て覚える</text>  <text x='270' y='200' text-anchor='middle' font-size='11' fill='#777'>背中を見て学ぶ</text>  <text x='200' y='245' text-anchor='middle' font-size='12' fill='#856404'>「目で盗め」文化</text>  <!-- Modern side -->  <rect x='450' y='20' width='340' height='260' rx='12' ry='12' fill='#e8f4fd' stroke='#4a90d9' stroke-width='2'/>  <text x='620' y='55' text-anchor='middle' font-size='14' font-weight='bold' fill='#2c5f8a'>ペアプログラミング</text>  <!-- Navigator -->  <rect x='470' y='80' width='120' height='70' rx='8' ry='8' fill='#2c5f8a' style='filter:drop-shadow(0 3px 6px rgba(0,0,0,0.2))'/>  <text x='530' y='110' text-anchor='middle' font-size='13' font-weight='bold' fill='white'>Navigator</text>  <text x='530' y='128' text-anchor='middle' font-size='11' fill='#cce5ff'>戦略・レビュー</text>  <!-- Driver -->  <rect x='650' y='80' width='120' height='70' rx='8' ry='8' fill='#4a90d9' stroke='#2c5f8a' stroke-width='2'/>  <text x='710' y='110' text-anchor='middle' font-size='13' font-weight='bold' fill='white'>Driver</text>  <text x='710' y='128' text-anchor='middle' font-size='11' fill='#cce5ff'>実装・入力</text>  <!-- Bi-directional arrow -->  <line x1='592' y1='115' x2='648' y2='115' stroke='#4a90d9' stroke-width='2.5'/>  <polygon points='650,115 640,109 640,121' fill='#4a90d9'/>  <polygon points='590,115 600,109 600,121' fill='#4a90d9'/>  <text x='620' y='107' text-anchor='middle' font-size='10' fill='#2c5f8a'>随時交替</text>  <!-- Benefits -->  <text x='620' y='185' text-anchor='middle' font-size='12' fill='#2c5f8a'>リアルタイムコードレビュー</text>  <text x='620' y='205' text-anchor='middle' font-size='12' fill='#2c5f8a'>暗黙知の言語化・共有</text>  <text x='620' y='225' text-anchor='middle' font-size='12' fill='#2c5f8a'>即時フィードバックループ</text>  <text x='620' y='260' text-anchor='middle' font-size='11' fill='#555'>「見せながら教える」現代版</text></svg>
+
+<!--
+XP(Extreme Programming)のKent Beckが提唱。研究によると個人開発より15%遅いが、欠陥率が40-60%減少する。長期的には大幅にコスト削減。
+-->
+
+---
+
+# コードレビュー = 師匠の目線
+
+- 職人が弟子の仕事を点検し、改善点を伝える伝統
+- <svg viewBox='0 0 820 300' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">  <!-- Feedback loop circle -->  <circle cx='410' cy='150' r='120' fill='none' stroke='#dee2e6' stroke-width='1' stroke-dasharray='4,4'/>  <!-- Node 1: コード作成 -->  <rect x='290' y='20' width='240' height='60' rx='8' ry='8' fill='#4a90d9' style='filter:drop-shadow(0 3px 6px rgba(0,0,0,0.2))'/>  <text x='410' y='47' text-anchor='middle' font-size='14' font-weight='bold' fill='white'>コード作成</text>  <text x='410' y='65' text-anchor='middle' font-size='11' fill='#cce5ff'>Pull Request 作成</text>  <!-- Node 2: レビュー -->  <rect x='630' y='120' width='170' height='60' rx='8' ry='8' fill='#2c5f8a' style='filter:drop-shadow(0 3px 6px rgba(0,0,0,0.2))'/>  <text x='715' y='147' text-anchor='middle' font-size='14' font-weight='bold' fill='white'>コードレビュー</text>  <text x='715' y='165' text-anchor='middle' font-size='11' fill='#cce5ff'>師匠の目線</text>  <!-- Node 3: 改善 -->  <rect x='290' y='250' width='240' height='50' rx='8' ry='8' fill='#28a745' style='filter:drop-shadow(0 3px 6px rgba(0,0,0,0.15))'/>  <text x='410' y='272' text-anchor='middle' font-size='14' font-weight='bold' fill='white'>修正・改善</text>  <text x='410' y='290' text-anchor='middle' font-size='11' fill='#c3e6cb'>スキル向上</text>  <!-- Node 4: 承認 -->  <rect x='30' y='120' width='160' height='60' rx='8' ry='8' fill='#ffc107' style='filter:drop-shadow(0 3px 6px rgba(0,0,0,0.15))'/>  <text x='110' y='147' text-anchor='middle' font-size='14' font-weight='bold' fill='#856404'>マージ承認</text>  <text x='110' y='165' text-anchor='middle' font-size='11' fill='#856404'>品質保証</text>  <!-- Arrows -->  <!-- Top to right -->  <path d='M530,50 Q640,50 640,120' stroke='#4a90d9' stroke-width='2' fill='none'/>  <polygon points='640,122 634,110 646,110' fill='#4a90d9'/>  <text x='610' y='80' font-size='10' fill='#4a90d9'>提出</text>  <!-- Right to bottom -->  <path d='M715,180 Q715,250 530,270' stroke='#dc3545' stroke-width='2' fill='none'/>  <polygon points='528,270 538,262 536,274' fill='#dc3545'/>  <text x='665' y='240' font-size='10' fill='#dc3545'>指摘</text>  <!-- Bottom to left -->  <path d='M290,270 Q200,270 190,180' stroke='#28a745' stroke-width='2' fill='none'/>  <polygon points='190,178 184,190 196,190' fill='#28a745'/>  <text x='210' y='255' font-size='10' fill='#28a745'>改善</text>  <!-- Left to top -->  <path d='M110,120 Q110,50 290,50' stroke='#ffc107' stroke-width='2' fill='none'/>  <polygon points='292,50 280,44 280,56' fill='#ffc107'/>  <text x='150' y='78' font-size='10' fill='#856404'>承認</text>  <!-- Center text -->  <text x='410' y='140' text-anchor='middle' font-size='13' font-weight='bold' fill='#555'>継続的な</text>  <text x='410' y='158' text-anchor='middle' font-size='13' font-weight='bold' fill='#555'>品質向上</text>  <!-- Good review principles -->  <text x='100' y='32' font-size='11' fill='#333'>良いレビューの原則:</text>  <text x='100' y='52' font-size='10' fill='#555'>・コードを批判、人を批判せず</text>  <text x='100' y='68' font-size='10' fill='#555'>・「なぜ」を説明する</text>  <text x='100' y='84' font-size='10' fill='#555'>・代替案を提示する</text></svg>
+
+<!--
+コードレビューは単なるバグ発見ツールではなく、知識転送のメカニズム。SmartBearの調査では、コードレビューで欠陥の60%を発見できる。
+-->
+
+---
+
+# オープンソース = 公開された作品
+
+- 職人の「暖簾」とオープンソースリポジトリの類似性
+- **伝統の職人:**
+- - 暖簾 = ブランドと信頼の証
+- - 作品を公開市場に出すことで評価される
+- - 技術が代々受け継がれる (fork = 分派)
+- **現代のエンジニア:**
+- - GitHub プロフィール = デジタル暖簾
+- - オープンソース貢献で技術力が証明される
+- - コードが世界中で使われ・改良される
+- **OSS貢献はポートフォリオであり修行の場**
+
+<!--
+Linuxカーネル、Rails、Djangaなど大規模OSSは現代の職人ギルド。厳格なコードレビュープロセス、品質基準、コミュニティの承認が必要。
+-->
+
+---
+
+<!-- _class: lead -->
+# 職人とスピードの矛盾
+
+- "速く動け、物を壊せ" vs "ゆっくり急げ"
+
+
+---
+
+# 「遅い」職人は本当に遅いのか — 技術的負債との比較
+
+- 短期と長期のコストを正しく計算する
+- <svg viewBox='0 0 820 300' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">  <!-- Y axis -->  <line x1='80' y1='20' x2='80' y2='260' stroke='#333' stroke-width='2'/>  <!-- X axis -->  <line x1='80' y1='260' x2='780' y2='260' stroke='#333' stroke-width='2'/>  <!-- Arrows -->  <polygon points='80,18 74,30 86,30' fill='#333'/>  <polygon points='782,260 770,254 770,266' fill='#333'/>  <!-- Labels -->  <text x='30' y='140' text-anchor='middle' font-size='12' fill='#555' transform='rotate(-90,30,140)'>累積コスト</text>  <text x='430' y='285' text-anchor='middle' font-size='12' fill='#555'>時間</text>  <!-- Timeline markers -->  <line x1='280' y1='255' x2='280' y2='265' stroke='#333' stroke-width='1'/>  <text x='280' y='278' text-anchor='middle' font-size='10' fill='#666'>3ヶ月</text>  <line x1='480' y1='255' x2='480' y2='265' stroke='#333' stroke-width='1'/>  <text x='480' y='278' text-anchor='middle' font-size='10' fill='#666'>6ヶ月</text>  <line x1='680' y1='255' x2='680' y2='265' stroke='#333' stroke-width='1'/>  <text x='680' y='278' text-anchor='middle' font-size='10' fill='#666'>1年</text>  <!-- Curve 1: Quick & dirty (exponential growth) -->  <path d='M80,240 C200,235 300,210 380,180 C460,148 540,100 680,40' stroke='#dc3545' stroke-width='3' fill='none'/>  <text x='700' y='35' font-size='11' fill='#dc3545' font-weight='bold'>速い開発</text>  <text x='700' y='50' font-size='10' fill='#dc3545'>(技術的負債あり)</text>  <!-- Curve 2: Crafted (linear, lower) -->  <path d='M80,240 C200,228 350,215 480,200 C600,185 700,170 760,155' stroke='#28a745' stroke-width='3' fill='none'/>  <text x='700' y='148' font-size='11' fill='#28a745' font-weight='bold'>職人的開発</text>  <text x='700' y='163' font-size='10' fill='#28a745'>(品質重視)</text>  <!-- Crossover point annotation -->  <circle cx='350' cy='220' r='6' fill='#ffc107' style='filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2))'/>  <line x1='350' y1='214' x2='380' y2='170' stroke='#ffc107' stroke-width='1.5' stroke-dasharray='4,2'/>  <rect x='382' y='150' width='160' height='40' rx='5' ry='5' fill='#fff3cd' stroke='#ffc107' stroke-width='1.5'/>  <text x='462' y='167' text-anchor='middle' font-size='10' fill='#856404'>ここで逆転 (~4ヶ月)</text>  <text x='462' y='182' text-anchor='middle' font-size='10' fill='#856404'>職人的開発が有利に</text>  <!-- Initial cost difference -->  <line x1='100' y1='210' x2='100' y2='235' stroke='#aaa' stroke-width='1.5' stroke-dasharray='3,2'/>  <text x='145' y='223' font-size='10' fill='#888'>初期コスト差</text>  <line x1='120' y1='212' x2='140' y2='222' stroke='#aaa' stroke-width='1'/>  <!-- Grid -->  <line x1='80' y1='180' x2='780' y2='180' stroke='#f0f0f0' stroke-width='1'/>  <line x1='80' y1='120' x2='780' y2='120' stroke='#f0f0f0' stroke-width='1'/>  <line x1='80' y1='60' x2='780' y2='60' stroke='#f0f0f0' stroke-width='1'/></svg>
+
+<!--
+Martin Fowlerの技術的負債のメタファー。初期は速い開発の方がコストが低く見えるが、4〜6ヶ月後には逆転する。金融機関や医療システムではこの差が致命的になる。
+-->
+
+---
+
+# 職人気質 × アジャイルの両立
+
+- スピードと品質は対立しない — サイクルを小さくすることで両立する
+- <svg viewBox='0 0 820 300' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">  <!-- Sprint cycle outer ring -->  <circle cx='250' cy='150' r='110' fill='none' stroke='#dee2e6' stroke-width='2'/>  <!-- Sprint phases -->  <!-- Planning -->  <path d='M250,40 A110,110 0 0,1 360,150' stroke='#4a90d9' stroke-width='22' fill='none'/>  <text x='330' y='80' text-anchor='middle' font-size='11' fill='white' font-weight='bold'>計画</text>  <!-- Development -->  <path d='M360,150 A110,110 0 0,1 250,260' stroke='#2c5f8a' stroke-width='22' fill='none'/>  <text x='340' y='225' text-anchor='middle' font-size='11' fill='white' font-weight='bold'>開発</text>  <!-- Review -->  <path d='M250,260 A110,110 0 0,1 140,150' stroke='#28a745' stroke-width='22' fill='none'/>  <text x='168' y='225' text-anchor='middle' font-size='11' fill='white' font-weight='bold'>レビュー</text>  <!-- Retrospective -->  <path d='M140,150 A110,110 0 0,1 250,40' stroke='#ffc107' stroke-width='22' fill='none'/>  <text x='168' y='80' text-anchor='middle' font-size='11' fill='#856404' font-weight='bold'>振り返り</text>  <!-- Center -->  <circle cx='250' cy='150' r='65' fill='white'/>  <text x='250' y='143' text-anchor='middle' font-size='14' font-weight='bold' fill='#2c5f8a'>Sprint</text>  <text x='250' y='163' text-anchor='middle' font-size='12' fill='#555'>1〜2週間</text>  <!-- Craftsmanship practices embedded in cycle -->  <rect x='430' y='20' width='360' height='260' rx='10' ry='10' fill='#f8f9fa' stroke='#dee2e6' stroke-width='1.5'/>  <text x='610' y='50' text-anchor='middle' font-size='13' font-weight='bold' fill='#2c5f8a'>職人的プラクティス</text>  <!-- TDD -->  <rect x='450' y='65' width='150' height='45' rx='6' ry='6' fill='#e8f4fd' stroke='#4a90d9' stroke-width='1.5'/>  <text x='525' y='83' text-anchor='middle' font-size='12' font-weight='bold' fill='#2c5f8a'>TDD</text>  <text x='525' y='100' text-anchor='middle' font-size='10' fill='#555'>Red→Green→Refactor</text>  <!-- Refactoring -->  <rect x='620' y='65' width='150' height='45' rx='6' ry='6' fill='#d4edda' stroke='#28a745' stroke-width='1.5'/>  <text x='695' y='83' text-anchor='middle' font-size='12' font-weight='bold' fill='#155724'>リファクタリング</text>  <text x='695' y='100' text-anchor='middle' font-size='10' fill='#555'>常に改善し続ける</text>  <!-- Clean Code -->  <rect x='450' y='125' width='150' height='45' rx='6' ry='6' fill='#fff3cd' stroke='#ffc107' stroke-width='1.5'/>  <text x='525' y='143' text-anchor='middle' font-size='12' font-weight='bold' fill='#856404'>クリーンコード</text>  <text x='525' y='160' text-anchor='middle' font-size='10' fill='#555'>読める = 保守できる</text>  <!-- Pair Programming -->  <rect x='620' y='125' width='150' height='45' rx='6' ry='6' fill='#f8d7da' stroke='#dc3545' stroke-width='1.5'/>  <text x='695' y='143' text-anchor='middle' font-size='12' font-weight='bold' fill='#721c24'>ペアプログラミング</text>  <text x='695' y='160' text-anchor='middle' font-size='10' fill='#555'>知識の即時共有</text>  <!-- CI/CD -->  <rect x='450' y='185' width='320' height='45' rx='6' ry='6' fill='#e2d9f3' stroke='#6f42c1' stroke-width='1.5'/>  <text x='610' y='203' text-anchor='middle' font-size='12' font-weight='bold' fill='#4a148c'>CI/CD パイプライン</text>  <text x='610' y='220' text-anchor='middle' font-size='10' fill='#555'>自動化された品質ゲート = 職人の自己検査</text>  <!-- Connection arrow -->  <line x1='363' y1='150' x2='430' y2='150' stroke='#4a90d9' stroke-width='2' stroke-dasharray='6,3'/>  <polygon points='432,150 420,144 420,156' fill='#4a90d9'/>  <text x='396' y='143' text-anchor='middle' font-size='10' fill='#4a90d9'>組込み</text></svg>
+
+<!--
+XP(Extreme Programming)はアジャイルと職人気質の最初の統合。TDD、ペアプログラミング、継続的リファクタリングはいずれも職人的実践。
+-->
+
+---
+
+<!-- _class: lead -->
+# まとめ：「どう作るか」にプライドを持つ
+
+- Software Craftsmanshipとは結局、何か？
+- 
+- **「動くコードを書く」のではなく「誇れるコードを書く」**
+- 
+- - 技術: 日々の意図的な練習で磨かれる
+- - 誇り: 自分の名前を刻む覚悟で作る
+- - 改善: 昨日のコードより今日のコードを良くする
+- 
+- 職人は完成を目指さない — 職人は **終わりなき向上** を生きる
+
+<!--
+最後のメッセージ：職人気質とは哲学であり、習慣であり、プロフェッショナリズム。明日からできること：コードカタを始める、コードレビューの質を上げる、リファクタリングの時間を確保する。
+-->
+
+---
+
+# 参考文献
+
+- **Books & Manifestos:**
+- - [Software Craftsmanship Manifesto (2009)](http://manifesto.softwarecraftsmanship.org/)
+- - [The Software Craftsman — Sandro Mancuso (2014)](https://www.oreilly.com/library/view/the-software-craftsman/9780134052625/)
+- - [Clean Code — Robert C. Martin (2008)](https://www.oreilly.com/library/view/clean-code-a/9780136083238/)
+- - [Peak: Secrets from the New Science of Expertise — K. Anders Ericsson (2016)](https://www.penguinrandomhouse.com/books/311783/peak-by-anders-ericsson-and-robert-pool/)
+- **Documentaries & Talks:**
+- - [Jiro Dreams of Sushi (2011) — David Gelb](https://www.imdb.com/title/tt1772925/)
+- - [The Pragmatic Programmer — Hunt & Thomas (1999)](https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/)
+- - [Code Kata by Dave Thomas](http://codekata.com/)
+

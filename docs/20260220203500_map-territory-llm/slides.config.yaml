@@ -1,0 +1,20 @@
+topic: "地図と領土：LLMハルシネーションの認識論"
+language: "ja"
+
+output:
+  dir: "docs/20260220203500_map-territory-llm"
+  baseName: "map-territory-llm"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "Map vs Territory × LLM Hallucination"
+  footer: "© 2026 Epistemology of AI"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

@@ -1,0 +1,12 @@
+topic: "量子コンピュータの現実と幻想"
+language: "ja"
+output:
+  dir: "docs/20260220055500_quantum-computing-reality"
+  baseName: "quantum-computing-reality"
+marp:
+  theme: gaia
+  paginate: true
+  header: "量子コンピューティング"
+  footer: "© 2026"
+  style: |
+    section pre code { font-size: 0.58em; line-height: 1.4; }

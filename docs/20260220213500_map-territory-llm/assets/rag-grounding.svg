@@ -1,0 +1,68 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#1a1a2e" rx="12"/>
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" fill="#FFEAA7" font-size="20" font-weight="bold" font-family="sans-serif">RAG: 地図を領土に「接地」させる</text>
+  <!-- Left: Without RAG -->
+  <rect x="30" y="65" width="390" height="390" fill="#2d3436" rx="12" stroke="#FF6B6B" stroke-width="2"/>
+  <text x="225" y="92" text-anchor="middle" fill="#FF6B6B" font-size="16" font-weight="bold" font-family="sans-serif">RAGなし: 閉じた地図</text>
+  <!-- User question -->
+  <rect x="60" y="110" width="330" height="45" fill="#16213e" rx="8"/>
+  <text x="225" y="130" text-anchor="middle" fill="#dfe6e9" font-size="12" font-family="sans-serif">質問: 「2025年の最新AI規制は？」</text>
+  <!-- Arrow down -->
+  <line x1="225" y1="155" x2="225" y2="175" stroke="#636e72" stroke-width="2"/>
+  <polygon points="220,175 230,175 225,182" fill="#636e72"/>
+  <!-- LLM box -->
+  <rect x="100" y="185" width="250" height="80" fill="#16213e" rx="8" stroke="#e17055" stroke-width="1.5"/>
+  <text x="225" y="210" text-anchor="middle" fill="#e17055" font-size="13" font-weight="bold" font-family="sans-serif">LLM (訓練データのみ)</text>
+  <text x="225" y="232" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">訓練データのカットオフ: 2023年</text>
+  <text x="225" y="250" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">2025年の情報 → 存在しない</text>
+  <!-- Arrow down -->
+  <line x1="225" y1="265" x2="225" y2="285" stroke="#636e72" stroke-width="2"/>
+  <polygon points="220,285 230,285 225,292" fill="#636e72"/>
+  <!-- Output -->
+  <rect x="60" y="295" width="330" height="70" fill="#16213e" rx="8" stroke="#d63031" stroke-width="2"/>
+  <text x="225" y="318" text-anchor="middle" fill="#d63031" font-size="12" font-weight="bold" font-family="sans-serif">ハルシネーション出力</text>
+  <text x="225" y="338" text-anchor="middle" fill="#FF6B6B" font-size="10" font-family="sans-serif">「2025年にEUはAI Safety Act IIを施行し...」</text>
+  <text x="225" y="355" text-anchor="middle" fill="#636e72" font-size="9" font-family="sans-serif">(架空の法律名、存在しない条項)</text>
+  <!-- Warning -->
+  <text x="225" y="395" text-anchor="middle" fill="#FF6B6B" font-size="12" font-weight="bold" font-family="sans-serif">地図の空白 → 自信満々の虚構</text>
+  <text x="225" y="420" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">検証手段なし</text>
+  <!-- Right: With RAG -->
+  <rect x="480" y="65" width="390" height="390" fill="#2d3436" rx="12" stroke="#00b894" stroke-width="2"/>
+  <text x="675" y="92" text-anchor="middle" fill="#00b894" font-size="16" font-weight="bold" font-family="sans-serif">RAGあり: 領土参照型</text>
+  <!-- User question -->
+  <rect x="510" y="110" width="330" height="45" fill="#16213e" rx="8"/>
+  <text x="675" y="130" text-anchor="middle" fill="#dfe6e9" font-size="12" font-family="sans-serif">質問: 「2025年の最新AI規制は？」</text>
+  <!-- Arrow splits -->
+  <line x1="675" y1="155" x2="675" y2="168" stroke="#636e72" stroke-width="2"/>
+  <line x1="675" y1="168" x2="575" y2="185" stroke="#45B7D1" stroke-width="2"/>
+  <line x1="675" y1="168" x2="775" y2="185" stroke="#636e72" stroke-width="1.5"/>
+  <!-- Knowledge base -->
+  <rect x="510" y="185" width="130" height="80" fill="#16213e" rx="8" stroke="#45B7D1" stroke-width="1.5"/>
+  <text x="575" y="208" text-anchor="middle" fill="#45B7D1" font-size="11" font-weight="bold" font-family="sans-serif">知識ベース</text>
+  <text x="575" y="225" text-anchor="middle" fill="#b2bec3" font-size="9" font-family="sans-serif">最新文書DB</text>
+  <text x="575" y="240" text-anchor="middle" fill="#b2bec3" font-size="9" font-family="sans-serif">ベクトル検索</text>
+  <text x="575" y="255" text-anchor="middle" fill="#00b894" font-size="9" font-family="sans-serif">リアルタイム更新</text>
+  <!-- LLM with context -->
+  <rect x="710" y="185" width="130" height="80" fill="#16213e" rx="8" stroke="#4ECDC4" stroke-width="1.5"/>
+  <text x="775" y="208" text-anchor="middle" fill="#4ECDC4" font-size="11" font-weight="bold" font-family="sans-serif">LLM + Context</text>
+  <text x="775" y="225" text-anchor="middle" fill="#b2bec3" font-size="9" font-family="sans-serif">検索結果を</text>
+  <text x="775" y="240" text-anchor="middle" fill="#b2bec3" font-size="9" font-family="sans-serif">プロンプトに追加</text>
+  <text x="775" y="255" text-anchor="middle" fill="#b2bec3" font-size="9" font-family="sans-serif">「根拠に基づき回答」</text>
+  <!-- Arrow from KB to LLM -->
+  <line x1="640" y1="225" x2="710" y2="225" stroke="#45B7D1" stroke-width="2"/>
+  <polygon points="708,220 718,225 708,230" fill="#45B7D1"/>
+  <!-- Arrow down from LLM -->
+  <line x1="675" y1="275" x2="675" y2="295" stroke="#636e72" stroke-width="2"/>
+  <polygon points="670,295 680,295 675,302" fill="#636e72"/>
+  <!-- Output -->
+  <rect x="510" y="305" width="330" height="70" fill="#16213e" rx="8" stroke="#00b894" stroke-width="2"/>
+  <text x="675" y="325" text-anchor="middle" fill="#00b894" font-size="12" font-weight="bold" font-family="sans-serif">根拠付き出力</text>
+  <text x="675" y="345" text-anchor="middle" fill="#dfe6e9" font-size="10" font-family="sans-serif">「EU AI Actは2024年8月に発効し...[出典]」</text>
+  <text x="675" y="362" text-anchor="middle" fill="#b2bec3" font-size="9" font-family="sans-serif">(実在する法律、検証可能な情報源)</text>
+  <!-- Success -->
+  <text x="675" y="400" text-anchor="middle" fill="#00b894" font-size="12" font-weight="bold" font-family="sans-serif">地図の空白 → 領土を参照して補完</text>
+  <text x="675" y="420" text-anchor="middle" fill="#b2bec3" font-size="10" font-family="sans-serif">出典リンクで検証可能</text>
+  <!-- Bottom comparison -->
+  <text x="450" y="480" text-anchor="middle" fill="#FFEAA7" font-size="14" font-weight="bold" font-family="sans-serif">RAG = 「地図だけで旅する」→「地図 + 現地ガイド」への進化</text>
+</svg>

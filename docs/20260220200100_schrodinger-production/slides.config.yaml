@@ -1,0 +1,18 @@
+topic: "シュレーディンガーの本番環境〜量子力学で読み解くDevOps〜"
+language: "ja"
+output:
+  dir: "docs/20260220200100_schrodinger-production"
+  baseName: "schrodinger-production"
+marp:
+  theme: gaia
+  paginate: true
+  header: "シュレーディンガーの本番環境"
+  footer: "© 2026"
+  style: |
+    section {
+      font-size: 1.05em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

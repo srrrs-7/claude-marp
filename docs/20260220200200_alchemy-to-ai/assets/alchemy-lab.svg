@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="320" fill="#1a1a2e" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="30" fill="#ffd700" font-size="16" text-anchor="middle" font-family="sans-serif" font-weight="bold">錬金術の実験室 → データ変換の現代</text>
+
+  <!-- LEFT SIDE: Alchemy Lab -->
+  <!-- Furnace / Athanor -->
+  <rect x="50" y="220" width="80" height="60" rx="8" fill="#8b4513" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <rect x="58" y="228" width="64" height="44" rx="4" fill="#cc3300"/>
+  <ellipse cx="90" cy="222" rx="40" ry="12" fill="#a0522d"/>
+  <!-- flame -->
+  <ellipse cx="90" cy="215" rx="15" ry="20" fill="#ff6600" opacity="0.9"/>
+  <ellipse cx="90" cy="210" rx="9" ry="14" fill="#ffcc00" opacity="0.9"/>
+  <text x="90" y="295" fill="#cc8844" font-size="12" text-anchor="middle" font-family="sans-serif">錬金炉</text>
+
+  <!-- Flask / Alembic -->
+  <ellipse cx="200" cy="240" rx="35" ry="30" fill="none" stroke="#56ccf2" stroke-width="2.5"/>
+  <rect x="191" y="210" width="18" height="25" fill="none" stroke="#56ccf2" stroke-width="2.5"/>
+  <ellipse cx="200" cy="210" rx="14" ry="5" fill="none" stroke="#56ccf2" stroke-width="2"/>
+  <!-- liquid inside flask -->
+  <ellipse cx="200" cy="250" rx="28" ry="15" fill="#ff6b6b" opacity="0.5"/>
+  <text x="200" y="295" fill="#56ccf2" font-size="12" text-anchor="middle" font-family="sans-serif">フラスコ</text>
+
+  <!-- Base material label -->
+  <rect x="55" y="155" width="80" height="28" rx="6" fill="#553300" stroke="#cc8844" stroke-width="1.5"/>
+  <text x="95" y="173" fill="#ffcc88" font-size="12" text-anchor="middle" font-family="sans-serif">卑金属（鉛）</text>
+
+  <!-- Arrow from base material to furnace -->
+  <line x1="95" y1="183" x2="95" y2="218" stroke="#cc8844" stroke-width="2"/>
+  <polygon points="90,218 100,218 95,228" fill="#cc8844"/>
+
+  <!-- Output: Gold nugget -->
+  <polygon points="285,230 310,215 335,230 335,255 310,270 285,255" fill="#ffd700" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="310" y="246" fill="#1a1a2e" font-size="13" text-anchor="middle" font-family="sans-serif" font-weight="bold">金</text>
+  <text x="310" y="295" fill="#ffd700" font-size="12" text-anchor="middle" font-family="sans-serif">黄金</text>
+
+  <!-- Arrow from flask to gold -->
+  <line x1="237" y1="240" x2="278" y2="240" stroke="#ffd700" stroke-width="2.5"/>
+  <polygon points="278,234 293,240 278,246" fill="#ffd700"/>
+
+  <!-- CENTER DIVIDER -->
+  <line x1="450" y1="60" x2="450" y2="290" stroke="#4a9eff" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="450" y="175" fill="#4a9eff" font-size="28" text-anchor="middle" font-family="sans-serif">≈</text>
+
+  <!-- RIGHT SIDE: Modern Data Pipeline -->
+  <!-- Raw Data box -->
+  <rect x="480" y="150" width="100" height="35" rx="8" fill="#1e3a5f" stroke="#4a9eff" stroke-width="2"/>
+  <text x="530" y="172" fill="#4a9eff" font-size="13" text-anchor="middle" font-family="sans-serif">生データ</text>
+
+  <!-- Processing nodes (like a neural network) -->
+  <circle cx="530" cy="220" r="22" fill="#0d2137" stroke="#56ccf2" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="530" y="225" fill="#56ccf2" font-size="10" text-anchor="middle" font-family="sans-serif">AI処理</text>
+
+  <!-- Arrow down from raw data -->
+  <line x1="530" y1="185" x2="530" y2="197" stroke="#56ccf2" stroke-width="2"/>
+  <polygon points="525,197 535,197 530,205" fill="#56ccf2"/>
+
+  <!-- Value/Insight box -->
+  <rect x="620" y="200" width="120" height="40" rx="8" fill="#1a3a1a" stroke="#a8e063" stroke-width="2" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="680" y="218" fill="#a8e063" font-size="12" text-anchor="middle" font-family="sans-serif">知識・価値</text>
+  <text x="680" y="233" fill="#a8e063" font-size="10" text-anchor="middle" font-family="sans-serif">（Insights）</text>
+
+  <!-- Arrow from AI to value -->
+  <line x1="552" y1="220" x2="617" y2="220" stroke="#a8e063" stroke-width="2.5"/>
+  <polygon points="617,214 632,220 617,226" fill="#a8e063"/>
+
+  <!-- Labels comparison -->
+  <text x="530" y="280" fill="#aaa" font-size="11" text-anchor="middle" font-family="sans-serif">データパイプライン</text>
+  <text x="680" y="270" fill="#aaa" font-size="11" text-anchor="middle" font-family="sans-serif">ビジネス価値</text>
+
+  <!-- Bottom comparison labels -->
+  <text x="180" y="315" fill="#888" font-size="11" text-anchor="middle" font-family="sans-serif">🔮 錬金術: 物質の変換</text>
+  <text x="650" y="315" fill="#888" font-size="11" text-anchor="middle" font-family="sans-serif">💡 現代AI: データの変換</text>
+</svg>
