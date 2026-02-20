@@ -17,8 +17,11 @@ interface PresentationInfo {
 
 type CategoryId =
 	| "security"
+	| "infra"
+	| "science"
 	| "thinking"
 	| "engineering"
+	| "business"
 	| "ai"
 	| "investment"
 	| "career"
@@ -36,7 +39,7 @@ interface Category {
 // ---------------------------------------------------------------------------
 
 // Rules are checked in order — first match wins.
-// Priority: security > thinking > engineering > aws > investment > career > ai > other
+// Priority: security > infra > science > thinking > engineering > aws > business > investment > career > ai > other
 const CATEGORY_RULES: { id: CategoryId; label: string; keywords: RegExp }[] = [
 	{
 		id: "security",
@@ -45,16 +48,28 @@ const CATEGORY_RULES: { id: CategoryId; label: string; keywords: RegExp }[] = [
 			/セキュリティ|security|\bisms\b|hipaa|devsecops|oauth|saml|oidc|\bmfa\b|compliance|コンプライアンス|認証|認可|authz|guarduty|waf/i,
 	},
 	{
-		id: "thinking",
-		label: "Thinking & Society",
+		id: "infra",
+		label: "Infrastructure & Networks",
 		keywords:
-			/バイアス|bias|フェルミ|fermi|ディストピア|ユートピア|dystopia|utopia|ハルシネーション|確証|物理|physics|渋滞|地政学|geopolitics/i,
+			/ケーブル|cable|半導体|semiconductor|splinternet|スプリンターネット|地政学|geopolitics|arpanet|データセンター|datacenter|accidental.standard|偶然.*標準|carbon.aware|炭素認識|グリーン.*ソフト|green.software/i,
+	},
+	{
+		id: "science",
+		label: "Science & Math",
+		keywords:
+			/フェルミ|fermi|物理|physics|渋滞|traffic.jam|colony|コロニー|ベンフォード|benford|カオス|chaos|エントロピー|entropy|ゲーデル|godel|マクスウェル|maxwell|シュレーディンガー|schrodinger|スライム|slime|量子|quantum|タコ|octopus|フラクタル|fractal|素数|prime.num|p値|p-value|再現性|replication|宇宙.*構造|cosmic|シンプソン|simpsons|ティッピング|tipping.point|気候.*変動|climate.tip|リスク補償|risk.compensation|ムーアの法則|moores.law/i,
+	},
+	{
+		id: "thinking",
+		label: "Society & Bias",
+		keywords:
+			/バイアス|bias|ディストピア|ユートピア|dystopia|utopia|確証|社会論|meiji|明治|jazz|ジャズ|improvisation|即興|デジタルツイン|digital.twin|倫理|ethics|エターナル|eternal.sept|マタイ.*効果|matthew.effect|コミュニティ.*死|pokemon|ポケモン.*都市|ゲーム.*産業|game.industry|セレンディ|serendip|偶然の発明|accidental.invent/i,
 	},
 	{
 		id: "engineering",
 		label: "Software Engineering",
 		keywords:
-			/モノリス|monolith|yagni|仕様書|技術選定|スタートアップ|startup|分散|distributed/i,
+			/モノリス|monolith|yagni|仕様書|技術選定|分散|distributed|spec.vs|spec-vs|リファクタリング|refactor|アーキテクチャ|architect|マイクロサービス|microservice|テセウス|theseus|コンウェイ|conway|都市計画|urban.plan|職人|shokunin|craftsmanship|agile|アジャイル|\bux\b|カーゴカルト|cargo.cult|グレシャム|gresham|コードベース|codebase|コードレビュー|code.review|プログラミング言語|programming.lang|law.as.code|法律.*コード|最適化|optimiz|写本.*コード|記憶の宮殿/i,
 	},
 	{
 		id: "aws",
@@ -62,20 +77,28 @@ const CATEGORY_RULES: { id: CategoryId; label: string; keywords: RegExp }[] = [
 		keywords: /aws|iam|cognito|vpc|lambda|ネットワーキング|networking/i,
 	},
 	{
+		id: "business",
+		label: "Business & Strategy",
+		keywords:
+			/oss|オープンソース|motivation|動機|フリーミアム|freemium|スタートアップ|startup|ビジネスモデル|ネットワーク効果|network.effect|情報.*非対称|information.asymmetr|起業家|entrepreneur|edison|post.scarcity|ポスト希少|無料.*コスト|true.cost|vibe.cod/i,
+	},
+	{
 		id: "investment",
 		label: "Investment & Finance",
-		keywords: /投資|為替|成長産業|forex|jpy|金融|finance/i,
+		keywords:
+			/投資|為替|成長産業|forex|jpy|金融|finance|人民元|yuan|\bcny\b|paradox.of.thrift|倹約.*浪費/i,
 	},
 	{
 		id: "career",
 		label: "Career & Management",
-		keywords: /マネージメント|management|キャリア|年収|海外就業|部下|career/i,
+		keywords:
+			/マネージメント|management|キャリア|年収|海外就業|部下|career|生産性|productivity/i,
 	},
 	{
 		id: "ai",
 		label: "AI & Technology",
 		keywords:
-			/ai|claude|web技術|技術トレンド|agent|llm|ソフトウェアエンジニア|テクノロジ|アプリケーション|rag|transformer|生成/i,
+			/ai|claude|web技術|技術トレンド|agent|llm|ソフトウェアエンジニア|テクノロジ|アプリケーション|rag|transformer|生成|産業革命/i,
 	},
 ];
 
@@ -482,12 +505,15 @@ async function main() {
 	// Build ordered categories (display order)
 	const orderedIds: CategoryId[] = [
 		"ai",
-		"security",
 		"engineering",
-		"aws",
+		"infra",
+		"security",
+		"science",
+		"thinking",
+		"business",
 		"investment",
 		"career",
-		"thinking",
+		"aws",
 		"other",
 	];
 	const categories: Category[] = orderedIds
