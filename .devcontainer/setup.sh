@@ -9,6 +9,9 @@ whoami
 echo "📦 Installing dependencies..."
 bun ci
 
+echo "🔗 Installing git hooks..."
+make setup-hooks
+
 # init and execute personal setup script
 if [ ! -f ".devcontainer/setup.personal.sh" ]; then
   cat << 'EOF' > .devcontainer/setup.personal.sh

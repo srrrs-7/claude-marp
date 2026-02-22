@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Pre-push hook: run /insights analysis and append to INSIGHTS.md
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+INSIGHTS_FILE="$(git rev-parse --show-toplevel)/INSIGHTS.md"
+
+# Check if claude is available
+if ! command -v claude &> /dev/null; then
+  echo "⚠️  claude not found, skipping insights analysis"
+  exit 0
+fi
+
+echo "📊 Running /insights analysis (branch: $BRANCH)..."
+
+# Run insights in background (CLAUDECODE= to avoid nested session error)
+# nohup prevents the process from being killed when the terminal closes
+(
+  OUTPUT=$(CLAUDECODE= claude -p "/insights" 2>&1)
+  EXIT_CODE=$?
+
+  {
+    echo ""
+    echo "---"
+    echo ""
+    echo "## ${TIMESTAMP} — branch: \`${BRANCH}\`"
+    echo ""
+    if [ $EXIT_CODE -eq 0 ]; then
+      echo "$OUTPUT"
+    else
+      echo "_insights analysis failed (exit: ${EXIT_CODE})_"
+      echo ""
+      echo "\`\`\`"
+      echo "$OUTPUT"
+      echo "\`\`\`"
+    fi
+    echo ""
+  } >> "$INSIGHTS_FILE"
+) &
+
+disown $!
+
+exit 0
