@@ -2,6 +2,165 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Interview-First Policy
+
+**このポリシーはプロジェクト内の全インタラクションに適用される — 必ずタスク実行前に実施すること。**
+
+### 基本方針
+
+AIはタスクを実行する前に、不明点を探し出してユーザーに質問する。すべての不明点が解消され、ユーザーが明示的に承認するまで質問を継続する。
+
+### ワークフロー
+
+#### Layer 1: 固定必須質問（全スキル共通）
+
+以下の項目が不明な場合、必ず確認する（**1項目ずつ**）:
+
+| 項目 | 質問例 |
+|------|--------|
+| **目標** | このタスクで達成したいことは何ですか？ |
+| **スコープ** | 対象ファイル・範囲・制約はありますか？ |
+| **アウトプット形式** | 最終的な成果物の形式・品質基準は？ |
+| **制約・前提** | 時間・スタイル・既存の決定事項はありますか？ |
+
+#### Layer 2: 動的追加質問
+
+各回答を受け取った後:
+1. 回答を分析して新たな不明点を探す
+2. 不明点があれば追加質問を生成（**1問ずつ**）
+3. 不明点がなくなるまで繰り返す
+
+#### 完了判定
+
+- 必須項目がすべて確認できたら、**収集した情報のサマリーを提示**する
+- ユーザーが明示的に承認（「OK」「進めて」「承認」等）するまでタスクに進まない
+- 承認後、該当スキル/エージェントの実行フェーズに移行する
+
+### スキル別追加必須確認項目
+
+共通 Layer 1 に加えて、各スキル実行時は以下も確認する:
+
+| スキル | 追加必須確認項目 |
+|--------|----------------|
+| `/create-slides` | トピック、対象オーディエンス、スライド枚数目安、テーマ・言語 |
+| `/generate` | トピック、コンテンツスコープ、言語 |
+| `/review-slides` | 対象ファイル、レビュー重点領域、改善優先度 |
+| `/agent-teams` | タスク内容、対象ファイル・スコープ、チーム規模、レビュー基準 |
+
+### インタビュー例
+
+```
+AI:  このタスクで達成したいゴールを教えてください。
+User: Kubernetesについてのスライドを作りたい
+AI:  対象オーディエンスは誰ですか？（例：初心者エンジニア、インフラチーム、経営陣）
+User: インフラチーム向け
+AI:  スライド枚数の目安と発表時間の制約はありますか？
+User: 30枚くらい、30分の発表
+AI:  テーマ（gaia/default/uncover）と言語（ja/en）の希望はありますか？
+User: gaiaで日本語
+AI:  以下の内容で進めてよいですか？
+      - トピック: Kubernetes
+      - 対象: インフラチーム（中〜上級者向け）
+      - 枚数: 約30枚 / 発表: 30分
+      - テーマ: gaia / 言語: ja
+User: OK、進めて
+AI:  [タスク実行開始]
+```
+
+### ルール
+
+- **1問ずつ質問する** — 複数の質問を一度にまとめない
+- **明示的な承認なしに進まない** — 承認のショートハンド（後述）を受け取るまで待つ
+- **既知情報はスキップ** — ユーザーが最初のメッセージで明示した情報は再確認不要
+- **Communication Conventions との調和** — `"続けて"` `"continue"` `"next"` は承認として扱う
+
+---
+
+## Slide Generation
+
+**Critical rules for generating slide JSON data — applied to every generation task:**
+
+### Always write directly to file (never output inline)
+
+The 32K output token limit is hit at ~50 slides. Never output JSON inline. Always use the Write tool to write directly to `docs/<timestamp>_<slug>/slides-data.json`.
+
+### Chunked generation for 40+ slide decks
+
+For any deck with 40 or more slides, split into chunks of 30 slides:
+
+```
+Chunk 1: slides 1-30  → write to slides-data-part1.json
+Chunk 2: slides 31-60 → write to slides-data-part2.json
+Merge: combine arrays → write to slides-data.json
+Delete: remove part*.json intermediate files
+```
+
+Never attempt monolithic inline output for large decks.
+
+### SVG escaping in JSON
+
+Before embedding SVG content in JSON strings:
+- Escape all `"` → `\"`
+- Escape all `\n` line breaks if needed
+- Never use raw SVG with unescaped double-quote attributes inside JSON strings
+- Validate: `JSON.parse()` must succeed after embedding
+
+### Slide count verification
+
+After writing slides-data.json, always verify:
+```bash
+bun -e "const d=JSON.parse(require('fs').readFileSync('slides-data.json','utf-8')); console.log('Slides:', d.slides.length)"
+```
+If count doesn't match target, regenerate missing slides and append before rendering.
+
+### Pipeline (never skip steps)
+
+```
+outline → config (YAML) → JSON data with SVG → render → validate → HTML export
+```
+
+---
+
+## Communication Conventions
+
+**Shorthand interpretation — never ask for clarification on these:**
+
+| User says | Interpretation |
+|-----------|---------------|
+| `"60more"`, `"60slides"`, `"100+"` | Target slide count = that number |
+| `"全部並列"`, `"all at once"`, `"parallel"` | Spawn all workers simultaneously without asking |
+| `"続けて"`, `"continue"`, `"next"` | Proceed to next phase without re-asking |
+| A number alone (e.g. `"75"`) in slide context | Target slide count |
+
+When intent is obvious from context (slide count, parallelism), proceed immediately.
+
+---
+
+## Parallel Task Execution
+
+**Worker permission and batching requirements:**
+
+### Explicit tool permissions required
+
+When spawning Task agents for parallel slide generation, always specify in the agent prompt:
+
+> "You have full permissions to use Bash, Write, Read, Edit, and Glob tools. Use `--dangerously-skip-permissions` is already set in your environment."
+
+If workers fail due to permission errors, do NOT retry the same command. Switch to sequential processing in the main agent and log the failure.
+
+### Wave-based execution (prevents cache conflicts)
+
+For 10+ parallel workers, batch into waves of 5-7:
+1. Launch wave 1 (5-7 workers) → wait for all to complete
+2. Launch wave 2 → wait for all to complete
+3. Run HTML exports sequentially after all generation waves complete
+
+### Sequential export after parallel generation
+
+Always run `bun run slides export` sequentially (not in parallel) to avoid Marp CLI cache conflicts. After all workers finish JSON/render, export one at a time.
+
+---
+
 ## Recommended Workflow
 
 | Goal | Approach |

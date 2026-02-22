@@ -176,6 +176,29 @@ output:
 
 アウトラインに基づいて slides-data.json を生成する。
 
+**⚠️ 重要: JSON は絶対にインライン出力しない。Write tool でファイルに直接書き込む。**
+
+**40枚以上のデッキはチャンク分割必須:**
+
+```
+# スライド数 >= 40 の場合
+Chunk 1 (slides 1-30):
+  → Write tool: docs/<timestamp>_<slug>/slides-data-part1.json
+  → 形式: { "slides": [...] } (30枚分)
+
+Chunk 2 (slides 31-60):
+  → Write tool: docs/<timestamp>_<slug>/slides-data-part2.json
+  → 形式: { "slides": [...] } (残り枚数)
+
+Merge:
+  → Read part1.json と part2.json
+  → { "slides": [...part1.slides, ...part2.slides] }
+  → Write tool: slides-data.json (最終ファイル)
+
+Cleanup:
+  → Bash: rm docs/<timestamp>_<slug>/slides-data-part*.json
+```
+
 **各スライドの構造:**
 ```json
 {
@@ -187,6 +210,11 @@ output:
   "speakerNotes": "ノート (optional)"
 }
 ```
+
+**SVG を JSON に埋め込む場合の必須ルール:**
+- `"` → `\"` にエスケープ
+- `\n` は JSON 文字列内では `\\n` または除去
+- 書き込み直後に `JSON.parse()` で確認（hook が自動実行）
 
 ### 4-3. コンテンツ品質ルール
 
@@ -234,14 +262,23 @@ if (!isValid) {
 | Invalid layout value | Use only: `default`, `center`, `section` |
 | Missing required field | Add `title` and `layout` |
 
-### 4-5. ファイル書き込み
+### 4-5. ファイル書き込みとスライド数確認
 
 検証通過後のみ、`docs/<timestamp>_<slug>/slides-data.json` に書き出す。
 
 **書き込み前の最終確認:**
-- [ ] JSON が valid である
+- [ ] JSON が valid である（`JSON.parse()` が成功する）
 - [ ] ディレクトリが存在する
 - [ ] ファイルパスが正しい
+- [ ] SVG 内のダブルクォートがエスケープされている
+
+**書き込み後の必須確認:**
+```bash
+# スライド数検証
+bun -e "const d=JSON.parse(require('fs').readFileSync('docs/<timestamp>_<slug>/slides-data.json','utf-8')); console.log('Actual:', d.slides.length, '/ Target:', <N>)"
+```
+- 実際の枚数 ≠ 計画枚数の場合は不足スライドを追加してから render に進む
+- チャンク生成時の中間ファイル (`slides-data-part*.json`) を削除する
 
 ---
 

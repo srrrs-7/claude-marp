@@ -134,3 +134,27 @@ pending → in_progress → impl_done → in_review → review_done → complete
 - タスク分解時にファイル競合が起きないよう、各タスクは独立したファイルセットを操作するようにする
 - `CLAUDECODE` 環境変数をクリアしてネスト防止
 - tmux が利用不可の場合はエラーメッセージを表示して終了
+
+## ワーカーパーミッション要件
+
+**並列ワーカーを起動する際は、必ずツール権限を明示すること:**
+
+各ワーカーエージェントのプロンプトに以下を含める:
+> "You have full permissions to use Bash, Write, Read, Edit, and Glob tools. Proceed without asking for permission confirmations."
+
+**権限エラー発生時:**
+- 同じコマンドを再試行しない
+- メインエージェントで逐次処理にフォールバックし、失敗をログに記録する
+
+## ウェーブ実行（10以上のワーカー時）
+
+10以上の並列タスクは波状に分割して実行:
+
+```
+Wave 1: タスク 1-5  → 全完了を待つ
+Wave 2: タスク 6-10 → 全完了を待つ
+Wave 3: タスク 11-  → 全完了を待つ
+Export: 全 Wave 完了後に逐次エクスポート（並列不可）
+```
+
+Marp CLI のキャッシュ競合を防ぐため、HTML エクスポートは必ず逐次実行する。

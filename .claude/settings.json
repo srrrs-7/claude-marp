@@ -11,6 +11,23 @@
 						"type": "command",
 						"command": "bun run validate",
 						"statusMessage": "Validating slides schema..."
+					},
+					{
+						"type": "command",
+						"command": "bash -c 'FILE=$(echo \"$CLAUDE_TOOL_INPUT\" | grep -o \"docs/[^\"]*slides-data\\.json\" | head -1); if [ -n \"$FILE\" ] && [ -f \"$FILE\" ]; then ACTUAL=$(bun -e \"const d=JSON.parse(require(\\\"fs\\\").readFileSync(process.argv[1],\\\"utf-8\\\"));console.log(d.slides?d.slides.length:0)\" \"$FILE\" 2>/dev/null); echo \"📊 Slide count: $ACTUAL slides in $FILE\"; fi'",
+						"statusMessage": "Counting slides...",
+						"async": true
+					}
+				]
+			},
+			{
+				"matcher": "Write.*\\.json",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bash -c 'FILE=$(echo \"$CLAUDE_TOOL_INPUT\" | grep -o \"docs/[^\"]*\\.json\" | head -1); if [ -n \"$FILE\" ] && [ -f \"$FILE\" ]; then bun -e \"try { JSON.parse(require(\\\"fs\\\").readFileSync(process.argv[1],\\\"utf-8\\\")); console.log(\\\"✅ JSON valid: $FILE\\\"); } catch(e) { console.error(\\\"❌ JSON parse error in $FILE: \\\" + e.message); process.exit(1); }\" \"$FILE\" 2>&1; fi'",
+						"statusMessage": "Linting JSON...",
+						"async": true
 					}
 				]
 			},

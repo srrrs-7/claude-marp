@@ -53,6 +53,23 @@ user_invocable: true
 
 **これらの情報を各フェーズで参照する**
 
+## Chunked Generation (40枚以上のデッキ必須)
+
+**32Kトークン上限回避のため、40枚以上のスライドは必ずチャンク分割して生成する:**
+
+```
+Step 1: slides 1-30  → Write tool で docs/<dir>/slides-data-part1.json に直接書き込み
+Step 2: slides 31-60 → Write tool で docs/<dir>/slides-data-part2.json に直接書き込み
+Step 3: 結合 → { "slides": [...part1.slides, ...part2.slides] } を slides-data.json に書き込み
+Step 4: 中間ファイル削除 → slides-data-part*.json を削除
+Step 5: スライド数確認 → 実際の枚数 == 計画枚数 を検証
+```
+
+**ルール:**
+- JSON をインラインで出力しない（Write tool を使う）
+- SVG 内のダブルクォートは `\"` にエスケープしてから JSON に埋め込む
+- チャンクサイズは最大30枚（token 上限に余裕を持たせる）
+
 ## Post-Generation Validation
 
 **slides-data.json 生成後、render 前に:**
@@ -67,6 +84,8 @@ user_invocable: true
 - [ ] `layout` 値が有効 (`default`, `center`, `section` のいずれか)
 - [ ] 必須フィールドが存在 (`title`, `layout`)
 - [ ] オプショナルフィールドのみ省略されている
+- [ ] 実際のスライド数 == 計画スライド数（ズレがあれば不足分を追加）
+- [ ] JSON.parse() が成功する（SVGエスケープ漏れがないか）
 
 ## Error Recovery
 
