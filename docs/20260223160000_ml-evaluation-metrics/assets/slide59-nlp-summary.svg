@@ -1,0 +1,109 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="22" text-anchor="middle" font-size="15" font-weight="bold" fill="#34d399">NLP生成指標 — まとめ</text>
+  <!-- Table header -->
+  <rect x="20" y="32" width="760" height="26" rx="4" fill="rgba(52,211,153,0.25)"/>
+  <text x="78" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">指標</text>
+  <text x="170" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">基盤</text>
+  <text x="280" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">参照</text>
+  <text x="360" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">範囲</text>
+  <text x="440" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">主タスク</text>
+  <text x="580" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">コスト</text>
+  <text x="700" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">人間相関</text>
+  <!-- Row BLEU -->
+  <rect x="20" y="58" width="760" height="26" rx="0" fill="rgba(251,146,60,0.08)"/>
+  <rect x="20" y="58" width="3" height="26" rx="1" fill="#fb923c"/>
+  <text x="78" y="75" text-anchor="middle" font-size="11" font-weight="bold" fill="#fb923c">BLEU</text>
+  <text x="170" y="75" text-anchor="middle" font-size="10" fill="#f8f8f8">n-gram精度</text>
+  <text x="280" y="75" text-anchor="middle" font-size="10" fill="#34d399">必要</text>
+  <text x="360" y="75" text-anchor="middle" font-size="10" fill="#f8f8f8">0〜1</text>
+  <text x="440" y="75" text-anchor="middle" font-size="10" fill="#f8f8f8">翻訳</text>
+  <text x="580" y="75" text-anchor="middle" font-size="10" fill="#34d399">低</text>
+  <text x="700" y="75" text-anchor="middle" font-size="10" fill="#fb923c">中</text>
+  <!-- Row ROUGE -->
+  <rect x="20" y="84" width="760" height="26" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <rect x="20" y="84" width="3" height="26" rx="1" fill="#34d399"/>
+  <text x="78" y="101" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">ROUGE</text>
+  <text x="170" y="101" text-anchor="middle" font-size="10" fill="#f8f8f8">n-gram Recall</text>
+  <text x="280" y="101" text-anchor="middle" font-size="10" fill="#34d399">必要</text>
+  <text x="360" y="101" text-anchor="middle" font-size="10" fill="#f8f8f8">0〜1</text>
+  <text x="440" y="101" text-anchor="middle" font-size="10" fill="#f8f8f8">要約</text>
+  <text x="580" y="101" text-anchor="middle" font-size="10" fill="#34d399">低</text>
+  <text x="700" y="101" text-anchor="middle" font-size="10" fill="#fb923c">中</text>
+  <!-- Row BERTScore -->
+  <rect x="20" y="110" width="760" height="26" rx="0" fill="rgba(52,211,153,0.08)"/>
+  <rect x="20" y="110" width="3" height="26" rx="1" fill="#34d399"/>
+  <text x="78" y="127" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">BERTScore</text>
+  <text x="170" y="127" text-anchor="middle" font-size="10" fill="#f8f8f8">BERT埋め込み</text>
+  <text x="280" y="127" text-anchor="middle" font-size="10" fill="#34d399">必要</text>
+  <text x="360" y="127" text-anchor="middle" font-size="10" fill="#f8f8f8">0〜1</text>
+  <text x="440" y="127" text-anchor="middle" font-size="10" fill="#f8f8f8">翻訳・要約・対話</text>
+  <text x="580" y="127" text-anchor="middle" font-size="10" fill="#f472b6">高（GPU）</text>
+  <text x="700" y="127" text-anchor="middle" font-size="10" fill="#34d399">高</text>
+  <!-- Row METEOR -->
+  <rect x="20" y="136" width="760" height="26" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <rect x="20" y="136" width="3" height="26" rx="1" fill="#a78bfa"/>
+  <text x="78" y="153" text-anchor="middle" font-size="11" font-weight="bold" fill="#a78bfa">METEOR</text>
+  <text x="170" y="153" text-anchor="middle" font-size="10" fill="#f8f8f8">n-gram+同義語</text>
+  <text x="280" y="153" text-anchor="middle" font-size="10" fill="#34d399">必要</text>
+  <text x="360" y="153" text-anchor="middle" font-size="10" fill="#f8f8f8">0〜1</text>
+  <text x="440" y="153" text-anchor="middle" font-size="10" fill="#f8f8f8">翻訳</text>
+  <text x="580" y="153" text-anchor="middle" font-size="10" fill="#fb923c">中</text>
+  <text x="700" y="153" text-anchor="middle" font-size="10" fill="#34d399">高</text>
+  <!-- Row ChrF -->
+  <rect x="20" y="162" width="760" height="26" rx="0" fill="rgba(251,191,36,0.06)"/>
+  <rect x="20" y="162" width="3" height="26" rx="1" fill="#fbbf24"/>
+  <text x="78" y="179" text-anchor="middle" font-size="11" font-weight="bold" fill="#fbbf24">ChrF</text>
+  <text x="170" y="179" text-anchor="middle" font-size="10" fill="#f8f8f8">文字 n-gram</text>
+  <text x="280" y="179" text-anchor="middle" font-size="10" fill="#34d399">必要</text>
+  <text x="360" y="179" text-anchor="middle" font-size="10" fill="#f8f8f8">0〜100</text>
+  <text x="440" y="179" text-anchor="middle" font-size="10" fill="#f8f8f8">翻訳（形態素）</text>
+  <text x="580" y="179" text-anchor="middle" font-size="10" fill="#34d399">低</text>
+  <text x="700" y="179" text-anchor="middle" font-size="10" fill="#34d399">高</text>
+  <!-- Row Perplexity -->
+  <rect x="20" y="188" width="760" height="26" rx="0" fill="rgba(96,165,250,0.06)"/>
+  <rect x="20" y="188" width="3" height="26" rx="1" fill="#60a5fa"/>
+  <text x="78" y="205" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">Perplexity</text>
+  <text x="170" y="205" text-anchor="middle" font-size="10" fill="#f8f8f8">言語モデル確率</text>
+  <text x="280" y="205" text-anchor="middle" font-size="10" fill="#f472b6">不要</text>
+  <text x="360" y="205" text-anchor="middle" font-size="10" fill="#f8f8f8">1〜∞ (低=良)</text>
+  <text x="440" y="205" text-anchor="middle" font-size="10" fill="#f8f8f8">LM評価</text>
+  <text x="580" y="205" text-anchor="middle" font-size="10" fill="#34d399">低</text>
+  <text x="700" y="205" text-anchor="middle" font-size="10" fill="#fb923c">中（間接）</text>
+  <!-- Row LLM-Judge -->
+  <rect x="20" y="214" width="760" height="26" rx="0" fill="rgba(244,114,182,0.06)"/>
+  <rect x="20" y="214" width="3" height="26" rx="1" fill="#f472b6"/>
+  <text x="78" y="231" text-anchor="middle" font-size="11" font-weight="bold" fill="#f472b6">LLM-Judge</text>
+  <text x="170" y="231" text-anchor="middle" font-size="10" fill="#f8f8f8">LLM評価</text>
+  <text x="280" y="231" text-anchor="middle" font-size="10" fill="#94a3b8">任意</text>
+  <text x="360" y="231" text-anchor="middle" font-size="10" fill="#f8f8f8">1〜10等</text>
+  <text x="440" y="231" text-anchor="middle" font-size="10" fill="#f8f8f8">汎用</text>
+  <text x="580" y="231" text-anchor="middle" font-size="10" fill="#f472b6">高（API）</text>
+  <text x="700" y="231" text-anchor="middle" font-size="10" fill="#34d399">最高</text>
+  <!-- Quick guide -->
+  <rect x="20" y="254" width="370" height="154" rx="10" fill="rgba(52,211,153,0.06)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="205" y="274" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">タスク別クイック選択</text>
+  <text x="36" y="298" font-size="11" fill="#fbbf24">▸ 翻訳</text>
+  <text x="92" y="298" font-size="11" fill="#f8f8f8">BLEU + ChrF（+ BERTScore）</text>
+  <text x="36" y="318" font-size="11" fill="#fbbf24">▸ 要約</text>
+  <text x="92" y="318" font-size="11" fill="#f8f8f8">ROUGE-1/2/L（+ BERTScore）</text>
+  <text x="36" y="338" font-size="11" fill="#fbbf24">▸ 対話/生成</text>
+  <text x="92" y="338" font-size="11" fill="#f8f8f8">BERTScore + LLM-Judge</text>
+  <text x="36" y="358" font-size="11" fill="#fbbf24">▸ コード</text>
+  <text x="92" y="358" font-size="11" fill="#f8f8f8">Pass@k + CodeBLEU</text>
+  <text x="36" y="378" font-size="11" fill="#fbbf24">▸ LM性能</text>
+  <text x="92" y="378" font-size="11" fill="#f8f8f8">Perplexity（内部比較）</text>
+  <text x="36" y="398" font-size="11" fill="#fbbf24">▸ 品質監視</text>
+  <text x="92" y="398" font-size="11" fill="#f8f8f8">COMET-QE + LLM-Judge</text>
+  <!-- Key insight -->
+  <rect x="410" y="254" width="370" height="154" rx="10" fill="rgba(60,60,80,0.3)" stroke="#475569" stroke-width="1.5"/>
+  <text x="595" y="274" text-anchor="middle" font-size="12" font-weight="bold" fill="#f8f8f8">NLP評価 3つの原則</text>
+  <text x="426" y="300" font-size="11" fill="#60a5fa">①</text>
+  <text x="450" y="300" font-size="11" fill="#f8f8f8">複数指標を組み合わせる</text>
+  <text x="450" y="316" font-size="10" fill="#94a3b8">n-gram + 意味的 + 人間評価</text>
+  <text x="426" y="340" font-size="11" fill="#60a5fa">②</text>
+  <text x="450" y="340" font-size="11" fill="#f8f8f8">定期的に人間評価でキャリブ</text>
+  <text x="450" y="356" font-size="10" fill="#94a3b8">自動指標は必ず近似値</text>
+  <text x="426" y="380" font-size="11" fill="#60a5fa">③</text>
+  <text x="450" y="380" font-size="11" fill="#f8f8f8">タスクに合った指標を選ぶ</text>
+  <text x="450" y="396" font-size="10" fill="#94a3b8">汎用指標より専用指標が精度高</text>
+</svg>

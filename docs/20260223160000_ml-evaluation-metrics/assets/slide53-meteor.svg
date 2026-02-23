@@ -1,0 +1,47 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">METEOR スコア</text>
+  <!-- Formula -->
+  <rect x="20" y="38" width="760" height="46" rx="10" fill="rgba(167,139,250,0.1)" stroke="#a78bfa" stroke-width="2"/>
+  <text x="400" y="58" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa">METEOR = Fmean × (1 − Penalty)</text>
+  <text x="400" y="76" text-anchor="middle" font-size="11" fill="#f8f8f8">Fmean = 10PR / (R + 9P)  |  Penalty = 0.5 × (chunks/matches)³</text>
+  <!-- 3 matching modules -->
+  <text x="400" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#f8f8f8">METEOR の3段階マッチング</text>
+  <!-- Step 1 -->
+  <rect x="20" y="120" width="234" height="110" rx="10" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="137" y="142" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">1. Exact Match</text>
+  <text x="137" y="162" text-anchor="middle" font-size="10" fill="#94a3b8">完全一致</text>
+  <text x="36" y="184" font-size="10" fill="#fbbf24">Hyp: "running"</text>
+  <text x="36" y="204" font-size="10" fill="#fbbf24">Ref: "running"</text>
+  <text x="137" y="220" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">✓ Match</text>
+  <!-- Step 2 -->
+  <rect x="284" y="120" width="234" height="110" rx="10" fill="rgba(251,146,60,0.1)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="401" y="142" text-anchor="middle" font-size="11" font-weight="bold" fill="#fb923c">2. Stem Match</text>
+  <text x="401" y="162" text-anchor="middle" font-size="10" fill="#94a3b8">ステミング（語幹一致）</text>
+  <text x="300" y="184" font-size="10" fill="#fbbf24">Hyp: "runs"</text>
+  <text x="300" y="204" font-size="10" fill="#fbbf24">Ref: "running"</text>
+  <text x="300" y="222" font-size="10" fill="#f8f8f8">run→ run  ✓ Match</text>
+  <!-- Step 3 -->
+  <rect x="548" y="120" width="234" height="110" rx="10" fill="rgba(96,165,250,0.1)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="665" y="142" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">3. Synonym Match</text>
+  <text x="665" y="162" text-anchor="middle" font-size="10" fill="#94a3b8">同義語展開</text>
+  <text x="564" y="184" font-size="10" fill="#fbbf24">Hyp: "automobile"</text>
+  <text x="564" y="204" font-size="10" fill="#fbbf24">Ref: "car"</text>
+  <text x="564" y="222" font-size="10" fill="#f8f8f8">WordNet同義語 ✓ Match</text>
+  <!-- Penalty explanation -->
+  <rect x="20" y="244" width="370" height="120" rx="10" fill="rgba(244,114,182,0.08)" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="205" y="264" text-anchor="middle" font-size="12" font-weight="bold" fill="#f472b6">語順ペナルティ（Penalty）</text>
+  <text x="36" y="286" font-size="11" fill="#f8f8f8">chunks = 一致単語の連続グループ数</text>
+  <text x="36" y="306" font-size="11" fill="#f8f8f8">Penalty = 0.5 × (chunks/matches)³</text>
+  <text x="36" y="328" font-size="10" fill="#94a3b8">連続グループが多い（バラバラ）→ペナルティ増</text>
+  <text x="36" y="348" font-size="10" fill="#94a3b8">連続グループが少ない（順序どおり）→ペナルティ小</text>
+  <!-- BLEU vs METEOR -->
+  <rect x="410" y="244" width="370" height="120" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="595" y="264" text-anchor="middle" font-size="12" font-weight="bold" fill="#f8f8f8">BLEU vs METEOR</text>
+  <text x="426" y="286" font-size="11" fill="#fbbf24">BLEU:</text>
+  <text x="480" y="286" font-size="10" fill="#f8f8f8">Precision重視 / n-gram / 短文ペナルティ</text>
+  <text x="426" y="306" font-size="11" fill="#fbbf24">METEOR:</text>
+  <text x="496" y="306" font-size="10" fill="#f8f8f8">Recall重視 / 語幹・同義語 / 語順ペナルティ</text>
+  <text x="426" y="330" font-size="11" fill="#34d399">人間評価との相関:</text>
+  <text x="426" y="348" font-size="11" fill="#f8f8f8">METEOR ≥ BLEU（特に単文・段落レベル）</text>
+  <text x="426" y="368" font-size="10" fill="#94a3b8">計算コストはBLEUより高い（同義語辞書が必要）</text>
+</svg>

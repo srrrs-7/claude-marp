@@ -1,0 +1,72 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#f8f8f8">タスク別 推奨 NLP 指標マトリクス</text>
+  <!-- Table header -->
+  <rect x="20" y="32" width="760" height="28" rx="4" fill="rgba(167,139,250,0.25)"/>
+  <text x="120" y="51" text-anchor="middle" font-size="11" font-weight="bold" fill="#f8f8f8">タスク</text>
+  <text x="260" y="51" text-anchor="middle" font-size="11" font-weight="bold" fill="#f8f8f8">主指標</text>
+  <text x="420" y="51" text-anchor="middle" font-size="11" font-weight="bold" fill="#f8f8f8">補助指標</text>
+  <text x="580" y="51" text-anchor="middle" font-size="11" font-weight="bold" fill="#f8f8f8">理由</text>
+  <!-- Row 1 -->
+  <rect x="20" y="60" width="760" height="32" rx="0" fill="rgba(251,146,60,0.08)"/>
+  <rect x="20" y="60" width="4" height="32" rx="2" fill="#fb923c"/>
+  <text x="120" y="81" text-anchor="middle" font-size="11" fill="#fb923c">機械翻訳</text>
+  <text x="260" y="81" text-anchor="middle" font-size="11" fill="#34d399">BLEU / ChrF</text>
+  <text x="420" y="81" text-anchor="middle" font-size="11" fill="#f8f8f8">BERTScore, COMET</text>
+  <text x="580" y="78" text-anchor="middle" font-size="10" fill="#94a3b8">n-gram精度が業界標準</text>
+  <text x="580" y="92" text-anchor="middle" font-size="10" fill="#94a3b8">形態素言語はChrF優先</text>
+  <!-- Row 2 -->
+  <rect x="20" y="92" width="760" height="32" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <rect x="20" y="92" width="4" height="32" rx="2" fill="#34d399"/>
+  <text x="120" y="113" text-anchor="middle" font-size="11" fill="#34d399">文書要約</text>
+  <text x="260" y="113" text-anchor="middle" font-size="11" fill="#34d399">ROUGE-1/2/L</text>
+  <text x="420" y="113" text-anchor="middle" font-size="11" fill="#f8f8f8">BERTScore, LLM-Judge</text>
+  <text x="580" y="110" text-anchor="middle" font-size="10" fill="#94a3b8">Recallが重要（情報網羅）</text>
+  <text x="580" y="124" text-anchor="middle" font-size="10" fill="#94a3b8">抽象要約はBERTScore補完</text>
+  <!-- Row 3 -->
+  <rect x="20" y="124" width="760" height="32" rx="0" fill="rgba(96,165,250,0.08)"/>
+  <rect x="20" y="124" width="4" height="32" rx="2" fill="#60a5fa"/>
+  <text x="120" y="145" text-anchor="middle" font-size="11" fill="#60a5fa">対話生成</text>
+  <text x="260" y="145" text-anchor="middle" font-size="11" fill="#34d399">BERTScore / LLM-Judge</text>
+  <text x="420" y="145" text-anchor="middle" font-size="11" fill="#f8f8f8">Perplexity, BLEU</text>
+  <text x="580" y="142" text-anchor="middle" font-size="10" fill="#94a3b8">正解が一意でない</text>
+  <text x="580" y="156" text-anchor="middle" font-size="10" fill="#94a3b8">意味的多様性を評価</text>
+  <!-- Row 4 -->
+  <rect x="20" y="156" width="760" height="32" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <rect x="20" y="156" width="4" height="32" rx="2" fill="#a78bfa"/>
+  <text x="120" y="177" text-anchor="middle" font-size="11" fill="#a78bfa">コード生成</text>
+  <text x="260" y="177" text-anchor="middle" font-size="11" fill="#34d399">Pass@k / CodeBLEU</text>
+  <text x="420" y="177" text-anchor="middle" font-size="11" fill="#f8f8f8">ROUGE-L</text>
+  <text x="580" y="174" text-anchor="middle" font-size="10" fill="#94a3b8">実行可能性が最重要</text>
+  <text x="580" y="188" text-anchor="middle" font-size="10" fill="#94a3b8">n-gramは構文木を考慮しない</text>
+  <!-- Row 5 -->
+  <rect x="20" y="188" width="760" height="32" rx="0" fill="rgba(244,114,182,0.08)"/>
+  <rect x="20" y="188" width="4" height="32" rx="2" fill="#f472b6"/>
+  <text x="120" y="209" text-anchor="middle" font-size="11" fill="#f472b6">画像キャプション</text>
+  <text x="260" y="209" text-anchor="middle" font-size="11" fill="#34d399">CIDEr / METEOR</text>
+  <text x="420" y="209" text-anchor="middle" font-size="11" fill="#f8f8f8">BLEU, BERTScore</text>
+  <text x="580" y="206" text-anchor="middle" font-size="10" fill="#94a3b8">複数参照で TF-IDF重み付き</text>
+  <text x="580" y="220" text-anchor="middle" font-size="10" fill="#94a3b8">CIDErは画像記述に特化</text>
+  <!-- Row 6 -->
+  <rect x="20" y="220" width="760" height="32" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <rect x="20" y="220" width="4" height="32" rx="2" fill="#fbbf24"/>
+  <text x="120" y="241" text-anchor="middle" font-size="11" fill="#fbbf24">質問応答(QA)</text>
+  <text x="260" y="241" text-anchor="middle" font-size="11" fill="#34d399">Exact Match / F1</text>
+  <text x="420" y="241" text-anchor="middle" font-size="11" fill="#f8f8f8">BERTScore, LLM-Judge</text>
+  <text x="580" y="238" text-anchor="middle" font-size="10" fill="#94a3b8">短い答えはEM/F1で十分</text>
+  <text x="580" y="252" text-anchor="middle" font-size="10" fill="#94a3b8">長い答えはBERTScore補完</text>
+  <!-- Row 7 -->
+  <rect x="20" y="252" width="760" height="32" rx="0" fill="rgba(52,211,153,0.08)"/>
+  <rect x="20" y="252" width="4" height="32" rx="2" fill="#34d399"/>
+  <text x="120" y="273" text-anchor="middle" font-size="11" fill="#34d399">感情分析</text>
+  <text x="260" y="273" text-anchor="middle" font-size="11" fill="#34d399">F1 / Accuracy</text>
+  <text x="420" y="273" text-anchor="middle" font-size="11" fill="#f8f8f8">MCC（不均衡時）</text>
+  <text x="580" y="270" text-anchor="middle" font-size="10" fill="#94a3b8">生成ではなく分類タスク</text>
+  <text x="580" y="284" text-anchor="middle" font-size="10" fill="#94a3b8">分類指標を優先</text>
+  <!-- Summary -->
+  <rect x="20" y="296" width="760" height="112" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="400" y="316" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">指標選択の原則</text>
+  <text x="36" y="340" font-size="11" fill="#f8f8f8">1. 正解が一意: BLEU/ROUGE/EM (翻訳・要約・QA抽出)</text>
+  <text x="36" y="360" font-size="11" fill="#f8f8f8">2. 正解が多様: BERTScore/LLM-Judge (対話・生成・創作)</text>
+  <text x="36" y="380" font-size="11" fill="#f8f8f8">3. 実行結果が重要: Pass@k / テストケース通過率 (コード生成)</text>
+  <text x="36" y="400" font-size="11" fill="#f8f8f8">4. 常に人間評価でキャリブレーション: 自動指標は近似値にすぎない</text>
+</svg>

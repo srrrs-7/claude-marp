@@ -1,0 +1,69 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#f8f8f8">複数指標の統合評価 — 実践的アプローチ</text>
+  <!-- Left: The problem -->
+  <rect x="20" y="34" width="360" height="200" rx="10" fill="rgba(244,114,182,0.06)" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="200" y="54" text-anchor="middle" font-size="12" font-weight="bold" fill="#f472b6">単一指標の罠</text>
+  <!-- Spider chart visualization -->
+  <!-- Pentagon approximation -->
+  <polygon points="200,70 235,95 222,136 178,136 165,95" fill="rgba(244,114,182,0.1)" stroke="#f472b6" stroke-width="1"/>
+  <!-- Model A: high precision but low recall -->
+  <polygon points="200,72 228,103 210,130 190,130 172,103" fill="rgba(96,165,250,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <!-- Labels -->
+  <text x="200" y="64" text-anchor="middle" font-size="9" fill="#f8f8f8">Precision</text>
+  <text x="246" y="98" font-size="9" fill="#f8f8f8">F1</text>
+  <text x="228" y="142" font-size="9" fill="#f8f8f8">Recall</text>
+  <text x="158" y="142" font-size="9" fill="#f8f8f8">AUC</text>
+  <text x="150" y="98" font-size="9" fill="#f8f8f8">MCC</text>
+  <text x="162" y="162" font-size="10" fill="#60a5fa">Model A: F1=0.72</text>
+  <!-- Model B: balanced -->
+  <polygon points="200,74 230,106 215,132 185,132 170,106" fill="rgba(52,211,153,0.3)" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="162" y="178" font-size="10" fill="#34d399">Model B: F1=0.71</text>
+  <text x="36" y="212" font-size="10" fill="#f8f8f8">→ F1だけ見るとAがBより良いが、</text>
+  <text x="36" y="228" font-size="10" fill="#f8f8f8">Recallと安定性はBが優れている</text>
+
+  <!-- Right: Solution approaches -->
+  <rect x="400" y="34" width="380" height="200" rx="10" fill="rgba(52,211,153,0.06)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="590" y="54" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">複合スコアの作り方</text>
+
+  <!-- Approach 1: Weighted sum -->
+  <rect x="416" y="62" width="348" height="40" rx="6" fill="rgba(255,255,255,0.04)"/>
+  <text x="590" y="78" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">① 加重平均</text>
+  <text x="590" y="94" text-anchor="middle" font-size="10" fill="#f8f8f8">Score = 0.4×F1 + 0.3×AUC + 0.3×MCC</text>
+
+  <!-- Approach 2: Constraint-based -->
+  <rect x="416" y="110" width="348" height="52" rx="6" fill="rgba(255,255,255,0.04)"/>
+  <text x="590" y="126" text-anchor="middle" font-size="11" font-weight="bold" fill="#a78bfa">② 制約付き最適化</text>
+  <text x="590" y="140" text-anchor="middle" font-size="10" fill="#f8f8f8">maximize: Precision</text>
+  <text x="590" y="154" text-anchor="middle" font-size="10" fill="#f8f8f8">subject to: Recall ≥ 0.90</text>
+
+  <!-- Approach 3: Pareto front -->
+  <rect x="416" y="170" width="348" height="52" rx="6" fill="rgba(255,255,255,0.04)"/>
+  <text x="590" y="186" text-anchor="middle" font-size="11" font-weight="bold" fill="#fb923c">③ パレートフロント</text>
+  <text x="590" y="200" text-anchor="middle" font-size="10" fill="#f8f8f8">複数指標で支配されない解の集合</text>
+  <text x="590" y="214" text-anchor="middle" font-size="10" fill="#f8f8f8">→ トレードオフをビジネス判断に委ねる</text>
+
+  <!-- Bottom: Practical framework -->
+  <rect x="20" y="248" width="760" height="140" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="400" y="268" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">実務フレームワーク — 指標階層設計</text>
+  <!-- 3 tiers -->
+  <rect x="36" y="280" width="216" height="96" rx="8" fill="rgba(96,165,250,0.08)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="144" y="298" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">Tier 1: North Star指標</text>
+  <text x="144" y="314" text-anchor="middle" font-size="10" fill="#f8f8f8">1〜2個の主要KPI</text>
+  <text x="144" y="328" text-anchor="middle" font-size="10" fill="#f8f8f8">ビジネス目標に直結</text>
+  <text x="144" y="342" text-anchor="middle" font-size="10" fill="#94a3b8">例: F1 (医療診断)</text>
+  <text x="144" y="358" text-anchor="middle" font-size="10" fill="#94a3b8">例: NDCG@10 (検索)</text>
+
+  <rect x="292" y="280" width="216" height="96" rx="8" fill="rgba(167,139,250,0.08)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="400" y="298" text-anchor="middle" font-size="11" font-weight="bold" fill="#a78bfa">Tier 2: ガードレール指標</text>
+  <text x="400" y="314" text-anchor="middle" font-size="10" fill="#f8f8f8">下回ってはいけない閾値</text>
+  <text x="400" y="328" text-anchor="middle" font-size="10" fill="#f8f8f8">品質・安全性の最低保証</text>
+  <text x="400" y="342" text-anchor="middle" font-size="10" fill="#94a3b8">例: Recall ≥ 0.95</text>
+  <text x="400" y="358" text-anchor="middle" font-size="10" fill="#94a3b8">例: レイテンシ ≤ 100ms</text>
+
+  <rect x="548" y="280" width="216" height="96" rx="8" fill="rgba(52,211,153,0.08)" stroke="#34d399" stroke-width="1"/>
+  <text x="656" y="298" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">Tier 3: 診断指標</text>
+  <text x="656" y="314" text-anchor="middle" font-size="10" fill="#f8f8f8">問題の原因分析用</text>
+  <text x="656" y="328" text-anchor="middle" font-size="10" fill="#f8f8f8">モデル改善のヒント</text>
+  <text x="656" y="342" text-anchor="middle" font-size="10" fill="#94a3b8">例: 混同行列の詳細</text>
+  <text x="656" y="358" text-anchor="middle" font-size="10" fill="#94a3b8">例: エラー分析</text>
+</svg>

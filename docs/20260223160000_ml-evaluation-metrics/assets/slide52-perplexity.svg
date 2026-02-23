@@ -1,0 +1,50 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">Perplexity — 言語モデルの内部評価</text>
+  <!-- Formula -->
+  <rect x="20" y="38" width="760" height="60" rx="10" fill="rgba(96,165,250,0.1)" stroke="#60a5fa" stroke-width="2"/>
+  <text x="400" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa">PP(W) = exp(−(1/N) · Σᵢ log P(wᵢ | w₁...wᵢ₋₁))</text>
+  <text x="400" y="84" text-anchor="middle" font-size="11" fill="#f8f8f8">= exp(Cross-Entropy loss)  |  N = トークン数  |  小さいほど良い（理想: 1）</text>
+  <!-- Intuition diagram -->
+  <rect x="20" y="108" width="370" height="176" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="205" y="130" text-anchor="middle" font-size="12" font-weight="bold" fill="#f8f8f8">Perplexity の直感的意味</text>
+  <text x="205" y="152" text-anchor="middle" font-size="11" fill="#94a3b8">「次のトークンを予測するときに</text>
+  <text x="205" y="170" text-anchor="middle" font-size="11" fill="#94a3b8">何通りの選択肢があるように感じるか」</text>
+  <!-- Examples -->
+  <rect x="36" y="182" width="340" height="32" rx="6" fill="rgba(52,211,153,0.15)" stroke="#34d399" stroke-width="1"/>
+  <text x="206" y="201" text-anchor="middle" font-size="11" fill="#34d399">PP = 2  →  常に2択から予測 = 確信度が高い</text>
+  <rect x="36" y="222" width="340" height="32" rx="6" fill="rgba(251,146,60,0.15)" stroke="#fb923c" stroke-width="1"/>
+  <text x="206" y="241" text-anchor="middle" font-size="11" fill="#fb923c">PP = 100  →  100択から予測 = 不確実</text>
+  <rect x="36" y="262" width="340" height="16" rx="4" fill="rgba(167,139,250,0.15)"/>
+  <text x="206" y="274" text-anchor="middle" font-size="10" fill="#a78bfa">PP = 1  → 完全に次のトークンを予測できる</text>
+  <!-- PP scale chart -->
+  <rect x="410" y="108" width="370" height="176" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="595" y="130" text-anchor="middle" font-size="12" font-weight="bold" fill="#f8f8f8">言語モデルの Perplexity 目安</text>
+  <!-- Bars -->
+  <text x="426" y="158" font-size="10" fill="#94a3b8">英語文法モデル</text>
+  <rect x="570" y="146" width="180" height="18" rx="3" fill="rgba(52,211,153,0.5)"/>
+  <text x="756" y="159" font-size="10" fill="#34d399">~10-30</text>
+  <text x="426" y="186" font-size="10" fill="#94a3b8">GPT-2 (Large)</text>
+  <rect x="570" y="174" width="140" height="18" rx="3" fill="rgba(96,165,250,0.5)"/>
+  <text x="716" y="187" font-size="10" fill="#60a5fa">~17</text>
+  <text x="426" y="214" font-size="10" fill="#94a3b8">GPT-3 (175B)</text>
+  <rect x="570" y="202" width="80" height="18" rx="3" fill="rgba(167,139,250,0.5)"/>
+  <text x="656" y="215" font-size="10" fill="#a78bfa">~20</text>
+  <text x="426" y="242" font-size="10" fill="#94a3b8">文字ランダム列</text>
+  <rect x="570" y="230" width="200" height="18" rx="3" fill="rgba(244,114,182,0.5)"/>
+  <text x="776" y="243" font-size="10" fill="#f472b6">~26(英語文字数)</text>
+  <text x="426" y="270" font-size="10" fill="#94a3b8">単語ランダム列</text>
+  <rect x="570" y="258" width="180" height="18" rx="3" fill="rgba(251,146,60,0.5)"/>
+  <text x="756" y="271" font-size="10" fill="#fb923c">100,000+</text>
+  <!-- Use cases -->
+  <rect x="20" y="296" width="370" height="90" rx="10" fill="rgba(52,211,153,0.08)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="205" y="316" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">Perplexity の用途</text>
+  <text x="36" y="338" font-size="11" fill="#f8f8f8">✓ 言語モデル自体の性能比較</text>
+  <text x="36" y="358" font-size="11" fill="#f8f8f8">✓ fine-tuning の収束確認</text>
+  <text x="36" y="378" font-size="11" fill="#f8f8f8">✓ 参照テキスト不要（内部指標）</text>
+  <!-- Limitations -->
+  <rect x="410" y="296" width="370" height="90" rx="10" fill="rgba(244,114,182,0.08)" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="595" y="316" text-anchor="middle" font-size="12" font-weight="bold" fill="#f472b6">Perplexity の限界</text>
+  <text x="426" y="338" font-size="11" fill="#f8f8f8">✗ 流暢 ≠ 正確・安全（幻覚を検出できない）</text>
+  <text x="426" y="358" font-size="11" fill="#f8f8f8">✗ 同一モデルでしか比較できない</text>
+  <text x="426" y="378" font-size="11" fill="#f8f8f8">✗ タスク品質（意味・事実性）を測れない</text>
+</svg>

@@ -1,0 +1,52 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">ChrF スコア — 文字レベル n-gram</text>
+  <!-- Formula -->
+  <rect x="20" y="38" width="760" height="56" rx="10" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="2"/>
+  <text x="400" y="60" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">ChrF = F-score of character n-gram precision &amp; recall</text>
+  <text x="400" y="80" text-anchor="middle" font-size="11" fill="#f8f8f8">ChrF++ = 文字 n-gram + 単語 n-gram の組み合わせ  |  n=6（デフォルト）</text>
+  <!-- Tokenization example -->
+  <rect x="20" y="106" width="760" height="96" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="36" y="126" font-size="12" font-weight="bold" fill="#fbbf24">文字レベル分割の例</text>
+  <text x="36" y="148" font-size="11" fill="#fbbf24">単語:</text>
+  <rect x="90" y="136" width="68" height="22" rx="4" fill="rgba(251,191,36,0.2)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="124" y="151" text-anchor="middle" font-size="11" fill="#fbbf24">"Laufen"</text>
+  <text x="36" y="180" font-size="11" fill="#f8f8f8">char 2-gram:</text>
+  <rect x="120" y="168" width="36" height="22" rx="4" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="138" y="183" text-anchor="middle" font-size="10" fill="#fbbf24">La</text>
+  <rect x="162" y="168" width="36" height="22" rx="4" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="180" y="183" text-anchor="middle" font-size="10" fill="#fbbf24">au</text>
+  <rect x="204" y="168" width="36" height="22" rx="4" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="222" y="183" text-anchor="middle" font-size="10" fill="#fbbf24">uf</text>
+  <rect x="246" y="168" width="36" height="22" rx="4" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="264" y="183" text-anchor="middle" font-size="10" fill="#fbbf24">fe</text>
+  <rect x="288" y="168" width="36" height="22" rx="4" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="306" y="183" text-anchor="middle" font-size="10" fill="#fbbf24">en</text>
+  <text x="400" y="191" font-size="10" fill="#94a3b8">← "laufen"（動詞）と "läuft"（活用形）も文字レベルで部分一致を検出</text>
+  <!-- Language comparison -->
+  <rect x="20" y="214" width="370" height="130" rx="10" fill="rgba(52,211,153,0.08)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="205" y="234" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">ChrF が特に有効な言語</text>
+  <text x="36" y="258" font-size="11" fill="#fbbf24">▸ 形態素が豊富な言語</text>
+  <text x="52" y="276" font-size="10" fill="#f8f8f8">日本語・ドイツ語・フィンランド語・アラビア語</text>
+  <text x="52" y="294" font-size="10" fill="#f8f8f8">語尾変化が多く単語分割が複雑</text>
+  <text x="36" y="316" font-size="11" fill="#fbbf24">▸ 低リソース言語</text>
+  <text x="52" y="334" font-size="10" fill="#f8f8f8">トークナイザーが整備されていない言語</text>
+  <!-- vs BLEU -->
+  <rect x="410" y="214" width="370" height="130" rx="10" fill="rgba(96,165,250,0.08)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="595" y="234" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa">BLEU との比較</text>
+  <!-- Table header -->
+  <text x="430" y="258" font-size="10" font-weight="bold" fill="#94a3b8">特性</text>
+  <text x="540" y="258" text-anchor="middle" font-size="10" font-weight="bold" fill="#fbbf24">ChrF</text>
+  <text x="690" y="258" text-anchor="middle" font-size="10" font-weight="bold" fill="#fb923c">BLEU</text>
+  <text x="430" y="278" font-size="10" fill="#f8f8f8">分割単位</text>
+  <text x="540" y="278" text-anchor="middle" font-size="10" fill="#34d399">文字</text>
+  <text x="690" y="278" text-anchor="middle" font-size="10" fill="#f8f8f8">単語</text>
+  <text x="430" y="298" font-size="10" fill="#f8f8f8">形態素対応</text>
+  <text x="540" y="298" text-anchor="middle" font-size="10" fill="#34d399">強い</text>
+  <text x="690" y="298" text-anchor="middle" font-size="10" fill="#f472b6">弱い</text>
+  <text x="430" y="318" font-size="10" fill="#f8f8f8">人間評価相関</text>
+  <text x="540" y="318" text-anchor="middle" font-size="10" fill="#34d399">高い</text>
+  <text x="690" y="318" text-anchor="middle" font-size="10" fill="#f8f8f8">中程度</text>
+  <text x="430" y="338" font-size="10" fill="#f8f8f8">計算速度</text>
+  <text x="540" y="338" text-anchor="middle" font-size="10" fill="#f8f8f8">やや遅い</text>
+  <text x="690" y="338" text-anchor="middle" font-size="10" fill="#34d399">高速</text>
+</svg>

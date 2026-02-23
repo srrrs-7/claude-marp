@@ -1,0 +1,64 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#f8f8f8">評価指標 ベストプラクティス集</text>
+  <!-- 5 practice areas -->
+  <!-- Practice 1: Selection -->
+  <rect x="20" y="34" width="370" height="90" rx="10" fill="rgba(96,165,250,0.08)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="36" y="56" font-size="30" fill="#60a5fa">①</text>
+  <text x="74" y="56" font-size="12" font-weight="bold" fill="#60a5fa">指標選択の原則</text>
+  <text x="36" y="74" font-size="10" fill="#f8f8f8">• タスクとデータ特性から決める（感度重視→Recall）</text>
+  <text x="36" y="88" font-size="10" fill="#f8f8f8">• 主指標1〜2個 + 補助指標2〜3個のセット</text>
+  <text x="36" y="102" font-size="10" fill="#f8f8f8">• ステークホルダーが理解できる指標を1つ含める</text>
+  <text x="36" y="116" font-size="10" fill="#94a3b8">✓ チーム全員が指標の意味を説明できる状態にする</text>
+
+  <!-- Practice 2: Implementation -->
+  <rect x="410" y="34" width="370" height="90" rx="10" fill="rgba(52,211,153,0.08)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="426" y="56" font-size="30" fill="#34d399">②</text>
+  <text x="464" y="56" font-size="12" font-weight="bold" fill="#34d399">実装上の注意</text>
+  <text x="426" y="74" font-size="10" fill="#f8f8f8">• sklearn の average パラメータを明示（macro/micro）</text>
+  <text x="426" y="88" font-size="10" fill="#f8f8f8">• zero_division 引数で0除算エラーを処理</text>
+  <text x="426" y="102" font-size="10" fill="#f8f8f8">• 確率スコアと予測クラス両方を保存する</text>
+  <text x="426" y="116" font-size="10" fill="#94a3b8">✓ 評価コードをテスト済み再利用可能な関数にする</text>
+
+  <!-- Practice 3: Baseline -->
+  <rect x="20" y="136" width="370" height="90" rx="10" fill="rgba(167,139,250,0.08)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="36" y="158" font-size="30" fill="#a78bfa">③</text>
+  <text x="74" y="158" font-size="12" font-weight="bold" fill="#a78bfa">ベースライン設計</text>
+  <text x="36" y="176" font-size="10" fill="#f8f8f8">• ランダム予測 / 多数クラス予測 / ルールベースと比較</text>
+  <text x="36" y="190" font-size="10" fill="#f8f8f8">• 前バージョンモデルとの差分を必ず確認</text>
+  <text x="36" y="204" font-size="10" fill="#f8f8f8">• 改善幅が統計的に有意かどうか検定する</text>
+  <text x="36" y="218" font-size="10" fill="#94a3b8">✓ "ベースラインより+5%以上" を変更採用の目安に</text>
+
+  <!-- Practice 4: Reporting -->
+  <rect x="410" y="136" width="370" height="90" rx="10" fill="rgba(251,146,60,0.08)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="426" y="158" font-size="30" fill="#fb923c">④</text>
+  <text x="464" y="158" font-size="12" font-weight="bold" fill="#fb923c">レポーティング</text>
+  <text x="426" y="176" font-size="10" fill="#f8f8f8">• 点推定だけでなく 95% CI を報告する</text>
+  <text x="426" y="190" font-size="10" fill="#f8f8f8">• セグメント別（年齢層・地域等）の指標を開示</text>
+  <text x="426" y="204" font-size="10" fill="#f8f8f8">• 評価データのサンプル数と分布を明記する</text>
+  <text x="426" y="218" font-size="10" fill="#94a3b8">✓ 「良い指標」は再現可能な条件で測定されている</text>
+
+  <!-- Practice 5: Monitoring -->
+  <rect x="20" y="238" width="760" height="90" rx="10" fill="rgba(251,191,36,0.08)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="36" y="260" font-size="30" fill="#fbbf24">⑤</text>
+  <text x="74" y="260" font-size="12" font-weight="bold" fill="#fbbf24">本番モニタリング</text>
+  <!-- 4 columns -->
+  <text x="160" y="280" text-anchor="middle" font-size="10" font-weight="bold" fill="#fbbf24">データドリフト</text>
+  <text x="160" y="294" text-anchor="middle" font-size="10" fill="#f8f8f8">入力分布の変化を</text>
+  <text x="160" y="308" text-anchor="middle" font-size="10" fill="#f8f8f8">PSI/KSで監視</text>
+
+  <text x="360" y="280" text-anchor="middle" font-size="10" font-weight="bold" fill="#fbbf24">コンセプトドリフト</text>
+  <text x="360" y="294" text-anchor="middle" font-size="10" fill="#f8f8f8">ラベルが取得できれば</text>
+  <text x="360" y="308" text-anchor="middle" font-size="10" fill="#f8f8f8">定期的に再評価</text>
+
+  <text x="560" y="280" text-anchor="middle" font-size="10" font-weight="bold" fill="#fbbf24">アラート設計</text>
+  <text x="560" y="294" text-anchor="middle" font-size="10" fill="#f8f8f8">F1が±10%以上変化</text>
+  <text x="560" y="308" text-anchor="middle" font-size="10" fill="#f8f8f8">したら調査トリガー</text>
+
+  <text x="720" y="280" text-anchor="middle" font-size="10" font-weight="bold" fill="#fbbf24">シャドウ評価</text>
+  <text x="720" y="294" text-anchor="middle" font-size="10" fill="#f8f8f8">新旧モデルを並列で</text>
+  <text x="720" y="308" text-anchor="middle" font-size="10" fill="#f8f8f8">本番データで比較</text>
+
+  <text x="36" y="320" font-size="10" fill="#94a3b8">→ 評価は開発時だけでなくサービング後も継続する</text>
+  <!-- Bottom note -->
+  <text x="400" y="358" text-anchor="middle" font-size="10" fill="#94a3b8">評価指標はモデルの「健康診断書」— 定期的に更新し、チーム全員で共有する</text>
+</svg>

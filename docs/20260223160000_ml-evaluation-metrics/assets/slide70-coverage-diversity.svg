@@ -1,0 +1,67 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">Coverage と Diversity</text>
+  <!-- Coverage -->
+  <rect x="20" y="38" width="370" height="300" rx="12" fill="rgba(96,165,250,0.08)" stroke="#60a5fa" stroke-width="2"/>
+  <text x="205" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa">Coverage</text>
+  <text x="205" y="80" text-anchor="middle" font-size="11" fill="#94a3b8">= |推薦されたユニークアイテム| / |全カタログ|</text>
+  <line x1="34" y1="90" x2="376" y2="90" stroke="#60a5fa" stroke-width="1" opacity="0.4"/>
+  <!-- Visualization -->
+  <rect x="40" y="100" width="330" height="100" rx="8" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1"/>
+  <text x="205" y="120" text-anchor="middle" font-size="10" fill="#fbbf24">全カタログ: 10,000 アイテム</text>
+  <!-- Coverage circles - recommended items -->
+  <circle cx="80" cy="158" r="8" fill="rgba(96,165,250,0.6)" stroke="#60a5fa" stroke-width="1"/>
+  <circle cx="100" cy="140" r="8" fill="rgba(96,165,250,0.6)" stroke="#60a5fa" stroke-width="1"/>
+  <circle cx="120" cy="168" r="8" fill="rgba(96,165,250,0.6)" stroke="#60a5fa" stroke-width="1"/>
+  <circle cx="145" cy="148" r="8" fill="rgba(96,165,250,0.6)" stroke="#60a5fa" stroke-width="1"/>
+  <circle cx="165" cy="162" r="8" fill="rgba(96,165,250,0.6)" stroke="#60a5fa" stroke-width="1"/>
+  <circle cx="190" cy="138" r="8" fill="rgba(96,165,250,0.6)" stroke="#60a5fa" stroke-width="1"/>
+  <!-- Non-recommended items -->
+  <circle cx="220" cy="158" r="5" fill="rgba(255,255,255,0.1)" stroke="#475569" stroke-width="1"/>
+  <circle cx="240" cy="140" r="5" fill="rgba(255,255,255,0.1)" stroke="#475569" stroke-width="1"/>
+  <circle cx="260" cy="165" r="5" fill="rgba(255,255,255,0.1)" stroke="#475569" stroke-width="1"/>
+  <circle cx="280" cy="148" r="5" fill="rgba(255,255,255,0.1)" stroke="#475569" stroke-width="1"/>
+  <circle cx="300" cy="158" r="5" fill="rgba(255,255,255,0.1)" stroke="#475569" stroke-width="1"/>
+  <circle cx="320" cy="142" r="5" fill="rgba(255,255,255,0.1)" stroke="#475569" stroke-width="1"/>
+  <circle cx="340" cy="162" r="5" fill="rgba(255,255,255,0.1)" stroke="#475569" stroke-width="1"/>
+  <text x="205" y="195" text-anchor="middle" font-size="10" fill="#60a5fa">推薦済み 600/10,000 = Coverage 6%</text>
+  <text x="36" y="220" font-size="11" fill="#fbbf24">▸ 低 Coverage の問題</text>
+  <text x="52" y="238" font-size="10" fill="#f8f8f8">人気アイテムのみ推薦 → ロングテール無視</text>
+  <text x="52" y="256" font-size="10" fill="#f8f8f8">新商品・ニッチ商品が日の目を見ない</text>
+  <text x="36" y="280" font-size="11" fill="#fbbf24">▸ 改善アプローチ</text>
+  <text x="52" y="298" font-size="10" fill="#f8f8f8">Explore/Exploit バランス調整</text>
+  <text x="52" y="316" font-size="10" fill="#f8f8f8">popularity debias / exposure fairness</text>
+  <!-- Diversity -->
+  <rect x="410" y="38" width="370" height="300" rx="12" fill="rgba(52,211,153,0.08)" stroke="#34d399" stroke-width="2"/>
+  <text x="595" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399">Diversity</text>
+  <text x="595" y="80" text-anchor="middle" font-size="11" fill="#94a3b8">= 推薦リスト内のアイテム間の平均距離</text>
+  <line x1="424" y1="90" x2="766" y2="90" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <!-- High diversity example -->
+  <text x="595" y="112" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">高 Diversity（バラエティ豊富）</text>
+  <rect x="430" y="120" width="68" height="28" rx="6" fill="rgba(96,165,250,0.3)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="464" y="138" text-anchor="middle" font-size="10" fill="#60a5fa">アクション</text>
+  <rect x="506" y="120" width="68" height="28" rx="6" fill="rgba(251,146,60,0.3)" stroke="#fb923c" stroke-width="1"/>
+  <text x="540" y="138" text-anchor="middle" font-size="10" fill="#fb923c">コメディ</text>
+  <rect x="582" y="120" width="68" height="28" rx="6" fill="rgba(167,139,250,0.3)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="616" y="138" text-anchor="middle" font-size="10" fill="#a78bfa">ドキュメンタリー</text>
+  <rect x="658" y="120" width="68" height="28" rx="6" fill="rgba(244,114,182,0.3)" stroke="#f472b6" stroke-width="1"/>
+  <text x="692" y="138" text-anchor="middle" font-size="10" fill="#f472b6">ホラー</text>
+  <!-- Low diversity example -->
+  <text x="595" y="172" text-anchor="middle" font-size="11" font-weight="bold" fill="#f472b6">低 Diversity（同質）</text>
+  <rect x="430" y="180" width="68" height="28" rx="6" fill="rgba(96,165,250,0.3)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="464" y="198" text-anchor="middle" font-size="10" fill="#60a5fa">アクション1</text>
+  <rect x="506" y="180" width="68" height="28" rx="6" fill="rgba(96,165,250,0.3)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="540" y="198" text-anchor="middle" font-size="10" fill="#60a5fa">アクション2</text>
+  <rect x="582" y="180" width="68" height="28" rx="6" fill="rgba(96,165,250,0.3)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="616" y="198" text-anchor="middle" font-size="10" fill="#60a5fa">アクション3</text>
+  <rect x="658" y="180" width="68" height="28" rx="6" fill="rgba(96,165,250,0.3)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="692" y="198" text-anchor="middle" font-size="10" fill="#60a5fa">アクション4</text>
+  <text x="595" y="232" text-anchor="middle" font-size="10" fill="#f8f8f8">ILD (Intra-List Diversity) = 1 − 平均類似度</text>
+  <text x="424" y="260" font-size="11" fill="#fbbf24">▸ Diversity のトレードオフ</text>
+  <text x="440" y="278" font-size="10" fill="#f8f8f8">精度とのトレードオフが存在</text>
+  <text x="440" y="296" font-size="10" fill="#f8f8f8">高 Diversity → ユーザー疲れに繋がることも</text>
+  <text x="424" y="320" font-size="11" fill="#fbbf24">▸ Serendipity (意外性)</text>
+  <text x="440" y="336" font-size="10" fill="#f8f8f8">予想外の良い推薦 → 長期エンゲージメント向上</text>
+  <!-- Bottom -->
+  <rect x="20" y="350" width="760" height="24" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="400" y="366" text-anchor="middle" font-size="11" fill="#94a3b8">実務: 精度（NDCG/HR）+ Coverage + Diversity + Serendipity で多角的に評価</text>
+</svg>

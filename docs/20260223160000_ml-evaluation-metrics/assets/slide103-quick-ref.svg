@@ -1,0 +1,71 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#f8f8f8">sklearn クイックリファレンス — コード逆引き</text>
+
+  <!-- Classification section -->
+  <rect x="20" y="32" width="370" height="182" rx="10" fill="rgba(96,165,250,0.06)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="205" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa">分類 / Regression</text>
+  <text x="36" y="70" font-size="9" font-weight="bold" fill="#94a3b8">from sklearn.metrics import</text>
+  <!-- Code lines -->
+  <text x="36" y="88" font-size="9" fill="#f472b6">accuracy_score</text><text x="168" y="88" font-size="9" fill="#94a3b8"># 正解率（均衡データ）</text>
+  <text x="36" y="104" font-size="9" fill="#f472b6">precision_score</text><text x="168" y="104" font-size="9" fill="#94a3b8"># 適合率</text>
+  <text x="36" y="120" font-size="9" fill="#f472b6">recall_score</text><text x="168" y="120" font-size="9" fill="#94a3b8"># 再現率</text>
+  <text x="36" y="136" font-size="9" fill="#f472b6">f1_score</text><text x="168" y="136" font-size="9" fill="#94a3b8"># F1（beta=1）</text>
+  <text x="36" y="152" font-size="9" fill="#f472b6">fbeta_score</text><text x="168" y="152" font-size="9" fill="#94a3b8"># F-beta（beta指定）</text>
+  <text x="36" y="168" font-size="9" fill="#f472b6">roc_auc_score</text><text x="168" y="168" font-size="9" fill="#94a3b8"># AUC-ROC</text>
+  <text x="36" y="184" font-size="9" fill="#f472b6">average_precision_score</text><text x="268" y="184" font-size="9" fill="#94a3b8"># PR-AUC</text>
+  <text x="36" y="200" font-size="9" fill="#f472b6">matthews_corrcoef</text><text x="180" y="200" font-size="9" fill="#94a3b8"># MCC（不均衡最強）</text>
+
+  <!-- Regression -->
+  <text x="36" y="218" font-size="9" font-weight="bold" fill="#34d399">mae=mean_absolute_error</text>
+  <text x="36" y="198" font-size="9" fill="#94a3b8" visibility="hidden">x</text>
+  <!-- Better layout -->
+  <text x="36" y="200" font-size="9" fill="#f472b6">matthews_corrcoef</text>
+  <rect x="20" y="32" width="370" height="0" rx="0" fill="none"/>
+
+  <!-- Regression section -->
+  <rect x="410" y="32" width="370" height="182" rx="10" fill="rgba(52,211,153,0.06)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="595" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">回帰指標</text>
+  <text x="426" y="70" font-size="9" font-weight="bold" fill="#94a3b8">from sklearn.metrics import</text>
+  <text x="426" y="88" font-size="9" fill="#34d399">mean_absolute_error</text><text x="610" y="88" font-size="9" fill="#94a3b8"># MAE</text>
+  <text x="426" y="104" font-size="9" fill="#34d399">mean_squared_error</text><text x="606" y="104" font-size="9" fill="#94a3b8"># MSE</text>
+  <text x="426" y="120" font-size="9" fill="#34d399">mean_squared_error(..., squared=False)</text>
+  <text x="426" y="134" font-size="9" fill="#94a3b8">  → RMSE（squared=False で √）</text>
+  <text x="426" y="150" font-size="9" fill="#34d399">r2_score</text><text x="502" y="150" font-size="9" fill="#94a3b8"># R²（決定係数）</text>
+  <text x="426" y="166" font-size="9" fill="#34d399">mean_absolute_percentage_error</text>
+  <text x="426" y="180" font-size="9" fill="#94a3b8">  → MAPE</text>
+  <text x="426" y="196" font-size="9" fill="#34d399">median_absolute_error</text><text x="618" y="196" font-size="9" fill="#94a3b8"># 外れ値対応</text>
+
+  <!-- NLP + Ranking section -->
+  <rect x="20" y="224" width="370" height="136" rx="10" fill="rgba(167,139,250,0.06)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="205" y="244" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa">NLP生成</text>
+  <text x="36" y="262" font-size="9" fill="#a78bfa">from nltk.translate.bleu_score import</text>
+  <text x="36" y="278" font-size="9" fill="#a78bfa">  corpus_bleu, sentence_bleu</text>
+  <text x="36" y="294" font-size="9" fill="#a78bfa">from rouge_score import rouge_scorer</text>
+  <text x="36" y="310" font-size="9" fill="#94a3b8">  scorer = rouge_scorer.RougeScorer</text>
+  <text x="36" y="326" font-size="9" fill="#a78bfa">from bert_score import score as bert_score</text>
+  <text x="36" y="342" font-size="9" fill="#94a3b8">  P, R, F1 = bert_score(cands, refs)</text>
+  <text x="36" y="358" font-size="9" fill="#94a3b8">  import torch; PPL = torch.exp(loss)</text>
+
+  <!-- Clustering section -->
+  <rect x="410" y="224" width="370" height="136" rx="10" fill="rgba(251,191,36,0.06)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="595" y="244" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">クラスタリング / ランキング</text>
+  <text x="426" y="262" font-size="9" font-weight="bold" fill="#94a3b8">from sklearn.metrics import</text>
+  <text x="426" y="278" font-size="9" fill="#fbbf24">silhouette_score</text><text x="566" y="278" font-size="9" fill="#94a3b8"># Silhouette</text>
+  <text x="426" y="294" font-size="9" fill="#fbbf24">davies_bouldin_score</text><text x="594" y="294" font-size="9" fill="#94a3b8"># DBI</text>
+  <text x="426" y="310" font-size="9" fill="#fbbf24">calinski_harabasz_score</text><text x="626" y="310" font-size="9" fill="#94a3b8"># CH</text>
+  <text x="426" y="326" font-size="9" fill="#fbbf24">adjusted_rand_score</text><text x="598" y="326" font-size="9" fill="#94a3b8"># ARI</text>
+  <text x="426" y="342" font-size="9" fill="#fbbf24">adjusted_mutual_info_score</text><text x="634" y="342" font-size="9" fill="#94a3b8"># AMI</text>
+  <text x="426" y="358" font-size="9" fill="#fb923c">ndcg_score / average_precision_score</text>
+
+  <!-- Bottom tips -->
+  <rect x="20" y="370" width="760" height="44" rx="8" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1"/>
+  <text x="36" y="390" font-size="10" fill="#fbbf24">Tips:</text>
+  <text x="78" y="390" font-size="10" fill="#f8f8f8">多クラス分類では</text>
+  <text x="204" y="390" font-size="10" fill="#60a5fa">average="macro"</text>
+  <text x="310" y="390" font-size="10" fill="#f8f8f8">（クラス均等重み）または</text>
+  <text x="490" y="390" font-size="10" fill="#60a5fa">average="weighted"</text>
+  <text x="618" y="390" font-size="10" fill="#f8f8f8">（サイズ重み）を選ぶ</text>
+  <text x="36" y="406" font-size="10" fill="#f8f8f8">sklearn &gt;= 1.0 では</text>
+  <text x="170" y="406" font-size="10" fill="#34d399">mean_squared_error(squared=False)</text>
+  <text x="468" y="406" font-size="10" fill="#f8f8f8">→ RMSE（直接引数で指定可能）</text>
+</svg>

@@ -1,0 +1,64 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">BLEU スコア — 概念</text>
+  <!-- Formula box -->
+  <rect x="20" y="38" width="760" height="56" rx="10" fill="rgba(251,146,60,0.12)" stroke="#fb923c" stroke-width="2"/>
+  <text x="400" y="58" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb923c">BLEU = BP × exp(Σ wₙ · log pₙ)</text>
+  <text x="400" y="80" text-anchor="middle" font-size="11" fill="#f8f8f8">BP: Brevity Penalty（短すぎるペナルティ）  pₙ: n-gram精度  wₙ: 重み（通常 1/4 均等）</text>
+  <!-- Example -->
+  <rect x="20" y="106" width="760" height="90" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="36" y="126" font-size="11" font-weight="bold" fill="#60a5fa">生成文（Hypothesis）:</text>
+  <!-- Hypothesis tokens -->
+  <rect x="36" y="134" width="54" height="28" rx="6" fill="rgba(52,211,153,0.3)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="63" y="153" text-anchor="middle" font-size="12" fill="#34d399">The</text>
+  <rect x="96" y="134" width="54" height="28" rx="6" fill="rgba(52,211,153,0.3)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="123" y="153" text-anchor="middle" font-size="12" fill="#34d399">cat</text>
+  <rect x="156" y="134" width="48" height="28" rx="6" fill="rgba(52,211,153,0.3)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="180" y="153" text-anchor="middle" font-size="12" fill="#34d399">sat</text>
+  <rect x="210" y="134" width="40" height="28" rx="6" fill="rgba(52,211,153,0.3)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="230" y="153" text-anchor="middle" font-size="12" fill="#34d399">on</text>
+  <rect x="256" y="134" width="48" height="28" rx="6" fill="rgba(52,211,153,0.3)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="280" y="153" text-anchor="middle" font-size="12" fill="#34d399">the</text>
+  <rect x="310" y="134" width="50" height="28" rx="6" fill="rgba(52,211,153,0.3)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="335" y="153" text-anchor="middle" font-size="12" fill="#34d399">mat</text>
+  <text x="36" y="184" font-size="11" font-weight="bold" fill="#60a5fa">参照文（Reference）:</text>
+  <!-- Reference tokens - matching ones highlighted -->
+  <rect x="36" y="190" width="54" height="28" rx="6" fill="rgba(52,211,153,0.15)" stroke="#34d399" stroke-width="1"/>
+  <text x="63" y="209" text-anchor="middle" font-size="12" fill="#34d399">The</text>
+  <rect x="96" y="190" width="54" height="28" rx="6" fill="rgba(52,211,153,0.15)" stroke="#34d399" stroke-width="1"/>
+  <text x="123" y="209" text-anchor="middle" font-size="12" fill="#34d399">cat</text>
+  <rect x="156" y="190" width="36" height="28" rx="6" fill="rgba(255,255,255,0.06)" stroke="#475569" stroke-width="1"/>
+  <text x="174" y="209" text-anchor="middle" font-size="12" fill="#94a3b8">is</text>
+  <rect x="198" y="190" width="76" height="28" rx="6" fill="rgba(255,255,255,0.06)" stroke="#475569" stroke-width="1"/>
+  <text x="236" y="209" text-anchor="middle" font-size="12" fill="#94a3b8">sitting</text>
+  <rect x="280" y="190" width="40" height="28" rx="6" fill="rgba(52,211,153,0.15)" stroke="#34d399" stroke-width="1"/>
+  <text x="300" y="209" text-anchor="middle" font-size="12" fill="#34d399">on</text>
+  <rect x="326" y="190" width="48" height="28" rx="6" fill="rgba(52,211,153,0.15)" stroke="#34d399" stroke-width="1"/>
+  <text x="350" y="209" text-anchor="middle" font-size="12" fill="#34d399">the</text>
+  <rect x="380" y="190" width="50" height="28" rx="6" fill="rgba(52,211,153,0.15)" stroke="#34d399" stroke-width="1"/>
+  <text x="405" y="209" text-anchor="middle" font-size="12" fill="#34d399">mat</text>
+  <!-- Components -->
+  <rect x="20" y="210" width="370" height="170" rx="10" fill="rgba(251,146,60,0.08)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="205" y="232" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb923c">n-gram 精度 (pₙ)</text>
+  <line x1="34" y1="240" x2="376" y2="240" stroke="#fb923c" stroke-width="1" opacity="0.4"/>
+  <text x="36" y="262" font-size="11" fill="#fbbf24">unigram (p₁):</text>
+  <text x="180" y="262" font-size="11" fill="#f8f8f8">5/6 一致 ≈ 0.833</text>
+  <text x="36" y="284" font-size="11" fill="#fbbf24">bigram (p₂):</text>
+  <text x="180" y="284" font-size="11" fill="#f8f8f8">3/5 一致 ≈ 0.600</text>
+  <text x="36" y="306" font-size="11" fill="#fbbf24">trigram (p₃):</text>
+  <text x="180" y="306" font-size="11" fill="#f8f8f8">1/4 一致 ≈ 0.250</text>
+  <text x="36" y="328" font-size="11" fill="#fbbf24">4-gram (p₄):</text>
+  <text x="180" y="328" font-size="11" fill="#f8f8f8">0/3 一致 = 0.000</text>
+  <line x1="34" y1="342" x2="376" y2="342" stroke="#fb923c" stroke-width="1" opacity="0.4"/>
+  <text x="205" y="364" text-anchor="middle" font-size="13" font-weight="bold" fill="#fb923c">BLEU ≈ 0.00</text>
+  <text x="205" y="378" text-anchor="middle" font-size="10" fill="#94a3b8">4-gram = 0 → geometric mean → 0</text>
+  <!-- Brevity Penalty -->
+  <rect x="410" y="210" width="370" height="170" rx="10" fill="rgba(96,165,250,0.08)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="595" y="232" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa">Brevity Penalty (BP)</text>
+  <line x1="424" y1="240" x2="766" y2="240" stroke="#60a5fa" stroke-width="1" opacity="0.4"/>
+  <text x="595" y="268" text-anchor="middle" font-size="11" fill="#f8f8f8">BP = 1          (if c ≥ r)</text>
+  <text x="595" y="292" text-anchor="middle" font-size="11" fill="#f8f8f8">BP = exp(1−r/c) (if c &lt; r)</text>
+  <text x="426" y="318" font-size="10" fill="#94a3b8">c = 生成文の長さ,  r = 参照文の長さ</text>
+  <rect x="424" y="332" width="346" height="36" rx="8" fill="rgba(244,114,182,0.12)" stroke="#f472b6" stroke-width="1"/>
+  <text x="597" y="348" text-anchor="middle" font-size="11" fill="#f472b6">短い文でunigram精度を稼ぐのを防ぐ</text>
+  <text x="597" y="364" text-anchor="middle" font-size="10" fill="#94a3b8">「cat cat cat cat」→ 高p₁ → BPでペナルティ</text>
+</svg>

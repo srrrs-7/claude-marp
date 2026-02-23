@@ -1,0 +1,54 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">BLEU — n-gram 精度の計算</text>
+  <!-- Step 1: Clip count -->
+  <rect x="20" y="38" width="760" height="100" rx="10" fill="rgba(251,146,60,0.08)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="36" y="60" font-size="12" font-weight="bold" fill="#fb923c">STEP 1: Clipped Count（上限付きカウント）</text>
+  <text x="36" y="82" font-size="11" fill="#f8f8f8">Hypothesis: "the the the the the"  →  unigram "the" = 5回出現</text>
+  <text x="36" y="104" font-size="11" fill="#f8f8f8">Reference : "the cat sat on the mat"  →  "the" = 2回出現</text>
+  <text x="36" y="124" font-size="11" fill="#34d399">Clipped Count = min(5, 2) = 2  ←  上限クリップで水増し防止</text>
+  <!-- Step 2: n-gram table -->
+  <text x="36" y="160" font-size="12" font-weight="bold" fill="#fb923c">STEP 2: 各 n-gram 精度を計算</text>
+  <!-- Table header -->
+  <rect x="20" y="166" width="760" height="30" rx="4" fill="rgba(251,146,60,0.2)"/>
+  <text x="100" y="185" text-anchor="middle" font-size="11" font-weight="bold" fill="#f8f8f8">n-gram</text>
+  <text x="240" y="185" text-anchor="middle" font-size="11" font-weight="bold" fill="#f8f8f8">一致数(clipped)</text>
+  <text x="400" y="185" text-anchor="middle" font-size="11" font-weight="bold" fill="#f8f8f8">生成文の総数</text>
+  <text x="540" y="185" text-anchor="middle" font-size="11" font-weight="bold" fill="#f8f8f8">精度 pₙ</text>
+  <text x="680" y="185" text-anchor="middle" font-size="11" font-weight="bold" fill="#f8f8f8">log pₙ</text>
+  <!-- Row 1 -->
+  <rect x="20" y="196" width="760" height="28" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <text x="100" y="214" text-anchor="middle" font-size="11" fill="#fbbf24">1-gram</text>
+  <text x="240" y="214" text-anchor="middle" font-size="11" fill="#f8f8f8">5</text>
+  <text x="400" y="214" text-anchor="middle" font-size="11" fill="#f8f8f8">6</text>
+  <text x="540" y="214" text-anchor="middle" font-size="11" fill="#34d399">0.833</text>
+  <text x="680" y="214" text-anchor="middle" font-size="11" fill="#34d399">−0.182</text>
+  <!-- Row 2 -->
+  <rect x="20" y="224" width="760" height="28" rx="0" fill="rgba(255,255,255,0.05)"/>
+  <text x="100" y="242" text-anchor="middle" font-size="11" fill="#fbbf24">2-gram</text>
+  <text x="240" y="242" text-anchor="middle" font-size="11" fill="#f8f8f8">3</text>
+  <text x="400" y="242" text-anchor="middle" font-size="11" fill="#f8f8f8">5</text>
+  <text x="540" y="242" text-anchor="middle" font-size="11" fill="#34d399">0.600</text>
+  <text x="680" y="242" text-anchor="middle" font-size="11" fill="#34d399">−0.511</text>
+  <!-- Row 3 -->
+  <rect x="20" y="252" width="760" height="28" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <text x="100" y="270" text-anchor="middle" font-size="11" fill="#fbbf24">3-gram</text>
+  <text x="240" y="270" text-anchor="middle" font-size="11" fill="#f8f8f8">1</text>
+  <text x="400" y="270" text-anchor="middle" font-size="11" fill="#f8f8f8">4</text>
+  <text x="540" y="270" text-anchor="middle" font-size="11" fill="#a78bfa">0.250</text>
+  <text x="680" y="270" text-anchor="middle" font-size="11" fill="#a78bfa">−1.386</text>
+  <!-- Row 4 -->
+  <rect x="20" y="280" width="760" height="28" rx="0" fill="rgba(255,255,255,0.05)"/>
+  <text x="100" y="298" text-anchor="middle" font-size="11" fill="#fbbf24">4-gram</text>
+  <text x="240" y="298" text-anchor="middle" font-size="11" fill="#f8f8f8">0</text>
+  <text x="400" y="298" text-anchor="middle" font-size="11" fill="#f8f8f8">3</text>
+  <text x="540" y="298" text-anchor="middle" font-size="11" fill="#f472b6">0.000</text>
+  <text x="680" y="298" text-anchor="middle" font-size="11" fill="#f472b6">−∞</text>
+  <!-- Step 3: Final calculation -->
+  <rect x="20" y="320" width="760" height="80" rx="10" fill="rgba(52,211,153,0.08)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="36" y="342" font-size="12" font-weight="bold" fill="#34d399">STEP 3: BLEU = BP × exp(Σ wₙ log pₙ)</text>
+  <text x="36" y="368" font-size="11" fill="#f8f8f8">= 1.0 × exp(0.25 × (−0.182 + −0.511 + −1.386 + −∞))</text>
+  <text x="36" y="388" font-size="11" fill="#f472b6">= 1.0 × exp(−∞) = 0.000   ←  4-gram = 0 で幾何平均が崩壊</text>
+  <!-- Note -->
+  <rect x="20" y="400" width="760" height="16" rx="6" fill="rgba(251,191,36,0.1)"/>
+  <text x="400" y="412" text-anchor="middle" font-size="10" fill="#fbbf24">smoothing（+epsilon）を使うと4-gram=0でもスコアが計算可能。sacrebleuはeffective_order=Trueで対応。</text>
+</svg>

@@ -1,0 +1,57 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">K 値の選び方</text>
+  <!-- K scale -->
+  <rect x="20" y="38" width="760" height="54" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <!-- Scale bar -->
+  <rect x="60" y="54" width="680" height="22" rx="11" fill="rgba(255,255,255,0.08)"/>
+  <rect x="60" y="54" width="100" height="22" rx="11" fill="rgba(52,211,153,0.6)"/>
+  <rect x="160" y="54" width="150" height="22" fill="rgba(96,165,250,0.6)"/>
+  <rect x="310" y="54" width="150" height="22" fill="rgba(167,139,250,0.6)"/>
+  <rect x="460" y="54" width="150" height="22" fill="rgba(251,146,60,0.6)"/>
+  <rect x="610" y="54" width="130" height="22" rx="11" fill="rgba(244,114,182,0.6)"/>
+  <text x="110" y="69" text-anchor="middle" font-size="10" fill="#f8f8f8">K=1</text>
+  <text x="235" y="69" text-anchor="middle" font-size="10" fill="#f8f8f8">K=5〜10</text>
+  <text x="385" y="69" text-anchor="middle" font-size="10" fill="#f8f8f8">K=20〜50</text>
+  <text x="535" y="69" text-anchor="middle" font-size="10" fill="#f8f8f8">K=100</text>
+  <text x="675" y="69" text-anchor="middle" font-size="10" fill="#f8f8f8">K=∞</text>
+  <!-- K=1 -->
+  <rect x="20" y="104" width="180" height="120" rx="10" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="110" y="126" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">K = 1</text>
+  <text x="110" y="148" text-anchor="middle" font-size="11" fill="#f8f8f8">最上位だけを見る</text>
+  <text x="36" y="168" font-size="10" fill="#fbbf24">用途:</text>
+  <text x="36" y="184" font-size="10" fill="#f8f8f8">QA（1件の答え）</text>
+  <text x="36" y="200" font-size="10" fill="#f8f8f8">音声検索</text>
+  <text x="36" y="216" font-size="10" fill="#34d399">指標: MRR = Hit@1</text>
+  <!-- K=5-10 -->
+  <rect x="220" y="104" width="180" height="120" rx="10" fill="rgba(96,165,250,0.1)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="310" y="126" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa">K = 5〜10</text>
+  <text x="310" y="148" text-anchor="middle" font-size="11" fill="#f8f8f8">検索結果1ページ</text>
+  <text x="236" y="168" font-size="10" fill="#fbbf24">用途:</text>
+  <text x="236" y="184" font-size="10" fill="#f8f8f8">Web検索エンジン</text>
+  <text x="236" y="200" font-size="10" fill="#f8f8f8">画像検索</text>
+  <text x="236" y="216" font-size="10" fill="#60a5fa">指標: NDCG@10</text>
+  <!-- K=20-50 -->
+  <rect x="420" y="104" width="180" height="120" rx="10" fill="rgba(167,139,250,0.1)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="510" y="126" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa">K = 20〜50</text>
+  <text x="510" y="148" text-anchor="middle" font-size="11" fill="#f8f8f8">推薦ウィジェット</text>
+  <text x="436" y="168" font-size="10" fill="#fbbf24">用途:</text>
+  <text x="436" y="184" font-size="10" fill="#f8f8f8">ECレコメンド</text>
+  <text x="436" y="200" font-size="10" fill="#f8f8f8">動画推薦</text>
+  <text x="436" y="216" font-size="10" fill="#a78bfa">指標: NDCG@20</text>
+  <!-- K=100+ -->
+  <rect x="620" y="104" width="160" height="120" rx="10" fill="rgba(244,114,182,0.1)" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="700" y="126" text-anchor="middle" font-size="12" font-weight="bold" fill="#f472b6">K = 100+</text>
+  <text x="700" y="148" text-anchor="middle" font-size="11" fill="#f8f8f8">カタログ全体</text>
+  <text x="636" y="168" font-size="10" fill="#fbbf24">用途:</text>
+  <text x="636" y="184" font-size="10" fill="#f8f8f8">候補生成</text>
+  <text x="636" y="200" font-size="10" fill="#f8f8f8">バッチ推薦</text>
+  <text x="636" y="216" font-size="10" fill="#f472b6">指標: Recall@100</text>
+  <!-- Rules -->
+  <rect x="20" y="240" width="760" height="124" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="400" y="260" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">K 選択の原則</text>
+  <text x="36" y="284" font-size="11" fill="#f8f8f8">① ユーザー体験に合わせる: 実際に表示する件数をKにする</text>
+  <text x="36" y="304" font-size="11" fill="#f8f8f8">② 複数Kを報告: P@1, P@5, P@10 を並べて分布を把握</text>
+  <text x="36" y="324" font-size="11" fill="#f8f8f8">③ システム構成に対応: 2段構成なら第1段=Recall@K・第2段=NDCG@K</text>
+  <text x="36" y="344" font-size="11" fill="#f8f8f8">④ 業界標準を確認: Web検索はNDCG@10, 推薦はNDCG@K（K=10〜20が多い）</text>
+  <text x="36" y="358" font-size="10" fill="#94a3b8">⚠ KをA/Bテスト後に変えると比較不能になる — 早めに固定する</text>
+</svg>

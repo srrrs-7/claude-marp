@@ -1,0 +1,35 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">Hit Rate と Recall@K の違い</text>
+  <!-- Formulas -->
+  <rect x="20" y="36" width="370" height="56" rx="10" fill="rgba(244,114,182,0.1)" stroke="#f472b6" stroke-width="2"/>
+  <text x="205" y="58" text-anchor="middle" font-size="12" font-weight="bold" fill="#f472b6">Hit Rate@K</text>
+  <text x="205" y="78" text-anchor="middle" font-size="11" fill="#f8f8f8">= Σ I(|関連∩Top-K| ≥ 1) / |Q|</text>
+  <rect x="410" y="36" width="370" height="56" rx="10" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="2"/>
+  <text x="595" y="58" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">Recall@K</text>
+  <text x="595" y="78" text-anchor="middle" font-size="11" fill="#f8f8f8">= Σ |関連∩Top-K| / |全関連| / |Q|</text>
+  <!-- Example comparison -->
+  <text x="400" y="116" text-anchor="middle" font-size="11" font-weight="bold" fill="#f8f8f8">ユーザー1: 全関連=5件, K=3に関連2件含む</text>
+  <rect x="20" y="126" width="370" height="68" rx="10" fill="rgba(244,114,182,0.06)" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="205" y="148" text-anchor="middle" font-size="11" fill="#f8f8f8">K=3内に ≥1件あるか?  → YES</text>
+  <rect x="100" y="158" width="170" height="28" rx="6" fill="rgba(244,114,182,0.2)"/>
+  <text x="185" y="176" text-anchor="middle" font-size="13" font-weight="bold" fill="#f472b6">Hit = 1</text>
+  <rect x="410" y="126" width="370" height="68" rx="10" fill="rgba(52,211,153,0.06)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="595" y="148" text-anchor="middle" font-size="11" fill="#f8f8f8">K=3に含まれる関連: 2件 / 全5件</text>
+  <rect x="490" y="158" width="170" height="28" rx="6" fill="rgba(52,211,153,0.2)"/>
+  <text x="575" y="176" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399">Recall@3 = 0.40</text>
+  <!-- Second example -->
+  <text x="400" y="218" text-anchor="middle" font-size="11" font-weight="bold" fill="#f8f8f8">ユーザー2: 全関連=5件, K=3に関連0件</text>
+  <rect x="20" y="228" width="370" height="68" rx="10" fill="rgba(244,114,182,0.06)" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="205" y="250" text-anchor="middle" font-size="11" fill="#f8f8f8">K=3内に ≥1件あるか?  → NO</text>
+  <rect x="100" y="260" width="170" height="28" rx="6" fill="rgba(244,114,182,0.1)"/>
+  <text x="185" y="278" text-anchor="middle" font-size="13" font-weight="bold" fill="#f472b6">Hit = 0</text>
+  <rect x="410" y="228" width="370" height="68" rx="10" fill="rgba(52,211,153,0.06)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="595" y="250" text-anchor="middle" font-size="11" fill="#f8f8f8">K=3に含まれる関連: 0件 / 全5件</text>
+  <rect x="490" y="260" width="170" height="28" rx="6" fill="rgba(52,211,153,0.1)"/>
+  <text x="575" y="278" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399">Recall@3 = 0.00</text>
+  <!-- Summary -->
+  <rect x="20" y="310" width="760" height="42" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="205" y="332" text-anchor="middle" font-size="11" fill="#f472b6">Hit Rate: 0/1の有無のみ判定 → 「何件カバーか」は無視</text>
+  <text x="595" y="332" text-anchor="middle" font-size="11" fill="#34d399">Recall@K: 何件カバーしたかの割合</text>
+  <text x="400" y="348" text-anchor="middle" font-size="10" fill="#94a3b8">Hit Rate は推薦システムで「セッション成功率」として使われる（最もシンプル）</text>
+</svg>

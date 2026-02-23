@@ -1,0 +1,45 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">ランキング指標 — 全体像</text>
+  <!-- Classification axis: order considered or not -->
+  <rect x="20" y="38" width="760" height="46" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="400" y="58" text-anchor="middle" font-size="12" font-weight="bold" fill="#f8f8f8">2つの分類軸</text>
+  <text x="200" y="76" text-anchor="middle" font-size="11" fill="#f472b6">① 順序を考慮するか</text>
+  <text x="600" y="76" text-anchor="middle" font-size="11" fill="#34d399">② 関連度の段階数</text>
+  <!-- Main diagram -->
+  <!-- X axis: K cutoff -->
+  <text x="400" y="108" text-anchor="middle" font-size="11" fill="#94a3b8">── 評価対象：上位 K 件 ──</text>
+  <!-- P@K -->
+  <rect x="20" y="120" width="170" height="90" rx="10" fill="rgba(96,165,250,0.15)" stroke="#60a5fa" stroke-width="2"/>
+  <text x="105" y="144" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa">P@K / R@K</text>
+  <text x="105" y="162" text-anchor="middle" font-size="10" fill="#94a3b8">順序非考慮</text>
+  <text x="105" y="180" text-anchor="middle" font-size="10" fill="#f8f8f8">0/1 バイナリ</text>
+  <text x="105" y="196" text-anchor="middle" font-size="10" fill="#94a3b8">シンプル</text>
+  <!-- AP/MAP -->
+  <rect x="210" y="120" width="170" height="90" rx="10" fill="rgba(251,146,60,0.15)" stroke="#fb923c" stroke-width="2"/>
+  <text x="295" y="144" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb923c">AP / MAP</text>
+  <text x="295" y="162" text-anchor="middle" font-size="10" fill="#94a3b8">順序考慮</text>
+  <text x="295" y="180" text-anchor="middle" font-size="10" fill="#f8f8f8">0/1 バイナリ</text>
+  <text x="295" y="196" text-anchor="middle" font-size="10" fill="#94a3b8">情報検索標準</text>
+  <!-- NDCG -->
+  <rect x="400" y="120" width="170" height="90" rx="10" fill="rgba(52,211,153,0.15)" stroke="#34d399" stroke-width="2"/>
+  <text x="485" y="144" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">NDCG</text>
+  <text x="485" y="162" text-anchor="middle" font-size="10" fill="#94a3b8">順序考慮</text>
+  <text x="485" y="180" text-anchor="middle" font-size="10" fill="#f8f8f8">多段階スコア</text>
+  <text x="485" y="196" text-anchor="middle" font-size="10" fill="#94a3b8">推薦システム標準</text>
+  <!-- MRR -->
+  <rect x="590" y="120" width="190" height="90" rx="10" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="2"/>
+  <text x="685" y="144" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa">MRR</text>
+  <text x="685" y="162" text-anchor="middle" font-size="10" fill="#94a3b8">初回関連位置</text>
+  <text x="685" y="180" text-anchor="middle" font-size="10" fill="#f8f8f8">最初の1件</text>
+  <text x="685" y="196" text-anchor="middle" font-size="10" fill="#94a3b8">QA・シングル解</text>
+  <!-- Hit Rate -->
+  <rect x="210" y="230" width="380" height="80" rx="10" fill="rgba(244,114,182,0.12)" stroke="#f472b6" stroke-width="2"/>
+  <text x="400" y="254" text-anchor="middle" font-size="12" font-weight="bold" fill="#f472b6">Hit Rate @ K</text>
+  <text x="400" y="274" text-anchor="middle" font-size="10" fill="#94a3b8">K件以内に1件でも正解があれば 1、なければ 0</text>
+  <text x="400" y="294" text-anchor="middle" font-size="10" fill="#f8f8f8">シンプル・直感的 / 推薦システムでよく使用</text>
+  <!-- Coverage/Diversity -->
+  <rect x="20" y="330" width="760" height="58" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="400" y="352" text-anchor="middle" font-size="12" font-weight="bold" fill="#f8f8f8">ビジネス指標（精度補完）</text>
+  <text x="200" y="374" text-anchor="middle" font-size="11" fill="#fbbf24">Coverage: 推薦カタログの被カバー率</text>
+  <text x="600" y="374" text-anchor="middle" font-size="11" fill="#fbbf24">Diversity: 推薦リスト内の多様性</text>
+</svg>

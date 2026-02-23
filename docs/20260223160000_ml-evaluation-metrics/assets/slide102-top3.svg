@@ -1,0 +1,102 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#f8f8f8">タスク別 Top-3 指標 クイックリファレンス</text>
+  <!-- Table header -->
+  <rect x="20" y="32" width="760" height="26" rx="4" fill="rgba(255,255,255,0.1)"/>
+  <text x="100" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">タスク</text>
+  <text x="250" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#34d399">🥇 1位</text>
+  <text x="420" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#60a5fa">🥈 2位</text>
+  <text x="590" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#a78bfa">🥉 3位</text>
+  <text x="710" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">条件</text>
+
+  <!-- Classification balanced -->
+  <rect x="20" y="58" width="760" height="30" rx="0" fill="rgba(96,165,250,0.06)"/>
+  <rect x="20" y="58" width="3" height="30" fill="#60a5fa"/>
+  <text x="100" y="78" text-anchor="middle" font-size="11" fill="#60a5fa">分類（均衡）</text>
+  <text x="250" y="78" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">Accuracy</text>
+  <text x="420" y="78" text-anchor="middle" font-size="11" fill="#60a5fa">AUC-ROC</text>
+  <text x="590" y="78" text-anchor="middle" font-size="11" fill="#a78bfa">F1 Score</text>
+  <text x="710" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">クラス均衡時</text>
+
+  <!-- Classification imbalanced -->
+  <rect x="20" y="88" width="760" height="30" rx="0" fill="rgba(244,114,182,0.06)"/>
+  <rect x="20" y="88" width="3" height="30" fill="#f472b6"/>
+  <text x="100" y="108" text-anchor="middle" font-size="11" fill="#f472b6">分類（不均衡）</text>
+  <text x="250" y="108" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">F1 / F-beta</text>
+  <text x="420" y="108" text-anchor="middle" font-size="11" fill="#60a5fa">PR-AUC</text>
+  <text x="590" y="108" text-anchor="middle" font-size="11" fill="#a78bfa">MCC</text>
+  <text x="710" y="108" text-anchor="middle" font-size="9" fill="#94a3b8">少数クラス重視</text>
+
+  <!-- Medical/Safety classification -->
+  <rect x="20" y="118" width="760" height="30" rx="0" fill="rgba(244,114,182,0.04)"/>
+  <rect x="20" y="118" width="3" height="30" fill="#f472b6"/>
+  <text x="100" y="138" text-anchor="middle" font-size="11" fill="#f472b6">医療・安全</text>
+  <text x="250" y="138" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">Recall（感度）</text>
+  <text x="420" y="138" text-anchor="middle" font-size="11" fill="#60a5fa">F2 Score</text>
+  <text x="590" y="138" text-anchor="middle" font-size="11" fill="#a78bfa">AUC-ROC</text>
+  <text x="710" y="138" text-anchor="middle" font-size="9" fill="#94a3b8">偽陰性コスト大</text>
+
+  <!-- Regression -->
+  <rect x="20" y="148" width="760" height="30" rx="0" fill="rgba(52,211,153,0.06)"/>
+  <rect x="20" y="148" width="3" height="30" fill="#34d399"/>
+  <text x="100" y="168" text-anchor="middle" font-size="11" fill="#34d399">回帰（一般）</text>
+  <text x="250" y="168" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">RMSE</text>
+  <text x="420" y="168" text-anchor="middle" font-size="11" fill="#60a5fa">MAE</text>
+  <text x="590" y="168" text-anchor="middle" font-size="11" fill="#a78bfa">R²</text>
+  <text x="710" y="168" text-anchor="middle" font-size="9" fill="#94a3b8">外れ値少ない</text>
+
+  <!-- Regression with outliers -->
+  <rect x="20" y="178" width="760" height="30" rx="0" fill="rgba(52,211,153,0.04)"/>
+  <rect x="20" y="178" width="3" height="30" fill="#34d399"/>
+  <text x="100" y="198" text-anchor="middle" font-size="11" fill="#34d399">回帰（外れ値）</text>
+  <text x="250" y="198" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">MAE / Huber</text>
+  <text x="420" y="198" text-anchor="middle" font-size="11" fill="#60a5fa">MedAE</text>
+  <text x="590" y="198" text-anchor="middle" font-size="11" fill="#a78bfa">MAPE</text>
+  <text x="710" y="198" text-anchor="middle" font-size="9" fill="#94a3b8">外れ値多い</text>
+
+  <!-- NLP -->
+  <rect x="20" y="208" width="760" height="30" rx="0" fill="rgba(167,139,250,0.06)"/>
+  <rect x="20" y="208" width="3" height="30" fill="#a78bfa"/>
+  <text x="100" y="228" text-anchor="middle" font-size="11" fill="#a78bfa">翻訳・要約</text>
+  <text x="250" y="228" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">BLEU / ChrF</text>
+  <text x="420" y="228" text-anchor="middle" font-size="11" fill="#60a5fa">ROUGE-L</text>
+  <text x="590" y="228" text-anchor="middle" font-size="11" fill="#a78bfa">BERTScore</text>
+  <text x="710" y="228" text-anchor="middle" font-size="9" fill="#94a3b8">参照文あり</text>
+
+  <!-- QA/Dialogue -->
+  <rect x="20" y="238" width="760" height="30" rx="0" fill="rgba(167,139,250,0.04)"/>
+  <rect x="20" y="238" width="3" height="30" fill="#a78bfa"/>
+  <text x="100" y="258" text-anchor="middle" font-size="11" fill="#a78bfa">対話・QA</text>
+  <text x="250" y="258" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">BERTScore</text>
+  <text x="420" y="258" text-anchor="middle" font-size="11" fill="#60a5fa">LLM-Judge</text>
+  <text x="590" y="258" text-anchor="middle" font-size="11" fill="#a78bfa">Perplexity</text>
+  <text x="710" y="258" text-anchor="middle" font-size="9" fill="#94a3b8">意味重視</text>
+
+  <!-- Ranking -->
+  <rect x="20" y="268" width="760" height="30" rx="0" fill="rgba(251,146,60,0.06)"/>
+  <rect x="20" y="268" width="3" height="30" fill="#fb923c"/>
+  <text x="100" y="288" text-anchor="middle" font-size="11" fill="#fb923c">推薦・検索</text>
+  <text x="250" y="288" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">NDCG@K</text>
+  <text x="420" y="288" text-anchor="middle" font-size="11" fill="#60a5fa">MAP</text>
+  <text x="590" y="288" text-anchor="middle" font-size="11" fill="#a78bfa">MRR</text>
+  <text x="710" y="288" text-anchor="middle" font-size="9" fill="#94a3b8">順位重要</text>
+
+  <!-- Clustering no label -->
+  <rect x="20" y="298" width="760" height="30" rx="0" fill="rgba(251,191,36,0.06)"/>
+  <rect x="20" y="298" width="3" height="30" fill="#fbbf24"/>
+  <text x="100" y="318" text-anchor="middle" font-size="11" fill="#fbbf24">クラスタ(内部)</text>
+  <text x="250" y="318" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">Silhouette</text>
+  <text x="420" y="318" text-anchor="middle" font-size="11" fill="#60a5fa">CH Index</text>
+  <text x="590" y="318" text-anchor="middle" font-size="11" fill="#a78bfa">DBI</text>
+  <text x="710" y="318" text-anchor="middle" font-size="9" fill="#94a3b8">ラベルなし</text>
+
+  <!-- Clustering with label -->
+  <rect x="20" y="328" width="760" height="30" rx="0" fill="rgba(251,191,36,0.04)"/>
+  <rect x="20" y="328" width="3" height="30" fill="#fbbf24"/>
+  <text x="100" y="348" text-anchor="middle" font-size="11" fill="#fbbf24">クラスタ(外部)</text>
+  <text x="250" y="348" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">ARI</text>
+  <text x="420" y="348" text-anchor="middle" font-size="11" fill="#60a5fa">AMI</text>
+  <text x="590" y="348" text-anchor="middle" font-size="11" fill="#a78bfa">NMI</text>
+  <text x="710" y="348" text-anchor="middle" font-size="9" fill="#94a3b8">ラベルあり</text>
+
+  <text x="400" y="380" text-anchor="middle" font-size="9" fill="#475569">* 🥇=最優先 | 🥈🥉=補助指標として組み合わせ</text>
+</svg>

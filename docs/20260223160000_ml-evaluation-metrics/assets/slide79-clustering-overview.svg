@@ -1,0 +1,48 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">クラスタリング評価 — 全体像</text>
+  <!-- Main split -->
+  <rect x="20" y="38" width="760" height="52" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="400" y="58" text-anchor="middle" font-size="12" font-weight="bold" fill="#f8f8f8">最大の違い: 正解ラベルの有無</text>
+  <text x="220" y="80" text-anchor="middle" font-size="11" fill="#f472b6">正解ラベル なし → 内部評価（Unsupervised）</text>
+  <text x="600" y="80" text-anchor="middle" font-size="11" fill="#34d399">正解ラベル あり → 外部評価（Supervised）</text>
+  <!-- Internal evaluation box -->
+  <rect x="20" y="100" width="370" height="250" rx="12" fill="rgba(244,114,182,0.08)" stroke="#f472b6" stroke-width="2"/>
+  <text x="205" y="124" text-anchor="middle" font-size="13" font-weight="bold" fill="#f472b6">内部評価指標</text>
+  <text x="205" y="142" text-anchor="middle" font-size="10" fill="#94a3b8">データの幾何学的性質のみで評価</text>
+  <line x1="34" y1="152" x2="376" y2="152" stroke="#f472b6" stroke-width="1" opacity="0.4"/>
+  <!-- Internal metrics -->
+  <rect x="36" y="162" width="152" height="50" rx="8" fill="rgba(251,146,60,0.15)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="112" y="184" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb923c">Inertia</text>
+  <text x="112" y="202" text-anchor="middle" font-size="10" fill="#f8f8f8">WCSS / 小さいほど密</text>
+  <rect x="206" y="162" width="152" height="50" rx="8" fill="rgba(96,165,250,0.15)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="282" y="184" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa">Silhouette</text>
+  <text x="282" y="202" text-anchor="middle" font-size="10" fill="#f8f8f8">−1〜+1 / 高いほど良</text>
+  <rect x="36" y="224" width="152" height="50" rx="8" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="112" y="246" text-anchor="middle" font-size="11" font-weight="bold" fill="#a78bfa">Davies-Bouldin</text>
+  <text x="112" y="264" text-anchor="middle" font-size="10" fill="#f8f8f8">0〜∞ / 低いほど良</text>
+  <rect x="206" y="224" width="152" height="50" rx="8" fill="rgba(52,211,153,0.15)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="282" y="246" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">Calinski-Harabasz</text>
+  <text x="282" y="264" text-anchor="middle" font-size="10" fill="#f8f8f8">0〜∞ / 高いほど良</text>
+  <text x="205" y="310" text-anchor="middle" font-size="10" fill="#fbbf24">k選択（エルボー法）にも利用</text>
+  <text x="205" y="330" text-anchor="middle" font-size="10" fill="#94a3b8">正解なしで評価できる → 実務での主力</text>
+  <!-- External evaluation box -->
+  <rect x="410" y="100" width="370" height="250" rx="12" fill="rgba(52,211,153,0.08)" stroke="#34d399" stroke-width="2"/>
+  <text x="595" y="124" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399">外部評価指標</text>
+  <text x="595" y="142" text-anchor="middle" font-size="10" fill="#94a3b8">正解ラベルと予測クラスタを比較</text>
+  <line x1="424" y1="152" x2="766" y2="152" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <!-- External metrics -->
+  <rect x="426" y="162" width="152" height="50" rx="8" fill="rgba(96,165,250,0.15)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="502" y="184" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa">ARI</text>
+  <text x="502" y="202" text-anchor="middle" font-size="10" fill="#f8f8f8">−0.5〜1 / 高いほど良</text>
+  <rect x="596" y="162" width="152" height="50" rx="8" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="672" y="184" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa">NMI</text>
+  <text x="672" y="202" text-anchor="middle" font-size="10" fill="#f8f8f8">0〜1 / 高いほど良</text>
+  <rect x="426" y="224" width="320" height="50" rx="8" fill="rgba(251,191,36,0.12)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="586" y="246" text-anchor="middle" font-size="11" font-weight="bold" fill="#fbbf24">Homogeneity / Completeness / V-measure</text>
+  <text x="586" y="264" text-anchor="middle" font-size="10" fill="#f8f8f8">ARI/NMIの分解・詳細評価</text>
+  <text x="595" y="310" text-anchor="middle" font-size="10" fill="#fbbf24">理想: クラスタ = クラス</text>
+  <text x="595" y="330" text-anchor="middle" font-size="10" fill="#94a3b8">研究評価・ベンチマーク用途が主体</text>
+  <!-- Bottom -->
+  <rect x="20" y="362" width="760" height="30" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="400" y="382" text-anchor="middle" font-size="11" fill="#94a3b8">実務: 内部評価でk最適化 + 外部評価（正解あり）でモデル検証 + 可視化（t-SNE/PCA）で確認</text>
+</svg>

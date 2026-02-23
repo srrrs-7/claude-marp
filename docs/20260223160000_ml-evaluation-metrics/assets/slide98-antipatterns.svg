@@ -1,0 +1,76 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#f8f8f8">評価のアンチパターン — よくある落とし穴</text>
+  <!-- 6 antipattern cards, 3x2 grid -->
+
+  <!-- 1: Accuracy trap -->
+  <rect x="20" y="34" width="240" height="110" rx="10" fill="rgba(244,114,182,0.08)" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="30" y="54" font-size="20" fill="#f472b6">⚠</text>
+  <text x="55" y="56" font-size="12" font-weight="bold" fill="#f472b6">精度至上主義</text>
+  <text x="30" y="74" font-size="10" fill="#f8f8f8">不均衡データで Accuracy だけを</text>
+  <text x="30" y="88" font-size="10" fill="#f8f8f8">見る。全サンプルを多数クラスと</text>
+  <text x="30" y="102" font-size="10" fill="#f8f8f8">予測するだけで Acc=99% になる</text>
+  <rect x="30" y="112" width="210" height="22" rx="6" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1"/>
+  <text x="135" y="127" text-anchor="middle" font-size="10" fill="#34d399">✓ F1 / PR-AUC / MCC を追加</text>
+
+  <!-- 2: Data leakage -->
+  <rect x="280" y="34" width="240" height="110" rx="10" fill="rgba(244,114,182,0.08)" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="290" y="54" font-size="20" fill="#f472b6">⚠</text>
+  <text x="315" y="56" font-size="12" font-weight="bold" fill="#f472b6">データ漏洩</text>
+  <text x="290" y="74" font-size="10" fill="#f8f8f8">テストデータの情報が前処理に</text>
+  <text x="290" y="88" font-size="10" fill="#f8f8f8">含まれる（標準化・欠損補完等）。</text>
+  <text x="290" y="102" font-size="10" fill="#f8f8f8">評価スコアが楽観的になる</text>
+  <rect x="290" y="112" width="210" height="22" rx="6" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1"/>
+  <text x="395" y="127" text-anchor="middle" font-size="10" fill="#34d399">✓ Pipeline でリーク防止</text>
+
+  <!-- 3: Single metric -->
+  <rect x="540" y="34" width="240" height="110" rx="10" fill="rgba(244,114,182,0.08)" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="550" y="54" font-size="20" fill="#f472b6">⚠</text>
+  <text x="575" y="56" font-size="12" font-weight="bold" fill="#f472b6">1指標依存</text>
+  <text x="550" y="74" font-size="10" fill="#f8f8f8">単一指標を最適化すると他の</text>
+  <text x="550" y="88" font-size="10" fill="#f8f8f8">重要な側面が犠牲になる</text>
+  <text x="550" y="102" font-size="10" fill="#f8f8f8">(Goodhart's Law)</text>
+  <rect x="550" y="112" width="210" height="22" rx="6" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1"/>
+  <text x="655" y="127" text-anchor="middle" font-size="10" fill="#34d399">✓ 主+補助指標の複数評価</text>
+
+  <!-- 4: Train-test mismatch -->
+  <rect x="20" y="158" width="240" height="110" rx="10" fill="rgba(251,146,60,0.08)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="30" y="178" font-size="20" fill="#fb923c">⚠</text>
+  <text x="55" y="180" font-size="12" font-weight="bold" fill="#fb923c">分布ミスマッチ</text>
+  <text x="30" y="198" font-size="10" fill="#f8f8f8">テストデータが本番データの</text>
+  <text x="30" y="212" font-size="10" fill="#f8f8f8">分布と大きく異なる。高スコアでも</text>
+  <text x="30" y="226" font-size="10" fill="#f8f8f8">本番で期待通りに動かない</text>
+  <rect x="30" y="236" width="210" height="22" rx="6" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1"/>
+  <text x="135" y="251" text-anchor="middle" font-size="10" fill="#34d399">✓ 本番分布のサンプルで評価</text>
+
+  <!-- 5: Offline-online gap -->
+  <rect x="280" y="158" width="240" height="110" rx="10" fill="rgba(251,146,60,0.08)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="290" y="178" font-size="20" fill="#fb923c">⚠</text>
+  <text x="315" y="180" font-size="12" font-weight="bold" fill="#fb923c">オフライン過信</text>
+  <text x="290" y="198" font-size="10" fill="#f8f8f8">オフライン指標が改善しても</text>
+  <text x="290" y="212" font-size="10" fill="#f8f8f8">オンライン指標 (CTR, CVR) が</text>
+  <text x="290" y="226" font-size="10" fill="#f8f8f8">改善しないことがある</text>
+  <rect x="290" y="236" width="210" height="22" rx="6" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1"/>
+  <text x="395" y="251" text-anchor="middle" font-size="10" fill="#34d399">✓ A/Bテストで必ず検証</text>
+
+  <!-- 6: Overfitting to metric -->
+  <rect x="540" y="158" width="240" height="110" rx="10" fill="rgba(251,146,60,0.08)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="550" y="178" font-size="20" fill="#fb923c">⚠</text>
+  <text x="575" y="180" font-size="12" font-weight="bold" fill="#fb923c">指標過剰適合</text>
+  <text x="550" y="198" font-size="10" fill="#f8f8f8">評価指標を意図的に上げるよう</text>
+  <text x="550" y="212" font-size="10" fill="#f8f8f8">モデルやデータを改変。見かけの</text>
+  <text x="550" y="226" font-size="10" fill="#f8f8f8">スコアと品質が乖離する</text>
+  <rect x="550" y="236" width="210" height="22" rx="6" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1"/>
+  <text x="655" y="251" text-anchor="middle" font-size="10" fill="#34d399">✓ 定期的に評価手法を見直す</text>
+
+  <!-- Key principles -->
+  <rect x="20" y="282" width="760" height="108" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="400" y="302" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">健全な評価の原則</text>
+  <text x="36" y="322" font-size="11" fill="#34d399">1.</text>
+  <text x="52" y="322" font-size="11" fill="#f8f8f8">指標はビジネス目標から逆算して選ぶ — "何を最小化/最大化したいか" を先に定める</text>
+  <text x="36" y="340" font-size="11" fill="#34d399">2.</text>
+  <text x="52" y="340" font-size="11" fill="#f8f8f8">評価セットはモデル開発者が触れない — テスト汚染を防ぐ（holdout + 時系列分割）</text>
+  <text x="36" y="358" font-size="11" fill="#34d399">3.</text>
+  <text x="52" y="358" font-size="11" fill="#f8f8f8">ベースライン必須 — ランダム予測・多数クラス予測との比較なしに「良い」と言わない</text>
+  <text x="36" y="376" font-size="11" fill="#34d399">4.</text>
+  <text x="52" y="376" font-size="11" fill="#f8f8f8">信頼区間を報告する — 点推定だけでなく標準誤差・CI を示す（特に限られたデータ量）</text>
+</svg>

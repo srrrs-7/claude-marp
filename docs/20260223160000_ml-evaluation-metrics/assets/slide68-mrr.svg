@@ -1,0 +1,41 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">MRR — Mean Reciprocal Rank</text>
+  <!-- Formula -->
+  <rect x="20" y="36" width="760" height="52" rx="10" fill="rgba(167,139,250,0.1)" stroke="#a78bfa" stroke-width="2"/>
+  <text x="400" y="58" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa">MRR = (1/|Q|) × Σ_q (1 / rank_q)</text>
+  <text x="400" y="78" text-anchor="middle" font-size="11" fill="#f8f8f8">rank_q = クエリ q に対する最初の関連アイテムの順位</text>
+  <!-- 3 query examples -->
+  <text x="400" y="114" text-anchor="middle" font-size="11" font-weight="bold" fill="#f8f8f8">3クエリの例（最初の関連アイテムの順位に注目）</text>
+  <!-- Query 1 -->
+  <rect x="20" y="124" width="234" height="120" rx="10" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="137" y="146" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">Query 1</text>
+  <text x="50" y="168" font-size="10" fill="#f8f8f8">1位: ✓ 関連 ← 最初の関連</text>
+  <text x="50" y="186" font-size="10" fill="#94a3b8">2位: ✗ 非関連</text>
+  <text x="50" y="204" font-size="10" fill="#94a3b8">3位: ✓ 関連</text>
+  <rect x="40" y="212" width="174" height="26" rx="6" fill="rgba(52,211,153,0.25)"/>
+  <text x="127" y="229" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399">RR = 1/1 = 1.000</text>
+  <!-- Query 2 -->
+  <rect x="284" y="124" width="234" height="120" rx="10" fill="rgba(251,146,60,0.1)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="401" y="146" text-anchor="middle" font-size="11" font-weight="bold" fill="#fb923c">Query 2</text>
+  <text x="314" y="168" font-size="10" fill="#94a3b8">1位: ✗ 非関連</text>
+  <text x="314" y="186" font-size="10" fill="#f8f8f8">2位: ✗ 非関連</text>
+  <text x="314" y="204" font-size="10" fill="#f8f8f8">3位: ✓ 関連 ← 最初の関連</text>
+  <rect x="304" y="212" width="174" height="26" rx="6" fill="rgba(251,146,60,0.25)"/>
+  <text x="391" y="229" text-anchor="middle" font-size="13" font-weight="bold" fill="#fb923c">RR = 1/3 = 0.333</text>
+  <!-- Query 3 -->
+  <rect x="548" y="124" width="234" height="120" rx="10" fill="rgba(96,165,250,0.1)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="665" y="146" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">Query 3</text>
+  <text x="578" y="168" font-size="10" fill="#94a3b8">1位: ✗ 非関連</text>
+  <text x="578" y="186" font-size="10" fill="#94a3b8">2位: ✗ 非関連</text>
+  <text x="578" y="204" font-size="10" fill="#94a3b8">3〜5位も非関連</text>
+  <rect x="568" y="212" width="174" height="26" rx="6" fill="rgba(96,165,250,0.25)"/>
+  <text x="655" y="229" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa">RR = 0 (見つからず)</text>
+  <!-- MRR calculation -->
+  <rect x="100" y="260" width="600" height="50" rx="10" fill="rgba(167,139,250,0.12)" stroke="#a78bfa" stroke-width="2"/>
+  <text x="400" y="282" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa">MRR = (1.000 + 0.333 + 0.000) / 3 = 1.333 / 3</text>
+  <text x="400" y="302" text-anchor="middle" font-size="14" font-weight="bold" fill="#a78bfa">MRR = 0.444</text>
+  <!-- Usage -->
+  <rect x="20" y="324" width="760" height="46" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="400" y="344" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">MRR の特性と用途</text>
+  <text x="36" y="364" font-size="11" fill="#f8f8f8">最初の関連アイテム以降を完全に無視 | QAシステム・FAQ検索・音声アシスタントに最適 | 1位に来れば最高(MRR=1)</text>
+</svg>

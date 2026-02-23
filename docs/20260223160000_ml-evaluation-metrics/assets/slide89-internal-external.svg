@@ -1,0 +1,81 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#f8f8f8">クラスタリング指標 — 特性比較マトリクス</text>
+  <!-- Table header -->
+  <rect x="20" y="30" width="760" height="28" rx="4" fill="rgba(255,255,255,0.1)"/>
+  <text x="90" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">指標</text>
+  <text x="200" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">種別</text>
+  <text x="290" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">値の範囲</text>
+  <text x="390" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">方向</text>
+  <text x="490" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">ノイズ耐性</text>
+  <text x="590" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">計算量</text>
+  <text x="700" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">主用途</text>
+  <!-- Inertia -->
+  <rect x="20" y="58" width="760" height="28" rx="0" fill="rgba(251,146,60,0.08)"/>
+  <rect x="20" y="58" width="3" height="28" rx="1" fill="#fb923c"/>
+  <text x="90" y="76" text-anchor="middle" font-size="11" font-weight="bold" fill="#fb923c">Inertia</text>
+  <text x="200" y="76" text-anchor="middle" font-size="11" fill="#f472b6">内部</text>
+  <text x="290" y="76" text-anchor="middle" font-size="11" fill="#f8f8f8">0〜∞</text>
+  <text x="390" y="76" text-anchor="middle" font-size="11" fill="#f8f8f8">↓ 小</text>
+  <text x="490" y="76" text-anchor="middle" font-size="11" fill="#fb923c">低い</text>
+  <text x="590" y="76" text-anchor="middle" font-size="11" fill="#34d399">O(nk)</text>
+  <text x="700" y="76" text-anchor="middle" font-size="10" fill="#f8f8f8">k選択/エルボー</text>
+  <!-- Silhouette -->
+  <rect x="20" y="86" width="760" height="28" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <rect x="20" y="86" width="3" height="28" rx="1" fill="#60a5fa"/>
+  <text x="90" y="104" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">Silhouette</text>
+  <text x="200" y="104" text-anchor="middle" font-size="11" fill="#f472b6">内部</text>
+  <text x="290" y="104" text-anchor="middle" font-size="11" fill="#f8f8f8">−1〜+1</text>
+  <text x="390" y="104" text-anchor="middle" font-size="11" fill="#f8f8f8">↑ 大</text>
+  <text x="490" y="104" text-anchor="middle" font-size="11" fill="#fbbf24">中程度</text>
+  <text x="590" y="104" text-anchor="middle" font-size="11" fill="#f472b6">O(n²)</text>
+  <text x="700" y="104" text-anchor="middle" font-size="10" fill="#f8f8f8">品質確認・可視化</text>
+  <!-- DBI -->
+  <rect x="20" y="114" width="760" height="28" rx="0" fill="rgba(167,139,250,0.06)"/>
+  <rect x="20" y="114" width="3" height="28" rx="1" fill="#a78bfa"/>
+  <text x="90" y="132" text-anchor="middle" font-size="11" font-weight="bold" fill="#a78bfa">DBI</text>
+  <text x="200" y="132" text-anchor="middle" font-size="11" fill="#f472b6">内部</text>
+  <text x="290" y="132" text-anchor="middle" font-size="11" fill="#f8f8f8">0〜∞</text>
+  <text x="390" y="132" text-anchor="middle" font-size="11" fill="#f8f8f8">↓ 小</text>
+  <text x="490" y="132" text-anchor="middle" font-size="11" fill="#fbbf24">中程度</text>
+  <text x="590" y="132" text-anchor="middle" font-size="11" fill="#fb923c">O(k²n)</text>
+  <text x="700" y="132" text-anchor="middle" font-size="10" fill="#f8f8f8">モデル比較</text>
+  <!-- CH -->
+  <rect x="20" y="142" width="760" height="28" rx="0" fill="rgba(52,211,153,0.06)"/>
+  <rect x="20" y="142" width="3" height="28" rx="1" fill="#34d399"/>
+  <text x="90" y="160" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">CH</text>
+  <text x="200" y="160" text-anchor="middle" font-size="11" fill="#f472b6">内部</text>
+  <text x="290" y="160" text-anchor="middle" font-size="11" fill="#f8f8f8">0〜∞</text>
+  <text x="390" y="160" text-anchor="middle" font-size="11" fill="#f8f8f8">↑ 大</text>
+  <text x="490" y="160" text-anchor="middle" font-size="11" fill="#34d399">高い</text>
+  <text x="590" y="160" text-anchor="middle" font-size="11" fill="#34d399">O(k²n)</text>
+  <text x="700" y="160" text-anchor="middle" font-size="10" fill="#f8f8f8">高速k選択</text>
+  <!-- ARI -->
+  <rect x="20" y="170" width="760" height="28" rx="0" fill="rgba(96,165,250,0.08)"/>
+  <rect x="20" y="170" width="3" height="28" rx="1" fill="#60a5fa"/>
+  <text x="90" y="188" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">ARI</text>
+  <text x="200" y="188" text-anchor="middle" font-size="11" fill="#34d399">外部</text>
+  <text x="290" y="188" text-anchor="middle" font-size="11" fill="#f8f8f8">−0.5〜1</text>
+  <text x="390" y="188" text-anchor="middle" font-size="11" fill="#f8f8f8">↑ 大</text>
+  <text x="490" y="188" text-anchor="middle" font-size="11" fill="#34d399">高い</text>
+  <text x="590" y="188" text-anchor="middle" font-size="11" fill="#fb923c">O(n²)</text>
+  <text x="700" y="188" text-anchor="middle" font-size="10" fill="#f8f8f8">ベンチマーク</text>
+  <!-- NMI -->
+  <rect x="20" y="198" width="760" height="28" rx="0" fill="rgba(167,139,250,0.06)"/>
+  <rect x="20" y="198" width="3" height="28" rx="1" fill="#a78bfa"/>
+  <text x="90" y="216" text-anchor="middle" font-size="11" font-weight="bold" fill="#a78bfa">NMI/AMI</text>
+  <text x="200" y="216" text-anchor="middle" font-size="11" fill="#34d399">外部</text>
+  <text x="290" y="216" text-anchor="middle" font-size="11" fill="#f8f8f8">0〜1</text>
+  <text x="390" y="216" text-anchor="middle" font-size="11" fill="#f8f8f8">↑ 大</text>
+  <text x="490" y="216" text-anchor="middle" font-size="11" fill="#34d399">高い</text>
+  <text x="590" y="216" text-anchor="middle" font-size="11" fill="#fb923c">O(n²)</text>
+  <text x="700" y="216" text-anchor="middle" font-size="10" fill="#f8f8f8">研究論文</text>
+  <!-- Usage guide -->
+  <rect x="20" y="240" width="760" height="148" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="400" y="260" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">シーン別推奨組み合わせ</text>
+  <text x="36" y="286" font-size="11" fill="#fbbf24">▸ k を選びたい（ラベルなし）</text>
+  <text x="36" y="304" font-size="11" fill="#f8f8f8">Inertia（エルボー）+ CH（ピーク）+ Silhouette（ピーク）の3点セット</text>
+  <text x="36" y="328" font-size="11" fill="#fbbf24">▸ モデルを評価したい（ラベルなし）</text>
+  <text x="36" y="346" font-size="11" fill="#f8f8f8">Silhouette スコア（主）+ DBI（補助）</text>
+  <text x="36" y="368" font-size="11" fill="#fbbf24">▸ 研究/ベンチマーク（ラベルあり）</text>
+  <text x="36" y="384" font-size="11" fill="#f8f8f8">ARI（補正済みで公平な比較）+ AMI（情報量ベース）</text>
+</svg>

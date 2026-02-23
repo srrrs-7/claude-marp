@@ -1,0 +1,53 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">ARI — Adjusted Rand Index</text>
+  <!-- Formula -->
+  <rect x="20" y="36" width="760" height="64" rx="10" fill="rgba(96,165,250,0.1)" stroke="#60a5fa" stroke-width="2"/>
+  <text x="400" y="56" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa">ARI = (RI − E[RI]) / (max(RI) − E[RI])</text>
+  <text x="400" y="76" text-anchor="middle" font-size="11" fill="#f8f8f8">RI = Rand Index  |  E[RI] = ランダム分割の期待RI</text>
+  <text x="400" y="92" text-anchor="middle" font-size="11" fill="#94a3b8">ARI ∈ [−0.5, 1.0]  |  偶然一致を補正  |  1 = 完全一致</text>
+  <!-- Rand Index explanation -->
+  <rect x="20" y="112" width="370" height="220" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="205" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">Rand Index の計算</text>
+  <!-- Contingency table style -->
+  <text x="36" y="158" font-size="11" fill="#f8f8f8">4つのカウントを比較:</text>
+  <rect x="36" y="168" width="330" height="76" rx="6" fill="rgba(255,255,255,0.04)"/>
+  <text x="54" y="188" font-size="11" fill="#34d399">TP: 同じクラスタ + 同じラベル</text>
+  <text x="54" y="208" font-size="11" fill="#34d399">TN: 別クラスタ + 別ラベル</text>
+  <text x="54" y="228" font-size="11" fill="#f472b6">FP: 同じクラスタ + 別ラベル</text>
+  <text x="54" y="244" font-size="11" fill="#f472b6">FN: 別クラスタ + 同じラベル</text>
+  <text x="36" y="264" font-size="11" fill="#fbbf24">RI = (TP + TN) / (TP + TN + FP + FN)</text>
+  <text x="36" y="284" font-size="10" fill="#94a3b8">ペアで見る: 全サンプルペアを比較</text>
+  <text x="36" y="302" font-size="10" fill="#94a3b8">ARI: RI を偶然一致の期待値で補正</text>
+  <text x="36" y="322" font-size="10" fill="#94a3b8">→ クラスタ数やサイズが変わっても公平比較</text>
+  <!-- ARI scale and examples -->
+  <rect x="410" y="112" width="370" height="220" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="595" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">ARI の解釈</text>
+  <!-- Scale -->
+  <rect x="426" y="148" width="330" height="22" rx="11" fill="rgba(255,255,255,0.08)"/>
+  <rect x="426" y="148" width="66" height="22" rx="11" fill="rgba(244,114,182,0.6)"/>
+  <rect x="492" y="148" width="66" height="22" fill="rgba(251,146,60,0.6)"/>
+  <rect x="558" y="148" width="66" height="22" fill="rgba(251,191,36,0.6)"/>
+  <rect x="624" y="148" width="66" height="22" fill="rgba(52,211,153,0.6)"/>
+  <rect x="690" y="148" width="66" height="22" rx="11" fill="rgba(96,165,250,0.6)"/>
+  <text x="459" y="163" text-anchor="middle" font-size="9" fill="#f8f8f8">&lt;0</text>
+  <text x="525" y="163" text-anchor="middle" font-size="9" fill="#f8f8f8">0〜0.2</text>
+  <text x="591" y="163" text-anchor="middle" font-size="9" fill="#f8f8f8">0.2〜0.5</text>
+  <text x="657" y="163" text-anchor="middle" font-size="9" fill="#f8f8f8">0.5〜0.8</text>
+  <text x="723" y="163" text-anchor="middle" font-size="9" fill="#f8f8f8">0.8〜1</text>
+  <text x="459" y="184" text-anchor="middle" font-size="9" fill="#f472b6">ランダム以下</text>
+  <text x="525" y="184" text-anchor="middle" font-size="9" fill="#fb923c">ほぼランダム</text>
+  <text x="591" y="184" text-anchor="middle" font-size="9" fill="#fbbf24">弱い一致</text>
+  <text x="657" y="184" text-anchor="middle" font-size="9" fill="#34d399">良好</text>
+  <text x="723" y="184" text-anchor="middle" font-size="9" fill="#60a5fa">優秀</text>
+  <!-- Concrete examples -->
+  <text x="426" y="212" font-size="11" fill="#fbbf24">具体例:</text>
+  <rect x="426" y="222" width="330" height="88" rx="6" fill="rgba(52,211,153,0.08)"/>
+  <text x="454" y="242" font-size="10" fill="#f8f8f8">True labels: [0, 0, 1, 1, 2, 2]</text>
+  <text x="454" y="260" font-size="10" fill="#f8f8f8">Pred labels: [0, 0, 1, 1, 2, 2]</text>
+  <text x="454" y="278" font-size="11" font-weight="bold" fill="#34d399">ARI = 1.000  ← 完全一致</text>
+  <text x="454" y="298" font-size="10" fill="#f8f8f8">Pred labels: [0, 1, 0, 2, 1, 2]</text>
+  <text x="454" y="314" font-size="11" font-weight="bold" fill="#fb923c">ARI ≈ 0.0〜0.1  ← ほぼランダム</text>
+  <!-- Bottom -->
+  <rect x="20" y="344" width="760" height="28" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="400" y="362" text-anchor="middle" font-size="11" fill="#94a3b8">sklearn: adjusted_rand_score(labels_true, labels_pred)  |  正解ラベルが必要</text>
+</svg>

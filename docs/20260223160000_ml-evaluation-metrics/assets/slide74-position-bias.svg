@@ -1,0 +1,54 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">Position Bias と評価への影響</text>
+  <!-- CTR curve -->
+  <rect x="20" y="38" width="370" height="200" rx="10" fill="rgba(244,114,182,0.08)" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="205" y="60" text-anchor="middle" font-size="12" font-weight="bold" fill="#f472b6">Position Bias の実態</text>
+  <text x="205" y="78" text-anchor="middle" font-size="10" fill="#94a3b8">ユーザーは上位アイテムをクリックしやすい</text>
+  <!-- Bar chart -->
+  <text x="60" y="108" text-anchor="middle" font-size="10" fill="#94a3b8">順位</text>
+  <text x="60" y="122" text-anchor="middle" font-size="10" fill="#f8f8f8">1</text>
+  <rect x="80" y="113" width="200" height="16" rx="3" fill="rgba(244,114,182,0.7)"/>
+  <text x="288" y="125" font-size="10" fill="#f472b6"> CTR=30%</text>
+  <text x="60" y="146" text-anchor="middle" font-size="10" fill="#f8f8f8">2</text>
+  <rect x="80" y="137" width="140" height="16" rx="3" fill="rgba(244,114,182,0.55)"/>
+  <text x="228" y="149" font-size="10" fill="#f472b6"> CTR=21%</text>
+  <text x="60" y="170" text-anchor="middle" font-size="10" fill="#f8f8f8">3</text>
+  <rect x="80" y="161" width="90" height="16" rx="3" fill="rgba(244,114,182,0.4)"/>
+  <text x="178" y="173" font-size="10" fill="#f472b6"> CTR=13%</text>
+  <text x="60" y="194" text-anchor="middle" font-size="10" fill="#f8f8f8">5</text>
+  <rect x="80" y="185" width="50" height="16" rx="3" fill="rgba(244,114,182,0.25)"/>
+  <text x="138" y="197" font-size="10" fill="#f472b6"> CTR=7%</text>
+  <text x="60" y="218" text-anchor="middle" font-size="10" fill="#f8f8f8">10</text>
+  <rect x="80" y="209" width="20" height="16" rx="3" fill="rgba(244,114,182,0.15)"/>
+  <text x="108" y="221" font-size="10" fill="#f472b6"> CTR=3%</text>
+  <text x="205" y="235" text-anchor="middle" font-size="10" fill="#94a3b8">クリックは関連性ではなく位置を反映している</text>
+  <!-- Problem explanation -->
+  <rect x="410" y="38" width="370" height="200" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="595" y="60" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">評価への影響</text>
+  <text x="426" y="84" font-size="11" fill="#f472b6">問題1: クリックデータでのランキング学習</text>
+  <text x="426" y="102" font-size="10" fill="#f8f8f8">上位アイテムが多くクリックされる</text>
+  <text x="426" y="118" font-size="10" fill="#f8f8f8">→ さらに上位に推薦される悪循環</text>
+  <text x="426" y="142" font-size="11" fill="#f472b6">問題2: オフライン評価のバイアス</text>
+  <text x="426" y="160" font-size="10" fill="#f8f8f8">クリックラベル = 位置バイアス付き</text>
+  <text x="426" y="176" font-size="10" fill="#f8f8f8">→ NDCG/MAPの計算結果が歪む</text>
+  <text x="426" y="200" font-size="11" fill="#f472b6">問題3: Popularity Bias</text>
+  <text x="426" y="218" font-size="10" fill="#f8f8f8">人気アイテムへのアクセス偏向</text>
+  <!-- Debiasing techniques -->
+  <rect x="20" y="254" width="760" height="116" rx="10" fill="rgba(52,211,153,0.08)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="400" y="274" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">デバイアス手法</text>
+  <rect x="36" y="284" width="220" height="74" rx="6" fill="rgba(52,211,153,0.1)"/>
+  <text x="146" y="304" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">IPS (Inverse Propensity Scoring)</text>
+  <text x="146" y="322" text-anchor="middle" font-size="10" fill="#f8f8f8">クリック確率で重み付けして</text>
+  <text x="146" y="340" text-anchor="middle" font-size="10" fill="#f8f8f8">バイアスを統計的に補正</text>
+  <text x="146" y="354" text-anchor="middle" font-size="9" fill="#94a3b8">Yahoo / Coat データセット</text>
+  <rect x="290" y="284" width="220" height="74" rx="6" fill="rgba(96,165,250,0.1)"/>
+  <text x="400" y="304" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">Randomized Exposure</text>
+  <text x="400" y="322" text-anchor="middle" font-size="10" fill="#f8f8f8">ランダムに表示してログを収集</text>
+  <text x="400" y="340" text-anchor="middle" font-size="10" fill="#f8f8f8">（実験コストが高い）</text>
+  <text x="400" y="354" text-anchor="middle" font-size="9" fill="#94a3b8">探索的推薦で実施</text>
+  <rect x="544" y="284" width="220" height="74" rx="6" fill="rgba(167,139,250,0.1)"/>
+  <text x="654" y="304" text-anchor="middle" font-size="11" font-weight="bold" fill="#a78bfa">Counterfactual Eval</text>
+  <text x="654" y="322" text-anchor="middle" font-size="10" fill="#f8f8f8">因果推論でバイアス除去</text>
+  <text x="654" y="340" text-anchor="middle" font-size="10" fill="#f8f8f8">（反事実評価）</text>
+  <text x="654" y="354" text-anchor="middle" font-size="9" fill="#94a3b8">Meta / Google で採用</text>
+</svg>

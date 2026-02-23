@@ -1,0 +1,35 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">ROUGE スコア — 概念</text>
+  <!-- Formula -->
+  <rect x="20" y="38" width="760" height="56" rx="10" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="2"/>
+  <text x="400" y="60" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">ROUGE-N Recall = (一致 n-gram 数) / (参照文中の n-gram 総数)</text>
+  <text x="400" y="82" text-anchor="middle" font-size="11" fill="#f8f8f8">Recall重視（要約評価）  ←→  BLEUはPrecision重視（翻訳評価）</text>
+  <!-- Venn diagram analogy -->
+  <circle cx="260" cy="210" r="110" fill="rgba(96,165,250,0.12)" stroke="#60a5fa" stroke-width="2"/>
+  <circle cx="360" cy="210" r="110" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="2"/>
+  <text x="190" y="210" text-anchor="middle" font-size="11" fill="#60a5fa">参照文</text>
+  <text x="190" y="228" text-anchor="middle" font-size="11" fill="#60a5fa">のみ</text>
+  <text x="310" y="213" text-anchor="middle" font-size="11" font-weight="bold" fill="#f8f8f8">共通</text>
+  <text x="440" y="210" text-anchor="middle" font-size="11" fill="#34d399">生成文</text>
+  <text x="440" y="228" text-anchor="middle" font-size="11" fill="#34d399">のみ</text>
+  <!-- Arrows -->
+  <line x1="500" y1="170" x2="380" y2="185" stroke="#fbbf24" stroke-width="1.5"/>
+  <polygon points="376,184 386,179 386,191" fill="#fbbf24"/>
+  <rect x="500" y="140" width="200" height="42" rx="8" fill="rgba(251,191,36,0.12)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="600" y="159" text-anchor="middle" font-size="11" font-weight="bold" fill="#fbbf24">ROUGE Recall</text>
+  <text x="600" y="175" text-anchor="middle" font-size="10" fill="#f8f8f8">共通 / 参照文総数</text>
+  <line x1="500" y1="254" x2="380" y2="236" stroke="#a78bfa" stroke-width="1.5"/>
+  <polygon points="376,237 386,231 386,242" fill="#a78bfa"/>
+  <rect x="500" y="234" width="200" height="42" rx="8" fill="rgba(167,139,250,0.12)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="600" y="253" text-anchor="middle" font-size="11" font-weight="bold" fill="#a78bfa">BLEU Precision</text>
+  <text x="600" y="269" text-anchor="middle" font-size="10" fill="#f8f8f8">共通 / 生成文総数</text>
+  <!-- F1 -->
+  <rect x="500" y="290" width="200" height="52" rx="8" fill="rgba(244,114,182,0.12)" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="600" y="310" text-anchor="middle" font-size="11" font-weight="bold" fill="#f472b6">ROUGE F1</text>
+  <text x="600" y="328" text-anchor="middle" font-size="10" fill="#f8f8f8">= 2 × (P×R) / (P+R)</text>
+  <text x="600" y="344" text-anchor="middle" font-size="10" fill="#94a3b8">Precision と Recall の調和平均</text>
+  <!-- Bottom summary -->
+  <rect x="20" y="360" width="760" height="32" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="400" y="374" text-anchor="middle" font-size="11" fill="#34d399">要約評価でよく使われる理由: 「参照サマリーの情報をどれだけ含んでいるか」= Recallが重要</text>
+  <text x="400" y="390" text-anchor="middle" font-size="10" fill="#94a3b8">実務では ROUGE-1 / ROUGE-2 / ROUGE-L の3つを報告するのが標準</text>
+</svg>

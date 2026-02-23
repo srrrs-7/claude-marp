@@ -1,0 +1,50 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">参照ベース vs 参照なし評価</text>
+  <!-- Left: Reference-based -->
+  <rect x="20" y="38" width="370" height="300" rx="12" fill="rgba(96,165,250,0.08)" stroke="#60a5fa" stroke-width="2"/>
+  <text x="205" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa">参照ベース (Reference-based)</text>
+  <line x1="34" y1="72" x2="376" y2="72" stroke="#60a5fa" stroke-width="1" opacity="0.4"/>
+  <!-- Flow -->
+  <rect x="60" y="82" width="280" height="28" rx="6" fill="rgba(96,165,250,0.15)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="200" y="101" text-anchor="middle" font-size="11" fill="#f8f8f8">生成テキスト (Hypothesis)</text>
+  <line x1="200" y1="110" x2="200" y2="128" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="196,126 200,136 204,126" fill="#94a3b8"/>
+  <rect x="60" y="136" width="280" height="28" rx="6" fill="rgba(52,211,153,0.15)" stroke="#34d399" stroke-width="1"/>
+  <text x="200" y="155" text-anchor="middle" font-size="11" fill="#f8f8f8">参照テキスト (Reference)</text>
+  <line x1="200" y1="164" x2="200" y2="182" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="196,180 200,190 204,180" fill="#94a3b8"/>
+  <rect x="60" y="190" width="280" height="28" rx="6" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="200" y="209" text-anchor="middle" font-size="11" fill="#a78bfa">比較 → スコア</text>
+  <!-- Examples -->
+  <text x="40" y="240" font-size="11" fill="#fbbf24">代表指標:</text>
+  <text x="40" y="260" font-size="11" fill="#f8f8f8">BLEU, ROUGE, BERTScore, METEOR</text>
+  <text x="40" y="284" font-size="11" fill="#fbbf24">強み:</text>
+  <text x="40" y="304" font-size="10" fill="#f8f8f8">・再現性が高く標準化されている</text>
+  <text x="40" y="322" font-size="10" fill="#f8f8f8">・ベンチマーク比較が容易</text>
+  <text x="40" y="340" font-size="10" fill="#f472b6">弱み: 参照テキストの作成コストが高い</text>
+  <!-- Right: Reference-free -->
+  <rect x="410" y="38" width="370" height="300" rx="12" fill="rgba(52,211,153,0.08)" stroke="#34d399" stroke-width="2"/>
+  <text x="595" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399">参照なし (Reference-free / QE)</text>
+  <line x1="424" y1="72" x2="766" y2="72" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <!-- Flow -->
+  <rect x="450" y="82" width="280" height="28" rx="6" fill="rgba(96,165,250,0.15)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="590" y="101" text-anchor="middle" font-size="11" fill="#f8f8f8">生成テキスト (Hypothesis)</text>
+  <line x1="590" y1="110" x2="590" y2="128" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="586,126 590,136 594,126" fill="#94a3b8"/>
+  <rect x="450" y="136" width="280" height="28" rx="6" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="590" y="155" text-anchor="middle" font-size="11" fill="#fbbf24">品質推定モデル / LM</text>
+  <line x1="590" y1="164" x2="590" y2="182" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="586,180 590,190 594,180" fill="#94a3b8"/>
+  <rect x="450" y="190" width="280" height="28" rx="6" fill="rgba(52,211,153,0.15)" stroke="#34d399" stroke-width="1"/>
+  <text x="590" y="209" text-anchor="middle" font-size="11" fill="#34d399">品質スコア（参照不要）</text>
+  <!-- Examples -->
+  <text x="430" y="240" font-size="11" fill="#fbbf24">代表指標:</text>
+  <text x="430" y="260" font-size="11" fill="#f8f8f8">Perplexity, COMET-QE, UniTE-src</text>
+  <text x="430" y="284" font-size="11" fill="#fbbf24">強み:</text>
+  <text x="430" y="304" font-size="10" fill="#f8f8f8">・本番データのリアルタイム監視</text>
+  <text x="430" y="322" font-size="10" fill="#f8f8f8">・新ドメインへの即時適用</text>
+  <text x="430" y="340" font-size="10" fill="#f472b6">弱み: モデルバイアス / 精度検証が難しい</text>
+  <!-- Bottom: Use cases -->
+  <rect x="20" y="350" width="760" height="24" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="400" y="366" text-anchor="middle" font-size="11" fill="#94a3b8">実務: 開発・評価 → 参照ベース  |  デプロイ後監視 → 参照なし  |  両方組み合わせるのが理想</text>
+</svg>

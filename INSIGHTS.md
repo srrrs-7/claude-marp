@@ -43,3 +43,14 @@ file:///home/vscode/.claude/usage-data/report.html
 Want to dig into any section or try one of the suggestions?
 SessionEnd hook [If this was a long conversation (20+ messages), remind the user to run /compact to reduce context size. Keep it brief and friendly.] failed: Prompt stop hooks are not yet supported outside REPL
 
+
+---
+
+## 2026-02-24 08:21:20 — branch: `main`
+
+_insights analysis failed (exit: 127)_
+
+```
+env: node: No such file or directory
+```
+

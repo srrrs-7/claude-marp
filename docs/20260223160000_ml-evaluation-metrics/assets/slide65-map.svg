@@ -1,0 +1,39 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">MAP — Mean Average Precision</text>
+  <!-- Formula -->
+  <rect x="20" y="36" width="760" height="46" rx="10" fill="rgba(251,146,60,0.1)" stroke="#fb923c" stroke-width="2"/>
+  <text x="400" y="56" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb923c">MAP = (1/|Q|) × Σ_q AP(q)</text>
+  <text x="400" y="76" text-anchor="middle" font-size="11" fill="#f8f8f8">|Q| = クエリ総数 | AP(q) = クエリ q の Average Precision</text>
+  <!-- Multi-query example -->
+  <text x="400" y="108" text-anchor="middle" font-size="12" font-weight="bold" fill="#f8f8f8">3クエリの例</text>
+  <!-- Query 1 -->
+  <rect x="20" y="118" width="234" height="110" rx="10" fill="rgba(96,165,250,0.1)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="137" y="140" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">Query 1: "Python tutorial"</text>
+  <text x="137" y="162" text-anchor="middle" font-size="10" fill="#f8f8f8">1: ✓  2: ✗  3: ✓  4: ✗  5: ✗</text>
+  <text x="137" y="184" text-anchor="middle" font-size="10" fill="#94a3b8">P@1=1.0, P@3=0.67</text>
+  <rect x="40" y="194" width="174" height="26" rx="6" fill="rgba(96,165,250,0.2)"/>
+  <text x="127" y="211" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa">AP = 0.833</text>
+  <!-- Query 2 -->
+  <rect x="284" y="118" width="234" height="110" rx="10" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="401" y="140" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">Query 2: "ML metrics"</text>
+  <text x="401" y="162" text-anchor="middle" font-size="10" fill="#f8f8f8">1: ✗  2: ✓  3: ✗  4: ✓  5: ✓</text>
+  <text x="401" y="184" text-anchor="middle" font-size="10" fill="#94a3b8">P@2=0.5, P@4=0.5, P@5=0.6</text>
+  <rect x="304" y="194" width="174" height="26" rx="6" fill="rgba(52,211,153,0.2)"/>
+  <text x="391" y="211" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399">AP = 0.533</text>
+  <!-- Query 3 -->
+  <rect x="548" y="118" width="234" height="110" rx="10" fill="rgba(167,139,250,0.1)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="665" y="140" text-anchor="middle" font-size="11" font-weight="bold" fill="#a78bfa">Query 3: "deep learning"</text>
+  <text x="665" y="162" text-anchor="middle" font-size="10" fill="#f8f8f8">1: ✓  2: ✓  3: ✗  4: ✓  5: ✗</text>
+  <text x="665" y="184" text-anchor="middle" font-size="10" fill="#94a3b8">P@1=1.0, P@2=1.0, P@4=0.75</text>
+  <rect x="568" y="194" width="174" height="26" rx="6" fill="rgba(167,139,250,0.2)"/>
+  <text x="655" y="211" text-anchor="middle" font-size="13" font-weight="bold" fill="#a78bfa">AP = 0.917</text>
+  <!-- MAP calculation -->
+  <rect x="100" y="246" width="600" height="54" rx="10" fill="rgba(251,146,60,0.12)" stroke="#fb923c" stroke-width="2"/>
+  <text x="400" y="268" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb923c">MAP = (0.833 + 0.533 + 0.917) / 3 = 2.283 / 3</text>
+  <text x="400" y="290" text-anchor="middle" font-size="14" font-weight="bold" fill="#fb923c">MAP = 0.761</text>
+  <!-- Use cases -->
+  <rect x="20" y="314" width="760" height="54" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="400" y="334" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">MAPが使われる場面</text>
+  <text x="400" y="356" text-anchor="middle" font-size="11" fill="#f8f8f8">情報検索（IR）・文書検索・画像検索・TREC/COCO評価</text>
+  <text x="400" y="372" text-anchor="middle" font-size="10" fill="#94a3b8">注意: 全関連アイテムが既知でないと正確に計算できない</text>
+</svg>

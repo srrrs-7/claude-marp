@@ -1,0 +1,55 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">BERTScore — 意味的類似度</text>
+  <!-- Formula -->
+  <rect x="20" y="38" width="760" height="46" rx="10" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="2"/>
+  <text x="400" y="58" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">BERTScore = F1 of token-level cosine similarities (BERT embeddings)</text>
+  <text x="400" y="76" text-anchor="middle" font-size="11" fill="#f8f8f8">P = max_j cos(x̂ᵢ, xⱼ) 平均  ·  R = max_i cos(x̂ᵢ, xⱼ) 平均  ·  F1 = 調和平均</text>
+  <!-- Architecture diagram -->
+  <!-- Hypothesis tokens -->
+  <text x="200" y="114" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">生成文 tokens</text>
+  <rect x="60" y="122" width="64" height="28" rx="6" fill="rgba(96,165,250,0.2)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="92" y="141" text-anchor="middle" font-size="11" fill="#60a5fa">The</text>
+  <rect x="136" y="122" width="64" height="28" rx="6" fill="rgba(96,165,250,0.2)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="168" y="141" text-anchor="middle" font-size="11" fill="#60a5fa">cat</text>
+  <rect x="212" y="122" width="64" height="28" rx="6" fill="rgba(96,165,250,0.2)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="244" y="141" text-anchor="middle" font-size="11" fill="#60a5fa">feline</text>
+  <!-- BERT encoder -->
+  <rect x="40" y="166" width="320" height="36" rx="8" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="200" y="189" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">BERT Encoder</text>
+  <!-- Embeddings -->
+  <text x="200" y="228" text-anchor="middle" font-size="10" fill="#60a5fa">embeddings: ĥ(The), ĥ(cat), ĥ(feline)</text>
+  <!-- Reference tokens -->
+  <text x="600" y="114" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">参照文 tokens</text>
+  <rect x="460" y="122" width="64" height="28" rx="6" fill="rgba(52,211,153,0.2)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="492" y="141" text-anchor="middle" font-size="11" fill="#34d399">The</text>
+  <rect x="536" y="122" width="64" height="28" rx="6" fill="rgba(52,211,153,0.2)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="568" y="141" text-anchor="middle" font-size="11" fill="#34d399">cat</text>
+  <rect x="612" y="122" width="64" height="28" rx="6" fill="rgba(52,211,153,0.2)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="644" y="141" text-anchor="middle" font-size="11" fill="#34d399">kitty</text>
+  <!-- BERT encoder 2 -->
+  <rect x="440" y="166" width="320" height="36" rx="8" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="600" y="189" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">BERT Encoder</text>
+  <text x="600" y="228" text-anchor="middle" font-size="10" fill="#34d399">embeddings: h(The), h(cat), h(kitty)</text>
+  <!-- Cosine similarity matrix -->
+  <rect x="200" y="246" width="400" height="86" rx="8" fill="rgba(167,139,250,0.1)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="400" y="264" text-anchor="middle" font-size="11" font-weight="bold" fill="#a78bfa">Cosine Similarity Matrix</text>
+  <!-- grid -->
+  <text x="280" y="286" text-anchor="middle" font-size="10" fill="#94a3b8">The</text>
+  <text x="340" y="286" text-anchor="middle" font-size="10" fill="#94a3b8">cat</text>
+  <text x="400" y="286" text-anchor="middle" font-size="10" fill="#94a3b8">kitty</text>
+  <text x="228" y="304" text-anchor="middle" font-size="10" fill="#60a5fa">feline</text>
+  <text x="280" y="304" text-anchor="middle" font-size="10" fill="#94a3b8">0.41</text>
+  <text x="340" y="304" text-anchor="middle" font-size="10" fill="#a78bfa">0.68</text>
+  <text x="400" y="304" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399">0.89</text>
+  <text x="428" y="298" text-anchor="middle" font-size="9" fill="#34d399">← max</text>
+  <!-- P, R, F1 -->
+  <rect x="20" y="348" width="233" height="60" rx="8" fill="rgba(96,165,250,0.12)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="136" y="368" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">Precision</text>
+  <text x="136" y="390" text-anchor="middle" font-size="12" fill="#f8f8f8">各生成トークンの max コサイン</text>
+  <rect x="283" y="348" width="233" height="60" rx="8" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="399" y="368" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">Recall</text>
+  <text x="399" y="390" text-anchor="middle" font-size="12" fill="#f8f8f8">各参照トークンの max コサイン</text>
+  <rect x="546" y="348" width="233" height="60" rx="8" fill="rgba(244,114,182,0.12)" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="662" y="368" text-anchor="middle" font-size="11" font-weight="bold" fill="#f472b6">F1 = BERTScore</text>
+  <text x="662" y="390" text-anchor="middle" font-size="12" fill="#f8f8f8">P と R の調和平均</text>
+</svg>

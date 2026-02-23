@@ -1,0 +1,39 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">オフライン評価 vs オンライン評価</text>
+  <!-- Offline -->
+  <rect x="20" y="38" width="370" height="280" rx="12" fill="rgba(96,165,250,0.08)" stroke="#60a5fa" stroke-width="2"/>
+  <text x="205" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa">オフライン評価</text>
+  <line x1="34" y1="72" x2="376" y2="72" stroke="#60a5fa" stroke-width="1" opacity="0.4"/>
+  <text x="36" y="92" font-size="11" fill="#fbbf24">手法:</text>
+  <text x="36" y="110" font-size="10" fill="#f8f8f8">固定データセット + 留保テストセット</text>
+  <text x="36" y="128" font-size="10" fill="#f8f8f8">NDCG/MAP/MRR/Hit Rate を計算</text>
+  <text x="36" y="154" font-size="11" fill="#fbbf24">強み:</text>
+  <text x="36" y="172" font-size="10" fill="#f8f8f8">✓ 高速・低コスト</text>
+  <text x="36" y="190" font-size="10" fill="#f8f8f8">✓ 再現性がある</text>
+  <text x="36" y="208" font-size="10" fill="#f8f8f8">✓ 多数のモデルを比較可能</text>
+  <text x="36" y="226" font-size="10" fill="#f8f8f8">✓ ユーザー影響なし（安全）</text>
+  <text x="36" y="252" font-size="11" fill="#f472b6">弱み:</text>
+  <text x="36" y="270" font-size="10" fill="#f8f8f8">✗ 実際のユーザー行動を反映しない</text>
+  <text x="36" y="288" font-size="10" fill="#f8f8f8">✗ 位置バイアス・フィードバックループを無視</text>
+  <text x="36" y="306" font-size="10" fill="#f8f8f8">✗ 「NDCGが高くてもCTRが上がらない」ことが頻繁</text>
+  <!-- Online -->
+  <rect x="410" y="38" width="370" height="280" rx="12" fill="rgba(52,211,153,0.08)" stroke="#34d399" stroke-width="2"/>
+  <text x="595" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399">オンライン評価（A/Bテスト）</text>
+  <line x1="424" y1="72" x2="766" y2="72" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <text x="426" y="92" font-size="11" fill="#fbbf24">手法:</text>
+  <text x="426" y="110" font-size="10" fill="#f8f8f8">実際のユーザーをA/Bグループに分割</text>
+  <text x="426" y="128" font-size="10" fill="#f8f8f8">CTR・CVR・ARPU・エンゲージメントを計測</text>
+  <text x="426" y="154" font-size="11" fill="#fbbf24">強み:</text>
+  <text x="426" y="172" font-size="10" fill="#f8f8f8">✓ 真の効果を測定できる</text>
+  <text x="426" y="190" font-size="10" fill="#f8f8f8">✓ ビジネスKPIに直結</text>
+  <text x="426" y="208" font-size="10" fill="#f8f8f8">✓ ユーザー行動の変化を捕捉</text>
+  <text x="426" y="226" font-size="10" fill="#f8f8f8">✓ 長期効果（ノベルティ/慣れ）を測れる</text>
+  <text x="426" y="252" font-size="11" fill="#f472b6">弱み:</text>
+  <text x="426" y="270" font-size="10" fill="#f8f8f8">✗ コスト・時間がかかる</text>
+  <text x="426" y="288" font-size="10" fill="#f8f8f8">✗ トラフィックが必要（少数ユーザーでは有意差なし）</text>
+  <text x="426" y="306" font-size="10" fill="#f8f8f8">✗ ユーザーへの悪影響リスクがある</text>
+  <!-- Workflow -->
+  <rect x="20" y="330" width="760" height="42" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="400" y="350" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">実務ワークフロー</text>
+  <text x="400" y="366" text-anchor="middle" font-size="11" fill="#f8f8f8">オフライン評価でモデルを絞り込む → 上位候補のみオンラインA/Bテスト → 結果でオフライン評価をキャリブレーション</text>
+</svg>

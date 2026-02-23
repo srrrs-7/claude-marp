@@ -1,0 +1,79 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">クラスタリング指標 — まとめ</text>
+  <!-- 6 metric cards -->
+  <!-- Inertia -->
+  <rect x="20" y="36" width="240" height="100" rx="10" fill="rgba(251,146,60,0.1)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="140" y="58" text-anchor="middle" font-size="13" font-weight="bold" fill="#fb923c">Inertia</text>
+  <text x="36" y="78" font-size="10" fill="#f8f8f8">• ラベル不要・O(nk)高速</text>
+  <text x="36" y="94" font-size="10" fill="#f8f8f8">• エルボー法でk候補を絞る</text>
+  <text x="36" y="110" font-size="10" fill="#94a3b8">→ k探索の第一歩</text>
+  <text x="36" y="126" font-size="10" fill="#f472b6">⚠ 球形前提・次元の呪い注意</text>
+  <!-- Silhouette -->
+  <rect x="280" y="36" width="240" height="100" rx="10" fill="rgba(96,165,250,0.1)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="400" y="58" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa">Silhouette</text>
+  <text x="296" y="78" font-size="10" fill="#f8f8f8">• ラベル不要・−1〜+1</text>
+  <text x="296" y="94" font-size="10" fill="#f8f8f8">• クラスタ品質を総合評価</text>
+  <text x="296" y="110" font-size="10" fill="#94a3b8">→ 最終k確定・品質チェック</text>
+  <text x="296" y="126" font-size="10" fill="#f472b6">⚠ O(n²)で大規模データ注意</text>
+  <!-- DBI -->
+  <rect x="540" y="36" width="240" height="100" rx="10" fill="rgba(167,139,250,0.1)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="660" y="58" text-anchor="middle" font-size="13" font-weight="bold" fill="#a78bfa">Davies-Bouldin</text>
+  <text x="556" y="78" font-size="10" fill="#f8f8f8">• ラベル不要・0〜∞（↓良）</text>
+  <text x="556" y="94" font-size="10" fill="#f8f8f8">• 重心距離ベースで直感的</text>
+  <text x="556" y="110" font-size="10" fill="#94a3b8">→ モデル比較・補助指標</text>
+  <text x="556" y="126" font-size="10" fill="#f472b6">⚠ 凸形状クラスタ前提</text>
+  <!-- CH -->
+  <rect x="20" y="150" width="240" height="100" rx="10" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="140" y="172" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399">Calinski-Harabász</text>
+  <text x="36" y="192" font-size="10" fill="#f8f8f8">• ラベル不要・0〜∞（↑良）</text>
+  <text x="36" y="208" font-size="10" fill="#f8f8f8">• 分散比・ノイズ耐性高い</text>
+  <text x="36" y="224" font-size="10" fill="#94a3b8">→ 高速k選択・大規模向き</text>
+  <text x="36" y="240" font-size="10" fill="#f472b6">⚠ 凸形状で有効・真球想定</text>
+  <!-- ARI -->
+  <rect x="280" y="150" width="240" height="100" rx="10" fill="rgba(96,165,250,0.08)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="400" y="172" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa">ARI</text>
+  <text x="296" y="192" font-size="10" fill="#f8f8f8">• ラベル必要・−0.5〜1</text>
+  <text x="296" y="208" font-size="10" fill="#f8f8f8">• 偶然一致補正・ペア比較</text>
+  <text x="296" y="224" font-size="10" fill="#94a3b8">→ ベンチマーク・研究評価</text>
+  <text x="296" y="240" font-size="10" fill="#34d399">✓ クラスタ数・サイズ不問</text>
+  <!-- NMI/AMI -->
+  <rect x="540" y="150" width="240" height="100" rx="10" fill="rgba(167,139,250,0.08)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="660" y="172" text-anchor="middle" font-size="13" font-weight="bold" fill="#a78bfa">NMI / AMI</text>
+  <text x="556" y="192" font-size="10" fill="#f8f8f8">• ラベル必要・0〜1</text>
+  <text x="556" y="208" font-size="10" fill="#f8f8f8">• 情報量ベース・AMIは補正済</text>
+  <text x="556" y="224" font-size="10" fill="#94a3b8">→ 研究論文・情報理論的評価</text>
+  <text x="556" y="240" font-size="10" fill="#34d399">✓ AMI推奨（クラスタ数補正）</text>
+  <!-- Decision flowchart -->
+  <rect x="20" y="264" width="760" height="126" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="400" y="284" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">4ステップ実務ガイド</text>
+  <!-- Step boxes -->
+  <rect x="36" y="296" width="160" height="80" rx="8" fill="rgba(251,146,60,0.12)" stroke="#fb923c" stroke-width="1"/>
+  <text x="116" y="314" text-anchor="middle" font-size="10" font-weight="bold" fill="#fb923c">Step 1: k候補探索</text>
+  <text x="116" y="330" text-anchor="middle" font-size="9" fill="#f8f8f8">Inertia（エルボー）</text>
+  <text x="116" y="344" text-anchor="middle" font-size="9" fill="#f8f8f8">CH（ピーク）</text>
+  <text x="116" y="358" text-anchor="middle" font-size="9" fill="#94a3b8">→ 候補k=3〜5</text>
+  <!-- Arrow -->
+  <polygon points="198,336 210,330 210,342" fill="#475569"/>
+  <line x1="196" y1="336" x2="210" y2="336" stroke="#475569" stroke-width="1.5"/>
+  <rect x="212" y="296" width="160" height="80" rx="8" fill="rgba(96,165,250,0.12)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="292" y="314" text-anchor="middle" font-size="10" font-weight="bold" fill="#60a5fa">Step 2: k確定</text>
+  <text x="292" y="330" text-anchor="middle" font-size="9" fill="#f8f8f8">Silhouette（ピーク）</text>
+  <text x="292" y="344" text-anchor="middle" font-size="9" fill="#f8f8f8">DBI（最小）</text>
+  <text x="292" y="358" text-anchor="middle" font-size="9" fill="#94a3b8">→ 最適k決定</text>
+  <!-- Arrow -->
+  <polygon points="374,336 386,330 386,342" fill="#475569"/>
+  <line x1="372" y1="336" x2="386" y2="336" stroke="#475569" stroke-width="1.5"/>
+  <rect x="388" y="296" width="160" height="80" rx="8" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1"/>
+  <text x="468" y="314" text-anchor="middle" font-size="10" font-weight="bold" fill="#34d399">Step 3: 可視化</text>
+  <text x="468" y="330" text-anchor="middle" font-size="9" fill="#f8f8f8">t-SNE / PCA</text>
+  <text x="468" y="344" text-anchor="middle" font-size="9" fill="#f8f8f8">Silhouette plot</text>
+  <text x="468" y="358" text-anchor="middle" font-size="9" fill="#94a3b8">→ 目視確認</text>
+  <!-- Arrow -->
+  <polygon points="550,336 562,330 562,342" fill="#475569"/>
+  <line x1="548" y1="336" x2="562" y2="336" stroke="#475569" stroke-width="1.5"/>
+  <rect x="564" y="296" width="196" height="80" rx="8" fill="rgba(167,139,250,0.12)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="662" y="314" text-anchor="middle" font-size="10" font-weight="bold" fill="#a78bfa">Step 4: ベンチマーク</text>
+  <text x="662" y="330" text-anchor="middle" font-size="9" fill="#f8f8f8">ARI + AMI（ラベルあり）</text>
+  <text x="662" y="344" text-anchor="middle" font-size="9" fill="#f8f8f8">他手法との公平比較</text>
+  <text x="662" y="358" text-anchor="middle" font-size="9" fill="#94a3b8">→ 論文・報告書</text>
+</svg>

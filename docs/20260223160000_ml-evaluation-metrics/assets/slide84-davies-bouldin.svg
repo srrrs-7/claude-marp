@@ -1,0 +1,56 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">Davies-Bouldin Index (DBI)</text>
+  <!-- Formula -->
+  <rect x="20" y="36" width="760" height="56" rx="10" fill="rgba(167,139,250,0.1)" stroke="#a78bfa" stroke-width="2"/>
+  <text x="400" y="58" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa">DBI = (1/k) × Σᵢ max_{j≠i} [(σᵢ + σⱼ) / d(cᵢ, cⱼ)]</text>
+  <text x="400" y="78" text-anchor="middle" font-size="11" fill="#f8f8f8">σᵢ = クラスタi内の平均距離  |  d(cᵢ, cⱼ) = 重心間距離  |  小さいほど良い（0が理想）</text>
+  <!-- Visual explanation -->
+  <rect x="20" y="104" width="370" height="230" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="205" y="126" text-anchor="middle" font-size="11" font-weight="bold" fill="#fbbf24">DBI の直感的意味</text>
+  <!-- Good case -->
+  <text x="60" y="154" text-anchor="middle" font-size="10" fill="#34d399">良いクラスタリング</text>
+  <!-- Cluster 1 small -->
+  <circle cx="80" cy="195" r="25" fill="rgba(96,165,250,0.12)" stroke="#60a5fa" stroke-width="1.5"/>
+  <circle cx="80" cy="195" r="4" fill="#60a5fa"/>
+  <text x="80" y="190" text-anchor="middle" font-size="9" fill="#60a5fa">σ小</text>
+  <!-- Cluster 2 small -->
+  <circle cx="200" cy="195" r="25" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1.5"/>
+  <circle cx="200" cy="195" r="4" fill="#34d399"/>
+  <text x="200" y="190" text-anchor="middle" font-size="9" fill="#34d399">σ小</text>
+  <!-- Distance between -->
+  <line x1="80" y1="195" x2="200" y2="195" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="140" y="183" text-anchor="middle" font-size="9" fill="#fbbf24">d 大</text>
+  <text x="140" y="230" text-anchor="middle" font-size="10" fill="#34d399">DBI 低 → (σ小+σ小)/d大 ≪ 1</text>
+  <!-- Bad case -->
+  <text x="305" y="154" text-anchor="middle" font-size="10" fill="#f472b6">悪いクラスタリング</text>
+  <!-- Cluster 3 large -->
+  <circle cx="255" cy="195" r="40" fill="rgba(244,114,182,0.12)" stroke="#f472b6" stroke-width="1.5"/>
+  <circle cx="255" cy="195" r="4" fill="#f472b6"/>
+  <text x="255" y="188" text-anchor="middle" font-size="9" fill="#f472b6">σ大</text>
+  <!-- Cluster 4 large close -->
+  <circle cx="340" cy="195" r="35" fill="rgba(251,146,60,0.12)" stroke="#fb923c" stroke-width="1.5"/>
+  <circle cx="340" cy="195" r="4" fill="#fb923c"/>
+  <text x="340" y="188" text-anchor="middle" font-size="9" fill="#fb923c">σ大</text>
+  <!-- Distance -->
+  <line x1="255" y1="195" x2="340" y2="195" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="298" y="183" text-anchor="middle" font-size="9" fill="#fbbf24">d 小</text>
+  <text x="298" y="250" text-anchor="middle" font-size="10" fill="#f472b6">DBI 高 → (σ大+σ大)/d小 &gt; 1</text>
+  <!-- Formula components summary -->
+  <text x="205" y="310" text-anchor="middle" font-size="10" fill="#94a3b8">クラスタ内広がり：小さい ✓  クラスタ間距離：大きい ✓</text>
+  <!-- Properties -->
+  <rect x="410" y="104" width="370" height="230" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="595" y="126" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">DBI の特性</text>
+  <text x="426" y="152" font-size="11" fill="#f8f8f8">値の範囲: 0〜∞（低いほど良い）</text>
+  <text x="426" y="172" font-size="11" fill="#f8f8f8">理想: 0（完全分離）</text>
+  <text x="426" y="196" font-size="11" fill="#34d399">強み:</text>
+  <text x="426" y="214" font-size="10" fill="#f8f8f8">✓ Silhouetteより高速（O(k²n)）</text>
+  <text x="426" y="232" font-size="10" fill="#f8f8f8">✓ 凸形状クラスタに有効</text>
+  <text x="426" y="250" font-size="10" fill="#f8f8f8">✓ sklearn標準で実装済み</text>
+  <text x="426" y="274" font-size="11" fill="#f472b6">注意:</text>
+  <text x="426" y="292" font-size="10" fill="#f8f8f8">✗ 球形・均一サイズを前提にしている</text>
+  <text x="426" y="310" font-size="10" fill="#f8f8f8">✗ 非凸形状では過小評価されやすい</text>
+  <!-- Comparison table -->
+  <rect x="20" y="346" width="760" height="26" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="200" y="363" text-anchor="middle" font-size="10" fill="#f8f8f8">Silhouette: O(n²)  vs  DBI: O(k²n)</text>
+  <text x="600" y="363" text-anchor="middle" font-size="10" fill="#94a3b8">大規模データではDBIの方がスケール</text>
+</svg>

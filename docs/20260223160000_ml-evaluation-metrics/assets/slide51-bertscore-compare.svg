@@ -1,0 +1,51 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">BERTScore vs BLEU/ROUGE — 具体例</text>
+  <!-- Case 1: Synonyms -->
+  <rect x="20" y="38" width="760" height="110" rx="10" fill="rgba(52,211,153,0.08)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="36" y="58" font-size="12" font-weight="bold" fill="#34d399">ケース 1: 同義語・言い換え</text>
+  <text x="36" y="80" font-size="11" fill="#fbbf24">Reference:</text>
+  <text x="130" y="80" font-size="11" fill="#f8f8f8">"The physician examined the patient carefully."</text>
+  <text x="36" y="100" font-size="11" fill="#fbbf24">Hypothesis:</text>
+  <text x="130" y="100" font-size="11" fill="#f8f8f8">"The doctor checked the sick person thoroughly."</text>
+  <!-- Scores -->
+  <text x="36" y="124" font-size="10" fill="#94a3b8">BLEU-4:</text>
+  <rect x="100" y="112" width="40" height="16" rx="3" fill="rgba(244,114,182,0.3)"/>
+  <text x="120" y="124" text-anchor="middle" font-size="10" fill="#f472b6">0.00</text>
+  <text x="148" y="124" font-size="10" fill="#94a3b8">ROUGE-1:</text>
+  <rect x="220" y="112" width="40" height="16" rx="3" fill="rgba(251,146,60,0.3)"/>
+  <text x="240" y="124" text-anchor="middle" font-size="10" fill="#fb923c">0.29</text>
+  <text x="270" y="124" font-size="10" fill="#94a3b8">BERTScore F1:</text>
+  <rect x="370" y="112" width="56" height="16" rx="3" fill="rgba(52,211,153,0.3)"/>
+  <text x="398" y="124" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">0.91</text>
+  <text x="432" y="124" font-size="10" fill="#34d399">← 意味的に高い類似度を正確に評価</text>
+  <!-- Case 2: Word order -->
+  <rect x="20" y="158" width="760" height="110" rx="10" fill="rgba(96,165,250,0.08)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="36" y="178" font-size="12" font-weight="bold" fill="#60a5fa">ケース 2: 語順の違い（意味は同じ）</text>
+  <text x="36" y="200" font-size="11" fill="#fbbf24">Reference:</text>
+  <text x="130" y="200" font-size="11" fill="#f8f8f8">"The dog bit the man."</text>
+  <text x="36" y="220" font-size="11" fill="#fbbf24">Hypothesis:</text>
+  <text x="130" y="220" font-size="11" fill="#f8f8f8">"The man was bitten by the dog."（受動態）</text>
+  <text x="36" y="244" font-size="10" fill="#94a3b8">BLEU-4:</text>
+  <rect x="100" y="232" width="40" height="16" rx="3" fill="rgba(244,114,182,0.3)"/>
+  <text x="120" y="244" text-anchor="middle" font-size="10" fill="#f472b6">0.12</text>
+  <text x="148" y="244" font-size="10" fill="#94a3b8">ROUGE-2:</text>
+  <rect x="220" y="232" width="40" height="16" rx="3" fill="rgba(251,146,60,0.3)"/>
+  <text x="240" y="244" text-anchor="middle" font-size="10" fill="#fb923c">0.20</text>
+  <text x="270" y="244" font-size="10" fill="#94a3b8">BERTScore F1:</text>
+  <rect x="370" y="232" width="56" height="16" rx="3" fill="rgba(52,211,153,0.3)"/>
+  <text x="398" y="244" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">0.87</text>
+  <text x="432" y="244" font-size="10" fill="#34d399">← 受動態変換を意味的類似と認識</text>
+  <!-- Tradeoffs -->
+  <rect x="20" y="278" width="370" height="106" rx="10" fill="rgba(52,211,153,0.06)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="205" y="298" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">BERTScore の強み</text>
+  <text x="36" y="318" font-size="11" fill="#f8f8f8">✓ 同義語・言い換えを自然に評価</text>
+  <text x="36" y="338" font-size="11" fill="#f8f8f8">✓ 語順の柔軟性を考慮できる</text>
+  <text x="36" y="358" font-size="11" fill="#f8f8f8">✓ 多言語モデルで多言語対応可</text>
+  <text x="36" y="378" font-size="11" fill="#f8f8f8">✓ n-gramより人間評価との相関が高い</text>
+  <rect x="410" y="278" width="370" height="106" rx="10" fill="rgba(244,114,182,0.06)" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="595" y="298" text-anchor="middle" font-size="12" font-weight="bold" fill="#f472b6">BERTScore の課題</text>
+  <text x="426" y="318" font-size="11" fill="#f8f8f8">✗ 計算コストが高い（GPU推奨）</text>
+  <text x="426" y="338" font-size="11" fill="#f8f8f8">✗ モデル選択でスコアが変動する</text>
+  <text x="426" y="358" font-size="11" fill="#f8f8f8">✗ 意味的近さ≠品質（流暢さ不足でも高スコア）</text>
+  <text x="426" y="378" font-size="11" fill="#f8f8f8">✗ 絶対値の解釈が直感的でない</text>
+</svg>

@@ -1,0 +1,57 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#34d399">回帰指標 — まとめ</text>
+  <!-- Left: formulas -->
+  <rect x="16" y="38" width="368" height="338" rx="12" fill="rgba(52,211,153,0.08)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="200" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399">公式チートシート</text>
+  <line x1="26" y1="72" x2="374" y2="72" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <text x="30" y="92" font-size="11" fill="#fb923c">MAE</text>
+  <text x="100" y="92" font-size="11" fill="#f8f8f8">= (1/n)·Σ|y−ŷ|</text>
+  <text x="30" y="112" font-size="11" fill="#fb923c">MSE</text>
+  <text x="100" y="112" font-size="11" fill="#f8f8f8">= (1/n)·Σ(y−ŷ)²</text>
+  <text x="30" y="132" font-size="11" fill="#fb923c">RMSE</text>
+  <text x="100" y="132" font-size="11" fill="#f8f8f8">= √MSE</text>
+  <text x="30" y="152" font-size="11" fill="#34d399">R²</text>
+  <text x="100" y="152" font-size="11" fill="#f8f8f8">= 1 − SS_res/SS_tot</text>
+  <text x="30" y="172" font-size="11" fill="#34d399">Adj-R²</text>
+  <text x="100" y="172" font-size="11" fill="#f8f8f8">= 1 − (1−R²)(n−1)/(n−k−1)</text>
+  <text x="30" y="192" font-size="11" fill="#fb923c">MAPE</text>
+  <text x="100" y="192" font-size="11" fill="#f8f8f8">= (100/n)·Σ|y−ŷ|/|y|  (%)</text>
+  <text x="30" y="212" font-size="11" fill="#fb923c">SMAPE</text>
+  <text x="100" y="212" font-size="11" fill="#f8f8f8">= (200/n)·Σ|y−ŷ|/(|y|+|ŷ|)</text>
+  <text x="30" y="232" font-size="11" fill="#a78bfa">Huber</text>
+  <text x="100" y="232" font-size="11" fill="#f8f8f8">= ½e²   if |e|≤δ  else  δ(|e|−½δ)</text>
+  <line x1="26" y1="244" x2="374" y2="244" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <text x="200" y="264" text-anchor="middle" font-size="12" font-weight="bold" fill="#f8f8f8">外れ値感度の序列</text>
+  <!-- bar chart small -->
+  <text x="30" y="284" font-size="11" fill="#34d399">MAE</text>
+  <rect x="90" y="272" width="80" height="14" rx="3" fill="rgba(52,211,153,0.5)"/>
+  <text x="178" y="284" font-size="10" fill="#34d399">低</text>
+  <text x="30" y="302" font-size="11" fill="#a78bfa">Huber</text>
+  <rect x="90" y="290" width="120" height="14" rx="3" fill="rgba(167,139,250,0.5)"/>
+  <text x="218" y="302" font-size="10" fill="#a78bfa">中</text>
+  <text x="30" y="320" font-size="11" fill="#fb923c">RMSE</text>
+  <rect x="90" y="308" width="200" height="14" rx="3" fill="rgba(251,146,60,0.5)"/>
+  <text x="298" y="320" font-size="10" fill="#fb923c">高</text>
+  <text x="30" y="338" font-size="11" fill="#f472b6">MSE</text>
+  <rect x="90" y="326" width="270" height="14" rx="3" fill="rgba(244,114,182,0.7)"/>
+  <text x="368" y="338" font-size="10" fill="#f472b6">最高</text>
+  <!-- Right: usage guide -->
+  <rect x="416" y="38" width="368" height="338" rx="12" fill="rgba(96,165,250,0.08)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="600" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa">シーン別クイックガイド</text>
+  <line x1="426" y1="72" x2="774" y2="72" stroke="#60a5fa" stroke-width="1" opacity="0.4"/>
+  <text x="430" y="94" font-size="11" fill="#fbbf24">▸ 最初の回帰モデル評価</text>
+  <text x="446" y="112" font-size="11" fill="#f8f8f8">RMSE + R² + MAE の3点セット</text>
+  <text x="430" y="134" font-size="11" fill="#fbbf24">▸ 外れ値が多い / ノイジーなデータ</text>
+  <text x="446" y="152" font-size="11" fill="#f8f8f8">MAE を主指標に / 最適化は Huber</text>
+  <text x="430" y="174" font-size="11" fill="#fbbf24">▸ 複数データセットを横断比較</text>
+  <text x="446" y="192" font-size="11" fill="#f8f8f8">MAPE または R² を使う</text>
+  <text x="430" y="214" font-size="11" fill="#fbbf24">▸ 時系列・需要予測</text>
+  <text x="446" y="232" font-size="11" fill="#f8f8f8">MAPE / SMAPE / Log-RMSE</text>
+  <text x="430" y="254" font-size="11" fill="#fbbf24">▸ 特徴量が多いモデル選択</text>
+  <text x="446" y="272" font-size="11" fill="#f8f8f8">Adjusted R² でペナルティ込みで比較</text>
+  <text x="430" y="294" font-size="11" fill="#fbbf24">▸ ニューラルネット/勾配法での最適化</text>
+  <text x="446" y="312" font-size="11" fill="#f8f8f8">MSE (滑らか) / Huber (ロバスト)</text>
+  <line x1="426" y1="324" x2="774" y2="324" stroke="#60a5fa" stroke-width="1" opacity="0.4"/>
+  <text x="600" y="344" text-anchor="middle" font-size="11" fill="#94a3b8">RMSE − MAE の差が大きい</text>
+  <text x="600" y="362" text-anchor="middle" font-size="11" fill="#f472b6">→ 外れ値が存在するサイン</text>
+</svg>

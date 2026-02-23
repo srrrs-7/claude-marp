@@ -1,0 +1,107 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#f8f8f8">タスク別 指標選択ガイド — 決定フローチャート</text>
+  <!-- Start node -->
+  <rect x="330" y="34" width="140" height="30" rx="15" fill="#475569" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="400" y="54" text-anchor="middle" font-size="11" fill="#f8f8f8">タスクは何？</text>
+  <!-- Arrows to 5 branches -->
+  <!-- Branch 1: Classification -->
+  <line x1="340" y1="64" x2="80" y2="100" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="78,99 86,94 84,103" fill="#475569"/>
+  <rect x="20" y="100" width="120" height="28" rx="6" fill="rgba(96,165,250,0.15)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="80" y="119" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">分類</text>
+
+  <!-- Branch 2: Regression -->
+  <line x1="355" y1="64" x2="220" y2="100" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="218,99 226,94 224,103" fill="#475569"/>
+  <rect x="160" y="100" width="120" height="28" rx="6" fill="rgba(52,211,153,0.15)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="220" y="119" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">回帰</text>
+
+  <!-- Branch 3: NLP -->
+  <line x1="400" y1="64" x2="400" y2="100" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="397,99 403,99 400,108" fill="#475569"/>
+  <rect x="340" y="100" width="120" height="28" rx="6" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="400" y="119" text-anchor="middle" font-size="11" font-weight="bold" fill="#a78bfa">NLP生成</text>
+
+  <!-- Branch 4: Ranking -->
+  <line x1="445" y1="64" x2="580" y2="100" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="578,99 586,94 584,103" fill="#475569"/>
+  <rect x="520" y="100" width="120" height="28" rx="6" fill="rgba(251,146,60,0.15)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="580" y="119" text-anchor="middle" font-size="11" font-weight="bold" fill="#fb923c">推薦/検索</text>
+
+  <!-- Branch 5: Clustering -->
+  <line x1="460" y1="64" x2="720" y2="100" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="718,99 726,94 724,103" fill="#475569"/>
+  <rect x="660" y="100" width="120" height="28" rx="6" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="720" y="119" text-anchor="middle" font-size="11" font-weight="bold" fill="#fbbf24">クラスタリング</text>
+
+  <!-- Classification sub-flow -->
+  <line x1="80" y1="128" x2="80" y2="148" stroke="#475569" stroke-width="1"/>
+  <rect x="22" y="148" width="116" height="62" rx="6" fill="rgba(255,255,255,0.03)" stroke="#475569" stroke-width="1"/>
+  <text x="80" y="166" text-anchor="middle" font-size="9" fill="#60a5fa">均衡データ:</text>
+  <text x="80" y="180" text-anchor="middle" font-size="9" fill="#f8f8f8">Accuracy + AUC</text>
+  <text x="80" y="196" text-anchor="middle" font-size="9" fill="#60a5fa">不均衡データ:</text>
+  <text x="80" y="210" text-anchor="middle" font-size="9" fill="#f8f8f8">F1 + PR-AUC</text>
+
+  <!-- Regression sub-flow -->
+  <line x1="220" y1="128" x2="220" y2="148" stroke="#475569" stroke-width="1"/>
+  <rect x="162" y="148" width="116" height="62" rx="6" fill="rgba(255,255,255,0.03)" stroke="#475569" stroke-width="1"/>
+  <text x="220" y="166" text-anchor="middle" font-size="9" fill="#34d399">外れ値あり:</text>
+  <text x="220" y="180" text-anchor="middle" font-size="9" fill="#f8f8f8">MAE / Huber</text>
+  <text x="220" y="196" text-anchor="middle" font-size="9" fill="#34d399">スケール比較:</text>
+  <text x="220" y="210" text-anchor="middle" font-size="9" fill="#f8f8f8">R² / MAPE</text>
+
+  <!-- NLP sub-flow -->
+  <line x1="400" y1="128" x2="400" y2="148" stroke="#475569" stroke-width="1"/>
+  <rect x="342" y="148" width="116" height="76" rx="6" fill="rgba(255,255,255,0.03)" stroke="#475569" stroke-width="1"/>
+  <text x="400" y="166" text-anchor="middle" font-size="9" fill="#a78bfa">翻訳/要約:</text>
+  <text x="400" y="180" text-anchor="middle" font-size="9" fill="#f8f8f8">BLEU / ROUGE</text>
+  <text x="400" y="196" text-anchor="middle" font-size="9" fill="#a78bfa">対話/QA:</text>
+  <text x="400" y="210" text-anchor="middle" font-size="9" fill="#f8f8f8">BERTScore</text>
+  <text x="400" y="222" text-anchor="middle" font-size="9" fill="#f8f8f8">LLM-Judge</text>
+
+  <!-- Ranking sub-flow -->
+  <line x1="580" y1="128" x2="580" y2="148" stroke="#475569" stroke-width="1"/>
+  <rect x="522" y="148" width="116" height="76" rx="6" fill="rgba(255,255,255,0.03)" stroke="#475569" stroke-width="1"/>
+  <text x="580" y="166" text-anchor="middle" font-size="9" fill="#fb923c">関連度順序:</text>
+  <text x="580" y="180" text-anchor="middle" font-size="9" fill="#f8f8f8">NDCG / MAP</text>
+  <text x="580" y="196" text-anchor="middle" font-size="9" fill="#fb923c">初回ヒット:</text>
+  <text x="580" y="210" text-anchor="middle" font-size="9" fill="#f8f8f8">MRR</text>
+  <text x="580" y="222" text-anchor="middle" font-size="9" fill="#f8f8f8">カバレッジ: HR@K</text>
+
+  <!-- Clustering sub-flow -->
+  <line x1="720" y1="128" x2="720" y2="148" stroke="#475569" stroke-width="1"/>
+  <rect x="662" y="148" width="116" height="76" rx="6" fill="rgba(255,255,255,0.03)" stroke="#475569" stroke-width="1"/>
+  <text x="720" y="166" text-anchor="middle" font-size="9" fill="#fbbf24">ラベルなし:</text>
+  <text x="720" y="180" text-anchor="middle" font-size="9" fill="#f8f8f8">Silhouette+CH</text>
+  <text x="720" y="196" text-anchor="middle" font-size="9" fill="#fbbf24">ラベルあり:</text>
+  <text x="720" y="210" text-anchor="middle" font-size="9" fill="#f8f8f8">ARI + AMI</text>
+  <text x="720" y="222" text-anchor="middle" font-size="9" fill="#f8f8f8">k探索: Inertia</text>
+
+  <!-- Common warnings section -->
+  <rect x="20" y="244" width="760" height="164" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="400" y="264" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">共通チェックリスト</text>
+
+  <!-- 3 columns of checks -->
+  <text x="36" y="286" font-size="11" font-weight="bold" fill="#60a5fa">データ特性</text>
+  <text x="36" y="302" font-size="10" fill="#f8f8f8">□ クラス不均衡はあるか？</text>
+  <text x="36" y="316" font-size="10" fill="#f8f8f8">□ 外れ値の影響を受けるか？</text>
+  <text x="36" y="330" font-size="10" fill="#f8f8f8">□ スケールは揃っているか？</text>
+  <text x="36" y="344" font-size="10" fill="#f8f8f8">□ 正解ラベルは利用可能か？</text>
+  <text x="36" y="358" font-size="10" fill="#f8f8f8">□ サンプル数は十分か？</text>
+  <text x="36" y="372" font-size="10" fill="#f8f8f8">□ 時系列性があるか？</text>
+
+  <text x="285" y="286" font-size="11" font-weight="bold" fill="#34d399">ビジネス要件</text>
+  <text x="285" y="302" font-size="10" fill="#f8f8f8">□ FP と FN どちらが高コスト？</text>
+  <text x="285" y="316" font-size="10" fill="#f8f8f8">□ 解釈可能性が必要か？</text>
+  <text x="285" y="330" font-size="10" fill="#f8f8f8">□ リアルタイム評価が必要か？</text>
+  <text x="285" y="344" font-size="10" fill="#f8f8f8">□ 順序は重要か？</text>
+  <text x="285" y="358" font-size="10" fill="#f8f8f8">□ 多様性・新規性も必要か？</text>
+
+  <text x="534" y="286" font-size="11" font-weight="bold" fill="#a78bfa">評価設計</text>
+  <text x="534" y="302" font-size="10" fill="#f8f8f8">□ 1指標だけで判断しない</text>
+  <text x="534" y="316" font-size="10" fill="#f8f8f8">□ 主指標+補助指標の組み合わせ</text>
+  <text x="534" y="330" font-size="10" fill="#f8f8f8">□ ベースラインと比較する</text>
+  <text x="534" y="344" font-size="10" fill="#f8f8f8">□ オンライン指標と整合性確認</text>
+  <text x="534" y="358" font-size="10" fill="#f8f8f8">□ 信頼区間・有意差を確認</text>
+  <text x="534" y="372" font-size="10" fill="#f8f8f8">□ 定期的に指標自体を見直す</text>
+</svg>

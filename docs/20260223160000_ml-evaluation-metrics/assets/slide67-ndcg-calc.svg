@@ -1,0 +1,78 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#f8f8f8">NDCG — 計算ステップ（具体例）</text>
+  <!-- Table header -->
+  <rect x="20" y="32" width="760" height="26" rx="4" fill="rgba(52,211,153,0.2)"/>
+  <text x="60" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">順位 i</text>
+  <text x="140" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#f8f8f8">アイテム</text>
+  <text x="220" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#fbbf24">rel</text>
+  <text x="310" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#34d399">log₂(i+1)</text>
+  <text x="420" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#fb923c">rel/log₂(i+1)</text>
+  <text x="560" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#60a5fa">IDCG順位</text>
+  <text x="660" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#60a5fa">理想 rel</text>
+  <text x="740" y="49" text-anchor="middle" font-size="10" font-weight="bold" fill="#60a5fa">IDCG gain</text>
+  <!-- Row 1 -->
+  <rect x="20" y="58" width="760" height="26" rx="0" fill="rgba(52,211,153,0.08)"/>
+  <text x="60" y="75" text-anchor="middle" font-size="11" fill="#f8f8f8">1</text>
+  <text x="140" y="75" text-anchor="middle" font-size="11" fill="#f8f8f8">A</text>
+  <text x="220" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">3</text>
+  <text x="310" y="75" text-anchor="middle" font-size="11" fill="#34d399">1.000</text>
+  <text x="420" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb923c">3.000</text>
+  <text x="560" y="75" text-anchor="middle" font-size="11" fill="#60a5fa">1</text>
+  <text x="660" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa">3</text>
+  <text x="740" y="75" text-anchor="middle" font-size="11" fill="#60a5fa">3.000</text>
+  <!-- Row 2 -->
+  <rect x="20" y="84" width="760" height="26" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <text x="60" y="101" text-anchor="middle" font-size="11" fill="#f8f8f8">2</text>
+  <text x="140" y="101" text-anchor="middle" font-size="11" fill="#f8f8f8">B</text>
+  <text x="220" y="101" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">2</text>
+  <text x="310" y="101" text-anchor="middle" font-size="11" fill="#34d399">1.585</text>
+  <text x="420" y="101" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb923c">1.262</text>
+  <text x="560" y="101" text-anchor="middle" font-size="11" fill="#60a5fa">2</text>
+  <text x="660" y="101" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa">3</text>
+  <text x="740" y="101" text-anchor="middle" font-size="11" fill="#60a5fa">1.893</text>
+  <!-- Row 3 -->
+  <rect x="20" y="110" width="760" height="26" rx="0" fill="rgba(52,211,153,0.04)"/>
+  <text x="60" y="127" text-anchor="middle" font-size="11" fill="#f8f8f8">3</text>
+  <text x="140" y="127" text-anchor="middle" font-size="11" fill="#f8f8f8">C</text>
+  <text x="220" y="127" text-anchor="middle" font-size="12" fill="#94a3b8">0</text>
+  <text x="310" y="127" text-anchor="middle" font-size="11" fill="#34d399">2.000</text>
+  <text x="420" y="127" text-anchor="middle" font-size="11" fill="#94a3b8">0.000</text>
+  <text x="560" y="127" text-anchor="middle" font-size="11" fill="#60a5fa">3</text>
+  <text x="660" y="127" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa">2</text>
+  <text x="740" y="127" text-anchor="middle" font-size="11" fill="#60a5fa">1.000</text>
+  <!-- Row 4 -->
+  <rect x="20" y="136" width="760" height="26" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <text x="60" y="153" text-anchor="middle" font-size="11" fill="#f8f8f8">4</text>
+  <text x="140" y="153" text-anchor="middle" font-size="11" fill="#f8f8f8">D</text>
+  <text x="220" y="153" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">1</text>
+  <text x="310" y="153" text-anchor="middle" font-size="11" fill="#34d399">2.322</text>
+  <text x="420" y="153" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb923c">0.431</text>
+  <text x="560" y="153" text-anchor="middle" font-size="11" fill="#60a5fa">4</text>
+  <text x="660" y="153" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa">1</text>
+  <text x="740" y="153" text-anchor="middle" font-size="11" fill="#60a5fa">0.431</text>
+  <!-- Row 5 -->
+  <rect x="20" y="162" width="760" height="26" rx="0" fill="rgba(52,211,153,0.04)"/>
+  <text x="60" y="179" text-anchor="middle" font-size="11" fill="#f8f8f8">5</text>
+  <text x="140" y="179" text-anchor="middle" font-size="11" fill="#f8f8f8">E</text>
+  <text x="220" y="179" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">2</text>
+  <text x="310" y="179" text-anchor="middle" font-size="11" fill="#34d399">2.585</text>
+  <text x="420" y="179" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb923c">0.774</text>
+  <text x="560" y="179" text-anchor="middle" font-size="11" fill="#60a5fa">5</text>
+  <text x="660" y="179" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa">0</text>
+  <text x="740" y="179" text-anchor="middle" font-size="11" fill="#60a5fa">0.000</text>
+  <!-- Summary row -->
+  <rect x="20" y="188" width="760" height="26" rx="0" fill="rgba(255,255,255,0.08)"/>
+  <text x="300" y="205" text-anchor="middle" font-size="11" font-weight="bold" fill="#fbbf24">合計</text>
+  <text x="420" y="205" text-anchor="middle" font-size="13" font-weight="bold" fill="#fb923c">DCG = 5.467</text>
+  <text x="680" y="205" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa">IDCG = 6.324</text>
+  <!-- Final -->
+  <rect x="100" y="226" width="600" height="64" rx="12" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="2"/>
+  <text x="400" y="250" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">NDCG@5 = DCG / IDCG = 5.467 / 6.324</text>
+  <text x="400" y="278" text-anchor="middle" font-size="16" font-weight="bold" fill="#34d399">NDCG@5 = 0.864</text>
+  <!-- Explanation -->
+  <rect x="20" y="302" width="760" height="86" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="400" y="322" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">解釈</text>
+  <text x="36" y="346" font-size="11" fill="#f8f8f8">・NDCG = 0.864: 理想に近い順序（高関連A/B/Eが上位・中位に配置）</text>
+  <text x="36" y="366" font-size="11" fill="#f8f8f8">・rel=0のアイテムCが3位に入っているが、rel=2のEが5位なので少しペナルティ</text>
+  <text x="36" y="386" font-size="11" fill="#94a3b8">・NDCG=1.0: rel順[3,3,2,1,0]になれば理想達成</text>
+</svg>

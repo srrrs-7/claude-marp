@@ -1,0 +1,47 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">内部評価 vs 外部評価 — 詳細比較</text>
+  <!-- Comparison table -->
+  <rect x="20" y="36" width="760" height="28" rx="4" fill="rgba(255,255,255,0.1)"/>
+  <text x="140" y="54" text-anchor="middle" font-size="11" font-weight="bold" fill="#f8f8f8">項目</text>
+  <text x="340" y="54" text-anchor="middle" font-size="11" font-weight="bold" fill="#f472b6">内部評価</text>
+  <text x="620" y="54" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">外部評価</text>
+  <!-- Rows -->
+  <rect x="20" y="64" width="760" height="28" rx="0" fill="rgba(255,255,255,0.04)"/>
+  <text x="140" y="82" text-anchor="middle" font-size="11" fill="#fbbf24">正解ラベル</text>
+  <text x="340" y="82" text-anchor="middle" font-size="11" fill="#f472b6">不要</text>
+  <text x="620" y="82" text-anchor="middle" font-size="11" fill="#34d399">必要</text>
+  <rect x="20" y="92" width="760" height="28" rx="0" fill="rgba(255,255,255,0.02)"/>
+  <text x="140" y="110" text-anchor="middle" font-size="11" fill="#fbbf24">評価基準</text>
+  <text x="340" y="110" text-anchor="middle" font-size="11" fill="#f8f8f8">クラスタの密度・分離度</text>
+  <text x="620" y="110" text-anchor="middle" font-size="11" fill="#f8f8f8">正解との一致度</text>
+  <rect x="20" y="120" width="760" height="28" rx="0" fill="rgba(255,255,255,0.04)"/>
+  <text x="140" y="138" text-anchor="middle" font-size="11" fill="#fbbf24">代表指標</text>
+  <text x="340" y="138" text-anchor="middle" font-size="11" fill="#f472b6">Silhouette / DBI / CH</text>
+  <text x="620" y="138" text-anchor="middle" font-size="11" fill="#34d399">ARI / NMI</text>
+  <rect x="20" y="148" width="760" height="28" rx="0" fill="rgba(255,255,255,0.02)"/>
+  <text x="140" y="166" text-anchor="middle" font-size="11" fill="#fbbf24">主な用途</text>
+  <text x="340" y="166" text-anchor="middle" font-size="11" fill="#f8f8f8">k選択・モデル比較</text>
+  <text x="620" y="166" text-anchor="middle" font-size="11" fill="#f8f8f8">研究ベンチマーク</text>
+  <rect x="20" y="176" width="760" height="28" rx="0" fill="rgba(255,255,255,0.04)"/>
+  <text x="140" y="194" text-anchor="middle" font-size="11" fill="#fbbf24">長所</text>
+  <text x="340" y="194" text-anchor="middle" font-size="11" fill="#f8f8f8">実務データで即使用可能</text>
+  <text x="620" y="194" text-anchor="middle" font-size="11" fill="#f8f8f8">客観的な正解に基づく</text>
+  <rect x="20" y="204" width="760" height="28" rx="0" fill="rgba(255,255,255,0.02)"/>
+  <text x="140" y="222" text-anchor="middle" font-size="11" fill="#fbbf24">短所</text>
+  <text x="340" y="222" text-anchor="middle" font-size="11" fill="#f8f8f8">非球形クラスタでは誤判断</text>
+  <text x="620" y="222" text-anchor="middle" font-size="11" fill="#f8f8f8">ラベル作成コストが高い</text>
+  <!-- Visual cluster examples -->
+  <rect x="20" y="248" width="370" height="120" rx="10" fill="rgba(244,114,182,0.06)" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="205" y="270" text-anchor="middle" font-size="11" font-weight="bold" fill="#f472b6">内部評価の限界: 非球形クラスタ</text>
+  <!-- Moons shape (rough) -->
+  <path d="M 50 340 Q 100 290 150 340 Q 200 370 250 340" fill="none" stroke="#60a5fa" stroke-width="2"/>
+  <path d="M 100 310 Q 150 360 200 310 Q 250 290 300 310" fill="none" stroke="#34d399" stroke-width="2"/>
+  <text x="205" y="360" text-anchor="middle" font-size="10" fill="#94a3b8">三日月形: Silhouetteが低く評価されやすい</text>
+  <!-- External evaluation usage -->
+  <rect x="410" y="248" width="370" height="120" rx="10" fill="rgba(52,211,153,0.06)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="595" y="270" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">外部評価が必要な場面</text>
+  <text x="426" y="296" font-size="11" fill="#fbbf24">▸ 半教師あり学習の評価</text>
+  <text x="426" y="316" font-size="11" fill="#fbbf24">▸ ラベル付きベンチマーク</text>
+  <text x="426" y="336" font-size="10" fill="#f8f8f8">（MNIST / CIFAR / text分類）</text>
+  <text x="426" y="356" font-size="10" fill="#94a3b8">ARI = 1: クラスタ = 正解クラス</text>
+</svg>

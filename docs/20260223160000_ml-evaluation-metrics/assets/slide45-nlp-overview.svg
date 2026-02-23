@@ -1,0 +1,65 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">NLP生成指標 — 全体像</text>
+  <!-- Two main branches -->
+  <!-- Reference-based -->
+  <rect x="20" y="44" width="370" height="340" rx="12" fill="rgba(96,165,250,0.1)" stroke="#60a5fa" stroke-width="2"/>
+  <text x="205" y="68" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa">参照ベース指標</text>
+  <text x="205" y="84" text-anchor="middle" font-size="11" fill="#94a3b8">参照テキスト（正解）との比較</text>
+  <line x1="34" y1="92" x2="376" y2="92" stroke="#60a5fa" stroke-width="1" opacity="0.4"/>
+  <!-- n-gram group -->
+  <rect x="34" y="100" width="350" height="88" rx="8" fill="rgba(251,146,60,0.12)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="209" y="118" text-anchor="middle" font-size="11" font-weight="bold" fill="#fb923c">n-gram 系</text>
+  <rect x="44" y="124" width="90" height="52" rx="6" fill="rgba(251,146,60,0.2)" stroke="#fb923c" stroke-width="1"/>
+  <text x="89" y="148" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb923c">BLEU</text>
+  <text x="89" y="166" text-anchor="middle" font-size="10" fill="#f8f8f8">翻訳</text>
+  <rect x="148" y="124" width="90" height="52" rx="6" fill="rgba(251,146,60,0.2)" stroke="#fb923c" stroke-width="1"/>
+  <text x="193" y="148" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb923c">ROUGE</text>
+  <text x="193" y="166" text-anchor="middle" font-size="10" fill="#f8f8f8">要約</text>
+  <rect x="252" y="124" width="90" height="52" rx="6" fill="rgba(251,146,60,0.2)" stroke="#fb923c" stroke-width="1"/>
+  <text x="297" y="141" text-anchor="middle" font-size="11" font-weight="bold" fill="#fb923c">METEOR</text>
+  <text x="297" y="157" text-anchor="middle" font-size="10" fill="#f8f8f8">同義語対応</text>
+  <text x="297" y="172" text-anchor="middle" font-size="10" fill="#f8f8f8">翻訳</text>
+  <!-- Char group -->
+  <rect x="34" y="198" width="160" height="64" rx="8" fill="rgba(167,139,250,0.12)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="114" y="216" text-anchor="middle" font-size="11" font-weight="bold" fill="#a78bfa">文字レベル</text>
+  <rect x="44" y="224" width="140" height="30" rx="6" fill="rgba(167,139,250,0.2)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="114" y="244" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa">ChrF</text>
+  <!-- Embedding group -->
+  <rect x="210" y="198" width="174" height="64" rx="8" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="297" y="216" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">埋め込み系</text>
+  <rect x="220" y="224" width="154" height="30" rx="6" fill="rgba(52,211,153,0.2)" stroke="#34d399" stroke-width="1"/>
+  <text x="297" y="244" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">BERTScore</text>
+  <!-- LLM Judge -->
+  <rect x="34" y="276" width="350" height="48" rx="8" fill="rgba(244,114,182,0.12)" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="209" y="296" text-anchor="middle" font-size="11" font-weight="bold" fill="#f472b6">LLM-as-Judge（新手法）</text>
+  <text x="209" y="314" text-anchor="middle" font-size="10" fill="#f8f8f8">GPT-4等のLLMが評価 — 参照あり/なし両対応</text>
+  <!-- Reference-free -->
+  <rect x="410" y="44" width="370" height="340" rx="12" fill="rgba(52,211,153,0.08)" stroke="#34d399" stroke-width="2"/>
+  <text x="595" y="68" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399">参照なし指標</text>
+  <text x="595" y="84" text-anchor="middle" font-size="11" fill="#94a3b8">参照テキスト不要で評価</text>
+  <line x1="424" y1="92" x2="766" y2="92" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <!-- Perplexity -->
+  <rect x="424" y="100" width="160" height="108" rx="8" fill="rgba(96,165,250,0.12)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="504" y="118" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">確率・流暢さ</text>
+  <rect x="434" y="126" width="140" height="70" rx="6" fill="rgba(96,165,250,0.2)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="504" y="150" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa">Perplexity</text>
+  <text x="504" y="168" text-anchor="middle" font-size="10" fill="#f8f8f8">言語モデルの</text>
+  <text x="504" y="184" text-anchor="middle" font-size="10" fill="#f8f8f8">テキスト確率</text>
+  <!-- QE -->
+  <rect x="600" y="100" width="170" height="108" rx="8" fill="rgba(251,191,36,0.12)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="685" y="118" text-anchor="middle" font-size="11" font-weight="bold" fill="#fbbf24">品質推定 (QE)</text>
+  <rect x="610" y="126" width="150" height="70" rx="6" fill="rgba(251,191,36,0.2)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="685" y="150" text-anchor="middle" font-size="11" font-weight="bold" fill="#fbbf24">COMET-QE</text>
+  <text x="685" y="168" text-anchor="middle" font-size="10" fill="#f8f8f8">参照なし翻訳</text>
+  <text x="685" y="184" text-anchor="middle" font-size="10" fill="#f8f8f8">品質推定</text>
+  <!-- Usage -->
+  <rect x="424" y="222" width="346" height="100" rx="8" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="597" y="242" text-anchor="middle" font-size="11" font-weight="bold" fill="#94a3b8">利用シーン</text>
+  <text x="430" y="264" font-size="11" fill="#fbbf24">▸ 本番モデル継続監視</text>
+  <text x="446" y="282" font-size="10" fill="#f8f8f8">参照データなしでリアルタイム評価</text>
+  <text x="430" y="302" font-size="11" fill="#fbbf24">▸ 新ドメイン・新言語</text>
+  <text x="446" y="318" font-size="10" fill="#f8f8f8">参照テキスト作成コストが高い場合</text>
+  <!-- Bottom -->
+  <rect x="20" y="396" width="760" height="18" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="400" y="409" text-anchor="middle" font-size="11" fill="#94a3b8">実務推奨: 参照ベース（BLEU/ROUGE/BERTScore）+ 参照なし（Perplexity/LLM-Judge）の組み合わせ</text>
+</svg>

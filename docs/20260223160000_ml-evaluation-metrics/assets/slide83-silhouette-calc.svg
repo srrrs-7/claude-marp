@@ -1,0 +1,53 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">Silhouette 係数 — 計算と解釈</text>
+  <!-- Step-by-step calculation -->
+  <rect x="20" y="36" width="370" height="300" rx="10" fill="rgba(96,165,250,0.06)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="205" y="58" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa">計算ステップ</text>
+  <line x1="34" y1="66" x2="376" y2="66" stroke="#60a5fa" stroke-width="1" opacity="0.4"/>
+  <text x="36" y="90" font-size="11" fill="#fbbf24">STEP 1: a(i) を計算</text>
+  <text x="36" y="108" font-size="10" fill="#f8f8f8">点 i と同クラスタの全点との距離の平均</text>
+  <text x="36" y="130" font-size="11" fill="#fbbf24">STEP 2: b(i) を計算</text>
+  <text x="36" y="148" font-size="10" fill="#f8f8f8">他の各クラスタとの平均距離を計算</text>
+  <text x="36" y="164" font-size="10" fill="#f8f8f8">→ その最小値が b(i)</text>
+  <text x="36" y="186" font-size="11" fill="#fbbf24">STEP 3: s(i) を計算</text>
+  <rect x="36" y="194" width="330" height="28" rx="6" fill="rgba(96,165,250,0.15)"/>
+  <text x="201" y="213" text-anchor="middle" font-size="11" fill="#60a5fa">s(i) = (b − a) / max(a, b)</text>
+  <text x="36" y="240" font-size="11" fill="#fbbf24">STEP 4: スコア集計</text>
+  <text x="36" y="258" font-size="10" fill="#f8f8f8">全サンプルの s(i) を平均</text>
+  <text x="36" y="276" font-size="10" fill="#f8f8f8">→ Silhouette Score ∈ [−1, +1]</text>
+  <rect x="36" y="286" width="330" height="36" rx="6" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1"/>
+  <text x="201" y="304" text-anchor="middle" font-size="10" fill="#34d399">実装: sklearn.metrics.silhouette_score(X, labels)</text>
+  <text x="201" y="318" text-anchor="middle" font-size="9" fill="#94a3b8">O(n²) 計算コスト: 大規模データは sample 指定</text>
+  <!-- Silhouette plot -->
+  <rect x="410" y="36" width="370" height="300" rx="10" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.5"/>
+  <text x="595" y="58" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24">Silhouette Plot の見方</text>
+  <!-- Mock silhouette plot -->
+  <line x1="430" y1="310" x2="760" y2="310" stroke="#475569" stroke-width="1.5"/>
+  <line x1="595" y1="75" x2="595" y2="310" stroke="#475569" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="595" y="322" text-anchor="middle" font-size="9" fill="#94a3b8">s(i) = 0</text>
+  <text x="760" y="322" text-anchor="middle" font-size="9" fill="#f8f8f8">1.0</text>
+  <!-- Cluster 1 bars (good) -->
+  <text x="444" y="120" font-size="10" fill="#60a5fa">Cluster 1</text>
+  <rect x="595" y="80" width="150" height="12" rx="2" fill="rgba(96,165,250,0.7)"/>
+  <rect x="595" y="96" width="145" height="12" rx="2" fill="rgba(96,165,250,0.65)"/>
+  <rect x="595" y="112" width="135" height="12" rx="2" fill="rgba(96,165,250,0.6)"/>
+  <rect x="595" y="128" width="120" height="12" rx="2" fill="rgba(96,165,250,0.55)"/>
+  <rect x="595" y="144" width="100" height="12" rx="2" fill="rgba(96,165,250,0.5)"/>
+  <!-- Cluster 2 bars (moderate) -->
+  <text x="444" y="200" font-size="10" fill="#34d399">Cluster 2</text>
+  <rect x="595" y="168" width="110" height="12" rx="2" fill="rgba(52,211,153,0.7)"/>
+  <rect x="595" y="184" width="90" height="12" rx="2" fill="rgba(52,211,153,0.65)"/>
+  <rect x="595" y="200" width="70" height="12" rx="2" fill="rgba(52,211,153,0.6)"/>
+  <rect x="595" y="216" width="50" height="12" rx="2" fill="rgba(52,211,153,0.5)"/>
+  <!-- Cluster 3 bars (some negative) -->
+  <text x="444" y="272" font-size="10" fill="#f472b6">Cluster 3</text>
+  <rect x="595" y="244" width="60" height="12" rx="2" fill="rgba(244,114,182,0.7)"/>
+  <rect x="595" y="260" width="30" height="12" rx="2" fill="rgba(244,114,182,0.5)"/>
+  <!-- Negative bars -->
+  <rect x="555" y="276" width="40" height="12" rx="2" fill="rgba(244,114,182,0.4)"/>
+  <text x="444" y="340" font-size="10" fill="#f8f8f8">赤いはみ出し部分 → 誤分類の疑い</text>
+  <text x="444" y="358" font-size="10" fill="#34d399">全バーが長い → クラスタが明確に分離</text>
+  <!-- Bottom summary -->
+  <rect x="20" y="348" width="760" height="24" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="400" y="364" text-anchor="middle" font-size="11" fill="#94a3b8">目安: 平均 s ≥ 0.5 が合格ライン | s ≥ 0.7 で良好 | s &lt; 0.25 は再クラスタリングを検討</text>
+</svg>

@@ -1,0 +1,74 @@
+<svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">回帰指標 選択フローチャート</text>
+  <!-- Start -->
+  <rect x="310" y="40" width="180" height="36" rx="18" fill="rgba(148,163,184,0.3)" stroke="#94a3b8" stroke-width="2"/>
+  <text x="400" y="63" text-anchor="middle" font-size="12" fill="#f8f8f8">回帰タスク開始</text>
+  <!-- Arrow -->
+  <line x1="400" y1="76" x2="400" y2="96" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="396,94 400,104 404,94" fill="#94a3b8"/>
+  <!-- Q1: outliers? -->
+  <polygon points="400,104 530,148 400,192 270,148" fill="rgba(52,211,153,0.2)" stroke="#34d399" stroke-width="2"/>
+  <text x="400" y="142" text-anchor="middle" font-size="11" fill="#f8f8f8">外れ値が</text>
+  <text x="400" y="158" text-anchor="middle" font-size="11" fill="#f8f8f8">多い/重要？</text>
+  <!-- Yes left -->
+  <line x1="270" y1="148" x2="140" y2="148" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="138,144 128,148 138,152" fill="#94a3b8"/>
+  <text x="204" y="138" text-anchor="middle" font-size="10" fill="#34d399">Yes</text>
+  <!-- No right -->
+  <line x1="530" y1="148" x2="660" y2="148" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="658,144 668,148 658,152" fill="#94a3b8"/>
+  <text x="595" y="138" text-anchor="middle" font-size="10" fill="#f472b6">No</text>
+  <!-- Left branch: robust metrics -->
+  <line x1="128" y1="148" x2="128" y2="210" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="124,208 128,218 132,208" fill="#94a3b8"/>
+  <polygon points="128,218 188,244 128,270 68,244" fill="rgba(52,211,153,0.2)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="128" y="238" text-anchor="middle" font-size="10" fill="#f8f8f8">最適化が</text>
+  <text x="128" y="254" text-anchor="middle" font-size="10" fill="#f8f8f8">必要？</text>
+  <!-- Left-left: MAE -->
+  <line x1="68" y1="244" x2="30" y2="244" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="28,240 18,244 28,248" fill="#94a3b8"/>
+  <text x="44" y="234" text-anchor="middle" font-size="9" fill="#34d399">No</text>
+  <rect x="18" y="256" width="80" height="50" rx="8" fill="rgba(52,211,153,0.25)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="58" y="276" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">MAE</text>
+  <text x="58" y="293" text-anchor="middle" font-size="10" fill="#f8f8f8">ロバスト</text>
+  <text x="58" y="306" text-anchor="middle" font-size="9" fill="#94a3b8">外れ値耐性</text>
+  <!-- Left-right: Huber -->
+  <line x1="188" y1="244" x2="226" y2="244" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="224,240 234,244 224,248" fill="#94a3b8"/>
+  <text x="210" y="234" text-anchor="middle" font-size="9" fill="#34d399">Yes</text>
+  <rect x="234" y="230" width="80" height="50" rx="8" fill="rgba(167,139,250,0.25)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="274" y="250" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa">Huber</text>
+  <text x="274" y="267" text-anchor="middle" font-size="10" fill="#f8f8f8">ロバスト+</text>
+  <text x="274" y="280" text-anchor="middle" font-size="9" fill="#94a3b8">微分可能</text>
+  <!-- Right branch -->
+  <line x1="668" y1="148" x2="668" y2="210" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="664,208 668,218 672,208" fill="#94a3b8"/>
+  <polygon points="668,218 738,244 668,270 598,244" fill="rgba(251,146,60,0.2)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="668" y="238" text-anchor="middle" font-size="10" fill="#f8f8f8">スケール比較</text>
+  <text x="668" y="254" text-anchor="middle" font-size="10" fill="#f8f8f8">が必要？</text>
+  <!-- Right-left: RMSE/MSE -->
+  <line x1="598" y1="244" x2="556" y2="244" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="554,240 544,244 554,248" fill="#94a3b8"/>
+  <text x="578" y="234" text-anchor="middle" font-size="9" fill="#f472b6">No</text>
+  <rect x="464" y="230" width="80" height="50" rx="8" fill="rgba(251,146,60,0.25)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="504" y="250" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb923c">RMSE</text>
+  <text x="504" y="267" text-anchor="middle" font-size="10" fill="#f8f8f8">汎用的</text>
+  <text x="504" y="280" text-anchor="middle" font-size="9" fill="#94a3b8">元スケール</text>
+  <!-- Right-right: MAPE/R² -->
+  <line x1="738" y1="244" x2="768" y2="244" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="766,240 776,244 766,248" fill="#94a3b8"/>
+  <text x="754" y="234" text-anchor="middle" font-size="9" fill="#34d399">Yes</text>
+  <rect x="776" y="218" width="20" height="52" fill="none"/>
+  <rect x="682" y="290" width="110" height="60" rx="8" fill="rgba(96,165,250,0.25)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="737" y="312" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">MAPE/R²</text>
+  <text x="737" y="328" text-anchor="middle" font-size="10" fill="#f8f8f8">スケール独立</text>
+  <text x="737" y="342" text-anchor="middle" font-size="9" fill="#94a3b8">データ間比較可</text>
+  <line x1="738" y1="268" x2="737" y2="290" stroke="#94a3b8" stroke-width="1.5"/>
+  <!-- Common: always check R² -->
+  <rect x="200" y="336" width="420" height="50" rx="12" fill="rgba(255,255,255,0.06)" stroke="#475569" stroke-width="1.5"/>
+  <text x="410" y="358" text-anchor="middle" font-size="11" font-weight="bold" fill="#94a3b8">共通: R² と Adj-R² で説明力を確認</text>
+  <text x="410" y="376" text-anchor="middle" font-size="11" fill="#f8f8f8">RMSE ≫ MAE ならば外れ値の影響あり → Huber or MAE へ切替を検討</text>
+  <!-- tips -->
+  <rect x="50" y="400" width="700" height="32" rx="8" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1"/>
+  <text x="400" y="420" text-anchor="middle" font-size="11" fill="#34d399">実務推奨: RMSE（主）+ R²（補助）+ MAE（外れ値チェック）の3点セット</text>
+</svg>
