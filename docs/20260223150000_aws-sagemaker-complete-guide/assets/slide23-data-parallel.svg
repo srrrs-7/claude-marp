@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="28" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f1f5f9">分散トレーニング: Data Parallelism</text>
+
+  <!-- Large Dataset at top -->
+  <rect x="270" y="48" width="360" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="450" y="70" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">大規模データセット</text>
+  <text x="450" y="88" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">全データを N シャードに分割 (各ワーカーが異なるデータを処理)</text>
+
+  <!-- Shard arrows down -->
+  <line x1="320" y1="103" x2="160" y2="160" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="160,160 156,148 168,151" fill="#3b82f6"/>
+  <line x1="390" y1="103" x2="325" y2="160" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="325,160 320,148 332,151" fill="#3b82f6"/>
+  <line x1="450" y1="103" x2="490" y2="160" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="490,160 484,148 496,151" fill="#3b82f6"/>
+  <line x1="540" y1="103" x2="660" y2="160" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="660,160 656,148 668,151" fill="#3b82f6"/>
+
+  <!-- GPU Instance 1 -->
+  <rect x="55" y="160" width="210" height="130" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="160" y="183" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">GPU Instance 1</text>
+  <rect x="70" y="192" width="180" height="22" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="160" y="207" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Full Model Copy (全パラメータ)</text>
+  <rect x="70" y="220" width="180" height="22" rx="3" fill="#0f172a" stroke="#22c55e" stroke-width="1"/>
+  <text x="160" y="235" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#22c55e">Data Shard 1 (ミニバッチ)</text>
+  <rect x="70" y="248" width="180" height="22" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="160" y="263" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">勾配計算 (Forward + Backward)</text>
+
+  <!-- GPU Instance 2 -->
+  <rect x="275" y="160" width="170" height="130" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="360" y="183" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">GPU Instance 2</text>
+  <rect x="287" y="192" width="146" height="22" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="360" y="207" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Full Model Copy</text>
+  <rect x="287" y="220" width="146" height="22" rx="3" fill="#0f172a" stroke="#22c55e" stroke-width="1"/>
+  <text x="360" y="235" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#22c55e">Data Shard 2</text>
+  <rect x="287" y="248" width="146" height="22" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="360" y="263" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">勾配計算</text>
+
+  <!-- Dots -->
+  <text x="460" y="230" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#94a3b8">...</text>
+
+  <!-- GPU Instance N -->
+  <rect x="490" y="160" width="170" height="130" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="575" y="183" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">GPU Instance N</text>
+  <rect x="502" y="192" width="146" height="22" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="575" y="207" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Full Model Copy</text>
+  <rect x="502" y="220" width="146" height="22" rx="3" fill="#0f172a" stroke="#22c55e" stroke-width="1"/>
+  <text x="575" y="235" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#22c55e">Data Shard N</text>
+  <rect x="502" y="248" width="146" height="22" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="575" y="263" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">勾配計算</text>
+
+  <!-- AllReduce communication -->
+  <rect x="680" y="160" width="195" height="130" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="777" y="183" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f97316">AllReduce</text>
+  <text x="777" y="200" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Ring-AllReduce</text>
+  <text x="777" y="218" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">勾配を全ワーカーで</text>
+  <text x="777" y="234" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">集約・平均化</text>
+  <text x="777" y="255" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316">SMDDP</text>
+  <text x="777" y="272" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">AWS最適化AllReduce</text>
+
+  <!-- Arrows to AllReduce -->
+  <line x1="660" y1="225" x2="680" y2="225" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="680,225 668,219 668,231" fill="#f97316"/>
+
+  <!-- Arrow from AllReduce back to instances -->
+  <line x1="680" y1="250" x2="660" y2="260" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="660,260 668,250 672,262" fill="#f97316"/>
+
+  <!-- Updated Model at bottom -->
+  <rect x="270" y="340" width="360" height="55" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="450" y="362" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#a855f7">モデル更新 (全インスタンス同期)</text>
+  <text x="450" y="382" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">平均勾配で重みを更新 → 次のバッチへ</text>
+
+  <!-- Down arrows to Updated Model -->
+  <line x1="160" y1="290" x2="320" y2="340" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="320,340 317,328 329,332" fill="#a855f7"/>
+  <line x1="360" y1="290" x2="390" y2="340" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="390,340 385,328 397,332" fill="#a855f7"/>
+  <line x1="575" y1="290" x2="520" y2="340" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="520,340 517,328 529,332" fill="#a855f7"/>
+
+  <!-- Labels -->
+  <text x="450" y="425" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#3b82f6">対応フレームワーク: PyTorch DDP | TensorFlow MirroredStrategy | Horovod</text>
+  <text x="450" y="445" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">SMDDP (SageMaker Distributed Data Parallel): EFA ネットワーク最適化で高速通信</text>
+  <text x="450" y="465" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Parameter Server モードも利用可能 (非同期更新)</text>
+</svg>

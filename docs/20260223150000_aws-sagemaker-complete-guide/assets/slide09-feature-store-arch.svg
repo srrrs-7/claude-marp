@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" fill="#f1f5f9" font-size="15" font-weight="bold" font-family="sans-serif">SageMaker Feature Store アーキテクチャ</text>
+
+  <!-- Top: Feature Ingestion -->
+  <rect x="20" y="55" width="860" height="90" rx="8" fill="#1e293b" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="450" y="76" text-anchor="middle" fill="#f1f5f9" font-size="12" font-weight="bold" font-family="sans-serif">特徴量取り込み (Feature Ingestion)</text>
+
+  <!-- Batch ingestion -->
+  <rect x="50" y="86" width="360" height="46" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="230" y="105" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="bold" font-family="sans-serif">バッチ取り込み</text>
+  <text x="230" y="122" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">SageMaker Processing Job / Data Wrangler / PutRecord (SDK)</text>
+
+  <!-- Streaming ingestion -->
+  <rect x="490" y="86" width="360" height="46" rx="6" fill="#134e4a" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="670" y="105" text-anchor="middle" fill="#14b8a6" font-size="11" font-weight="bold" font-family="sans-serif">ストリーミング取り込み</text>
+  <text x="670" y="122" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Amazon Kinesis Data Streams → Feature Store API</text>
+
+  <!-- Arrows down to Feature Group -->
+  <line x1="230" y1="132" x2="230" y2="182" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="230,182 224,170 236,170" fill="#3b82f6"/>
+  <line x1="670" y1="132" x2="670" y2="182" stroke="#14b8a6" stroke-width="2"/>
+  <polygon points="670,182 664,170 676,170" fill="#14b8a6"/>
+  <line x1="230" y1="182" x2="450" y2="182" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="670" y1="182" x2="450" y2="182" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="450" y1="182" x2="450" y2="200" stroke="#f1f5f9" stroke-width="2"/>
+  <polygon points="450,200 444,188 456,188" fill="#f1f5f9"/>
+
+  <!-- Middle: Feature Group Definition -->
+  <rect x="150" y="200" width="600" height="76" rx="8" fill="#1e293b" stroke="#f1f5f9" stroke-width="2"/>
+  <text x="450" y="223" text-anchor="middle" fill="#f1f5f9" font-size="12" font-weight="bold" font-family="sans-serif">Feature Group 定義</text>
+  <text x="450" y="244" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">スキーマ定義 (特徴量名・型) | Record Identifier | Event Time Feature</text>
+  <text x="450" y="261" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">オンライン/オフライン設定 | 暗号化設定 (KMS) | タグ付け</text>
+
+  <!-- Down arrows to two stores -->
+  <line x1="290" y1="276" x2="220" y2="318" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="220,318 215,306 227,308" fill="#22c55e"/>
+  <line x1="610" y1="276" x2="680" y2="318" stroke="#f97316" stroke-width="2"/>
+  <polygon points="680,318 673,308 685,306" fill="#f97316"/>
+
+  <!-- Online Store -->
+  <rect x="30" y="318" width="380" height="130" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="2"/>
+  <rect x="30" y="318" width="380" height="32" rx="8" fill="#22c55e"/>
+  <rect x="30" y="338" width="380" height="12" fill="#22c55e"/>
+  <text x="220" y="340" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="bold" font-family="sans-serif">Online Store</text>
+
+  <text x="220" y="368" text-anchor="middle" fill="#f1f5f9" font-size="10" font-family="sans-serif">ストレージ: Amazon DynamoDB ベース</text>
+  <text x="220" y="384" text-anchor="middle" fill="#f1f5f9" font-size="10" font-family="sans-serif">レイテンシ: &lt; 10ms (一桁ミリ秒)</text>
+  <text x="220" y="400" text-anchor="middle" fill="#f1f5f9" font-size="10" font-family="sans-serif">API: GetRecord / BatchGetRecord</text>
+  <text x="220" y="416" text-anchor="middle" fill="#f1f5f9" font-size="10" font-family="sans-serif">最新レコードのみ保持 (ポイントインタイム)</text>
+  <text x="220" y="432" text-anchor="middle" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">用途: リアルタイム推論</text>
+
+  <!-- Offline Store -->
+  <rect x="490" y="318" width="380" height="130" rx="8" fill="#431407" stroke="#f97316" stroke-width="2"/>
+  <rect x="490" y="318" width="380" height="32" rx="8" fill="#f97316"/>
+  <rect x="490" y="338" width="380" height="12" fill="#f97316"/>
+  <text x="680" y="340" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="bold" font-family="sans-serif">Offline Store</text>
+
+  <text x="680" y="368" text-anchor="middle" fill="#f1f5f9" font-size="10" font-family="sans-serif">ストレージ: Amazon S3 (Parquet 形式)</text>
+  <text x="680" y="384" text-anchor="middle" fill="#f1f5f9" font-size="10" font-family="sans-serif">カタログ: AWS Glue Data Catalog 統合</text>
+  <text x="680" y="400" text-anchor="middle" fill="#f1f5f9" font-size="10" font-family="sans-serif">クエリ: Amazon Athena で SQL 照会可能</text>
+  <text x="680" y="416" text-anchor="middle" fill="#f1f5f9" font-size="10" font-family="sans-serif">全履歴データ保持 (タイムトラベル対応)</text>
+  <text x="680" y="432" text-anchor="middle" fill="#f97316" font-size="10" font-weight="bold" font-family="sans-serif">用途: バッチ学習・分析</text>
+
+  <!-- Arrows to inference/training -->
+  <line x1="220" y1="448" x2="220" y2="478" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="220,478 214,466 226,466" fill="#22c55e"/>
+  <rect x="80" y="478" width="280" height="18" rx="4" fill="#1e293b" stroke="#22c55e" stroke-width="1"/>
+  <text x="220" y="491" text-anchor="middle" fill="#22c55e" font-size="10" font-family="sans-serif">Inference Endpoint (リアルタイム推論)</text>
+
+  <line x1="680" y1="448" x2="680" y2="478" stroke="#f97316" stroke-width="2"/>
+  <polygon points="680,478 674,466 686,466" fill="#f97316"/>
+  <rect x="540" y="478" width="280" height="18" rx="4" fill="#1e293b" stroke="#f97316" stroke-width="1"/>
+  <text x="680" y="491" text-anchor="middle" fill="#f97316" font-size="10" font-family="sans-serif">Training Job (バッチ学習)</text>
+</svg>

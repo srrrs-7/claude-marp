@@ -1,0 +1,87 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">チャンキング戦略の比較</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">Bedrock Knowledge Bases で選択可能なチャンキング手法</text>
+
+  <!-- Fixed size -->
+  <rect x="15" y="65" width="200" height="195" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="15" y="65" width="200" height="30" rx="8" fill="#1d4ed8"/>
+  <text x="115" y="85" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">固定サイズ</text>
+  <rect x="25" y="103" width="180" height="20" rx="3" fill="#1e40af"/>
+  <rect x="25" y="127" width="180" height="20" rx="3" fill="#1e40af"/>
+  <rect x="25" y="151" width="100" height="20" rx="3" fill="#1e40af"/>
+  <text x="115" y="117" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">チャンク1（512tok）</text>
+  <text x="115" y="141" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">チャンク2（512tok）</text>
+  <text x="75" y="165" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">チャンク3（…tok）</text>
+  <text x="115" y="196" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">シンプル・高速</text>
+  <text x="115" y="212" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">デフォルト設定</text>
+  <text x="115" y="232" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">⚠ 文の途中で切れる</text>
+  <text x="115" y="248" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">200〜1000 トークン</text>
+
+  <!-- Semantic -->
+  <rect x="228" y="65" width="200" height="195" rx="8" fill="#3b0764" stroke="#a855f7" stroke-width="2"/>
+  <rect x="228" y="65" width="200" height="30" rx="8" fill="#6d28d9"/>
+  <text x="328" y="85" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">セマンティック</text>
+  <!-- Semantic chunks visualization -->
+  <rect x="238" y="103" width="180" height="30" rx="3" fill="#4c1d95"/>
+  <text x="328" y="123" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#e9d5ff">意味のまとまり1（Topic A）</text>
+  <rect x="238" y="137" width="180" height="30" rx="3" fill="#5b21b6"/>
+  <text x="328" y="157" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#e9d5ff">意味のまとまり2（Topic B）</text>
+  <rect x="238" y="171" width="100" height="20" rx="3" fill="#6d28d9"/>
+  <text x="288" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">Topic C</text>
+  <text x="328" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">意味の切れ目で分割</text>
+  <text x="328" y="231" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">精度高・計算コスト高</text>
+  <text x="328" y="251" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">LLMで境界を判定</text>
+
+  <!-- Hierarchical -->
+  <rect x="441" y="65" width="200" height="195" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="2"/>
+  <rect x="441" y="65" width="200" height="30" rx="8" fill="#065f46"/>
+  <text x="541" y="85" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">階層型</text>
+  <!-- Hierarchy -->
+  <rect x="451" y="103" width="180" height="22" rx="3" fill="#047857"/>
+  <text x="541" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a7f3d0">親チャンク（大・文脈）</text>
+  <rect x="461" y="131" width="75" height="18" rx="3" fill="#059669"/>
+  <rect x="546" y="131" width="75" height="18" rx="3" fill="#059669"/>
+  <text x="499" y="144" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#ecfdf5">子チャンク</text>
+  <text x="584" y="144" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#ecfdf5">子チャンク</text>
+  <rect x="461" y="155" width="75" height="18" rx="3" fill="#059669"/>
+  <rect x="546" y="155" width="75" height="18" rx="3" fill="#059669"/>
+  <text x="499" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#ecfdf5">子チャンク</text>
+  <text x="584" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#ecfdf5">子チャンク</text>
+  <text x="541" y="203" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">子で検索→親を返す</text>
+  <text x="541" y="219" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">精度＋文脈保持</text>
+  <text x="541" y="251" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">Parent-Child Retrieval</text>
+
+  <!-- Custom Transformation -->
+  <rect x="654" y="65" width="231" height="195" rx="8" fill="#78350f" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="654" y="65" width="231" height="30" rx="8" fill="#92400e"/>
+  <text x="770" y="85" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">カスタム変換</text>
+  <text x="770" y="111" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">Lambda関数で独自処理</text>
+  <rect x="664" y="120" width="210" height="24" rx="3" fill="#7c2d12"/>
+  <text x="769" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">PDF → 表・画像別途抽出</text>
+  <rect x="664" y="148" width="210" height="24" rx="3" fill="#7c2d12"/>
+  <text x="769" y="164" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">HTML → タグ除去・構造化</text>
+  <rect x="664" y="176" width="210" height="24" rx="3" fill="#7c2d12"/>
+  <text x="769" y="192" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">Code → 関数単位でチャンク</text>
+  <text x="770" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">最も柔軟・高度</text>
+  <text x="770" y="251" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">専門形式のデータに有効</text>
+
+  <!-- Config tips -->
+  <rect x="15" y="274" width="870" height="116" rx="8" fill="#0f172a"/>
+  <text x="450" y="294" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">チャンキングパラメータ設定のコツ（試験重要）</text>
+  <rect x="30" y="307" width="265" height="70" rx="5" fill="#172554"/>
+  <text x="163" y="327" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#60a5fa">チャンクサイズ</text>
+  <text x="163" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">200〜2000 トークンが目安</text>
+  <text x="163" y="361" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">小: 精度高・文脈薄 / 大: 文脈豊・ノイズ増</text>
+  <text x="163" y="376" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">512トークンが一般的な出発点</text>
+  <rect x="310" y="307" width="265" height="70" rx="5" fill="#3b0764"/>
+  <text x="443" y="327" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#c4b5fd">オーバーラップ</text>
+  <text x="443" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">隣接チャンクの重複部分</text>
+  <text x="443" y="361" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">10〜20%が推奨（境界情報保持）</text>
+  <text x="443" y="376" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">大すぎると重複・コスト増</text>
+  <rect x="590" y="307" width="290" height="70" rx="5" fill="#064e3b"/>
+  <text x="735" y="327" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#6ee7b7">ドキュメント種別に応じた推奨</text>
+  <text x="735" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">技術文書→セマンティック / 法律文書→階層型</text>
+  <text x="735" y="361" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">FAQ→固定サイズ / 独自形式→カスタム変換</text>
+  <text x="735" y="376" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">試験: ユースケースに最適なチャンク戦略を選択</text>
+</svg>

@@ -1,0 +1,66 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Hub-and-Spoke — Interface Endpoint 集約パターン</text>
+  <!-- Hub VPC (center) -->
+  <rect x="295" y="148" width="210" height="135" rx="8" fill="#f0fdf4" stroke="#10b981" stroke-width="2.5" style="filter:drop-shadow(2px 2px 6px rgba(0,0,0,0.12))"/>
+  <rect x="295" y="148" width="210" height="28" rx="8" fill="#10b981"/>
+  <text x="400" y="168" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">Hub VPC (Shared Services)</text>
+  <text x="400" y="196" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">Interface Endpoints 集約管理</text>
+  <rect x="310" y="204" width="180" height="22" rx="3" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
+  <text x="400" y="219" font-family="monospace,Arial" font-size="8" fill="#059669" text-anchor="middle">SSM | ECR | KMS | Secrets | STS</text>
+  <rect x="310" y="230" width="180" height="22" rx="3" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
+  <text x="400" y="245" font-family="monospace,Arial" font-size="8" fill="#059669" text-anchor="middle">CloudWatch | S3 (Interface) | ...</text>
+  <text x="400" y="270" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">R53 Resolver Inbound EP もここに集約</text>
+  <!-- TGW in center -->
+  <ellipse cx="400" cy="360" rx="55" ry="28" fill="#ff9900" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.15))"/>
+  <text x="400" y="356" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">Transit</text>
+  <text x="400" y="370" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">Gateway</text>
+  <!-- Arrow Hub to TGW -->
+  <line x1="400" y1="283" x2="400" y2="332" stroke="#10b981" stroke-width="2"/>
+  <polygon points="394,328 400,336 406,328" fill="#10b981"/>
+  <!-- Spoke VPC 1 (top-left) -->
+  <rect x="30" y="35" width="160" height="85" rx="6" fill="#f0f4ff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <text x="110" y="54" font-family="Arial,sans-serif" font-size="10" fill="#7b5ea7" text-anchor="middle" font-weight="bold">Spoke VPC-Dev</text>
+  <rect x="44" y="64" width="132" height="28" rx="4" fill="#fff" stroke="#7b5ea7" stroke-width="1"/>
+  <text x="110" y="82" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">EC2 (App Servers)</text>
+  <text x="110" y="110" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">Endpoint なし</text>
+  <!-- Spoke VPC 2 (top-right) -->
+  <rect x="610" y="35" width="160" height="85" rx="6" fill="#f0f4ff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <text x="690" y="54" font-family="Arial,sans-serif" font-size="10" fill="#7b5ea7" text-anchor="middle" font-weight="bold">Spoke VPC-Prod</text>
+  <rect x="624" y="64" width="132" height="28" rx="4" fill="#fff" stroke="#7b5ea7" stroke-width="1"/>
+  <text x="690" y="82" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">EC2 (App Servers)</text>
+  <text x="690" y="110" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">Endpoint なし</text>
+  <!-- Spoke VPC 3 (bottom-left) -->
+  <rect x="30" y="310" width="160" height="80" rx="6" fill="#f1f5f9" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="110" y="330" font-family="Arial,sans-serif" font-size="10" fill="#555" text-anchor="middle" font-weight="bold">On-Premises</text>
+  <rect x="44" y="338" width="132" height="28" rx="4" fill="#fff" stroke="#6b7280" stroke-width="1"/>
+  <text x="110" y="356" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">DC Servers</text>
+  <text x="110" y="375" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">VPN/DX</text>
+  <!-- Spoke VPC 4 (bottom-right) -->
+  <rect x="610" y="310" width="160" height="80" rx="6" fill="#f0f4ff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <text x="690" y="330" font-family="Arial,sans-serif" font-size="10" fill="#7b5ea7" text-anchor="middle" font-weight="bold">Spoke VPC-Staging</text>
+  <rect x="624" y="338" width="132" height="28" rx="4" fill="#fff" stroke="#7b5ea7" stroke-width="1"/>
+  <text x="690" y="356" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">EC2 (Test)</text>
+  <text x="690" y="375" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">Endpoint なし</text>
+  <!-- Arrows from spokes to TGW -->
+  <line x1="190" y1="77" x2="345" y2="200" stroke="#7b5ea7" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="340,196 349,204 352,194" fill="#7b5ea7"/>
+  <line x1="610" y1="77" x2="455" y2="200" stroke="#7b5ea7" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="449,196 457,205 459,194" fill="#7b5ea7"/>
+  <line x1="190" y1="350" x2="345" y2="360" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="341,354 353,360 341,366" fill="#6b7280"/>
+  <line x1="610" y1="350" x2="455" y2="360" stroke="#7b5ea7" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="451,354 463,360 451,366" fill="#7b5ea7"/>
+  <!-- AWS Services (top center) -->
+  <rect x="300" y="35" width="200" height="95" rx="6" fill="#fff8f0" stroke="#ff9900" stroke-width="1.5"/>
+  <text x="400" y="54" font-family="Arial,sans-serif" font-size="10" fill="#cc7700" text-anchor="middle" font-weight="bold">AWS Services</text>
+  <text x="400" y="72" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">PrivateLink Backend</text>
+  <text x="400" y="90" font-family="Arial,sans-serif" font-size="9" fill="#cc7700" text-anchor="middle">S3 / SSM / ECR / KMS / ...</text>
+  <text x="400" y="106" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">AWS Backbone Network</text>
+  <text x="400" y="122" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">(Internet 不使用)</text>
+  <!-- Arrow Hub to AWS Services -->
+  <line x1="400" y1="148" x2="400" y2="130" stroke="#10b981" stroke-width="2"/>
+  <polygon points="394,126 400,118 406,126" fill="#10b981"/>
+  <!-- Cost saving note -->
+  <rect x="5" y="388" width="790" height="10" rx="3"/>
+</svg>

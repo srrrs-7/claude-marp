@@ -1,0 +1,55 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <text x="400" y="26" font-family="Arial,sans-serif" font-size="14" fill="#7b5ea7" font-weight="bold" text-anchor="middle">コスト構造比較</text>
+  <!-- LEFT: Gateway Cost -->
+  <rect x="15" y="38" width="370" height="345" rx="8" fill="#f0fdf4" stroke="#10b981" stroke-width="2"/>
+  <rect x="15" y="38" width="370" height="36" rx="8" fill="#10b981"/>
+  <text x="200" y="61" font-family="Arial,sans-serif" font-size="13" fill="#fff" font-weight="bold" text-anchor="middle">Gateway Endpoint</text>
+  <!-- Free label -->
+  <rect x="115" y="84" width="170" height="48" rx="6" fill="#10b981" opacity="0.15" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.10))"/>
+  <text x="200" y="110" font-family="Arial,sans-serif" font-size="28" fill="#059669" font-weight="bold" text-anchor="middle">無 料</text>
+  <text x="200" y="128" font-family="Arial,sans-serif" font-size="11" fill="#888" text-anchor="middle">追加コスト一切なし</text>
+  <!-- What is free -->
+  <rect x="30" y="146" width="340" height="130" rx="5" fill="#fff" stroke="#10b981" stroke-width="1"/>
+  <text x="200" y="165" font-family="Arial,sans-serif" font-size="11" fill="#059669" text-anchor="middle" font-weight="bold">コスト内訳</text>
+  <text x="48" y="188" font-family="Arial,sans-serif" font-size="11" fill="#10b981">✓ エンドポイント時間料金: 無料</text>
+  <text x="48" y="208" font-family="Arial,sans-serif" font-size="11" fill="#10b981">✓ データ処理料金: 無料</text>
+  <text x="48" y="228" font-family="Arial,sans-serif" font-size="11" fill="#10b981">✓ リージョン内 S3 転送: 無料</text>
+  <text x="48" y="248" font-family="Arial,sans-serif" font-size="9" fill="#888">※ クロスリージョン転送は別途課金</text>
+  <text x="48" y="264" font-family="Arial,sans-serif" font-size="9" fill="#888">※ CloudFront → S3 も Gateway 経由可</text>
+  <!-- Saving vs NAT -->
+  <rect x="30" y="288" width="340" height="80" rx="5" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
+  <text x="200" y="306" font-family="Arial,sans-serif" font-size="11" fill="#059669" text-anchor="middle" font-weight="bold">NAT GW 不要による削減効果</text>
+  <text x="48" y="326" font-family="Arial,sans-serif" font-size="10" fill="#555">NAT GW: $0.045/hr = ~$32/月/AZ</text>
+  <text x="48" y="344" font-family="Arial,sans-serif" font-size="10" fill="#555">データ: $0.045/GB → $0 (EP 経由)</text>
+  <text x="48" y="360" font-family="Arial,sans-serif" font-size="10" fill="#059669" font-weight="bold">→ 大量S3アクセスで大幅コスト削減</text>
+  <!-- RIGHT: Interface Cost -->
+  <rect x="415" y="38" width="370" height="345" rx="8" fill="#fff9f0" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="415" y="38" width="370" height="36" rx="8" fill="#f59e0b"/>
+  <text x="600" y="61" font-family="Arial,sans-serif" font-size="13" fill="#fff" font-weight="bold" text-anchor="middle">Interface Endpoint</text>
+  <!-- Price breakdown -->
+  <rect x="430" y="82" width="340" height="120" rx="5" fill="#fff" stroke="#f59e0b" stroke-width="1"/>
+  <text x="600" y="101" font-family="Arial,sans-serif" font-size="11" fill="#b45309" text-anchor="middle" font-weight="bold">料金体系 (us-east-1 基準)</text>
+  <!-- EP hourly -->
+  <rect x="438" y="108" width="324" height="22" rx="3" fill="#fef9c3"/>
+  <text x="446" y="124" font-family="Arial,sans-serif" font-size="10" fill="#333" font-weight="bold">エンドポイント時間料金</text>
+  <text x="748" y="124" font-family="Arial,sans-serif" font-size="10" fill="#b45309" font-weight="bold" text-anchor="end">$0.01 / hr / AZ</text>
+  <!-- Monthly estimate -->
+  <rect x="438" y="130" width="324" height="17" rx="3" fill="#f8fafc"/>
+  <text x="446" y="142" font-family="Arial,sans-serif" font-size="9" fill="#888">1 EP × 2 AZ × 24h × 30日 = $14.40/月</text>
+  <!-- Data -->
+  <rect x="438" y="149" width="324" height="22" rx="3" fill="#fef9c3"/>
+  <text x="446" y="165" font-family="Arial,sans-serif" font-size="10" fill="#333" font-weight="bold">データ処理料金</text>
+  <text x="748" y="165" font-family="Arial,sans-serif" font-size="10" fill="#b45309" font-weight="bold" text-anchor="end">$0.01 / GB</text>
+  <text x="446" y="182" font-family="Arial,sans-serif" font-size="9" fill="#888">1TB/月 = $10.24 追加</text>
+  <!-- Cost optimization tips -->
+  <rect x="430" y="215" width="340" height="155" rx="5" fill="#fff" stroke="#f59e0b" stroke-width="1"/>
+  <text x="600" y="234" font-family="Arial,sans-serif" font-size="11" fill="#b45309" text-anchor="middle" font-weight="bold">コスト最適化のヒント</text>
+  <text x="446" y="258" font-family="Arial,sans-serif" font-size="10" fill="#555">① 使用する AZ にのみ ENI を作成</text>
+  <text x="454" y="274" font-family="Arial,sans-serif" font-size="9" fill="#888">→ 未使用 AZ の EP は削除</text>
+  <text x="446" y="294" font-family="Arial,sans-serif" font-size="10" fill="#555">② 複数 VPC は TGW で集約 + EP 共有</text>
+  <text x="454" y="310" font-family="Arial,sans-serif" font-size="9" fill="#888">→ EP 数を最小化（後述アーキテクチャ参照）</text>
+  <text x="446" y="330" font-family="Arial,sans-serif" font-size="10" fill="#555">③ S3/DDB は Gateway EP を優先使用</text>
+  <text x="454" y="346" font-family="Arial,sans-serif" font-size="9" fill="#888">→ Interface EP より Gateway EP が安い</text>
+  <text x="446" y="366" font-family="Arial,sans-serif" font-size="9" fill="#b45309" font-weight="bold">例外: オンプレや TGW 経由が必要なら Interface EP 一択</text>
+</svg>

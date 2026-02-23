@@ -1,0 +1,77 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Interface Endpoint — セキュリティグループ設計パターン</text>
+  <!-- Pattern 1: SG Reference -->
+  <rect x="10" y="36" width="375" height="165" rx="6" fill="#fff" stroke="#10b981" stroke-width="2"/>
+  <rect x="10" y="36" width="375" height="24" rx="6" fill="#10b981"/>
+  <text x="197" y="53" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">パターン 1: SG 参照 (推奨)</text>
+  <!-- SG reference diagram -->
+  <rect x="22" y="68" width="100" height="50" rx="4" fill="#f5f3ff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <text x="72" y="89" font-family="Arial,sans-serif" font-size="9" fill="#7b5ea7" text-anchor="middle" font-weight="bold">sg-app</text>
+  <text x="72" y="105" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">EC2 SG</text>
+  <line x1="122" y1="93" x2="148" y2="93" stroke="#10b981" stroke-width="2"/>
+  <polygon points="144,87 156,93 144,99" fill="#10b981"/>
+  <rect x="148" y="68" width="120" height="50" rx="4" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5"/>
+  <text x="208" y="89" font-family="Arial,sans-serif" font-size="9" fill="#059669" text-anchor="middle" font-weight="bold">sg-ep</text>
+  <text x="208" y="105" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">EP ENI SG</text>
+  <text x="208" y="120" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">Inbound: 443 ← sg-app</text>
+  <line x1="268" y1="93" x2="290" y2="93" stroke="#ff9900" stroke-width="2"/>
+  <polygon points="286,87 298,93 286,99" fill="#ff9900"/>
+  <rect x="290" y="68" width="85" height="50" rx="4" fill="#fff8f0" stroke="#ff9900" stroke-width="1.5"/>
+  <text x="332" y="89" font-family="Arial,sans-serif" font-size="9" fill="#cc7700" text-anchor="middle" font-weight="bold">AWS Svc</text>
+  <text x="332" y="105" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">SSM / etc</text>
+  <text x="197" y="143" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">EC2 SG を source に指定 → EC2 が移動しても IP 変更不要</text>
+  <text x="197" y="158" font-family="Arial,sans-serif" font-size="9" fill="#059669" text-anchor="middle" font-weight="bold">IP アドレスに依存しない動的な制御が可能</text>
+  <!-- Pattern 2: CIDR based -->
+  <rect x="415" y="36" width="375" height="165" rx="6" fill="#fff" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="415" y="36" width="375" height="24" rx="6" fill="#f59e0b"/>
+  <text x="602" y="53" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">パターン 2: CIDR 指定</text>
+  <rect x="427" y="68" width="100" height="50" rx="4" fill="#f5f3ff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <text x="477" y="89" font-family="Arial,sans-serif" font-size="9" fill="#7b5ea7" text-anchor="middle">EC2</text>
+  <text x="477" y="105" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">10.0.1.0/24</text>
+  <line x1="527" y1="93" x2="553" y2="93" stroke="#f59e0b" stroke-width="2"/>
+  <polygon points="549,87 561,93 549,99" fill="#f59e0b"/>
+  <rect x="553" y="68" width="120" height="50" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="613" y="89" font-family="Arial,sans-serif" font-size="9" fill="#b45309" text-anchor="middle" font-weight="bold">sg-ep</text>
+  <text x="613" y="103" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">Inbound: 443</text>
+  <text x="613" y="115" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">10.0.1.0/24</text>
+  <line x1="673" y1="93" x2="695" y2="93" stroke="#ff9900" stroke-width="2"/>
+  <polygon points="691,87 703,93 691,99" fill="#ff9900"/>
+  <rect x="695" y="68" width="85" height="50" rx="4" fill="#fff8f0" stroke="#ff9900" stroke-width="1.5"/>
+  <text x="737" y="89" font-family="Arial,sans-serif" font-size="9" fill="#cc7700" text-anchor="middle" font-weight="bold">AWS Svc</text>
+  <text x="602" y="143" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">サブネット CIDR で制御 — 同じサブネットの全 EC2 が対象</text>
+  <text x="602" y="158" font-family="Arial,sans-serif" font-size="9" fill="#b45309" text-anchor="middle">EC2 が多い場合はサブネット単位の粗い制御になる</text>
+  <!-- Pattern 3: Prefix List -->
+  <rect x="10" y="215" width="375" height="175" rx="6" fill="#fff" stroke="#7b5ea7" stroke-width="2"/>
+  <rect x="10" y="215" width="375" height="24" rx="6" fill="#7b5ea7"/>
+  <text x="197" y="232" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">パターン 3: Customer Managed Prefix List</text>
+  <rect x="22" y="248" width="100" height="50" rx="4" fill="#f5f3ff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <text x="72" y="268" font-family="Arial,sans-serif" font-size="9" fill="#7b5ea7" text-anchor="middle">複数 EC2</text>
+  <text x="72" y="282" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">様々な IP</text>
+  <line x1="122" y1="273" x2="148" y2="273" stroke="#7b5ea7" stroke-width="2"/>
+  <polygon points="144,267 156,273 144,279" fill="#7b5ea7"/>
+  <rect x="148" y="248" width="120" height="50" rx="4" fill="#f5f3ff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <text x="208" y="264" font-family="Arial,sans-serif" font-size="9" fill="#7b5ea7" text-anchor="middle" font-weight="bold">sg-ep</text>
+  <text x="208" y="278" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">Inbound: 443</text>
+  <text x="208" y="290" font-family="Arial,sans-serif" font-size="8" fill="#7b5ea7" text-anchor="middle">pl-custom-XXX</text>
+  <line x1="268" y1="273" x2="290" y2="273" stroke="#ff9900" stroke-width="2"/>
+  <polygon points="286,267 298,273 286,279" fill="#ff9900"/>
+  <rect x="290" y="248" width="85" height="50" rx="4" fill="#fff8f0" stroke="#ff9900" stroke-width="1.5"/>
+  <text x="332" y="268" font-family="Arial,sans-serif" font-size="9" fill="#cc7700" text-anchor="middle">AWS Svc</text>
+  <text x="197" y="320" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">Prefix List に IP を追加/削除するだけで制御対象を変更</text>
+  <text x="197" y="336" font-family="Arial,sans-serif" font-size="9" fill="#7b5ea7" text-anchor="middle">複数の SG から同じ Prefix List を参照可能</text>
+  <text x="197" y="352" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">複数 VPC・チームで管理する場合に有効</text>
+  <text x="197" y="375" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">RAM でクロスアカウント共有も可能</text>
+  <!-- Pattern 4: Best Practice Summary -->
+  <rect x="415" y="215" width="375" height="175" rx="6" fill="#fff" stroke="#10b981" stroke-width="2"/>
+  <rect x="415" y="215" width="375" height="24" rx="6" fill="#10b981"/>
+  <text x="602" y="232" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">SG 設計ベストプラクティス</text>
+  <text x="427" y="258" font-family="Arial,sans-serif" font-size="10" fill="#059669" font-weight="bold">EP SG (sg-ep) インバウンドルール:</text>
+  <rect x="427" y="264" width="351" height="70" rx="4" fill="#f0fdf4"/>
+  <text x="435" y="282" font-family="monospace,Arial" font-size="9" fill="#333">HTTPS 443  ← sg-app (アプリ EC2 SG)</text>
+  <text x="435" y="298" font-family="monospace,Arial" font-size="9" fill="#333">HTTPS 443  ← sg-batch (バッチ EC2 SG)</text>
+  <text x="435" y="314" font-family="monospace,Arial" font-size="9" fill="#888">追加ルールは最小限 — 不要なソースを含めない</text>
+  <text x="427" y="352" font-family="Arial,sans-serif" font-size="9" fill="#555" font-weight="bold">重要ポイント:</text>
+  <text x="427" y="368" font-family="Arial,sans-serif" font-size="9" fill="#555">・SG はステートフル — Inbound 許可で返りトラフィックは自動許可</text>
+  <text x="427" y="384" font-family="Arial,sans-serif" font-size="9" fill="#555">・Outbound ルールは通常デフォルトのまま (All Allow) で問題なし</text>
+</svg>

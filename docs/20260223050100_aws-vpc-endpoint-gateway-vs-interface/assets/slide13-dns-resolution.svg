@@ -1,0 +1,81 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <text x="400" y="26" font-family="Arial,sans-serif" font-size="14" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Interface Endpoint — DNS 解決の仕組み</text>
+  <!-- Two columns: without Private DNS / with Private DNS -->
+  <line x1="400" y1="35" x2="400" y2="395" stroke="#e5e7eb" stroke-width="1.5"/>
+  <!-- LEFT: Without Private DNS -->
+  <text x="200" y="52" font-family="Arial,sans-serif" font-size="12" fill="#f59e0b" font-weight="bold" text-anchor="middle">Private DNS 無効時</text>
+  <!-- Step boxes left -->
+  <!-- Step 1 -->
+  <rect x="20" y="62" width="360" height="48" rx="5" fill="#fff" stroke="#e5e7eb" stroke-width="1"/>
+  <circle cx="44" cy="86" r="14" fill="#7b5ea7"/>
+  <text x="44" y="91" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">1</text>
+  <text x="68" y="80" font-family="Arial,sans-serif" font-size="11" fill="#333">アプリがエンドポイント専用 DNS 名を使用</text>
+  <text x="68" y="98" font-family="monospace,Arial" font-size="9" fill="#7b5ea7">vpce-0abc.ssm.ap-northeast-1.vpce.amazonaws.com</text>
+  <!-- Step 2 -->
+  <line x1="200" y1="110" x2="200" y2="124" stroke="#7b5ea7" stroke-width="1.5"/>
+  <polygon points="194,120 200,126 206,120" fill="#7b5ea7"/>
+  <rect x="20" y="124" width="360" height="48" rx="5" fill="#fff" stroke="#e5e7eb" stroke-width="1"/>
+  <circle cx="44" cy="148" r="14" fill="#7b5ea7"/>
+  <text x="44" y="153" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">2</text>
+  <text x="68" y="142" font-family="Arial,sans-serif" font-size="11" fill="#333">Route 53 Resolver (VPC DNS) に問い合わせ</text>
+  <text x="68" y="158" font-family="Arial,sans-serif" font-size="9" fill="#888">VPC CIDR +2 の DNS サーバー (169.254.169.253)</text>
+  <!-- Step 3 -->
+  <line x1="200" y1="172" x2="200" y2="186" stroke="#7b5ea7" stroke-width="1.5"/>
+  <polygon points="194,182 200,188 206,182" fill="#7b5ea7"/>
+  <rect x="20" y="186" width="360" height="48" rx="5" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5"/>
+  <circle cx="44" cy="210" r="14" fill="#10b981"/>
+  <text x="44" y="215" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">3</text>
+  <text x="68" y="204" font-family="Arial,sans-serif" font-size="11" fill="#333">ENI の プライベート IP に解決</text>
+  <text x="68" y="220" font-family="monospace,Arial" font-size="9" fill="#059669">vpce-0abc.ssm.*.vpce.amazonaws.com → 10.0.1.50</text>
+  <!-- Step 4 -->
+  <line x1="200" y1="234" x2="200" y2="248" stroke="#7b5ea7" stroke-width="1.5"/>
+  <polygon points="194,244 200,250 206,244" fill="#7b5ea7"/>
+  <rect x="20" y="248" width="360" height="48" rx="5" fill="#fff" stroke="#e5e7eb" stroke-width="1"/>
+  <circle cx="44" cy="272" r="14" fill="#7b5ea7"/>
+  <text x="44" y="277" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">4</text>
+  <text x="68" y="266" font-family="Arial,sans-serif" font-size="11" fill="#333">ENI → PrivateLink → AWS Service</text>
+  <text x="68" y="282" font-family="Arial,sans-serif" font-size="9" fill="#888">トラフィックは VPC 内 ENI に到達後、AWS Backbone 経由</text>
+  <!-- Note: code change needed -->
+  <rect x="20" y="310" width="360" height="52" rx="5" fill="#fef9c3" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="200" y="330" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">注意: コード変更が必要</text>
+  <text x="200" y="348" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">アプリの接続先を vpce-XXXX 形式の</text>
+  <text x="200" y="364" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">エンドポイント専用 DNS 名に変更する必要あり</text>
+  <!-- RIGHT: With Private DNS -->
+  <text x="600" y="52" font-family="Arial,sans-serif" font-size="12" fill="#10b981" font-weight="bold" text-anchor="middle">Private DNS 有効時 (推奨)</text>
+  <!-- Step 1 right -->
+  <rect x="420" y="62" width="360" height="48" rx="5" fill="#fff" stroke="#e5e7eb" stroke-width="1"/>
+  <circle cx="444" cy="86" r="14" fill="#10b981"/>
+  <text x="444" y="91" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">1</text>
+  <text x="468" y="80" font-family="Arial,sans-serif" font-size="11" fill="#333">アプリが標準 DNS 名を使用（変更不要）</text>
+  <text x="468" y="98" font-family="monospace,Arial" font-size="9" fill="#10b981">ssm.ap-northeast-1.amazonaws.com</text>
+  <!-- Step 2 right -->
+  <line x1="600" y1="110" x2="600" y2="124" stroke="#10b981" stroke-width="1.5"/>
+  <polygon points="594,120 600,126 606,120" fill="#10b981"/>
+  <rect x="420" y="124" width="360" height="48" rx="5" fill="#fff" stroke="#e5e7eb" stroke-width="1"/>
+  <circle cx="444" cy="148" r="14" fill="#10b981"/>
+  <text x="444" y="153" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">2</text>
+  <text x="468" y="142" font-family="Arial,sans-serif" font-size="11" fill="#333">Route 53 Resolver が Private Hosted Zone を参照</text>
+  <text x="468" y="158" font-family="Arial,sans-serif" font-size="9" fill="#888">PHZ: ssm.ap-northeast-1.amazonaws.com (VPC に関連付け)</text>
+  <!-- Step 3 right -->
+  <line x1="600" y1="172" x2="600" y2="186" stroke="#10b981" stroke-width="1.5"/>
+  <polygon points="594,182 600,188 606,182" fill="#10b981"/>
+  <rect x="420" y="186" width="360" height="48" rx="5" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5"/>
+  <circle cx="444" cy="210" r="14" fill="#10b981"/>
+  <text x="444" y="215" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">3</text>
+  <text x="468" y="204" font-family="Arial,sans-serif" font-size="11" fill="#333">ENI の プライベート IP に解決</text>
+  <text x="468" y="220" font-family="monospace,Arial" font-size="9" fill="#059669">ssm.ap-northeast-1.amazonaws.com → 10.0.1.50</text>
+  <!-- Step 4 right -->
+  <line x1="600" y1="234" x2="600" y2="248" stroke="#10b981" stroke-width="1.5"/>
+  <polygon points="594,244 600,250 606,244" fill="#10b981"/>
+  <rect x="420" y="248" width="360" height="48" rx="5" fill="#fff" stroke="#e5e7eb" stroke-width="1"/>
+  <circle cx="444" cy="272" r="14" fill="#10b981"/>
+  <text x="444" y="277" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">4</text>
+  <text x="468" y="266" font-family="Arial,sans-serif" font-size="11" fill="#333">ENI → PrivateLink → AWS Service</text>
+  <text x="468" y="282" font-family="Arial,sans-serif" font-size="9" fill="#888">既存コードの変更なしで完全プライベート通信</text>
+  <!-- Note: no code change needed -->
+  <rect x="420" y="310" width="360" height="52" rx="5" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5"/>
+  <text x="600" y="330" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">コード変更不要</text>
+  <text x="600" y="348" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">標準 DNS 名のまま使用可能</text>
+  <text x="600" y="364" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">既存アプリへの影響ゼロで移行可能</text>
+</svg>

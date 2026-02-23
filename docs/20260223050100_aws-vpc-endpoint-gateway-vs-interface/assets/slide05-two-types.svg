@@ -1,0 +1,60 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <line x1="400" y1="10" x2="400" y2="390" stroke="#e5e7eb" stroke-width="1.5"/>
+  <!-- Left: Gateway Endpoint -->
+  <rect x="15" y="15" width="370" height="370" rx="10" fill="#f0f4ff" stroke="#7b5ea7" stroke-width="2"/>
+  <rect x="15" y="15" width="370" height="44" rx="10" fill="#7b5ea7"/>
+  <text x="200" y="33" font-family="Arial,sans-serif" font-size="13" fill="#fff" font-weight="bold" text-anchor="middle">Gateway Endpoint</text>
+  <text x="200" y="50" font-family="Arial,sans-serif" font-size="10" fill="#d4b8ff" text-anchor="middle">ルートテーブル ベース</text>
+  <!-- Gateway: Supported services -->
+  <text x="35" y="82" font-family="Arial,sans-serif" font-size="11" fill="#555" font-weight="bold">対応サービス</text>
+  <rect x="35" y="88" width="330" height="44" rx="5" fill="#fff" stroke="#7b5ea7" stroke-width="1"/>
+  <circle cx="62" cy="110" r="16" fill="#ff9900"/>
+  <text x="62" y="115" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">S3</text>
+  <text x="95" y="107" font-family="Arial,sans-serif" font-size="12" fill="#333" font-weight="bold">Amazon S3</text>
+  <text x="95" y="122" font-family="Arial,sans-serif" font-size="10" fill="#888">Object Storage</text>
+  <circle cx="220" cy="110" r="16" fill="#7b5ea7"/>
+  <text x="220" y="115" font-family="Arial,sans-serif" font-size="9" fill="#fff" font-weight="bold" text-anchor="middle">DDB</text>
+  <text x="250" y="107" font-family="Arial,sans-serif" font-size="12" fill="#333" font-weight="bold">DynamoDB</text>
+  <text x="250" y="122" font-family="Arial,sans-serif" font-size="10" fill="#888">NoSQL Database</text>
+  <!-- Gateway mechanics -->
+  <text x="35" y="155" font-family="Arial,sans-serif" font-size="11" fill="#555" font-weight="bold">仕組み</text>
+  <rect x="35" y="162" width="330" height="55" rx="5" fill="#fff" stroke="#7b5ea7" stroke-width="1"/>
+  <text x="52" y="182" font-family="Arial,sans-serif" font-size="10" fill="#555">ルートテーブルにプレフィックスリストエントリを追加</text>
+  <rect x="52" y="190" width="295" height="20" rx="3" fill="#f5f3ff"/>
+  <text x="60" y="204" font-family="monospace,Arial" font-size="10" fill="#7b5ea7">pl-XXXXXXXX (S3)  →  vpce-XXXXXXXX</text>
+  <!-- Gateway characteristics -->
+  <text x="35" y="237" font-family="Arial,sans-serif" font-size="11" fill="#555" font-weight="bold">特徴</text>
+  <rect x="35" y="243" width="330" height="120" rx="5" fill="#fff" stroke="#7b5ea7" stroke-width="1"/>
+  <text x="52" y="263" font-family="Arial,sans-serif" font-size="11" fill="#10b981">✓ 無料（追加コストなし）</text>
+  <text x="52" y="281" font-family="Arial,sans-serif" font-size="11" fill="#10b981">✓ 高可用性（AWSが管理）</text>
+  <text x="52" y="299" font-family="Arial,sans-serif" font-size="11" fill="#10b981">✓ セキュリティグループ不要</text>
+  <text x="52" y="317" font-family="Arial,sans-serif" font-size="11" fill="#ef4444">✗ オンプレ/TGW 経由アクセス不可</text>
+  <text x="52" y="335" font-family="Arial,sans-serif" font-size="11" fill="#ef4444">✗ S3/DynamoDB のみ対応</text>
+  <text x="52" y="353" font-family="Arial,sans-serif" font-size="11" fill="#ef4444">✗ ENI なし / プライベート IP なし</text>
+  <!-- Right: Interface Endpoint -->
+  <rect x="415" y="15" width="370" height="370" rx="10" fill="#f0fdf4" stroke="#10b981" stroke-width="2"/>
+  <rect x="415" y="15" width="370" height="44" rx="10" fill="#10b981"/>
+  <text x="600" y="33" font-family="Arial,sans-serif" font-size="13" fill="#fff" font-weight="bold" text-anchor="middle">Interface Endpoint (PrivateLink)</text>
+  <text x="600" y="50" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0" text-anchor="middle">ENI (Elastic Network Interface) ベース</text>
+  <!-- Interface: Supported services -->
+  <text x="435" y="82" font-family="Arial,sans-serif" font-size="11" fill="#555" font-weight="bold">対応サービス</text>
+  <rect x="435" y="88" width="330" height="44" rx="5" fill="#fff" stroke="#10b981" stroke-width="1"/>
+  <text x="452" y="112" font-family="Arial,sans-serif" font-size="11" fill="#333">EC2, SSM, Secrets Manager, KMS,</text>
+  <text x="452" y="126" font-family="Arial,sans-serif" font-size="11" fill="#333">STS, CloudWatch, ECR, SQS ... 100+</text>
+  <!-- Interface mechanics -->
+  <text x="435" y="155" font-family="Arial,sans-serif" font-size="11" fill="#555" font-weight="bold">仕組み</text>
+  <rect x="435" y="162" width="330" height="55" rx="5" fill="#fff" stroke="#10b981" stroke-width="1"/>
+  <text x="452" y="182" font-family="Arial,sans-serif" font-size="10" fill="#555">サブネット内に ENI を作成し、プライベート IP を付与</text>
+  <rect x="452" y="190" width="295" height="20" rx="3" fill="#f0fdf4"/>
+  <text x="460" y="204" font-family="monospace,Arial" font-size="10" fill="#059669">vpce-XXXX.ec2.ap-northeast-1.vpce.amazonaws.com</text>
+  <!-- Interface characteristics -->
+  <text x="435" y="237" font-family="Arial,sans-serif" font-size="11" fill="#555" font-weight="bold">特徴</text>
+  <rect x="435" y="243" width="330" height="120" rx="5" fill="#fff" stroke="#10b981" stroke-width="1"/>
+  <text x="452" y="263" font-family="Arial,sans-serif" font-size="11" fill="#10b981">✓ 100+ AWS サービス対応</text>
+  <text x="452" y="281" font-family="Arial,sans-serif" font-size="11" fill="#10b981">✓ オンプレ/TGW 経由接続可</text>
+  <text x="452" y="299" font-family="Arial,sans-serif" font-size="11" fill="#10b981">✓ セキュリティグループで制御</text>
+  <text x="452" y="317" font-family="Arial,sans-serif" font-size="11" fill="#10b981">✓ Private DNS 対応</text>
+  <text x="452" y="335" font-family="Arial,sans-serif" font-size="11" fill="#ef4444">✗ 有料 ($0.01/hr/AZ + $0.01/GB)</text>
+  <text x="452" y="353" font-family="Arial,sans-serif" font-size="11" fill="#ef4444">✗ AZ ごとに ENI が必要</text>
+</svg>

@@ -1,0 +1,86 @@
+<svg viewBox="0 0 900 430" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="430" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Amazon Bedrock 概要</text>
+  <text x="450" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">フルマネージド型基盤モデルサービス — サーバーレス、プライバシー保証、API統一アクセス</text>
+
+  <!-- FM Providers layer -->
+  <rect x="15" y="68" width="870" height="62" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="30" y="88" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#60a5fa">Foundation Model プロバイダー</text>
+  <rect x="30" y="96" width="90" height="26" rx="4" fill="#1d4ed8"/>
+  <text x="75" y="113" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">Anthropic</text>
+  <rect x="130" y="96" width="90" height="26" rx="4" fill="#1d4ed8"/>
+  <text x="175" y="113" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">Amazon</text>
+  <rect x="230" y="96" width="90" height="26" rx="4" fill="#1d4ed8"/>
+  <text x="275" y="113" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">Meta Llama</text>
+  <rect x="330" y="96" width="100" height="26" rx="4" fill="#1d4ed8"/>
+  <text x="380" y="113" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">Stability AI</text>
+  <rect x="440" y="96" width="90" height="26" rx="4" fill="#1d4ed8"/>
+  <text x="485" y="113" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">Mistral AI</text>
+  <rect x="540" y="96" width="90" height="26" rx="4" fill="#1d4ed8"/>
+  <text x="585" y="113" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">Cohere</text>
+  <rect x="640" y="96" width="80" height="26" rx="4" fill="#1d4ed8"/>
+  <text x="680" y="113" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">AI21 Labs</text>
+  <rect x="730" y="96" width="80" height="26" rx="4" fill="#1d4ed8"/>
+  <text x="770" y="113" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">Writer</text>
+
+  <!-- Amazon Bedrock Core -->
+  <rect x="15" y="142" width="870" height="170" rx="8" fill="#1e1b4b" stroke="#7c3aed" stroke-width="2"/>
+  <text x="450" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#e9d5ff">Amazon Bedrock</text>
+
+  <!-- Core features -->
+  <rect x="30" y="172" width="200" height="128" rx="6" fill="#2e1065"/>
+  <text x="130" y="192" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#c4b5fd">API アクセス</text>
+  <text x="130" y="212" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">InvokeModel API</text>
+  <text x="130" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Converse API（統一）</text>
+  <text x="130" y="244" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">ストリーミング対応</text>
+  <text x="130" y="260" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Batch Inference</text>
+  <text x="130" y="278" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Prompt Caching</text>
+  <text x="130" y="294" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">Python/Java/JS SDK</text>
+
+  <rect x="244" y="172" width="200" height="128" rx="6" fill="#2e1065"/>
+  <text x="344" y="192" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#c4b5fd">GenAI アプリ構築</text>
+  <text x="344" y="212" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Knowledge Bases（RAG）</text>
+  <text x="344" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Agents（自律タスク）</text>
+  <text x="344" y="244" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Flows（AIワークフロー）</text>
+  <text x="344" y="260" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Guardrails（安全制御）</text>
+  <text x="344" y="276" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Prompt Management</text>
+  <text x="344" y="294" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">Model Evaluation</text>
+
+  <rect x="458" y="172" width="200" height="128" rx="6" fill="#2e1065"/>
+  <text x="558" y="192" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#c4b5fd">モデルカスタマイズ</text>
+  <text x="558" y="212" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Fine-tuning</text>
+  <text x="558" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Continued Pre-training</text>
+  <text x="558" y="244" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Model Distillation</text>
+  <text x="558" y="260" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">カスタムモデル管理</text>
+  <text x="558" y="276" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Provisioned Throughput</text>
+  <text x="558" y="294" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">Marketplace共有</text>
+
+  <rect x="672" y="172" width="200" height="128" rx="6" fill="#2e1065"/>
+  <text x="772" y="192" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#c4b5fd">セキュリティ</text>
+  <text x="772" y="212" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">IAM 権限管理</text>
+  <text x="772" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">VPC エンドポイント</text>
+  <text x="772" y="244" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">KMS 暗号化</text>
+  <text x="772" y="260" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">CloudTrail 監査</text>
+  <text x="772" y="276" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">データ非共有保証</text>
+  <text x="772" y="294" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">モデル学習に使用しない</text>
+
+  <!-- Customer Application layer -->
+  <rect x="15" y="324" width="870" height="52" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+  <text x="30" y="344" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#34d399">アプリケーション層</text>
+  <rect x="30" y="352" width="130" height="20" rx="4" fill="#065f46"/>
+  <text x="95" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">Webアプリ</text>
+  <rect x="175" y="352" width="130" height="20" rx="4" fill="#065f46"/>
+  <text x="240" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">Lambda / API GW</text>
+  <rect x="320" y="352" width="130" height="20" rx="4" fill="#065f46"/>
+  <text x="385" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">ECS / EKS</text>
+  <rect x="465" y="352" width="130" height="20" rx="4" fill="#065f46"/>
+  <text x="530" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">SageMaker</text>
+  <rect x="610" y="352" width="130" height="20" rx="4" fill="#065f46"/>
+  <text x="675" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">Step Functions</text>
+  <rect x="755" y="352" width="120" height="20" rx="4" fill="#065f46"/>
+  <text x="815" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">Amplify</text>
+
+  <!-- Key value prop -->
+  <rect x="15" y="388" width="870" height="30" rx="6" fill="#78350f"/>
+  <text x="450" y="408" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">試験Tip: Bedrockはサーバーレス・データ非共有・複数FMへの統一API。SageMakerはカスタムML訓練・推論エンドポイント管理</text>
+</svg>

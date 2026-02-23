@@ -1,0 +1,75 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Direct Connect + PrivateLink — オンプレ接続パターン</text>
+  <!-- On-Premises (left) -->
+  <rect x="10" y="40" width="165" height="320" rx="8" fill="#f1f5f9" stroke="#6b7280" stroke-width="2"/>
+  <rect x="10" y="40" width="165" height="26" rx="8" fill="#6b7280"/>
+  <text x="92" y="58" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">On-Premises</text>
+  <!-- DC Servers -->
+  <rect x="22" y="76" width="141" height="40" rx="4" fill="#fff" stroke="#6b7280" stroke-width="1"/>
+  <text x="92" y="101" font-family="Arial,sans-serif" font-size="10" fill="#555" text-anchor="middle">DC Servers</text>
+  <!-- DNS Resolver (on-prem) -->
+  <rect x="22" y="130" width="141" height="45" rx="4" fill="#fff" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="92" y="149" font-family="Arial,sans-serif" font-size="9" fill="#b45309" text-anchor="middle" font-weight="bold">DNS Resolver</text>
+  <text x="92" y="165" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">192.168.1.53</text>
+  <!-- DX Router -->
+  <rect x="22" y="190" width="141" height="40" rx="4" fill="#fff" stroke="#6b7280" stroke-width="1"/>
+  <text x="92" y="215" font-family="Arial,sans-serif" font-size="10" fill="#555" text-anchor="middle">DX/VPN Router</text>
+  <!-- Note -->
+  <rect x="22" y="248" width="141" height="96" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="1"/>
+  <text x="92" y="266" font-family="Arial,sans-serif" font-size="9" fill="#b45309" text-anchor="middle" font-weight="bold">DNS 課題</text>
+  <text x="28" y="284" font-family="Arial,sans-serif" font-size="9" fill="#555">オンプレ DNS は</text>
+  <text x="28" y="298" font-family="Arial,sans-serif" font-size="9" fill="#555">PHZ を直接参照</text>
+  <text x="28" y="312" font-family="Arial,sans-serif" font-size="9" fill="#555">できない</text>
+  <text x="28" y="330" font-family="Arial,sans-serif" font-size="9" fill="#ef4444" font-weight="bold">→ R53 Inbound EP</text>
+  <text x="28" y="344" font-family="Arial,sans-serif" font-size="9" fill="#ef4444" font-weight="bold">が必要</text>
+  <!-- Direct Connect (center-left) -->
+  <rect x="190" y="155" width="120" height="60" rx="6" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.10))"/>
+  <text x="250" y="179" font-family="Arial,sans-serif" font-size="10" fill="#0369a1" text-anchor="middle" font-weight="bold">Direct Connect</text>
+  <text x="250" y="195" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">or VPN</text>
+  <text x="250" y="208" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">Private VIF</text>
+  <!-- Arrow On-Prem to DX -->
+  <line x1="175" y1="185" x2="188" y2="185" stroke="#6b7280" stroke-width="2"/>
+  <polygon points="184,179 196,185 184,191" fill="#6b7280"/>
+  <!-- VPC (center) -->
+  <rect x="328" y="40" width="270" height="320" rx="8" fill="#f0f4ff" stroke="#7b5ea7" stroke-width="2"/>
+  <rect x="328" y="40" width="270" height="26" rx="8" fill="#7b5ea7"/>
+  <text x="463" y="58" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">AWS VPC</text>
+  <!-- R53 Inbound Resolver EP -->
+  <rect x="342" y="76" width="242" height="55" rx="5" fill="#fff9e6" stroke="#f59e0b" stroke-width="2"/>
+  <text x="463" y="96" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">Route 53 Inbound Resolver EP</text>
+  <text x="350" y="114" font-family="Arial,sans-serif" font-size="9" fill="#555">ENI: 10.0.0.100 (オンプレ DNS フォワード先)</text>
+  <text x="350" y="126" font-family="Arial,sans-serif" font-size="8" fill="#888">オンプレ DNS → 10.0.0.100 (に DNS フォワード) → PHZ 参照</text>
+  <!-- Interface EP in VPC -->
+  <rect x="342" y="150" width="242" height="65" rx="5" fill="#fff" stroke="#10b981" stroke-width="2"/>
+  <rect x="342" y="150" width="242" height="20" rx="5" fill="#10b981"/>
+  <text x="463" y="165" font-family="Arial,sans-serif" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">Interface Endpoint (ENI)</text>
+  <text x="350" y="186" font-family="Arial,sans-serif" font-size="9" fill="#059669">10.0.1.50 (SSM), 10.0.1.51 (Secrets), ...</text>
+  <text x="350" y="203" font-family="Arial,sans-serif" font-size="8" fill="#888">Private DNS Enabled — PHZ: ssm.*.amazonaws.com</text>
+  <!-- PHZ box -->
+  <rect x="342" y="230" width="242" height="50" rx="5" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
+  <text x="463" y="248" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">Route 53 Private Hosted Zone</text>
+  <text x="350" y="266" font-family="monospace,Arial" font-size="9" fill="#555">ssm.*.amazonaws.com → 10.0.1.50</text>
+  <text x="350" y="278" font-family="Arial,sans-serif" font-size="8" fill="#888">VPC に関連付け済み</text>
+  <!-- TGW Attachment note -->
+  <rect x="342" y="296" width="242" height="55" rx="5" fill="#fff9e6" stroke="#f59e0b" stroke-width="1"/>
+  <text x="463" y="313" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">Gateway EP は オンプレから利用不可</text>
+  <text x="350" y="330" font-family="Arial,sans-serif" font-size="9" fill="#555">Gateway EP はルートテーブルのみ制御</text>
+  <text x="350" y="345" font-family="Arial,sans-serif" font-size="9" fill="#555">DX/VPN 経由の通信には適用されない</text>
+  <!-- Arrows DX to R53 Inbound and Interface EP -->
+  <line x1="310" y1="178" x2="340" y2="104" stroke="#f59e0b" stroke-width="2"/>
+  <polygon points="335,100 344,108 341,97" fill="#f59e0b"/>
+  <line x1="310" y1="190" x2="340" y2="182" stroke="#10b981" stroke-width="2"/>
+  <polygon points="336,176 348,182 336,188" fill="#10b981"/>
+  <!-- AWS Services (right) -->
+  <rect x="615" y="100" width="175" height="200" rx="8" fill="#fff8f0" stroke="#ff9900" stroke-width="2"/>
+  <text x="702" y="120" font-family="Arial,sans-serif" font-size="11" fill="#cc7700" font-weight="bold" text-anchor="middle">AWS Services</text>
+  <text x="702" y="140" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">SSM / Secrets / KMS</text>
+  <text x="702" y="158" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">CloudWatch / S3 / ECR</text>
+  <rect x="627" y="172" width="143" height="30" rx="4" fill="#10b981" opacity="0.15" stroke="#10b981" stroke-width="1"/>
+  <text x="698" y="192" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle">PrivateLink</text>
+  <text x="698" y="230" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">Backbone</text>
+  <!-- Arrow Interface EP to AWS Services -->
+  <line x1="584" y1="183" x2="613" y2="183" stroke="#10b981" stroke-width="2"/>
+  <polygon points="609,177 621,183 609,189" fill="#10b981"/>
+</svg>

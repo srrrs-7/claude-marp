@@ -1,0 +1,75 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Bedrock コスト最適化</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">用途に応じた課金モデルの選択が重要</text>
+
+  <!-- On-demand -->
+  <rect x="15" y="65" width="200" height="145" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="15" y="65" width="200" height="34" rx="8" fill="#1d4ed8"/>
+  <text x="115" y="87" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">On-Demand</text>
+  <text x="115" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">入力/出力トークン数</text>
+  <text x="115" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">で従量課金</text>
+  <text x="115" y="153" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">• 最小コミットなし</text>
+  <text x="115" y="169" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">• 開発・テスト向け</text>
+  <text x="115" y="193" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">少量・不定期利用</text>
+
+  <!-- Provisioned Throughput -->
+  <rect x="228" y="65" width="200" height="145" rx="8" fill="#3b0764" stroke="#a855f7" stroke-width="2"/>
+  <rect x="228" y="65" width="200" height="34" rx="8" fill="#6d28d9"/>
+  <text x="328" y="87" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Provisioned Throughput</text>
+  <text x="328" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">MCU（Model Compute</text>
+  <text x="328" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">Unit）単位で時間課金</text>
+  <text x="328" y="153" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">• 固定スループット保証</text>
+  <text x="328" y="169" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">• 1ヶ月/6ヶ月割引</text>
+  <text x="328" y="193" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">大量・本番利用</text>
+
+  <!-- Batch Inference -->
+  <rect x="441" y="65" width="200" height="145" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="2"/>
+  <rect x="441" y="65" width="200" height="34" rx="8" fill="#065f46"/>
+  <text x="541" y="87" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Batch Inference</text>
+  <text x="541" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">非同期大量処理</text>
+  <text x="541" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">On-demand比 50%割引</text>
+  <text x="541" y="153" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• S3にJSONL入力</text>
+  <text x="541" y="169" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• 完了後S3に出力</text>
+  <text x="541" y="193" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">オフライン処理・コスト重視</text>
+
+  <!-- Prompt Caching & Cross-region -->
+  <rect x="654" y="65" width="231" height="145" rx="8" fill="#78350f" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="654" y="65" width="231" height="34" rx="8" fill="#92400e"/>
+  <text x="770" y="87" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">コスト削減テクニック</text>
+  <text x="770" y="111" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fbbf24">Prompt Caching</text>
+  <text x="770" y="127" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">繰り返しプロンプトを</text>
+  <text x="770" y="143" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">キャッシュ→コスト削減</text>
+  <text x="770" y="163" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fbbf24">Cross-Region Inference</text>
+  <text x="770" y="179" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">複数リージョンに</text>
+  <text x="770" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">ルーティングでスループット↑</text>
+
+  <!-- Cost comparison chart -->
+  <rect x="15" y="224" width="870" height="60" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="244" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">コスト比較（相対値）</text>
+  <!-- bars -->
+  <rect x="60" y="254" width="80" height="14" rx="3" fill="#3b82f6"/>
+  <text x="105" y="265" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#ffffff">On-demand: 100%</text>
+  <rect x="270" y="254" width="80" height="14" rx="3" fill="#a855f7"/>
+  <text x="315" y="265" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#ffffff">PT(1mo): ~80%</text>
+  <rect x="480" y="254" width="80" height="14" rx="3" fill="#10b981"/>
+  <text x="525" y="265" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#ffffff">Batch: ~50%</text>
+  <rect x="690" y="254" width="80" height="14" rx="3" fill="#f59e0b"/>
+  <text x="735" y="265" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#ffffff">PT(6mo): ~60%</text>
+
+  <!-- Decision guide -->
+  <rect x="15" y="298" width="870" height="90" rx="8" fill="#0f172a"/>
+  <text x="450" y="318" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">選択ガイド（試験頻出）</text>
+  <rect x="30" y="330" width="200" height="44" rx="5" fill="#172554"/>
+  <text x="130" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">少量・開発テスト</text>
+  <text x="130" y="364" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">→ On-Demand</text>
+  <rect x="245" y="330" width="200" height="44" rx="5" fill="#3b0764"/>
+  <text x="345" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">大量・リアルタイム本番</text>
+  <text x="345" y="364" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">→ Provisioned Throughput</text>
+  <rect x="460" y="330" width="200" height="44" rx="5" fill="#064e3b"/>
+  <text x="560" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">大量・非同期でよい</text>
+  <text x="560" y="364" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">→ Batch Inference</text>
+  <rect x="675" y="330" width="195" height="44" rx="5" fill="#78350f"/>
+  <text x="773" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">長いシステムプロンプト</text>
+  <text x="773" y="364" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fbbf24">→ Prompt Caching</text>
+</svg>

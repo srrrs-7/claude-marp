@@ -1,0 +1,38 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="36" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">MLOpsの主な課題</text>
+  <!-- Center hub -->
+  <circle cx="400" cy="265" r="65" fill="#2d4059" stroke="#4CC9F0" stroke-width="2.5"/>
+  <text x="400" y="257" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#ffffff">MLOps</text>
+  <text x="400" y="275" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4CC9F0">課題</text>
+  <!-- Node 1: データ品質 top -->
+  <line x1="400" y1="200" x2="400" y2="130" stroke="#E63946" stroke-width="1.5"/>
+  <rect x="305" y="75" width="190" height="55" rx="8" fill="#1a1020" stroke="#E63946" stroke-width="2"/>
+  <text x="400" y="98" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#E63946">データ品質</text>
+  <text x="400" y="115" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">欠損・不均衡・ラベルノイズ</text>
+  <!-- Node 2: 再現性 top-right -->
+  <line x1="456" y1="220" x2="570" y2="145" stroke="#F77F00" stroke-width="1.5"/>
+  <rect x="550" y="80" width="200" height="55" rx="8" fill="#1a1200" stroke="#F77F00" stroke-width="2"/>
+  <text x="650" y="103" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#F77F00">再現性確保</text>
+  <text x="650" y="120" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">環境・データ・seed管理</text>
+  <!-- Node 3: モデルドリフト right -->
+  <line x1="465" y1="265" x2="590" y2="265" stroke="#4CC9F0" stroke-width="1.5"/>
+  <rect x="580" y="238" width="195" height="55" rx="8" fill="#0a1a2a" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="677" y="261" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">モデルドリフト</text>
+  <text x="677" y="278" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">概念ドリフト・データドリフト</text>
+  <!-- Node 4: スケーラビリティ bottom-right -->
+  <line x1="456" y1="310" x2="570" y2="385" stroke="#06D6A0" stroke-width="1.5"/>
+  <rect x="550" y="370" width="200" height="55" rx="8" fill="#0a1a10" stroke="#06D6A0" stroke-width="2"/>
+  <text x="650" y="393" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#06D6A0">スケーラビリティ</text>
+  <text x="650" y="410" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">大規模学習・低レイテンシ推論</text>
+  <!-- Node 5: チーム連携 bottom -->
+  <line x1="400" y1="330" x2="400" y2="400" stroke="#E63946" stroke-width="1.5"/>
+  <rect x="305" y="395" width="190" height="55" rx="8" fill="#1a1020" stroke="#E63946" stroke-width="2"/>
+  <text x="400" y="418" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#E63946">チーム連携</text>
+  <text x="400" y="435" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">DS/ML/Ops間サイロ解消</text>
+  <!-- Node 6: コスト管理 left -->
+  <line x1="335" y1="265" x2="210" y2="265" stroke="#F77F00" stroke-width="1.5"/>
+  <rect x="25" y="238" width="185" height="55" rx="8" fill="#1a1200" stroke="#F77F00" stroke-width="2"/>
+  <text x="117" y="261" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#F77F00">コスト管理</text>
+  <text x="117" y="278" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">学習・推論コスト最適化</text>
+</svg>

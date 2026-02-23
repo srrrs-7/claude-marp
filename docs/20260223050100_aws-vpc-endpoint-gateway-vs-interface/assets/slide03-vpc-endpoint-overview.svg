@@ -1,0 +1,57 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <!-- AWS Cloud border -->
+  <rect x="8" y="8" width="784" height="384" rx="12" fill="none" stroke="#ff9900" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="24" y="30" font-family="Arial,sans-serif" font-size="13" fill="#cc7700" font-weight="bold">AWS Cloud</text>
+  <!-- VPC border -->
+  <rect x="28" y="42" width="450" height="310" rx="8" fill="#f0f4ff" stroke="#7b5ea7" stroke-width="2"/>
+  <text x="46" y="64" font-family="Arial,sans-serif" font-size="12" fill="#7b5ea7" font-weight="bold">VPC (10.0.0.0/16)</text>
+  <!-- Private Subnet -->
+  <rect x="46" y="76" width="185" height="130" rx="6" fill="#e8edff" stroke="#9ca3af" stroke-width="1"/>
+  <text x="60" y="94" font-family="Arial,sans-serif" font-size="10" fill="#555">Private Subnet</text>
+  <!-- EC2 box -->
+  <rect x="62" y="106" width="150" height="82" rx="6" fill="#ffffff" stroke="#7b5ea7" stroke-width="2" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.12))"/>
+  <rect x="62" y="106" width="150" height="26" rx="6" fill="#7b5ea7"/>
+  <text x="137" y="124" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">EC2 Instance</text>
+  <text x="137" y="155" font-family="Arial,sans-serif" font-size="12" fill="#444" text-anchor="middle">Application</text>
+  <text x="137" y="174" font-family="Arial,sans-serif" font-size="10" fill="#888" text-anchor="middle">10.0.1.10</text>
+  <!-- VPC Endpoint box -->
+  <rect x="300" y="106" width="160" height="82" rx="6" fill="#ffffff" stroke="#10b981" stroke-width="2" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.12))"/>
+  <rect x="300" y="106" width="160" height="26" rx="6" fill="#10b981"/>
+  <text x="380" y="124" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">VPC Endpoint</text>
+  <text x="380" y="155" font-family="Arial,sans-serif" font-size="11" fill="#444" text-anchor="middle">PrivateLink</text>
+  <text x="380" y="174" font-family="Arial,sans-serif" font-size="10" fill="#888" text-anchor="middle">Private Channel</text>
+  <!-- Arrow EC2 to Endpoint -->
+  <line x1="212" y1="147" x2="296" y2="147" stroke="#7b5ea7" stroke-width="2.5"/>
+  <polygon points="292,141 304,147 292,153" fill="#7b5ea7"/>
+  <!-- AWS Services box -->
+  <rect x="560" y="58" width="210" height="276" rx="8" fill="#fff8f0" stroke="#ff9900" stroke-width="2" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.10))"/>
+  <text x="665" y="82" font-family="Arial,sans-serif" font-size="13" fill="#cc7700" font-weight="bold" text-anchor="middle">AWS Services</text>
+  <!-- S3 -->
+  <rect x="576" y="94" width="178" height="58" rx="5" fill="#ff9900" opacity="0.1" stroke="#ff9900" stroke-width="1"/>
+  <circle cx="602" cy="123" r="20" fill="#ff9900"/>
+  <text x="602" y="128" font-family="Arial,sans-serif" font-size="12" fill="#fff" font-weight="bold" text-anchor="middle">S3</text>
+  <text x="640" y="118" font-family="Arial,sans-serif" font-size="13" fill="#333" font-weight="bold">Amazon S3</text>
+  <text x="640" y="136" font-family="Arial,sans-serif" font-size="10" fill="#666">Object Storage</text>
+  <!-- DynamoDB -->
+  <rect x="576" y="163" width="178" height="58" rx="5" fill="#7b5ea7" opacity="0.1" stroke="#7b5ea7" stroke-width="1"/>
+  <circle cx="602" cy="192" r="20" fill="#7b5ea7"/>
+  <text x="602" y="197" font-family="Arial,sans-serif" font-size="9" fill="#fff" font-weight="bold" text-anchor="middle">DDB</text>
+  <text x="640" y="187" font-family="Arial,sans-serif" font-size="13" fill="#333" font-weight="bold">DynamoDB</text>
+  <text x="640" y="205" font-family="Arial,sans-serif" font-size="10" fill="#666">NoSQL DB</text>
+  <!-- Others -->
+  <rect x="576" y="233" width="178" height="80" rx="5" fill="#10b981" opacity="0.1" stroke="#10b981" stroke-width="1"/>
+  <text x="665" y="262" font-family="Arial,sans-serif" font-size="12" fill="#059669" text-anchor="middle" font-weight="bold">Interface Endpoint</text>
+  <text x="665" y="280" font-family="Arial,sans-serif" font-size="11" fill="#059669" text-anchor="middle">100+ AWS Services</text>
+  <text x="665" y="298" font-family="Arial,sans-serif" font-size="10" fill="#888" text-anchor="middle">EC2, SSM, Secrets, ...</text>
+  <!-- Arrow Endpoint to Services -->
+  <line x1="460" y1="147" x2="556" y2="147" stroke="#10b981" stroke-width="2.5"/>
+  <polygon points="552,141 564,147 552,153" fill="#10b981"/>
+  <!-- AWS Backbone label -->
+  <rect x="462" y="128" width="90" height="38" rx="4" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
+  <text x="507" y="143" font-family="Arial,sans-serif" font-size="9" fill="#059669" text-anchor="middle" font-weight="bold">AWS Backbone</text>
+  <text x="507" y="157" font-family="Arial,sans-serif" font-size="9" fill="#059669" text-anchor="middle">Internet 不使用</text>
+  <!-- Bottom summary -->
+  <rect x="28" y="368" width="450" height="22" rx="4" fill="#7b5ea7" opacity="0.1"/>
+  <text x="253" y="383" font-family="Arial,sans-serif" font-size="11" fill="#7b5ea7" text-anchor="middle">インターネットを経由せず、プライベートに AWS サービスへ接続</text>
+</svg>

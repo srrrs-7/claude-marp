@@ -1,0 +1,76 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">ユースケース別 エンドポイント選定フロー</text>
+  <!-- START -->
+  <rect x="330" y="34" width="140" height="32" rx="16" fill="#7b5ea7"/>
+  <text x="400" y="55" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">AWS サービスに接続したい</text>
+  <!-- Arrow down -->
+  <line x1="400" y1="66" x2="400" y2="84" stroke="#555" stroke-width="1.5"/>
+  <polygon points="394,80 400,88 406,80" fill="#555"/>
+  <!-- Q1: S3 or DDB? -->
+  <rect x="262" y="88" width="276" height="32" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="2"/>
+  <text x="400" y="109" font-family="Arial,sans-serif" font-size="11" fill="#b45309" text-anchor="middle" font-weight="bold">対象は S3 または DynamoDB?</text>
+  <!-- YES branch left -->
+  <line x1="262" y1="104" x2="180" y2="104" stroke="#555" stroke-width="1.5"/>
+  <polygon points="176,98 168,104 176,110" fill="#555"/>
+  <text x="220" y="98" font-family="Arial,sans-serif" font-size="10" fill="#10b981" font-weight="bold">YES</text>
+  <!-- Q2: On-prem/TGW needed? -->
+  <rect x="24" y="88" width="144" height="32" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="2"/>
+  <text x="96" y="101" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">オンプレ/TGW</text>
+  <text x="96" y="114" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">経由が必要?</text>
+  <!-- Q2 NO answer: Gateway -->
+  <line x1="96" y1="120" x2="96" y2="148" stroke="#555" stroke-width="1.5"/>
+  <polygon points="90,144 96,152 102,144" fill="#555"/>
+  <text x="110" y="140" font-family="Arial,sans-serif" font-size="10" fill="#ef4444" font-weight="bold">NO</text>
+  <rect x="24" y="152" width="144" height="44" rx="6" fill="#10b981" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="96" y="170" font-family="Arial,sans-serif" font-size="12" fill="#fff" font-weight="bold" text-anchor="middle">Gateway EP</text>
+  <text x="96" y="186" font-family="Arial,sans-serif" font-size="9" fill="#d1fae5" text-anchor="middle">無料 / 高速 / シンプル</text>
+  <!-- Q2 YES: also Interface -->
+  <line x1="24" y1="104" x2="8" y2="104" stroke="#555" stroke-width="1.5"/>
+  <line x1="8" y1="104" x2="8" y2="228" stroke="#555" stroke-width="1.5"/>
+  <line x1="8" y1="228" x2="96" y2="228" stroke="#555" stroke-width="1.5"/>
+  <polygon points="92,222 104,228 92,234" fill="#555"/>
+  <text x="2" y="170" font-family="Arial,sans-serif" font-size="10" fill="#10b981" font-weight="bold" transform="rotate(-90,14,170)">YES</text>
+  <rect x="24" y="228" width="144" height="44" rx="6" fill="#f59e0b" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="96" y="246" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">Interface EP</text>
+  <text x="96" y="261" font-family="Arial,sans-serif" font-size="9" fill="#fef9c3" text-anchor="middle">S3 も Interface EP 可</text>
+  <!-- NO branch right from Q1 -->
+  <line x1="538" y1="104" x2="608" y2="104" stroke="#555" stroke-width="1.5"/>
+  <polygon points="604,98 616,104 604,110" fill="#555"/>
+  <text x="572" y="98" font-family="Arial,sans-serif" font-size="10" fill="#ef4444" font-weight="bold">NO</text>
+  <!-- Always Interface EP -->
+  <rect x="616" y="88" width="170" height="32" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="2"/>
+  <text x="701" y="101" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">Interface EP 対応</text>
+  <text x="701" y="114" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">サービスか?</text>
+  <line x1="701" y1="120" x2="701" y2="148" stroke="#555" stroke-width="1.5"/>
+  <polygon points="695,144 701,152 707,144" fill="#555"/>
+  <text x="715" y="140" font-family="Arial,sans-serif" font-size="10" fill="#10b981" font-weight="bold">YES</text>
+  <rect x="628" y="152" width="144" height="44" rx="6" fill="#10b981" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="700" y="170" font-family="Arial,sans-serif" font-size="12" fill="#fff" font-weight="bold" text-anchor="middle">Interface EP</text>
+  <text x="700" y="186" font-family="Arial,sans-serif" font-size="9" fill="#d1fae5" text-anchor="middle">ENI + SG + DNS</text>
+  <!-- NO: Not supported -->
+  <line x1="786" y1="104" x2="792" y2="104" stroke="#555" stroke-width="1.5"/>
+  <line x1="792" y1="104" x2="792" y2="218" stroke="#555" stroke-width="1.5"/>
+  <line x1="792" y1="218" x2="710" y2="218" stroke="#555" stroke-width="1.5"/>
+  <polygon points="714,212 702,218 714,224" fill="#555"/>
+  <text x="793" y="165" font-family="Arial,sans-serif" font-size="10" fill="#ef4444" font-weight="bold" transform="rotate(-90,793,165)">NO</text>
+  <rect x="628" y="218" width="144" height="44" rx="6" fill="#ef4444" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))"/>
+  <text x="700" y="236" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">EP 非対応</text>
+  <text x="700" y="252" font-family="Arial,sans-serif" font-size="9" fill="#fecaca" text-anchor="middle">IGW/NAT を使用</text>
+  <!-- Summary decision table at bottom -->
+  <rect x="24" y="300" width="752" height="88" rx="6" fill="#fff" stroke="#e5e7eb" stroke-width="1.5"/>
+  <rect x="24" y="300" width="752" height="24" fill="#6b7280"/>
+  <text x="400" y="317" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">選定サマリー</text>
+  <!-- 3 columns -->
+  <line x1="274" y1="324" x2="274" y2="388" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="524" y1="324" x2="524" y2="388" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="149" y="342" font-family="Arial,sans-serif" font-size="10" fill="#10b981" text-anchor="middle" font-weight="bold">Gateway EP を選ぶ場合</text>
+  <text x="149" y="358" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">・VPC 内から S3/DDB にアクセス</text>
+  <text x="149" y="374" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">・コストを最小化したい</text>
+  <text x="399" y="342" font-family="Arial,sans-serif" font-size="10" fill="#f59e0b" text-anchor="middle" font-weight="bold">Interface EP を選ぶ場合</text>
+  <text x="399" y="358" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">・オンプレ/TGW 経由が必要</text>
+  <text x="399" y="374" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">・S3/DDB 以外の AWS サービス</text>
+  <text x="649" y="342" font-family="Arial,sans-serif" font-size="10" fill="#7b5ea7" text-anchor="middle" font-weight="bold">両方使う場合</text>
+  <text x="649" y="358" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">・Gateway EP (S3/DDB) + Interface EP</text>
+  <text x="649" y="374" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">・(他サービス) を組み合わせる</text>
+</svg>

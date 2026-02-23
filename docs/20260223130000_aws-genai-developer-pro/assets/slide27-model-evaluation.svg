@@ -1,0 +1,93 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="420" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Bedrock Model Evaluation</text>
+  <text x="450" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">FMの品質を定量評価し、ユースケースに最適なモデルを選択するマネージドサービス</text>
+
+  <!-- Two evaluation types -->
+  <rect x="15" y="68" width="420" height="200" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="15" y="68" width="420" height="34" rx="8" fill="#1d4ed8"/>
+  <text x="225" y="91" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">自動評価（Automatic Evaluation）</text>
+  <!-- Metrics list -->
+  <rect x="30" y="110" width="190" height="145" rx="6" fill="#1e3a8a"/>
+  <text x="125" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#93c5fd">評価指標</text>
+  <text x="125" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">• ROUGE-1/2/L</text>
+  <text x="125" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">• BERTScore</text>
+  <text x="125" y="186" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">• Meteor</text>
+  <text x="125" y="204" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">• F1 Score</text>
+  <text x="125" y="222" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">• Exact Match</text>
+  <text x="125" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">• Perplexity</text>
+
+  <rect x="235" y="110" width="190" height="145" rx="6" fill="#1e3a8a"/>
+  <text x="330" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#93c5fd">タスクタイプ</text>
+  <text x="330" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">• テキスト要約</text>
+  <text x="330" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">• Q&amp;A（質問応答）</text>
+  <text x="330" y="186" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">• テキスト分類</text>
+  <text x="330" y="204" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">• オープンエンド生成</text>
+  <text x="330" y="222" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">• 翻訳</text>
+  <text x="330" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">• 毒性検出</text>
+
+  <rect x="465" y="68" width="420" height="200" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="2"/>
+  <rect x="465" y="68" width="420" height="34" rx="8" fill="#065f46"/>
+  <text x="675" y="91" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">人間評価 / LLM-as-a-Judge</text>
+  <rect x="480" y="110" width="190" height="145" rx="6" fill="#064e3b"/>
+  <text x="575" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#6ee7b7">LLM Judge 評価</text>
+  <text x="575" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• 別のLLMが評価</text>
+  <text x="575" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• 有害性・毒性</text>
+  <text x="575" y="186" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• 忠実性（ハルシ）</text>
+  <text x="575" y="204" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• 答えの正確さ</text>
+  <text x="575" y="222" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• 指示への準拠</text>
+  <text x="575" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">Claude Judgeを使用</text>
+
+  <rect x="685" y="110" width="185" height="145" rx="6" fill="#064e3b"/>
+  <text x="778" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#6ee7b7">Human Evaluation</text>
+  <text x="778" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• SageMaker GT連携</text>
+  <text x="778" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• ワークチーム設定</text>
+  <text x="778" y="186" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• 評価スキーマ定義</text>
+  <text x="778" y="204" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• 人間の判断重視</text>
+  <text x="778" y="222" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• 最高品質・高コスト</text>
+  <text x="778" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">本番前検証に推奨</text>
+
+  <!-- Eval pipeline -->
+  <rect x="15" y="282" width="870" height="130" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="302" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">評価パイプライン &amp; ユースケース</text>
+
+  <!-- Steps -->
+  <rect x="30" y="316" width="130" height="82" rx="5" fill="#0f172a"/>
+  <text x="95" y="336" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#60a5fa">① データ準備</text>
+  <text x="95" y="354" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">プロンプト+</text>
+  <text x="95" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">期待回答のペア</text>
+  <text x="95" y="384" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">をS3に配置</text>
+  <text x="95" y="396" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">JSONL形式</text>
+  <polygon points="165,357 183,352 183,362" fill="#6d28d9"/>
+
+  <rect x="186" y="316" width="130" height="82" rx="5" fill="#0f172a"/>
+  <text x="251" y="336" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#34d399">② ジョブ作成</text>
+  <text x="251" y="354" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">モデル選択</text>
+  <text x="251" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">タスクタイプ選択</text>
+  <text x="251" y="384" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">評価指標設定</text>
+  <text x="251" y="396" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">AWS Console/API</text>
+  <polygon points="321,357 339,352 339,362" fill="#6d28d9"/>
+
+  <rect x="342" y="316" width="130" height="82" rx="5" fill="#0f172a"/>
+  <text x="407" y="336" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#d8b4fe">③ 評価実行</text>
+  <text x="407" y="354" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">自動/Judge/Human</text>
+  <text x="407" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">バッチで非同期実行</text>
+  <text x="407" y="384" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">複数モデル並列比較</text>
+  <text x="407" y="396" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">時間: 数分〜数時間</text>
+  <polygon points="477,357 495,352 495,362" fill="#6d28d9"/>
+
+  <rect x="498" y="316" width="130" height="82" rx="5" fill="#0f172a"/>
+  <text x="563" y="336" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fcd34d">④ 結果分析</text>
+  <text x="563" y="354" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fde68a">ダッシュボード表示</text>
+  <text x="563" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fde68a">スコア比較表</text>
+  <text x="563" y="384" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fde68a">詳細結果S3出力</text>
+  <text x="563" y="396" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">CSV/JSONダウンロード</text>
+  <polygon points="633,357 651,352 651,362" fill="#6d28d9"/>
+
+  <rect x="654" y="316" width="215" height="82" rx="5" fill="#0f172a"/>
+  <text x="762" y="336" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#f9a8d4">⑤ モデル決定</text>
+  <text x="762" y="354" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbcfe8">ベストモデル選択</text>
+  <text x="762" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbcfe8">Fine-tuning後の品質確認</text>
+  <text x="762" y="384" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbcfe8">A/Bテスト基盤として活用</text>
+  <text x="762" y="396" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">本番デプロイ判断</text>
+</svg>

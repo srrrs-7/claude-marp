@@ -1,0 +1,44 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">なぜMLOpsが必要か — 本番化のギャップ</text>
+  <!-- Stage 1 -->
+  <rect x="30" y="120" width="120" height="220" rx="6" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="90" y="150" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">研究・実験</text>
+  <text x="90" y="175" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="bold" fill="#06D6A0">100%</text>
+  <text x="90" y="200" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">プロジェクト</text>
+  <text x="90" y="220" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">開始数</text>
+  <!-- Stage 2 -->
+  <rect x="170" y="155" width="120" height="185" rx="6" fill="#1a3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="230" y="183" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">PoC</text>
+  <text x="230" y="208" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="bold" fill="#4CC9F0">70%</text>
+  <text x="230" y="233" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">実証実験</text>
+  <text x="230" y="253" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">まで到達</text>
+  <!-- Warning icon 1 -->
+  <polygon points="152,175 162,195 142,195" fill="#F77F00"/>
+  <text x="152" y="193" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ffffff" font-weight="bold">!</text>
+  <!-- Stage 3 -->
+  <rect x="310" y="200" width="120" height="140" rx="6" fill="#163050" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="370" y="228" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">パイロット</text>
+  <text x="370" y="253" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="bold" fill="#F77F00">30%</text>
+  <text x="370" y="278" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">限定展開</text>
+  <!-- Warning icon 2 -->
+  <polygon points="292,220 302,240 282,240" fill="#E63946"/>
+  <text x="292" y="238" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ffffff" font-weight="bold">!</text>
+  <!-- Stage 4 -->
+  <rect x="450" y="255" width="120" height="85" rx="6" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="510" y="283" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">本番デプロイ</text>
+  <text x="510" y="308" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="bold" fill="#E63946">10%</text>
+  <!-- Warning icon 3 -->
+  <polygon points="432,268 442,288 422,288" fill="#E63946"/>
+  <text x="432" y="286" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ffffff" font-weight="bold">!</text>
+  <!-- Stage 5 -->
+  <rect x="590" y="295" width="120" height="45" rx="6" fill="#0a2a50" stroke="#aaaaaa" stroke-width="1.5"/>
+  <text x="650" y="313" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">継続運用</text>
+  <text x="650" y="333" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#E63946">5%</text>
+  <!-- Warning icon 4 -->
+  <polygon points="572,310 582,330 562,330" fill="#E63946"/>
+  <text x="572" y="328" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ffffff" font-weight="bold">!</text>
+  <!-- Bottom label -->
+  <rect x="100" y="420" width="600" height="42" rx="8" fill="#1a2a3a"/>
+  <text x="400" y="446" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#F77F00">MLOpsはこのギャップを埋める — 研究から本番へのスムーズな移行</text>
+</svg>

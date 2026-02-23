@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="35" text-anchor="middle" fill="#f1f5f9" font-size="16" font-weight="bold" font-family="sans-serif">ML ライフサイクルと SageMaker マッピング</text>
+
+  <!-- Stage boxes - top row -->
+  <!-- Stage 1: データ収集 (blue) -->
+  <rect x="20" y="70" width="130" height="60" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2"/>
+  <text x="85" y="96" text-anchor="middle" fill="#3b82f6" font-size="12" font-weight="bold" font-family="sans-serif">データ収集</text>
+  <text x="85" y="113" text-anchor="middle" fill="#f1f5f9" font-size="10" font-family="sans-serif">Data Collection</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="150" y1="100" x2="178" y2="100" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="178,95 190,100 178,105" fill="#94a3b8"/>
+
+  <!-- Stage 2: 特徴量エンジニアリング (green) -->
+  <rect x="190" y="70" width="130" height="60" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="2"/>
+  <text x="255" y="93" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold" font-family="sans-serif">特徴量</text>
+  <text x="255" y="108" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold" font-family="sans-serif">エンジニアリング</text>
+  <text x="255" y="123" text-anchor="middle" fill="#f1f5f9" font-size="9" font-family="sans-serif">Feature Engineering</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="320" y1="100" x2="348" y2="100" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="348,95 360,100 348,105" fill="#94a3b8"/>
+
+  <!-- Stage 3: モデルトレーニング (orange) -->
+  <rect x="360" y="70" width="130" height="60" rx="8" fill="#431407" stroke="#f97316" stroke-width="2"/>
+  <text x="425" y="93" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold" font-family="sans-serif">モデル</text>
+  <text x="425" y="108" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold" font-family="sans-serif">トレーニング</text>
+  <text x="425" y="123" text-anchor="middle" fill="#f1f5f9" font-size="9" font-family="sans-serif">Model Training</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="490" y1="100" x2="518" y2="100" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="518,95 530,100 518,105" fill="#94a3b8"/>
+
+  <!-- Stage 4: 評価・検証 (purple) -->
+  <rect x="530" y="70" width="130" height="60" rx="8" fill="#3b0764" stroke="#a855f7" stroke-width="2"/>
+  <text x="595" y="93" text-anchor="middle" fill="#a855f7" font-size="11" font-weight="bold" font-family="sans-serif">評価・</text>
+  <text x="595" y="108" text-anchor="middle" fill="#a855f7" font-size="11" font-weight="bold" font-family="sans-serif">検証</text>
+  <text x="595" y="123" text-anchor="middle" fill="#f1f5f9" font-size="9" font-family="sans-serif">Evaluation</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="660" y1="100" x2="688" y2="100" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="688,95 700,100 688,105" fill="#94a3b8"/>
+
+  <!-- Stage 5: デプロイ (teal) -->
+  <rect x="700" y="70" width="90" height="60" rx="8" fill="#134e4a" stroke="#14b8a6" stroke-width="2"/>
+  <text x="745" y="96" text-anchor="middle" fill="#14b8a6" font-size="12" font-weight="bold" font-family="sans-serif">デプロイ</text>
+  <text x="745" y="113" text-anchor="middle" fill="#f1f5f9" font-size="9" font-family="sans-serif">Deployment</text>
+
+  <!-- Arrow 5→6 -->
+  <line x1="790" y1="100" x2="818" y2="100" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="818,95 830,100 818,105" fill="#94a3b8"/>
+
+  <!-- Stage 6: 監視・改善 (red) -->
+  <rect x="830" y="70" width="55" height="60" rx="8" fill="#450a0a" stroke="#ef4444" stroke-width="2"/>
+  <text x="857" y="90" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold" font-family="sans-serif">監視・</text>
+  <text x="857" y="104" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold" font-family="sans-serif">改善</text>
+  <text x="857" y="118" text-anchor="middle" fill="#f1f5f9" font-size="8" font-family="sans-serif">Monitor</text>
+
+  <!-- Feedback loop arrow -->
+  <path d="M 857 130 C 857 460 85 460 85 130" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,4" fill="none"/>
+  <polygon points="85,130 80,142 90,142" fill="#ef4444"/>
+  <text x="450" y="475" text-anchor="middle" fill="#ef4444" font-size="10" font-family="sans-serif">継続的改善ループ (Continuous Improvement)</text>
+
+  <!-- Services section -->
+  <text x="450" y="165" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">↓ 対応する SageMaker サービス</text>
+
+  <!-- Service boxes below each stage -->
+  <!-- Data Collection services -->
+  <rect x="10" y="180" width="150" height="110" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="85" y="198" text-anchor="middle" fill="#3b82f6" font-size="10" font-weight="bold" font-family="sans-serif">データ収集</text>
+  <line x1="10" y1="205" x2="160" y2="205" stroke="#334155" stroke-width="1"/>
+  <text x="85" y="222" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">S3 Data Lake</text>
+  <text x="85" y="238" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Ground Truth</text>
+  <text x="85" y="254" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Kinesis Data Streams</text>
+  <text x="85" y="270" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">AWS Glue Catalog</text>
+
+  <!-- Feature Engineering services -->
+  <rect x="180" y="180" width="150" height="110" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="255" y="198" text-anchor="middle" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">特徴量エンジニアリング</text>
+  <line x1="180" y1="205" x2="330" y2="205" stroke="#334155" stroke-width="1"/>
+  <text x="255" y="222" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Data Wrangler</text>
+  <text x="255" y="238" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Feature Store</text>
+  <text x="255" y="254" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Processing Jobs</text>
+  <text x="255" y="270" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">AWS Glue ETL</text>
+
+  <!-- Training services -->
+  <rect x="350" y="180" width="150" height="110" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="425" y="198" text-anchor="middle" fill="#f97316" font-size="10" font-weight="bold" font-family="sans-serif">モデルトレーニング</text>
+  <line x1="350" y1="205" x2="500" y2="205" stroke="#334155" stroke-width="1"/>
+  <text x="425" y="222" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Training Jobs</text>
+  <text x="425" y="238" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Distributed Training</text>
+  <text x="425" y="254" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">JumpStart / Autopilot</text>
+  <text x="425" y="270" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Debugger / Profiler</text>
+
+  <!-- Evaluation services -->
+  <rect x="520" y="180" width="150" height="110" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="595" y="198" text-anchor="middle" fill="#a855f7" font-size="10" font-weight="bold" font-family="sans-serif">評価・検証</text>
+  <line x1="520" y1="205" x2="670" y2="205" stroke="#334155" stroke-width="1"/>
+  <text x="595" y="222" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Experiments</text>
+  <text x="595" y="238" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Clarify (バイアス分析)</text>
+  <text x="595" y="254" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Processing Jobs</text>
+  <text x="595" y="270" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Model Registry</text>
+
+  <!-- Deploy services -->
+  <rect x="688" y="180" width="110" height="110" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="743" y="198" text-anchor="middle" fill="#14b8a6" font-size="10" font-weight="bold" font-family="sans-serif">デプロイ</text>
+  <line x1="688" y1="205" x2="798" y2="205" stroke="#334155" stroke-width="1"/>
+  <text x="743" y="222" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Real-time</text>
+  <text x="743" y="238" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Serverless</text>
+  <text x="743" y="254" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Async / Batch</text>
+  <text x="743" y="270" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Neo (最適化)</text>
+
+  <!-- Monitor services -->
+  <rect x="812" y="180" width="78" height="110" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="851" y="198" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold" font-family="sans-serif">監視</text>
+  <line x1="812" y1="205" x2="890" y2="205" stroke="#334155" stroke-width="1"/>
+  <text x="851" y="222" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Monitor</text>
+  <text x="851" y="238" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Lineage</text>
+  <text x="851" y="254" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Pipelines</text>
+
+  <!-- SageMaker Pipelines banner -->
+  <rect x="10" y="320" width="880" height="40" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="450" y="337" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold" font-family="sans-serif">SageMaker Pipelines</text>
+  <text x="450" y="352" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">エンドツーエンドの ML ワークフロー自動化 — 全フェーズを統合オーケストレーション</text>
+
+  <!-- SageMaker Studio banner -->
+  <rect x="10" y="375" width="880" height="40" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="450" y="392" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold" font-family="sans-serif">SageMaker Studio</text>
+  <text x="450" y="407" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">統合開発環境 — IDE・Jupyter・実験管理・デバッガを一元提供</text>
+</svg>

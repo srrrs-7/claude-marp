@@ -1,0 +1,97 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="420" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Foundation Models の種類と用途</text>
+  <text x="450" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">大規模データで事前学習された汎用モデル。Fine-tuningやPrompt Engineeringで特定タスクに適応</text>
+
+  <!-- Text Generation -->
+  <rect x="15" y="72" width="168" height="160" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="1.5"/>
+  <rect x="15" y="72" width="168" height="30" rx="8" fill="#1d4ed8"/>
+  <text x="99" y="93" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">テキスト生成</text>
+  <text x="99" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">• コンテンツ作成・要約</text>
+  <text x="99" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">• Q&A・対話</text>
+  <text x="99" y="154" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">• 翻訳・分類</text>
+  <text x="99" y="175" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#60a5fa">Claude 3.x</text>
+  <text x="99" y="193" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">Titan Text G1</text>
+  <text x="99" y="211" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">Llama 3</text>
+  <text x="99" y="225" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">Mistral / AI21</text>
+
+  <!-- Code Generation -->
+  <rect x="198" y="72" width="168" height="160" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+  <rect x="198" y="72" width="168" height="30" rx="8" fill="#065f46"/>
+  <text x="282" y="93" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">コード生成</text>
+  <text x="282" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• コード補完・生成</text>
+  <text x="282" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• デバッグ・レビュー</text>
+  <text x="282" y="154" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• テスト生成</text>
+  <text x="282" y="175" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#34d399">Claude (Coding)</text>
+  <text x="282" y="193" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">CodeWhisperer</text>
+  <text x="282" y="211" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">Llama Code</text>
+  <text x="282" y="225" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">15+ 言語対応</text>
+
+  <!-- Embeddings -->
+  <rect x="381" y="72" width="168" height="160" rx="8" fill="#3b0764" stroke="#a855f7" stroke-width="1.5"/>
+  <rect x="381" y="72" width="168" height="30" rx="8" fill="#6d28d9"/>
+  <text x="465" y="93" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">エンベディング</text>
+  <text x="465" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">• セマンティック検索</text>
+  <text x="465" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">• RAGのベクターDB</text>
+  <text x="465" y="154" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">• 類似度計算</text>
+  <text x="465" y="175" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#d8b4fe">Titan Embeddings V2</text>
+  <text x="465" y="193" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d8b4fe">Cohere Embed</text>
+  <text x="465" y="211" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d8b4fe">1024〜1536次元</text>
+  <text x="465" y="225" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">多言語対応</text>
+
+  <!-- Image Generation -->
+  <rect x="564" y="72" width="168" height="160" rx="8" fill="#78350f" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="564" y="72" width="168" height="30" rx="8" fill="#92400e"/>
+  <text x="648" y="93" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">画像生成</text>
+  <text x="648" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">• テキスト→画像生成</text>
+  <text x="648" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">• 画像編集・変換</text>
+  <text x="648" y="154" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">• インペインティング</text>
+  <text x="648" y="175" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">Titan Image Gen G1</text>
+  <text x="648" y="193" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fbbf24">Stability AI SDXL</text>
+  <text x="648" y="211" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fbbf24">Nova Canvas</text>
+  <text x="648" y="225" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">Diffusion Model系</text>
+
+  <!-- Multimodal -->
+  <rect x="747" y="72" width="138" height="160" rx="8" fill="#1f2937" stroke="#6b7280" stroke-width="1.5"/>
+  <rect x="747" y="72" width="138" height="30" rx="8" fill="#374151"/>
+  <text x="816" y="93" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">マルチモーダル</text>
+  <text x="816" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">• Vision + Text</text>
+  <text x="816" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">• 画像理解・OCR</text>
+  <text x="816" y="154" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">• 動画解析</text>
+  <text x="816" y="175" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#9ca3af">Claude 3+ Vision</text>
+  <text x="816" y="193" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#9ca3af">Nova Pro / Lite</text>
+  <text x="816" y="211" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#9ca3af">Titan MM Embed</text>
+  <text x="816" y="225" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">Image/Text入力</text>
+
+  <!-- Selection criteria -->
+  <rect x="15" y="248" width="870" height="155" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">FM 選択基準（試験で頻出）</text>
+
+  <rect x="30" y="280" width="200" height="110" rx="6" fill="#0f172a"/>
+  <text x="130" y="298" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#60a5fa">性能 vs コスト</text>
+  <text x="130" y="316" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">高精度: Opus / Sonnet</text>
+  <text x="130" y="334" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">低コスト: Haiku / Lite</text>
+  <text x="130" y="352" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">バランス: Sonnet系</text>
+  <text x="130" y="378" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">用途に応じて選択</text>
+
+  <rect x="245" y="280" width="200" height="110" rx="6" fill="#0f172a"/>
+  <text x="345" y="298" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#34d399">コンテキスト長</text>
+  <text x="345" y="316" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">Claude 3.5: 200K tokens</text>
+  <text x="345" y="334" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">Llama 3: 128K tokens</text>
+  <text x="345" y="352" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">Titan Text: 32K tokens</text>
+  <text x="345" y="378" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">長文書→大コンテキスト</text>
+
+  <rect x="460" y="280" width="200" height="110" rx="6" fill="#0f172a"/>
+  <text x="560" y="298" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#d8b4fe">モダリティ</text>
+  <text x="560" y="316" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">Text-only: Titan Text</text>
+  <text x="560" y="334" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">Vision: Claude 3+</text>
+  <text x="560" y="352" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">Image Gen: Stability AI</text>
+  <text x="560" y="378" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">入力形式に応じて選択</text>
+
+  <rect x="675" y="280" width="195" height="110" rx="6" fill="#0f172a"/>
+  <text x="773" y="298" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fcd34d">カスタマイズ可否</text>
+  <text x="773" y="316" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">Fine-tuning可: Claude・Titan</text>
+  <text x="773" y="334" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">CPT可: Titan Text系</text>
+  <text x="773" y="352" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">RAGで知識拡張: 全FM</text>
+  <text x="773" y="378" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">要件に応じて選択</text>
+</svg>

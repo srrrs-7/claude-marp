@@ -1,0 +1,76 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="420" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">モデル評価指標</text>
+  <text x="450" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">LLMの品質を定量的に測定するためのメトリクス — Bedrock Model Evaluationで自動計算</text>
+
+  <!-- BLEU -->
+  <rect x="15" y="70" width="200" height="195" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="1.5"/>
+  <rect x="15" y="70" width="200" height="34" rx="8" fill="#1d4ed8"/>
+  <text x="115" y="93" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">BLEU Score</text>
+  <text x="115" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">Bilingual Evaluation</text>
+  <text x="115" y="134" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">Understudy</text>
+  <text x="115" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#bfdbfe">n-gram 精度（Precision）</text>
+  <text x="115" y="176" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#bfdbfe">機械翻訳の評価に使用</text>
+  <text x="115" y="196" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">範囲: 0〜1（高いほど良い）</text>
+  <rect x="30" y="208" width="170" height="22" rx="4" fill="#0f172a"/>
+  <text x="115" y="223" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">弱点: 意味的類似度非考慮</text>
+  <text x="115" y="253" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">翻訳・テキスト生成評価</text>
+
+  <!-- ROUGE -->
+  <rect x="228" y="70" width="200" height="195" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+  <rect x="228" y="70" width="200" height="34" rx="8" fill="#065f46"/>
+  <text x="328" y="93" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">ROUGE Score</text>
+  <text x="328" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#6ee7b7">Recall-Oriented Understudy</text>
+  <text x="328" y="134" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#6ee7b7">for Gisting Evaluation</text>
+  <text x="328" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a7f3d0">n-gram 再現率（Recall）</text>
+  <text x="328" y="176" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a7f3d0">要約評価に特化</text>
+  <text x="328" y="196" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">ROUGE-1/-2/-L の3種</text>
+  <rect x="243" y="208" width="170" height="22" rx="4" fill="#0f172a"/>
+  <text x="328" y="223" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">弱点: 表現の多様性非考慮</text>
+  <text x="328" y="253" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">要約・QA評価</text>
+
+  <!-- BERTScore -->
+  <rect x="441" y="70" width="200" height="195" rx="8" fill="#3b0764" stroke="#a855f7" stroke-width="1.5"/>
+  <rect x="441" y="70" width="200" height="34" rx="8" fill="#6d28d9"/>
+  <text x="541" y="93" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">BERTScore</text>
+  <text x="541" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#c4b5fd">BERT埋め込みを使った</text>
+  <text x="541" y="134" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#c4b5fd">意味的類似度</text>
+  <text x="541" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#e9d5ff">コサイン類似度で計算</text>
+  <text x="541" y="176" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#e9d5ff">同義語・言い換えを考慮</text>
+  <text x="541" y="196" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d8b4fe">精度・再現率・F1を出力</text>
+  <rect x="456" y="208" width="170" height="22" rx="4" fill="#0f172a"/>
+  <text x="541" y="223" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">弱点: 計算コスト高</text>
+  <text x="541" y="253" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">言語生成品質評価</text>
+
+  <!-- Perplexity -->
+  <rect x="654" y="70" width="230" height="195" rx="8" fill="#78350f" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="654" y="70" width="230" height="34" rx="8" fill="#92400e"/>
+  <text x="769" y="93" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">Perplexity（困惑度）</text>
+  <text x="769" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fde68a">言語モデルの予測確実性</text>
+  <text x="769" y="134" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fde68a">を測定</text>
+  <text x="769" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fef3c7">PPL = 2^H（エントロピー）</text>
+  <text x="769" y="176" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fef3c7">低いほどモデル品質が高い</text>
+  <text x="769" y="196" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fbbf24">事前学習モデルの評価に使用</text>
+  <rect x="669" y="208" width="200" height="22" rx="4" fill="#0f172a"/>
+  <text x="769" y="223" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">弱点: タスク品質を直接測定しない</text>
+  <text x="769" y="253" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">モデル選択・比較</text>
+
+  <!-- Bedrock Evaluation section -->
+  <rect x="15" y="280" width="870" height="128" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="300" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">Bedrock Model Evaluation の評価方法（試験重要）</text>
+  <rect x="30" y="312" width="260" height="84" rx="6" fill="#0f172a"/>
+  <text x="160" y="332" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">自動評価</text>
+  <text x="160" y="352" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">ROUGE / BERTScore / F1</text>
+  <text x="160" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">コスト低・スケーラブル</text>
+  <text x="160" y="388" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">定量的だが限界あり</text>
+  <rect x="315" y="312" width="260" height="84" rx="6" fill="#0f172a"/>
+  <text x="445" y="332" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#34d399">LLM-as-a-Judge</text>
+  <text x="445" y="352" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#6ee7b7">別のLLMが回答を評価</text>
+  <text x="445" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#6ee7b7">有害性・正確性・流暢さ</text>
+  <text x="445" y="388" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">人間評価に近い品質</text>
+  <rect x="600" y="312" width="270" height="84" rx="6" fill="#0f172a"/>
+  <text x="735" y="332" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#d8b4fe">Human Evaluation</text>
+  <text x="735" y="352" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#c4b5fd">WorkteamでAnnotatorsが評価</text>
+  <text x="735" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#c4b5fd">最高品質・コスト最大</text>
+  <text x="735" y="388" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">重要な本番前評価に適用</text>
+</svg>

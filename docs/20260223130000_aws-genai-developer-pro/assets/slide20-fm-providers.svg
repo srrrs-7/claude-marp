@@ -1,0 +1,88 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="420" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Bedrock で利用できる FM プロバイダー</text>
+  <text x="450" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">試験では各プロバイダーの強みとユースケースを区別することが重要</text>
+
+  <!-- Anthropic Claude -->
+  <rect x="15" y="68" width="260" height="155" rx="8" fill="#2e1065" stroke="#a855f7" stroke-width="2"/>
+  <rect x="15" y="68" width="260" height="30" rx="8" fill="#6d28d9"/>
+  <text x="145" y="88" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">Anthropic Claude</text>
+  <text x="145" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#e9d5ff">Claude 3 Haiku（高速・低コスト）</text>
+  <text x="145" y="134" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#e9d5ff">Claude 3.5 Sonnet（バランス型）</text>
+  <text x="145" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#e9d5ff">Claude 3 Opus（最高性能）</text>
+  <text x="145" y="172" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">200K context | Vision対応</text>
+  <rect x="25" y="182" width="240" height="30" rx="5" fill="#1e1b4b"/>
+  <text x="145" y="202" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">複雑な推論・コード・対話・分析</text>
+
+  <!-- Amazon Titan/Nova -->
+  <rect x="290" y="68" width="260" height="155" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="290" y="68" width="260" height="30" rx="8" fill="#1d4ed8"/>
+  <text x="420" y="88" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">Amazon Titan / Nova</text>
+  <text x="420" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#bfdbfe">Titan Text G1 Lite/Express</text>
+  <text x="420" y="134" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#bfdbfe">Titan Embeddings V2（1536次元）</text>
+  <text x="420" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#bfdbfe">Nova Micro/Lite/Pro（最新世代）</text>
+  <text x="420" y="172" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">AWSネイティブ | Fine-tuning対応</text>
+  <rect x="300" y="182" width="240" height="30" rx="5" fill="#1e1b4b"/>
+  <text x="420" y="202" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">コスト重視・エンベディング・画像生成</text>
+
+  <!-- Meta Llama -->
+  <rect x="565" y="68" width="160" height="155" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+  <rect x="565" y="68" width="160" height="30" rx="8" fill="#065f46"/>
+  <text x="645" y="88" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">Meta Llama</text>
+  <text x="645" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a7f3d0">Llama 3 8B / 70B</text>
+  <text x="645" y="134" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a7f3d0">Llama 3.1 (128K ctx)</text>
+  <text x="645" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a7f3d0">Llama 3.2 (Vision)</text>
+  <text x="645" y="172" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">オープンソース系</text>
+  <rect x="575" y="182" width="140" height="30" rx="5" fill="#1e1b4b"/>
+  <text x="645" y="202" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">低コスト・Fine-tuning向き</text>
+
+  <!-- Stability / Mistral -->
+  <rect x="740" y="68" width="145" height="155" rx="8" fill="#78350f" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="740" y="68" width="145" height="30" rx="8" fill="#92400e"/>
+  <text x="813" y="88" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">画像 / その他</text>
+  <text x="813" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fde68a">Stability AI SDXL</text>
+  <text x="813" y="134" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fde68a">Mistral 7B/8x7B</text>
+  <text x="813" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fde68a">Cohere Command R</text>
+  <text x="813" y="172" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fbbf24">AI21 Jurassic-2</text>
+  <rect x="750" y="182" width="125" height="30" rx="5" fill="#1e1b4b"/>
+  <text x="813" y="202" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">特定ユースケース向け</text>
+
+  <!-- Model selection matrix -->
+  <rect x="15" y="238" width="870" height="168" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="258" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">モデル選択マトリクス（試験頻出）</text>
+
+  <!-- Headers -->
+  <rect x="25" y="268" width="130" height="22" rx="3" fill="#374151"/>
+  <text x="90" y="283" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#d1d5db">要件</text>
+  <rect x="165" y="268" width="140" height="22" rx="3" fill="#374151"/>
+  <text x="235" y="283" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#d1d5db">推奨モデル</text>
+  <rect x="315" y="268" width="140" height="22" rx="3" fill="#374151"/>
+  <text x="385" y="283" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#d1d5db">推奨モデル②</text>
+  <rect x="465" y="268" width="415" height="22" rx="3" fill="#374151"/>
+  <text x="673" y="283" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#d1d5db">選択理由</text>
+
+  <text x="90" y="306" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">最高精度が必要</text>
+  <text x="235" y="306" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d8b4fe">Claude 3 Opus</text>
+  <text x="385" y="306" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d8b4fe">Claude 3.5 Sonnet</text>
+  <text x="673" y="306" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">複雑な推論・多段階タスク</text>
+
+  <text x="90" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">低レイテンシ・低コスト</text>
+  <text x="235" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d8b4fe">Claude 3 Haiku</text>
+  <text x="385" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d8b4fe">Titan Text G1 Lite</text>
+  <text x="673" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">シンプルなQ&amp;A・分類・要約</text>
+
+  <text x="90" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">エンベディング/RAG</text>
+  <text x="235" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d8b4fe">Titan Embeddings V2</text>
+  <text x="385" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d8b4fe">Cohere Embed</text>
+  <text x="673" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">多言語・高次元ベクター生成</text>
+
+  <text x="90" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">画像生成</text>
+  <text x="235" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d8b4fe">Titan Image Gen G1</text>
+  <text x="385" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d8b4fe">Stability AI SDXL</text>
+  <text x="673" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">テキストから高品質画像生成</text>
+
+  <text x="90" y="386" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">Fine-tuning予定</text>
+  <text x="235" y="386" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d8b4fe">Titan Text Premier</text>
+  <text x="385" y="386" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d8b4fe">Llama 3</text>
+  <text x="673" y="386" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">カスタマイズ対応モデルを選択</text>
+</svg>

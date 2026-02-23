@@ -1,0 +1,127 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <text x="450" y="36" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#f1f5f9">SageMaker Pipelines — ステップタイプ一覧</text>
+
+  <!-- Row 1 -->
+  <!-- ProcessingStep -->
+  <rect x="30" y="58" width="198" height="82" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="129" y="80" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">ProcessingStep</text>
+  <text x="129" y="97" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">データ前処理・特徴量エンジニアリング</text>
+  <text x="129" y="112" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">SKLearnProcessor / PySparkProcessor</text>
+  <text x="129" y="130" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">ScriptProcessor 対応</text>
+
+  <!-- TrainingStep -->
+  <rect x="244" y="58" width="198" height="82" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="343" y="80" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#22c55e">TrainingStep</text>
+  <text x="343" y="97" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">モデル学習ジョブの実行</text>
+  <text x="343" y="112" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Estimator を wrap してステップ化</text>
+  <text x="343" y="130" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Spot / Managed Warm Pool 対応</text>
+
+  <!-- TuningStep -->
+  <rect x="458" y="58" width="198" height="82" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="557" y="80" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#a855f7">TuningStep</text>
+  <text x="557" y="97" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">ハイパーパラメータ最適化</text>
+  <text x="557" y="112" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">HyperparameterTuner 統合</text>
+  <text x="557" y="130" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Bayesian / Random / Grid 戦略</text>
+
+  <!-- AutoMLStep -->
+  <rect x="672" y="58" width="198" height="82" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="771" y="80" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#14b8a6">AutoMLStep</text>
+  <text x="771" y="97" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">Autopilot ジョブの実行</text>
+  <text x="771" y="112" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">自動モデル選択・チューニング</text>
+  <text x="771" y="130" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">AutoML V2 対応</text>
+
+  <!-- Row 2 -->
+  <!-- TransformStep -->
+  <rect x="30" y="160" width="198" height="82" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="129" y="182" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f97316">TransformStep</text>
+  <text x="129" y="199" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">バッチ変換・一括推論</text>
+  <text x="129" y="214" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Transformer を wrap</text>
+  <text x="129" y="232" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">大規模データセット対応</text>
+
+  <!-- RegisterModelStep -->
+  <rect x="244" y="160" width="198" height="82" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="343" y="182" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#22c55e">RegisterModelStep</text>
+  <text x="343" y="199" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">Model Registry への登録</text>
+  <text x="343" y="214" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">ModelPackageGroup 指定</text>
+  <text x="343" y="232" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">承認ステータス設定可</text>
+
+  <!-- CreateModelStep -->
+  <rect x="458" y="160" width="198" height="82" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="557" y="182" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">CreateModelStep</text>
+  <text x="557" y="199" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">SageMaker Model オブジェクト作成</text>
+  <text x="557" y="214" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Endpoint デプロイの前提ステップ</text>
+  <text x="557" y="232" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">コンテナ・環境変数定義</text>
+
+  <!-- EndpointStep -->
+  <rect x="672" y="160" width="198" height="82" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="771" y="182" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#14b8a6">EndpointStep</text>
+  <text x="771" y="199" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">Endpoint 作成・更新</text>
+  <text x="771" y="214" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">EndpointConfig 参照</text>
+  <text x="771" y="232" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Blue/Green / Shadow 対応</text>
+
+  <!-- Row 3 -->
+  <!-- ConditionStep -->
+  <rect x="30" y="262" width="198" height="82" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="129" y="284" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#a855f7">ConditionStep</text>
+  <text x="129" y="301" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">条件分岐 (if-else)</text>
+  <text x="129" y="316" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">ConditionGreaterThan 等</text>
+  <text x="129" y="334" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">if_steps / else_steps 指定</text>
+
+  <!-- FailStep -->
+  <rect x="244" y="262" width="198" height="82" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <text x="343" y="284" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ef4444">FailStep</text>
+  <text x="343" y="301" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">Pipeline を明示的に失敗終了</text>
+  <text x="343" y="316" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">エラーメッセージ・コード設定</text>
+  <text x="343" y="334" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">ConditionStep の else に配置</text>
+
+  <!-- LambdaStep -->
+  <rect x="458" y="262" width="198" height="82" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="557" y="284" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f97316">LambdaStep</text>
+  <text x="557" y="301" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">Lambda 関数の呼び出し</text>
+  <text x="557" y="316" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">カスタムビジネスロジック実行</text>
+  <text x="557" y="334" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">出力を後続ステップに渡せる</text>
+
+  <!-- CallbackStep -->
+  <rect x="672" y="262" width="198" height="82" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="771" y="284" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#14b8a6">CallbackStep</text>
+  <text x="771" y="301" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">SQS キュー経由で外部処理待機</text>
+  <text x="771" y="316" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">任意の外部システム統合</text>
+  <text x="771" y="334" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">send_pipeline_execution_step_success</text>
+
+  <!-- Row 4 -->
+  <!-- EMRStep -->
+  <rect x="30" y="364" width="198" height="82" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="129" y="386" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#22c55e">EMRStep</text>
+  <text x="129" y="403" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">EMR クラスター上でジョブ実行</text>
+  <text x="129" y="418" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">大規模 Spark 処理</text>
+  <text x="129" y="436" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">既存 EMR クラスター再利用可</text>
+
+  <!-- QualityCheckStep -->
+  <rect x="244" y="364" width="198" height="82" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="343" y="386" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">QualityCheckStep</text>
+  <text x="343" y="403" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">データ品質・モデル品質チェック</text>
+  <text x="343" y="418" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Model Monitor 統合</text>
+  <text x="343" y="436" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Baseline 統計と比較</text>
+
+  <!-- ClarifyCheckStep -->
+  <rect x="458" y="364" width="198" height="82" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="557" y="386" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#a855f7">ClarifyCheckStep</text>
+  <text x="557" y="403" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">バイアス・説明可能性チェック</text>
+  <text x="557" y="418" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">SageMaker Clarify 統合</text>
+  <text x="557" y="436" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">公平性レポート生成</text>
+
+  <!-- NotebookJobStep -->
+  <rect x="672" y="364" width="198" height="82" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="771" y="386" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f97316">NotebookJobStep</text>
+  <text x="771" y="403" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">Notebook をジョブとして実行</text>
+  <text x="771" y="418" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Papermill ベース</text>
+  <text x="771" y="436" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">レポート・分析の自動化</text>
+
+  <!-- Column headers -->
+  <text x="129" y="54" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">データ処理系</text>
+  <text x="343" y="54" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">学習・登録系</text>
+  <text x="557" y="54" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">最適化・AI系</text>
+  <text x="771" y="54" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">デプロイ・外部連携系</text>
+</svg>

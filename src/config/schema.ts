@@ -7,7 +7,7 @@ export const slidesConfigSchema = z.object({
 	language: z.string().default("ja"),
 	slides: z
 		.object({
-			count: z.number().int().min(1).max(50).default(10),
+			count: z.number().int().min(1).max(200).default(10),
 			includeTableOfContents: z.boolean().default(true),
 			includeTitleSlide: z.boolean().default(true),
 			includeSummarySlide: z.boolean().default(true),

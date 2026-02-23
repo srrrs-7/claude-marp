@@ -1,0 +1,75 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">RAG (Retrieval-Augmented Generation) とは</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">外部知識を動的に取得してLLMの回答精度を向上させる設計パターン</text>
+
+  <!-- Problem: LLM alone -->
+  <rect x="15" y="65" width="380" height="155" rx="8" fill="#1f1424" stroke="#ef4444" stroke-width="2"/>
+  <rect x="15" y="65" width="380" height="30" rx="8" fill="#7f1d1d"/>
+  <text x="205" y="85" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fca5a5">LLM 単体の限界</text>
+  <text x="205" y="113" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#f87171">❌ 学習カットオフ後の情報を知らない</text>
+  <text x="205" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#f87171">❌ 社内・専用ドキュメントを知らない</text>
+  <text x="205" y="153" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#f87171">❌ 引用元が不明 → 信頼性が低い</text>
+  <text x="205" y="173" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#f87171">❌ 知識更新にFine-tuning必要（高コスト）</text>
+  <text x="205" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">ハルシネーション（事実誤りの自信ある回答）が発生</text>
+
+  <!-- Arrow -->
+  <polygon points="410,137 440,130 440,144" fill="#a855f7"/>
+  <rect x="395" y="134" width="45" height="8" fill="#a855f7"/>
+  <text x="417" y="128" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">RAG</text>
+  <text x="417" y="157" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">で解決</text>
+
+  <!-- Solution: RAG -->
+  <rect x="445" y="65" width="440" height="155" rx="8" fill="#052e16" stroke="#10b981" stroke-width="2"/>
+  <rect x="445" y="65" width="440" height="30" rx="8" fill="#065f46"/>
+  <text x="665" y="85" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#a7f3d0">RAG の解決策</text>
+  <text x="665" y="113" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#34d399">✅ クエリ時に外部DBから最新情報を取得</text>
+  <text x="665" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#34d399">✅ 社内文書・ナレッジをリアルタイム参照</text>
+  <text x="665" y="153" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#34d399">✅ ソース文書を引用 → 透明性・信頼性↑</text>
+  <text x="665" y="173" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#34d399">✅ ドキュメント更新のみで知識更新（安価）</text>
+  <text x="665" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">グラウンディング（根拠ある回答）でハルシネーションを大幅削減</text>
+
+  <!-- RAG core concept flow -->
+  <rect x="15" y="233" width="870" height="155" rx="8" fill="#0f172a"/>
+  <text x="450" y="253" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">RAG の基本フロー</text>
+
+  <!-- Boxes -->
+  <rect x="25" y="264" width="100" height="55" rx="6" fill="#172554"/>
+  <text x="75" y="284" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#93c5fd">ユーザー</text>
+  <text x="75" y="300" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">クエリ入力</text>
+  <text x="75" y="312" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">「〇〇とは?」</text>
+  <polygon points="128,291 140,287 140,295" fill="#6d28d9"/>
+
+  <rect x="143" y="264" width="120" height="55" rx="6" fill="#3b0764"/>
+  <text x="203" y="284" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#c4b5fd">Embedding</text>
+  <text x="203" y="300" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">クエリ→ベクター</text>
+  <text x="203" y="312" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">Titan Emb等</text>
+  <polygon points="266,291 278,287 278,295" fill="#6d28d9"/>
+
+  <rect x="281" y="264" width="120" height="55" rx="6" fill="#064e3b"/>
+  <text x="341" y="284" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#6ee7b7">Vector DB</text>
+  <text x="341" y="300" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">類似度検索</text>
+  <text x="341" y="312" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">Top-K取得</text>
+  <polygon points="404,291 416,287 416,295" fill="#6d28d9"/>
+
+  <rect x="419" y="264" width="140" height="55" rx="6" fill="#78350f"/>
+  <text x="489" y="284" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fde68a">プロンプト拡張</text>
+  <text x="489" y="300" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fbbf24">クエリ+取得文書</text>
+  <text x="489" y="312" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">コンテキスト注入</text>
+  <polygon points="562,291 574,287 574,295" fill="#6d28d9"/>
+
+  <rect x="577" y="264" width="110" height="55" rx="6" fill="#1e1b4b"/>
+  <text x="632" y="284" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#a78bfa">LLM 生成</text>
+  <text x="632" y="300" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#8b5cf6">文脈を理解して</text>
+  <text x="632" y="312" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">回答生成</text>
+  <polygon points="690,291 702,287 702,295" fill="#6d28d9"/>
+
+  <rect x="705" y="264" width="170" height="55" rx="6" fill="#172554"/>
+  <text x="790" y="284" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#60a5fa">根拠ある回答</text>
+  <text x="790" y="300" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">+ 引用ソース明示</text>
+  <text x="790" y="312" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">ハルシ削減</text>
+
+  <!-- AWS Service -->
+  <text x="450" y="356" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">AWS実装: Bedrock Knowledge Bases が このフローをフルマネージドで提供</text>
+  <text x="450" y="374" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">RetrieveAndGenerate API（1回のAPIコール） / Retrieve API（検索のみ、独自LLM使用時）</text>
+</svg>

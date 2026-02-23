@@ -1,0 +1,95 @@
+<svg viewBox="0 0 860 380" xmlns="http://www.w3.org/2000/svg" style="max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="860" height="380" fill="#fafafa" rx="10"/>
+  <text x="430" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">Direct Connect / TGW — モニタリングアーキテクチャ</text>
+
+  <!-- DX Connection -->
+  <rect x="20" y="50" width="150" height="80" fill="#E0F2F1" stroke="#00796B" stroke-width="1.5" rx="6"/>
+  <text x="95" y="72" text-anchor="middle" font-size="11" font-weight="bold" fill="#004D40">DX Connection</text>
+  <text x="95" y="88" text-anchor="middle" font-size="9" fill="#26A69A">物理接続</text>
+  <text x="95" y="103" text-anchor="middle" font-size="9" fill="#26A69A">BGP セッション</text>
+  <text x="95" y="118" text-anchor="middle" font-size="9" fill="#26A69A">Transit VIF / Private VIF</text>
+
+  <!-- TGW -->
+  <rect x="20" y="150" width="150" height="60" fill="#E3F2FD" stroke="#1976D2" stroke-width="1.5" rx="6"/>
+  <text x="95" y="173" text-anchor="middle" font-size="11" font-weight="bold" fill="#0D47A1">Transit Gateway</text>
+  <text x="95" y="189" text-anchor="middle" font-size="9" fill="#1565C0">アタッチメント / ルート</text>
+  <text x="95" y="202" text-anchor="middle" font-size="9" fill="#1565C0">フロー統計</text>
+
+  <!-- Arrows to CloudWatch -->
+  <line x1="170" y1="88" x2="280" y2="130" stroke="#FF9800" stroke-width="1.5"/>
+  <polygon points="280,125 288,130 280,135" fill="#FF9800"/>
+  <line x1="170" y1="178" x2="280" y2="180" stroke="#FF9800" stroke-width="1.5"/>
+  <polygon points="280,175 288,180 280,185" fill="#FF9800"/>
+  <text x="225" y="145" font-size="8" fill="#FF9800">自動メトリクス</text>
+
+  <!-- CloudWatch -->
+  <rect x="288" y="105" width="200" height="150" fill="#FFF3E0" stroke="#F57C00" stroke-width="2" rx="8"/>
+  <text x="388" y="127" text-anchor="middle" font-size="12" font-weight="bold" fill="#E65100">Amazon CloudWatch</text>
+  <text x="295" y="148" font-size="9" font-weight="bold" fill="#E65100">DX メトリクス:</text>
+  <text x="295" y="162" font-size="8" fill="#555">• ConnectionBpsIngress / Egress</text>
+  <text x="295" y="175" font-size="8" fill="#555">• ConnectionPpsIngress / Egress</text>
+  <text x="295" y="188" font-size="8" fill="#555">• ConnectionState（0=DOWN,1=UP）</text>
+  <text x="295" y="201" font-size="8" fill="#555">• ConnectionErrorCount</text>
+  <text x="295" y="215" font-size="9" font-weight="bold" fill="#1565C0">TGW メトリクス:</text>
+  <text x="295" y="229" font-size="8" fill="#555">• BytesIn / BytesOut</text>
+  <text x="295" y="243" font-size="8" fill="#555">• PacketsIn / PacketsOut</text>
+
+  <!-- Alarms -->
+  <line x1="488" y1="155" x2="550" y2="130" stroke="#EF5350" stroke-width="1.5"/>
+  <polygon points="550,125 558,130 550,135" fill="#EF5350"/>
+  <rect x="555" y="100" width="170" height="80" fill="#FFEBEE" stroke="#EF5350" stroke-width="1.5" rx="6"/>
+  <text x="640" y="122" text-anchor="middle" font-size="10" font-weight="bold" fill="#C62828">CloudWatch Alarms</text>
+  <text x="563" y="138" font-size="8" fill="#555">• ConnectionState = 0（BGP Down）</text>
+  <text x="563" y="152" font-size="8" fill="#555">• ConnectionBps &gt; 90% 閾値</text>
+  <text x="563" y="166" font-size="8" fill="#555">• ConnectionErrorCount &gt; 0</text>
+  <text x="563" y="180" font-size="8" fill="#888">→ SNS → PagerDuty / Slack</text>
+
+  <!-- Flow Logs -->
+  <line x1="488" y1="200" x2="550" y2="220" stroke="#388E3C" stroke-width="1.5"/>
+  <polygon points="550,215 558,220 550,225" fill="#388E3C"/>
+  <rect x="555" y="195" width="170" height="80" fill="#E8F5E9" stroke="#388E3C" stroke-width="1.5" rx="6"/>
+  <text x="640" y="217" text-anchor="middle" font-size="10" font-weight="bold" fill="#1B5E20">TGW Flow Logs</text>
+  <text x="563" y="233" font-size="8" fill="#555">• src/dst IP / Port</text>
+  <text x="563" y="247" font-size="8" fill="#555">• プロトコル / バイト数</text>
+  <text x="563" y="261" font-size="8" fill="#555">• ACCEPT / REJECT</text>
+  <text x="563" y="275" font-size="8" fill="#888">→ S3 / CloudWatch Logs</text>
+
+  <!-- AWS Health -->
+  <rect x="20" y="235" width="150" height="60" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" rx="6"/>
+  <text x="95" y="257" text-anchor="middle" font-size="11" font-weight="bold" fill="#4A148C">AWS Health</text>
+  <text x="95" y="271" text-anchor="middle" font-size="9" fill="#6A1B9A">DX メンテナンス通知</text>
+  <text x="95" y="283" text-anchor="middle" font-size="9" fill="#6A1B9A">障害イベント通知</text>
+  <line x1="170" y1="265" x2="280" y2="235" stroke="#7B1FA2" stroke-width="1.5"/>
+  <polygon points="280,230 288,235 280,240" fill="#7B1FA2"/>
+
+  <!-- EventBridge -->
+  <rect x="288" y="278" width="200" height="60" fill="#EDE7F6" stroke="#7B1FA2" stroke-width="1.5" rx="6"/>
+  <text x="388" y="298" text-anchor="middle" font-size="10" font-weight="bold" fill="#4A148C">Amazon EventBridge</text>
+  <text x="388" y="314" text-anchor="middle" font-size="9" fill="#6A1B9A">DX 状態変化イベント</text>
+  <text x="388" y="328" text-anchor="middle" font-size="9" fill="#6A1B9A">BGP 状態変化イベント</text>
+  <line x1="388" y1="255" x2="388" y2="278" stroke="#7B1FA2" stroke-width="1"/>
+
+  <!-- Actions -->
+  <rect x="745" y="50" width="100" height="280" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1.5" rx="6"/>
+  <text x="795" y="72" text-anchor="middle" font-size="10" font-weight="bold" fill="#1B5E20">アクション</text>
+  <rect x="753" y="82" width="84" height="28" fill="#C8E6C9" rx="3"/>
+  <text x="795" y="100" text-anchor="middle" font-size="8" fill="#1B5E20">SNS 通知</text>
+  <rect x="753" y="118" width="84" height="28" fill="#C8E6C9" rx="3"/>
+  <text x="795" y="136" text-anchor="middle" font-size="8" fill="#1B5E20">PagerDuty</text>
+  <rect x="753" y="154" width="84" height="28" fill="#C8E6C9" rx="3"/>
+  <text x="795" y="172" text-anchor="middle" font-size="8" fill="#1B5E20">Slack 通知</text>
+  <rect x="753" y="190" width="84" height="28" fill="#C8E6C9" rx="3"/>
+  <text x="795" y="208" text-anchor="middle" font-size="8" fill="#1B5E20">Auto Runbook</text>
+  <rect x="753" y="226" width="84" height="28" fill="#C8E6C9" rx="3"/>
+  <text x="795" y="244" text-anchor="middle" font-size="8" fill="#1B5E20">Lambda 連携</text>
+  <rect x="753" y="262" width="84" height="28" fill="#C8E6C9" rx="3"/>
+  <text x="795" y="280" text-anchor="middle" font-size="8" fill="#1B5E20">Grafana 表示</text>
+
+  <!-- Arrows to actions -->
+  <line x1="725" y1="130" x2="742" y2="130" stroke="#333" stroke-width="1.5"/>
+  <polygon points="742,125 750,130 742,135" fill="#333"/>
+  <line x1="725" y1="222" x2="742" y2="225" stroke="#333" stroke-width="1.5"/>
+  <polygon points="742,220 750,225 742,230" fill="#333"/>
+  <line x1="488" y1="310" x2="742" y2="275" stroke="#333" stroke-width="1.5"/>
+  <polygon points="742,270 750,275 742,280" fill="#333"/>
+</svg>

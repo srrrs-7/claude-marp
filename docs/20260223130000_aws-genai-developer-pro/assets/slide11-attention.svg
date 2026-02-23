@@ -1,0 +1,96 @@
+<svg viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="440" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">アテンションメカニズム</text>
+  <text x="450" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#a78bfa">Attention(Q, K, V) = softmax(QK&#x1D40;/ √d_k) × V</text>
+
+  <!-- QKV explanation -->
+  <rect x="20" y="70" width="260" height="200" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="150" y="92" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#93c5fd">Q / K / V の役割</text>
+  <rect x="35" y="105" width="230" height="42" rx="5" fill="#1e40af"/>
+  <text x="150" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">Q（Query）</text>
+  <text x="150" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">「何を探しているか」現在のトークン</text>
+  <rect x="35" y="154" width="230" height="42" rx="5" fill="#065f46"/>
+  <text x="150" y="171" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">K（Key）</text>
+  <text x="150" y="189" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">「どんな情報があるか」全トークンの索引</text>
+  <rect x="35" y="203" width="230" height="42" rx="5" fill="#4c1d95"/>
+  <text x="150" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">V（Value）</text>
+  <text x="150" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">「実際の情報内容」トークンの表現</text>
+  <text x="150" y="260" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">Q・K・V は Weight行列で線形変換</text>
+
+  <!-- Attention flow diagram -->
+  <rect x="295" y="70" width="380" height="200" rx="8" fill="#0f172a" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="485" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#c4b5fd">Scaled Dot-Product Attention</text>
+
+  <!-- Step 1: QK dot product -->
+  <rect x="315" y="100" width="100" height="28" rx="4" fill="#1e40af"/>
+  <text x="365" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">Q × K^T</text>
+  <polygon points="420,113 440,108 440,118" fill="#6d28d9"/>
+  <!-- Step 2: Scale -->
+  <rect x="442" y="100" width="100" height="28" rx="4" fill="#065f46"/>
+  <text x="492" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">÷ √d_k</text>
+  <polygon points="547,113 567,108 567,118" fill="#6d28d9"/>
+  <!-- Step 3: Softmax -->
+  <rect x="569" y="100" width="90" height="28" rx="4" fill="#92400e"/>
+  <text x="614" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">Softmax</text>
+
+  <!-- Attention weights visualization -->
+  <text x="485" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">アテンション重み（確率）</text>
+  <!-- Example sentence tokens -->
+  <rect x="320" y="162" width="55" height="24" rx="3" fill="#312e81"/>
+  <text x="348" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a5b4fc">私は</text>
+  <rect x="382" y="162" width="55" height="24" rx="3" fill="#4338ca"/>
+  <text x="410" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c7d2fe">猫が</text>
+  <rect x="444" y="162" width="55" height="24" rx="3" fill="#4c1d95"/>
+  <text x="472" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ddd6fe">好きです</text>
+  <rect x="320" y="194" width="55" height="24" rx="3" fill="#312e81"/>
+  <text x="348" y="210" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a5b4fc">私は</text>
+  <rect x="382" y="194" width="55" height="24" rx="3" fill="#6d28d9" opacity="0.9"/>
+  <text x="410" y="210" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">猫が</text>
+  <rect x="444" y="194" width="55" height="24" rx="3" fill="#4c1d95"/>
+  <text x="472" y="210" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ddd6fe">好きです</text>
+  <text x="530" y="175" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">0.1</text>
+  <text x="530" y="200" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">0.8</text>
+  <text x="590" y="175" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">0.1</text>
+  <text x="590" y="200" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">0.1</text>
+  <text x="560" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6b7280">「猫が」は自分自身に高い注意</text>
+  <!-- multiply V -->
+  <text x="485" y="252" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">重み × V → コンテキスト表現</text>
+
+  <!-- Multi-Head Attention -->
+  <rect x="690" y="70" width="190" height="200" rx="8" fill="#1f2937" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="785" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fcd34d">Multi-Head</text>
+  <text x="785" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fcd34d">Attention</text>
+  <rect x="705" y="118" width="160" height="24" rx="4" fill="#374151"/>
+  <text x="785" y="134" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">Head 1: 文法的関係</text>
+  <rect x="705" y="148" width="160" height="24" rx="4" fill="#374151"/>
+  <text x="785" y="164" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">Head 2: 意味的関係</text>
+  <rect x="705" y="178" width="160" height="24" rx="4" fill="#374151"/>
+  <text x="785" y="194" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">Head 3: 参照解決</text>
+  <text x="785" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6b7280">... × H heads</text>
+  <polygon points="785,232 780,227 790,227" fill="#f59e0b"/>
+  <rect x="705" y="234" width="160" height="24" rx="4" fill="#78350f"/>
+  <text x="785" y="250" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">Concat + Linear</text>
+  <text x="785" y="265" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#4b5563">複数視点を統合</text>
+
+  <!-- Bottom: types of attention -->
+  <rect x="20" y="285" width="860" height="140" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="305" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">アテンションの種類（試験重要）</text>
+  <rect x="35" y="315" width="260" height="98" rx="6" fill="#0f172a"/>
+  <text x="165" y="335" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">Self-Attention</text>
+  <text x="165" y="355" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">同一シーケンス内のトークン間</text>
+  <text x="165" y="373" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">で関係性を学習</text>
+  <text x="165" y="391" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">Encoder / Decoder 両方で使用</text>
+  <text x="165" y="407" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">Q=K=V=同一入力</text>
+  <rect x="315" y="315" width="260" height="98" rx="6" fill="#0f172a"/>
+  <text x="445" y="335" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#34d399">Cross-Attention</text>
+  <text x="445" y="355" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">Encoder出力 → Decoder入力</text>
+  <text x="445" y="373" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">Q=Decoder、K/V=Encoder</text>
+  <text x="445" y="391" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">Encoder-Decoderモデルに存在</text>
+  <text x="445" y="407" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">翻訳・要約タスク</text>
+  <rect x="595" y="315" width="270" height="98" rx="6" fill="#0f172a"/>
+  <text x="730" y="335" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fcd34d">Causal (Masked) Attention</text>
+  <text x="730" y="355" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">未来のトークンを参照禁止</text>
+  <text x="730" y="373" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">（下三角マスクを適用）</text>
+  <text x="730" y="391" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#f59e0b">Decoder-Only LLMに使用</text>
+  <text x="730" y="407" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">自己回帰生成を実現</text>
+</svg>

@@ -1,0 +1,54 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">RAG vs Fine-tuning 選択基準</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">試験頻出：ユースケースに応じた最適アプローチの選択</text>
+
+  <!-- Header -->
+  <rect x="15" y="65" width="870" height="26" rx="5" fill="#374151"/>
+  <text x="200" y="82" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#d1d5db">判断基準</text>
+  <text x="450" y="82" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#60a5fa">RAG</text>
+  <text x="700" y="82" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#34d399">Fine-tuning</text>
+
+  <!-- Rows -->
+  <rect x="15" y="95" width="870" height="36" rx="3" fill="#172554"/>
+  <text x="200" y="117" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">知識の更新頻度</text>
+  <rect x="330" y="98" width="230" height="26" rx="3" fill="#1d4ed8"/>
+  <text x="445" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">✅ 頻繁な更新に対応（DB更新のみ）</text>
+  <text x="700" y="117" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ef4444">❌ 再学習が必要（高コスト）</text>
+
+  <rect x="15" y="135" width="870" height="36" rx="3" fill="#1a1a3e"/>
+  <text x="200" y="157" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">引用・透明性</text>
+  <rect x="330" y="138" width="230" height="26" rx="3" fill="#1d4ed8"/>
+  <text x="445" y="155" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">✅ ソース明示・エビデンス追跡可</text>
+  <text x="700" y="157" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ef4444">❌ 根拠の明示が困難</text>
+
+  <rect x="15" y="175" width="870" height="36" rx="3" fill="#172554"/>
+  <text x="200" y="197" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">コスト・実装速度</text>
+  <rect x="330" y="178" width="230" height="26" rx="3" fill="#1d4ed8"/>
+  <text x="445" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">✅ 低コスト・即座に適用</text>
+  <text x="700" y="197" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ef4444">❌ 高コスト・数時間〜数日</text>
+
+  <rect x="15" y="215" width="870" height="36" rx="3" fill="#1a1a3e"/>
+  <text x="200" y="237" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">出力スタイル/フォーマット</text>
+  <text x="445" y="237" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6b7280">△ プロンプトで制御（限界あり）</text>
+  <rect x="570" y="218" width="290" height="26" rx="3" fill="#065f46"/>
+  <text x="715" y="235" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">✅ ブランド/スタイルを固定学習</text>
+
+  <rect x="15" y="255" width="870" height="36" rx="3" fill="#172554"/>
+  <text x="200" y="277" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">特定タスク精度</text>
+  <text x="445" y="277" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6b7280">△ プロンプトに依存</text>
+  <rect x="570" y="258" width="290" height="26" rx="3" fill="#065f46"/>
+  <text x="715" y="275" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">✅ タスク特化で高精度</text>
+
+  <rect x="15" y="295" width="870" height="36" rx="3" fill="#1a1a3e"/>
+  <text x="200" y="317" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">ドメイン知識注入</text>
+  <rect x="330" y="298" width="230" height="26" rx="3" fill="#1d4ed8"/>
+  <text x="445" y="315" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">✅ リアルタイム取得</text>
+  <rect x="570" y="298" width="290" height="26" rx="3" fill="#065f46"/>
+  <text x="715" y="315" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">✅ Continued Pre-trainingで知識注入</text>
+
+  <!-- Summary -->
+  <rect x="15" y="344" width="870" height="46" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="362" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">試験鉄則: 「最新情報・更新頻繁・引用必要」→ RAG ｜ 「スタイル固定・特定タスク・データ非公開」→ Fine-tuning</text>
+  <text x="450" y="380" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">両方組み合わせ可: CPT（知識注入）+ FT（タスク適応）+ RAG（リアルタイム情報）</text>
+</svg>

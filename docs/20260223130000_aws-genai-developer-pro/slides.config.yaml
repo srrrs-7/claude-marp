@@ -1,0 +1,40 @@
+topic: "AWS Certified Generative AI Developer - Professional 試験対策"
+audience: "試験対策中のエンジニア（中〜上級者）"
+goal: "AWS GenAI Developer Professional 試験の頻出キーワードと概念を図解で深く理解する"
+language: "ja"
+
+slides:
+  count: 80
+  includeTableOfContents: true
+  includeTitleSlide: true
+  includeSummarySlide: true
+
+content:
+  codeBlocks: true
+  codeLanguage: "python"
+  bulletPointsMax: 6
+  speakerNotes: true
+
+output:
+  dir: "docs/20260223130000_aws-genai-developer-pro"
+  baseName: "aws-genai-developer-pro"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "AWS Certified Generative AI Developer - Professional"
+  footer: "© 2026 試験対策スライド"
+  style: |
+    section {
+      font-size: 1.0em;
+    }
+    section pre code {
+      font-size: 0.55em;
+      line-height: 1.35;
+    }
+    section h1 {
+      font-size: 1.6em;
+    }
+    section h2 {
+      font-size: 1.3em;
+    }

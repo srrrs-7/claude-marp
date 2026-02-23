@@ -1,0 +1,76 @@
+<svg viewBox="0 0 900 430" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="430" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">推論パラメータ（Inference Parameters）</text>
+  <text x="450" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">モデルの出力特性を制御するパラメータ — 試験で必ず出題される4つ</text>
+
+  <!-- Temperature -->
+  <rect x="15" y="72" width="415" height="160" rx="8" fill="#1e3a8a" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="228" y="94" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#60a5fa">Temperature（温度）</text>
+  <text x="228" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">出力の多様性・創造性を制御 | 範囲: 0.0 〜 1.0（一部モデルは2.0まで）</text>
+  <!-- Temperature slider visualization -->
+  <rect x="40" y="124" width="350" height="10" rx="5" fill="#1e40af"/>
+  <rect x="40" y="124" width="1" height="10" rx="0" fill="#ef4444"/>
+  <rect x="215" y="124" width="1" height="10" rx="0" fill="#fbbf24"/>
+  <rect x="389" y="124" width="1" height="10" rx="0" fill="#22c55e"/>
+  <text x="40" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ef4444">0.0</text>
+  <text x="215" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">0.5</text>
+  <text x="390" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#22c55e">1.0</text>
+  <text x="40" y="164" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ef4444">決定論的</text>
+  <text x="40" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">同一入力→同一出力</text>
+  <text x="215" y="164" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fbbf24">バランス</text>
+  <text x="390" y="164" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#22c55e">創造的</text>
+  <text x="390" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#86efac">多様・ランダム</text>
+  <text x="228" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#64748b">事実確認→低温度（0.0〜0.3）| 創作→高温度（0.7〜1.0）</text>
+
+  <!-- Top-P -->
+  <rect x="465" y="72" width="415" height="160" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+  <text x="673" y="94" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#34d399">Top-P（Nucleus Sampling）</text>
+  <text x="673" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#6ee7b7">累積確率がP%に達するまでのトークン群からサンプリング</text>
+  <!-- Top-P probability bars -->
+  <text x="490" y="132" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">トークン確率分布:</text>
+  <rect x="490" y="140" width="60" height="24" rx="3" fill="#065f46"/>
+  <text x="520" y="156" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">35%</text>
+  <rect x="558" y="140" width="48" height="24" rx="3" fill="#065f46"/>
+  <text x="582" y="156" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">28%</text>
+  <rect x="614" y="140" width="32" height="24" rx="3" fill="#065f46"/>
+  <text x="630" y="156" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">18%</text>
+  <rect x="654" y="140" width="20" height="24" rx="3" fill="#374151"/>
+  <text x="664" y="156" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6b7280">10%</text>
+  <rect x="682" y="140" width="14" height="24" rx="3" fill="#374151"/>
+  <text x="689" y="156" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6b7280">5%</text>
+  <text x="490" y="178" font-family="Arial,sans-serif" font-size="10" fill="#34d399">Top-P=0.8 → 35+28+18=81% → 最初の3トークンからサンプリング</text>
+  <text x="673" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#4b5563">低Top-P → 高確率トークンのみ | 高Top-P → より多様な選択肢</text>
+  <text x="673" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#64748b">推奨: 0.9〜0.99 | TemperatureとTop-Pは通常どちらか一方を調整</text>
+
+  <!-- Top-K -->
+  <rect x="15" y="248" width="415" height="130" rx="8" fill="#3b0764" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="228" y="270" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#d8b4fe">Top-K</text>
+  <text x="228" y="288" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#c4b5fd">確率上位K個のトークンのみをサンプリング候補とする</text>
+  <rect x="35" y="300" width="110" height="50" rx="5" fill="#4c1d95"/>
+  <text x="90" y="320" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#e9d5ff">Top-K = 1</text>
+  <text x="90" y="340" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">Greedy Decoding</text>
+  <text x="90" y="356" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">（常に最高確率）</text>
+  <rect x="165" y="300" width="110" height="50" rx="5" fill="#4c1d95"/>
+  <text x="220" y="320" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#e9d5ff">Top-K = 50</text>
+  <text x="220" y="340" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">バランス型</text>
+  <text x="220" y="356" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">（推奨デフォルト）</text>
+  <rect x="295" y="300" width="110" height="50" rx="5" fill="#4c1d95"/>
+  <text x="350" y="320" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#e9d5ff">Top-K = 500</text>
+  <text x="350" y="340" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">多様性重視</text>
+  <text x="350" y="356" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">（創造的な出力）</text>
+  <text x="228" y="372" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">Claudeではtop_k パラメータ。Titanでは非対応モデルあり</text>
+
+  <!-- Max Tokens -->
+  <rect x="465" y="248" width="415" height="130" rx="8" fill="#78350f" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="673" y="270" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#fcd34d">Max Tokens（最大生成トークン数）</text>
+  <text x="673" y="288" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fde68a">モデルが生成するトークン数の上限。コスト直接制御</text>
+  <rect x="485" y="300" width="365" height="26" rx="5" fill="#92400e"/>
+  <text x="673" y="317" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fef3c7">Input Tokens + Output Tokens ≤ Context Window</text>
+  <text x="673" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fde68a">短い回答: 256〜512 | 詳細回答: 1024〜4096 | 長文: 8K+</text>
+  <text x="673" y="365" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#f59e0b">Stop Sequences も合わせて設定可能（例: "\n\n", "Human:"）</text>
+  <text x="673" y="380" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">Bedrockでは maxTokens としてパラメータ指定</text>
+
+  <!-- Summary tip -->
+  <rect x="15" y="392" width="865" height="30" rx="6" fill="#1e1b4b"/>
+  <text x="450" y="412" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fbbf24">試験Tip: Temperature=0 → 決定論的出力（テスト・分類）| Temperature=1 → 創造的（ブレスト・創作）| Top-P と Top-K は通常どちらか一方</text>
+</svg>

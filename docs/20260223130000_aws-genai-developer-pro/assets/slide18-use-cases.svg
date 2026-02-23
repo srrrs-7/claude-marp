@@ -1,0 +1,93 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="420" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">生成AIのユースケース分類</text>
+  <text x="450" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">試験では「ユースケース → 最適AWSサービス」のマッピングが頻出</text>
+
+  <!-- Row 1 -->
+  <!-- Text Gen -->
+  <rect x="15" y="70" width="160" height="145" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="1.5"/>
+  <rect x="15" y="70" width="160" height="30" rx="8" fill="#1d4ed8"/>
+  <text x="95" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ffffff">テキスト生成</text>
+  <text x="95" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">コンテンツ作成</text>
+  <text x="95" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">ブログ・メール文章</text>
+  <text x="95" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">要約・翻訳</text>
+  <text x="95" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">データレポート生成</text>
+  <rect x="25" y="185" width="140" height="22" rx="4" fill="#0f172a"/>
+  <text x="95" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">Claude / Titan Text</text>
+
+  <!-- Code Gen -->
+  <rect x="190" y="70" width="160" height="145" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+  <rect x="190" y="70" width="160" height="30" rx="8" fill="#065f46"/>
+  <text x="270" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ffffff">コード生成</text>
+  <text x="270" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">コード補完・生成</text>
+  <text x="270" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">バグ修正・デバッグ</text>
+  <text x="270" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">テストコード作成</text>
+  <text x="270" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">コードレビュー</text>
+  <rect x="200" y="185" width="140" height="22" rx="4" fill="#0f172a"/>
+  <text x="270" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">CodeWhisperer / Claude</text>
+
+  <!-- Conversation AI -->
+  <rect x="365" y="70" width="160" height="145" rx="8" fill="#3b0764" stroke="#a855f7" stroke-width="1.5"/>
+  <rect x="365" y="70" width="160" height="30" rx="8" fill="#6d28d9"/>
+  <text x="445" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ffffff">会話AI / Q&amp;A</text>
+  <text x="445" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">カスタマーサポート</text>
+  <text x="445" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">FAQ・ヘルプデスク</text>
+  <text x="445" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">パーソナルアシスタント</text>
+  <text x="445" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">社内ナレッジ検索</text>
+  <rect x="375" y="185" width="140" height="22" rx="4" fill="#0f172a"/>
+  <text x="445" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d8b4fe">Bedrock Agents + KB</text>
+
+  <!-- Search / RAG -->
+  <rect x="540" y="70" width="160" height="145" rx="8" fill="#78350f" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="540" y="70" width="160" height="30" rx="8" fill="#92400e"/>
+  <text x="620" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ffffff">検索拡張（RAG）</text>
+  <text x="620" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">企業ドキュメント検索</text>
+  <text x="620" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">ナレッジマネジメント</text>
+  <text x="620" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">研究論文QA</text>
+  <text x="620" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">製品マニュアル検索</text>
+  <rect x="550" y="185" width="140" height="22" rx="4" fill="#0f172a"/>
+  <text x="620" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fbbf24">Knowledge Bases</text>
+
+  <!-- Image Gen -->
+  <rect x="715" y="70" width="170" height="145" rx="8" fill="#1f2937" stroke="#6b7280" stroke-width="1.5"/>
+  <rect x="715" y="70" width="170" height="30" rx="8" fill="#374151"/>
+  <text x="800" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ffffff">画像・動画生成</text>
+  <text x="800" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">広告・マーケティング</text>
+  <text x="800" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">製品画像生成</text>
+  <text x="800" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">デザインプロトタイプ</text>
+  <text x="800" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">教育コンテンツ</text>
+  <rect x="725" y="185" width="150" height="22" rx="4" fill="#0f172a"/>
+  <text x="800" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#9ca3af">Titan Image / Stability</text>
+
+  <!-- Row 2: Decision matrix -->
+  <rect x="15" y="228" width="870" height="178" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="248" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">ユースケース → AWSサービス 選択ガイド（試験頻出）</text>
+
+  <!-- Table header -->
+  <rect x="25" y="258" width="190" height="24" rx="3" fill="#374151"/>
+  <text x="120" y="275" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#e5e7eb">ユースケース</text>
+  <rect x="225" y="258" width="200" height="24" rx="3" fill="#374151"/>
+  <text x="325" y="275" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#e5e7eb">推奨サービス</text>
+  <rect x="435" y="258" width="440" height="24" rx="3" fill="#374151"/>
+  <text x="655" y="275" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#e5e7eb">理由</text>
+
+  <text x="120" y="300" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">社内ドキュメントQA</text>
+  <text x="325" y="300" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">Bedrock Knowledge Bases</text>
+  <text x="655" y="300" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">マネージドRAG、S3連携、自動チャンキング</text>
+
+  <text x="120" y="322" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">自動化タスク実行</text>
+  <text x="325" y="322" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">Bedrock Agents</text>
+  <text x="655" y="322" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">ReActループ、Lambda連携、複数ステップ</text>
+
+  <text x="120" y="344" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">コード補完</text>
+  <text x="325" y="344" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">Amazon Q Developer</text>
+  <text x="655" y="344" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">IDE統合、15+言語、セキュリティスキャン</text>
+
+  <text x="120" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">AIワークフロー構築</text>
+  <text x="325" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">Bedrock Flows</text>
+  <text x="655" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">ノーコード、条件分岐、プロンプトチェーン</text>
+
+  <text x="120" y="388" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">MLモデル学習・デプロイ</text>
+  <text x="325" y="388" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">Amazon SageMaker</text>
+  <text x="655" y="388" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">カスタムML、Fine-tuning、エンドポイント管理</text>
+</svg>

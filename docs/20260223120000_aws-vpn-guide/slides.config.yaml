@@ -1,0 +1,40 @@
+topic: "AWS ANS — VPN完全ガイド"
+audience: "engineers"
+goal: "AWS VPN全サービスの構成・ユースケース・設計パターンを網羅的に理解する"
+language: "ja"
+
+slides:
+  count: 55
+  includeTableOfContents: false
+  includeTitleSlide: false
+  includeSummarySlide: false
+
+content:
+  codeBlocks: true
+  codeLanguage: "bash"
+  bulletPointsMax: 6
+  speakerNotes: true
+
+output:
+  dir: "docs/20260223120000_aws-vpn-guide"
+  baseName: "aws-vpn-guide"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "AWS ANS — VPN完全ガイド"
+  footer: "© 2026 AWS Networking Reference"
+  style: |
+    section {
+      font-size: 1.0em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+    section.lead h1 {
+      font-size: 1.8em;
+    }
+    section.lead p {
+      font-size: 1.0em;
+    }

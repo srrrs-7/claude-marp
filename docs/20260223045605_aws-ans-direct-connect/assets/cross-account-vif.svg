@@ -1,0 +1,86 @@
+<svg viewBox="0 0 860 360" xmlns="http://www.w3.org/2000/svg" style="max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="860" height="360" fill="#f9fbe7" rx="10"/>
+  <text x="430" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">クロスアカウント VIF 共有 — ホスト型 VIF フロー</text>
+
+  <!-- Account A (Owner) -->
+  <rect x="15" y="50" width="240" height="280" fill="#E3F2FD" stroke="#1976D2" stroke-width="2" rx="8"/>
+  <text x="135" y="74" text-anchor="middle" font-size="12" font-weight="bold" fill="#0D47A1">アカウント A（提供者）</text>
+  <text x="135" y="90" text-anchor="middle" font-size="9" fill="#1565C0">Dedicated Connection 所有者</text>
+
+  <!-- DX Port -->
+  <rect x="35" y="103" width="200" height="40" fill="#BBDEFB" stroke="#64B5F6" stroke-width="1.5" rx="4"/>
+  <text x="135" y="119" text-anchor="middle" font-size="10" font-weight="bold" fill="#0D47A1">Dedicated Connection</text>
+  <text x="135" y="133" text-anchor="middle" font-size="9" fill="#1565C0">10G Port (dxcon-xxxxxxxx)</text>
+
+  <!-- Hosted VIF 1 -->
+  <rect x="35" y="158" width="200" height="40" fill="#90CAF9" stroke="#1976D2" stroke-width="1.5" rx="4"/>
+  <text x="135" y="174" text-anchor="middle" font-size="10" font-weight="bold" fill="#0D47A1">Hosted VIF #1</text>
+  <text x="135" y="188" text-anchor="middle" font-size="9" fill="#1565C0">VLAN 101 / for Account B</text>
+
+  <!-- Hosted VIF 2 -->
+  <rect x="35" y="208" width="200" height="40" fill="#90CAF9" stroke="#1976D2" stroke-width="1.5" rx="4"/>
+  <text x="135" y="224" text-anchor="middle" font-size="10" font-weight="bold" fill="#0D47A1">Hosted VIF #2</text>
+  <text x="135" y="238" text-anchor="middle" font-size="9" fill="#1565C0">VLAN 102 / for Account C</text>
+
+  <!-- Self VIF -->
+  <rect x="35" y="258" width="200" height="40" fill="#DCEDC8" stroke="#689F38" stroke-width="1.5" rx="4"/>
+  <text x="135" y="274" text-anchor="middle" font-size="10" font-weight="bold" fill="#33691E">Private VIF #3（自己用）</text>
+  <text x="135" y="288" text-anchor="middle" font-size="9" fill="#558B2F">VLAN 103 / Account A VPC</text>
+
+  <!-- Line from DX to VIFs -->
+  <line x1="135" y1="143" x2="135" y2="158" stroke="#1976D2" stroke-width="1.5"/>
+
+  <!-- Arrow: VIF 1 to Account B -->
+  <line x1="235" y1="178" x2="355" y2="178" stroke="#1976D2" stroke-width="2"/>
+  <polygon points="355,173 365,178 355,183" fill="#1976D2"/>
+  <text x="295" y="170" text-anchor="middle" font-size="9" fill="#1976D2">共有（Hosted VIF）</text>
+
+  <!-- Arrow: VIF 2 to Account C -->
+  <line x1="235" y1="228" x2="355" y2="288" stroke="#1976D2" stroke-width="2"/>
+  <polygon points="355,283 365,288 355,293" fill="#1976D2"/>
+
+  <!-- Account B -->
+  <rect x="365" y="135" width="220" height="120" fill="#E8F5E9" stroke="#388E3C" stroke-width="2" rx="8"/>
+  <text x="475" y="157" text-anchor="middle" font-size="11" font-weight="bold" fill="#1B5E20">アカウント B（利用者）</text>
+  <text x="475" y="171" text-anchor="middle" font-size="9" fill="#2E7D32">Hosted VIF を承認して使用</text>
+  <rect x="385" y="182" width="180" height="34" fill="#A5D6A7" stroke="#388E3C" stroke-width="1" rx="4"/>
+  <text x="475" y="198" text-anchor="middle" font-size="9" font-weight="bold" fill="#1B5E20">Hosted VIF #1（承認済）</text>
+  <text x="475" y="210" text-anchor="middle" font-size="9" fill="#2E7D32">VLAN 101 → VGW → VPC-B</text>
+  <rect x="385" y="222" width="180" height="24" fill="#C8E6C9" stroke="#4CAF50" stroke-width="1" rx="4"/>
+  <text x="475" y="237" text-anchor="middle" font-size="8" fill="#1B5E20">BGP セッション確立 / 経路広告</text>
+
+  <!-- Account C -->
+  <rect x="365" y="272" width="220" height="90" fill="#FFF3E0" stroke="#F57C00" stroke-width="2" rx="8"/>
+  <text x="475" y="294" text-anchor="middle" font-size="11" font-weight="bold" fill="#E65100">アカウント C（利用者）</text>
+  <text x="475" y="308" text-anchor="middle" font-size="9" fill="#BF360C">Hosted VIF を承認して使用</text>
+  <rect x="385" y="318" width="180" height="34" fill="#FFE0B2" stroke="#FF9800" stroke-width="1" rx="4"/>
+  <text x="475" y="334" text-anchor="middle" font-size="9" font-weight="bold" fill="#E65100">Hosted VIF #2（承認済）</text>
+  <text x="475" y="348" text-anchor="middle" font-size="9" fill="#BF360C">VLAN 102 → VGW → VPC-C</text>
+
+  <!-- Process flow on right -->
+  <rect x="605" y="50" width="240" height="280" fill="#fff" stroke="#ccc" stroke-width="1" rx="8"/>
+  <text x="725" y="72" text-anchor="middle" font-size="11" font-weight="bold" fill="#333">承認フロー</text>
+  <rect x="615" y="83" width="220" height="36" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1" rx="3"/>
+  <text x="725" y="98" text-anchor="middle" font-size="9" font-weight="bold" fill="#0D47A1">① A が Hosted VIF 作成</text>
+  <text x="725" y="112" text-anchor="middle" font-size="8" fill="#1565C0">宛先アカウント ID (B or C) 指定</text>
+  <line x1="725" y1="119" x2="725" y2="130" stroke="#888" stroke-width="1" stroke-dasharray="3,2"/>
+  <polygon points="720,130 725,138 730,130" fill="#888"/>
+  <rect x="615" y="138" width="220" height="36" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1" rx="3"/>
+  <text x="725" y="153" text-anchor="middle" font-size="9" font-weight="bold" fill="#1B5E20">② B のコンソールに通知</text>
+  <text x="725" y="167" text-anchor="middle" font-size="8" fill="#2E7D32">VIF が「pending acceptance」状態</text>
+  <line x1="725" y1="174" x2="725" y2="185" stroke="#888" stroke-width="1" stroke-dasharray="3,2"/>
+  <polygon points="720,185 725,193 730,185" fill="#888"/>
+  <rect x="615" y="193" width="220" height="36" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1" rx="3"/>
+  <text x="725" y="208" text-anchor="middle" font-size="9" font-weight="bold" fill="#E65100">③ B が VIF を承認（Accept）</text>
+  <text x="725" y="222" text-anchor="middle" font-size="8" fill="#BF360C">BGP Peer IP / VLAN 設定して承認</text>
+  <line x1="725" y1="229" x2="725" y2="240" stroke="#888" stroke-width="1" stroke-dasharray="3,2"/>
+  <polygon points="720,240 725,248 730,240" fill="#888"/>
+  <rect x="615" y="248" width="220" height="36" fill="#F3E5F5" stroke="#CE93D8" stroke-width="1" rx="3"/>
+  <text x="725" y="263" text-anchor="middle" font-size="9" font-weight="bold" fill="#6A1B9A">④ BGP セッション確立</text>
+  <text x="725" y="277" text-anchor="middle" font-size="8" fill="#7B1FA2">経路広告・受信開始</text>
+  <rect x="615" y="295" width="220" height="28" fill="#DCEDC8" stroke="#8BC34A" stroke-width="1" rx="3"/>
+  <text x="725" y="313" text-anchor="middle" font-size="9" font-weight="bold" fill="#33691E">⑤ 接続完了</text>
+
+  <!-- Key note -->
+  <text x="430" y="350" text-anchor="middle" font-size="9" fill="#E65100">重要: Hosted Connection と異なり、Hosted VIF は同一 Dedicated Connection の帯域を複数アカウントで共有（VLAN分離）</text>
+</svg>

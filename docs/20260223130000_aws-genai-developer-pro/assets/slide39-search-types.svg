@@ -1,0 +1,63 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Semantic Search vs Keyword Search vs Hybrid</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">RAG の検索精度を決める3つのアプローチ</text>
+
+  <!-- Keyword Search -->
+  <rect x="15" y="65" width="270" height="220" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="15" y="65" width="270" height="30" rx="8" fill="#1d4ed8"/>
+  <text x="150" y="85" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">キーワード検索</text>
+  <text x="150" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">BM25 / TF-IDF</text>
+  <rect x="25" y="120" width="250" height="60" rx="5" fill="#1e3a8a"/>
+  <text x="150" y="138" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">「機械学習 アルゴリズム」で検索</text>
+  <text x="150" y="156" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">→ 「機械学習」「アルゴリズム」が</text>
+  <text x="150" y="172" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">　含まれる文書のみヒット</text>
+  <text x="150" y="202" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">✅ 得意</text>
+  <text x="150" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">• 完全一致・高速</text>
+  <text x="150" y="234" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">• 固有名詞・専門用語</text>
+  <text x="150" y="250" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f87171">❌ 苦手</text>
+  <text x="150" y="266" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">• 同義語・言い換え</text>
+  <text x="150" y="282" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">• 意味的類似・自然言語</text>
+
+  <!-- Semantic Search -->
+  <rect x="300" y="65" width="270" height="220" rx="8" fill="#3b0764" stroke="#a855f7" stroke-width="2"/>
+  <rect x="300" y="65" width="270" height="30" rx="8" fill="#6d28d9"/>
+  <text x="435" y="85" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">セマンティック検索</text>
+  <text x="435" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#c4b5fd">Vector / Embedding ベース</text>
+  <rect x="310" y="120" width="250" height="60" rx="5" fill="#4c1d95"/>
+  <text x="435" y="138" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">「AIで自動的に覚える技術」で検索</text>
+  <text x="435" y="156" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">→「機械学習」関連文書がヒット</text>
+  <text x="435" y="172" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">　（単語一致なしでも）</text>
+  <text x="435" y="202" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">✅ 得意</text>
+  <text x="435" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">• 同義語・言い換え対応</text>
+  <text x="435" y="234" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">• 自然言語クエリ</text>
+  <text x="435" y="250" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f87171">❌ 苦手</text>
+  <text x="435" y="266" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">• 固有名詞・型番などの完全一致</text>
+  <text x="435" y="282" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">• 希少語・新語</text>
+
+  <!-- Hybrid -->
+  <rect x="585" y="65" width="300" height="220" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="2"/>
+  <rect x="585" y="65" width="300" height="30" rx="8" fill="#065f46"/>
+  <text x="735" y="85" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">ハイブリッド検索 ⭐推奨</text>
+  <text x="735" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#6ee7b7">Keyword + Semantic 統合</text>
+  <rect x="595" y="120" width="280" height="60" rx="5" fill="#064e3b"/>
+  <text x="735" y="138" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">両方で検索 → スコア統合</text>
+  <text x="735" y="156" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">RRF (Reciprocal Rank Fusion)</text>
+  <text x="735" y="172" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">両方のランキングを数式で合算</text>
+  <text x="735" y="202" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">✅ 得意</text>
+  <text x="735" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• 固有名詞 + 自然言語</text>
+  <text x="735" y="234" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• 最高精度・汎用性</text>
+  <text x="735" y="250" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">• Bedrock KB対応済み</text>
+  <text x="735" y="270" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f87171">❌ 苦手</text>
+  <text x="735" y="286" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">• 実装・チューニングが複雑</text>
+
+  <!-- RRF Formula -->
+  <rect x="15" y="298" width="870" height="90" rx="8" fill="#0f172a"/>
+  <text x="450" y="318" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">RRF（Reciprocal Rank Fusion）の仕組み</text>
+  <rect x="30" y="330" width="380" height="46" rx="5" fill="#1e1b4b"/>
+  <text x="220" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">RRF Score = Σ 1 / (k + rank_i)</text>
+  <text x="220" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#8b5cf6">k=60（定数）/ rank_i = 各手法でのランク順位</text>
+  <rect x="425" y="330" width="452" height="46" rx="5" fill="#1e1b4b"/>
+  <text x="651" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">例: Keyword検索rank=1, Semantic検索rank=3の文書</text>
+  <text x="651" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">Score = 1/(60+1) + 1/(60+3) = 0.0164 + 0.0159 = 0.0323</text>
+</svg>

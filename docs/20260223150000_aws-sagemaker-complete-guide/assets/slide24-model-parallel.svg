@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="28" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f1f5f9">分散トレーニング: Model Parallelism</text>
+
+  <!-- Problem statement -->
+  <rect x="20" y="48" width="260" height="70" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="150" y="70" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#ef4444">問題: 巨大モデル</text>
+  <text x="150" y="90" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">例: 100B パラメータ LLM</text>
+  <text x="150" y="108" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">単一GPU (80GB) に収まらない</text>
+
+  <!-- Arrow to solution -->
+  <line x1="280" y1="83" x2="320" y2="83" stroke="#ef4444" stroke-width="1.5"/>
+  <polygon points="320,83 308,78 308,88" fill="#ef4444"/>
+  <text x="300" y="100" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">→ 解決策</text>
+
+  <!-- Pipeline Parallelism Section -->
+  <rect x="25" y="145" width="545" height="220" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="297" y="168" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">Pipeline Parallelism (パイプライン並列)</text>
+  <text x="297" y="185" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">モデルを層ごとに分割 → 各 GPU が異なる層を担当</text>
+
+  <!-- GPU 0 -->
+  <rect x="45" y="195" width="110" height="155" rx="6" fill="#0f172a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="100" y="215" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">GPU 0</text>
+  <rect x="55" y="222" width="90" height="22" rx="3" fill="#22c55e" fill-opacity="0.2" stroke="#22c55e" stroke-width="1"/>
+  <text x="100" y="237" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#22c55e">Embedding</text>
+  <rect x="55" y="250" width="90" height="22" rx="3" fill="#22c55e" fill-opacity="0.2" stroke="#22c55e" stroke-width="1"/>
+  <text x="100" y="265" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#22c55e">Layers 0-9</text>
+  <text x="100" y="315" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Micro-batch 1→</text>
+  <text x="100" y="330" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Micro-batch 2→</text>
+  <text x="100" y="345" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">←勾配</text>
+
+  <!-- Arrow GPU0 → GPU1 -->
+  <line x1="155" y1="270" x2="180" y2="270" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="180,270 168,265 168,275" fill="#3b82f6"/>
+
+  <!-- GPU 1 -->
+  <rect x="180" y="195" width="110" height="155" rx="6" fill="#0f172a" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="235" y="215" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">GPU 1</text>
+  <rect x="190" y="222" width="90" height="22" rx="3" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1"/>
+  <text x="235" y="237" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#3b82f6">Layers 10-19</text>
+  <rect x="190" y="250" width="90" height="22" rx="3" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1"/>
+  <text x="235" y="265" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#3b82f6">Attention</text>
+
+  <!-- Arrow GPU1 → GPU2 -->
+  <line x1="290" y1="270" x2="315" y2="270" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="315,270 303,265 303,275" fill="#3b82f6"/>
+
+  <!-- GPU 2 -->
+  <rect x="315" y="195" width="110" height="155" rx="6" fill="#0f172a" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="370" y="215" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#a855f7">GPU 2</text>
+  <rect x="325" y="222" width="90" height="22" rx="3" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1"/>
+  <text x="370" y="237" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#a855f7">Layers 20-29</text>
+  <rect x="325" y="250" width="90" height="22" rx="3" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1"/>
+  <text x="370" y="265" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#a855f7">FFN</text>
+
+  <!-- Arrow GPU2 → GPU3 -->
+  <line x1="425" y1="270" x2="450" y2="270" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="450,270 438,265 438,275" fill="#3b82f6"/>
+
+  <!-- GPU 3 -->
+  <rect x="450" y="195" width="110" height="155" rx="6" fill="#0f172a" stroke="#f97316" stroke-width="1.5"/>
+  <text x="505" y="215" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f97316">GPU 3</text>
+  <rect x="460" y="222" width="90" height="22" rx="3" fill="#f97316" fill-opacity="0.2" stroke="#f97316" stroke-width="1"/>
+  <text x="505" y="237" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#f97316">Layers 30-39</text>
+  <rect x="460" y="250" width="90" height="22" rx="3" fill="#f97316" fill-opacity="0.2" stroke="#f97316" stroke-width="1"/>
+  <text x="505" y="265" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#f97316">Output</text>
+
+  <!-- Tensor Parallelism Section -->
+  <rect x="590" y="145" width="290" height="220" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="735" y="168" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#14b8a6">Tensor Parallelism</text>
+  <text x="735" y="185" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">単一層を複数 GPU に分割</text>
+
+  <!-- Single layer split -->
+  <rect x="605" y="198" width="260" height="40" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="735" y="222" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">巨大 Attention Layer (例)</text>
+
+  <!-- Arrow down -->
+  <line x1="735" y1="238" x2="735" y2="258" stroke="#14b8a6" stroke-width="1.5"/>
+  <polygon points="735,258 730,246 740,246" fill="#14b8a6"/>
+
+  <!-- Split into GPU A and GPU B -->
+  <rect x="605" y="265" width="115" height="60" rx="4" fill="#0f172a" stroke="#14b8a6" stroke-width="1"/>
+  <text x="662" y="287" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#14b8a6">GPU A</text>
+  <text x="662" y="305" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Head 0-15</text>
+  <text x="662" y="318" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">(列方向分割)</text>
+
+  <rect x="730" y="265" width="115" height="60" rx="4" fill="#0f172a" stroke="#14b8a6" stroke-width="1"/>
+  <text x="787" y="287" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#14b8a6">GPU B</text>
+  <text x="787" y="305" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Head 16-31</text>
+  <text x="787" y="318" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">(列方向分割)</text>
+
+  <!-- AllGather -->
+  <rect x="640" y="338" width="190" height="22" rx="3" fill="#14b8a6" fill-opacity="0.2" stroke="#14b8a6" stroke-width="1"/>
+  <text x="735" y="353" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#14b8a6">AllGather → 結果統合</text>
+
+  <!-- SMP Library Features -->
+  <rect x="25" y="390" width="860" height="75" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="450" y="410" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#a855f7">SageMaker Model Parallel (SMP) ライブラリ機能</text>
+  <text x="170" y="432" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Auto-partitioning</text>
+  <text x="170" y="448" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">自動層分割最適化</text>
+  <text x="360" y="432" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Activation Checkpointing</text>
+  <text x="360" y="448" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">メモリ削減 (再計算)</text>
+  <text x="550" y="432" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Optimizer State Sharding</text>
+  <text x="550" y="448" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Optimizerメモリ分散</text>
+  <text x="740" y="432" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">FlashAttention 統合</text>
+  <text x="740" y="448" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">メモリ効率的 Attention</text>
+
+  <text x="450" y="485" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Pipeline + Tensor + Data Parallel の組み合わせ (3D Parallelism) で超大規模LLM学習</text>
+</svg>

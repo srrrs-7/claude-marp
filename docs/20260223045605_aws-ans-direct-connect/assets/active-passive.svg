@@ -1,0 +1,94 @@
+<svg viewBox="0 0 880 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="880" height="400" fill="#fafafa" rx="10"/>
+  <text x="440" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">Active/Active vs Active/Passive ルーティング設計</text>
+
+  <!-- Active/Passive -->
+  <rect x="20" y="42" width="415" height="340" fill="#E8F5E9" stroke="#388E3C" stroke-width="2" rx="8"/>
+  <text x="227" y="64" text-anchor="middle" font-size="12" font-weight="bold" fill="#1B5E20">Active/Passive（フェイルオーバー）</text>
+
+  <!-- On-prem -->
+  <rect x="40" y="80" width="80" height="45" fill="#C8E6C9" stroke="#4CAF50" stroke-width="1.5" rx="4"/>
+  <text x="80" y="97" text-anchor="middle" font-size="10" font-weight="bold" fill="#1B5E20">オンプレ</text>
+  <text x="80" y="111" text-anchor="middle" font-size="9" fill="#2E7D32">Router</text>
+  <!-- DX1 Active -->
+  <line x1="120" y1="95" x2="195" y2="95" stroke="#1B5E20" stroke-width="2.5"/>
+  <polygon points="195,90 205,95 195,100" fill="#1B5E20"/>
+  <rect x="205" y="75" width="100" height="40" fill="#A5D6A7" stroke="#388E3C" stroke-width="1.5" rx="4"/>
+  <text x="255" y="91" text-anchor="middle" font-size="10" font-weight="bold" fill="#1B5E20">DX1</text>
+  <text x="255" y="105" text-anchor="middle" font-size="9" fill="#2E7D32">Active（優先）</text>
+  <text x="155" y="87" text-anchor="middle" font-size="8" fill="#1B5E20">通常トラフィック</text>
+  <!-- DX2 Passive -->
+  <line x1="120" y1="140" x2="195" y2="155" stroke="#9E9E9E" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="195,150 205,155 195,160" fill="#9E9E9E"/>
+  <rect x="205" y="140" width="100" height="40" fill="#E0E0E0" stroke="#9E9E9E" stroke-width="1.5" rx="4"/>
+  <text x="255" y="156" text-anchor="middle" font-size="10" font-weight="bold" fill="#616161">DX2</text>
+  <text x="255" y="170" text-anchor="middle" font-size="9" fill="#757575">Passive（待機）</text>
+  <!-- Arrow to VGW -->
+  <line x1="305" y1="95" x2="350" y2="115" stroke="#388E3C" stroke-width="2"/>
+  <polygon points="350,110 360,115 350,120" fill="#388E3C"/>
+  <line x1="305" y1="160" x2="350" y2="150" stroke="#9E9E9E" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="360" y="100" width="60" height="40" fill="#C8E6C9" stroke="#388E3C" stroke-width="1.5" rx="4"/>
+  <text x="390" y="116" text-anchor="middle" font-size="9" font-weight="bold" fill="#1B5E20">VGW/</text>
+  <text x="390" y="130" text-anchor="middle" font-size="9" fill="#2E7D32">TGW</text>
+  <!-- VPC -->
+  <rect x="360" y="155" width="60" height="40" fill="#DCEDC8" stroke="#689F38" stroke-width="1" rx="4"/>
+  <text x="390" y="173" text-anchor="middle" font-size="9" font-weight="bold" fill="#33691E">VPC</text>
+  <line x1="390" y1="140" x2="390" y2="155" stroke="#388E3C" stroke-width="1.5"/>
+
+  <!-- Config box -->
+  <rect x="35" y="215" width="390" height="155" fill="#fff" stroke="#ccc" stroke-width="1" rx="4"/>
+  <text x="230" y="232" text-anchor="middle" font-size="10" font-weight="bold" fill="#1B5E20">Active/Passive 設定方法:</text>
+  <text x="45" y="248" font-size="9" fill="#333">① Community タグを使う（送信側制御）:</text>
+  <text x="55" y="262" font-size="9" fill="#555">  - Active DX1: BGP Community 7224:7300（Local Pref=300）</text>
+  <text x="55" y="276" font-size="9" fill="#555">  - Passive DX2: BGP Community 7224:7100（Local Pref=100）</text>
+  <text x="45" y="292" font-size="9" fill="#333">② AS Path Prepend（帰り路制御）:</text>
+  <text x="55" y="306" font-size="9" fill="#555">  - Active DX1: AS Path そのまま</text>
+  <text x="55" y="320" font-size="9" fill="#555">  - Passive DX2: 自 ASN を 3〜5回 prepend</text>
+  <text x="45" y="336" font-size="9" fill="#888">  ※ 両方設定することで往路・復路ともに制御可能</text>
+  <text x="45" y="350" font-size="9" fill="#888">  ※ 障害時は BGP セッション切断でフェイルオーバー</text>
+  <text x="45" y="364" font-size="9" fill="#888">  ※ BFD 設定で障害検出を 300ms 以内に短縮可能</text>
+
+  <!-- Active/Active -->
+  <rect x="450" y="42" width="415" height="340" fill="#E3F2FD" stroke="#1976D2" stroke-width="2" rx="8"/>
+  <text x="657" y="64" text-anchor="middle" font-size="12" font-weight="bold" fill="#0D47A1">Active/Active（負荷分散）</text>
+
+  <!-- On-prem -->
+  <rect x="470" y="80" width="80" height="45" fill="#BBDEFB" stroke="#1976D2" stroke-width="1.5" rx="4"/>
+  <text x="510" y="97" text-anchor="middle" font-size="10" font-weight="bold" fill="#0D47A1">オンプレ</text>
+  <text x="510" y="111" text-anchor="middle" font-size="9" fill="#1565C0">Router</text>
+  <!-- DX1 Active -->
+  <line x1="550" y1="90" x2="620" y2="80" stroke="#1976D2" stroke-width="2.5"/>
+  <polygon points="620,75 630,80 620,85" fill="#1976D2"/>
+  <rect x="630" y="63" width="100" height="40" fill="#90CAF9" stroke="#1976D2" stroke-width="1.5" rx="4"/>
+  <text x="680" y="79" text-anchor="middle" font-size="10" font-weight="bold" fill="#0D47A1">DX1</text>
+  <text x="680" y="93" text-anchor="middle" font-size="9" fill="#1565C0">Active（50%）</text>
+  <!-- DX2 Active -->
+  <line x1="550" y1="115" x2="620" y2="150" stroke="#1976D2" stroke-width="2.5"/>
+  <polygon points="620,145 630,150 620,155" fill="#1976D2"/>
+  <rect x="630" y="133" width="100" height="40" fill="#90CAF9" stroke="#1976D2" stroke-width="1.5" rx="4"/>
+  <text x="680" y="149" text-anchor="middle" font-size="10" font-weight="bold" fill="#0D47A1">DX2</text>
+  <text x="680" y="163" text-anchor="middle" font-size="9" fill="#1565C0">Active（50%）</text>
+  <!-- ECMP arrow -->
+  <line x1="730" y1="83" x2="780" y2="115" stroke="#1976D2" stroke-width="2"/>
+  <polygon points="780,110 788,115 782,122" fill="#1976D2"/>
+  <line x1="730" y1="153" x2="780" y2="140" stroke="#1976D2" stroke-width="2"/>
+  <polygon points="780,135 788,140 780,145" fill="#1976D2"/>
+  <rect x="785" y="100" width="60" height="50" fill="#90CAF9" stroke="#1976D2" stroke-width="1.5" rx="4"/>
+  <text x="815" y="119" text-anchor="middle" font-size="9" font-weight="bold" fill="#0D47A1">VGW/</text>
+  <text x="815" y="132" text-anchor="middle" font-size="9" fill="#1565C0">TGW</text>
+  <text x="815" y="144" text-anchor="middle" font-size="8" fill="#1565C0">ECMP</text>
+  <text x="636" y="125" text-anchor="middle" font-size="8" fill="#1976D2">50% / 50%</text>
+
+  <!-- Config box -->
+  <rect x="465" y="215" width="390" height="155" fill="#fff" stroke="#ccc" stroke-width="1" rx="4"/>
+  <text x="660" y="232" text-anchor="middle" font-size="10" font-weight="bold" fill="#0D47A1">Active/Active 設定方法:</text>
+  <text x="475" y="248" font-size="9" fill="#333">① 同一プレフィックスを両 DX から広告:</text>
+  <text x="485" y="262" font-size="9" fill="#555">  - 同じ Community タグ（または Community なし）</text>
+  <text x="485" y="276" font-size="9" fill="#555">  - AS Path 長も同じに設定</text>
+  <text x="475" y="292" font-size="9" fill="#333">② ECMP で自動負荷分散:</text>
+  <text x="485" y="306" font-size="9" fill="#555">  - Equal-cost 経路がある場合、VGW/TGW が ECMP</text>
+  <text x="485" y="320" font-size="9" fill="#555">  - 各 DX の帯域を合算して利用可能</text>
+  <text x="475" y="336" font-size="9" fill="#333">③ 障害時の動作:</text>
+  <text x="485" y="350" font-size="9" fill="#555">  - 片方の DX 障害 → 残り 100% に自動切替</text>
+  <text x="485" y="364" font-size="9" fill="#888">  ※ 帯域が 2倍利用できる反面、障害時は半減</text>
+</svg>

@@ -1,6 +1,6 @@
 ---
 name: create-slides
-description: 対話型でスライドを一から作成（ヒアリング → 構成 → 生成 → デザイン → エクスポート）
+description: 対話型でスライドを一から作成（ヒアリング → 構成 → タスク分割 → 並列生成 → デザイン → エクスポート）
 user_invocable: true
 ---
 
@@ -13,14 +13,16 @@ user_invocable: true
 0. **Pre-flight Checks** — スキーマとディレクトリルールを読み込み、タイムスタンプを生成
 1. **ヒアリング** — トピック、対象者、形式、持ち時間、コンテンツ要件、デザインの好みを質問
 2. **構成設計** — スライドアウトライン表を提示 → ユーザー承認
-3. **config生成** — `slides.config.yaml` を作成（`docs/<timestamp>_<title>/` に専用ディレクトリ）
-4. **データ生成** — slide schema に従ったJSON作成 → 検証 → `docs/<timestamp>_<title>/slides-data.json`
-5. **レンダリング** — `bun run slides render --in <path>/slides-data.json`
-6. **レビューループ** — フィードバック → 修正 → 再レンダリング（OKまで繰り返し）
-7. **デザイン調整** — テーマ・CSS・ディレクティブの微調整
-8. **エクスポート** — `bun run slides export -f html --in <path>/<name>.md`
-9. **セルフヒーリング検証** — エクスポート後に自動検証し、問題があれば修正→再エクスポート
-10. **インデックス更新** — `bun run generate:index` で `docs/index.html` を再生成
+3. **タスク分割計画** — アウトラインをタスク単位に分割 → タスク表を提示 → ユーザー承認
+4. **config生成** — `slides.config.yaml` を作成（`docs/<timestamp>_<title>/` に専用ディレクトリ）
+5. **並列データ生成** — タスクごとに独立したエージェントを**同時起動** → 各 `slides-data-part{N}.json` を並列生成
+6. **マージ & 検証** — 全エージェント完了後に結合 → `slides-data.json` → Zodバリデーション
+7. **レンダリング** — `bun run slides render --in <path>/slides-data.json`
+8. **レビューループ** — フィードバック → 修正 → 再レンダリング（OKまで繰り返し）
+9. **デザイン調整** — テーマ・CSS・ディレクティブの微調整
+10. **エクスポート** — `bun run slides export -f html --in <path>/<name>.md`
+11. **セルフヒーリング検証** — エクスポート後に自動検証し、問題があれば修正→再エクスポート
+12. **インデックス更新** — `bun run generate:index` で `docs/index.html` を再生成
 
 **出力先:** すべてのファイルは `docs/<yyyymmddhhmmss>_<title>/` 配下に集約される
 
@@ -31,9 +33,135 @@ user_invocable: true
 - **ヒアリングは1項目ずつ質問する**（複数の質問をまとめて投げない。1つの質問→回答→次の質問のサイクルで進める）
 - **選択肢がある質問は `AskUserQuestion` ツールで選択式にする**（自由記述が必要な質問はテキストで問いかける）
 - アウトライン承認前にデータ生成しない
+- **タスク分割計画の承認を得てから並列エージェントを起動する**
 - レビューループは何度でも回す
 - **【重要】config生成時**: `slides.config.yaml` の `output.dir` は **必ず** `"docs/<timestamp>_<title>"` のフルパスを指定（相対パス `"."` は実行ディレクトリ基準で解決されるため不可）
 - **【最重要】図解ファースト**: 説明はテキスト箇条書きではなく SVG 図解を第一手段とする。全スライドの 50% 以上に図解を含めること（詳細は「図解ファースト原則」セクション参照）
+
+---
+
+## Phase 3: タスク分割計画
+
+**トリガー:** 構成設計（Phase 2）でアウトライン承認を受けた直後に実行。
+
+### 分割基準
+
+| スライド総数 | タスク数 | 1タスクあたりの上限 |
+|:-----------:|:--------:|:-----------------:|
+| 1〜20枚 | 1（分割なし） | 20枚 |
+| 21〜40枚 | 2 | 20枚 |
+| 41〜60枚 | 3 | 20枚 |
+| 61枚〜 | ceil(N/20) | 20枚 |
+
+> タスク境界はセクション区切りに合わせる。20枚を超えるセクションが連続する場合は、内部で分割して境界を揃える。
+
+### タスク表の提示形式
+
+アウトライン承認後、以下の形式でタスク表を提示してユーザーの承認を求める:
+
+```
+## タスク分割計画（全45枚 → 3タスク・並列実行）
+
+| タスク  | スライド範囲    | 枚数  | [SVG] | [CODE] | [TEXT] | 出力ファイル                  |
+|--------|---------------|------|-------|--------|--------|------------------------------|
+| Task-1 | スライド 1〜15  | 15枚 | 8     | 2      | 5      | slides-data-part1.json       |
+| Task-2 | スライド 16〜30 | 15枚 | 9     | 3      | 3      | slides-data-part2.json       |
+| Task-3 | スライド 31〜45 | 15枚 | 7     | 4      | 4      | slides-data-part3.json       |
+
+SVG合計: 24枚 (53%) ✅ 基準クリア
+
+▶ 承認後、3つのエージェントを同時起動して並列生成します。
+```
+
+承認を得たら Phase 4（config生成）へ進む。
+
+---
+
+## Phase 5: 並列データ生成
+
+**タスク分割計画の承認後に実行。各タスクを独立したエージェントとして同時起動する。**
+
+### 起動ルール
+
+- Task tool の `run_in_background: true` を使い、全タスクを**1回のメッセージで同時起動**する
+- 10タスク以上の場合はウェーブ実行（1ウェーブ = 最大7タスク）、全ウェーブの完了を待ってから次へ
+- 各エージェントは互いに独立したファイルに書き込む（競合なし）
+
+### エージェントへの指示テンプレート
+
+```
+あなたはスライド生成エージェントです。以下のタスクを実行してください。
+
+【担当範囲】スライド {START}〜{END}（{N}枚）
+【出力先】 docs/{TIMESTAMP}_{SLUG}/slides-data-part{N}.json
+【アウトライン（担当分）】
+{OUTLINE_EXCERPT}
+
+【必須制約】
+- フィールド名は `content`（`bullets` は不可）
+- layout: "default" | "center" | "section" のみ
+- SVGは viewBox + letter-spacing:0 + url(#id)禁止
+- JSON は Write tool でファイルに書き込む（インライン出力禁止）
+- 完了後に slides 数を検証して報告する
+
+You have full permissions to use Bash, Write, Read, Edit, and Glob tools.
+```
+
+### 実行イメージ
+
+```
+Phase 5 開始 — 3エージェントを同時起動
+├─ [Agent A] Task-1: スライド 1〜15  → slides-data-part1.json  (並列実行中…)
+├─ [Agent B] Task-2: スライド 16〜30 → slides-data-part2.json  (並列実行中…)
+└─ [Agent C] Task-3: スライド 31〜45 → slides-data-part3.json  (並列実行中…)
+
+全エージェント完了 → Phase 6（マージ）へ
+```
+
+### ウェーブ実行（10タスク以上）
+
+```
+Wave 1: Task-1 〜 Task-7  → 全完了を待機
+Wave 2: Task-8 〜 Task-14 → 全完了を待機
+Wave 3: Task-15〜…        → 全完了を待機
+→ マージ
+```
+
+---
+
+## Phase 6: マージ & 検証
+
+**全並列エージェント完了後に実行。**
+
+### マージ手順
+
+```bash
+# 1. パーツファイルを結合して slides-data.json を生成
+bun -e "
+const fs = require('fs');
+const parts = ['part1','part2','part3'].map(p =>
+  JSON.parse(fs.readFileSync('docs/<dir>/slides-data-' + p + '.json','utf-8'))
+);
+const merged = { slides: parts.flatMap(p => p.slides) };
+fs.writeFileSync('docs/<dir>/slides-data.json', JSON.stringify(merged, null, 2));
+console.log('Merged:', merged.slides.length, 'slides');
+"
+
+# 2. 中間ファイルを削除
+rm docs/<dir>/slides-data-part*.json
+
+# 3. スキーマ検証
+bun run validate
+```
+
+### 検証項目
+
+- [ ] 実際の枚数 == 計画枚数（不足があればエージェントに追加生成を依頼）
+- [ ] `bun run validate` がエラーなしで完了
+- [ ] `JSON.parse()` が成功する（SVGエスケープ漏れなし）
+- [ ] SVG比率が基準を満たしている
+
+---
 
 ## 図解ファースト原則
 
@@ -55,7 +183,7 @@ SVG インライン図解を第一の表現手段とし、補足テキストを�
 | 21〜40枚 | 21枚以上 |
 | 41枚〜 | 全体の 55% 以上 |
 
-**構成設計（フェーズ2）でアウトラインを作る時点で上記比率を満たしていること。**
+**構成設計（Phase 2）でアウトラインを作る時点で上記比率を満たしていること。**
 比率が不足している場合はアウトラインを修正してから承認を求める。
 
 ### 図解必須スライドタイプ
@@ -118,13 +246,15 @@ SVG図解: 14枚 (56%) ✅ 基準クリア
 
 ### レビューループでの図解比率チェック
 
-フェーズ6（レビューループ）でも以下を確認する:
+Phase 8（レビューループ）でも以下を確認する:
 
 ```
 チェック: 図解比率 = [SVG]スライド数 / 全スライド数
 基準未達（50%未満） → 箇条書きスライドを図解に変換して再生成
 基準クリア → 次フェーズへ
 ```
+
+---
 
 ## Pre-flight Validation
 
@@ -147,24 +277,18 @@ SVG図解: 14枚 (56%) ✅ 基準クリア
 
 ## Chunked Generation (40枚以上のデッキ必須)
 
-**32Kトークン上限回避のため、40枚以上のスライドは必ずチャンク分割して生成する:**
+**32Kトークン上限回避のため、40枚以上のスライドは必ずチャンク分割して生成する。Phase 5（並列データ生成）がこれを自動的に満たす。**
 
-```
-Step 1: slides 1-30  → Write tool で docs/<dir>/slides-data-part1.json に直接書き込み
-Step 2: slides 31-60 → Write tool で docs/<dir>/slides-data-part2.json に直接書き込み
-Step 3: 結合 → { "slides": [...part1.slides, ...part2.slides] } を slides-data.json に書き込み
-Step 4: 中間ファイル削除 → slides-data-part*.json を削除
-Step 5: スライド数確認 → 実際の枚数 == 計画枚数 を検証
-```
+各エージェントが担当する枚数は最大20枚のため、40枚以上のデッキは自動的にパーツファイルに分割される。
 
 **ルール:**
 - JSON をインラインで出力しない（Write tool を使う）
 - SVG 内のダブルクォートは `\"` にエスケープしてから JSON に埋め込む
-- チャンクサイズは最大30枚（token 上限に余裕を持たせる）
+- チャンクサイズは最大20枚（token 上限に余裕を持たせる）
 
 ## Post-Generation Validation
 
-**slides-data.json 生成後、render 前に:**
+**slides-data.json 生成後（Phase 6: マージ & 検証）、render 前に:**
 
 1. 生成した JSON をスキーマと照合
 2. エラーがあれば自動修正
@@ -199,7 +323,7 @@ Step 5: スライド数確認 → 実際の枚数 == 計画枚数 を検証
    - Fixed invalid layout value 'custom' → 'default' in slide 3
    ```
 
-## Phase 9: Self-Healing Post-Export Verification
+## Phase 11: Self-Healing Post-Export Verification
 
 **エクスポート完了後に自動実行（ユーザー介入不要）:**
 
@@ -245,7 +369,7 @@ grep -rn '^```mermaid' docs/<dir>/*.md              # Mermaid 残存
    - 問題検出: なし（or 自動修正済み: ～を修正）
 ```
 
-## Phase 10: インデックス更新
+## Phase 12: インデックス更新
 
 **エクスポート・検証完了後に自動実行:**
 

@@ -1,0 +1,92 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">ベクターエンベディングの仕組み</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">テキストを高次元ベクターに変換し意味的類似度を計算</text>
+
+  <!-- Embedding pipeline -->
+  <rect x="15" y="65" width="540" height="120" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="2"/>
+  <text x="285" y="85" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">テキスト → ベクター変換プロセス</text>
+
+  <!-- Text input -->
+  <rect x="25" y="95" width="130" height="78" rx="5" fill="#1e3a8a"/>
+  <text x="90" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#93c5fd">テキストチャンク</text>
+  <text x="90" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">「機械学習は</text>
+  <text x="90" y="149" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">データから自動的に</text>
+  <text x="90" y="165" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">学習するAI技術」</text>
+  <polygon points="158,134 170,130 170,138" fill="#6d28d9"/>
+
+  <!-- Embedding model -->
+  <rect x="173" y="95" width="150" height="78" rx="5" fill="#3b0764"/>
+  <text x="248" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#c4b5fd">Embedding Model</text>
+  <text x="248" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Titan Embeddings V2</text>
+  <text x="248" y="149" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#8b5cf6">1024/512/256次元</text>
+  <text x="248" y="165" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#8b5cf6">多言語対応</text>
+  <polygon points="326,134 338,130 338,138" fill="#6d28d9"/>
+
+  <!-- Vector -->
+  <rect x="341" y="95" width="200" height="78" rx="5" fill="#064e3b"/>
+  <text x="441" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#6ee7b7">ベクター (1024次元)</text>
+  <text x="441" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">[0.23, -0.87, 0.45, 0.12,</text>
+  <text x="441" y="149" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399"> -0.66, 0.78, ..., 0.31]</text>
+  <text x="441" y="165" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">1024個の浮動小数点数</text>
+
+  <!-- Vector space visualization -->
+  <rect x="570" y="65" width="315" height="120" rx="8" fill="#0f172a" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="728" y="85" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#a78bfa">ベクター空間（概念図）</text>
+  <!-- Axes -->
+  <line x1="600" y1="165" x2="870" y2="165" stroke="#374151" stroke-width="1"/>
+  <line x1="600" y1="165" x2="600" y2="95" stroke="#374151" stroke-width="1"/>
+  <text x="875" y="168" font-family="Arial,sans-serif" font-size="9" fill="#6b7280">dim1</text>
+  <text x="603" y="93" font-family="Arial,sans-serif" font-size="9" fill="#6b7280">dim2</text>
+  <!-- Points -->
+  <circle cx="660" cy="120" r="7" fill="#3b82f6"/>
+  <text x="660" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">機械学習</text>
+  <circle cx="690" cy="110" r="7" fill="#6d28d9"/>
+  <text x="700" y="100" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">深層学習</text>
+  <circle cx="720" cy="125" r="7" fill="#a855f7"/>
+  <text x="740" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#e9d5ff">ニューラル</text>
+  <circle cx="800" cy="145" r="7" fill="#10b981"/>
+  <text x="810" y="135" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">料理</text>
+  <circle cx="840" cy="140" r="7" fill="#059669"/>
+  <text x="856" y="133" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">レシピ</text>
+  <!-- similarity line -->
+  <line x1="660" y1="120" x2="720" y2="125" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="690" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fbbf24">類似</text>
+  <line x1="800" y1="145" x2="840" y2="140" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,2"/>
+
+  <!-- Similarity calculation -->
+  <rect x="15" y="198" width="870" height="90" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">コサイン類似度（KNN 検索）</text>
+  <rect x="30" y="230" width="280" height="46" rx="5" fill="#0f172a"/>
+  <text x="170" y="248" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">cos(θ) = A·B / (|A| × |B|)</text>
+  <text x="170" y="266" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">1.0 = 完全一致 / 0.0 = 無関係 / -1.0 = 対義</text>
+  <rect x="326" y="230" width="265" height="46" rx="5" fill="#0f172a"/>
+  <text x="459" y="248" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">正規化ベクター（ノルム=1）では</text>
+  <text x="459" y="266" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">コサイン類似度 = 内積 → 高速計算</text>
+  <rect x="606" y="230" width="270" height="46" rx="5" fill="#0f172a"/>
+  <text x="741" y="248" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">Titan Emb V2 は正規化済み</text>
+  <text x="741" y="266" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">256/512/1024次元を選択可（低次元=低コスト）</text>
+
+  <!-- Embedding models comparison -->
+  <rect x="15" y="300" width="870" height="88" rx="8" fill="#0f172a"/>
+  <text x="450" y="320" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">主要Embedding Model 比較（Bedrock）</text>
+  <!-- Table header -->
+  <rect x="25" y="330" width="150" height="18" rx="3" fill="#374151"/>
+  <text x="100" y="343" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#d1d5db">モデル</text>
+  <rect x="183" y="330" width="120" height="18" rx="3" fill="#374151"/>
+  <text x="243" y="343" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#d1d5db">次元数</text>
+  <rect x="311" y="330" width="120" height="18" rx="3" fill="#374151"/>
+  <text x="371" y="343" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#d1d5db">言語</text>
+  <rect x="439" y="330" width="437" height="18" rx="3" fill="#374151"/>
+  <text x="658" y="343" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#d1d5db">特徴</text>
+  <!-- Row 1 -->
+  <text x="100" y="363" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">Titan Emb V2 ★</text>
+  <text x="243" y="363" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">256/512/1024</text>
+  <text x="371" y="363" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">多言語</text>
+  <text x="658" y="363" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">推奨・次元選択可・コスト効率良</text>
+  <!-- Row 2 -->
+  <text x="100" y="379" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">Titan Emb V1</text>
+  <text x="243" y="379" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">1536</text>
+  <text x="371" y="379" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">英語特化</text>
+  <text x="658" y="379" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">英語RAGに特化・大きな次元数</text>
+</svg>

@@ -1,0 +1,127 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Outer container: SageMaker Pipelines -->
+  <rect x="20" y="20" width="860" height="460" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="450" y="48" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#3b82f6">SageMaker Pipelines — Workflow Orchestration</text>
+
+  <!-- Top info row: Schedule + Parameters + Caching -->
+  <rect x="40" y="60" width="200" height="44" rx="6" fill="#0f172a" stroke="#94a3b8" stroke-width="1"/>
+  <text x="140" y="78" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#94a3b8">Pipeline Schedule</text>
+  <text x="140" y="93" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f97316">EventBridge Trigger</text>
+
+  <rect x="260" y="60" width="200" height="44" rx="6" fill="#0f172a" stroke="#94a3b8" stroke-width="1"/>
+  <text x="360" y="78" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#94a3b8">Pipeline Parameters</text>
+  <text x="360" y="93" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f97316">動的パラメータ設定</text>
+
+  <rect x="480" y="60" width="200" height="44" rx="6" fill="#0f172a" stroke="#94a3b8" stroke-width="1"/>
+  <text x="580" y="78" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#94a3b8">Step Caching</text>
+  <text x="580" y="93" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">変更なし→再利用</text>
+
+  <!-- Step nodes: row 1 -->
+  <!-- ProcessingStep -->
+  <rect x="40" y="145" width="160" height="60" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2"/>
+  <text x="120" y="169" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">ProcessingStep</text>
+  <text x="120" y="186" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">データ前処理</text>
+  <text x="120" y="200" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">SKLearnProcessor</text>
+
+  <!-- Arrow 1 -->
+  <line x1="200" y1="175" x2="248" y2="175" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="248,170 260,175 248,180" fill="#94a3b8"/>
+
+  <!-- TrainingStep -->
+  <rect x="260" y="145" width="160" height="60" rx="8" fill="#1a3a2a" stroke="#22c55e" stroke-width="2"/>
+  <text x="340" y="169" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#22c55e">TrainingStep</text>
+  <text x="340" y="186" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">モデル学習</text>
+  <text x="340" y="200" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">XGBoost / TF / PyTorch</text>
+
+  <!-- Arrow 2 -->
+  <line x1="420" y1="175" x2="468" y2="175" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="468,170 480,175 468,180" fill="#94a3b8"/>
+
+  <!-- EvaluationStep -->
+  <rect x="480" y="145" width="160" height="60" rx="8" fill="#3a2a10" stroke="#f97316" stroke-width="2"/>
+  <text x="560" y="169" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f97316">EvaluationStep</text>
+  <text x="560" y="186" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">評価</text>
+  <text x="560" y="200" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">メトリクス計算</text>
+
+  <!-- Arrow 3 -->
+  <line x1="640" y1="175" x2="688" y2="175" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="688,170 700,175 688,180" fill="#94a3b8"/>
+
+  <!-- ConditionStep -->
+  <!-- Diamond shape -->
+  <polygon points="760,145 830,175 760,205 690,175" fill="#2d1a4a" stroke="#a855f7" stroke-width="2"/>
+  <text x="760" y="171" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#a855f7">Condition</text>
+  <text x="760" y="184" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">精度 &gt; 0.9?</text>
+
+  <!-- Yes arrow (down) -->
+  <line x1="760" y1="205" x2="760" y2="258" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="755,258 760,270 765,258" fill="#22c55e"/>
+  <text x="780" y="238" font-family="sans-serif" font-size="11" fill="#22c55e">Yes</text>
+
+  <!-- No arrow (right) -->
+  <line x1="830" y1="175" x2="870" y2="175" stroke="#ef4444" stroke-width="2"/>
+  <text x="840" y="168" font-family="sans-serif" font-size="11" fill="#ef4444">No</text>
+
+  <!-- RegisterModelStep -->
+  <rect x="680" y="270" width="160" height="60" rx="8" fill="#1a3a2a" stroke="#22c55e" stroke-width="2"/>
+  <text x="760" y="294" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#22c55e">RegisterModelStep</text>
+  <text x="760" y="310" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">モデル登録</text>
+  <text x="760" y="324" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Model Registry</text>
+
+  <!-- FailStep (right side, off canvas indicator) -->
+  <rect x="840" y="150" width="40" height="50" rx="6" fill="#3a1010" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="860" y="170" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#ef4444">Fail</text>
+  <text x="860" y="185" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Step</text>
+  <text x="860" y="197" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#f1f5f9">停止</text>
+
+  <!-- Step Caching indicators -->
+  <rect x="40" y="230" width="430" height="30" rx="4" fill="#0f172a" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="255" y="248" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">Step Caching 有効: 入力変更なし → 前回の出力を再利用 (コスト・時間削減)</text>
+
+  <!-- Pipeline state flow bottom -->
+  <rect x="40" y="280" width="620" height="100" rx="8" fill="#0f172a" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="50" y="300" font-family="sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">Pipeline 実行フロー</text>
+
+  <!-- Status chips -->
+  <rect x="55" y="310" width="80" height="24" rx="4" fill="#1e3a5f"/>
+  <text x="95" y="326" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#3b82f6">Executing</text>
+
+  <line x1="135" y1="322" x2="153" y2="322" stroke="#94a3b8" stroke-width="1"/>
+  <polygon points="153,318 163,322 153,326" fill="#94a3b8"/>
+
+  <rect x="163" y="310" width="80" height="24" rx="4" fill="#1a3a2a"/>
+  <text x="203" y="326" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">Succeeded</text>
+
+  <line x1="243" y1="322" x2="261" y2="322" stroke="#94a3b8" stroke-width="1"/>
+  <polygon points="261,318 271,322 261,326" fill="#94a3b8"/>
+
+  <rect x="271" y="310" width="80" height="24" rx="4" fill="#3a1010"/>
+  <text x="311" y="326" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ef4444">Failed</text>
+
+  <line x1="351" y1="322" x2="369" y2="322" stroke="#94a3b8" stroke-width="1"/>
+  <polygon points="369,318 379,322 369,326" fill="#94a3b8"/>
+
+  <rect x="379" y="310" width="80" height="24" rx="4" fill="#2a2a10"/>
+  <text x="419" y="326" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f97316">Stopped</text>
+
+  <text x="55" y="370" font-family="sans-serif" font-size="10" fill="#94a3b8">SDK: pipeline.start() | pipeline.describe() | step.properties.ModelArtifacts.S3ModelArtifacts</text>
+
+  <!-- Legend -->
+  <rect x="40" y="400" width="820" height="70" rx="8" fill="#131e2f" stroke="#94a3b8" stroke-width="1"/>
+  <text x="55" y="418" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">ステップ凡例</text>
+  <rect x="55" y="426" width="14" height="14" rx="2" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="74" y="438" font-family="sans-serif" font-size="10" fill="#f1f5f9">データ処理</text>
+  <rect x="155" y="426" width="14" height="14" rx="2" fill="#1a3a2a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="174" y="438" font-family="sans-serif" font-size="10" fill="#f1f5f9">学習・登録</text>
+  <rect x="255" y="426" width="14" height="14" rx="2" fill="#3a2a10" stroke="#f97316" stroke-width="1.5"/>
+  <text x="274" y="438" font-family="sans-serif" font-size="10" fill="#f1f5f9">評価</text>
+  <rect x="330" y="426" width="14" height="14" rx="2" fill="#2d1a4a" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="349" y="438" font-family="sans-serif" font-size="10" fill="#f1f5f9">条件分岐</text>
+  <rect x="430" y="426" width="14" height="14" rx="2" fill="#3a1010" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="449" y="438" font-family="sans-serif" font-size="10" fill="#f1f5f9">失敗停止</text>
+
+  <text x="55" y="462" font-family="sans-serif" font-size="10" fill="#94a3b8">各ステップは独立した SageMaker ジョブとして実行 | 並列実行・依存関係をDAGで定義</text>
+</svg>

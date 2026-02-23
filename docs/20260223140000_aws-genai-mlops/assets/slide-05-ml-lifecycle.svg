@@ -1,0 +1,58 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="36" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">MLライフサイクル全体像</text>
+  <!-- Center circle -->
+  <circle cx="400" cy="260" r="68" fill="#2d4059" stroke="#4CC9F0" stroke-width="2.5"/>
+  <text x="400" y="252" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#ffffff">MLOps</text>
+  <text x="400" y="272" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4CC9F0">ライフサイクル</text>
+  <!-- Node helper: rx, ry, label, sub -->
+  <!-- Node 1: データ収集 top -->
+  <rect x="310" y="55" width="180" height="44" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="400" y="73" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffffff">データ収集</text>
+  <text x="400" y="90" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4CC9F0">S3 / Kinesis / RDS</text>
+  <!-- Arrow top to center -->
+  <line x1="400" y1="99" x2="400" y2="192" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#4CC9F0" transform="translate(400,192) rotate(180)"/>
+  <!-- Node 2: データ前処理 top-right -->
+  <rect x="570" y="110" width="180" height="44" rx="8" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="660" y="128" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffffff">データ前処理</text>
+  <text x="660" y="145" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4CC9F0">Glue / Data Wrangler</text>
+  <line x1="570" y1="132" x2="467" y2="213" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#4CC9F0" transform="translate(467,213) rotate(130)"/>
+  <!-- Node 3: 特徴量エンジニアリング right -->
+  <rect x="600" y="238" width="180" height="44" rx="8" fill="#1e3a5f" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="690" y="256" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffffff">特徴量エンジニアリング</text>
+  <text x="690" y="273" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#06D6A0">Feature Store</text>
+  <line x1="600" y1="260" x2="468" y2="260" stroke="#06D6A0" stroke-width="1.5"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#06D6A0" transform="translate(468,260) rotate(90)"/>
+  <!-- Node 4: モデル学習 bottom-right -->
+  <rect x="570" y="346" width="180" height="44" rx="8" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="660" y="364" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffffff">モデル学習</text>
+  <text x="660" y="381" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4CC9F0">SageMaker Training</text>
+  <line x1="570" y1="368" x2="467" y2="307" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#4CC9F0" transform="translate(467,307) rotate(50)"/>
+  <!-- Node 5: モデル評価 bottom -->
+  <rect x="310" y="406" width="180" height="44" rx="8" fill="#1e3a5f" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="400" y="424" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffffff">モデル評価</text>
+  <text x="400" y="441" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#F77F00">Clarify / Experiments</text>
+  <line x1="400" y1="406" x2="400" y2="328" stroke="#F77F00" stroke-width="1.5"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#F77F00" transform="translate(400,328) rotate(0)"/>
+  <!-- Node 6: デプロイ bottom-left -->
+  <rect x="50" y="346" width="180" height="44" rx="8" fill="#0f3460" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="140" y="364" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffffff">デプロイ</text>
+  <text x="140" y="381" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#06D6A0">Endpoints / Lambda</text>
+  <line x1="230" y1="368" x2="333" y2="307" stroke="#06D6A0" stroke-width="1.5"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#06D6A0" transform="translate(333,307) rotate(-50)"/>
+  <!-- Node 7: 監視 left -->
+  <rect x="20" y="238" width="180" height="44" rx="8" fill="#1e3a5f" stroke="#E63946" stroke-width="1.5"/>
+  <text x="110" y="256" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffffff">監視</text>
+  <text x="110" y="273" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#E63946">Model Monitor / CW</text>
+  <line x1="200" y1="260" x2="332" y2="260" stroke="#E63946" stroke-width="1.5"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#E63946" transform="translate(332,260) rotate(-90)"/>
+  <!-- Node 8: フィードバック top-left -->
+  <rect x="50" y="110" width="180" height="44" rx="8" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="140" y="128" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffffff">フィードバック</text>
+  <text x="140" y="145" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4CC9F0">再学習トリガー</text>
+  <line x1="230" y1="132" x2="333" y2="213" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#4CC9F0" transform="translate(333,213) rotate(-130)"/>
+</svg>

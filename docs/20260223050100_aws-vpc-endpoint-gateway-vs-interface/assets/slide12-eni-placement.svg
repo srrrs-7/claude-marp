@@ -1,0 +1,81 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <text x="400" y="26" font-family="Arial,sans-serif" font-size="14" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Interface Endpoint — マルチ AZ ENI 配置</text>
+  <!-- VPC border -->
+  <rect x="15" y="38" width="580" height="340" rx="8" fill="#f0f4ff" stroke="#7b5ea7" stroke-width="2"/>
+  <text x="33" y="58" font-family="Arial,sans-serif" font-size="12" fill="#7b5ea7" font-weight="bold">VPC</text>
+  <!-- AZ-a column -->
+  <rect x="32" y="68" width="175" height="295" rx="6" fill="#e8edff" stroke="#9ca3af" stroke-width="1"/>
+  <text x="119" y="86" font-family="Arial,sans-serif" font-size="10" fill="#555" text-anchor="middle" font-weight="bold">AZ-a (ap-northeast-1a)</text>
+  <!-- EC2 AZ-a -->
+  <rect x="46" y="98" width="147" height="44" rx="5" fill="#fff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <rect x="46" y="98" width="147" height="18" rx="5" fill="#7b5ea7"/>
+  <text x="119" y="111" font-family="Arial,sans-serif" font-size="9" fill="#fff" text-anchor="middle">EC2 (10.0.1.10)</text>
+  <text x="119" y="130" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">sg-app01</text>
+  <!-- ENI AZ-a -->
+  <rect x="46" y="168" width="147" height="55" rx="5" fill="#fff" stroke="#10b981" stroke-width="2"/>
+  <rect x="46" y="168" width="147" height="18" rx="5" fill="#10b981"/>
+  <text x="119" y="181" font-family="Arial,sans-serif" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">ENI (Interface EP)</text>
+  <text x="119" y="200" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">10.0.1.50</text>
+  <text x="119" y="215" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">sg-ep01 | vpce-xxxx</text>
+  <!-- DNS AZ-a -->
+  <rect x="46" y="242" width="147" height="36" rx="4" fill="#fff9e6" stroke="#f59e0b" stroke-width="1"/>
+  <text x="119" y="256" font-family="Arial,sans-serif" font-size="9" fill="#b45309" text-anchor="middle">DNS (PHZ)</text>
+  <text x="119" y="270" font-family="monospace,Arial" font-size="8" fill="#555" text-anchor="middle">ssm.ap-...  → 10.0.1.50</text>
+  <!-- AZ-b column -->
+  <rect x="222" y="68" width="175" height="295" rx="6" fill="#e8edff" stroke="#9ca3af" stroke-width="1"/>
+  <text x="309" y="86" font-family="Arial,sans-serif" font-size="10" fill="#555" text-anchor="middle" font-weight="bold">AZ-b (ap-northeast-1c)</text>
+  <!-- EC2 AZ-b -->
+  <rect x="236" y="98" width="147" height="44" rx="5" fill="#fff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <rect x="236" y="98" width="147" height="18" rx="5" fill="#7b5ea7"/>
+  <text x="309" y="111" font-family="Arial,sans-serif" font-size="9" fill="#fff" text-anchor="middle">EC2 (10.0.2.15)</text>
+  <text x="309" y="130" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">sg-app01</text>
+  <!-- ENI AZ-b -->
+  <rect x="236" y="168" width="147" height="55" rx="5" fill="#fff" stroke="#10b981" stroke-width="2"/>
+  <rect x="236" y="168" width="147" height="18" rx="5" fill="#10b981"/>
+  <text x="309" y="181" font-family="Arial,sans-serif" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">ENI (Interface EP)</text>
+  <text x="309" y="200" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">10.0.2.80</text>
+  <text x="309" y="215" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">sg-ep01 | vpce-xxxx</text>
+  <!-- DNS AZ-b -->
+  <rect x="236" y="242" width="147" height="36" rx="4" fill="#fff9e6" stroke="#f59e0b" stroke-width="1"/>
+  <text x="309" y="256" font-family="Arial,sans-serif" font-size="9" fill="#b45309" text-anchor="middle">DNS (PHZ)</text>
+  <text x="309" y="270" font-family="monospace,Arial" font-size="8" fill="#555" text-anchor="middle">ssm.ap-...  → 10.0.2.80</text>
+  <!-- AZ-c column -->
+  <rect x="412" y="68" width="166" height="295" rx="6" fill="#e8edff" stroke="#9ca3af" stroke-width="1"/>
+  <text x="495" y="86" font-family="Arial,sans-serif" font-size="10" fill="#555" text-anchor="middle" font-weight="bold">AZ-c (ap-northeast-1d)</text>
+  <!-- EC2 AZ-c (optional) -->
+  <rect x="426" y="98" width="138" height="44" rx="5" fill="#f1f5f9" stroke="#9ca3af" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="495" y="120" font-family="Arial,sans-serif" font-size="10" fill="#888" text-anchor="middle">EC2 (optional)</text>
+  <!-- No ENI in AZ-c case -->
+  <rect x="426" y="168" width="138" height="55" rx="5" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="495" y="191" font-family="Arial,sans-serif" font-size="9" fill="#ef4444" text-anchor="middle">ENI なし</text>
+  <text x="495" y="207" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">AZ-c に EP を</text>
+  <text x="495" y="220" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">作成しない場合</text>
+  <!-- Cost warning AZ-c -->
+  <rect x="426" y="242" width="138" height="36" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1"/>
+  <text x="495" y="256" font-family="Arial,sans-serif" font-size="9" fill="#ef4444" text-anchor="middle">クロスAZ通信</text>
+  <text x="495" y="270" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">$0.01/GB コスト発生</text>
+  <!-- Arrows EC2 to ENI (AZ-a and AZ-b) -->
+  <line x1="119" y1="142" x2="119" y2="166" stroke="#7b5ea7" stroke-width="2"/>
+  <polygon points="113,162 119,168 125,162" fill="#7b5ea7"/>
+  <line x1="309" y1="142" x2="309" y2="166" stroke="#7b5ea7" stroke-width="2"/>
+  <polygon points="303,162 309,168 315,162" fill="#7b5ea7"/>
+  <!-- Right: AWS Service panel -->
+  <rect x="618" y="55" width="170" height="310" rx="8" fill="#fff8f0" stroke="#ff9900" stroke-width="2"/>
+  <text x="703" y="78" font-family="Arial,sans-serif" font-size="12" fill="#cc7700" font-weight="bold" text-anchor="middle">AWS Service</text>
+  <text x="703" y="94" font-family="Arial,sans-serif" font-size="10" fill="#888" text-anchor="middle">(e.g. SSM)</text>
+  <!-- HA indicator -->
+  <rect x="632" y="108" width="142" height="220" rx="6" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5"/>
+  <text x="703" y="130" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">PrivateLink</text>
+  <text x="703" y="148" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle">Endpoint Service</text>
+  <text x="703" y="190" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">AWS 管理</text>
+  <text x="703" y="205" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">冗長化済み</text>
+  <text x="703" y="220" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">マルチAZ</text>
+  <!-- Arrows ENI to AWS Service -->
+  <line x1="579" y1="195" x2="616" y2="195" stroke="#10b981" stroke-width="2.5"/>
+  <polygon points="612,189 624,195 612,201" fill="#10b981"/>
+  <!-- Summary notes -->
+  <rect x="15" y="358" width="773" height="32" rx="5" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
+  <text x="400" y="370" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">推奨: 使用するすべての AZ に ENI を作成してクロスAZコストを回避</text>
+  <text x="400" y="384" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">ENI は AZ ごとに独立したプライベート IP を持つ / 料金: $0.01/hr/AZ + $0.01/GB データ処理</text>
+</svg>

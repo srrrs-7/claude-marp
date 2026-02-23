@@ -1,0 +1,92 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="900" height="400" fill="#f5f5f5" rx="10"/>
+  <text x="450" y="26" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">VIF (Virtual Interface) の 3 種類</text>
+
+  <!-- On-prem router -->
+  <rect x="20" y="160" width="100" height="60" fill="#ECEFF1" stroke="#607D8B" stroke-width="2" rx="6"/>
+  <text x="70" y="185" text-anchor="middle" font-size="11" font-weight="bold" fill="#37474F">Customer</text>
+  <text x="70" y="200" text-anchor="middle" font-size="11" fill="#546E7A">Router</text>
+  <text x="70" y="213" text-anchor="middle" font-size="9" fill="#78909C">BGP</text>
+
+  <!-- DX Connection line -->
+  <rect x="130" y="180" width="70" height="20" fill="#90A4AE" rx="3"/>
+  <text x="165" y="194" text-anchor="middle" font-size="9" fill="white">DX Port</text>
+
+  <!-- Three VIF arrows -->
+  <!-- Public VIF line -->
+  <line x1="200" y1="130" x2="260" y2="100" stroke="#1976D2" stroke-width="2" stroke-dasharray="5,3"/>
+  <!-- Private VIF line -->
+  <line x1="200" y1="190" x2="260" y2="200" stroke="#388E3C" stroke-width="2" stroke-dasharray="5,3"/>
+  <!-- Transit VIF line -->
+  <line x1="200" y1="250" x2="260" y2="300" stroke="#7B1FA2" stroke-width="2" stroke-dasharray="5,3"/>
+
+  <!-- Label VLAN tags -->
+  <text x="225" y="120" font-size="9" fill="#1976D2">VLAN 101</text>
+  <text x="225" y="195" font-size="9" fill="#388E3C">VLAN 102</text>
+  <text x="225" y="265" font-size="9" fill="#7B1FA2">VLAN 103</text>
+
+  <!-- Public VIF -->
+  <rect x="260" y="55" width="190" height="110" fill="#E3F2FD" stroke="#1976D2" stroke-width="2" rx="8"/>
+  <text x="355" y="77" text-anchor="middle" font-size="12" font-weight="bold" fill="#0D47A1">Public VIF</text>
+  <text x="355" y="93" text-anchor="middle" font-size="10" fill="#1565C0">接続先: AWS パブリックサービス</text>
+  <text x="355" y="107" text-anchor="middle" font-size="10" fill="#1565C0">S3 / DynamoDB / CloudFront</text>
+  <text x="355" y="121" text-anchor="middle" font-size="10" fill="#1565C0">Route 53 / API Gateway etc.</text>
+  <text x="355" y="135" text-anchor="middle" font-size="10" fill="#1565C0">BGP ASN: パブリック ASN 必要</text>
+  <text x="355" y="150" text-anchor="middle" font-size="9" fill="#888">MTU: 1,500 bytes（固定）</text>
+
+  <!-- Arrow from Public VIF -->
+  <line x1="450" y1="110" x2="510" y2="110" stroke="#1976D2" stroke-width="1.5"/>
+  <polygon points="510,105 520,110 510,115" fill="#1976D2"/>
+  <!-- AWS Services box -->
+  <rect x="520" y="75" width="160" height="70" fill="#BBDEFB" stroke="#1976D2" stroke-width="1.5" rx="4"/>
+  <text x="600" y="95" text-anchor="middle" font-size="10" font-weight="bold" fill="#0D47A1">AWS Public Services</text>
+  <text x="600" y="110" text-anchor="middle" font-size="9" fill="#1565C0">S3, DynamoDB, SQS, SNS</text>
+  <text x="600" y="124" text-anchor="middle" font-size="9" fill="#1565C0">CloudFront, Route 53 etc.</text>
+  <text x="600" y="136" text-anchor="middle" font-size="9" fill="#888">Public IP を持つサービス全般</text>
+
+  <!-- Private VIF -->
+  <rect x="260" y="165" width="190" height="110" fill="#E8F5E9" stroke="#388E3C" stroke-width="2" rx="8"/>
+  <text x="355" y="187" text-anchor="middle" font-size="12" font-weight="bold" fill="#1B5E20">Private VIF</text>
+  <text x="355" y="203" text-anchor="middle" font-size="10" fill="#2E7D32">接続先: VPC (VGW 経由)</text>
+  <text x="355" y="217" text-anchor="middle" font-size="10" fill="#2E7D32">VPC 内プライベートリソース</text>
+  <text x="355" y="231" text-anchor="middle" font-size="10" fill="#2E7D32">EC2, RDS, ELB etc.</text>
+  <text x="355" y="245" text-anchor="middle" font-size="10" fill="#2E7D32">BGP ASN: Public/Private 可</text>
+  <text x="355" y="261" text-anchor="middle" font-size="9" fill="#888">MTU: 最大 9,001 bytes（Jumbo）</text>
+
+  <!-- Arrow from Private VIF -->
+  <line x1="450" y1="220" x2="510" y2="220" stroke="#388E3C" stroke-width="1.5"/>
+  <polygon points="510,215 520,220 510,225" fill="#388E3C"/>
+  <!-- VGW/VPC box -->
+  <rect x="520" y="185" width="160" height="70" fill="#C8E6C9" stroke="#388E3C" stroke-width="1.5" rx="4"/>
+  <text x="600" y="205" text-anchor="middle" font-size="10" font-weight="bold" fill="#1B5E20">VGW → VPC</text>
+  <text x="600" y="220" text-anchor="middle" font-size="9" fill="#2E7D32">Virtual Private Gateway</text>
+  <text x="600" y="234" text-anchor="middle" font-size="9" fill="#2E7D32">VPC 内のプライベート資源</text>
+  <text x="600" y="246" text-anchor="middle" font-size="9" fill="#888">1 Private VIF = 1 VGW</text>
+
+  <!-- Transit VIF -->
+  <rect x="260" y="275" width="190" height="110" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="2" rx="8"/>
+  <text x="355" y="297" text-anchor="middle" font-size="12" font-weight="bold" fill="#4A148C">Transit VIF</text>
+  <text x="355" y="313" text-anchor="middle" font-size="10" fill="#6A1B9A">接続先: TGW (DXGW 経由)</text>
+  <text x="355" y="327" text-anchor="middle" font-size="10" fill="#6A1B9A">複数 VPC へのハブ接続</text>
+  <text x="355" y="341" text-anchor="middle" font-size="10" fill="#6A1B9A">マルチアカウント対応</text>
+  <text x="355" y="355" text-anchor="middle" font-size="10" fill="#6A1B9A">BGP ASN: Public/Private 可</text>
+  <text x="355" y="372" text-anchor="middle" font-size="9" fill="#888">MTU: 最大 8,500 bytes</text>
+
+  <!-- Arrow from Transit VIF -->
+  <line x1="450" y1="330" x2="510" y2="330" stroke="#7B1FA2" stroke-width="1.5"/>
+  <polygon points="510,325 520,330 510,335" fill="#7B1FA2"/>
+  <!-- TGW box -->
+  <rect x="520" y="295" width="160" height="70" fill="#E1BEE7" stroke="#7B1FA2" stroke-width="1.5" rx="4"/>
+  <text x="600" y="315" text-anchor="middle" font-size="10" font-weight="bold" fill="#4A148C">DXGW → TGW</text>
+  <text x="600" y="330" text-anchor="middle" font-size="9" fill="#6A1B9A">Direct Connect Gateway</text>
+  <text x="600" y="344" text-anchor="middle" font-size="9" fill="#6A1B9A">Transit Gateway</text>
+  <text x="600" y="358" text-anchor="middle" font-size="9" fill="#888">複数 VPC / マルチアカウント</text>
+
+  <!-- Rule: 1 VIF can be only one type -->
+  <rect x="700" y="160" width="185" height="80" fill="#FFF9C4" stroke="#F9A825" stroke-width="1.5" rx="6"/>
+  <text x="792" y="178" text-anchor="middle" font-size="10" font-weight="bold" fill="#E65100">重要ルール</text>
+  <text x="792" y="193" text-anchor="middle" font-size="9" fill="#BF360C">1つの DX 接続に</text>
+  <text x="792" y="207" text-anchor="middle" font-size="9" fill="#BF360C">Public + Private + Transit</text>
+  <text x="792" y="221" text-anchor="middle" font-size="9" fill="#BF360C">VIF を混在させることが可能</text>
+  <text x="792" y="235" text-anchor="middle" font-size="9" fill="#888">（各 VIF は独立した BGP セッション）</text>
+</svg>

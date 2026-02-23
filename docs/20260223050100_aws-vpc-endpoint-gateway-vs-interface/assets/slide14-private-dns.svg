@@ -1,0 +1,83 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <text x="400" y="26" font-family="Arial,sans-serif" font-size="14" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Private DNS 機能と Route 53 Private Hosted Zone</text>
+  <!-- VPC border -->
+  <rect x="15" y="38" width="490" height="345" rx="8" fill="#f0f4ff" stroke="#7b5ea7" stroke-width="2"/>
+  <text x="33" y="58" font-family="Arial,sans-serif" font-size="12" fill="#7b5ea7" font-weight="bold">VPC</text>
+  <!-- VPC DNS Attributes note -->
+  <rect x="30" y="64" width="455" height="30" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="1"/>
+  <text x="257" y="75" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">前提条件: VPC 属性 enableDnsSupport=true / enableDnsHostnames=true</text>
+  <text x="257" y="88" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">Private DNS を有効化するには両属性が true である必要がある</text>
+  <!-- EC2 -->
+  <rect x="30" y="106" width="130" height="60" rx="5" fill="#fff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <rect x="30" y="106" width="130" height="20" rx="5" fill="#7b5ea7"/>
+  <text x="95" y="120" font-family="Arial,sans-serif" font-size="10" fill="#fff" text-anchor="middle">EC2</text>
+  <text x="95" y="143" font-family="monospace,Arial" font-size="9" fill="#555" text-anchor="middle">resolve:</text>
+  <text x="95" y="158" font-family="monospace,Arial" font-size="8" fill="#7b5ea7" text-anchor="middle">ssm.*.amazonaws.com</text>
+  <!-- DNS Resolver (VPC +2) -->
+  <rect x="30" y="190" width="130" height="55" rx="5" fill="#fff" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="30" y="190" width="130" height="18" rx="5" fill="#f59e0b"/>
+  <text x="95" y="203" font-family="Arial,sans-serif" font-size="9" fill="#fff" text-anchor="middle">VPC DNS Resolver</text>
+  <text x="95" y="222" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">169.254.169.253</text>
+  <text x="95" y="237" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">(VPC CIDR+2)</text>
+  <!-- Arrow EC2 to Resolver -->
+  <line x1="95" y1="166" x2="95" y2="188" stroke="#555" stroke-width="1.5"/>
+  <polygon points="89,184 95,190 101,184" fill="#555"/>
+  <!-- Private Hosted Zone box -->
+  <rect x="220" y="106" width="270" height="155" rx="6" fill="#f0fdf4" stroke="#10b981" stroke-width="2"/>
+  <rect x="220" y="106" width="270" height="22" rx="6" fill="#10b981"/>
+  <text x="355" y="122" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">Route 53 Private Hosted Zone (PHZ)</text>
+  <text x="355" y="142" font-family="Arial,sans-serif" font-size="10" fill="#555" text-anchor="middle">ゾーン名: ssm.ap-northeast-1.amazonaws.com</text>
+  <text x="355" y="158" font-family="Arial,sans-serif" font-size="10" fill="#888" text-anchor="middle">VPC に自動関連付け（EP 作成時）</text>
+  <!-- PHZ records -->
+  <rect x="232" y="166" width="246" height="84" rx="4" fill="#fff" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="232" y="166" width="246" height="18" fill="#f1f5f9"/>
+  <text x="280" y="179" font-family="monospace,Arial" font-size="9" fill="#555" font-weight="bold">Name</text>
+  <line x1="352" y1="166" x2="352" y2="250" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="400" y="179" font-family="monospace,Arial" font-size="9" fill="#555" font-weight="bold">Value</text>
+  <rect x="232" y="184" width="246" height="18" fill="#f0fdf4"/>
+  <text x="238" y="197" font-family="monospace,Arial" font-size="9" fill="#333">ssm (A)</text>
+  <text x="358" y="197" font-family="monospace,Arial" font-size="9" fill="#059669">10.0.1.50</text>
+  <rect x="232" y="202" width="246" height="18" fill="#fff"/>
+  <text x="238" y="215" font-family="monospace,Arial" font-size="9" fill="#333">ssm (A)</text>
+  <text x="358" y="215" font-family="monospace,Arial" font-size="9" fill="#059669">10.0.2.80</text>
+  <rect x="232" y="220" width="246" height="18" fill="#f0fdf4"/>
+  <text x="238" y="233" font-family="monospace,Arial" font-size="9" fill="#333">ssm (ALIAS)</text>
+  <text x="358" y="233" font-family="monospace,Arial" font-size="9" fill="#10b981">vpce-DNS (A records)</text>
+  <text x="355" y="248" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">マルチ値 / ラウンドロビンで AZ ローカルの IP を返す</text>
+  <!-- Arrow Resolver to PHZ -->
+  <line x1="160" y1="217" x2="218" y2="180" stroke="#10b981" stroke-width="2"/>
+  <polygon points="212,175 222,182 215,189" fill="#10b981"/>
+  <!-- ENI box -->
+  <rect x="30" y="296" width="455" height="60" rx="5" fill="#fff" stroke="#10b981" stroke-width="1.5"/>
+  <text x="35" y="314" font-family="Arial,sans-serif" font-size="10" fill="#059669" font-weight="bold">ENI (Interface Endpoints)</text>
+  <text x="35" y="332" font-family="monospace,Arial" font-size="10" fill="#333">AZ-a: 10.0.1.50  |  AZ-b: 10.0.2.80  |  (同一エンドポイント、複数 ENI)</text>
+  <text x="35" y="348" font-family="Arial,sans-serif" font-size="9" fill="#888">PHZ はクライアントの AZ に近い ENI の IP を優先的に返す (AZ affinity)</text>
+  <!-- Arrow PHZ to ENI -->
+  <line x1="355" y1="261" x2="280" y2="294" stroke="#10b981" stroke-width="1.5"/>
+  <polygon points="276,290 282,298 286,289" fill="#10b981"/>
+  <!-- Right: AWS Service -->
+  <rect x="525" y="60" width="260" height="310" rx="8" fill="#fff8f0" stroke="#ff9900" stroke-width="2"/>
+  <text x="655" y="84" font-family="Arial,sans-serif" font-size="12" fill="#cc7700" font-weight="bold" text-anchor="middle">AWS Service</text>
+  <!-- Service details -->
+  <rect x="540" y="96" width="230" height="55" rx="5" fill="#fff" stroke="#10b981" stroke-width="1"/>
+  <text x="655" y="115" font-family="Arial,sans-serif" font-size="11" fill="#059669" text-anchor="middle" font-weight="bold">SSM Endpoint Service</text>
+  <text x="655" y="133" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">com.amazonaws.ap-northeast-1.ssm</text>
+  <text x="655" y="145" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">VPC EP Type: Interface</text>
+  <!-- Private DNS feature checkbox -->
+  <rect x="540" y="162" width="230" height="80" rx="5" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
+  <text x="655" y="182" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">Private DNS 有効化設定</text>
+  <text x="553" y="202" font-family="Arial,sans-serif" font-size="10" fill="#059669">✓ Enable Private DNS Name</text>
+  <text x="553" y="220" font-family="Arial,sans-serif" font-size="9" fill="#888">コンソール / API / Terraform で設定</text>
+  <text x="553" y="234" font-family="Arial,sans-serif" font-size="9" fill="#888">aws ec2 create-vpc-endpoint --private-dns-enabled</text>
+  <!-- Cross-account note -->
+  <rect x="540" y="255" width="230" height="95" rx="5" fill="#fef9c3" stroke="#f59e0b" stroke-width="1"/>
+  <text x="655" y="275" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">注意事項</text>
+  <text x="553" y="295" font-family="Arial,sans-serif" font-size="9" fill="#555">・Route 53 Resolver Forwarding ルール</text>
+  <text x="553" y="311" font-family="Arial,sans-serif" font-size="9" fill="#555">　とは共存不可 (DNS 解決の競合)</text>
+  <text x="553" y="327" font-family="Arial,sans-serif" font-size="9" fill="#555">・オンプレDNS は PHZ を直接参照</text>
+  <text x="553" y="343" font-family="Arial,sans-serif" font-size="9" fill="#555">　できない → R53 Inbound EP 必要</text>
+  <!-- Arrow ENI to Service -->
+  <line x1="487" y1="326" x2="523" y2="200" stroke="#10b981" stroke-width="2"/>
+  <polygon points="517,197 526,207 531,196" fill="#10b981"/>
+</svg>

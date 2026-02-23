@@ -1,0 +1,123 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">オンプレミス接続時の DNS 解決フロー</text>
+  <!-- Step numbers flow diagram -->
+  <!-- On-prem client -->
+  <rect x="15" y="52" width="130" height="60" rx="6" fill="#f1f5f9" stroke="#6b7280" stroke-width="2"/>
+  <rect x="15" y="52" width="130" height="22" rx="6" fill="#6b7280"/>
+  <text x="80" y="68" font-family="Arial,sans-serif" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">On-Prem Client</text>
+  <text x="80" y="90" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">resolve:</text>
+  <text x="80" y="105" font-family="monospace,Arial" font-size="8" fill="#7b5ea7" text-anchor="middle">ssm.*.amazonaws.com</text>
+  <!-- Step 1 circle -->
+  <circle cx="175" cy="82" r="13" fill="#7b5ea7"/>
+  <text x="175" y="87" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">1</text>
+  <!-- On-prem DNS -->
+  <rect x="192" y="52" width="130" height="60" rx="6" fill="#f1f5f9" stroke="#6b7280" stroke-width="2"/>
+  <rect x="192" y="52" width="130" height="22" rx="6" fill="#6b7280"/>
+  <text x="257" y="68" font-family="Arial,sans-serif" font-size="10" fill="#fff" text-anchor="middle">On-Prem DNS</text>
+  <text x="257" y="90" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">Conditional</text>
+  <text x="257" y="105" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">Forwarder</text>
+  <!-- Arrow 1 -->
+  <line x1="145" y1="82" x2="190" y2="82" stroke="#555" stroke-width="1.5"/>
+  <polygon points="186,76 198,82 186,88" fill="#555"/>
+  <!-- Step 2 circle -->
+  <circle cx="352" cy="82" r="13" fill="#7b5ea7"/>
+  <text x="352" y="87" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">2</text>
+  <!-- DX/VPN -->
+  <rect x="368" y="52" width="100" height="60" rx="6" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="418" y="73" font-family="Arial,sans-serif" font-size="10" fill="#0369a1" text-anchor="middle" font-weight="bold">DX / VPN</text>
+  <text x="418" y="92" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">Private VIF</text>
+  <text x="418" y="106" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">DNS 転送</text>
+  <!-- Arrow 2 -->
+  <line x1="322" y1="82" x2="366" y2="82" stroke="#555" stroke-width="1.5"/>
+  <polygon points="362,76 374,82 362,88" fill="#555"/>
+  <!-- Step 3 circle -->
+  <circle cx="498" cy="82" r="13" fill="#7b5ea7"/>
+  <text x="498" y="87" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">3</text>
+  <!-- R53 Inbound EP -->
+  <rect x="513" y="52" width="140" height="60" rx="6" fill="#fff9e6" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="513" y="52" width="140" height="22" rx="6" fill="#f59e0b"/>
+  <text x="583" y="68" font-family="Arial,sans-serif" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">R53 Inbound EP</text>
+  <text x="583" y="90" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">10.0.0.100</text>
+  <text x="583" y="106" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">ENI in VPC</text>
+  <!-- Arrow 3 -->
+  <line x1="468" y1="82" x2="511" y2="82" stroke="#555" stroke-width="1.5"/>
+  <polygon points="507,76 519,82 507,88" fill="#555"/>
+  <!-- Step 4 circle -->
+  <circle cx="680" cy="82" r="13" fill="#7b5ea7"/>
+  <text x="680" y="87" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">4</text>
+  <!-- PHZ -->
+  <rect x="695" y="52" width="95" height="60" rx="6" fill="#f0fdf4" stroke="#10b981" stroke-width="2"/>
+  <text x="742" y="73" font-family="Arial,sans-serif" font-size="9" fill="#059669" text-anchor="middle" font-weight="bold">Route 53</text>
+  <text x="742" y="88" font-family="Arial,sans-serif" font-size="9" fill="#059669" text-anchor="middle">PHZ</text>
+  <text x="742" y="103" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">ssm → IP</text>
+  <!-- Arrow 4 -->
+  <line x1="653" y1="82" x2="693" y2="82" stroke="#555" stroke-width="1.5"/>
+  <polygon points="689,76 701,82 689,88" fill="#555"/>
+  <!-- Returned IP label -->
+  <text x="400" y="135" font-family="Arial,sans-serif" font-size="11" fill="#059669" font-weight="bold" text-anchor="middle">DNS 応答: ssm.ap-northeast-1.amazonaws.com → 10.0.1.50 (Interface EP ENI)</text>
+  <!-- Data traffic flow (bottom) -->
+  <text x="400" y="162" font-family="Arial,sans-serif" font-size="11" fill="#7b5ea7" font-weight="bold" text-anchor="middle">データ通信フロー (DNS 解決後)</text>
+  <!-- Client data -->
+  <rect x="15" y="175" width="130" height="45" rx="5" fill="#f1f5f9" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="80" y="203" font-family="Arial,sans-serif" font-size="10" fill="#555" text-anchor="middle">On-Prem Client</text>
+  <!-- Step A circle -->
+  <circle cx="175" cy="197" r="13" fill="#10b981"/>
+  <text x="175" y="202" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">A</text>
+  <!-- DX/VPN data -->
+  <rect x="192" y="175" width="100" height="45" rx="5" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1.5"/>
+  <text x="242" y="203" font-family="Arial,sans-serif" font-size="10" fill="#0369a1" text-anchor="middle">DX / VPN</text>
+  <!-- Step B circle -->
+  <circle cx="322" cy="197" r="13" fill="#10b981"/>
+  <text x="322" y="202" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">B</text>
+  <!-- Interface EP -->
+  <rect x="338" y="175" width="140" height="45" rx="5" fill="#fff" stroke="#10b981" stroke-width="2"/>
+  <text x="408" y="197" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">Interface EP</text>
+  <text x="408" y="212" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">10.0.1.50 (ENI)</text>
+  <!-- Step C circle -->
+  <circle cx="508" cy="197" r="13" fill="#10b981"/>
+  <text x="508" y="202" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">C</text>
+  <!-- PrivateLink -->
+  <rect x="523" y="175" width="110" height="45" rx="5" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1.5"/>
+  <text x="578" y="198" font-family="Arial,sans-serif" font-size="9" fill="#0369a1" text-anchor="middle">PrivateLink</text>
+  <text x="578" y="212" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">Backbone</text>
+  <!-- Step D circle -->
+  <circle cx="663" cy="197" r="13" fill="#10b981"/>
+  <text x="663" y="202" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">D</text>
+  <!-- AWS Service -->
+  <rect x="678" y="175" width="112" height="45" rx="5" fill="#fff8f0" stroke="#ff9900" stroke-width="1.5"/>
+  <text x="734" y="197" font-family="Arial,sans-serif" font-size="10" fill="#cc7700" text-anchor="middle" font-weight="bold">AWS Service</text>
+  <text x="734" y="212" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">SSM / Secrets</text>
+  <!-- Data arrows -->
+  <line x1="145" y1="197" x2="173" y2="197" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="188" y1="197" x2="190" y2="197" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="292" y1="197" x2="310" y2="197" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="478" y1="197" x2="510" y2="197" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="633" y1="197" x2="676" y2="197" stroke="#10b981" stroke-width="1.5"/>
+  <polygon points="141,191 153,197 141,203" fill="#10b981"/>
+  <polygon points="309,191 321,197 309,203" fill="#10b981"/>
+  <polygon points="507,191 519,197 507,203" fill="#10b981"/>
+  <polygon points="672,191 684,197 672,203" fill="#10b981"/>
+  <!-- Configuration required box -->
+  <rect x="10" y="238" width="380" height="148" rx="6" fill="#fff" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="10" y="238" width="380" height="22" rx="6" fill="#f59e0b"/>
+  <text x="200" y="254" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">オンプレ接続に必要な設定</text>
+  <text x="22" y="275" font-family="Arial,sans-serif" font-size="10" fill="#555" font-weight="bold">① Conditional Forwarder (オンプレ DNS)</text>
+  <text x="22" y="292" font-family="monospace,Arial" font-size="9" fill="#333">*.amazonaws.com → 10.0.0.100 (R53 Inbound EP)</text>
+  <text x="22" y="312" font-family="Arial,sans-serif" font-size="10" fill="#555" font-weight="bold">② Route 53 Inbound Resolver EP</text>
+  <text x="22" y="329" font-family="Arial,sans-serif" font-size="9" fill="#333">VPC 内に作成 / セキュリティグループ: UDP/TCP 53</text>
+  <text x="22" y="349" font-family="Arial,sans-serif" font-size="10" fill="#555" font-weight="bold">③ VPC Route Table (VPN/DX Traffic)</text>
+  <text x="22" y="366" font-family="Arial,sans-serif" font-size="9" fill="#333">オンプレ CIDR → VGW/TGW attachment</text>
+  <text x="22" y="382" font-family="Arial,sans-serif" font-size="9" fill="#888">Gateway EP はオンプレから使用不可（Interface EP のみ）</text>
+  <!-- R53 Outbound EP option -->
+  <rect x="408" y="238" width="382" height="148" rx="6" fill="#fff" stroke="#10b981" stroke-width="1.5"/>
+  <rect x="408" y="238" width="382" height="22" rx="6" fill="#10b981"/>
+  <text x="599" y="254" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">Route 53 Resolver の役割</text>
+  <text x="420" y="275" font-family="Arial,sans-serif" font-size="10" fill="#059669" font-weight="bold">Inbound Endpoint:</text>
+  <text x="420" y="291" font-family="Arial,sans-serif" font-size="9" fill="#555">オンプレから VPC 内 DNS (PHZ) への問い合わせを受付</text>
+  <text x="420" y="307" font-family="Arial,sans-serif" font-size="9" fill="#555">ENI の IP をフォワード先として設定</text>
+  <text x="420" y="327" font-family="Arial,sans-serif" font-size="10" fill="#059669" font-weight="bold">Outbound Endpoint (逆方向):</text>
+  <text x="420" y="343" font-family="Arial,sans-serif" font-size="9" fill="#555">VPC から オンプレ DNS への問い合わせに使用</text>
+  <text x="420" y="359" font-family="Arial,sans-serif" font-size="9" fill="#555">今回の PrivateLink 用途では不要</text>
+  <text x="420" y="378" font-family="Arial,sans-serif" font-size="9" fill="#888">Inbound EP の料金: $0.125/hr + $0.000125/クエリ</text>
+</svg>

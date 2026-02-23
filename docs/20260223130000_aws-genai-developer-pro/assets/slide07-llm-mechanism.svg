@@ -1,0 +1,98 @@
+<svg viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="440" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="36" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#ffffff">大規模言語モデル（LLM）の仕組み</text>
+
+  <!-- Input tokens -->
+  <rect x="20" y="70" width="145" height="130" rx="8" fill="#1e3a8a" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="93" y="92" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#93c5fd">入力テキスト</text>
+  <rect x="35" y="102" width="115" height="22" rx="4" fill="#1e40af"/>
+  <text x="93" y="117" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#bfdbfe">"AWSとは"</text>
+  <text x="93" y="142" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#60a5fa">↓ トークン化</text>
+  <rect x="35" y="152" width="50" height="20" rx="3" fill="#0f172a"/>
+  <text x="60" y="166" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#7dd3fc">"AWS"</text>
+  <rect x="90" y="152" width="50" height="20" rx="3" fill="#0f172a"/>
+  <text x="115" y="166" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#7dd3fc">"とは"</text>
+  <text x="93" y="192" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">→ 数値ベクター化</text>
+
+  <!-- Arrow 1 -->
+  <polygon points="173,132 195,127 195,137" fill="#6d28d9"/>
+  <rect x="165" y="130" width="30" height="6" fill="#6d28d9"/>
+
+  <!-- Tokenizer -->
+  <rect x="200" y="90" width="120" height="90" rx="8" fill="#4c1d95" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="260" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#e9d5ff">Tokenizer</text>
+  <text x="260" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">BPE / SentencePiece</text>
+  <text x="260" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">テキスト→ID列</text>
+  <text x="260" y="166" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">[12045, 8832, ...]</text>
+
+  <!-- Arrow 2 -->
+  <polygon points="327,132 349,127 349,137" fill="#6d28d9"/>
+  <rect x="319" y="130" width="30" height="6" fill="#6d28d9"/>
+
+  <!-- Embedding layer -->
+  <rect x="354" y="90" width="120" height="90" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+  <text x="414" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#6ee7b7">Embedding</text>
+  <text x="414" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">ID→高次元ベクター</text>
+  <text x="414" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">768〜4096次元</text>
+  <text x="414" y="166" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">+ 位置エンコーディング</text>
+
+  <!-- Arrow 3 -->
+  <polygon points="481,132 503,127 503,137" fill="#6d28d9"/>
+  <rect x="473" y="130" width="30" height="6" fill="#6d28d9"/>
+
+  <!-- Transformer stack -->
+  <rect x="508" y="60" width="160" height="210" rx="8" fill="#1f2937" stroke="#6d28d9" stroke-width="2"/>
+  <text x="588" y="82" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#e9d5ff">Transformer Blocks</text>
+  <rect x="523" y="92" width="130" height="32" rx="5" fill="#374151"/>
+  <text x="588" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">Multi-Head Self-Attention</text>
+  <rect x="523" y="132" width="130" height="32" rx="5" fill="#374151"/>
+  <text x="588" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">Feed Forward Network</text>
+  <rect x="523" y="172" width="130" height="32" rx="5" fill="#374151"/>
+  <text x="588" y="192" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">Layer Normalization</text>
+  <text x="588" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6b7280">× N層（12〜96層）</text>
+  <text x="588" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#4b5563">パラメータ: 数十億〜数兆</text>
+
+  <!-- Arrow 4 -->
+  <polygon points="675,135 697,130 697,140" fill="#6d28d9"/>
+  <rect x="667" y="133" width="30" height="6" fill="#6d28d9"/>
+
+  <!-- Output -->
+  <rect x="702" y="90" width="165" height="120" rx="8" fill="#78350f" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="785" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fcd34d">出力生成</text>
+  <text x="785" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">Softmax → 確率分布</text>
+  <text x="785" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">次トークンをサンプリング</text>
+  <rect x="722" y="158" width="126" height="22" rx="4" fill="#92400e"/>
+  <text x="785" y="173" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fbbf24">"AWSはAmazonが..."</text>
+  <text x="785" y="198" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d97706">Auto-regressive生成</text>
+
+  <!-- Training phases section -->
+  <rect x="20" y="255" width="860" height="70" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="275" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">学習フェーズ（試験重要）</text>
+  <rect x="35" y="285" width="195" height="30" rx="5" fill="#172554"/>
+  <text x="133" y="305" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">① 事前学習（Pre-training）</text>
+  <rect x="250" y="285" width="195" height="30" rx="5" fill="#064e3b"/>
+  <text x="348" y="305" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#6ee7b7">② ファインチューニング（SFT）</text>
+  <rect x="465" y="285" width="195" height="30" rx="5" fill="#4c1d95"/>
+  <text x="563" y="305" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#c4b5fd">③ RLHF（人間フィードバック）</text>
+  <rect x="680" y="285" width="185" height="30" rx="5" fill="#78350f"/>
+  <text x="773" y="305" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fcd34d">④ RAG / プロンプト最適化</text>
+
+  <!-- Key numbers -->
+  <rect x="20" y="340" width="270" height="80" rx="8" fill="#111827"/>
+  <text x="155" y="362" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">代表的LLMのパラメータ数</text>
+  <text x="155" y="382" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">GPT-3: 175B / GPT-4: ~1T（推定）</text>
+  <text x="155" y="400" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">Llama 3: 8B〜70B / Claude 3: N/A</text>
+  <text x="155" y="413" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#4b5563">B=10億、T=1兆</text>
+
+  <rect x="315" y="340" width="270" height="80" rx="8" fill="#111827"/>
+  <text x="450" y="362" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#34d399">コスト構造</text>
+  <text x="450" y="382" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#6ee7b7">Input tokens: 安い（キャッシュ可能）</text>
+  <text x="450" y="400" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#6ee7b7">Output tokens: 高い（生成コスト）</text>
+  <text x="450" y="416" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#4b5563">Bedrock: per-token課金</text>
+
+  <rect x="610" y="340" width="270" height="80" rx="8" fill="#111827"/>
+  <text x="745" y="362" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#d8b4fe">AWS Bedrock での利用</text>
+  <text x="745" y="382" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#c4b5fd">On-demand: 使用量課金</text>
+  <text x="745" y="400" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#c4b5fd">Provisioned: 固定スループット</text>
+  <text x="745" y="416" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#4b5563">Batch: 非同期・大量処理</text>
+</svg>

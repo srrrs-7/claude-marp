@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="28" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f1f5f9">SageMaker JumpStart モデルハブ</text>
+
+  <!-- Center Hub -->
+  <rect x="340" y="195" width="220" height="90" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="450" y="230" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#3b82f6">JumpStart Hub</text>
+  <text x="450" y="250" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">モデル・ソリューション・</text>
+  <text x="450" y="265" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">アルゴリズムカタログ</text>
+
+  <!-- Branch 1: Foundation Models (top left) -->
+  <rect x="30" y="60" width="220" height="115" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="140" y="84" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#a855f7">Foundation Models</text>
+  <text x="140" y="102" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Llama 2/3 (Meta)</text>
+  <text x="140" y="117" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Mistral 7B / 8x7B</text>
+  <text x="140" y="132" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Falcon, Phi-2, Gemma</text>
+  <text x="140" y="147" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Stable Diffusion XL</text>
+  <text x="140" y="162" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Cohere Embed, BGE</text>
+  <!-- Arrow FM → Hub -->
+  <line x1="250" y1="117" x2="338" y2="220" stroke="#a855f7" stroke-width="1.5"/>
+  <polygon points="338,220 330,212 327,224" fill="#a855f7"/>
+
+  <!-- Branch 2: ML Algorithms (top right) -->
+  <rect x="650" y="60" width="220" height="115" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="760" y="84" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#22c55e">ML Algorithms</text>
+  <text x="760" y="102" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">XGBoost / Linear Learner</text>
+  <text x="760" y="117" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Image Classification</text>
+  <text x="760" y="132" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Object Detection (YOLO)</text>
+  <text x="760" y="147" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Text Classification / NER</text>
+  <text x="760" y="162" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Semantic Segmentation</text>
+  <!-- Arrow Algo → Hub -->
+  <line x1="650" y1="117" x2="562" y2="220" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="562,220 570,212 573,224" fill="#22c55e"/>
+
+  <!-- Branch 3: Solution Templates (bottom left) -->
+  <rect x="30" y="330" width="220" height="100" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="140" y="352" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f97316">Solution Templates</text>
+  <text x="140" y="372" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">需要予測パイプライン</text>
+  <text x="140" y="387" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">不正検出システム</text>
+  <text x="140" y="402" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">推薦エンジン</text>
+  <text x="140" y="417" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">完全なMLパイプライン例</text>
+  <!-- Arrow Template → Hub -->
+  <line x1="250" y1="380" x2="338" y2="265" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="338,265 329,270 336,280" fill="#f97316"/>
+
+  <!-- Branch 4: Private Hub (bottom right) -->
+  <rect x="650" y="330" width="220" height="100" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="760" y="352" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#14b8a6">Private Hub</text>
+  <text x="760" y="372" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">カスタムモデル共有</text>
+  <text x="760" y="387" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">組織内バージョン管理</text>
+  <text x="760" y="402" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">アクセス制御 (IAM)</text>
+  <text x="760" y="417" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">エンタープライズ向け</text>
+  <!-- Arrow Private → Hub -->
+  <line x1="650" y1="380" x2="562" y2="265" stroke="#14b8a6" stroke-width="1.5"/>
+  <polygon points="562,265 571,270 564,280" fill="#14b8a6"/>
+
+  <!-- Output: Fine-tuning path -->
+  <rect x="290" y="390" width="155" height="50" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="367" y="412" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">Fine-tuning</text>
+  <text x="367" y="430" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">QLoRA / Full Fine-tune</text>
+  <line x1="450" y1="285" x2="367" y2="390" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="367,390 362,378 374,382" fill="#3b82f6"/>
+
+  <!-- Output: 1-click deploy -->
+  <rect x="460" y="390" width="155" height="50" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="537" y="412" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">1-Click Deploy</text>
+  <text x="537" y="430" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Endpoint / Batch</text>
+  <line x1="450" y1="285" x2="537" y2="390" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="537,390 532,378 544,382" fill="#22c55e"/>
+
+  <text x="450" y="478" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">200+ モデル / 60+ ソリューション / 50+ アルゴリズム — 定期的に更新</text>
+</svg>

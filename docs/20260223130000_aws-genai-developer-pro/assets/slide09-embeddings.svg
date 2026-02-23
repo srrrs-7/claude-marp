@@ -1,0 +1,98 @@
+<svg viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="440" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="36" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#ffffff">エンベディングとベクター表現</text>
+
+  <!-- Definition -->
+  <rect x="20" y="55" width="860" height="42" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="73" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#a5b4fc">エンベディング = テキストを高次元ベクターに変換する技術</text>
+  <text x="450" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#818cf8">意味的に近いテキストは、ベクター空間上で近い位置に配置される → コサイン類似度で検索</text>
+
+  <!-- Text to vector transformation -->
+  <rect x="20" y="108" width="200" height="130" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="120" y="128" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#93c5fd">テキスト入力</text>
+  <rect x="35" y="140" width="170" height="24" rx="5" fill="#1e40af"/>
+  <text x="120" y="156" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#e0f2fe">"機械学習"</text>
+  <rect x="35" y="172" width="170" height="24" rx="5" fill="#1e40af"/>
+  <text x="120" y="188" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#e0f2fe">"ディープラーニング"</text>
+  <rect x="35" y="204" width="170" height="24" rx="5" fill="#1e40af"/>
+  <text x="120" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#e0f2fe">"猫"</text>
+
+  <!-- Arrow -->
+  <polygon points="227,170 252,165 252,175" fill="#6d28d9"/>
+  <rect x="219" y="168" width="33" height="6" fill="#6d28d9"/>
+  <text x="235" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Embed</text>
+
+  <!-- Embedding model -->
+  <rect x="257" y="108" width="145" height="130" rx="8" fill="#3b0764" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="330" y="128" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#e9d5ff">Embedding</text>
+  <text x="330" y="144" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#e9d5ff">Model</text>
+  <text x="330" y="165" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">Titan Embeddings</text>
+  <text x="330" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">V2: 1536次元</text>
+  <text x="330" y="201" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">Cohere Embed</text>
+  <text x="330" y="219" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">1024次元</text>
+
+  <!-- Arrow -->
+  <polygon points="409,170 434,165 434,175" fill="#6d28d9"/>
+  <rect x="401" y="168" width="33" height="6" fill="#6d28d9"/>
+  <text x="417" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">→</text>
+
+  <!-- Vector outputs -->
+  <rect x="439" y="108" width="200" height="130" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+  <text x="539" y="128" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#6ee7b7">ベクター出力</text>
+  <rect x="454" y="140" width="170" height="24" rx="5" fill="#065f46"/>
+  <text x="539" y="156" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">[0.82, -0.13, 0.45, ...]</text>
+  <rect x="454" y="172" width="170" height="24" rx="5" fill="#065f46"/>
+  <text x="539" y="188" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">[0.79, -0.10, 0.51, ...]</text>
+  <rect x="454" y="204" width="170" height="24" rx="5" fill="#065f46"/>
+  <text x="539" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">[0.12, 0.88, -0.33, ...]</text>
+  <text x="539" y="235" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">1536次元のフロートリスト</text>
+
+  <!-- Vector space visualization -->
+  <rect x="660" y="108" width="220" height="190" rx="8" fill="#0f172a" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="770" y="128" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#c4b5fd">ベクター空間（概念図）</text>
+  <!-- Axes -->
+  <line x1="685" x2="865" y1="270" y2="270" stroke="#374151" stroke-width="1.5"/>
+  <line x1="685" x2="685" y1="145" y2="275" stroke="#374151" stroke-width="1.5"/>
+  <text x="862" y="283" font-family="Arial,sans-serif" font-size="9" fill="#6b7280">dim1</text>
+  <text x="672" y="148" font-family="Arial,sans-serif" font-size="9" fill="#6b7280">dim2</text>
+  <!-- ML cluster -->
+  <circle cx="750" cy="185" r="5" fill="#60a5fa"/>
+  <text x="760" y="182" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">機械学習</text>
+  <circle cx="738" cy="197" r="5" fill="#60a5fa"/>
+  <text x="748" y="194" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">深層学習</text>
+  <circle cx="762" cy="200" r="5" fill="#3b82f6"/>
+  <text x="772" y="198" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">AI</text>
+  <!-- Animal cluster -->
+  <circle cx="715" cy="250" r="5" fill="#34d399"/>
+  <text x="725" y="248" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">猫</text>
+  <circle cx="728" cy="258" r="5" fill="#34d399"/>
+  <text x="738" y="256" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">犬</text>
+  <!-- Similarity line -->
+  <line x1="750" x2="738" y1="185" y2="197" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="725" y="178" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">類似度高</text>
+
+  <!-- Cosine similarity -->
+  <rect x="20" y="252" width="630" height="60" rx="8" fill="#1e1b4b"/>
+  <text x="335" y="272" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">コサイン類似度（Cosine Similarity）— RAG検索の基礎</text>
+  <text x="335" y="295" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#a5b4fc">similarity = (A · B) / (|A| × |B|)   範囲: -1〜1 （1=完全一致, 0=無関係）</text>
+
+  <!-- AWS services -->
+  <rect x="20" y="328" width="860" height="90" rx="8" fill="#1f2937"/>
+  <text x="450" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">AWSでのエンベディング活用（試験重要）</text>
+  <rect x="35" y="358" width="200" height="50" rx="6" fill="#0f172a"/>
+  <text x="135" y="377" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#c4b5fd">Titan Embeddings V2</text>
+  <text x="135" y="395" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#818cf8">1536次元 | 多言語対応</text>
+  <text x="135" y="407" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#818cf8">Bedrock経由で利用</text>
+  <rect x="250" y="358" width="200" height="50" rx="6" fill="#0f172a"/>
+  <text x="350" y="377" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#6ee7b7">Cohere Embed</text>
+  <text x="350" y="395" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">1024次元 | 高精度</text>
+  <text x="350" y="407" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">RAGユースケース最適</text>
+  <rect x="465" y="358" width="200" height="50" rx="6" fill="#0f172a"/>
+  <text x="565" y="377" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fcd34d">Knowledge Bases</text>
+  <text x="565" y="395" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">自動エンベディング生成</text>
+  <text x="565" y="407" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">ベクターDB格納まで一括</text>
+  <rect x="680" y="358" width="185" height="50" rx="6" fill="#0f172a"/>
+  <text x="773" y="377" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f9a8d4">OpenSearch Serverless</text>
+  <text x="773" y="395" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fbcfe8">KNN検索エンジン</text>
+  <text x="773" y="407" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fbcfe8">ベクターインデックス対応</text>
+</svg>

@@ -1,0 +1,82 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <!-- Background -->
+  <rect width="900" height="420" fill="#f8f9fa" rx="12"/>
+  <!-- On-premises -->
+  <rect x="20" y="100" width="160" height="220" fill="#e8f4f8" stroke="#2196F3" stroke-width="2" rx="8"/>
+  <text x="100" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565C0">オンプレミス</text>
+  <rect x="40" y="140" width="120" height="40" fill="#ffffff" stroke="#90CAF9" stroke-width="1.5" rx="4"/>
+  <text x="100" y="158" text-anchor="middle" font-size="11" fill="#333">Customer Router</text>
+  <text x="100" y="172" text-anchor="middle" font-size="10" fill="#666">BGP対応ルーター</text>
+  <rect x="40" y="195" width="120" height="40" fill="#ffffff" stroke="#90CAF9" stroke-width="1.5" rx="4"/>
+  <text x="100" y="213" text-anchor="middle" font-size="11" fill="#333">Customer FW</text>
+  <text x="100" y="227" text-anchor="middle" font-size="10" fill="#666">ファイアウォール</text>
+  <rect x="40" y="250" width="120" height="40" fill="#ffffff" stroke="#90CAF9" stroke-width="1.5" rx="4"/>
+  <text x="100" y="268" text-anchor="middle" font-size="11" fill="#333">Internal Network</text>
+  <text x="100" y="282" text-anchor="middle" font-size="10" fill="#666">内部ネットワーク</text>
+
+  <!-- DX Location -->
+  <rect x="240" y="80" width="200" height="260" fill="#fff3e0" stroke="#FF9800" stroke-width="2" rx="8"/>
+  <text x="340" y="108" text-anchor="middle" font-size="13" font-weight="bold" fill="#E65100">DX Location</text>
+  <text x="340" y="123" text-anchor="middle" font-size="10" fill="#BF360C">コロケーション施設</text>
+  <rect x="260" y="135" width="160" height="45" fill="#FFF8E1" stroke="#FFB300" stroke-width="1.5" rx="4"/>
+  <text x="340" y="153" text-anchor="middle" font-size="11" fill="#333">Customer / Partner</text>
+  <text x="340" y="167" text-anchor="middle" font-size="11" fill="#333">Cage &amp; Router</text>
+  <line x1="340" y1="180" x2="340" y2="210" stroke="#FF9800" stroke-width="2" stroke-dasharray="4,3"/>
+  <text x="345" y="200" font-size="10" fill="#E65100">Cross Connect</text>
+  <rect x="260" y="210" width="160" height="45" fill="#FFF8E1" stroke="#FFB300" stroke-width="1.5" rx="4"/>
+  <text x="340" y="228" text-anchor="middle" font-size="11" fill="#333">AWS Direct Connect</text>
+  <text x="340" y="242" text-anchor="middle" font-size="11" fill="#333">Router (AWS Cage)</text>
+  <rect x="260" y="270" width="160" height="40" fill="#FFF8E1" stroke="#FFB300" stroke-width="1.5" rx="4"/>
+  <text x="340" y="288" text-anchor="middle" font-size="11" fill="#333">1G / 10G / 100G</text>
+  <text x="340" y="302" text-anchor="middle" font-size="10" fill="#666">Port Speed</text>
+
+  <!-- AWS Cloud -->
+  <rect x="510" y="60" width="370" height="300" fill="#e8f5e9" stroke="#4CAF50" stroke-width="2" rx="8"/>
+  <text x="695" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#1B5E20">AWS Cloud</text>
+  <!-- VGW -->
+  <rect x="530" y="100" width="150" height="50" fill="#C8E6C9" stroke="#388E3C" stroke-width="1.5" rx="4"/>
+  <text x="605" y="121" text-anchor="middle" font-size="12" font-weight="bold" fill="#1B5E20">Virtual Private</text>
+  <text x="605" y="137" text-anchor="middle" font-size="12" fill="#1B5E20">Gateway (VGW)</text>
+  <!-- TGW -->
+  <rect x="700" y="100" width="150" height="50" fill="#C8E6C9" stroke="#388E3C" stroke-width="1.5" rx="4"/>
+  <text x="775" y="121" text-anchor="middle" font-size="12" font-weight="bold" fill="#1B5E20">Transit</text>
+  <text x="775" y="137" text-anchor="middle" font-size="12" fill="#1B5E20">Gateway (TGW)</text>
+  <!-- DXGW -->
+  <rect x="615" y="175" width="160" height="50" fill="#A5D6A7" stroke="#2E7D32" stroke-width="1.5" rx="4"/>
+  <text x="695" y="196" text-anchor="middle" font-size="12" font-weight="bold" fill="#1B5E20">Direct Connect</text>
+  <text x="695" y="212" text-anchor="middle" font-size="12" fill="#1B5E20">Gateway (DXGW)</text>
+  <!-- VPCs -->
+  <rect x="530" y="250" width="100" height="40" fill="#DCEDC8" stroke="#689F38" stroke-width="1.5" rx="4"/>
+  <text x="580" y="268" text-anchor="middle" font-size="11" fill="#33691E">VPC-A</text>
+  <text x="580" y="282" text-anchor="middle" font-size="10" fill="#558B2F">10.0.0.0/16</text>
+  <rect x="645" y="250" width="100" height="40" fill="#DCEDC8" stroke="#689F38" stroke-width="1.5" rx="4"/>
+  <text x="695" y="268" text-anchor="middle" font-size="11" fill="#33691E">VPC-B</text>
+  <text x="695" y="282" text-anchor="middle" font-size="10" fill="#558B2F">10.1.0.0/16</text>
+  <rect x="760" y="250" width="100" height="40" fill="#DCEDC8" stroke="#689F38" stroke-width="1.5" rx="4"/>
+  <text x="810" y="268" text-anchor="middle" font-size="11" fill="#33691E">VPC-C</text>
+  <text x="810" y="282" text-anchor="middle" font-size="10" fill="#558B2F">10.2.0.0/16</text>
+  <!-- Lines -->
+  <line x1="605" y1="150" x2="660" y2="175" stroke="#4CAF50" stroke-width="1.5"/>
+  <line x1="775" y1="150" x2="730" y2="175" stroke="#4CAF50" stroke-width="1.5"/>
+  <line x1="695" y1="225" x2="580" y2="250" stroke="#4CAF50" stroke-width="1.5"/>
+  <line x1="695" y1="225" x2="695" y2="250" stroke="#4CAF50" stroke-width="1.5"/>
+  <line x1="695" y1="225" x2="810" y2="250" stroke="#4CAF50" stroke-width="1.5"/>
+
+  <!-- Arrows between sections -->
+  <!-- On-prem to DX -->
+  <line x1="180" y1="210" x2="235" y2="210" stroke="#1565C0" stroke-width="2.5"/>
+  <polygon points="235,205 245,210 235,215" fill="#1565C0"/>
+  <text x="207" y="204" text-anchor="middle" font-size="9" fill="#1565C0">専用線</text>
+  <!-- DX to AWS -->
+  <line x1="440" y1="210" x2="505" y2="210" stroke="#E65100" stroke-width="2.5"/>
+  <polygon points="505,205 515,210 505,215" fill="#E65100"/>
+  <text x="472" y="204" text-anchor="middle" font-size="9" fill="#E65100">VIF (BGP)</text>
+
+  <!-- VIF Labels -->
+  <text x="472" y="222" text-anchor="middle" font-size="9" fill="#E65100">Private/Public/Transit</text>
+
+  <!-- Legend -->
+  <rect x="20" y="360" width="860" height="45" fill="#e3f2fd" stroke="#90CAF9" stroke-width="1" rx="6"/>
+  <text x="440" y="377" text-anchor="middle" font-size="11" font-weight="bold" fill="#1565C0">接続の流れ: オンプレルーター → Cross Connect → AWS DX Router → VIF → DXGW/VGW/TGW → VPC</text>
+  <text x="440" y="395" text-anchor="middle" font-size="10" fill="#1976D2">BGP セッションはオンプレルーターと AWS ルーター間で確立 | 物理帯域: 1G / 10G / 100G（Dedicated）</text>
+</svg>

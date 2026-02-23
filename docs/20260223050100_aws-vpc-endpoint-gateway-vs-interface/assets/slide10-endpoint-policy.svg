@@ -1,0 +1,82 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <text x="400" y="26" font-family="Arial,sans-serif" font-size="14" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Gateway Endpoint — アクセス制御レイヤー</text>
+  <!-- EC2 -->
+  <rect x="20" y="50" width="110" height="70" rx="6" fill="#fff" stroke="#7b5ea7" stroke-width="2" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.12))"/>
+  <rect x="20" y="50" width="110" height="22" rx="6" fill="#7b5ea7"/>
+  <text x="75" y="66" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">EC2</text>
+  <text x="75" y="90" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">IAM Role:</text>
+  <text x="75" y="103" font-family="Arial,sans-serif" font-size="9" fill="#7b5ea7" text-anchor="middle">AppRole</text>
+  <!-- Arrow to Layer 1 -->
+  <line x1="130" y1="85" x2="165" y2="85" stroke="#555" stroke-width="2"/>
+  <polygon points="161,79 173,85 161,91" fill="#555"/>
+  <!-- Layer 1: IAM Policy -->
+  <rect x="165" y="50" width="140" height="70" rx="6" fill="#fff" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="165" y="50" width="140" height="22" rx="6" fill="#f59e0b"/>
+  <text x="235" y="66" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">① IAM Policy</text>
+  <text x="235" y="86" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">s3:GetObject</text>
+  <text x="235" y="100" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">arn:aws:s3:::my-bucket/*</text>
+  <text x="235" y="113" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">Principal の権限確認</text>
+  <!-- Arrow to Layer 2 -->
+  <line x1="305" y1="85" x2="340" y2="85" stroke="#555" stroke-width="2"/>
+  <polygon points="336,79 348,85 336,91" fill="#555"/>
+  <!-- Layer 2: Endpoint Policy -->
+  <rect x="340" y="50" width="145" height="70" rx="6" fill="#fff" stroke="#10b981" stroke-width="2.5"/>
+  <rect x="340" y="50" width="145" height="22" rx="6" fill="#10b981"/>
+  <text x="412" y="66" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">② Endpoint Policy</text>
+  <text x="412" y="86" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">特定バケットのみ許可</text>
+  <text x="412" y="100" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">aws:PrincipalAccount</text>
+  <text x="412" y="113" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">エンドポイント通過の制御</text>
+  <!-- Arrow to Layer 3 -->
+  <line x1="485" y1="85" x2="520" y2="85" stroke="#555" stroke-width="2"/>
+  <polygon points="516,79 528,85 516,91" fill="#555"/>
+  <!-- Layer 3: Bucket Policy -->
+  <rect x="520" y="50" width="145" height="70" rx="6" fill="#fff" stroke="#ff9900" stroke-width="2"/>
+  <rect x="520" y="50" width="145" height="22" rx="6" fill="#ff9900"/>
+  <text x="592" y="66" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">③ S3 Bucket Policy</text>
+  <text x="592" y="86" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">aws:sourceVpce 条件</text>
+  <text x="592" y="100" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">VPC EP 経由のみ許可</text>
+  <text x="592" y="113" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">リソース側の制御</text>
+  <!-- Arrow to S3 -->
+  <line x1="665" y1="85" x2="700" y2="85" stroke="#555" stroke-width="2"/>
+  <polygon points="696,79 708,85 696,91" fill="#555"/>
+  <!-- S3 -->
+  <circle cx="728" cy="85" r="28" fill="#ff9900"/>
+  <text x="728" y="90" font-family="Arial,sans-serif" font-size="14" fill="#fff" font-weight="bold" text-anchor="middle">S3</text>
+  <!-- All layers explanation -->
+  <text x="400" y="148" font-family="Arial,sans-serif" font-size="11" fill="#555" text-anchor="middle">すべての条件が AND で評価される — 一つでも Deny があればアクセス拒否</text>
+  <!-- Policy examples -->
+  <rect x="20" y="162" width="362" height="175" rx="6" fill="#fff" stroke="#10b981" stroke-width="1.5"/>
+  <rect x="20" y="162" width="362" height="22" rx="6" fill="#10b981"/>
+  <text x="201" y="178" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">② VPC Endpoint Policy (例)</text>
+  <rect x="30" y="190" width="342" height="135" rx="4" fill="#f8f9fa"/>
+  <text x="38" y="207" font-family="monospace,Arial" font-size="9" fill="#333">{</text>
+  <text x="38" y="220" font-family="monospace,Arial" font-size="9" fill="#333">  "Statement": [{</text>
+  <text x="38" y="233" font-family="monospace,Arial" font-size="9" fill="#333">    "Effect": "Allow",</text>
+  <text x="38" y="246" font-family="monospace,Arial" font-size="9" fill="#333">    "Principal": "*",</text>
+  <text x="38" y="259" font-family="monospace,Arial" font-size="9" fill="#333">    "Action": ["s3:GetObject", "s3:PutObject"],</text>
+  <text x="38" y="272" font-family="monospace,Arial" font-size="9" fill="#059669">    "Resource": "arn:aws:s3:::my-bucket/*",</text>
+  <text x="38" y="285" font-family="monospace,Arial" font-size="9" fill="#7b5ea7">    "Condition": { "StringEquals": {</text>
+  <text x="38" y="298" font-family="monospace,Arial" font-size="9" fill="#7b5ea7">      "aws:PrincipalAccount": "123456789012" }}</text>
+  <text x="38" y="311" font-family="monospace,Arial" font-size="9" fill="#333">  }]</text>
+  <text x="38" y="324" font-family="monospace,Arial" font-size="9" fill="#333">}</text>
+  <!-- Bucket policy example -->
+  <rect x="418" y="162" width="362" height="175" rx="6" fill="#fff" stroke="#ff9900" stroke-width="1.5"/>
+  <rect x="418" y="162" width="362" height="22" rx="6" fill="#ff9900"/>
+  <text x="599" y="178" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">③ S3 Bucket Policy (例)</text>
+  <rect x="428" y="190" width="342" height="135" rx="4" fill="#f8f9fa"/>
+  <text x="436" y="207" font-family="monospace,Arial" font-size="9" fill="#333">{</text>
+  <text x="436" y="220" font-family="monospace,Arial" font-size="9" fill="#333">  "Statement": [{</text>
+  <text x="436" y="233" font-family="monospace,Arial" font-size="9" fill="#ef4444">    "Effect": "Deny",</text>
+  <text x="436" y="246" font-family="monospace,Arial" font-size="9" fill="#333">    "Principal": "*",</text>
+  <text x="436" y="259" font-family="monospace,Arial" font-size="9" fill="#333">    "Action": "s3:*",</text>
+  <text x="436" y="272" font-family="monospace,Arial" font-size="9" fill="#333">    "Resource": ["arn:aws:s3:::my-bucket",</text>
+  <text x="436" y="285" font-family="monospace,Arial" font-size="9" fill="#333">                 "arn:aws:s3:::my-bucket/*"],</text>
+  <text x="436" y="298" font-family="monospace,Arial" font-size="9" fill="#7b5ea7">    "Condition": { "StringNotEquals": {</text>
+  <text x="436" y="311" font-family="monospace,Arial" font-size="9" fill="#7b5ea7">      "aws:sourceVpce": "vpce-0abc1234" }}</text>
+  <text x="436" y="324" font-family="monospace,Arial" font-size="9" fill="#333">  }]</text>
+  <!-- Key conditions note -->
+  <rect x="20" y="348" width="760" height="36" rx="5" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
+  <text x="400" y="361" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">重要条件キー: aws:sourceVpce (EP ID指定) / aws:sourceVpc (VPC ID指定) / aws:PrincipalAccount (アカウント制限)</text>
+  <text x="400" y="378" font-family="Arial,sans-serif" font-size="10" fill="#888" text-anchor="middle">Bucket Policy で Deny + aws:sourceVpce → EP 経由以外からのアクセスを全拒否（最も強固な制御）</text>
+</svg>

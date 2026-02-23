@@ -1,0 +1,86 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">PrivateLink — Consumer / Provider アーキテクチャ</text>
+  <!-- Consumer VPC (left) -->
+  <rect x="15" y="35" width="330" height="320" rx="8" fill="#f0f4ff" stroke="#7b5ea7" stroke-width="2"/>
+  <rect x="15" y="35" width="330" height="28" rx="8" fill="#7b5ea7"/>
+  <text x="180" y="54" font-family="Arial,sans-serif" font-size="12" fill="#fff" font-weight="bold" text-anchor="middle">Consumer VPC (Account A)</text>
+  <!-- Consumer EC2 -->
+  <rect x="32" y="78" width="130" height="55" rx="5" fill="#fff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <rect x="32" y="78" width="130" height="18" rx="5" fill="#7b5ea7"/>
+  <text x="97" y="91" font-family="Arial,sans-serif" font-size="9" fill="#fff" text-anchor="middle">EC2 (Client App)</text>
+  <text x="97" y="112" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">10.0.1.10</text>
+  <text x="97" y="125" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">sg-app</text>
+  <!-- Interface Endpoint in Consumer -->
+  <rect x="195" y="78" width="140" height="70" rx="5" fill="#fff" stroke="#10b981" stroke-width="2" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.12))"/>
+  <rect x="195" y="78" width="140" height="18" rx="5" fill="#10b981"/>
+  <text x="265" y="91" font-family="Arial,sans-serif" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">Interface Endpoint</text>
+  <text x="265" y="110" font-family="Arial,sans-serif" font-size="9" fill="#059669" text-anchor="middle">ENI: 10.0.1.50</text>
+  <text x="265" y="124" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">sg-ep | vpce-XXXX</text>
+  <text x="265" y="138" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">com.amazonaws.vpce....</text>
+  <!-- Arrow EC2 to EP -->
+  <line x1="162" y1="105" x2="193" y2="105" stroke="#7b5ea7" stroke-width="2"/>
+  <polygon points="189,99 201,105 189,111" fill="#7b5ea7"/>
+  <!-- DNS box in Consumer -->
+  <rect x="32" y="165" width="303" height="50" rx="5" fill="#fff9e6" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="183" y="183" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">DNS (Private DNS 有効)</text>
+  <text x="42" y="203" font-family="monospace,Arial" font-size="9" fill="#333">my-service.example.com  →  10.0.1.50</text>
+  <!-- EP Policy -->
+  <rect x="32" y="230" width="303" height="40" rx="5" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
+  <text x="183" y="246" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">VPC Endpoint Policy</text>
+  <text x="183" y="262" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">Consumer 側のアクセス制御 (Endpoint を通す通信を制限)</text>
+  <!-- Acceptance -->
+  <rect x="32" y="282" width="303" height="55" rx="5" fill="#fff" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="42" y="300" font-family="Arial,sans-serif" font-size="10" fill="#555" font-weight="bold">接続リクエストと承認フロー</text>
+  <text x="42" y="318" font-family="Arial,sans-serif" font-size="9" fill="#555">① Consumer: create-vpc-endpoint (サービス名を指定)</text>
+  <text x="42" y="332" font-family="Arial,sans-serif" font-size="9" fill="#555">② Provider: accept-vpc-endpoint-connections (手動/自動)</text>
+  <!-- PrivateLink backbone (center) -->
+  <rect x="352" y="130" width="96" height="130" rx="6" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="400" y="155" font-family="Arial,sans-serif" font-size="10" fill="#0369a1" text-anchor="middle" font-weight="bold">AWS</text>
+  <text x="400" y="170" font-family="Arial,sans-serif" font-size="10" fill="#0369a1" text-anchor="middle" font-weight="bold">PrivateLink</text>
+  <text x="400" y="190" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">Backbone</text>
+  <text x="400" y="210" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">Network</text>
+  <text x="400" y="228" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">Isolation</text>
+  <text x="400" y="245" font-family="Arial,sans-serif" font-size="9" fill="#0369a1" text-anchor="middle" font-weight="bold">E2E Encrypted</text>
+  <!-- Arrow EP to PrivateLink -->
+  <line x1="335" y1="112" x2="350" y2="175" stroke="#10b981" stroke-width="2"/>
+  <polygon points="344,172 354,182 358,170" fill="#10b981"/>
+  <!-- Arrow PrivateLink to Provider -->
+  <line x1="448" y1="175" x2="458" y2="145" stroke="#10b981" stroke-width="2"/>
+  <polygon points="454,140 462,152 466,140" fill="#10b981"/>
+  <!-- Provider VPC (right) -->
+  <rect x="455" y="35" width="330" height="320" rx="8" fill="#fff8f0" stroke="#ff9900" stroke-width="2"/>
+  <rect x="455" y="35" width="330" height="28" rx="8" fill="#ff9900"/>
+  <text x="620" y="54" font-family="Arial,sans-serif" font-size="12" fill="#fff" font-weight="bold" text-anchor="middle">Provider VPC (Account B)</text>
+  <!-- NLB -->
+  <rect x="470" y="78" width="130" height="55" rx="5" fill="#fff" stroke="#ff9900" stroke-width="2" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.12))"/>
+  <rect x="470" y="78" width="130" height="18" rx="5" fill="#ff9900"/>
+  <text x="535" y="91" font-family="Arial,sans-serif" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">NLB (Network LB)</text>
+  <text x="535" y="110" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">10.1.0.10</text>
+  <text x="535" y="125" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">TCP 443 | Internal</text>
+  <!-- Service backend -->
+  <rect x="635" y="78" width="135" height="55" rx="5" fill="#fff" stroke="#ff9900" stroke-width="1.5"/>
+  <rect x="635" y="78" width="135" height="18" rx="5" fill="#ff9900" opacity="0.6"/>
+  <text x="702" y="91" font-family="Arial,sans-serif" font-size="9" fill="#fff" text-anchor="middle">Service Backend</text>
+  <text x="702" y="112" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">ECS / EC2 / Lambda</text>
+  <text x="702" y="125" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">10.1.1.20 - 10.1.1.25</text>
+  <!-- Arrow NLB to Service -->
+  <line x1="600" y1="105" x2="633" y2="105" stroke="#ff9900" stroke-width="2"/>
+  <polygon points="629,99 641,105 629,111" fill="#ff9900"/>
+  <!-- Endpoint Service -->
+  <rect x="470" y="165" width="303" height="50" rx="5" fill="#fff" stroke="#ff9900" stroke-width="1.5"/>
+  <text x="621" y="183" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">VPC Endpoint Service</text>
+  <text x="480" y="203" font-family="monospace,Arial" font-size="8" fill="#555">com.amazonaws.vpce.ap-northeast-1.vpce-svc-XXXXXX</text>
+  <!-- Allowed Principals -->
+  <rect x="470" y="230" width="303" height="40" rx="5" fill="#fef9c3" stroke="#f59e0b" stroke-width="1"/>
+  <text x="621" y="246" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">Allowed Principals (許可リスト)</text>
+  <text x="621" y="262" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">arn:aws:iam::ACCOUNT_A:root (Consumer を明示許可)</text>
+  <!-- Acceptance policy -->
+  <rect x="470" y="282" width="303" height="55" rx="5" fill="#fff" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="480" y="300" font-family="Arial,sans-serif" font-size="10" fill="#555" font-weight="bold">接続受け入れポリシー</text>
+  <text x="480" y="318" font-family="Arial,sans-serif" font-size="9" fill="#555">Acceptance Required=true: 手動承認</text>
+  <text x="480" y="333" font-family="Arial,sans-serif" font-size="9" fill="#555">Acceptance Required=false: 自動承認</text>
+  <!-- Note: source IP preservation -->
+  <rect x="15" y="365" width="770" height="25" rx="4" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
+  <text x="400" y="382" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle">PrivateLink は VPC CIDR が重複していても使用可能 — VPC Peering と異なり IP アドレス重複不可の制約なし</text>
+</svg>

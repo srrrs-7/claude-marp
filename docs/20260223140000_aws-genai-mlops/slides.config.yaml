@@ -1,0 +1,23 @@
+topic: "AWS Certified Generative AI Developer - Professional: MLOps完全ガイド"
+language: "ja"
+
+slides:
+  count: 125
+
+output:
+  dir: "docs/20260223140000_aws-genai-mlops"
+  baseName: "aws-genai-mlops"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "AWS GenAI Developer Pro"
+  footer: "MLOps完全ガイド © 2026"
+  style: |
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+    section.lead h1 {
+      font-size: 1.6em;
+    }

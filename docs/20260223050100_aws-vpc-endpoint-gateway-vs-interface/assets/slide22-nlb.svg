@@ -1,0 +1,85 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">PrivateLink — NLB 連携アーキテクチャ詳細</text>
+  <!-- Provider VPC -->
+  <rect x="415" y="32" width="375" height="350" rx="8" fill="#fff8f0" stroke="#ff9900" stroke-width="2"/>
+  <rect x="415" y="32" width="375" height="26" rx="8" fill="#ff9900"/>
+  <text x="602" y="50" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">Provider VPC (Endpoint Service を公開)</text>
+  <!-- Endpoint Service box -->
+  <rect x="430" y="65" width="345" height="35" rx="5" fill="#fef9c3" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="602" y="79" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">VPC Endpoint Service</text>
+  <text x="602" y="93" font-family="monospace,Arial" font-size="9" fill="#555" text-anchor="middle">com.amazonaws.vpce.ap-northeast-1.vpce-svc-abc123</text>
+  <!-- NLB box -->
+  <rect x="430" y="112" width="345" height="58" rx="5" fill="#fff" stroke="#ff9900" stroke-width="2" style="filter:drop-shadow(1px 1px 4px rgba(0,0,0,0.10))"/>
+  <rect x="430" y="112" width="345" height="20" rx="5" fill="#ff9900"/>
+  <text x="602" y="127" font-family="Arial,sans-serif" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">Network Load Balancer (NLB)</text>
+  <text x="445" y="148" font-family="Arial,sans-serif" font-size="9" fill="#555">Scheme: Internal  |  Type: Network</text>
+  <text x="445" y="162" font-family="Arial,sans-serif" font-size="9" fill="#888">AZ-a: 10.1.0.10  AZ-c: 10.1.2.10  (マルチAZ)</text>
+  <!-- NLB requirements note -->
+  <rect x="430" y="180" width="345" height="55" rx="5" fill="#fee2e2" stroke="#ef4444" stroke-width="1"/>
+  <text x="445" y="196" font-family="Arial,sans-serif" font-size="10" fill="#ef4444" font-weight="bold">NLB に関する重要制約</text>
+  <text x="445" y="212" font-family="Arial,sans-serif" font-size="9" fill="#555">・PrivateLink は NLB のみサポート (ALB は不可)</text>
+  <text x="445" y="226" font-family="Arial,sans-serif" font-size="9" fill="#555">・NLB は Endpoint Service と同じ VPC に配置</text>
+  <text x="445" y="240" font-family="Arial,sans-serif" font-size="9" fill="#555">・NLB Target Group: IP / Instance / ALB</text>
+  <!-- Service instances -->
+  <rect x="430" y="248" width="160" height="55" rx="5" fill="#fff" stroke="#10b981" stroke-width="1.5"/>
+  <text x="510" y="265" font-family="Arial,sans-serif" font-size="9" fill="#059669" text-anchor="middle" font-weight="bold">Target Group (AZ-a)</text>
+  <text x="510" y="282" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">EC2: 10.1.1.10</text>
+  <text x="510" y="296" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">EC2: 10.1.1.11</text>
+  <rect x="613" y="248" width="160" height="55" rx="5" fill="#fff" stroke="#10b981" stroke-width="1.5"/>
+  <text x="693" y="265" font-family="Arial,sans-serif" font-size="9" fill="#059669" text-anchor="middle" font-weight="bold">Target Group (AZ-c)</text>
+  <text x="693" y="282" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">EC2: 10.1.3.10</text>
+  <text x="693" y="296" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">EC2: 10.1.3.11</text>
+  <!-- Source IP preservation note -->
+  <rect x="430" y="316" width="345" height="55" rx="5" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
+  <text x="445" y="332" font-family="Arial,sans-serif" font-size="10" fill="#059669" font-weight="bold">送信元 IP 保持 (Source IP Preservation)</text>
+  <text x="445" y="348" font-family="Arial,sans-serif" font-size="9" fill="#555">・NLB Target Type=IP: Consumer の ENI IP が Source IP</text>
+  <text x="445" y="364" font-family="Arial,sans-serif" font-size="9" fill="#555">・NLB Target Type=Instance: NLB の IP が Source IP</text>
+  <!-- Consumer VPC (left) -->
+  <rect x="10" y="32" width="390" height="350" rx="8" fill="#f0f4ff" stroke="#7b5ea7" stroke-width="2"/>
+  <rect x="10" y="32" width="390" height="26" rx="8" fill="#7b5ea7"/>
+  <text x="205" y="50" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">Consumer VPC (エンドポイントを使用)</text>
+  <!-- Consumer Subnet AZ-a -->
+  <rect x="26" y="65" width="165" height="295" rx="5" fill="#e8edff" stroke="#9ca3af" stroke-width="1"/>
+  <text x="108" y="83" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">Private Subnet (AZ-a)</text>
+  <!-- EC2 -->
+  <rect x="38" y="92" width="141" height="50" rx="4" fill="#fff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <rect x="38" y="92" width="141" height="17" rx="4" fill="#7b5ea7"/>
+  <text x="108" y="104" font-family="Arial,sans-serif" font-size="9" fill="#fff" text-anchor="middle">App Server</text>
+  <text x="108" y="125" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">10.0.1.10</text>
+  <text x="108" y="136" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">sg-app</text>
+  <!-- ENI AZ-a -->
+  <rect x="38" y="160" width="141" height="55" rx="4" fill="#fff" stroke="#10b981" stroke-width="2"/>
+  <rect x="38" y="160" width="141" height="17" rx="4" fill="#10b981"/>
+  <text x="108" y="172" font-family="Arial,sans-serif" font-size="9" fill="#fff" text-anchor="middle">Interface EP (ENI)</text>
+  <text x="108" y="192" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">10.0.1.50</text>
+  <text x="108" y="207" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">sg-ep</text>
+  <!-- Arrow EC2 to ENI -->
+  <line x1="108" y1="142" x2="108" y2="158" stroke="#7b5ea7" stroke-width="1.5"/>
+  <polygon points="102,154 108,162 114,154" fill="#7b5ea7"/>
+  <!-- Consumer Subnet AZ-c -->
+  <rect x="214" y="65" width="165" height="295" rx="5" fill="#e8edff" stroke="#9ca3af" stroke-width="1"/>
+  <text x="296" y="83" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">Private Subnet (AZ-c)</text>
+  <!-- EC2 AZ-c -->
+  <rect x="226" y="92" width="141" height="50" rx="4" fill="#fff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <rect x="226" y="92" width="141" height="17" rx="4" fill="#7b5ea7"/>
+  <text x="296" y="104" font-family="Arial,sans-serif" font-size="9" fill="#fff" text-anchor="middle">App Server</text>
+  <text x="296" y="125" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">10.0.3.20</text>
+  <text x="296" y="136" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">sg-app</text>
+  <!-- ENI AZ-c -->
+  <rect x="226" y="160" width="141" height="55" rx="4" fill="#fff" stroke="#10b981" stroke-width="2"/>
+  <rect x="226" y="160" width="141" height="17" rx="4" fill="#10b981"/>
+  <text x="296" y="172" font-family="Arial,sans-serif" font-size="9" fill="#fff" text-anchor="middle">Interface EP (ENI)</text>
+  <text x="296" y="192" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">10.0.3.60</text>
+  <text x="296" y="207" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">sg-ep</text>
+  <!-- Arrow EC2 to ENI AZ-c -->
+  <line x1="296" y1="142" x2="296" y2="158" stroke="#7b5ea7" stroke-width="1.5"/>
+  <polygon points="290,154 296,162 302,154" fill="#7b5ea7"/>
+  <!-- DNS box -->
+  <rect x="26" y="280" width="353" height="40" rx="5" fill="#fff9e6" stroke="#f59e0b" stroke-width="1"/>
+  <text x="202" y="296" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">DNS: my-service.com → 10.0.1.50 / 10.0.3.60</text>
+  <text x="202" y="312" font-family="Arial,sans-serif" font-size="8" fill="#888" text-anchor="middle">PHZ で AZ アフィニティ — 同じ AZ の ENI IP を優先返却</text>
+  <!-- Arrows ENI to backbone -->
+  <line x1="179" y1="187" x2="413" y2="141" stroke="#10b981" stroke-width="2.5"/>
+  <polygon points="407,136 417,144 408,152" fill="#10b981"/>
+</svg>

@@ -1,0 +1,82 @@
+<svg viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg" style="max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="860" height="320" fill="#f9fbe7" rx="10"/>
+  <text x="430" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">LOA-CFA プロセス — 物理接続確立フロー</text>
+
+  <!-- Step boxes -->
+  <!-- Step 1 -->
+  <rect x="20" y="45" width="140" height="70" fill="#E3F2FD" stroke="#1976D2" stroke-width="2" rx="6"/>
+  <text x="90" y="66" text-anchor="middle" font-size="11" font-weight="bold" fill="#0D47A1">① AWS コンソール</text>
+  <text x="90" y="82" text-anchor="middle" font-size="10" fill="#1565C0">Dedicated Connection</text>
+  <text x="90" y="96" text-anchor="middle" font-size="10" fill="#1565C0">作成リクエスト送信</text>
+  <text x="90" y="108" text-anchor="middle" font-size="9" fill="#888">DX Location / 帯域選択</text>
+
+  <!-- Arrow 1 -->
+  <line x1="160" y1="80" x2="185" y2="80" stroke="#555" stroke-width="2"/>
+  <polygon points="185,75 195,80 185,85" fill="#555"/>
+  <text x="172" y="72" text-anchor="middle" font-size="9" fill="#555">72時間</text>
+  <text x="172" y="61" text-anchor="middle" font-size="9" fill="#888">以内</text>
+
+  <!-- Step 2 -->
+  <rect x="195" y="45" width="140" height="70" fill="#FFF8E1" stroke="#F9A825" stroke-width="2" rx="6"/>
+  <text x="265" y="66" text-anchor="middle" font-size="11" font-weight="bold" fill="#E65100">② LOA-CFA 発行</text>
+  <text x="265" y="82" text-anchor="middle" font-size="10" fill="#BF360C">Letter of Authorization</text>
+  <text x="265" y="96" text-anchor="middle" font-size="10" fill="#BF360C">Connecting Facility</text>
+  <text x="265" y="110" text-anchor="middle" font-size="10" fill="#BF360C">Assignment</text>
+
+  <!-- Arrow 2 -->
+  <line x1="335" y1="80" x2="360" y2="80" stroke="#555" stroke-width="2"/>
+  <polygon points="360,75 370,80 360,85" fill="#555"/>
+
+  <!-- Step 3 -->
+  <rect x="370" y="45" width="140" height="70" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="2" rx="6"/>
+  <text x="440" y="66" text-anchor="middle" font-size="11" font-weight="bold" fill="#4A148C">③ Cross Connect</text>
+  <text x="440" y="82" text-anchor="middle" font-size="10" fill="#6A1B9A">コロケーション施設で</text>
+  <text x="440" y="96" text-anchor="middle" font-size="10" fill="#6A1B9A">物理ケーブル接続</text>
+  <text x="440" y="108" text-anchor="middle" font-size="9" fill="#888">LOA-CFA を施設に提出</text>
+
+  <!-- Arrow 3 -->
+  <line x1="510" y1="80" x2="535" y2="80" stroke="#555" stroke-width="2"/>
+  <polygon points="535,75 545,80 535,85" fill="#555"/>
+
+  <!-- Step 4 -->
+  <rect x="545" y="45" width="140" height="70" fill="#E8F5E9" stroke="#388E3C" stroke-width="2" rx="6"/>
+  <text x="615" y="66" text-anchor="middle" font-size="11" font-weight="bold" fill="#1B5E20">④ 接続確認</text>
+  <text x="615" y="82" text-anchor="middle" font-size="10" fill="#2E7D32">AWS コンソールで</text>
+  <text x="615" y="96" text-anchor="middle" font-size="10" fill="#2E7D32">Status: available</text>
+  <text x="615" y="108" text-anchor="middle" font-size="9" fill="#888">物理リンク UP</text>
+
+  <!-- Arrow 4 -->
+  <line x1="685" y1="80" x2="710" y2="80" stroke="#555" stroke-width="2"/>
+  <polygon points="710,75 720,80 710,85" fill="#555"/>
+
+  <!-- Step 5 -->
+  <rect x="720" y="45" width="120" height="70" fill="#E0F2F1" stroke="#00796B" stroke-width="2" rx="6"/>
+  <text x="780" y="66" text-anchor="middle" font-size="11" font-weight="bold" fill="#004D40">⑤ VIF 作成</text>
+  <text x="780" y="82" text-anchor="middle" font-size="10" fill="#00695C">BGP 設定</text>
+  <text x="780" y="96" text-anchor="middle" font-size="10" fill="#00695C">VLAN 割当</text>
+  <text x="780" y="108" text-anchor="middle" font-size="9" fill="#888">接続完了</text>
+
+  <!-- Detailed notes section -->
+  <rect x="20" y="145" width="820" height="160" fill="#fff" stroke="#ccc" stroke-width="1" rx="6"/>
+  <text x="430" y="165" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">LOA-CFA の詳細</text>
+
+  <!-- Left column -->
+  <text x="30" y="185" font-size="11" font-weight="bold" fill="#1565C0">LOA (Letter of Authorization) とは:</text>
+  <text x="30" y="200" font-size="10" fill="#333">• AWS が発行する「接続許可書」</text>
+  <text x="30" y="214" font-size="10" fill="#333">• AWS Cage への入室・接続を許可する文書</text>
+  <text x="30" y="228" font-size="10" fill="#333">• コロケーション施設に提出して Cross Connect を依頼</text>
+  <text x="30" y="242" font-size="10" fill="#333">• 有効期限: 90日（期限内に接続必要）</text>
+  <text x="30" y="256" font-size="10" fill="#333">• フォーマット: PDF（AWS コンソールからダウンロード）</text>
+  <text x="30" y="270" font-size="10" fill="#333">• AWS コンソール → Direct Connect → 接続を選択 → LOA-CFA をダウンロード</text>
+  <text x="30" y="284" font-size="10" fill="#888">※ Hosted Connection は不要（パートナーが管理）</text>
+
+  <!-- Right column -->
+  <text x="440" y="185" font-size="11" font-weight="bold" fill="#E65100">CFA (Connecting Facility Assignment) とは:</text>
+  <text x="440" y="200" font-size="10" fill="#333">• AWS ルーターへのポート割り当て情報</text>
+  <text x="440" y="214" font-size="10" fill="#333">• 施設内のパッチパネル番号・ポート番号</text>
+  <text x="440" y="228" font-size="10" fill="#333">• ケーブル接続先の物理的な場所を特定</text>
+  <text x="440" y="242" font-size="10" fill="#333">• Cross Connect 依頼時に施設オペレーターに提示</text>
+  <text x="440" y="256" font-size="10" fill="#333">• 光ファイバーケーブルの接続先情報</text>
+  <text x="440" y="270" font-size="10" fill="#333">• LOA と CFA は 1つの PDF にまとめて発行される</text>
+  <text x="440" y="284" font-size="10" fill="#888">※ 接続完了後: AWS コンソール Status が available に変化</text>
+</svg>

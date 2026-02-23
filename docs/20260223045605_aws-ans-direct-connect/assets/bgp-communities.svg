@@ -1,0 +1,68 @@
+<svg viewBox="0 0 880 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="880" height="420" fill="#f9fbe7" rx="10"/>
+  <text x="440" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">AWS BGP Communities — トラフィックエンジニアリング</text>
+
+  <!-- Direction Label -->
+  <text x="220" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">オンプレ → AWS（送信側）</text>
+  <text x="650" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#E65100">AWS → オンプレ（受信側）</text>
+
+  <!-- Outbound: On-prem to AWS Communities -->
+  <rect x="20" y="62" width="420" height="330" fill="#E3F2FD" stroke="#1976D2" stroke-width="1.5" rx="8"/>
+
+  <!-- Local Preference tags -->
+  <text x="230" y="84" text-anchor="middle" font-size="11" font-weight="bold" fill="#0D47A1">Local Preference の操作（AWS 経路）</text>
+  <text x="230" y="98" text-anchor="middle" font-size="9" fill="#555">※ オンプレから広告する経路に Community タグを付与</text>
+
+  <rect x="35" y="108" width="395" height="42" fill="#BBDEFB" stroke="#64B5F6" stroke-width="1" rx="4"/>
+  <text x="70" y="122" font-size="11" font-weight="bold" fill="#0D47A1">7224:7100</text>
+  <text x="175" y="122" font-size="10" fill="#1565C0">→ Local Preference = 100（最低優先度）</text>
+  <text x="70" y="142" font-size="9" fill="#555">この経路は他のすべての DX 経路より後回しにされる</text>
+
+  <rect x="35" y="158" width="395" height="42" fill="#BBDEFB" stroke="#64B5F6" stroke-width="1" rx="4"/>
+  <text x="70" y="172" font-size="11" font-weight="bold" fill="#0D47A1">7224:7200</text>
+  <text x="175" y="172" font-size="10" fill="#1565C0">→ Local Preference = 200（中優先度）</text>
+  <text x="70" y="192" font-size="9" fill="#555">デフォルト値（Community なしの場合と同等）</text>
+
+  <rect x="35" y="208" width="395" height="42" fill="#BBDEFB" stroke="#1565C0" stroke-width="2" rx="4"/>
+  <text x="70" y="222" font-size="11" font-weight="bold" fill="#0D47A1">7224:7300</text>
+  <text x="175" y="222" font-size="10" fill="#1565C0">→ Local Preference = 300（最高優先度）</text>
+  <text x="70" y="242" font-size="9" fill="#555">この経路は他の DX 経路より常に優先される</text>
+
+  <!-- Active/Passive use case -->
+  <rect x="35" y="262" width="395" height="120" fill="#E1F5FE" stroke="#0288D1" stroke-width="1" rx="4"/>
+  <text x="232" y="280" text-anchor="middle" font-size="10" font-weight="bold" fill="#01579B">ユースケース: プライマリ/バックアップ切替</text>
+  <text x="42" y="297" font-size="9" fill="#0277BD">プライマリ DX → Community 7224:7300（優先度 HIGH）</text>
+  <text x="42" y="311" font-size="9" fill="#0277BD">バックアップ DX → Community 7224:7100（優先度 LOW）</text>
+  <text x="42" y="325" font-size="9" fill="#01579B">→ 通常時はプライマリのみ使用、障害時にバックアップへ自動切替</text>
+  <text x="42" y="341" font-size="9" fill="#555">Active/Active にする場合は同じ Community タグを設定</text>
+  <text x="42" y="357" font-size="9" fill="#555">（ECMP によって Equal-cost 経路を負荷分散）</text>
+  <text x="42" y="371" font-size="9" fill="#888">注: Community タグは Private VIF / Transit VIF のみ有効</text>
+
+  <!-- AWS to On-prem direction -->
+  <rect x="460" y="62" width="400" height="330" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" rx="8"/>
+  <text x="660" y="84" text-anchor="middle" font-size="11" font-weight="bold" fill="#E65100">AWS からオンプレへの経路制御</text>
+  <text x="660" y="98" text-anchor="middle" font-size="9" fill="#555">AS Path Prepending で帰り路を制御</text>
+
+  <rect x="472" y="108" width="375" height="50" fill="#FFE0B2" stroke="#FB8C00" stroke-width="1" rx="4"/>
+  <text x="660" y="123" text-anchor="middle" font-size="10" font-weight="bold" fill="#E65100">AS Path Prepending（帰り路制御）</text>
+  <text x="480" y="140" font-size="9" fill="#BF360C">AWS 経路に自 ASN を繰り返して付加 → AS-PATH 長大化 → 優先度低下</text>
+  <text x="480" y="152" font-size="9" fill="#888">例: 7224 → 7224 7224 7224（3回 prepend で非優先経路に）</text>
+
+  <rect x="472" y="168" width="375" height="50" fill="#FFE0B2" stroke="#FB8C00" stroke-width="1" rx="4"/>
+  <text x="660" y="183" text-anchor="middle" font-size="10" font-weight="bold" fill="#E65100">MED（Multi-Exit Discriminator）</text>
+  <text x="480" y="200" font-size="9" fill="#BF360C">AWS 内部で同一プレフィックスの複数経路を比較</text>
+  <text x="480" y="212" font-size="9" fill="#888">値が小さい方が優先（iBGP 間での経路選択）</text>
+
+  <rect x="472" y="228" width="375" height="50" fill="#FFE0B2" stroke="#FB8C00" stroke-width="1" rx="4"/>
+  <text x="660" y="243" text-anchor="middle" font-size="10" font-weight="bold" fill="#E65100">Local Preference（AWS 内部）</text>
+  <text x="480" y="260" font-size="9" fill="#BF360C">AWS iBGP で使用（外部には広告されない）</text>
+  <text x="480" y="272" font-size="9" fill="#888">Community タグで顧客側から操作可能（上記参照）</text>
+
+  <rect x="472" y="288" width="375" height="95" fill="#FFF8E1" stroke="#FFB300" stroke-width="1" rx="4"/>
+  <text x="660" y="304" text-anchor="middle" font-size="10" font-weight="bold" fill="#E65100">BGP 経路選択順序（DX での考慮事項）</text>
+  <text x="480" y="320" font-size="9" fill="#555">① Weight（Cisco 独自、ローカルのみ）</text>
+  <text x="480" y="334" font-size="9" fill="#555">② Local Preference（Community タグで操作）</text>
+  <text x="480" y="348" font-size="9" fill="#555">③ AS Path Length（AS Path Prepend で操作）</text>
+  <text x="480" y="362" font-size="9" fill="#555">④ Origin（i &gt; e &gt; ?）</text>
+  <text x="480" y="376" font-size="9" fill="#555">⑤ MED → ⑥ eBGP vs iBGP → ⑦ Router ID</text>
+</svg>

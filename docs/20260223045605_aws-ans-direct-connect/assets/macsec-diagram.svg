@@ -1,0 +1,66 @@
+<svg viewBox="0 0 860 360" xmlns="http://www.w3.org/2000/svg" style="max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="860" height="360" fill="#f3e5f5" rx="10"/>
+  <text x="430" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">MACsec (IEEE 802.1AE) — Layer 2 暗号化</text>
+
+  <!-- Layer stack on left -->
+  <rect x="20" y="48" width="220" height="270" fill="#fff" stroke="#9C27B0" stroke-width="1.5" rx="8"/>
+  <text x="130" y="68" text-anchor="middle" font-size="11" font-weight="bold" fill="#4A148C">通常の DX 接続（暗号化なし）</text>
+  <rect x="30" y="78" width="200" height="35" fill="#B39DDB" rx="4"/>
+  <text x="130" y="100" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Layer 7-4: アプリケーション / TCP/UDP</text>
+  <rect x="30" y="118" width="200" height="35" fill="#9575CD" rx="4"/>
+  <text x="130" y="140" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Layer 3: IP（VIF BGP ルーティング）</text>
+  <rect x="30" y="158" width="200" height="35" fill="#7E57C2" rx="4"/>
+  <text x="130" y="175" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Layer 2: Ethernet / 802.1Q VLAN</text>
+  <rect x="30" y="198" width="200" height="35" fill="#5E35B1" rx="4"/>
+  <text x="130" y="215" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Layer 1: 光ファイバー（物理）</text>
+  <text x="130" y="258" text-anchor="middle" font-size="9" fill="#E53935">平文で送受信される</text>
+  <text x="130" y="272" text-anchor="middle" font-size="9" fill="#E53935">物理タップで傍受可能</text>
+  <text x="130" y="286" text-anchor="middle" font-size="9" fill="#888">DX ロケーション内の経路で</text>
+  <text x="130" y="298" text-anchor="middle" font-size="9" fill="#888">中間者攻撃のリスク</text>
+
+  <!-- With MACsec -->
+  <rect x="260" y="48" width="260" height="270" fill="#fff" stroke="#4CAF50" stroke-width="2" rx="8"/>
+  <text x="390" y="68" text-anchor="middle" font-size="11" font-weight="bold" fill="#1B5E20">MACsec 有効時</text>
+  <rect x="270" y="78" width="240" height="35" fill="#B39DDB" rx="4"/>
+  <text x="390" y="100" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Layer 7-4: アプリケーション / TCP/UDP</text>
+  <rect x="270" y="118" width="240" height="35" fill="#9575CD" rx="4"/>
+  <text x="390" y="140" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Layer 3: IP（VIF BGP ルーティング）</text>
+  <!-- MACsec frame highlight -->
+  <rect x="265" y="155" width="250" height="47" fill="#C8E6C9" stroke="#4CAF50" stroke-width="2" rx="4"/>
+  <text x="390" y="170" text-anchor="middle" font-size="9" font-weight="bold" fill="#1B5E20">MACsec 暗号化層（Layer 2）</text>
+  <text x="390" y="184" text-anchor="middle" font-size="9" fill="#2E7D32">802.1AE: GCM-AES-128/256</text>
+  <text x="390" y="196" text-anchor="middle" font-size="9" fill="#2E7D32">SecTag + 暗号化ペイロード + ICV</text>
+  <rect x="270" y="207" width="240" height="35" fill="#5E35B1" rx="4"/>
+  <text x="390" y="224" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Layer 1: 光ファイバー（物理）</text>
+  <text x="390" y="262" text-anchor="middle" font-size="9" fill="#1B5E20">Layer 2 フレームを暗号化</text>
+  <text x="390" y="276" text-anchor="middle" font-size="9" fill="#1B5E20">ポート間でのリプレイ攻撃防止</text>
+  <text x="390" y="290" text-anchor="middle" font-size="9" fill="#1B5E20">ハードウェアレベルの暗号化</text>
+  <text x="390" y="304" text-anchor="middle" font-size="9" fill="#888">（ソフトウェアオーバーヘッドなし）</text>
+
+  <!-- Requirements and notes -->
+  <rect x="540" y="48" width="300" height="270" fill="#fff" stroke="#FF9800" stroke-width="1.5" rx="8"/>
+  <text x="690" y="68" text-anchor="middle" font-size="11" font-weight="bold" fill="#E65100">MACsec 要件と制約</text>
+
+  <text x="550" y="88" font-size="10" font-weight="bold" fill="#E65100">対応する接続タイプ:</text>
+  <rect x="550" y="95" width="280" height="25" fill="#E8F5E9" rx="3"/>
+  <text x="690" y="112" text-anchor="middle" font-size="9" fill="#1B5E20">10Gbps / 100Gbps Dedicated Connection のみ</text>
+  <rect x="550" y="123" width="280" height="25" fill="#FFEBEE" rx="3"/>
+  <text x="690" y="140" text-anchor="middle" font-size="9" fill="#C62828">Hosted Connection: 非対応</text>
+  <rect x="550" y="151" width="280" height="25" fill="#FFEBEE" rx="3"/>
+  <text x="690" y="168" text-anchor="middle" font-size="9" fill="#C62828">1Gbps Dedicated: 非対応</text>
+
+  <text x="550" y="192" font-size="10" font-weight="bold" fill="#1565C0">設定要素:</text>
+  <text x="555" y="207" font-size="9" fill="#333">• CAK（Connectivity Association Key）設定</text>
+  <text x="555" y="221" font-size="9" fill="#333">• CKN（CAK Name）設定</text>
+  <text x="555" y="235" font-size="9" fill="#333">• AWS コンソール / CLI で設定可能</text>
+  <text x="555" y="249" font-size="9" fill="#333">• 暗号スイート: GCM-AES-128 / GCM-AES-256</text>
+
+  <text x="550" y="270" font-size="10" font-weight="bold" fill="#7B1FA2">注意事項:</text>
+  <text x="555" y="285" font-size="9" fill="#555">• MACsec は DX ロケーション間の区間のみ</text>
+  <text x="555" y="299" font-size="9" fill="#555">• エンド to エンドではない（AWS Backbone 非対応）</text>
+  <text x="555" y="313" font-size="9" fill="#888">• VPN over DX で E2E 暗号化を追加可能</text>
+
+  <!-- VS Label position note -->
+  <text x="430" y="340" text-anchor="middle" font-size="10" fill="#4A148C">MACsec + VPN over DX = ダブル暗号化（最高セキュリティ構成）</text>
+  <text x="430" y="355" text-anchor="middle" font-size="9" fill="#888">Layer 2: MACsec（DXロケーション区間）+ Layer 3: VPN（エンド to エンド）</text>
+</svg>

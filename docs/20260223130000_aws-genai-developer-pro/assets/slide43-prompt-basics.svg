@@ -1,0 +1,68 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">プロンプトエンジニアリングの基礎</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">LLMへの入力を最適化してより良い出力を得る技術 — 最もコスト効果的な改善手段</text>
+
+  <!-- Core components -->
+  <rect x="15" y="65" width="870" height="170" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="450" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">プロンプトの構成要素</text>
+
+  <!-- 4 components in horizontal boxes -->
+  <rect x="25" y="90" width="195" height="130" rx="6" fill="#1e3a8a"/>
+  <text x="123" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">① 指示 (Instruction)</text>
+  <text x="123" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">AIに実行させる</text>
+  <text x="123" y="146" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">タスクの説明</text>
+  <rect x="35" y="155" width="175" height="52" rx="4" fill="#1d4ed8"/>
+  <text x="123" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">「以下の文章を</text>
+  <text x="123" y="184" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">100字で要約せよ」</text>
+  <text x="123" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">明確・具体的に記述</text>
+
+  <rect x="235" y="90" width="195" height="130" rx="6" fill="#3b0764"/>
+  <text x="333" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">② コンテキスト</text>
+  <text x="333" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">背景情報・前提条件</text>
+  <text x="333" y="146" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">ペルソナ設定など</text>
+  <rect x="245" y="155" width="175" height="52" rx="4" fill="#4c1d95"/>
+  <text x="333" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">「あなたは医療の</text>
+  <text x="333" y="184" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">専門家です。」</text>
+  <text x="333" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">Role定義が効果大</text>
+
+  <rect x="445" y="90" width="195" height="130" rx="6" fill="#064e3b"/>
+  <text x="543" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">③ 入力データ</text>
+  <text x="543" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">処理対象の実際の</text>
+  <text x="543" y="146" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">コンテンツ・情報</text>
+  <rect x="455" y="155" width="175" height="52" rx="4" fill="#065f46"/>
+  <text x="543" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">変数で動的に挿入</text>
+  <text x="543" y="184" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">テンプレート化</text>
+  <text x="543" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">区切り文字で明確化</text>
+
+  <rect x="655" y="90" width="220" height="130" rx="6" fill="#78350f"/>
+  <text x="765" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">④ 出力形式指定</text>
+  <text x="765" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">期待する回答の</text>
+  <text x="765" y="146" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">形式・長さ・スタイル</text>
+  <rect x="665" y="155" width="200" height="52" rx="4" fill="#92400e"/>
+  <text x="765" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">「JSON形式で出力」</text>
+  <text x="765" y="184" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">「3つの箇条書き」</text>
+  <text x="765" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fde68a">後処理のしやすさUP</text>
+
+  <!-- Best practices -->
+  <rect x="15" y="248" width="870" height="140" rx="8" fill="#0f172a"/>
+  <text x="450" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">プロンプト設計のベストプラクティス</text>
+  <rect x="30" y="280" width="265" height="94" rx="5" fill="#1e1b4b"/>
+  <text x="163" y="298" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#60a5fa">明確な指示</text>
+  <text x="163" y="314" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• 曖昧さを排除する</text>
+  <text x="163" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• 否定より肯定で指示</text>
+  <text x="163" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• 「〜しないで」→「〜してください」</text>
+  <text x="163" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">例示で補強するとより効果的</text>
+  <rect x="310" y="280" width="265" height="94" rx="5" fill="#1e1b4b"/>
+  <text x="443" y="298" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#6ee7b7">区切り文字の活用</text>
+  <text x="443" y="314" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">• XMLタグ: &lt;document&gt;...&lt;/document&gt;</text>
+  <text x="443" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">• トリプルクォート: """..."""</text>
+  <text x="443" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">• セクション: ===DOCUMENT===</text>
+  <text x="443" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">入力データと指示を明確に分離</text>
+  <rect x="590" y="280" width="290" height="94" rx="5" fill="#1e1b4b"/>
+  <text x="735" y="298" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fbbf24">コスト効果の観点</text>
+  <text x="735" y="314" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fde68a">• Fine-tuning前にまずプロンプト最適化</text>
+  <text x="735" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fde68a">• 最も低コストで効果的な改善手段</text>
+  <text x="735" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fde68a">• A/Bテストで定量評価</text>
+  <text x="735" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">試験: 「品質改善・コスト最小」の問い</text>
+</svg>

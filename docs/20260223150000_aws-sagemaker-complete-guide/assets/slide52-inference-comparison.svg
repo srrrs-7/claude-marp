@@ -1,0 +1,153 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" fill="#f1f5f9" font-size="18" font-weight="bold" font-family="sans-serif">SageMaker 推論タイプ全体比較</text>
+
+  <!-- Column headers -->
+  <!-- Real-time -->
+  <rect x="170" y="55" width="170" height="40" rx="6" fill="#22c55e"/>
+  <text x="255" y="72" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">Real-time</text>
+  <text x="255" y="88" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">リアルタイム</text>
+
+  <!-- Serverless -->
+  <rect x="350" y="55" width="170" height="40" rx="6" fill="#f97316"/>
+  <text x="435" y="72" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">Serverless</text>
+  <text x="435" y="88" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">サーバーレス</text>
+
+  <!-- Async -->
+  <rect x="530" y="55" width="170" height="40" rx="6" fill="#3b82f6"/>
+  <text x="615" y="72" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">Async</text>
+  <text x="615" y="88" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">非同期</text>
+
+  <!-- Batch Transform -->
+  <rect x="710" y="55" width="170" height="40" rx="6" fill="#a855f7"/>
+  <text x="795" y="72" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">Batch Transform</text>
+  <text x="795" y="88" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">バッチ変換</text>
+
+  <!-- Row label column -->
+  <!-- Row labels -->
+  <rect x="10" y="105" width="150" height="50" rx="4" fill="#1e293b"/>
+  <text x="85" y="127" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">レイテンシ</text>
+  <text x="85" y="145" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Latency</text>
+
+  <rect x="10" y="165" width="150" height="50" rx="4" fill="#1e293b"/>
+  <text x="85" y="187" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">スループット</text>
+  <text x="85" y="205" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Throughput</text>
+
+  <rect x="10" y="225" width="150" height="50" rx="4" fill="#1e293b"/>
+  <text x="85" y="247" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">コスト</text>
+  <text x="85" y="265" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Cost Model</text>
+
+  <rect x="10" y="285" width="150" height="50" rx="4" fill="#1e293b"/>
+  <text x="85" y="307" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">ペイロード上限</text>
+  <text x="85" y="325" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Payload Limit</text>
+
+  <rect x="10" y="345" width="150" height="50" rx="4" fill="#1e293b"/>
+  <text x="85" y="367" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">スケーリング</text>
+  <text x="85" y="385" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Scaling</text>
+
+  <rect x="10" y="405" width="150" height="65" rx="4" fill="#1e293b"/>
+  <text x="85" y="430" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">ユースケース</text>
+  <text x="85" y="448" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Use Case</text>
+
+  <!-- Real-time column data -->
+  <rect x="170" y="105" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="255" y="130" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="bold" font-family="sans-serif">低 (ms)</text>
+  <text x="255" y="148" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">ミリ秒</text>
+
+  <rect x="170" y="165" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="255" y="190" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="bold" font-family="sans-serif">高</text>
+  <text x="255" y="208" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">High throughput</text>
+
+  <rect x="170" y="225" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="255" y="247" text-anchor="middle" fill="#f97316" font-size="12" font-family="sans-serif">常時稼働課金</text>
+  <text x="255" y="265" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Always-on</text>
+
+  <rect x="170" y="285" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="255" y="310" text-anchor="middle" fill="#f1f5f9" font-size="13" font-family="sans-serif">6 MB</text>
+
+  <rect x="170" y="345" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="255" y="367" text-anchor="middle" fill="#f1f5f9" font-size="12" font-family="sans-serif">自動/手動</text>
+  <text x="255" y="385" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Auto Scaling</text>
+
+  <rect x="170" y="405" width="170" height="65" rx="4" fill="#1e293b"/>
+  <text x="255" y="428" text-anchor="middle" fill="#f1f5f9" font-size="11" font-family="sans-serif">低レイテンシ</text>
+  <text x="255" y="446" text-anchor="middle" fill="#f1f5f9" font-size="11" font-family="sans-serif">API推論</text>
+  <text x="255" y="462" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Low-latency API</text>
+
+  <!-- Serverless column data -->
+  <rect x="350" y="105" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="435" y="128" text-anchor="middle" fill="#f97316" font-size="12" font-family="sans-serif">低〜中</text>
+  <text x="435" y="146" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">コールドスタートあり</text>
+
+  <rect x="350" y="165" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="435" y="190" text-anchor="middle" fill="#f97316" font-size="13" font-weight="bold" font-family="sans-serif">中</text>
+  <text x="435" y="208" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Auto managed</text>
+
+  <rect x="350" y="225" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="435" y="247" text-anchor="middle" fill="#22c55e" font-size="12" font-family="sans-serif">従量課金</text>
+  <text x="435" y="265" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Pay-per-use</text>
+
+  <rect x="350" y="285" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="435" y="310" text-anchor="middle" fill="#f1f5f9" font-size="13" font-family="sans-serif">4 MB</text>
+
+  <rect x="350" y="345" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="435" y="367" text-anchor="middle" fill="#f1f5f9" font-size="12" font-family="sans-serif">完全自動</text>
+  <text x="435" y="385" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Fully managed</text>
+
+  <rect x="350" y="405" width="170" height="65" rx="4" fill="#1e293b"/>
+  <text x="435" y="428" text-anchor="middle" fill="#f1f5f9" font-size="11" font-family="sans-serif">低頻度 API</text>
+  <text x="435" y="446" text-anchor="middle" fill="#f1f5f9" font-size="11" font-family="sans-serif">間欠トラフィック</text>
+  <text x="435" y="462" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Infrequent traffic</text>
+
+  <!-- Async column data -->
+  <rect x="530" y="105" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="615" y="130" text-anchor="middle" fill="#3b82f6" font-size="13" font-weight="bold" font-family="sans-serif">分〜時</text>
+  <text x="615" y="148" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Queued processing</text>
+
+  <rect x="530" y="165" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="615" y="190" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="bold" font-family="sans-serif">高</text>
+  <text x="615" y="208" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Queue + parallel</text>
+
+  <rect x="530" y="225" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="615" y="247" text-anchor="middle" fill="#22c55e" font-size="12" font-family="sans-serif">Scale-to-zero</text>
+  <text x="615" y="265" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Queue-based</text>
+
+  <rect x="530" y="285" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="615" y="310" text-anchor="middle" fill="#f1f5f9" font-size="13" font-family="sans-serif">1 GB</text>
+
+  <rect x="530" y="345" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="615" y="367" text-anchor="middle" fill="#f1f5f9" font-size="12" font-family="sans-serif">キュー連動</text>
+  <text x="615" y="385" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Queue-driven</text>
+
+  <rect x="530" y="405" width="170" height="65" rx="4" fill="#1e293b"/>
+  <text x="615" y="428" text-anchor="middle" fill="#f1f5f9" font-size="11" font-family="sans-serif">大容量データ</text>
+  <text x="615" y="446" text-anchor="middle" fill="#f1f5f9" font-size="11" font-family="sans-serif">長時間推論</text>
+  <text x="615" y="462" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Large payload</text>
+
+  <!-- Batch Transform column data -->
+  <rect x="710" y="105" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="795" y="130" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="bold" font-family="sans-serif">分〜時</text>
+  <text x="795" y="148" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Offline batch</text>
+
+  <rect x="710" y="165" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="795" y="190" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="bold" font-family="sans-serif">超高</text>
+  <text x="795" y="208" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Massive parallel</text>
+
+  <rect x="710" y="225" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="795" y="247" text-anchor="middle" fill="#22c55e" font-size="12" font-family="sans-serif">ジョブ単位課金</text>
+  <text x="795" y="265" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Per-job billing</text>
+
+  <rect x="710" y="285" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="795" y="310" text-anchor="middle" fill="#f1f5f9" font-size="13" font-family="sans-serif">無制限 (S3)</text>
+
+  <rect x="710" y="345" width="170" height="50" rx="4" fill="#1e293b"/>
+  <text x="795" y="367" text-anchor="middle" fill="#f1f5f9" font-size="12" font-family="sans-serif">フリート並列</text>
+  <text x="795" y="385" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Instance fleet</text>
+
+  <rect x="710" y="405" width="170" height="65" rx="4" fill="#1e293b"/>
+  <text x="795" y="428" text-anchor="middle" fill="#f1f5f9" font-size="11" font-family="sans-serif">大規模</text>
+  <text x="795" y="446" text-anchor="middle" fill="#f1f5f9" font-size="11" font-family="sans-serif">オフラインスコアリング</text>
+  <text x="795" y="462" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Offline scoring</text>
+</svg>

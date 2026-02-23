@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="28" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f1f5f9">SageMaker Training Job アーキテクチャ</text>
+
+  <!-- Step 1: Training Code -->
+  <rect x="20" y="60" width="150" height="120" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="95" y="84" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">Training Code</text>
+  <rect x="35" y="95" width="120" height="28" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="95" y="114" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">S3 (スクリプト)</text>
+  <rect x="35" y="130" width="120" height="28" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="95" y="149" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">ECR (コンテナ)</text>
+
+  <!-- Step 2: Training Data -->
+  <rect x="20" y="210" width="150" height="120" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="95" y="232" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#22c55e">Training Data</text>
+  <text x="95" y="250" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">S3 Input Channels</text>
+  <rect x="35" y="258" width="120" height="20" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="95" y="272" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">train /</text>
+  <rect x="35" y="282" width="120" height="20" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="95" y="296" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">validation /</text>
+  <rect x="35" y="305" width="120" height="18" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="95" y="318" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">test</text>
+
+  <!-- Arrow Code → Job -->
+  <line x1="170" y1="120" x2="270" y2="180" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="270,180 260,172 258,184" fill="#3b82f6"/>
+
+  <!-- Arrow Data → Job -->
+  <line x1="170" y1="270" x2="270" y2="230" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="270,230 258,234 261,222" fill="#22c55e"/>
+
+  <!-- Main Training Job box -->
+  <rect x="270" y="130" width="310" height="220" rx="10" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="425" y="154" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f97316">Training Job</text>
+  <text x="425" y="170" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">ml.p3.2xlarge / ml.p4d.24xlarge 等</text>
+
+  <!-- Steps inside -->
+  <rect x="285" y="178" width="280" height="30" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="425" y="198" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">1. Container 起動 (ECR イメージ)</text>
+
+  <rect x="285" y="215" width="280" height="30" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="425" y="235" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">2. S3 → インスタンス データコピー</text>
+
+  <rect x="285" y="252" width="280" height="30" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="425" y="272" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">3. 学習実行 (GPU / CPU)</text>
+
+  <rect x="285" y="289" width="280" height="30" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="425" y="309" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">4. チェックポイント → S3 保存</text>
+
+  <!-- Spot option badge -->
+  <rect x="295" y="325" width="130" height="18" rx="3" fill="#ef4444" fill-opacity="0.2" stroke="#ef4444" stroke-width="1"/>
+  <text x="360" y="338" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#ef4444">Spot Training: 最大90%削減</text>
+
+  <!-- Arrow Job → Model Artifacts -->
+  <line x1="580" y1="200" x2="680" y2="145" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="680,145 672,153 682,160" fill="#f97316"/>
+
+  <!-- Arrow Job → Model Registry -->
+  <line x1="580" y1="280" x2="680" y2="310" stroke="#a855f7" stroke-width="1.5"/>
+  <polygon points="680,310 671,302 669,314" fill="#a855f7"/>
+
+  <!-- Model Artifacts (S3) -->
+  <rect x="680" y="100" width="200" height="80" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="780" y="128" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f97316">Model Artifacts</text>
+  <text x="780" y="148" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">S3 Output Path</text>
+  <text x="780" y="165" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">model.tar.gz</text>
+
+  <!-- Model Registry -->
+  <rect x="680" y="275" width="200" height="80" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="780" y="305" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#a855f7">Model Registry</text>
+  <text x="780" y="323" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">バージョン管理</text>
+  <text x="780" y="340" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">承認ワークフロー</text>
+
+  <!-- Monitoring: CloudWatch + Metrics -->
+  <rect x="270" y="395" width="310" height="75" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="425" y="418" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#14b8a6">モニタリング</text>
+  <text x="310" y="440" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">CloudWatch Logs</text>
+  <text x="425" y="440" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">SageMaker Metrics</text>
+  <text x="540" y="440" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Debugger</text>
+  <line x1="425" y1="350" x2="425" y2="395" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="425,395 420,383 430,383" fill="#14b8a6"/>
+
+  <text x="450" y="485" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">データ転送モード: File (コピー) | Pipe (ストリーミング) | FastFile (マウント)</text>
+</svg>

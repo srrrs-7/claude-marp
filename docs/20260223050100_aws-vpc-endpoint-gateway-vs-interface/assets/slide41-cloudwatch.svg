@@ -1,0 +1,69 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">CloudWatch メトリクス &amp; VPC Flow Logs — 監視設計</text>
+  <!-- Left: CloudWatch Metrics -->
+  <rect x="10" y="36" width="375" height="350" rx="8" fill="#fff" stroke="#ff9900" stroke-width="2"/>
+  <rect x="10" y="36" width="375" height="26" rx="8" fill="#ff9900"/>
+  <text x="197" y="54" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">CloudWatch Metrics (Interface EP)</text>
+  <!-- Metric 1: Bytes -->
+  <rect x="22" y="72" width="351" height="55" rx="5" fill="#fff8f0" stroke="#f59e0b" stroke-width="1"/>
+  <text x="34" y="90" font-family="Arial,sans-serif" font-size="10" fill="#b45309" font-weight="bold">BytesProcessed / PacketsDropped</text>
+  <text x="34" y="108" font-family="Arial,sans-serif" font-size="9" fill="#555">Namespace: AWS/PrivateLinkEndpoints</text>
+  <text x="34" y="123" font-family="Arial,sans-serif" font-size="9" fill="#888">Dim: VpcEndpointId, ServiceName, AZ</text>
+  <!-- Metric 2 -->
+  <rect x="22" y="137" width="351" height="55" rx="5" fill="#fff8f0" stroke="#f59e0b" stroke-width="1"/>
+  <text x="34" y="155" font-family="Arial,sans-serif" font-size="10" fill="#b45309" font-weight="bold">NewConnections / ActiveConnections</text>
+  <text x="34" y="173" font-family="Arial,sans-serif" font-size="9" fill="#555">接続数の監視 — 異常な急増を検知</text>
+  <text x="34" y="188" font-family="Arial,sans-serif" font-size="9" fill="#888">アラーム: 5分間の閾値超過</text>
+  <!-- Chart mock (bar chart) -->
+  <rect x="22" y="202" width="351" height="100" rx="5" fill="#f8fafc" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="197" y="220" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">BytesProcessed (24h)</text>
+  <!-- Bar chart bars -->
+  <rect x="40" y="265" width="18" height="30" fill="#ff9900" opacity="0.7"/>
+  <rect x="65" y="255" width="18" height="40" fill="#ff9900" opacity="0.7"/>
+  <rect x="90" y="250" width="18" height="45" fill="#ff9900" opacity="0.7"/>
+  <rect x="115" y="260" width="18" height="35" fill="#ff9900" opacity="0.7"/>
+  <rect x="140" y="245" width="18" height="50" fill="#ff9900" opacity="0.7"/>
+  <rect x="165" y="240" width="18" height="55" fill="#ff9900" opacity="0.7"/>
+  <rect x="190" y="255" width="18" height="40" fill="#ff9900" opacity="0.7"/>
+  <rect x="215" y="262" width="18" height="33" fill="#ff9900" opacity="0.7"/>
+  <rect x="240" y="258" width="18" height="37" fill="#ff9900" opacity="0.7"/>
+  <rect x="265" y="248" width="18" height="47" fill="#ff9900" opacity="0.7"/>
+  <rect x="290" y="235" width="18" height="60" fill="#ef4444" opacity="0.7"/>
+  <rect x="315" y="252" width="18" height="43" fill="#ff9900" opacity="0.7"/>
+  <text x="299" y="230" font-family="Arial,sans-serif" font-size="8" fill="#ef4444" text-anchor="middle">異常</text>
+  <line x1="30" y1="295" x2="360" y2="295" stroke="#e5e7eb" stroke-width="1"/>
+  <!-- Gateway EP metrics -->
+  <rect x="22" y="312" width="351" height="62" rx="5" fill="#f5f3ff" stroke="#7b5ea7" stroke-width="1"/>
+  <text x="34" y="330" font-family="Arial,sans-serif" font-size="10" fill="#7b5ea7" font-weight="bold">Gateway EP メトリクス</text>
+  <text x="34" y="348" font-family="Arial,sans-serif" font-size="9" fill="#555">専用メトリクスなし — VPC Flow Logs で代替</text>
+  <text x="34" y="364" font-family="Arial,sans-serif" font-size="9" fill="#888">S3 Access Logs / DynamoDB Streams で補完</text>
+  <!-- Right: VPC Flow Logs -->
+  <rect x="415" y="36" width="375" height="350" rx="8" fill="#fff" stroke="#7b5ea7" stroke-width="2"/>
+  <rect x="415" y="36" width="375" height="26" rx="8" fill="#7b5ea7"/>
+  <text x="602" y="54" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">VPC Flow Logs</text>
+  <!-- Flow Logs explanation -->
+  <rect x="427" y="72" width="351" height="55" rx="5" fill="#f5f3ff" stroke="#7b5ea7" stroke-width="1"/>
+  <text x="439" y="90" font-family="Arial,sans-serif" font-size="10" fill="#7b5ea7" font-weight="bold">Interface EP ENI のフローログを有効化</text>
+  <text x="439" y="108" font-family="Arial,sans-serif" font-size="9" fill="#555">ENI レベルで ACCEPT/REJECT を記録</text>
+  <text x="439" y="122" font-family="Arial,sans-serif" font-size="9" fill="#888">S3 / CloudWatch Logs / Kinesis に出力可</text>
+  <!-- Flow log record example -->
+  <rect x="427" y="137" width="351" height="90" rx="5" fill="#f8f9fa" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="439" y="155" font-family="Arial,sans-serif" font-size="9" fill="#555" font-weight="bold">フローログレコード例 (ACCEPT)</text>
+  <text x="435" y="172" font-family="monospace,Arial" font-size="8" fill="#059669">2 123456789 eni-0abc  10.0.1.10 10.0.1.50</text>
+  <text x="435" y="187" font-family="monospace,Arial" font-size="8" fill="#059669">443 54321 6 ACCEPT OK</text>
+  <text x="439" y="207" font-family="Arial,sans-serif" font-size="9" fill="#555" font-weight="bold">フローログレコード例 (REJECT)</text>
+  <text x="435" y="222" font-family="monospace,Arial" font-size="8" fill="#ef4444">2 123456789 eni-0abc  10.0.2.5  10.0.1.50</text>
+  <text x="435" y="238" font-family="monospace,Arial" font-size="8" fill="#ef4444">443 55000 6 REJECT OK  ← SG/NACL 拒否</text>
+  <!-- CloudWatch Insights query -->
+  <rect x="427" y="237" width="351" height="80" rx="5" fill="#f5f3ff" stroke="#7b5ea7" stroke-width="1"/>
+  <text x="439" y="255" font-family="Arial,sans-serif" font-size="9" fill="#7b5ea7" font-weight="bold">CloudWatch Insights クエリ例</text>
+  <text x="435" y="273" font-family="monospace,Arial" font-size="8" fill="#333">fields @timestamp, srcAddr, dstAddr, action</text>
+  <text x="435" y="288" font-family="monospace,Arial" font-size="8" fill="#333">| filter action = "REJECT"</text>
+  <text x="435" y="303" font-family="monospace,Arial" font-size="8" fill="#333">| sort @timestamp desc | limit 20</text>
+  <!-- Alarm recommendation -->
+  <rect x="427" y="327" width="351" height="52" rx="5" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
+  <text x="602" y="345" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">監視アラーム推奨</text>
+  <text x="439" y="363" font-family="Arial,sans-serif" font-size="9" fill="#555">PacketsDropped急増: SG/NACL ブロック増加の可能性</text>
+  <text x="439" y="376" font-family="Arial,sans-serif" font-size="9" fill="#555">BytesProcessed急増: 意図しないデータ転送やスキャン</text>
+</svg>

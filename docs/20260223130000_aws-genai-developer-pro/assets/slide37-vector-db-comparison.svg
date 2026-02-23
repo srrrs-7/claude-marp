@@ -1,0 +1,79 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">ベクターデータベース比較</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">Bedrock Knowledge Bases で選択可能なVector Store</text>
+
+  <!-- Header row -->
+  <rect x="15" y="65" width="870" height="26" rx="5" fill="#374151"/>
+  <text x="100" y="82" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#d1d5db">データベース</text>
+  <text x="240" y="82" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#d1d5db">タイプ</text>
+  <text x="360" y="82" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#d1d5db">レイテンシ</text>
+  <text x="480" y="82" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#d1d5db">スケール</text>
+  <text x="620" y="82" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#d1d5db">強み</text>
+  <text x="800" y="82" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#d1d5db">ユースケース</text>
+
+  <!-- OpenSearch Serverless -->
+  <rect x="15" y="95" width="870" height="44" rx="4" fill="#172554"/>
+  <rect x="15" y="95" width="6" height="44" rx="2" fill="#3b82f6"/>
+  <text x="100" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#60a5fa">OpenSearch Serverless ⭐</text>
+  <text x="100" y="128" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">AWS ネイティブ</text>
+  <text x="240" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">フルマネージド</text>
+  <text x="360" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">低〜中</text>
+  <text x="480" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">自動スケール</text>
+  <text x="620" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">AWSネイティブ統合・k-NN</text>
+  <text x="620" y="128" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">ハイブリッド検索対応</text>
+  <text x="800" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">Bedrock KBのデフォルト選択</text>
+
+  <!-- Pinecone -->
+  <rect x="15" y="143" width="870" height="44" rx="4" fill="#1f1635"/>
+  <rect x="15" y="143" width="6" height="44" rx="2" fill="#a855f7"/>
+  <text x="100" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#c4b5fd">Pinecone</text>
+  <text x="100" y="176" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">専用ベクターDB</text>
+  <text x="240" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">専用マネージド</text>
+  <text x="360" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">低</text>
+  <text x="480" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">高スケール</text>
+  <text x="620" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">高速・シンプルAPI</text>
+  <text x="620" y="176" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">マネージドで運用不要</text>
+  <text x="800" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">ベクター専用・スタートアップ</text>
+
+  <!-- Aurora PostgreSQL -->
+  <rect x="15" y="191" width="870" height="44" rx="4" fill="#052e16"/>
+  <rect x="15" y="191" width="6" height="44" rx="2" fill="#10b981"/>
+  <text x="100" y="208" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#6ee7b7">Aurora PostgreSQL</text>
+  <text x="100" y="224" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">pgvector拡張</text>
+  <text x="240" y="216" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">RDBマネージド</text>
+  <text x="360" y="216" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">中</text>
+  <text x="480" y="216" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">インスタンス依存</text>
+  <text x="620" y="208" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">SQL + ベクター検索統合</text>
+  <text x="620" y="224" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">既存RDBと同一インフラ</text>
+  <text x="800" y="216" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">既存PostgreSQL環境がある場合</text>
+
+  <!-- Redis Enterprise -->
+  <rect x="15" y="239" width="870" height="44" rx="4" fill="#7c2d12"/>
+  <rect x="15" y="239" width="6" height="44" rx="2" fill="#f59e0b"/>
+  <text x="100" y="256" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fde68a">Redis Enterprise</text>
+  <text x="100" y="272" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">インメモリ</text>
+  <text x="240" y="264" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fef3c7">インメモリ</text>
+  <text x="360" y="264" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fef3c7">超低</text>
+  <text x="480" y="264" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fef3c7">水平スケール</text>
+  <text x="620" y="256" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">超低レイテンシ・既存Redis活用</text>
+  <text x="620" y="272" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">RediSearch モジュール</text>
+  <text x="800" y="264" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fef3c7">レイテンシ最重視アプリ</text>
+
+  <!-- MongoDB Atlas -->
+  <rect x="15" y="287" width="870" height="44" rx="4" fill="#1c1917"/>
+  <rect x="15" y="287" width="6" height="44" rx="2" fill="#84cc16"/>
+  <text x="100" y="304" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#d9f99d">MongoDB Atlas</text>
+  <text x="100" y="320" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bef264">ドキュメントDB</text>
+  <text x="240" y="312" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ecfccb">クラウドマネージド</text>
+  <text x="360" y="312" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ecfccb">低〜中</text>
+  <text x="480" y="312" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ecfccb">グローバル</text>
+  <text x="620" y="304" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d9f99d">ドキュメント+ベクター統合</text>
+  <text x="620" y="320" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bef264">柔軟なスキーマ</text>
+  <text x="800" y="312" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ecfccb">MongoDB移行・柔軟データモデル</text>
+
+  <!-- Key insight -->
+  <rect x="15" y="345" width="870" height="44" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="363" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">試験Tip: AWSネイティブ・フルマネージド・ハイブリッド検索 → OpenSearch Serverless がデフォルト推奨</text>
+  <text x="450" y="381" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">既存DB環境を活用したい場合 → Aurora(pgvector) / MongoDB Atlas / Redis / Pinecone を選択</text>
+</svg>

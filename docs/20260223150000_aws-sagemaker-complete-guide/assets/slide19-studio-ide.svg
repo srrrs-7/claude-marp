@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="900" height="500" fill="#0f172a"/>
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#f1f5f9">SageMaker Studio IDE 統合環境</text>
+
+  <!-- Outer Studio Container -->
+  <rect x="20" y="45" width="860" height="350" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="450" y="65" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#3b82f6">SageMaker Studio</text>
+
+  <!-- Row 1 panels -->
+  <!-- Notebooks -->
+  <rect x="40" y="75" width="130" height="90" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="105" y="100" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">Notebooks</text>
+  <text x="105" y="118" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">JupyterLab</text>
+  <text x="105" y="132" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Python / R</text>
+  <text x="105" y="146" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Kernel管理</text>
+
+  <!-- Experiments -->
+  <rect x="185" y="75" width="130" height="90" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="250" y="100" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#22c55e">Experiments</text>
+  <text x="250" y="118" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Trial追跡</text>
+  <text x="250" y="132" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">メトリクス比較</text>
+  <text x="250" y="146" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">TensorBoard連携</text>
+
+  <!-- Model Registry -->
+  <rect x="330" y="75" width="130" height="90" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="395" y="100" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#a855f7">Model Registry</text>
+  <text x="395" y="118" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">バージョン管理</text>
+  <text x="395" y="132" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">承認ワークフロー</text>
+  <text x="395" y="146" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">デプロイ連携</text>
+
+  <!-- Pipelines -->
+  <rect x="475" y="75" width="130" height="90" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="540" y="100" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f97316">Pipelines</text>
+  <text x="540" y="118" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">DAGワークフロー</text>
+  <text x="540" y="132" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">CI/CD ML</text>
+  <text x="540" y="146" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">スケジュール実行</text>
+
+  <!-- JumpStart -->
+  <rect x="620" y="75" width="130" height="90" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="685" y="100" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#14b8a6">JumpStart</text>
+  <text x="685" y="118" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">モデルハブ</text>
+  <text x="685" y="132" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">FMカタログ</text>
+  <text x="685" y="146" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">1-clickデプロイ</text>
+
+  <!-- Row 2 panels -->
+  <!-- Data Wrangler -->
+  <rect x="40" y="185" width="130" height="80" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="105" y="210" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#ef4444">Data Wrangler</text>
+  <text x="105" y="228" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">データ変換・分析</text>
+  <text x="105" y="242" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">300+変換レシピ</text>
+
+  <!-- Feature Store -->
+  <rect x="185" y="185" width="130" height="80" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="250" y="210" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">Feature Store</text>
+  <text x="250" y="228" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Online/Offline</text>
+  <text x="250" y="242" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">特徴量共有</text>
+
+  <!-- Debugger -->
+  <rect x="330" y="185" width="130" height="80" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="395" y="210" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#22c55e">Debugger</text>
+  <text x="395" y="228" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">学習監視</text>
+  <text x="395" y="242" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">ルールエンジン</text>
+
+  <!-- Clarify -->
+  <rect x="475" y="185" width="130" height="80" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="540" y="210" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#a855f7">Clarify</text>
+  <text x="540" y="228" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">バイアス検出</text>
+  <text x="540" y="242" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">SHAP説明</text>
+
+  <!-- Ground Truth -->
+  <rect x="620" y="185" width="130" height="80" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="685" y="210" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f97316">Ground Truth</text>
+  <text x="685" y="228" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">データラベリング</text>
+  <text x="685" y="242" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">HITL</text>
+
+  <!-- Infrastructure layer -->
+  <rect x="40" y="285" width="840" height="95" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="460" y="305" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">基盤インフラストラクチャ</text>
+
+  <!-- EFS -->
+  <rect x="55" y="315" width="150" height="50" rx="5" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="130" y="337" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#14b8a6">EFS (共有ストレージ)</text>
+  <text x="130" y="353" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">永続的ホームディレクトリ</text>
+
+  <!-- KernelGateway -->
+  <rect x="225" y="315" width="155" height="50" rx="5" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="302" y="337" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">KernelGateway</text>
+  <text x="302" y="353" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">カーネルセッション管理</text>
+
+  <!-- JupyterServer -->
+  <rect x="400" y="315" width="155" height="50" rx="5" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="477" y="337" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">JupyterServer App</text>
+  <text x="477" y="353" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">WebUI / 認証</text>
+
+  <!-- IAM + VPC -->
+  <rect x="575" y="315" width="295" height="50" rx="5" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="722" y="337" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f97316">IAM / VPC / KMS</text>
+  <text x="722" y="353" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">アクセス制御 / ネットワーク分離 / 暗号化</text>
+
+  <!-- Legend -->
+  <text x="450" y="415" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">Studio Domain: ユーザープロファイルごとに独立した環境 | IAM Identity Center 連携でSSO対応</text>
+</svg>

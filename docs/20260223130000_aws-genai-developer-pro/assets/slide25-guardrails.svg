@@ -1,0 +1,95 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="420" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Bedrock Guardrails</text>
+  <text x="450" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">AIアプリケーションの安全性・信頼性を保証する多層防御フィルタリング</text>
+
+  <!-- Flow diagram -->
+  <rect x="15" y="68" width="115" height="50" rx="6" fill="#172554" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="73" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">ユーザー</text>
+  <text x="73" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">入力</text>
+  <polygon points="135,93 155,88 155,98" fill="#6d28d9"/>
+
+  <rect x="157" y="58" width="155" height="180" rx="8" fill="#1e1b4b" stroke="#ef4444" stroke-width="2"/>
+  <text x="235" y="78" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ef4444">Input Filter</text>
+  <rect x="167" y="88" width="135" height="22" rx="4" fill="#450a0a"/>
+  <text x="235" y="103" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">コンテンツフィルター</text>
+  <rect x="167" y="116" width="135" height="22" rx="4" fill="#450a0a"/>
+  <text x="235" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">PII 検出・マスキング</text>
+  <rect x="167" y="144" width="135" height="22" rx="4" fill="#450a0a"/>
+  <text x="235" y="159" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">トピック拒否</text>
+  <rect x="167" y="172" width="135" height="22" rx="4" fill="#450a0a"/>
+  <text x="235" y="187" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">ワードフィルター</text>
+  <rect x="167" y="200" width="135" height="22" rx="4" fill="#450a0a"/>
+  <text x="235" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">Prompt Attack 検出</text>
+
+  <polygon points="317,148 337,143 337,153" fill="#6d28d9"/>
+
+  <rect x="339" y="88" width="140" height="132" rx="8" fill="#3b0764" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="409" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#e9d5ff">FM</text>
+  <text x="409" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#e9d5ff">モデル</text>
+  <text x="409" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Claude / Titan</text>
+  <text x="409" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Llama / Nova</text>
+  <text x="409" y="196" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">等 Bedrock FM</text>
+  <text x="409" y="212" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#4b5563">Knowledge Base連携可</text>
+
+  <polygon points="484,148 504,143 504,153" fill="#6d28d9"/>
+
+  <rect x="506" y="58" width="155" height="180" rx="8" fill="#1e1b4b" stroke="#10b981" stroke-width="2"/>
+  <text x="584" y="78" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#34d399">Output Filter</text>
+  <rect x="516" y="88" width="135" height="22" rx="4" fill="#064e3b"/>
+  <text x="584" y="103" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">コンテンツフィルター</text>
+  <rect x="516" y="116" width="135" height="22" rx="4" fill="#064e3b"/>
+  <text x="584" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">PII 匿名化</text>
+  <rect x="516" y="144" width="135" height="22" rx="4" fill="#064e3b"/>
+  <text x="584" y="159" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">グラウンディングチェック</text>
+  <rect x="516" y="172" width="135" height="22" rx="4" fill="#064e3b"/>
+  <text x="584" y="187" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">トピック拒否</text>
+  <rect x="516" y="200" width="135" height="22" rx="4" fill="#064e3b"/>
+  <text x="584" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">ワードフィルター</text>
+
+  <polygon points="666,148 686,143 686,153" fill="#6d28d9"/>
+
+  <rect x="688" y="68" width="115" height="50" rx="6" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+  <text x="746" y="90" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#6ee7b7">安全な</text>
+  <text x="746" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#6ee7b7">出力</text>
+
+  <!-- Block path -->
+  <rect x="688" y="148" width="115" height="40" rx="6" fill="#450a0a" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="746" y="165" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">ブロック</text>
+  <text x="746" y="181" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">（代替メッセージ）</text>
+
+  <text x="815" y="92" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#34d399">✅ Pass</text>
+  <text x="815" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#ef4444">❌ Block</text>
+
+  <!-- Feature details -->
+  <rect x="15" y="255" width="870" height="152" rx="8" fill="#1f2937"/>
+  <text x="450" y="275" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">各フィルターの詳細（試験重要）</text>
+  <rect x="25" y="286" width="200" height="108" rx="5" fill="#0f172a"/>
+  <text x="125" y="306" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fca5a5">コンテンツフィルター</text>
+  <text x="125" y="324" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">ヘイト・暴力・性的・</text>
+  <text x="125" y="340" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">誹謗中傷・危険な話題</text>
+  <text x="125" y="358" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">強度: NONE/LOW/MED/HIGH</text>
+  <text x="125" y="376" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">入出力の両方に適用可</text>
+  <text x="125" y="388" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#64748b">AWS: DETECT/BLOCK設定</text>
+  <rect x="238" y="286" width="200" height="108" rx="5" fill="#0f172a"/>
+  <text x="338" y="306" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#60a5fa">PIIフィルター</text>
+  <text x="338" y="324" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">メールアドレス・電話番号</text>
+  <text x="338" y="340" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">クレジットカード・SSN</text>
+  <text x="338" y="358" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">氏名・住所・IPアドレス</text>
+  <text x="338" y="376" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">アクション: MASK/BLOCK</text>
+  <text x="338" y="388" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#64748b">正規表現カスタムPII対応</text>
+  <rect x="451" y="286" width="200" height="108" rx="5" fill="#0f172a"/>
+  <text x="551" y="306" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#34d399">トピック拒否</text>
+  <text x="551" y="324" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">特定トピックを禁止</text>
+  <text x="551" y="340" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">例: 競合他社の話題</text>
+  <text x="551" y="358" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">法的アドバイス禁止</text>
+  <text x="551" y="376" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">自然言語で定義（最大10）</text>
+  <text x="551" y="388" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#64748b">代替メッセージ設定可</text>
+  <rect x="664" y="286" width="215" height="108" rx="5" fill="#0f172a"/>
+  <text x="772" y="306" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#d8b4fe">グラウンディングチェック</text>
+  <text x="772" y="324" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">ハルシネーション検出</text>
+  <text x="772" y="340" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">ソース文書との一致確認</text>
+  <text x="772" y="358" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">閾値: 0.0〜1.0</text>
+  <text x="772" y="376" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">RAGシステムに特に重要</text>
+  <text x="772" y="388" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#64748b">Relevance確認も同時実施</text>
+</svg>

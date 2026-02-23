@@ -1,0 +1,209 @@
+{
+	"slides": [
+		{
+			"title": "Bedrock コスト最適化",
+			"content": ["![w:900 center](assets/slide31-bedrock-cost.svg)"],
+			"layout": "default",
+			"speakerNotes": "On-demand: 使用量課金（開発・テスト向け）。Provisioned Throughput: 固定スループット（MCU単位・時間課金、本番大量使用向け）。Batch Inference: 非同期大量処理（50%割引）。Prompt Caching: 繰り返しプロンプトの再利用でコスト削減。Cross-region inference: 負荷分散でスループット向上。"
+		},
+		{
+			"title": "Bedrock セキュリティ・IAM",
+			"content": ["![w:900 center](assets/slide32-bedrock-security.svg)"],
+			"layout": "default",
+			"speakerNotes": "IAMポリシーでbedrock:InvokeModel等のアクション制御。VPCエンドポイント（AWS PrivateLink）でインターネットを経由せずにBedrockにアクセス。KMSでカスタムモデルとKnowledge Basesのデータを暗号化。CloudTrailでAPI呼び出しを監査。ユーザーデータはAWSのモデル学習に使われない（プライバシー保証）。"
+		},
+		{
+			"title": "RAG (Retrieval-Augmented Generation) とは",
+			"content": ["![w:900 center](assets/slide33-rag-overview.svg)"],
+			"layout": "default",
+			"speakerNotes": "RAG = LLMの知識の限界をリアルタイム情報取得で補う設計パターン。LLMはカットオフ後の情報を知らない → 外部DBから関連情報を取得してコンテキストに注入。知識のアップデートにFine-tuningが不要。引用元を明示できるため透明性が高い。試験ではRAGとFine-tuningの使い分けが頻出。"
+		},
+		{
+			"title": "RAG アーキテクチャ詳細フロー",
+			"content": ["![w:900 center](assets/slide34-rag-architecture.svg)"],
+			"layout": "default",
+			"speakerNotes": "Offline（インデックス作成）: ドキュメント→チャンキング→エンベディング→ベクターDB格納。Online（推論時）: クエリ→エンベディング→KNN検索→Top-Kチャンク取得→プロンプトに注入→LLM生成→回答。Bedrock Knowledge BasesはこのフローをフルマネージドでRetrieveAndGenerate APIとして提供。"
+		},
+		{
+			"title": "チャンキング戦略の比較",
+			"content": ["![w:900 center](assets/slide35-chunking-strategies.svg)"],
+			"layout": "default",
+			"speakerNotes": "固定サイズ: 一定トークン数でカット（シンプル・デフォルト）。セマンティック: 意味の切れ目でチャンク（精度高・計算コスト高）。階層型: 親チャンク（大）+子チャンク（小）の二層構造（文脈保持）。カスタム変換: LambdaでPDF解析・表抽出等の独自処理。チャンクサイズ（200〜2000トークン）とオーバーラップ（20〜30%）の設定が重要。"
+		},
+		{
+			"title": "ベクターエンベディングの仕組み",
+			"content": ["![w:900 center](assets/slide36-vector-embeddings.svg)"],
+			"layout": "default",
+			"speakerNotes": "テキストチャンクをEmbedding Modelで高次元ベクター（1024〜1536次元）に変換。コサイン類似度でクエリと最も近いチャンクを検索（KNN: K-Nearest Neighbors）。次元数が高いほど情報量が多いが計算コスト増。正規化（ノルム=1）によりコサイン類似度=内積で効率計算。"
+		},
+		{
+			"title": "ベクターデータベース比較",
+			"content": ["![w:900 center](assets/slide37-vector-db-comparison.svg)"],
+			"layout": "default",
+			"speakerNotes": "Amazon OpenSearch Serverless: AWSネイティブ・k-NN検索・フルマネージド。Pinecone: 専用ベクターDB・高速・マネージド。Redis Enterprise: インメモリ・超低レイテンシ・既存Redis活用。MongoDB Atlas: ドキュメントDB+ベクター検索の統合。Aurora PostgreSQL: pgvector拡張・RDBと統合。試験では各DBの特性とユースケースのマッチングが問われる。"
+		},
+		{
+			"title": "Amazon OpenSearch Serverless での実装",
+			"content": ["![w:900 center](assets/slide38-opensearch-serverless.svg)"],
+			"layout": "default",
+			"speakerNotes": "OpenSearch Serverless = サーバーレスOpenSearchクラスター（自動スケール）。ベクターエンジン: nmslib（Hierarchical Navigable Small World）アルゴリズム使用。コレクション作成 → ベクターインデックス設定（次元数・類似度メトリクス指定）→ データ取り込み → KNN検索。Bedrock Knowledge Basesと自動統合。コスト: OCU(OpenSearch Compute Unit)時間課金。"
+		},
+		{
+			"title": "Semantic Search vs Keyword Search vs Hybrid",
+			"content": ["![w:900 center](assets/slide39-search-types.svg)"],
+			"layout": "default",
+			"speakerNotes": "キーワード検索（BM25/TF-IDF）: 完全一致・高速・文字通りの検索に強い。セマンティック検索（ベクター）: 意味的類似度・同義語対応・自然言語クエリに強い。ハイブリッド検索: 両方を組み合わせてランキング（RRF: Reciprocal Rank Fusionで統合）。Bedrock Knowledge Basesはハイブリッド検索に対応。一般的にハイブリッドが最高精度。"
+		},
+		{
+			"title": "Advanced RAG パターン（HyDE・Re-rank）",
+			"content": ["![w:900 center](assets/slide40-advanced-rag.svg)"],
+			"layout": "default",
+			"speakerNotes": "HyDE（Hypothetical Document Embeddings）: クエリからLLMで仮想回答を生成→その回答をエンベディングして検索（精度向上）。Re-ranking: 初期検索結果をCross-Encoder Modelで再スコアリング（精度向上）。Query Expansion: クエリを複数形式に展開して並列検索。Parent-Child Retrieval: 小チャンクで検索→親チャンクを返す（文脈保持）。Bedrock Re-ranking APIで実装可能。"
+		},
+		{
+			"title": "RAG 評価指標（Faithfulness・Relevancy）",
+			"content": ["![w:900 center](assets/slide41-rag-evaluation.svg)"],
+			"layout": "default",
+			"speakerNotes": "Faithfulness（忠実性）: 生成回答がコンテキスト文書に根拠があるか（ハルシネーション検出）。Answer Relevancy（関連性）: 回答がクエリに答えているか。Context Precision: 検索されたチャンクのうち関連するものの割合。Context Recall: 正解に必要な情報が検索できているか。RAGASフレームワークで自動評価。Bedrock Guardrailsのグラウンディングチェックもこれを実装。"
+		},
+		{
+			"title": "RAG vs Fine-tuning 選択基準",
+			"content": ["![w:900 center](assets/slide42-rag-vs-finetune.svg)"],
+			"layout": "default",
+			"speakerNotes": "RAG: 最新情報・社内文書・更新頻繁・引用必要・コスト低・即座に適用可。Fine-tuning: スタイル/フォーマット適応・特定タスク最適化・プロンプトエンジニアリング不要・データ非公開。両方: ドメイン知識(CPT) + タスク適応(FT) + リアルタイム情報(RAG)。試験頻出: 「更新頻繁→RAG」「形式固定→FT」「知識注入→CPT」。"
+		},
+		{
+			"title": "プロンプトエンジニアリングの基礎",
+			"content": ["![w:900 center](assets/slide43-prompt-basics.svg)"],
+			"layout": "default",
+			"speakerNotes": "プロンプトエンジニアリング = LLMへの入力を最適化してより良い出力を得る技術。コスト・リスクゼロでモデル改善の第一手段。プロンプトの構成要素: 指示(Instruction)・コンテキスト・入力データ・出力形式指定。明確な指示・具体例・制約の明示が重要。試験では「最もコスト効果的な改善策」として頻出。"
+		},
+		{
+			"title": "Zero-shot / One-shot / Few-shot Learning",
+			"content": ["![w:900 center](assets/slide44-shot-learning.svg)"],
+			"layout": "default",
+			"speakerNotes": "Zero-shot: 例なしでタスク説明のみ。汎用モデルに有効。One-shot: 1例を提示。Few-shot: 2〜10例を提示（精度向上）。例は高品質・多様・タスク代表的なものを選択。Too many shots → コンテキスト制限到達・コスト増。Chain-of-Thought with few-shot: 推論ステップを含む例を提示すると複雑タスクの精度が大幅向上。"
+		},
+		{
+			"title": "Chain-of-Thought (CoT) プロンプティング",
+			"content": ["![w:900 center](assets/slide45-cot-prompting.svg)"],
+			"layout": "default",
+			"speakerNotes": "CoT = 中間推論ステップを明示させることで複雑な問題の精度を向上させる手法。「ステップバイステップで考えてください」の一文で有効化（Zero-shot CoT）。Few-shot CoT: 推論例を提示。Self-Consistency: 複数回生成して多数決。Tree of Thoughts: 分岐する推論木を探索。数学・論理・コーディング問題に特に有効。大規模モデルほど効果大。"
+		},
+		{
+			"title": "ReAct (Reasoning + Acting) パターン",
+			"content": ["![w:900 center](assets/slide46-react-pattern.svg)"],
+			"layout": "default",
+			"speakerNotes": "ReAct = Reasoning（推論）とAction（行動）を交互に繰り返すエージェントパターン。Thought（何をすべきか推論）→ Action（ツール実行）→ Observation（結果観察）→ Thought...のループ。Bedrock Agentsがこのパターンを実装。外部ツール（Search・計算機・API）と統合することで幻覚を減らし事実確認が可能。"
+		},
+		{
+			"title": "プロンプトテンプレートと変数",
+			"content": [
+				"テンプレート化により一貫性・再利用性・保守性を確保",
+				"**Bedrock Prompt Management**: バージョン管理されたプロンプトテンプレートの一元管理"
+			],
+			"code": "import boto3\n\nbr = boto3.client('bedrock-runtime')\n\n# Prompt template with variables\ntemplate = \"\"\"\nあなたは{role}です。\n以下の{document_type}を分析して、{output_format}形式で回答してください。\n\n文書:\n{document}\n\n分析観点: {analysis_focus}\n\"\"\"\n\n# Fill template\nprompt = template.format(\n    role=\"法律アドバイザー\",\n    document_type=\"契約書\",\n    output_format=\"箇条書き\",\n    document=contract_text,\n    analysis_focus=\"リスク項目の特定\"\n)\n\nresponse = br.converse(\n    modelId='anthropic.claude-3-5-sonnet-20241022-v2:0',\n    messages=[{'role': 'user', 'content': [{'text': prompt}]}]\n)",
+			"codeLanguage": "python",
+			"layout": "default",
+			"speakerNotes": "Bedrock Prompt Managementで組織内プロンプトをバージョン管理・共有。プロンプトARNでテンプレートを参照。A/Bテストで最良のプロンプトを特定。LangChainのPromptTemplateと同様の概念をAWSネイティブで提供。"
+		},
+		{
+			"title": "システムプロンプト設計のベストプラクティス",
+			"content": [
+				"**役割定義**: AIのペルソナ・専門性を明確に定義",
+				"**制約設定**: 回答範囲・形式・禁止事項を明示",
+				"**コンテキスト提供**: 背景情報・企業情報・対象ユーザーを記述",
+				"**出力形式指定**: JSON/Markdown/箇条書き等の形式を明確化",
+				"**例示**: 期待する入出力パターンをシステムプロンプトに含める",
+				"**安全ガードレール**: 有害コンテンツ・PII取扱い等の指示を明記"
+			],
+			"layout": "default",
+			"speakerNotes": "システムプロンプトはセッション全体を通じて有効な隠れたコンテキスト。ユーザーには見えない（通常）が全ターンに適用される。Claude等ではAssistantロール冒頭の先回り記述も可能（Prefill）。最大長の制約に注意（コスト増加要因）。Bedrock Guardrailsと組み合わせて多層防御を構築。"
+		},
+		{
+			"title": "プロンプトインジェクション攻撃と対策",
+			"content": ["![w:900 center](assets/slide49-prompt-injection.svg)"],
+			"layout": "default",
+			"speakerNotes": "Direct Injection: ユーザーが指示を上書き（「前の指示を無視して...」）。Indirect Injection: 外部コンテンツ（Webページ・ドキュメント）に悪意ある指示が埋め込まれる（RAGシステムが危険）。対策: Guardrailsでプロンプト攻撃を検出・ブロック、入力をサニタイズ、システムプロンプトで明示的に指示無視を禁止、LLM出力の信頼レベルを制限。"
+		},
+		{
+			"title": "出力フォーマット制御（JSON・XML）",
+			"content": ["構造化出力により後処理・統合が容易になる"],
+			"code": "# JSON形式での出力制御\nsystem_prompt = \"\"\"\n必ず以下のJSON形式で回答してください:\n{\n  \"summary\": \"要約テキスト（100字以内）\",\n  \"sentiment\": \"positive|negative|neutral\",\n  \"key_points\": [\"ポイント1\", \"ポイント2\"],\n  \"confidence\": 0.0〜1.0\n}\nJSON以外のテキストは出力しないでください。\n\"\"\"\n\n# Tool Use (Function Calling) でJSON強制\ntools = [{\n    \"name\": \"analyze_text\",\n    \"description\": \"テキスト分析結果を返す\",\n    \"input_schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"summary\": {\"type\": \"string\"},\n            \"sentiment\": {\"type\": \"string\",\n                          \"enum\": [\"positive\",\"negative\",\"neutral\"]},\n            \"confidence\": {\"type\": \"number\"}\n        },\n        \"required\": [\"summary\", \"sentiment\"]\n    }\n}]",
+			"codeLanguage": "python",
+			"layout": "default",
+			"speakerNotes": "JSON出力制御の2つのアプローチ: ①システムプロンプトでJSON形式を指示（シンプルだが不安定）②Tool Use/Function Callingでスキーマを定義（確実・推奨）。ClaudeはXML形式（<tag>）も得意。BedrockのConverse APIでtoolChoiceをauto/anyで制御可能。"
+		},
+		{
+			"title": "プロンプト最適化・A/Bテスト",
+			"content": ["![w:900 center](assets/slide51-prompt-optimization.svg)"],
+			"layout": "default",
+			"speakerNotes": "プロンプト最適化の手順: ①基準ライン設定→②仮説立て→③バリアント作成→④評価指標測定→⑤統計的検定→⑥勝者採用。Bedrock Model Evaluationでプロンプトバリアントをバッチ評価。Automatic Prompt Optimization（APO）: LLMが自動でプロンプトを改善。DSPy等のフレームワークも活用。試験では「品質改善でコスト最小」の選択肢でプロンプト最適化が正解になることが多い。"
+		},
+		{
+			"title": "Amazon Bedrock Prompt Management",
+			"content": [
+				"**Prompt Store**: プロンプトテンプレートのバージョン管理・共有",
+				"**Prompt Flows 統合**: Prompt ManagementのテンプレートをFlowsで直接参照",
+				"**A/B Testing**: 複数バージョンを評価してベストプロンプトを特定",
+				"**ARNでの参照**: arn:aws:bedrock:region:account:prompt/ID:version",
+				"**コラボレーション**: チーム間でのプロンプト共有と品質管理",
+				"**変数サポート**: {{variable}} 形式で動的パラメータを埋め込み"
+			],
+			"layout": "default",
+			"speakerNotes": "Bedrock Prompt ManagementはConsoleまたはAPIでプロンプトを管理するサービス。バージョン番号（draft/1/2...）でイテレーション管理。Prompt FlowsノードでIDを参照し本番変更なしでプロンプト更新可能。組織のプロンプトライブラリとして活用。IAMポリシーでアクセス制御。"
+		},
+		{
+			"title": "AIエージェントとは：アーキテクチャ",
+			"content": ["![w:900 center](assets/slide53-agent-architecture.svg)"],
+			"layout": "default",
+			"speakerNotes": "AIエージェント = 自律的に目標達成のためにツールを使い、マルチステップのタスクを実行するLLMベースのシステム。コンポーネント: LLMコア（推論・計画）+ ツール（API・DB・計算）+ メモリ（短期・長期）+ プランニング（タスク分解）。シンプルなチャットボットとの違いは「行動できる」点。Bedrock Agentsはこれをマネージドで提供。"
+		},
+		{
+			"title": "ReAct エージェントループ",
+			"content": ["![w:900 center](assets/slide54-react-loop.svg)"],
+			"layout": "default",
+			"speakerNotes": "ReActループの詳細: Thought→「ユーザーの注文履歴を確認する必要がある」。Action→注文DBを検索（Lambda実行）。Observation→「注文ID: 12345、商品: ノートPC、ステータス: 配送中」。Thought→「配送状況を確認する必要がある」。Action→配送APIを呼び出し。Observation→「配送予定: 明日」。Final Answer→「ご注文のノートPCは明日お届けの予定です」。"
+		},
+		{
+			"title": "Bedrock Agents 実装パターン",
+			"content": ["![w:900 center](assets/slide55-agent-patterns.svg)"],
+			"layout": "default",
+			"speakerNotes": "シングルエージェント: 単一のBedrock AgentがKB + アクショングループを使いタスク実行。マルチエージェント: スーパーバイザーエージェントが専門サブエージェントを呼び出して協調（例: 研究エージェント→分析エージェント→レポートエージェント）。エージェント評価: 実行トレースで思考プロセスを可視化・デバッグ。"
+		},
+		{
+			"title": "マルチエージェントシステム",
+			"content": ["![w:900 center](assets/slide56-multi-agent.svg)"],
+			"layout": "default",
+			"speakerNotes": "マルチエージェントの利点: 専門化（各エージェントが特定タスクに特化）・並列処理（独立タスクを同時実行）・スケーラビリティ・耐障害性。Bedrock Agentsのスーパーバイザー: サブエージェントをアクショングループとして定義して呼び出す。通信はAPIベース。アーキテクチャパターン: ハブ&スポーク（中央オーケストレーター）・ピアツーピア・階層型。"
+		},
+		{
+			"title": "エージェントのメモリ管理",
+			"content": ["![w:900 center](assets/slide57-agent-memory.svg)"],
+			"layout": "default",
+			"speakerNotes": "短期メモリ（セッション内）: コンテキストウィンドウに保持される会話履歴。セッションID（sessionId）で会話を継続。長期メモリ（セッション間）: Bedrock AgentsのMemory機能でセッション情報をS3に永続化。ユーザープロファイル・過去の会話サマリーをRAGで参照。エージェントはセッション開始時に長期メモリから関連情報を自動取得。"
+		},
+		{
+			"title": "Function Calling / Tool Use",
+			"content": [
+				"Tool Use（Function Calling）= LLMに外部ツールを呼び出させる機能"
+			],
+			"code": "import boto3\n\nbr = boto3.client('bedrock-runtime')\n\n# ツール定義\ntools = [{\n    \"toolSpec\": {\n        \"name\": \"get_weather\",\n        \"description\": \"指定した都市の現在の天気を取得する\",\n        \"inputSchema\": {\n            \"json\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"city\": {\"type\": \"string\",\n                             \"description\": \"都市名\"}\n                },\n                \"required\": [\"city\"]\n            }\n        }\n    }\n}]\n\nresponse = br.converse(\n    modelId='anthropic.claude-3-5-sonnet-20241022-v2:0',\n    messages=[{'role': 'user',\n               'content': [{'text': '東京の天気は?'}]}],\n    toolConfig={'tools': tools, 'toolChoice': {'auto': {}}}\n)\n# stopReason == 'tool_use' の場合にツール実行",
+			"codeLanguage": "python",
+			"layout": "default",
+			"speakerNotes": "Tool Use/Function CallingはLLMがツールを呼び出すタイミングと引数を自律的に決定する機能。Converse APIのtoolConfigで定義。stopReason='tool_use'でツール実行を検知→ツール実行→toolResult を messages に追加→再度Converse APIを呼び出すサイクル。Bedrock AgentsはこのサイクルをBedrockが自動管理。"
+		},
+		{
+			"title": "エージェント評価指標",
+			"content": ["![w:900 center](assets/slide59-agent-evaluation.svg)"],
+			"layout": "default",
+			"speakerNotes": "タスク完了率: 指定タスクを正確に完了した割合。ステップ効率: 最短ステップでゴールに到達できているか。ツール精度: 適切なツールを適切なタイミングで選択しているか。レイテンシ: エージェントのレスポンス時間（マルチステップほど遅い）。コスト: ツール実行回数・LLM呼び出し回数。Bedrock Agent実行トレースでステップ別デバッグが可能。"
+		},
+		{
+			"title": "エージェントセキュリティ考慮点",
+			"content": ["![w:900 center](assets/slide60-agent-security.svg)"],
+			"layout": "default",
+			"speakerNotes": "プロンプトインジェクション攻撃への対策: エージェントが外部データを処理する際に悪意ある指示が混入する危険。Lambda実行権限の最小化: エージェントのLambda実行ロールはタスクに必要な最小権限のみ。出力検証: エージェントが実行しようとするアクションを人間が確認（Human-in-the-loop）。Bedrock GuardrailsをAgentsにもアタッチ可能。"
+		}
+	]
+}

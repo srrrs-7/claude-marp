@@ -1,0 +1,96 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">カスタム PrivateLink サービスの公開手順</text>
+  <!-- Provider side (top) -->
+  <text x="215" y="46" font-family="Arial,sans-serif" font-size="11" fill="#ff9900" font-weight="bold" text-anchor="middle">Provider 側の作業</text>
+  <!-- Step 1 -->
+  <rect x="15" y="54" width="195" height="80" rx="6" fill="#fff" stroke="#ff9900" stroke-width="2"/>
+  <circle cx="42" cy="80" r="16" fill="#ff9900"/>
+  <text x="42" y="85" font-family="Arial,sans-serif" font-size="13" fill="#fff" font-weight="bold" text-anchor="middle">1</text>
+  <text x="68" y="74" font-family="Arial,sans-serif" font-size="10" fill="#333" font-weight="bold">NLB を作成</text>
+  <text x="22" y="94" font-family="Arial,sans-serif" font-size="9" fill="#555">Internal NLB を作成</text>
+  <text x="22" y="108" font-family="Arial,sans-serif" font-size="9" fill="#555">Target Group にバックエンドを登録</text>
+  <text x="22" y="122" font-family="Arial,sans-serif" font-size="9" fill="#888">TCP 443 でサービスを公開</text>
+  <!-- Arrow 1 to 2 -->
+  <line x1="210" y1="94" x2="228" y2="94" stroke="#ff9900" stroke-width="2"/>
+  <polygon points="224,88 236,94 224,100" fill="#ff9900"/>
+  <!-- Step 2 -->
+  <rect x="230" y="54" width="195" height="80" rx="6" fill="#fff" stroke="#ff9900" stroke-width="2"/>
+  <circle cx="257" cy="80" r="16" fill="#ff9900"/>
+  <text x="257" y="85" font-family="Arial,sans-serif" font-size="13" fill="#fff" font-weight="bold" text-anchor="middle">2</text>
+  <text x="283" y="74" font-family="Arial,sans-serif" font-size="10" fill="#333" font-weight="bold">Endpoint Service 作成</text>
+  <text x="237" y="94" font-family="Arial,sans-serif" font-size="9" fill="#555">NLB を指定して</text>
+  <text x="237" y="108" font-family="Arial,sans-serif" font-size="9" fill="#555">Endpoint Service を作成</text>
+  <text x="237" y="122" font-family="Arial,sans-serif" font-size="9" fill="#888">サービス名が自動生成される</text>
+  <!-- Arrow 2 to 3 -->
+  <line x1="425" y1="94" x2="443" y2="94" stroke="#ff9900" stroke-width="2"/>
+  <polygon points="439,88 451,94 439,100" fill="#ff9900"/>
+  <!-- Step 3 -->
+  <rect x="445" y="54" width="195" height="80" rx="6" fill="#fff" stroke="#ff9900" stroke-width="2"/>
+  <circle cx="472" cy="80" r="16" fill="#ff9900"/>
+  <text x="472" y="85" font-family="Arial,sans-serif" font-size="13" fill="#fff" font-weight="bold" text-anchor="middle">3</text>
+  <text x="498" y="74" font-family="Arial,sans-serif" font-size="10" fill="#333" font-weight="bold">Allowed Principals 設定</text>
+  <text x="452" y="94" font-family="Arial,sans-serif" font-size="9" fill="#555">Consumer アカウントの ARN</text>
+  <text x="452" y="108" font-family="Arial,sans-serif" font-size="9" fill="#555">を許可リストに追加</text>
+  <text x="452" y="122" font-family="Arial,sans-serif" font-size="9" fill="#888">arn:aws:iam::CONSUMER:root</text>
+  <!-- Arrow 3 to Provider-Consumer divider -->
+  <line x1="640" y1="94" x2="658" y2="94" stroke="#ff9900" stroke-width="2"/>
+  <polygon points="654,88 666,94 654,100" fill="#ff9900"/>
+  <!-- Share service name -->
+  <rect x="660" y="54" width="130" height="80" rx="6" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1.5"/>
+  <text x="725" y="76" font-family="Arial,sans-serif" font-size="10" fill="#0369a1" text-anchor="middle" font-weight="bold">サービス名を</text>
+  <text x="725" y="92" font-family="Arial,sans-serif" font-size="10" fill="#0369a1" text-anchor="middle" font-weight="bold">Consumer に共有</text>
+  <text x="725" y="112" font-family="monospace,Arial" font-size="8" fill="#555" text-anchor="middle">com.amazonaws</text>
+  <text x="725" y="126" font-family="monospace,Arial" font-size="8" fill="#555" text-anchor="middle">.vpce.svc-XXXX</text>
+  <!-- Divider -->
+  <line x1="15" y1="150" x2="785" y2="150" stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="400" y="166" font-family="Arial,sans-serif" font-size="10" fill="#888" text-anchor="middle">-- Consumer 側の作業 --</text>
+  <!-- Consumer side (bottom) -->
+  <text x="215" y="185" font-family="Arial,sans-serif" font-size="11" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Consumer 側の作業</text>
+  <!-- Step 4 -->
+  <rect x="15" y="193" width="195" height="80" rx="6" fill="#fff" stroke="#7b5ea7" stroke-width="2"/>
+  <circle cx="42" cy="219" r="16" fill="#7b5ea7"/>
+  <text x="42" y="224" font-family="Arial,sans-serif" font-size="13" fill="#fff" font-weight="bold" text-anchor="middle">4</text>
+  <text x="68" y="213" font-family="Arial,sans-serif" font-size="10" fill="#333" font-weight="bold">Interface EP 作成</text>
+  <text x="22" y="233" font-family="Arial,sans-serif" font-size="9" fill="#555">サービス名を指定して</text>
+  <text x="22" y="247" font-family="Arial,sans-serif" font-size="9" fill="#555">VPC EP を作成</text>
+  <text x="22" y="261" font-family="Arial,sans-serif" font-size="9" fill="#888">サブネット / SG を指定</text>
+  <!-- Arrow 4 to 5 -->
+  <line x1="210" y1="233" x2="228" y2="233" stroke="#7b5ea7" stroke-width="2"/>
+  <polygon points="224,227 236,233 224,239" fill="#7b5ea7"/>
+  <!-- Step 5 -->
+  <rect x="230" y="193" width="195" height="80" rx="6" fill="#fff" stroke="#7b5ea7" stroke-width="2"/>
+  <circle cx="257" cy="219" r="16" fill="#7b5ea7"/>
+  <text x="257" y="224" font-family="Arial,sans-serif" font-size="13" fill="#fff" font-weight="bold" text-anchor="middle">5</text>
+  <text x="283" y="213" font-family="Arial,sans-serif" font-size="10" fill="#333" font-weight="bold">Provider が接続承認</text>
+  <text x="237" y="233" font-family="Arial,sans-serif" font-size="9" fill="#555">Provider: 接続リクエストを</text>
+  <text x="237" y="247" font-family="Arial,sans-serif" font-size="9" fill="#555">Accept (手動 or 自動)</text>
+  <text x="237" y="261" font-family="Arial,sans-serif" font-size="9" fill="#888">Status: pending → available</text>
+  <!-- Arrow 5 to 6 -->
+  <line x1="425" y1="233" x2="443" y2="233" stroke="#7b5ea7" stroke-width="2"/>
+  <polygon points="439,227 451,233 439,239" fill="#7b5ea7"/>
+  <!-- Step 6 -->
+  <rect x="445" y="193" width="195" height="80" rx="6" fill="#fff" stroke="#7b5ea7" stroke-width="2"/>
+  <circle cx="472" cy="219" r="16" fill="#7b5ea7"/>
+  <text x="472" y="224" font-family="Arial,sans-serif" font-size="13" fill="#fff" font-weight="bold" text-anchor="middle">6</text>
+  <text x="498" y="213" font-family="Arial,sans-serif" font-size="10" fill="#333" font-weight="bold">DNS 設定 &amp; 接続確認</text>
+  <text x="452" y="233" font-family="Arial,sans-serif" font-size="9" fill="#555">Private DNS (推奨) or</text>
+  <text x="452" y="247" font-family="Arial,sans-serif" font-size="9" fill="#555">カスタム DNS エントリ追加</text>
+  <text x="452" y="261" font-family="Arial,sans-serif" font-size="9" fill="#888">curl でサービスを疎通確認</text>
+  <!-- Arrow 6 to Done -->
+  <line x1="640" y1="233" x2="658" y2="233" stroke="#7b5ea7" stroke-width="2"/>
+  <polygon points="654,227 666,233 654,239" fill="#7b5ea7"/>
+  <!-- Done -->
+  <rect x="660" y="193" width="130" height="80" rx="6" fill="#10b981"/>
+  <text x="725" y="228" font-family="Arial,sans-serif" font-size="13" fill="#fff" font-weight="bold" text-anchor="middle">完了</text>
+  <text x="725" y="248" font-family="Arial,sans-serif" font-size="10" fill="#d1fae5" text-anchor="middle">PrivateLink 接続</text>
+  <text x="725" y="263" font-family="Arial,sans-serif" font-size="10" fill="#d1fae5" text-anchor="middle">確立</text>
+  <!-- Bottom notes -->
+  <rect x="15" y="290" width="770" height="98" rx="6" fill="#fff" stroke="#e5e7eb" stroke-width="1.5"/>
+  <rect x="15" y="290" width="770" height="22" rx="6" fill="#6b7280"/>
+  <text x="400" y="306" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">補足: Terraform / AWS CLI での作成コマンド</text>
+  <text x="30" y="326" font-family="monospace,Arial" font-size="9" fill="#555"># Provider: Endpoint Service 作成</text>
+  <text x="30" y="341" font-family="monospace,Arial" font-size="9" fill="#7b5ea7">aws ec2 create-vpc-endpoint-service-configuration --network-load-balancer-arns arn:aws:elasticloadbalancing:...</text>
+  <text x="30" y="356" font-family="monospace,Arial" font-size="9" fill="#555"># Consumer: Interface EP 作成</text>
+  <text x="30" y="371" font-family="monospace,Arial" font-size="9" fill="#059669">aws ec2 create-vpc-endpoint --vpc-id vpc-XXX --service-name com.amazonaws.vpce... --subnet-ids subnet-XXX</text>
+</svg>

@@ -1,0 +1,85 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <!-- Title -->
+  <text x="400" y="28" font-family="Arial,sans-serif" font-size="14" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Gateway Endpoint — ルートテーブルの仕組み</text>
+  <!-- Before section -->
+  <rect x="20" y="40" width="360" height="340" rx="8" fill="#fff4f4" stroke="#ef4444" stroke-width="1.5"/>
+  <rect x="20" y="40" width="360" height="32" rx="8" fill="#ef4444"/>
+  <text x="200" y="62" font-family="Arial,sans-serif" font-size="12" fill="#fff" font-weight="bold" text-anchor="middle">Before: Endpoint なし</text>
+  <!-- Route table before -->
+  <text x="38" y="96" font-family="Arial,sans-serif" font-size="11" fill="#555" font-weight="bold">Route Table (Private Subnet)</text>
+  <rect x="30" y="102" width="340" height="130" rx="4" fill="#fff" stroke="#ccc" stroke-width="1"/>
+  <!-- Table header -->
+  <rect x="30" y="102" width="340" height="24" fill="#f1f5f9"/>
+  <text x="100" y="119" font-family="monospace,Arial" font-size="10" fill="#555" font-weight="bold">Destination</text>
+  <line x1="210" y1="102" x2="210" y2="232" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="295" y="119" font-family="monospace,Arial" font-size="10" fill="#555" font-weight="bold">Target</text>
+  <!-- Row 1: local -->
+  <rect x="30" y="126" width="340" height="24" fill="#f8fafc"/>
+  <text x="48" y="143" font-family="monospace,Arial" font-size="10" fill="#333">10.0.0.0/16</text>
+  <text x="220" y="143" font-family="monospace,Arial" font-size="10" fill="#333">local</text>
+  <!-- Row 2: default via IGW -->
+  <rect x="30" y="150" width="340" height="24" fill="#fff"/>
+  <text x="48" y="167" font-family="monospace,Arial" font-size="10" fill="#333">0.0.0.0/0</text>
+  <text x="220" y="167" font-family="monospace,Arial" font-size="10" fill="#333">igw-0abc1234</text>
+  <!-- Row 3: empty / no S3 route -->
+  <rect x="30" y="174" width="340" height="24" fill="#fee2e2"/>
+  <text x="48" y="191" font-family="monospace,Arial" font-size="10" fill="#ef4444">S3 route なし</text>
+  <text x="220" y="191" font-family="monospace,Arial" font-size="10" fill="#ef4444">→ IGW 経由でInternet</text>
+  <!-- Traffic flow before -->
+  <text x="38" y="252" font-family="Arial,sans-serif" font-size="11" fill="#555" font-weight="bold">トラフィックフロー</text>
+  <rect x="38" y="260" width="310" height="105" rx="4" fill="#fff" stroke="#eee" stroke-width="1"/>
+  <!-- Flow boxes -->
+  <rect x="50" y="272" width="80" height="30" rx="4" fill="#7b5ea7"/>
+  <text x="90" y="292" font-family="Arial,sans-serif" font-size="10" fill="#fff" text-anchor="middle">EC2</text>
+  <line x1="130" y1="287" x2="155" y2="287" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="151,281 163,287 151,293" fill="#ef4444"/>
+  <rect x="155" y="272" width="60" height="30" rx="4" fill="#f59e0b"/>
+  <text x="185" y="292" font-family="Arial,sans-serif" font-size="10" fill="#fff" text-anchor="middle">IGW</text>
+  <line x1="215" y1="287" x2="238" y2="287" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="234,281 246,287 234,293" fill="#ef4444"/>
+  <rect x="238" y="272" width="80" height="30" rx="4" fill="#ff9900"/>
+  <text x="278" y="292" font-family="Arial,sans-serif" font-size="10" fill="#fff" text-anchor="middle">S3 (Public)</text>
+  <text x="185" y="325" font-family="Arial,sans-serif" font-size="10" fill="#ef4444" text-anchor="middle">インターネット経由 = 課金 + リスク</text>
+  <text x="185" y="345" font-family="Arial,sans-serif" font-size="10" fill="#888" text-anchor="middle">NAT GW コスト + データ転送コスト</text>
+  <!-- After section -->
+  <rect x="420" y="40" width="360" height="340" rx="8" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5"/>
+  <rect x="420" y="40" width="360" height="32" rx="8" fill="#10b981"/>
+  <text x="600" y="62" font-family="Arial,sans-serif" font-size="12" fill="#fff" font-weight="bold" text-anchor="middle">After: Gateway Endpoint 追加後</text>
+  <!-- Route table after -->
+  <text x="438" y="96" font-family="Arial,sans-serif" font-size="11" fill="#555" font-weight="bold">Route Table (Private Subnet)</text>
+  <rect x="430" y="102" width="340" height="155" rx="4" fill="#fff" stroke="#ccc" stroke-width="1"/>
+  <rect x="430" y="102" width="340" height="24" fill="#f1f5f9"/>
+  <text x="510" y="119" font-family="monospace,Arial" font-size="10" fill="#555" font-weight="bold">Destination</text>
+  <line x1="610" y1="102" x2="610" y2="257" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="695" y="119" font-family="monospace,Arial" font-size="10" fill="#555" font-weight="bold">Target</text>
+  <rect x="430" y="126" width="340" height="24" fill="#f8fafc"/>
+  <text x="448" y="143" font-family="monospace,Arial" font-size="10" fill="#333">10.0.0.0/16</text>
+  <text x="620" y="143" font-family="monospace,Arial" font-size="10" fill="#333">local</text>
+  <rect x="430" y="150" width="340" height="24" fill="#fff"/>
+  <text x="448" y="167" font-family="monospace,Arial" font-size="10" fill="#333">0.0.0.0/0</text>
+  <text x="620" y="167" font-family="monospace,Arial" font-size="10" fill="#333">igw-0abc1234</text>
+  <!-- S3 route (highlighted) -->
+  <rect x="430" y="174" width="340" height="24" fill="#dcfce7"/>
+  <text x="448" y="191" font-family="monospace,Arial" font-size="10" fill="#059669" font-weight="bold">pl-68a54001 (S3)</text>
+  <text x="620" y="191" font-family="monospace,Arial" font-size="10" fill="#059669" font-weight="bold">vpce-0abc1234</text>
+  <!-- DDB route (highlighted) -->
+  <rect x="430" y="198" width="340" height="24" fill="#dcfce7"/>
+  <text x="448" y="215" font-family="monospace,Arial" font-size="10" fill="#059669" font-weight="bold">pl-02cd2c6b (DDB)</text>
+  <text x="620" y="215" font-family="monospace,Arial" font-size="10" fill="#059669" font-weight="bold">vpce-0abc1234</text>
+  <text x="600" y="244" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">Prefix List は AWS が自動管理（IP 範囲の追跡不要）</text>
+  <!-- Traffic flow after -->
+  <text x="438" y="275" font-family="Arial,sans-serif" font-size="11" fill="#555" font-weight="bold">トラフィックフロー</text>
+  <rect x="438" y="282" width="320" height="82" rx="4" fill="#fff" stroke="#eee" stroke-width="1"/>
+  <rect x="450" y="294" width="80" height="30" rx="4" fill="#7b5ea7"/>
+  <text x="490" y="314" font-family="Arial,sans-serif" font-size="10" fill="#fff" text-anchor="middle">EC2</text>
+  <line x1="530" y1="309" x2="555" y2="309" stroke="#10b981" stroke-width="2"/>
+  <polygon points="551,303 563,309 551,315" fill="#10b981"/>
+  <rect x="555" y="294" width="80" height="30" rx="4" fill="#10b981"/>
+  <text x="595" y="309" font-family="Arial,sans-serif" font-size="9" fill="#fff" text-anchor="middle">GW Endpoint</text>
+  <line x1="635" y1="309" x2="658" y2="309" stroke="#10b981" stroke-width="2"/>
+  <polygon points="654,303 666,309 654,315" fill="#10b981"/>
+  <rect x="658" y="294" width="80" height="30" rx="4" fill="#ff9900"/>
+  <text x="698" y="309" font-family="Arial,sans-serif" font-size="10" fill="#fff" text-anchor="middle">S3 / DDB</text>
+  <text x="598" y="352" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle">プライベート経路 = 無料 + 安全</text>
+</svg>

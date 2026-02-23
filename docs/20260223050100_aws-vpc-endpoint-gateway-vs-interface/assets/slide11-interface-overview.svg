@@ -1,0 +1,80 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <!-- AWS Cloud border -->
+  <rect x="8" y="8" width="784" height="384" rx="12" fill="none" stroke="#ff9900" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="24" y="28" font-family="Arial,sans-serif" font-size="12" fill="#cc7700" font-weight="bold">AWS Cloud / Region (ap-northeast-1)</text>
+  <!-- VPC border -->
+  <rect x="24" y="36" width="500" height="340" rx="8" fill="#f0f4ff" stroke="#7b5ea7" stroke-width="2"/>
+  <text x="42" y="56" font-family="Arial,sans-serif" font-size="12" fill="#7b5ea7" font-weight="bold">VPC (10.0.0.0/16)</text>
+  <!-- Private Subnet AZ-a -->
+  <rect x="40" y="66" width="190" height="145" rx="6" fill="#e8edff" stroke="#9ca3af" stroke-width="1"/>
+  <text x="56" y="84" font-family="Arial,sans-serif" font-size="10" fill="#555">Private Subnet (AZ-a)</text>
+  <!-- EC2 in AZ-a -->
+  <rect x="55" y="94" width="155" height="55" rx="5" fill="#fff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <rect x="55" y="94" width="155" height="20" rx="5" fill="#7b5ea7"/>
+  <text x="132" y="108" font-family="Arial,sans-serif" font-size="10" fill="#fff" text-anchor="middle">EC2 Instance</text>
+  <text x="132" y="130" font-family="Arial,sans-serif" font-size="10" fill="#555" text-anchor="middle">10.0.1.10</text>
+  <text x="132" y="143" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">SG: sg-app01</text>
+  <!-- ENI in AZ-a -->
+  <rect x="55" y="164" width="155" height="36" rx="5" fill="#fff" stroke="#10b981" stroke-width="2"/>
+  <text x="132" y="179" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">ENI (Interface EP)</text>
+  <text x="132" y="192" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">10.0.1.50 | SG: sg-ep01</text>
+  <!-- Private Subnet AZ-c -->
+  <rect x="260" y="66" width="190" height="145" rx="6" fill="#e8edff" stroke="#9ca3af" stroke-width="1"/>
+  <text x="276" y="84" font-family="Arial,sans-serif" font-size="10" fill="#555">Private Subnet (AZ-c)</text>
+  <!-- EC2 in AZ-c -->
+  <rect x="275" y="94" width="155" height="55" rx="5" fill="#fff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <rect x="275" y="94" width="155" height="20" rx="5" fill="#7b5ea7"/>
+  <text x="352" y="108" font-family="Arial,sans-serif" font-size="10" fill="#fff" text-anchor="middle">EC2 Instance</text>
+  <text x="352" y="130" font-family="Arial,sans-serif" font-size="10" fill="#555" text-anchor="middle">10.0.3.20</text>
+  <text x="352" y="143" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">SG: sg-app01</text>
+  <!-- ENI in AZ-c -->
+  <rect x="275" y="164" width="155" height="36" rx="5" fill="#fff" stroke="#10b981" stroke-width="2"/>
+  <text x="352" y="179" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">ENI (Interface EP)</text>
+  <text x="352" y="192" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">10.0.3.60 | SG: sg-ep01</text>
+  <!-- Arrow EC2 to ENI in AZ-a -->
+  <line x1="132" y1="149" x2="132" y2="162" stroke="#7b5ea7" stroke-width="1.5"/>
+  <polygon points="126,158 132,164 138,158" fill="#7b5ea7"/>
+  <!-- Arrow EC2 to ENI in AZ-c -->
+  <line x1="352" y1="149" x2="352" y2="162" stroke="#7b5ea7" stroke-width="1.5"/>
+  <polygon points="346,158 352,164 358,158" fill="#7b5ea7"/>
+  <!-- DNS Resolution box -->
+  <rect x="40" y="235" width="465" height="60" rx="6" fill="#fff9e6" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="55" y="253" font-family="Arial,sans-serif" font-size="10" fill="#b45309" font-weight="bold">DNS 解決 (Private DNS 有効時)</text>
+  <text x="55" y="270" font-family="monospace,Arial" font-size="10" fill="#333">ssm.ap-northeast-1.amazonaws.com  →  10.0.1.50 (AZ-a) / 10.0.3.60 (AZ-c)</text>
+  <text x="55" y="285" font-family="Arial,sans-serif" font-size="9" fill="#888">Route 53 PHZ により VPC 内でプライベート IP に解決される（既存コード変更不要）</text>
+  <!-- Security Group box -->
+  <rect x="40" y="310" width="465" height="58" rx="6" fill="#fff" stroke="#10b981" stroke-width="1.5"/>
+  <text x="55" y="328" font-family="Arial,sans-serif" font-size="10" fill="#059669" font-weight="bold">セキュリティグループ (sg-ep01) — インバウンドルール例</text>
+  <text x="55" y="345" font-family="monospace,Arial" font-size="9" fill="#333">Type: HTTPS (443)  |  Source: sg-app01  |  Description: Allow from App EC2</text>
+  <text x="55" y="360" font-family="Arial,sans-serif" font-size="9" fill="#888">EC2 のSGを source に指定することで、特定インスタンスからの通信のみ許可</text>
+  <!-- AWS Service (right) -->
+  <rect x="575" y="80" width="200" height="240" rx="8" fill="#fff8f0" stroke="#ff9900" stroke-width="2"/>
+  <text x="675" y="104" font-family="Arial,sans-serif" font-size="12" fill="#cc7700" font-weight="bold" text-anchor="middle">Endpoint Service</text>
+  <text x="675" y="120" font-family="Arial,sans-serif" font-size="10" fill="#888" text-anchor="middle">(AWS PrivateLink)</text>
+  <!-- SSM -->
+  <rect x="592" y="130" width="166" height="42" rx="4" fill="#fff" stroke="#10b981" stroke-width="1"/>
+  <circle cx="614" cy="151" r="15" fill="#10b981"/>
+  <text x="614" y="156" font-family="Arial,sans-serif" font-size="9" fill="#fff" font-weight="bold" text-anchor="middle">SSM</text>
+  <text x="650" y="148" font-family="Arial,sans-serif" font-size="11" fill="#333" font-weight="bold">Systems Manager</text>
+  <text x="650" y="162" font-family="Arial,sans-serif" font-size="9" fill="#888">ssm.*.amazonaws.com</text>
+  <!-- Secrets Manager -->
+  <rect x="592" y="182" width="166" height="42" rx="4" fill="#fff" stroke="#10b981" stroke-width="1"/>
+  <circle cx="614" cy="203" r="15" fill="#7b5ea7"/>
+  <text x="614" y="208" font-family="Arial,sans-serif" font-size="8" fill="#fff" font-weight="bold" text-anchor="middle">SEC</text>
+  <text x="650" y="200" font-family="Arial,sans-serif" font-size="11" fill="#333" font-weight="bold">Secrets Manager</text>
+  <text x="650" y="214" font-family="Arial,sans-serif" font-size="9" fill="#888">secretsmanager.*.amazonaws.com</text>
+  <!-- KMS -->
+  <rect x="592" y="234" width="166" height="42" rx="4" fill="#fff" stroke="#10b981" stroke-width="1"/>
+  <circle cx="614" cy="255" r="15" fill="#f59e0b"/>
+  <text x="614" y="260" font-family="Arial,sans-serif" font-size="9" fill="#fff" font-weight="bold" text-anchor="middle">KMS</text>
+  <text x="650" y="252" font-family="Arial,sans-serif" font-size="11" fill="#333" font-weight="bold">KMS</text>
+  <text x="650" y="266" font-family="Arial,sans-serif" font-size="9" fill="#888">kms.*.amazonaws.com</text>
+  <!-- Arrows ENI to Service -->
+  <line x1="430" y1="182" x2="572" y2="182" stroke="#10b981" stroke-width="2.5"/>
+  <polygon points="568,176 580,182 568,188" fill="#10b981"/>
+  <!-- AWS Backbone label -->
+  <rect x="440" y="163" width="115" height="36" rx="4" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
+  <text x="497" y="177" font-family="Arial,sans-serif" font-size="9" fill="#059669" text-anchor="middle" font-weight="bold">AWS PrivateLink</text>
+  <text x="497" y="191" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">Backbone 経由</text>
+</svg>

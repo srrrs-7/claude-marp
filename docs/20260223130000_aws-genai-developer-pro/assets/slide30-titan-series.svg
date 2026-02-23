@@ -1,0 +1,83 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Amazon Titan シリーズ</text>
+  <text x="450" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">AWSネイティブの基盤モデル群 — Bedrock経由で利用可能</text>
+
+  <!-- Titan Text -->
+  <rect x="15" y="68" width="270" height="155" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="15" y="68" width="270" height="34" rx="8" fill="#1d4ed8"/>
+  <text x="150" y="91" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">Titan Text</text>
+  <rect x="25" y="110" width="250" height="26" rx="5" fill="#1e40af"/>
+  <text x="150" y="127" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#bfdbfe">Titan Text G1 - Lite</text>
+  <text x="150" y="143" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">軽量・高速・低コスト | 4K ctx</text>
+  <rect x="25" y="150" width="250" height="26" rx="5" fill="#1d4ed8"/>
+  <text x="150" y="167" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#bfdbfe">Titan Text G1 - Express</text>
+  <text x="150" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">バランス型 | 8K ctx | Fine-tuning対応</text>
+  <rect x="25" y="192" width="250" height="26" rx="5" fill="#1e3a8a"/>
+  <text x="150" y="209" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">Titan Text Premier</text>
+  <text x="150" y="219" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">高性能 | 32K ctx | RAG最適</text>
+
+  <!-- Titan Embeddings -->
+  <rect x="300" y="68" width="270" height="155" rx="8" fill="#3b0764" stroke="#a855f7" stroke-width="2"/>
+  <rect x="300" y="68" width="270" height="34" rx="8" fill="#6d28d9"/>
+  <text x="435" y="91" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">Titan Embeddings</text>
+  <rect x="310" y="110" width="250" height="26" rx="5" fill="#4c1d95"/>
+  <text x="435" y="127" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#e9d5ff">Titan Embeddings V1</text>
+  <text x="435" y="143" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">1536次元 | 英語特化</text>
+  <rect x="310" y="150" width="250" height="26" rx="5" fill="#7c3aed"/>
+  <text x="435" y="167" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#ffffff">Titan Embeddings V2 ★推奨</text>
+  <text x="435" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">1024/512/256次元選択可 | 多言語</text>
+  <rect x="310" y="192" width="250" height="26" rx="5" fill="#5b21b6"/>
+  <text x="435" y="209" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#ddd6fe">Titan Multimodal Embeddings</text>
+  <text x="435" y="219" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">画像+テキスト複合 | 1024次元</text>
+
+  <!-- Titan Image & Nova -->
+  <rect x="585" y="68" width="300" height="155" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="2"/>
+  <rect x="585" y="68" width="300" height="34" rx="8" fill="#065f46"/>
+  <text x="735" y="91" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">Titan Image / Amazon Nova</text>
+  <rect x="595" y="110" width="280" height="26" rx="5" fill="#065f46"/>
+  <text x="735" y="127" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a7f3d0">Titan Image Generator G1</text>
+  <text x="735" y="143" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">テキスト→画像 | インペインティング</text>
+  <rect x="595" y="150" width="280" height="26" rx="5" fill="#059669"/>
+  <text x="735" y="167" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#ffffff">Amazon Nova Micro</text>
+  <text x="735" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">テキスト専用・超低レイテンシ・低コスト</text>
+  <rect x="595" y="192" width="280" height="26" rx="5" fill="#047857"/>
+  <text x="735" y="209" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#ecfdf5">Nova Lite / Pro（マルチモーダル）</text>
+  <text x="735" y="219" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">画像・動画・テキスト対応の最新世代</text>
+
+  <!-- Feature comparison table -->
+  <rect x="15" y="238" width="870" height="148" rx="8" fill="#1f2937"/>
+  <text x="450" y="258" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">Titan vs Nova 比較（試験重要）</text>
+  <!-- Header row -->
+  <rect x="25" y="268" width="130" height="20" rx="3" fill="#374151"/>
+  <text x="90" y="282" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#d1d5db">特徴</text>
+  <rect x="165" y="268" width="150" height="20" rx="3" fill="#1d4ed8"/>
+  <text x="240" y="282" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#ffffff">Titan Text Premier</text>
+  <rect x="325" y="268" width="150" height="20" rx="3" fill="#065f46"/>
+  <text x="400" y="282" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#ffffff">Nova Lite</text>
+  <rect x="485" y="268" width="150" height="20" rx="3" fill="#047857"/>
+  <text x="560" y="282" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#ffffff">Nova Pro</text>
+  <rect x="645" y="268" width="230" height="20" rx="3" fill="#374151"/>
+  <text x="760" y="282" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#d1d5db">備考</text>
+  <!-- Data rows -->
+  <text x="90" y="304" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">モダリティ</text>
+  <text x="240" y="304" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">テキスト</text>
+  <text x="400" y="304" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">テキスト+画像</text>
+  <text x="560" y="304" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">テキスト+画像+動画</text>
+  <text x="760" y="304" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#9ca3af">Nova世代はマルチモーダル</text>
+  <text x="90" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">コンテキスト</text>
+  <text x="240" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">32K tokens</text>
+  <text x="400" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">300K tokens</text>
+  <text x="560" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">300K tokens</text>
+  <text x="760" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#9ca3af">Novaは大幅に長い</text>
+  <text x="90" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">Fine-tuning</text>
+  <text x="240" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">対応</text>
+  <text x="400" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">対応</text>
+  <text x="560" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">対応</text>
+  <text x="760" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#9ca3af">両方カスタマイズ可</text>
+  <text x="90" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">用途</text>
+  <text x="240" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">RAG・QA・要約</text>
+  <text x="400" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">コスト重視アプリ</text>
+  <text x="560" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">高度マルチモーダル</text>
+  <text x="760" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#9ca3af">新規採用はNova推奨</text>
+</svg>

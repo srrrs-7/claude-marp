@@ -1,0 +1,91 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Bedrock カスタムモデルのワークフロー</text>
+  <text x="450" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">S3データ準備からプロビジョンドスループット購入まで一貫したマネージドフロー</text>
+
+  <!-- Step flow -->
+  <rect x="15" y="72" width="120" height="100" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="75" y="96" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">① 準備</text>
+  <text x="75" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">S3に学習</text>
+  <text x="75" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">データ配置</text>
+  <text x="75" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">JSONL形式</text>
+  <text x="75" y="164" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">検証用も準備</text>
+
+  <polygon points="140,122 160,117 160,127" fill="#6d28d9"/>
+
+  <rect x="162" y="72" width="120" height="100" rx="8" fill="#3b0764" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="222" y="96" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">② ジョブ作成</text>
+  <text x="222" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">ベースFM選択</text>
+  <text x="222" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">ハイパーパラム</text>
+  <text x="222" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">エポック数</text>
+  <text x="222" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">学習率 設定</text>
+
+  <polygon points="287,122 307,117 307,127" fill="#6d28d9"/>
+
+  <rect x="309" y="72" width="120" height="100" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+  <text x="369" y="96" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">③ 学習実行</text>
+  <text x="369" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">AWS管理の</text>
+  <text x="369" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">インフラで実行</text>
+  <text x="369" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">ユーザーデータは</text>
+  <text x="369" y="164" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">学習のみに使用</text>
+
+  <polygon points="434,122 454,117 454,127" fill="#6d28d9"/>
+
+  <rect x="456" y="72" width="130" height="100" rx="8" fill="#78350f" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="521" y="96" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">④ モデル保存</text>
+  <text x="521" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">カスタムモデルを</text>
+  <text x="521" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">Bedrockに保存</text>
+  <text x="521" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">別アカウントへ</text>
+  <text x="521" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">共有可能</text>
+
+  <polygon points="591,122 611,117 611,127" fill="#6d28d9"/>
+
+  <rect x="613" y="72" width="130" height="100" rx="8" fill="#1f2937" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="678" y="96" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">⑤ PT購入</text>
+  <text x="678" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">Provisioned</text>
+  <text x="678" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">Throughput購入</text>
+  <text x="678" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#9ca3af">固定スループット</text>
+  <text x="678" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#9ca3af">時間課金</text>
+
+  <polygon points="748,122 768,117 768,127" fill="#6d28d9"/>
+
+  <rect x="770" y="72" width="115" height="100" rx="8" fill="#3b0764" stroke="#a855f7" stroke-width="2"/>
+  <text x="828" y="96" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">⑥ 推論</text>
+  <text x="828" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">InvokeModel/</text>
+  <text x="828" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">ConverseAPI</text>
+  <text x="828" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">モデルIDで</text>
+  <text x="828" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">カスタムFM指定</text>
+
+  <!-- Key details -->
+  <rect x="15" y="185" width="870" height="100" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="205" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">ハイパーパラメータ設定（試験重要）</text>
+  <rect x="30" y="218" width="195" height="55" rx="5" fill="#0f172a"/>
+  <text x="128" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#60a5fa">エポック数</text>
+  <text x="128" y="256" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">データを繰り返す回数</text>
+  <text x="128" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">通常 1〜5（過学習注意）</text>
+  <rect x="240" y="218" width="195" height="55" rx="5" fill="#0f172a"/>
+  <text x="338" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#34d399">学習率 (LR)</text>
+  <text x="338" y="256" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">重み更新の大きさ</text>
+  <text x="338" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">小さい → 安定、遅い</text>
+  <rect x="450" y="218" width="195" height="55" rx="5" fill="#0f172a"/>
+  <text x="548" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#d8b4fe">バッチサイズ</text>
+  <text x="548" y="256" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">1回の学習データ量</text>
+  <text x="548" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">大きい → メモリ消費増</text>
+  <rect x="660" y="218" width="210" height="55" rx="5" fill="#0f172a"/>
+  <text x="765" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fcd34d">Warmup Steps</text>
+  <text x="765" y="256" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">学習率を徐々に上げる期間</text>
+  <text x="765" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">安定した学習の開始</text>
+
+  <!-- Cost model -->
+  <rect x="15" y="298" width="870" height="92" rx="8" fill="#1f2937"/>
+  <text x="450" y="318" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">コストモデル &amp; 注意点</text>
+  <rect x="30" y="330" width="265" height="48" rx="5" fill="#0f172a"/>
+  <text x="163" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#60a5fa">学習コスト: トークン数で計算</text>
+  <text x="163" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">データ量 × エポック数 = 総トークン</text>
+  <rect x="316" y="330" width="265" height="48" rx="5" fill="#0f172a"/>
+  <text x="449" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#34d399">Provisioned Throughput</text>
+  <text x="449" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">MCU(Model Compute Unit)単位で時間課金</text>
+  <rect x="602" y="330" width="268" height="48" rx="5" fill="#0f172a"/>
+  <text x="736" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#d8b4fe">On-demand vs Provisioned</text>
+  <text x="736" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">大量使用 → PT | 少量 → On-demand</text>
+</svg>

@@ -1,0 +1,80 @@
+<svg viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="480" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#ffffff">AWS Certified Generative AI Developer - Professional</text>
+  <text x="450" y="62" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#a78bfa">試験ドメイン構成</text>
+
+  <!-- Domain boxes -->
+  <!-- D1 -->
+  <rect x="30" y="85" width="195" height="82" rx="8" fill="#6d28d9"/>
+  <text x="128" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Domain 1</text>
+  <text x="128" y="126" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#e9d5ff">生成AI基礎</text>
+  <text x="128" y="144" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#c4b5fd">LLM・FM・Transformer</text>
+  <rect x="75" y="155" width="105" height="22" rx="4" fill="#4c1d95"/>
+  <text x="128" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">〜15%</text>
+
+  <!-- D2 -->
+  <rect x="245" y="85" width="195" height="82" rx="8" fill="#1d4ed8"/>
+  <text x="343" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Domain 2</text>
+  <text x="343" y="126" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#bfdbfe">Amazon Bedrock</text>
+  <text x="343" y="144" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#93c5fd">API・KB・Agents・GR</text>
+  <rect x="290" y="155" width="105" height="22" rx="4" fill="#1e3a8a"/>
+  <text x="343" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">〜25%</text>
+
+  <!-- D3 -->
+  <rect x="460" y="85" width="195" height="82" rx="8" fill="#065f46"/>
+  <text x="558" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Domain 3</text>
+  <text x="558" y="126" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a7f3d0">RAG & ベクターDB</text>
+  <text x="558" y="144" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#6ee7b7">チャンキング・検索・評価</text>
+  <rect x="505" y="155" width="105" height="22" rx="4" fill="#064e3b"/>
+  <text x="558" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">〜15%</text>
+
+  <!-- D4 -->
+  <rect x="675" y="85" width="195" height="82" rx="8" fill="#92400e"/>
+  <text x="773" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Domain 4</text>
+  <text x="773" y="126" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fde68a">プロンプト Engineering</text>
+  <text x="773" y="144" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fcd34d">CoT・ReAct・Few-shot</text>
+  <rect x="720" y="155" width="105" height="22" rx="4" fill="#78350f"/>
+  <text x="773" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">〜15%</text>
+
+  <!-- D5 -->
+  <rect x="30" y="190" width="195" height="82" rx="8" fill="#831843"/>
+  <text x="128" y="213" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Domain 5</text>
+  <text x="128" y="231" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fbcfe8">AIエージェント</text>
+  <text x="128" y="249" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#f9a8d4">Bedrock Agents・MAS</text>
+  <rect x="75" y="260" width="105" height="22" rx="4" fill="#500724"/>
+  <text x="128" y="275" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">〜10%</text>
+
+  <!-- D6 -->
+  <rect x="245" y="190" width="195" height="82" rx="8" fill="#1f2937"/>
+  <text x="343" y="213" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Domain 6</text>
+  <text x="343" y="231" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#d1d5db">責任あるAI & Security</text>
+  <text x="343" y="249" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#9ca3af">バイアス・GR・ガバナンス</text>
+  <rect x="290" y="260" width="105" height="22" rx="4" fill="#111827"/>
+  <text x="343" y="275" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">〜10%</text>
+
+  <!-- D7 -->
+  <rect x="460" y="190" width="195" height="82" rx="8" fill="#134e4a"/>
+  <text x="558" y="213" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Domain 7</text>
+  <text x="558" y="231" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#99f6e4">MLOps / LLMOps</text>
+  <text x="558" y="249" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#5eead4">SageMaker・監視・CI/CD</text>
+  <rect x="505" y="260" width="105" height="22" rx="4" fill="#0f3d3a"/>
+  <text x="558" y="275" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">〜10%</text>
+
+  <!-- Exam info bar -->
+  <rect x="30" y="300" width="840" height="60" rx="8" fill="#2d1b69"/>
+  <text x="450" y="322" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#e9d5ff">試験情報</text>
+  <text x="180" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#c4b5fd">問題数: 65問</text>
+  <text x="370" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#c4b5fd">試験時間: 170分</text>
+  <text x="560" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#c4b5fd">合格スコア: 750/1000</text>
+  <text x="750" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#c4b5fd">形式: 多肢選択・複数回答</text>
+
+  <!-- Key tip -->
+  <rect x="30" y="378" width="840" height="82" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="400" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">合格のポイント</text>
+  <text x="240" y="422" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a5b4fc">Bedrockの各機能を深く理解</text>
+  <text x="450" y="422" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a5b4fc">RAGとFine-tuningの使い分け</text>
+  <text x="660" y="422" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a5b4fc">責任あるAIの原則と実装</text>
+  <text x="240" y="444" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#818cf8">ユースケース→サービス選択</text>
+  <text x="450" y="444" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#818cf8">プロンプト手法の特徴と適用場面</text>
+  <text x="660" y="444" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#818cf8">コスト最適化とセキュリティ</text>
+</svg>

@@ -1,0 +1,97 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="420" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Bedrock Flows</text>
+  <text x="450" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">ビジュアルビルダーでAIワークフローをノーコード/ローコードで構築</text>
+
+  <!-- Node types -->
+  <rect x="15" y="68" width="180" height="260" rx="8" fill="#1e1b4b" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="105" y="88" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#a78bfa">ノードタイプ</text>
+  <rect x="25" y="98" width="160" height="26" rx="5" fill="#172554"/>
+  <text x="105" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">📥 入力 (Input)</text>
+  <rect x="25" y="130" width="160" height="26" rx="5" fill="#3b0764"/>
+  <text x="105" y="147" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d8b4fe">🤖 FM / Prompt</text>
+  <rect x="25" y="162" width="160" height="26" rx="5" fill="#064e3b"/>
+  <text x="105" y="179" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">📚 Knowledge Base</text>
+  <rect x="25" y="194" width="160" height="26" rx="5" fill="#78350f"/>
+  <text x="105" y="211" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">⚡ Lambda 関数</text>
+  <rect x="25" y="226" width="160" height="26" rx="5" fill="#1f2937"/>
+  <text x="105" y="243" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">🔀 条件分岐 (Condition)</text>
+  <rect x="25" y="258" width="160" height="26" rx="5" fill="#172554"/>
+  <text x="105" y="275" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">🔄 イテレーター (Loop)</text>
+  <rect x="25" y="290" width="160" height="26" rx="5" fill="#1f2937"/>
+  <text x="105" y="307" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#9ca3af">📤 出力 (Output)</text>
+
+  <!-- Example flow -->
+  <rect x="210" y="68" width="475" height="260" rx="8" fill="#1f2937" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="448" y="88" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">例: RAGカスタマーサポートフロー</text>
+
+  <rect x="225" y="100" width="90" height="36" rx="5" fill="#172554"/>
+  <text x="270" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">📥 入力</text>
+  <text x="270" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">顧客質問</text>
+  <polygon points="320,118 340,113 340,123" fill="#3b82f6"/>
+
+  <rect x="342" y="100" width="90" height="36" rx="5" fill="#3b0764"/>
+  <text x="387" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">🤖 Prompt</text>
+  <text x="387" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">質問分類</text>
+  <polygon points="437,118 457,113 457,123" fill="#6d28d9"/>
+
+  <rect x="459" y="100" width="90" height="36" rx="5" fill="#1f2937"/>
+  <text x="504" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">🔀 条件分岐</text>
+  <text x="504" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#9ca3af">FAQ?一般?</text>
+
+  <!-- Branch 1: FAQ -->
+  <line x1="504" x2="504" y1="136" y2="158" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <line x1="504" x2="387" y1="158" y2="158" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="387,154 375,158 387,162" fill="#6b7280"/>
+  <rect x="225" y="162" width="135" height="36" rx="5" fill="#064e3b"/>
+  <text x="293" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">📚 Knowledge Base</text>
+  <text x="293" y="192" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">FAQ ドキュメント検索</text>
+
+  <!-- Branch 2: General -->
+  <line x1="554" x2="612" y1="118" y2="118" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="608,114 620,118 608,122" fill="#6b7280"/>
+  <rect x="570" y="100" width="100" height="36" rx="5" fill="#78350f"/>
+  <text x="620" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">⚡ Lambda</text>
+  <text x="620" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">チケット作成</text>
+
+  <!-- Merge -->
+  <polygon points="293,202 288,197 298,197" fill="#3b82f6"/>
+  <rect x="225" y="206" width="240" height="36" rx="5" fill="#3b0764"/>
+  <text x="345" y="224" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">🤖 FM: 回答生成</text>
+  <text x="345" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">Claude / Titan で自然文生成</text>
+  <polygon points="470,224 490,219 490,229" fill="#6d28d9"/>
+  <rect x="492" y="206" width="90" height="36" rx="5" fill="#065f46"/>
+  <text x="537" y="224" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">📤 出力</text>
+  <text x="537" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">顧客への回答</text>
+
+  <!-- Loop example -->
+  <rect x="225" y="260" width="440" height="55" rx="5" fill="#0f172a"/>
+  <text x="445" y="280" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fbbf24">バッチ処理での活用例</text>
+  <text x="445" y="298" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#d1d5db">入力リスト → 🔄イテレーター → 各要素に処理 → 結果リスト収集 → 📤出力</text>
+  <text x="445" y="312" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#4b5563">例: 100件の商品説明を一括翻訳/要約</text>
+
+  <!-- Right panel: Use cases -->
+  <rect x="700" y="68" width="185" height="260" rx="8" fill="#1e1b4b" stroke="#10b981" stroke-width="1.5"/>
+  <text x="793" y="88" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#34d399">主な活用例</text>
+  <rect x="710" y="100" width="165" height="32" rx="5" fill="#064e3b"/>
+  <text x="793" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">ドキュメント処理パイプライン</text>
+  <text x="793" y="128" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">抽出→要約→分類→保存</text>
+  <rect x="710" y="140" width="165" height="32" rx="5" fill="#064e3b"/>
+  <text x="793" y="156" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">マルチステップQ&amp;A</text>
+  <text x="793" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">KB検索→生成→グラウンド確認</text>
+  <rect x="710" y="180" width="165" height="32" rx="5" fill="#064e3b"/>
+  <text x="793" y="196" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">コンテンツ生成自動化</text>
+  <text x="793" y="208" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">ブログ→翻訳→SNS投稿</text>
+  <rect x="710" y="220" width="165" height="32" rx="5" fill="#064e3b"/>
+  <text x="793" y="236" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">データ変換・ETL</text>
+  <text x="793" y="248" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">CSV→構造化JSON変換</text>
+  <rect x="710" y="260" width="165" height="32" rx="5" fill="#064e3b"/>
+  <text x="793" y="276" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">マルチモーダル分析</text>
+  <text x="793" y="288" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">画像→テキスト→要約→DB</text>
+
+  <!-- Bottom -->
+  <rect x="15" y="342" width="870" height="62" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="362" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">試験Tip: Bedrock Flows vs Bedrock Agents の使い分け</text>
+  <text x="305" y="384" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#6ee7b7">Flows: 事前定義のワークフロー、確定的な処理、バッチ処理</text>
+  <text x="668" y="384" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#c4b5fd">Agents: 動的・自律的判断、ツール選択を自分で行う、不確定タスク</text>
+</svg>

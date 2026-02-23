@@ -1,0 +1,29 @@
+topic: "AWS Advanced Networking Specialty — Direct Connect / Transit Gateway 完全解説"
+language: "ja"
+
+output:
+  dir: "docs/20260223045605_aws-ans-direct-connect"
+  baseName: "aws-ans-direct-connect"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "AWS ANS — Direct Connect / Transit Gateway"
+  footer: "© 2026 AWS Networking Deep Dive"
+  style: |
+    section {
+      font-size: 1.0em;
+    }
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+    section table {
+      font-size: 0.8em;
+    }
+    section h1 {
+      font-size: 1.4em;
+    }
+    section h2 {
+      font-size: 1.2em;
+    }

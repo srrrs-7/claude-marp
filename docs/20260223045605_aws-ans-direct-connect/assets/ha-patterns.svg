@@ -1,0 +1,145 @@
+<svg viewBox="0 0 920 460" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+  <rect width="920" height="460" fill="#fafafa" rx="10"/>
+  <text x="460" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">Direct Connect — 4つの HA パターン（SLA 比較）</text>
+
+  <!-- Pattern 1: Single -->
+  <rect x="15" y="42" width="200" height="200" fill="#FFEBEE" stroke="#EF5350" stroke-width="2" rx="8"/>
+  <text x="115" y="62" text-anchor="middle" font-size="11" font-weight="bold" fill="#C62828">パターン1: Single</text>
+  <text x="115" y="76" text-anchor="middle" font-size="9" fill="#E53935">SLA: なし（保証なし）</text>
+  <rect x="35" y="88" width="70" height="30" fill="#FFCDD2" stroke="#EF5350" stroke-width="1" rx="3"/>
+  <text x="70" y="107" text-anchor="middle" font-size="9" fill="#B71C1C">オンプレ</text>
+  <line x1="105" y1="103" x2="145" y2="103" stroke="#EF5350" stroke-width="2"/>
+  <polygon points="145,98 155,103 145,108" fill="#EF5350"/>
+  <rect x="155" y="88" width="50" height="30" fill="#FFCDD2" stroke="#EF5350" stroke-width="1" rx="3"/>
+  <text x="180" y="107" text-anchor="middle" font-size="9" fill="#B71C1C">DX</text>
+  <text x="115" y="140" text-anchor="middle" font-size="9" fill="#555">1接続のみ</text>
+  <text x="115" y="155" text-anchor="middle" font-size="9" fill="#555">1 DXロケーション</text>
+  <text x="115" y="170" text-anchor="middle" font-size="9" fill="#555">SPOF（単一障害点）あり</text>
+  <rect x="25" y="185" width="180" height="48" fill="#FFCDD2" rx="4"/>
+  <text x="115" y="200" text-anchor="middle" font-size="9" font-weight="bold" fill="#C62828">リスク:</text>
+  <text x="115" y="214" text-anchor="middle" font-size="8" fill="#B71C1C">接続障害 = サービス停止</text>
+  <text x="115" y="226" text-anchor="middle" font-size="8" fill="#B71C1C">ポート障害 / ケーブル断 で全断</text>
+
+  <!-- Pattern 2: Dual same location -->
+  <rect x="233" y="42" width="200" height="200" fill="#FFF3E0" stroke="#FF9800" stroke-width="2" rx="8"/>
+  <text x="333" y="62" text-anchor="middle" font-size="11" font-weight="bold" fill="#E65100">パターン2: Dual</text>
+  <text x="333" y="76" text-anchor="middle" font-size="9" fill="#EF6C00">SLA: 99.9%</text>
+  <rect x="253" y="88" width="70" height="30" fill="#FFE0B2" stroke="#FF9800" stroke-width="1" rx="3"/>
+  <text x="288" y="107" text-anchor="middle" font-size="9" fill="#BF360C">オンプレ</text>
+  <line x1="323" y1="98" x2="363" y2="93" stroke="#FF9800" stroke-width="2"/>
+  <polygon points="363,88 373,93 363,98" fill="#FF9800"/>
+  <line x1="323" y1="113" x2="363" y2="118" stroke="#FF9800" stroke-width="2" stroke-dasharray="4,2"/>
+  <polygon points="363,113 373,118 363,123" fill="#FF9800"/>
+  <rect x="373" y="78" width="55" height="50" fill="#FFE0B2" stroke="#FF9800" stroke-width="1" rx="3"/>
+  <text x="400" y="97" text-anchor="middle" font-size="9" fill="#BF360C">DX-1</text>
+  <text x="400" y="111" text-anchor="middle" font-size="9" fill="#BF360C">DX-2</text>
+  <text x="333" y="145" text-anchor="middle" font-size="9" fill="#555">同一 DX ロケーション</text>
+  <text x="333" y="160" text-anchor="middle" font-size="9" fill="#555">2つの個別接続</text>
+  <text x="333" y="175" text-anchor="middle" font-size="9" fill="#555">ポート障害に対応</text>
+  <rect x="243" y="188" width="180" height="45" fill="#FFE0B2" rx="4"/>
+  <text x="333" y="203" text-anchor="middle" font-size="9" font-weight="bold" fill="#E65100">注意:</text>
+  <text x="333" y="217" text-anchor="middle" font-size="8" fill="#BF360C">施設障害（停電等）では両断</text>
+  <text x="333" y="229" text-anchor="middle" font-size="8" fill="#BF360C">同一ロケーションの SPOF 残存</text>
+
+  <!-- Pattern 3: Dual different locations -->
+  <rect x="451" y="42" width="210" height="200" fill="#E8F5E9" stroke="#388E3C" stroke-width="2" rx="8"/>
+  <text x="556" y="62" text-anchor="middle" font-size="11" font-weight="bold" fill="#1B5E20">パターン3: 異DXロケーション</text>
+  <text x="556" y="76" text-anchor="middle" font-size="9" fill="#2E7D32">SLA: 99.99%（推奨）</text>
+  <rect x="465" y="88" width="65" height="30" fill="#C8E6C9" stroke="#4CAF50" stroke-width="1" rx="3"/>
+  <text x="497" y="107" text-anchor="middle" font-size="9" fill="#1B5E20">オンプレ</text>
+  <line x1="530" y1="96" x2="560" y2="88" stroke="#388E3C" stroke-width="2"/>
+  <polygon points="560,83 570,88 560,93" fill="#388E3C"/>
+  <line x1="530" y1="110" x2="560" y2="120" stroke="#388E3C" stroke-width="2"/>
+  <polygon points="560,115 570,120 560,125" fill="#388E3C"/>
+  <rect x="573" y="72" width="75" height="28" fill="#C8E6C9" stroke="#388E3C" stroke-width="1" rx="3"/>
+  <text x="610" y="88" text-anchor="middle" font-size="8" fill="#1B5E20">DX Loc A</text>
+  <text x="610" y="100" text-anchor="middle" font-size="8" fill="#1B5E20">（東京）</text>
+  <rect x="573" y="110" width="75" height="28" fill="#C8E6C9" stroke="#388E3C" stroke-width="1" rx="3"/>
+  <text x="610" y="125" text-anchor="middle" font-size="8" fill="#1B5E20">DX Loc B</text>
+  <text x="610" y="137" text-anchor="middle" font-size="8" fill="#1B5E20">（大阪）</text>
+  <text x="556" y="155" text-anchor="middle" font-size="9" fill="#555">別々の物理施設</text>
+  <text x="556" y="170" text-anchor="middle" font-size="9" fill="#555">施設障害も冗長化</text>
+  <text x="556" y="185" text-anchor="middle" font-size="9" fill="#555">AWS 推奨構成</text>
+  <rect x="461" y="193" width="190" height="40" fill="#C8E6C9" rx="4"/>
+  <text x="556" y="209" text-anchor="middle" font-size="8" font-weight="bold" fill="#1B5E20">最高レベルの冗長性</text>
+  <text x="556" y="223" text-anchor="middle" font-size="8" fill="#2E7D32">ロケーション障害にも対応可能</text>
+
+  <!-- Pattern 4: DX + VPN -->
+  <rect x="679" y="42" width="225" height="200" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="2" rx="8"/>
+  <text x="791" y="62" text-anchor="middle" font-size="11" font-weight="bold" fill="#4A148C">パターン4: DX + VPN</text>
+  <text x="791" y="76" text-anchor="middle" font-size="9" fill="#6A1B9A">SLA: 99.9%（VPN 依存）</text>
+  <rect x="695" y="88" width="65" height="30" fill="#E1BEE7" stroke="#7B1FA2" stroke-width="1" rx="3"/>
+  <text x="727" y="107" text-anchor="middle" font-size="9" fill="#4A148C">オンプレ</text>
+  <line x1="760" y1="96" x2="800" y2="88" stroke="#7B1FA2" stroke-width="2.5"/>
+  <polygon points="800,83 810,88 800,93" fill="#7B1FA2"/>
+  <line x1="760" y1="110" x2="800" y2="120" stroke="#9C27B0" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="800,115 810,120 800,125" fill="#9C27B0"/>
+  <rect x="813" y="72" width="75" height="28" fill="#E1BEE7" stroke="#7B1FA2" stroke-width="1.5" rx="3"/>
+  <text x="850" y="87" text-anchor="middle" font-size="8" fill="#4A148C">DX</text>
+  <text x="850" y="99" text-anchor="middle" font-size="8" fill="#4A148C">（Primary）</text>
+  <rect x="813" y="110" width="75" height="28" fill="#F3E5F5" stroke="#CE93D8" stroke-width="1" rx="3"/>
+  <text x="850" y="125" text-anchor="middle" font-size="8" fill="#6A1B9A">VPN</text>
+  <text x="850" y="137" text-anchor="middle" font-size="8" fill="#6A1B9A">（Backup）</text>
+  <text x="791" y="155" text-anchor="middle" font-size="9" fill="#555">DX 障害時に VPN へ</text>
+  <text x="791" y="170" text-anchor="middle" font-size="9" fill="#555">自動フェイルオーバー</text>
+  <text x="791" y="185" text-anchor="middle" font-size="9" fill="#555">低コストで冗長性確保</text>
+  <rect x="689" y="193" width="205" height="40" fill="#E1BEE7" rx="4"/>
+  <text x="791" y="208" text-anchor="middle" font-size="8" font-weight="bold" fill="#4A148C">DX 本番 + VPN コールドスタンバイ</text>
+  <text x="791" y="221" text-anchor="middle" font-size="8" fill="#6A1B9A">帯域差・遅延差に注意</text>
+
+  <!-- SLA Summary Table -->
+  <rect x="15" y="258" width="888" height="185" fill="#fff" stroke="#ccc" stroke-width="1" rx="8"/>
+  <text x="460" y="278" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">SLA・推奨度まとめ</text>
+
+  <!-- Table header -->
+  <rect x="25" y="287" width="868" height="28" fill="#37474F" rx="4"/>
+  <text x="125" y="305" text-anchor="middle" font-size="10" font-weight="bold" fill="white">パターン</text>
+  <text x="270" y="305" text-anchor="middle" font-size="10" font-weight="bold" fill="white">接続数</text>
+  <text x="380" y="305" text-anchor="middle" font-size="10" font-weight="bold" fill="white">DXロケーション</text>
+  <text x="520" y="305" text-anchor="middle" font-size="10" font-weight="bold" fill="white">SLA</text>
+  <text x="650" y="305" text-anchor="middle" font-size="10" font-weight="bold" fill="white">対応する障害</text>
+  <text x="810" y="305" text-anchor="middle" font-size="10" font-weight="bold" fill="white">推奨度</text>
+
+  <!-- Row 1 -->
+  <rect x="25" y="315" width="868" height="26" fill="#FFEBEE" rx="0"/>
+  <text x="125" y="331" text-anchor="middle" font-size="9" fill="#333">Single Connection</text>
+  <text x="270" y="331" text-anchor="middle" font-size="9" fill="#333">1</text>
+  <text x="380" y="331" text-anchor="middle" font-size="9" fill="#333">1箇所</text>
+  <text x="520" y="331" text-anchor="middle" font-size="9" fill="#C62828">保証なし</text>
+  <text x="650" y="331" text-anchor="middle" font-size="9" fill="#333">なし</text>
+  <text x="810" y="331" text-anchor="middle" font-size="9" fill="#C62828">非推奨（開発環境のみ）</text>
+
+  <!-- Row 2 -->
+  <rect x="25" y="341" width="868" height="26" fill="#FFF3E0" rx="0"/>
+  <text x="125" y="357" text-anchor="middle" font-size="9" fill="#333">Dual / 同一ロケーション</text>
+  <text x="270" y="357" text-anchor="middle" font-size="9" fill="#333">2</text>
+  <text x="380" y="357" text-anchor="middle" font-size="9" fill="#333">1箇所</text>
+  <text x="520" y="357" text-anchor="middle" font-size="9" fill="#E65100">99.9%</text>
+  <text x="650" y="357" text-anchor="middle" font-size="9" fill="#333">ポート障害 / ルーター障害</text>
+  <text x="810" y="357" text-anchor="middle" font-size="9" fill="#E65100">中（施設障害に脆弱）</text>
+
+  <!-- Row 3 -->
+  <rect x="25" y="367" width="868" height="26" fill="#E8F5E9" rx="0"/>
+  <text x="125" y="383" text-anchor="middle" font-size="9" fill="#333">Dual / 異なるロケーション</text>
+  <text x="270" y="383" text-anchor="middle" font-size="9" fill="#333">2+</text>
+  <text x="380" y="383" text-anchor="middle" font-size="9" fill="#333">2箇所以上</text>
+  <text x="520" y="383" text-anchor="middle" font-size="9" fill="#1B5E20">99.99%</text>
+  <text x="650" y="383" text-anchor="middle" font-size="9" fill="#333">施設障害 / ロケーション障害</text>
+  <text x="810" y="383" text-anchor="middle" font-size="9" fill="#1B5E20">高（AWS 推奨）</text>
+
+  <!-- Row 4 -->
+  <rect x="25" y="393" width="868" height="26" fill="#F3E5F5" rx="0"/>
+  <text x="125" y="409" text-anchor="middle" font-size="9" fill="#333">DX + VPN バックアップ</text>
+  <text x="270" y="409" text-anchor="middle" font-size="9" fill="#333">1 DX + VPN</text>
+  <text x="380" y="409" text-anchor="middle" font-size="9" fill="#333">1箇所</text>
+  <text x="520" y="409" text-anchor="middle" font-size="9" fill="#7B1FA2">99.9%</text>
+  <text x="650" y="409" text-anchor="middle" font-size="9" fill="#333">DX 全断（VPN で継続）</text>
+  <text x="810" y="409" text-anchor="middle" font-size="9" fill="#7B1FA2">中（コスト優先時）</text>
+
+  <!-- Divider lines -->
+  <line x1="220" y1="287" x2="220" y2="419" stroke="#ddd" stroke-width="1"/>
+  <line x1="320" y1="287" x2="320" y2="419" stroke="#ddd" stroke-width="1"/>
+  <line x1="440" y1="287" x2="440" y2="419" stroke="#ddd" stroke-width="1"/>
+  <line x1="600" y1="287" x2="600" y2="419" stroke="#ddd" stroke-width="1"/>
+  <line x1="740" y1="287" x2="740" y2="419" stroke="#ddd" stroke-width="1"/>
+</svg>

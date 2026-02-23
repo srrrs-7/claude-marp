@@ -1,0 +1,46 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="36" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">MLOps成熟度モデル（レベル0〜3）</text>
+  <!-- Staircase steps -->
+  <!-- Step 0 -->
+  <rect x="30" y="340" width="160" height="110" rx="6" fill="#1a2d45" stroke="#aaaaaa" stroke-width="1.5"/>
+  <text x="110" y="365" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#aaaaaa">Level 0</text>
+  <text x="110" y="385" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">手動プロセス</text>
+  <text x="110" y="408" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">ML実験は手動</text>
+  <text x="110" y="424" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">スクリプトのみ</text>
+  <text x="110" y="440" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">再現性なし</text>
+  <!-- Step 1 -->
+  <rect x="210" y="265" width="160" height="185" rx="6" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="290" y="290" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">Level 1</text>
+  <text x="290" y="310" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">MLパイプライン</text>
+  <text x="290" y="333" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">学習パイプライン</text>
+  <text x="290" y="349" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">自動化</text>
+  <text x="290" y="370" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">実験トラッキング</text>
+  <text x="290" y="390" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">SageMaker</text>
+  <text x="290" y="407" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">Experiments</text>
+  <!-- Step 2 -->
+  <rect x="390" y="185" width="160" height="265" rx="6" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="470" y="210" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">Level 2</text>
+  <text x="470" y="230" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">CI/CDパイプライン</text>
+  <text x="470" y="253" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">モデルCI/CD</text>
+  <text x="470" y="269" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">自動テスト</text>
+  <text x="470" y="290" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">モデルレジストリ</text>
+  <text x="470" y="310" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">本番承認フロー</text>
+  <text x="470" y="333" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">CodePipeline</text>
+  <text x="470" y="350" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">+ SageMaker</text>
+  <!-- Step 3 -->
+  <rect x="570" y="100" width="200" height="350" rx="6" fill="#0f4a7a" stroke="#4CC9F0" stroke-width="2.5"/>
+  <text x="670" y="128" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#4CC9F0">Level 3</text>
+  <text x="670" y="150" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">完全自動化</text>
+  <text x="670" y="178" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">自動再学習</text>
+  <text x="670" y="195" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">ドリフト検知</text>
+  <text x="670" y="215" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">A/Bテスト自動化</text>
+  <text x="670" y="235" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">継続的モニタリング</text>
+  <text x="670" y="258" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#06D6A0">EventBridge</text>
+  <text x="670" y="275" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#06D6A0">Model Monitor</text>
+  <text x="670" y="292" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#06D6A0">Auto-Retraining</text>
+  <!-- Upward arrow on right -->
+  <line x1="758" y1="450" x2="758" y2="80" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-8 -6,6 6,6" fill="#4CC9F0" transform="translate(758,80) rotate(0)"/>
+  <text x="774" y="280" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#4CC9F0" transform="rotate(90,774,280)">成熟度向上</text>
+</svg>

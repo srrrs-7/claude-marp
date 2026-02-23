@@ -1,0 +1,70 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <!-- AWS Cloud border -->
+  <rect x="8" y="8" width="784" height="384" rx="12" fill="none" stroke="#ff9900" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="24" y="28" font-family="Arial,sans-serif" font-size="12" fill="#cc7700" font-weight="bold">AWS Cloud / Region</text>
+  <!-- VPC border -->
+  <rect x="24" y="36" width="520" height="340" rx="8" fill="#f0f4ff" stroke="#7b5ea7" stroke-width="2"/>
+  <text x="42" y="58" font-family="Arial,sans-serif" font-size="12" fill="#7b5ea7" font-weight="bold">VPC (10.0.0.0/16)</text>
+  <!-- Private Subnet AZ-a -->
+  <rect x="40" y="68" width="200" height="130" rx="6" fill="#e8edff" stroke="#9ca3af" stroke-width="1"/>
+  <text x="55" y="86" font-family="Arial,sans-serif" font-size="10" fill="#555">Private Subnet (AZ-a)</text>
+  <!-- EC2 in AZ-a -->
+  <rect x="55" y="96" width="165" height="56" rx="5" fill="#fff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <rect x="55" y="96" width="165" height="20" rx="5" fill="#7b5ea7"/>
+  <text x="137" y="110" font-family="Arial,sans-serif" font-size="10" fill="#fff" text-anchor="middle">EC2 Instance</text>
+  <text x="137" y="136" font-family="Arial,sans-serif" font-size="10" fill="#555" text-anchor="middle">10.0.1.10</text>
+  <text x="137" y="148" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">outbound S3 request</text>
+  <!-- Route Table box -->
+  <rect x="40" y="215" width="200" height="100" rx="6" fill="#fff9e6" stroke="#f59e0b" stroke-width="2"/>
+  <text x="55" y="233" font-family="Arial,sans-serif" font-size="10" fill="#b45309" font-weight="bold">Route Table</text>
+  <text x="55" y="250" font-family="monospace,Arial" font-size="9" fill="#555">10.0.0.0/16  local</text>
+  <rect x="48" y="255" width="185" height="18" rx="2" fill="#fef9c3"/>
+  <text x="55" y="268" font-family="monospace,Arial" font-size="9" fill="#7b5ea7" font-weight="bold">pl-XXXXXXXX  vpce-0abc</text>
+  <text x="55" y="285" font-family="monospace,Arial" font-size="9" fill="#555">0.0.0.0/0   igw-XXXX</text>
+  <text x="55" y="302" font-family="Arial,sans-serif" font-size="8" fill="#888">※ Prefix Listで動的に管理される</text>
+  <!-- Arrow EC2 to Route Table -->
+  <line x1="140" y1="152" x2="140" y2="213" stroke="#7b5ea7" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="134,209 140,221 146,209" fill="#7b5ea7"/>
+  <!-- Gateway Endpoint box (center) -->
+  <rect x="300" y="140" width="200" height="90" rx="8" fill="#ffffff" stroke="#10b981" stroke-width="2.5" style="filter:drop-shadow(2px 3px 6px rgba(0,0,0,0.15))"/>
+  <rect x="300" y="140" width="200" height="28" rx="8" fill="#10b981"/>
+  <text x="400" y="159" font-family="Arial,sans-serif" font-size="12" fill="#fff" font-weight="bold" text-anchor="middle">Gateway Endpoint</text>
+  <text x="400" y="182" font-family="Arial,sans-serif" font-size="10" fill="#555" text-anchor="middle">vpce-0abc1234def56789</text>
+  <text x="400" y="198" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">ENI なし / プライベートIPなし</text>
+  <text x="400" y="214" font-family="Arial,sans-serif" font-size="9" fill="#059669" text-anchor="middle">ルートテーブルのターゲットとして機能</text>
+  <!-- Arrow Route Table to Endpoint -->
+  <line x1="240" y1="255" x2="298" y2="192" stroke="#10b981" stroke-width="2"/>
+  <polygon points="291,188 302,198 298,185" fill="#10b981"/>
+  <!-- AWS Services (right) -->
+  <rect x="600" y="80" width="175" height="230" rx="8" fill="#fff8f0" stroke="#ff9900" stroke-width="2"/>
+  <text x="687" y="103" font-family="Arial,sans-serif" font-size="12" fill="#cc7700" font-weight="bold" text-anchor="middle">AWS Services</text>
+  <!-- S3 bucket -->
+  <rect x="616" y="115" width="143" height="68" rx="5" fill="#fff" stroke="#ff9900" stroke-width="1.5"/>
+  <circle cx="642" cy="149" r="20" fill="#ff9900"/>
+  <text x="642" y="154" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">S3</text>
+  <text x="678" y="143" font-family="Arial,sans-serif" font-size="11" fill="#333" font-weight="bold">Amazon S3</text>
+  <text x="678" y="159" font-family="Arial,sans-serif" font-size="9" fill="#666">us-east-1</text>
+  <text x="678" y="174" font-family="Arial,sans-serif" font-size="9" fill="#888">Prefix: pl-68a54001</text>
+  <!-- DynamoDB -->
+  <rect x="616" y="196" width="143" height="68" rx="5" fill="#fff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <circle cx="642" cy="230" r="20" fill="#7b5ea7"/>
+  <text x="642" y="235" font-family="Arial,sans-serif" font-size="9" fill="#fff" font-weight="bold" text-anchor="middle">DDB</text>
+  <text x="678" y="224" font-family="Arial,sans-serif" font-size="11" fill="#333" font-weight="bold">DynamoDB</text>
+  <text x="678" y="240" font-family="Arial,sans-serif" font-size="9" fill="#666">us-east-1</text>
+  <text x="678" y="255" font-family="Arial,sans-serif" font-size="9" fill="#888">Prefix: pl-02cd2c6b</text>
+  <!-- Arrow Endpoint to S3 -->
+  <line x1="500" y1="175" x2="598" y2="149" stroke="#10b981" stroke-width="2.5"/>
+  <polygon points="592,143 604,148 591,155" fill="#10b981"/>
+  <!-- Arrow Endpoint to DynamoDB -->
+  <line x1="500" y1="185" x2="598" y2="230" stroke="#10b981" stroke-width="2.5"/>
+  <polygon points="592,225 604,231 593,238" fill="#10b981"/>
+  <!-- Endpoint Policy note -->
+  <rect x="280" y="260" width="240" height="30" rx="4" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
+  <text x="400" y="270" font-family="Arial,sans-serif" font-size="9" fill="#059669" text-anchor="middle" font-weight="bold">VPC Endpoint Policy でアクセス制御</text>
+  <text x="400" y="283" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">aws:PrincipalAccount, aws:sourceVpc 等の条件が利用可能</text>
+  <!-- No ENI note -->
+  <rect x="280" y="300" width="240" height="30" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="1"/>
+  <text x="400" y="310" font-family="Arial,sans-serif" font-size="9" fill="#b45309" text-anchor="middle" font-weight="bold">Gateway EP は ENI を持たない</text>
+  <text x="400" y="323" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">セキュリティグループは設定不可（ルートのみ）</text>
+</svg>

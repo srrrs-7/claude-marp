@@ -1,0 +1,84 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">ANS 試験 — 設計判断決定木</text>
+  <!-- Question nodes - ANS exam style -->
+  <!-- Q1: Exam question type -->
+  <rect x="230" y="36" width="340" height="32" rx="5" fill="#7b5ea7"/>
+  <text x="400" y="57" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">試験問題: 「VPC から AWS サービスへ安全に接続したい」</text>
+  <!-- Q1: S3/DDB only -->
+  <line x1="400" y1="68" x2="400" y2="82" stroke="#555" stroke-width="1.5"/>
+  <polygon points="394,78 400,86 406,78" fill="#555"/>
+  <rect x="250" y="82" width="300" height="28" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="2"/>
+  <text x="400" y="101" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">Q1: S3 または DynamoDB のみ?</text>
+  <!-- YES left -->
+  <line x1="250" y1="96" x2="185" y2="96" stroke="#555" stroke-width="1.5"/>
+  <polygon points="189,90 177,96 189,102" fill="#555"/>
+  <text x="215" y="90" font-family="Arial,sans-serif" font-size="9" fill="#10b981">YES</text>
+  <!-- Q2 left: On-prem -->
+  <rect x="20" y="82" width="157" height="28" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="2"/>
+  <text x="99" y="101" font-family="Arial,sans-serif" font-size="9" fill="#b45309" text-anchor="middle" font-weight="bold">Q2: オンプレ接続必要?</text>
+  <!-- Q2 NO → Gateway EP -->
+  <line x1="99" y1="110" x2="99" y2="128" stroke="#555" stroke-width="1.5"/>
+  <polygon points="93,124 99,132 105,124" fill="#555"/>
+  <text x="113" y="124" font-family="Arial,sans-serif" font-size="9" fill="#ef4444">NO</text>
+  <rect x="20" y="132" width="157" height="32" rx="5" fill="#10b981"/>
+  <text x="99" y="148" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">Gateway Endpoint</text>
+  <text x="99" y="160" font-family="Arial,sans-serif" font-size="8" fill="#d1fae5" text-anchor="middle">ルートテーブル / 無料</text>
+  <!-- Q2 YES → Interface EP for S3 -->
+  <line x1="20" y1="96" x2="8" y2="96" stroke="#555" stroke-width="1.5"/>
+  <line x1="8" y1="96" x2="8" y2="186" stroke="#555" stroke-width="1.5"/>
+  <line x1="8" y1="186" x2="95" y2="186" stroke="#555" stroke-width="1.5"/>
+  <polygon points="91,180 103,186 91,192" fill="#555"/>
+  <text x="2" y="145" font-family="Arial,sans-serif" font-size="9" fill="#10b981" transform="rotate(-90,10,145)">YES</text>
+  <rect x="20" y="186" width="157" height="32" rx="5" fill="#f59e0b"/>
+  <text x="99" y="202" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">Interface Endpoint</text>
+  <text x="99" y="214" font-family="Arial,sans-serif" font-size="8" fill="#fef9c3" text-anchor="middle">ENI / SG / DNS</text>
+  <!-- Q1 NO → Q3 -->
+  <line x1="550" y1="96" x2="618" y2="96" stroke="#555" stroke-width="1.5"/>
+  <polygon points="614,90 626,96 614,102" fill="#555"/>
+  <text x="583" y="90" font-family="Arial,sans-serif" font-size="9" fill="#ef4444">NO (other services)</text>
+  <rect x="620" y="82" width="160" height="28" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="2"/>
+  <text x="700" y="101" font-family="Arial,sans-serif" font-size="9" fill="#b45309" text-anchor="middle" font-weight="bold">Q3: カスタムサービス公開?</text>
+  <line x1="700" y1="110" x2="700" y2="128" stroke="#555" stroke-width="1.5"/>
+  <polygon points="694,124 700,132 706,124" fill="#555"/>
+  <text x="715" y="124" font-family="Arial,sans-serif" font-size="9" fill="#ef4444">NO</text>
+  <rect x="628" y="132" width="144" height="32" rx="5" fill="#10b981"/>
+  <text x="700" y="148" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">Interface Endpoint</text>
+  <text x="700" y="160" font-family="Arial,sans-serif" font-size="8" fill="#d1fae5" text-anchor="middle">com.amazonaws.*</text>
+  <line x1="780" y1="96" x2="792" y2="96" stroke="#555" stroke-width="1.5"/>
+  <line x1="792" y1="96" x2="792" y2="186" stroke="#555" stroke-width="1.5"/>
+  <line x1="792" y1="186" x2="774" y2="186" stroke="#555" stroke-width="1.5"/>
+  <polygon points="778,180 766,186 778,192" fill="#555"/>
+  <text x="793" y="145" font-family="Arial,sans-serif" font-size="9" fill="#10b981" transform="rotate(90,793,145)">YES</text>
+  <rect x="628" y="186" width="144" height="32" rx="5" fill="#7b5ea7"/>
+  <text x="700" y="202" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">PrivateLink (Provider)</text>
+  <text x="700" y="214" font-family="Arial,sans-serif" font-size="8" fill="#d4b8ff" text-anchor="middle">NLB + EP Service</text>
+  <!-- ANS Exam tips bottom -->
+  <rect x="10" y="240" width="780" height="148" rx="8" fill="#fff" stroke="#7b5ea7" stroke-width="1.5"/>
+  <rect x="10" y="240" width="780" height="26" rx="8" fill="#7b5ea7"/>
+  <text x="400" y="258" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">ANS 試験 頻出ポイント</text>
+  <!-- 3 columns -->
+  <line x1="270" y1="266" x2="270" y2="388" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="540" y1="266" x2="540" y2="388" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="140" y="285" font-family="Arial,sans-serif" font-size="10" fill="#7b5ea7" text-anchor="middle" font-weight="bold">Gateway EP のみ</text>
+  <text x="20" y="302" font-family="Arial,sans-serif" font-size="9" fill="#555">・S3/DDB のみ対応</text>
+  <text x="20" y="316" font-family="Arial,sans-serif" font-size="9" fill="#555">・ルートテーブルで制御</text>
+  <text x="20" y="330" font-family="Arial,sans-serif" font-size="9" fill="#555">・ENI なし / SG 不可</text>
+  <text x="20" y="344" font-family="Arial,sans-serif" font-size="9" fill="#555">・オンプレ/TGW から不可</text>
+  <text x="20" y="358" font-family="Arial,sans-serif" font-size="9" fill="#555">・無料</text>
+  <text x="20" y="372" font-family="Arial,sans-serif" font-size="9" fill="#555">・Prefix List でルーティング</text>
+  <text x="405" y="285" font-family="Arial,sans-serif" font-size="10" fill="#10b981" text-anchor="middle" font-weight="bold">Interface EP のみ</text>
+  <text x="280" y="302" font-family="Arial,sans-serif" font-size="9" fill="#555">・100+ サービス対応</text>
+  <text x="280" y="316" font-family="Arial,sans-serif" font-size="9" fill="#555">・ENI + SG で制御</text>
+  <text x="280" y="330" font-family="Arial,sans-serif" font-size="9" fill="#555">・Private DNS (PHZ)</text>
+  <text x="280" y="344" font-family="Arial,sans-serif" font-size="9" fill="#555">・オンプレ/TGW から利用可</text>
+  <text x="280" y="358" font-family="Arial,sans-serif" font-size="9" fill="#555">・有料 ($0.01/hr/AZ)</text>
+  <text x="280" y="372" font-family="Arial,sans-serif" font-size="9" fill="#555">・NLB + EP Service でカスタム公開</text>
+  <text x="665" y="285" font-family="Arial,sans-serif" font-size="10" fill="#f59e0b" text-anchor="middle" font-weight="bold">試験で迷ったら</text>
+  <text x="550" y="302" font-family="Arial,sans-serif" font-size="9" fill="#555">Q: 「VPC CIDR 重複でも OK?」</text>
+  <text x="550" y="316" font-family="Arial,sans-serif" font-size="9" fill="#059669">→ PrivateLink は OK (EP)</text>
+  <text x="550" y="330" font-family="Arial,sans-serif" font-size="9" fill="#555">Q: 「コスト最小化」+ S3?</text>
+  <text x="550" y="344" font-family="Arial,sans-serif" font-size="9" fill="#059669">→ Gateway EP (無料)</text>
+  <text x="550" y="358" font-family="Arial,sans-serif" font-size="9" fill="#555">Q: 「オンプレから SSM?」</text>
+  <text x="550" y="372" font-family="Arial,sans-serif" font-size="9" fill="#059669">→ Interface EP + R53 Inbound EP</text>
+</svg>

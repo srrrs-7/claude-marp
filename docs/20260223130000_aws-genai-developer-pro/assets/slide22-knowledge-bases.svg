@@ -1,0 +1,84 @@
+<svg viewBox="0 0 900 430" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="430" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Knowledge Bases for Bedrock</text>
+  <text x="450" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">マネージド型RAGサービス — データ取り込みから検索・生成まで自動化</text>
+
+  <!-- Data ingestion flow -->
+  <text x="80" y="82" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">① データ取り込みフロー</text>
+
+  <rect x="15" y="92" width="100" height="60" rx="6" fill="#172554" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="65" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">データソース</text>
+  <text x="65" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">S3 / Web</text>
+  <text x="65" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">SharePoint等</text>
+  <polygon points="120,122 140,117 140,127" fill="#6d28d9"/>
+  <rect x="141" y="92" width="110" height="60" rx="6" fill="#3b0764" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="196" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">チャンキング</text>
+  <text x="196" y="134" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">固定/セマンティック</text>
+  <text x="196" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">/階層型/カスタム</text>
+  <polygon points="256,122 276,117 276,127" fill="#6d28d9"/>
+  <rect x="277" y="92" width="110" height="60" rx="6" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+  <text x="332" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">エンベディング</text>
+  <text x="332" y="134" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a7f3d0">Titan Embeddings V2</text>
+  <text x="332" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a7f3d0">Cohere Embed</text>
+  <polygon points="392,122 412,117 412,127" fill="#6d28d9"/>
+  <rect x="413" y="92" width="120" height="60" rx="6" fill="#78350f" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="473" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fcd34d">ベクターDB保存</text>
+  <text x="473" y="134" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fde68a">OpenSearch/Pinecone</text>
+  <text x="473" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fde68a">/Redis/MongoDB</text>
+
+  <!-- Retrieval generation flow -->
+  <text x="750" y="82" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">② 検索・生成フロー</text>
+
+  <rect x="540" y="92" width="110" height="60" rx="6" fill="#172554" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="595" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">ユーザー質問</text>
+  <text x="595" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">クエリのベクター化</text>
+  <text x="595" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">（Embed Model）</text>
+  <polygon points="655,122 675,117 675,127" fill="#6d28d9"/>
+  <rect x="676" y="92" width="100" height="60" rx="6" fill="#78350f" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="726" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fcd34d">KNN検索</text>
+  <text x="726" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fde68a">Top-K</text>
+  <text x="726" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fde68a">類似チャンク取得</text>
+  <polygon points="781,122 801,117 801,127" fill="#6d28d9"/>
+  <rect x="802" y="92" width="83" height="60" rx="6" fill="#3b0764" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="843" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">FM 生成</text>
+  <text x="843" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">プロンプト+</text>
+  <text x="843" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">コンテキスト</text>
+
+  <!-- API section -->
+  <rect x="15" y="168" width="870" height="80" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="188" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">Bedrock Knowledge Bases API（試験重要）</text>
+  <rect x="30" y="200" width="390" height="36" rx="5" fill="#0f172a"/>
+  <text x="225" y="216" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#60a5fa">Retrieve API</text>
+  <text x="225" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">検索のみ → 関連チャンク（テキスト+メタデータ）を返す</text>
+  <rect x="450" y="200" width="420" height="36" rx="5" fill="#0f172a"/>
+  <text x="660" y="216" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#34d399">RetrieveAndGenerate API</text>
+  <text x="660" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">検索+生成を一括 → 引用付きで自然文回答を生成</text>
+
+  <!-- Features grid -->
+  <rect x="15" y="260" width="870" height="155" rx="8" fill="#1f2937"/>
+  <text x="450" y="280" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">主要機能と設定項目</text>
+  <rect x="30" y="292" width="195" height="110" rx="6" fill="#0f172a"/>
+  <text x="128" y="312" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#c4b5fd">チャンキング設定</text>
+  <text x="128" y="332" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">固定サイズ（デフォルト）</text>
+  <text x="128" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">セマンティックチャンキング</text>
+  <text x="128" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">階層型チャンキング</text>
+  <text x="128" y="386" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">カスタムLambda変換</text>
+  <rect x="240" y="292" width="195" height="110" rx="6" fill="#0f172a"/>
+  <text x="338" y="312" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#6ee7b7">ベクターDB対応</text>
+  <text x="338" y="332" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">OpenSearch Serverless</text>
+  <text x="338" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">Amazon Aurora</text>
+  <text x="338" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">Pinecone / Redis</text>
+  <text x="338" y="386" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">MongoDB Atlas</text>
+  <rect x="450" y="292" width="195" height="110" rx="6" fill="#0f172a"/>
+  <text x="548" y="312" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fcd34d">検索設定</text>
+  <text x="548" y="332" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">ベクター検索（デフォルト）</text>
+  <text x="548" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">ハイブリッド検索</text>
+  <text x="548" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">メタデータフィルタリング</text>
+  <text x="548" y="386" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">Re-rankingオプション</text>
+  <rect x="660" y="292" width="210" height="110" rx="6" fill="#0f172a"/>
+  <text x="765" y="312" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f9a8d4">データソース対応</text>
+  <text x="765" y="332" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fbcfe8">Amazon S3（主要）</text>
+  <text x="765" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fbcfe8">Web Crawler（URL指定）</text>
+  <text x="765" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fbcfe8">Confluence / SharePoint</text>
+  <text x="765" y="386" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fbcfe8">Salesforce / ServiceNow</text>
+</svg>

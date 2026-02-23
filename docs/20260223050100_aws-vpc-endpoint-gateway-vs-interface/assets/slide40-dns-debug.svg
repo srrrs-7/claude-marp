@@ -1,0 +1,84 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#fafafa"/>
+  <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">DNS トラブルシューティング — 診断決定木</text>
+  <!-- Start -->
+  <rect x="280" y="36" width="240" height="28" rx="14" fill="#7b5ea7"/>
+  <text x="400" y="55" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">nslookup ssm.*.amazonaws.com を実行</text>
+  <line x1="400" y1="64" x2="400" y2="78" stroke="#555" stroke-width="1.5"/>
+  <polygon points="394,74 400,82 406,74" fill="#555"/>
+  <!-- Q1 -->
+  <rect x="255" y="78" width="290" height="30" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="2"/>
+  <text x="400" y="98" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">解決先 IP は プライベート IP か?</text>
+  <!-- YES (Private IP) -->
+  <line x1="400" y1="108" x2="400" y2="122" stroke="#555" stroke-width="1.5"/>
+  <polygon points="394,118 400,126 406,118" fill="#555"/>
+  <text x="420" y="118" font-family="Arial,sans-serif" font-size="9" fill="#10b981">YES (10.x/172.x)</text>
+  <!-- NO (Public IP) -->
+  <line x1="255" y1="93" x2="170" y2="93" stroke="#ef4444" stroke-width="1.5"/>
+  <polygon points="174,87 162,93 174,99" fill="#ef4444"/>
+  <text x="206" y="87" font-family="Arial,sans-serif" font-size="9" fill="#ef4444">NO (Public IP)</text>
+  <!-- Public IP resolution causes -->
+  <rect x="10" y="78" width="152" height="100" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="86" y="98" font-family="Arial,sans-serif" font-size="9" fill="#ef4444" text-anchor="middle" font-weight="bold">原因と対処</text>
+  <text x="18" y="116" font-family="Arial,sans-serif" font-size="9" fill="#555">・Private DNS 無効</text>
+  <text x="18" y="132" font-family="Arial,sans-serif" font-size="9" fill="#555">→ EP で有効化</text>
+  <text x="18" y="148" font-family="Arial,sans-serif" font-size="9" fill="#555">・enableDnsSupport=false</text>
+  <text x="18" y="164" font-family="Arial,sans-serif" font-size="9" fill="#555">→ VPC 属性を修正</text>
+  <!-- Q2 -->
+  <rect x="255" y="122" width="290" height="30" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="2"/>
+  <text x="400" y="142" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">接続 (curl) は成功するか?</text>
+  <line x1="400" y1="152" x2="400" y2="166" stroke="#555" stroke-width="1.5"/>
+  <polygon points="394,162 400,170 406,162" fill="#555"/>
+  <text x="420" y="162" font-family="Arial,sans-serif" font-size="9" fill="#10b981">YES</text>
+  <!-- NO: connection timeout -->
+  <line x1="545" y1="137" x2="620" y2="137" stroke="#ef4444" stroke-width="1.5"/>
+  <polygon points="616,131 628,137 616,143" fill="#ef4444"/>
+  <text x="580" y="131" font-family="Arial,sans-serif" font-size="9" fill="#ef4444">NO (timeout)</text>
+  <rect x="620" y="118" width="170" height="74" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="705" y="138" font-family="Arial,sans-serif" font-size="9" fill="#ef4444" text-anchor="middle" font-weight="bold">SG / NACL 確認</text>
+  <text x="628" y="158" font-family="Arial,sans-serif" font-size="9" fill="#555">EP SG: Inbound 443</text>
+  <text x="628" y="174" font-family="Arial,sans-serif" font-size="9" fill="#555">NACL: In+Out 443/1024-65535</text>
+  <text x="628" y="188" font-family="Arial,sans-serif" font-size="9" fill="#888">NACL はステートレスに注意</text>
+  <!-- Q3 -->
+  <rect x="255" y="166" width="290" height="30" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="2"/>
+  <text x="400" y="186" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">認証エラー (403/AccessDenied)?</text>
+  <line x1="400" y1="196" x2="400" y2="210" stroke="#555" stroke-width="1.5"/>
+  <polygon points="394,206 400,214 406,206" fill="#555"/>
+  <text x="420" y="206" font-family="Arial,sans-serif" font-size="9" fill="#10b981">NO</text>
+  <!-- YES: 403 -->
+  <line x1="545" y1="181" x2="620" y2="181" stroke="#ef4444" stroke-width="1.5"/>
+  <polygon points="616,175 628,181 616,187" fill="#ef4444"/>
+  <text x="580" y="175" font-family="Arial,sans-serif" font-size="9" fill="#ef4444">YES (403)</text>
+  <rect x="620" y="200" width="170" height="100" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="705" y="220" font-family="Arial,sans-serif" font-size="9" fill="#ef4444" text-anchor="middle" font-weight="bold">ポリシー確認</text>
+  <text x="628" y="240" font-family="Arial,sans-serif" font-size="9" fill="#555">1. IAM Role 権限</text>
+  <text x="628" y="258" font-family="Arial,sans-serif" font-size="9" fill="#555">2. EP Policy の拒否</text>
+  <text x="628" y="276" font-family="Arial,sans-serif" font-size="9" fill="#555">3. Bucket/Resource Policy</text>
+  <text x="628" y="292" font-family="Arial,sans-serif" font-size="9" fill="#888">CloudTrail で確認</text>
+  <!-- Q4: AZ specific issue -->
+  <rect x="255" y="210" width="290" height="30" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="2"/>
+  <text x="400" y="230" font-family="Arial,sans-serif" font-size="10" fill="#b45309" text-anchor="middle" font-weight="bold">特定の AZ のみ失敗するか?</text>
+  <line x1="400" y1="240" x2="400" y2="254" stroke="#555" stroke-width="1.5"/>
+  <polygon points="394,250 400,258 406,250" fill="#555"/>
+  <text x="420" y="250" font-family="Arial,sans-serif" font-size="9" fill="#10b981">NO</text>
+  <!-- YES: AZ specific -->
+  <line x1="255" y1="225" x2="170" y2="225" stroke="#ef4444" stroke-width="1.5"/>
+  <polygon points="174,219 162,225 174,231" fill="#ef4444"/>
+  <text x="206" y="219" font-family="Arial,sans-serif" font-size="9" fill="#ef4444">YES</text>
+  <rect x="10" y="200" width="152" height="80" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="86" y="220" font-family="Arial,sans-serif" font-size="9" fill="#ef4444" text-anchor="middle" font-weight="bold">AZ 別の ENI 確認</text>
+  <text x="18" y="240" font-family="Arial,sans-serif" font-size="9" fill="#555">その AZ に ENI が</text>
+  <text x="18" y="256" font-family="Arial,sans-serif" font-size="9" fill="#555">作成されているか確認</text>
+  <text x="18" y="272" font-family="Arial,sans-serif" font-size="9" fill="#555">→ EP を修正して追加</text>
+  <!-- Success -->
+  <rect x="300" y="254" width="200" height="28" rx="14" fill="#10b981"/>
+  <text x="400" y="273" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">接続成功</text>
+  <!-- Diagnostic commands -->
+  <rect x="10" y="300" width="780" height="88" rx="6" fill="#fff" stroke="#e5e7eb" stroke-width="1.5"/>
+  <rect x="10" y="300" width="780" height="22" rx="6" fill="#6b7280"/>
+  <text x="400" y="316" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">DNS 診断コマンド一覧</text>
+  <text x="20" y="338" font-family="monospace,Arial" font-size="9" fill="#555"># DNS 解決確認 (EC2 から実行)</text>
+  <text x="20" y="353" font-family="monospace,Arial" font-size="9" fill="#333">nslookup ssm.ap-northeast-1.amazonaws.com 169.254.169.253</text>
+  <text x="20" y="368" font-family="monospace,Arial" font-size="9" fill="#555"># ENI/EP 確認</text>
+  <text x="20" y="383" font-family="monospace,Arial" font-size="9" fill="#333">aws ec2 describe-vpc-endpoints --filters "Name=service-name,Values=com.amazonaws.ap-northeast-1.ssm"</text>
+</svg>
