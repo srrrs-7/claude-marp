@@ -1,0 +1,132 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+  <text x="400" y="35" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">PEFT / LoRA 手法の仕組み</text>
+
+  <!-- Left: Full Fine-tuning -->
+  <rect x="20" y="55" width="330" height="310" rx="8" fill="#1e3a5f"/>
+  <text x="185" y="82" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#E63946" text-anchor="middle">フルファインチューニング</text>
+  <text x="185" y="102" font-family="Arial,sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">全重み行列 W を更新 — 高コスト</text>
+
+  <!-- Grid representing full weight matrix -->
+  <g>
+    <!-- 8x8 grid of cells all highlighted -->
+    <text x="185" y="128" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">重み行列 W (d × k)</text>
+    <!-- Row 1 -->
+    <rect x="60" y="135" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="84" y="135" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="108" y="135" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="132" y="135" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="156" y="135" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="180" y="135" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="204" y="135" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="228" y="135" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="252" y="135" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <!-- Row 2 -->
+    <rect x="60" y="160" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="84" y="160" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="108" y="160" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="132" y="160" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="156" y="160" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="180" y="160" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="204" y="160" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="228" y="160" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="252" y="160" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <!-- Row 3 -->
+    <rect x="60" y="185" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="84" y="185" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="108" y="185" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="132" y="185" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="156" y="185" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="180" y="185" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="204" y="185" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="228" y="185" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="252" y="185" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <!-- Row 4 -->
+    <rect x="60" y="210" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="84" y="210" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="108" y="210" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="132" y="210" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="156" y="210" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="180" y="210" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="204" y="210" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="228" y="210" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="252" y="210" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <!-- Row 5 -->
+    <rect x="60" y="235" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="84" y="235" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="108" y="235" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="132" y="235" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="156" y="235" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="180" y="235" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="204" y="235" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="228" y="235" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+    <rect x="252" y="235" width="22" height="22" rx="1" fill="#E63946" opacity="0.7"/>
+  </g>
+  <text x="185" y="280" font-family="Arial,sans-serif" font-size="13" fill="#E63946" text-anchor="middle" font-weight="bold">d × k 全パラメータ更新</text>
+  <text x="185" y="300" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">例: d=4096, k=4096 → 16M params</text>
+  <text x="185" y="325" font-family="Arial,sans-serif" font-size="12" fill="#E63946" text-anchor="middle">高コスト / 大量 VRAM 必要</text>
+  <text x="185" y="345" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">壊滅的忘却リスクあり</text>
+
+  <!-- Right: LoRA -->
+  <rect x="380" y="55" width="400" height="310" rx="8" fill="#0a2545" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="580" y="82" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#4CC9F0" text-anchor="middle">LoRA (Low-Rank Adaptation) ★推奨</text>
+  <text x="580" y="102" font-family="Arial,sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">W + ΔW = W + B × A で近似更新</text>
+
+  <!-- Original W (frozen) -->
+  <rect x="390" y="115" width="100" height="110" rx="4" fill="#2d4059" opacity="0.6"/>
+  <text x="440" y="138" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">W (d×k)</text>
+  <text x="440" y="158" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">Frozen</text>
+  <text x="440" y="178" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">d=4096</text>
+  <text x="440" y="198" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">k=4096</text>
+  <text x="440" y="218" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">16M params</text>
+
+  <!-- Plus sign -->
+  <text x="510" y="178" font-family="Arial,sans-serif" font-size="24" fill="#4CC9F0" text-anchor="middle">+</text>
+
+  <!-- B matrix (tall narrow) -->
+  <rect x="525" y="115" width="38" height="110" rx="4" fill="#4CC9F0" opacity="0.6"/>
+  <text x="544" y="155" font-family="Arial,sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">B</text>
+  <text x="544" y="170" font-family="Arial,sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">d×r</text>
+  <text x="544" y="188" font-family="Arial,sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">r=8</text>
+
+  <!-- x sign -->
+  <text x="580" y="178" font-family="Arial,sans-serif" font-size="18" fill="#4CC9F0" text-anchor="middle">×</text>
+
+  <!-- A matrix (wide flat) -->
+  <rect x="595" y="155" width="130" height="38" rx="4" fill="#4CC9F0" opacity="0.6"/>
+  <text x="660" y="170" font-family="Arial,sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">A (r×k)</text>
+  <text x="660" y="186" font-family="Arial,sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">r=8, k=4096</text>
+
+  <!-- Equals output -->
+  <text x="740" y="178" font-family="Arial,sans-serif" font-size="18" fill="#06D6A0" text-anchor="middle">=</text>
+  <rect x="755" y="140" width="18" height="76" rx="3" fill="#06D6A0" opacity="0.6"/>
+
+  <!-- Stats box -->
+  <rect x="395" y="245" width="370" height="100" rx="6" fill="#111e2d"/>
+  <text x="580" y="268" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#06D6A0" text-anchor="middle">パラメータ削減効果</text>
+  <text x="580" y="290" font-family="Arial,sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">B(4096×8) + A(8×4096) = 65,536 params</text>
+  <text x="580" y="310" font-family="Arial,sans-serif" font-size="12" fill="#4CC9F0" text-anchor="middle">vs Full: 16,777,216 params</text>
+  <text x="580" y="330" font-family="Arial,sans-serif" font-size="14" fill="#06D6A0" text-anchor="middle" font-weight="bold">r=8 → 99.6% パラメータ削減!</text>
+
+  <!-- Bottom: PEFT variants -->
+  <rect x="20" y="385" width="760" height="100" rx="8" fill="#111e2d"/>
+  <text x="400" y="408" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">PEFT バリアント一覧</text>
+
+  <rect x="35" y="418" width="130" height="30" rx="4" fill="#1e3a5f"/>
+  <text x="100" y="437" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">LoRA</text>
+
+  <rect x="175" y="418" width="130" height="30" rx="4" fill="#1e3a5f"/>
+  <text x="240" y="437" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">QLoRA (量子化)</text>
+
+  <rect x="315" y="418" width="130" height="30" rx="4" fill="#1e3a5f"/>
+  <text x="380" y="437" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">Prefix Tuning</text>
+
+  <rect x="455" y="418" width="130" height="30" rx="4" fill="#1e3a5f"/>
+  <text x="520" y="437" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">Prompt Tuning</text>
+
+  <rect x="595" y="418" width="130" height="30" rx="4" fill="#1e3a5f"/>
+  <text x="660" y="437" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">Adapter</text>
+
+  <text x="400" y="470" font-family="Arial,sans-serif" font-size="12" fill="#06D6A0" text-anchor="middle">★ Amazon Bedrock の Fine-tuning は LoRAベース</text>
+</svg>

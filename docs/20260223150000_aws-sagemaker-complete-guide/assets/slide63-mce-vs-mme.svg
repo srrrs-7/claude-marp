@@ -1,0 +1,115 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#f1f5f9">Multi-Container Endpoint vs Multi-Model Endpoint</text>
+
+  <!-- Divider -->
+  <line x1="450" y1="50" x2="450" y2="480" stroke="#334155" stroke-width="2"/>
+
+  <!-- ===== LEFT: MCE ===== -->
+  <text x="225" y="72" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#3b82f6">Multi-Container Endpoint (MCE)</text>
+
+  <!-- Endpoint box -->
+  <rect x="30" y="85" width="390" height="280" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="225" y="105" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#94a3b8">1 Endpoint / 最大15コンテナ / 異なるFW可</text>
+
+  <!-- Container boxes -->
+  <rect x="50" y="115" width="100" height="60" rx="6" fill="#1d4ed8"/>
+  <text x="100" y="140" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">Container A</text>
+  <text x="100" y="156" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#bfdbfe">sklearn</text>
+
+  <rect x="175" y="115" width="100" height="60" rx="6" fill="#7c3aed"/>
+  <text x="225" y="140" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">Container B</text>
+  <text x="225" y="156" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ddd6fe">TensorFlow</text>
+
+  <rect x="300" y="115" width="100" height="60" rx="6" fill="#0f766e"/>
+  <text x="350" y="140" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">Container C</text>
+  <text x="350" y="156" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#99f6e4">Custom</text>
+
+  <!-- Arrows A→B→C -->
+  <line x1="150" y1="145" x2="170" y2="145" stroke="#f97316" stroke-width="2"/>
+  <polygon points="170,140 180,145 170,150" fill="#f97316"/>
+  <line x1="275" y1="145" x2="295" y2="145" stroke="#f97316" stroke-width="2"/>
+  <polygon points="295,140 305,145 295,150" fill="#f97316"/>
+
+  <text x="225" y="200" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f97316">→ Serial Pipeline: A→B→C</text>
+
+  <!-- Direct invocation -->
+  <text x="225" y="225" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#94a3b8">または Direct Invocation (指定コンテナへ)</text>
+
+  <!-- Use case -->
+  <rect x="50" y="240" width="350" height="110" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="225" y="258" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#22c55e">ユースケース</text>
+  <text x="225" y="276" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">前処理(sklearn) + 推論(TF) + 後処理(Custom)</text>
+  <text x="225" y="294" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">異なるフレームワークのコンテナを同居</text>
+  <text x="225" y="312" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">Framework diversity: 高</text>
+  <text x="225" y="330" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">モデル数: 少 (最大15コンテナ)</text>
+  <text x="225" y="348" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">Loading: 静的 (起動時にロード)</text>
+
+  <!-- ===== RIGHT: MME ===== -->
+  <text x="675" y="72" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#a855f7">Multi-Model Endpoint (MME)</text>
+
+  <!-- Endpoint box -->
+  <rect x="465" y="85" width="415" height="280" rx="10" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="672" y="105" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#94a3b8">1 Endpoint / 1 Container / N モデル</text>
+
+  <!-- Single container -->
+  <rect x="545" y="115" width="240" height="50" rx="6" fill="#581c87"/>
+  <text x="665" y="138" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f1f5f9">1 Container (同一FW)</text>
+  <text x="665" y="155" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#e9d5ff">e.g., TensorFlow Serving</text>
+
+  <!-- Model boxes -->
+  <rect x="480" y="180" width="60" height="40" rx="4" fill="#6d28d9"/>
+  <text x="510" y="198" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Model 1</text>
+  <text x="510" y="211" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#c4b5fd">(S3)</text>
+
+  <rect x="550" y="180" width="60" height="40" rx="4" fill="#6d28d9"/>
+  <text x="580" y="198" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Model 2</text>
+  <text x="580" y="211" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#c4b5fd">(S3)</text>
+
+  <rect x="620" y="180" width="60" height="40" rx="4" fill="#6d28d9"/>
+  <text x="650" y="198" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Model 3</text>
+  <text x="650" y="211" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#c4b5fd">(S3)</text>
+
+  <text x="720" y="205" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#94a3b8">...</text>
+
+  <rect x="745" y="180" width="60" height="40" rx="4" fill="#6d28d9"/>
+  <text x="775" y="198" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Model N</text>
+  <text x="775" y="211" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#c4b5fd">(S3)</text>
+
+  <!-- Dynamic loading arrow -->
+  <line x1="665" y1="165" x2="665" y2="178" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="665" y="235" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a855f7">Dynamic Loading from S3</text>
+
+  <!-- Use case -->
+  <rect x="480" y="245" width="380" height="105" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="670" y="263" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#22c55e">ユースケース</text>
+  <text x="670" y="281" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">1000テナント × 1モデル (SaaS)</text>
+  <text x="670" y="299" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">Framework diversity: 低 (同一FW必須)</text>
+  <text x="670" y="317" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">モデル数: 多 (数千〜数万)</text>
+  <text x="670" y="335" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">Loading: 動的 (S3からオンデマンド)</text>
+
+  <!-- Comparison table -->
+  <rect x="30" y="378" width="840" height="100" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="450" y="396" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f1f5f9">比較サマリ</text>
+
+  <!-- Table headers -->
+  <text x="120" y="415" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#94a3b8">項目</text>
+  <text x="340" y="415" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#3b82f6">MCE</text>
+  <text x="600" y="415" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a855f7">MME</text>
+
+  <line x1="40" y1="420" x2="860" y2="420" stroke="#334155" stroke-width="1"/>
+
+  <text x="120" y="437" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">フレームワーク多様性</text>
+  <text x="340" y="437" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">高 (異なるFW可)</text>
+  <text x="600" y="437" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ef4444">低 (同一FW必須)</text>
+
+  <text x="120" y="455" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">モデル数上限</text>
+  <text x="340" y="455" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">15コンテナ</text>
+  <text x="600" y="455" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">無制限 (S3次第)</text>
+
+  <text x="120" y="473" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">ローディング</text>
+  <text x="340" y="473" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">静的 (起動時)</text>
+  <text x="600" y="473" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f97316">動的 (オンデマンド)</text>
+</svg>

@@ -1,0 +1,102 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#f1f5f9">推論コスト最適化マトリクス</text>
+  <text x="450" y="52" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#94a3b8">リクエスト頻度 × レイテンシ要件 で最適な推論タイプを選択</text>
+
+  <!-- ===== LEFT: 2D Matrix ===== -->
+  <!-- Axes -->
+  <!-- X axis: リクエスト頻度 -->
+  <line x1="90" y1="390" x2="540" y2="390" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="540,385 554,390 540,395" fill="#94a3b8"/>
+  <text x="310" y="412" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#94a3b8">リクエスト頻度</text>
+  <text x="100" y="412" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#94a3b8">低</text>
+  <text x="540" y="412" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#94a3b8">高</text>
+
+  <!-- Y axis: レイテンシ -->
+  <line x1="90" y1="390" x2="90" y2="75" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="85,75 90,61 95,75" fill="#94a3b8"/>
+  <text x="45" y="230" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#94a3b8" transform="rotate(-90 45 230)">レイテンシ要件</text>
+  <text x="70" y="390" text-anchor="end" font-family="sans-serif" font-size="11" fill="#94a3b8">緩</text>
+  <text x="70" y="80" text-anchor="end" font-family="sans-serif" font-size="11" fill="#94a3b8">厳</text>
+
+  <!-- Quadrant divider -->
+  <line x1="90" y1="230" x2="545" y2="230" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <line x1="315" y1="75" x2="315" y2="390" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,3"/>
+
+  <!-- Q1: 低頻度 + 低レイテンシ (Serverless Provisioned) -->
+  <rect x="95" y="80" width="214" height="143" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="202" y="103" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f97316">Serverless</text>
+  <text x="202" y="118" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f97316">(Provisioned Concurrency)</text>
+  <text x="202" y="140" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">コールドスタートを排除</text>
+  <text x="202" y="156" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">低頻度でも一定の応答速度</text>
+  <text x="202" y="175" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">例: 開発ツール API</text>
+  <text x="202" y="192" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">例: 社内リクエストが少ないサービス</text>
+  <text x="202" y="210" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316">★ コールドスタートなし</text>
+
+  <!-- Q2: 高頻度 + 低レイテンシ (Real-time) -->
+  <rect x="320" y="80" width="218" height="143" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="429" y="103" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#22c55e">Real-time Endpoint</text>
+  <text x="429" y="118" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">(Auto Scaling)</text>
+  <text x="429" y="140" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">スケールアウトで高スループット</text>
+  <text x="429" y="156" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">ミリ秒レベルの応答</text>
+  <text x="429" y="175" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">例: 本番 ML API</text>
+  <text x="429" y="192" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">例: リアルタイム推薦システム</text>
+  <text x="429" y="210" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#22c55e">★ 最高スループット</text>
+
+  <!-- Q3: 低頻度 + 高レイテンシOK (Serverless standard) -->
+  <rect x="95" y="237" width="214" height="146" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="202" y="258" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#a855f7">Serverless Inference</text>
+  <text x="202" y="273" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a855f7">(Standard)</text>
+  <text x="202" y="295" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">コールドスタートあり (数秒)</text>
+  <text x="202" y="311" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">インフラ管理不要</text>
+  <text x="202" y="330" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">例: バッチ少量 + 非同期処理</text>
+  <text x="202" y="347" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">例: 開発/テスト環境</text>
+  <text x="202" y="368" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#a855f7">★ 最低コスト (使った分のみ)</text>
+
+  <!-- Q4: 高頻度 + 高レイテンシOK (Async/Batch) -->
+  <rect x="320" y="237" width="218" height="146" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="429" y="258" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">Async / Batch Transform</text>
+  <text x="429" y="295" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">大量データを効率的に処理</text>
+  <text x="429" y="311" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">キューイング / スケーリング自動</text>
+  <text x="429" y="330" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">例: 夜間バッチ推論</text>
+  <text x="429" y="347" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">例: 大容量ファイル処理</text>
+  <text x="429" y="368" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#3b82f6">★ 大規模データセット最適</text>
+
+  <!-- ===== RIGHT: Cost comparison bar chart ===== -->
+  <text x="745" y="75" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f1f5f9">コスト比較</text>
+  <text x="745" y="92" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">(低トラフィック時, 相対比)</text>
+
+  <!-- Y axis for bar chart -->
+  <line x1="590" y1="100" x2="590" y2="370" stroke="#334155" stroke-width="1.5"/>
+  <line x1="590" y1="370" x2="880" y2="370" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Bar: Serverless standard -->
+  <rect x="605" y="320" width="50" height="50" rx="3" fill="#a855f7"/>
+  <text x="630" y="315" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#a855f7">1x</text>
+  <text x="630" y="387" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Serverless</text>
+
+  <!-- Bar: Batch Transform -->
+  <rect x="675" y="260" width="50" height="110" rx="3" fill="#3b82f6"/>
+  <text x="700" y="255" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#3b82f6">2.2x</text>
+  <text x="700" y="387" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Batch</text>
+
+  <!-- Bar: Async -->
+  <rect x="745" y="220" width="50" height="150" rx="3" fill="#14b8a6"/>
+  <text x="770" y="215" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#14b8a6">3.0x</text>
+  <text x="770" y="387" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Async</text>
+
+  <!-- Bar: Real-time -->
+  <rect x="815" y="135" width="50" height="235" rx="3" fill="#22c55e"/>
+  <text x="840" y="130" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#22c55e">4.7x</text>
+  <text x="840" y="387" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Real-time</text>
+
+  <text x="735" y="405" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">※低トラフィック時。高トラフィックではReal-timeが逆転してコスト最適</text>
+
+  <!-- Bottom decision guide -->
+  <rect x="20" y="430" width="860" height="58" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="450" y="448" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">選択フロー</text>
+  <text x="450" y="465" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">即時レスポンス必須? → Yes: Real-time/Serverless | SLA緩い? → Yes: Async/Batch</text>
+  <text x="450" y="480" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">トラフィック予測困難? → Serverless | 大量バッチ? → Batch Transform | 大ファイル? → Async</text>
+</svg>

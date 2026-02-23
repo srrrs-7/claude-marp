@@ -1,0 +1,89 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#4CC9F0" text-anchor="middle">SageMaker VPC ネットワーク設定</text>
+
+  <!-- VPC outer boundary -->
+  <rect x="15" y="44" width="680" height="420" rx="12" fill="none" stroke="#4CC9F0" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="60" y="62" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">VPC (Customer VPC)</text>
+
+  <!-- Private Subnet -->
+  <rect x="30" y="70" width="380" height="370" rx="8" fill="#1a2a40" stroke="#06D6A0" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="40" y="92" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">Private Subnet</text>
+
+  <!-- SageMaker instances in subnet -->
+  <rect x="42" y="100" width="200" height="55" rx="6" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="142" y="120" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">Training Instance</text>
+  <text x="142" y="138" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">ml.p3.2xlarge (Spot)</text>
+  <text x="142" y="150" font-family="Arial,sans-serif" font-size="8" fill="#888888" text-anchor="middle">SubnetId / SecurityGroupIds 指定</text>
+
+  <rect x="42" y="165" width="200" height="55" rx="6" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="142" y="185" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">Endpoint Instance</text>
+  <text x="142" y="203" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">ml.c5.xlarge</text>
+  <text x="142" y="215" font-family="Arial,sans-serif" font-size="8" fill="#888888" text-anchor="middle">ENI経由でVPC内通信</text>
+
+  <rect x="42" y="230" width="200" height="55" rx="6" fill="#0a2545" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="142" y="250" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">Processing Instance</text>
+  <text x="142" y="268" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">ml.m5.xlarge</text>
+  <text x="142" y="280" font-family="Arial,sans-serif" font-size="8" fill="#888888" text-anchor="middle">データ前処理/評価</text>
+
+  <!-- Security Groups box -->
+  <rect x="42" y="296" width="355" height="130" rx="6" fill="#2a1a00" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="50" y="316" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#F77F00">Security Groups</text>
+  <text x="50" y="334" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">Inbound: VPC内の他SGからのみ許可</text>
+  <text x="50" y="350" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">Outbound: HTTPS (443) → VPC Endpointsへ</text>
+  <text x="50" y="366" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">Outbound: インターネット直接 → 禁止</text>
+  <rect x="50" y="378" width="335" height="38" rx="4" fill="#F77F00" fill-opacity="0.1"/>
+  <text x="217" y="393" font-family="Arial,sans-serif" font-size="9" fill="#F77F00" text-anchor="middle">InternetAccess: Disabled</text>
+  <text x="217" y="409" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">EnableNetworkIsolation: True でさらに強化</text>
+
+  <!-- VPC Endpoints column -->
+  <rect x="430" y="70" width="248" height="370" rx="8" fill="#1a2040" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="554" y="92" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0" text-anchor="middle">VPC Endpoints</text>
+  <text x="554" y="108" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">(PrivateLink経由でAWSサービス接続)</text>
+
+  <rect x="442" y="118" width="224" height="48" rx="5" fill="#1e3a5f" stroke="#06D6A0" stroke-width="1"/>
+  <text x="554" y="138" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#06D6A0" text-anchor="middle">S3 Gateway Endpoint</text>
+  <text x="554" y="156" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">データ/モデルのS3アクセス (無料)</text>
+
+  <rect x="442" y="174" width="224" height="48" rx="5" fill="#0f3460" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="554" y="194" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">SageMaker API Endpoint</text>
+  <text x="554" y="212" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">SM APIコール (Interface型)</text>
+
+  <rect x="442" y="230" width="224" height="48" rx="5" fill="#0a2545" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="554" y="250" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">ECR VPC Endpoint</text>
+  <text x="554" y="268" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">コンテナイメージ取得</text>
+
+  <rect x="442" y="286" width="224" height="48" rx="5" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="554" y="306" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">CloudWatch Endpoint</text>
+  <text x="554" y="324" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">ログ/メトリクス送信</text>
+
+  <rect x="442" y="342" width="224" height="48" rx="5" fill="#0f3460" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="554" y="362" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">STS / KMS Endpoint</text>
+  <text x="554" y="380" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">認証・暗号化キー</text>
+
+  <!-- Arrows from instances to VPC Endpoints -->
+  <line x1="242" y1="128" x2="430" y2="142" stroke="#4CC9F0" stroke-width="1" stroke-dasharray="4,2"/>
+  <line x1="242" y1="192" x2="430" y2="198" stroke="#4CC9F0" stroke-width="1" stroke-dasharray="4,2"/>
+
+  <!-- Outside VPC: Internet Gateway (blocked) -->
+  <rect x="710" y="100" width="80" height="70" rx="6" fill="#3d0000" stroke="#E63946" stroke-width="1.5"/>
+  <text x="750" y="128" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#E63946" text-anchor="middle">Internet</text>
+  <text x="750" y="144" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#E63946" text-anchor="middle">Gateway</text>
+  <text x="750" y="163" font-family="Arial,sans-serif" font-size="16" fill="#E63946" text-anchor="middle">⛔</text>
+
+  <!-- Outside VPC: AWS Services -->
+  <rect x="710" y="220" width="80" height="100" rx="6" fill="#1e3a5f" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="750" y="244" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#06D6A0" text-anchor="middle">AWS</text>
+  <text x="750" y="260" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">S3</text>
+  <text x="750" y="276" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">ECR</text>
+  <text x="750" y="292" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">CloudWatch</text>
+  <text x="750" y="308" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">VPC経由で</text>
+  <text x="750" y="320" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">アクセス</text>
+
+  <!-- Arrow VPC Endpoint → AWS Services -->
+  <line x1="695" y1="270" x2="710" y2="270" stroke="#06D6A0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#06D6A0" transform="translate(712,270) rotate(90)"/>
+</svg>

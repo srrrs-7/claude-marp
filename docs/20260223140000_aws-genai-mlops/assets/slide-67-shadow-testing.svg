@@ -1,0 +1,78 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+  <text x="400" y="35" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">シャドウテスト (Shadow Deployment)</text>
+
+  <!-- Traffic source -->
+  <rect x="30" y="100" width="140" height="55" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="100" y="125" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">本番トラフィック</text>
+  <text x="100" y="145" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">全リクエスト</text>
+
+  <!-- Arrow to splitter -->
+  <line x1="170" y1="127" x2="215" y2="127" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-6 -4,5 4,5" fill="#4CC9F0" transform="translate(218,127) rotate(90)"/>
+
+  <!-- Splitter -->
+  <rect x="220" y="110" width="80" height="34" rx="4" fill="#2d4059"/>
+  <text x="260" y="132" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">分岐</text>
+
+  <!-- Top path: Production model (solid) -->
+  <line x1="300" y1="120" x2="340" y2="120" stroke="#4CC9F0" stroke-width="2.5"/>
+  <line x1="300" y1="127" x2="300" y2="120" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-6 -4,5 4,5" fill="#4CC9F0" transform="translate(344,120) rotate(90)"/>
+
+  <rect x="345" y="88" width="250" height="75" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="470" y="113" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#4CC9F0" text-anchor="middle">本番モデル (モデルA)</text>
+  <text x="470" y="133" font-family="Arial,sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">weight: 1.0 (100%)</text>
+  <text x="470" y="153" font-family="Arial,sans-serif" font-size="11" fill="#06D6A0" text-anchor="middle">★ ユーザーへ実際の応答を返す</text>
+
+  <!-- Arrow from production model to User -->
+  <line x1="595" y1="125" x2="680" y2="125" stroke="#4CC9F0" stroke-width="2.5"/>
+  <polygon points="0,-6 -4,5 4,5" fill="#4CC9F0" transform="translate(684,125) rotate(90)"/>
+
+  <rect x="685" y="105" width="95" height="40" rx="6" fill="#06D6A0" opacity="0.9"/>
+  <text x="732" y="130" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#0d1b2a" text-anchor="middle">ユーザー</text>
+
+  <!-- Bottom path: Shadow model (dashed) -->
+  <line x1="300" y1="134" x2="300" y2="230" stroke="#F77F00" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="300" y1="230" x2="340" y2="230" stroke="#F77F00" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="0,-6 -4,5 4,5" fill="#F77F00" transform="translate(344,230) rotate(90)"/>
+
+  <rect x="345" y="198" width="250" height="75" rx="8" fill="#0a2545" stroke="#F77F00" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="470" y="223" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#F77F00" text-anchor="middle">シャドウモデル (モデルB)</text>
+  <text x="470" y="243" font-family="Arial,sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">weight: 0 (0% production)</text>
+  <text x="470" y="263" font-family="Arial,sans-serif" font-size="11" fill="#E63946" text-anchor="middle">★ 応答はログ記録のみ (返さない)</text>
+
+  <!-- Arrow from shadow to S3 -->
+  <line x1="595" y1="235" x2="650" y2="235" stroke="#F77F00" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="0,-6 -4,5 4,5" fill="#F77F00" transform="translate(654,235) rotate(90)"/>
+  <rect x="655" y="218" width="80" height="34" rx="4" fill="#1e3a5f"/>
+  <text x="695" y="240" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">S3 ログ</text>
+
+  <!-- S3 to Metrics comparison -->
+  <line x1="695" y1="252" x2="695" y2="295" stroke="#aaaaaa" stroke-width="1.5"/>
+  <line x1="695" y1="295" x2="540" y2="295" stroke="#aaaaaa" stroke-width="1.5"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#aaaaaa" transform="translate(537,295) rotate(-90)"/>
+
+  <rect x="345" y="280" width="190" height="35" rx="6" fill="#111e2d" stroke="#aaaaaa" stroke-width="1"/>
+  <text x="440" y="303" font-family="Arial,sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">メトリクス比較</text>
+
+  <!-- Metrics to decision -->
+  <line x1="440" y1="315" x2="440" y2="340" stroke="#aaaaaa" stroke-width="1.5"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#aaaaaa" transform="translate(440,343) rotate(180)"/>
+
+  <rect x="300" y="345" width="280" height="35" rx="6" fill="#0f3460" stroke="#06D6A0" stroke-width="1"/>
+  <text x="440" y="368" font-family="Arial,sans-serif" font-size="12" fill="#06D6A0" text-anchor="middle">デプロイ判断</text>
+
+  <!-- Key advantage box -->
+  <rect x="30" y="330" width="280" height="80" rx="8" fill="#0a2545" stroke="#06D6A0" stroke-width="1"/>
+  <text x="170" y="355" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#06D6A0" text-anchor="middle">最大メリット</text>
+  <text x="170" y="378" font-family="Arial,sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">ユーザーへの影響ゼロ</text>
+  <text x="170" y="398" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">でモデルBを本番評価</text>
+
+  <!-- Bottom notes -->
+  <rect x="30" y="425" width="740" height="62" rx="6" fill="#111e2d"/>
+  <text x="400" y="447" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">SageMaker 実装</text>
+  <text x="400" y="465" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">Shadow Variant: SamplingPercentage=100 で全リクエストを複製</text>
+  <text x="400" y="481" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">本番トラフィックの weight=0 のままシャドウ評価 → 昇格時に weight=1 に変更</text>
+</svg>

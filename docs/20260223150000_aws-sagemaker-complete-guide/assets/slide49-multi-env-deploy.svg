@@ -1,0 +1,161 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <text x="450" y="28" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#f1f5f9">マルチ環境デプロイパイプライン</text>
+
+  <!-- Development Account -->
+  <rect x="20" y="44" width="265" height="290" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="20" y="44" width="265" height="32" rx="8" fill="#1e3a5f"/>
+  <text x="152" y="65" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">Development Account</text>
+  <text x="152" y="78" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Account ID: 111111111111</text>
+
+  <!-- Dev: Feature branch -->
+  <rect x="35" y="90" width="235" height="28" rx="4" fill="#0f172a"/>
+  <text x="152" y="108" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">Feature Branch (Git)</text>
+
+  <line x1="152" y1="118" x2="152" y2="130" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="147,130 152,140 157,130" fill="#94a3b8"/>
+
+  <!-- Dev: Unit Tests -->
+  <rect x="35" y="140" width="235" height="28" rx="4" fill="#1a3a2a"/>
+  <text x="152" y="158" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">Unit Tests (CodeBuild)</text>
+
+  <line x1="152" y1="168" x2="152" y2="180" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="147,180 152,190 157,180" fill="#94a3b8"/>
+
+  <!-- Dev: SageMaker Pipeline -->
+  <rect x="35" y="190" width="235" height="28" rx="4" fill="#2d1a4a"/>
+  <text x="152" y="208" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a855f7">SageMaker Pipeline 実行</text>
+
+  <line x1="152" y1="218" x2="152" y2="230" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="147,230 152,240 157,230" fill="#94a3b8"/>
+
+  <!-- Dev: Model Registry -->
+  <rect x="35" y="240" width="235" height="38" rx="4" fill="#2a1e0a"/>
+  <text x="152" y="257" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f97316">Model Registry</text>
+  <text x="152" y="271" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Status: PendingManualApproval</text>
+
+  <!-- Dev: IAM role note -->
+  <text x="35" y="300" font-family="sans-serif" font-size="9" fill="#94a3b8">Role: sagemaker-dev-role</text>
+  <text x="35" y="313" font-family="sans-serif" font-size="9" fill="#94a3b8">S3: s3://ml-artifacts-dev/</text>
+  <text x="35" y="326" font-family="sans-serif" font-size="9" fill="#94a3b8">ECR: 111111111111.dkr.ecr...</text>
+
+  <!-- Cross-account arrow 1 -->
+  <line x1="285" y1="195" x2="315" y2="195" stroke="#f97316" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="315,190 327,195 315,200" fill="#f97316"/>
+  <text x="300" y="186" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#f97316">Cross-account</text>
+  <text x="300" y="213" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">AssumeRole</text>
+
+  <!-- Staging Account -->
+  <rect x="325" y="44" width="265" height="290" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <rect x="325" y="44" width="265" height="32" rx="8" fill="#2a1e0a"/>
+  <text x="457" y="65" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f97316">Staging Account</text>
+  <text x="457" y="78" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Account ID: 222222222222</text>
+
+  <!-- Staging: Approved Model -->
+  <rect x="340" y="90" width="235" height="28" rx="4" fill="#1a3a2a"/>
+  <text x="457" y="108" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">Approved Model Package 参照</text>
+
+  <line x1="457" y1="118" x2="457" y2="130" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="452,130 457,140 462,130" fill="#94a3b8"/>
+
+  <!-- Staging: Deploy -->
+  <rect x="340" y="140" width="235" height="28" rx="4" fill="#1e3a5f"/>
+  <text x="457" y="158" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#3b82f6">Staging Endpoint デプロイ</text>
+
+  <line x1="457" y1="168" x2="457" y2="180" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="452,180 457,190 462,180" fill="#94a3b8"/>
+
+  <!-- Staging: Integration Tests -->
+  <rect x="340" y="190" width="235" height="28" rx="4" fill="#1a3a2a"/>
+  <text x="457" y="208" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">Integration Tests</text>
+
+  <line x1="457" y1="218" x2="457" y2="230" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="452,230 457,240 462,230" fill="#94a3b8"/>
+
+  <!-- Staging: Load Tests -->
+  <rect x="340" y="240" width="235" height="28" rx="4" fill="#1a3a2a"/>
+  <text x="457" y="258" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">Load Tests (Locust / k6)</text>
+
+  <line x1="457" y1="268" x2="457" y2="280" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="452,280 457,290 462,280" fill="#94a3b8"/>
+
+  <!-- Staging: Manual Approval -->
+  <rect x="340" y="290" width="235" height="28" rx="4" fill="#2a1e0a" stroke="#f97316" stroke-width="1.5"/>
+  <text x="457" y="308" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f97316">Manual Approval Gate</text>
+
+  <text x="340" y="330" font-family="sans-serif" font-size="9" fill="#94a3b8">Role: sagemaker-stg-role</text>
+
+  <!-- Cross-account arrow 2 -->
+  <line x1="590" y1="195" x2="620" y2="195" stroke="#22c55e" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="620,190 632,195 620,200" fill="#22c55e"/>
+  <text x="605" y="186" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#22c55e">Cross-account</text>
+  <text x="605" y="213" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">AssumeRole</text>
+
+  <!-- Production Account -->
+  <rect x="630" y="44" width="255" height="290" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <rect x="630" y="44" width="255" height="32" rx="8" fill="#1a3a2a"/>
+  <text x="757" y="65" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#22c55e">Production Account</text>
+  <text x="757" y="78" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Account ID: 333333333333</text>
+
+  <!-- Prod: Blue/Green Deploy -->
+  <rect x="645" y="90" width="225" height="38" rx="4" fill="#0a2a18"/>
+  <text x="757" y="108" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">Blue/Green デプロイ</text>
+  <text x="757" y="122" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">10% → 50% → 100%</text>
+
+  <line x1="757" y1="128" x2="757" y2="140" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="752,140 757,150 762,140" fill="#94a3b8"/>
+
+  <!-- Prod: CloudWatch Monitor -->
+  <rect x="645" y="150" width="225" height="28" rx="4" fill="#2a1e0a"/>
+  <text x="757" y="168" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f97316">CloudWatch 監視</text>
+
+  <line x1="757" y1="178" x2="757" y2="190" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="752,190 757,200 762,190" fill="#94a3b8"/>
+
+  <!-- Prod: Model Monitor -->
+  <rect x="645" y="200" width="225" height="28" rx="4" fill="#1e3a5f"/>
+  <text x="757" y="218" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#3b82f6">Model Monitor (ドリフト検知)</text>
+
+  <line x1="757" y1="228" x2="757" y2="240" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="752,240 757,250 762,240" fill="#94a3b8"/>
+
+  <!-- Prod: Rollback -->
+  <rect x="645" y="250" width="225" height="28" rx="4" fill="#3a1010"/>
+  <text x="757" y="268" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ef4444">自動ロールバック (Alarm)</text>
+
+  <text x="645" y="300" font-family="sans-serif" font-size="9" fill="#94a3b8">Role: sagemaker-prod-role</text>
+  <text x="645" y="313" font-family="sans-serif" font-size="9" fill="#94a3b8">VPC: Private Subnets only</text>
+  <text x="645" y="326" font-family="sans-serif" font-size="9" fill="#94a3b8">KMS: prod-model-key</text>
+
+  <!-- Bottom: Cross-account infrastructure -->
+  <rect x="20" y="348" width="860" height="140" rx="8" fill="#131e2f" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="450" y="368" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f1f5f9">クロスアカウント インフラストラクチャ</text>
+
+  <!-- EventBridge cross-account -->
+  <rect x="35" y="380" width="240" height="96" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="1"/>
+  <text x="155" y="398" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f97316">EventBridge クロスアカウント</text>
+  <text x="48" y="414" font-family="sans-serif" font-size="9" fill="#94a3b8">Dev → Pipeline完了イベント発火</text>
+  <text x="48" y="427" font-family="sans-serif" font-size="9" fill="#94a3b8">→ Staging Account に転送</text>
+  <text x="48" y="440" font-family="sans-serif" font-size="9" fill="#94a3b8">→ Staging Pipeline 自動起動</text>
+  <text x="48" y="453" font-family="sans-serif" font-size="9" fill="#94a3b8">Resource Policy: 送信元アカウント許可</text>
+  <text x="48" y="466" font-family="sans-serif" font-size="9" fill="#94a3b8">同様に Stg → Prod へイベント転送</text>
+
+  <!-- IAM cross-account -->
+  <rect x="295" y="380" width="240" height="96" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+  <text x="415" y="398" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">IAM クロスアカウント</text>
+  <text x="308" y="414" font-family="sans-serif" font-size="9" fill="#94a3b8">Dev: AssumeRole → Stg Role</text>
+  <text x="308" y="427" font-family="sans-serif" font-size="9" fill="#94a3b8">Stg: AssumeRole → Prod Role</text>
+  <text x="308" y="440" font-family="sans-serif" font-size="9" fill="#94a3b8">Model Package: Resource Policy</text>
+  <text x="308" y="453" font-family="sans-serif" font-size="9" fill="#94a3b8">で他アカウントへ共有</text>
+  <text x="308" y="466" font-family="sans-serif" font-size="9" fill="#94a3b8">S3 Bucket Policy: クロスアカウント読取</text>
+
+  <!-- Shared Services -->
+  <rect x="555" y="380" width="310" height="96" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1"/>
+  <text x="710" y="398" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">共有サービス (Shared Services Account)</text>
+  <text x="568" y="414" font-family="sans-serif" font-size="9" fill="#94a3b8">ECR: 共有コンテナレジストリ</text>
+  <text x="568" y="427" font-family="sans-serif" font-size="9" fill="#94a3b8">S3: アーティファクトバケット (クロスアカウント)</text>
+  <text x="568" y="440" font-family="sans-serif" font-size="9" fill="#94a3b8">KMS: 共有暗号化キー (Key Policy)</text>
+  <text x="568" y="453" font-family="sans-serif" font-size="9" fill="#94a3b8">Parameter Store: 環境別設定値</text>
+  <text x="568" y="466" font-family="sans-serif" font-size="9" fill="#94a3b8">Secrets Manager: API Keys / DB接続情報</text>
+</svg>

@@ -1,0 +1,61 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="30" font-family="Arial" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="bold">SageMaker Model Monitor 4種類</text>
+
+  <!-- Card 1: Data Quality Monitor (top-left) -->
+  <rect x="20" y="50" width="375" height="190" rx="12" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2.5"/>
+  <rect x="20" y="50" width="375" height="45" rx="12" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2.5"/>
+  <text x="207" y="72" font-family="Arial" font-size="14" fill="#4CC9F0" text-anchor="middle" font-weight="bold">Data Quality Monitor</text>
+  <text x="207" y="88" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">入力データの品質監視</text>
+  <line x1="30" y1="100" x2="385" y2="100" stroke="#4CC9F0" stroke-width="0.5"/>
+  <text x="35" y="120" font-family="Arial" font-size="10" fill="#ffffff">入力データの統計的制約チェック</text>
+  <text x="35" y="140" font-family="Arial" font-size="10" fill="#ffffff">ベースライン: suggest_baseline() で自動生成</text>
+  <text x="35" y="160" font-family="Arial" font-size="10" fill="#ffffff">出力: 違反レポート + CloudWatch メトリクス</text>
+  <rect x="35" y="175" width="350" height="52" rx="6" fill="#0a1e35" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="55" y="195" font-family="Arial" font-size="10" fill="#06D6A0">チェック項目:</text>
+  <text x="55" y="212" font-family="Arial" font-size="10" fill="#aaaaaa">平均値・分散・最小/最大 の分布変化 / 欠損値率 / データ型違反</text>
+  <text x="55" y="228" font-family="Arial" font-size="10" fill="#aaaaaa">カテゴリ値の範囲外 / NULL比率 / 特徴量スキーマ変化</text>
+
+  <!-- Card 2: Model Quality Monitor (top-right) -->
+  <rect x="405" y="50" width="375" height="190" rx="12" fill="#0f3460" stroke="#06D6A0" stroke-width="2.5"/>
+  <text x="592" y="72" font-family="Arial" font-size="14" fill="#06D6A0" text-anchor="middle" font-weight="bold">Model Quality Monitor</text>
+  <text x="592" y="88" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">予測精度の監視</text>
+  <line x1="415" y1="100" x2="770" y2="100" stroke="#06D6A0" stroke-width="0.5"/>
+  <text x="420" y="120" font-family="Arial" font-size="10" fill="#ffffff">予測値 vs 実際のラベル比較</text>
+  <text x="420" y="140" font-family="Arial" font-size="10" fill="#ffffff">Ground truth label の取り込みが必要</text>
+  <text x="420" y="160" font-family="Arial" font-size="10" fill="#ffffff">指標: F1, RMSE, AUC, Accuracy 等</text>
+  <rect x="420" y="175" width="350" height="52" rx="6" fill="#0a1e35" stroke="#06D6A0" stroke-width="1"/>
+  <text x="440" y="195" font-family="Arial" font-size="10" fill="#06D6A0">フロー:</text>
+  <text x="440" y="212" font-family="Arial" font-size="10" fill="#aaaaaa">推論キャプチャ (S3) + GT ラベル (S3) → Model Monitor → 評価レポート</text>
+  <text x="440" y="228" font-family="Arial" font-size="10" fill="#aaaaaa">推論後 数時間〜数日後の GT 取得が前提</text>
+
+  <!-- Card 3: Bias Drift Monitor (bottom-left) -->
+  <rect x="20" y="258" width="375" height="190" rx="12" fill="#0a2545" stroke="#F77F00" stroke-width="2.5"/>
+  <text x="207" y="280" font-family="Arial" font-size="14" fill="#F77F00" text-anchor="middle" font-weight="bold">Bias Drift Monitor</text>
+  <text x="207" y="296" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">公平性・バイアス変化の監視</text>
+  <line x1="30" y1="308" x2="385" y2="308" stroke="#F77F00" stroke-width="0.5"/>
+  <text x="35" y="328" font-family="Arial" font-size="10" fill="#ffffff">保護属性のバイアス変化検知</text>
+  <text x="35" y="348" font-family="Arial" font-size="10" fill="#ffffff">SageMaker Clarify ベースで動作</text>
+  <text x="35" y="368" font-family="Arial" font-size="10" fill="#ffffff">定期的な公平性レポート生成</text>
+  <rect x="35" y="385" width="350" height="52" rx="6" fill="#0a1e35" stroke="#F77F00" stroke-width="1"/>
+  <text x="55" y="405" font-family="Arial" font-size="10" fill="#F77F00">主要バイアス指標:</text>
+  <text x="55" y="422" font-family="Arial" font-size="10" fill="#aaaaaa">DPPL (Difference in Positive Proportions) / DI (Disparate Impact)</text>
+  <text x="55" y="438" font-family="Arial" font-size="10" fill="#aaaaaa">AD (Accuracy Difference) / CDDL (Conditional Demographic Disparity)</text>
+
+  <!-- Card 4: Explainability Monitor (bottom-right) -->
+  <rect x="405" y="258" width="375" height="190" rx="12" fill="#1a3a5f" stroke="#E63946" stroke-width="2.5"/>
+  <text x="592" y="280" font-family="Arial" font-size="14" fill="#E63946" text-anchor="middle" font-weight="bold">Explainability Monitor</text>
+  <text x="592" y="296" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">説明可能性・特徴量重要度の監視</text>
+  <line x1="415" y1="308" x2="770" y2="308" stroke="#E63946" stroke-width="0.5"/>
+  <text x="420" y="328" font-family="Arial" font-size="10" fill="#ffffff">SHAP値の時系列変化追跡</text>
+  <text x="420" y="348" font-family="Arial" font-size="10" fill="#ffffff">特徴量重要度のドリフト検知</text>
+  <text x="420" y="368" font-family="Arial" font-size="10" fill="#ffffff">SageMaker Clarify ベースで動作</text>
+  <rect x="420" y="385" width="350" height="52" rx="6" fill="#0a1e35" stroke="#E63946" stroke-width="1"/>
+  <text x="440" y="405" font-family="Arial" font-size="10" fill="#E63946">活用場面:</text>
+  <text x="440" y="422" font-family="Arial" font-size="10" fill="#aaaaaa">特定特徴量の重要度急変 → データパイプライン問題の可能性</text>
+  <text x="440" y="438" font-family="Arial" font-size="10" fill="#aaaaaa">規制対応レポート / モデル信頼性の可視化</text>
+
+  <!-- Bottom note -->
+  <text x="400" y="472" font-family="Arial" font-size="10" fill="#4CC9F0" text-anchor="middle">全Monitor共通: スケジュール実行 → S3レポート + CloudWatch カスタムメトリクス → Alarm → アクション</text>
+  <text x="400" y="488" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">ベースライン (統計/制約) はモニタリング開始前に必ず生成すること</text>
+</svg>

@@ -1,0 +1,72 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+  <text x="400" y="35" font-family="Arial,sans-serif" font-size="19" font-weight="bold" fill="#ffffff" text-anchor="middle">生成AI評価指標 — BLEU / ROUGE / BERTScore</text>
+
+  <!-- Card 1: BLEU -->
+  <rect x="20" y="55" width="750" height="105" rx="8" fill="#1e3a5f"/>
+  <rect x="20" y="55" width="8" height="105" rx="4" fill="#4CC9F0"/>
+  <text x="50" y="83" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#4CC9F0">BLEU</text>
+  <text x="130" y="83" font-family="Arial,sans-serif" font-size="13" fill="#aaaaaa">(Bilingual Evaluation Understudy)</text>
+
+  <text x="50" y="107" font-family="Arial,sans-serif" font-size="11" fill="#ffffff">■ n-gram の一致率 (1〜4gram) を計算して評価</text>
+  <text x="50" y="126" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa">  スコア: 0〜1 (高いほど参照文に近い)</text>
+
+  <text x="420" y="107" font-family="Arial,sans-serif" font-size="11" fill="#ffffff">■ 機械翻訳の標準評価指標</text>
+  <text x="420" y="126" font-family="Arial,sans-serif" font-size="11" fill="#E63946">  制限: 意味的類似性を考慮しない</text>
+
+  <!-- BLEU formula simplified -->
+  <rect x="640" y="68" width="120" height="80" rx="4" fill="#0f3460"/>
+  <text x="700" y="92" font-family="monospace" font-size="10" fill="#4CC9F0" text-anchor="middle">BLEU = BP ×</text>
+  <text x="700" y="110" font-family="monospace" font-size="10" fill="#4CC9F0" text-anchor="middle">exp(Σ wₙ</text>
+  <text x="700" y="128" font-family="monospace" font-size="10" fill="#4CC9F0" text-anchor="middle">log pₙ)</text>
+  <text x="700" y="144" font-family="monospace" font-size="9" fill="#aaaaaa" text-anchor="middle">BP=簡潔ペナルティ</text>
+
+  <!-- Card 2: ROUGE -->
+  <rect x="20" y="170" width="750" height="105" rx="8" fill="#0f3460"/>
+  <rect x="20" y="170" width="8" height="105" rx="4" fill="#06D6A0"/>
+  <text x="50" y="198" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#06D6A0">ROUGE</text>
+  <text x="140" y="198" font-family="Arial,sans-serif" font-size="13" fill="#aaaaaa">(Recall-Oriented Understudy for Gisting Evaluation)</text>
+
+  <text x="50" y="222" font-family="Arial,sans-serif" font-size="11" fill="#ffffff">■ ROUGE-1: ユニグラム一致 / ROUGE-2: バイグラム一致</text>
+  <text x="50" y="241" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa">  ROUGE-L: 最長共通部分列 (LCS) — 文の順序を考慮</text>
+
+  <text x="420" y="222" font-family="Arial,sans-serif" font-size="11" fill="#ffffff">■ 要約評価に広く使用</text>
+  <text x="420" y="241" font-family="Arial,sans-serif" font-size="11" fill="#06D6A0">  Recall (網羅性) を重視</text>
+
+  <!-- ROUGE comparison -->
+  <rect x="640" y="180" width="120" height="80" rx="4" fill="#0a2545"/>
+  <text x="700" y="203" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0" text-anchor="middle">Recall重視</text>
+  <text x="700" y="220" font-family="monospace" font-size="9" fill="#aaaaaa" text-anchor="middle">Recall=</text>
+  <text x="700" y="235" font-family="monospace" font-size="9" fill="#aaaaaa" text-anchor="middle">一致/参照</text>
+  <text x="700" y="252" font-family="monospace" font-size="9" fill="#aaaaaa" text-anchor="middle">網羅性評価</text>
+
+  <!-- Card 3: BERTScore -->
+  <rect x="20" y="285" width="750" height="110" rx="8" fill="#0a2545" stroke="#4CC9F0" stroke-width="1"/>
+  <rect x="20" y="285" width="8" height="110" rx="4" fill="#F77F00"/>
+  <text x="50" y="313" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#F77F00">BERTScore</text>
+  <text x="170" y="313" font-family="Arial,sans-serif" font-size="13" fill="#aaaaaa">★ LLM 評価に推奨</text>
+
+  <text x="50" y="337" font-family="Arial,sans-serif" font-size="11" fill="#ffffff">■ BERT のコンテキストエンベディングを使用した意味的類似性評価</text>
+  <text x="50" y="356" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa">  単語の意味・文脈を考慮した評価 → BLEU/ROUGEより人間評価と高相関</text>
+  <text x="50" y="375" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa">  Precision/Recall/F1 の3スコアを出力</text>
+
+  <text x="420" y="337" font-family="Arial,sans-serif" font-size="11" fill="#ffffff">■ 同義語・言い換えを考慮</text>
+  <text x="420" y="356" font-family="Arial,sans-serif" font-size="11" fill="#F77F00">  LLM 評価では最推奨</text>
+
+  <!-- BERTScore diagram -->
+  <rect x="640" y="292" width="120" height="92" rx="4" fill="#111e2d"/>
+  <text x="700" y="315" font-family="Arial,sans-serif" font-size="10" fill="#F77F00" text-anchor="middle">意味的類似</text>
+  <text x="700" y="332" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">"犬が走る"</text>
+  <text x="700" y="348" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">≈</text>
+  <text x="700" y="364" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">"イヌが走る"</text>
+  <text x="700" y="376" font-family="Arial,sans-serif" font-size="9" fill="#06D6A0" text-anchor="middle">高スコア!</text>
+
+  <!-- Bottom: AWS -->
+  <rect x="20" y="410" width="760" height="75" rx="8" fill="#111e2d"/>
+  <text x="400" y="434" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">AWS での自動計算</text>
+  <rect x="50" y="445" width="280" height="28" rx="4" fill="#1e3a5f"/>
+  <text x="190" y="463" font-family="Arial,sans-serif" font-size="12" fill="#4CC9F0" text-anchor="middle">SageMaker Clarify</text>
+  <rect x="470" y="445" width="280" height="28" rx="4" fill="#1e3a5f"/>
+  <text x="610" y="463" font-family="Arial,sans-serif" font-size="12" fill="#4CC9F0" text-anchor="middle">Amazon Bedrock Evaluation</text>
+</svg>

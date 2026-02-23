@@ -1,0 +1,99 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+
+  <!-- Title -->
+  <text x="400" y="28" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#4CC9F0" text-anchor="middle">AWSサービス選定チートシート</text>
+
+  <!-- Table header -->
+  <rect x="10" y="38" width="780" height="28" rx="4" fill="#2d4059"/>
+  <text x="130" y="57" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0" text-anchor="middle">ユースケース</text>
+  <text x="370" y="57" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0" text-anchor="middle">AWSサービス</text>
+  <text x="630" y="57" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0" text-anchor="middle">ポイント</text>
+
+  <!-- Separator lines -->
+  <line x1="252" y1="38" x2="252" y2="500" stroke="#4CC9F0" stroke-width="0.5" stroke-opacity="0.4"/>
+  <line x1="488" y1="38" x2="488" y2="500" stroke="#4CC9F0" stroke-width="0.5" stroke-opacity="0.4"/>
+
+  <!-- Row data -->
+  <!-- Row 1 odd -->
+  <rect x="10" y="66" width="780" height="32" fill="#1e3a5f"/>
+  <text x="130" y="87" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">データ収集 / ETL</text>
+  <text x="370" y="87" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0" text-anchor="middle">AWS Glue</text>
+  <text x="630" y="87" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">サーバーレスSpark ETL、カタログ管理</text>
+
+  <!-- Row 2 even -->
+  <rect x="10" y="98" width="780" height="32" fill="#0f3460"/>
+  <text x="130" y="119" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">特徴量管理</text>
+  <text x="370" y="119" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0" text-anchor="middle">SageMaker Feature Store</text>
+  <text x="630" y="119" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">オンライン/オフライン二層アーキテクチャ</text>
+
+  <!-- Row 3 odd -->
+  <rect x="10" y="130" width="780" height="32" fill="#1e3a5f"/>
+  <text x="130" y="151" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">データラベリング</text>
+  <text x="370" y="151" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0" text-anchor="middle">SageMaker Ground Truth</text>
+  <text x="630" y="151" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">Active Learning、人間/自動ラベリング</text>
+
+  <!-- Row 4 even -->
+  <rect x="10" y="162" width="780" height="32" fill="#0f3460"/>
+  <text x="130" y="183" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">モデル学習</text>
+  <text x="370" y="183" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0" text-anchor="middle">SageMaker Training Jobs</text>
+  <text x="630" y="183" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">マネージド学習、Spot対応、分散学習</text>
+
+  <!-- Row 5 odd -->
+  <rect x="10" y="194" width="780" height="32" fill="#1e3a5f"/>
+  <text x="130" y="215" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">ハイパーパラメータ最適化</text>
+  <text x="370" y="215" font-family="Arial,sans-serif" font-size="10" fill="#F77F00" text-anchor="middle">SageMaker AMT</text>
+  <text x="630" y="215" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">ベイズ最適化、Grid/Random Search</text>
+
+  <!-- Row 6 even -->
+  <rect x="10" y="226" width="780" height="32" fill="#0f3460"/>
+  <text x="130" y="247" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">実験管理</text>
+  <text x="370" y="247" font-family="Arial,sans-serif" font-size="10" fill="#F77F00" text-anchor="middle">SageMaker Experiments / MLflow</text>
+  <text x="630" y="247" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">メトリクス追跡、実験比較</text>
+
+  <!-- Row 7 odd -->
+  <rect x="10" y="258" width="780" height="32" fill="#1e3a5f"/>
+  <text x="130" y="279" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">FM Fine-tuning</text>
+  <text x="370" y="279" font-family="Arial,sans-serif" font-size="10" fill="#F77F00" text-anchor="middle">Amazon Bedrock / JumpStart</text>
+  <text x="630" y="279" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">LoRAベース、PEFT、カスタムデータ対応</text>
+
+  <!-- Row 8 even -->
+  <rect x="10" y="290" width="780" height="32" fill="#0f3460"/>
+  <text x="130" y="311" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">モデルデプロイ</text>
+  <text x="370" y="311" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0" text-anchor="middle">SageMaker Endpoints</text>
+  <text x="630" y="311" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">RT / Serverless / Async / Batch</text>
+
+  <!-- Row 9 odd -->
+  <rect x="10" y="322" width="780" height="32" fill="#1e3a5f"/>
+  <text x="130" y="343" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">本番モデル監視</text>
+  <text x="370" y="343" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0" text-anchor="middle">SageMaker Model Monitor</text>
+  <text x="630" y="343" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">データ品質/モデル品質/バイアス/説明性</text>
+
+  <!-- Row 10 even -->
+  <rect x="10" y="354" width="780" height="32" fill="#0f3460"/>
+  <text x="130" y="375" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">MLパイプライン</text>
+  <text x="370" y="375" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0" text-anchor="middle">SageMaker Pipelines</text>
+  <text x="630" y="375" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">DAGベース、ステップキャッシュ</text>
+
+  <!-- Row 11 odd -->
+  <rect x="10" y="386" width="780" height="32" fill="#1e3a5f"/>
+  <text x="130" y="407" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">バイアス検出・説明可能性</text>
+  <text x="370" y="407" font-family="Arial,sans-serif" font-size="10" fill="#E63946" text-anchor="middle">SageMaker Clarify</text>
+  <text x="630" y="407" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">Pre/Post-training bias、SHAP値</text>
+
+  <!-- Row 12 even -->
+  <rect x="10" y="418" width="780" height="32" fill="#0f3460"/>
+  <text x="130" y="439" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">コスト削減 (学習)</text>
+  <text x="370" y="439" font-family="Arial,sans-serif" font-size="10" fill="#F77F00" text-anchor="middle">Managed Spot Training</text>
+  <text x="630" y="439" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">最大70%削減、チェックポイント必須</text>
+
+  <!-- Row 13 odd -->
+  <rect x="10" y="450" width="780" height="32" fill="#1e3a5f"/>
+  <text x="130" y="471" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">モデルバージョン管理</text>
+  <text x="370" y="471" font-family="Arial,sans-serif" font-size="10" fill="#4CC9F0" text-anchor="middle">SageMaker Model Registry</text>
+  <text x="630" y="471" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">承認フロー、Model Card、デプロイ制御</text>
+
+  <!-- Border -->
+  <rect x="10" y="38" width="780" height="444" rx="4" fill="none" stroke="#4CC9F0" stroke-width="1"/>
+</svg>

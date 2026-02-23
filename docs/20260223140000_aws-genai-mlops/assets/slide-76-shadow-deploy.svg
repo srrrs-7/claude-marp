@@ -1,0 +1,78 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="35" font-family="Arial" font-size="20" fill="#ffffff" text-anchor="middle" font-weight="bold">シャドウデプロイ アーキテクチャ</text>
+
+  <!-- Traffic Source -->
+  <rect x="20" y="180" width="110" height="50" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="75" y="200" font-family="Arial" font-size="12" fill="#ffffff" text-anchor="middle">本番</text>
+  <text x="75" y="216" font-family="Arial" font-size="12" fill="#ffffff" text-anchor="middle">リクエスト</text>
+
+  <!-- Arrow from traffic to production -->
+  <line x1="130" y1="205" x2="195" y2="205" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#4CC9F0" transform="translate(195,205) rotate(90)"/>
+
+  <!-- Production Endpoint -->
+  <rect x="200" y="155" width="160" height="100" rx="10" fill="#1e3a5f" stroke="#06D6A0" stroke-width="2.5"/>
+  <text x="280" y="185" font-family="Arial" font-size="13" fill="#06D6A0" text-anchor="middle" font-weight="bold">Production Endpoint</text>
+  <text x="280" y="205" font-family="Arial" font-size="12" fill="#aaaaaa" text-anchor="middle">モデルA (現行)</text>
+  <text x="280" y="225" font-family="Arial" font-size="11" fill="#06D6A0" text-anchor="middle">✓ ユーザーへ応答</text>
+  <text x="280" y="243" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">shadowProductionVariants</text>
+
+  <!-- Arrow to user response -->
+  <line x1="360" y1="185" x2="440" y2="155" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#06D6A0" transform="translate(440,155) rotate(150)"/>
+  <rect x="445" y="130" width="120" height="40" rx="6" fill="#0a2040" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="505" y="148" font-family="Arial" font-size="11" fill="#06D6A0" text-anchor="middle">ユーザーへ</text>
+  <text x="505" y="162" font-family="Arial" font-size="11" fill="#06D6A0" text-anchor="middle">レスポンス返却</text>
+
+  <!-- Arrow from Production to Shadow (mirrored) -->
+  <line x1="280" y1="255" x2="280" y2="305" stroke="#F77F00" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#F77F00" transform="translate(280,305) rotate(180)"/>
+  <text x="310" y="285" font-family="Arial" font-size="10" fill="#F77F00">ミラーリング</text>
+
+  <!-- Shadow Endpoint -->
+  <rect x="200" y="310" width="160" height="100" rx="10" fill="#2d1e0f" stroke="#F77F00" stroke-width="2.5"/>
+  <text x="280" y="340" font-family="Arial" font-size="13" fill="#F77F00" text-anchor="middle" font-weight="bold">Shadow Endpoint</text>
+  <text x="280" y="360" font-family="Arial" font-size="12" fill="#aaaaaa" text-anchor="middle">モデルB (候補)</text>
+  <text x="280" y="378" font-family="Arial" font-size="11" fill="#F77F00" text-anchor="middle">✗ ユーザーへ非返却</text>
+  <text x="280" y="396" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">ログのみ記録</text>
+
+  <!-- S3 Logging arrows -->
+  <line x1="360" y1="205" x2="430" y2="250" stroke="#4CC9F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="0,-4 -6,4 6,4" fill="#4CC9F0" transform="translate(430,250) rotate(140)"/>
+  <line x1="360" y1="360" x2="430" y2="300" stroke="#4CC9F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="0,-4 -6,4 6,4" fill="#4CC9F0" transform="translate(430,300) rotate(40)"/>
+
+  <!-- S3 bucket -->
+  <ellipse cx="480" cy="275" rx="55" ry="20" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <rect x="425" y="275" width="110" height="35" fill="#1e3a5f"/>
+  <ellipse cx="480" cy="310" rx="55" ry="20" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <rect x="425" y="268" width="110" height="7" fill="#4CC9F0" opacity="0.3"/>
+  <text x="480" y="292" font-family="Arial" font-size="12" fill="#4CC9F0" text-anchor="middle" font-weight="bold">S3</text>
+  <text x="480" y="308" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">推論ログ保存</text>
+
+  <!-- Arrow to Comparison Job -->
+  <line x1="535" y1="285" x2="590" y2="285" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#4CC9F0" transform="translate(590,285) rotate(90)"/>
+
+  <!-- Comparison Job -->
+  <rect x="595" y="235" width="150" height="100" rx="10" fill="#0f3460" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="670" y="262" font-family="Arial" font-size="12" fill="#4CC9F0" text-anchor="middle" font-weight="bold">比較ジョブ</text>
+  <text x="670" y="282" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">レイテンシ比較</text>
+  <text x="670" y="298" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">精度比較</text>
+  <text x="670" y="314" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">ドリフトレポート生成</text>
+
+  <!-- Arrow to report -->
+  <line x1="670" y1="335" x2="670" y2="390" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#06D6A0" transform="translate(670,390) rotate(180)"/>
+  <rect x="610" y="392" width="130" height="36" rx="6" fill="#0a2040" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="675" y="408" font-family="Arial" font-size="10" fill="#06D6A0" text-anchor="middle">品質レポート出力</text>
+  <text x="675" y="422" font-family="Arial" font-size="10" fill="#06D6A0" text-anchor="middle">→ 昇格/棄却判断</text>
+
+  <!-- Key benefit box -->
+  <rect x="20" y="400" width="370" height="70" rx="10" fill="#0a2040" stroke="#06D6A0" stroke-width="2"/>
+  <text x="35" y="422" font-family="Arial" font-size="12" fill="#06D6A0" font-weight="bold">Key Benefit:</text>
+  <text x="35" y="442" font-family="Arial" font-size="12" fill="#ffffff">本番影響ゼロでモデルBを</text>
+  <text x="35" y="460" font-family="Arial" font-size="12" fill="#ffffff">長期間評価可能</text>
+</svg>

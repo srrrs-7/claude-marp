@@ -1,0 +1,76 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="36" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">SageMaker Ground Truth ラベリング</text>
+  <!-- Left: 未ラベルデータ -->
+  <rect x="20" y="80" width="130" height="290" rx="8" fill="#1a2d45" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="85" y="107" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">未ラベル</text>
+  <text x="85" y="125" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">データ</text>
+  <text x="85" y="155" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">Amazon S3</text>
+  <text x="85" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">画像ファイル</text>
+  <text x="85" y="195" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">テキスト</text>
+  <text x="85" y="215" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">音声ファイル</text>
+  <text x="85" y="240" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">入力マニフェスト</text>
+  <text x="85" y="258" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">JSON Lines形式</text>
+  <text x="85" y="283" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">{"source-ref":</text>
+  <text x="85" y="298" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">"s3://..."}</text>
+  <!-- Arrow to Ground Truth -->
+  <line x1="150" y1="225" x2="178" y2="225" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(178,225) rotate(90)"/>
+  <!-- Ground Truth box -->
+  <rect x="180" y="58" width="430" height="330" rx="10" fill="#1a2535" stroke="#F77F00" stroke-width="2.5"/>
+  <text x="395" y="85" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#F77F00">SageMaker Ground Truth</text>
+  <!-- Auto labeling -->
+  <rect x="200" y="100" width="185" height="110" rx="8" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="292" y="123" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">自動ラベリング</text>
+  <text x="292" y="145" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">Active Learning</text>
+  <text x="292" y="163" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">ML支援ラベリング</text>
+  <text x="292" y="181" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">高信頼度 → 自動承認</text>
+  <text x="292" y="199" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">コスト最大70%削減</text>
+  <!-- Manual labeling -->
+  <rect x="400" y="100" width="195" height="110" rx="8" fill="#0a2545" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="497" y="123" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#06D6A0">人手ラベリング</text>
+  <text x="497" y="145" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">Mechanical Turk</text>
+  <text x="497" y="163" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">Private Workforce</text>
+  <text x="497" y="181" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">Vendor Workforce</text>
+  <text x="497" y="199" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">複数人で品質担保</text>
+  <!-- Decision diamond -->
+  <polygon points="395,232 445,255 395,278 345,255" fill="#2d4059" stroke="#F77F00" stroke-width="2"/>
+  <text x="395" y="250" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#F77F00">信頼スコア</text>
+  <text x="395" y="264" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ffffff">閾値判定</text>
+  <text x="308" y="252" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#06D6A0">高 → 自動</text>
+  <text x="482" y="252" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#E63946">低 → 人手</text>
+  <!-- Annotation types -->
+  <rect x="200" y="295" width="385" height="82" rx="6" fill="#0f1e30" stroke="#1a2535" stroke-width="1"/>
+  <text x="392" y="317" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0">アノテーションタイプ</text>
+  <rect x="210" y="325" width="85" height="40" rx="4" fill="#1e3a5f"/>
+  <text x="252" y="342" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ffffff">画像分類</text>
+  <text x="252" y="357" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaaaaa">Multi-class</text>
+  <rect x="305" y="325" width="85" height="40" rx="4" fill="#0f3460"/>
+  <text x="347" y="342" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ffffff">物体検出</text>
+  <text x="347" y="357" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaaaaa">Bounding Box</text>
+  <rect x="400" y="325" width="85" height="40" rx="4" fill="#1e3a5f"/>
+  <text x="442" y="342" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ffffff">セグメント</text>
+  <text x="442" y="357" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaaaaa">Semantic Seg.</text>
+  <rect x="495" y="325" width="83" height="40" rx="4" fill="#0f3460"/>
+  <text x="536" y="342" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ffffff">テキスト分類</text>
+  <text x="536" y="357" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaaaaa">NER / Span</text>
+  <!-- Arrow to output -->
+  <line x1="610" y1="225" x2="648" y2="225" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#06D6A0" transform="translate(648,225) rotate(90)"/>
+  <!-- Right: ラベル済みデータセット -->
+  <rect x="650" y="80" width="135" height="290" rx="8" fill="#0a2545" stroke="#06D6A0" stroke-width="2"/>
+  <text x="717" y="107" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#06D6A0">ラベル済み</text>
+  <text x="717" y="125" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#06D6A0">データセット</text>
+  <text x="717" y="155" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">出力マニフェスト</text>
+  <text x="717" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">Amazon S3</text>
+  <text x="717" y="200" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">品質スコア付き</text>
+  <text x="717" y="220" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">ワーカー合意率</text>
+  <!-- Arrow to training -->
+  <line x1="717" y1="370" x2="717" y2="405" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#06D6A0" transform="translate(717,405) rotate(180)"/>
+  <rect x="652" y="405" width="133" height="45" rx="6" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="718" y="423" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">SageMaker</text>
+  <text x="718" y="440" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">Training</text>
+  <!-- Bottom note -->
+  <text x="400" y="475" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#aaaaaa">Ground Truth Plus: マネージドラベリングサービス (ワークフォース管理不要)</text>
+</svg>

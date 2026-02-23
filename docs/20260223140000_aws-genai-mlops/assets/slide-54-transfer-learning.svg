@@ -1,0 +1,89 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+  <text x="400" y="35" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">転移学習・ファインチューニング概念</text>
+
+  <!-- Pre-trained Model box -->
+  <rect x="20" y="55" width="220" height="290" rx="8" fill="#1e3a5f"/>
+  <text x="130" y="80" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#4CC9F0" text-anchor="middle">事前学習済みモデル</text>
+
+  <!-- Layers visual -->
+  <rect x="40" y="90" width="180" height="28" rx="4" fill="#2d4059"/>
+  <text x="130" y="109" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">Output Layer</text>
+  <rect x="40" y="124" width="180" height="28" rx="4" fill="#2d4059"/>
+  <text x="130" y="143" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">Dense Layer</text>
+  <rect x="40" y="158" width="180" height="28" rx="4" fill="#2d4059"/>
+  <text x="130" y="177" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">Conv Block 3</text>
+  <rect x="40" y="192" width="180" height="28" rx="4" fill="#2d4059"/>
+  <text x="130" y="211" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">Conv Block 2</text>
+  <rect x="40" y="226" width="180" height="28" rx="4" fill="#2d4059"/>
+  <text x="130" y="245" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">Conv Block 1</text>
+  <rect x="40" y="260" width="180" height="28" rx="4" fill="#2d4059"/>
+  <text x="130" y="279" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">Input Layer</text>
+
+  <text x="130" y="310" font-family="Arial,sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">大規模データで学習</text>
+  <text x="130" y="328" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">汎用的な表現を獲得</text>
+  <text x="130" y="346" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">ResNet / BERT / GPT</text>
+
+  <!-- Transfer Arrow -->
+  <line x1="245" y1="200" x2="335" y2="200" stroke="#4CC9F0" stroke-width="3"/>
+  <polygon points="0,-7 -5,6 5,6" fill="#4CC9F0" transform="translate(340,200) rotate(90)"/>
+
+  <!-- Frozen/trainable indicator -->
+  <rect x="250" y="90" width="90" height="130" rx="6" fill="#111e2d" stroke="#aaaaaa" stroke-width="1"/>
+  <text x="295" y="112" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">Frozen</text>
+  <rect x="258" y="118" width="74" height="18" rx="3" fill="#2d4059" opacity="0.6"/>
+  <rect x="258" y="140" width="74" height="18" rx="3" fill="#2d4059" opacity="0.6"/>
+  <rect x="258" y="162" width="74" height="18" rx="3" fill="#2d4059" opacity="0.6"/>
+  <text x="295" y="210" font-family="Arial,sans-serif" font-size="10" fill="#4CC9F0" text-anchor="middle">Trainable</text>
+  <rect x="258" y="195" width="74" height="18" rx="3" fill="#4CC9F0" opacity="0.5"/>
+
+  <!-- Fine-tuned Model -->
+  <rect x="360" y="55" width="220" height="290" rx="8" fill="#0f3460"/>
+  <text x="470" y="80" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#06D6A0" text-anchor="middle">Fine-tuned モデル</text>
+
+  <!-- Layers: frozen (gray) -->
+  <rect x="380" y="90" width="180" height="28" rx="4" fill="#06D6A0" opacity="0.5"/>
+  <text x="470" y="109" font-family="Arial,sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">New Output Layer ★</text>
+  <rect x="380" y="124" width="180" height="28" rx="4" fill="#2d4059"/>
+  <text x="470" y="143" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">Dense Layer (frozen)</text>
+  <rect x="380" y="158" width="180" height="28" rx="4" fill="#2d4059"/>
+  <text x="470" y="177" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">Conv Block 3 (frozen)</text>
+  <rect x="380" y="192" width="180" height="28" rx="4" fill="#2d4059"/>
+  <text x="470" y="211" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">Conv Block 2 (frozen)</text>
+  <rect x="380" y="226" width="180" height="28" rx="4" fill="#2d4059"/>
+  <text x="470" y="245" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">Conv Block 1 (frozen)</text>
+  <rect x="380" y="260" width="180" height="28" rx="4" fill="#2d4059"/>
+  <text x="470" y="279" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">Input Layer (frozen)</text>
+
+  <text x="470" y="310" font-family="Arial,sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">タスク固有データで学習</text>
+  <text x="470" y="328" font-family="Arial,sans-serif" font-size="11" fill="#06D6A0" text-anchor="middle">少ないデータ・計算で高精度</text>
+  <text x="470" y="346" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">例: 医療画像分類</text>
+
+  <!-- 3 Approaches -->
+  <rect x="600" y="55" width="185" height="290" rx="8" fill="#111e2d" stroke="#2d4059" stroke-width="1"/>
+  <text x="692" y="80" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">学習アプローチ</text>
+
+  <rect x="615" y="92" width="155" height="65" rx="5" fill="#1e3a5f"/>
+  <text x="692" y="112" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">フル Fine-tuning</text>
+  <text x="692" y="130" font-family="Arial,sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">全パラメータ更新</text>
+  <text x="692" y="147" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">最高精度・高コスト</text>
+
+  <rect x="615" y="168" width="155" height="65" rx="5" fill="#0f3460"/>
+  <text x="692" y="188" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">特徴抽出</text>
+  <text x="692" y="206" font-family="Arial,sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">上位層のみ学習</text>
+  <text x="692" y="223" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">高速・低コスト</text>
+
+  <rect x="615" y="244" width="155" height="85" rx="5" fill="#0a2545" stroke="#06D6A0" stroke-width="1"/>
+  <text x="692" y="264" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06D6A0" text-anchor="middle">PEFT ★推奨</text>
+  <text x="692" y="282" font-family="Arial,sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">LoRA / Adapter</text>
+  <text x="692" y="298" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">少パラメータ更新</text>
+  <text x="692" y="318" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0" text-anchor="middle">効率的・推奨</text>
+
+  <!-- Bottom note -->
+  <text x="400" y="390" font-family="Arial,sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">転移学習により、少ないデータと計算資源で高精度なモデルを実現</text>
+  <text x="400" y="412" font-family="Arial,sans-serif" font-size="12" fill="#4CC9F0" text-anchor="middle">AWS: SageMaker JumpStart / Amazon Bedrock Fine-tuning で簡単に利用可能</text>
+  <rect x="20" y="430" width="760" height="55" rx="6" fill="#111e2d"/>
+  <text x="400" y="452" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">試験ポイント: 転移学習 = 既存モデルの知識を新タスクに活用</text>
+  <text x="400" y="472" font-family="Arial,sans-serif" font-size="11" fill="#06D6A0" text-anchor="middle">事前学習済みモデル → (Frozen層保持) → タスク固有データでFine-tune</text>
+</svg>

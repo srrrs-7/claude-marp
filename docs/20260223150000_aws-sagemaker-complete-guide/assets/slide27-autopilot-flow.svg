@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="28" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f1f5f9">SageMaker Autopilot AutoML フロー</text>
+
+  <!-- Input -->
+  <rect x="20" y="65" width="120" height="85" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="80" y="87" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">Input CSV</text>
+  <text x="80" y="105" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">S3 に配置</text>
+  <text x="80" y="120" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Target列指定</text>
+  <text x="80" y="138" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">最大1GB</text>
+
+  <!-- Arrow -->
+  <line x1="140" y1="107" x2="168" y2="107" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="168,107 156,102 156,112" fill="#3b82f6"/>
+
+  <!-- Problem Detection -->
+  <rect x="168" y="65" width="130" height="85" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="233" y="87" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">問題タイプ</text>
+  <text x="233" y="105" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">自動検出</text>
+  <text x="233" y="120" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">分類 / 回帰</text>
+  <text x="233" y="133" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">時系列</text>
+  <text x="233" y="146" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Text/Image</text>
+
+  <!-- Arrow -->
+  <line x1="298" y1="107" x2="326" y2="107" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="326,107 314,102 314,112" fill="#22c55e"/>
+
+  <!-- Feature Engineering -->
+  <rect x="326" y="65" width="130" height="85" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="391" y="87" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#a855f7">特徴量</text>
+  <text x="391" y="103" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#a855f7">エンジニアリング</text>
+  <text x="391" y="120" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">欠損値処理</text>
+  <text x="391" y="133" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">エンコーディング</text>
+  <text x="391" y="146" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">スケーリング</text>
+
+  <!-- Arrow -->
+  <line x1="456" y1="107" x2="484" y2="107" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="484,107 472,102 472,112" fill="#a855f7"/>
+
+  <!-- Algorithm Selection + HPO -->
+  <rect x="484" y="55" width="140" height="105" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="554" y="77" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f97316">アルゴリズム選択</text>
+  <text x="554" y="93" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316">+ HPO</text>
+  <text x="554" y="110" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">XGBoost/LightGBM</text>
+  <text x="554" y="123" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Linear/DNN</text>
+  <text x="554" y="136" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">並列HP探索</text>
+  <text x="554" y="152" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">ベイズ最適化</text>
+
+  <!-- Arrow -->
+  <line x1="624" y1="107" x2="654" y2="107" stroke="#f97316" stroke-width="2"/>
+  <polygon points="654,107 642,102 642,112" fill="#f97316"/>
+
+  <!-- Best Model Selection -->
+  <rect x="654" y="65" width="120" height="85" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="714" y="87" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#14b8a6">ベスト</text>
+  <text x="714" y="103" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#14b8a6">モデル選択</text>
+  <text x="714" y="120" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Leaderboard</text>
+  <text x="714" y="133" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">メトリクスで</text>
+  <text x="714" y="146" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">自動ランク付け</text>
+
+  <!-- Arrow to Deploy and Explain -->
+  <line x1="774" y1="107" x2="802" y2="107" stroke="#14b8a6" stroke-width="2"/>
+  <polygon points="802,107 790,102 790,112" fill="#14b8a6"/>
+
+  <!-- Deploy + Explain -->
+  <rect x="802" y="55" width="80" height="105" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="842" y="79" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#3b82f6">Deploy</text>
+  <text x="842" y="95" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Endpoint</text>
+  <text x="842" y="112" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">+ SHAP</text>
+  <text x="842" y="127" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">説明</text>
+  <text x="842" y="143" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">レポート</text>
+
+  <!-- 3 Modes box -->
+  <rect x="20" y="190" width="860" height="130" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="450" y="213" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f1f5f9">3 つの実行モード</text>
+
+  <!-- Ensembling mode -->
+  <rect x="35" y="225" width="265" height="80" rx="6" fill="#0f172a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="167" y="247" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">Ensembling モード</text>
+  <text x="167" y="265" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">AutoGluon ベース</text>
+  <text x="167" y="280" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">高精度なアンサンブル (デフォルト)</text>
+  <text x="167" y="295" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">小〜中規模データに最適</text>
+
+  <!-- HPO mode -->
+  <rect x="318" y="225" width="265" height="80" rx="6" fill="#0f172a" stroke="#f97316" stroke-width="1.5"/>
+  <text x="450" y="247" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f97316">HPO モード</text>
+  <text x="450" y="265" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">並列ハイパーパラメータ探索</text>
+  <text x="450" y="280" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">複数アルゴリズムを同時チューニング</text>
+  <text x="450" y="295" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">大規模データ / コントロールが必要な場合</text>
+
+  <!-- Auto mode -->
+  <rect x="601" y="225" width="265" height="80" rx="6" fill="#0f172a" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="733" y="247" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">Auto モード</text>
+  <text x="733" y="265" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">データサイズで自動選択</text>
+  <text x="733" y="280" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">小 → Ensembling</text>
+  <text x="733" y="295" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">大 → HPO</text>
+
+  <!-- Leaderboard and Output -->
+  <rect x="20" y="350" width="420" height="90" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="230" y="372" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#a855f7">Leaderboard (候補モデル一覧)</text>
+  <text x="230" y="392" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Rank | Model | Accuracy | F1 | AUC</text>
+  <text x="230" y="410" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">1   | AutoGluon-Ensemble | 0.94 | 0.93 | 0.97</text>
+  <text x="230" y="428" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">2   | XGBoost-HPO        | 0.92 | 0.91 | 0.96</text>
+
+  <rect x="460" y="350" width="420" height="90" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="670" y="372" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#14b8a6">Explainability Report (SHAP)</text>
+  <text x="670" y="392" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">特徴量重要度: age=0.35, income=0.28...</text>
+  <text x="670" y="410" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">バイアス指標レポートも自動生成</text>
+  <text x="670" y="428" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">GDPR 説明責任対応に活用</text>
+
+  <text x="450" y="460" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">対話モード: 候補パイプラインコードを Jupyter Notebook に自動生成 (カスタマイズ可)</text>
+  <text x="450" y="478" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">試験ポイント: Autopilot は AutoML — コード不要でMLモデル構築 (Bedrock/Comprehendとの違い)</text>
+</svg>

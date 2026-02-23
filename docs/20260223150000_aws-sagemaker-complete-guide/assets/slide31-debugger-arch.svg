@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="28" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f1f5f9">SageMaker Debugger アーキテクチャ</text>
+
+  <!-- Component 1: Debug Hook -->
+  <rect x="20" y="55" width="255" height="290" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="147" y="80" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">1. Debug Hook</text>
+  <text x="147" y="98" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">(トレーニングコードに注入)</text>
+
+  <rect x="35" y="112" width="225" height="28" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="147" y="131" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#22c55e">テンソルデータ収集</text>
+
+  <rect x="35" y="148" width="225" height="28" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="147" y="167" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#22c55e">メトリクス収集 (loss/acc)</text>
+
+  <rect x="35" y="184" width="225" height="28" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="147" y="203" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#22c55e">プロファイルデータ収集</text>
+
+  <rect x="35" y="220" width="225" height="28" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="147" y="239" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">CPU/GPU 利用率</text>
+
+  <rect x="35" y="256" width="225" height="28" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="147" y="275" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">I/O スループット</text>
+
+  <rect x="35" y="292" width="225" height="28" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="147" y="311" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">ネットワーク帯域</text>
+
+  <!-- S3 storage -->
+  <rect x="90" y="335" width="130" height="40" rx="5" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="155" y="357" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#14b8a6">S3 デバッグデータ</text>
+  <line x1="147" y1="320" x2="147" y2="335" stroke="#14b8a6" stroke-width="1.5"/>
+  <polygon points="147,335 142,323 152,323" fill="#14b8a6"/>
+
+  <!-- Arrow Hook → Rules -->
+  <line x1="275" y1="230" x2="325" y2="230" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="325,230 313,225 313,235" fill="#3b82f6"/>
+  <line x1="220" y1="355" x2="325" y2="280" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="325,280 315,284 318,272" fill="#3b82f6"/>
+
+  <!-- Component 2: Rules Engine -->
+  <rect x="325" y="55" width="255" height="320" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="452" y="80" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f97316">2. Rules Engine</text>
+  <text x="452" y="98" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">(S3データをリアルタイム分析)</text>
+
+  <!-- Built-in Rules -->
+  <rect x="340" y="110" width="225" height="120" rx="5" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="452" y="130" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#a855f7">ビルトインルール</text>
+  <text x="352" y="148" text-anchor="start" font-family="sans-serif" font-size="8" fill="#94a3b8">VanishingGradient</text>
+  <text x="352" y="162" text-anchor="start" font-family="sans-serif" font-size="8" fill="#94a3b8">ExplodingTensor</text>
+  <text x="352" y="176" text-anchor="start" font-family="sans-serif" font-size="8" fill="#94a3b8">Overfitting</text>
+  <text x="452" y="148" text-anchor="start" font-family="sans-serif" font-size="8" fill="#94a3b8">LossNotDecreasing</text>
+  <text x="452" y="162" text-anchor="start" font-family="sans-serif" font-size="8" fill="#94a3b8">DeadRelu</text>
+  <text x="452" y="176" text-anchor="start" font-family="sans-serif" font-size="8" fill="#94a3b8">AllZero</text>
+  <text x="352" y="195" text-anchor="start" font-family="sans-serif" font-size="8" fill="#94a3b8">LowGPUUtilization</text>
+  <text x="452" y="195" text-anchor="start" font-family="sans-serif" font-size="8" fill="#94a3b8">CPUBottleneck</text>
+  <text x="352" y="210" text-anchor="start" font-family="sans-serif" font-size="8" fill="#94a3b8">GPUMemoryIncrease</text>
+  <text x="452" y="210" text-anchor="start" font-family="sans-serif" font-size="8" fill="#94a3b8">IOBottleneck</text>
+  <text x="352" y="224" text-anchor="start" font-family="sans-serif" font-size="8" fill="#94a3b8">Overtraining</text>
+
+  <!-- Custom Rules -->
+  <rect x="340" y="240" width="225" height="55" rx="5" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="452" y="260" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#22c55e">カスタムルール</text>
+  <text x="452" y="278" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">ユーザー定義 Lambda 関数</text>
+  <text x="452" y="291" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">独自の監視ロジックを実装</text>
+
+  <!-- Profiler Report -->
+  <rect x="340" y="305" width="225" height="55" rx="5" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+  <text x="452" y="325" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#3b82f6">ProfilerReport</text>
+  <text x="452" y="343" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">システムボトルネック検出</text>
+  <text x="452" y="356" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">GPU低稼働率 / I/O詰まり</text>
+
+  <!-- Arrow Rules → Actions -->
+  <line x1="580" y1="200" x2="620" y2="200" stroke="#f97316" stroke-width="2"/>
+  <polygon points="620,200 608,195 608,205" fill="#f97316"/>
+
+  <!-- Component 3: Actions -->
+  <rect x="620" y="55" width="255" height="320" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <text x="747" y="80" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ef4444">3. Actions</text>
+  <text x="747" y="98" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">(ルール違反時に自動実行)</text>
+
+  <rect x="635" y="115" width="225" height="50" rx="5" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="747" y="137" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#ef4444">トレーニング自動停止</text>
+  <text x="747" y="155" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">コスト無駄を防ぐ最重要機能</text>
+
+  <rect x="635" y="175" width="225" height="50" rx="5" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="747" y="197" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#f97316">CloudWatch Alarm</text>
+  <text x="747" y="215" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">アラートダッシュボード連携</text>
+
+  <rect x="635" y="235" width="225" height="50" rx="5" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="747" y="257" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#22c55e">SNS 通知</text>
+  <text x="747" y="275" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Email / Slack / PagerDuty</text>
+
+  <rect x="635" y="295" width="225" height="50" rx="5" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="747" y="317" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#a855f7">Lambda 関数実行</text>
+  <text x="747" y="335" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">カスタムアクション (再起動等)</text>
+
+  <!-- Bottom notes -->
+  <text x="450" y="420" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#3b82f6">設定: Estimator の rules=[Rule.sagemaker(rule_configs.vanishing_gradient())] に追加するだけ</text>
+  <text x="450" y="440" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">追加コストなし: Debugger 機能は Training Job 料金に含まれる (ストレージのみ別途)</text>
+  <text x="450" y="460" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316">試験ポイント: GPU低稼働率ルール → インスタンスダウングレードまたはバッチサイズ増加を提案</text>
+  <text x="450" y="480" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">ProfilerReport: HTML形式で自動生成、ボトルネックと推奨アクションを表示</text>
+</svg>

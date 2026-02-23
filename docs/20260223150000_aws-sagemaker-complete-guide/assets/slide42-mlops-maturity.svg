@@ -1,0 +1,100 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <text x="450" y="32" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#f1f5f9">MLOps 成熟度モデル</text>
+
+  <!-- Staircase background steps (ascending left to right) -->
+  <!-- Ground line -->
+  <line x1="30" y1="440" x2="870" y2="440" stroke="#94a3b8" stroke-width="1"/>
+
+  <!-- Level 0 platform -->
+  <rect x="30" y="360" width="190" height="80" rx="4" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <!-- Level 1 platform -->
+  <rect x="220" y="300" width="190" height="140" rx="4" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <!-- Level 2 platform -->
+  <rect x="410" y="230" width="190" height="210" rx="4" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <!-- Level 3 platform -->
+  <rect x="600" y="150" width="270" height="290" rx="4" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+
+  <!-- Level labels at top of each platform -->
+  <!-- Level 0 -->
+  <rect x="35" y="300" width="175" height="55" rx="4" fill="#3a1010"/>
+  <text x="122" y="321" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ef4444">Level 0</text>
+  <text x="122" y="337" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f1f5f9">手動プロセス</text>
+  <text x="122" y="351" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Script-driven</text>
+
+  <!-- Level 0 detail -->
+  <text x="40" y="376" font-family="sans-serif" font-size="9" fill="#94a3b8">- Jupyter Notebook</text>
+  <text x="40" y="389" font-family="sans-serif" font-size="9" fill="#94a3b8">- 個人実験・手動実行</text>
+  <text x="40" y="402" font-family="sans-serif" font-size="9" fill="#94a3b8">- 再現性なし</text>
+  <text x="40" y="415" font-family="sans-serif" font-size="9" fill="#94a3b8">- バージョン管理なし</text>
+  <text x="40" y="428" font-family="sans-serif" font-size="9" fill="#94a3b8">- 手動デプロイ</text>
+
+  <!-- Level 1 -->
+  <rect x="225" y="240" width="175" height="55" rx="4" fill="#2a1a0a"/>
+  <text x="312" y="261" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f97316">Level 1</text>
+  <text x="312" y="277" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f1f5f9">ML Pipeline 自動化</text>
+  <text x="312" y="291" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Pipeline Automation</text>
+
+  <!-- Level 1 detail -->
+  <text x="230" y="316" font-family="sans-serif" font-size="9" fill="#94a3b8">- SageMaker Pipelines</text>
+  <text x="230" y="329" font-family="sans-serif" font-size="9" fill="#94a3b8">- 自動再トレーニング</text>
+  <text x="230" y="342" font-family="sans-serif" font-size="9" fill="#94a3b8">- Feature Store 活用</text>
+  <text x="230" y="355" font-family="sans-serif" font-size="9" fill="#94a3b8">- Experiments 記録</text>
+  <text x="230" y="368" font-family="sans-serif" font-size="9" fill="#94a3b8">- Model Registry</text>
+  <text x="230" y="381" font-family="sans-serif" font-size="9" fill="#94a3b8">- 手動 Approval</text>
+  <text x="230" y="394" font-family="sans-serif" font-size="9" fill="#94a3b8">- 手動デプロイ</text>
+  <text x="230" y="415" font-family="sans-serif" font-size="8" fill="#f97316">★ 小規模チームの目標</text>
+
+  <!-- Level 2 -->
+  <rect x="415" y="170" width="175" height="55" rx="4" fill="#2a1a4a"/>
+  <text x="502" y="191" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a855f7">Level 2</text>
+  <text x="502" y="207" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f1f5f9">CI/CD Pipeline</text>
+  <text x="502" y="221" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Continuous Delivery</text>
+
+  <!-- Level 2 detail -->
+  <text x="420" y="246" font-family="sans-serif" font-size="9" fill="#94a3b8">- CodePipeline + CodeBuild</text>
+  <text x="420" y="259" font-family="sans-serif" font-size="9" fill="#94a3b8">- コード変更 → 自動テスト</text>
+  <text x="420" y="272" font-family="sans-serif" font-size="9" fill="#94a3b8">- 自動デプロイ (Staging)</text>
+  <text x="420" y="285" font-family="sans-serif" font-size="9" fill="#94a3b8">- Blue/Green デプロイ</text>
+  <text x="420" y="298" font-family="sans-serif" font-size="9" fill="#94a3b8">- 環境分離 (Dev/Stg/Prod)</text>
+  <text x="420" y="311" font-family="sans-serif" font-size="9" fill="#94a3b8">- Manual Approval Gate</text>
+  <text x="420" y="324" font-family="sans-serif" font-size="9" fill="#94a3b8">- 承認ベースの本番昇格</text>
+  <text x="420" y="337" font-family="sans-serif" font-size="9" fill="#94a3b8">- Model Cards 必須化</text>
+  <text x="420" y="350" font-family="sans-serif" font-size="9" fill="#94a3b8">- Lineage Tracking</text>
+  <text x="420" y="375" font-family="sans-serif" font-size="8" fill="#a855f7">★ 中規模チームの標準</text>
+
+  <!-- Level 3 -->
+  <rect x="605" y="90" width="255" height="55" rx="4" fill="#0a2a18"/>
+  <text x="732" y="111" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#22c55e">Level 3</text>
+  <text x="732" y="127" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f1f5f9">フル自動化</text>
+  <text x="732" y="141" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Continuous Training &amp; Deployment</text>
+
+  <!-- Level 3 detail -->
+  <text x="610" y="166" font-family="sans-serif" font-size="9" fill="#94a3b8">- データドリフト検知 → 自動再学習</text>
+  <text x="610" y="179" font-family="sans-serif" font-size="9" fill="#94a3b8">- モデル品質劣化 → 自動トリガー</text>
+  <text x="610" y="192" font-family="sans-serif" font-size="9" fill="#94a3b8">- 自動 Approval (メトリクス閾値)</text>
+  <text x="610" y="205" font-family="sans-serif" font-size="9" fill="#94a3b8">- 自動デプロイ → CloudWatch 監視</text>
+  <text x="610" y="218" font-family="sans-serif" font-size="9" fill="#94a3b8">- 自動ロールバック (アラーム)</text>
+  <text x="610" y="231" font-family="sans-serif" font-size="9" fill="#94a3b8">- Model Monitor 常時稼働</text>
+  <text x="610" y="244" font-family="sans-serif" font-size="9" fill="#94a3b8">- マルチアカウント・マルチリージョン</text>
+  <text x="610" y="257" font-family="sans-serif" font-size="9" fill="#94a3b8">- Governance: Role Manager</text>
+  <text x="610" y="270" font-family="sans-serif" font-size="9" fill="#94a3b8">- Bias/Fairness 継続監視</text>
+  <text x="610" y="283" font-family="sans-serif" font-size="9" fill="#94a3b8">- Feature Store リアルタイム更新</text>
+
+  <!-- Services used tags -->
+  <rect x="610" y="305" width="245" height="18" rx="3" fill="#1a3a2a"/>
+  <text x="732" y="317" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#22c55e">Pipelines + Monitor + Clarify + Feature Store + Role Manager</text>
+
+  <text x="610" y="345" font-family="sans-serif" font-size="8" fill="#22c55e">★ 大規模プロダクション環境の目標</text>
+
+  <!-- Arrow indicating progression direction -->
+  <polygon points="30,48 870,48 870,58 850,78 30,78" fill="#0f172a" stroke="none"/>
+  <!-- Progression arrow -->
+  <line x1="50" y1="58" x2="850" y2="58" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="845,53 860,58 845,63" fill="#3b82f6"/>
+  <text x="450" y="53" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#3b82f6">成熟度向上の方向 →</text>
+
+  <!-- Staircase connecting lines -->
+  <polyline points="220,440 220,300 410,300 410,230 600,230 600,150 870,150" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+</svg>

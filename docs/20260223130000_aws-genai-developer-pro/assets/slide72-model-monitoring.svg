@@ -1,0 +1,96 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">LLM モデルモニタリング</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">ハルシネーション・ドリフト・品質劣化をリアルタイム検出</text>
+
+  <!-- Monitoring targets top -->
+  <rect x="15" y="65" width="870" height="148" rx="8" fill="#0f172a"/>
+  <text x="450" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">監視対象メトリクス（4カテゴリ）</text>
+
+  <!-- Quality -->
+  <rect x="25" y="90" width="200" height="115" rx="6" fill="#172554"/>
+  <text x="125" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#60a5fa">品質メトリクス</text>
+  <text x="35" y="124" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• ROUGE / BLEU スコア</text>
+  <text x="35" y="140" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• Faithfulness スコア</text>
+  <text x="35" y="156" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• Relevance スコア</text>
+  <text x="35" y="172" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• 人間評価スコア</text>
+  <text x="125" y="194" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">Bedrock Model Evaluation</text>
+
+  <!-- Drift -->
+  <rect x="237" y="90" width="200" height="115" rx="6" fill="#3b0764"/>
+  <text x="337" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#c4b5fd">ドリフト</text>
+  <text x="247" y="124" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">• データドリフト検出</text>
+  <text x="247" y="140" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">• コンセプトドリフト</text>
+  <text x="247" y="156" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">• 埋め込み空間の変化</text>
+  <text x="247" y="172" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">• PSI / KS 統計検定</text>
+  <text x="337" y="194" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">SageMaker Model Monitor</text>
+
+  <!-- Performance -->
+  <rect x="449" y="90" width="200" height="115" rx="6" fill="#064e3b"/>
+  <text x="549" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#6ee7b7">パフォーマンス</text>
+  <text x="459" y="124" font-family="Arial,sans-serif" font-size="9" fill="#34d399">• レイテンシ (P50/P99)</text>
+  <text x="459" y="140" font-family="Arial,sans-serif" font-size="9" fill="#34d399">• スループット (RPS)</text>
+  <text x="459" y="156" font-family="Arial,sans-serif" font-size="9" fill="#34d399">• トークン/秒</text>
+  <text x="459" y="172" font-family="Arial,sans-serif" font-size="9" fill="#34d399">• エラー率・タイムアウト</text>
+  <text x="549" y="194" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">CloudWatch Metrics</text>
+
+  <!-- Cost -->
+  <rect x="661" y="90" width="214" height="115" rx="6" fill="#78350f"/>
+  <text x="768" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fde68a">コスト</text>
+  <text x="671" y="124" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">• トークン消費量</text>
+  <text x="671" y="140" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">• API 呼び出し回数</text>
+  <text x="671" y="156" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">• モデル別コスト</text>
+  <text x="671" y="172" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">• キャッシュヒット率</text>
+  <text x="768" y="194" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">Cost Explorer + タグ管理</text>
+
+  <!-- Architecture flow -->
+  <rect x="15" y="225" width="870" height="165" rx="8" fill="#0f172a"/>
+  <text x="450" y="243" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">監視アーキテクチャ</text>
+
+  <!-- Flow boxes -->
+  <rect x="30" y="252" width="120" height="40" rx="6" fill="#1e3a8a"/>
+  <text x="90" y="267" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#93c5fd">LLM App</text>
+  <text x="90" y="282" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#bfdbfe">Request/Response</text>
+
+  <polygon points="155,272 165,268 165,276" fill="#6d28d9"/>
+
+  <rect x="168" y="252" width="130" height="40" rx="6" fill="#4c1d95"/>
+  <text x="233" y="267" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#c4b5fd">Bedrock</text>
+  <text x="233" y="282" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#e9d5ff">Invocation Logs</text>
+
+  <polygon points="303,272 313,268 313,276" fill="#6d28d9"/>
+
+  <rect x="316" y="252" width="120" height="40" rx="6" fill="#065f46"/>
+  <text x="376" y="267" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#6ee7b7">S3 Logs</text>
+  <text x="376" y="282" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#a7f3d0">入力/出力保存</text>
+
+  <polygon points="441,272 451,268 451,276" fill="#6d28d9"/>
+
+  <rect x="454" y="252" width="130" height="40" rx="6" fill="#1e3a8a"/>
+  <text x="519" y="267" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#93c5fd">CloudWatch</text>
+  <text x="519" y="282" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#bfdbfe">メトリクス/アラーム</text>
+
+  <polygon points="589,272 599,268 599,276" fill="#6d28d9"/>
+
+  <rect x="602" y="252" width="130" height="40" rx="6" fill="#7c3aed"/>
+  <text x="667" y="267" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#e9d5ff">Bedrock Guardrails</text>
+  <text x="667" y="282" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#c4b5fd">品質フィルタ</text>
+
+  <polygon points="737,272 747,268 747,276" fill="#6d28d9"/>
+
+  <rect x="750" y="252" width="120" height="40" rx="6" fill="#7f1d1d"/>
+  <text x="810" y="267" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#fca5a5">SNS アラート</text>
+  <text x="810" y="282" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#f87171">エスカレーション</text>
+
+  <!-- Alert thresholds -->
+  <rect x="30" y="305" width="820" height="72" rx="5" fill="#1a1a2e"/>
+  <text x="440" y="323" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fbbf24">アラームしきい値の設定例</text>
+  <text x="125" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">P99 レイテンシ &gt; 5s</text>
+  <text x="125" y="361" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">パフォーマンス劣化</text>
+  <text x="315" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">エラー率 &gt; 1%</text>
+  <text x="315" y="361" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">サービス品質</text>
+  <text x="505" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">コスト増加率 &gt; 20%</text>
+  <text x="505" y="361" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">コスト異常</text>
+  <text x="700" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fde68a">Faithfulness &lt; 0.7</text>
+  <text x="700" y="361" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">RAG品質低下</text>
+</svg>

@@ -1,0 +1,76 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="32" font-family="Arial" font-size="19" fill="#ffffff" text-anchor="middle" font-weight="bold">コンテナ化 ベストプラクティス</text>
+
+  <!-- 2x3 Grid of practices -->
+  <!-- Row 1 -->
+  <!-- Box 1: Multi-stage build -->
+  <rect x="20" y="55" width="237" height="125" rx="10" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="138" y="78" font-family="Arial" font-size="12" fill="#4CC9F0" text-anchor="middle" font-weight="bold">1. マルチステージビルド</text>
+  <text x="138" y="100" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">FROM python:3.11 AS builder</text>
+  <text x="138" y="118" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">FROM python:3.11-slim AS runtime</text>
+  <rect x="35" y="128" width="207" height="38" rx="5" fill="#0a1e35" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="138" y="143" font-family="Arial" font-size="10" fill="#06D6A0" text-anchor="middle">イメージサイズ最小化</text>
+  <text x="138" y="159" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">ビルドツールを除外、実行に必要なものだけ</text>
+
+  <!-- Box 2: Immutable images -->
+  <rect x="282" y="55" width="237" height="125" rx="10" fill="#0f3460" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="400" y="78" font-family="Arial" font-size="12" fill="#4CC9F0" text-anchor="middle" font-weight="bold">2. 不変イメージ</text>
+  <text x="400" y="100" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">image@sha256:abc123...</text>
+  <text x="400" y="118" font-family="Arial" font-size="10" fill="#E63946" text-anchor="middle">NOT image:latest</text>
+  <rect x="297" y="128" width="207" height="38" rx="5" fill="#0a1e35" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="400" y="143" font-family="Arial" font-size="10" fill="#06D6A0" text-anchor="middle">タグでなくダイジェストで参照</text>
+  <text x="400" y="159" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">再現性の保証 / ロールバック確実性</text>
+
+  <!-- Box 3: Non-root user -->
+  <rect x="544" y="55" width="237" height="125" rx="10" fill="#0a2545" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="662" y="78" font-family="Arial" font-size="12" fill="#4CC9F0" text-anchor="middle" font-weight="bold">3. 非rootユーザー</text>
+  <text x="662" y="100" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">RUN useradd -m appuser</text>
+  <text x="662" y="118" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">USER appuser</text>
+  <rect x="559" y="128" width="207" height="38" rx="5" fill="#0a1e35" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="662" y="143" font-family="Arial" font-size="10" fill="#06D6A0" text-anchor="middle">セキュリティ強化</text>
+  <text x="662" y="159" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">コンテナ侵害時の権限昇格防止</text>
+
+  <!-- Row 2 -->
+  <!-- Box 4: Health check -->
+  <rect x="20" y="205" width="237" height="125" rx="10" fill="#1e3a5f" stroke="#06D6A0" stroke-width="2"/>
+  <text x="138" y="228" font-family="Arial" font-size="12" fill="#06D6A0" text-anchor="middle" font-weight="bold">4. ヘルスチェック実装</text>
+  <text x="138" y="250" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">HEALTHCHECK --interval=30s \</text>
+  <text x="138" y="268" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">CMD curl -f /ping || exit 1</text>
+  <rect x="35" y="278" width="207" height="38" rx="5" fill="#0a1e35" stroke="#06D6A0" stroke-width="1"/>
+  <text x="138" y="293" font-family="Arial" font-size="10" fill="#06D6A0" text-anchor="middle">HEALTHCHECK命令を必ず実装</text>
+  <text x="138" y="309" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">SageMaker /ping エンドポイント必須</text>
+
+  <!-- Box 5: Secret management -->
+  <rect x="282" y="205" width="237" height="125" rx="10" fill="#0f3460" stroke="#06D6A0" stroke-width="2"/>
+  <text x="400" y="228" font-family="Arial" font-size="12" fill="#06D6A0" text-anchor="middle" font-weight="bold">5. シークレット管理</text>
+  <text x="400" y="252" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">AWS Secrets Manager</text>
+  <text x="400" y="270" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">SSM Parameter Store</text>
+  <rect x="297" y="278" width="207" height="38" rx="5" fill="#0a1e35" stroke="#06D6A0" stroke-width="1"/>
+  <text x="400" y="295" font-family="Arial" font-size="10" fill="#E63946" text-anchor="middle">ENV変数に機密情報を含めない</text>
+  <text x="400" y="311" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">IAMロール + 実行時取得が推奨</text>
+
+  <!-- Box 6: Layer cache -->
+  <rect x="544" y="205" width="237" height="125" rx="10" fill="#0a2545" stroke="#06D6A0" stroke-width="2"/>
+  <text x="662" y="228" font-family="Arial" font-size="12" fill="#06D6A0" text-anchor="middle" font-weight="bold">6. レイヤーキャッシュ最適化</text>
+  <text x="662" y="252" font-family="Arial" font-size="10" fill="#06D6A0" text-anchor="middle">① COPY requirements.txt</text>
+  <text x="662" y="270" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">② RUN pip install (キャッシュ)</text>
+  <text x="662" y="285" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">③ COPY . (変更頻度高い)</text>
+  <rect x="559" y="292" width="207" height="30" rx="5" fill="#0a1e35" stroke="#06D6A0" stroke-width="1"/>
+  <text x="662" y="312" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">変更頻度低いレイヤーを上位に配置</text>
+
+  <!-- Amazon ECR center box -->
+  <rect x="180" y="358" width="440" height="70" rx="12" fill="#1e2a45" stroke="#F77F00" stroke-width="2.5"/>
+  <text x="400" y="382" font-family="Arial" font-size="14" fill="#F77F00" text-anchor="middle" font-weight="bold">Amazon ECR (Elastic Container Registry)</text>
+  <text x="400" y="403" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">プライベートレジストリ | 脆弱性スキャン (ECR Enhanced Scanning)</text>
+  <text x="400" y="420" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">イメージライフサイクルポリシー | クロスリージョンレプリケーション</text>
+
+  <!-- Arrows pointing to ECR -->
+  <line x1="138" y1="330" x2="250" y2="358" stroke="#4CC9F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="400" y1="330" x2="400" y2="358" stroke="#4CC9F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="662" y1="330" x2="550" y2="358" stroke="#4CC9F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Bottom note -->
+  <text x="400" y="460" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">SageMaker: カスタムコンテナは /ping (ヘルスチェック) + /invocations (推論) エンドポイントを実装必須</text>
+  <text x="400" y="478" font-family="Arial" font-size="10" fill="#4CC9F0" text-anchor="middle">ECR URI形式: &lt;account&gt;.dkr.ecr.&lt;region&gt;.amazonaws.com/&lt;repo&gt;:&lt;tag&gt;</text>
+</svg>

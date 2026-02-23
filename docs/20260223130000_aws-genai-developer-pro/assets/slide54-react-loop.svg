@@ -1,0 +1,55 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">ReAct エージェントループ</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">Bedrock Agents の内部処理フロー — 実際のトレースで確認可能</text>
+
+  <!-- User question -->
+  <rect x="15" y="65" width="200" height="50" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="2"/>
+  <text x="115" y="85" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#60a5fa">ユーザー質問</text>
+  <text x="115" y="103" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">「注文のノートPCはいつ届く?」</text>
+  <polygon points="218,90 230,86 230,94" fill="#6d28d9"/>
+
+  <!-- Loop container -->
+  <rect x="235" y="65" width="540" height="295" rx="8" fill="#1e1b4b" stroke="#6d28d9" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="505" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">ReAct ループ（Bedrock Agentsが自動管理）</text>
+
+  <!-- Step 1: Thought 1 -->
+  <rect x="248" y="90" width="510" height="42" rx="5" fill="#1d4ed8"/>
+  <text x="280" y="106" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#fbbf24">💭 Thought 1:</text>
+  <text x="370" y="106" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">注文履歴を確認する必要がある。Order DBを検索しよう。</text>
+  <text x="280" y="124" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">使うツール: order_lookup | 引数: {"customer_id": "U123"}</text>
+
+  <!-- Step 2: Action 1 -->
+  <rect x="248" y="137" width="510" height="42" rx="5" fill="#065f46"/>
+  <text x="280" y="153" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#fbbf24">⚡ Action 1:</text>
+  <text x="370" y="153" font-family="Arial,sans-serif" font-size="9" fill="#a7f3d0">Lambda: order_lookup(customer_id="U123")</text>
+  <text x="280" y="171" font-family="Arial,sans-serif" font-size="9" fill="#34d399">→ Action Group が Lambda 関数を実行</text>
+
+  <!-- Step 3: Observation 1 -->
+  <rect x="248" y="184" width="510" height="42" rx="5" fill="#4c1d95"/>
+  <text x="280" y="200" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#fbbf24">👁 Observation 1:</text>
+  <text x="395" y="200" font-family="Arial,sans-serif" font-size="9" fill="#e9d5ff">{"order_id": "12345", "item": "ノートPC", "status": "配送中"}</text>
+  <text x="280" y="218" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">結果がコンテキストに追加され、次のThoughtに渡される</text>
+
+  <!-- Step 4: Thought 2 -->
+  <rect x="248" y="231" width="510" height="42" rx="5" fill="#1d4ed8"/>
+  <text x="280" y="247" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#fbbf24">💭 Thought 2:</text>
+  <text x="370" y="247" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">注文が配送中。配送予定日を確認するため、Shipping APIを呼ぼう。</text>
+  <text x="280" y="265" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">使うツール: shipping_api | 引数: {"order_id": "12345"}</text>
+
+  <!-- Step 5: Action 2 -->
+  <rect x="248" y="278" width="510" height="42" rx="5" fill="#065f46"/>
+  <text x="280" y="294" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#fbbf24">⚡ Action 2:</text>
+  <text x="370" y="294" font-family="Arial,sans-serif" font-size="9" fill="#a7f3d0">HTTP API: shipping_api.get_eta(order_id="12345")</text>
+  <text x="280" y="312" font-family="Arial,sans-serif" font-size="9" fill="#34d399">→ {"estimated_delivery": "2026-02-24 14:00", "carrier": "Yamato"}</text>
+
+  <!-- Final Answer -->
+  <rect x="15" y="373" width="870" height="16" rx="5" fill="#1e1b4b"/>
+
+  <rect x="790" y="65" width="95" height="295" rx="8" fill="#78350f" stroke="#f59e0b" stroke-width="2"/>
+  <text x="837" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fde68a" transform="rotate(90, 837, 180)">目標達成で終了</text>
+
+  <!-- Final answer bar -->
+  <rect x="15" y="374" width="870" height="18" rx="5" fill="#065f46"/>
+  <text x="450" y="387" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff">✅ Final Answer: 「ご注文のノートPCは明日（2/24）14時にヤマト運輸でお届けの予定です」</text>
+</svg>

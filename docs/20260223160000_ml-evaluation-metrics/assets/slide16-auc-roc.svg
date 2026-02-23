@@ -1,0 +1,53 @@
+<svg viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="360" y="26" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">AUC-ROC の解釈</text>
+  <!-- axes -->
+  <line x1="80" y1="360" x2="620" y2="360" stroke="#475569" stroke-width="1.5"/>
+  <line x1="80" y1="40" x2="80" y2="360" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="616,356 626,360 616,364" fill="#475569"/>
+  <polygon points="76,44 80,34 84,44" fill="#475569"/>
+  <text x="350" y="394" text-anchor="middle" font-size="12" fill="#94a3b8">False Positive Rate (FPR)</text>
+  <text x="28" y="210" text-anchor="middle" font-size="12" fill="#94a3b8" transform="rotate(-90,28,210)">True Positive Rate (TPR)</text>
+  <!-- ticks -->
+  <text x="80" y="376" text-anchor="middle" font-size="10" fill="#94a3b8">0.0</text>
+  <text x="215" y="376" text-anchor="middle" font-size="10" fill="#94a3b8">0.25</text>
+  <text x="350" y="376" text-anchor="middle" font-size="10" fill="#94a3b8">0.5</text>
+  <text x="485" y="376" text-anchor="middle" font-size="10" fill="#94a3b8">0.75</text>
+  <text x="620" y="376" text-anchor="middle" font-size="10" fill="#94a3b8">1.0</text>
+  <text x="66" y="364" text-anchor="end" font-size="10" fill="#94a3b8">0.0</text>
+  <text x="66" y="200" text-anchor="end" font-size="10" fill="#94a3b8">0.5</text>
+  <text x="66" y="44" text-anchor="end" font-size="10" fill="#94a3b8">1.0</text>
+  <!-- x=80+540*FPR, y=360-320*TPR -->
+  <!-- Random -->
+  <line x1="80" y1="360" x2="620" y2="40" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5,3"/>
+  <!-- Poor model (AUC≈0.65): (0,0),(0.1,0.2),(0.2,0.38),(0.4,0.58),(0.6,0.75),(0.8,0.88),(1,1) -->
+  <!-- x: 80,134,188,296,404,512,620  y: 360,296,238,175,120,78,40 -->
+  <polyline points="80,360 134,296 188,238 296,175 404,120 512,78 620,40"
+            fill="none" stroke="#f472b6" stroke-width="2"/>
+  <!-- Good model (AUC≈0.85): (0,0),(0.05,0.45),(0.10,0.65),(0.2,0.78),(0.3,0.87),(0.5,0.93),(1,1) -->
+  <!-- x: 80,107,134,188,242,350,620  y: 360,216,152,111,82,63,40 -->
+  <polyline points="80,360 107,216 134,152 188,111 242,82 350,63 620,40"
+            fill="none" stroke="#a78bfa" stroke-width="2"/>
+  <!-- Excellent model (AUC≈0.97): (0,0),(0.02,0.7),(0.05,0.85),(0.10,0.93),(0.2,0.97),(0.5,0.99),(1,1) -->
+  <!-- x: 80,91,107,134,188,350,620  y: 360,136,104,72,49,43,40 -->
+  <polyline points="80,360 91,136 107,88 134,63 188,49 350,44 620,40"
+            fill="none" stroke="#34d399" stroke-width="2"/>
+  <!-- Perfect point indicator -->
+  <circle cx="80" cy="40" r="5" fill="none" stroke="#fbbf24" stroke-width="2"/>
+  <text x="94" y="38" font-size="10" fill="#fbbf24">完璧 (AUC=1.0)</text>
+  <!-- AUC labels on curves -->
+  <text x="430" y="148" font-size="12" fill="#34d399">AUC = 0.97</text>
+  <text x="444" y="186" font-size="12" fill="#a78bfa">AUC = 0.85</text>
+  <text x="444" y="224" font-size="12" fill="#f472b6">AUC = 0.65</text>
+  <text x="444" y="262" font-size="11" fill="#94a3b8">AUC = 0.50</text>
+  <!-- Interpretation table -->
+  <rect x="72" y="50" width="200" height="150" rx="8" fill="rgba(0,0,0,0.4)" stroke="#475569" stroke-width="1"/>
+  <text x="172" y="70" text-anchor="middle" font-size="11" font-weight="bold" fill="#f8f8f8">AUC 解釈目安</text>
+  <text x="86" y="90" font-size="10" fill="#34d399">0.90–1.00: 優秀</text>
+  <text x="86" y="108" font-size="10" fill="#a78bfa">0.80–0.90: 良好</text>
+  <text x="86" y="126" font-size="10" fill="#fbbf24">0.70–0.80: 普通</text>
+  <text x="86" y="144" font-size="10" fill="#fb923c">0.60–0.70: 不十分</text>
+  <text x="86" y="162" font-size="10" fill="#f472b6">0.50–0.60: 要改善</text>
+  <text x="86" y="180" font-size="10" fill="#94a3b8">≤ 0.50: 最悪</text>
+  <!-- note -->
+  <text x="360" y="414" text-anchor="middle" font-size="11" fill="#94a3b8">AUC = ランダムに選んだ正例のスコアが負例より高い確率</text>
+</svg>

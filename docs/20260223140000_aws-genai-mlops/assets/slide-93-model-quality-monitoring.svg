@@ -1,0 +1,90 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="30" font-family="Arial" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="bold">モデル品質モニタリング フロー</text>
+
+  <!-- Step 1: Inference time -->
+  <rect x="20" y="55" width="220" height="150" rx="10" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="130" y="78" font-family="Arial" font-size="12" fill="#4CC9F0" text-anchor="middle" font-weight="bold">Step 1: 推論時</text>
+  <rect x="35" y="92" width="190" height="30" rx="5" fill="#0a2040" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="130" y="112" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">Input Features (入力特徴量)</text>
+  <rect x="35" y="128" width="190" height="30" rx="5" fill="#0a2040" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="130" y="148" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">Prediction (予測値)</text>
+  <rect x="35" y="164" width="190" height="30" rx="5" fill="#0a2040" stroke="#F77F00" stroke-width="1"/>
+  <text x="130" y="184" font-family="Arial" font-size="10" fill="#F77F00" text-anchor="middle">InferenceID (紐付けID)</text>
+
+  <!-- Arrow to Endpoint -->
+  <line x1="240" y1="130" x2="285" y2="130" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#4CC9F0" transform="translate(285,130) rotate(90)"/>
+
+  <!-- Endpoint box -->
+  <rect x="290" y="95" width="130" height="70" rx="8" fill="#0f3460" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="355" y="122" font-family="Arial" font-size="11" fill="#4CC9F0" text-anchor="middle" font-weight="bold">SageMaker</text>
+  <text x="355" y="138" font-family="Arial" font-size="11" fill="#4CC9F0" text-anchor="middle">Endpoint</text>
+  <text x="355" y="155" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">Data Capture ON</text>
+
+  <!-- Arrow to S3 capture -->
+  <line x1="355" y1="165" x2="355" y2="215" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#4CC9F0" transform="translate(355,215) rotate(180)"/>
+
+  <!-- S3 capture -->
+  <rect x="265" y="218" width="180" height="55" rx="8" fill="#0a2040" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="355" y="242" font-family="Arial" font-size="11" fill="#4CC9F0" text-anchor="middle">S3 推論キャプチャ</text>
+  <text x="355" y="260" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">Input + Output + InferenceID</text>
+
+  <!-- Step 2: Ground truth -->
+  <rect x="20" y="310" width="220" height="140" rx="10" fill="#0f3460" stroke="#06D6A0" stroke-width="2"/>
+  <text x="130" y="333" font-family="Arial" font-size="12" fill="#06D6A0" text-anchor="middle" font-weight="bold">Step 2: ラベル取得</text>
+  <text x="130" y="358" font-family="Arial" font-size="10" fill="#ffffff" text-anchor="middle">実際の結果 (Ground Truth)</text>
+  <text x="130" y="378" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">人手ラベル / 実績データ</text>
+  <text x="130" y="396" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">数時間〜数日後に判明</text>
+  <rect x="35" y="408" width="190" height="32" rx="5" fill="#0a2040" stroke="#06D6A0" stroke-width="1"/>
+  <text x="130" y="428" font-family="Arial" font-size="10" fill="#06D6A0" text-anchor="middle">S3 Ground Truth Store</text>
+
+  <!-- Arrow from GT to S3 -->
+  <line x1="240" y1="408" x2="265" y2="358" stroke="#06D6A0" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Step 3: Quality evaluation -->
+  <rect x="495" y="55" width="285" height="380" rx="12" fill="#0a1e30" stroke="#06D6A0" stroke-width="2.5"/>
+  <text x="638" y="82" font-family="Arial" font-size="13" fill="#06D6A0" text-anchor="middle" font-weight="bold">Step 3: 品質評価</text>
+  <text x="638" y="100" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">Model Quality Monitor</text>
+
+  <!-- Join arrow -->
+  <line x1="445" y1="245" x2="495" y2="200" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-4 -6,4 6,4" fill="#06D6A0" transform="translate(495,200) rotate(145)"/>
+  <line x1="355" y1="273" x2="450" y2="245" stroke="#06D6A0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="240" y1="440" x2="450" y2="440" stroke="#06D6A0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="450" y1="245" x2="450" y2="440" stroke="#06D6A0" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Metrics inside -->
+  <rect x="510" y="115" width="255" height="32" rx="5" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="638" y="136" font-family="Arial" font-size="10" fill="#ffffff" text-anchor="middle">精度指標計算 (join by InferenceID)</text>
+  <rect x="510" y="155" width="255" height="28" rx="5" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="638" y="174" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">Accuracy: 92.3% → 87.1% (低下検知)</text>
+  <rect x="510" y="190" width="255" height="28" rx="5" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="638" y="209" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">F1 Score: 0.91 → 0.84</text>
+  <rect x="510" y="225" width="255" height="28" rx="5" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="638" y="244" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">AUC: 0.96 → 0.90</text>
+
+  <!-- CloudWatch arrow -->
+  <line x1="638" y1="253" x2="638" y2="290" stroke="#F77F00" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#F77F00" transform="translate(638,290) rotate(180)"/>
+
+  <!-- CloudWatch box -->
+  <rect x="510" y="293" width="255" height="50" rx="8" fill="#2d1e0f" stroke="#F77F00" stroke-width="2"/>
+  <text x="638" y="315" font-family="Arial" font-size="12" fill="#F77F00" text-anchor="middle" font-weight="bold">CloudWatch</text>
+  <text x="638" y="333" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">カスタムメトリクス → アラーム</text>
+
+  <!-- Degradation trend chart -->
+  <rect x="510" y="355" width="255" height="75" rx="8" fill="#0a0a1e" stroke="#E63946" stroke-width="1.5"/>
+  <text x="638" y="373" font-family="Arial" font-size="10" fill="#E63946" text-anchor="middle">精度推移 (劣化検知)</text>
+  <!-- Simple SVG polyline chart for degrading accuracy -->
+  <polyline points="520,420 550,415 580,410 610,405 640,412 670,425 700,435 745,445" fill="none" stroke="#E63946" stroke-width="2"/>
+  <text x="522" y="430" font-family="Arial" font-size="8" fill="#aaaaaa">92%</text>
+  <text x="735" y="448" font-family="Arial" font-size="8" fill="#E63946">82%</text>
+  <line x1="520" y1="408" x2="750" y2="408" stroke="#F77F00" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="755" y="412" font-family="Arial" font-size="8" fill="#F77F00">閾値</text>
+
+  <!-- Timeline at bottom -->
+  <rect x="20" y="465" width="450" height="28" rx="6" fill="#0a1e30" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="245" y="484" font-family="Arial" font-size="10" fill="#4CC9F0" text-anchor="middle">タイムライン: リアルタイム推論 → 数時間後 GT取得 → 定期品質チェック (cron)</text>
+</svg>

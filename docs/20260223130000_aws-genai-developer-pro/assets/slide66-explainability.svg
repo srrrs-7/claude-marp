@@ -1,0 +1,96 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">モデル透明性・説明可能性（XAI）</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">SageMaker Clarify の SHAP・LIME・Attention 可視化</text>
+
+  <!-- SHAP -->
+  <rect x="15" y="65" width="270" height="185" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="15" y="65" width="270" height="28" rx="8" fill="#1d4ed8"/>
+  <text x="150" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ffffff">SHAP 値</text>
+  <text x="150" y="105" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">各特徴量の予測への寄与度を定量化</text>
+  <!-- Bar chart for SHAP -->
+  <text x="30" y="125" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">年齢</text>
+  <rect x="80" y="115" width="120" height="12" rx="3" fill="#2563eb"/>
+  <text x="205" y="125" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">+0.32</text>
+  <text x="30" y="143" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">収入</text>
+  <rect x="80" y="133" width="90" height="12" rx="3" fill="#2563eb"/>
+  <text x="175" y="143" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">+0.24</text>
+  <text x="30" y="161" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">勤続年数</text>
+  <rect x="80" y="151" width="60" height="12" rx="3" fill="#7c3aed"/>
+  <text x="145" y="161" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">-0.15</text>
+  <text x="30" y="179" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">学歴</text>
+  <rect x="80" y="169" width="45" height="12" rx="3" fill="#2563eb"/>
+  <text x="130" y="179" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">+0.11</text>
+  <text x="150" y="210" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">ゲーム理論ベース・大規模モデルに対応</text>
+  <text x="150" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">Clarify: PreTraining / PostTraining 両方</text>
+
+  <!-- LIME -->
+  <rect x="300" y="65" width="270" height="185" rx="8" fill="#3b0764" stroke="#a855f7" stroke-width="2"/>
+  <rect x="300" y="65" width="270" height="28" rx="8" fill="#6d28d9"/>
+  <text x="435" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ffffff">LIME</text>
+  <text x="435" y="105" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">局所的近似でブラックボックスを説明</text>
+  <!-- LIME visualization -->
+  <circle cx="435" cy="145" r="40" fill="none" stroke="#6d28d9" stroke-width="1" stroke-dasharray="4,2"/>
+  <circle cx="435" cy="145" r="8" fill="#a855f7"/>
+  <text x="435" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fff">入力x</text>
+  <!-- surrounding points -->
+  <circle cx="415" cy="130" r="4" fill="#4ade80"/>
+  <circle cx="455" cy="128" r="4" fill="#f87171"/>
+  <circle cx="420" cy="162" r="4" fill="#4ade80"/>
+  <circle cx="450" cy="165" r="4" fill="#f87171"/>
+  <circle cx="400" cy="148" r="4" fill="#4ade80"/>
+  <!-- decision boundary -->
+  <line x1="430" y1="115" x2="440" y2="175" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="435" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">サンプル周辺の線形近似モデル</text>
+  <text x="435" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">画像・テキスト分類に有効</text>
+
+  <!-- Attention -->
+  <rect x="585" y="65" width="300" height="185" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="2"/>
+  <rect x="585" y="65" width="300" height="28" rx="8" fill="#065f46"/>
+  <text x="735" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ffffff">Attention 可視化</text>
+  <text x="735" y="105" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">トランスフォーマーの注目箇所を可視化</text>
+  <!-- Token attention heatmap -->
+  <text x="600" y="130" font-family="Arial,sans-serif" font-size="10" fill="#fbbf24">入力トークン</text>
+  <!-- tokens with color -->
+  <rect x="595" y="135" width="38" height="18" rx="3" fill="#1e3a1e"/>
+  <text x="614" y="147" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#86efac">顧客</text>
+  <rect x="638" y="135" width="38" height="18" rx="3" fill="#166534"/>
+  <text x="657" y="147" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#4ade80">満足度</text>
+  <rect x="681" y="135" width="38" height="18" rx="3" fill="#052e16"/>
+  <text x="700" y="147" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#86efac">が</text>
+  <rect x="724" y="135" width="38" height="18" rx="3" fill="#15803d"/>
+  <text x="743" y="147" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#4ade80">低下</text>
+  <rect x="767" y="135" width="38" height="18" rx="3" fill="#052e16"/>
+  <text x="786" y="147" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#86efac">した</text>
+  <!-- attention arrows -->
+  <line x1="657" y1="153" x2="657" y2="173" stroke="#34d399" stroke-width="2"/>
+  <polygon points="657,175 653,168 661,168" fill="#34d399"/>
+  <line x1="743" y1="153" x2="710" y2="173" stroke="#34d399" stroke-width="1.5"/>
+  <polygon points="708,175 706,167 714,169" fill="#34d399"/>
+  <text x="735" y="192" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">高 Attention → 重要な判断根拠</text>
+  <text x="735" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">LLM / 感情分析 / テキスト分類に有効</text>
+
+  <!-- Use cases -->
+  <rect x="15" y="262" width="870" height="126" rx="8" fill="#0f172a"/>
+  <text x="450" y="282" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">XAI の主要ユースケースと規制対応</text>
+  <rect x="30" y="294" width="200" height="80" rx="5" fill="#172554"/>
+  <text x="130" y="313" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#60a5fa">医療・診断支援</text>
+  <text x="130" y="329" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">診断根拠の提示</text>
+  <text x="130" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">医師の意思決定支援</text>
+  <text x="130" y="361" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">FDA承認要件</text>
+  <rect x="243" y="294" width="200" height="80" rx="5" fill="#3b0764"/>
+  <text x="343" y="313" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#c4b5fd">金融・融資審査</text>
+  <text x="343" y="329" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">否認理由の説明義務</text>
+  <text x="343" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">信用スコアの根拠</text>
+  <text x="343" y="361" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">ECOA / GDPR準拠</text>
+  <rect x="456" y="294" width="200" height="80" rx="5" fill="#064e3b"/>
+  <text x="556" y="313" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#6ee7b7">採用・人事</text>
+  <text x="556" y="329" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">採用判断の根拠説明</text>
+  <text x="556" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">バイアス検出との連携</text>
+  <text x="556" y="361" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">公平採用原則</text>
+  <rect x="669" y="294" width="205" height="80" rx="5" fill="#78350f"/>
+  <text x="772" y="313" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fde68a">規制・コンプライアンス</text>
+  <text x="772" y="329" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">GDPR: 説明権（Art.22）</text>
+  <text x="772" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">EU AI Act: 高リスクAI義務</text>
+  <text x="772" y="361" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">監査トレイル</text>
+</svg>

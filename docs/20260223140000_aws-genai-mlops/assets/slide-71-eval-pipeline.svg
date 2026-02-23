@@ -1,0 +1,106 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+
+  <!-- SageMaker Pipelines wrapper -->
+  <rect x="10" y="10" width="780" height="480" rx="12" fill="#0f1e30" stroke="#4CC9F0" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="400" y="35" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#4CC9F0" text-anchor="middle">評価パイプライン自動化 (SageMaker Pipelines)</text>
+
+  <!-- Step boxes - horizontal layout -->
+  <!-- Step 1: ProcessingStep (data prep) -->
+  <rect x="30" y="60" width="130" height="90" rx="6" fill="#1e3a5f"/>
+  <text x="95" y="83" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">ProcessingStep</text>
+  <line x1="35" y1="90" x2="155" y2="90" stroke="#2d4059" stroke-width="0.5"/>
+  <text x="95" y="107" font-family="Arial,sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">評価データ</text>
+  <text x="95" y="122" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">準備・分割</text>
+  <text x="95" y="138" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">S3 → 前処理</text>
+
+  <!-- Arrow 1 -->
+  <line x1="160" y1="105" x2="185" y2="105" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#4CC9F0" transform="translate(188,105) rotate(90)"/>
+
+  <!-- Step 2: TrainingStep -->
+  <rect x="190" y="60" width="115" height="90" rx="6" fill="#0f3460"/>
+  <text x="247" y="83" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">TrainingStep</text>
+  <line x1="195" y1="90" x2="300" y2="90" stroke="#2d4059" stroke-width="0.5"/>
+  <text x="247" y="107" font-family="Arial,sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">モデル学習</text>
+  <text x="247" y="122" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">SageMaker</text>
+  <text x="247" y="138" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">Training Job</text>
+
+  <!-- Arrow 2 -->
+  <line x1="305" y1="105" x2="330" y2="105" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#4CC9F0" transform="translate(333,105) rotate(90)"/>
+
+  <!-- Step 3: ProcessingStep (eval) -->
+  <rect x="335" y="60" width="130" height="90" rx="6" fill="#1e3a5f"/>
+  <text x="400" y="83" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">ProcessingStep</text>
+  <line x1="340" y1="90" x2="460" y2="90" stroke="#2d4059" stroke-width="0.5"/>
+  <text x="400" y="107" font-family="Arial,sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">モデル評価</text>
+  <text x="400" y="122" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">スクリプト実行</text>
+  <text x="400" y="138" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">精度・F1計算</text>
+
+  <!-- Arrow 3 -->
+  <line x1="465" y1="105" x2="490" y2="105" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#4CC9F0" transform="translate(493,105) rotate(90)"/>
+
+  <!-- Step 4: ClarifyCheckStep -->
+  <rect x="495" y="60" width="130" height="90" rx="6" fill="#0a2545" stroke="#F77F00" stroke-width="1"/>
+  <text x="560" y="80" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#F77F00" text-anchor="middle">ClarifyCheckStep</text>
+  <line x1="500" y1="90" x2="620" y2="90" stroke="#2d4059" stroke-width="0.5"/>
+  <text x="560" y="107" font-family="Arial,sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">バイアス検出</text>
+  <text x="560" y="122" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">説明可能性</text>
+  <text x="560" y="138" font-family="Arial,sans-serif" font-size="9" fill="#F77F00" text-anchor="middle">SHAP 計算</text>
+
+  <!-- Arrow 4 -->
+  <line x1="625" y1="105" x2="650" y2="105" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#4CC9F0" transform="translate(653,105) rotate(90)"/>
+
+  <!-- Step 5: QualityCheckStep -->
+  <rect x="655" y="60" width="120" height="90" rx="6" fill="#0f3460" stroke="#06D6A0" stroke-width="1"/>
+  <text x="715" y="80" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#06D6A0" text-anchor="middle">QualityCheckStep</text>
+  <line x1="660" y1="90" x2="770" y2="90" stroke="#2d4059" stroke-width="0.5"/>
+  <text x="715" y="107" font-family="Arial,sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">品質ゲート</text>
+  <text x="715" y="122" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">データ品質</text>
+  <text x="715" y="138" font-family="Arial,sans-serif" font-size="9" fill="#06D6A0" text-anchor="middle">閾値チェック</text>
+
+  <!-- Arrow from QualityCheck down -->
+  <line x1="715" y1="150" x2="715" y2="188" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#4CC9F0" transform="translate(715,191) rotate(180)"/>
+
+  <!-- Step 6: ConditionStep (centered) -->
+  <rect x="565" y="195" width="200" height="95" rx="6" fill="#2d4059" stroke="#F77F00" stroke-width="2"/>
+  <text x="665" y="218" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#F77F00" text-anchor="middle">ConditionStep</text>
+  <text x="665" y="238" font-family="Arial,sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">精度閾値チェック</text>
+  <text x="665" y="258" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">accuracy &gt;= 0.90?</text>
+  <text x="665" y="278" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">バイアス指標 &lt;= 閾値?</text>
+
+  <!-- Pass path (left) -->
+  <line x1="565" y1="242" x2="460" y2="242" stroke="#06D6A0" stroke-width="2"/>
+  <text x="513" y="236" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">Pass</text>
+  <line x1="460" y1="242" x2="460" y2="280" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#06D6A0" transform="translate(460,283) rotate(180)"/>
+
+  <rect x="350" y="287" width="220" height="42" rx="6" fill="#0a2545" stroke="#06D6A0" stroke-width="1"/>
+  <text x="460" y="308" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#06D6A0" text-anchor="middle">RegisterModel</text>
+  <text x="460" y="322" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">モデルレジストリへ登録</text>
+
+  <!-- Deploy pipeline arrow -->
+  <line x1="460" y1="329" x2="460" y2="360" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#06D6A0" transform="translate(460,363) rotate(180)"/>
+  <rect x="350" y="367" width="220" height="40" rx="6" fill="#1e3a5f"/>
+  <text x="460" y="392" font-family="Arial,sans-serif" font-size="12" fill="#4CC9F0" text-anchor="middle">デプロイパイプライン</text>
+
+  <!-- Fail path (down) -->
+  <line x1="665" y1="290" x2="665" y2="330" stroke="#E63946" stroke-width="2"/>
+  <text x="678" y="320" font-family="Arial,sans-serif" font-size="10" fill="#E63946">Fail</text>
+  <polygon points="0,-5 -4,4 4,4" fill="#E63946" transform="translate(665,333) rotate(180)"/>
+
+  <rect x="565" y="338" width="190" height="68" rx="6" fill="#1a0a0a" stroke="#E63946" stroke-width="1"/>
+  <text x="660" y="362" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#E63946" text-anchor="middle">通知 + Stop</text>
+  <text x="660" y="382" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">SNS 通知</text>
+  <text x="660" y="398" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">パイプライン停止</text>
+
+  <!-- Bottom note -->
+  <text x="400" y="458" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">完全自動化された評価パイプライン — 人手を介さずに品質ゲートを通過したモデルのみデプロイ</text>
+  <text x="400" y="478" font-family="Arial,sans-serif" font-size="11" fill="#06D6A0" text-anchor="middle">★ ConditionStep = MLOps の品質ゲート実装の核心</text>
+</svg>

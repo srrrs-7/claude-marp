@@ -1,0 +1,144 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#f1f5f9">Shadow Testing vs Blue/Green デプロイ</text>
+
+  <!-- Divider horizontal -->
+  <line x1="20" y1="245" x2="880" y2="245" stroke="#334155" stroke-width="2"/>
+
+  <!-- ===== TOP: Shadow Testing ===== -->
+  <text x="450" y="62" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#14b8a6">Shadow Testing</text>
+  <text x="450" y="78" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#94a3b8">トラフィックシフトなし / 新モデルをリアルデータで無影響テスト</text>
+
+  <!-- Client -->
+  <rect x="30" y="90" width="80" height="40" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="70" y="108" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f1f5f9">Client</text>
+  <text x="70" y="123" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Request</text>
+
+  <!-- Arrow to Blue -->
+  <line x1="110" y1="110" x2="195" y2="110" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="195,105 207,110 195,115" fill="#3b82f6"/>
+
+  <!-- Production (Blue v1) -->
+  <rect x="207" y="88" width="140" height="44" rx="6" fill="#1d4ed8"/>
+  <text x="277" y="106" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f1f5f9">Production (Blue v1)</text>
+  <text x="277" y="121" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#bfdbfe">全リクエストを受信</text>
+
+  <!-- Response back to client -->
+  <line x1="207" y1="120" x2="145" y2="155" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="145,148 133,157 152,162" fill="#22c55e"/>
+  <text x="140" y="145" text-anchor="end" font-family="sans-serif" font-size="10" fill="#22c55e">Response</text>
+  <text x="140" y="157" text-anchor="end" font-family="sans-serif" font-size="10" fill="#22c55e">to Client</text>
+
+  <!-- Shadow arrow (dashed) -->
+  <line x1="347" y1="110" x2="480" y2="110" stroke="#f97316" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="480,105 492,110 480,115" fill="#f97316"/>
+  <text x="415" y="104" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316">コピー (全トラフィック)</text>
+
+  <!-- Shadow (Green v2) -->
+  <rect x="492" y="88" width="140" height="44" rx="6" fill="#166534"/>
+  <text x="562" y="106" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f1f5f9">Shadow (Green v2)</text>
+  <text x="562" y="121" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#bbf7d0">新モデル候補</text>
+
+  <!-- Shadow to S3 (not returned) -->
+  <line x1="632" y1="110" x2="720" y2="110" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="720,105 732,110 720,115" fill="#94a3b8"/>
+  <rect x="732" y="90" width="100" height="40" rx="6" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+  <text x="782" y="107" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">S3 Storage</text>
+  <text x="782" y="121" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">比較用保存</text>
+
+  <!-- NOT returned label -->
+  <text x="562" y="150" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ef4444">クライアントに返さない</text>
+
+  <!-- Analysis box -->
+  <rect x="207" y="165" width="620" height="35" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="517" y="181" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">Data Captureで両モデル出力をS3保存 → オフライン比較分析 (レイテンシ・精度)</text>
+  <text x="517" y="195" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">品質確認後 → Blue/Green デプロイで正式切り替え</text>
+
+  <!-- ===== BOTTOM: Blue/Green ===== -->
+  <text x="450" y="265" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#3b82f6">Blue/Green (Canary) デプロイ</text>
+  <text x="450" y="281" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#94a3b8">段階的トラフィックシフト / リアルタイムで新バージョンへ移行</text>
+
+  <!-- Client -->
+  <rect x="30" y="295" width="80" height="40" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="70" y="313" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f1f5f9">Client</text>
+
+  <!-- Arrow to LB -->
+  <line x1="110" y1="315" x2="195" y2="315" stroke="#f1f5f9" stroke-width="2"/>
+  <polygon points="195,310 207,315 195,320" fill="#f1f5f9"/>
+
+  <!-- Load Balancer -->
+  <rect x="207" y="295" width="110" height="40" rx="6" fill="#374151" stroke="#6b7280" stroke-width="1"/>
+  <text x="262" y="313" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f1f5f9">Load Balancer</text>
+  <text x="262" y="327" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Traffic Split</text>
+
+  <!-- Arrow to Blue 90% -->
+  <line x1="317" y1="305" x2="430" y2="290" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="430,285 442,290 430,297" fill="#3b82f6"/>
+  <text x="375" y="290" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#3b82f6">90%</text>
+
+  <!-- Blue box -->
+  <rect x="442" y="272" width="140" height="44" rx="6" fill="#1d4ed8"/>
+  <text x="512" y="290" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f1f5f9">Blue v1</text>
+  <text x="512" y="307" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#bfdbfe">現行バージョン</text>
+
+  <!-- Arrow to Green 10% -->
+  <line x1="317" y1="325" x2="430" y2="345" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="430,340 442,347 430,354" fill="#22c55e"/>
+  <text x="375" y="344" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">10%</text>
+
+  <!-- Green box -->
+  <rect x="442" y="330" width="140" height="44" rx="6" fill="#166534"/>
+  <text x="512" y="348" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f1f5f9">Green v2</text>
+  <text x="512" y="364" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#bbf7d0">新バージョン</text>
+
+  <!-- Response arrows -->
+  <line x1="582" y1="294" x2="680" y2="310" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="680,305 692,312 680,318" fill="#3b82f6"/>
+  <line x1="582" y1="355" x2="680" y2="340" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="680,335 692,340 680,346" fill="#22c55e"/>
+
+  <!-- Monitoring box -->
+  <rect x="692" y="295" width="170" height="80" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="1"/>
+  <text x="777" y="313" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f97316">メトリクス監視</text>
+  <text x="777" y="330" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">レイテンシ / 精度 OK?</text>
+  <text x="777" y="347" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">→ 段階的に100%へ</text>
+  <text x="777" y="364" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ef4444">→ NG時はロールバック</text>
+
+  <!-- Progress bar showing shift -->
+  <rect x="30" y="400" width="840" height="85" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="450" y="418" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">段階的移行フロー</text>
+
+  <rect x="50" y="428" width="100" height="22" rx="4" fill="#1d4ed8"/>
+  <text x="100" y="443" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">Blue 100%</text>
+
+  <line x1="155" y1="439" x2="185" y2="439" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="185,434 195,439 185,444" fill="#f97316"/>
+
+  <rect x="200" y="428" width="70" height="22" rx="4" fill="#1d4ed8"/>
+  <rect x="270" y="428" width="30" height="22" rx="4" fill="#166534"/>
+  <text x="265" y="443" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">70% / 30%</text>
+
+  <line x1="305" y1="439" x2="335" y2="439" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="335,434 345,439 335,444" fill="#f97316"/>
+
+  <rect x="350" y="428" width="50" height="22" rx="4" fill="#1d4ed8"/>
+  <rect x="400" y="428" width="50" height="22" rx="4" fill="#166534"/>
+  <text x="415" y="443" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">50% / 50%</text>
+
+  <line x1="455" y1="439" x2="485" y2="439" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="485,434 495,439 485,444" fill="#f97316"/>
+
+  <rect x="500" y="428" width="20" height="22" rx="4" fill="#1d4ed8"/>
+  <rect x="520" y="428" width="80" height="22" rx="4" fill="#166534"/>
+  <text x="560" y="443" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">20% / 80%</text>
+
+  <line x1="605" y1="439" x2="635" y2="439" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="635,434 645,439 635,444" fill="#f97316"/>
+
+  <rect x="650" y="428" width="100" height="22" rx="4" fill="#166534"/>
+  <text x="700" y="443" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">Green 100%</text>
+
+  <text x="450" y="472" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">メトリクスOK → 自動/手動で移行 | NG → 即時ロールバック</text>
+</svg>

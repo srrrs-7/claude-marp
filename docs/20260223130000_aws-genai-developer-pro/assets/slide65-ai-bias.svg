@@ -1,0 +1,71 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">AI バイアス：種類と対策</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">データバイアスからアルゴリズムバイアスまで — SageMaker Clarify で検出</text>
+
+  <!-- Bias types (top) -->
+  <rect x="15" y="65" width="870" height="170" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="450" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">AIバイアスの主要な種類</text>
+
+  <rect x="25" y="90" width="165" height="130" rx="6" fill="#1f1424"/>
+  <text x="108" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fca5a5">データバイアス</text>
+  <text x="108" y="126" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">訓練データの偏り</text>
+  <text x="108" y="142" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">例: 男性データが多い</text>
+  <text x="108" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">採用AIが女性を不利</text>
+  <text x="108" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fca5a5">Class Imbalance</text>
+  <text x="108" y="194" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fca5a5">で測定</text>
+
+  <rect x="205" y="90" width="165" height="130" rx="6" fill="#1f1424"/>
+  <text x="288" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fca5a5">選択バイアス</text>
+  <text x="288" y="126" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">代表性のない</text>
+  <text x="288" y="142" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">サンプリング</text>
+  <text x="288" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">特定グループが</text>
+  <text x="288" y="174" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">過剰/過少代表</text>
+  <text x="288" y="194" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fca5a5">多様なデータ収集で対策</text>
+
+  <rect x="385" y="90" width="165" height="130" rx="6" fill="#1f1424"/>
+  <text x="468" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fca5a5">確認バイアス</text>
+  <text x="468" y="126" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">期待する結果に</text>
+  <text x="468" y="142" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">合わせた評価</text>
+  <text x="468" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">開発者の先入観が</text>
+  <text x="468" y="174" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">設計に反映</text>
+  <text x="468" y="194" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fca5a5">多様なレビューチームで対策</text>
+
+  <rect x="565" y="90" width="165" height="130" rx="6" fill="#1f1424"/>
+  <text x="648" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fca5a5">測定バイアス</text>
+  <text x="648" y="126" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">不公平な</text>
+  <text x="648" y="142" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">評価指標</text>
+  <text x="648" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">全体精度は高いが</text>
+  <text x="648" y="174" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">一部グループで低精度</text>
+  <text x="648" y="194" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fca5a5">グループ別評価で検出</text>
+
+  <rect x="745" y="90" width="130" height="130" rx="6" fill="#1f1424"/>
+  <text x="810" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fca5a5">歴史的バイアス</text>
+  <text x="810" y="126" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">過去の差別的</text>
+  <text x="810" y="142" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">パターンを学習</text>
+  <text x="810" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">履歴データが</text>
+  <text x="810" y="174" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">偏見を含む</text>
+  <text x="810" y="194" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fca5a5">データ再収集が必要</text>
+
+  <!-- Clarify measures -->
+  <rect x="15" y="248" width="870" height="140" rx="8" fill="#0f172a"/>
+  <text x="450" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#34d399">SageMaker Clarify によるバイアス検出・対策</text>
+  <rect x="30" y="280" width="265" height="96" rx="5" fill="#052e16"/>
+  <text x="163" y="298" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#6ee7b7">バイアス測定指標</text>
+  <text x="163" y="314" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">• CI（Class Imbalance）不均衡</text>
+  <text x="163" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">• DPL（Difference in Positive Labels）</text>
+  <text x="163" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">• DI（Disparate Impact）</text>
+  <text x="163" y="362" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">• DPPL（等機会差異）</text>
+  <rect x="310" y="280" width="265" height="96" rx="5" fill="#172554"/>
+  <text x="443" y="298" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#60a5fa">実装ポイント</text>
+  <text x="443" y="314" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• 学習前バイアス分析（データレベル）</text>
+  <text x="443" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• 学習後バイアス分析（予測レベル）</text>
+  <text x="443" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• 本番ドリフト監視（継続チェック）</text>
+  <text x="443" y="362" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">Processing Job として大規模処理</text>
+  <rect x="590" y="280" width="290" height="96" rx="5" fill="#3b0764"/>
+  <text x="735" y="298" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#c4b5fd">公平性確保の対策</text>
+  <text x="735" y="314" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">• データ増強（少数クラスのサンプル追加）</text>
+  <text x="735" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">• 再重み付け（不均衡クラスに高ウェイト）</text>
+  <text x="735" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">• 後処理補正（閾値調整）</text>
+  <text x="735" y="362" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">• 多様性を考慮した訓練データ収集</text>
+</svg>

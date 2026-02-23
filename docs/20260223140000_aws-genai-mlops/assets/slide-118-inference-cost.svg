@@ -1,0 +1,124 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#4CC9F0" text-anchor="middle">推論コスト最適化パターン — 選択ガイド</text>
+
+  <!-- Start decision -->
+  <rect x="280" y="44" width="240" height="52" rx="6" fill="#2d4059" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="400" y="67" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0" text-anchor="middle">推論ワークロードの特性は？</text>
+  <text x="400" y="86" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">頻度 / レイテンシ要件 / 規模を確認</text>
+
+  <!-- Branch lines from start -->
+  <!-- Branch 1: 低頻度 (far left) -->
+  <line x1="280" y1="70" x2="90" y2="70" stroke="#4CC9F0" stroke-width="1.5"/>
+  <line x1="90" y1="70" x2="90" y2="145" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(90,147)"/>
+  <text x="190" y="63" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">低頻度/バースト</text>
+
+  <!-- Branch 2: 高頻度 -->
+  <line x1="400" y1="96" x2="400" y2="145" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(400,147)"/>
+  <text x="415" y="128" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">高頻度/低レイテンシ</text>
+
+  <!-- Branch 3: 大量バッチ -->
+  <line x1="520" y1="70" x2="620" y2="70" stroke="#4CC9F0" stroke-width="1.5"/>
+  <line x1="620" y1="70" x2="620" y2="145" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(620,147)"/>
+  <text x="575" y="63" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">大量バッチ/非同期</text>
+
+  <!-- Branch 4: 複数モデル -->
+  <line x1="520" y1="70" x2="740" y2="70" stroke="#4CC9F0" stroke-width="1.5"/>
+  <line x1="740" y1="70" x2="740" y2="145" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(740,147)"/>
+  <text x="730" y="63" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">複数モデル</text>
+
+  <!-- Serverless Inference box -->
+  <rect x="15" y="148" width="150" height="88" rx="6" fill="#06D6A0" fill-opacity="0.15" stroke="#06D6A0" stroke-width="2"/>
+  <text x="90" y="170" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#06D6A0" text-anchor="middle">Serverless</text>
+  <text x="90" y="186" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#06D6A0" text-anchor="middle">Inference</text>
+  <text x="90" y="206" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">コスト最小</text>
+  <text x="90" y="222" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">アイドル時 ¥0</text>
+
+  <!-- Real-time Endpoint box -->
+  <rect x="305" y="148" width="190" height="88" rx="6" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="400" y="170" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0" text-anchor="middle">Real-time Endpoint</text>
+  <text x="400" y="190" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">+ Auto Scaling</text>
+  <text x="400" y="207" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">+ Savings Plans</text>
+  <text x="400" y="224" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">最小レイテンシ保証</text>
+
+  <!-- Arrow from RT → sub-branch -->
+  <line x1="400" y1="236" x2="400" y2="262" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(400,264)"/>
+
+  <!-- Batch Transform box (branch 3 left) -->
+  <rect x="540" y="148" width="155" height="88" rx="6" fill="#0f3460" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="617" y="170" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0" text-anchor="middle">Batch Transform</text>
+  <text x="617" y="190" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">大量一括処理</text>
+  <text x="617" y="207" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">完了後インスタンス</text>
+  <text x="617" y="222" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">自動削除</text>
+
+  <!-- Multi-model box -->
+  <rect x="670" y="148" width="115" height="88" rx="6" fill="#0a2545" stroke="#F77F00" stroke-width="2"/>
+  <text x="727" y="170" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#F77F00" text-anchor="middle">Multi-Model</text>
+  <text x="727" y="186" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#F77F00" text-anchor="middle">Endpoint</text>
+  <text x="727" y="206" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">コスト共有</text>
+  <text x="727" y="222" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">動的ロード</text>
+
+  <!-- Async Inference branch (under batch) -->
+  <line x1="617" y1="236" x2="617" y2="262" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(617,264)"/>
+
+  <!-- RT sub: two sub-boxes -->
+  <rect x="295" y="265" width="100" height="66" rx="5" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="345" y="285" font-family="Arial,sans-serif" font-size="9" fill="#4CC9F0" text-anchor="middle">Auto Scaling</text>
+  <text x="345" y="301" font-family="Arial,sans-serif" font-size="8" fill="#cccccc" text-anchor="middle">ピーク対応</text>
+  <text x="345" y="315" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">動的スケール</text>
+
+  <rect x="405" y="265" width="100" height="66" rx="5" fill="#0f3460" stroke="#06D6A0" stroke-width="1"/>
+  <text x="455" y="285" font-family="Arial,sans-serif" font-size="9" fill="#06D6A0" text-anchor="middle">Savings Plans</text>
+  <text x="455" y="301" font-family="Arial,sans-serif" font-size="8" fill="#cccccc" text-anchor="middle">長期割引</text>
+  <text x="455" y="315" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">最大64%</text>
+
+  <!-- Async sub -->
+  <rect x="547" y="265" width="140" height="66" rx="5" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="617" y="285" font-family="Arial,sans-serif" font-size="9" fill="#4CC9F0" text-anchor="middle">Async Inference</text>
+  <text x="617" y="301" font-family="Arial,sans-serif" font-size="8" fill="#cccccc" text-anchor="middle">非同期・大容量入力</text>
+  <text x="617" y="315" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">SQSキュー処理</text>
+
+  <!-- Cost Comparison Table -->
+  <rect x="15" y="355" width="770" height="135" rx="8" fill="#1a2a40" stroke="#888888" stroke-width="1"/>
+  <text x="400" y="378" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">コスト比較 (概算相対値)</text>
+
+  <!-- Table header -->
+  <rect x="25" y="386" width="750" height="24" rx="3" fill="#2d4059"/>
+  <text x="115" y="402" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">推論タイプ</text>
+  <text x="310" y="402" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">レイテンシ</text>
+  <text x="480" y="402" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">コスト/リクエスト</text>
+  <text x="670" y="402" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">向き/不向き</text>
+
+  <!-- Row 1 -->
+  <text x="115" y="422" font-family="Arial,sans-serif" font-size="9" fill="#06D6A0" text-anchor="middle">Serverless</text>
+  <text x="310" y="422" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">中 (コールドスタート有)</text>
+  <text x="480" y="422" font-family="Arial,sans-serif" font-size="9" fill="#06D6A0" text-anchor="middle">最安 (アイドル無課金)</text>
+  <text x="670" y="422" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">低頻度・突発的</text>
+
+  <!-- Row 2 -->
+  <text x="115" y="440" font-family="Arial,sans-serif" font-size="9" fill="#4CC9F0" text-anchor="middle">Real-time Endpoint</text>
+  <text x="310" y="440" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">低 (ms~秒)</text>
+  <text x="480" y="440" font-family="Arial,sans-serif" font-size="9" fill="#F77F00" text-anchor="middle">高 (常時起動)</text>
+  <text x="670" y="440" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">高頻度・低レイテンシ必須</text>
+
+  <!-- Row 3 -->
+  <text x="115" y="458" font-family="Arial,sans-serif" font-size="9" fill="#4CC9F0" text-anchor="middle">Batch Transform</text>
+  <text x="310" y="458" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">高 (分~時間)</text>
+  <text x="480" y="458" font-family="Arial,sans-serif" font-size="9" fill="#06D6A0" text-anchor="middle">安 (Spot使用可)</text>
+  <text x="670" y="458" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">大量オフライン処理</text>
+
+  <!-- Row 4 -->
+  <text x="115" y="476" font-family="Arial,sans-serif" font-size="9" fill="#F77F00" text-anchor="middle">Multi-Model Endpoint</text>
+  <text x="310" y="476" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">中 (動的ロード有)</text>
+  <text x="480" y="476" font-family="Arial,sans-serif" font-size="9" fill="#06D6A0" text-anchor="middle">安 (インスタンス共有)</text>
+  <text x="670" y="476" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">多数テナントモデル</text>
+</svg>

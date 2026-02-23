@@ -1,0 +1,79 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="28" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">サービス×ユースケース マッピング（試験頻出）</text>
+  <text x="450" y="46" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">各ユースケースに対する最適 AWS サービスを即答できるようにする</text>
+
+  <!-- Table header -->
+  <rect x="15" y="55" width="870" height="24" rx="4" fill="#1e3a8a"/>
+  <text x="220" y="72" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#ffffff">ユースケース</text>
+  <text x="520" y="72" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#ffffff">最適サービス</text>
+  <text x="770" y="72" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#ffffff">キーワード</text>
+  <line x1="430" y1="55" x2="430" y2="395" stroke="#374151" stroke-width="1"/>
+  <line x1="640" y1="55" x2="640" y2="395" stroke="#374151" stroke-width="1"/>
+
+  <!-- Row 1 -->
+  <rect x="15" y="79" width="870" height="24" rx="2" fill="#0f1729"/>
+  <text x="220" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">テキスト/画像/動画生成</text>
+  <text x="520" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">Bedrock FM (Claude/Titan/SD)</text>
+  <text x="770" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">InvokeModel / Converse API</text>
+  <!-- Row 2 -->
+  <rect x="15" y="103" width="870" height="24" rx="2" fill="#0a0f1e"/>
+  <text x="220" y="119" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">社内文書への Q&amp;A（RAG）</text>
+  <text x="520" y="119" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">Bedrock Knowledge Bases</text>
+  <text x="770" y="119" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">RetrieveAndGenerate API</text>
+  <!-- Row 3 -->
+  <rect x="15" y="127" width="870" height="24" rx="2" fill="#0f1729"/>
+  <text x="220" y="143" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">ツール呼び出し自動化（AI Agent）</text>
+  <text x="520" y="143" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">Bedrock Agents</text>
+  <text x="770" y="143" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">Action Groups / Lambda</text>
+  <!-- Row 4 -->
+  <rect x="15" y="151" width="870" height="24" rx="2" fill="#0a0f1e"/>
+  <text x="220" y="167" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">有害コンテンツ・PII 検出・フィルタ</text>
+  <text x="520" y="167" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">Bedrock Guardrails</text>
+  <text x="770" y="167" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">Content Filter / PII Redaction</text>
+  <!-- Row 5 -->
+  <rect x="15" y="175" width="870" height="24" rx="2" fill="#0f1729"/>
+  <text x="220" y="191" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">ドメイン特化モデル作成</text>
+  <text x="520" y="191" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">Bedrock Fine-tuning / Continued PT</text>
+  <text x="770" y="191" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">PEFT / LoRA / QLoRA</text>
+  <!-- Row 6 -->
+  <rect x="15" y="199" width="870" height="24" rx="2" fill="#0a0f1e"/>
+  <text x="220" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">テキスト埋め込み生成</text>
+  <text x="520" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">Bedrock Titan Embeddings</text>
+  <text x="770" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">1536次元ベクトル</text>
+  <!-- Row 7 -->
+  <rect x="15" y="223" width="870" height="24" rx="2" fill="#0f1729"/>
+  <text x="220" y="239" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">ベクトル検索・類似度検索</text>
+  <text x="520" y="239" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">OpenSearch Serverless (HNSW)</text>
+  <text x="770" y="239" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">Cosine 類似度 / ANN</text>
+  <!-- Row 8 -->
+  <rect x="15" y="247" width="870" height="24" rx="2" fill="#0a0f1e"/>
+  <text x="220" y="263" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">バイアス検出・説明可能性</text>
+  <text x="520" y="263" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">SageMaker Clarify</text>
+  <text x="770" y="263" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">SHAP / DI / CI / DPPL</text>
+  <!-- Row 9 -->
+  <rect x="15" y="271" width="870" height="24" rx="2" fill="#0f1729"/>
+  <text x="220" y="287" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">PII を含む S3 データのスキャン</text>
+  <text x="520" y="287" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">Amazon Macie</text>
+  <text x="770" y="287" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">S3 PII 自動検出・アラート</text>
+  <!-- Row 10 -->
+  <rect x="15" y="295" width="870" height="24" rx="2" fill="#0a0f1e"/>
+  <text x="220" y="311" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">汎用テキスト PII 検出</text>
+  <text x="520" y="311" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">Amazon Comprehend</text>
+  <text x="770" y="311" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">DetectPiiEntities API</text>
+  <!-- Row 11 -->
+  <rect x="15" y="319" width="870" height="24" rx="2" fill="#0f1729"/>
+  <text x="220" y="335" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">モデル実験追跡・バージョン管理</text>
+  <text x="520" y="335" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">SageMaker Experiments + Model Registry</text>
+  <text x="770" y="335" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">Run / Trial / Model Card</text>
+  <!-- Row 12 -->
+  <rect x="15" y="343" width="870" height="24" rx="2" fill="#0a0f1e"/>
+  <text x="220" y="359" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">本番監視・ドリフト・アラーム</text>
+  <text x="520" y="359" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">CloudWatch + Clarify Monitor</text>
+  <text x="770" y="359" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">InvocationLatency / TokenCount</text>
+  <!-- Row 13 -->
+  <rect x="15" y="367" width="870" height="24" rx="2" fill="#0f1729"/>
+  <text x="220" y="383" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">大量推論バッチ処理（非同期）</text>
+  <text x="520" y="383" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">Bedrock Batch Inference</text>
+  <text x="770" y="383" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">50% OFF / S3 → S3 出力</text>
+</svg>

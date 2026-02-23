@@ -1,0 +1,128 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#f1f5f9">大規模 LLM 推論: LMI コンテナアーキテクチャ</text>
+
+  <!-- Input -->
+  <rect x="20" y="50" width="130" height="90" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="85" y="73" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">Large Model</text>
+  <text x="85" y="90" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">70B+ パラメータ</text>
+  <text x="85" y="107" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">LLaMA / GPT / etc.</text>
+  <text x="85" y="130" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">S3 Artifact</text>
+
+  <!-- Arrow to LMI -->
+  <line x1="150" y1="95" x2="185" y2="95" stroke="#f97316" stroke-width="2.5"/>
+  <polygon points="185,90 197,95 185,100" fill="#f97316"/>
+
+  <!-- LMI Container -->
+  <rect x="197" y="45" width="500" height="330" rx="10" fill="#1e293b" stroke="#f97316" stroke-width="2.5"/>
+  <text x="447" y="68" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f97316">LMI Container (DJL ベース)</text>
+
+  <!-- Backend options -->
+  <rect x="210" y="78" width="474" height="30" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="447" y="92" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">バックエンド:</text>
+  <text x="447" y="100" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">DeepSpeed / FasterTransformer / vLLM / TensorRT-LLM</text>
+
+  <!-- Tensor Parallelism section -->
+  <rect x="210" y="115" width="470" height="155" rx="6" fill="#0f172a" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="447" y="133" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#a855f7">テンソル並列化 (Tensor Parallelism)</text>
+  <text x="447" y="148" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">モデルの各層を複数GPUに分割配置 (e.g., 8×A100)</text>
+
+  <!-- GPU boxes -->
+  <rect x="220" y="158" width="90" height="95" rx="6" fill="#1d4ed8"/>
+  <text x="265" y="178" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f1f5f9">GPU 0</text>
+  <text x="265" y="196" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#bfdbfe">A100 80GB</text>
+  <text x="265" y="213" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Layers 0-9</text>
+  <text x="265" y="229" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Attention + FFN</text>
+  <text x="265" y="245" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">shard</text>
+
+  <rect x="325" y="158" width="90" height="95" rx="6" fill="#1d4ed8"/>
+  <text x="370" y="178" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f1f5f9">GPU 1</text>
+  <text x="370" y="196" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#bfdbfe">A100 80GB</text>
+  <text x="370" y="213" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Layers 10-19</text>
+  <text x="370" y="229" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Attention + FFN</text>
+  <text x="370" y="245" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">shard</text>
+
+  <text x="430" y="208" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#94a3b8">...</text>
+
+  <rect x="455" y="158" width="90" height="95" rx="6" fill="#1d4ed8"/>
+  <text x="500" y="178" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f1f5f9">GPU 6</text>
+  <text x="500" y="196" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#bfdbfe">A100 80GB</text>
+  <text x="500" y="213" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Layers 60-69</text>
+
+  <rect x="560" y="158" width="90" height="95" rx="6" fill="#1d4ed8"/>
+  <text x="605" y="178" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f1f5f9">GPU 7</text>
+  <text x="605" y="196" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#bfdbfe">A100 80GB</text>
+  <text x="605" y="213" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Layers 70-79</text>
+
+  <!-- AllReduce arrows -->
+  <line x1="310" y1="205" x2="323" y2="205" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <polygon points="323,200 333,205 323,210" fill="#f97316"/>
+  <line x1="415" y1="205" x2="453" y2="205" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <polygon points="453,200 463,205 453,210" fill="#f97316"/>
+  <line x1="545" y1="205" x2="558" y2="205" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <polygon points="558,200 568,205 558,210" fill="#f97316"/>
+  <text x="447" y="265" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316">AllReduce (NVLink/NVSwitch で GPU 間通信)</text>
+
+  <!-- Bottom three features -->
+  <!-- Continuous batching -->
+  <rect x="210" y="278" width="148" height="78" rx="6" fill="#0f172a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="284" y="297" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">Continuous Batching</text>
+  <text x="284" y="313" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">vLLM 使用時</text>
+  <text x="284" y="328" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">複数リクエストを</text>
+  <text x="284" y="343" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">動的バッチ化</text>
+
+  <!-- KV Cache -->
+  <rect x="371" y="278" width="148" height="78" rx="6" fill="#0f172a" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="445" y="297" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">KV Cache 管理</text>
+  <text x="445" y="313" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">長シーケンスの</text>
+  <text x="445" y="328" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">KV キャッシュ再利用</text>
+  <text x="445" y="343" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">PagedAttention</text>
+
+  <!-- Quantization -->
+  <rect x="532" y="278" width="148" height="78" rx="6" fill="#0f172a" stroke="#f97316" stroke-width="1.5"/>
+  <text x="606" y="297" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f97316">量子化</text>
+  <text x="606" y="313" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">FP16 → INT8/INT4</text>
+  <text x="606" y="328" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">2〜4倍 メモリ削減</text>
+  <text x="606" y="343" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">GPTQ / AWQ</text>
+
+  <!-- Arrow to endpoint -->
+  <line x1="697" y1="210" x2="740" y2="210" stroke="#22c55e" stroke-width="2.5"/>
+  <polygon points="740,205 752,210 740,215" fill="#22c55e"/>
+
+  <!-- Endpoint -->
+  <rect x="752" y="140" width="130" height="135" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="817" y="162" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#22c55e">SageMaker</text>
+  <text x="817" y="178" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#22c55e">Endpoint</text>
+
+  <rect x="762" y="186" width="110" height="24" rx="4" fill="#166534"/>
+  <text x="817" y="202" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">ml.p4d.24xlarge</text>
+
+  <text x="817" y="222" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">8×A100 80GB</text>
+
+  <rect x="762" y="228" width="110" height="24" rx="4" fill="#1d4ed8"/>
+  <text x="817" y="244" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">ml.p3.16xlarge</text>
+  <text x="817" y="265" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">8×V100 16GB</text>
+
+  <!-- Summary stats -->
+  <rect x="20" y="395" width="860" height="90" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="450" y="415" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f1f5f9">LMI 主要設定パラメータ</text>
+
+  <text x="130" y="438" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a855f7">tensor_parallel_degree</text>
+  <text x="130" y="453" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">GPU分割数 (e.g., 8)</text>
+
+  <text x="310" y="438" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">rolling_batch</text>
+  <text x="310" y="453" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">vLLM連続バッチ有効化</text>
+
+  <text x="490" y="438" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f97316">dtype</text>
+  <text x="490" y="453" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">fp16 / int8 / int4</text>
+
+  <text x="670" y="438" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#3b82f6">max_rolling_batch_size</text>
+  <text x="670" y="453" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">最大同時処理リクエスト数</text>
+
+  <text x="840" y="438" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#14b8a6">engine</text>
+  <text x="840" y="453" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">DeepSpeed/vLLM</text>
+
+  <text x="450" y="475" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">serving.properties ファイルに記述 → S3 に配置 → LMI コンテナが自動ロード</text>
+</svg>

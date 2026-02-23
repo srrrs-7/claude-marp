@@ -1,0 +1,109 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="bold" fill="#f1f5f9">Canvas → Studio コラボレーションワークフロー</text>
+
+  <!-- Left Side: Business User / Canvas -->
+  <rect x="20" y="50" width="380" height="380" rx="10" fill="#0f2139" stroke="#3b82f6" stroke-width="2"/>
+  <text x="210" y="78" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#3b82f6">ビジネスユーザー (Canvas)</text>
+
+  <!-- Step 1 -->
+  <rect x="40" y="92" width="340" height="55" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+  <circle cx="65" cy="119" r="14" fill="#3b82f6"/>
+  <text x="65" y="124" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fff">1</text>
+  <text x="210" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#f1f5f9">データセット選択</text>
+  <text x="210" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">S3 / Redshift / Salesforce からインポート</text>
+  <text x="210" y="143" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">予測ターゲット列を指定</text>
+
+  <line x1="210" y1="147" x2="210" y2="162" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="205,162 210,170 215,162" fill="#3b82f6"/>
+
+  <!-- Step 2 -->
+  <rect x="40" y="170" width="340" height="55" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+  <circle cx="65" cy="197" r="14" fill="#3b82f6"/>
+  <text x="65" y="202" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fff">2</text>
+  <text x="210" y="190" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#f1f5f9">モデル構築 &amp; 学習開始</text>
+  <text x="210" y="208" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">「モデルのビルド」をクリック</text>
+  <text x="210" y="221" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">AutoML が自動実行（数分〜数時間）</text>
+
+  <line x1="210" y1="225" x2="210" y2="240" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="205,240 210,248 215,240" fill="#3b82f6"/>
+
+  <!-- Step 3 -->
+  <rect x="40" y="248" width="340" height="55" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1"/>
+  <circle cx="65" cy="275" r="14" fill="#22c55e"/>
+  <text x="65" y="280" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fff">3</text>
+  <text x="210" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#f1f5f9">予測精度の確認</text>
+  <text x="210" y="286" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Accuracy / RMSE などの指標確認</text>
+  <text x="210" y="299" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">特徴量重要度（ビジュアル）確認</text>
+
+  <line x1="210" y1="303" x2="210" y2="318" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="205,318 210,326 215,318" fill="#22c55e"/>
+
+  <!-- Step 4 -->
+  <rect x="40" y="326" width="340" height="55" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="1"/>
+  <circle cx="65" cy="353" r="14" fill="#f97316"/>
+  <text x="65" y="358" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fff">4</text>
+  <text x="210" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#f1f5f9">Studio へ共有 (Share)</text>
+  <text x="210" y="364" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">「モデルを共有」→ユーザー選択</text>
+  <text x="210" y="377" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">モデルアーティファクトが自動転送</text>
+
+  <!-- Collaboration arrow (bidirectional) -->
+  <line x1="400" y1="240" x2="498" y2="240" stroke="#a855f7" stroke-width="2.5" stroke-dasharray="8,4"/>
+  <polygon points="498,235 510,240 498,245" fill="#a855f7"/>
+  <polygon points="400,235 388,240 400,245" fill="#a855f7"/>
+  <rect x="414" y="224" width="130" height="32" rx="6" fill="#2d1b4e"/>
+  <text x="479" y="237" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a855f7" font-weight="bold">コラボレーション</text>
+  <text x="479" y="251" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">ML 民主化</text>
+
+  <!-- Right Side: Data Scientist / Studio -->
+  <rect x="500" y="50" width="380" height="380" rx="10" fill="#0f2139" stroke="#22c55e" stroke-width="2"/>
+  <text x="690" y="78" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#22c55e">データサイエンティスト (Studio)</text>
+
+  <!-- DS Step 1 -->
+  <rect x="520" y="92" width="340" height="55" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1"/>
+  <circle cx="545" cy="119" r="14" fill="#22c55e"/>
+  <text x="545" y="124" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fff">A</text>
+  <text x="690" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#f1f5f9">共有モデルの受け取り</text>
+  <text x="690" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Studio に通知 → モデルを確認</text>
+  <text x="690" y="143" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">学習コード・パイプラインを確認</text>
+
+  <line x1="690" y1="147" x2="690" y2="162" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="685,162 690,170 695,162" fill="#22c55e"/>
+
+  <!-- DS Step 2 -->
+  <rect x="520" y="170" width="340" height="55" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1"/>
+  <circle cx="545" cy="197" r="14" fill="#22c55e"/>
+  <text x="545" y="202" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fff">B</text>
+  <text x="690" y="190" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#f1f5f9">モデル指標 &amp; SHAP 確認</text>
+  <text x="690" y="208" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">混同行列 / ROC / 残差プロット</text>
+  <text x="690" y="221" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">SHAP による特徴量重要度可視化</text>
+
+  <line x1="690" y1="225" x2="690" y2="240" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="685,240 690,248 695,240" fill="#22c55e"/>
+
+  <!-- DS Step 3 -->
+  <rect x="520" y="248" width="340" height="55" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="1"/>
+  <circle cx="545" cy="275" r="14" fill="#f97316"/>
+  <text x="545" y="280" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fff">C</text>
+  <text x="690" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#f1f5f9">微調整 / 再学習 (オプション)</text>
+  <text x="690" y="286" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">ハイパーパラメータ調整</text>
+  <text x="690" y="299" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">特徴量エンジニアリングの改良</text>
+
+  <line x1="690" y1="303" x2="690" y2="318" stroke="#f97316" stroke-width="2"/>
+  <polygon points="685,318 690,326 695,318" fill="#f97316"/>
+
+  <!-- DS Step 4 -->
+  <rect x="520" y="326" width="340" height="55" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1"/>
+  <circle cx="545" cy="353" r="14" fill="#a855f7"/>
+  <text x="545" y="358" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fff">D</text>
+  <text x="690" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#f1f5f9">本番エンドポイントへデプロイ</text>
+  <text x="690" y="364" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Model Registry → Endpoint 作成</text>
+  <text x="690" y="377" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Canvas ユーザーに予測を公開</text>
+
+  <!-- Bottom note -->
+  <rect x="20" y="445" width="860" height="42" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="450" y="462" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#22c55e" font-weight="bold">ガバナンスを維持しながら ML を民主化</text>
+  <text x="450" y="478" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">データサイエンティストが最終承認 → ビジネスユーザーが結果を利用</text>
+</svg>

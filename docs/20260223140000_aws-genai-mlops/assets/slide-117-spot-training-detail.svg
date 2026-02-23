@@ -1,0 +1,117 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#4CC9F0" text-anchor="middle">Managed Spot Training — チェックポイント詳細</text>
+
+  <!-- Main flow: left to right, then branching -->
+
+  <!-- Step 1: Job Start -->
+  <rect x="15" y="60" width="150" height="70" rx="6" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="90" y="85" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">1. 学習ジョブ開始</text>
+  <text x="90" y="103" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">use_spot_instances</text>
+  <text x="90" y="116" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">= True</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="165" y1="95" x2="185" y2="95" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(187,95) rotate(90)"/>
+
+  <!-- Step 2: Spot Instance Allocated -->
+  <rect x="185" y="60" width="160" height="70" rx="6" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="265" y="82" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">2. Spotインスタンス</text>
+  <text x="265" y="96" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">割り当て</text>
+  <text x="265" y="113" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">AZ間で最安値を</text>
+  <text x="265" y="124" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">自動選択</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="345" y1="95" x2="365" y2="95" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(367,95) rotate(90)"/>
+
+  <!-- Step 3: Training + Checkpoint -->
+  <rect x="365" y="60" width="175" height="70" rx="6" fill="#0a2545" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="452" y="82" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#06D6A0" text-anchor="middle">3. 学習中</text>
+  <text x="452" y="98" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">定期チェックポイント → S3</text>
+  <text x="452" y="114" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">checkpoint_s3_uri 設定必須</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="540" y1="95" x2="560" y2="95" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(562,95) rotate(90)"/>
+
+  <!-- Step 4: Interruption Check (diamond) -->
+  <polygon points="630,60 700,95 630,130 560,95" fill="#0a2545" stroke="#F77F00" stroke-width="2"/>
+  <text x="630" y="88" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#F77F00" text-anchor="middle">中断</text>
+  <text x="630" y="104" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#F77F00" text-anchor="middle">発生？</text>
+
+  <!-- Yes branch: down from diamond -->
+  <line x1="630" y1="130" x2="630" y2="178" stroke="#E63946" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#E63946" transform="translate(630,180)"/>
+  <text x="640" y="160" font-family="Arial,sans-serif" font-size="9" fill="#E63946">Yes (2分前通知)</text>
+
+  <!-- S3 Checkpoint box -->
+  <rect x="530" y="180" width="200" height="70" rx="6" fill="#1a0000" stroke="#E63946" stroke-width="1.5"/>
+  <text x="630" y="203" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#E63946" text-anchor="middle">S3からチェックポイント</text>
+  <text x="630" y="219" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#E63946" text-anchor="middle">読み込み</text>
+  <text x="630" y="238" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">新しいSpotインスタンスで再開</text>
+
+  <!-- Arrow back to Step 3 -->
+  <line x1="530" y1="215" x2="452" y2="215" stroke="#E63946" stroke-width="1.5"/>
+  <line x1="452" y1="215" x2="452" y2="130" stroke="#E63946" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#E63946" transform="translate(452,128) rotate(180)"/>
+  <text x="490" y="212" font-family="Arial,sans-serif" font-size="8" fill="#E63946" text-anchor="middle">再開 →</text>
+
+  <!-- No branch: right from diamond -->
+  <line x1="700" y1="95" x2="740" y2="95" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#06D6A0" transform="translate(742,95) rotate(90)"/>
+  <text x="720" y="88" font-family="Arial,sans-serif" font-size="9" fill="#06D6A0" text-anchor="middle">No</text>
+
+  <!-- Training Complete -->
+  <rect x="740" y="60" width="48" height="70" rx="6" fill="#06D6A0" fill-opacity="0.2" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="764" y="88" font-family="Arial,sans-serif" font-size="9" fill="#06D6A0" text-anchor="middle">完了</text>
+  <text x="764" y="104" font-family="Arial,sans-serif" font-size="8" fill="#cccccc" text-anchor="middle">S3へ</text>
+  <text x="764" y="116" font-family="Arial,sans-serif" font-size="8" fill="#cccccc" text-anchor="middle">保存</text>
+
+  <!-- Cost Breakdown Panel -->
+  <rect x="15" y="195" width="500" height="145" rx="8" fill="#1a2a40" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="265" y="220" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0" text-anchor="middle">コスト詳細</text>
+
+  <!-- Cost comparison -->
+  <rect x="28" y="230" width="220" height="96" rx="5" fill="#1e3a5f"/>
+  <text x="138" y="250" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#E63946" text-anchor="middle">On-Demand</text>
+  <text x="138" y="272" font-family="Arial,sans-serif" font-size="22" font-weight="bold" fill="#E63946" text-anchor="middle">$10/h</text>
+  <text x="138" y="296" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">ml.p3.2xlarge 例</text>
+  <text x="138" y="316" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">中断なし保証</text>
+
+  <text x="265" y="278" font-family="Arial,sans-serif" font-size="20" fill="#4CC9F0" text-anchor="middle">→</text>
+
+  <rect x="285" y="230" width="220" height="96" rx="5" fill="#06D6A0" fill-opacity="0.15" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="395" y="250" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#06D6A0" text-anchor="middle">Spot Training</text>
+  <text x="395" y="272" font-family="Arial,sans-serif" font-size="22" font-weight="bold" fill="#06D6A0" text-anchor="middle">$3/h</text>
+  <text x="395" y="296" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">70% 削減</text>
+  <text x="395" y="316" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">中断あり (対策必要)</text>
+
+  <!-- Config Panel -->
+  <rect x="15" y="355" width="770" height="130" rx="8" fill="#1a2a40" stroke="#888888" stroke-width="1"/>
+  <text x="400" y="378" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">主要設定パラメータ</text>
+
+  <rect x="28" y="387" width="225" height="86" rx="4" fill="#1e3a5f"/>
+  <text x="140" y="405" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">チェックポイント設定</text>
+  <text x="35" y="424" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">checkpoint_s3_uri</text>
+  <text x="35" y="440" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">checkpoint_local_path</text>
+  <text x="35" y="456" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">/opt/ml/checkpoints/</text>
+  <text x="35" y="470" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">モデル側でも保存処理実装必須</text>
+
+  <rect x="268" y="387" width="245" height="86" rx="4" fill="#0f3460"/>
+  <text x="390" y="405" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">待機時間設定</text>
+  <text x="275" y="424" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">max_wait_in_seconds</text>
+  <text x="275" y="440" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">max_run_in_seconds</text>
+  <text x="275" y="456" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">Spot容量不足でタイムアウト可能</text>
+  <text x="275" y="470" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">max_wait > max_run が必須</text>
+
+  <rect x="528" y="387" width="245" height="86" rx="4" fill="#0a2545"/>
+  <text x="650" y="405" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4CC9F0" text-anchor="middle">実際の課金計算</text>
+  <text x="535" y="424" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">BillableTime (実学習秒数)</text>
+  <text x="535" y="440" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">= 実際のSpot使用時間</text>
+  <text x="535" y="456" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">待機中は課金なし</text>
+  <text x="535" y="470" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">中断前の分も課金対象</text>
+</svg>

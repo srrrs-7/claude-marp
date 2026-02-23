@@ -1,0 +1,69 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1b2a"/>
+  <text x="400" y="32" fill="#4CC9F0" font-size="18" font-weight="bold" text-anchor="middle" font-family="sans-serif">SageMaker Model Monitor: データ品質チェック</text>
+
+  <!-- 本番Endpoint -->
+  <rect x="20" y="90" width="140" height="130" rx="8" fill="#1e3a5f" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="90" y="115" fill="#4CC9F0" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">本番 Endpoint</text>
+  <text x="90" y="140" fill="#aaaaaa" font-size="10" text-anchor="middle" font-family="sans-serif">リアルタイム推論</text>
+  <rect x="35" y="155" width="110" height="25" rx="4" fill="#0f3460"/>
+  <text x="90" y="172" fill="#ffffff" font-size="10" text-anchor="middle" font-family="sans-serif">入力データキャプチャ</text>
+  <rect x="35" y="187" width="110" height="25" rx="4" fill="#0f3460"/>
+  <text x="90" y="204" fill="#ffffff" font-size="10" text-anchor="middle" font-family="sans-serif">S3 へ自動保存</text>
+
+  <!-- Arrow -->
+  <line x1="160" y1="155" x2="210" y2="155" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#4CC9F0" transform="translate(210,155) rotate(90)"/>
+
+  <!-- Model Monitor Center -->
+  <rect x="210" y="60" width="380" height="290" rx="10" fill="#0f3460" style="filter:drop-shadow(2px 2px 6px rgba(0,0,0,0.5))"/>
+  <text x="400" y="88" fill="#4CC9F0" font-size="15" font-weight="bold" text-anchor="middle" font-family="sans-serif">SageMaker Model Monitor</text>
+
+  <rect x="225" y="100" width="350" height="60" rx="6" fill="#1e3a5f"/>
+  <text x="400" y="122" fill="#06D6A0" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">ベースライン統計</text>
+  <text x="400" y="142" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">学習データから自動生成 — statistics.json / constraints.json</text>
+
+  <rect x="225" y="170" width="350" height="60" rx="6" fill="#1e3a5f"/>
+  <text x="400" y="192" fill="#F77F00" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">制約条件 (Constraints)</text>
+  <text x="400" y="212" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">自動生成 または 手動設定で品質ルール定義</text>
+
+  <rect x="225" y="240" width="350" height="60" rx="6" fill="#1e3a5f"/>
+  <text x="400" y="262" fill="#4CC9F0" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">スケジュール実行</text>
+  <text x="400" y="282" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">hourly / daily — Processing Job として定期起動</text>
+
+  <!-- Arrow right -->
+  <line x1="590" y1="155" x2="640" y2="155" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#4CC9F0" transform="translate(640,155) rotate(90)"/>
+
+  <!-- Output -->
+  <rect x="640" y="70" width="145" height="75" rx="8" fill="#0a2545"/>
+  <text x="712" y="95" fill="#4CC9F0" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">CloudWatch</text>
+  <text x="712" y="110" fill="#4CC9F0" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">メトリクス</text>
+  <text x="712" y="130" fill="#aaaaaa" font-size="10" text-anchor="middle" font-family="sans-serif">品質スコア送信</text>
+
+  <rect x="640" y="155" width="145" height="75" rx="8" fill="#0a2545"/>
+  <text x="712" y="180" fill="#4CC9F0" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">S3 レポート</text>
+  <text x="712" y="200" fill="#aaaaaa" font-size="10" text-anchor="middle" font-family="sans-serif">違反詳細レポート</text>
+  <text x="712" y="215" fill="#aaaaaa" font-size="10" text-anchor="middle" font-family="sans-serif">JSON 形式保存</text>
+
+  <!-- Violation flow bottom -->
+  <text x="400" y="385" fill="#E63946" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">違反検出時のアクション</text>
+  <rect x="30" y="400" width="170" height="55" rx="6" fill="#2a1010"/>
+  <text x="115" y="423" fill="#ff8888" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">CloudWatch Alarm</text>
+  <text x="115" y="442" fill="#aaaaaa" font-size="10" text-anchor="middle" font-family="sans-serif">閾値超過で発火</text>
+  <line x1="200" y1="427" x2="250" y2="427" stroke="#E63946" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#E63946" transform="translate(250,427) rotate(90)"/>
+  <rect x="250" y="400" width="150" height="55" rx="6" fill="#2a1010"/>
+  <text x="325" y="423" fill="#ff8888" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">SNS 通知</text>
+  <text x="325" y="442" fill="#aaaaaa" font-size="10" text-anchor="middle" font-family="sans-serif">Slack/Email 通知</text>
+  <line x1="400" y1="427" x2="450" y2="427" stroke="#E63946" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#E63946" transform="translate(450,427) rotate(90)"/>
+  <rect x="450" y="400" width="150" height="55" rx="6" fill="#2a1010"/>
+  <text x="525" y="423" fill="#ff8888" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">再学習トリガー</text>
+  <text x="525" y="442" fill="#aaaaaa" font-size="10" text-anchor="middle" font-family="sans-serif">Lambda → Pipeline</text>
+  <line x1="600" y1="427" x2="650" y2="427" stroke="#E63946" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#E63946" transform="translate(650,427) rotate(90)"/>
+  <rect x="650" y="400" width="130" height="55" rx="6" fill="#2a1010"/>
+  <text x="715" y="423" fill="#ff8888" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">モデル更新</text>
+  <text x="715" y="442" fill="#aaaaaa" font-size="10" text-anchor="middle" font-family="sans-serif">Registry へ登録</text>
+</svg>

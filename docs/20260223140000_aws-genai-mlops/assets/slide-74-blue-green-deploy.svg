@@ -1,0 +1,89 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+  <text x="400" y="35" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">ブルーグリーンデプロイ</text>
+
+  <!-- Blue environment (left) -->
+  <rect x="20" y="60" width="225" height="220" rx="8" fill="#0f1e40" stroke="#4CC9F0" stroke-width="2"/>
+  <rect x="20" y="60" width="225" height="35" rx="8" fill="#4CC9F0" opacity="0.3"/>
+  <text x="132" y="84" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#4CC9F0" text-anchor="middle">Blue (現行)</text>
+
+  <rect x="38" y="108" width="190" height="30" rx="4" fill="#1e3a5f"/>
+  <text x="133" y="128" font-family="Arial,sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">モデルA (v1.0)</text>
+
+  <rect x="38" y="148" width="190" height="26" rx="4" fill="#0a2545"/>
+  <text x="133" y="166" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">100% トラフィック 稼働中</text>
+
+  <rect x="38" y="183" width="90" height="24" rx="4" fill="#06D6A0" opacity="0.7"/>
+  <text x="83" y="200" font-family="Arial,sans-serif" font-size="10" fill="#0d1b2a" text-anchor="middle" font-weight="bold">稼働中</text>
+
+  <text x="133" y="235" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">エンドポイントURL</text>
+  <text x="133" y="253" font-family="Arial,sans-serif" font-size="10" fill="#4CC9F0" text-anchor="middle">prod-endpoint-v1</text>
+  <text x="133" y="270" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">Health: OK</text>
+
+  <!-- Center: Traffic Router -->
+  <rect x="300" y="130" width="200" height="80" rx="8" fill="#2d4059" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="400" y="158" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#F77F00" text-anchor="middle">Route 53 / ALB</text>
+  <text x="400" y="178" font-family="Arial,sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">トラフィックルーター</text>
+  <text x="400" y="198" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">DNS 切り替え</text>
+
+  <!-- Green environment (right) -->
+  <rect x="555" y="60" width="225" height="220" rx="8" fill="#0a1f0a" stroke="#06D6A0" stroke-width="2"/>
+  <rect x="555" y="60" width="225" height="35" rx="8" fill="#06D6A0" opacity="0.3"/>
+  <text x="667" y="84" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#06D6A0" text-anchor="middle">Green (新規)</text>
+
+  <rect x="573" y="108" width="190" height="30" rx="4" fill="#0f3460"/>
+  <text x="668" y="128" font-family="Arial,sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">モデルB (v2.0)</text>
+
+  <rect x="573" y="148" width="190" height="26" rx="4" fill="#0a2545"/>
+  <text x="668" y="166" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">0% トラフィック テスト中</text>
+
+  <rect x="573" y="183" width="90" height="24" rx="4" fill="#F77F00" opacity="0.7"/>
+  <text x="618" y="200" font-family="Arial,sans-serif" font-size="10" fill="#0d1b2a" text-anchor="middle" font-weight="bold">準備中</text>
+
+  <text x="668" y="235" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">エンドポイントURL</text>
+  <text x="668" y="253" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0" text-anchor="middle">prod-endpoint-v2</text>
+  <text x="668" y="270" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">Health: 検証中</text>
+
+  <!-- Arrows from router -->
+  <line x1="300" y1="170" x2="250" y2="170" stroke="#4CC9F0" stroke-width="2.5"/>
+  <polygon points="0,-6 -4,5 4,5" fill="#4CC9F0" transform="translate(247,170) rotate(-90)"/>
+  <text x="275" y="162" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">100%</text>
+
+  <line x1="500" y1="170" x2="553" y2="170" stroke="#06D6A0" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.5"/>
+  <text x="525" y="162" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">0%</text>
+
+  <!-- Step flow at bottom -->
+  <rect x="20" y="300" width="760" height="185" rx="8" fill="#111e2d"/>
+  <text x="400" y="325" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">デプロイ手順</text>
+
+  <!-- Step 1 -->
+  <rect x="35" y="338" width="215" height="65" rx="6" fill="#1e3a5f"/>
+  <text x="142" y="360" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06D6A0" text-anchor="middle">Step 1</text>
+  <text x="142" y="378" font-family="Arial,sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">Green環境デプロイ</text>
+  <text x="142" y="394" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">テスト実施・検証</text>
+
+  <line x1="250" y1="370" x2="278" y2="370" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#4CC9F0" transform="translate(281,370) rotate(90)"/>
+
+  <!-- Step 2 -->
+  <rect x="283" y="338" width="215" height="65" rx="6" fill="#0f3460"/>
+  <text x="390" y="360" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06D6A0" text-anchor="middle">Step 2</text>
+  <text x="390" y="378" font-family="Arial,sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">DNS を Green へ切り替え</text>
+  <text x="390" y="394" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">トラフィック 100% 移行</text>
+
+  <line x1="498" y1="370" x2="527" y2="370" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#4CC9F0" transform="translate(530,370) rotate(90)"/>
+
+  <!-- Step 3 -->
+  <rect x="533" y="338" width="230" height="65" rx="6" fill="#0a2545"/>
+  <text x="648" y="360" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06D6A0" text-anchor="middle">Step 3</text>
+  <text x="648" y="378" font-family="Arial,sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">Blue をスタンバイ維持</text>
+  <text x="648" y="394" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">ロールバック用に保持</text>
+
+  <!-- SageMaker code -->
+  <rect x="35" y="418" width="730" height="55" rx="4" fill="#0d1b2a"/>
+  <text x="50" y="437" font-family="monospace" font-size="10" fill="#4CC9F0">deployer.update_endpoint(</text>
+  <text x="50" y="452" font-family="monospace" font-size="10" fill="#4CC9F0">  deployment_config={"BlueGreenUpdatePolicy": {"TrafficRoutingConfiguration": {"Type": "ALL_AT_ONCE"}}}</text>
+  <text x="50" y="468" font-family="monospace" font-size="10" fill="#4CC9F0">)</text>
+</svg>

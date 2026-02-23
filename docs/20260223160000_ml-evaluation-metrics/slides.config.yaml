@@ -1,0 +1,24 @@
+topic: "ML評価指標 完全ガイド"
+language: "ja"
+
+slides:
+  count: 105
+
+output:
+  dir: "docs/20260223160000_ml-evaluation-metrics"
+  baseName: "ml-evaluation-metrics"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "ML評価指標 完全ガイド"
+  footer: "© 2026 ML評価指標リファレンス"
+  style: |
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+    section h1 { letter-spacing: 0; }
+    section h2 { letter-spacing: 0; }
+    section p  { letter-spacing: 0; }
+    section li { letter-spacing: 0; }

@@ -1,0 +1,102 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <text x="450" y="28" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#f1f5f9">SageMaker Role Manager — RBAC 設計</text>
+
+  <!-- Role Manager box (center top) -->
+  <rect x="320" y="42" width="260" height="52" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="450" y="65" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f97316">SageMaker Role Manager</text>
+  <text x="450" y="82" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">ペルソナベース IAM ロール自動生成</text>
+
+  <!-- Arrows from Role Manager to 3 personas -->
+  <line x1="370" y1="94" x2="195" y2="142" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="192,138 192,150 200,143" fill="#f97316"/>
+
+  <line x1="450" y1="94" x2="450" y2="142" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="445,140 450,152 455,140" fill="#f97316"/>
+
+  <line x1="530" y1="94" x2="705" y2="142" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="700,138 708,143 700,150" fill="#f97316"/>
+
+  <!-- Persona 1: Data Scientist -->
+  <rect x="20" y="152" width="260" height="180" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="20" y="152" width="260" height="36" rx="8" fill="#1e3a5f"/>
+  <text x="150" y="175" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">Data Scientist</text>
+
+  <text x="35" y="202" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">許可 (Allow):</text>
+  <text x="35" y="218" font-family="sans-serif" font-size="9" fill="#94a3b8">Studio アクセス (全機能)</text>
+  <text x="35" y="231" font-family="sans-serif" font-size="9" fill="#94a3b8">Training Job 作成・実行</text>
+  <text x="35" y="244" font-family="sans-serif" font-size="9" fill="#94a3b8">Experiments 記録・閲覧</text>
+  <text x="35" y="257" font-family="sans-serif" font-size="9" fill="#94a3b8">Feature Store 読み書き</text>
+  <text x="35" y="270" font-family="sans-serif" font-size="9" fill="#94a3b8">Model Registry 閲覧・登録</text>
+  <text x="35" y="283" font-family="sans-serif" font-size="9" fill="#94a3b8">Notebook Instance 使用</text>
+
+  <text x="35" y="303" font-family="sans-serif" font-size="10" font-weight="bold" fill="#ef4444">拒否 (Deny):</text>
+  <text x="35" y="318" font-family="sans-serif" font-size="9" fill="#94a3b8">本番 Endpoint 設定変更</text>
+  <text x="35" y="330" font-family="sans-serif" font-size="9" fill="#94a3b8">Model Approval 操作</text>
+
+  <!-- Persona 2: MLOps Engineer -->
+  <rect x="320" y="152" width="260" height="180" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <rect x="320" y="152" width="260" height="36" rx="8" fill="#1a3a2a"/>
+  <text x="450" y="175" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#22c55e">MLOps Engineer</text>
+
+  <text x="335" y="202" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">許可 (Allow):</text>
+  <text x="335" y="218" font-family="sans-serif" font-size="9" fill="#94a3b8">Pipelines 作成・実行・管理</text>
+  <text x="335" y="231" font-family="sans-serif" font-size="9" fill="#94a3b8">Model Registry 承認操作</text>
+  <text x="335" y="244" font-family="sans-serif" font-size="9" fill="#94a3b8">Endpoint 作成・更新・削除</text>
+  <text x="335" y="257" font-family="sans-serif" font-size="9" fill="#94a3b8">Model Monitor 設定</text>
+  <text x="335" y="270" font-family="sans-serif" font-size="9" fill="#94a3b8">AutoScaling 設定</text>
+  <text x="335" y="283" font-family="sans-serif" font-size="9" fill="#94a3b8">CloudWatch Dashboard</text>
+
+  <text x="335" y="303" font-family="sans-serif" font-size="10" font-weight="bold" fill="#ef4444">拒否 (Deny):</text>
+  <text x="335" y="318" font-family="sans-serif" font-size="9" fill="#94a3b8">学習データへの直接アクセス</text>
+  <text x="335" y="330" font-family="sans-serif" font-size="9" fill="#94a3b8">Feature Store 書き込み</text>
+
+  <!-- Persona 3: Data Engineer -->
+  <rect x="620" y="152" width="260" height="180" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <rect x="620" y="152" width="260" height="36" rx="8" fill="#2d1a4a"/>
+  <text x="750" y="175" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#a855f7">Data Engineer</text>
+
+  <text x="635" y="202" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">許可 (Allow):</text>
+  <text x="635" y="218" font-family="sans-serif" font-size="9" fill="#94a3b8">Data Wrangler 全機能</text>
+  <text x="635" y="231" font-family="sans-serif" font-size="9" fill="#94a3b8">Feature Store 書き込み</text>
+  <text x="635" y="244" font-family="sans-serif" font-size="9" fill="#94a3b8">S3 (指定バケット) 読み書き</text>
+  <text x="635" y="257" font-family="sans-serif" font-size="9" fill="#94a3b8">Glue / Athena クエリ</text>
+  <text x="635" y="270" font-family="sans-serif" font-size="9" fill="#94a3b8">Processing Job (前処理)</text>
+  <text x="635" y="283" font-family="sans-serif" font-size="9" fill="#94a3b8">EMR クラスター使用</text>
+
+  <text x="635" y="303" font-family="sans-serif" font-size="10" font-weight="bold" fill="#ef4444">拒否 (Deny):</text>
+  <text x="635" y="318" font-family="sans-serif" font-size="9" fill="#94a3b8">Model 操作・Endpoint 管理</text>
+  <text x="635" y="330" font-family="sans-serif" font-size="9" fill="#94a3b8">Training Job 作成</text>
+
+  <!-- Bottom: IAM integration + Advanced settings -->
+  <rect x="20" y="348" width="860" height="140" rx="8" fill="#131e2f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="450" y="368" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">IAM 統合・高度な設定</text>
+
+  <!-- IAM Policy Generation -->
+  <rect x="35" y="380" width="240" height="96" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+  <text x="155" y="398" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">IAM Policy 自動生成</text>
+  <text x="48" y="414" font-family="sans-serif" font-size="9" fill="#94a3b8">Role Manager → IAM Role + Policy JSON</text>
+  <text x="48" y="427" font-family="sans-serif" font-size="9" fill="#94a3b8">CloudFormation テンプレート対応</text>
+  <text x="48" y="440" font-family="sans-serif" font-size="9" fill="#94a3b8">AWS SSO / Identity Center 統合</text>
+  <text x="48" y="453" font-family="sans-serif" font-size="9" fill="#94a3b8">カスタムロール: 任意の権限組み合わせ</text>
+  <text x="48" y="466" font-family="sans-serif" font-size="9" fill="#94a3b8">タグベースアクセス制御 (ABAC)</text>
+
+  <!-- Permission Boundary -->
+  <rect x="295" y="380" width="240" height="96" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="1"/>
+  <text x="415" y="398" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f97316">Permission Boundary</text>
+  <text x="308" y="414" font-family="sans-serif" font-size="9" fill="#94a3b8">最大権限の上限設定</text>
+  <text x="308" y="427" font-family="sans-serif" font-size="9" fill="#94a3b8">エスカレーション防止</text>
+  <text x="308" y="440" font-family="sans-serif" font-size="9" fill="#94a3b8">SCP (組織単位で強制)</text>
+  <text x="308" y="453" font-family="sans-serif" font-size="9" fill="#94a3b8">権限委譲: 管理者→開発者</text>
+  <text x="308" y="466" font-family="sans-serif" font-size="9" fill="#94a3b8">Condition: ResourceTag 条件</text>
+
+  <!-- VPC Constraints -->
+  <rect x="555" y="380" width="310" height="96" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1"/>
+  <text x="710" y="398" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">ネットワーク・環境制約</text>
+  <text x="568" y="414" font-family="sans-serif" font-size="9" fill="#94a3b8">VPC エンドポイント経由のみ許可</text>
+  <text x="568" y="427" font-family="sans-serif" font-size="9" fill="#94a3b8">特定 VPC/サブネット からのみアクセス</text>
+  <text x="568" y="440" font-family="sans-serif" font-size="9" fill="#94a3b8">インターネット接続禁止 (IsolationMode)</text>
+  <text x="568" y="453" font-family="sans-serif" font-size="9" fill="#94a3b8">KMS キー: ロールごとに別々の暗号化</text>
+  <text x="568" y="466" font-family="sans-serif" font-size="9" fill="#94a3b8">Multi-account: AWS Organizations 統合管理</text>
+</svg>

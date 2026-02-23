@@ -1,0 +1,116 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="28" text-anchor="middle" fill="#f1f5f9" font-size="16" font-weight="bold" font-family="sans-serif">Multi-Model Endpoint アーキテクチャ</text>
+
+  <!-- Client A -->
+  <rect x="20" y="80" width="110" height="50" rx="8" fill="#1e293b" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="75" y="102" text-anchor="middle" fill="#f1f5f9" font-size="11" font-family="sans-serif">Client A</text>
+  <text x="75" y="120" text-anchor="middle" fill="#3b82f6" font-size="9" font-family="sans-serif">model_name=model_A</text>
+
+  <!-- Client B -->
+  <rect x="20" y="155" width="110" height="50" rx="8" fill="#1e293b" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="75" y="177" text-anchor="middle" fill="#f1f5f9" font-size="11" font-family="sans-serif">Client B</text>
+  <text x="75" y="195" text-anchor="middle" fill="#f97316" font-size="9" font-family="sans-serif">model_name=model_B</text>
+
+  <!-- Client N -->
+  <rect x="20" y="230" width="110" height="50" rx="8" fill="#1e293b" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="75" y="252" text-anchor="middle" fill="#f1f5f9" font-size="11" font-family="sans-serif">Client N</text>
+  <text x="75" y="270" text-anchor="middle" fill="#a855f7" font-size="9" font-family="sans-serif">model_name=model_N</text>
+
+  <!-- Arrows to endpoint -->
+  <line x1="130" y1="105" x2="178" y2="170" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="174,170 180,180 184,169" fill="#3b82f6"/>
+  <line x1="130" y1="180" x2="178" y2="185" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="178,180 188,185 178,190" fill="#f97316"/>
+  <line x1="130" y1="255" x2="178" y2="195" stroke="#a855f7" stroke-width="1.5"/>
+  <polygon points="175,192 183,186 180,197" fill="#a855f7"/>
+
+  <!-- SageMaker Endpoint -->
+  <rect x="188" y="80" width="500" height="310" rx="10" fill="#1e293b" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="438" y="106" text-anchor="middle" fill="#22c55e" font-size="14" font-weight="bold" font-family="sans-serif">SageMaker Multi-Model Endpoint</text>
+  <text x="438" y="124" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">1 Endpoint = N モデル | ml.m5.4xlarge</text>
+
+  <!-- Multi-Model Server -->
+  <rect x="200" y="135" width="476" height="240" rx="8" fill="#0f172a"/>
+  <text x="438" y="158" text-anchor="middle" fill="#f97316" font-size="12" font-weight="bold" font-family="sans-serif">Multi-Model Server (MMS / Triton)</text>
+
+  <!-- Model Cache area -->
+  <rect x="210" y="168" width="240" height="150" rx="6" fill="#1e293b"/>
+  <text x="330" y="187" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="bold" font-family="sans-serif">Model Cache (Memory)</text>
+  <text x="330" y="203" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">インスタンスメモリ上のキャッシュ</text>
+
+  <!-- Cached models -->
+  <rect x="220" y="210" width="100" height="45" rx="5" fill="#22c55e" opacity="0.7"/>
+  <text x="270" y="230" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold" font-family="sans-serif">model_A</text>
+  <text x="270" y="248" text-anchor="middle" fill="#e0f2f1" font-size="9" font-family="sans-serif">Loaded</text>
+
+  <rect x="330" y="210" width="100" height="45" rx="5" fill="#f97316" opacity="0.7"/>
+  <text x="380" y="230" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold" font-family="sans-serif">model_B</text>
+  <text x="380" y="248" text-anchor="middle" fill="#fff" font-size="9" font-family="sans-serif">Loaded</text>
+
+  <!-- LRU eviction note -->
+  <text x="330" y="278" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Cache Eviction (LRU)</text>
+  <text x="330" y="293" text-anchor="middle" fill="#64748b" font-size="8" font-family="sans-serif">メモリ満杯時に最近未使用を排出</text>
+  <text x="330" y="308" text-anchor="middle" fill="#64748b" font-size="8" font-family="sans-serif">Cache Hit → 高速応答 (ms)</text>
+
+  <!-- Arrow: Cache miss → S3 -->
+  <line x1="450" y1="243" x2="530" y2="243" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="530,238 540,243 530,248" fill="#ef4444"/>
+  <text x="490" y="233" text-anchor="middle" fill="#ef4444" font-size="9" font-family="sans-serif">Cache Miss</text>
+  <text x="490" y="258" text-anchor="middle" fill="#ef4444" font-size="9" font-family="sans-serif">S3からロード</text>
+
+  <!-- S3 Model Store inside endpoint box -->
+  <rect x="530" y="168" width="136" height="150" rx="6" fill="#1e293b"/>
+  <text x="598" y="187" text-anchor="middle" fill="#a855f7" font-size="11" font-weight="bold" font-family="sans-serif">S3 Model Store</text>
+  <text x="598" y="203" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">モデル格納場所</text>
+
+  <rect x="538" y="210" width="110" height="20" rx="3" fill="#0f172a"/>
+  <text x="593" y="224" text-anchor="middle" fill="#3b82f6" font-size="9" font-family="sans-serif">model_A.tar.gz</text>
+  <rect x="538" y="234" width="110" height="20" rx="3" fill="#0f172a"/>
+  <text x="593" y="248" text-anchor="middle" fill="#f97316" font-size="9" font-family="sans-serif">model_B.tar.gz</text>
+  <rect x="538" y="258" width="110" height="20" rx="3" fill="#0f172a"/>
+  <text x="593" y="272" text-anchor="middle" fill="#a855f7" font-size="9" font-family="sans-serif">model_N.tar.gz</text>
+  <text x="598" y="305" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">N個のモデル</text>
+
+  <!-- Arrow: S3 → Cache (load) -->
+  <line x1="530" y1="258" x2="450" y2="258" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="450,253 440,258 450,263" fill="#22c55e"/>
+  <text x="490" y="278" text-anchor="middle" fill="#22c55e" font-size="9" font-family="sans-serif">Load to Cache</text>
+
+  <!-- S3 Model Store external -->
+  <rect x="710" y="120" width="170" height="180" rx="8" fill="#1e293b" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="795" y="144" text-anchor="middle" fill="#a855f7" font-size="12" font-weight="bold" font-family="sans-serif">Amazon S3</text>
+  <text x="795" y="162" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">モデルリポジトリ</text>
+
+  <rect x="720" y="172" width="150" height="22" rx="4" fill="#0f172a"/>
+  <text x="795" y="187" text-anchor="middle" fill="#3b82f6" font-size="9" font-family="sans-serif">tenant_001/model.tar.gz</text>
+  <rect x="720" y="198" width="150" height="22" rx="4" fill="#0f172a"/>
+  <text x="795" y="213" text-anchor="middle" fill="#f97316" font-size="9" font-family="sans-serif">tenant_002/model.tar.gz</text>
+  <rect x="720" y="224" width="150" height="22" rx="4" fill="#0f172a"/>
+  <text x="795" y="239" text-anchor="middle" fill="#a855f7" font-size="9" font-family="sans-serif">...</text>
+  <rect x="720" y="250" width="150" height="22" rx="4" fill="#0f172a"/>
+  <text x="795" y="265" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">tenant_N/model.tar.gz</text>
+  <text x="795" y="292" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">数千モデル格納可能</text>
+
+  <!-- Arrow: Endpoint → S3 external -->
+  <line x1="688" y1="210" x2="708" y2="210" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="708,205 718,210 708,215" fill="#a855f7"/>
+
+  <!-- Bottom info panels -->
+  <rect x="20" y="405" width="860" height="80" rx="8" fill="#1e293b"/>
+  <text x="450" y="425" text-anchor="middle" fill="#f1f5f9" font-size="12" font-weight="bold" font-family="sans-serif">MME 特性・ユースケース</text>
+
+  <rect x="30" y="433" width="260" height="42" rx="6" fill="#0f172a"/>
+  <text x="160" y="450" text-anchor="middle" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">コスト削減効果</text>
+  <text x="160" y="468" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">1エンドポイントで多数モデルをホスト</text>
+
+  <rect x="300" y="433" width="280" height="42" rx="6" fill="#0f172a"/>
+  <text x="440" y="450" text-anchor="middle" fill="#f97316" font-size="10" font-weight="bold" font-family="sans-serif">動的ロード/アンロード</text>
+  <text x="440" y="468" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">高頻度→キャッシュヒット / 低頻度→S3ロード</text>
+
+  <rect x="590" y="433" width="280" height="42" rx="6" fill="#0f172a"/>
+  <text x="730" y="450" text-anchor="middle" fill="#a855f7" font-size="10" font-weight="bold" font-family="sans-serif">テナントごとモデル対応</text>
+  <text x="730" y="468" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">顧客ごとにカスタムモデルをサービス提供</text>
+</svg>

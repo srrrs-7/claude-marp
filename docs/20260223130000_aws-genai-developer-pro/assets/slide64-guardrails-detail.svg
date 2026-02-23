@@ -1,0 +1,49 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Bedrock Guardrails 詳細設定</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">入力と出力の両方に適用される6カテゴリのフィルタリング</text>
+
+  <!-- Guardrail flow -->
+  <rect x="15" y="65" width="100" height="260" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="2"/>
+  <text x="65" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#60a5fa" transform="rotate(-90, 65, 180)">ユーザー入力</text>
+
+  <polygon points="118,195 130,191 130,199" fill="#6d28d9"/>
+
+  <rect x="133" y="65" width="620" height="260" rx="8" fill="#1e1b4b" stroke="#6d28d9" stroke-width="2"/>
+  <text x="443" y="82" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">Guardrails フィルタリング レイヤー</text>
+
+  <!-- 6 filter rows -->
+  <rect x="143" y="88" width="600" height="30" rx="4" fill="#1d4ed8"/>
+  <text x="200" y="107" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#ffffff">① コンテンツフィルタ</text>
+  <text x="450" y="107" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">暴力/ヘイト/性的/誤情報/有害 — 強度: None/Low/Medium/High で設定</text>
+
+  <rect x="143" y="122" width="600" height="30" rx="4" fill="#3b0764"/>
+  <text x="200" y="141" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#ffffff">② 禁止トピック</text>
+  <text x="450" y="141" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">指定した話題をブロック（例: 投資アドバイス、競合他社への言及）自然言語で定義</text>
+
+  <rect x="143" y="156" width="600" height="30" rx="4" fill="#064e3b"/>
+  <text x="200" y="175" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#ffffff">③ Word Filters</text>
+  <text x="450" y="175" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">特定の単語・フレーズ・正規表現パターンをブロック（カスタムリスト登録）</text>
+
+  <rect x="143" y="190" width="600" height="30" rx="4" fill="#78350f"/>
+  <text x="200" y="209" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#ffffff">④ PII Redaction</text>
+  <text x="450" y="209" font-family="Arial,sans-serif" font-size="9" fill="#fde68a">個人情報を検出 → BLOCK / MASK(***) / ANONYMIZE のいずれかで処理</text>
+
+  <rect x="143" y="224" width="600" height="30" rx="4" fill="#1e1b4b"/>
+  <text x="200" y="243" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#ffffff">⑤ Grounding Check</text>
+  <text x="450" y="243" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">RAG回答がソース文書に根拠を持つか検証（忠実性スコア）Faithfulness保証</text>
+
+  <rect x="143" y="258" width="600" height="30" rx="4" fill="#172554"/>
+  <text x="200" y="277" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#ffffff">⑥ Prompt Attack 検出</text>
+  <text x="450" y="277" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">Direct/Indirect インジェクション攻撃を検出・ブロック</text>
+
+  <polygon points="756,195 768,191 768,199" fill="#6d28d9"/>
+
+  <rect x="771" y="65" width="114" height="260" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="2"/>
+  <text x="828" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#6ee7b7" transform="rotate(-90, 828, 200)">フィルタ済み出力</text>
+
+  <!-- Bottom implementation -->
+  <rect x="15" y="338" width="870" height="52" rx="8" fill="#0f172a"/>
+  <text x="450" y="356" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">実装: Apply Guardrail API / Bedrock Runtime の全API（InvokeModel・Converse）に適用可能</text>
+  <text x="450" y="374" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Bedrock Agents・Knowledge Basesとシームレス統合 | 適用タイミング: リクエスト・レスポンス両方 | 1 Guardrailを複数モデルで共有可</text>
+</svg>

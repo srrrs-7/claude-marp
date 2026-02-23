@@ -1,0 +1,71 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1b2a"/>
+  <text x="400" y="35" fill="#4CC9F0" font-size="20" font-weight="bold" text-anchor="middle" font-family="sans-serif">スキーマ検証の仕組み</text>
+
+  <!-- 受信データ -->
+  <rect x="30" y="150" width="140" height="80" rx="8" fill="#1e3a5f" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="100" y="185" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">受信データ</text>
+  <text x="100" y="205" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">CSV / JSON / Parquet</text>
+
+  <!-- Arrow to diamond -->
+  <line x1="170" y1="190" x2="240" y2="190" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#4CC9F0" transform="translate(240,190) rotate(90)"/>
+
+  <!-- Check items sidebar -->
+  <rect x="30" y="265" width="140" height="150" rx="8" fill="#0a2545"/>
+  <text x="100" y="285" fill="#4CC9F0" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">チェック項目</text>
+  <text x="45" y="305" fill="#aaaaaa" font-size="11" font-family="sans-serif">• データ型</text>
+  <text x="45" y="323" fill="#aaaaaa" font-size="11" font-family="sans-serif">• 必須項目</text>
+  <text x="45" y="341" fill="#aaaaaa" font-size="11" font-family="sans-serif">• 値範囲</text>
+  <text x="45" y="359" fill="#aaaaaa" font-size="11" font-family="sans-serif">• 許容値リスト</text>
+  <text x="45" y="377" fill="#aaaaaa" font-size="11" font-family="sans-serif">• 文字列パターン</text>
+  <text x="45" y="395" fill="#aaaaaa" font-size="11" font-family="sans-serif">• 一意性制約</text>
+
+  <!-- Diamond decision -->
+  <polygon points="340,145 450,190 340,235 230,190" fill="#0f3460" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="340" y="185" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">スキーマ</text>
+  <text x="340" y="203" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">一致？</text>
+
+  <!-- YES arrow (right) -->
+  <line x1="450" y1="190" x2="540" y2="190" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#06D6A0" transform="translate(540,190) rotate(90)"/>
+  <text x="495" y="180" fill="#06D6A0" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">Yes</text>
+
+  <!-- 処理続行 -->
+  <rect x="540" y="150" width="140" height="80" rx="8" fill="#0a2a1a" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="610" y="182" fill="#06D6A0" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">処理続行</text>
+  <text x="610" y="202" fill="#aaffcc" font-size="11" text-anchor="middle" font-family="sans-serif">次ステップへ</text>
+
+  <!-- Arrow to success output -->
+  <line x1="680" y1="190" x2="750" y2="190" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#06D6A0" transform="translate(750,190) rotate(90)"/>
+  <rect x="750" y="170" width="40" height="40" rx="6" fill="#06D6A0"/>
+  <text x="770" y="195" fill="#0d1b2a" font-size="18" font-weight="bold" text-anchor="middle" font-family="sans-serif">✓</text>
+
+  <!-- NO arrow (down) -->
+  <line x1="340" y1="235" x2="340" y2="290" stroke="#E63946" stroke-width="2"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#E63946" transform="translate(340,290) rotate(180)"/>
+  <text x="358" y="268" fill="#E63946" font-size="12" font-weight="bold" font-family="sans-serif">No</text>
+
+  <!-- バリデーションエラー -->
+  <rect x="250" y="290" width="180" height="75" rx="8" fill="#2a0a0a" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="340" y="317" fill="#E63946" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">バリデーション</text>
+  <text x="340" y="337" fill="#E63946" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">エラー</text>
+  <text x="340" y="355" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">エラー詳細を記録</text>
+
+  <!-- Arrow to actions -->
+  <line x1="430" y1="327" x2="500" y2="327" stroke="#E63946" stroke-width="2"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#E63946" transform="translate(500,327) rotate(90)"/>
+
+  <!-- 3 action boxes -->
+  <rect x="500" y="280" width="130" height="40" rx="6" fill="#3a1010"/>
+  <text x="565" y="305" fill="#ff8888" font-size="12" text-anchor="middle" font-family="sans-serif">通知 (SNS/Slack)</text>
+  <rect x="500" y="328" width="130" height="40" rx="6" fill="#3a1010"/>
+  <text x="565" y="353" fill="#ff8888" font-size="12" text-anchor="middle" font-family="sans-serif">拒否 (隔離)</text>
+  <rect x="500" y="376" width="130" height="40" rx="6" fill="#3a1010"/>
+  <text x="565" y="401" fill="#ff8888" font-size="12" text-anchor="middle" font-family="sans-serif">修正 (自動補完)</text>
+
+  <!-- Bottom tools label -->
+  <rect x="100" y="455" width="600" height="35" rx="8" fill="#1e3a5f"/>
+  <text x="400" y="477" fill="#4CC9F0" font-size="12" text-anchor="middle" font-family="sans-serif">ツール: Great Expectations / Pandera / AWS Glue Schema Registry</text>
+</svg>

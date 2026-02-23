@@ -1,0 +1,68 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="36" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">データ拡張技術一覧</text>
+  <!-- Column 1: 画像 -->
+  <rect x="20" y="58" width="240" height="42" rx="6" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="140" y="85" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#4CC9F0">画像</text>
+  <rect x="20" y="106" width="240" height="60" rx="6" fill="#0f2a45"/>
+  <text x="140" y="127" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">回転・フリップ</text>
+  <text x="140" y="147" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">0〜360° 回転 / 水平・垂直反転</text>
+  <text x="140" y="162" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaaaaa">torchvision.transforms.RandomRotation</text>
+  <rect x="20" y="172" width="240" height="60" rx="6" fill="#0d2540"/>
+  <text x="140" y="193" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">クロッピング</text>
+  <text x="140" y="213" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">ランダムクロップ / センタークロップ</text>
+  <text x="140" y="228" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaaaaa">RandomResizedCrop(224)</text>
+  <rect x="20" y="238" width="240" height="60" rx="6" fill="#0f2a45"/>
+  <text x="140" y="259" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">色調変換</text>
+  <text x="140" y="279" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">明度・コントラスト・彩度・色相</text>
+  <text x="140" y="294" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaaaaa">ColorJitter / GaussianBlur</text>
+  <rect x="20" y="304" width="240" height="60" rx="6" fill="#0d2540"/>
+  <text x="140" y="325" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#06D6A0">CutMix / Mixup</text>
+  <text x="140" y="345" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">2画像の合成 / ラベルも混合</text>
+  <text x="140" y="360" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaaaaa">高精度: CIFAR / ImageNet実験</text>
+  <!-- Column 2: テキスト -->
+  <rect x="280" y="58" width="240" height="42" rx="6" fill="#0f3460" stroke="#06D6A0" stroke-width="2"/>
+  <text x="400" y="85" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#06D6A0">テキスト</text>
+  <rect x="280" y="106" width="240" height="60" rx="6" fill="#0a2240"/>
+  <text x="400" y="127" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#06D6A0">同義語置換</text>
+  <text x="400" y="147" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">WordNet / word2vec で類義語</text>
+  <text x="400" y="162" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaaaaa">nlpaug / TextAttack ライブラリ</text>
+  <rect x="280" y="172" width="240" height="60" rx="6" fill="#08203c"/>
+  <text x="400" y="193" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#06D6A0">ランダム削除</text>
+  <text x="400" y="213" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">非重要単語をランダム削除</text>
+  <text x="400" y="228" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaaaaa">確率p=0.1でトークン削除</text>
+  <rect x="280" y="238" width="240" height="60" rx="6" fill="#0a2240"/>
+  <text x="400" y="259" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#06D6A0">逆翻訳</text>
+  <text x="400" y="279" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">EN→JA→EN で表現多様化</text>
+  <text x="400" y="294" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaaaaa">Amazon Translate 活用</text>
+  <rect x="280" y="304" width="240" height="60" rx="6" fill="#08203c"/>
+  <text x="400" y="325" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">EDA手法</text>
+  <text x="400" y="345" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">Easy Data Augmentation</text>
+  <text x="400" y="360" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaaaaa">SR/RI/RS/RD 4種組み合わせ</text>
+  <!-- Column 3: 音声/時系列 -->
+  <rect x="540" y="58" width="240" height="42" rx="6" fill="#0a2545" stroke="#F77F00" stroke-width="2"/>
+  <text x="660" y="85" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#F77F00">音声 / 時系列</text>
+  <rect x="540" y="106" width="240" height="60" rx="6" fill="#081a35"/>
+  <text x="660" y="127" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#F77F00">時間シフト</text>
+  <text x="660" y="147" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">前後にシフト / 周期的折り返し</text>
+  <text x="660" y="162" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaaaaa">librosa / torchaudio</text>
+  <rect x="540" y="172" width="240" height="60" rx="6" fill="#071528"/>
+  <text x="660" y="193" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#F77F00">ノイズ追加</text>
+  <text x="660" y="213" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">ガウスノイズ / 白色雑音</text>
+  <text x="660" y="228" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaaaaa">SNR制御 / 環境音重畳</text>
+  <rect x="540" y="238" width="240" height="60" rx="6" fill="#081a35"/>
+  <text x="660" y="259" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#F77F00">ピッチシフト</text>
+  <text x="660" y="279" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">音程変換 (semitone単位)</text>
+  <text x="660" y="294" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaaaaa">速度変換 (Time Stretching)</text>
+  <rect x="540" y="304" width="240" height="60" rx="6" fill="#071528"/>
+  <text x="660" y="325" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">ウィンドウスライス</text>
+  <text x="660" y="345" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">時系列の部分切り出し</text>
+  <text x="660" y="360" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaaaaa">Window Warping / 補間</text>
+  <!-- Bottom bar -->
+  <rect x="20" y="380" width="760" height="40" rx="6" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="400" y="401" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">AWS Augmented AI (A2I)</text>
+  <text x="400" y="415" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">低信頼度予測に人手レビューを組み込む — Textract / Rekognition / カスタムモデル対応</text>
+  <rect x="20" y="428" width="760" height="40" rx="6" fill="#0f3460" stroke="#06D6A0" stroke-width="1"/>
+  <text x="400" y="449" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#06D6A0">SageMaker Data Wrangler</text>
+  <text x="400" y="463" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">GUI操作で拡張レシピを作成 → Processing Job として実行 → 大規模データに適用</text>
+</svg>

@@ -1,0 +1,114 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#f1f5f9">Inference Recommender</text>
+  <text x="450" y="55" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#94a3b8">最適なインスタンスタイプを自動ベンチマーク・推薦</text>
+
+  <!-- Divider -->
+  <line x1="450" y1="65" x2="450" y2="370" stroke="#334155" stroke-width="2"/>
+
+  <!-- ===== LEFT: Default Job ===== -->
+  <text x="225" y="85" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#3b82f6">Default Job (クイック)</text>
+
+  <!-- Model input -->
+  <rect x="30" y="98" width="100" height="44" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="80" y="116" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">Model</text>
+  <text x="80" y="131" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">S3 Artifact</text>
+
+  <!-- Arrow -->
+  <line x1="130" y1="120" x2="155" y2="120" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="155,115 167,120 155,125" fill="#3b82f6"/>
+
+  <!-- IR box -->
+  <rect x="167" y="98" width="220" height="44" rx="6" fill="#1e3a8a"/>
+  <text x="277" y="117" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f1f5f9">Inference Recommender</text>
+  <text x="277" y="132" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#bfdbfe">Default Job</text>
+
+  <!-- Benchmark instances -->
+  <rect x="30" y="158" width="357" height="75" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="208" y="175" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f97316">ベンチマーク対象</text>
+  <text x="208" y="191" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">代表的な~10種インスタンスタイプ</text>
+  <text x="208" y="207" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">ml.c5, ml.m5, ml.g4dn, ml.p3, inf1...</text>
+  <text x="208" y="223" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">所要時間: 約45分</text>
+
+  <!-- Recommendations output -->
+  <rect x="30" y="248" width="357" height="55" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1"/>
+  <text x="208" y="265" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">推薦結果</text>
+  <text x="208" y="281" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">ランク付きインスタンス推薦リスト</text>
+  <text x="208" y="297" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">コスト / レイテンシ / スループット</text>
+
+  <!-- ===== RIGHT: Advanced Job ===== -->
+  <text x="675" y="85" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#a855f7">Advanced Job (詳細)</text>
+
+  <!-- Inputs -->
+  <rect x="468" y="98" width="100" height="44" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="518" y="116" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">Model</text>
+  <text x="518" y="131" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">S3 Artifact</text>
+
+  <rect x="468" y="152" width="100" height="44" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="518" y="170" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">Traffic</text>
+  <text x="518" y="185" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Pattern</text>
+
+  <!-- Arrows -->
+  <line x1="568" y1="120" x2="595" y2="125" stroke="#a855f7" stroke-width="1.5"/>
+  <line x1="568" y1="174" x2="595" y2="168" stroke="#a855f7" stroke-width="1.5"/>
+  <polygon points="595,120 607,127 595,135" fill="#a855f7"/>
+
+  <!-- IR box -->
+  <rect x="607" y="110" width="200" height="44" rx="6" fill="#4c1d95"/>
+  <text x="707" y="129" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f1f5f9">Inference Recommender</text>
+  <text x="707" y="144" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#e9d5ff">Advanced Job</text>
+
+  <!-- Benchmark details -->
+  <rect x="468" y="210" width="400" height="75" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="668" y="227" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f97316">ベンチマーク対象</text>
+  <text x="668" y="243" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">カスタムインスタンスリスト + カスタムトラフィックパターン</text>
+  <text x="668" y="259" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">詳細なコスト/パフォーマンス分析</text>
+  <text x="668" y="275" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">所要時間: 約2時間</text>
+
+  <!-- Recommendations output -->
+  <rect x="468" y="298" width="400" height="55" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1"/>
+  <text x="668" y="316" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">推薦結果 (詳細)</text>
+  <text x="668" y="332" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">コスト最適 / レイテンシ最小 / スループット最大 の候補</text>
+  <text x="668" y="348" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">P50/P99レイテンシ, コスト/時間, RPS 比較</text>
+
+  <!-- Recommendation table -->
+  <rect x="30" y="375" width="840" height="110" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="450" y="392" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f1f5f9">推薦結果テーブル (例)</text>
+
+  <!-- Table header -->
+  <line x1="40" y1="400" x2="860" y2="400" stroke="#334155" stroke-width="1"/>
+  <text x="130" y="397" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">インスタンスタイプ</text>
+  <text x="300" y="397" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">コスト/時間</text>
+  <text x="450" y="397" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">P50レイテンシ</text>
+  <text x="620" y="397" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">P99レイテンシ</text>
+  <text x="780" y="397" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">スループット(RPS)</text>
+
+  <!-- Row 1 (recommended) -->
+  <rect x="40" y="402" width="820" height="22" rx="2" fill="#1e3a5f"/>
+  <text x="130" y="417" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">ml.c5.xlarge (*推薦)</text>
+  <text x="300" y="417" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">$0.204</text>
+  <text x="450" y="417" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">12 ms</text>
+  <text x="620" y="417" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">45 ms</text>
+  <text x="780" y="417" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">320</text>
+
+  <!-- Row 2 -->
+  <text x="130" y="436" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">ml.m5.2xlarge</text>
+  <text x="300" y="436" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">$0.461</text>
+  <text x="450" y="436" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">9 ms</text>
+  <text x="620" y="436" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">38 ms</text>
+  <text x="780" y="436" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">480</text>
+
+  <!-- Row 3 -->
+  <text x="130" y="455" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">ml.g4dn.xlarge</text>
+  <text x="300" y="455" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">$0.736</text>
+  <text x="450" y="455" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">5 ms</text>
+  <text x="620" y="455" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">18 ms</text>
+  <text x="780" y="455" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">850</text>
+
+  <!-- Deploy arrow -->
+  <line x1="750" y1="465" x2="800" y2="465" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="800,460 812,465 800,470" fill="#22c55e"/>
+  <text x="830" y="468" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#22c55e">Deploy</text>
+</svg>

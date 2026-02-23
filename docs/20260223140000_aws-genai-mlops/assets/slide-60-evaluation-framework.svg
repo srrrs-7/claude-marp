@@ -1,0 +1,73 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+  <text x="400" y="35" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">モデル評価フレームワーク</text>
+
+  <!-- Center hub -->
+  <circle cx="400" cy="240" r="58" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="400" y="233" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#4CC9F0" text-anchor="middle">モデル</text>
+  <text x="400" y="253" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#4CC9F0" text-anchor="middle">評価</text>
+
+  <!-- Branch 1: 精度指標 (top) -->
+  <line x1="400" y1="182" x2="400" y2="130" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-6 -4,5 4,5" fill="#4CC9F0" transform="translate(400,126) rotate(0)"/>
+  <rect x="300" y="55" width="200" height="68" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="400" y="82" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0" text-anchor="middle">精度指標</text>
+  <text x="400" y="100" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">Accuracy / F1 / AUC</text>
+  <text x="400" y="116" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">RMSE / BLEU / ROUGE</text>
+
+  <!-- Branch 2: 公平性 (top-right) -->
+  <line x1="450" y1="200" x2="545" y2="145" stroke="#F77F00" stroke-width="2"/>
+  <polygon points="0,-6 -4,5 4,5" fill="#F77F00" transform="translate(549,143) rotate(-55)"/>
+  <rect x="535" y="58" width="210" height="68" rx="8" fill="#1e3a5f" stroke="#F77F00" stroke-width="1"/>
+  <text x="640" y="82" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#F77F00" text-anchor="middle">公平性</text>
+  <text x="640" y="100" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">バイアス検出</text>
+  <text x="640" y="116" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">保護属性 (年齢/性別/人種)</text>
+
+  <!-- Branch 3: 説明可能性 (right) -->
+  <line x1="458" y1="240" x2="545" y2="240" stroke="#E63946" stroke-width="2"/>
+  <polygon points="0,-6 -4,5 4,5" fill="#E63946" transform="translate(549,240) rotate(90)"/>
+  <rect x="555" y="206" width="225" height="68" rx="8" fill="#1e3a5f" stroke="#E63946" stroke-width="1"/>
+  <text x="667" y="230" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#E63946" text-anchor="middle">説明可能性</text>
+  <text x="667" y="250" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">SHAP / LIME</text>
+  <text x="667" y="266" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">Feature Importance</text>
+
+  <!-- Branch 4: ロバスト性 (bottom-right) -->
+  <line x1="450" y1="282" x2="540" y2="340" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-6 -4,5 4,5" fill="#06D6A0" transform="translate(543,343) rotate(130)"/>
+  <rect x="535" y="350" width="230" height="68" rx="8" fill="#1e3a5f" stroke="#06D6A0" stroke-width="1"/>
+  <text x="650" y="375" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#06D6A0" text-anchor="middle">ロバスト性</text>
+  <text x="650" y="395" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">外れ値耐性</text>
+  <text x="650" y="411" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">敵対的サンプル</text>
+
+  <!-- Branch 5: ビジネス指標 (bottom) -->
+  <line x1="400" y1="298" x2="400" y2="350" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-6 -4,5 4,5" fill="#4CC9F0" transform="translate(400,354) rotate(180)"/>
+  <rect x="270" y="358" width="260" height="68" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="400" y="382" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0" text-anchor="middle">ビジネス指標</text>
+  <text x="400" y="400" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">ROI / スループット</text>
+  <text x="400" y="416" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">レイテンシ / 可用性</text>
+
+  <!-- Branch left: (implicit from center to left area) -->
+  <!-- We'll add a 5th branch going top-left: Generative AI metrics -->
+  <line x1="350" y1="200" x2="260" y2="145" stroke="#4CC9F0" stroke-width="2" stroke-dasharray="4,2"/>
+
+  <!-- AWS Services box (left side) -->
+  <rect x="20" y="58" width="280" height="180" rx="8" fill="#0a2545" stroke="#2d4059" stroke-width="1"/>
+  <text x="160" y="83" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">AWS 評価サービス</text>
+  <line x1="30" y1="92" x2="290" y2="92" stroke="#2d4059" stroke-width="0.5"/>
+  <rect x="35" y="100" width="240" height="32" rx="4" fill="#1e3a5f"/>
+  <text x="155" y="118" font-family="Arial,sans-serif" font-size="12" fill="#4CC9F0" text-anchor="middle">SageMaker Clarify</text>
+  <text x="155" y="132" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">公平性 + 説明可能性 (SHAP)</text>
+  <rect x="35" y="144" width="240" height="32" rx="4" fill="#1e3a5f"/>
+  <text x="155" y="162" font-family="Arial,sans-serif" font-size="12" fill="#4CC9F0" text-anchor="middle">SageMaker Model Monitor</text>
+  <text x="155" y="176" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">継続的評価 + ドリフト検出</text>
+  <rect x="35" y="188" width="240" height="32" rx="4" fill="#1e3a5f"/>
+  <text x="155" y="206" font-family="Arial,sans-serif" font-size="12" fill="#4CC9F0" text-anchor="middle">Amazon Bedrock Evaluation</text>
+  <text x="155" y="220" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">LLM / 生成AI専用評価</text>
+
+  <!-- Bottom annotation -->
+  <rect x="20" y="442" width="760" height="48" rx="6" fill="#111e2d"/>
+  <text x="400" y="462" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">試験ポイント: Clarify = バイアス検出 + SHAP説明可能性 の両方を提供する重要サービス</text>
+  <text x="400" y="482" font-family="Arial,sans-serif" font-size="11" fill="#06D6A0" text-anchor="middle">★ 公平性・説明可能性・ビジネス指標を組み合わせた総合評価が重要</text>
+</svg>

@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="28" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f1f5f9">Managed Spot Training チェックポイントフロー</text>
+
+  <!-- Timeline steps -->
+  <!-- Step 1: Spot Launch -->
+  <rect x="20" y="70" width="130" height="100" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="85" y="92" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">1. Spot起動</text>
+  <text x="85" y="112" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">低コストで</text>
+  <text x="85" y="127" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">インスタンス</text>
+  <text x="85" y="142" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">確保</text>
+  <text x="85" y="162" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#22c55e">On-demand比</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="150" y1="120" x2="185" y2="120" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="185,120 173,115 173,125" fill="#3b82f6"/>
+
+  <!-- Step 2: Training + Checkpoint -->
+  <rect x="185" y="70" width="140" height="100" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="255" y="92" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">2. 学習 + 保存</text>
+  <text x="255" y="112" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">学習開始</text>
+  <text x="255" y="127" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">定期チェック</text>
+  <text x="255" y="142" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">ポイント保存</text>
+  <text x="255" y="160" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#3b82f6">→ S3</text>
+
+  <!-- S3 checkpoint -->
+  <rect x="240" y="195" width="90" height="40" rx="5" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="285" y="211" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="bold" fill="#14b8a6">S3</text>
+  <text x="285" y="227" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">checkpoint/</text>
+  <line x1="255" y1="170" x2="270" y2="195" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <polygon points="270,195 262,185 274,184" fill="#14b8a6"/>
+
+  <!-- Arrow 2→3 -->
+  <line x1="325" y1="120" x2="360" y2="120" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="360,120 348,115 348,125" fill="#ef4444"/>
+
+  <!-- Step 3: Interruption -->
+  <rect x="360" y="70" width="130" height="100" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <text x="425" y="92" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#ef4444">3. Spot中断</text>
+  <text x="425" y="112" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">AWS容量不足</text>
+  <text x="425" y="127" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">2分前通知</text>
+  <text x="425" y="142" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">インスタンス</text>
+  <text x="425" y="157" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#ef4444">終了</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="490" y1="120" x2="525" y2="120" stroke="#f97316" stroke-width="2"/>
+  <polygon points="525,120 513,115 513,125" fill="#f97316"/>
+
+  <!-- Step 4: New Spot -->
+  <rect x="525" y="70" width="130" height="100" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="590" y="92" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f97316">4. 新規起動</text>
+  <text x="590" y="112" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">自動で新規</text>
+  <text x="590" y="127" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Spot確保</text>
+  <text x="590" y="142" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">(SageMaker</text>
+  <text x="590" y="157" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316">自動管理)</text>
+
+  <!-- S3 restore arrow -->
+  <line x1="590" y1="195" x2="575" y2="170" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <polygon points="575,170 583,182 570,180" fill="#14b8a6"/>
+  <rect x="540" y="195" width="100" height="40" rx="5" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="590" y="211" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="bold" fill="#14b8a6">S3復元</text>
+  <text x="590" y="227" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">チェックポイント読込</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="655" y1="120" x2="690" y2="120" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="690,120 678,115 678,125" fill="#22c55e"/>
+
+  <!-- Step 5: Resume and Complete -->
+  <rect x="690" y="70" width="180" height="100" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="780" y="92" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">5. 再開 → 完了</text>
+  <text x="780" y="112" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">続きから学習再開</text>
+  <text x="780" y="127" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">学習完了後</text>
+  <text x="780" y="142" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Model Artifacts</text>
+  <text x="780" y="157" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#22c55e">→ S3 保存</text>
+
+  <!-- Config settings box -->
+  <rect x="20" y="270" width="390" height="110" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="215" y="292" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">Estimator 設定</text>
+  <text x="215" y="315" text-anchor="middle" font-family="sans-serif" font-size="9" font-family="monospace" fill="#22c55e">use_spot_instances=True</text>
+  <text x="215" y="335" text-anchor="middle" font-family="sans-serif" font-size="9" font-family="monospace" fill="#3b82f6">max_wait=7200  # 最大待機時間(秒)</text>
+  <text x="215" y="355" text-anchor="middle" font-family="sans-serif" font-size="9" font-family="monospace" fill="#f97316">max_run=3600   # 最大実行時間(秒)</text>
+  <text x="215" y="372" text-anchor="middle" font-family="sans-serif" font-size="9" font-family="monospace" fill="#14b8a6">checkpoint_s3_uri="s3://..."</text>
+
+  <!-- Cost comparison -->
+  <rect x="430" y="270" width="440" height="110" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="650" y="292" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">コスト比較 (ml.p3.2xlarge)</text>
+
+  <!-- On-demand bar -->
+  <text x="460" y="315" text-anchor="start" font-family="sans-serif" font-size="9" fill="#94a3b8">On-demand</text>
+  <rect x="540" y="305" width="300" height="18" rx="3" fill="#ef4444" fill-opacity="0.7"/>
+  <text x="845" y="318" text-anchor="end" font-family="sans-serif" font-size="9" fill="#ef4444">$3.825/hr</text>
+
+  <!-- Spot bar -->
+  <text x="460" y="345" text-anchor="start" font-family="sans-serif" font-size="9" fill="#94a3b8">Spot</text>
+  <rect x="540" y="335" width="90" height="18" rx="3" fill="#22c55e" fill-opacity="0.7"/>
+  <text x="845" y="348" text-anchor="end" font-family="sans-serif" font-size="9" fill="#22c55e">~$0.38/hr</text>
+
+  <text x="650" y="372" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">最大 90% コスト削減</text>
+
+  <text x="450" y="410" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f97316">チェックポイント実装が必須: 中断されても失われた進捗を最小化</text>
+  <text x="450" y="430" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Max Wait &gt; Max Run が必要 (中断待機時間を確保)</text>
+  <text x="450" y="450" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">試験ポイント: Spot が向かないケース = リアルタイム推論, 短時間ジョブ</text>
+</svg>

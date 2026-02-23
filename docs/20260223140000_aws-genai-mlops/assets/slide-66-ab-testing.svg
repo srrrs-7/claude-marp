@@ -1,0 +1,78 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+  <text x="400" y="35" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">A/B テスト設計</text>
+
+  <!-- Traffic source -->
+  <rect x="30" y="55" width="160" height="55" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="110" y="79" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">本番トラフィック</text>
+  <text x="110" y="99" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">100%</text>
+
+  <!-- Arrow to split -->
+  <line x1="190" y1="82" x2="235" y2="82" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-6 -4,5 4,5" fill="#4CC9F0" transform="translate(238,82) rotate(90)"/>
+
+  <!-- Traffic split box -->
+  <rect x="238" y="60" width="150" height="45" rx="6" fill="#2d4059" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="313" y="83" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0" text-anchor="middle">トラフィック分割</text>
+  <text x="313" y="99" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">Production Variants</text>
+
+  <!-- Branch A (70%) -->
+  <line x1="313" y1="105" x2="313" y2="135" stroke="#aaaaaa" stroke-width="1"/>
+  <line x1="313" y1="135" x2="200" y2="145" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#4CC9F0" transform="translate(197,147) rotate(-30)"/>
+
+  <rect x="30" y="155" width="250" height="130" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="155" y="181" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#4CC9F0" text-anchor="middle">モデル A (現行)</text>
+  <text x="155" y="201" font-family="Arial,sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">initial_weight: 70%</text>
+  <text x="155" y="225" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">メトリクス収集中:</text>
+  <text x="155" y="243" font-family="Arial,sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">CTR: 3.2% | 精度: 91%</text>
+  <text x="155" y="261" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">レイテンシ: 120ms</text>
+  <text x="155" y="277" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">コンバージョン: 5.1%</text>
+
+  <!-- Branch B (30%) -->
+  <line x1="313" y1="135" x2="440" y2="145" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#06D6A0" transform="translate(443,147) rotate(30)"/>
+
+  <rect x="440" y="155" width="250" height="130" rx="8" fill="#0f3460" stroke="#06D6A0" stroke-width="2"/>
+  <text x="565" y="181" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#06D6A0" text-anchor="middle">モデル B (新規)</text>
+  <text x="565" y="201" font-family="Arial,sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">initial_weight: 30%</text>
+  <text x="565" y="225" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">メトリクス収集中:</text>
+  <text x="565" y="243" font-family="Arial,sans-serif" font-size="11" fill="#06D6A0" text-anchor="middle">CTR: 3.8% | 精度: 94%</text>
+  <text x="565" y="261" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">レイテンシ: 135ms</text>
+  <text x="565" y="277" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">コンバージョン: 5.9%</text>
+
+  <!-- Both arrows to statistical test -->
+  <line x1="155" y1="285" x2="155" y2="315" stroke="#aaaaaa" stroke-width="1"/>
+  <line x1="565" y1="285" x2="565" y2="315" stroke="#aaaaaa" stroke-width="1"/>
+  <line x1="155" y1="315" x2="565" y2="315" stroke="#aaaaaa" stroke-width="1"/>
+  <line x1="360" y1="315" x2="360" y2="335" stroke="#aaaaaa" stroke-width="1.5"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#aaaaaa" transform="translate(360,338) rotate(180)"/>
+
+  <!-- Statistical significance box -->
+  <rect x="225" y="338" width="270" height="45" rx="6" fill="#2d4059" stroke="#F77F00" stroke-width="1"/>
+  <text x="360" y="361" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#F77F00" text-anchor="middle">統計的有意性テスト</text>
+  <text x="360" y="377" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">p-value &lt; 0.05 で有意差あり</text>
+
+  <!-- Decision -->
+  <line x1="360" y1="383" x2="360" y2="400" stroke="#F77F00" stroke-width="1.5"/>
+
+  <!-- Decision diamond -->
+  <polygon points="360,403 395,423 360,443 325,423" fill="#1e3a5f" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="360" y="427" font-family="Arial,sans-serif" font-size="9" fill="#F77F00" text-anchor="middle">B が A より優れ？</text>
+
+  <!-- Yes path -->
+  <line x1="395" y1="423" x2="480" y2="423" stroke="#06D6A0" stroke-width="1.5"/>
+  <rect x="480" y="410" width="160" height="26" rx="4" fill="#06D6A0" opacity="0.8"/>
+  <text x="560" y="427" font-family="Arial,sans-serif" font-size="11" fill="#0d1b2a" text-anchor="middle" font-weight="bold">B を 100% へ昇格</text>
+
+  <!-- No path -->
+  <line x1="325" y1="423" x2="162" y2="423" stroke="#E63946" stroke-width="1.5"/>
+  <rect x="80" y="410" width="82" height="26" rx="4" fill="#E63946" opacity="0.8"/>
+  <text x="121" y="427" font-family="Arial,sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="bold">A を維持</text>
+
+  <!-- SageMaker note -->
+  <rect x="30" y="455" width="740" height="38" rx="6" fill="#111e2d"/>
+  <text x="400" y="470" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">SageMaker: CreateEndpointConfig で ProductionVariants を複数設定 →</text>
+  <text x="400" y="486" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">initial_variant_weight で各バリアントのトラフィック比率を指定</text>
+</svg>

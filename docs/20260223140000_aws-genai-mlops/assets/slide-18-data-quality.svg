@@ -1,0 +1,49 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="36" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">データ品質の4つの次元</text>
+  <!-- Center badge -->
+  <circle cx="400" cy="260" r="55" fill="#2d4059" stroke="#4CC9F0" stroke-width="2.5"/>
+  <text x="400" y="252" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffffff">データ</text>
+  <text x="400" y="270" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#4CC9F0">品質</text>
+  <!-- Top-left: 完全性 -->
+  <rect x="35" y="65" width="310" height="165" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="190" y="92" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#4CC9F0">完全性 (Completeness)</text>
+  <text x="190" y="118" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">欠損値ゼロ・必須項目の充足</text>
+  <text x="190" y="140" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">メトリクス: 欠損率 = 欠損数 / 総レコード数</text>
+  <text x="190" y="162" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">例: 顧客IDが全行に存在するか</text>
+  <text x="190" y="182" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">Glue DataQuality: ColumnValues.completeness</text>
+  <text x="190" y="200" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">SageMaker Clarify: 欠損分布分析</text>
+  <text x="190" y="220" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4CC9F0">目標: 欠損率 &lt; 1%</text>
+  <!-- Top-right: 正確性 -->
+  <rect x="455" y="65" width="310" height="165" rx="8" fill="#0f3460" stroke="#06D6A0" stroke-width="2"/>
+  <text x="610" y="92" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#06D6A0">正確性 (Accuracy)</text>
+  <text x="610" y="118" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">実世界との一致・エラー率最小化</text>
+  <text x="610" y="140" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">メトリクス: エラー率 = 誤データ数 / 総数</text>
+  <text x="610" y="162" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">例: 年齢フィールドが0〜120の範囲</text>
+  <text x="610" y="182" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">ColumnValues.isInRange() ルール</text>
+  <text x="610" y="200" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">外れ値検出: IQR法 / Z-score</text>
+  <text x="610" y="220" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#06D6A0">目標: エラー率 &lt; 0.1%</text>
+  <!-- Bottom-left: 一貫性 -->
+  <rect x="35" y="310" width="310" height="165" rx="8" fill="#0a2545" stroke="#E63946" stroke-width="2"/>
+  <text x="190" y="337" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#E63946">一貫性 (Consistency)</text>
+  <text x="190" y="363" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">データ間の矛盾なし・重複排除</text>
+  <text x="190" y="385" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">メトリクス: 重複率・参照整合性違反数</text>
+  <text x="190" y="407" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">例: 同一顧客IDで異なる住所</text>
+  <text x="190" y="427" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">ColumnValues.uniqueness() ルール</text>
+  <text x="190" y="447" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#E63946">Glue DataBrew で重複除去</text>
+  <text x="190" y="465" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#E63946">目標: 重複率 = 0%</text>
+  <!-- Bottom-right: 適時性 -->
+  <rect x="455" y="310" width="310" height="165" rx="8" fill="#1a3a5f" stroke="#F77F00" stroke-width="2"/>
+  <text x="610" y="337" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#F77F00">適時性 (Timeliness)</text>
+  <text x="610" y="363" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">データの鮮度・更新頻度の適切さ</text>
+  <text x="610" y="385" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">メトリクス: データ遅延時間 / 更新間隔</text>
+  <text x="610" y="407" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">例: 在庫データは5分以内に更新</text>
+  <text x="610" y="427" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">ColumnValues.age() &lt; 300 (秒)</text>
+  <text x="610" y="447" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#F77F00">Kinesis → リアルタイム鮮度維持</text>
+  <text x="610" y="465" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#F77F00">目標: SLA内でのデータ提供</text>
+  <!-- Diagonal connections to center -->
+  <line x1="345" y1="230" x2="355" y2="220" stroke="#4CC9F0" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="455" y1="220" x2="445" y2="230" stroke="#06D6A0" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="345" y1="295" x2="355" y2="305" stroke="#E63946" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="455" y1="305" x2="445" y2="295" stroke="#F77F00" stroke-width="1" stroke-dasharray="4,3"/>
+</svg>

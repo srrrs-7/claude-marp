@@ -1,0 +1,71 @@
+<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">分類指標 選択フローチャート</text>
+  <!-- Start node -->
+  <rect x="310" y="40" width="180" height="36" rx="18" fill="rgba(148,163,184,0.3)" stroke="#94a3b8" stroke-width="2"/>
+  <text x="400" y="63" text-anchor="middle" font-size="12" fill="#f8f8f8">分類タスク開始</text>
+  <!-- Arrow down -->
+  <line x1="400" y1="76" x2="400" y2="96" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="396,94 400,104 404,94" fill="#94a3b8"/>
+  <!-- Q1: class imbalance? -->
+  <polygon points="400,104 520,142 400,180 280,142" fill="rgba(251,146,60,0.2)" stroke="#fb923c" stroke-width="2"/>
+  <text x="400" y="137" text-anchor="middle" font-size="11" fill="#f8f8f8">クラス不均衡</text>
+  <text x="400" y="153" text-anchor="middle" font-size="11" fill="#f8f8f8">がある？</text>
+  <!-- YES branch (left) -->
+  <line x1="280" y1="142" x2="160" y2="142" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="158,138 148,142 158,146" fill="#94a3b8"/>
+  <text x="220" y="132" text-anchor="middle" font-size="10" fill="#34d399">Yes</text>
+  <!-- NO branch (right) -->
+  <line x1="520" y1="142" x2="640" y2="142" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="638,138 648,142 638,146" fill="#94a3b8"/>
+  <text x="584" y="132" text-anchor="middle" font-size="10" fill="#f472b6">No</text>
+  <!-- Left (imbalanced) -> Q2: cost asymmetric? -->
+  <line x1="148" y1="142" x2="148" y2="220" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="144,218 148,228 152,218" fill="#94a3b8"/>
+  <polygon points="148,228 218,258 148,288 78,258" fill="rgba(251,146,60,0.2)" stroke="#fb923c" stroke-width="2"/>
+  <text x="148" y="253" text-anchor="middle" font-size="11" fill="#f8f8f8">コスト</text>
+  <text x="148" y="269" text-anchor="middle" font-size="11" fill="#f8f8f8">非対称？</text>
+  <!-- Left-left: FN costly -->
+  <line x1="78" y1="258" x2="30" y2="258" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="28,254 18,258 28,262" fill="#94a3b8"/>
+  <text x="52" y="248" text-anchor="middle" font-size="10" fill="#34d399">FN高コスト</text>
+  <rect x="18" y="272" width="100" height="54" rx="8" fill="rgba(96,165,250,0.2)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="68" y="292" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">Recall</text>
+  <text x="68" y="308" text-anchor="middle" font-size="10" fill="#f8f8f8">F2 Score</text>
+  <text x="68" y="320" text-anchor="middle" font-size="10" fill="#94a3b8">PR-AUC</text>
+  <!-- Left-right: FP costly -->
+  <line x1="218" y1="258" x2="266" y2="258" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="264,254 274,258 264,262" fill="#94a3b8"/>
+  <text x="240" y="248" text-anchor="middle" font-size="10" fill="#34d399">FP高コスト</text>
+  <rect x="262" y="244" width="100" height="50" rx="8" fill="rgba(167,139,250,0.2)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="312" y="262" text-anchor="middle" font-size="11" font-weight="bold" fill="#a78bfa">Precision</text>
+  <text x="312" y="278" text-anchor="middle" font-size="10" fill="#f8f8f8">F0.5 Score</text>
+  <text x="312" y="292" text-anchor="middle" font-size="10" fill="#94a3b8">PR-AUC</text>
+  <!-- Both sides: always MCC -->
+  <text x="148" y="308" text-anchor="middle" font-size="9" fill="#34d399">+MCC / F1</text>
+  <!-- Right (balanced) -> Q3: need prob? -->
+  <line x1="648" y1="142" x2="648" y2="220" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="644,218 648,228 652,218" fill="#94a3b8"/>
+  <polygon points="648,228 718,258 648,288 578,258" fill="rgba(52,211,153,0.2)" stroke="#34d399" stroke-width="2"/>
+  <text x="648" y="253" text-anchor="middle" font-size="11" fill="#f8f8f8">確率スコア</text>
+  <text x="648" y="269" text-anchor="middle" font-size="11" fill="#f8f8f8">を評価？</text>
+  <!-- Right-left: yes prob -->
+  <line x1="578" y1="258" x2="530" y2="258" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="528,254 518,258 528,262" fill="#94a3b8"/>
+  <text x="553" y="248" text-anchor="middle" font-size="10" fill="#34d399">Yes</text>
+  <rect x="418" y="244" width="100" height="50" rx="8" fill="rgba(96,165,250,0.2)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="468" y="262" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">AUC-ROC</text>
+  <text x="468" y="278" text-anchor="middle" font-size="10" fill="#f8f8f8">Log Loss</text>
+  <text x="468" y="292" text-anchor="middle" font-size="10" fill="#94a3b8">PR-AUC</text>
+  <!-- Right-right: no prob (hard label) -->
+  <line x1="718" y1="258" x2="760" y2="258" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="758,254 768,258 758,262" fill="#94a3b8"/>
+  <text x="742" y="248" text-anchor="middle" font-size="10" fill="#f472b6">No</text>
+  <rect x="666" y="244" width="104" height="50" rx="8" fill="rgba(52,211,153,0.2)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="718" y="262" text-anchor="middle" font-size="11" font-weight="bold" fill="#34d399">Accuracy</text>
+  <text x="718" y="278" text-anchor="middle" font-size="10" fill="#f8f8f8">F1 Score</text>
+  <text x="718" y="292" text-anchor="middle" font-size="10" fill="#94a3b8">MCC</text>
+  <!-- Always add note -->
+  <rect x="100" y="358" width="600" height="48" rx="10" fill="rgba(148,163,184,0.1)" stroke="#475569" stroke-width="1"/>
+  <text x="400" y="378" text-anchor="middle" font-size="11" font-weight="bold" fill="#94a3b8">共通原則</text>
+  <text x="400" y="396" text-anchor="middle" font-size="11" fill="#f8f8f8">MCC または Balanced Accuracy を補助指標として常に確認 | 複数指標を並列記録する</text>
+</svg>

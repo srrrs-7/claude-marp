@@ -1,0 +1,44 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- formula -->
+  <rect x="50" y="14" width="700" height="56" rx="10" fill="rgba(52,211,153,0.15)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="400" y="42" text-anchor="middle" font-size="18" font-weight="bold" fill="#34d399">MAE = (1/n) · Σ |y_i − ŷ_i|</text>
+  <text x="400" y="62" text-anchor="middle" font-size="12" fill="#94a3b8">Mean Absolute Error — 絶対誤差の平均</text>
+  <!-- Visual: scatter with residuals -->
+  <!-- axis -->
+  <line x1="80" y1="280" x2="720" y2="280" stroke="#475569" stroke-width="1.5"/>
+  <line x1="80" y1="100" x2="80" y2="280" stroke="#475569" stroke-width="1.5"/>
+  <text x="400" y="302" text-anchor="middle" font-size="11" fill="#94a3b8">サンプルインデックス</text>
+  <text x="40" y="195" text-anchor="middle" font-size="11" fill="#94a3b8" transform="rotate(-90,40,195)">値</text>
+  <!-- Prediction line (fitted) -->
+  <line x1="100" y1="240" x2="700" y2="140" stroke="#34d399" stroke-width="2"/>
+  <text x="715" y="138" font-size="11" fill="#34d399">ŷ (予測)</text>
+  <!-- Data points and MAE residuals (7 points) -->
+  <!-- Point 1: x=130, y_true=220, y_pred=235 → residual=15 -->
+  <circle cx="130" cy="220" r="5" fill="#f8f8f8"/>
+  <line x1="130" y1="220" x2="130" y2="232" stroke="#fb923c" stroke-width="2"/>
+  <!-- Point 2: x=210, y_true=190, y_pred=220 → residual=30 -->
+  <circle cx="210" cy="190" r="5" fill="#f8f8f8"/>
+  <line x1="210" y1="190" x2="210" y2="220" stroke="#fb923c" stroke-width="2"/>
+  <text x="230" y="208" font-size="9" fill="#fb923c">30</text>
+  <!-- Point 3: x=300, y_true=250, y_pred=207 → residual=-43 (overshoot) -->
+  <circle cx="300" cy="250" r="5" fill="#f8f8f8"/>
+  <line x1="300" y1="207" x2="300" y2="250" stroke="#fb923c" stroke-width="2"/>
+  <text x="310" y="235" font-size="9" fill="#fb923c">43</text>
+  <!-- Point 4: x=380, y_true=185, y_pred=195 → residual=10 -->
+  <circle cx="380" cy="185" r="5" fill="#f8f8f8"/>
+  <line x1="380" y1="185" x2="380" y2="194" stroke="#fb923c" stroke-width="2"/>
+  <!-- Point 5: x=470, y_true=175, y_pred=182 → residual=7 -->
+  <circle cx="470" cy="175" r="5" fill="#f8f8f8"/>
+  <line x1="470" y1="175" x2="470" y2="181" stroke="#fb923c" stroke-width="2"/>
+  <!-- Point 6: x=560, y_true=162, y_pred=169 → residual=7 -->
+  <circle cx="560" cy="162" r="5" fill="#f8f8f8"/>
+  <line x1="560" y1="162" x2="560" y2="169" stroke="#fb923c" stroke-width="2"/>
+  <!-- Point 7: x=650, y_true=140, y_pred=157 → residual=17 -->
+  <circle cx="650" cy="140" r="5" fill="#f8f8f8"/>
+  <line x1="650" y1="140" x2="650" y2="156" stroke="#fb923c" stroke-width="2"/>
+  <text x="665" y="150" font-size="9" fill="#fb923c">17</text>
+  <!-- MAE annotation -->
+  <rect x="50" y="308" width="700" height="40" rx="8" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1"/>
+  <text x="400" y="326" text-anchor="middle" font-size="12" fill="#f8f8f8">各サンプルの絶対誤差（オレンジ縦線）の平均 = MAE</text>
+  <text x="400" y="342" text-anchor="middle" font-size="11" fill="#94a3b8">特徴: 外れ値に強い / 単位は元データと同じ / 直感的に解釈しやすい</text>
+</svg>

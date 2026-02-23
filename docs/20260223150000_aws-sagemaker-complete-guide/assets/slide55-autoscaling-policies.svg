@@ -1,0 +1,134 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" fill="#f1f5f9" font-size="16" font-weight="bold" font-family="sans-serif">Auto Scaling ポリシー比較</text>
+
+  <!-- Panel 1: Target Tracking -->
+  <rect x="20" y="50" width="270" height="430" rx="10" fill="#1e293b" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <rect x="20" y="50" width="270" height="45" rx="10" fill="#22c55e"/>
+  <rect x="20" y="80" width="270" height="15" fill="#22c55e"/>
+  <text x="155" y="78" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">Target Tracking</text>
+
+  <text x="155" y="115" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">目標値を設定し自動調整</text>
+
+  <!-- Target Tracking Graph -->
+  <rect x="35" y="128" width="240" height="130" rx="6" fill="#0f172a"/>
+  <!-- Grid lines -->
+  <line x1="35" y1="190" x2="275" y2="190" stroke="#1e293b" stroke-width="1"/>
+  <line x1="35" y1="165" x2="275" y2="165" stroke="#1e293b" stroke-width="1"/>
+  <line x1="35" y1="215" x2="275" y2="215" stroke="#1e293b" stroke-width="1"/>
+  <!-- Target line -->
+  <line x1="35" y1="190" x2="275" y2="190" stroke="#22c55e" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="40" y="187" fill="#22c55e" font-size="9" font-family="sans-serif">Target=70</text>
+  <!-- Metric line (fluctuating around target) -->
+  <polyline points="35,220 70,210 100,185 130,195 160,175 190,200 220,188 250,192 275,186"
+            stroke="#3b82f6" stroke-width="2" fill="none"/>
+  <!-- Instance count bar chart below -->
+  <rect x="60" y="232" width="20" height="20" fill="#22c55e" opacity="0.7"/>
+  <rect x="90" y="225" width="20" height="27" fill="#22c55e" opacity="0.7"/>
+  <rect x="120" y="218" width="20" height="34" fill="#22c55e" opacity="0.7"/>
+  <rect x="150" y="225" width="20" height="27" fill="#22c55e" opacity="0.7"/>
+  <rect x="180" y="230" width="20" height="22" fill="#22c55e" opacity="0.7"/>
+  <text x="155" y="268" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">インスタンス数自動調整</text>
+
+  <text x="155" y="290" text-anchor="middle" fill="#f1f5f9" font-size="11" font-weight="bold" font-family="sans-serif">メトリクス例</text>
+  <text x="155" y="310" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">InvocationsPerInstance</text>
+  <text x="155" y="328" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">SageMakerVariantInvocationsPerInstance</text>
+
+  <rect x="35" y="345" width="240" height="60" rx="6" fill="#0f172a"/>
+  <text x="155" y="365" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold" font-family="sans-serif">最も一般的な設定方法</text>
+  <text x="155" y="383" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">目標値を超えたら自動スケールアウト</text>
+  <text x="155" y="399" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">下回ったら自動スケールイン</text>
+
+  <text x="155" y="448" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">ベストプラクティス: 推奨設定</text>
+  <text x="155" y="465" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">ScaleInCooldown / ScaleOutCooldown</text>
+
+  <!-- Panel 2: Step Scaling -->
+  <rect x="315" y="50" width="270" height="430" rx="10" fill="#1e293b" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <rect x="315" y="50" width="270" height="45" rx="10" fill="#f97316"/>
+  <rect x="315" y="80" width="270" height="15" fill="#f97316"/>
+  <text x="450" y="78" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">Step Scaling</text>
+
+  <text x="450" y="115" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">閾値ステップで段階調整</text>
+
+  <!-- Step Scaling Graph -->
+  <rect x="330" y="128" width="240" height="130" rx="6" fill="#0f172a"/>
+  <!-- Threshold lines -->
+  <line x1="330" y1="185" x2="570" y2="185" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="330" y1="165" x2="570" y2="165" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="330" y1="210" x2="570" y2="210" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="335" y="183" fill="#f97316" font-size="8" font-family="sans-serif">Alarm1</text>
+  <text x="335" y="163" fill="#ef4444" font-size="8" font-family="sans-serif">Alarm2</text>
+  <text x="335" y="208" fill="#22c55e" font-size="8" font-family="sans-serif">Normal</text>
+  <!-- Metric climbing -->
+  <polyline points="330,230 365,215 395,200 420,178 445,160 470,175 510,190 545,215 570,225"
+            stroke="#3b82f6" stroke-width="2" fill="none"/>
+  <!-- Step adjustments -->
+  <rect x="340" y="235" width="30" height="15" fill="#22c55e" opacity="0.8"/>
+  <rect x="378" y="232" width="30" height="18" fill="#f97316" opacity="0.8"/>
+  <rect x="416" y="226" width="30" height="24" fill="#ef4444" opacity="0.8"/>
+  <rect x="454" y="232" width="30" height="18" fill="#f97316" opacity="0.8"/>
+  <rect x="492" y="235" width="30" height="15" fill="#22c55e" opacity="0.8"/>
+  <text x="450" y="265" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">+1 → +2 → +3 インスタンス</text>
+
+  <text x="450" y="290" text-anchor="middle" fill="#f1f5f9" font-size="11" font-weight="bold" font-family="sans-serif">調整ステップ例</text>
+  <text x="450" y="310" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">0〜10: +1 インスタンス</text>
+  <text x="450" y="328" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">10〜20: +2 インスタンス</text>
+  <text x="450" y="346" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">20+: +3 インスタンス</text>
+
+  <rect x="330" y="360" width="240" height="50" rx="6" fill="#0f172a"/>
+  <text x="450" y="380" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold" font-family="sans-serif">CloudWatch アラームベース</text>
+  <text x="450" y="398" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">細かなスケーリング制御が必要な場合</text>
+
+  <text x="450" y="448" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">使用場面: 急激なスパイク対応</text>
+  <text x="450" y="465" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">段階的に大きな調整が必要な場合</text>
+
+  <!-- Panel 3: Scheduled -->
+  <rect x="610" y="50" width="270" height="430" rx="10" fill="#1e293b" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <rect x="610" y="50" width="270" height="45" rx="10" fill="#3b82f6"/>
+  <rect x="610" y="80" width="270" height="15" fill="#3b82f6"/>
+  <text x="745" y="78" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">Scheduled Scaling</text>
+
+  <text x="745" y="115" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">予測トラフィックに事前対応</text>
+
+  <!-- Scheduled Timeline Graph -->
+  <rect x="625" y="128" width="240" height="130" rx="6" fill="#0f172a"/>
+  <!-- Timeline axis -->
+  <line x1="630" y1="250" x2="860" y2="250" stroke="#475569" stroke-width="1"/>
+  <!-- Time labels -->
+  <text x="640" y="262" fill="#64748b" font-size="8" font-family="sans-serif">6時</text>
+  <text x="680" y="262" fill="#64748b" font-size="8" font-family="sans-serif">9時</text>
+  <text x="730" y="262" fill="#64748b" font-size="8" font-family="sans-serif">12時</text>
+  <text x="780" y="262" fill="#64748b" font-size="8" font-family="sans-serif">18時</text>
+  <text x="830" y="262" fill="#64748b" font-size="8" font-family="sans-serif">22時</text>
+  <!-- Instance count bars -->
+  <rect x="630" y="220" width="40" height="30" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="650" y="240" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">1台</text>
+  <!-- Scale-out at 9 -->
+  <line x1="678" y1="140" x2="678" y2="250" stroke="#22c55e" stroke-width="2" stroke-dasharray="4,3"/>
+  <rect x="678" y="160" width="100" height="90" fill="#22c55e" opacity="0.2"/>
+  <rect x="678" y="190" width="100" height="60" fill="#22c55e" opacity="0.3"/>
+  <text x="728" y="210" text-anchor="middle" fill="#22c55e" font-size="10" font-family="sans-serif">スケールアウト</text>
+  <text x="728" y="228" text-anchor="middle" fill="#f1f5f9" font-size="11" font-weight="bold" font-family="sans-serif">5台</text>
+  <!-- Scale-in at 22 -->
+  <line x1="830" y1="140" x2="830" y2="250" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+  <rect x="830" y="185" width="30" height="65" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="845" y="235" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">1台</text>
+
+  <!-- Schedule labels -->
+  <text x="678" y="138" text-anchor="middle" fill="#22c55e" font-size="9" font-family="sans-serif">9:00 ScaleOut</text>
+  <text x="830" y="138" text-anchor="middle" fill="#ef4444" font-size="9" font-family="sans-serif">22:00 ScaleIn</text>
+
+  <text x="745" y="290" text-anchor="middle" fill="#f1f5f9" font-size="11" font-weight="bold" font-family="sans-serif">スケジュール例</text>
+  <text x="745" y="310" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">毎朝9時: MinCapacity=5</text>
+  <text x="745" y="328" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">毎晩22時: MinCapacity=1</text>
+  <text x="745" y="346" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">週末: MaxCapacity=2</text>
+
+  <rect x="625" y="360" width="240" height="50" rx="6" fill="#0f172a"/>
+  <text x="745" y="380" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="bold" font-family="sans-serif">Cron / Rate 表現対応</text>
+  <text x="745" y="398" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">予測可能なトラフィックパターン</text>
+
+  <text x="745" y="448" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">使用場面: 営業時間帯対応</text>
+  <text x="745" y="465" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">イベント前の事前スケールアウト</text>
+</svg>

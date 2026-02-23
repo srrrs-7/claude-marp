@@ -1,0 +1,115 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+
+  <!-- Title -->
+  <text x="400" y="38" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">ハイパーパラメータ探索戦略比較</text>
+
+  <!-- Column 1: Grid Search -->
+  <rect x="20" y="55" width="240" height="330" rx="8" fill="#1e3a5f"/>
+  <text x="140" y="82" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#ffffff" text-anchor="middle">グリッドサーチ</text>
+
+  <!-- Grid dots -->
+  <g>
+    <circle cx="80" cy="115" r="5" fill="#4CC9F0"/>
+    <circle cx="110" cy="115" r="5" fill="#4CC9F0"/>
+    <circle cx="140" cy="115" r="5" fill="#4CC9F0"/>
+    <circle cx="170" cy="115" r="5" fill="#4CC9F0"/>
+    <circle cx="200" cy="115" r="5" fill="#4CC9F0"/>
+    <circle cx="80" cy="145" r="5" fill="#4CC9F0"/>
+    <circle cx="110" cy="145" r="5" fill="#4CC9F0"/>
+    <circle cx="140" cy="145" r="5" fill="#4CC9F0"/>
+    <circle cx="170" cy="145" r="5" fill="#4CC9F0"/>
+    <circle cx="200" cy="145" r="5" fill="#4CC9F0"/>
+    <circle cx="80" cy="175" r="5" fill="#4CC9F0"/>
+    <circle cx="110" cy="175" r="5" fill="#4CC9F0"/>
+    <circle cx="140" cy="175" r="5" fill="#4CC9F0"/>
+    <circle cx="170" cy="175" r="5" fill="#4CC9F0"/>
+    <circle cx="200" cy="175" r="5" fill="#4CC9F0"/>
+    <circle cx="80" cy="205" r="5" fill="#4CC9F0"/>
+    <circle cx="110" cy="205" r="5" fill="#4CC9F0"/>
+    <circle cx="140" cy="205" r="5" fill="#4CC9F0"/>
+    <circle cx="170" cy="205" r="5" fill="#4CC9F0"/>
+    <circle cx="200" cy="205" r="5" fill="#4CC9F0"/>
+    <circle cx="80" cy="235" r="5" fill="#4CC9F0"/>
+    <circle cx="110" cy="235" r="5" fill="#4CC9F0"/>
+    <circle cx="140" cy="235" r="5" fill="#4CC9F0"/>
+    <circle cx="170" cy="235" r="5" fill="#4CC9F0"/>
+    <circle cx="200" cy="235" r="5" fill="#4CC9F0"/>
+  </g>
+  <text x="140" y="275" font-family="Arial,sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">格子状に全組み合わせ探索</text>
+  <text x="140" y="295" font-family="Arial,sans-serif" font-size="13" fill="#E63946" text-anchor="middle" font-weight="bold">O(n^k) 計算量 — 非効率</text>
+  <text x="140" y="315" font-family="Arial,sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">少数パラメータに適用</text>
+  <text x="140" y="340" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">次元の呪いに弱い</text>
+  <text x="140" y="362" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">決定論的・再現性あり</text>
+
+  <!-- Column 2: Random Search -->
+  <rect x="280" y="55" width="240" height="330" rx="8" fill="#0f3460"/>
+  <text x="400" y="82" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#ffffff" text-anchor="middle">ランダム探索</text>
+
+  <!-- Scattered dots -->
+  <circle cx="330" cy="120" r="5" fill="#F77F00"/>
+  <circle cx="375" cy="140" r="5" fill="#F77F00"/>
+  <circle cx="420" cy="105" r="5" fill="#F77F00"/>
+  <circle cx="460" cy="155" r="5" fill="#F77F00"/>
+  <circle cx="340" cy="175" r="5" fill="#F77F00"/>
+  <circle cx="395" cy="200" r="5" fill="#F77F00"/>
+  <circle cx="450" cy="185" r="5" fill="#F77F00"/>
+  <circle cx="320" cy="220" r="5" fill="#F77F00"/>
+  <circle cx="415" cy="240" r="5" fill="#F77F00"/>
+  <circle cx="470" cy="210" r="5" fill="#F77F00"/>
+  <circle cx="355" cy="250" r="5" fill="#F77F00"/>
+  <circle cx="440" cy="130" r="5" fill="#F77F00"/>
+  <circle cx="310" cy="195" r="5" fill="#F77F00"/>
+  <circle cx="480" cy="240" r="5" fill="#F77F00"/>
+  <circle cx="360" cy="225" r="5" fill="#F77F00"/>
+
+  <text x="400" y="275" font-family="Arial,sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">ランダムな点を探索</text>
+  <text x="400" y="295" font-family="Arial,sans-serif" font-size="13" fill="#06D6A0" text-anchor="middle" font-weight="bold">グリッドより効率的</text>
+  <text x="400" y="315" font-family="Arial,sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">高次元に有効</text>
+  <text x="400" y="340" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">重要度の低い次元を無駄にしない</text>
+  <text x="400" y="362" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">確率的・シード設定で再現</text>
+
+  <!-- Column 3: Bayesian Optimization -->
+  <rect x="540" y="55" width="240" height="330" rx="8" fill="#0a2545" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="660" y="82" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#4CC9F0" text-anchor="middle">ベイズ最適化 ★推奨</text>
+
+  <!-- Path toward optimum -->
+  <rect x="555" y="100" width="210" height="160" rx="4" fill="#0d1b2a"/>
+  <!-- contour lines -->
+  <ellipse cx="700" cy="155" rx="80" ry="60" fill="none" stroke="#1e3a5f" stroke-width="1"/>
+  <ellipse cx="700" cy="155" rx="55" ry="40" fill="none" stroke="#2d4059" stroke-width="1"/>
+  <ellipse cx="700" cy="155" rx="30" ry="22" fill="none" stroke="#4CC9F0" stroke-width="1" opacity="0.4"/>
+  <!-- exploration path -->
+  <polyline points="575,210 610,190 640,175 665,162 685,155 700,153" stroke="#06D6A0" stroke-width="2" fill="none" stroke-dasharray="4,2"/>
+  <!-- dots along path -->
+  <circle cx="575" cy="210" r="5" fill="#F77F00"/>
+  <circle cx="610" cy="190" r="5" fill="#F77F00"/>
+  <circle cx="640" cy="175" r="5" fill="#F77F00"/>
+  <circle cx="665" cy="162" r="5" fill="#F77F00"/>
+  <circle cx="685" cy="155" r="5" fill="#4CC9F0"/>
+  <circle cx="700" cy="153" r="7" fill="#06D6A0"/>
+  <text x="712" y="148" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">最適</text>
+
+  <text x="660" y="275" font-family="Arial,sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">獲得関数で次の点を選択</text>
+  <text x="660" y="295" font-family="Arial,sans-serif" font-size="13" fill="#06D6A0" text-anchor="middle" font-weight="bold">少ない試行で最適解</text>
+  <text x="660" y="315" font-family="Arial,sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">SageMaker AMT デフォルト</text>
+  <text x="660" y="340" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">ガウス過程で事後分布推定</text>
+  <text x="660" y="362" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">探索と活用のトレードオフ</text>
+
+  <!-- Bottom efficiency comparison -->
+  <rect x="20" y="400" width="760" height="80" rx="8" fill="#111e2d"/>
+  <text x="400" y="423" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">効率性比較 (同一試行数での最適解発見率)</text>
+  <!-- bar: grid -->
+  <text x="70" y="455" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">グリッド</text>
+  <rect x="30" y="460" width="80" height="10" rx="3" fill="#E63946"/>
+  <text x="70" y="480" font-family="Arial,sans-serif" font-size="11" fill="#E63946" text-anchor="middle">低</text>
+  <!-- bar: random -->
+  <text x="240" y="455" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">ランダム</text>
+  <rect x="175" y="455" width="130" height="10" rx="3" fill="#F77F00"/>
+  <text x="240" y="480" font-family="Arial,sans-serif" font-size="11" fill="#F77F00" text-anchor="middle">中</text>
+  <!-- bar: bayesian -->
+  <text x="560" y="455" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">ベイズ最適化</text>
+  <rect x="380" y="455" width="360" height="10" rx="3" fill="#06D6A0"/>
+  <text x="560" y="480" font-family="Arial,sans-serif" font-size="11" fill="#06D6A0" text-anchor="middle">★ 高</text>
+</svg>

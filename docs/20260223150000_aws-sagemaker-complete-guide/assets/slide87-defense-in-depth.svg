@@ -1,0 +1,107 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="28" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#f1f5f9">ネットワーク深層防御モデル</text>
+
+  <!-- Layer 1: Outermost - AWS Global (large ellipse background) -->
+  <ellipse cx="450" cy="262" rx="420" ry="220" fill="#0f1f35" stroke="#ef4444" stroke-width="2"/>
+
+  <!-- Layer 2: Network -->
+  <ellipse cx="450" cy="262" rx="340" ry="178" fill="#111e30" stroke="#f97316" stroke-width="2"/>
+
+  <!-- Layer 3: Application -->
+  <ellipse cx="450" cy="262" rx="260" ry="136" fill="#13243a" stroke="#a855f7" stroke-width="2"/>
+
+  <!-- Layer 4: Data -->
+  <ellipse cx="450" cy="262" rx="180" ry="94" fill="#162840" stroke="#22c55e" stroke-width="2"/>
+
+  <!-- Center: SageMaker Resources -->
+  <ellipse cx="450" cy="262" rx="100" ry="52" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="450" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">SageMaker</text>
+  <text x="450" y="270" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Training / Endpoints</text>
+  <text x="450" y="284" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Studio / Pipelines</text>
+
+  <!-- Layer labels -->
+  <!-- Outermost: AWS Global -->
+  <rect x="25" y="52" width="200" height="46" rx="5" fill="#2d1515"/>
+  <text x="125" y="70" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ef4444">Layer 1: AWS グローバル</text>
+  <text x="125" y="88" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">AWS Shield / DDoS 保護</text>
+  <text x="125" y="100" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">WAF / CloudFront</text>
+  <!-- Arrow to layer -->
+  <line x1="225" y1="75" x2="255" y2="110" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Layer 2: Network -->
+  <rect x="25" y="112" width="200" height="58" rx="5" fill="#2d1a08"/>
+  <text x="125" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f97316">Layer 2: ネットワーク</text>
+  <text x="125" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">VPC / Subnet 分離</text>
+  <text x="125" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Security Groups / NACLs</text>
+  <text x="125" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">VPC Endpoints / PrivateLink</text>
+  <line x1="225" y1="141" x2="248" y2="158" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Layer 3: Application -->
+  <rect x="25" y="184" width="200" height="58" rx="5" fill="#1e1030"/>
+  <text x="125" y="202" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#a855f7">Layer 3: アプリケーション</text>
+  <text x="125" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">IAM ロール / 最小権限</text>
+  <text x="125" y="234" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Resource Policies</text>
+  <text x="125" y="242" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">KMS 暗号化</text>
+  <line x1="225" y1="213" x2="246" y2="222" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Layer 4: Data -->
+  <rect x="25" y="256" width="200" height="58" rx="5" fill="#102018"/>
+  <text x="125" y="274" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#22c55e">Layer 4: データ</text>
+  <text x="125" y="292" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">S3 バケットポリシー</text>
+  <text x="125" y="306" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">SSE-KMS (CMK)</text>
+  <text x="125" y="314" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">S3 バージョニング / MFA Delete</text>
+  <line x1="225" y1="285" x2="295" y2="262" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Right side annotations -->
+  <!-- Outermost right -->
+  <rect x="675" y="52" width="200" height="46" rx="5" fill="#2d1515"/>
+  <text x="775" y="70" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ef4444">監査 &amp; 可視性</text>
+  <text x="775" y="88" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">CloudTrail (全 API ログ)</text>
+  <text x="775" y="100" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">CloudWatch / GuardDuty</text>
+  <line x1="675" y1="75" x2="644" y2="110" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Network right -->
+  <rect x="675" y="112" width="200" height="58" rx="5" fill="#2d1a08"/>
+  <text x="775" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f97316">ネットワーク制御</text>
+  <text x="775" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">EnableNetworkIsolation</text>
+  <text x="775" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">SG: 最小ポート開放</text>
+  <text x="775" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">NAT 廃止 (Endpoint のみ)</text>
+  <line x1="675" y1="141" x2="651" y2="158" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- App right -->
+  <rect x="675" y="184" width="200" height="58" rx="5" fill="#1e1030"/>
+  <text x="775" y="202" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#a855f7">アクセス制御</text>
+  <text x="775" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Role Manager (DS/MLOps/DE)</text>
+  <text x="775" y="234" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">条件付き IAM ポリシー</text>
+  <text x="775" y="242" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">SCP で組織レベル制御</text>
+  <line x1="675" y1="213" x2="654" y2="222" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Data right -->
+  <rect x="675" y="256" width="200" height="58" rx="5" fill="#102018"/>
+  <text x="775" y="274" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#22c55e">データ保護</text>
+  <text x="775" y="292" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Macie でデータ分類</text>
+  <text x="775" y="306" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">VPC Flow Logs</text>
+  <text x="775" y="314" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">S3 Access Analyzer</text>
+  <line x1="675" y1="285" x2="604" y2="262" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Bottom bar -->
+  <rect x="20" y="400" width="860" height="86" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="450" y="422" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#f1f5f9">SageMaker 特有のセキュリティコントロール</text>
+
+  <rect x="35" y="432" width="195" height="46" rx="5" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+  <text x="132" y="452" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#3b82f6" font-weight="bold">Training</text>
+  <text x="132" y="468" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">NetworkIsolation / VPC / KMS</text>
+
+  <rect x="245" y="432" width="195" height="46" rx="5" fill="#0f172a" stroke="#a855f7" stroke-width="1"/>
+  <text x="342" y="452" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a855f7" font-weight="bold">Studio</text>
+  <text x="342" y="468" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">RootAccess=DISABLED / SSO</text>
+
+  <rect x="455" y="432" width="195" height="46" rx="5" fill="#0f172a" stroke="#22c55e" stroke-width="1"/>
+  <text x="552" y="452" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#22c55e" font-weight="bold">Endpoint</text>
+  <text x="552" y="468" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">VPC Only / SG 制限</text>
+
+  <rect x="665" y="432" width="195" height="46" rx="5" fill="#0f172a" stroke="#f97316" stroke-width="1"/>
+  <text x="762" y="452" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#f97316" font-weight="bold">Container</text>
+  <text x="762" y="468" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">ECR スキャン / root 無効</text>
+</svg>

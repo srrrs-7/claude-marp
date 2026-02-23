@@ -1,0 +1,112 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+  <text x="400" y="32" font-family="Arial,sans-serif" font-size="19" font-weight="bold" fill="#ffffff" text-anchor="middle">分類評価指標 — 混同行列・F1・AUC</text>
+
+  <!-- Left: Confusion Matrix -->
+  <rect x="15" y="50" width="300" height="260" rx="8" fill="#111e2d"/>
+  <text x="165" y="74" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">混同行列 (Confusion Matrix)</text>
+
+  <!-- Column headers -->
+  <text x="220" y="98" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">予測 Pos</text>
+  <text x="295" y="98" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">予測 Neg</text>
+
+  <!-- Row headers -->
+  <text x="80" y="140" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">実際 Pos</text>
+  <text x="80" y="200" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">実際 Neg</text>
+
+  <!-- TP cell -->
+  <rect x="165" y="110" width="80" height="55" rx="4" fill="#06D6A0" opacity="0.7"/>
+  <text x="205" y="138" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">TP</text>
+  <text x="205" y="156" font-family="Arial,sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">真陽性</text>
+
+  <!-- FN cell -->
+  <rect x="250" y="110" width="55" height="55" rx="4" fill="#E63946" opacity="0.7"/>
+  <text x="277" y="138" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">FN</text>
+  <text x="277" y="156" font-family="Arial,sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">偽陰性</text>
+
+  <!-- FP cell -->
+  <rect x="165" y="170" width="80" height="55" rx="4" fill="#F77F00" opacity="0.7"/>
+  <text x="205" y="198" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">FP</text>
+  <text x="205" y="216" font-family="Arial,sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">偽陽性</text>
+
+  <!-- TN cell -->
+  <rect x="250" y="170" width="55" height="55" rx="4" fill="#06D6A0" opacity="0.7"/>
+  <text x="277" y="198" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">TN</text>
+  <text x="277" y="216" font-family="Arial,sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">真陰性</text>
+
+  <!-- Legend -->
+  <text x="165" y="248" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">★ 正解</text>
+  <text x="165" y="263" font-family="Arial,sans-serif" font-size="10" fill="#E63946">FN: 見逃し (偽陰性)</text>
+  <text x="165" y="278" font-family="Arial,sans-serif" font-size="10" fill="#F77F00">FP: 誤検知 (偽陽性)</text>
+  <text x="165" y="293" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">TN: 正しく否定</text>
+
+  <!-- Center: Derived metrics -->
+  <rect x="325" y="50" width="250" height="260" rx="8" fill="#1e3a5f"/>
+  <text x="450" y="74" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0" text-anchor="middle">導出指標</text>
+
+  <rect x="340" y="83" width="220" height="42" rx="4" fill="#0f3460"/>
+  <text x="450" y="101" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">Precision (適合率)</text>
+  <text x="450" y="117" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">TP / (TP + FP)</text>
+
+  <rect x="340" y="132" width="220" height="42" rx="4" fill="#0f3460"/>
+  <text x="450" y="150" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">Recall (再現率)</text>
+  <text x="450" y="166" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">TP / (TP + FN)</text>
+
+  <rect x="340" y="181" width="220" height="42" rx="4" fill="#0a2545" stroke="#06D6A0" stroke-width="1"/>
+  <text x="450" y="199" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06D6A0" text-anchor="middle">F1 Score ★重要</text>
+  <text x="450" y="215" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">2 × P × R / (P + R)</text>
+
+  <rect x="340" y="230" width="220" height="42" rx="4" fill="#0f3460"/>
+  <text x="450" y="248" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">Accuracy (正解率)</text>
+  <text x="450" y="264" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">(TP + TN) / Total</text>
+
+  <rect x="340" y="279" width="220" height="22" rx="4" fill="#111e2d"/>
+  <text x="450" y="294" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">不均衡データでは Accuracy に注意!</text>
+
+  <!-- Right: ROC Curve -->
+  <rect x="585" y="50" width="200" height="260" rx="8" fill="#0f3460"/>
+  <text x="685" y="74" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0" text-anchor="middle">ROC 曲線</text>
+
+  <!-- ROC curve axes -->
+  <line x1="610" y1="270" x2="610" y2="100" stroke="#aaaaaa" stroke-width="1"/>
+  <line x1="610" y1="270" x2="775" y2="270" stroke="#aaaaaa" stroke-width="1"/>
+  <text x="690" y="285" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">FPR (偽陽性率)</text>
+  <text x="598" y="188" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle" transform="rotate(-90 598 188)">TPR (再現率)</text>
+
+  <!-- Diagonal random line -->
+  <line x1="610" y1="270" x2="775" y2="105" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,2" opacity="0.5"/>
+
+  <!-- Good ROC curve -->
+  <polyline points="610,270 625,220 645,175 665,148 690,128 720,112 775,105" stroke="#4CC9F0" stroke-width="2.5" fill="none"/>
+  <!-- Area fill suggestion -->
+  <polygon points="610,270 625,220 645,175 665,148 690,128 720,112 775,105 775,270" fill="#4CC9F0" opacity="0.1"/>
+
+  <!-- AUC label -->
+  <text x="700" y="210" font-family="Arial,sans-serif" font-size="12" fill="#4CC9F0" text-anchor="middle">AUC</text>
+
+  <text x="685" y="305" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">AUC=0.5: ランダム</text>
+  <text x="685" y="320" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0" text-anchor="middle">AUC=1.0: 完璧</text>
+
+  <!-- Bottom notes -->
+  <rect x="15" y="325" width="770" height="160" rx="8" fill="#111e2d"/>
+  <text x="400" y="348" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">指標の選択指針</text>
+
+  <rect x="30" y="358" width="220" height="80" rx="4" fill="#1e3a5f"/>
+  <text x="140" y="378" font-family="Arial,sans-serif" font-size="12" fill="#4CC9F0" text-anchor="middle">Precision 重視</text>
+  <text x="140" y="396" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">スパムフィルタ</text>
+  <text x="140" y="413" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">誤検知コストが高い</text>
+  <text x="140" y="430" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">FP を最小化したい</text>
+
+  <rect x="295" y="358" width="220" height="80" rx="4" fill="#1e3a5f"/>
+  <text x="405" y="378" font-family="Arial,sans-serif" font-size="12" fill="#4CC9F0" text-anchor="middle">Recall 重視</text>
+  <text x="405" y="396" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">癌検診 / 詐欺検出</text>
+  <text x="405" y="413" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">見逃しコストが高い</text>
+  <text x="405" y="430" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">FN を最小化したい</text>
+
+  <rect x="560" y="358" width="210" height="80" rx="4" fill="#1e3a5f"/>
+  <text x="665" y="378" font-family="Arial,sans-serif" font-size="12" fill="#06D6A0" text-anchor="middle">F1 重視 ★</text>
+  <text x="665" y="396" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">不均衡データセット</text>
+  <text x="665" y="413" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">P と R のバランス</text>
+  <text x="665" y="430" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0" text-anchor="middle">試験頻出</text>
+</svg>

@@ -1,0 +1,106 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <!-- Dashboard title bar -->
+  <rect x="10" y="10" width="780" height="40" rx="6" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="400" y="35" font-family="Arial" font-size="16" fill="#4CC9F0" text-anchor="middle" font-weight="bold">MLOps Operational Dashboard</text>
+
+  <!-- Panel 1: Uptime gauge (top-left) -->
+  <rect x="10" y="60" width="245" height="180" rx="8" fill="#0f1e35" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="132" y="82" font-family="Arial" font-size="11" fill="#06D6A0" text-anchor="middle" font-weight="bold">エンドポイント稼働率</text>
+  <!-- Circle gauge -->
+  <circle cx="132" cy="160" r="65" fill="none" stroke="#1e3a5f" stroke-width="10"/>
+  <circle cx="132" cy="160" r="65" fill="none" stroke="#06D6A0" stroke-width="10" stroke-dasharray="395 408" stroke-dashoffset="102" transform="rotate(-90 132 160)"/>
+  <text x="132" y="155" font-family="Arial" font-size="20" fill="#06D6A0" text-anchor="middle" font-weight="bold">99.9%</text>
+  <text x="132" y="173" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">SLA: 99.5%</text>
+  <text x="132" y="228" font-family="Arial" font-size="9" fill="#06D6A0" text-anchor="middle">正常</text>
+
+  <!-- Panel 2: Latency line chart (top-center) -->
+  <rect x="265" y="60" width="270" height="180" rx="8" fill="#0f1e35" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="400" y="82" font-family="Arial" font-size="11" fill="#4CC9F0" text-anchor="middle" font-weight="bold">推論レイテンシ (P50/P95/P99)</text>
+  <!-- Chart axes -->
+  <line x1="280" y1="215" x2="520" y2="215" stroke="#aaaaaa" stroke-width="1"/>
+  <line x1="280" y1="105" x2="280" y2="215" stroke="#aaaaaa" stroke-width="1"/>
+  <!-- P50 line -->
+  <polyline points="280,185 310,183 340,182 370,184 400,181 430,180 460,182 490,179 520,180" fill="none" stroke="#4CC9F0" stroke-width="2"/>
+  <!-- P95 line -->
+  <polyline points="280,165 310,163 340,160 370,162 400,158 430,157 460,160 490,155 520,158" fill="none" stroke="#F77F00" stroke-width="2"/>
+  <!-- P99 line -->
+  <polyline points="280,145 310,142 340,138 370,140 400,135 430,134 460,138 490,133 520,135" fill="none" stroke="#E63946" stroke-width="2"/>
+  <!-- Legend -->
+  <rect x="285" y="105" width="8" height="8" fill="#4CC9F0"/>
+  <text x="298" y="114" font-family="Arial" font-size="9" fill="#4CC9F0">P50: 45ms</text>
+  <rect x="355" y="105" width="8" height="8" fill="#F77F00"/>
+  <text x="368" y="114" font-family="Arial" font-size="9" fill="#F77F00">P95: 120ms</text>
+  <rect x="435" y="105" width="8" height="8" fill="#E63946"/>
+  <text x="448" y="114" font-family="Arial" font-size="9" fill="#E63946">P99: 280ms</text>
+
+  <!-- Panel 3: Data Quality score (top-right) -->
+  <rect x="545" y="60" width="245" height="180" rx="8" fill="#0f1e35" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="667" y="82" font-family="Arial" font-size="11" fill="#F77F00" text-anchor="middle" font-weight="bold">データ品質スコア</text>
+  <!-- Trend line with dip then stable -->
+  <line x1="560" y1="215" x2="780" y2="215" stroke="#aaaaaa" stroke-width="1"/>
+  <line x1="560" y1="105" x2="560" y2="215" stroke="#aaaaaa" stroke-width="1"/>
+  <polyline points="560,115 590,113 620,112 640,115 660,130 680,145 700,138 720,125 740,118 760,115 780,113" fill="none" stroke="#F77F00" stroke-width="2"/>
+  <line x1="560" y1="145" x2="780" y2="145" stroke="#E63946" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="785" y="148" font-family="Arial" font-size="8" fill="#E63946">閾値</text>
+  <text x="660" y="105" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">品質スコア 95% (安定)</text>
+  <text x="667" y="232" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">過去30日 → 一時低下 → 回復</text>
+
+  <!-- Panel 4: Model accuracy trend (bottom-left) -->
+  <rect x="10" y="250" width="245" height="180" rx="8" fill="#0f1e35" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="132" y="272" font-family="Arial" font-size="11" fill="#06D6A0" text-anchor="middle" font-weight="bold">モデル精度推移</text>
+  <!-- Area chart -->
+  <line x1="25" y1="405" x2="245" y2="405" stroke="#aaaaaa" stroke-width="1"/>
+  <line x1="25" y1="290" x2="25" y2="405" stroke="#aaaaaa" stroke-width="1"/>
+  <polygon points="25,340 60,335 95,333 130,338 165,350 200,355 235,348 235,405 25,405" fill="#06D6A0" opacity="0.2"/>
+  <polyline points="25,340 60,335 95,333 130,338 165,350 200,355 235,348" fill="none" stroke="#06D6A0" stroke-width="2"/>
+  <line x1="25" y1="360" x2="245" y2="360" stroke="#E63946" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="250" y="363" font-family="Arial" font-size="8" fill="#E63946">閾値</text>
+  <text x="132" y="290" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">精度 93.2% (F1: 0.91)</text>
+
+  <!-- Panel 5: Cost trend (bottom-center) -->
+  <rect x="265" y="250" width="270" height="180" rx="8" fill="#0f1e35" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="400" y="272" font-family="Arial" font-size="11" fill="#4CC9F0" text-anchor="middle" font-weight="bold">コスト推移 ($)</text>
+  <!-- Bar chart -->
+  <line x1="280" y1="405" x2="520" y2="405" stroke="#aaaaaa" stroke-width="1"/>
+  <rect x="290" y="365" width="30" height="40" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="305" y="415" font-family="Arial" font-size="8" fill="#aaaaaa" text-anchor="middle">W1</text>
+  <rect x="330" y="355" width="30" height="50" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="345" y="415" font-family="Arial" font-size="8" fill="#aaaaaa" text-anchor="middle">W2</text>
+  <rect x="370" y="340" width="30" height="65" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="385" y="415" font-family="Arial" font-size="8" fill="#aaaaaa" text-anchor="middle">W3</text>
+  <rect x="410" y="350" width="30" height="55" fill="#1e3a5f" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="425" y="415" font-family="Arial" font-size="8" fill="#F77F00" text-anchor="middle">W4</text>
+  <rect x="450" y="338" width="30" height="67" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="465" y="415" font-family="Arial" font-size="8" fill="#aaaaaa" text-anchor="middle">W5</text>
+  <rect x="490" y="330" width="28" height="75" fill="#1e3a5f" stroke="#E63946" stroke-width="1.5"/>
+  <text x="504" y="415" font-family="Arial" font-size="8" fill="#E63946" text-anchor="middle">W6</text>
+  <text x="400" y="290" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">月次コスト: $12,450 (W6 急増!)</text>
+
+  <!-- Panel 6: Active alerts (bottom-right) -->
+  <rect x="545" y="250" width="245" height="180" rx="8" fill="#0f1e35" stroke="#E63946" stroke-width="1.5"/>
+  <text x="667" y="272" font-family="Arial" font-size="11" fill="#E63946" text-anchor="middle" font-weight="bold">アクティブアラート</text>
+
+  <rect x="555" y="285" width="225" height="28" rx="4" fill="#2d0a0a" stroke="#E63946" stroke-width="1"/>
+  <text x="568" y="302" font-family="Arial" font-size="9" fill="#E63946">CRITICAL: モデル精度 88% 閾値90%未満</text>
+
+  <rect x="555" y="318" width="225" height="28" rx="4" fill="#2d1e0f" stroke="#F77F00" stroke-width="1"/>
+  <text x="568" y="335" font-family="Arial" font-size="9" fill="#F77F00">WARNING: P99レイテンシ 280ms 増加傾向</text>
+
+  <rect x="555" y="350" width="225" height="28" rx="4" fill="#0a1e30" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="568" y="367" font-family="Arial" font-size="9" fill="#4CC9F0">INFO: 週次再学習パイプライン開始</text>
+
+  <rect x="555" y="382" width="225" height="28" rx="4" fill="#1a3a20" stroke="#06D6A0" stroke-width="1"/>
+  <text x="568" y="399" font-family="Arial" font-size="9" fill="#06D6A0">OK: データ品質チェック 正常完了</text>
+
+  <!-- Bottom tool labels -->
+  <rect x="10" y="440" width="780" height="50" rx="6" fill="#0a1e30" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="175" y="462" font-family="Arial" font-size="11" fill="#4CC9F0" text-anchor="middle" font-weight="bold">CloudWatch Dashboard</text>
+  <text x="175" y="478" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">AWS ネイティブ・無料枠あり</text>
+  <line x1="350" y1="445" x2="350" y2="485" stroke="#4CC9F0" stroke-width="0.5"/>
+  <text x="490" y="462" font-family="Arial" font-size="11" fill="#06D6A0" text-anchor="middle" font-weight="bold">Amazon Managed Grafana</text>
+  <text x="490" y="478" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">高度なビジュアライゼーション</text>
+  <line x1="640" y1="445" x2="640" y2="485" stroke="#4CC9F0" stroke-width="0.5"/>
+  <text x="720" y="462" font-family="Arial" font-size="11" fill="#F77F00" text-anchor="middle" font-weight="bold">QuickSight</text>
+  <text x="720" y="478" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">BIレポーティング</text>
+</svg>

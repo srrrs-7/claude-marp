@@ -1,0 +1,66 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="36" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">Amazon S3 データレイク設計</text>
+  <!-- Left: Lake Formation -->
+  <rect x="15" y="58" width="130" height="370" rx="8" fill="#1a1200" stroke="#F77F00" stroke-width="2"/>
+  <text x="80" y="85" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#F77F00">Lake</text>
+  <text x="80" y="103" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#F77F00">Formation</text>
+  <text x="80" y="135" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">アクセス制御</text>
+  <text x="80" y="155" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">行レベル</text>
+  <text x="80" y="173" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">列レベル</text>
+  <text x="80" y="198" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">データ暗号化</text>
+  <text x="80" y="218" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">KMS連携</text>
+  <text x="80" y="243" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">監査ログ</text>
+  <text x="80" y="263" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">CloudTrail</text>
+  <text x="80" y="288" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">PII検出</text>
+  <text x="80" y="308" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">Macie連携</text>
+  <text x="80" y="338" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">IAM + SCP</text>
+  <text x="80" y="358" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">ガバナンス</text>
+  <!-- S3 zones (3 stacked) -->
+  <!-- Raw Zone -->
+  <rect x="165" y="58" width="445" height="105" rx="8" fill="#1a2d45" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="387" y="82" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#4CC9F0">Raw Zone</text>
+  <text x="387" y="102" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">生データをそのまま保存 — 不変・変更不可 (S3 Object Lock)</text>
+  <text x="387" y="120" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">s3://my-datalake/raw/year=2026/month=02/day=23/</text>
+  <text x="387" y="138" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">形式: CSV, JSON, Avro, XML | ライフサイクル: 90日 → Glacier</text>
+  <!-- Arrow down -->
+  <line x1="387" y1="163" x2="387" y2="178" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#4CC9F0" transform="translate(387,178) rotate(180)"/>
+  <!-- Processed Zone -->
+  <rect x="165" y="178" width="445" height="110" rx="8" fill="#1e3a5f" stroke="#06D6A0" stroke-width="2"/>
+  <text x="387" y="202" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#06D6A0">Processed Zone</text>
+  <text x="387" y="222" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">クレンジング・変換済み — Glue ETL / Data Wrangler で処理</text>
+  <text x="387" y="242" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">s3://my-datalake/processed/dataset_name/</text>
+  <text x="387" y="260" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">形式: Parquet (列指向・圧縮) | パーティション: Hive形式</text>
+  <text x="387" y="277" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">ライフサイクル: 1年 → Glacier | Athena でSQLクエリ可能</text>
+  <!-- Arrow down -->
+  <line x1="387" y1="288" x2="387" y2="303" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#06D6A0" transform="translate(387,303) rotate(180)"/>
+  <!-- Curated Zone -->
+  <rect x="165" y="303" width="445" height="125" rx="8" fill="#0f3460" stroke="#F77F00" stroke-width="2"/>
+  <text x="387" y="327" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#F77F00">Curated Zone (Feature Zone)</text>
+  <text x="387" y="347" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">学習用特徴量データ — 高品質・エンジニアリング済み</text>
+  <text x="387" y="367" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">s3://my-datalake/curated/feature_group_name/</text>
+  <text x="387" y="385" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">形式: Parquet | Feature Store Offline ストアと同期</text>
+  <text x="387" y="403" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">SageMaker Training Job が直接参照 | DVC でバージョン追跡</text>
+  <text x="387" y="420" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">ライフサイクル: 無期限 (ML学習の再現性確保)</text>
+  <!-- Right: Glue Catalog -->
+  <rect x="630" y="58" width="155" height="370" rx="8" fill="#0a1a12" stroke="#06D6A0" stroke-width="2"/>
+  <text x="707" y="85" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#06D6A0">Glue Data</text>
+  <text x="707" y="103" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#06D6A0">Catalog</text>
+  <text x="707" y="135" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">スキーマ管理</text>
+  <text x="707" y="155" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">メタデータ</text>
+  <text x="707" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">Crawler</text>
+  <text x="707" y="195" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">スキーマ自動</text>
+  <text x="707" y="213" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">検出</text>
+  <text x="707" y="240" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">Athena 連携</text>
+  <text x="707" y="260" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">SQLクエリ</text>
+  <text x="707" y="285" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">EMR 連携</text>
+  <text x="707" y="305" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">Spark SQL</text>
+  <text x="707" y="330" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">Redshift</text>
+  <text x="707" y="348" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">Spectrum</text>
+  <text x="707" y="373" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">外部テーブル</text>
+  <!-- Bottom info -->
+  <rect x="15" y="448" width="770" height="40" rx="6" fill="#0f1e30"/>
+  <text x="400" y="470" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#4CC9F0">S3 Intelligent-Tiering でストレージコスト自動最適化 | ライフサイクルポリシーで自動アーカイブ</text>
+</svg>

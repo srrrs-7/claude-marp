@@ -1,0 +1,32 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- title -->
+  <text x="400" y="32" text-anchor="middle" font-size="16" font-weight="bold" fill="#f8f8f8">同じモデル、異なる指標 → 異なる結論</text>
+  <!-- left panel -->
+  <rect x="30" y="55" width="330" height="200" rx="12" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="2"/>
+  <text x="195" y="90" text-anchor="middle" font-size="32" font-weight="bold" fill="#34d399">✓</text>
+  <text x="195" y="122" text-anchor="middle" font-size="22" font-weight="bold" fill="#34d399">Accuracy = 99%</text>
+  <line x1="55" y1="138" x2="335" y2="138" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <text x="195" y="162" text-anchor="middle" font-size="13" fill="#94a3b8">データセット: 正例1%, 負例99%</text>
+  <text x="195" y="184" text-anchor="middle" font-size="13" fill="#94a3b8">全て負例と予測するだけで達成</text>
+  <text x="195" y="206" text-anchor="middle" font-size="13" fill="#94a3b8">「良いモデル」に見える？</text>
+  <text x="195" y="240" text-anchor="middle" font-size="12" fill="#34d399">一見問題なし</text>
+  <!-- arrow between -->
+  <text x="400" y="165" text-anchor="middle" font-size="13" fill="#94a3b8">同一</text>
+  <text x="400" y="183" text-anchor="middle" font-size="13" fill="#94a3b8">モデル</text>
+  <line x1="365" y1="155" x2="380" y2="155" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="420" y1="155" x2="435" y2="155" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="430,151 440,155 430,159" fill="#94a3b8"/>
+  <!-- right panel -->
+  <rect x="440" y="55" width="330" height="200" rx="12" fill="rgba(251,146,60,0.12)" stroke="#fb923c" stroke-width="2"/>
+  <text x="605" y="90" text-anchor="middle" font-size="32" font-weight="bold" fill="#fb923c">⚠</text>
+  <text x="605" y="122" text-anchor="middle" font-size="22" font-weight="bold" fill="#fb923c">Recall = 0%</text>
+  <line x1="465" y1="138" x2="745" y2="138" stroke="#fb923c" stroke-width="1" opacity="0.4"/>
+  <text x="605" y="162" text-anchor="middle" font-size="13" fill="#94a3b8">全ての正例を見逃している</text>
+  <text x="605" y="184" text-anchor="middle" font-size="13" fill="#94a3b8">癌検診なら全患者を見逃す</text>
+  <text x="605" y="206" text-anchor="middle" font-size="13" fill="#94a3b8">詐欺検知なら全詐欺を見逃す</text>
+  <text x="605" y="240" text-anchor="middle" font-size="12" fill="#fb923c">実際には機能しないモデル</text>
+  <!-- bottom message -->
+  <rect x="100" y="278" width="600" height="66" rx="10" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="400" y="306" text-anchor="middle" font-size="15" font-weight="bold" fill="#a78bfa">指標の選択が結論を左右する</text>
+  <text x="400" y="330" text-anchor="middle" font-size="13" fill="#f8f8f8">タスクに合った指標を選ばなければ、誤った判断を下す可能性がある</text>
+</svg>

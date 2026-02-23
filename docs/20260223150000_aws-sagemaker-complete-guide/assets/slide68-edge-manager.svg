@@ -1,0 +1,139 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#f1f5f9">Edge Manager デプロイアーキテクチャ</text>
+
+  <!-- Cloud/Edge divider -->
+  <rect x="15" y="45" width="870" height="200" rx="8" fill="#0f172a" stroke="#3b82f6" stroke-width="2"/>
+  <text x="65" y="65" font-family="sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">Cloud Side</text>
+
+  <!-- Training -->
+  <rect x="30" y="78" width="120" height="55" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="90" y="100" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">SageMaker</text>
+  <text x="90" y="116" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">Training</text>
+  <text x="90" y="128" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#3b82f6">モデル学習</text>
+
+  <!-- Arrow to Neo -->
+  <line x1="150" y1="105" x2="192" y2="105" stroke="#f97316" stroke-width="2"/>
+  <polygon points="192,100 204,105 192,110" fill="#f97316"/>
+
+  <!-- Neo -->
+  <rect x="204" y="78" width="120" height="55" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="264" y="100" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">SageMaker</text>
+  <text x="264" y="116" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f97316">Neo</text>
+  <text x="264" y="128" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">コンパイル最適化</text>
+
+  <!-- Arrow to Edge Manager -->
+  <line x1="324" y1="105" x2="366" y2="105" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="366,100 378,105 366,110" fill="#a855f7"/>
+
+  <!-- Edge Manager -->
+  <rect x="378" y="68" width="160" height="75" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="458" y="88" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#a855f7">Edge Manager</text>
+  <text x="458" y="104" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">Fleet Management</text>
+  <text x="458" y="119" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">モデルパッケージング</text>
+  <text x="458" y="133" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">OTA アップデート管理</text>
+
+  <!-- S3 for model packages -->
+  <rect x="570" y="78" width="100" height="55" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="620" y="100" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">S3</text>
+  <text x="620" y="116" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">Model Store</text>
+  <text x="620" y="128" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Capture Data</text>
+
+  <line x1="538" y1="105" x2="568" y2="105" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="568,100 580,105 568,110" fill="#22c55e"/>
+
+  <!-- CloudWatch -->
+  <rect x="700" y="78" width="160" height="55" rx="6" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="780" y="100" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">CloudWatch</text>
+  <text x="780" y="116" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#14b8a6">Monitoring</text>
+  <text x="780" y="128" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">フリートメトリクス</text>
+
+  <line x1="670" y1="105" x2="698" y2="105" stroke="#14b8a6" stroke-width="1.5"/>
+  <polygon points="698,100 710,105 698,110" fill="#14b8a6"/>
+
+  <!-- OTA arrow down -->
+  <line x1="458" y1="143" x2="458" y2="255" stroke="#a855f7" stroke-width="2" stroke-dasharray="8,3"/>
+  <polygon points="453,255 458,270 463,255" fill="#a855f7"/>
+  <text x="480" y="210" font-family="sans-serif" font-size="11" fill="#a855f7">OTA Updates</text>
+
+  <!-- Telemetry arrow up -->
+  <line x1="350" y1="270" x2="350" y2="140" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="345,140 350,125 355,140" fill="#14b8a6"/>
+  <text x="260" y="215" font-family="sans-serif" font-size="10" fill="#14b8a6">Telemetry</text>
+  <text x="260" y="230" font-family="sans-serif" font-size="10" fill="#14b8a6">(メトリクス)</text>
+
+  <!-- Capture data arrow up to S3 -->
+  <line x1="620" y1="270" x2="620" y2="135" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="615,135 620,120 625,135" fill="#22c55e"/>
+  <text x="630" y="215" font-family="sans-serif" font-size="10" fill="#22c55e">Data Capture</text>
+  <text x="630" y="230" font-family="sans-serif" font-size="10" fill="#22c55e">(再学習用)</text>
+
+  <!-- Edge Side -->
+  <rect x="15" y="265" width="870" height="215" rx="8" fill="#0f172a" stroke="#22c55e" stroke-width="2"/>
+  <text x="65" y="285" font-family="sans-serif" font-size="12" font-weight="bold" fill="#22c55e">Edge Side</text>
+
+  <!-- Device 1 -->
+  <rect x="30" y="295" width="155" height="165" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="107" y="315" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f97316">デバイス 1</text>
+  <text x="107" y="330" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Jetson Xavier</text>
+
+  <rect x="45" y="338" width="125" height="30" rx="4" fill="#0f172a" stroke="#334155"/>
+  <text x="107" y="353" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Edge Manager Agent</text>
+  <text x="107" y="365" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">(デバイス管理SDK)</text>
+
+  <rect x="45" y="375" width="125" height="28" rx="4" fill="#1e3a8a"/>
+  <text x="107" y="393" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">Compiled Model</text>
+
+  <rect x="45" y="410" width="125" height="28" rx="4" fill="#166534"/>
+  <text x="107" y="428" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">Local Inference</text>
+  <text x="107" y="442" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#bbf7d0">低レイテンシ / オフライン対応</text>
+
+  <!-- Device 2 -->
+  <rect x="220" y="295" width="155" height="165" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="297" y="315" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f97316">デバイス 2</text>
+  <text x="297" y="330" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Raspberry Pi 4</text>
+
+  <rect x="235" y="338" width="125" height="30" rx="4" fill="#0f172a" stroke="#334155"/>
+  <text x="297" y="353" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Edge Manager Agent</text>
+  <text x="297" y="365" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">(デバイス管理SDK)</text>
+
+  <rect x="235" y="375" width="125" height="28" rx="4" fill="#1e3a8a"/>
+  <text x="297" y="393" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">Compiled Model</text>
+
+  <rect x="235" y="410" width="125" height="28" rx="4" fill="#166534"/>
+  <text x="297" y="428" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">Local Inference</text>
+
+  <!-- Device N -->
+  <rect x="410" y="295" width="155" height="165" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="487" y="315" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f97316">デバイス N</text>
+  <text x="487" y="330" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">カスタムデバイス</text>
+
+  <rect x="425" y="338" width="125" height="30" rx="4" fill="#0f172a" stroke="#334155"/>
+  <text x="487" y="353" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">Edge Manager Agent</text>
+  <text x="487" y="365" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">(デバイス管理SDK)</text>
+
+  <rect x="425" y="375" width="125" height="28" rx="4" fill="#1e3a8a"/>
+  <text x="487" y="393" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">Compiled Model</text>
+
+  <rect x="425" y="410" width="125" height="28" rx="4" fill="#166534"/>
+  <text x="487" y="428" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">Local Inference</text>
+
+  <!-- ... dots -->
+  <text x="380" y="385" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#94a3b8">...</text>
+
+  <!-- IoT Greengrass -->
+  <rect x="600" y="295" width="270" height="80" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="735" y="318" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#14b8a6">IoT Greengrass</text>
+  <text x="735" y="335" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f1f5f9">デバイス↔クラウド 接続管理</text>
+  <text x="735" y="351" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">OTA ファームウェア / モデル更新</text>
+  <text x="735" y="367" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">MQTT / HTTPS セキュア通信</text>
+
+  <!-- Key features box -->
+  <rect x="600" y="390" width="270" height="80" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="735" y="408" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">主要機能</text>
+  <text x="735" y="425" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">モデルパッケージング / デプロイ自動化</text>
+  <text x="735" y="442" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f97316">フリート全体モデル一斉更新</text>
+  <text x="735" y="459" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#3b82f6">推論データキャプチャ → 再学習</text>
+</svg>

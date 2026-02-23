@@ -1,0 +1,61 @@
+<svg viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- title -->
+  <text x="360" y="26" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">ROC曲線（Receiver Operating Characteristic）</text>
+  <!-- axes -->
+  <line x1="80" y1="360" x2="630" y2="360" stroke="#475569" stroke-width="1.5"/>
+  <line x1="80" y1="40" x2="80" y2="360" stroke="#475569" stroke-width="1.5"/>
+  <!-- arrow tips -->
+  <polygon points="626,356 636,360 626,364" fill="#475569"/>
+  <polygon points="76,44 80,34 84,44" fill="#475569"/>
+  <!-- axis labels -->
+  <text x="355" y="395" text-anchor="middle" font-size="13" fill="#94a3b8">False Positive Rate (FPR = FP / (FP+TN))</text>
+  <text x="30" y="210" text-anchor="middle" font-size="13" fill="#94a3b8" transform="rotate(-90,30,210)">True Positive Rate (Recall)</text>
+  <!-- x ticks -->
+  <text x="80" y="376" text-anchor="middle" font-size="11" fill="#94a3b8">0.0</text>
+  <text x="190" y="376" text-anchor="middle" font-size="11" fill="#94a3b8">0.2</text>
+  <text x="300" y="376" text-anchor="middle" font-size="11" fill="#94a3b8">0.4</text>
+  <text x="410" y="376" text-anchor="middle" font-size="11" fill="#94a3b8">0.6</text>
+  <text x="520" y="376" text-anchor="middle" font-size="11" fill="#94a3b8">0.8</text>
+  <text x="630" y="376" text-anchor="middle" font-size="11" fill="#94a3b8">1.0</text>
+  <!-- y ticks -->
+  <text x="66" y="364" text-anchor="end" font-size="11" fill="#94a3b8">0.0</text>
+  <text x="66" y="308" text-anchor="end" font-size="11" fill="#94a3b8">0.2</text>
+  <text x="66" y="252" text-anchor="end" font-size="11" fill="#94a3b8">0.4</text>
+  <text x="66" y="196" text-anchor="end" font-size="11" fill="#94a3b8">0.6</text>
+  <text x="66" y="140" text-anchor="end" font-size="11" fill="#94a3b8">0.8</text>
+  <text x="66" y="46" text-anchor="end" font-size="11" fill="#94a3b8">1.0</text>
+  <!-- Grid lines (subtle) -->
+  <line x1="80" y1="308" x2="630" y2="308" stroke="#475569" stroke-width="0.5" opacity="0.4"/>
+  <line x1="80" y1="252" x2="630" y2="252" stroke="#475569" stroke-width="0.5" opacity="0.4"/>
+  <line x1="80" y1="196" x2="630" y2="196" stroke="#475569" stroke-width="0.5" opacity="0.4"/>
+  <line x1="80" y1="140" x2="630" y2="140" stroke="#475569" stroke-width="0.5" opacity="0.4"/>
+  <line x1="190" y1="40" x2="190" y2="360" stroke="#475569" stroke-width="0.5" opacity="0.4"/>
+  <line x1="300" y1="40" x2="300" y2="360" stroke="#475569" stroke-width="0.5" opacity="0.4"/>
+  <line x1="410" y1="40" x2="410" y2="360" stroke="#475569" stroke-width="0.5" opacity="0.4"/>
+  <line x1="520" y1="40" x2="520" y2="360" stroke="#475569" stroke-width="0.5" opacity="0.4"/>
+  <!-- Random classifier diagonal -->
+  <line x1="80" y1="360" x2="630" y2="40" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="370" y="230" font-size="11" fill="#94a3b8" transform="rotate(-27,370,230)">ランダム分類器</text>
+  <!-- Good model curve (AUC≈0.85) x=80+550*FPR, y=360-320*TPR -->
+  <!-- Points: (0,0),(0.05,0.45),(0.10,0.65),(0.20,0.78),(0.30,0.87),(0.50,0.93),(0.70,0.97),(1.0,1.0) -->
+  <polyline points="80,360 107.5,216 135,152 190,111 245,82 355,63 465,50 630,40"
+            fill="none" stroke="#a78bfa" stroke-width="2.5"/>
+  <!-- Threshold points -->
+  <circle cx="107.5" cy="216" r="5" fill="#a78bfa"/>
+  <text x="118" y="212" font-size="10" fill="#a78bfa">θ=0.7</text>
+  <circle cx="190" cy="111" r="5" fill="#a78bfa"/>
+  <text x="200" y="107" font-size="10" fill="#a78bfa">θ=0.5</text>
+  <circle cx="355" cy="63" r="5" fill="#a78bfa"/>
+  <text x="365" y="59" font-size="10" fill="#a78bfa">θ=0.3</text>
+  <!-- AUC shading (approximate polygon) -->
+  <polygon points="80,360 107.5,216 135,152 190,111 245,82 355,63 465,50 630,40 630,360"
+           fill="rgba(167,139,250,0.12)"/>
+  <!-- AUC label -->
+  <text x="420" y="250" text-anchor="middle" font-size="14" fill="#a78bfa">AUC</text>
+  <text x="420" y="270" text-anchor="middle" font-size="13" fill="#a78bfa">≈ 0.85</text>
+  <!-- Legend -->
+  <line x1="470" y1="310" x2="510" y2="310" stroke="#a78bfa" stroke-width="2.5"/>
+  <text x="518" y="314" font-size="12" fill="#a78bfa">分類モデル</text>
+  <line x1="470" y1="330" x2="510" y2="330" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="518" y="334" font-size="12" fill="#94a3b8">ランダム (AUC=0.5)</text>
+</svg>

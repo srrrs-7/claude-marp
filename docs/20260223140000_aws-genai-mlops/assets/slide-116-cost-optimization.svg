@@ -1,0 +1,80 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#4CC9F0" text-anchor="middle">SageMaker コスト最適化戦略</text>
+
+  <!-- Center circle -->
+  <circle cx="400" cy="240" r="72" fill="#2d4059" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="400" y="232" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#4CC9F0" text-anchor="middle">SageMaker</text>
+  <text x="400" y="252" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0" text-anchor="middle">コスト最適化</text>
+
+  <!-- Area 1: Spot Instances (top left) -->
+  <rect x="15" y="48" width="200" height="110" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="115" y="74" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">Spot Instances</text>
+  <text x="115" y="94" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0" text-anchor="middle">学習コスト最大70%削減</text>
+  <text x="115" y="112" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">use_spot_instances=True</text>
+  <text x="115" y="128" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">チェックポイントで中断対応</text>
+  <text x="115" y="146" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">学習・Processing・HPO対応</text>
+  <!-- Arrow to center -->
+  <line x1="215" y1="103" x2="332" y2="200" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(333,201) rotate(-45)"/>
+
+  <!-- Area 2: Serverless (top center) -->
+  <rect x="280" y="30" width="240" height="90" rx="8" fill="#0f3460" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="400" y="56" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06D6A0" text-anchor="middle">Serverless Inference</text>
+  <text x="400" y="76" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">アイドル時コストゼロ</text>
+  <text x="400" y="94" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">低頻度リクエストに最適</text>
+  <text x="400" y="110" font-family="Arial,sans-serif" font-size="8" fill="#888888" text-anchor="middle">コールドスタートに注意</text>
+  <!-- Arrow to center -->
+  <line x1="400" y1="120" x2="400" y2="168" stroke="#06D6A0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#06D6A0" transform="translate(400,170)"/>
+
+  <!-- Area 3: Auto Scaling (top right) -->
+  <rect x="585" y="48" width="200" height="110" rx="8" fill="#0a2545" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="685" y="74" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">Auto Scaling</text>
+  <text x="685" y="94" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0" text-anchor="middle">負荷に応じた自動スケール</text>
+  <text x="685" y="112" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">InvocationsPerInstance</text>
+  <text x="685" y="128" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">最小インスタンス数を制御</text>
+  <text x="685" y="146" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">夜間スケールダウン設定</text>
+  <!-- Arrow to center -->
+  <line x1="585" y1="103" x2="468" y2="200" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(466,200) rotate(45)"/>
+
+  <!-- Area 4: Multi-Model Endpoint (bottom left) -->
+  <rect x="15" y="342" width="200" height="110" rx="8" fill="#1e3a5f" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="115" y="368" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#F77F00" text-anchor="middle">マルチモデル</text>
+  <text x="115" y="384" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#F77F00" text-anchor="middle">Endpoint</text>
+  <text x="115" y="404" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">インスタンス共有でコスト削減</text>
+  <text x="115" y="420" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">1エンドポイントで多数モデル</text>
+  <text x="115" y="436" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">動的ロード/アンロード</text>
+  <!-- Arrow to center -->
+  <line x1="215" y1="370" x2="332" y2="278" stroke="#F77F00" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#F77F00" transform="translate(332,277) rotate(45)"/>
+
+  <!-- Area 5: S3 Intelligent-Tiering (bottom center) -->
+  <rect x="280" y="378" width="240" height="90" rx="8" fill="#0f3460" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="400" y="404" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#F77F00" text-anchor="middle">S3 Intelligent-Tiering</text>
+  <text x="400" y="424" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">データストレージ自動最適化</text>
+  <text x="400" y="442" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">アクセス頻度でS3階層自動移行</text>
+  <text x="400" y="458" font-family="Arial,sans-serif" font-size="8" fill="#888888" text-anchor="middle">古い実験データは Glacier へ</text>
+  <!-- Arrow to center -->
+  <line x1="400" y1="378" x2="400" y2="312" stroke="#F77F00" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#F77F00" transform="translate(400,314) rotate(180)"/>
+
+  <!-- Area 6: Savings Plans / RI (bottom right) -->
+  <rect x="585" y="342" width="200" height="110" rx="8" fill="#0a2545" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="685" y="368" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#F77F00" text-anchor="middle">Savings Plans / RI</text>
+  <text x="685" y="388" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">長期コミットメント割引</text>
+  <text x="685" y="406" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">1年/3年でコスト削減</text>
+  <text x="685" y="422" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">SageMaker Savings Plans</text>
+  <text x="685" y="438" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">最大64%割引</text>
+  <!-- Arrow to center -->
+  <line x1="585" y1="370" x2="468" y2="280" stroke="#F77F00" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#F77F00" transform="translate(466,279) rotate(-45)"/>
+
+  <!-- Bottom bar -->
+  <rect x="15" y="465" width="770" height="28" rx="5" fill="#1a2a40" stroke="#888888" stroke-width="1"/>
+  <text x="400" y="483" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">AWS Cost Explorer + コスト配分タグ (Project/Team/Env) で可視化・配分レポート生成</text>
+</svg>

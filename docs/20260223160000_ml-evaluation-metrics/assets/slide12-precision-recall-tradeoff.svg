@@ -1,0 +1,43 @@
+<svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- axes -->
+  <line x1="80" y1="320" x2="620" y2="320" stroke="#475569" stroke-width="1.5"/>
+  <line x1="80" y1="40" x2="80" y2="320" stroke="#475569" stroke-width="1.5"/>
+  <!-- arrow tips -->
+  <polygon points="616,316 626,320 616,324" fill="#475569"/>
+  <polygon points="76,44 80,34 84,44" fill="#475569"/>
+  <!-- axis labels -->
+  <text x="350" y="352" text-anchor="middle" font-size="13" fill="#94a3b8">閾値 (Threshold)</text>
+  <text x="38" y="195" text-anchor="middle" font-size="13" fill="#94a3b8" transform="rotate(-90,38,195)">スコア値</text>
+  <!-- x axis ticks -->
+  <text x="80" y="338" text-anchor="middle" font-size="11" fill="#94a3b8">0.0</text>
+  <text x="215" y="338" text-anchor="middle" font-size="11" fill="#94a3b8">0.25</text>
+  <text x="350" y="338" text-anchor="middle" font-size="11" fill="#94a3b8">0.5</text>
+  <text x="485" y="338" text-anchor="middle" font-size="11" fill="#94a3b8">0.75</text>
+  <text x="620" y="338" text-anchor="middle" font-size="11" fill="#94a3b8">1.0</text>
+  <!-- y axis ticks -->
+  <text x="65" y="324" text-anchor="end" font-size="11" fill="#94a3b8">0.0</text>
+  <text x="65" y="251" text-anchor="end" font-size="11" fill="#94a3b8">0.25</text>
+  <text x="65" y="181" text-anchor="end" font-size="11" fill="#94a3b8">0.5</text>
+  <text x="65" y="110" text-anchor="end" font-size="11" fill="#94a3b8">0.75</text>
+  <text x="65" y="44" text-anchor="end" font-size="11" fill="#94a3b8">1.0</text>
+  <!-- Precision line (rises with threshold): points at (0.0,0.4),(0.25,0.55),(0.5,0.72),(0.75,0.85),(1.0,0.95) -->
+  <!-- map: x=80+540*t, y=320-280*v -->
+  <polyline points="80,208 215,165 350,118 485,82 620,54" fill="none" stroke="#a78bfa" stroke-width="2.5"/>
+  <!-- Recall line (falls with threshold): (0.0,0.95),(0.25,0.82),(0.5,0.65),(0.75,0.42),(1.0,0.15) -->
+  <polyline points="80,54 215,91 350,138 485,202 620,278" fill="none" stroke="#60a5fa" stroke-width="2.5"/>
+  <!-- F1 max point (around threshold=0.4) -->
+  <circle cx="310" cy="126" r="7" fill="none" stroke="#34d399" stroke-width="2"/>
+  <text x="310" y="112" text-anchor="middle" font-size="11" fill="#34d399">F1最大点</text>
+  <!-- legends -->
+  <line x1="450" y1="70" x2="490" y2="70" stroke="#a78bfa" stroke-width="2.5"/>
+  <text x="498" y="74" font-size="12" fill="#a78bfa">Precision</text>
+  <line x1="450" y1="92" x2="490" y2="92" stroke="#60a5fa" stroke-width="2.5"/>
+  <text x="498" y="96" font-size="12" fill="#60a5fa">Recall</text>
+  <!-- annotations -->
+  <text x="580" y="140" text-anchor="middle" font-size="11" fill="#a78bfa">閾値↑</text>
+  <text x="580" y="156" text-anchor="middle" font-size="11" fill="#a78bfa">P↑ R↓</text>
+  <text x="130" y="140" text-anchor="middle" font-size="11" fill="#60a5fa">閾値↓</text>
+  <text x="130" y="156" text-anchor="middle" font-size="11" fill="#60a5fa">R↑ P↓</text>
+  <!-- title -->
+  <text x="350" y="388" text-anchor="middle" font-size="12" fill="#94a3b8">閾値を動かすと Precision と Recall はトレードオフの関係になる</text>
+</svg>

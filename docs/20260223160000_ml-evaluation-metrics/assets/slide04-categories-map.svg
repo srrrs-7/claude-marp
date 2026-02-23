@@ -1,0 +1,91 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#f8f8f8">ML評価指標 — 5つのカテゴリ概観</text>
+  <!-- Classification -->
+  <rect x="8" y="42" width="148" height="310" rx="10" fill="rgba(96,165,250,0.12)" stroke="#60a5fa" stroke-width="2"/>
+  <text x="82" y="68" text-anchor="middle" font-size="14" font-weight="bold" fill="#60a5fa">分類</text>
+  <text x="82" y="84" text-anchor="middle" font-size="10" fill="#94a3b8">Classification</text>
+  <line x1="18" y1="94" x2="146" y2="94" stroke="#60a5fa" stroke-width="1" opacity="0.4"/>
+  <text x="82" y="112" text-anchor="middle" font-size="11" fill="#f8f8f8">Accuracy</text>
+  <text x="82" y="130" text-anchor="middle" font-size="11" fill="#f8f8f8">Precision</text>
+  <text x="82" y="148" text-anchor="middle" font-size="11" fill="#f8f8f8">Recall</text>
+  <text x="82" y="166" text-anchor="middle" font-size="11" fill="#f8f8f8">F1 / Fβ</text>
+  <text x="82" y="184" text-anchor="middle" font-size="11" fill="#f8f8f8">AUC-ROC</text>
+  <text x="82" y="202" text-anchor="middle" font-size="11" fill="#f8f8f8">PR-AUC</text>
+  <text x="82" y="220" text-anchor="middle" font-size="11" fill="#f8f8f8">MCC</text>
+  <text x="82" y="238" text-anchor="middle" font-size="11" fill="#f8f8f8">Cohen's κ</text>
+  <text x="82" y="256" text-anchor="middle" font-size="11" fill="#f8f8f8">Balanced Acc</text>
+  <line x1="18" y1="270" x2="146" y2="270" stroke="#60a5fa" stroke-width="1" opacity="0.4"/>
+  <rect x="24" y="280" width="116" height="22" rx="11" fill="rgba(96,165,250,0.25)"/>
+  <text x="82" y="295" text-anchor="middle" font-size="11" fill="#60a5fa">スライド 6–26</text>
+  <!-- Regression -->
+  <rect x="165" y="42" width="148" height="310" rx="10" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="2"/>
+  <text x="239" y="68" text-anchor="middle" font-size="14" font-weight="bold" fill="#34d399">回帰</text>
+  <text x="239" y="84" text-anchor="middle" font-size="10" fill="#94a3b8">Regression</text>
+  <line x1="175" y1="94" x2="303" y2="94" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <text x="239" y="112" text-anchor="middle" font-size="11" fill="#f8f8f8">MAE</text>
+  <text x="239" y="130" text-anchor="middle" font-size="11" fill="#f8f8f8">MSE</text>
+  <text x="239" y="148" text-anchor="middle" font-size="11" fill="#f8f8f8">RMSE</text>
+  <text x="239" y="166" text-anchor="middle" font-size="11" fill="#f8f8f8">R²</text>
+  <text x="239" y="184" text-anchor="middle" font-size="11" fill="#f8f8f8">Adjusted R²</text>
+  <text x="239" y="202" text-anchor="middle" font-size="11" fill="#f8f8f8">MAPE</text>
+  <text x="239" y="220" text-anchor="middle" font-size="11" fill="#f8f8f8">Huber Loss</text>
+  <text x="239" y="238" text-anchor="middle" font-size="11" fill="#f8f8f8">Log-RMSE</text>
+  <text x="239" y="256" text-anchor="middle" font-size="11" fill="#f8f8f8">SMAPE</text>
+  <line x1="175" y1="270" x2="303" y2="270" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <rect x="181" y="280" width="116" height="22" rx="11" fill="rgba(52,211,153,0.25)"/>
+  <text x="239" y="295" text-anchor="middle" font-size="11" fill="#34d399">スライド 27–43</text>
+  <!-- NLP -->
+  <rect x="322" y="42" width="148" height="310" rx="10" fill="rgba(167,139,250,0.12)" stroke="#a78bfa" stroke-width="2"/>
+  <text x="396" y="68" text-anchor="middle" font-size="14" font-weight="bold" fill="#a78bfa">NLP生成</text>
+  <text x="396" y="84" text-anchor="middle" font-size="10" fill="#94a3b8">NLP Generation</text>
+  <line x1="332" y1="94" x2="460" y2="94" stroke="#a78bfa" stroke-width="1" opacity="0.4"/>
+  <text x="396" y="112" text-anchor="middle" font-size="11" fill="#f8f8f8">BLEU</text>
+  <text x="396" y="130" text-anchor="middle" font-size="11" fill="#f8f8f8">ROUGE-1/2/L</text>
+  <text x="396" y="148" text-anchor="middle" font-size="11" fill="#f8f8f8">BERTScore</text>
+  <text x="396" y="166" text-anchor="middle" font-size="11" fill="#f8f8f8">Perplexity</text>
+  <text x="396" y="184" text-anchor="middle" font-size="11" fill="#f8f8f8">METEOR</text>
+  <text x="396" y="202" text-anchor="middle" font-size="11" fill="#f8f8f8">ChrF</text>
+  <text x="396" y="220" text-anchor="middle" font-size="11" fill="#f8f8f8">TER</text>
+  <text x="396" y="238" text-anchor="middle" font-size="11" fill="#f8f8f8">COMET</text>
+  <text x="396" y="256" text-anchor="middle" font-size="11" fill="#f8f8f8">LLM-as-Judge</text>
+  <line x1="332" y1="270" x2="460" y2="270" stroke="#a78bfa" stroke-width="1" opacity="0.4"/>
+  <rect x="338" y="280" width="116" height="22" rx="11" fill="rgba(167,139,250,0.25)"/>
+  <text x="396" y="295" text-anchor="middle" font-size="11" fill="#a78bfa">スライド 44–60</text>
+  <!-- Ranking -->
+  <rect x="479" y="42" width="148" height="310" rx="10" fill="rgba(251,146,60,0.12)" stroke="#fb923c" stroke-width="2"/>
+  <text x="553" y="68" text-anchor="middle" font-size="14" font-weight="bold" fill="#fb923c">ランキング</text>
+  <text x="553" y="84" text-anchor="middle" font-size="10" fill="#94a3b8">Ranking / Rec</text>
+  <line x1="489" y1="94" x2="617" y2="94" stroke="#fb923c" stroke-width="1" opacity="0.4"/>
+  <text x="553" y="112" text-anchor="middle" font-size="11" fill="#f8f8f8">Precision@K</text>
+  <text x="553" y="130" text-anchor="middle" font-size="11" fill="#f8f8f8">Recall@K</text>
+  <text x="553" y="148" text-anchor="middle" font-size="11" fill="#f8f8f8">AP / MAP</text>
+  <text x="553" y="166" text-anchor="middle" font-size="11" fill="#f8f8f8">NDCG</text>
+  <text x="553" y="184" text-anchor="middle" font-size="11" fill="#f8f8f8">MRR</text>
+  <text x="553" y="202" text-anchor="middle" font-size="11" fill="#f8f8f8">Hit Rate</text>
+  <text x="553" y="220" text-anchor="middle" font-size="11" fill="#f8f8f8">Coverage</text>
+  <text x="553" y="238" text-anchor="middle" font-size="11" fill="#f8f8f8">Diversity</text>
+  <text x="553" y="256" text-anchor="middle" font-size="11" fill="#f8f8f8">Novelty</text>
+  <line x1="489" y1="270" x2="617" y2="270" stroke="#fb923c" stroke-width="1" opacity="0.4"/>
+  <rect x="495" y="280" width="116" height="22" rx="11" fill="rgba(251,146,60,0.25)"/>
+  <text x="553" y="295" text-anchor="middle" font-size="11" fill="#fb923c">スライド 61–77</text>
+  <!-- Clustering -->
+  <rect x="636" y="42" width="148" height="310" rx="10" fill="rgba(244,114,182,0.12)" stroke="#f472b6" stroke-width="2"/>
+  <text x="710" y="68" text-anchor="middle" font-size="14" font-weight="bold" fill="#f472b6">クラスタリング</text>
+  <text x="710" y="84" text-anchor="middle" font-size="10" fill="#94a3b8">Clustering</text>
+  <line x1="646" y1="94" x2="774" y2="94" stroke="#f472b6" stroke-width="1" opacity="0.4"/>
+  <text x="710" y="112" text-anchor="middle" font-size="11" fill="#f8f8f8">Silhouette</text>
+  <text x="710" y="130" text-anchor="middle" font-size="11" fill="#f8f8f8">Davies-Bouldin</text>
+  <text x="710" y="148" text-anchor="middle" font-size="11" fill="#f8f8f8">Calinski-H</text>
+  <text x="710" y="166" text-anchor="middle" font-size="11" fill="#f8f8f8">ARI</text>
+  <text x="710" y="184" text-anchor="middle" font-size="11" fill="#f8f8f8">NMI</text>
+  <text x="710" y="202" text-anchor="middle" font-size="11" fill="#f8f8f8">Inertia</text>
+  <text x="710" y="220" text-anchor="middle" font-size="11" fill="#f8f8f8">V-Measure</text>
+  <text x="710" y="238" text-anchor="middle" font-size="11" fill="#f8f8f8">Fowlkes-M</text>
+  <text x="710" y="256" text-anchor="middle" font-size="11" fill="#f8f8f8">エルボー法</text>
+  <line x1="646" y1="270" x2="774" y2="270" stroke="#f472b6" stroke-width="1" opacity="0.4"/>
+  <rect x="652" y="280" width="116" height="22" rx="11" fill="rgba(244,114,182,0.25)"/>
+  <text x="710" y="295" text-anchor="middle" font-size="11" fill="#f472b6">スライド 78–94</text>
+  <!-- total badge -->
+  <rect x="240" y="362" width="320" height="14" rx="7" fill="rgba(255,255,255,0.08)"/>
+  <text x="400" y="373" text-anchor="middle" font-size="10" fill="#94a3b8">合計 40+ 指標 — 105スライドで網羅</text>
+</svg>

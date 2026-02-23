@@ -1,0 +1,78 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="26" text-anchor="middle" fill="#f1f5f9" font-size="16" font-weight="bold" font-family="sans-serif">マルチモデル FMOps パターン</text>
+
+  <!-- Central circle with label -->
+  <circle cx="450" cy="255" r="55" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="450" y="248" text-anchor="middle" fill="#3b82f6" font-size="12" font-weight="bold" font-family="sans-serif">FMOps</text>
+  <text x="450" y="264" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Lifecycle</text>
+
+  <!-- Stage 1: FM Selection - TOP -->
+  <rect x="280" y="42" width="340" height="75" rx="10" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="450" y="62" text-anchor="middle" fill="#a855f7" font-size="12" font-weight="bold" font-family="sans-serif">Stage 1 — FM 選択</text>
+  <rect x="292" y="72" width="95" height="38" rx="6" fill="#0f172a"/>
+  <text x="339" y="88" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Bedrock</text>
+  <text x="339" y="102" text-anchor="middle" fill="#a855f7" font-size="9" font-weight="bold" font-family="sans-serif">フルマネージド</text>
+  <rect x="397" y="72" width="95" height="38" rx="6" fill="#0f172a"/>
+  <text x="444" y="88" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">JumpStart</text>
+  <text x="444" y="102" text-anchor="middle" fill="#a855f7" font-size="9" font-weight="bold" font-family="sans-serif">コントロール有</text>
+  <rect x="502" y="72" width="106" height="38" rx="6" fill="#0f172a"/>
+  <text x="555" y="88" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Custom Training</text>
+  <text x="555" y="102" text-anchor="middle" fill="#a855f7" font-size="9" font-weight="bold" font-family="sans-serif">完全カスタム</text>
+
+  <line x1="450" y1="117" x2="450" y2="200" stroke="#a855f7" stroke-width="1.5"/>
+  <polygon points="446,200 450,208 454,200" fill="#a855f7"/>
+
+  <!-- Stage 2: Fine-tuning - RIGHT -->
+  <rect x="670" y="155" width="215" height="100" rx="10" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="777" y="176" text-anchor="middle" fill="#f97316" font-size="12" font-weight="bold" font-family="sans-serif">Stage 2 — Fine-tuning</text>
+  <text x="680" y="196" fill="#94a3b8" font-size="10" font-family="sans-serif">ドメインデータ準備</text>
+  <text x="680" y="212" fill="#94a3b8" font-size="10" font-family="sans-serif">SageMaker Training</text>
+  <text x="777" y="228" text-anchor="middle" fill="#f97316" font-size="10" font-weight="bold" font-family="sans-serif">QLoRA / LoRA</text>
+  <text x="680" y="246" fill="#94a3b8" font-size="10" font-family="sans-serif">→ Fine-tuned Adapter</text>
+
+  <line x1="505" y1="255" x2="670" y2="230" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="662,227 670,230 664,237" fill="#f97316"/>
+
+  <!-- Stage 3: Evaluation - BOTTOM RIGHT -->
+  <rect x="630" y="345" width="255" height="100" rx="10" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="757" y="366" text-anchor="middle" fill="#22c55e" font-size="12" font-weight="bold" font-family="sans-serif">Stage 3 — 評価</text>
+  <text x="640" y="386" fill="#94a3b8" font-size="10" font-family="sans-serif">Bedrock Model Evaluation</text>
+  <text x="640" y="402" fill="#94a3b8" font-size="10" font-family="sans-serif">RAGAS フレームワーク</text>
+  <text x="640" y="418" fill="#94a3b8" font-size="10" font-family="sans-serif">カスタム精度メトリクス</text>
+  <text x="757" y="435" text-anchor="middle" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">Human Evaluation</text>
+
+  <line x1="490" y1="305" x2="640" y2="370" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="632,365 640,370 634,377" fill="#22c55e"/>
+
+  <!-- Stage 4: Deployment - BOTTOM LEFT -->
+  <rect x="15" y="345" width="255" height="100" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="142" y="366" text-anchor="middle" fill="#3b82f6" font-size="12" font-weight="bold" font-family="sans-serif">Stage 4 — デプロイ</text>
+  <text x="25" y="386" fill="#94a3b8" font-size="10" font-family="sans-serif">A/B テスト (Base vs FT)</text>
+  <text x="25" y="402" fill="#94a3b8" font-size="10" font-family="sans-serif">Shadow Mode テスト</text>
+  <text x="25" y="418" fill="#94a3b8" font-size="10" font-family="sans-serif">段階的トラフィック移行</text>
+  <text x="142" y="435" text-anchor="middle" fill="#3b82f6" font-size="10" font-weight="bold" font-family="sans-serif">Blue/Green ロールアウト</text>
+
+  <line x1="270" y1="395" x2="400" y2="305" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="393,300 400,305 393,311" fill="#3b82f6"/>
+
+  <!-- Stage 5: Monitoring - LEFT -->
+  <rect x="15" y="155" width="215" height="100" rx="10" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="122" y="176" text-anchor="middle" fill="#14b8a6" font-size="12" font-weight="bold" font-family="sans-serif">Stage 5 — モニタリング</text>
+  <text x="25" y="196" fill="#94a3b8" font-size="10" font-family="sans-serif">出力品質ドリフト検知</text>
+  <text x="25" y="212" fill="#94a3b8" font-size="10" font-family="sans-serif">Human Feedback 収集</text>
+  <text x="25" y="228" fill="#94a3b8" font-size="10" font-family="sans-serif">RLHF ループ</text>
+  <text x="122" y="246" text-anchor="middle" fill="#14b8a6" font-size="10" font-weight="bold" font-family="sans-serif">→ 再学習トリガー</text>
+
+  <line x1="230" y1="205" x2="395" y2="240" stroke="#14b8a6" stroke-width="1.5"/>
+  <polygon points="387,237 395,240 388,246" fill="#14b8a6"/>
+
+  <!-- Circular arrows on center circle to indicate cycle -->
+  <!-- Top arc arrow hint -->
+  <text x="450" y="290" text-anchor="middle" fill="#475569" font-size="20" font-family="sans-serif">↻</text>
+
+  <!-- Comparison table at bottom -->
+  <rect x="15" y="455" width="870" height="38" rx="6" fill="#1e293b"/>
+  <text x="450" y="470" text-anchor="middle" fill="#f1f5f9" font-size="11" font-weight="bold" font-family="sans-serif">選択指針: Bedrock=素早く試す | JumpStart=オープンLLM/コントロール | Custom Training=完全独自/機密データ</text>
+  <text x="450" y="486" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">QLoRA: GPU VRAM 削減 (4bit量子化 + LoRA) — 単一GPU で大規模FMのFine-tuning可能</text>
+</svg>

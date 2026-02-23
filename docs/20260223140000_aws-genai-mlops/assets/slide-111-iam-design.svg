@@ -1,0 +1,74 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#4CC9F0" text-anchor="middle">IAM 権限設計 — 最小権限原則 (PoLP)</text>
+
+  <!-- Column 1: SageMaker Execution Role -->
+  <rect x="15" y="48" width="240" height="330" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="135" y="72" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">SageMaker</text>
+  <text x="135" y="88" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">Execution Role</text>
+  <text x="135" y="105" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">学習/推論ジョブが引き受けるロール</text>
+  <rect x="25" y="113" width="220" height="250" rx="5" fill="#0d1b2a"/>
+  <text x="35" y="134" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">✓ S3 read/write</text>
+  <text x="45" y="150" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(学習データbucketのみ)</text>
+  <text x="35" y="170" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">✓ ECR pull</text>
+  <text x="45" y="186" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(コンテナイメージ取得)</text>
+  <text x="35" y="206" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">✓ CloudWatch Logs write</text>
+  <text x="45" y="222" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(ログ出力のみ)</text>
+  <text x="35" y="242" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">✓ Secrets Manager read</text>
+  <text x="45" y="258" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(APIキーなど秘匿情報)</text>
+  <text x="35" y="278" font-family="Arial,sans-serif" font-size="10" fill="#E63946">✗ SageMaker管理権限なし</text>
+  <text x="35" y="298" font-family="Arial,sans-serif" font-size="10" fill="#E63946">✗ IAM権限なし</text>
+  <text x="35" y="318" font-family="Arial,sans-serif" font-size="10" fill="#E63946">✗ EC2権限なし</text>
+  <text x="35" y="352" font-family="Arial,sans-serif" font-size="9" fill="#888888" text-anchor="middle">KMS key + resource condition</text>
+
+  <!-- Column 2: Pipeline Execution Role -->
+  <rect x="280" y="48" width="240" height="330" rx="8" fill="#0f3460" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="400" y="72" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">Pipeline</text>
+  <text x="400" y="88" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">Execution Role</text>
+  <text x="400" y="105" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">SM Pipelinesがステップを実行するロール</text>
+  <rect x="290" y="113" width="220" height="250" rx="5" fill="#0d1b2a"/>
+  <text x="300" y="134" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">✓ SageMaker pipeline ops</text>
+  <text x="310" y="150" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(Create/Start/Stop Pipeline)</text>
+  <text x="300" y="170" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">✓ IAM PassRole</text>
+  <text x="310" y="186" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(Execution Roleへの委任のみ)</text>
+  <text x="300" y="206" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">✓ S3 pipeline artifacts</text>
+  <text x="310" y="222" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(パイプラインS3バケットのみ)</text>
+  <text x="300" y="242" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">✓ EventBridge put events</text>
+  <text x="310" y="258" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(完了通知トリガー)</text>
+  <text x="300" y="278" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">✓ CloudWatch metrics</text>
+  <text x="300" y="298" font-family="Arial,sans-serif" font-size="10" fill="#E63946">✗ IAM role create なし</text>
+  <text x="300" y="318" font-family="Arial,sans-serif" font-size="10" fill="#E63946">✗ S3全バケットアクセス禁止</text>
+  <text x="300" y="352" font-family="Arial,sans-serif" font-size="9" fill="#888888" text-anchor="middle">PassRole: resource条件でスコープ制限</text>
+
+  <!-- Column 3: CI/CD Role -->
+  <rect x="545" y="48" width="240" height="330" rx="8" fill="#0a2545" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="665" y="72" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">CI/CD Role</text>
+  <text x="665" y="88" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">(CodeBuild)</text>
+  <text x="665" y="105" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">CI/CDビルドジョブが使用するロール</text>
+  <rect x="555" y="113" width="220" height="250" rx="5" fill="#0d1b2a"/>
+  <text x="565" y="134" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">✓ SageMaker pipeline start</text>
+  <text x="575" y="150" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(StartPipelineExecution のみ)</text>
+  <text x="565" y="170" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">✓ S3 source bucket read</text>
+  <text x="575" y="186" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(コードリポジトリbucketのみ)</text>
+  <text x="565" y="206" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">✓ ECR push</text>
+  <text x="575" y="222" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(指定リポジトリのみ)</text>
+  <text x="565" y="242" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0">✓ CodeBuild reports</text>
+  <text x="565" y="262" font-family="Arial,sans-serif" font-size="10" fill="#E63946">✗ SageMaker endpoint管理なし</text>
+  <text x="565" y="282" font-family="Arial,sans-serif" font-size="10" fill="#E63946">✗ S3全バケット禁止</text>
+  <text x="565" y="302" font-family="Arial,sans-serif" font-size="10" fill="#E63946">✗ IAM変更権限なし</text>
+  <text x="565" y="350" font-family="Arial,sans-serif" font-size="9" fill="#888888" text-anchor="middle">Env var: PIPELINE_ARN で特定化</text>
+
+  <!-- Bottom: Permission Boundaries + SCPs -->
+  <rect x="15" y="395" width="760" height="90" rx="8" fill="#1a2a40" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="400" y="418" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#F77F00" text-anchor="middle">マルチアカウント設定</text>
+  <text x="210" y="440" font-family="Arial,sans-serif" font-size="10" fill="#4CC9F0" text-anchor="middle">Permission Boundaries</text>
+  <text x="210" y="456" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">ロールが作れる権限の上限を設定</text>
+  <text x="210" y="472" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">セルフ権限昇格を防止</text>
+  <line x1="380" y1="410" x2="380" y2="478" stroke="#888888" stroke-width="1"/>
+  <text x="590" y="440" font-family="Arial,sans-serif" font-size="10" fill="#4CC9F0" text-anchor="middle">SCPs (Service Control Policies)</text>
+  <text x="590" y="456" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">AWS Organizations でOU単位に</text>
+  <text x="590" y="472" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">ガードレール(最大権限)を設定</text>
+</svg>

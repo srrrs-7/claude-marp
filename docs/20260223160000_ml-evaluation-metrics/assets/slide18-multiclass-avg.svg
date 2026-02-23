@@ -1,0 +1,56 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="26" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">多クラス分類の平均化手法</text>
+  <!-- Data setup -->
+  <text x="400" y="50" text-anchor="middle" font-size="12" fill="#94a3b8">例: 3クラス分類  クラスA(100件), クラスB(300件), クラスC(600件)</text>
+  <!-- 3 columns: Macro, Micro, Weighted -->
+  <!-- Macro -->
+  <rect x="20" y="66" width="234" height="280" rx="12" fill="rgba(167,139,250,0.12)" stroke="#a78bfa" stroke-width="2"/>
+  <rect x="20" y="66" width="234" height="46" rx="12" fill="rgba(167,139,250,0.3)"/>
+  <rect x="20" y="96" width="234" height="16" fill="rgba(167,139,250,0.3)"/>
+  <text x="137" y="94" text-anchor="middle" font-size="14" font-weight="bold" fill="#f8f8f8">Macro 平均</text>
+  <text x="137" y="124" text-anchor="middle" font-size="11" fill="#94a3b8">各クラスの指標を単純平均</text>
+  <line x1="30" y1="134" x2="244" y2="134" stroke="#a78bfa" stroke-width="1" opacity="0.4"/>
+  <text x="137" y="154" text-anchor="middle" font-size="11" fill="#f8f8f8">クラスA: F1 = 0.60</text>
+  <text x="137" y="172" text-anchor="middle" font-size="11" fill="#f8f8f8">クラスB: F1 = 0.72</text>
+  <text x="137" y="190" text-anchor="middle" font-size="11" fill="#f8f8f8">クラスC: F1 = 0.85</text>
+  <text x="137" y="216" text-anchor="middle" font-size="13" font-weight="bold" fill="#a78bfa">Macro F1 = 0.723</text>
+  <text x="137" y="234" text-anchor="middle" font-size="10" fill="#94a3b8">(0.60+0.72+0.85)/3</text>
+  <line x1="30" y1="248" x2="244" y2="248" stroke="#a78bfa" stroke-width="1" opacity="0.4"/>
+  <rect x="36" y="258" width="202" height="40" rx="6" fill="rgba(167,139,250,0.1)"/>
+  <text x="137" y="274" text-anchor="middle" font-size="10" fill="#a78bfa">クラス不均衡を無視</text>
+  <text x="137" y="290" text-anchor="middle" font-size="10" fill="#a78bfa">少数クラスを同等に評価</text>
+  <!-- Micro -->
+  <rect x="283" y="66" width="234" height="280" rx="12" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="2"/>
+  <rect x="283" y="66" width="234" height="46" rx="12" fill="rgba(52,211,153,0.3)"/>
+  <rect x="283" y="96" width="234" height="16" fill="rgba(52,211,153,0.3)"/>
+  <text x="400" y="94" text-anchor="middle" font-size="14" font-weight="bold" fill="#f8f8f8">Micro 平均</text>
+  <text x="400" y="124" text-anchor="middle" font-size="11" fill="#94a3b8">TP/FP/FNをまず合計してから計算</text>
+  <line x1="293" y1="134" x2="507" y2="134" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <text x="400" y="154" text-anchor="middle" font-size="11" fill="#f8f8f8">全TP = 55+216+510 = 781</text>
+  <text x="400" y="172" text-anchor="middle" font-size="11" fill="#f8f8f8">全FP+FN = 219</text>
+  <text x="400" y="216" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399">Micro F1 = 0.781</text>
+  <text x="400" y="234" text-anchor="middle" font-size="10" fill="#94a3b8">2×781/(2×781+219)</text>
+  <line x1="293" y1="248" x2="507" y2="248" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <rect x="299" y="258" width="202" height="40" rx="6" fill="rgba(52,211,153,0.1)"/>
+  <text x="400" y="274" text-anchor="middle" font-size="10" fill="#34d399">多数クラスが支配的になる</text>
+  <text x="400" y="290" text-anchor="middle" font-size="10" fill="#34d399">全体的な精度を重視</text>
+  <!-- Weighted -->
+  <rect x="546" y="66" width="234" height="280" rx="12" fill="rgba(251,146,60,0.12)" stroke="#fb923c" stroke-width="2"/>
+  <rect x="546" y="66" width="234" height="46" rx="12" fill="rgba(251,146,60,0.3)"/>
+  <rect x="546" y="96" width="234" height="16" fill="rgba(251,146,60,0.3)"/>
+  <text x="663" y="94" text-anchor="middle" font-size="14" font-weight="bold" fill="#f8f8f8">Weighted 平均</text>
+  <text x="663" y="124" text-anchor="middle" font-size="11" fill="#94a3b8">サンプル数で重み付けして平均</text>
+  <line x1="556" y1="134" x2="770" y2="134" stroke="#fb923c" stroke-width="1" opacity="0.4"/>
+  <text x="663" y="154" text-anchor="middle" font-size="11" fill="#f8f8f8">A: 0.60×100 = 60</text>
+  <text x="663" y="172" text-anchor="middle" font-size="11" fill="#f8f8f8">B: 0.72×300 = 216</text>
+  <text x="663" y="190" text-anchor="middle" font-size="11" fill="#f8f8f8">C: 0.85×600 = 510</text>
+  <text x="663" y="216" text-anchor="middle" font-size="13" font-weight="bold" fill="#fb923c">Weighted F1 = 0.786</text>
+  <text x="663" y="234" text-anchor="middle" font-size="10" fill="#94a3b8">(60+216+510)/1000</text>
+  <line x1="556" y1="248" x2="770" y2="248" stroke="#fb923c" stroke-width="1" opacity="0.4"/>
+  <rect x="562" y="258" width="202" height="40" rx="6" fill="rgba(251,146,60,0.1)"/>
+  <text x="663" y="274" text-anchor="middle" font-size="10" fill="#fb923c">不均衡を反映した現実的な値</text>
+  <text x="663" y="290" text-anchor="middle" font-size="10" fill="#fb923c">多くの場合これを使用</text>
+  <!-- Bottom note -->
+  <rect x="20" y="358" width="760" height="30" rx="8" fill="rgba(255,255,255,0.06)" stroke="#475569" stroke-width="1"/>
+  <text x="400" y="378" text-anchor="middle" font-size="11" fill="#94a3b8">少数クラスに注目 → Macro  |  全体の正確さ → Micro  |  実データ比率を反映 → Weighted</text>
+</svg>

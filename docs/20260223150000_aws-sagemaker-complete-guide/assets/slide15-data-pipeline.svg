@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="28" text-anchor="middle" fill="#f1f5f9" font-size="14" font-weight="bold" font-family="sans-serif">データパイプライン統合アーキテクチャ</text>
+
+  <!-- Main pipeline nodes (top horizontal flow) -->
+
+  <!-- S3 Raw Data -->
+  <rect x="15" y="80" width="115" height="80" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="72" y="108" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="bold" font-family="sans-serif">S3 Raw Data</text>
+  <text x="72" y="124" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">生データ</text>
+  <text x="72" y="139" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">CSV/JSON/</text>
+  <text x="72" y="152" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Parquet</text>
+
+  <!-- Arrow to Glue -->
+  <line x1="130" y1="120" x2="168" y2="120" stroke="#f1f5f9" stroke-width="2"/>
+  <polygon points="168,115 180,120 168,125" fill="#f1f5f9"/>
+
+  <!-- AWS Glue -->
+  <rect x="180" y="80" width="115" height="80" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="237" y="108" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold" font-family="sans-serif">AWS Glue</text>
+  <text x="237" y="124" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">ETL 変換</text>
+  <text x="237" y="140" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">データカタログ</text>
+  <text x="237" y="155" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Spark ベース</text>
+
+  <!-- Arrow to Data Wrangler -->
+  <line x1="295" y1="120" x2="333" y2="120" stroke="#f1f5f9" stroke-width="2"/>
+  <polygon points="333,115 345,120 333,125" fill="#f1f5f9"/>
+
+  <!-- Data Wrangler -->
+  <rect x="345" y="80" width="130" height="80" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="410" y="105" text-anchor="middle" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">Data Wrangler</text>
+  <text x="410" y="121" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">特徴量エンジニア</text>
+  <text x="410" y="136" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">リング GUI</text>
+  <text x="410" y="151" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">300+ 変換</text>
+
+  <!-- Arrow to Feature Store -->
+  <line x1="475" y1="120" x2="513" y2="120" stroke="#f1f5f9" stroke-width="2"/>
+  <polygon points="513,115 525,120 513,125" fill="#f1f5f9"/>
+
+  <!-- Feature Store -->
+  <rect x="525" y="70" width="130" height="100" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="590" y="98" text-anchor="middle" fill="#a855f7" font-size="11" font-weight="bold" font-family="sans-serif">Feature Store</text>
+  <!-- Online -->
+  <rect x="535" y="108" width="50" height="22" rx="4" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="560" y="122" text-anchor="middle" fill="#22c55e" font-size="8" font-weight="bold" font-family="sans-serif">Online</text>
+  <!-- Offline -->
+  <rect x="595" y="108" width="52" height="22" rx="4" fill="#431407" stroke="#f97316" stroke-width="1"/>
+  <text x="621" y="122" text-anchor="middle" fill="#f97316" font-size="8" font-weight="bold" font-family="sans-serif">Offline</text>
+  <text x="590" y="153" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">特徴量レジストリ</text>
+
+  <!-- Arrow to Training -->
+  <line x1="655" y1="120" x2="693" y2="120" stroke="#f1f5f9" stroke-width="2"/>
+  <polygon points="693,115 705,120 693,125" fill="#f1f5f9"/>
+
+  <!-- Training Job -->
+  <rect x="705" y="80" width="110" height="80" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="760" y="108" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="bold" font-family="sans-serif">Training Job</text>
+  <text x="760" y="124" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">モデル学習</text>
+  <text x="760" y="140" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">GPU/CPU</text>
+
+  <!-- Arrow to Model Registry -->
+  <line x1="815" y1="120" x2="853" y2="120" stroke="#f1f5f9" stroke-width="2"/>
+  <polygon points="853,115 865,120 853,125" fill="#f1f5f9"/>
+
+  <!-- Model Registry -->
+  <rect x="865" y="80" width="25" height="80" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <!-- rotate text -->
+  <text x="877" y="145" text-anchor="middle" fill="#14b8a6" font-size="9" font-weight="bold" font-family="sans-serif" transform="rotate(-90,877,120)">Model Registry</text>
+
+  <!-- Side branch: Lake Formation (top-left) -->
+  <rect x="15" y="240" width="130" height="70" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <text x="80" y="268" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold" font-family="sans-serif">Lake Formation</text>
+  <text x="80" y="284" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">アクセス制御</text>
+  <text x="80" y="299" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">列レベル権限管理</text>
+
+  <!-- Connect Lake Formation to S3 -->
+  <line x1="80" y1="240" x2="72" y2="162" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="67,162 72,150 77,162" fill="#ef4444"/>
+
+  <!-- Side branch: Athena -->
+  <rect x="180" y="240" width="130" height="70" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="245" y="268" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold" font-family="sans-serif">Amazon Athena</text>
+  <text x="245" y="284" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">SQL クエリエンジン</text>
+  <text x="245" y="299" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Offline Store 照会</text>
+
+  <!-- Connect Athena to Feature Store Offline -->
+  <line x1="245" y1="240" x2="590" y2="175" stroke="#f97316" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="590,175 583,165 595,163" fill="#f97316"/>
+
+  <!-- Kinesis side branch -->
+  <rect x="345" y="240" width="130" height="70" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="410" y="263" text-anchor="middle" fill="#14b8a6" font-size="10" font-weight="bold" font-family="sans-serif">Kinesis Data</text>
+  <text x="410" y="278" text-anchor="middle" fill="#14b8a6" font-size="10" font-weight="bold" font-family="sans-serif">Streams</text>
+  <text x="410" y="297" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">ストリームデータ</text>
+
+  <!-- Connect Kinesis to Feature Store -->
+  <line x1="475" y1="275" x2="538" y2="175" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="538,175 531,165 543,163" fill="#14b8a6"/>
+
+  <!-- EventBridge / Step Functions -->
+  <rect x="525" y="240" width="180" height="70" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="615" y="265" text-anchor="middle" fill="#a855f7" font-size="10" font-weight="bold" font-family="sans-serif">SageMaker Pipelines</text>
+  <text x="615" y="281" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">MLOps オーケストレーション</text>
+  <text x="615" y="297" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">CI/CD 統合 (CodePipeline)</text>
+
+  <!-- Connect Pipelines to Training -->
+  <line x1="705" y1="265" x2="760" y2="165" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="760,165 754,155 766,153" fill="#a855f7"/>
+
+  <!-- CloudWatch -->
+  <rect x="740" y="240" width="150" height="70" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <text x="815" y="265" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold" font-family="sans-serif">CloudWatch /</text>
+  <text x="815" y="281" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold" font-family="sans-serif">Model Monitor</text>
+  <text x="815" y="297" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">ドリフト検知・監視</text>
+
+  <!-- Connect Monitor to Training -->
+  <line x1="815" y1="240" x2="815" y2="165" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="810,165 815,153 820,165" fill="#ef4444"/>
+
+  <!-- Legend / Notes area -->
+  <rect x="15" y="340" width="870" height="145" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="450" y="363" text-anchor="middle" fill="#f1f5f9" font-size="12" font-weight="bold" font-family="sans-serif">パイプライン設計のベストプラクティス</text>
+
+  <rect x="30" y="375" width="390" height="96" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="225" y="395" text-anchor="middle" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">データ品質の確保</text>
+  <text x="225" y="412" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Lake Formation で列レベルのアクセス制御</text>
+  <text x="225" y="428" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Processing Job でバリデーション自動化</text>
+  <text x="225" y="444" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Feature Store で学習・推論の一貫性を保証</text>
+  <text x="225" y="460" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Athena で Offline Store を随時クエリ可能</text>
+
+  <rect x="445" y="375" width="430" height="96" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="660" y="395" text-anchor="middle" fill="#3b82f6" font-size="10" font-weight="bold" font-family="sans-serif">自動化・スケーラビリティ</text>
+  <text x="660" y="412" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">SageMaker Pipelines で全フローを DAG 定義</text>
+  <text x="660" y="428" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Kinesis でストリームデータをリアルタイム取り込み</text>
+  <text x="660" y="444" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Model Monitor でデータドリフト・品質を自動検知</text>
+  <text x="660" y="460" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">CodePipeline との統合で CI/CD を実現</text>
+</svg>

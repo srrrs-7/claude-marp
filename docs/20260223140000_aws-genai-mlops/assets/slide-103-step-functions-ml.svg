@@ -1,0 +1,109 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+
+  <!-- Title -->
+  <text x="400" y="32" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#4CC9F0" text-anchor="middle">AWS Step Functions for ML ワークフロー</text>
+
+  <!-- State Machine Container -->
+  <rect x="20" y="45" width="460" height="440" rx="10" fill="#1a2a40" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="250" y="70" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0" text-anchor="middle">State Machine (状態遷移図)</text>
+
+  <!-- Start -->
+  <circle cx="250" cy="95" r="14" fill="#06D6A0"/>
+  <text x="250" y="99" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#0d1b2a" text-anchor="middle">START</text>
+  <line x1="250" y1="109" x2="250" y2="127" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(250,129)"/>
+
+  <!-- データ前処理 -->
+  <rect x="155" y="130" width="190" height="40" rx="6" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="250" y="146" font-family="Arial,sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">データ前処理</text>
+  <text x="250" y="161" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">Lambda / ECS Task</text>
+  <line x1="250" y1="170" x2="250" y2="188" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(250,190)"/>
+
+  <!-- 学習ジョブ開始 -->
+  <rect x="155" y="192" width="190" height="40" rx="6" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="250" y="208" font-family="Arial,sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">学習ジョブ開始</text>
+  <text x="250" y="223" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">SageMaker Training Job</text>
+  <line x1="250" y1="232" x2="250" y2="250" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(250,252)"/>
+
+  <!-- ジョブ完了待機 (Wait) -->
+  <rect x="155" y="254" width="190" height="40" rx="6" fill="#2d4059" stroke="#F77F00" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="250" y="270" font-family="Arial,sans-serif" font-size="11" fill="#F77F00" text-anchor="middle">ジョブ完了待機</text>
+  <text x="250" y="285" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">Wait State (polling interval)</text>
+  <line x1="250" y1="294" x2="250" y2="312" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(250,314)"/>
+
+  <!-- ジョブ状態確認 (Choice) - diamond -->
+  <polygon points="250,316 310,345 250,374 190,345" fill="#0a2545" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="250" y="341" font-family="Arial,sans-serif" font-size="10" fill="#F77F00" text-anchor="middle">状態確認</text>
+  <text x="250" y="356" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">Choice State</text>
+
+  <!-- Running → back to Wait -->
+  <line x1="190" y1="345" x2="100" y2="345" stroke="#F77F00" stroke-width="1.5"/>
+  <line x1="100" y1="345" x2="100" y2="274" stroke="#F77F00" stroke-width="1.5"/>
+  <line x1="100" y1="274" x2="155" y2="274" stroke="#F77F00" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#F77F00" transform="translate(153,274) rotate(90)"/>
+  <text x="85" y="315" font-family="Arial,sans-serif" font-size="9" fill="#F77F00" text-anchor="middle" transform="rotate(-90,85,315)">Running</text>
+
+  <!-- Failed → SNS Notification -->
+  <line x1="250" y1="374" x2="250" y2="392" stroke="#E63946" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#E63946" transform="translate(250,394)"/>
+  <!-- Label Failed branch right side -->
+  <text x="310" y="385" font-family="Arial,sans-serif" font-size="9" fill="#E63946">Succeeded ↓</text>
+  <text x="175" y="385" font-family="Arial,sans-serif" font-size="9" fill="#E63946" text-anchor="middle">Failed →</text>
+
+  <!-- モデル評価 (Succeeded branch) -->
+  <rect x="155" y="395" width="190" height="40" rx="6" fill="#1e3a5f" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="250" y="411" font-family="Arial,sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">モデル評価</text>
+  <text x="250" y="426" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">Lambda / SageMaker Processing</text>
+  <line x1="250" y1="435" x2="250" y2="455" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#06D6A0" transform="translate(250,457)"/>
+  <!-- End indicator -->
+  <rect x="195" y="458" width="110" height="25" rx="4" fill="#06D6A0" fill-opacity="0.3" stroke="#06D6A0" stroke-width="1"/>
+  <text x="250" y="473" font-family="Arial,sans-serif" font-size="9" fill="#06D6A0" text-anchor="middle">エンドポイント更新 / 成功通知</text>
+
+  <!-- Failed path: SNS box on right -->
+  <line x1="310" y1="345" x2="430" y2="345" stroke="#E63946" stroke-width="1.5"/>
+  <line x1="430" y1="345" x2="430" y2="415" stroke="#E63946" stroke-width="1.5"/>
+  <rect x="350" y="395" width="150" height="40" rx="6" fill="#3d0000" stroke="#E63946" stroke-width="1.5"/>
+  <text x="425" y="411" font-family="Arial,sans-serif" font-size="10" fill="#E63946" text-anchor="middle">失敗通知</text>
+  <text x="425" y="426" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">SNS → 担当者通知</text>
+  <text x="365" y="342" font-family="Arial,sans-serif" font-size="9" fill="#E63946">Failed</text>
+
+  <!-- Info Panel -->
+  <rect x="495" y="45" width="290" height="440" rx="10" fill="#1a2a40" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="640" y="72" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#06D6A0" text-anchor="middle">Step Functions ML 特長</text>
+
+  <rect x="508" y="82" width="264" height="66" rx="5" fill="#1e3a5f"/>
+  <text x="516" y="100" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">AWS SDK Integration</text>
+  <text x="516" y="118" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">Lambdaなしで直接SageMaker API</text>
+  <text x="516" y="133" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">を呼び出し可能 (最新パターン)</text>
+
+  <rect x="508" y="157" width="264" height="56" rx="5" fill="#0f3460"/>
+  <text x="516" y="175" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">視覚的デバッグ</text>
+  <text x="516" y="193" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">コンソールで実行状態をリアルタイム</text>
+  <text x="516" y="207" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">確認。エラー箇所が一目瞭然</text>
+
+  <rect x="508" y="222" width="264" height="56" rx="5" fill="#0a2545"/>
+  <text x="516" y="240" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">エラーハンドリング</text>
+  <text x="516" y="258" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">Catch / Retry ブロックで</text>
+  <text x="516" y="272" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">自動リトライと失敗処理</text>
+
+  <rect x="508" y="287" width="264" height="56" rx="5" fill="#1e3a5f"/>
+  <text x="516" y="305" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">Amazon States Language</text>
+  <text x="516" y="323" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">JSON形式でワークフロー定義</text>
+  <text x="516" y="337" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">CDKでIaC管理も可能</text>
+
+  <rect x="508" y="352" width="264" height="66" rx="5" fill="#0f3460"/>
+  <text x="516" y="370" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">SM Pipelines との違い</text>
+  <text x="516" y="388" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">Step Functions: 汎用ワークフロー</text>
+  <text x="516" y="403" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">SM Pipelines: ML特化・Studio統合</text>
+  <text x="516" y="413" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">試験: ML専用 → SM Pipelines推奨</text>
+
+  <rect x="508" y="427" width="264" height="46" rx="5" fill="#06D6A0" fill-opacity="0.15" stroke="#06D6A0" stroke-width="1"/>
+  <text x="640" y="447" font-family="Arial,sans-serif" font-size="10" fill="#06D6A0" text-anchor="middle">Standard / Express ワークフロー</text>
+  <text x="640" y="463" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">ML: Standard (正確に1回実行保証)</text>
+</svg>

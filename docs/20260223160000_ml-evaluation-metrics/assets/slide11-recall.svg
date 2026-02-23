@@ -1,0 +1,30 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- formula box -->
+  <rect x="50" y="20" width="700" height="60" rx="10" fill="rgba(96,165,250,0.15)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="400" y="58" text-anchor="middle" font-size="22" font-weight="bold" fill="#60a5fa">Recall = TP / (TP + FN)</text>
+  <!-- visual: actual positive bar -->
+  <text x="400" y="115" text-anchor="middle" font-size="14" fill="#94a3b8">「実際のPositive全体」の内訳</text>
+  <!-- bar showing TP and FN -->
+  <rect x="80" y="130" width="440" height="80" rx="8" fill="rgba(52,211,153,0.25)" stroke="#34d399" stroke-width="2"/>
+  <rect x="520" y="130" width="180" height="80" rx="8" fill="rgba(251,146,60,0.25)" stroke="#fb923c" stroke-width="2"/>
+  <!-- TP label -->
+  <text x="300" y="166" text-anchor="middle" font-size="18" font-weight="bold" fill="#34d399">TP</text>
+  <text x="300" y="188" text-anchor="middle" font-size="13" fill="#f8f8f8">正しく検出できた陽性</text>
+  <!-- FN label -->
+  <text x="610" y="166" text-anchor="middle" font-size="18" font-weight="bold" fill="#fb923c">FN</text>
+  <text x="610" y="188" text-anchor="middle" font-size="13" fill="#f8f8f8">見逃し</text>
+  <!-- bracket -->
+  <line x1="80" y1="222" x2="700" y2="222" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="80" y1="218" x2="80" y2="226" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="700" y1="218" x2="700" y2="226" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="390" y="242" text-anchor="middle" font-size="13" fill="#94a3b8">実際のPositive全件（TP + FN）</text>
+  <!-- recall arrow highlight -->
+  <line x1="80" y1="252" x2="520" y2="252" stroke="#60a5fa" stroke-width="2"/>
+  <line x1="80" y1="248" x2="80" y2="256" stroke="#60a5fa" stroke-width="2"/>
+  <line x1="520" y1="248" x2="520" y2="256" stroke="#60a5fa" stroke-width="2"/>
+  <text x="300" y="272" text-anchor="middle" font-size="13" fill="#60a5fa">Recall = TP / (TP+FN) = この割合</text>
+  <!-- caption and use case -->
+  <text x="400" y="302" text-anchor="middle" font-size="13" fill="#f8f8f8">「実際のPositiveのうち、正しく検出できた割合」</text>
+  <rect x="100" y="316" width="600" height="32" rx="8" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1"/>
+  <text x="400" y="337" text-anchor="middle" font-size="12" fill="#34d399">FNのコストが高い場合に重要 — 例: 癌検診（患者の見逃しを最小化）</text>
+</svg>

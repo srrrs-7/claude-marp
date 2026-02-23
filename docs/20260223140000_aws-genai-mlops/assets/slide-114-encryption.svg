@@ -1,0 +1,88 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#4CC9F0" text-anchor="middle">暗号化・データ保護設定</text>
+
+  <!-- Left: At Rest -->
+  <rect x="15" y="48" width="330" height="380" rx="10" fill="#1a2a40" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="180" y="74" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0" text-anchor="middle">保存時の暗号化 (At Rest)</text>
+
+  <rect x="27" y="84" width="306" height="62" rx="5" fill="#1e3a5f"/>
+  <text x="37" y="103" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">S3 暗号化オプション</text>
+  <text x="37" y="120" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">SSE-S3: S3マネージドキー (最もシンプル)</text>
+  <text x="37" y="136" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">SSE-KMS: KMSキーでアクセス制御・監査</text>
+  <text x="37" y="152" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa">CSE-KMS: クライアント側暗号化 (最高セキュリティ)</text>
+
+  <rect x="27" y="154" width="306" height="52" rx="5" fill="#0f3460"/>
+  <text x="37" y="173" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">EBS (Training Instance)</text>
+  <text x="37" y="191" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">VolumeKmsKeyId: KMSキー指定必須</text>
+  <text x="37" y="203" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">学習中の一時データも暗号化</text>
+
+  <rect x="27" y="214" width="306" height="52" rx="5" fill="#0a2545"/>
+  <text x="37" y="233" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">Model Artifacts (S3)</text>
+  <text x="37" y="251" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">OutputDataConfig: KmsKeyId で SSE-KMS</text>
+  <text x="37" y="263" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">モデルファイルはすべて暗号化保存</text>
+
+  <rect x="27" y="274" width="306" height="52" rx="5" fill="#1e3a5f"/>
+  <text x="37" y="293" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">Feature Store</text>
+  <text x="37" y="311" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">OfflineStore: S3 SSE-KMS</text>
+  <text x="37" y="323" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">OnlineStore: KmsKeyId 指定可</text>
+
+  <rect x="27" y="334" width="306" height="52" rx="5" fill="#0f3460"/>
+  <text x="37" y="353" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">SageMaker Studio EFS</text>
+  <text x="37" y="371" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">KmsKeyId: ホームディレクトリ暗号化</text>
+  <text x="37" y="383" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">EFSファイルシステム全体暗号化</text>
+
+  <!-- Center: KMS Hub -->
+  <rect x="358" y="160" width="84" height="150" rx="10" fill="#F77F00" fill-opacity="0.15" stroke="#F77F00" stroke-width="2"/>
+  <text x="400" y="195" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#F77F00" text-anchor="middle">AWS</text>
+  <text x="400" y="212" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#F77F00" text-anchor="middle">KMS</text>
+  <text x="400" y="238" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">キー管理</text>
+  <text x="400" y="254" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">アクセス制御</text>
+  <text x="400" y="270" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">監査ログ</text>
+  <text x="400" y="290" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">(CloudTrail)</text>
+
+  <!-- Arrows At Rest ↔ KMS -->
+  <line x1="333" y1="235" x2="358" y2="235" stroke="#F77F00" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#F77F00" transform="translate(360,235) rotate(90)"/>
+  <!-- Right side arrow -->
+  <line x1="442" y1="235" x2="455" y2="235" stroke="#F77F00" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#F77F00" transform="translate(457,235) rotate(90)"/>
+
+  <!-- Right: In Transit -->
+  <rect x="455" y="48" width="330" height="380" rx="10" fill="#1a2a40" stroke="#06D6A0" stroke-width="2"/>
+  <text x="620" y="74" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#06D6A0" text-anchor="middle">転送時の暗号化 (In Transit)</text>
+
+  <rect x="467" y="84" width="306" height="62" rx="5" fill="#1e3a5f"/>
+  <text x="477" y="103" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#06D6A0">Client → SageMaker API</text>
+  <text x="477" y="121" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">TLS 1.2+ 必須 (HTTPS)</text>
+  <text x="477" y="137" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">SDK/CLI経由のすべての通信を保護</text>
+  <text x="477" y="149" font-family="Arial,sans-serif" font-size="8" fill="#888888">証明書: ACM + PrivateCA</text>
+
+  <rect x="467" y="154" width="306" height="52" rx="5" fill="#0f3460"/>
+  <text x="477" y="173" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#06D6A0">Instance間通信</text>
+  <text x="477" y="191" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">VPC + Security Group で保護</text>
+  <text x="477" y="203" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">VPC Peering/PrivateLinkでAWS内完結</text>
+
+  <rect x="467" y="214" width="306" height="62" rx="5" fill="#0a2545"/>
+  <text x="477" y="233" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#06D6A0">Inter-container Encryption</text>
+  <text x="477" y="251" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">分散学習時のコンテナ間通信暗号化</text>
+  <text x="477" y="267" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">EnableInterContainerTrafficEncryption: True</text>
+  <text x="477" y="279" font-family="Arial,sans-serif" font-size="8" fill="#888888">パフォーマンスへの影響に注意</text>
+
+  <rect x="467" y="284" width="306" height="52" rx="5" fill="#1e3a5f"/>
+  <text x="477" y="303" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#06D6A0">Endpoints (推論)</text>
+  <text x="477" y="321" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">HTTPS only (HTTP不可)</text>
+  <text x="477" y="333" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">カスタム証明書設定可能</text>
+
+  <rect x="467" y="344" width="306" height="52" rx="5" fill="#0f3460"/>
+  <text x="477" y="363" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#06D6A0">Feature Store API</text>
+  <text x="477" y="381" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">PutRecord/GetRecord: HTTPS</text>
+  <text x="477" y="393" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">PrivateLink経由でVPC内完結も可</text>
+
+  <!-- Bottom: Summary -->
+  <text x="400" y="452" font-family="Arial,sans-serif" font-size="10" fill="#4CC9F0" text-anchor="middle">暗号化チェックリスト: S3 SSE-KMS + EBS KMS + Inter-container + HTTPS + VPC Endpoint</text>
+  <text x="400" y="470" font-family="Arial,sans-serif" font-size="9" fill="#888888" text-anchor="middle">試験ポイント: 保存時と転送時の両方で暗号化が必要。KMSキーはカスタマーマネージドキー(CMK)推奨</text>
+</svg>

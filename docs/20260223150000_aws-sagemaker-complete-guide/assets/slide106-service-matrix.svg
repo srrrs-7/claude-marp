@@ -1,0 +1,183 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="22" text-anchor="middle" fill="#f1f5f9" font-size="15" font-weight="bold" font-family="sans-serif">サービス特性マトリクス (総まとめ)</text>
+
+  <!-- Header row -->
+  <rect x="10" y="30" width="890" height="28" rx="4" fill="#1e3a5f"/>
+  <text x="95" y="48" text-anchor="middle" fill="#f1f5f9" font-size="10" font-weight="bold" font-family="sans-serif">サービス</text>
+  <text x="235" y="48" text-anchor="middle" fill="#f1f5f9" font-size="10" font-weight="bold" font-family="sans-serif">用途</text>
+  <text x="365" y="48" text-anchor="middle" fill="#f1f5f9" font-size="10" font-weight="bold" font-family="sans-serif">対象ユーザー</text>
+  <text x="485" y="48" text-anchor="middle" fill="#f1f5f9" font-size="10" font-weight="bold" font-family="sans-serif">コスト特性</text>
+  <text x="620" y="48" text-anchor="middle" fill="#f1f5f9" font-size="10" font-weight="bold" font-family="sans-serif">スケール</text>
+  <text x="770" y="48" text-anchor="middle" fill="#f1f5f9" font-size="10" font-weight="bold" font-family="sans-serif">主要制限・注意点</text>
+
+  <!-- Column dividers -->
+  <line x1="170" y1="30" x2="170" y2="498" stroke="#1e3a5f" stroke-width="1"/>
+  <line x1="305" y1="30" x2="305" y2="498" stroke="#1e3a5f" stroke-width="1"/>
+  <line x1="430" y1="30" x2="430" y2="498" stroke="#1e3a5f" stroke-width="1"/>
+  <line x1="545" y1="30" x2="545" y2="498" stroke="#1e3a5f" stroke-width="1"/>
+  <line x1="700" y1="30" x2="700" y2="498" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- Data rows - alternating bg -->
+  <!-- Row 1: Data Wrangler -->
+  <rect x="10" y="58" width="890" height="26" rx="0" fill="#1e293b"/>
+  <text x="95" y="75" text-anchor="middle" fill="#a855f7" font-size="9" font-weight="bold" font-family="sans-serif">Data Wrangler</text>
+  <text x="235" y="75" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">GUIデータ前処理</text>
+  <text x="365" y="75" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">データサイエンティスト</text>
+  <rect x="458" y="62" width="70" height="18" rx="9" fill="#22c55e" opacity="0.3"/>
+  <text x="485" y="75" text-anchor="middle" fill="#22c55e" font-size="9" font-family="sans-serif">Studio内課金</text>
+  <text x="620" y="75" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">GBサイズまで</text>
+  <text x="770" y="75" text-anchor="middle" fill="#f97316" font-size="9" font-family="sans-serif">Spark連携必須 (大規模)</text>
+
+  <!-- Row 2: Feature Store -->
+  <rect x="10" y="84" width="890" height="26" rx="0" fill="#0f1a2e"/>
+  <text x="95" y="101" text-anchor="middle" fill="#3b82f6" font-size="9" font-weight="bold" font-family="sans-serif">Feature Store</text>
+  <text x="235" y="101" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">特徴量管理・共有</text>
+  <text x="365" y="101" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">ML チーム全体</text>
+  <rect x="448" y="88" width="75" height="18" rx="9" fill="#f97316" opacity="0.3"/>
+  <text x="485" y="101" text-anchor="middle" fill="#f97316" font-size="9" font-family="sans-serif">Online高コスト</text>
+  <text x="620" y="101" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">数十億フィーチャ</text>
+  <text x="770" y="101" text-anchor="middle" fill="#f97316" font-size="9" font-family="sans-serif">Online=DynamoDB制限あり</text>
+
+  <!-- Row 3: Ground Truth -->
+  <rect x="10" y="110" width="890" height="26" rx="0" fill="#1e293b"/>
+  <text x="95" y="127" text-anchor="middle" fill="#f97316" font-size="9" font-weight="bold" font-family="sans-serif">Ground Truth</text>
+  <text x="235" y="127" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">データラベリング</text>
+  <text x="365" y="127" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">アノテーター/PM</text>
+  <rect x="448" y="114" width="75" height="18" rx="9" fill="#22c55e" opacity="0.3"/>
+  <text x="485" y="127" text-anchor="middle" fill="#22c55e" font-size="9" font-family="sans-serif">件数従量</text>
+  <text x="620" y="127" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">数百万件まで</text>
+  <text x="770" y="127" text-anchor="middle" fill="#f97316" font-size="9" font-family="sans-serif">品質はワーカー依存</text>
+
+  <!-- Row 4: Processing -->
+  <rect x="10" y="136" width="890" height="26" rx="0" fill="#0f1a2e"/>
+  <text x="95" y="153" text-anchor="middle" fill="#22c55e" font-size="9" font-weight="bold" font-family="sans-serif">Processing Job</text>
+  <text x="235" y="153" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">前処理/後処理/評価</text>
+  <text x="365" y="153" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">MLエンジニア</text>
+  <rect x="448" y="140" width="75" height="18" rx="9" fill="#22c55e" opacity="0.3"/>
+  <text x="485" y="153" text-anchor="middle" fill="#22c55e" font-size="9" font-family="sans-serif">実行時間課金</text>
+  <text x="620" y="153" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">分散Spark可</text>
+  <text x="770" y="153" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Spot対応で削減可</text>
+
+  <!-- Row 5: Studio -->
+  <rect x="10" y="162" width="890" height="26" rx="0" fill="#1e293b"/>
+  <text x="95" y="179" text-anchor="middle" fill="#14b8a6" font-size="9" font-weight="bold" font-family="sans-serif">Studio</text>
+  <text x="235" y="179" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">統合開発環境</text>
+  <text x="365" y="179" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">データサイエンティスト</text>
+  <rect x="448" y="166" width="75" height="18" rx="9" fill="#ef4444" opacity="0.3"/>
+  <text x="485" y="179" text-anchor="middle" fill="#ef4444" font-size="9" font-family="sans-serif">放置注意!</text>
+  <text x="620" y="179" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">個人/チーム</text>
+  <text x="770" y="179" text-anchor="middle" fill="#ef4444" font-size="9" font-family="sans-serif">KernelGW+EFS 継続課金</text>
+
+  <!-- Row 6: JumpStart -->
+  <rect x="10" y="188" width="890" height="26" rx="0" fill="#0f1a2e"/>
+  <text x="95" y="205" text-anchor="middle" fill="#a855f7" font-size="9" font-weight="bold" font-family="sans-serif">JumpStart</text>
+  <text x="235" y="205" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">事前学習済みモデル</text>
+  <text x="365" y="205" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">素早い導入希望者</text>
+  <rect x="448" y="192" width="75" height="18" rx="9" fill="#22c55e" opacity="0.3"/>
+  <text x="485" y="205" text-anchor="middle" fill="#22c55e" font-size="9" font-family="sans-serif">モデル無料+EP</text>
+  <text x="620" y="205" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">多種FMあり</text>
+  <text x="770" y="205" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">モデルによりGPU必須</text>
+
+  <!-- Row 7: Training Job -->
+  <rect x="10" y="214" width="890" height="26" rx="0" fill="#1e293b"/>
+  <text x="95" y="231" text-anchor="middle" fill="#3b82f6" font-size="9" font-weight="bold" font-family="sans-serif">Training Job</text>
+  <text x="235" y="231" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">カスタムモデル学習</text>
+  <text x="365" y="231" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">MLエンジニア</text>
+  <rect x="448" y="218" width="75" height="18" rx="9" fill="#22c55e" opacity="0.3"/>
+  <text x="485" y="231" text-anchor="middle" fill="#22c55e" font-size="9" font-family="sans-serif">Spot 70%削減</text>
+  <text x="620" y="231" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">分散学習対応</text>
+  <text x="770" y="231" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">チェックポイント推奨</text>
+
+  <!-- Row 8: Autopilot -->
+  <rect x="10" y="240" width="890" height="26" rx="0" fill="#0f1a2e"/>
+  <text x="95" y="257" text-anchor="middle" fill="#f97316" font-size="9" font-weight="bold" font-family="sans-serif">Autopilot</text>
+  <text x="235" y="257" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">AutoML (分類/回帰)</text>
+  <text x="365" y="257" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">ビジネスアナリスト</text>
+  <rect x="448" y="244" width="75" height="18" rx="9" fill="#f97316" opacity="0.3"/>
+  <text x="485" y="257" text-anchor="middle" fill="#f97316" font-size="9" font-family="sans-serif">試行多数=高コスト</text>
+  <text x="620" y="257" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">中規模データ</text>
+  <text x="770" y="257" text-anchor="middle" fill="#f97316" font-size="9" font-family="sans-serif">試行回数・時間制限推奨</text>
+
+  <!-- Row 9: HPT -->
+  <rect x="10" y="266" width="890" height="26" rx="0" fill="#1e293b"/>
+  <text x="95" y="283" text-anchor="middle" fill="#22c55e" font-size="9" font-weight="bold" font-family="sans-serif">HPT</text>
+  <text x="235" y="283" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">ハイパーパラメータ最適化</text>
+  <text x="365" y="283" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">MLエンジニア</text>
+  <rect x="448" y="270" width="75" height="18" rx="9" fill="#f97316" opacity="0.3"/>
+  <text x="485" y="283" text-anchor="middle" fill="#f97316" font-size="9" font-family="sans-serif">並列試行=高コスト</text>
+  <text x="620" y="283" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Bayesian推奨</text>
+  <text x="770" y="283" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">早期終了で最適化</text>
+
+  <!-- Row 10: Debugger -->
+  <rect x="10" y="292" width="890" height="26" rx="0" fill="#0f1a2e"/>
+  <text x="95" y="309" text-anchor="middle" fill="#14b8a6" font-size="9" font-weight="bold" font-family="sans-serif">Debugger</text>
+  <text x="235" y="309" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">学習デバッグ</text>
+  <text x="365" y="309" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">MLエンジニア</text>
+  <rect x="448" y="296" width="75" height="18" rx="9" fill="#22c55e" opacity="0.3"/>
+  <text x="485" y="309" text-anchor="middle" fill="#22c55e" font-size="9" font-family="sans-serif">追加コスト小</text>
+  <text x="620" y="309" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">リアルタイム監視</text>
+  <text x="770" y="309" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">S3保存容量注意</text>
+
+  <!-- Row 11: Clarify -->
+  <rect x="10" y="318" width="890" height="26" rx="0" fill="#1e293b"/>
+  <text x="95" y="335" text-anchor="middle" fill="#a855f7" font-size="9" font-weight="bold" font-family="sans-serif">Clarify</text>
+  <text x="235" y="335" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">バイアス/説明性</text>
+  <text x="365" y="335" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">MLエンジニア/コンプライアンス</text>
+  <rect x="448" y="322" width="75" height="18" rx="9" fill="#22c55e" opacity="0.3"/>
+  <text x="485" y="335" text-anchor="middle" fill="#22c55e" font-size="9" font-family="sans-serif">Processing課金</text>
+  <text x="620" y="335" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">大データで遅い</text>
+  <text x="770" y="335" text-anchor="middle" fill="#f97316" font-size="9" font-family="sans-serif">SHAP計算コスト高</text>
+
+  <!-- Row 12: Pipelines -->
+  <rect x="10" y="344" width="890" height="26" rx="0" fill="#0f1a2e"/>
+  <text x="95" y="361" text-anchor="middle" fill="#3b82f6" font-size="9" font-weight="bold" font-family="sans-serif">Pipelines</text>
+  <text x="235" y="361" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">MLワークフロー自動化</text>
+  <text x="365" y="361" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">MLOpsエンジニア</text>
+  <rect x="448" y="348" width="75" height="18" rx="9" fill="#22c55e" opacity="0.3"/>
+  <text x="485" y="361" text-anchor="middle" fill="#22c55e" font-size="9" font-family="sans-serif">ステップ課金</text>
+  <text x="620" y="361" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">並列実行対応</text>
+  <text x="770" y="361" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">再実行時も全課金</text>
+
+  <!-- Row 13: Model Registry -->
+  <rect x="10" y="370" width="890" height="26" rx="0" fill="#1e293b"/>
+  <text x="95" y="387" text-anchor="middle" fill="#22c55e" font-size="9" font-weight="bold" font-family="sans-serif">Model Registry</text>
+  <text x="235" y="387" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">モデルバージョン管理</text>
+  <text x="365" y="387" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">MLOpsエンジニア</text>
+  <rect x="448" y="374" width="75" height="18" rx="9" fill="#22c55e" opacity="0.3"/>
+  <text x="485" y="387" text-anchor="middle" fill="#22c55e" font-size="9" font-family="sans-serif">実質無料</text>
+  <text x="620" y="387" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">多数モデル管理</text>
+  <text x="770" y="387" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">承認フロー必須設計</text>
+
+  <!-- Row 14: Model Monitor -->
+  <rect x="10" y="396" width="890" height="26" rx="0" fill="#0f1a2e"/>
+  <text x="95" y="413" text-anchor="middle" fill="#f97316" font-size="9" font-weight="bold" font-family="sans-serif">Model Monitor</text>
+  <text x="235" y="413" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">ドリフト検知・監視</text>
+  <text x="365" y="413" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">MLOps/運用チーム</text>
+  <rect x="448" y="400" width="75" height="18" rx="9" fill="#f97316" opacity="0.3"/>
+  <text x="485" y="413" text-anchor="middle" fill="#f97316" font-size="9" font-family="sans-serif">Processing+S3</text>
+  <text x="620" y="413" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">定期実行</text>
+  <text x="770" y="413" text-anchor="middle" fill="#f97316" font-size="9" font-family="sans-serif">Baseline作成が必須</text>
+
+  <!-- Row 15: Canvas -->
+  <rect x="10" y="422" width="890" height="26" rx="0" fill="#1e293b"/>
+  <text x="95" y="439" text-anchor="middle" fill="#14b8a6" font-size="9" font-weight="bold" font-family="sans-serif">Canvas</text>
+  <text x="235" y="439" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">ノーコードAutoML</text>
+  <text x="365" y="439" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">ビジネスユーザー</text>
+  <rect x="448" y="426" width="75" height="18" rx="9" fill="#f97316" opacity="0.3"/>
+  <text x="485" y="439" text-anchor="middle" fill="#f97316" font-size="9" font-family="sans-serif">セッション課金</text>
+  <text x="620" y="439" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">中規模データ</text>
+  <text x="770" y="439" text-anchor="middle" fill="#f97316" font-size="9" font-family="sans-serif">カスタマイズ制限あり</text>
+
+  <!-- Legend -->
+  <rect x="10" y="455" width="880" height="38" rx="6" fill="#1e293b"/>
+  <text x="20" y="470" fill="#f1f5f9" font-size="10" font-weight="bold" font-family="sans-serif">凡例:</text>
+  <rect x="55" y="462" width="50" height="14" rx="7" fill="#22c55e" opacity="0.3"/>
+  <text x="60" y="473" fill="#22c55e" font-size="9" font-family="sans-serif">低コスト/推奨</text>
+  <rect x="165" y="462" width="50" height="14" rx="7" fill="#f97316" opacity="0.3"/>
+  <text x="170" y="473" fill="#f97316" font-size="9" font-family="sans-serif">要注意/高コスト</text>
+  <rect x="290" y="462" width="50" height="14" rx="7" fill="#ef4444" opacity="0.3"/>
+  <text x="295" y="473" fill="#ef4444" font-size="9" font-family="sans-serif">危険/回避推奨</text>
+  <text x="420" y="473" fill="#94a3b8" font-size="9" font-family="sans-serif">※ 料金は us-east-1 基準。常時変動するため最新の AWS Price List を確認すること。</text>
+  <text x="20" y="487" fill="#94a3b8" font-size="9" font-family="sans-serif">Spot: 最大70%削減可 (Training/Processing/Async)  |  Savings Plans: 最大64%割引 (Training/Hosting/Studio/Notebook)  |  Serverless: リクエスト従量</text>
+</svg>

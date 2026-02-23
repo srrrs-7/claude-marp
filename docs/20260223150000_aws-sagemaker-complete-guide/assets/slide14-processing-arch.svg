@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="28" text-anchor="middle" fill="#f1f5f9" font-size="14" font-weight="bold" font-family="sans-serif">SageMaker Processing ジョブアーキテクチャ</text>
+
+  <!-- Input: S3 Input -->
+  <rect x="20" y="70" width="160" height="200" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="20" y="70" width="160" height="32" rx="8" fill="#3b82f6"/>
+  <rect x="20" y="90" width="160" height="12" fill="#3b82f6"/>
+  <text x="100" y="92" text-anchor="middle" fill="#f1f5f9" font-size="12" font-weight="bold" font-family="sans-serif">S3 Input Data</text>
+  <text x="100" y="120" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">入力チャンネル 1</text>
+  <text x="100" y="137" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">s3://bucket/raw-data/</text>
+  <text x="100" y="162" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">入力チャンネル 2</text>
+  <text x="100" y="179" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">s3://bucket/config/</text>
+  <text x="100" y="204" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">入力チャンネル 3</text>
+  <text x="100" y="221" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">s3://bucket/models/</text>
+  <text x="100" y="253" text-anchor="middle" fill="#3b82f6" font-size="9" font-weight="bold" font-family="sans-serif">複数入力チャンネル対応</text>
+
+  <!-- Arrows from input to processing -->
+  <line x1="180" y1="120" x2="248" y2="155" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="248,155 238,147 250,143" fill="#3b82f6"/>
+  <line x1="180" y1="170" x2="248" y2="190" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="248,190 238,182 250,179" fill="#3b82f6"/>
+  <line x1="180" y1="220" x2="248" y2="225" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="248,225 238,218 250,215" fill="#3b82f6"/>
+
+  <!-- Center: Processing Job Container -->
+  <rect x="248" y="70" width="400" height="280" rx="10" fill="#1e293b" stroke="#22c55e" stroke-width="2.5"/>
+  <rect x="248" y="70" width="400" height="36" rx="10" fill="#22c55e"/>
+  <rect x="248" y="94" width="400" height="12" fill="#22c55e"/>
+  <text x="448" y="96" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="bold" font-family="sans-serif">Processing Job Container</text>
+
+  <text x="448" y="128" text-anchor="middle" fill="#f1f5f9" font-size="11" font-weight="bold" font-family="sans-serif">マネージドコンテナタイプ</text>
+
+  <!-- Container types -->
+  <rect x="265" y="138" width="170" height="52" rx="6" fill="#0f172a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="350" y="159" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold" font-family="sans-serif">SKLearnProcessor</text>
+  <text x="350" y="177" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">scikit-learn / pandas</text>
+
+  <rect x="445" y="138" width="190" height="52" rx="6" fill="#0f172a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="540" y="159" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold" font-family="sans-serif">PySparkProcessor</text>
+  <text x="540" y="177" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">PySpark / 大規模分散処理</text>
+
+  <rect x="265" y="200" width="170" height="52" rx="6" fill="#0f172a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="350" y="221" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold" font-family="sans-serif">ScriptProcessor</text>
+  <text x="350" y="239" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">任意スクリプト実行</text>
+
+  <rect x="445" y="200" width="190" height="52" rx="6" fill="#0f172a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="540" y="221" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold" font-family="sans-serif">Custom Docker Image</text>
+  <text x="540" y="239" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">ECR カスタムコンテナ</text>
+
+  <!-- Instance config -->
+  <rect x="265" y="262" width="370" height="72" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="450" y="281" text-anchor="middle" fill="#f1f5f9" font-size="10" font-weight="bold" font-family="sans-serif">インスタンス設定</text>
+  <text x="450" y="298" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">instance_type: ml.m5.xlarge 〜 ml.p3.16xlarge</text>
+  <text x="450" y="314" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">instance_count: 1 〜 N (分散処理対応)</text>
+  <text x="450" y="328" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">実行完了後にインスタンス自動終了 (コスト最適)</text>
+
+  <!-- Arrows from processing to output -->
+  <line x1="648" y1="155" x2="720" y2="120" stroke="#f97316" stroke-width="2"/>
+  <polygon points="720,120 711,111 722,108" fill="#f97316"/>
+  <line x1="648" y1="190" x2="720" y2="175" stroke="#f97316" stroke-width="2"/>
+  <polygon points="720,175 711,166 722,163" fill="#f97316"/>
+  <line x1="648" y1="225" x2="720" y2="235" stroke="#f97316" stroke-width="2"/>
+  <polygon points="720,235 711,226 722,224" fill="#f97316"/>
+
+  <!-- Output: S3 Output -->
+  <rect x="720" y="70" width="165" height="200" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <rect x="720" y="70" width="165" height="32" rx="8" fill="#f97316"/>
+  <rect x="720" y="90" width="165" height="12" fill="#f97316"/>
+  <text x="802" y="92" text-anchor="middle" fill="#f1f5f9" font-size="12" font-weight="bold" font-family="sans-serif">S3 Output</text>
+  <text x="802" y="120" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">出力チャンネル 1</text>
+  <text x="802" y="137" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">前処理済みデータ</text>
+  <text x="802" y="162" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">出力チャンネル 2</text>
+  <text x="802" y="179" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">評価レポート</text>
+  <text x="802" y="204" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">出力チャンネル 3</text>
+  <text x="802" y="221" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">モデルアーティファクト</text>
+  <text x="802" y="253" text-anchor="middle" fill="#f97316" font-size="9" font-weight="bold" font-family="sans-serif">複数出力チャンネル対応</text>
+
+  <!-- Use cases section -->
+  <text x="450" y="385" text-anchor="middle" fill="#f1f5f9" font-size="12" font-weight="bold" font-family="sans-serif">主要ユースケース</text>
+
+  <rect x="30" y="400" width="250" height="80" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2"/>
+  <text x="155" y="423" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="bold" font-family="sans-serif">特徴量エンジニアリング</text>
+  <text x="155" y="440" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">スケーリング・正規化</text>
+  <text x="155" y="456" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">エンコーディング・欠損値補完</text>
+  <text x="155" y="472" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">カテゴリ変数変換</text>
+
+  <rect x="325" y="400" width="250" height="80" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="2"/>
+  <text x="450" y="423" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold" font-family="sans-serif">モデル評価</text>
+  <text x="450" y="440" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">混同行列・AUC・精度計算</text>
+  <text x="450" y="456" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">バイアス・公平性分析</text>
+  <text x="450" y="472" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">説明可能性レポート生成</text>
+
+  <rect x="620" y="400" width="260" height="80" rx="8" fill="#431407" stroke="#f97316" stroke-width="2"/>
+  <text x="750" y="423" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold" font-family="sans-serif">データバリデーション</text>
+  <text x="750" y="440" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">スキーマ検証・型チェック</text>
+  <text x="750" y="456" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">異常値・重複検出</text>
+  <text x="750" y="472" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">データ品質レポート出力</text>
+</svg>

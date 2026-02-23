@@ -1,0 +1,83 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+  <text x="400" y="35" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">SageMaker Clarify: バイアス検出</text>
+
+  <!-- Left: Inputs -->
+  <rect x="15" y="55" width="175" height="240" rx="8" fill="#1e3a5f"/>
+  <text x="102" y="82" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0" text-anchor="middle">入力</text>
+
+  <rect x="30" y="95" width="145" height="55" rx="4" fill="#0f3460"/>
+  <text x="102" y="117" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">学習データ</text>
+  <text x="102" y="137" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">ラベル付きデータ</text>
+
+  <text x="102" y="170" font-family="Arial,sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">+</text>
+
+  <rect x="30" y="178" width="145" height="55" rx="4" fill="#0f3460"/>
+  <text x="102" y="200" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">モデル</text>
+  <text x="102" y="218" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">学習済みモデル</text>
+
+  <rect x="30" y="248" width="145" height="35" rx="4" fill="#0a2545" stroke="#F77F00" stroke-width="1"/>
+  <text x="102" y="263" font-family="Arial,sans-serif" font-size="10" fill="#F77F00" text-anchor="middle">保護属性の指定</text>
+  <text x="102" y="277" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">年齢 / 性別 / 人種</text>
+
+  <!-- Arrow to Clarify -->
+  <line x1="190" y1="175" x2="225" y2="175" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-6 -4,5 4,5" fill="#4CC9F0" transform="translate(228,175) rotate(90)"/>
+
+  <!-- Center: SageMaker Clarify -->
+  <rect x="230" y="55" width="290" height="300" rx="8" fill="#0f3460" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="375" y="84" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#4CC9F0" text-anchor="middle">SageMaker Clarify</text>
+
+  <rect x="245" y="96" width="260" height="90" rx="6" fill="#1e3a5f"/>
+  <text x="375" y="118" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#F77F00" text-anchor="middle">Pre-training バイアス検出</text>
+  <text x="375" y="138" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">データレベルのバイアス</text>
+  <text x="375" y="156" font-family="Arial,sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">指標: CI, DPL, KL, JS, LP, TVD, KS</text>
+  <text x="375" y="174" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">サンプリング偏りを検出</text>
+
+  <rect x="245" y="198" width="260" height="90" rx="6" fill="#0a2545" stroke="#E63946" stroke-width="1"/>
+  <text x="375" y="220" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#E63946" text-anchor="middle">Post-training バイアス検出</text>
+  <text x="375" y="240" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">モデル予測レベルのバイアス</text>
+  <text x="375" y="258" font-family="Arial,sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">指標: DPPL, DI, DCO, CDDL</text>
+  <text x="375" y="276" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">予測における差別的扱いを検出</text>
+
+  <rect x="245" y="300" width="260" height="43" rx="6" fill="#111e2d"/>
+  <text x="375" y="322" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">バイアス指標例:</text>
+  <text x="375" y="338" font-family="Arial,sans-serif" font-size="10" fill="#4CC9F0" text-anchor="middle">DPPL: 予測確率の差 | DI: 不平等な影響</text>
+
+  <!-- Arrow to output -->
+  <line x1="520" y1="200" x2="558" y2="200" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-6 -4,5 4,5" fill="#4CC9F0" transform="translate(561,200) rotate(90)"/>
+
+  <!-- Right: Outputs -->
+  <rect x="563" y="55" width="220" height="300" rx="8" fill="#111e2d"/>
+  <text x="673" y="82" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">出力</text>
+
+  <rect x="578" y="95" width="190" height="55" rx="6" fill="#1e3a5f"/>
+  <text x="673" y="117" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">Bias Report</text>
+  <text x="673" y="137" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">バイアス指標のレポート</text>
+
+  <line x1="673" y1="150" x2="673" y2="168" stroke="#aaaaaa" stroke-width="1"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#aaaaaa" transform="translate(673,171) rotate(180)"/>
+
+  <rect x="578" y="175" width="190" height="55" rx="6" fill="#1e3a5f"/>
+  <text x="673" y="197" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06D6A0" text-anchor="middle">Model Card</text>
+  <text x="673" y="217" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">透明性ドキュメント自動生成</text>
+
+  <line x1="673" y1="230" x2="673" y2="248" stroke="#aaaaaa" stroke-width="1"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#aaaaaa" transform="translate(673,251) rotate(180)"/>
+
+  <rect x="578" y="255" width="190" height="55" rx="6" fill="#0a2545" stroke="#06D6A0" stroke-width="1"/>
+  <text x="673" y="277" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06D6A0" text-anchor="middle">コンプライアンス</text>
+  <text x="673" y="297" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">規制要件への対応</text>
+
+  <!-- SageMaker Pipelines integration -->
+  <rect x="15" y="370" width="770" height="50" rx="6" fill="#1e3a5f"/>
+  <text x="400" y="393" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">SageMaker Pipelines 統合</text>
+  <text x="400" y="411" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">ClarifyCheckStep → 自動バイアス検出をパイプラインに組み込み</text>
+
+  <!-- Bottom notes -->
+  <rect x="15" y="433" width="770" height="55" rx="6" fill="#111e2d"/>
+  <text x="400" y="454" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">試験ポイント: Pre-training = データバイアス | Post-training = モデル予測バイアス</text>
+  <text x="400" y="472" font-family="Arial,sans-serif" font-size="11" fill="#06D6A0" text-anchor="middle">★ Clarify = バイアス検出 + SHAP説明可能性 の両方を一つのサービスで提供</text>
+</svg>

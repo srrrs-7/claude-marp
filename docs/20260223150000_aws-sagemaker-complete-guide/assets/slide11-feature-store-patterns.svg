@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="28" text-anchor="middle" fill="#f1f5f9" font-size="14" font-weight="bold" font-family="sans-serif">Feature Store ユースケースパターン</text>
+
+  <!-- Pattern 1: Training -->
+  <rect x="10" y="40" width="60" height="130" rx="6" fill="#22c55e" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="40" y="92" text-anchor="middle" fill="#f1f5f9" font-size="10" font-weight="bold" font-family="sans-serif" transform="rotate(-90,40,105)">Pattern 1</text>
+  <text x="40" y="130" text-anchor="middle" fill="#f1f5f9" font-size="9" font-family="sans-serif" transform="rotate(-90,40,145)">Training</text>
+
+  <rect x="80" y="55" width="130" height="50" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="145" y="77" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold" font-family="sans-serif">Feature Group</text>
+  <text x="145" y="95" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">特徴量定義・スキーマ</text>
+
+  <line x1="210" y1="80" x2="248" y2="80" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="248,75 260,80 248,85" fill="#22c55e"/>
+
+  <rect x="260" y="55" width="130" height="50" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="325" y="77" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold" font-family="sans-serif">Offline Store (S3)</text>
+  <text x="325" y="95" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Parquet / 全履歴</text>
+
+  <line x1="390" y1="80" x2="428" y2="80" stroke="#f97316" stroke-width="2"/>
+  <polygon points="428,75 440,80 428,85" fill="#f97316"/>
+
+  <rect x="440" y="55" width="130" height="50" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="505" y="77" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="bold" font-family="sans-serif">Training Job</text>
+  <text x="505" y="95" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">モデル学習</text>
+
+  <line x1="570" y1="80" x2="608" y2="80" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="608,75 620,80 608,85" fill="#3b82f6"/>
+
+  <rect x="620" y="55" width="110" height="50" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="675" y="77" text-anchor="middle" fill="#a855f7" font-size="11" font-weight="bold" font-family="sans-serif">Model</text>
+  <text x="675" y="95" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">学習済みモデル</text>
+
+  <!-- Pattern 2: Real-time Inference -->
+  <rect x="10" y="190" width="60" height="130" rx="6" fill="#3b82f6" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="40" y="242" text-anchor="middle" fill="#f1f5f9" font-size="10" font-weight="bold" font-family="sans-serif" transform="rotate(-90,40,255)">Pattern 2</text>
+  <text x="40" y="280" text-anchor="middle" fill="#f1f5f9" font-size="9" font-family="sans-serif" transform="rotate(-90,40,295)">Inference</text>
+
+  <rect x="80" y="200" width="120" height="50" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="140" y="220" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="bold" font-family="sans-serif">User Request</text>
+  <text x="140" y="238" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">リアルタイムリクエスト</text>
+
+  <line x1="200" y1="225" x2="238" y2="225" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="238,220 250,225 238,230" fill="#3b82f6"/>
+
+  <rect x="250" y="200" width="130" height="50" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="315" y="220" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold" font-family="sans-serif">Online Store</text>
+  <text x="315" y="238" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">GetRecord &lt; 10ms</text>
+
+  <line x1="380" y1="225" x2="418" y2="225" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="418,220 430,225 418,230" fill="#22c55e"/>
+
+  <rect x="430" y="200" width="130" height="50" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="495" y="220" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold" font-family="sans-serif">Feature Vector</text>
+  <text x="495" y="238" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">推論用特徴量ベクトル</text>
+
+  <line x1="560" y1="225" x2="598" y2="225" stroke="#f97316" stroke-width="2"/>
+  <polygon points="598,220 610,225 598,230" fill="#f97316"/>
+
+  <rect x="610" y="200" width="130" height="50" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="675" y="218" text-anchor="middle" fill="#a855f7" font-size="10" font-weight="bold" font-family="sans-serif">Inference Endpoint</text>
+  <text x="675" y="234" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">SageMaker Endpoint</text>
+
+  <line x1="740" y1="225" x2="778" y2="225" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="778,220 790,225 778,230" fill="#a855f7"/>
+
+  <rect x="790" y="200" width="100" height="50" rx="6" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="840" y="220" text-anchor="middle" fill="#14b8a6" font-size="11" font-weight="bold" font-family="sans-serif">Prediction</text>
+  <text x="840" y="238" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">予測結果</text>
+
+  <!-- Pattern 3: Train-Serve Consistency -->
+  <rect x="10" y="345" width="60" height="130" rx="6" fill="#ef4444" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="40" y="397" text-anchor="middle" fill="#f1f5f9" font-size="10" font-weight="bold" font-family="sans-serif" transform="rotate(-90,40,410)">Pattern 3</text>
+  <text x="40" y="435" text-anchor="middle" fill="#f1f5f9" font-size="9" font-family="sans-serif" transform="rotate(-90,40,448)">Consistency</text>
+
+  <!-- Central Feature Group box (highlighted) -->
+  <rect x="80" y="355" width="160" height="110" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="3" style="filter:drop-shadow(0 0 8px rgba(239,68,68,0.5))"/>
+  <text x="160" y="383" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="bold" font-family="sans-serif">Feature Group</text>
+  <text x="160" y="401" text-anchor="middle" fill="#f1f5f9" font-size="9" font-family="sans-serif">学習・推論で</text>
+  <text x="160" y="416" text-anchor="middle" fill="#f1f5f9" font-size="9" font-family="sans-serif">同一定義を使用</text>
+  <text x="160" y="435" text-anchor="middle" fill="#ef4444" font-size="9" font-weight="bold" font-family="sans-serif">Train-Serve</text>
+  <text x="160" y="450" text-anchor="middle" fill="#ef4444" font-size="9" font-weight="bold" font-family="sans-serif">Consistency</text>
+
+  <!-- Fork arrows -->
+  <line x1="240" y1="390" x2="310" y2="365" stroke="#f97316" stroke-width="2"/>
+  <polygon points="310,365 300,358 302,370" fill="#f97316"/>
+
+  <line x1="240" y1="420" x2="310" y2="445" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="310,445 300,440 302,452" fill="#22c55e"/>
+
+  <rect x="312" y="345" width="160" height="50" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="392" y="366" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold" font-family="sans-serif">Offline Store</text>
+  <text x="392" y="384" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Training Job へ</text>
+
+  <rect x="312" y="420" width="160" height="50" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="392" y="441" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold" font-family="sans-serif">Online Store</text>
+  <text x="392" y="459" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">Inference Endpoint へ</text>
+
+  <!-- Benefit callout -->
+  <rect x="500" y="345" width="390" height="130" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="695" y="368" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="bold" font-family="sans-serif">一貫性保証の効果</text>
+  <text x="695" y="390" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">学習時と推論時で同じ前処理・同じ特徴量定義</text>
+  <text x="695" y="408" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Training-Serving Skew を根本的に排除</text>
+  <text x="695" y="426" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">特徴量バージョン管理・再利用が可能</text>
+  <text x="695" y="444" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">チーム間で特徴量を安全に共有</text>
+  <text x="695" y="462" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">Point-in-time correct なデータ取得</text>
+
+  <!-- Label below patterns -->
+  <line x1="80" y1="155" x2="80" y2="185" stroke="#334155" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="80" y1="300" x2="80" y2="340" stroke="#334155" stroke-width="1" stroke-dasharray="3,3"/>
+</svg>

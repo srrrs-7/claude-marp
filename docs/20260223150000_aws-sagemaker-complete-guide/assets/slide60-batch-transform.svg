@@ -1,0 +1,116 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="28" text-anchor="middle" fill="#f1f5f9" font-size="16" font-weight="bold" font-family="sans-serif">Batch Transform パイプラインフロー</text>
+
+  <!-- S3 Input -->
+  <rect x="20" y="60" width="130" height="160" rx="8" fill="#1e293b" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="85" y="82" text-anchor="middle" fill="#3b82f6" font-size="12" font-weight="bold" font-family="sans-serif">S3 Input</text>
+  <text x="85" y="98" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">入力データ</text>
+  <rect x="30" y="108" width="110" height="20" rx="3" fill="#0f172a"/>
+  <text x="85" y="122" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">data_batch_001.csv</text>
+  <rect x="30" y="132" width="110" height="20" rx="3" fill="#0f172a"/>
+  <text x="85" y="146" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">data_batch_002.csv</text>
+  <rect x="30" y="156" width="110" height="20" rx="3" fill="#0f172a"/>
+  <text x="85" y="170" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">data_batch_003.csv</text>
+  <rect x="30" y="180" width="110" height="20" rx="3" fill="#0f172a"/>
+  <text x="85" y="194" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">... (N files)</text>
+  <text x="85" y="214" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">複数ファイル</text>
+
+  <!-- Arrow S3 Input → Batch Transform Job -->
+  <line x1="150" y1="140" x2="198" y2="140" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="198,135 208,140 198,145" fill="#3b82f6"/>
+
+  <!-- Batch Transform Job box -->
+  <rect x="208" y="50" width="490" height="320" rx="10" fill="#1e293b" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="453" y="74" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold" font-family="sans-serif">Batch Transform Job</text>
+
+  <!-- SplitType indicator -->
+  <rect x="218" y="85" width="200" height="40" rx="6" fill="#0f172a"/>
+  <text x="318" y="102" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">SplitType: Line</text>
+  <text x="318" y="118" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">行単位で分割してリクエスト</text>
+
+  <!-- BatchStrategy indicator -->
+  <rect x="428" y="85" width="200" height="40" rx="6" fill="#0f172a"/>
+  <text x="528" y="102" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">BatchStrategy: MultiRecord</text>
+  <text x="528" y="118" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">複数行をバッチ送信</text>
+
+  <!-- Instance Fleet -->
+  <rect x="218" y="135" width="460" height="160" rx="8" fill="#0f172a"/>
+  <text x="448" y="157" text-anchor="middle" fill="#22c55e" font-size="12" font-weight="bold" font-family="sans-serif">Instance Fleet: ml.m5.4xlarge × N</text>
+
+  <!-- Parallel processing -->
+  <rect x="228" y="167" width="130" height="50" rx="6" fill="#1e293b"/>
+  <text x="293" y="186" text-anchor="middle" fill="#f1f5f9" font-size="10" font-family="sans-serif">Instance 1</text>
+  <text x="293" y="204" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">batch_001処理中</text>
+
+  <rect x="368" y="167" width="130" height="50" rx="6" fill="#1e293b"/>
+  <text x="433" y="186" text-anchor="middle" fill="#f1f5f9" font-size="10" font-family="sans-serif">Instance 2</text>
+  <text x="433" y="204" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">batch_002処理中</text>
+
+  <rect x="508" y="167" width="130" height="50" rx="6" fill="#1e293b"/>
+  <text x="573" y="186" text-anchor="middle" fill="#f1f5f9" font-size="10" font-family="sans-serif">Instance 3</text>
+  <text x="573" y="204" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">batch_003処理中</text>
+
+  <!-- Parallel lines -->
+  <line x1="293" y1="217" x2="293" y2="240" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="433" y1="217" x2="433" y2="240" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="573" y1="217" x2="573" y2="240" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="293" y1="240" x2="573" y2="240" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="433" y1="240" x2="433" y2="265" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="428,265 433,275 438,265" fill="#22c55e"/>
+
+  <text x="448" y="292" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">AssembleWith: Line → 結果を行単位で結合</text>
+
+  <!-- FilterSpec/MaxConcurrent row -->
+  <rect x="218" y="305" width="200" height="35" rx="6" fill="#1e293b"/>
+  <text x="318" y="320" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">FilterSpec: 入力/出力列選択</text>
+  <text x="318" y="334" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">JMESPath 式</text>
+
+  <rect x="428" y="305" width="200" height="35" rx="6" fill="#1e293b"/>
+  <text x="528" y="320" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">MaxConcurrentTransforms</text>
+  <text x="528" y="334" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">並列処理数 (default: 1)</text>
+
+  <!-- Arrow Batch → S3 Output -->
+  <line x1="698" y1="200" x2="746" y2="200" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="746,195 756,200 746,205" fill="#22c55e"/>
+
+  <!-- S3 Output -->
+  <rect x="756" y="90" width="130" height="190" rx="8" fill="#1e293b" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5))"/>
+  <text x="821" y="113" text-anchor="middle" fill="#22c55e" font-size="12" font-weight="bold" font-family="sans-serif">S3 Output</text>
+  <text x="821" y="131" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">変換済みデータ</text>
+  <rect x="766" y="143" width="110" height="20" rx="3" fill="#0f172a"/>
+  <text x="821" y="157" text-anchor="middle" fill="#22c55e" font-size="9" font-family="sans-serif">output_001.csv.out</text>
+  <rect x="766" y="167" width="110" height="20" rx="3" fill="#0f172a"/>
+  <text x="821" y="181" text-anchor="middle" fill="#22c55e" font-size="9" font-family="sans-serif">output_002.csv.out</text>
+  <rect x="766" y="191" width="110" height="20" rx="3" fill="#0f172a"/>
+  <text x="821" y="205" text-anchor="middle" fill="#22c55e" font-size="9" font-family="sans-serif">output_003.csv.out</text>
+  <rect x="766" y="215" width="110" height="20" rx="3" fill="#0f172a"/>
+  <text x="821" y="229" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">... (推論結果)</text>
+  <text x="821" y="273" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">結果ファイル</text>
+
+  <!-- Config section -->
+  <rect x="20" y="385" width="860" height="100" rx="8" fill="#1e293b"/>
+  <text x="450" y="407" text-anchor="middle" fill="#f1f5f9" font-size="12" font-weight="bold" font-family="sans-serif">主要設定パラメータ</text>
+
+  <rect x="30" y="415" width="190" height="60" rx="6" fill="#0f172a"/>
+  <text x="125" y="433" text-anchor="middle" fill="#3b82f6" font-size="10" font-weight="bold" font-family="sans-serif">SplitType</text>
+  <text x="125" y="451" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">None / Line / RecordIO</text>
+  <text x="125" y="468" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">TFRecord</text>
+
+  <rect x="230" y="415" width="190" height="60" rx="6" fill="#0f172a"/>
+  <text x="325" y="433" text-anchor="middle" fill="#f97316" font-size="10" font-weight="bold" font-family="sans-serif">BatchStrategy</text>
+  <text x="325" y="451" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">MultiRecord: 高スループット</text>
+  <text x="325" y="468" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">SingleRecord: 1件ずつ</text>
+
+  <rect x="430" y="415" width="190" height="60" rx="6" fill="#0f172a"/>
+  <text x="525" y="433" text-anchor="middle" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">AssembleWith</text>
+  <text x="525" y="451" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">None / Line</text>
+  <text x="525" y="468" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">出力を行単位で結合</text>
+
+  <rect x="630" y="415" width="240" height="60" rx="6" fill="#0f172a"/>
+  <text x="750" y="433" text-anchor="middle" fill="#a855f7" font-size="10" font-weight="bold" font-family="sans-serif">ユースケース</text>
+  <text x="750" y="451" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">大規模一括スコアリング</text>
+  <text x="750" y="468" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">数百万件の顧客データ処理</text>
+</svg>

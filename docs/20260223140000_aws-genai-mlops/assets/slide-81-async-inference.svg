@@ -1,0 +1,73 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="32" font-family="Arial" font-size="19" fill="#ffffff" text-anchor="middle" font-weight="bold">非同期推論 (Async Inference)</text>
+
+  <!-- Client -->
+  <rect x="20" y="80" width="100" height="50" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="70" y="102" font-family="Arial" font-size="12" fill="#ffffff" text-anchor="middle">Client</text>
+  <text x="70" y="118" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">アプリケーション</text>
+
+  <!-- Arrow to Async Endpoint -->
+  <line x1="120" y1="105" x2="178" y2="105" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#4CC9F0" transform="translate(178,105) rotate(90)"/>
+  <text x="149" y="95" font-family="Arial" font-size="9" fill="#4CC9F0" text-anchor="middle">POST</text>
+
+  <!-- Async Endpoint -->
+  <rect x="183" y="70" width="140" height="70" rx="10" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="253" y="95" font-family="Arial" font-size="12" fill="#4CC9F0" text-anchor="middle" font-weight="bold">SageMaker</text>
+  <text x="253" y="112" font-family="Arial" font-size="12" fill="#4CC9F0" text-anchor="middle">Async Endpoint</text>
+  <text x="253" y="128" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">202 Accepted 即返却</text>
+
+  <!-- Arrow to S3 Queue -->
+  <line x1="323" y1="105" x2="388" y2="105" stroke="#F77F00" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#F77F00" transform="translate(388,105) rotate(90)"/>
+
+  <!-- S3 Queue -->
+  <rect x="393" y="70" width="120" height="70" rx="10" fill="#2d1e0f" stroke="#F77F00" stroke-width="2"/>
+  <text x="453" y="97" font-family="Arial" font-size="11" fill="#F77F00" text-anchor="middle" font-weight="bold">S3</text>
+  <text x="453" y="113" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">リクエストキュー</text>
+  <text x="453" y="128" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">最大1GB</text>
+
+  <!-- Arrow down to processing -->
+  <line x1="453" y1="140" x2="453" y2="195" stroke="#F77F00" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#F77F00" transform="translate(453,195) rotate(180)"/>
+  <text x="490" y="170" font-family="Arial" font-size="10" fill="#F77F00">非同期処理</text>
+
+  <!-- Processing box -->
+  <rect x="320" y="200" width="265" height="70" rx="10" fill="#0f3460" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="453" y="224" font-family="Arial" font-size="12" fill="#4CC9F0" text-anchor="middle" font-weight="bold">推論処理 (バックグラウンド)</text>
+  <text x="453" y="244" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">最大60分の長時間処理が可能</text>
+  <text x="453" y="260" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">アイドル時はインスタンス数ゼロも可能</text>
+
+  <!-- Arrow to S3 result -->
+  <line x1="453" y1="270" x2="453" y2="320" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#06D6A0" transform="translate(453,320) rotate(180)"/>
+
+  <!-- S3 Result -->
+  <rect x="360" y="325" width="185" height="60" rx="10" fill="#0a2040" stroke="#06D6A0" stroke-width="2"/>
+  <text x="453" y="350" font-family="Arial" font-size="12" fill="#06D6A0" text-anchor="middle" font-weight="bold">S3 (結果保存)</text>
+  <text x="453" y="370" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">推論結果ファイル</text>
+
+  <!-- SNS notification -->
+  <line x1="545" y1="355" x2="610" y2="355" stroke="#F77F00" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#F77F00" transform="translate(610,355) rotate(90)"/>
+  <rect x="615" y="325" width="120" height="60" rx="10" fill="#2d1e0f" stroke="#F77F00" stroke-width="2"/>
+  <text x="675" y="350" font-family="Arial" font-size="12" fill="#F77F00" text-anchor="middle" font-weight="bold">SNS通知</text>
+  <text x="675" y="368" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">完了/エラー</text>
+
+  <!-- Client polls -->
+  <line x1="70" y1="130" x2="70" y2="360" stroke="#4CC9F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="70" y1="360" x2="355" y2="360" stroke="#4CC9F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="0,-4 -6,4 6,4" fill="#4CC9F0" transform="translate(355,360) rotate(90)"/>
+  <text x="200" y="378" font-family="Arial" font-size="9" fill="#4CC9F0" text-anchor="middle">Client が S3 をポーリング or SNS通知を受信</text>
+
+  <!-- Key characteristics box -->
+  <rect x="20" y="405" width="750" height="80" rx="10" fill="#0a1e30" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="35" y="425" font-family="Arial" font-size="11" fill="#4CC9F0" font-weight="bold">特徴:</text>
+  <text x="35" y="445" font-family="Arial" font-size="10" fill="#aaaaaa">大容量ペイロード対応 (最大1GB)</text>
+  <text x="35" y="462" font-family="Arial" font-size="10" fill="#aaaaaa">長時間推論 (最大60分)</text>
+  <text x="250" y="445" font-family="Arial" font-size="10" fill="#aaaaaa">アイドル時インスタンス数ゼロ可能</text>
+  <text x="250" y="462" font-family="Arial" font-size="10" fill="#aaaaaa">非同期ワークフロー向け</text>
+  <text x="500" y="445" font-family="Arial" font-size="10" fill="#aaaaaa">適用: 動画処理・大規模バッチ</text>
+  <text x="500" y="462" font-family="Arial" font-size="10" fill="#aaaaaa">GenAIアプリ・長文生成</text>
+</svg>

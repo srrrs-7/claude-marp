@@ -1,0 +1,68 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">LLMOps 概要：MLOps との比較</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">従来 MLOps との違いと LLM 特有の運用課題</text>
+
+  <!-- MLOps column -->
+  <rect x="15" y="65" width="380" height="250" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="15" y="65" width="380" height="30" rx="8" fill="#1e3a8a"/>
+  <text x="205" y="85" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">従来 MLOps</text>
+  <!-- Steps -->
+  <rect x="25" y="103" width="170" height="26" rx="4" fill="#1e40af"/>
+  <text x="110" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">データ収集・前処理</text>
+  <polygon points="110,131 105,139 115,139" fill="#3b82f6"/>
+  <rect x="25" y="141" width="170" height="26" rx="4" fill="#1e40af"/>
+  <text x="110" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">特徴量エンジニアリング</text>
+  <polygon points="110,169 105,177 115,177" fill="#3b82f6"/>
+  <rect x="25" y="179" width="170" height="26" rx="4" fill="#1e40af"/>
+  <text x="110" y="196" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">モデル学習（数時間）</text>
+  <polygon points="110,207 105,215 115,215" fill="#3b82f6"/>
+  <rect x="25" y="217" width="170" height="26" rx="4" fill="#1e40af"/>
+  <text x="110" y="234" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">評価・デプロイ</text>
+  <polygon points="110,245 105,253 115,253" fill="#3b82f6"/>
+  <rect x="25" y="255" width="170" height="26" rx="4" fill="#1e40af"/>
+  <text x="110" y="272" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">精度モニタリング</text>
+  <!-- Characteristics -->
+  <text x="225" y="115" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• スクラッチから学習</text>
+  <text x="225" y="133" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• タスク専用モデル</text>
+  <text x="225" y="151" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• 小〜中規模データ</text>
+  <text x="225" y="169" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• 再現性が容易</text>
+  <text x="225" y="187" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• 定量評価が明確</text>
+  <text x="225" y="205" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• インフラが軽量</text>
+
+  <!-- LLMOps column -->
+  <rect x="410" y="65" width="475" height="250" rx="8" fill="#3b0764" stroke="#a855f7" stroke-width="2"/>
+  <rect x="410" y="65" width="475" height="30" rx="8" fill="#5b21b6"/>
+  <text x="648" y="85" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">LLMOps（LLM特有）</text>
+  <!-- Steps -->
+  <rect x="420" y="103" width="170" height="26" rx="4" fill="#4c1d95"/>
+  <text x="505" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">FM 選定・API 評価</text>
+  <polygon points="505,131 500,139 510,139" fill="#a855f7"/>
+  <rect x="420" y="141" width="170" height="26" rx="4" fill="#4c1d95"/>
+  <text x="505" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">プロンプト設計・最適化</text>
+  <polygon points="505,169 500,177 510,177" fill="#a855f7"/>
+  <rect x="420" y="179" width="170" height="26" rx="4" fill="#7c3aed"/>
+  <text x="505" y="196" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ede9fe">Fine-tuning / RAG 構築</text>
+  <polygon points="505,207 500,215 510,215" fill="#a855f7"/>
+  <rect x="420" y="217" width="170" height="26" rx="4" fill="#4c1d95"/>
+  <text x="505" y="234" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">評価（人間/LLM/指標）</text>
+  <polygon points="505,245 500,253 510,253" fill="#a855f7"/>
+  <rect x="420" y="255" width="170" height="26" rx="4" fill="#4c1d95"/>
+  <text x="505" y="272" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">ハルシネーション監視</text>
+  <!-- Characteristics -->
+  <text x="610" y="115" font-family="Arial,sans-serif" font-size="9" fill="#e9d5ff">• 事前学習済み FM 活用</text>
+  <text x="610" y="133" font-family="Arial,sans-serif" font-size="9" fill="#e9d5ff">• 汎用〜専門特化</text>
+  <text x="610" y="151" font-family="Arial,sans-serif" font-size="9" fill="#e9d5ff">• 大規模データ必要</text>
+  <text x="610" y="169" font-family="Arial,sans-serif" font-size="9" fill="#e9d5ff">• 再現性が困難</text>
+  <text x="610" y="187" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">• 定性評価が必要</text>
+  <text x="610" y="205" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">• GPU/コスト管理重要</text>
+
+  <!-- Bottom highlights -->
+  <rect x="15" y="328" width="870" height="60" rx="8" fill="#0f172a"/>
+  <text x="450" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">LLMOps の重点課題</text>
+  <text x="100" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">コスト最適化</text>
+  <text x="250" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">ハルシネーション検出</text>
+  <text x="450" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">プロンプト管理</text>
+  <text x="650" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">モデルバージョン管理</text>
+  <text x="820" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">レイテンシ最適化</text>
+</svg>

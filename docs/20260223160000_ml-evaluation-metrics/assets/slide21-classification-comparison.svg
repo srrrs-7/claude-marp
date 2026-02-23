@@ -1,0 +1,95 @@
+<svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">分類指標 比較マトリクス</text>
+  <!-- Table header -->
+  <rect x="10" y="36" width="780" height="34" rx="6" fill="rgba(255,255,255,0.1)"/>
+  <text x="85" y="58" text-anchor="middle" font-size="11" font-weight="bold" fill="#94a3b8">指標</text>
+  <text x="215" y="58" text-anchor="middle" font-size="11" font-weight="bold" fill="#94a3b8">不均衡</text>
+  <text x="310" y="58" text-anchor="middle" font-size="11" font-weight="bold" fill="#94a3b8">確率不要</text>
+  <text x="405" y="58" text-anchor="middle" font-size="11" font-weight="bold" fill="#94a3b8">多クラス</text>
+  <text x="510" y="58" text-anchor="middle" font-size="11" font-weight="bold" fill="#94a3b8">典型的用途</text>
+  <text x="690" y="58" text-anchor="middle" font-size="11" font-weight="bold" fill="#94a3b8">注意点</text>
+  <!-- Rows -->
+  <!-- Accuracy -->
+  <rect x="10" y="70" width="780" height="34" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <text x="85" y="91" text-anchor="middle" font-size="11" fill="#f8f8f8">Accuracy</text>
+  <text x="215" y="91" text-anchor="middle" font-size="12" fill="#f472b6">✗ NG</text>
+  <text x="310" y="91" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="405" y="91" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="510" y="91" text-anchor="middle" font-size="10" fill="#f8f8f8">均衡データの初期評価</text>
+  <text x="690" y="91" text-anchor="middle" font-size="10" fill="#fb923c">不均衡時は無意味</text>
+  <!-- Precision -->
+  <rect x="10" y="104" width="780" height="34" rx="0" fill="rgba(167,139,250,0.05)"/>
+  <text x="85" y="125" text-anchor="middle" font-size="11" fill="#f8f8f8">Precision</text>
+  <text x="215" y="125" text-anchor="middle" font-size="12" fill="#fbbf24">△</text>
+  <text x="310" y="125" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="405" y="125" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="510" y="125" text-anchor="middle" font-size="10" fill="#f8f8f8">FPコストが高い場合</text>
+  <text x="690" y="125" text-anchor="middle" font-size="10" fill="#fb923c">Recall とトレードオフ</text>
+  <!-- Recall -->
+  <rect x="10" y="138" width="780" height="34" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <text x="85" y="159" text-anchor="middle" font-size="11" fill="#f8f8f8">Recall</text>
+  <text x="215" y="159" text-anchor="middle" font-size="12" fill="#fbbf24">△</text>
+  <text x="310" y="159" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="405" y="159" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="510" y="159" text-anchor="middle" font-size="10" fill="#f8f8f8">FNコストが高い場合</text>
+  <text x="690" y="159" text-anchor="middle" font-size="10" fill="#fb923c">偽陰性が問題の場面</text>
+  <!-- F1 -->
+  <rect x="10" y="172" width="780" height="34" rx="0" fill="rgba(52,211,153,0.05)"/>
+  <text x="85" y="193" text-anchor="middle" font-size="11" fill="#f8f8f8">F1 Score</text>
+  <text x="215" y="193" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="310" y="193" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="405" y="193" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="510" y="193" text-anchor="middle" font-size="10" fill="#f8f8f8">不均衡・一般分類</text>
+  <text x="690" y="193" text-anchor="middle" font-size="10" fill="#fb923c">P/Rが等重要の前提</text>
+  <!-- Fβ -->
+  <rect x="10" y="206" width="780" height="34" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <text x="85" y="227" text-anchor="middle" font-size="11" fill="#f8f8f8">Fβ Score</text>
+  <text x="215" y="227" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="310" y="227" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="405" y="227" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="510" y="227" text-anchor="middle" font-size="10" fill="#f8f8f8">コスト非対称の分類</text>
+  <text x="690" y="227" text-anchor="middle" font-size="10" fill="#fb923c">β値の設定が主観的</text>
+  <!-- AUC-ROC -->
+  <rect x="10" y="240" width="780" height="34" rx="0" fill="rgba(96,165,250,0.05)"/>
+  <text x="85" y="261" text-anchor="middle" font-size="11" fill="#f8f8f8">AUC-ROC</text>
+  <text x="215" y="261" text-anchor="middle" font-size="12" fill="#fbbf24">△</text>
+  <text x="310" y="261" text-anchor="middle" font-size="12" fill="#f472b6">✗</text>
+  <text x="405" y="261" text-anchor="middle" font-size="12" fill="#fbbf24">△</text>
+  <text x="510" y="261" text-anchor="middle" font-size="10" fill="#f8f8f8">スコアリングモデル評価</text>
+  <text x="690" y="261" text-anchor="middle" font-size="10" fill="#fb923c">不均衡時に楽観的</text>
+  <!-- PR-AUC -->
+  <rect x="10" y="274" width="780" height="34" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <text x="85" y="295" text-anchor="middle" font-size="11" fill="#f8f8f8">PR-AUC</text>
+  <text x="215" y="295" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="310" y="295" text-anchor="middle" font-size="12" fill="#f472b6">✗</text>
+  <text x="405" y="295" text-anchor="middle" font-size="12" fill="#fbbf24">△</text>
+  <text x="510" y="295" text-anchor="middle" font-size="10" fill="#f8f8f8">不均衡データのスコアリング</text>
+  <text x="690" y="295" text-anchor="middle" font-size="10" fill="#fb923c">ベースラインが変化する</text>
+  <!-- MCC -->
+  <rect x="10" y="308" width="780" height="34" rx="0" fill="rgba(52,211,153,0.05)"/>
+  <text x="85" y="329" text-anchor="middle" font-size="11" fill="#f8f8f8">MCC</text>
+  <text x="215" y="329" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="310" y="329" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="405" y="329" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="510" y="329" text-anchor="middle" font-size="10" fill="#f8f8f8">最も信頼できる単一指標</text>
+  <text x="690" y="329" text-anchor="middle" font-size="10" fill="#fb923c">解釈が直感的でない</text>
+  <!-- Kappa -->
+  <rect x="10" y="342" width="780" height="34" rx="0" fill="rgba(255,255,255,0.03)"/>
+  <text x="85" y="363" text-anchor="middle" font-size="11" fill="#f8f8f8">Cohen's κ</text>
+  <text x="215" y="363" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="310" y="363" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="405" y="363" text-anchor="middle" font-size="12" fill="#34d399">✓</text>
+  <text x="510" y="363" text-anchor="middle" font-size="10" fill="#f8f8f8">アノテーター一致度</text>
+  <text x="690" y="363" text-anchor="middle" font-size="10" fill="#fb923c">MCCより計算が直感的</text>
+  <!-- Grid lines -->
+  <line x1="150" y1="36" x2="150" y2="376" stroke="#475569" stroke-width="1"/>
+  <line x1="260" y1="36" x2="260" y2="376" stroke="#475569" stroke-width="1"/>
+  <line x1="355" y1="36" x2="355" y2="376" stroke="#475569" stroke-width="1"/>
+  <line x1="455" y1="36" x2="455" y2="376" stroke="#475569" stroke-width="1"/>
+  <line x1="570" y1="36" x2="570" y2="376" stroke="#475569" stroke-width="1"/>
+  <rect x="10" y="36" width="780" height="340" rx="6" fill="none" stroke="#475569" stroke-width="1"/>
+  <!-- legend -->
+  <text x="400" y="410" text-anchor="middle" font-size="11" fill="#34d399">✓ 適切</text>
+  <text x="460" y="410" font-size="11" fill="#fbbf24">  △ 条件付き</text>
+  <text x="560" y="410" font-size="11" fill="#f472b6">  ✗ 不適切</text>
+</svg>

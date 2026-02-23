@@ -1,0 +1,79 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="30" font-family="Arial" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="bold">バイアスドリフト検知</text>
+
+  <!-- Left: Training baseline -->
+  <rect x="20" y="55" width="230" height="300" rx="10" fill="#1e3a5f" stroke="#06D6A0" stroke-width="2.5"/>
+  <text x="135" y="80" font-family="Arial" font-size="13" fill="#06D6A0" text-anchor="middle" font-weight="bold">学習時 (ベースライン)</text>
+
+  <!-- Group A -->
+  <text x="35" y="110" font-family="Arial" font-size="11" fill="#ffffff">グループ A (男性)</text>
+  <rect x="35" y="118" width="164" height="28" rx="5" fill="#06D6A0" opacity="0.8"/>
+  <text x="210" y="136" font-family="Arial" font-size="11" fill="#06D6A0">80%</text>
+  <text x="35" y="160" font-family="Arial" font-size="10" fill="#aaaaaa">ローン承認率: 80%</text>
+
+  <!-- Group B -->
+  <text x="35" y="185" font-family="Arial" font-size="11" fill="#ffffff">グループ B (女性)</text>
+  <rect x="35" y="193" width="168" height="28" rx="5" fill="#06D6A0" opacity="0.85"/>
+  <text x="215" y="211" font-family="Arial" font-size="11" fill="#06D6A0">82%</text>
+  <text x="35" y="235" font-family="Arial" font-size="10" fill="#aaaaaa">ローン承認率: 82%</text>
+
+  <!-- DPPL calculation baseline -->
+  <rect x="35" y="260" width="200" height="60" rx="8" fill="#0a2040" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="135" y="280" font-family="Arial" font-size="10" fill="#06D6A0" text-anchor="middle" font-weight="bold">DPPL (ベースライン)</text>
+  <text x="135" y="298" font-family="Arial" font-size="12" fill="#06D6A0" text-anchor="middle" font-weight="bold">= |0.80 - 0.82| = 0.02</text>
+  <text x="135" y="314" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">閾値 0.05 以内 → 公平</text>
+
+  <rect x="35" y="335" width="200" height="30" rx="6" fill="#1a3a20" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="135" y="355" font-family="Arial" font-size="11" fill="#06D6A0" text-anchor="middle" font-weight="bold">公平 (Bias なし)</text>
+
+  <!-- Center: Time arrow -->
+  <text x="400" y="220" font-family="Arial" font-size="13" fill="#4CC9F0" text-anchor="middle" font-weight="bold">時間経過</text>
+  <line x1="260" y1="225" x2="535" y2="225" stroke="#4CC9F0" stroke-width="2.5"/>
+  <polygon points="0,-6 -10,6 10,6" fill="#4CC9F0" transform="translate(535,225) rotate(90)"/>
+  <text x="395" y="248" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">データ分布の変化 / 社会環境の変化</text>
+  <text x="395" y="264" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">新しい顧客セグメントの流入</text>
+
+  <!-- Right: Current drift -->
+  <rect x="545" y="55" width="240" height="300" rx="10" fill="#2d0a0a" stroke="#E63946" stroke-width="2.5"/>
+  <text x="665" y="80" font-family="Arial" font-size="13" fill="#E63946" text-anchor="middle" font-weight="bold">現在 (ドリフト検知)</text>
+
+  <!-- Group A current -->
+  <text x="560" y="110" font-family="Arial" font-size="11" fill="#ffffff">グループ A (男性)</text>
+  <rect x="560" y="118" width="145" height="28" rx="5" fill="#F77F00" opacity="0.8"/>
+  <text x="715" y="136" font-family="Arial" font-size="11" fill="#F77F00">75%</text>
+  <text x="560" y="160" font-family="Arial" font-size="10" fill="#aaaaaa">ローン承認率: 75% (低下)</text>
+
+  <!-- Group B current -->
+  <text x="560" y="185" font-family="Arial" font-size="11" fill="#ffffff">グループ B (女性)</text>
+  <rect x="560" y="193" width="185" height="28" rx="5" fill="#E63946" opacity="0.9"/>
+  <text x="755" y="211" font-family="Arial" font-size="11" fill="#E63946">85%</text>
+  <text x="560" y="235" font-family="Arial" font-size="10" fill="#aaaaaa">ローン承認率: 85% (上昇)</text>
+
+  <!-- DPPL calculation current -->
+  <rect x="560" y="260" width="210" height="60" rx="8" fill="#2d0a0a" stroke="#E63946" stroke-width="2"/>
+  <text x="665" y="280" font-family="Arial" font-size="10" fill="#E63946" text-anchor="middle" font-weight="bold">DPPL (現在)</text>
+  <text x="665" y="300" font-family="Arial" font-size="12" fill="#E63946" text-anchor="middle" font-weight="bold">= |0.75 - 0.85| = 0.10</text>
+  <text x="665" y="316" font-family="Arial" font-size="9" fill="#E63946" text-anchor="middle">閾値 0.05 超過!</text>
+
+  <rect x="560" y="335" width="210" height="30" rx="6" fill="#3d0a0a" stroke="#E63946" stroke-width="2"/>
+  <text x="665" y="355" font-family="Arial" font-size="11" fill="#E63946" text-anchor="middle" font-weight="bold">バイアス拡大を検知!</text>
+
+  <!-- Alert and action box -->
+  <rect x="20" y="380" width="760" height="80" rx="10" fill="#1a0a00" stroke="#F77F00" stroke-width="2"/>
+  <text x="400" y="402" font-family="Arial" font-size="12" fill="#F77F00" text-anchor="middle" font-weight="bold">アラート・対応フロー</text>
+  <text x="80" y="425" font-family="Arial" font-size="11" fill="#aaaaaa" text-anchor="middle">CW Alarm</text>
+  <line x1="130" y1="425" x2="185" y2="425" stroke="#F77F00" stroke-width="1.5"/>
+  <polygon points="0,-4 -6,4 6,4" fill="#F77F00" transform="translate(185,425) rotate(90)"/>
+  <text x="235" y="425" font-family="Arial" font-size="11" fill="#aaaaaa" text-anchor="middle">SNS 通知</text>
+  <line x1="285" y1="425" x2="335" y2="425" stroke="#F77F00" stroke-width="1.5"/>
+  <polygon points="0,-4 -6,4 6,4" fill="#F77F00" transform="translate(335,425) rotate(90)"/>
+  <text x="400" y="425" font-family="Arial" font-size="11" fill="#aaaaaa" text-anchor="middle">再評価トリガー</text>
+  <line x1="455" y1="425" x2="505" y2="425" stroke="#F77F00" stroke-width="1.5"/>
+  <polygon points="0,-4 -6,4 6,4" fill="#F77F00" transform="translate(505,425) rotate(90)"/>
+  <text x="575" y="425" font-family="Arial" font-size="11" fill="#aaaaaa" text-anchor="middle">モデル再学習</text>
+  <line x1="640" y1="425" x2="685" y2="425" stroke="#F77F00" stroke-width="1.5"/>
+  <polygon points="0,-4 -6,4 6,4" fill="#F77F00" transform="translate(685,425) rotate(90)"/>
+  <text x="735" y="425" font-family="Arial" font-size="11" fill="#06D6A0" text-anchor="middle">解消</text>
+  <text x="400" y="450" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">SageMaker Clarify: BiasConfig + ModelConfig を設定してバイアス監視を有効化</text>
+</svg>

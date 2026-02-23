@@ -1,0 +1,73 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">ReAct (Reasoning + Acting) パターン</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">推論と行動を交互に繰り返すエージェントの中核パターン</text>
+
+  <!-- ReAct cycle diagram -->
+  <rect x="15" y="65" width="500" height="230" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="2"/>
+  <text x="265" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">ReAct ループ</text>
+
+  <!-- Thought -->
+  <rect x="80" y="90" width="160" height="55" rx="8" fill="#1d4ed8"/>
+  <text x="160" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Thought（推論）</text>
+  <text x="160" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">次に何をすべきか</text>
+  <text x="160" y="142" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">LLMが計画立案</text>
+
+  <!-- Action -->
+  <rect x="275" y="90" width="160" height="55" rx="8" fill="#065f46"/>
+  <text x="355" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Action（行動）</text>
+  <text x="355" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a7f3d0">ツール・API・DB</text>
+  <text x="355" y="142" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a7f3d0">を実際に呼び出す</text>
+
+  <!-- Arrows Thought -> Action -->
+  <polygon points="243,117 255,113 255,121" fill="#fbbf24"/>
+  <rect x="242,113 243,121" fill="#fbbf24"/>
+  <line x1="242" y1="117" x2="275" y2="117" stroke="#fbbf24" stroke-width="2"/>
+
+  <!-- Observation -->
+  <rect x="185" y="180" width="160" height="55" rx="8" fill="#6d28d9"/>
+  <text x="265" y="202" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Observation（観察）</text>
+  <text x="265" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#e9d5ff">ツール実行結果を</text>
+  <text x="265" y="232" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#e9d5ff">コンテキストに追加</text>
+
+  <!-- Arrows Action -> Observation -> Thought -->
+  <polygon points="355,148 355,180 350,175" fill="#fbbf24"/>
+  <line x1="355" y1="145" x2="355" y2="181" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="265,235 265,268 260,263" fill="#fbbf24"/>
+  <line x1="265" y1="235" x2="265" y2="268" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="160,268 160,145 165,150" fill="#fbbf24"/>
+  <line x1="160" y1="268" x2="160" y2="145" stroke="#fbbf24" stroke-width="2"/>
+  <line x1="160" y1="268" x2="265" y2="268" stroke="#fbbf24" stroke-width="2"/>
+
+  <!-- Final Answer -->
+  <rect x="80" y="273" width="355" height="10" rx="5" fill="#374151"/>
+  <text x="265" y="295" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fbbf24">目標達成 → Final Answer を出力してループ終了</text>
+
+  <!-- Real example -->
+  <rect x="530" y="65" width="355" height="230" rx="8" fill="#0f172a" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="708" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#a78bfa">具体例: 注文状況確認エージェント</text>
+  <rect x="540" y="90" width="335" height="30" rx="4" fill="#172554"/>
+  <text x="708" y="103" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">ユーザー: 「注文ID 12345 の状況を教えて」</text>
+  <text x="708" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">───────────────────────────────</text>
+  <rect x="540" y="124" width="335" height="22" rx="3" fill="#1d4ed8"/>
+  <text x="708" y="139" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">💭 Thought: 注文履歴DBを検索する必要がある</text>
+  <rect x="540" y="150" width="335" height="22" rx="3" fill="#065f46"/>
+  <text x="708" y="165" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a7f3d0">⚡ Action: order_db.search(id=12345)</text>
+  <rect x="540" y="176" width="335" height="22" rx="3" fill="#4c1d95"/>
+  <text x="708" y="191" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#e9d5ff">👁 Observation: 商品:ノートPC、ステータス:配送中</text>
+  <rect x="540" y="202" width="335" height="22" rx="3" fill="#1d4ed8"/>
+  <text x="708" y="217" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">💭 Thought: 配送状況の詳細を確認する</text>
+  <rect x="540" y="228" width="335" height="22" rx="3" fill="#065f46"/>
+  <text x="708" y="243" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a7f3d0">⚡ Action: shipping_api.get_status(12345)</text>
+  <rect x="540" y="254" width="335" height="22" rx="3" fill="#4c1d95"/>
+  <text x="708" y="269" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#e9d5ff">👁 Observation: 配送予定 明日14:00</text>
+  <rect x="540" y="279" width="335" height="15" rx="3" fill="#78350f"/>
+  <text x="708" y="290" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">✅ Final Answer: 明日お届けの予定です</text>
+
+  <!-- Bottom info -->
+  <rect x="15" y="308" width="870" height="80" rx="8" fill="#1e1b4b"/>
+  <text x="450" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">Bedrock Agents = ReActパターンのマネージドサービス</text>
+  <text x="450" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">Thought（オーケストレーション）→ Action（Lambda/API/KB）→ Observation（結果） のサイクルを自動管理</text>
+  <text x="450" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">実行トレース（Trace）で各Thought/Action/Observationを可視化・デバッグ可能</text>
+  <text x="450" y="380" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">外部ツール（Web検索・計算機・API）と統合することでハルシネーションを削減し事実確認が可能</text>
+</svg>

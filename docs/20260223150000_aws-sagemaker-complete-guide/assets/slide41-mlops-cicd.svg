@@ -1,0 +1,134 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <text x="450" y="30" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#f1f5f9">CI/CD MLOps パイプライン (CodePipeline + SageMaker)</text>
+
+  <!-- EventBridge trigger (top-left) -->
+  <rect x="20" y="48" width="140" height="70" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="90" y="68" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f97316">EventBridge</text>
+  <text x="90" y="84" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">スケジュール実行</text>
+  <text x="90" y="97" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">データ到着イベント</text>
+  <text x="90" y="110" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">S3 PUT Event</text>
+
+  <!-- Arrow: EventBridge → Source -->
+  <line x1="160" y1="83" x2="188" y2="83" stroke="#f97316" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="188,78 200,83 188,88" fill="#f97316"/>
+
+  <!-- Stage 1: Source -->
+  <rect x="200" y="48" width="130" height="70" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="265" y="68" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">① Source</text>
+  <text x="265" y="83" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">CodeCommit</text>
+  <text x="265" y="96" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">GitHub</text>
+  <text x="265" y="109" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">training code / config</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="330" y1="83" x2="358" y2="83" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="358,78 370,83 358,88" fill="#94a3b8"/>
+
+  <!-- Stage 2: CodeBuild -->
+  <rect x="370" y="48" width="130" height="70" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="435" y="68" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#22c55e">② Build</text>
+  <text x="435" y="83" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">CodeBuild</text>
+  <text x="435" y="96" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Unit Test</text>
+  <text x="435" y="109" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Container Build (ECR)</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="500" y1="83" x2="528" y2="83" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="528,78 540,83 528,88" fill="#94a3b8"/>
+
+  <!-- Stage 3: SageMaker Pipeline -->
+  <rect x="540" y="30" width="340" height="110" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="710" y="50" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#a855f7">③ SageMaker Pipeline</text>
+
+  <!-- Sub-steps inside -->
+  <rect x="555" y="58" width="72" height="30" rx="4" fill="#1e3a5f"/>
+  <text x="591" y="77" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#3b82f6">Data Prep</text>
+
+  <line x1="627" y1="73" x2="637" y2="73" stroke="#94a3b8" stroke-width="1"/>
+  <polygon points="637,70 644,73 637,76" fill="#94a3b8"/>
+
+  <rect x="644" y="58" width="58" height="30" rx="4" fill="#1a3a2a"/>
+  <text x="673" y="77" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#22c55e">Train</text>
+
+  <line x1="702" y1="73" x2="712" y2="73" stroke="#94a3b8" stroke-width="1"/>
+  <polygon points="712,70 719,73 712,76" fill="#94a3b8"/>
+
+  <rect x="719" y="58" width="64" height="30" rx="4" fill="#3a2a10"/>
+  <text x="751" y="77" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316">Evaluate</text>
+
+  <line x1="783" y1="73" x2="793" y2="73" stroke="#94a3b8" stroke-width="1"/>
+  <polygon points="793,70 800,73 793,76" fill="#94a3b8"/>
+
+  <rect x="800" y="58" width="64" height="30" rx="4" fill="#1a3a2a"/>
+  <text x="832" y="77" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#22c55e">Register</text>
+
+  <text x="555" y="108" font-family="sans-serif" font-size="9" fill="#94a3b8">Model Registry → Pending Approval | Step Caching | Experiments 記録</text>
+  <text x="555" y="122" font-family="sans-serif" font-size="9" fill="#94a3b8">Pipeline Params: instance_type, epochs, learning_rate</text>
+
+  <!-- Row 2: after SageMaker Pipeline -->
+  <!-- Arrow: Pipeline → Manual Approval -->
+  <line x1="710" y1="140" x2="710" y2="165" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="705,165 710,177 715,165" fill="#94a3b8"/>
+
+  <!-- Stage 4: Manual Approval -->
+  <rect x="560" y="177" width="300" height="70" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="710" y="197" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f97316">④ Manual Approval Gate</text>
+  <text x="710" y="213" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">SNS 通知 → Slack / Email / PagerDuty</text>
+  <text x="710" y="226" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">承認者: ML Lead / Manager</text>
+  <text x="710" y="239" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">タイムアウト: 7 days (reject if expired)</text>
+
+  <!-- Arrow: Approval → Staging -->
+  <line x1="710" y1="247" x2="710" y2="272" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="705,272 710,284 715,272" fill="#22c55e"/>
+  <text x="720" y="263" font-family="sans-serif" font-size="10" fill="#22c55e">Approved</text>
+
+  <!-- Stage 5: Staging Deploy -->
+  <rect x="560" y="284" width="300" height="70" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="710" y="304" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#22c55e">⑤ Staging Deploy</text>
+  <text x="710" y="320" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">SageMaker Endpoint (staging)</text>
+  <text x="710" y="333" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Integration Tests → Load Tests</text>
+  <text x="710" y="346" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Canary / Shadow テスト</text>
+
+  <!-- Arrow: Staging → Production -->
+  <line x1="710" y1="354" x2="710" y2="379" stroke="#14b8a6" stroke-width="2"/>
+  <polygon points="705,379 710,391 715,379" fill="#14b8a6"/>
+
+  <!-- Stage 6: Production Blue/Green -->
+  <rect x="560" y="391" width="300" height="80" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="710" y="411" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#14b8a6">⑥ Production (Blue/Green)</text>
+  <text x="710" y="427" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">トラフィック段階移行: 10% → 50% → 100%</text>
+  <text x="710" y="440" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">CloudWatch アラーム自動ロールバック</text>
+  <text x="710" y="453" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Model Monitor 継続監視</text>
+  <text x="710" y="466" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Data Capture → Drift 検知 → 再学習トリガー</text>
+
+  <!-- CloudWatch monitoring (left side) -->
+  <rect x="20" y="177" width="510" height="294" rx="8" fill="#131e2f" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="265" y="197" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#94a3b8">監視・観測性レイヤー</text>
+
+  <!-- CloudWatch -->
+  <rect x="35" y="210" width="220" height="60" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="145" y="230" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f97316">CloudWatch</text>
+  <text x="145" y="246" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Pipeline実行メトリクス</text>
+  <text x="145" y="259" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Endpoint レイテンシー / エラー率</text>
+
+  <!-- CodePipeline Status -->
+  <rect x="275" y="210" width="220" height="60" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="385" y="230" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">CodePipeline</text>
+  <text x="385" y="246" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Stage 実行状態可視化</text>
+  <text x="385" y="259" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">失敗時の自動通知</text>
+
+  <!-- Artifacts -->
+  <rect x="35" y="290" width="460" height="50" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="265" y="310" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#22c55e">アーティファクト管理</text>
+  <text x="265" y="326" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">S3: 学習データ / モデル成果物 | ECR: コンテナイメージ | Model Registry: バージョン管理</text>
+
+  <!-- IAM / Security -->
+  <rect x="35" y="360" width="460" height="50" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="265" y="380" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#a855f7">IAM ロール設計</text>
+  <text x="265" y="396" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">CodePipeline Role | CodeBuild Role | SageMaker Pipeline Role | Cross-account Deploy Role</text>
+
+  <!-- Notifications -->
+  <rect x="35" y="430" width="460" height="40" rx="6" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="265" y="450" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#14b8a6">通知フロー</text>
+  <text x="265" y="464" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">EventBridge → SNS → Lambda → Slack/Teams / PagerDuty</text>
+</svg>

@@ -1,0 +1,131 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#4CC9F0" text-anchor="middle">CI/CD for ML — CodePipeline + CodeBuild</text>
+
+  <!-- Pipeline flow - horizontal top section -->
+  <!-- Step 1: Git Push -->
+  <rect x="15" y="50" width="100" height="70" rx="6" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="65" y="72" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#4CC9F0" text-anchor="middle">1. Git Push</text>
+  <text x="65" y="88" font-family="Arial,sans-serif" font-size="8" fill="#cccccc" text-anchor="middle">CodeCommit</text>
+  <text x="65" y="102" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">/ GitHub</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="115" y1="85" x2="130" y2="85" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(132,85) rotate(90)"/>
+
+  <!-- Step 2: CodePipeline -->
+  <rect x="130" y="50" width="100" height="70" rx="6" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="180" y="72" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#4CC9F0" text-anchor="middle">2. Pipeline</text>
+  <text x="180" y="88" font-family="Arial,sans-serif" font-size="8" fill="#cccccc" text-anchor="middle">CodePipeline</text>
+  <text x="180" y="102" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">トリガー</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="230" y1="85" x2="245" y2="85" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(247,85) rotate(90)"/>
+
+  <!-- Step 3: Unit Tests -->
+  <rect x="245" y="50" width="110" height="70" rx="6" fill="#0a2545" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="300" y="68" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#4CC9F0" text-anchor="middle">3. CodeBuild</text>
+  <text x="300" y="82" font-family="Arial,sans-serif" font-size="8" fill="#cccccc" text-anchor="middle">ユニットテスト</text>
+  <text x="300" y="96" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">pytest / 検証</text>
+  <text x="300" y="110" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">データスキーマ確認</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="355" y1="85" x2="370" y2="85" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(372,85) rotate(90)"/>
+
+  <!-- Step 4: Docker Build -->
+  <rect x="370" y="50" width="115" height="70" rx="6" fill="#1e3a5f" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="427" y="68" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#06D6A0" text-anchor="middle">4. CodeBuild</text>
+  <text x="427" y="82" font-family="Arial,sans-serif" font-size="8" fill="#cccccc" text-anchor="middle">Docker Build</text>
+  <text x="427" y="96" font-family="Arial,sans-serif" font-size="8" fill="#cccccc" text-anchor="middle">ECR Push</text>
+  <text x="427" y="110" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">コンテナイメージ</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="485" y1="85" x2="500" y2="85" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(502,85) rotate(90)"/>
+
+  <!-- Step 5: SageMaker Pipeline -->
+  <rect x="500" y="50" width="120" height="70" rx="6" fill="#0f3460" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="560" y="68" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#06D6A0" text-anchor="middle">5. SM Pipeline</text>
+  <text x="560" y="82" font-family="Arial,sans-serif" font-size="8" fill="#cccccc" text-anchor="middle">学習 → 評価</text>
+  <text x="560" y="96" font-family="Arial,sans-serif" font-size="8" fill="#cccccc" text-anchor="middle">Pipeline実行</text>
+  <text x="560" y="110" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">pipeline.start()</text>
+
+  <!-- Arrow 5→6 -->
+  <line x1="620" y1="85" x2="635" y2="85" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(637,85) rotate(90)"/>
+
+  <!-- Step 6: Approval Gate -->
+  <rect x="635" y="50" width="110" height="70" rx="6" fill="#F77F00" fill-opacity="0.2" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="690" y="68" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#F77F00" text-anchor="middle">6. 承認ゲート</text>
+  <text x="690" y="82" font-family="Arial,sans-serif" font-size="8" fill="#cccccc" text-anchor="middle">SNS通知</text>
+  <text x="690" y="96" font-family="Arial,sans-serif" font-size="8" fill="#cccccc" text-anchor="middle">手動/自動承認</text>
+  <text x="690" y="110" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">Manual Approval</text>
+
+  <!-- Second row: arrow down from step 6 then left -->
+  <line x1="690" y1="120" x2="690" y2="155" stroke="#4CC9F0" stroke-width="2"/>
+  <line x1="690" y1="155" x2="635" y2="155" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(633,155) rotate(-90)"/>
+
+  <!-- Step 7: CodeDeploy -->
+  <rect x="500" y="130" width="120" height="50" rx="6" fill="#0a2545" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="560" y="150" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#4CC9F0" text-anchor="middle">7. CodeDeploy</text>
+  <text x="560" y="166" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">Endpoint更新</text>
+
+  <!-- Arrow 7→8 -->
+  <line x1="500" y1="155" x2="485" y2="155" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(483,155) rotate(-90)"/>
+
+  <!-- Step 8: Integration Tests -->
+  <rect x="365" y="130" width="110" height="50" rx="6" fill="#1e3a5f" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="420" y="150" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#06D6A0" text-anchor="middle">8. 統合テスト</text>
+  <text x="420" y="166" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">Lambda smoke test</text>
+
+  <!-- Environment branches below -->
+  <rect x="15" y="210" width="760" height="30" rx="5" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="400" y="230" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0" text-anchor="middle">ブランチ戦略 / 環境分離</text>
+
+  <!-- 4 env boxes -->
+  <rect x="15" y="255" width="172" height="100" rx="6" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="101" y="278" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0" text-anchor="middle">feature/*</text>
+  <text x="101" y="298" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">開発者ブランチ</text>
+  <text x="101" y="314" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">Unit test のみ</text>
+  <text x="101" y="330" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">自動マージ不可</text>
+
+  <rect x="205" y="255" width="172" height="100" rx="6" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="291" y="278" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0" text-anchor="middle">dev</text>
+  <text x="291" y="298" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">開発環境</text>
+  <text x="291" y="314" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">Unit + 統合テスト</text>
+  <text x="291" y="330" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">小規模Spot学習</text>
+
+  <rect x="395" y="255" width="172" height="100" rx="6" fill="#0a2545" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="481" y="278" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#06D6A0" text-anchor="middle">staging</text>
+  <text x="481" y="298" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">本番相当環境</text>
+  <text x="481" y="314" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">E2E テスト実行</text>
+  <text x="481" y="330" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">承認ゲート設定</text>
+
+  <rect x="585" y="255" width="190" height="100" rx="6" fill="#06D6A0" fill-opacity="0.1" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="680" y="278" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#06D6A0" text-anchor="middle">production</text>
+  <text x="680" y="298" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">本番環境</text>
+  <text x="680" y="314" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">Blue/Green Deploy</text>
+  <text x="680" y="330" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">監視 + アラート</text>
+
+  <!-- Arrows between env boxes -->
+  <line x1="187" y1="305" x2="205" y2="305" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(207,305) rotate(90)"/>
+  <line x1="377" y1="305" x2="395" y2="305" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(397,305) rotate(90)"/>
+  <line x1="567" y1="305" x2="585" y2="305" stroke="#06D6A0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#06D6A0" transform="translate(587,305) rotate(90)"/>
+
+  <!-- Bottom bar -->
+  <rect x="15" y="370" width="760" height="50" rx="6" fill="#1a2a40" stroke="#888888" stroke-width="1"/>
+  <text x="400" y="390" font-family="Arial,sans-serif" font-size="10" fill="#cccccc" text-anchor="middle">ML CI/CD ベストプラクティス</text>
+  <text x="200" y="408" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">コード変更 → 自動テスト</text>
+  <text x="400" y="408" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">モデル = コード同様にバージョン管理</text>
+  <text x="620" y="408" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">承認なしでは本番デプロイ不可</text>
+</svg>

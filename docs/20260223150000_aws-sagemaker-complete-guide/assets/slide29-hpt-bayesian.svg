@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="28" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f1f5f9">HyperParameter Tuning — ベイズ最適化</text>
+
+  <!-- Left: Search Space -->
+  <rect x="20" y="50" width="190" height="300" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="115" y="75" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">探索空間定義</text>
+
+  <rect x="35" y="88" width="160" height="35" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="115" y="104" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#22c55e">learning_rate</text>
+  <text x="115" y="118" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">[0.0001, 0.1] 連続</text>
+
+  <rect x="35" y="130" width="160" height="35" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="115" y="146" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#a855f7">num_layers</text>
+  <text x="115" y="160" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">[2, 10] 整数</text>
+
+  <rect x="35" y="172" width="160" height="35" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="115" y="188" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316">batch_size</text>
+  <text x="115" y="202" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">[32, 512] カテゴリ</text>
+
+  <rect x="35" y="214" width="160" height="35" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="115" y="230" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#14b8a6">dropout</text>
+  <text x="115" y="244" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">[0.0, 0.5] 連続</text>
+
+  <rect x="35" y="256" width="160" height="35" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="115" y="272" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#ef4444">optimizer</text>
+  <text x="115" y="286" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">[Adam, SGD, AdamW]</text>
+
+  <text x="115" y="325" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Objective Metric:</text>
+  <text x="115" y="340" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#22c55e">validation:accuracy</text>
+
+  <!-- Arrow to Bayesian loop -->
+  <line x1="210" y1="200" x2="248" y2="200" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="248,200 236,195 236,205" fill="#3b82f6"/>
+
+  <!-- Center: Bayesian Optimization Loop -->
+  <rect x="248" y="50" width="370" height="380" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="433" y="75" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f97316">ベイズ最適化ループ</text>
+
+  <!-- Step 1 -->
+  <rect x="268" y="90" width="330" height="40" rx="5" fill="#0f172a" stroke="#22c55e" stroke-width="1"/>
+  <text x="433" y="107" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#22c55e">1. 事前分布 (Prior)</text>
+  <text x="433" y="122" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">ガウス過程でパラメータ空間を初期推定</text>
+
+  <!-- Arrow down -->
+  <line x1="433" y1="130" x2="433" y2="148" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="433,148 428,136 438,136" fill="#f97316"/>
+
+  <!-- Step 2 -->
+  <rect x="268" y="148" width="330" height="40" rx="5" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+  <text x="433" y="165" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#3b82f6">2. Training Job 実行 (並列)</text>
+  <text x="433" y="180" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">候補パラメータで複数ジョブを同時実行</text>
+
+  <!-- Arrow down -->
+  <line x1="433" y1="188" x2="433" y2="206" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="433,206 428,194 438,194" fill="#f97316"/>
+
+  <!-- Step 3 -->
+  <rect x="268" y="206" width="330" height="40" rx="5" fill="#0f172a" stroke="#a855f7" stroke-width="1"/>
+  <text x="433" y="223" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#a855f7">3. 結果観測 (Observe)</text>
+  <text x="433" y="238" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">各ジョブの Objective Metric を収集</text>
+
+  <!-- Arrow down -->
+  <line x1="433" y1="246" x2="433" y2="264" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="433,264 428,252 438,252" fill="#f97316"/>
+
+  <!-- Step 4 -->
+  <rect x="268" y="264" width="330" height="40" rx="5" fill="#0f172a" stroke="#14b8a6" stroke-width="1"/>
+  <text x="433" y="281" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#14b8a6">4. Surrogate Model 更新</text>
+  <text x="433" y="296" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">ガウス過程で事後分布を更新 (より精度向上)</text>
+
+  <!-- Arrow down -->
+  <line x1="433" y1="304" x2="433" y2="322" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="433,322 428,310 438,310" fill="#f97316"/>
+
+  <!-- Step 5 -->
+  <rect x="268" y="322" width="330" height="40" rx="5" fill="#0f172a" stroke="#f97316" stroke-width="1"/>
+  <text x="433" y="339" text2="center" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#f97316">5. 獲得関数 → 次候補</text>
+  <text x="433" y="354" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">EI/UCB で最も有望な次点を選択</text>
+
+  <!-- Loop back arrow -->
+  <line x1="268" y1="342" x2="250" y2="342" stroke="#f97316" stroke-width="1.5"/>
+  <line x1="250" y1="342" x2="250" y2="168" stroke="#f97316" stroke-width="1.5"/>
+  <line x1="250" y1="168" x2="268" y2="168" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="268,168 256,163 256,173" fill="#f97316"/>
+  <text x="240" y="260" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316" transform="rotate(-90, 240, 260)">繰り返し</text>
+
+  <!-- Right: Convergence graph -->
+  <rect x="638" y="50" width="240" height="300" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="758" y="75" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#22c55e">収束グラフ</text>
+
+  <!-- Graph area -->
+  <rect x="658" y="88" width="200" height="180" rx="3" fill="#0f172a"/>
+
+  <!-- Y-axis label -->
+  <text x="668" y="168" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8" transform="rotate(-90, 668, 168)">Accuracy</text>
+
+  <!-- Axes -->
+  <line x1="680" y1="90" x2="680" y2="270" stroke="#334155" stroke-width="1"/>
+  <line x1="680" y1="270" x2="850" y2="270" stroke="#334155" stroke-width="1"/>
+
+  <!-- Y-axis values -->
+  <text x="676" y="93" text-anchor="end" font-family="sans-serif" font-size="7" fill="#94a3b8">1.0</text>
+  <text x="676" y="140" text-anchor="end" font-family="sans-serif" font-size="7" fill="#94a3b8">0.9</text>
+  <text x="676" y="186" text-anchor="end" font-family="sans-serif" font-size="7" fill="#94a3b8">0.8</text>
+  <text x="676" y="233" text-anchor="end" font-family="sans-serif" font-size="7" fill="#94a3b8">0.7</text>
+
+  <!-- Random search dots (scattered) -->
+  <circle cx="700" cy="230" r="4" fill="#ef4444" fill-opacity="0.6"/>
+  <circle cx="710" cy="195" r="4" fill="#ef4444" fill-opacity="0.6"/>
+  <circle cx="720" cy="215" r="4" fill="#ef4444" fill-opacity="0.6"/>
+  <circle cx="730" cy="170" r="4" fill="#ef4444" fill-opacity="0.6"/>
+  <circle cx="740" cy="200" r="4" fill="#ef4444" fill-opacity="0.6"/>
+  <circle cx="750" cy="185" r="4" fill="#ef4444" fill-opacity="0.6"/>
+  <circle cx="760" cy="145" r="4" fill="#ef4444" fill-opacity="0.6"/>
+  <circle cx="770" cy="160" r="4" fill="#ef4444" fill-opacity="0.6"/>
+  <circle cx="780" cy="130" r="4" fill="#ef4444" fill-opacity="0.6"/>
+  <circle cx="790" cy="140" r="4" fill="#ef4444" fill-opacity="0.6"/>
+  <text x="835" y="145" text-anchor="end" font-family="sans-serif" font-size="7" fill="#ef4444">Random</text>
+
+  <!-- Bayesian convergence line -->
+  <circle cx="700" cy="200" r="4" fill="#22c55e"/>
+  <circle cx="710" cy="175" r="4" fill="#22c55e"/>
+  <circle cx="720" cy="150" r="4" fill="#22c55e"/>
+  <circle cx="730" cy="125" r="4" fill="#22c55e"/>
+  <circle cx="740" cy="112" r="4" fill="#22c55e"/>
+  <circle cx="750" cy="102" r="4" fill="#22c55e"/>
+  <circle cx="760" cy="98" r="4" fill="#22c55e"/>
+  <circle cx="770" cy="95" r="4" fill="#22c55e"/>
+  <circle cx="780" cy="93" r="4" fill="#22c55e"/>
+  <circle cx="790" cy="92" r="4" fill="#22c55e"/>
+  <line x1="700" y1="200" x2="710" y2="175" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="710" y1="175" x2="720" y2="150" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="720" y1="150" x2="730" y2="125" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="730" y1="125" x2="740" y2="112" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="740" y1="112" x2="750" y2="102" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="750" y1="102" x2="760" y2="98" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="760" y1="98" x2="770" y2="95" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="770" y1="95" x2="780" y2="93" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="780" y1="93" x2="790" y2="92" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="835" y="95" text-anchor="end" font-family="sans-serif" font-size="7" fill="#22c55e">Bayesian</text>
+
+  <!-- X-axis label -->
+  <text x="765" y="285" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Trial 番号 →</text>
+
+  <!-- Config info -->
+  <text x="758" y="315" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">max_jobs: 20</text>
+  <text x="758" y="332" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">max_parallel_jobs: 4</text>
+  <text x="758" y="349" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">early_stopping: Auto</text>
+
+  <!-- Bottom notes -->
+  <rect x="20" y="380" width="860" height="80" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="450" y="400" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f1f5f9">HPT 戦略比較</text>
+  <text x="185" y="420" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#22c55e">Bayesian (推奨)</text>
+  <text x="185" y="437" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">効率的な探索、少ない試行で収束</text>
+  <text x="450" y="420" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#ef4444">Random Search</text>
+  <text x="450" y="437" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">シンプル、並列性が高い</text>
+  <text x="720" y="420" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#3b82f6">Grid Search</text>
+  <text x="720" y="437" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">全候補探索 (非効率)</text>
+  <text x="450" y="455" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316">Warm Start: 以前の HPT 結果を引き継いで継続探索</text>
+</svg>

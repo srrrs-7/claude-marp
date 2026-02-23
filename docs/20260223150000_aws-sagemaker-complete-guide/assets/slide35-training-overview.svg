@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="28" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f1f5f9">トレーニング最適化 — 全体俯瞰</text>
+
+  <!-- Center: Optimized Training Job -->
+  <rect x="310" y="185" width="280" height="110" rx="12" fill="#1e293b" stroke="#f97316" stroke-width="3"/>
+  <text x="450" y="218" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f97316">Optimized</text>
+  <text x="450" y="237" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f97316">Training Job</text>
+  <text x="450" y="260" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">高精度 × 低コスト × 高速</text>
+  <text x="450" y="278" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">本番品質モデルの最短パス</text>
+
+  <!-- Data Side (left top) -->
+  <rect x="15" y="45" width="250" height="120" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="140" y="67" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">データ最適化</text>
+  <text x="30" y="88" text-anchor="start" font-family="sans-serif" font-size="9" fill="#f1f5f9">Feature Store</text>
+  <text x="30" y="103" text-anchor="start" font-family="sans-serif" font-size="9" fill="#f1f5f9">Data Quality 検証</text>
+  <text x="30" y="118" text-anchor="start" font-family="sans-serif" font-size="9" fill="#f1f5f9">データ拡張 (Augmentation)</text>
+  <text x="30" y="133" text-anchor="start" font-family="sans-serif" font-size="9" fill="#f1f5f9">FastFile / Pipe モード</text>
+  <text x="30" y="148" text-anchor="start" font-family="sans-serif" font-size="9" fill="#94a3b8">Data Wrangler (前処理)</text>
+  <!-- Arrow to center -->
+  <line x1="265" y1="105" x2="308" y2="220" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="308,220 301,209 313,208" fill="#3b82f6"/>
+
+  <!-- Algorithm Side (left bottom) -->
+  <rect x="15" y="200" width="250" height="120" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="140" y="222" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">アルゴリズム選択</text>
+  <text x="30" y="244" text-anchor="start" font-family="sans-serif" font-size="9" fill="#f1f5f9">Built-in Algos (XGBoost等)</text>
+  <text x="30" y="259" text-anchor="start" font-family="sans-serif" font-size="9" fill="#f1f5f9">JumpStart FM / カタログ</text>
+  <text x="30" y="274" text-anchor="start" font-family="sans-serif" font-size="9" fill="#f1f5f9">Custom Container (BYOC)</text>
+  <text x="30" y="289" text-anchor="start" font-family="sans-serif" font-size="9" fill="#f1f5f9">Autopilot AutoML</text>
+  <text x="30" y="304" text-anchor="start" font-family="sans-serif" font-size="9" fill="#94a3b8">Script Mode (PyTorch/TF)</text>
+  <!-- Arrow to center -->
+  <line x1="265" y1="260" x2="308" y2="260" stroke="#22c55e" stroke-width="1.5"/>
+  <polygon points="308,260 296,255 296,265" fill="#22c55e"/>
+
+  <!-- Compute Side (right top) -->
+  <rect x="635" y="45" width="250" height="120" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="760" y="67" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#a855f7">コンピュート最適化</text>
+  <text x="648" y="88" text-anchor="start" font-family="sans-serif" font-size="9" fill="#f1f5f9">インスタンス選択 (p3/p4/p5)</text>
+  <text x="648" y="103" text-anchor="start" font-family="sans-serif" font-size="9" fill="#f1f5f9">Spot Training (90%削減)</text>
+  <text x="648" y="118" text-anchor="start" font-family="sans-serif" font-size="9" fill="#f1f5f9">Data Parallelism (SMDDP)</text>
+  <text x="648" y="133" text-anchor="start" font-family="sans-serif" font-size="9" fill="#f1f5f9">Model Parallelism (SMP)</text>
+  <text x="648" y="148" text-anchor="start" font-family="sans-serif" font-size="9" fill="#94a3b8">Trainium / Inferentia</text>
+  <!-- Arrow to center -->
+  <line x1="635" y1="105" x2="592" y2="220" stroke="#a855f7" stroke-width="1.5"/>
+  <polygon points="592,220 597,208 585,209" fill="#a855f7"/>
+
+  <!-- Process Side (right bottom) -->
+  <rect x="635" y="200" width="250" height="120" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="760" y="222" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#14b8a6">プロセス最適化</text>
+  <text x="648" y="244" text-anchor="start" font-family="sans-serif" font-size="9" fill="#f1f5f9">チェックポイント (S3)</text>
+  <text x="648" y="259" text-anchor="start" font-family="sans-serif" font-size="9" fill="#f1f5f9">Early Stopping</text>
+  <text x="648" y="274" text-anchor="start" font-family="sans-serif" font-size="9" fill="#f1f5f9">HyperParameter Tuning</text>
+  <text x="648" y="289" text-anchor="start" font-family="sans-serif" font-size="9" fill="#f1f5f9">Warm Start (HPT継続)</text>
+  <text x="648" y="304" text-anchor="start" font-family="sans-serif" font-size="9" fill="#94a3b8">Managed Prefix Lists</text>
+  <!-- Arrow to center -->
+  <line x1="635" y1="260" x2="592" y2="260" stroke="#14b8a6" stroke-width="1.5"/>
+  <polygon points="592,260 604,255 604,265" fill="#14b8a6"/>
+
+  <!-- Monitoring (bottom) -->
+  <rect x="15" y="355" width="870" height="85" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="450" y="377" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#ef4444">モニタリング &amp; 可観測性</text>
+
+  <!-- Arrow from center to monitoring -->
+  <line x1="450" y1="295" x2="450" y2="355" stroke="#ef4444" stroke-width="1.5"/>
+  <polygon points="450,355 445,343 455,343" fill="#ef4444"/>
+
+  <rect x="30" y="390" width="170" height="40" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="115" y="407" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#ef4444">Debugger</text>
+  <text x="115" y="422" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">勾配/過学習/GPU監視</text>
+
+  <rect x="215" y="390" width="170" height="40" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="300" y="407" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#22c55e">Experiments</text>
+  <text x="300" y="422" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Trial/実験追跡</text>
+
+  <rect x="400" y="390" width="170" height="40" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="485" y="407" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#3b82f6">CloudWatch Metrics</text>
+  <text x="485" y="422" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">GPU/CPU/Loss/Acc</text>
+
+  <rect x="585" y="390" width="170" height="40" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="670" y="407" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#a855f7">Clarify</text>
+  <text x="670" y="422" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">バイアス / 説明可能性</text>
+
+  <rect x="770" y="390" width="100" height="40" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="820" y="407" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#14b8a6">TensorBoard</text>
+  <text x="820" y="422" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">可視化</text>
+
+  <text x="450" y="460" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316">これら全機能を組み合わせることで ML 開発サイクルを 最大10倍高速化・コスト90%削減が可能</text>
+  <text x="450" y="478" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">試験では各コンポーネントの役割 (いつ・なぜ使うか) の理解が問われる</text>
+</svg>

@@ -1,0 +1,185 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="24" text-anchor="middle" fill="#f1f5f9" font-size="15" font-weight="bold" font-family="sans-serif">SageMaker 全サービス選択デシジョンツリー</text>
+
+  <!-- Root question -->
+  <rect x="310" y="34" width="280" height="34" rx="17" fill="#3b82f6"/>
+  <text x="450" y="55" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="bold" font-family="sans-serif">何をしたいですか？</text>
+
+  <!-- Branch connectors from root -->
+  <line x1="360" y1="68" x2="120" y2="95" stroke="#475569" stroke-width="1.5"/>
+  <line x1="415" y1="68" x2="330" y2="95" stroke="#475569" stroke-width="1.5"/>
+  <line x1="485" y1="68" x2="570" y2="95" stroke="#475569" stroke-width="1.5"/>
+  <line x1="540" y1="68" x2="780" y2="95" stroke="#475569" stroke-width="1.5"/>
+
+  <!-- Branch 1: データ準備 -->
+  <rect x="20" y="95" width="200" height="28" rx="14" fill="#a855f7"/>
+  <text x="120" y="113" text-anchor="middle" fill="#f1f5f9" font-size="11" font-weight="bold" font-family="sans-serif">データ準備</text>
+
+  <line x1="55" y1="123" x2="35" y2="145" stroke="#a855f7" stroke-width="1.5"/>
+  <line x1="90" y1="123" x2="90" y2="145" stroke="#a855f7" stroke-width="1.5"/>
+  <line x1="130" y1="123" x2="150" y2="145" stroke="#a855f7" stroke-width="1.5"/>
+  <line x1="180" y1="123" x2="210" y2="145" stroke="#a855f7" stroke-width="1.5"/>
+
+  <rect x="10" y="145" width="75" height="42" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1"/>
+  <text x="47" y="161" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">GUI前処理</text>
+  <text x="47" y="177" text-anchor="middle" fill="#a855f7" font-size="9" font-weight="bold" font-family="sans-serif">Wrangler</text>
+
+  <rect x="55" y="145" width="75" height="42" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1"/>
+  <text x="92" y="161" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">特徴量再利用</text>
+  <text x="92" y="177" text-anchor="middle" fill="#a855f7" font-size="9" font-weight="bold" font-family="sans-serif">Feature Store</text>
+
+  <rect x="115" y="145" width="80" height="42" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1"/>
+  <text x="155" y="161" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">大規模Spark</text>
+  <text x="155" y="177" text-anchor="middle" fill="#a855f7" font-size="9" font-weight="bold" font-family="sans-serif">Processing</text>
+
+  <rect x="180" y="145" width="85" height="42" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1"/>
+  <text x="222" y="161" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">アノテーション</text>
+  <text x="222" y="177" text-anchor="middle" fill="#a855f7" font-size="9" font-weight="bold" font-family="sans-serif">Ground Truth</text>
+
+  <!-- Branch 2: トレーニング -->
+  <rect x="240" y="95" width="180" height="28" rx="14" fill="#f97316"/>
+  <text x="330" y="113" text-anchor="middle" fill="#f1f5f9" font-size="11" font-weight="bold" font-family="sans-serif">トレーニング</text>
+
+  <line x1="265" y1="123" x2="255" y2="145" stroke="#f97316" stroke-width="1.5"/>
+  <line x1="295" y1="123" x2="300" y2="145" stroke="#f97316" stroke-width="1.5"/>
+  <line x1="345" y1="123" x2="360" y2="145" stroke="#f97316" stroke-width="1.5"/>
+  <line x1="400" y1="123" x2="415" y2="145" stroke="#f97316" stroke-width="1.5"/>
+
+  <rect x="225" y="145" width="75" height="42" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="1"/>
+  <text x="262" y="161" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">ノーコード</text>
+  <text x="262" y="177" text-anchor="middle" fill="#f97316" font-size="9" font-weight="bold" font-family="sans-serif">Canvas</text>
+
+  <rect x="278" y="145" width="75" height="42" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="1"/>
+  <text x="315" y="161" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">AutoML</text>
+  <text x="315" y="177" text-anchor="middle" fill="#f97316" font-size="9" font-weight="bold" font-family="sans-serif">Autopilot</text>
+
+  <rect x="330" y="145" width="80" height="42" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="1"/>
+  <text x="370" y="161" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">カスタム</text>
+  <text x="370" y="177" text-anchor="middle" fill="#f97316" font-size="9" font-weight="bold" font-family="sans-serif">Training Job</text>
+
+  <rect x="388" y="145" width="80" height="42" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="1"/>
+  <text x="428" y="161" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">大規模LLM</text>
+  <text x="428" y="177" text-anchor="middle" fill="#f97316" font-size="9" font-weight="bold" font-family="sans-serif">SMP分散</text>
+
+  <!-- Branch 3: デプロイ -->
+  <rect x="480" y="95" width="200" height="28" rx="14" fill="#22c55e"/>
+  <text x="580" y="113" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="bold" font-family="sans-serif">デプロイ / 推論</text>
+
+  <line x1="510" y1="123" x2="498" y2="145" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="550" y1="123" x2="548" y2="145" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="590" y1="123" x2="600" y2="145" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="645" y1="123" x2="660" y2="145" stroke="#22c55e" stroke-width="1.5"/>
+
+  <rect x="468" y="145" width="80" height="42" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1"/>
+  <text x="508" y="161" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">常時API</text>
+  <text x="508" y="177" text-anchor="middle" fill="#22c55e" font-size="8" font-weight="bold" font-family="sans-serif">Real-time EP</text>
+
+  <rect x="525" y="145" width="75" height="42" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1"/>
+  <text x="562" y="161" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">低頻度API</text>
+  <text x="562" y="177" text-anchor="middle" fill="#22c55e" font-size="9" font-weight="bold" font-family="sans-serif">Serverless</text>
+
+  <rect x="575" y="145" width="85" height="42" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1"/>
+  <text x="617" y="161" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">大容量長時間</text>
+  <text x="617" y="177" text-anchor="middle" fill="#22c55e" font-size="8" font-weight="bold" font-family="sans-serif">Async Inference</text>
+
+  <rect x="635" y="145" width="85" height="42" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1"/>
+  <text x="677" y="161" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">バッチ処理</text>
+  <text x="677" y="177" text-anchor="middle" fill="#22c55e" font-size="8" font-weight="bold" font-family="sans-serif">Batch Transform</text>
+
+  <!-- Branch 4: MLOps -->
+  <rect x="700" y="95" width="180" height="28" rx="14" fill="#14b8a6"/>
+  <text x="790" y="113" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="bold" font-family="sans-serif">MLOps / 運用</text>
+
+  <line x1="725" y1="123" x2="715" y2="145" stroke="#14b8a6" stroke-width="1.5"/>
+  <line x1="775" y1="123" x2="780" y2="145" stroke="#14b8a6" stroke-width="1.5"/>
+  <line x1="840" y1="123" x2="850" y2="145" stroke="#14b8a6" stroke-width="1.5"/>
+
+  <rect x="690" y="145" width="90" height="42" rx="6" fill="#1e293b" stroke="#14b8a6" stroke-width="1"/>
+  <text x="735" y="161" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">パイプライン</text>
+  <text x="735" y="177" text-anchor="middle" fill="#14b8a6" font-size="9" font-weight="bold" font-family="sans-serif">Pipelines</text>
+
+  <rect x="750" y="145" width="90" height="42" rx="6" fill="#1e293b" stroke="#14b8a6" stroke-width="1"/>
+  <text x="795" y="161" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">モデル管理</text>
+  <text x="795" y="177" text-anchor="middle" fill="#14b8a6" font-size="8" font-weight="bold" font-family="sans-serif">Model Registry</text>
+
+  <rect x="820" y="145" width="70" height="42" rx="6" fill="#1e293b" stroke="#14b8a6" stroke-width="1"/>
+  <text x="855" y="161" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="sans-serif">ドリフト監視</text>
+  <text x="855" y="177" text-anchor="middle" fill="#14b8a6" font-size="8" font-weight="bold" font-family="sans-serif">Monitor</text>
+
+  <!-- Separator line -->
+  <line x1="15" y1="205" x2="885" y2="205" stroke="#1e3a5f" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Second level detail boxes -->
+  <text x="450" y="222" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">補足: インスタンスタイプ選択 / スケーリング戦略</text>
+
+  <!-- MME vs MCE -->
+  <rect x="15" y="232" width="220" height="90" rx="8" fill="#1e293b"/>
+  <text x="125" y="252" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold" font-family="sans-serif">MME vs MCE</text>
+  <text x="25" y="270" fill="#94a3b8" font-size="10" font-family="sans-serif">MME: 同一FW・数千モデル共有</text>
+  <text x="25" y="285" fill="#94a3b8" font-size="10" font-family="sans-serif">MCE: 異なるFW・異種モデル</text>
+  <text x="25" y="300" fill="#94a3b8" font-size="10" font-family="sans-serif">→ コスト効率 vs 柔軟性</text>
+  <text x="25" y="315" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">同一FW → MME 推奨</text>
+
+  <!-- Instance types -->
+  <rect x="248" y="232" width="220" height="90" rx="8" fill="#1e293b"/>
+  <text x="358" y="252" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="bold" font-family="sans-serif">インスタンス選択</text>
+  <text x="258" y="270" fill="#94a3b8" font-size="10" font-family="sans-serif">CPU推論: ml.m5/c5 系</text>
+  <text x="258" y="285" fill="#94a3b8" font-size="10" font-family="sans-serif">GPU推論: ml.g4dn/p3 系</text>
+  <text x="258" y="300" fill="#94a3b8" font-size="10" font-family="sans-serif">Graviton: ml.m6g/c6g (安い)</text>
+  <text x="258" y="315" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">Inf Recommender で最適化</text>
+
+  <!-- Scaling strategies -->
+  <rect x="482" y="232" width="220" height="90" rx="8" fill="#1e293b"/>
+  <text x="592" y="252" text-anchor="middle" fill="#a855f7" font-size="11" font-weight="bold" font-family="sans-serif">AutoScaling 戦略</text>
+  <text x="492" y="270" fill="#94a3b8" font-size="10" font-family="sans-serif">InvocationsPerInstance 指標</text>
+  <text x="492" y="285" fill="#94a3b8" font-size="10" font-family="sans-serif">Scale-to-zero: Serverless</text>
+  <text x="492" y="300" fill="#94a3b8" font-size="10" font-family="sans-serif">Step / Target Tracking</text>
+  <text x="492" y="315" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">冷暖気時間考慮が重要</text>
+
+  <!-- Security patterns -->
+  <rect x="716" y="232" width="170" height="90" rx="8" fill="#1e293b"/>
+  <text x="801" y="252" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="bold" font-family="sans-serif">セキュリティ</text>
+  <text x="726" y="270" fill="#94a3b8" font-size="10" font-family="sans-serif">VPC + PrivateLink</text>
+  <text x="726" y="285" fill="#94a3b8" font-size="10" font-family="sans-serif">NetworkIsolation=true</text>
+  <text x="726" y="300" fill="#94a3b8" font-size="10" font-family="sans-serif">KMS暗号化 (保存/転送)</text>
+  <text x="726" y="315" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">IAM 最小権限原則</text>
+
+  <!-- Bottom summary matrix -->
+  <rect x="15" y="332" width="870" height="155" rx="8" fill="#1e293b"/>
+  <text x="450" y="352" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="bold" font-family="sans-serif">試験頻出サービス選択まとめ</text>
+
+  <!-- Headers -->
+  <text x="100" y="370" text-anchor="middle" fill="#94a3b8" font-size="10" font-weight="bold" font-family="sans-serif">シナリオ</text>
+  <text x="320" y="370" text-anchor="middle" fill="#94a3b8" font-size="10" font-weight="bold" font-family="sans-serif">推奨サービス</text>
+  <text x="570" y="370" text-anchor="middle" fill="#94a3b8" font-size="10" font-weight="bold" font-family="sans-serif">シナリオ</text>
+  <text x="790" y="370" text-anchor="middle" fill="#94a3b8" font-size="10" font-weight="bold" font-family="sans-serif">推奨サービス</text>
+  <line x1="20" y1="375" x2="880" y2="375" stroke="#334155" stroke-width="1"/>
+
+  <text x="25" y="390" fill="#94a3b8" font-size="10" font-family="sans-serif">コスト削減トレーニング</text>
+  <text x="220" y="390" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">Spot Training + Checkpoint</text>
+  <text x="460" y="390" fill="#94a3b8" font-size="10" font-family="sans-serif">バイアス検出・説明</text>
+  <text x="660" y="390" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">Clarify</text>
+
+  <text x="25" y="408" fill="#94a3b8" font-size="10" font-family="sans-serif">低頻度/間欠的API推論</text>
+  <text x="220" y="408" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">Serverless Inference</text>
+  <text x="460" y="408" fill="#94a3b8" font-size="10" font-family="sans-serif">ドリフト自動検知</text>
+  <text x="660" y="408" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">Model Monitor + EventBridge</text>
+
+  <text x="25" y="426" fill="#94a3b8" font-size="10" font-family="sans-serif">1GB超ペイロード推論</text>
+  <text x="220" y="426" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">Async Inference</text>
+  <text x="460" y="426" fill="#94a3b8" font-size="10" font-family="sans-serif">プライベートネットワーク</text>
+  <text x="660" y="426" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">VPC + PrivateLink + Isolation</text>
+
+  <text x="25" y="444" fill="#94a3b8" font-size="10" font-family="sans-serif">数千モデル管理</text>
+  <text x="220" y="444" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">Multi-Model Endpoint</text>
+  <text x="460" y="444" fill="#94a3b8" font-size="10" font-family="sans-serif">ハイパーパラメータ最適化</text>
+  <text x="660" y="444" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">HPT (早期終了設定)</text>
+
+  <text x="25" y="462" fill="#94a3b8" font-size="10" font-family="sans-serif">大規模LLM分散学習</text>
+  <text x="220" y="462" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">SMP (モデル並列) / SMDDP</text>
+  <text x="460" y="462" fill="#94a3b8" font-size="10" font-family="sans-serif">モデル承認・昇格フロー</text>
+  <text x="660" y="462" fill="#22c55e" font-size="10" font-weight="bold" font-family="sans-serif">Model Registry + Approval</text>
+
+  <line x1="450" y1="377" x2="450" y2="475" stroke="#334155" stroke-width="1"/>
+</svg>

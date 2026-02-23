@@ -1,0 +1,94 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+
+  <!-- Title -->
+  <text x="400" y="36" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#4CC9F0" text-anchor="middle">SageMaker Pipelines — ステップタイプ一覧</text>
+
+  <!-- Row 1 -->
+  <!-- ProcessingStep -->
+  <rect x="20" y="58" width="240" height="120" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="30" y="82" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">ProcessingStep</text>
+  <rect x="30" y="92" width="220" height="2" fill="#4CC9F0" fill-opacity="0.4"/>
+  <text x="30" y="112" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">データ前処理スクリプト実行</text>
+  <text x="30" y="128" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">評価スクリプトにも使用可</text>
+  <text x="30" y="144" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">SKLearnProcessor / ScriptProcessor</text>
+  <text x="30" y="162" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">PySparkProcessor も対応</text>
+
+  <!-- TrainingStep -->
+  <rect x="280" y="58" width="240" height="120" rx="8" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="290" y="82" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">TrainingStep</text>
+  <rect x="290" y="92" width="220" height="2" fill="#4CC9F0" fill-opacity="0.4"/>
+  <text x="290" y="112" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">モデル学習ジョブを実行</text>
+  <text x="290" y="128" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">Estimatorをラップして使用</text>
+  <text x="290" y="144" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">出力: ModelArtifacts (S3)</text>
+  <text x="290" y="162" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">Spot/分散学習も設定可能</text>
+
+  <!-- TuningStep -->
+  <rect x="540" y="58" width="240" height="120" rx="8" fill="#0a2545" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="550" y="82" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">TuningStep</text>
+  <rect x="550" y="92" width="220" height="2" fill="#4CC9F0" fill-opacity="0.4"/>
+  <text x="550" y="112" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">HPO (ハイパーパラメータ最適化)</text>
+  <text x="550" y="128" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">SageMaker AMTを内部使用</text>
+  <text x="550" y="144" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">ベイズ最適化 / Grid / Random</text>
+  <text x="550" y="162" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">最良モデルを後続ステップへ</text>
+
+  <!-- Row 2 -->
+  <!-- TransformStep -->
+  <rect x="20" y="195" width="240" height="110" rx="8" fill="#1e3a5f" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="30" y="219" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#06D6A0">TransformStep</text>
+  <rect x="30" y="229" width="220" height="2" fill="#06D6A0" fill-opacity="0.4"/>
+  <text x="30" y="249" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">バッチ変換ジョブを実行</text>
+  <text x="30" y="265" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">大規模データの一括推論</text>
+  <text x="30" y="281" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">Transformer オブジェクトを使用</text>
+  <text x="30" y="297" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">出力: S3 CSVまたはJSONL</text>
+
+  <!-- RegisterModel -->
+  <rect x="280" y="195" width="240" height="110" rx="8" fill="#0f3460" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="290" y="219" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#06D6A0">RegisterModel</text>
+  <rect x="290" y="229" width="220" height="2" fill="#06D6A0" fill-opacity="0.4"/>
+  <text x="290" y="249" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">Model Registryにモデルを登録</text>
+  <text x="290" y="265" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">承認ステータスを設定</text>
+  <text x="290" y="281" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">model_metrics: 性能指標を記録</text>
+  <text x="290" y="297" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">drift_check_baselines も設定可</text>
+
+  <!-- CreateModelStep -->
+  <rect x="540" y="195" width="240" height="110" rx="8" fill="#0a2545" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="550" y="219" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#06D6A0">CreateModelStep</text>
+  <rect x="550" y="229" width="220" height="2" fill="#06D6A0" fill-opacity="0.4"/>
+  <text x="550" y="249" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">エンドポイント用モデル作成</text>
+  <text x="550" y="265" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">コンテナ/アーティファクトを指定</text>
+  <text x="550" y="281" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">Model オブジェクトをラップ</text>
+  <text x="550" y="297" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">Endpoint設定の前提ステップ</text>
+
+  <!-- Row 3 -->
+  <!-- ConditionStep -->
+  <rect x="20" y="322" width="240" height="110" rx="8" fill="#1e3a5f" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="30" y="346" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#F77F00">ConditionStep</text>
+  <rect x="30" y="356" width="220" height="2" fill="#F77F00" fill-opacity="0.4"/>
+  <text x="30" y="376" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">条件分岐 (if/else) ロジック</text>
+  <text x="30" y="392" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">ConditionGreaterThanOrEqualTo等</text>
+  <text x="30" y="408" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">if_steps / else_steps を設定</text>
+  <text x="30" y="424" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">JSONPath で条件値を取得</text>
+
+  <!-- ClarifyCheckStep -->
+  <rect x="280" y="322" width="240" height="110" rx="8" fill="#0f3460" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="290" y="346" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#F77F00">ClarifyCheckStep</text>
+  <rect x="290" y="356" width="220" height="2" fill="#F77F00" fill-opacity="0.4"/>
+  <text x="290" y="376" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">バイアス/説明可能性チェック</text>
+  <text x="290" y="392" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">Pre/Post-training bias 検出</text>
+  <text x="290" y="408" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">SHAP値による説明可能性</text>
+  <text x="290" y="424" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">違反時にパイプライン停止可</text>
+
+  <!-- QualityCheckStep -->
+  <rect x="540" y="322" width="240" height="110" rx="8" fill="#0a2545" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="550" y="346" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#F77F00">QualityCheckStep</text>
+  <rect x="550" y="356" width="220" height="2" fill="#F77F00" fill-opacity="0.4"/>
+  <text x="550" y="376" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">データ/モデル品質チェック</text>
+  <text x="550" y="392" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">ベースライン統計と比較</text>
+  <text x="550" y="408" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">Model Monitor と連携</text>
+  <text x="550" y="424" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa">違反閾値を設定可能</text>
+
+  <!-- Row labels -->
+  <text x="400" y="492" font-family="Arial,sans-serif" font-size="10" fill="#888888" text-anchor="middle">9種類のビルトインステップを組み合わせてMLパイプラインを構築</text>
+</svg>

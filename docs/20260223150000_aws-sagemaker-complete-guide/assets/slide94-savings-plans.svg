@@ -1,0 +1,98 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="28" text-anchor="middle" fill="#f1f5f9" font-size="17" font-weight="bold" font-family="sans-serif">SageMaker Savings Plans</text>
+
+  <!-- Commitment options - bar chart -->
+  <text x="220" y="55" text-anchor="middle" fill="#3b82f6" font-size="13" font-weight="bold" font-family="sans-serif">割引率 (On-Demand比)</text>
+
+  <!-- 1yr No Upfront -->
+  <rect x="40" y="85" width="160" height="40" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+  <text x="130" y="101" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">1年 No Upfront</text>
+  <rect x="215" y="88" width="160" height="34" rx="4" fill="#3b82f6" opacity="0.6"/>
+  <text x="400" y="110" fill="#f1f5f9" font-size="13" font-weight="bold" font-family="sans-serif">〜40% OFF</text>
+
+  <!-- 1yr Partial Upfront -->
+  <rect x="40" y="140" width="160" height="40" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+  <text x="130" y="156" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">1年 Partial Upfront</text>
+  <rect x="215" y="143" width="200" height="34" rx="4" fill="#3b82f6" opacity="0.7"/>
+  <text x="430" y="165" fill="#f1f5f9" font-size="13" font-weight="bold" font-family="sans-serif">〜50% OFF</text>
+
+  <!-- 1yr All Upfront -->
+  <rect x="40" y="195" width="160" height="40" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1"/>
+  <text x="130" y="211" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">1年 All Upfront</text>
+  <rect x="215" y="198" width="216" height="34" rx="4" fill="#22c55e" opacity="0.7"/>
+  <text x="448" y="220" fill="#f1f5f9" font-size="13" font-weight="bold" font-family="sans-serif">〜54% OFF</text>
+
+  <!-- 3yr All Upfront -->
+  <rect x="40" y="250" width="160" height="40" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="130" y="266" text-anchor="middle" fill="#f97316" font-size="10" font-weight="bold" font-family="sans-serif">3年 All Upfront</text>
+  <rect x="215" y="253" width="256" height="34" rx="4" fill="#f97316" opacity="0.85"/>
+  <text x="490" y="275" fill="#f1f5f9" font-size="14" font-weight="bold" font-family="sans-serif">〜64% OFF</text>
+  <text x="490" y="291" fill="#fcd34d" font-size="10" font-family="sans-serif">最大割引!</text>
+
+  <!-- Scale -->
+  <line x1="215" y1="300" x2="475" y2="300" stroke="#334155" stroke-width="1"/>
+  <text x="215" y="313" fill="#94a3b8" font-size="9" font-family="sans-serif">0%</text>
+  <text x="345" y="313" fill="#94a3b8" font-size="9" font-family="sans-serif">33%</text>
+  <text x="475" y="313" fill="#94a3b8" font-size="9" font-family="sans-serif">66%</text>
+
+  <!-- Coverage box -->
+  <rect x="520" y="50" width="360" height="260" rx="8" fill="#1e293b"/>
+  <text x="700" y="73" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="bold" font-family="sans-serif">対象サービス (COVERED)</text>
+
+  <rect x="535" y="85" width="160" height="38" rx="6" fill="#0f172a"/>
+  <text x="615" y="101" text-anchor="middle" fill="#22c55e" font-size="11" font-family="sans-serif">Training instances</text>
+  <text x="615" y="115" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">ml.*/training</text>
+
+  <rect x="705" y="85" width="160" height="38" rx="6" fill="#0f172a"/>
+  <text x="785" y="101" text-anchor="middle" fill="#22c55e" font-size="11" font-family="sans-serif">Hosting instances</text>
+  <text x="785" y="115" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">ml.*/hosting</text>
+
+  <rect x="535" y="133" width="160" height="38" rx="6" fill="#0f172a"/>
+  <text x="615" y="149" text-anchor="middle" fill="#22c55e" font-size="11" font-family="sans-serif">Notebook instances</text>
+  <text x="615" y="163" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">ml.*/notebook</text>
+
+  <rect x="705" y="133" width="160" height="38" rx="6" fill="#0f172a"/>
+  <text x="785" y="149" text-anchor="middle" fill="#22c55e" font-size="11" font-family="sans-serif">Studio Apps</text>
+  <text x="785" y="163" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">ml.* app instances</text>
+
+  <text x="700" y="192" text-anchor="middle" fill="#ef4444" font-size="13" font-weight="bold" font-family="sans-serif">対象外 (NOT COVERED)</text>
+  <rect x="535" y="200" width="330" height="36" rx="6" fill="#0f172a"/>
+  <text x="700" y="213" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">Storage / Data Transfer / Processing Jobs</text>
+  <text x="700" y="228" text-anchor="middle" fill="#ef4444" font-size="10" font-family="sans-serif">これらは On-Demand 料金のまま</text>
+
+  <rect x="535" y="245" width="330" height="55" rx="6" fill="#0f172a"/>
+  <text x="700" y="262" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="bold" font-family="sans-serif">使用要件</text>
+  <text x="545" y="278" fill="#94a3b8" font-size="10" font-family="sans-serif">- 最低 $X/時間のコミットメント</text>
+  <text x="545" y="292" fill="#94a3b8" font-size="10" font-family="sans-serif">- リージョン問わずカバー (SageMaker全般)</text>
+
+  <!-- Break-even analysis -->
+  <rect x="40" y="330" width="840" height="155" rx="8" fill="#1e293b"/>
+  <text x="450" y="352" text-anchor="middle" fill="#f97316" font-size="13" font-weight="bold" font-family="sans-serif">Savings Plans 損益分岐点分析</text>
+
+  <!-- Chart -->
+  <line x1="75" y1="460" x2="650" y2="460" stroke="#334155" stroke-width="1"/>
+  <line x1="75" y1="370" x2="75" y2="465" stroke="#334155" stroke-width="1"/>
+
+  <!-- On-demand cost (linear) -->
+  <polyline points="75,460 200,430 325,400 450,370 575,340" fill="none" stroke="#ef4444" stroke-width="2"/>
+  <!-- SP cost (upfront + ongoing lower) -->
+  <polyline points="75,380 200,380 325,380 450,380 575,380" fill="none" stroke="#22c55e" stroke-width="2" stroke-dasharray="5,3"/>
+  <!-- After break-even, SP total (including upfront) becomes lower -->
+  <polyline points="75,420 200,415 325,410 325,390 450,385 575,380" fill="none" stroke="#f97316" stroke-width="2.5"/>
+
+  <!-- Break-even marker -->
+  <line x1="325" y1="370" x2="325" y2="465" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="310" y="368" fill="#fbbf24" font-size="9" font-family="sans-serif">損益分岐</text>
+  <text x="310" y="380" fill="#fbbf24" font-size="9" font-family="sans-serif">約6〜9ヶ月</text>
+
+  <text x="660" y="380" fill="#ef4444" font-size="10" font-family="sans-serif">On-Demand累積</text>
+  <text x="660" y="395" fill="#22c55e" font-size="10" font-family="sans-serif">SP月額コスト</text>
+  <text x="660" y="410" fill="#f97316" font-size="10" font-family="sans-serif">SP総コスト(初期込)</text>
+
+  <text x="75" y="490" fill="#94a3b8" font-size="10" font-family="sans-serif">開始</text>
+  <text x="575" y="490" fill="#94a3b8" font-size="10" font-family="sans-serif">3年後</text>
+  <text x="450" y="490" fill="#94a3b8" font-size="10" font-family="sans-serif">2年後</text>
+  <text x="325" y="490" fill="#94a3b8" font-size="10" font-family="sans-serif">1年後</text>
+  <text x="200" y="490" fill="#94a3b8" font-size="10" font-family="sans-serif">6ヶ月後</text>
+</svg>

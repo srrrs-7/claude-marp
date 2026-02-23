@@ -1,0 +1,99 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="36" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">AWSのMLOpsサービスマップ全体</text>
+  <!-- Column 1: データ管理 -->
+  <rect x="20" y="55" width="140" height="32" rx="5" fill="#1e3a5f"/>
+  <text x="90" y="76" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">データ管理</text>
+  <rect x="20" y="92" width="140" height="28" rx="4" fill="#1a2d40"/>
+  <text x="90" y="111" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Amazon S3</text>
+  <rect x="20" y="124" width="140" height="28" rx="4" fill="#1a2d40"/>
+  <text x="90" y="143" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">AWS Glue</text>
+  <rect x="20" y="156" width="140" height="28" rx="4" fill="#1a2d40"/>
+  <text x="90" y="175" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Lake Formation</text>
+  <rect x="20" y="188" width="140" height="28" rx="4" fill="#1a2d40"/>
+  <text x="90" y="207" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Data Wrangler</text>
+  <rect x="20" y="220" width="140" height="28" rx="4" fill="#1a2d40"/>
+  <text x="90" y="239" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Ground Truth</text>
+  <!-- Arrow 1 -->
+  <polygon points="0,-7 -5,6 5,6" fill="#4CC9F0" transform="translate(168,185) rotate(90)"/>
+  <line x1="160" y1="185" x2="168" y2="185" stroke="#4CC9F0" stroke-width="1.5"/>
+  <!-- Column 2: 学習 -->
+  <rect x="172" y="55" width="140" height="32" rx="5" fill="#0f3460"/>
+  <text x="242" y="76" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">学習</text>
+  <rect x="172" y="92" width="140" height="28" rx="4" fill="#0d2545"/>
+  <text x="242" y="111" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">SM Training Jobs</text>
+  <rect x="172" y="124" width="140" height="28" rx="4" fill="#0d2545"/>
+  <text x="242" y="143" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">SM Experiments</text>
+  <rect x="172" y="156" width="140" height="28" rx="4" fill="#0d2545"/>
+  <text x="242" y="175" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">SM Pipelines</text>
+  <rect x="172" y="188" width="140" height="28" rx="4" fill="#0d2545"/>
+  <text x="242" y="207" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">SM Debugger</text>
+  <rect x="172" y="220" width="140" height="28" rx="4" fill="#0d2545"/>
+  <text x="242" y="239" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Feature Store</text>
+  <!-- Arrow 2 -->
+  <polygon points="0,-7 -5,6 5,6" fill="#4CC9F0" transform="translate(320,185) rotate(90)"/>
+  <line x1="312" y1="185" x2="320" y2="185" stroke="#4CC9F0" stroke-width="1.5"/>
+  <!-- Column 3: 評価 -->
+  <rect x="324" y="55" width="148" height="32" rx="5" fill="#1a3a5f"/>
+  <text x="398" y="76" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#06D6A0">評価</text>
+  <rect x="324" y="92" width="148" height="28" rx="4" fill="#122840"/>
+  <text x="398" y="111" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">SageMaker Clarify</text>
+  <rect x="324" y="124" width="148" height="28" rx="4" fill="#122840"/>
+  <text x="398" y="143" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Model Monitor</text>
+  <rect x="324" y="156" width="148" height="28" rx="4" fill="#122840"/>
+  <text x="398" y="175" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">SM Studio</text>
+  <rect x="324" y="188" width="148" height="28" rx="4" fill="#122840"/>
+  <text x="398" y="207" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Model Registry</text>
+  <rect x="324" y="220" width="148" height="28" rx="4" fill="#122840"/>
+  <text x="398" y="239" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">A/B Testing</text>
+  <!-- Arrow 3 -->
+  <polygon points="0,-7 -5,6 5,6" fill="#06D6A0" transform="translate(480,185) rotate(90)"/>
+  <line x1="472" y1="185" x2="480" y2="185" stroke="#06D6A0" stroke-width="1.5"/>
+  <!-- Column 4: デプロイ -->
+  <rect x="484" y="55" width="140" height="32" rx="5" fill="#0d2d52"/>
+  <text x="554" y="76" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#F77F00">デプロイ</text>
+  <rect x="484" y="92" width="140" height="28" rx="4" fill="#0a2240"/>
+  <text x="554" y="111" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">SM Endpoints</text>
+  <rect x="484" y="124" width="140" height="28" rx="4" fill="#0a2240"/>
+  <text x="554" y="143" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">SM JumpStart</text>
+  <rect x="484" y="156" width="140" height="28" rx="4" fill="#0a2240"/>
+  <text x="554" y="175" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Amazon Bedrock</text>
+  <rect x="484" y="188" width="140" height="28" rx="4" fill="#0a2240"/>
+  <text x="554" y="207" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Lambda</text>
+  <rect x="484" y="220" width="140" height="28" rx="4" fill="#0a2240"/>
+  <text x="554" y="239" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Batch Transform</text>
+  <!-- Arrow 4 -->
+  <polygon points="0,-7 -5,6 5,6" fill="#F77F00" transform="translate(632,185) rotate(90)"/>
+  <line x1="624" y1="185" x2="632" y2="185" stroke="#F77F00" stroke-width="1.5"/>
+  <!-- Column 5: 監視 -->
+  <rect x="636" y="55" width="144" height="32" rx="5" fill="#0a2545"/>
+  <text x="708" y="76" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#E63946">監視</text>
+  <rect x="636" y="92" width="144" height="28" rx="4" fill="#081a35"/>
+  <text x="708" y="111" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Model Monitor</text>
+  <rect x="636" y="124" width="144" height="28" rx="4" fill="#081a35"/>
+  <text x="708" y="143" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">CloudWatch</text>
+  <rect x="636" y="156" width="144" height="28" rx="4" fill="#081a35"/>
+  <text x="708" y="175" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">EventBridge</text>
+  <rect x="636" y="188" width="144" height="28" rx="4" fill="#081a35"/>
+  <text x="708" y="207" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">X-Ray (Tracing)</text>
+  <rect x="636" y="220" width="144" height="28" rx="4" fill="#081a35"/>
+  <text x="708" y="239" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">SNS アラート</text>
+  <!-- Pipeline flow label -->
+  <rect x="20" y="265" width="760" height="40" rx="6" fill="#1a2535"/>
+  <text x="400" y="290" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4CC9F0">エンドツーエンドMLOpsパイプライン — SageMaker Pipelines が各ステージを自動化・オーケストレーション</text>
+  <!-- Bottom detail -->
+  <rect x="20" y="315" width="360" height="130" rx="6" fill="#0f1e30" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="200" y="338" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">基盤インフラ</text>
+  <text x="200" y="360" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">IAM — 権限管理・ロールベースアクセス制御</text>
+  <text x="200" y="380" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">VPC — ネットワーク分離・プライベートエンドポイント</text>
+  <text x="200" y="400" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">KMS — 暗号化キー管理</text>
+  <text x="200" y="420" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">ECR — コンテナイメージレジストリ</text>
+  <rect x="400" y="315" width="380" height="130" rx="6" fill="#0f1e30" stroke="#0f3460" stroke-width="1"/>
+  <text x="590" y="338" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#06D6A0">CI/CD統合</text>
+  <text x="590" y="360" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">CodePipeline — パイプライン自動化</text>
+  <text x="590" y="380" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">CodeBuild — ビルド・テスト実行</text>
+  <text x="590" y="400" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">CodeCommit / GitHub — ソースコード管理</text>
+  <text x="590" y="420" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">Step Functions — ワークフローオーケストレーション</text>
+  <!-- Pipeline flow arrows -->
+  <text x="400" y="465" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#aaaaaa">各フェーズはSageMaker Studioダッシュボードから一元管理可能</text>
+</svg>

@@ -1,0 +1,56 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="26" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">クラス不均衡データでの指標選択</text>
+  <!-- Data imbalance visual (top) -->
+  <text x="400" y="54" text-anchor="middle" font-size="12" fill="#94a3b8">データ: 正例(詐欺)=100件(1%), 負例(正常)=9900件(99%)</text>
+  <!-- bar showing imbalance -->
+  <rect x="80" y="65" width="18" height="30" rx="3" fill="#f472b6"/>
+  <rect x="98" y="65" width="628" height="30" rx="3" fill="rgba(96,165,250,0.3)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="89" y="110" text-anchor="middle" font-size="10" fill="#f472b6">1%</text>
+  <text x="412" y="110" text-anchor="middle" font-size="10" fill="#60a5fa">99% (負例)</text>
+  <!-- 3 Models comparison -->
+  <!-- Model A: dummy (all negative) -->
+  <rect x="30" y="126" width="224" height="230" rx="12" fill="rgba(244,114,182,0.1)" stroke="#f472b6" stroke-width="2"/>
+  <text x="142" y="152" text-anchor="middle" font-size="13" font-weight="bold" fill="#f472b6">ダミーモデル</text>
+  <text x="142" y="170" text-anchor="middle" font-size="11" fill="#94a3b8">全て「負例」と予測</text>
+  <line x1="42" y1="180" x2="242" y2="180" stroke="#f472b6" stroke-width="1" opacity="0.4"/>
+  <text x="142" y="200" text-anchor="middle" font-size="20" font-weight="bold" fill="#34d399">99%</text>
+  <text x="142" y="218" text-anchor="middle" font-size="11" fill="#94a3b8">Accuracy</text>
+  <text x="142" y="244" text-anchor="middle" font-size="20" font-weight="bold" fill="#f472b6">0%</text>
+  <text x="142" y="262" text-anchor="middle" font-size="11" fill="#94a3b8">Recall (詐欺検知率)</text>
+  <text x="142" y="286" text-anchor="middle" font-size="11" fill="#f472b6">N/A</text>
+  <text x="142" y="304" text-anchor="middle" font-size="11" fill="#94a3b8">F1 Score</text>
+  <text x="142" y="332" text-anchor="middle" font-size="10" fill="#f472b6">→ 機能していない!</text>
+  <!-- Model B: actual model -->
+  <rect x="288" y="126" width="224" height="230" rx="12" fill="rgba(251,146,60,0.1)" stroke="#fb923c" stroke-width="2"/>
+  <text x="400" y="152" text-anchor="middle" font-size="13" font-weight="bold" fill="#fb923c">改善モデル</text>
+  <text x="400" y="170" text-anchor="middle" font-size="11" fill="#94a3b8">閾値0.5、過去の学習あり</text>
+  <line x1="300" y1="180" x2="500" y2="180" stroke="#fb923c" stroke-width="1" opacity="0.4"/>
+  <text x="400" y="200" text-anchor="middle" font-size="20" font-weight="bold" fill="#34d399">97%</text>
+  <text x="400" y="218" text-anchor="middle" font-size="11" fill="#94a3b8">Accuracy</text>
+  <text x="400" y="244" text-anchor="middle" font-size="20" font-weight="bold" fill="#fb923c">70%</text>
+  <text x="400" y="262" text-anchor="middle" font-size="11" fill="#94a3b8">Recall</text>
+  <text x="400" y="286" text-anchor="middle" font-size="20" font-weight="bold" fill="#fb923c">0.58</text>
+  <text x="400" y="304" text-anchor="middle" font-size="11" fill="#94a3b8">F1 Score</text>
+  <text x="400" y="332" text-anchor="middle" font-size="10" fill="#fb923c">→ Accuracyは下がったが実用的!</text>
+  <!-- Model C: recommended metrics -->
+  <rect x="546" y="126" width="224" height="230" rx="12" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="2"/>
+  <text x="658" y="152" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399">推奨指標セット</text>
+  <text x="658" y="170" text-anchor="middle" font-size="11" fill="#94a3b8">不均衡データに適した評価</text>
+  <line x1="558" y1="180" x2="758" y2="180" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <text x="572" y="202" font-size="11" fill="#34d399">✓</text>
+  <text x="584" y="202" font-size="11" fill="#f8f8f8">PR-AUC (主指標)</text>
+  <text x="572" y="222" font-size="11" fill="#34d399">✓</text>
+  <text x="584" y="222" font-size="11" fill="#f8f8f8">F1 / F2 Score</text>
+  <text x="572" y="242" font-size="11" fill="#34d399">✓</text>
+  <text x="584" y="242" font-size="11" fill="#f8f8f8">Recall@Precision≥0.9</text>
+  <text x="572" y="262" font-size="11" fill="#34d399">✓</text>
+  <text x="584" y="262" font-size="11" fill="#f8f8f8">MCC</text>
+  <text x="572" y="282" font-size="11" fill="#f472b6">✗</text>
+  <text x="584" y="282" font-size="11" fill="#94a3b8">Accuracy (だけ) では NG</text>
+  <text x="572" y="302" font-size="11" fill="#f472b6">✗</text>
+  <text x="584" y="302" font-size="11" fill="#94a3b8">AUC-ROC (楽観的すぎる)</text>
+  <text x="658" y="332" text-anchor="middle" font-size="10" fill="#34d399">→ これが正しいアプローチ</text>
+  <!-- Bottom tip -->
+  <rect x="30" y="368" width="740" height="24" rx="8" fill="rgba(167,139,250,0.12)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="400" y="384" text-anchor="middle" font-size="11" fill="#a78bfa">クラス不均衡比率が 10:1 以上の場合は PR-AUC または F1/F2 を主指標とする</text>
+</svg>

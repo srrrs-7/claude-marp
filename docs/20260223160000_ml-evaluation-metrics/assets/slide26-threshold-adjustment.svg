@@ -1,0 +1,60 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">閾値（Threshold）調整と指標への影響</text>
+  <!-- Axes for threshold vs metrics -->
+  <line x1="80" y1="300" x2="600" y2="300" stroke="#475569" stroke-width="1.5"/>
+  <line x1="80" y1="60" x2="80" y2="300" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="596,296 606,300 596,304" fill="#475569"/>
+  <polygon points="76,64 80,54 84,64" fill="#475569"/>
+  <text x="340" y="320" text-anchor="middle" font-size="12" fill="#94a3b8">閾値 (0.0 → 1.0)</text>
+  <text x="38" y="185" text-anchor="middle" font-size="12" fill="#94a3b8" transform="rotate(-90,38,185)">指標値</text>
+  <!-- ticks x -->
+  <text x="80" y="316" text-anchor="middle" font-size="10" fill="#94a3b8">0.0</text>
+  <text x="210" y="316" text-anchor="middle" font-size="10" fill="#94a3b8">0.25</text>
+  <text x="340" y="316" text-anchor="middle" font-size="10" fill="#94a3b8">0.5</text>
+  <text x="470" y="316" text-anchor="middle" font-size="10" fill="#94a3b8">0.75</text>
+  <text x="600" y="316" text-anchor="middle" font-size="10" fill="#94a3b8">1.0</text>
+  <!-- ticks y -->
+  <text x="66" y="304" text-anchor="end" font-size="10" fill="#94a3b8">0.0</text>
+  <text x="66" y="244" text-anchor="end" font-size="10" fill="#94a3b8">0.25</text>
+  <text x="66" y="184" text-anchor="end" font-size="10" fill="#94a3b8">0.5</text>
+  <text x="66" y="124" text-anchor="end" font-size="10" fill="#94a3b8">0.75</text>
+  <text x="66" y="64" text-anchor="end" font-size="10" fill="#94a3b8">1.0</text>
+  <!-- Precision rises with threshold: (0,0.4),(0.25,0.55),(0.5,0.72),(0.75,0.87),(1,0.95) -->
+  <!-- x=80+520*t, y=300-240*v -->
+  <polyline points="80,204 210,168 340,127 470,91 600,72" fill="none" stroke="#a78bfa" stroke-width="2.5"/>
+  <!-- Recall falls with threshold: (0,0.95),(0.25,0.80),(0.5,0.62),(0.75,0.40),(1,0.12) -->
+  <polyline points="80,72 210,108 340,151 470,204 600,271" fill="none" stroke="#60a5fa" stroke-width="2.5"/>
+  <!-- F1 curve peaks around threshold=0.4 -->
+  <!-- Approximate: (0,0.56),(0.2,0.66),(0.4,0.69),(0.6,0.64),(0.8,0.51),(1,0.21) -->
+  <polyline points="80,166 184,141 288,134 392,146 496,178 600,250" fill="none" stroke="#34d399" stroke-width="2.5"/>
+  <!-- F1 peak marker -->
+  <circle cx="288" cy="134" r="7" fill="none" stroke="#34d399" stroke-width="2"/>
+  <line x1="288" y1="134" x2="288" y2="300" stroke="#34d399" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
+  <text x="288" y="120" text-anchor="middle" font-size="10" fill="#34d399">F1最大点</text>
+  <text x="288" y="334" text-anchor="middle" font-size="10" fill="#94a3b8">≈0.4</text>
+  <!-- legend -->
+  <line x1="625" y1="100" x2="660" y2="100" stroke="#a78bfa" stroke-width="2.5"/>
+  <text x="667" y="104" font-size="11" fill="#a78bfa">Precision</text>
+  <line x1="625" y1="120" x2="660" y2="120" stroke="#60a5fa" stroke-width="2.5"/>
+  <text x="667" y="124" font-size="11" fill="#60a5fa">Recall</text>
+  <line x1="625" y1="140" x2="660" y2="140" stroke="#34d399" stroke-width="2.5"/>
+  <text x="667" y="144" font-size="11" fill="#34d399">F1</text>
+  <!-- Annotations -->
+  <text x="120" y="82" text-anchor="middle" font-size="10" fill="#60a5fa">閾値↓</text>
+  <text x="120" y="94" text-anchor="middle" font-size="10" fill="#60a5fa">Recall↑ P↓</text>
+  <text x="540" y="82" text-anchor="middle" font-size="10" fill="#a78bfa">閾値↑</text>
+  <text x="540" y="94" text-anchor="middle" font-size="10" fill="#a78bfa">Precision↑ R↓</text>
+  <!-- Use case boxes -->
+  <rect x="614" y="195" width="178" height="100" rx="8" fill="rgba(255,255,255,0.05)" stroke="#475569" stroke-width="1"/>
+  <text x="703" y="212" text-anchor="middle" font-size="10" font-weight="bold" fill="#94a3b8">閾値の使い分け</text>
+  <text x="620" y="228" font-size="10" fill="#60a5fa">低め(0.2-0.4):</text>
+  <text x="620" y="242" font-size="10" fill="#f8f8f8"> 癌検診、警報系</text>
+  <text x="620" y="258" font-size="10" fill="#a78bfa">高め(0.6-0.8):</text>
+  <text x="620" y="272" font-size="10" fill="#f8f8f8"> スパム、不正請求</text>
+  <text x="620" y="288" font-size="10" fill="#34d399">最適(F1max):</text>
+  <text x="620" y="302" font-size="10" fill="#f8f8f8"> バランス重視</text>
+  <!-- bottom note -->
+  <rect x="80" y="348" width="520" height="40" rx="8" fill="rgba(167,139,250,0.1)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="340" y="366" text-anchor="middle" font-size="11" fill="#a78bfa">デフォルト閾値 0.5 を使い続けることは危険</text>
+  <text x="340" y="382" text-anchor="middle" font-size="11" fill="#f8f8f8">→ ビジネス要件に応じて PR曲線または ROC曲線上で最適点を選ぶ</text>
+</svg>

@@ -1,0 +1,51 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="26" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">外れ値への感度: MAE vs MSE vs RMSE</text>
+  <!-- Left: no outlier -->
+  <text x="200" y="52" text-anchor="middle" font-size="12" fill="#94a3b8">外れ値なし (残差: 2, 3, 4, 3, 2)</text>
+  <!-- bar chart -->
+  <line x1="60" y1="200" x2="340" y2="200" stroke="#475569" stroke-width="1.5"/>
+  <line x1="60" y1="80" x2="60" y2="200" stroke="#475569" stroke-width="1.5"/>
+  <!-- MAE bar -->
+  <rect x="80" y="168" width="50" height="32" rx="4" fill="rgba(52,211,153,0.6)" stroke="#34d399" stroke-width="1"/>
+  <text x="105" y="162" text-anchor="middle" font-size="11" fill="#34d399">2.8</text>
+  <text x="105" y="215" text-anchor="middle" font-size="10" fill="#94a3b8">MAE</text>
+  <!-- MSE bar (value 8.4 mapped to height) -->
+  <rect x="160" y="130" width="50" height="70" rx="4" fill="rgba(251,146,60,0.6)" stroke="#fb923c" stroke-width="1"/>
+  <text x="185" y="124" text-anchor="middle" font-size="11" fill="#fb923c">8.4</text>
+  <text x="185" y="215" text-anchor="middle" font-size="10" fill="#94a3b8">MSE</text>
+  <!-- RMSE bar -->
+  <rect x="240" y="155" width="50" height="45" rx="4" fill="rgba(167,139,250,0.6)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="265" y="149" text-anchor="middle" font-size="11" fill="#a78bfa">2.9</text>
+  <text x="265" y="215" text-anchor="middle" font-size="10" fill="#94a3b8">RMSE</text>
+  <!-- Right: with outlier -->
+  <text x="600" y="52" text-anchor="middle" font-size="12" fill="#94a3b8">外れ値あり (残差: 2, 3, 4, 3, 20)</text>
+  <line x1="460" y1="200" x2="740" y2="200" stroke="#475569" stroke-width="1.5"/>
+  <line x1="460" y1="80" x2="460" y2="200" stroke="#475569" stroke-width="1.5"/>
+  <!-- MAE bar (no outlier:2.8 → outlier:6.4) -->
+  <rect x="480" y="168" width="50" height="32" rx="4" fill="rgba(52,211,153,0.6)" stroke="#34d399" stroke-width="1"/>
+  <text x="505" y="162" text-anchor="middle" font-size="11" fill="#34d399">6.4</text>
+  <text x="505" y="215" text-anchor="middle" font-size="10" fill="#94a3b8">MAE</text>
+  <!-- MSE bar with outlier (8.4→90.4) huge increase -->
+  <rect x="560" y="86" width="50" height="114" rx="4" fill="rgba(251,146,60,0.8)" stroke="#f472b6" stroke-width="2"/>
+  <text x="585" y="80" text-anchor="middle" font-size="11" fill="#f472b6">90.4!</text>
+  <text x="585" y="215" text-anchor="middle" font-size="10" fill="#94a3b8">MSE</text>
+  <!-- RMSE bar (2.9→9.5) -->
+  <rect x="640" y="120" width="50" height="80" rx="4" fill="rgba(167,139,250,0.8)" stroke="#f472b6" stroke-width="2"/>
+  <text x="665" y="114" text-anchor="middle" font-size="11" fill="#f472b6">9.5!</text>
+  <text x="665" y="215" text-anchor="middle" font-size="10" fill="#94a3b8">RMSE</text>
+  <!-- arrows showing increase -->
+  <text x="600" y="236" text-anchor="middle" font-size="11" fill="#f472b6">外れ値1点でMSEが10倍以上に!</text>
+  <!-- Divider -->
+  <line x1="400" y1="44" x2="400" y2="260" stroke="#475569" stroke-width="1" stroke-dasharray="4,4"/>
+  <!-- Change table -->
+  <rect x="50" y="260" width="700" height="112" rx="10" fill="rgba(255,255,255,0.05)" stroke="#475569" stroke-width="1"/>
+  <text x="400" y="282" text-anchor="middle" font-size="12" font-weight="bold" fill="#f8f8f8">外れ値1点追加による変化量</text>
+  <text x="200" y="304" text-anchor="middle" font-size="12" fill="#34d399">MAE: 2.8 → 6.4 (+128%)</text>
+  <text x="400" y="304" text-anchor="middle" font-size="12" fill="#fb923c">MSE: 8.4 → 90.4 (+976%)</text>
+  <text x="600" y="304" text-anchor="middle" font-size="12" fill="#a78bfa">RMSE: 2.9 → 9.5 (+228%)</text>
+  <line x1="60" y1="314" x2="740" y2="314" stroke="#475569" stroke-width="0.5"/>
+  <text x="200" y="332" text-anchor="middle" font-size="11" fill="#34d399">最もロバスト</text>
+  <text x="400" y="332" text-anchor="middle" font-size="11" fill="#fb923c">最も感度が高い</text>
+  <text x="600" y="332" text-anchor="middle" font-size="11" fill="#a78bfa">中程度の感度</text>
+  <text x="400" y="354" text-anchor="middle" font-size="11" fill="#94a3b8">外れ値を除去・修正する場合: MSE/RMSE  |  外れ値を許容する場合: MAE または Huber</text>
+</svg>

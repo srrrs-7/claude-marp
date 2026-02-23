@@ -1,0 +1,105 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">CloudWatch による LLM 監視実装</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">Metrics・Logs・Alarms・Dashboards の統合監視</text>
+
+  <!-- Data flow -->
+  <rect x="15" y="65" width="870" height="130" rx="8" fill="#0f172a"/>
+  <text x="450" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">データ収集フロー</text>
+
+  <!-- Source boxes -->
+  <rect x="25" y="91" width="110" height="36" rx="6" fill="#1e3a8a"/>
+  <text x="80" y="109" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#93c5fd">Bedrock API</text>
+  <text x="80" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#bfdbfe">呼び出しログ</text>
+
+  <rect x="25" y="134" width="110" height="36" rx="6" fill="#1e3a8a"/>
+  <text x="80" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#93c5fd">Lambda / ECS</text>
+  <text x="80" y="165" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#bfdbfe">アプリログ</text>
+
+  <polygon points="138,125 150,121 150,129" fill="#6d28d9"/>
+  <polygon points="138,153 150,149 150,157" fill="#6d28d9"/>
+
+  <!-- CW Logs -->
+  <rect x="155" y="91" width="130" height="80" rx="6" fill="#1e3a8a"/>
+  <text x="220" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#60a5fa">CloudWatch</text>
+  <text x="220" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#60a5fa">Logs</text>
+  <text x="220" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#93c5fd">ロググループ管理</text>
+  <text x="220" y="163" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#93c5fd">保存期間設定</text>
+
+  <polygon points="288,131 298,127 298,135" fill="#6d28d9"/>
+
+  <!-- CW Metrics -->
+  <rect x="302" y="91" width="130" height="80" rx="6" fill="#3b0764"/>
+  <text x="367" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#c4b5fd">CloudWatch</text>
+  <text x="367" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#c4b5fd">Metrics</text>
+  <text x="367" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#a78bfa">カスタムメトリクス</text>
+  <text x="367" y="163" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#a78bfa">名前空間管理</text>
+
+  <polygon points="435,131 445,127 445,135" fill="#6d28d9"/>
+
+  <!-- CW Alarms -->
+  <rect x="449" y="91" width="130" height="80" rx="6" fill="#7f1d1d"/>
+  <text x="514" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fca5a5">CloudWatch</text>
+  <text x="514" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fca5a5">Alarms</text>
+  <text x="514" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#f87171">しきい値超過</text>
+  <text x="514" y="163" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#f87171">アノマリー検出</text>
+
+  <polygon points="582,131 592,127 592,135" fill="#6d28d9"/>
+
+  <!-- Dashboard -->
+  <rect x="596" y="91" width="130" height="80" rx="6" fill="#064e3b"/>
+  <text x="661" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#6ee7b7">CloudWatch</text>
+  <text x="661" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#6ee7b7">Dashboard</text>
+  <text x="661" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#34d399">リアルタイム可視化</text>
+  <text x="661" y="163" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#34d399">カスタムウィジェット</text>
+
+  <polygon points="729,131 739,127 739,135" fill="#6d28d9"/>
+
+  <!-- Actions -->
+  <rect x="743" y="91" width="130" height="80" rx="6" fill="#78350f"/>
+  <text x="808" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#fde68a">アクション</text>
+  <text x="808" y="126" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fbbf24">SNS 通知</text>
+  <text x="808" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fbbf24">Lambda 実行</text>
+  <text x="808" y="154" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fbbf24">Auto Scaling</text>
+  <text x="808" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fbbf24">EC2 復旧</text>
+
+  <!-- Key metrics -->
+  <rect x="15" y="207" width="870" height="183" rx="8" fill="#0f172a"/>
+  <text x="450" y="225" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">LLM 監視の重要メトリクス</text>
+
+  <rect x="25" y="234" width="200" height="145" rx="6" fill="#172554"/>
+  <text x="125" y="252" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#60a5fa">Bedrock メトリクス</text>
+  <text x="35" y="268" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• InvocationLatency</text>
+  <text x="35" y="284" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• InputTokenCount</text>
+  <text x="35" y="300" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• OutputTokenCount</text>
+  <text x="35" y="316" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• InvocationClientErrors</text>
+  <text x="35" y="332" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• InvocationServerErrors</text>
+  <text x="35" y="360" font-family="Arial,sans-serif" font-size="8" fill="#475569">名前空間: AWS/Bedrock</text>
+
+  <rect x="238" y="234" width="200" height="145" rx="6" fill="#3b0764"/>
+  <text x="338" y="252" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#c4b5fd">RAG メトリクス</text>
+  <text x="248" y="268" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">• Faithfulness スコア</text>
+  <text x="248" y="284" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">• Relevance スコア</text>
+  <text x="248" y="300" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">• Retrieval 精度</text>
+  <text x="248" y="316" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">• チャンクヒット率</text>
+  <text x="248" y="332" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">• 知識ベースクエリ数</text>
+  <text x="248" y="360" font-family="Arial,sans-serif" font-size="8" fill="#475569">カスタム名前空間</text>
+
+  <rect x="451" y="234" width="200" height="145" rx="6" fill="#064e3b"/>
+  <text x="551" y="252" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#6ee7b7">アプリケーション</text>
+  <text x="461" y="268" font-family="Arial,sans-serif" font-size="9" fill="#34d399">• リクエスト数/分</text>
+  <text x="461" y="284" font-family="Arial,sans-serif" font-size="9" fill="#34d399">• エンドツーエンドレイテンシ</text>
+  <text x="461" y="300" font-family="Arial,sans-serif" font-size="9" fill="#34d399">• セッション完了率</text>
+  <text x="461" y="316" font-family="Arial,sans-serif" font-size="9" fill="#34d399">• ユーザー満足度</text>
+  <text x="461" y="332" font-family="Arial,sans-serif" font-size="9" fill="#34d399">• フィードバックスコア</text>
+  <text x="461" y="360" font-family="Arial,sans-serif" font-size="8" fill="#475569">Lambda カスタム投入</text>
+
+  <rect x="664" y="234" width="206" height="145" rx="6" fill="#78350f"/>
+  <text x="767" y="252" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fde68a">コスト監視</text>
+  <text x="674" y="268" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">• 日次トークンコスト</text>
+  <text x="674" y="284" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">• モデル別消費量</text>
+  <text x="674" y="300" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">• キャッシュ節約額</text>
+  <text x="674" y="316" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">• PT vs On-demand比</text>
+  <text x="674" y="332" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">• 予算消化率</text>
+  <text x="674" y="360" font-family="Arial,sans-serif" font-size="8" fill="#475569">Billing + Cost Explorer</text>
+</svg>

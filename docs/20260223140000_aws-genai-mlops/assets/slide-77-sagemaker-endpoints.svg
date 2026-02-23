@@ -1,0 +1,83 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="32" font-family="Arial" font-size="19" fill="#ffffff" text-anchor="middle" font-weight="bold">SageMaker Endpoints アーキテクチャ</text>
+
+  <!-- Client -->
+  <rect x="20" y="160" width="90" height="50" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="65" y="182" font-family="Arial" font-size="12" fill="#ffffff" text-anchor="middle">Client</text>
+  <text x="65" y="198" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">アプリ/SDK</text>
+
+  <!-- Arrow to endpoint -->
+  <line x1="110" y1="185" x2="155" y2="185" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#4CC9F0" transform="translate(155,185) rotate(90)"/>
+  <text x="133" y="175" font-family="Arial" font-size="9" fill="#4CC9F0" text-anchor="middle">HTTPS</text>
+
+  <!-- SageMaker Endpoint box -->
+  <rect x="160" y="60" width="450" height="300" rx="12" fill="#0f1e35" stroke="#4CC9F0" stroke-width="2.5"/>
+  <text x="385" y="88" font-family="Arial" font-size="14" fill="#4CC9F0" text-anchor="middle" font-weight="bold">SageMaker Endpoint (DNS名)</text>
+
+  <!-- Endpoint Config box -->
+  <rect x="175" y="100" width="120" height="50" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="235" y="122" font-family="Arial" font-size="12" fill="#4CC9F0" text-anchor="middle">Endpoint Config</text>
+  <text x="235" y="140" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">バリアント定義</text>
+
+  <!-- Arrow to variants -->
+  <line x1="295" y1="125" x2="330" y2="125" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-4 -6,4 6,4" fill="#4CC9F0" transform="translate(330,125) rotate(90)"/>
+
+  <!-- Variant A -->
+  <rect x="335" y="90" width="130" height="75" rx="8" fill="#1e3a5f" stroke="#06D6A0" stroke-width="2"/>
+  <text x="400" y="110" font-family="Arial" font-size="11" fill="#06D6A0" text-anchor="middle" font-weight="bold">Production Variant A</text>
+  <text x="400" y="128" font-family="Arial" font-size="10" fill="#ffffff" text-anchor="middle">モデルA</text>
+  <text x="400" y="144" font-family="Arial" font-size="10" fill="#F77F00" text-anchor="middle">weight: 0.9 (90%)</text>
+  <text x="400" y="158" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">InitialInstanceCount: 2</text>
+
+  <!-- Variant B -->
+  <rect x="335" y="180" width="130" height="75" rx="8" fill="#2d1e0f" stroke="#F77F00" stroke-width="2"/>
+  <text x="400" y="200" font-family="Arial" font-size="11" fill="#F77F00" text-anchor="middle" font-weight="bold">Production Variant B</text>
+  <text x="400" y="218" font-family="Arial" font-size="10" fill="#ffffff" text-anchor="middle">モデルB</text>
+  <text x="400" y="234" font-family="Arial" font-size="10" fill="#F77F00" text-anchor="middle">weight: 0.1 (10%)</text>
+  <text x="400" y="248" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">InitialInstanceCount: 1</text>
+
+  <!-- Arrows to ML Instances -->
+  <line x1="465" y1="127" x2="495" y2="127" stroke="#06D6A0" stroke-width="1.5"/>
+  <polygon points="0,-4 -6,4 6,4" fill="#06D6A0" transform="translate(495,127) rotate(90)"/>
+  <line x1="465" y1="217" x2="495" y2="217" stroke="#F77F00" stroke-width="1.5"/>
+  <polygon points="0,-4 -6,4 6,4" fill="#F77F00" transform="translate(495,217) rotate(90)"/>
+
+  <!-- ML Instance A group -->
+  <rect x="498" y="95" width="100" height="65" rx="6" fill="#1a2840" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="548" y="115" font-family="Arial" font-size="10" fill="#06D6A0" text-anchor="middle">ML Instance</text>
+  <text x="548" y="130" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">ECRコンテナ</text>
+  <text x="548" y="146" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">S3モデルArtifact</text>
+
+  <!-- ML Instance B group -->
+  <rect x="498" y="185" width="100" height="65" rx="6" fill="#2d1a0a" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="548" y="205" font-family="Arial" font-size="10" fill="#F77F00" text-anchor="middle">ML Instance</text>
+  <text x="548" y="220" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">ECRコンテナ</text>
+  <text x="548" y="236" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">S3モデルArtifact</text>
+
+  <!-- Auto Scaling label inside main box -->
+  <rect x="175" y="280" width="415" height="65" rx="8" fill="#0a1e30" stroke="#4CC9F0" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="383" y="300" font-family="Arial" font-size="11" fill="#4CC9F0" text-anchor="middle" font-weight="bold">Auto Scaling</text>
+  <text x="383" y="318" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">CloudWatch Metrics → Target Tracking Policy</text>
+  <text x="383" y="334" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">SageMakerVariantInvocationsPerInstance をスケール指標に利用</text>
+
+  <!-- Endpoint Types at bottom -->
+  <text x="400" y="390" font-family="Arial" font-size="12" fill="#4CC9F0" text-anchor="middle" font-weight="bold">Endpoint タイプ</text>
+  <rect x="30" y="400" width="160" height="45" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="110" y="420" font-family="Arial" font-size="11" fill="#4CC9F0" text-anchor="middle">Real-time</text>
+  <text x="110" y="436" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">低レイテンシ・常時稼働</text>
+
+  <rect x="205" y="400" width="160" height="45" rx="8" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="285" y="420" font-family="Arial" font-size="11" fill="#4CC9F0" text-anchor="middle">Serverless</text>
+  <text x="285" y="436" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">低頻度・自動スケール</text>
+
+  <rect x="380" y="400" width="160" height="45" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="460" y="420" font-family="Arial" font-size="11" fill="#4CC9F0" text-anchor="middle">Async</text>
+  <text x="460" y="436" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">大容量・長時間処理</text>
+
+  <rect x="555" y="400" width="160" height="45" rx="8" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="635" y="420" font-family="Arial" font-size="11" fill="#4CC9F0" text-anchor="middle">Batch Transform</text>
+  <text x="635" y="436" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">オフライン大量推論</text>
+</svg>

@@ -1,0 +1,49 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">スケール依存 vs スケール独立</text>
+  <!-- Left: scale dependent -->
+  <rect x="30" y="44" width="360" height="300" rx="12" fill="rgba(244,114,182,0.1)" stroke="#f472b6" stroke-width="2"/>
+  <text x="210" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#f472b6">スケール依存型</text>
+  <text x="210" y="88" text-anchor="middle" font-size="11" fill="#94a3b8">MAE / MSE / RMSE / Huber</text>
+  <line x1="44" y1="100" x2="376" y2="100" stroke="#f472b6" stroke-width="1" opacity="0.4"/>
+  <!-- Two datasets -->
+  <text x="210" y="120" text-anchor="middle" font-size="11" fill="#f8f8f8">問題: 2つのデータで比較する場合</text>
+  <rect x="44" y="130" width="148" height="100" rx="8" fill="rgba(255,255,255,0.05)" stroke="#475569" stroke-width="1"/>
+  <text x="118" y="152" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">不動産価格予測</text>
+  <text x="118" y="170" text-anchor="middle" font-size="11" fill="#94a3b8">価格: 数千万円</text>
+  <text x="118" y="188" text-anchor="middle" font-size="13" fill="#fb923c">RMSE = 200万円</text>
+  <text x="118" y="206" text-anchor="middle" font-size="10" fill="#94a3b8">良い？悪い？</text>
+  <text x="222" y="185" text-anchor="middle" font-size="16" fill="#94a3b8">vs</text>
+  <rect x="228" y="130" width="148" height="100" rx="8" fill="rgba(255,255,255,0.05)" stroke="#475569" stroke-width="1"/>
+  <text x="302" y="152" text-anchor="middle" font-size="11" font-weight="bold" fill="#a78bfa">気温予測</text>
+  <text x="302" y="170" text-anchor="middle" font-size="11" fill="#94a3b8">温度: 0〜40°C</text>
+  <text x="302" y="188" text-anchor="middle" font-size="13" fill="#34d399">RMSE = 2°C</text>
+  <text x="302" y="206" text-anchor="middle" font-size="10" fill="#94a3b8">良い？悪い？</text>
+  <text x="210" y="256" text-anchor="middle" font-size="11" fill="#f472b6">単位が違うので直接比較不可!</text>
+  <text x="210" y="278" text-anchor="middle" font-size="10" fill="#94a3b8">200万円 vs 2°C → 比較に意味がない</text>
+  <text x="210" y="298" text-anchor="middle" font-size="10" fill="#94a3b8">同一データセット内での比較のみ有効</text>
+  <text x="210" y="322" text-anchor="middle" font-size="11" fill="#34d399">✓ ただし同一タスク内では直感的</text>
+  <!-- Right: scale independent -->
+  <rect x="410" y="44" width="360" height="300" rx="12" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="2"/>
+  <text x="590" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399">スケール独立型</text>
+  <text x="590" y="88" text-anchor="middle" font-size="11" fill="#94a3b8">R² / Adj-R² / MAPE / SMAPE</text>
+  <line x1="424" y1="100" x2="756" y2="100" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <text x="590" y="120" text-anchor="middle" font-size="11" fill="#f8f8f8">異なるデータセット間で比較可能</text>
+  <rect x="424" y="130" width="148" height="100" rx="8" fill="rgba(255,255,255,0.05)" stroke="#475569" stroke-width="1"/>
+  <text x="498" y="152" text-anchor="middle" font-size="11" font-weight="bold" fill="#60a5fa">不動産価格予測</text>
+  <text x="498" y="170" text-anchor="middle" font-size="11" fill="#94a3b8">価格: 数千万円</text>
+  <text x="498" y="188" text-anchor="middle" font-size="13" fill="#34d399">MAPE = 8%</text>
+  <text x="498" y="206" text-anchor="middle" font-size="10" fill="#34d399">「8%の誤差」明確</text>
+  <text x="602" y="185" text-anchor="middle" font-size="16" fill="#94a3b8">vs</text>
+  <rect x="608" y="130" width="148" height="100" rx="8" fill="rgba(255,255,255,0.05)" stroke="#475569" stroke-width="1"/>
+  <text x="682" y="152" text-anchor="middle" font-size="11" font-weight="bold" fill="#a78bfa">気温予測</text>
+  <text x="682" y="170" text-anchor="middle" font-size="11" fill="#94a3b8">温度: 0〜40°C</text>
+  <text x="682" y="188" text-anchor="middle" font-size="13" fill="#34d399">MAPE = 5%</text>
+  <text x="682" y="206" text-anchor="middle" font-size="10" fill="#34d399">「5%の誤差」明確</text>
+  <text x="590" y="256" text-anchor="middle" font-size="11" fill="#34d399">「気温予測の方が精度が高い」と判断可能!</text>
+  <text x="590" y="278" text-anchor="middle" font-size="10" fill="#f8f8f8">R² = 0.85 の場合: 「85%の分散を説明」</text>
+  <text x="590" y="298" text-anchor="middle" font-size="10" fill="#f8f8f8">どのデータでも同じ解釈スケール</text>
+  <text x="590" y="322" text-anchor="middle" font-size="11" fill="#f472b6">✗ ただしy=0での MAPE 発散に注意</text>
+  <!-- Bottom summary -->
+  <rect x="30" y="356" width="740" height="18" rx="8" fill="rgba(255,255,255,0.06)"/>
+  <text x="400" y="369" text-anchor="middle" font-size="11" fill="#94a3b8">複数モデルを同一タスクで比較 → どちらでも可  |  異なるタスク間を比較 → スケール独立型を選ぶ</text>
+</svg>

@@ -1,0 +1,62 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">エージェント評価指標</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">AIエージェントの品質を定量評価する主要指標</text>
+
+  <!-- 5 metrics in 2+3 layout -->
+  <!-- Row 1 -->
+  <rect x="15" y="65" width="270" height="145" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="15" y="65" width="270" height="28" rx="8" fill="#1d4ed8"/>
+  <text x="150" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ffffff">Task Success Rate</text>
+  <text x="150" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#93c5fd">タスク達成率</text>
+  <text x="150" y="126" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">目標タスクを正しく完了</text>
+  <text x="150" y="142" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#bfdbfe">できたかの割合</text>
+  <rect x="25" y="155" width="250" height="42" rx="5" fill="#1e3a8a"/>
+  <text x="150" y="171" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#60a5fa">= 成功タスク数 / 全タスク数</text>
+  <text x="150" y="187" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">最も重要な最終指標</text>
+
+  <rect x="300" y="65" width="270" height="145" rx="8" fill="#3b0764" stroke="#a855f7" stroke-width="2"/>
+  <rect x="300" y="65" width="270" height="28" rx="8" fill="#6d28d9"/>
+  <text x="435" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ffffff">Step Accuracy</text>
+  <text x="435" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">ステップ精度</text>
+  <text x="435" y="126" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">ReActの各ステップが</text>
+  <text x="435" y="142" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#e9d5ff">正しいツールを選択したか</text>
+  <rect x="310" y="155" width="250" height="42" rx="5" fill="#4c1d95"/>
+  <text x="435" y="171" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">不必要なAction呼び出しを検出</text>
+  <text x="435" y="187" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">ツール選択の精度評価</text>
+
+  <rect x="585" y="65" width="300" height="145" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="2"/>
+  <rect x="585" y="65" width="300" height="28" rx="8" fill="#065f46"/>
+  <text x="735" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ffffff">Trajectory Length</text>
+  <text x="735" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6ee7b7">軌跡長</text>
+  <text x="735" y="126" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">タスク完了までに</text>
+  <text x="735" y="142" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a7f3d0">必要なステップ数</text>
+  <rect x="595" y="155" width="280" height="42" rx="5" fill="#064e3b"/>
+  <text x="735" y="171" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#34d399">短いほど効率的（コスト=ステップ数）</text>
+  <text x="735" y="187" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">ループ検出・効率化に活用</text>
+
+  <!-- Row 2 -->
+  <rect x="15" y="220" width="415" height="82" rx="8" fill="#78350f" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="15" y="220" width="415" height="28" rx="8" fill="#92400e"/>
+  <text x="228" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ffffff">Hallucination Rate（ハルシネーション率）</text>
+  <text x="228" y="260" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fde68a">事実に基づかない情報を回答した割合</text>
+  <text x="228" y="276" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#fbbf24">• Bedrock Guardrails の Grounding Check で検出・ブロック</text>
+  <text x="228" y="292" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">RAGシステムでは特に重要な指標</text>
+
+  <rect x="445" y="220" width="440" height="82" rx="8" fill="#1e1b4b" stroke="#6d28d9" stroke-width="2"/>
+  <rect x="445" y="220" width="440" height="28" rx="8" fill="#4c1d95"/>
+  <text x="665" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#e9d5ff">User Satisfaction（ユーザー満足度）</text>
+  <text x="665" y="260" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#c4b5fd">実際のユーザーフィードバック・NPS・CSAT</text>
+  <text x="665" y="276" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a78bfa">• 技術指標が高くてもUX悪の場合あり → 人間評価が重要</text>
+  <text x="665" y="292" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#475569">最終的なビジネス価値と直結する指標</text>
+
+  <!-- Bedrock evaluation -->
+  <rect x="15" y="315" width="870" height="74" rx="8" fill="#0f172a"/>
+  <text x="450" y="335" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">Bedrock Agents 評価方法</text>
+  <rect x="30" y="347" width="265" height="30" rx="5" fill="#172554"/>
+  <text x="163" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#60a5fa">実行トレース分析: Thought/Action/Obs を確認</text>
+  <rect x="310" y="347" width="265" height="30" rx="5" fill="#064e3b"/>
+  <text x="443" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">Bedrock Model Evaluation でエンドツーエンド評価</text>
+  <rect x="590" y="347" width="290" height="30" rx="5" fill="#3b0764"/>
+  <text x="735" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">CloudWatch メトリクスで Trajectory Length を監視</text>
+</svg>

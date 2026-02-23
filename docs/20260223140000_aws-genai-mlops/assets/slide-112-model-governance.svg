@@ -1,0 +1,78 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#4CC9F0" text-anchor="middle">モデルガバナンスフレームワーク</text>
+
+  <!-- Center hub: Model Registry -->
+  <rect x="310" y="188" width="180" height="90" rx="10" fill="#2d4059" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="400" y="212" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">SageMaker</text>
+  <text x="400" y="228" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">Model Registry</text>
+  <text x="400" y="248" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">ガバナンス中心ハブ</text>
+  <text x="400" y="264" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">承認ステータス管理</text>
+
+  <!-- Phase 1: 開発ガバナンス (top left) -->
+  <rect x="15" y="44" width="240" height="170" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="135" y="68" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">1. 開発ガバナンス</text>
+  <rect x="25" y="78" width="220" height="126" rx="5" fill="#0d1b2a"/>
+  <text x="35" y="98" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">✓ コードレビュー必須化</text>
+  <text x="45" y="114" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(PR承認なしマージ禁止)</text>
+  <text x="35" y="132" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">✓ 実験追跡必須</text>
+  <text x="45" y="148" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(SageMaker Experiments記録)</text>
+  <text x="35" y="166" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">✓ データリネージュ記録</text>
+  <text x="45" y="182" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(どのデータで学習したか)</text>
+
+  <!-- Arrow phase 1 → registry -->
+  <line x1="255" y1="130" x2="310" y2="220" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(310,220) rotate(-35)"/>
+
+  <!-- Phase 2: 承認プロセス (top right) -->
+  <rect x="545" y="44" width="240" height="170" rx="8" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="665" y="68" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0" text-anchor="middle">2. 承認プロセス</text>
+  <rect x="555" y="78" width="220" height="126" rx="5" fill="#0d1b2a"/>
+  <text x="565" y="98" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">✓ Model Card 作成</text>
+  <text x="575" y="114" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(目的・制限・偏り記録)</text>
+  <text x="565" y="132" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">✓ バイアス評価報告</text>
+  <text x="575" y="148" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(Clarify レポート添付)</text>
+  <text x="565" y="166" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">✓ ビジネスオーナー承認</text>
+  <text x="565" y="182" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">✓ セキュリティレビュー</text>
+
+  <!-- Arrow phase 2 → registry -->
+  <line x1="545" y1="130" x2="490" y2="220" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(490,220) rotate(35)"/>
+
+  <!-- Phase 3: デプロイコントロール (bottom left) -->
+  <rect x="15" y="298" width="240" height="170" rx="8" fill="#0a2545" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="135" y="322" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06D6A0" text-anchor="middle">3. デプロイコントロール</text>
+  <rect x="25" y="332" width="220" height="126" rx="5" fill="#0d1b2a"/>
+  <text x="35" y="352" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">✓ Model Registry承認フロー</text>
+  <text x="45" y="368" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">Pending → Approved → Deploy</text>
+  <text x="35" y="386" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">✓ 変更管理記録</text>
+  <text x="45" y="402" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(Who/What/When/Why)</text>
+  <text x="35" y="420" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">✓ ロールバック計画</text>
+  <text x="45" y="436" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(前バージョンへの即時切替)</text>
+
+  <!-- Arrow registry → phase 3 -->
+  <line x1="310" y1="250" x2="255" y2="340" stroke="#06D6A0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#06D6A0" transform="translate(255,340) rotate(35)"/>
+
+  <!-- Phase 4: 継続的コンプライアンス (bottom right) -->
+  <rect x="545" y="298" width="240" height="170" rx="8" fill="#1a3a5f" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="665" y="322" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06D6A0" text-anchor="middle">4. 継続的コンプライアンス</text>
+  <rect x="555" y="332" width="220" height="126" rx="5" fill="#0d1b2a"/>
+  <text x="565" y="352" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">✓ 定期監査ログ</text>
+  <text x="575" y="368" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(CloudTrail APIコール記録)</text>
+  <text x="565" y="386" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">✓ 規制要件チェック</text>
+  <text x="575" y="402" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(GDPR / HIPAA / SOC2)</text>
+  <text x="565" y="420" font-family="Arial,sans-serif" font-size="10" fill="#cccccc">✓ モデル廃止プロセス</text>
+  <text x="575" y="436" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa">(非推奨 → アーカイブ)</text>
+
+  <!-- Arrow registry → phase 4 -->
+  <line x1="490" y1="250" x2="545" y2="340" stroke="#06D6A0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#06D6A0" transform="translate(545,340) rotate(-35)"/>
+
+  <!-- Cycle arrows (curved approximation with lines) -->
+  <text x="400" y="472" font-family="Arial,sans-serif" font-size="10" fill="#aaaaaa" text-anchor="middle">ガバナンスサイクル: 開発 → 承認 → デプロイ → 監視 → 廃止 → (再開発)</text>
+  <text x="400" y="488" font-family="Arial,sans-serif" font-size="9" fill="#888888" text-anchor="middle">SageMaker Model Registry がライフサイクル全体を統括管理</text>
+</svg>

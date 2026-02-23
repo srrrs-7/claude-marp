@@ -1,0 +1,93 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="36" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">ML実験管理の仕組み</text>
+  <!-- Stages -->
+  <!-- Stage 1: 実験 -->
+  <rect x="20" y="100" width="110" height="65" rx="6" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="75" y="125" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">実験</text>
+  <text x="75" y="143" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">Trial作成</text>
+  <text x="75" y="158" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">Run管理</text>
+  <!-- Arrow -->
+  <line x1="130" y1="132" x2="155" y2="132" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(155,132) rotate(90)"/>
+  <!-- Stage 2: パラメータ記録 -->
+  <rect x="158" y="100" width="120" height="65" rx="6" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="218" y="120" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">パラメータ</text>
+  <text x="218" y="136" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">記録</text>
+  <text x="218" y="153" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">lr=0.001</text>
+  <text x="218" y="165" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">epochs=100</text>
+  <!-- Arrow -->
+  <line x1="278" y1="132" x2="303" y2="132" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(303,132) rotate(90)"/>
+  <!-- Stage 3: メトリクス記録 -->
+  <rect x="306" y="100" width="120" height="65" rx="6" fill="#0f3460" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="366" y="120" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">メトリクス</text>
+  <text x="366" y="136" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">記録</text>
+  <text x="366" y="153" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">accuracy=0.95</text>
+  <text x="366" y="165" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">loss=0.12</text>
+  <!-- Arrow -->
+  <line x1="426" y1="132" x2="451" y2="132" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(451,132) rotate(90)"/>
+  <!-- Stage 4: アーティファクト保存 -->
+  <rect x="454" y="100" width="130" height="65" rx="6" fill="#0f3460" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="519" y="120" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">アーティファクト</text>
+  <text x="519" y="136" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">保存</text>
+  <text x="519" y="153" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">model.tar.gz</text>
+  <text x="519" y="165" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">S3 artifact URI</text>
+  <!-- Arrow -->
+  <line x1="584" y1="132" x2="609" y2="132" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(609,132) rotate(90)"/>
+  <!-- Stage 5: モデル登録 -->
+  <rect x="612" y="100" width="112" height="65" rx="6" fill="#0a2545" stroke="#06D6A0" stroke-width="2"/>
+  <text x="668" y="120" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">モデル登録</text>
+  <text x="668" y="140" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">Model Registry</text>
+  <text x="668" y="155" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">v1.0 Approved</text>
+  <!-- Arrow to deploy -->
+  <line x1="724" y1="132" x2="755" y2="132" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#06D6A0" transform="translate(755,132) rotate(90)"/>
+  <rect x="758" y="108" width="30" height="48" rx="4" fill="#06D6A0"/>
+  <text x="773" y="130" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#000000" font-weight="bold">本番</text>
+  <text x="773" y="145" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#000000" font-weight="bold">Deploy</text>
+  <!-- Detail boxes below each stage -->
+  <rect x="20" y="188" width="108" height="80" rx="4" fill="#0f1e30" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="74" y="207" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">Trial / Run</text>
+  <text x="74" y="224" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">Experiment</text>
+  <text x="74" y="240" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">グルーピング</text>
+  <text x="74" y="258" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">比較・可視化</text>
+  <rect x="158" y="188" width="118" height="80" rx="4" fill="#0f1e30" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="217" y="207" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">log_parameter</text>
+  <text x="217" y="224" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">batch_size=32</text>
+  <text x="217" y="240" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">optimizer=adam</text>
+  <text x="217" y="258" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">dropout=0.3</text>
+  <rect x="306" y="188" width="118" height="80" rx="4" fill="#0f1e30" stroke="#0f3460" stroke-width="1"/>
+  <text x="365" y="207" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#06D6A0">log_metric</text>
+  <text x="365" y="224" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">precision=0.92</text>
+  <text x="365" y="240" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">recall=0.88</text>
+  <text x="365" y="258" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">AUC=0.96</text>
+  <rect x="454" y="188" width="128" height="80" rx="4" fill="#0f1e30" stroke="#0f3460" stroke-width="1"/>
+  <text x="518" y="207" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#F77F00">Artifact URI</text>
+  <text x="518" y="224" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">s3://bucket/</text>
+  <text x="518" y="240" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">output/model</text>
+  <text x="518" y="258" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">.tar.gz</text>
+  <rect x="612" y="188" width="112" height="80" rx="4" fill="#0f1e30" stroke="#0a2545" stroke-width="1"/>
+  <text x="668" y="207" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#06D6A0">Registry</text>
+  <text x="668" y="224" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">Pending Review</text>
+  <text x="668" y="240" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">Approved</text>
+  <text x="668" y="258" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ccddee">Rejected</text>
+  <!-- Bottom bar -->
+  <rect x="20" y="295" width="750" height="40" rx="6" fill="#1e3a5f"/>
+  <text x="395" y="320" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#4CC9F0">SageMaker Experiments / MLflow — 全実験を自動追跡・比較・再現</text>
+  <!-- MLflow diagram section -->
+  <rect x="20" y="350" width="360" height="110" rx="6" fill="#0f1e30" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="200" y="373" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4CC9F0">SageMaker Experiments</text>
+  <text x="200" y="393" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">ExperimentName → Trial → TrialComponent</text>
+  <text x="200" y="413" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">SDKからワンライン: tracker.log_parameter()</text>
+  <text x="200" y="433" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">Studio UIで視覚的な比較ダッシュボード</text>
+  <text x="200" y="450" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">自動キャプチャ: インスタンスタイプ/リージョン/etc</text>
+  <rect x="400" y="350" width="370" height="110" rx="6" fill="#0f1e30" stroke="#0f3460" stroke-width="1"/>
+  <text x="585" y="373" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#06D6A0">MLflow (SM管理サーバー)</text>
+  <text x="585" y="393" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">mlflow.set_tracking_uri(sm_mlflow_uri)</text>
+  <text x="585" y="413" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">mlflow.log_metric() / log_artifact()</text>
+  <text x="585" y="433" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ccddee">MLflow UI → SageMaker Studio統合</text>
+  <text x="585" y="450" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">モデルレジストリもMLflow経由で管理可能</text>
+</svg>

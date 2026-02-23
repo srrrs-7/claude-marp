@@ -1,0 +1,109 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+
+  <!-- Title -->
+  <text x="400" y="36" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#4CC9F0" text-anchor="middle">SageMaker Pipelines アーキテクチャ</text>
+
+  <!-- DAG Section -->
+  <rect x="20" y="55" width="500" height="390" rx="10" fill="#1a2a40" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="270" y="80" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#4CC9F0" text-anchor="middle">SageMaker Pipeline — DAG実行</text>
+
+  <!-- ProcessingStep -->
+  <rect x="40" y="95" width="140" height="48" rx="6" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="110" y="115" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0" text-anchor="middle">ProcessingStep</text>
+  <text x="110" y="133" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">データ前処理</text>
+
+  <!-- Arrow ProcessingStep → TrainingStep -->
+  <line x1="180" y1="119" x2="210" y2="119" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#4CC9F0" transform="translate(212,119) rotate(90)"/>
+
+  <!-- TrainingStep -->
+  <rect x="210" y="95" width="140" height="48" rx="6" fill="#0f3460" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="280" y="115" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0" text-anchor="middle">TrainingStep</text>
+  <text x="280" y="133" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">モデル学習</text>
+
+  <!-- Arrow TrainingStep → EvaluationStep -->
+  <line x1="350" y1="119" x2="380" y2="119" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#4CC9F0" transform="translate(382,119) rotate(90)"/>
+
+  <!-- EvaluationStep -->
+  <rect x="380" y="95" width="120" height="48" rx="6" fill="#1e3a5f" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="440" y="115" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#06D6A0" text-anchor="middle">Evaluation</text>
+  <text x="440" y="133" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">Step</text>
+
+  <!-- Arrow EvaluationStep → ConditionStep -->
+  <line x1="440" y1="143" x2="440" y2="175" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#4CC9F0" transform="translate(440,177) rotate(180)"/>
+
+  <!-- ConditionStep -->
+  <rect x="360" y="177" width="160" height="48" rx="6" fill="#F77F00" stroke="#F77F00" stroke-width="1.5" fill-opacity="0.3"/>
+  <text x="440" y="197" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#F77F00" text-anchor="middle">ConditionStep</text>
+  <text x="440" y="215" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">精度 ≥ 閾値？</text>
+
+  <!-- Pass branch label -->
+  <text x="402" y="263" font-family="Arial,sans-serif" font-size="9" fill="#06D6A0" text-anchor="middle">✓ pass</text>
+  <!-- Arrow ConditionStep → RegisterModelStep (pass) -->
+  <line x1="440" y1="225" x2="440" y2="278" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#06D6A0" transform="translate(440,280) rotate(180)"/>
+
+  <!-- RegisterModelStep -->
+  <rect x="350" y="280" width="150" height="48" rx="6" fill="#0a2545" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="425" y="300" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#06D6A0" text-anchor="middle">RegisterModel</text>
+  <text x="425" y="318" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">Step</text>
+
+  <!-- Arrow RegisterModelStep → CreateModelStep -->
+  <line x1="500" y1="304" x2="530" y2="304" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#06D6A0" transform="translate(532,304) rotate(90)"/>
+  <!-- Wait for upstream SVG constraints -->
+  <!-- CreateModelStep -->
+  <rect x="350" y="368" width="150" height="48" rx="6" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="425" y="388" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0" text-anchor="middle">CreateModel</text>
+  <text x="425" y="406" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">Step</text>
+  <!-- Arrow RegisterModel → CreateModel -->
+  <line x1="425" y1="328" x2="425" y2="366" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#4CC9F0" transform="translate(425,368) rotate(180)"/>
+
+  <!-- Fail branch -->
+  <text x="338" y="263" font-family="Arial,sans-serif" font-size="9" fill="#E63946" text-anchor="middle">✗ fail</text>
+  <!-- Arrow ConditionStep → FailStep (fail) -->
+  <line x1="360" y1="201" x2="200" y2="280" stroke="#E63946" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#E63946" transform="translate(202,281) rotate(135)"/>
+
+  <!-- FailStep -->
+  <rect x="80" y="280" width="120" height="48" rx="6" fill="#3d0000" stroke="#E63946" stroke-width="1.5"/>
+  <text x="140" y="300" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#E63946" text-anchor="middle">FailStep</text>
+  <text x="140" y="318" font-family="Arial,sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle">パイプライン失敗</text>
+
+  <!-- Features Panel -->
+  <rect x="535" y="55" width="245" height="390" rx="10" fill="#1a2a40" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="657" y="82" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#06D6A0" text-anchor="middle">パイプライン機能</text>
+
+  <!-- Feature items -->
+  <rect x="549" y="95" width="217" height="54" rx="5" fill="#1e3a5f"/>
+  <text x="557" y="114" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">DAGベース実行</text>
+  <text x="557" y="132" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">依存関係を自動解決して</text>
+  <text x="557" y="144" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">最適順序で実行</text>
+
+  <rect x="549" y="157" width="217" height="54" rx="5" fill="#0f3460"/>
+  <text x="557" y="176" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">ステップキャッシュ</text>
+  <text x="557" y="194" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">入力変更なければ</text>
+  <text x="557" y="206" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">ステップを再実行スキップ</text>
+
+  <rect x="549" y="219" width="217" height="44" rx="5" fill="#0a2545"/>
+  <text x="557" y="238" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">並列実行対応</text>
+  <text x="557" y="256" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">独立ステップは同時実行</text>
+
+  <rect x="549" y="271" width="217" height="44" rx="5" fill="#1e3a5f"/>
+  <text x="557" y="290" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">Studio UI可視化</text>
+  <text x="557" y="308" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">DAGをグラフで確認・監視</text>
+
+  <rect x="549" y="323" width="217" height="44" rx="5" fill="#0f3460"/>
+  <text x="557" y="342" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#4CC9F0">EventBridgeトリガー</text>
+  <text x="557" y="360" font-family="Arial,sans-serif" font-size="9" fill="#cccccc">スケジュール/イベント駆動</text>
+
+  <rect x="549" y="375" width="217" height="58" rx="5" fill="#06D6A0" fill-opacity="0.15" stroke="#06D6A0" stroke-width="1"/>
+  <text x="657" y="398" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#06D6A0" text-anchor="middle">SageMaker Pipelines SDK</text>
+  <text x="657" y="415" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">pipeline.upsert() で更新可能</text>
+  <text x="657" y="428" font-family="Arial,sans-serif" font-size="9" fill="#cccccc" text-anchor="middle">pipeline.start() で実行</text>
+</svg>

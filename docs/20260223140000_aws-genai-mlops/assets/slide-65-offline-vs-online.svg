@@ -1,0 +1,95 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+  <text x="400" y="35" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">オフライン vs オンライン評価</text>
+
+  <!-- Left: Offline -->
+  <rect x="15" y="55" width="335" height="310" rx="8" fill="#1e3a5f"/>
+  <text x="182" y="84" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#4CC9F0" text-anchor="middle">オフライン評価</text>
+  <text x="182" y="104" font-family="Arial,sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">本番デプロイ前に実施</text>
+
+  <rect x="30" y="115" width="305" height="32" rx="4" fill="#0f3460"/>
+  <text x="182" y="136" font-family="Arial,sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">ホールドアウトセット (テストデータ)</text>
+
+  <rect x="30" y="153" width="305" height="32" rx="4" fill="#0f3460"/>
+  <text x="182" y="174" font-family="Arial,sans-serif" font-size="12" fill="#06D6A0" text-anchor="middle">高速・低コストで評価可能</text>
+
+  <text x="50" y="210" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0">主な指標:</text>
+  <text x="60" y="230" font-family="Arial,sans-serif" font-size="11" fill="#ffffff">F1 Score / AUC / RMSE</text>
+  <text x="60" y="248" font-family="Arial,sans-serif" font-size="11" fill="#ffffff">BLEU / ROUGE / BERTScore</text>
+  <text x="60" y="266" font-family="Arial,sans-serif" font-size="11" fill="#ffffff">Precision / Recall</text>
+
+  <text x="50" y="296" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#4CC9F0">ツール:</text>
+  <rect x="50" y="305" width="230" height="26" rx="4" fill="#0a2545"/>
+  <text x="165" y="323" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">SageMaker Experiments</text>
+  <text x="50" y="350" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa">制限: 実際のユーザー行動を反映しない</text>
+
+  <!-- Center: Decision diamond -->
+  <rect x="360" y="175" width="80" height="60" rx="4" fill="#2d4059" stroke="#F77F00" stroke-width="2" transform="rotate(45 400 205)"/>
+  <text x="400" y="198" font-family="Arial,sans-serif" font-size="11" fill="#F77F00" text-anchor="middle">デプロイ</text>
+  <text x="400" y="214" font-family="Arial,sans-serif" font-size="11" fill="#F77F00" text-anchor="middle">判断</text>
+
+  <!-- Arrows from offline to decision -->
+  <line x1="350" y1="210" x2="368" y2="210" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#4CC9F0" transform="translate(371,210) rotate(90)"/>
+  <text x="357" y="204" font-family="Arial,sans-serif" font-size="9" fill="#4CC9F0">Pass</text>
+
+  <!-- Arrow from decision to online -->
+  <line x1="432" y1="210" x2="448" y2="210" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#06D6A0" transform="translate(452,210) rotate(90)"/>
+
+  <!-- Right: Online -->
+  <rect x="450" y="55" width="335" height="310" rx="8" fill="#0f3460"/>
+  <text x="617" y="84" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#06D6A0" text-anchor="middle">オンライン評価</text>
+  <text x="617" y="104" font-family="Arial,sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">本番トラフィックを使用</text>
+
+  <rect x="465" y="115" width="305" height="32" rx="4" fill="#0a2545"/>
+  <text x="617" y="136" font-family="Arial,sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">実際のユーザー行動を評価</text>
+
+  <rect x="465" y="153" width="305" height="32" rx="4" fill="#0a2545"/>
+  <text x="617" y="174" font-family="Arial,sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">A/Bテスト / カナリア / シャドウ</text>
+
+  <text x="480" y="210" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06D6A0">主な指標:</text>
+  <text x="490" y="230" font-family="Arial,sans-serif" font-size="11" fill="#ffffff">CTR (クリック率)</text>
+  <text x="490" y="248" font-family="Arial,sans-serif" font-size="11" fill="#ffffff">収益 / コンバージョン率</text>
+  <text x="490" y="266" font-family="Arial,sans-serif" font-size="11" fill="#ffffff">レイテンシ / エラー率</text>
+
+  <text x="480" y="296" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#06D6A0">ツール:</text>
+  <rect x="480" y="305" width="285" height="26" rx="4" fill="#111e2d"/>
+  <text x="622" y="323" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">SageMaker Endpoints + CloudWatch</text>
+  <text x="480" y="350" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa">制限: コスト・リスクが高い</text>
+
+  <!-- Bottom: Feedback loop -->
+  <rect x="15" y="380" width="770" height="105" rx="8" fill="#111e2d"/>
+  <text x="400" y="403" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">継続的評価サイクル</text>
+
+  <!-- Flow arrows -->
+  <rect x="30" y="415" width="130" height="30" rx="4" fill="#1e3a5f"/>
+  <text x="95" y="434" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">Offline 評価</text>
+
+  <line x1="160" y1="430" x2="195" y2="430" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#4CC9F0" transform="translate(198,430) rotate(90)"/>
+
+  <rect x="200" y="415" width="100" height="30" rx="4" fill="#F77F00" opacity="0.7"/>
+  <text x="250" y="434" font-family="Arial,sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">デプロイ</text>
+
+  <line x1="300" y1="430" x2="335" y2="430" stroke="#06D6A0" stroke-width="1.5"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#06D6A0" transform="translate(338,430) rotate(90)"/>
+
+  <rect x="340" y="415" width="130" height="30" rx="4" fill="#0f3460"/>
+  <text x="405" y="434" font-family="Arial,sans-serif" font-size="11" fill="#06D6A0" text-anchor="middle">Online 評価</text>
+
+  <line x1="470" y1="430" x2="505" y2="430" stroke="#06D6A0" stroke-width="1.5"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#06D6A0" transform="translate(508,430) rotate(90)"/>
+
+  <rect x="510" y="415" width="120" height="30" rx="4" fill="#0a2545"/>
+  <text x="570" y="434" font-family="Arial,sans-serif" font-size="11" fill="#aaaaaa" text-anchor="middle">フィードバック</text>
+
+  <line x1="630" y1="430" x2="665" y2="430" stroke="#aaaaaa" stroke-width="1.5"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#aaaaaa" transform="translate(668,430) rotate(90)"/>
+
+  <rect x="670" y="415" width="100" height="30" rx="4" fill="#1e3a5f"/>
+  <text x="720" y="434" font-family="Arial,sans-serif" font-size="11" fill="#4CC9F0" text-anchor="middle">再学習</text>
+
+  <text x="400" y="475" font-family="Arial,sans-serif" font-size="11" fill="#06D6A0" text-anchor="middle">★ オフライン: 開発フェーズ | オンライン: 本番フェーズ — 両方を組み合わせて使用</text>
+</svg>

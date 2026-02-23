@@ -1,0 +1,99 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="28" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#f1f5f9">SageMaker VPC ネットワーク分離アーキテクチャ</text>
+
+  <!-- Customer VPC outer box -->
+  <rect x="15" y="45" width="870" height="390" rx="10" fill="#0f1f35" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="55" y="68" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#3b82f6">Customer VPC</text>
+
+  <!-- Private Subnet -->
+  <rect x="30" y="78" width="420" height="340" rx="8" fill="#0a1628" stroke="#22c55e" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="50" y="100" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#22c55e">Private Subnet</text>
+
+  <!-- Training Instance -->
+  <rect x="50" y="110" width="180" height="75" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="140" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f97316">Training Instance</text>
+  <text x="140" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">ml.p3.2xlarge</text>
+  <text x="140" y="166" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">EnableNetworkIsolation</text>
+  <text x="140" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#ef4444">=true (アウトバウンド遮断)</text>
+
+  <!-- Endpoint Instance -->
+  <rect x="250" y="110" width="180" height="75" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="340" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#a855f7">Inference Endpoint</text>
+  <text x="340" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">ml.c5.xlarge</text>
+  <text x="340" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Private endpoint (ENI)</text>
+
+  <!-- Security Group -->
+  <rect x="50" y="200" width="380" height="60" rx="6" fill="#1e293b" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="240" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ef4444">Security Group (SageMaker SG)</text>
+  <text x="240" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Inbound: HTTPS 443 (VPC CIDR のみ)</text>
+  <text x="240" y="252" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Outbound: S3 VPC Endpoint へのみ許可</text>
+
+  <!-- VPC Endpoints Section -->
+  <rect x="50" y="275" width="380" height="130" rx="8" fill="#1a2030" stroke="#14b8a6" stroke-width="2"/>
+  <text x="240" y="298" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#14b8a6">VPC Interface Endpoints (PrivateLink)</text>
+
+  <rect x="65" y="308" width="160" height="28" rx="4" fill="#1e293b" stroke="#14b8a6" stroke-width="1"/>
+  <text x="145" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#f1f5f9">sagemaker.api</text>
+
+  <rect x="245" y="308" width="170" height="28" rx="4" fill="#1e293b" stroke="#14b8a6" stroke-width="1"/>
+  <text x="330" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#f1f5f9">sagemaker.runtime</text>
+
+  <rect x="65" y="348" width="160" height="28" rx="4" fill="#1e293b" stroke="#22c55e" stroke-width="1"/>
+  <text x="145" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#22c55e">S3 Gateway Endpoint</text>
+
+  <rect x="245" y="348" width="170" height="28" rx="4" fill="#1e293b" stroke="#14b8a6" stroke-width="1"/>
+  <text x="330" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#f1f5f9">ecr.api / ecr.dkr</text>
+
+  <text x="240" y="398" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">※ トラフィックは AWS バックボーンのみ経由</text>
+
+  <!-- Right side: AWS Services -->
+  <rect x="470" y="78" width="400" height="340" rx="8" fill="#0a1628" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="670" y="100" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">AWS マネージドサービス</text>
+
+  <!-- S3 -->
+  <rect x="490" y="110" width="160" height="65" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="570" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#22c55e">Amazon S3</text>
+  <text x="570" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">学習データ</text>
+  <text x="570" y="166" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">モデルアーティファクト</text>
+
+  <!-- ECR -->
+  <rect x="680" y="110" width="160" height="65" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="760" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f97316">Amazon ECR</text>
+  <text x="760" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">コンテナイメージ</text>
+  <text x="760" y="166" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">カスタム / ビルトイン</text>
+
+  <!-- SageMaker API -->
+  <rect x="490" y="195" width="350" height="60" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="665" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">SageMaker Control Plane</text>
+  <text x="665" y="236" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">API/モデル管理 / ジョブ実行制御</text>
+  <text x="665" y="248" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">CloudTrail ログ記録</text>
+
+  <!-- KMS -->
+  <rect x="490" y="275" width="160" height="65" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="570" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#a855f7">AWS KMS</text>
+  <text x="570" y="315" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">暗号化キー管理</text>
+  <text x="570" y="331" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">CMK / 自動ローテーション</text>
+
+  <!-- No internet badge -->
+  <rect x="680" y="275" width="160" height="65" rx="6" fill="#2d1515" stroke="#ef4444" stroke-width="2"/>
+  <text x="760" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ef4444">インターネット</text>
+  <text x="760" y="313" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ef4444">アクセス: 遮断</text>
+  <!-- X mark -->
+  <line x1="720" y1="325" x2="800" y2="333" stroke="#ef4444" stroke-width="3"/>
+  <line x1="800" y1="325" x2="720" y2="333" stroke="#ef4444" stroke-width="3"/>
+
+  <!-- Arrows from VPC endpoints to AWS services -->
+  <line x1="460" y1="145" x2="488" y2="145" stroke="#14b8a6" stroke-width="2"/>
+  <polygon points="488,140 498,145 488,150" fill="#14b8a6"/>
+
+  <line x1="460" y1="330" x2="488" y2="300" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="482,296 492,302 486,310" fill="#14b8a6"/>
+
+  <!-- Bottom: NAT Gateway alternative -->
+  <rect x="15" y="440" width="870" height="45" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="450" y="458" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#f97316" font-weight="bold">代替案: NAT Gateway 経由でインターネットアクセスを許可する場合</text>
+  <text x="450" y="476" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Private Subnet → NAT Gateway (Public Subnet) → Internet Gateway → インターネット ※ セキュリティ要件が低い場合のみ</text>
+</svg>

@@ -1,0 +1,91 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1b2a"/>
+  <text x="400" y="30" fill="#4CC9F0" font-size="19" font-weight="bold" text-anchor="middle" font-family="sans-serif">データ並列 vs モデル並列</text>
+
+  <!-- Left: データ並列 -->
+  <rect x="20" y="50" width="360" height="360" rx="10" fill="#1e3a5f" style="filter:drop-shadow(2px 2px 6px rgba(0,0,0,0.5))"/>
+  <rect x="20" y="50" width="360" height="48" rx="10" fill="#0f3460"/>
+  <rect x="20" y="83" width="360" height="15" rx="0" fill="#0f3460"/>
+  <text x="200" y="82" fill="#4CC9F0" font-size="16" font-weight="bold" text-anchor="middle" font-family="sans-serif">データ並列</text>
+
+  <!-- 3 nodes with full model copies -->
+  <rect x="35" y="115" width="100" height="80" rx="6" fill="#0a2545"/>
+  <text x="85" y="140" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">GPU 1</text>
+  <rect x="42" y="150" width="86" height="18" rx="3" fill="#4CC9F0" style="opacity:0.7"/>
+  <text x="85" y="163" fill="#0d1b2a" font-size="9" font-weight="bold" text-anchor="middle" font-family="sans-serif">全モデル コピー</text>
+  <text x="85" y="185" fill="#aaaaaa" font-size="9" text-anchor="middle" font-family="sans-serif">バッチ A</text>
+
+  <rect x="150" y="115" width="100" height="80" rx="6" fill="#0a2545"/>
+  <text x="200" y="140" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">GPU 2</text>
+  <rect x="157" y="150" width="86" height="18" rx="3" fill="#4CC9F0" style="opacity:0.7"/>
+  <text x="200" y="163" fill="#0d1b2a" font-size="9" font-weight="bold" text-anchor="middle" font-family="sans-serif">全モデル コピー</text>
+  <text x="200" y="185" fill="#aaaaaa" font-size="9" text-anchor="middle" font-family="sans-serif">バッチ B</text>
+
+  <rect x="265" y="115" width="100" height="80" rx="6" fill="#0a2545"/>
+  <text x="315" y="140" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">GPU 3</text>
+  <rect x="272" y="150" width="86" height="18" rx="3" fill="#4CC9F0" style="opacity:0.7"/>
+  <text x="315" y="163" fill="#0d1b2a" font-size="9" font-weight="bold" text-anchor="middle" font-family="sans-serif">全モデル コピー</text>
+  <text x="315" y="185" fill="#aaaaaa" font-size="9" text-anchor="middle" font-family="sans-serif">バッチ C</text>
+
+  <!-- Gradient aggregation arrow -->
+  <line x1="85" y1="215" x2="200" y2="240" stroke="#06D6A0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="315" y1="215" x2="200" y2="240" stroke="#06D6A0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="130" y="240" width="140" height="30" rx="5" fill="#0a2a1a"/>
+  <text x="200" y="259" fill="#06D6A0" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">勾配を集約 (AllReduce)</text>
+
+  <!-- Characteristics -->
+  <text x="35" y="295" fill="#4CC9F0" font-size="12" font-weight="bold" font-family="sans-serif">特徴:</text>
+  <text x="35" y="314" fill="#aaaaaa" font-size="11" font-family="sans-serif">• 各ノードが全モデルコピーを保持</text>
+  <text x="35" y="332" fill="#aaaaaa" font-size="11" font-family="sans-serif">• 異なるデータバッチを並列処理</text>
+  <text x="35" y="350" fill="#aaaaaa" font-size="11" font-family="sans-serif">• 実装が比較的シンプル</text>
+  <text x="35" y="370" fill="#06D6A0" font-size="11" font-family="sans-serif">適用: 大規模データセット、小〜中モデル</text>
+  <text x="35" y="388" fill="#aaaaaa" font-size="11" font-family="sans-serif">条件: モデルが1GPU に収まること</text>
+
+  <!-- Right: モデル並列 -->
+  <rect x="420" y="50" width="360" height="360" rx="10" fill="#0f3460" style="filter:drop-shadow(2px 2px 6px rgba(0,0,0,0.5))"/>
+  <rect x="420" y="50" width="360" height="48" rx="10" fill="#0a2545"/>
+  <rect x="420" y="83" width="360" height="15" rx="0" fill="#0a2545"/>
+  <text x="600" y="82" fill="#E63946" font-size="16" font-weight="bold" text-anchor="middle" font-family="sans-serif">モデル並列</text>
+
+  <!-- Model split across 3 GPUs -->
+  <rect x="435" y="115" width="100" height="80" rx="6" fill="#1a2a4a"/>
+  <text x="485" y="138" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">GPU 1</text>
+  <rect x="442" y="148" width="86" height="18" rx="3" fill="#E63946" style="opacity:0.7"/>
+  <text x="485" y="161" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" font-family="sans-serif">レイヤー 1-12</text>
+  <text x="485" y="183" fill="#aaaaaa" font-size="9" text-anchor="middle" font-family="sans-serif">Embedding層</text>
+
+  <rect x="550" y="115" width="100" height="80" rx="6" fill="#1a2a4a"/>
+  <text x="600" y="138" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">GPU 2</text>
+  <rect x="557" y="148" width="86" height="18" rx="3" fill="#E63946" style="opacity:0.7"/>
+  <text x="600" y="161" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" font-family="sans-serif">レイヤー 13-24</text>
+  <text x="600" y="183" fill="#aaaaaa" font-size="9" text-anchor="middle" font-family="sans-serif">Attention層</text>
+
+  <rect x="665" y="115" width="100" height="80" rx="6" fill="#1a2a4a"/>
+  <text x="715" y="138" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">GPU 3</text>
+  <rect x="672" y="148" width="86" height="18" rx="3" fill="#E63946" style="opacity:0.7"/>
+  <text x="715" y="161" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" font-family="sans-serif">レイヤー 25-32</text>
+  <text x="715" y="183" fill="#aaaaaa" font-size="9" text-anchor="middle" font-family="sans-serif">FFN層 + Head</text>
+
+  <!-- Pipeline arrows -->
+  <line x1="535" y1="155" x2="550" y2="155" stroke="#F77F00" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#F77F00" transform="translate(550,155) rotate(90)"/>
+  <line x1="650" y1="155" x2="665" y2="155" stroke="#F77F00" stroke-width="2"/>
+  <polygon points="0,-5 -4,4 4,4" fill="#F77F00" transform="translate(665,155) rotate(90)"/>
+
+  <!-- Pipeline parallelism note -->
+  <rect x="435" y="215" width="315" height="30" rx="5" fill="#1a1a3a"/>
+  <text x="592" y="234" fill="#F77F00" font-size="11" text-anchor="middle" font-family="sans-serif">パイプライン並列 — マイクロバッチで重複実行</text>
+
+  <!-- Characteristics -->
+  <text x="435" y="270" fill="#E63946" font-size="12" font-weight="bold" font-family="sans-serif">特徴:</text>
+  <text x="435" y="289" fill="#aaaaaa" font-size="11" font-family="sans-serif">• モデルを複数ノードに分割</text>
+  <text x="435" y="307" fill="#aaaaaa" font-size="11" font-family="sans-serif">• 各ノードがモデルの一部を担当</text>
+  <text x="435" y="325" fill="#aaaaaa" font-size="11" font-family="sans-serif">• Activation Checkpointing でメモリ節約</text>
+  <text x="435" y="345" fill="#E63946" font-size="11" font-family="sans-serif">適用: 超大規模モデル (LLM / GPT-4規模)</text>
+  <text x="435" y="363" fill="#aaaaaa" font-size="11" font-family="sans-serif">条件: モデルが1GPU に収まらない場合</text>
+
+  <!-- Bottom: SageMaker Distributed banner -->
+  <rect x="20" y="428" width="760" height="55" rx="8" fill="#0a2545" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="400" y="452" fill="#4CC9F0" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">SageMaker Distributed Training Library</text>
+  <text x="400" y="474" fill="#aaaaaa" font-size="12" text-anchor="middle" font-family="sans-serif">データ並列 (SMDP) とモデル並列 (SMMP) を統合サポート</text>
+</svg>

@@ -1,0 +1,59 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1b2a"/>
+  <text x="400" y="28" fill="#4CC9F0" font-size="18" font-weight="bold" text-anchor="middle" font-family="sans-serif">SageMaker Distributed Training Library</text>
+
+  <!-- SMDP box -->
+  <rect x="20" y="48" width="370" height="270" rx="10" fill="#1e3a5f" style="filter:drop-shadow(2px 2px 6px rgba(0,0,0,0.5))"/>
+  <rect x="20" y="48" width="370" height="48" rx="10" fill="#0f3460"/>
+  <rect x="20" y="80" width="370" height="16" rx="0" fill="#0f3460"/>
+  <text x="205" y="76" fill="#4CC9F0" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">SageMaker Data Parallel (SMDP)</text>
+
+  <rect x="35" y="108" width="340" height="50" rx="6" fill="#0a2545"/>
+  <text x="205" y="130" fill="#06D6A0" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">AllReduce 最適化</text>
+  <text x="205" y="148" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">AWS独自の効率的な AllReduce 実装</text>
+
+  <rect x="35" y="165" width="340" height="50" rx="6" fill="#0a2545"/>
+  <text x="205" y="187" fill="#06D6A0" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">EFA ネットワーク活用</text>
+  <text x="205" y="205" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">Elastic Fabric Adapter — 低レイテンシ通信</text>
+
+  <rect x="35" y="222" width="340" height="50" rx="6" fill="#0a2545"/>
+  <text x="205" y="244" fill="#06D6A0" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">フレームワーク対応</text>
+  <text x="205" y="262" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">PyTorch / TensorFlow 対応</text>
+
+  <text x="35" y="295" fill="#4CC9F0" font-size="11" font-weight="bold" font-family="sans-serif">適用:</text>
+  <text x="35" y="312" fill="#aaaaaa" font-size="11" font-family="sans-serif">データ並列学習 — モデルが1GPUに収まる場合</text>
+
+  <!-- SMMP box -->
+  <rect x="410" y="48" width="370" height="270" rx="10" fill="#0f3460" style="filter:drop-shadow(2px 2px 6px rgba(0,0,0,0.5))"/>
+  <rect x="410" y="48" width="370" height="48" rx="10" fill="#0a2545"/>
+  <rect x="410" y="80" width="370" height="16" rx="0" fill="#0a2545"/>
+  <text x="595" y="76" fill="#E63946" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">SageMaker Model Parallel (SMMP)</text>
+
+  <rect x="425" y="108" width="340" height="50" rx="6" fill="#1a2a4a"/>
+  <text x="595" y="130" fill="#E63946" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">自動モデル分割</text>
+  <text x="595" y="148" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">レイヤーを自動的にGPU間で分割</text>
+
+  <rect x="425" y="165" width="340" height="50" rx="6" fill="#1a2a4a"/>
+  <text x="595" y="187" fill="#E63946" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">Pipeline Parallelism</text>
+  <text x="595" y="205" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">マイクロバッチで効率的なパイプライン実行</text>
+
+  <rect x="425" y="222" width="340" height="50" rx="6" fill="#1a2a4a"/>
+  <text x="595" y="244" fill="#E63946" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">Activation Checkpointing</text>
+  <text x="595" y="262" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">順伝播の中間値を再計算してメモリ節約</text>
+
+  <text x="425" y="295" fill="#E63946" font-size="11" font-weight="bold" font-family="sans-serif">適用:</text>
+  <text x="425" y="312" fill="#aaaaaa" font-size="11" font-family="sans-serif">LLM Fine-tuning — モデルが1GPUに収まらない場合</text>
+
+  <!-- Configuration code snippet -->
+  <rect x="20" y="338" width="760" height="145" rx="10" fill="#0a1a2e"/>
+  <text x="35" y="360" fill="#4CC9F0" font-size="12" font-weight="bold" font-family="sans-serif">設定コード例</text>
+
+  <!-- SMDP config -->
+  <text x="35" y="382" fill="#aaaaaa" font-size="10" font-family="sans-serif"># データ並列 (SMDP)</text>
+  <text x="35" y="398" fill="#06D6A0" font-size="11" font-family="monospace">distribution = {'smdistributed': {'dataparallel': {'enabled': True}}}</text>
+  <text x="35" y="416" fill="#aaaaaa" font-size="10" font-family="sans-serif"># モデル並列 (SMMP)</text>
+  <text x="35" y="432" fill="#E63946" font-size="11" font-family="monospace">distribution = {'smdistributed': {'modelparallel': {</text>
+  <text x="35" y="448" fill="#E63946" font-size="11" font-family="monospace">    'enabled': True, 'parameters': {'pipeline_parallel_degree': 2,</text>
+  <text x="35" y="464" fill="#E63946" font-size="11" font-family="monospace">    'tensor_parallel_degree': 4, 'auto_partition': True}}}}</text>
+  <text x="35" y="476" fill="#aaaaaa" font-size="10" font-family="sans-serif"># Estimator に distribution 引数として渡す</text>
+</svg>

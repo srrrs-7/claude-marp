@@ -1,0 +1,67 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="36" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">データ収集戦略 — データソースマップ</text>
+  <!-- Top-left: 構造化データ -->
+  <rect x="30" y="58" width="330" height="175" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="195" y="82" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#4CC9F0">構造化データ</text>
+  <rect x="50" y="95" width="90" height="36" rx="5" fill="#0f2a45"/>
+  <text x="95" y="118" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Amazon RDS</text>
+  <rect x="155" y="95" width="90" height="36" rx="5" fill="#0f2a45"/>
+  <text x="200" y="118" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">DynamoDB</text>
+  <rect x="260" y="95" width="80" height="36" rx="5" fill="#0f2a45"/>
+  <text x="300" y="118" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Redshift</text>
+  <text x="195" y="158" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">テーブル形式・スキーマ定義済み</text>
+  <text x="195" y="178" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">SQL / Athena / Glue Crawler で取込</text>
+  <text x="195" y="198" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">CDC (Change Data Capture) → DMS</text>
+  <text x="195" y="218" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">スキーマ変更管理が重要</text>
+  <!-- Top-right: 非構造化データ -->
+  <rect x="440" y="58" width="330" height="175" rx="8" fill="#0f3460" stroke="#06D6A0" stroke-width="2"/>
+  <text x="605" y="82" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#06D6A0">非構造化データ</text>
+  <rect x="460" y="95" width="60" height="36" rx="5" fill="#0a2240"/>
+  <text x="490" y="118" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">S3</text>
+  <rect x="535" y="95" width="80" height="36" rx="5" fill="#0a2240"/>
+  <text x="575" y="118" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">画像/動画</text>
+  <rect x="630" y="95" width="80" height="36" rx="5" fill="#0a2240"/>
+  <text x="670" y="118" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">テキスト</text>
+  <text x="605" y="158" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">オブジェクトストレージ・マルチモーダル</text>
+  <text x="605" y="178" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">S3 Intelligent-Tiering でコスト最適化</text>
+  <text x="605" y="198" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">Rekognition / Comprehend で前処理</text>
+  <text x="605" y="218" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">Ground Truth でラベリング</text>
+  <!-- Bottom-left: リアルタイム -->
+  <rect x="30" y="255" width="330" height="165" rx="8" fill="#0a2545" stroke="#E63946" stroke-width="2"/>
+  <text x="195" y="279" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#E63946">リアルタイムデータ</text>
+  <rect x="50" y="292" width="130" height="36" rx="5" fill="#08182a"/>
+  <text x="115" y="315" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Kinesis Data Streams</text>
+  <rect x="198" y="292" width="140" height="36" rx="5" fill="#08182a"/>
+  <text x="268" y="315" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">MSK (Kafka)</text>
+  <text x="195" y="355" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">ストリーミング取込・低レイテンシ</text>
+  <text x="195" y="375" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">Kinesis Firehose → S3 自動バッファリング</text>
+  <text x="195" y="395" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">Feature Store へリアルタイム書込可能</text>
+  <!-- Bottom-right: バッチ -->
+  <rect x="440" y="255" width="330" height="165" rx="8" fill="#0a2545" stroke="#F77F00" stroke-width="2"/>
+  <text x="605" y="279" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#F77F00">バッチデータ</text>
+  <rect x="460" y="292" width="80" height="36" rx="5" fill="#08182a"/>
+  <text x="500" y="315" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">AWS Glue</text>
+  <rect x="555" y="292" width="60" height="36" rx="5" fill="#08182a"/>
+  <text x="585" y="315" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">EMR</text>
+  <rect x="630" y="292" width="80" height="36" rx="5" fill="#08182a"/>
+  <text x="670" y="315" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Athena</text>
+  <text x="605" y="355" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ccddee">定期バッチ・大規模ETL処理</text>
+  <text x="605" y="375" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">Glue Spark / PySpark で変換</text>
+  <text x="605" y="395" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">Athena → S3 直接クエリ分析</text>
+  <!-- Center: S3 データレイク -->
+  <rect x="300" y="205" width="200" height="48" rx="8" fill="#2d4059" stroke="#4CC9F0" stroke-width="2.5"/>
+  <text x="400" y="225" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">Amazon S3</text>
+  <text x="400" y="244" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#4CC9F0">データレイク</text>
+  <!-- Arrows to center -->
+  <line x1="195" y1="233" x2="300" y2="233" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(300,233) rotate(90)"/>
+  <line x1="605" y1="233" x2="500" y2="233" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#06D6A0" transform="translate(500,233) rotate(-90)"/>
+  <line x1="195" y1="255" x2="332" y2="253" stroke="#E63946" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#E63946" transform="translate(332,253) rotate(90)"/>
+  <line x1="605" y1="255" x2="468" y2="253" stroke="#F77F00" stroke-width="2"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#F77F00" transform="translate(468,253) rotate(-90)"/>
+  <!-- Bottom label -->
+  <text x="400" y="480" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#aaaaaa">全ソースはS3データレイクに集約 → Glue Catalog でスキーマ管理 → ML学習へ</text>
+</svg>

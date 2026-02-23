@@ -1,0 +1,77 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="32" font-family="Arial" font-size="19" fill="#ffffff" text-anchor="middle" font-weight="bold">サーバーレス推論 vs リアルタイム推論</text>
+
+  <!-- Serverless box (left) -->
+  <rect x="30" y="55" width="330" height="320" rx="12" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2.5"/>
+  <text x="195" y="82" font-family="Arial" font-size="15" fill="#4CC9F0" text-anchor="middle" font-weight="bold">Serverless Endpoint</text>
+
+  <rect x="50" y="95" width="290" height="36" rx="6" fill="#0a1e35" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="90" y="112" font-family="Arial" font-size="11" fill="#aaaaaa">コールドスタート:</text>
+  <text x="300" y="112" font-family="Arial" font-size="11" fill="#E63946" text-anchor="end">あり (数秒〜30秒)</text>
+  <text x="300" y="126" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="end">初回リクエスト時に起動</text>
+
+  <rect x="50" y="138" width="290" height="36" rx="6" fill="#0a1e35" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="90" y="155" font-family="Arial" font-size="11" fill="#aaaaaa">コスト:</text>
+  <text x="300" y="155" font-family="Arial" font-size="11" fill="#06D6A0" text-anchor="end">使用時のみ課金</text>
+  <text x="300" y="169" font-family="Arial" font-size="9" fill="#06D6A0" text-anchor="end">アイドル時は $0</text>
+
+  <rect x="50" y="181" width="290" height="36" rx="6" fill="#0a1e35" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="90" y="198" font-family="Arial" font-size="11" fill="#aaaaaa">スケール:</text>
+  <text x="300" y="198" font-family="Arial" font-size="11" fill="#06D6A0" text-anchor="end">自動 (0 → 1000+同時実行)</text>
+
+  <rect x="50" y="224" width="290" height="36" rx="6" fill="#0a1e35" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="90" y="241" font-family="Arial" font-size="11" fill="#aaaaaa">メモリ:</text>
+  <text x="300" y="241" font-family="Arial" font-size="11" fill="#ffffff" text-anchor="end">1024MB 〜 6144MB</text>
+
+  <rect x="50" y="267" width="290" height="36" rx="6" fill="#0a1e35" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="90" y="284" font-family="Arial" font-size="11" fill="#aaaaaa">適用:</text>
+  <text x="300" y="284" font-family="Arial" font-size="11" fill="#4CC9F0" text-anchor="end">低頻度・散発的トラフィック</text>
+
+  <rect x="50" y="310" width="290" height="36" rx="6" fill="#0a1e35" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="195" y="330" font-family="Arial" font-size="11" fill="#06D6A0" text-anchor="middle">ペイロード: 最大4MB / 60秒タイムアウト</text>
+
+  <!-- Real-time box (right) -->
+  <rect x="440" y="55" width="330" height="320" rx="12" fill="#0f3460" stroke="#F77F00" stroke-width="2.5"/>
+  <text x="605" y="82" font-family="Arial" font-size="15" fill="#F77F00" text-anchor="middle" font-weight="bold">Real-time Endpoint</text>
+
+  <rect x="460" y="95" width="290" height="36" rx="6" fill="#0a1e35" stroke="#F77F00" stroke-width="1"/>
+  <text x="500" y="112" font-family="Arial" font-size="11" fill="#aaaaaa">コールドスタート:</text>
+  <text x="710" y="112" font-family="Arial" font-size="11" fill="#06D6A0" text-anchor="end">なし (常時稼働)</text>
+
+  <rect x="460" y="138" width="290" height="36" rx="6" fill="#0a1e35" stroke="#F77F00" stroke-width="1"/>
+  <text x="500" y="155" font-family="Arial" font-size="11" fill="#aaaaaa">コスト:</text>
+  <text x="710" y="155" font-family="Arial" font-size="11" fill="#E63946" text-anchor="end">常時課金</text>
+  <text x="710" y="169" font-family="Arial" font-size="9" fill="#E63946" text-anchor="end">インスタンス稼働時間課金</text>
+
+  <rect x="460" y="181" width="290" height="36" rx="6" fill="#0a1e35" stroke="#F77F00" stroke-width="1"/>
+  <text x="500" y="198" font-family="Arial" font-size="11" fill="#aaaaaa">スケール:</text>
+  <text x="710" y="198" font-family="Arial" font-size="11" fill="#ffffff" text-anchor="end">Auto Scaling 設定必要</text>
+
+  <rect x="460" y="224" width="290" height="36" rx="6" fill="#0a1e35" stroke="#F77F00" stroke-width="1"/>
+  <text x="500" y="241" font-family="Arial" font-size="11" fill="#aaaaaa">レイテンシ:</text>
+  <text x="710" y="241" font-family="Arial" font-size="11" fill="#06D6A0" text-anchor="end">ミリ秒〜数十ミリ秒</text>
+
+  <rect x="460" y="267" width="290" height="36" rx="6" fill="#0a1e35" stroke="#F77F00" stroke-width="1"/>
+  <text x="500" y="284" font-family="Arial" font-size="11" fill="#aaaaaa">適用:</text>
+  <text x="710" y="284" font-family="Arial" font-size="11" fill="#F77F00" text-anchor="end">高頻度・低レイテンシ要件</text>
+
+  <rect x="460" y="310" width="290" height="36" rx="6" fill="#0a1e35" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="605" y="330" font-family="Arial" font-size="11" fill="#F77F00" text-anchor="middle">ペイロード: 最大6MB / 60秒タイムアウト</text>
+
+  <!-- Cold start timeline -->
+  <rect x="30" y="400" width="740" height="80" rx="10" fill="#0a1e30" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="400" y="422" font-family="Arial" font-size="12" fill="#4CC9F0" text-anchor="middle" font-weight="bold">Serverless コールドスタート タイムライン</text>
+  <line x1="60" y1="450" x2="740" y2="450" stroke="#aaaaaa" stroke-width="1.5"/>
+  <!-- Timeline markers -->
+  <line x1="60" y1="445" x2="60" y2="455" stroke="#aaaaaa" stroke-width="2"/>
+  <text x="60" y="468" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">0s</text>
+  <line x1="200" y1="445" x2="200" y2="455" stroke="#E63946" stroke-width="2"/>
+  <text x="200" y="468" font-family="Arial" font-size="10" fill="#E63946" text-anchor="middle">コンテナ起動</text>
+  <line x1="400" y1="445" x2="400" y2="455" stroke="#F77F00" stroke-width="2"/>
+  <text x="400" y="468" font-family="Arial" font-size="10" fill="#F77F00" text-anchor="middle">〜3-10s</text>
+  <line x1="600" y1="445" x2="600" y2="455" stroke="#06D6A0" stroke-width="2"/>
+  <text x="600" y="468" font-family="Arial" font-size="10" fill="#06D6A0" text-anchor="middle">モデルロード</text>
+  <line x1="740" y1="445" x2="740" y2="455" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="740" y="468" font-family="Arial" font-size="10" fill="#4CC9F0" text-anchor="middle">応答</text>
+</svg>

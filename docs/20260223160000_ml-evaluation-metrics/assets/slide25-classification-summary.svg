@@ -1,0 +1,49 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#60a5fa">分類指標 — まとめ</text>
+  <!-- Left column: formulas -->
+  <rect x="16" y="40" width="368" height="340" rx="12" fill="rgba(96,165,250,0.08)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="200" y="64" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa">主要公式チートシート</text>
+  <line x1="26" y1="74" x2="374" y2="74" stroke="#60a5fa" stroke-width="1" opacity="0.4"/>
+  <text x="30" y="94" font-size="11" fill="#a78bfa">Accuracy</text>
+  <text x="200" y="94" font-size="11" fill="#f8f8f8">= (TP+TN) / (TP+FP+FN+TN)</text>
+  <text x="30" y="114" font-size="11" fill="#a78bfa">Precision</text>
+  <text x="200" y="114" font-size="11" fill="#f8f8f8">= TP / (TP+FP)</text>
+  <text x="30" y="134" font-size="11" fill="#a78bfa">Recall</text>
+  <text x="200" y="134" font-size="11" fill="#f8f8f8">= TP / (TP+FN)</text>
+  <text x="30" y="154" font-size="11" fill="#a78bfa">F1</text>
+  <text x="200" y="154" font-size="11" fill="#f8f8f8">= 2·P·R / (P+R)</text>
+  <text x="30" y="174" font-size="11" fill="#a78bfa">Fβ</text>
+  <text x="200" y="174" font-size="11" fill="#f8f8f8">= (1+β²)·P·R / (β²·P+R)</text>
+  <text x="30" y="194" font-size="11" fill="#a78bfa">AUC-ROC</text>
+  <text x="200" y="194" font-size="11" fill="#f8f8f8">曲線下面積 (FPR vs TPR)</text>
+  <text x="30" y="214" font-size="11" fill="#a78bfa">MCC</text>
+  <text x="200" y="214" font-size="11" fill="#f8f8f8">= (TP·TN-FP·FN) / √(…)</text>
+  <text x="30" y="234" font-size="11" fill="#a78bfa">κ (Kappa)</text>
+  <text x="200" y="234" font-size="11" fill="#f8f8f8">= (Po-Pe) / (1-Pe)</text>
+  <line x1="26" y1="246" x2="374" y2="246" stroke="#60a5fa" stroke-width="1" opacity="0.4"/>
+  <text x="200" y="268" text-anchor="middle" font-size="12" font-weight="bold" fill="#f8f8f8">FPR = FP/(FP+TN)</text>
+  <text x="200" y="286" text-anchor="middle" font-size="12" font-weight="bold" fill="#f8f8f8">TPR = TP/(TP+FN) = Recall</text>
+  <text x="200" y="306" text-anchor="middle" font-size="12" font-weight="bold" fill="#f8f8f8">Specificity = TN/(TN+FP)</text>
+  <line x1="26" y1="318" x2="374" y2="318" stroke="#60a5fa" stroke-width="1" opacity="0.4"/>
+  <text x="200" y="340" text-anchor="middle" font-size="11" fill="#94a3b8">全指標の基盤: TP / FP / FN / TN</text>
+  <text x="200" y="358" text-anchor="middle" font-size="11" fill="#94a3b8">→ まずこの4値を正確に把握する</text>
+  <!-- Right column: quick guide -->
+  <rect x="416" y="40" width="368" height="340" rx="12" fill="rgba(52,211,153,0.08)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="600" y="64" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399">シーン別 クイックガイド</text>
+  <line x1="426" y1="74" x2="774" y2="74" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <text x="430" y="96" font-size="11" fill="#fbbf24">▸ 均衡データ、初期評価</text>
+  <text x="446" y="112" font-size="11" fill="#f8f8f8">Accuracy + Confusion Matrix</text>
+  <text x="430" y="134" font-size="11" fill="#fbbf24">▸ 不均衡データ（一般）</text>
+  <text x="446" y="150" font-size="11" fill="#f8f8f8">F1 + PR-AUC + MCC</text>
+  <text x="430" y="172" font-size="11" fill="#fbbf24">▸ 医療診断・詐欺検知（FN高コスト）</text>
+  <text x="446" y="188" font-size="11" fill="#f8f8f8">Recall + F2 + PR-AUC</text>
+  <text x="430" y="210" font-size="11" fill="#fbbf24">▸ スパム・コンテンツ審査（FP高コスト）</text>
+  <text x="446" y="226" font-size="11" fill="#f8f8f8">Precision + F0.5</text>
+  <text x="430" y="248" font-size="11" fill="#fbbf24">▸ スコアリングモデル・ランキング</text>
+  <text x="446" y="264" font-size="11" fill="#f8f8f8">AUC-ROC + PR-AUC</text>
+  <text x="430" y="286" font-size="11" fill="#fbbf24">▸ アノテーター一致度</text>
+  <text x="446" y="302" font-size="11" fill="#f8f8f8">Cohen's κ</text>
+  <text x="430" y="324" font-size="11" fill="#fbbf24">▸ 最も信頼できる単一指標が欲しい</text>
+  <text x="446" y="340" font-size="11" fill="#f8f8f8">MCC</text>
+  <text x="600" y="368" text-anchor="middle" font-size="10" fill="#94a3b8">閾値調整: 運用要件に合わせて最適化</text>
+</svg>

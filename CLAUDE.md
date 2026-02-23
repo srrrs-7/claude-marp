@@ -18,11 +18,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Environment variable:** If responses still exceed the limit, set `CLAUDE_CODE_MAX_OUTPUT_TOKENS` to a higher value. The default cap is 32000 tokens.
 
-**Chunked generation for 40+ slide decks (mandatory):**
+**Chunked generation for 30+ slide decks (mandatory):**
+> SVG-heavy decks (≥50% of slides have SVG) — use **15-slide** chunks, not 20, to avoid SVG token bloat.
+
 ```
-Chunk 1 (slides 1-30)  → Write to slides-data-part1.json
-Chunk 2 (slides 31-60) → Write to slides-data-part2.json
-Merge: { "slides": [...part1.slides, ...part2.slides] } → Write to slides-data.json
+Chunk 1 (slides 1-20)  → Write to slides-data-part1.json
+Chunk 2 (slides 21-40) → Write to slides-data-part2.json
+Chunk 3 (slides 41-60) → Write to slides-data-part3.json
+Merge: { "slides": [...part1.slides, ...part2.slides, ...part3.slides] } → Write to slides-data.json
 Delete: slides-data-part*.json
 Verify: bun -e "const d=JSON.parse(require('fs').readFileSync('slides-data.json','utf-8')); console.log('Slides:', d.slides.length)"
 ```
@@ -50,14 +53,17 @@ Ask one question at a time. Do not proceed without explicit approval ("OK", "続
 
 **Completion:** Present a summary of all collected information → wait for explicit user approval → then execute.
 
-**Shorthand (never ask for clarification on these):**
+**Shorthand — interpret immediately, NEVER ask for clarification:**
 
 | User says | Interpretation |
 |-----------|---------------|
-| `"60more"`, `"60slides"`, `"100+"` | Target slide count = that number |
-| `"全部並列"`, `"all at once"`, `"parallel"` | Spawn all workers simultaneously |
-| `"続けて"`, `"continue"`, `"next"` | Proceed to next phase |
+| `"60more"`, `"60slides"`, `"100+"`, `"60枚"` | Target slide count = that number — start generating |
+| `"全部並列"`, `"all at once"`, `"parallel"`, `"同時"` | Spawn all workers simultaneously in one message |
+| `"続けて"`, `"continue"`, `"next"`, `"go"` | Proceed to next phase without asking |
 | A number alone in slide context | Target slide count |
+| `"all N topics"` / `"全N個"` | Create all N presentations in parallel |
+
+> These shorthands exist because asking for clarification on them caused repeated session delays. Treat them as unambiguous commands.
 
 ---
 
@@ -261,8 +267,20 @@ docs/20260214073222_example/
 
 ## Parallel Task Execution
 
-When spawning Task agents for slide generation, include in the agent prompt:
+**CRITICAL — Worker agents do NOT inherit the parent session's permission grants.**
+Text in the agent prompt ("you have full permissions") does nothing. Permissions are granted only via the Task tool's `mode` parameter.
+
+| Task tool parameter | Required value | Effect |
+|--------------------|---------------|--------|
+| `mode` | `"bypassPermissions"` | Grants Bash/Write/Read/Edit/Glob without prompts |
+| `run_in_background` | `true` | Enables parallel execution |
+
+**Failure symptom:** worker stalls or falls back to sequential = `mode: "bypassPermissions"` was not set.
+
+Also include in each agent prompt (belt-and-suspenders):
 > "You have full permissions to use Bash, Write, Read, Edit, and Glob tools."
+
+**File isolation:** Assign non-overlapping output files (`slides-data-part1.json`, `part2.json`, …) to each worker. Overlapping slide ranges → Marp CLI cache conflict → silent corruption.
 
 **Wave-based execution for 10+ workers:** batch into waves of 5-7; wait for all to complete before launching the next wave.
 
@@ -329,6 +347,8 @@ tmux-based parallel execution: Claude Code (impl) + Codex (review) workers in sp
 | SVG shadows/arrows missing in HTML | `url(#id)` refs break in Marp's foreignObject context | `bun scripts/fix-svg-url-refs.ts` → re-export |
 | SVG images not showing in `dist/` | Marp CLI doesn't inline external `<img src="assets/">` | `fixAssetPaths()` auto-rewrites to `../assets/`; verify `assets/` dir exists |
 | 32K token API error | Large content output inline instead of via Write tool | Use Write tool for all large output; set `CLAUDE_CODE_MAX_OUTPUT_TOKENS` |
+| Parallel worker stalls / falls back to sequential | `mode: "bypassPermissions"` not set in Task tool call | Add `mode: "bypassPermissions"` to every Task tool call that spawns a slide worker |
+| Worker completes but output file missing | Overlapping file paths between workers (cache conflict) | Assign strictly non-overlapping `slides-data-part{N}.json` paths |
 
 ---
 

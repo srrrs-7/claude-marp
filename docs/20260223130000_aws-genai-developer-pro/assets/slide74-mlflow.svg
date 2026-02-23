@@ -1,0 +1,79 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">MLflow / 実験追跡 と SageMaker 統合</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">プロンプト・Fine-tuning 実験の再現性と管理</text>
+
+  <!-- MLflow components -->
+  <rect x="15" y="65" width="415" height="205" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="2"/>
+  <text x="223" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">MLflow の 4 コンポーネント</text>
+  <!-- Tracking -->
+  <rect x="25" y="92" width="185" height="80" rx="6" fill="#1e3a8a"/>
+  <text x="118" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#bfdbfe">Tracking</text>
+  <text x="35" y="126" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• 実験パラメータ記録</text>
+  <text x="35" y="142" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• メトリクス（BLEU等）</text>
+  <text x="35" y="158" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• アーティファクト保存</text>
+  <!-- Projects -->
+  <rect x="225" y="92" width="185" height="80" rx="6" fill="#1e3a8a"/>
+  <text x="318" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#bfdbfe">Projects</text>
+  <text x="235" y="126" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• 再現可能な実験定義</text>
+  <text x="235" y="142" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• MLproject ファイル</text>
+  <text x="235" y="158" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• 依存関係管理</text>
+  <!-- Models -->
+  <rect x="25" y="178" width="185" height="80" rx="6" fill="#1e40af"/>
+  <text x="118" y="196" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#bfdbfe">Models</text>
+  <text x="35" y="212" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• モデルレジストリ</text>
+  <text x="35" y="228" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• ステージ管理</text>
+  <text x="35" y="244" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• デプロイ統合</text>
+  <!-- Registry -->
+  <rect x="225" y="178" width="185" height="80" rx="6" fill="#1e40af"/>
+  <text x="318" y="196" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#bfdbfe">Registry</text>
+  <text x="235" y="212" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• Staging → Production</text>
+  <text x="235" y="228" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• バージョン管理</text>
+  <text x="235" y="244" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">• 承認ワークフロー</text>
+
+  <!-- SageMaker Experiments -->
+  <rect x="445" y="65" width="440" height="205" rx="8" fill="#3b0764" stroke="#a855f7" stroke-width="2"/>
+  <text x="665" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#c4b5fd">SageMaker Experiments &amp; Model Registry</text>
+  <!-- SM Experiments -->
+  <rect x="455" y="92" width="200" height="80" rx="6" fill="#4c1d95"/>
+  <text x="555" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#e9d5ff">SM Experiments</text>
+  <text x="465" y="126" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">• Run / Trial 管理</text>
+  <text x="465" y="142" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">• 自動メタデータ追跡</text>
+  <text x="465" y="158" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">• Studio UI 可視化</text>
+  <!-- SM Model Registry -->
+  <rect x="665" y="92" width="200" height="80" rx="6" fill="#4c1d95"/>
+  <text x="765" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#e9d5ff">SM Model Registry</text>
+  <text x="675" y="126" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">• バージョン管理</text>
+  <text x="675" y="142" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">• 承認フロー</text>
+  <text x="675" y="158" font-family="Arial,sans-serif" font-size="9" fill="#c4b5fd">• Model Cards 連携</text>
+  <!-- LLM specific -->
+  <rect x="455" y="180" width="410" height="80" rx="6" fill="#2e1065"/>
+  <text x="660" y="198" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#c4b5fd">LLM 実験管理の特殊要件</text>
+  <text x="465" y="214" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">• プロンプトテンプレートのバージョン管理（変更で結果が大幅変動）</text>
+  <text x="465" y="230" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">• 非決定的出力（同一入力でも異なる出力 → temperature=0 で固定）</text>
+  <text x="465" y="246" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">• 大規模アーティファクト（モデルチェックポイントは数十〜数百 GB）</text>
+
+  <!-- Bottom: Bedrock Prompt Management -->
+  <rect x="15" y="283" width="870" height="107" rx="8" fill="#0f172a"/>
+  <text x="450" y="301" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">Bedrock Prompt Management — プロンプトのバージョン管理</text>
+  <rect x="30" y="311" width="195" height="68" rx="5" fill="#1e3a8a"/>
+  <text x="128" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#93c5fd">プロンプトバージョン</text>
+  <text x="128" y="344" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bfdbfe">V1, V2, V3... と管理</text>
+  <text x="128" y="360" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">ARN で参照・デプロイ</text>
+  <text x="128" y="373" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">コード変更なし</text>
+  <rect x="238" y="311" width="195" height="68" rx="5" fill="#3b0764"/>
+  <text x="336" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#c4b5fd">A/B テスト統合</text>
+  <text x="336" y="344" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">同一エンドポイントで</text>
+  <text x="336" y="360" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a78bfa">複数プロンプト比較</text>
+  <text x="336" y="373" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">メトリクス自動収集</text>
+  <rect x="446" y="311" width="195" height="68" rx="5" fill="#064e3b"/>
+  <text x="544" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#6ee7b7">Flows との連携</text>
+  <text x="544" y="344" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">プロンプトノードで</text>
+  <text x="544" y="360" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">特定バージョン指定</text>
+  <text x="544" y="373" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">ビジュアルフロー</text>
+  <rect x="654" y="311" width="216" height="68" rx="5" fill="#78350f"/>
+  <text x="762" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#fde68a">Bedrock Flows</text>
+  <text x="762" y="344" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">ノーコードで</text>
+  <text x="762" y="360" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fbbf24">LLMワークフロー</text>
+  <text x="762" y="373" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">視覚的パイプライン</text>
+</svg>

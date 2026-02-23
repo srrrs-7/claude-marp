@@ -1,0 +1,80 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1b2a"/>
+  <text x="400" y="32" fill="#4CC9F0" font-size="19" font-weight="bold" text-anchor="middle" font-family="sans-serif">共変量シフト vs コンセプトドリフト</text>
+
+  <!-- Left column: 共変量シフト -->
+  <rect x="30" y="55" width="355" height="370" rx="10" fill="#1e3a5f" style="filter:drop-shadow(2px 2px 6px rgba(0,0,0,0.5))"/>
+  <rect x="30" y="55" width="355" height="45" rx="10" fill="#0f3460"/>
+  <rect x="30" y="85" width="355" height="15" rx="0" fill="#0f3460"/>
+  <text x="207" y="85" fill="#4CC9F0" font-size="16" font-weight="bold" text-anchor="middle" font-family="sans-serif">共変量シフト</text>
+
+  <!-- Covariate shift: formula -->
+  <rect x="50" y="115" width="315" height="45" rx="6" fill="#0a2545"/>
+  <text x="207" y="136" fill="#ffffff" font-size="13" text-anchor="middle" font-family="sans-serif">P(X) が変化、P(Y|X) は不変</text>
+  <text x="207" y="153" fill="#4CC9F0" font-size="11" text-anchor="middle" font-family="sans-serif">入力特徴量の分布は変わったが、関係性は同じ</text>
+
+  <!-- Visual: two overlapping distributions, shifted -->
+  <rect x="50" y="170" width="315" height="100" rx="6" fill="#0a2545"/>
+  <text x="207" y="190" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">分布の変化 (関係性は保持)</text>
+  <!-- Old dist -->
+  <polyline points="70,255 90,250 110,240 130,225 150,208 165,200 180,208 195,225 210,240 230,250 250,255" fill="none" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="70,255 90,250 110,240 130,225 150,208 165,200 180,208 195,225 210,240 230,250 250,255" fill="#4CC9F0" style="opacity:0.2"/>
+  <!-- New dist shifted right -->
+  <polyline points="170,255 190,250 210,240 230,225 250,208 265,200 280,208 295,225 310,240 330,250 350,255" fill="none" stroke="#E63946" stroke-width="2"/>
+  <polygon points="170,255 190,250 210,240 230,225 250,208 265,200 280,208 295,225 310,240 330,250 350,255" fill="#E63946" style="opacity:0.2"/>
+  <text x="165" y="198" fill="#4CC9F0" font-size="8" font-family="sans-serif">学習時</text>
+  <text x="265" y="198" fill="#E63946" font-size="8" font-family="sans-serif">本番時</text>
+
+  <!-- Example -->
+  <rect x="50" y="283" width="315" height="40" rx="6" fill="#0f3460"/>
+  <text x="207" y="301" fill="#ffffff" font-size="12" text-anchor="middle" font-family="sans-serif">例: 顧客層の変化</text>
+  <text x="207" y="316" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">若年層 → 高齢層 (購買パターン同じ)</text>
+
+  <!-- Countermeasures -->
+  <text x="55" y="346" fill="#4CC9F0" font-size="12" font-weight="bold" font-family="sans-serif">対策:</text>
+  <text x="55" y="364" fill="#aaaaaa" font-size="12" font-family="sans-serif">• 重点サンプリング (Importance Weighting)</text>
+  <text x="55" y="382" fill="#aaaaaa" font-size="12" font-family="sans-serif">• 定期的な再学習</text>
+  <text x="55" y="400" fill="#aaaaaa" font-size="12" font-family="sans-serif">• ドメイン適応手法</text>
+
+  <!-- Right column: コンセプトドリフト -->
+  <rect x="415" y="55" width="355" height="370" rx="10" fill="#0f3460" style="filter:drop-shadow(2px 2px 6px rgba(0,0,0,0.5))"/>
+  <rect x="415" y="55" width="355" height="45" rx="10" fill="#0a2545"/>
+  <rect x="415" y="85" width="355" height="15" rx="0" fill="#0a2545"/>
+  <text x="592" y="85" fill="#E63946" font-size="16" font-weight="bold" text-anchor="middle" font-family="sans-serif">コンセプトドリフト</text>
+
+  <!-- Concept drift: formula -->
+  <rect x="435" y="115" width="315" height="45" rx="6" fill="#0a2545"/>
+  <text x="592" y="136" fill="#ffffff" font-size="13" text-anchor="middle" font-family="sans-serif">P(Y|X) が変化（概念の変化）</text>
+  <text x="592" y="153" fill="#E63946" font-size="11" text-anchor="middle" font-family="sans-serif">入力が同じでも、正しい出力が変わった</text>
+
+  <!-- Visual: relationship changes -->
+  <rect x="435" y="170" width="315" height="100" rx="6" fill="#0a2545"/>
+  <text x="592" y="190" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">関係性の変化 (分布は保持)</text>
+  <!-- Old relationship line -->
+  <line x1="460" y1="255" x2="560" y2="205" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="445" y="255" fill="#4CC9F0" font-size="9" font-family="sans-serif">学習時</text>
+  <!-- New relationship line with different slope -->
+  <line x1="460" y1="215" x2="560" y2="250" stroke="#E63946" stroke-width="2"/>
+  <text x="445" y="218" fill="#E63946" font-size="9" font-family="sans-serif">本番時</text>
+  <!-- X and Y axis labels -->
+  <line x1="455" y1="260" x2="730" y2="260" stroke="#555555" stroke-width="1"/>
+  <line x1="455" y1="260" x2="455" y2="195" stroke="#555555" stroke-width="1"/>
+  <text x="730" y="260" fill="#555555" font-size="9" font-family="sans-serif"> X</text>
+  <text x="455" y="193" fill="#555555" font-size="9" font-family="sans-serif">Y</text>
+
+  <!-- Example -->
+  <rect x="435" y="283" width="315" height="40" rx="6" fill="#1e3a5f"/>
+  <text x="592" y="301" fill="#ffffff" font-size="12" text-anchor="middle" font-family="sans-serif">例: 季節変動・市場変化</text>
+  <text x="592" y="316" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">夏の購買 → 冬の購買 (全く異なるパターン)</text>
+
+  <!-- Countermeasures -->
+  <text x="440" y="346" fill="#E63946" font-size="12" font-weight="bold" font-family="sans-serif">対策:</text>
+  <text x="440" y="364" fill="#aaaaaa" font-size="12" font-family="sans-serif">• 定期的な再学習スケジュール</text>
+  <text x="440" y="382" fill="#aaaaaa" font-size="12" font-family="sans-serif">• オンライン学習 (継続的更新)</text>
+  <text x="440" y="400" fill="#aaaaaa" font-size="12" font-family="sans-serif">• アンサンブル (時期別モデル)</text>
+
+  <!-- Bottom label -->
+  <rect x="100" y="440" width="600" height="45" rx="8" fill="#1e3a5f"/>
+  <text x="400" y="462" fill="#4CC9F0" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">SageMaker Model Monitor で両方を検知可能</text>
+  <text x="400" y="480" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">データ品質モニター / モデル品質モニター / バイアスモニター</text>
+</svg>

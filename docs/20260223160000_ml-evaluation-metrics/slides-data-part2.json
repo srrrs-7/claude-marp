@@ -1,0 +1,115 @@
+{
+	"slides": [
+		{
+			"title": "回帰指標",
+			"layout": "section",
+			"content": ["連続値予測の品質を測る指標群"],
+			"speakerNotes": "MAE, MSE, RMSE, R², MAPE, Huber Loss を網羅"
+		},
+		{
+			"title": "回帰指標の全体像",
+			"layout": "default",
+			"content": ["![w:800 center](assets/slide28-regression-overview.svg)"],
+			"speakerNotes": "回帰指標の分類: スケール依存型 vs スケール独立型, 外れ値感度の違いを整理"
+		},
+		{
+			"title": "MAE — 平均絶対誤差",
+			"layout": "default",
+			"content": ["![w:800 center](assets/slide29-mae.svg)"],
+			"speakerNotes": "MAE = (1/n)Σ|yi - ŷi|。外れ値に対してロバスト。単位は元のスケールと同じ。"
+		},
+		{
+			"title": "MSE — 平均二乗誤差",
+			"layout": "default",
+			"content": ["![w:800 center](assets/slide30-mse.svg)"],
+			"speakerNotes": "MSE = (1/n)Σ(yi - ŷi)²。外れ値を大きくペナルティ。微分可能で最適化しやすい。"
+		},
+		{
+			"title": "RMSE — 二乗平均平方根誤差",
+			"layout": "default",
+			"content": ["![w:800 center](assets/slide31-rmse.svg)"],
+			"speakerNotes": "RMSE = √MSE。MSEと同じ性質だが元のスケールに戻せる点が有用。最も広く使われる回帰指標。"
+		},
+		{
+			"title": "MAE vs MSE vs RMSE — 外れ値の影響",
+			"layout": "default",
+			"content": ["![w:800 center](assets/slide32-mae-mse-rmse.svg)"],
+			"speakerNotes": "外れ値があるとMSE/RMSEが急上昇。MAEはロバストだが勾配が不連続。使い分けが重要。"
+		},
+		{
+			"title": "R² — 決定係数",
+			"layout": "default",
+			"content": ["![w:800 center](assets/slide33-r-squared.svg)"],
+			"speakerNotes": "R² = 1 - SS_res/SS_tot。モデルがどれだけ分散を説明できるか。1.0が完璧、0はベースライン並み。"
+		},
+		{
+			"title": "Adjusted R² — 調整済み決定係数",
+			"layout": "default",
+			"content": ["![w:800 center](assets/slide34-adjusted-r2.svg)"],
+			"speakerNotes": "特徴量数が多いとR²は常に増加するため、特徴量数でペナルティを与えた補正版。過学習の検出に有用。"
+		},
+		{
+			"title": "MAPE — 平均絶対パーセント誤差",
+			"layout": "default",
+			"content": ["![w:800 center](assets/slide35-mape.svg)"],
+			"speakerNotes": "MAPE = (100/n)Σ|yi-ŷi|/|yi|。スケール独立だが y≈0 で発散する欠点あり。SMAPE で改善可能。"
+		},
+		{
+			"title": "Huber Loss — ロバスト回帰損失",
+			"layout": "default",
+			"content": ["![w:800 center](assets/slide36-huber-loss.svg)"],
+			"speakerNotes": "小誤差ではMSE的、大誤差ではMAE的に振る舞う。δパラメータで切り替え点を制御。外れ値耐性と微分可能性を両立。"
+		},
+		{
+			"title": "外れ値への感度比較",
+			"layout": "default",
+			"content": ["![w:800 center](assets/slide37-outlier-sensitivity.svg)"],
+			"speakerNotes": "外れ値1点が各指標に与えるインパクトを視覚化。MSEは二乗なので外れ値に最も敏感。"
+		},
+		{
+			"title": "回帰指標 比較マトリクス",
+			"layout": "default",
+			"content": ["![w:800 center](assets/slide38-regression-matrix.svg)"],
+			"speakerNotes": "MAE/MSE/RMSE/R²/MAPE/Huberの性質を一覧比較。スケール依存性、外れ値感度、解釈容易さを軸に整理。"
+		},
+		{
+			"title": "スケール依存 vs 独立",
+			"layout": "default",
+			"content": ["![w:800 center](assets/slide39-scale-independence.svg)"],
+			"speakerNotes": "MAE/MSE/RMSEはスケール依存なので異なるデータセット間の比較に不向き。MAPE/R²はスケール独立で比較可能。"
+		},
+		{
+			"title": "回帰指標 選択フロー",
+			"layout": "default",
+			"content": ["![w:800 center](assets/slide40-regression-flowchart.svg)"],
+			"speakerNotes": "外れ値ありか？スケール比較するか？解釈が必要か？の問いで適切な指標に誘導するフローチャート。"
+		},
+		{
+			"title": "回帰指標 実装例 (Python)",
+			"layout": "default",
+			"content": ["sklearn.metrics で全主要指標を計算する例"],
+			"code": "from sklearn.metrics import (\n    mean_absolute_error,\n    mean_squared_error,\n    r2_score,\n    mean_absolute_percentage_error\n)\nimport numpy as np\n\ny_true = np.array([3.0, -0.5, 2.0, 7.0])\ny_pred = np.array([2.5,  0.0, 2.0, 8.0])\n\nprint(f\"MAE : {mean_absolute_error(y_true, y_pred):.4f}\")\nprint(f\"MSE : {mean_squared_error(y_true, y_pred):.4f}\")\nprint(f\"RMSE: {mean_squared_error(y_true, y_pred, squared=False):.4f}\")\nprint(f\"R²  : {r2_score(y_true, y_pred):.4f}\")\nprint(f\"MAPE: {mean_absolute_percentage_error(y_true, y_pred):.4f}\")\n\n# Huber Loss (手動実装)\ndelta = 1.0\nresid = y_true - y_pred\nhuber = np.where(np.abs(resid)<=delta,\n                 0.5*resid**2,\n                 delta*(np.abs(resid)-0.5*delta))\nprint(f\"Huber: {huber.mean():.4f}\")",
+			"codeLanguage": "python",
+			"speakerNotes": "squared=False でRMSEを直接取得可能（sklearn 0.24+）。HuberはPyTorchではnn.HuberLoss()として利用可能。"
+		},
+		{
+			"title": "回帰指標まとめ",
+			"layout": "default",
+			"content": ["![w:800 center](assets/slide43-regression-summary.svg)"],
+			"speakerNotes": "回帰指標の全体像、使い分けのポイント、外れ値処理の考え方をまとめる。"
+		},
+		{
+			"title": "回帰の落とし穴",
+			"layout": "default",
+			"content": [
+				"MAPE の罠: ゼロ近傍の値で発散 → SMAPE または sMAPE を使う",
+				"R² < 0 は起こりうる: ベースライン予測より悪いモデルで R² が負になる",
+				"RMSE ≠ MAE の差に注意: 差が大きいほど外れ値の影響大",
+				"スケールの異なる比較: MAPE か対数スケールで正規化して比較",
+				"残差の正規性チェック: 残差プロットで系統的パターンがないか確認",
+				"多重共線性: Adjusted R² で特徴量の過剰追加を検出"
+			],
+			"speakerNotes": "よくある失敗パターンと対策を整理。実務では複数指標を組み合わせて判断することが重要。"
+		}
+	]
+}

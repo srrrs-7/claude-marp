@@ -1,0 +1,50 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="26" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">Huber Loss — MAEとMSEの融合</text>
+  <!-- Formula -->
+  <rect x="50" y="38" width="700" height="70" rx="10" fill="rgba(167,139,250,0.12)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="400" y="60" text-anchor="middle" font-size="13" font-weight="bold" fill="#a78bfa">L_δ(y, ŷ) = </text>
+  <text x="340" y="80" font-size="12" fill="#34d399">½(y−ŷ)²</text>
+  <text x="500" y="80" font-size="12" fill="#94a3b8">if |y−ŷ| ≤ δ (MSE的)</text>
+  <text x="340" y="100" font-size="12" fill="#fb923c">δ·(|y−ŷ| − ½δ)</text>
+  <text x="500" y="100" font-size="12" fill="#94a3b8">if |y−ŷ| > δ (MAE的)</text>
+  <!-- Curve chart -->
+  <line x1="80" y1="310" x2="720" y2="310" stroke="#475569" stroke-width="1.5"/>
+  <line x1="400" y1="120" x2="400" y2="310" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="716,306 726,310 716,314" fill="#475569"/>
+  <text x="730" y="314" font-size="10" fill="#94a3b8">残差 e</text>
+  <text x="400" y="118" text-anchor="middle" font-size="10" fill="#94a3b8">Loss ↑</text>
+  <!-- MSE parabola (for small residuals) -->
+  <!-- MSE: y = e², scaled: x=400+80*e, y=310-40*e² (clip at delta=2) -->
+  <!-- e from -3 to 3, x=400+80e, loss=min(e²,2|e|-2) -->
+  <!-- MSE part: e in [-2,2]: loss=e² -->
+  <!-- Points: e=-3→loss=5: (160,110), e=-2→loss=4:(240,150), e=-1→loss=1:(320,270), e=0→0:(400,310), e=1→1:(480,270), e=2→4:(560,150), e=3→5:(640,110) -->
+  <!-- Huber with delta=2: e in [-2,2] use MSE: e²; outside: 2|e|-2 -->
+  <!-- MSE portion (thin dashed) -->
+  <polyline points="160,90 240,150 320,270 400,310 480,270 560,150 640,90"
+            fill="none" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <!-- Huber curve: same in [-2,2], then linear outside -->
+  <!-- Inside delta: (320,270),(360,294),(400,310),(440,294),(480,270) -->
+  <!-- Outside delta on left: e=-3: loss=2*3-2=4→y=310-40*4=150: (160,150) -->
+  <!-- e=-2.5: loss=2*2.5-2=3: y=310-120=190: (200,190) -->
+  <polyline points="80,110 160,150 200,190 240,190 320,270 360,294 400,310 440,294 480,270 560,190 600,190 640,150 720,110"
+            fill="none" stroke="#a78bfa" stroke-width="2.5"/>
+  <!-- Delta markers -->
+  <line x1="240" y1="140" x2="240" y2="320" stroke="#34d399" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="240" y="330" text-anchor="middle" font-size="10" fill="#34d399">−δ</text>
+  <line x1="560" y1="140" x2="560" y2="320" stroke="#34d399" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="560" y="330" text-anchor="middle" font-size="10" fill="#34d399">+δ</text>
+  <!-- Annotations -->
+  <rect x="80" y="122" width="100" height="26" rx="6" fill="rgba(251,146,60,0.2)" stroke="#fb923c" stroke-width="1"/>
+  <text x="130" y="139" text-anchor="middle" font-size="10" fill="#fb923c">MAE的(線形)</text>
+  <rect x="310" y="122" width="180" height="26" rx="6" fill="rgba(52,211,153,0.2)" stroke="#34d399" stroke-width="1"/>
+  <text x="400" y="139" text-anchor="middle" font-size="10" fill="#34d399">MSE的(二次) |e|≤δ</text>
+  <rect x="620" y="122" width="100" height="26" rx="6" fill="rgba(251,146,60,0.2)" stroke="#fb923c" stroke-width="1"/>
+  <text x="670" y="139" text-anchor="middle" font-size="10" fill="#fb923c">MAE的(線形)</text>
+  <!-- Legend -->
+  <line x1="80" y1="360" x2="120" y2="360" stroke="#a78bfa" stroke-width="2.5"/>
+  <text x="128" y="364" font-size="11" fill="#a78bfa">Huber Loss (δ=2)</text>
+  <line x1="280" y1="360" x2="320" y2="360" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="328" y="364" font-size="11" fill="#fb923c">MSE</text>
+  <!-- Bottom note -->
+  <text x="400" y="388" text-anchor="middle" font-size="11" fill="#94a3b8">δ を大きくするとMSEに近づき、小さくするとMAEに近づく。通常δ=1〜3 に設定</text>
+</svg>

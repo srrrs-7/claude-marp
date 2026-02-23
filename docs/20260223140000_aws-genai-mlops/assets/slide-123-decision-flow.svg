@@ -1,0 +1,154 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0d1b2a"/>
+
+  <!-- Title -->
+  <text x="400" y="28" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#4CC9F0" text-anchor="middle">MLOps 意思決定フローチャート</text>
+
+  <!-- ===== LEFT FLOWCHART: Inference ===== -->
+  <!-- Q1 Diamond: 推論頻度 -->
+  <polygon points="145,52 215,85 145,118 75,85" fill="#0a2545" stroke="#F77F00" stroke-width="2"/>
+  <text x="145" y="79" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#F77F00" text-anchor="middle">推論頻度は？</text>
+  <text x="145" y="95" font-family="Arial,sans-serif" font-size="8" fill="#F77F00" text-anchor="middle">Q1</text>
+
+  <!-- 低頻度 → Serverless -->
+  <line x1="75" y1="85" x2="28" y2="85" stroke="#4CC9F0" stroke-width="1.5"/>
+  <line x1="28" y1="85" x2="28" y2="148" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(28,150)"/>
+  <text x="52" y="78" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa">低頻度</text>
+
+  <!-- Serverless Terminal -->
+  <rect x="5" y="150" width="100" height="44" rx="5" fill="#06D6A0" fill-opacity="0.2" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="55" y="169" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#06D6A0" text-anchor="middle">Serverless</text>
+  <text x="55" y="184" font-family="Arial,sans-serif" font-size="9" fill="#06D6A0" text-anchor="middle">Inference</text>
+
+  <!-- 高頻度 → Q2 -->
+  <line x1="145" y1="118" x2="145" y2="148" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(145,150)"/>
+  <text x="160" y="140" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa">高頻度</text>
+
+  <!-- Q2 Diamond: リアルタイム必要？ -->
+  <polygon points="145,150 215,183 145,216 75,183" fill="#0a2545" stroke="#F77F00" stroke-width="2"/>
+  <text x="145" y="177" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#F77F00" text-anchor="middle">リアルタイム</text>
+  <text x="145" y="191" font-family="Arial,sans-serif" font-size="8" fill="#F77F00" text-anchor="middle">必要？ Q2</text>
+
+  <!-- Yes → Real-time -->
+  <line x1="215" y1="183" x2="275" y2="183" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(277,183) rotate(90)"/>
+  <text x="245" y="176" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa">Yes</text>
+  <rect x="277" y="162" width="105" height="44" rx="5" fill="#06D6A0" fill-opacity="0.2" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="329" y="179" font-family="Arial,sans-serif" font-size="8" font-weight="bold" fill="#06D6A0" text-anchor="middle">Real-time Endpoint</text>
+  <text x="329" y="195" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">+ Auto Scaling</text>
+
+  <!-- No → Q3 -->
+  <line x1="145" y1="216" x2="145" y2="248" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(145,250)"/>
+  <text x="160" y="238" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa">No</text>
+
+  <!-- Q3 Diamond: バッチサイズ -->
+  <polygon points="145,250 215,283 145,316 75,283" fill="#0a2545" stroke="#F77F00" stroke-width="2"/>
+  <text x="145" y="277" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#F77F00" text-anchor="middle">バッチサイズ？</text>
+  <text x="145" y="291" font-family="Arial,sans-serif" font-size="8" fill="#F77F00" text-anchor="middle">Q3</text>
+
+  <!-- 大量 → Batch Transform -->
+  <line x1="75" y1="283" x2="28" y2="283" stroke="#4CC9F0" stroke-width="1.5"/>
+  <line x1="28" y1="283" x2="28" y2="330" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(28,332)"/>
+  <text x="52" y="275" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa">大量</text>
+  <rect x="5" y="332" width="100" height="44" rx="5" fill="#06D6A0" fill-opacity="0.2" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="55" y="351" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#06D6A0" text-anchor="middle">Batch</text>
+  <text x="55" y="366" font-family="Arial,sans-serif" font-size="9" fill="#06D6A0" text-anchor="middle">Transform</text>
+
+  <!-- 非同期OK → Async Inference -->
+  <line x1="215" y1="283" x2="277" y2="283" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(279,283) rotate(90)"/>
+  <text x="245" y="275" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa">非同期OK</text>
+  <rect x="279" y="262" width="105" height="44" rx="5" fill="#06D6A0" fill-opacity="0.2" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="331" y="279" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#06D6A0" text-anchor="middle">Async</text>
+  <text x="331" y="295" font-family="Arial,sans-serif" font-size="9" fill="#06D6A0" text-anchor="middle">Inference</text>
+
+  <!-- Multi-Model branch from Q3 (right side) -->
+  <line x1="215" y1="283" x2="277" y2="283" stroke="none"/>
+  <!-- Extra branch for multi-model -->
+  <line x1="145" y1="316" x2="145" y2="350" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(145,352)"/>
+  <text x="160" y="340" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa">複数モデル</text>
+  <rect x="95" y="352" width="105" height="44" rx="5" fill="#F77F00" fill-opacity="0.15" stroke="#F77F00" stroke-width="1.5"/>
+  <text x="147" y="371" font-family="Arial,sans-serif" font-size="8" font-weight="bold" fill="#F77F00" text-anchor="middle">Multi-Model</text>
+  <text x="147" y="386" font-family="Arial,sans-serif" font-size="8" fill="#F77F00" text-anchor="middle">Endpoint</text>
+
+  <!-- Divider -->
+  <line x1="410" y1="38" x2="410" y2="495" stroke="#888888" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- ===== RIGHT FLOWCHART: Training/Quality ===== -->
+  <!-- Q4 Diamond: 学習コスト削減 -->
+  <polygon points="600,52 680,85 600,118 520,85" fill="#0a2545" stroke="#F77F00" stroke-width="2"/>
+  <text x="600" y="79" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#F77F00" text-anchor="middle">学習コスト削減</text>
+  <text x="600" y="93" font-family="Arial,sans-serif" font-size="8" fill="#F77F00" text-anchor="middle">したい？ Q4</text>
+
+  <!-- Yes → Spot Training -->
+  <line x1="680" y1="85" x2="730" y2="85" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(732,85) rotate(90)"/>
+  <text x="705" y="78" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa">Yes</text>
+  <rect x="732" y="64" width="60" height="44" rx="5" fill="#06D6A0" fill-opacity="0.2" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="762" y="81" font-family="Arial,sans-serif" font-size="8" font-weight="bold" fill="#06D6A0" text-anchor="middle">Managed</text>
+  <text x="762" y="95" font-family="Arial,sans-serif" font-size="8" fill="#06D6A0" text-anchor="middle">Spot</text>
+
+  <!-- Arrow → checkpoint -->
+  <line x1="762" y1="108" x2="762" y2="130" stroke="#06D6A0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#06D6A0" transform="translate(762,132)"/>
+  <rect x="715" y="132" width="95" height="48" rx="4" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="762" y="150" font-family="Arial,sans-serif" font-size="8" fill="#4CC9F0" text-anchor="middle">チェックポイント</text>
+  <text x="762" y="164" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">checkpoint_s3_uri</text>
+  <text x="762" y="176" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa" text-anchor="middle">設定必須</text>
+
+  <!-- Q5 Diamond: 公平性・説明性 -->
+  <polygon points="600,210 680,245 600,280 520,245" fill="#0a2545" stroke="#F77F00" stroke-width="2"/>
+  <text x="600" y="237" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#F77F00" text-anchor="middle">公平性・説明性</text>
+  <text x="600" y="251" font-family="Arial,sans-serif" font-size="8" fill="#F77F00" text-anchor="middle">必要？ Q5</text>
+
+  <!-- Yes → Clarify -->
+  <line x1="680" y1="245" x2="732" y2="245" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(734,245) rotate(90)"/>
+  <text x="706" y="237" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa">Yes</text>
+  <rect x="734" y="224" width="55" height="44" rx="5" fill="#06D6A0" fill-opacity="0.2" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="761" y="241" font-family="Arial,sans-serif" font-size="8" font-weight="bold" fill="#06D6A0" text-anchor="middle">SageMaker</text>
+  <text x="761" y="255" font-family="Arial,sans-serif" font-size="8" fill="#06D6A0" text-anchor="middle">Clarify</text>
+
+  <!-- Q6 Diamond: ドリフト監視 -->
+  <polygon points="600,310 680,345 600,380 520,345" fill="#0a2545" stroke="#F77F00" stroke-width="2"/>
+  <text x="600" y="337" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#F77F00" text-anchor="middle">本番ドリフト</text>
+  <text x="600" y="351" font-family="Arial,sans-serif" font-size="8" fill="#F77F00" text-anchor="middle">監視？ Q6</text>
+
+  <!-- Yes → Model Monitor -->
+  <line x1="680" y1="345" x2="732" y2="345" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(734,345) rotate(90)"/>
+  <text x="706" y="337" font-family="Arial,sans-serif" font-size="8" fill="#aaaaaa">Yes</text>
+  <rect x="734" y="322" width="58" height="46" rx="5" fill="#06D6A0" fill-opacity="0.2" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="763" y="339" font-family="Arial,sans-serif" font-size="8" font-weight="bold" fill="#06D6A0" text-anchor="middle">Model</text>
+  <text x="763" y="353" font-family="Arial,sans-serif" font-size="8" fill="#06D6A0" text-anchor="middle">Monitor</text>
+
+  <!-- Q7 Diamond: 本番テスト -->
+  <polygon points="560,420 640,455 560,490 480,455" fill="#0a2545" stroke="#F77F00" stroke-width="2"/>
+  <text x="560" y="447" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#F77F00" text-anchor="middle">影響ゼロで</text>
+  <text x="560" y="461" font-family="Arial,sans-serif" font-size="8" fill="#F77F00" text-anchor="middle">本番テスト？</text>
+
+  <!-- Shadow → -->
+  <line x1="640" y1="455" x2="690" y2="455" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-5 -5,5 5,5" fill="#4CC9F0" transform="translate(692,455) rotate(90)"/>
+  <rect x="692" y="434" width="100" height="44" rx="5" fill="#06D6A0" fill-opacity="0.2" stroke="#06D6A0" stroke-width="1.5"/>
+  <text x="742" y="453" font-family="Arial,sans-serif" font-size="8" font-weight="bold" fill="#06D6A0" text-anchor="middle">Shadow</text>
+  <text x="742" y="467" font-family="Arial,sans-serif" font-size="8" fill="#06D6A0" text-anchor="middle">Deployment</text>
+
+  <!-- Arrows between right Qs -->
+  <line x1="600" y1="118" x2="600" y2="210" stroke="#4CC9F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="600" y1="280" x2="600" y2="310" stroke="#4CC9F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="560" y1="380" x2="560" y2="420" stroke="#4CC9F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="600" y1="380" x2="560" y2="420" stroke="#4CC9F0" stroke-width="1"/>
+
+  <!-- Legend -->
+  <rect x="420" y="448" width="55" height="22" rx="3" fill="#0a2545" stroke="#F77F00" stroke-width="1"/>
+  <text x="447" y="462" font-family="Arial,sans-serif" font-size="8" fill="#F77F00" text-anchor="middle">◆ 判断</text>
+  <rect x="482" y="448" width="55" height="22" rx="3" fill="#06D6A0" fill-opacity="0.2" stroke="#06D6A0" stroke-width="1"/>
+  <text x="509" y="462" font-family="Arial,sans-serif" font-size="8" fill="#06D6A0" text-anchor="middle">□ 選択</text>
+</svg>

@@ -1,0 +1,64 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- formula -->
+  <rect x="50" y="14" width="700" height="56" rx="10" fill="rgba(251,146,60,0.15)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="400" y="42" text-anchor="middle" font-size="18" font-weight="bold" fill="#fb923c">RMSE = √MSE = √( (1/n) · Σ(y_i − ŷ_i)² )</text>
+  <text x="400" y="62" text-anchor="middle" font-size="12" fill="#94a3b8">Root Mean Squared Error — 最も広く使われる回帰指標</text>
+  <!-- Visual: step-by-step calculation -->
+  <text x="400" y="96" text-anchor="middle" font-size="13" font-weight="bold" fill="#f8f8f8">計算ステップ（5サンプル例）</text>
+  <!-- Step table -->
+  <rect x="50" y="108" width="700" height="36" rx="6" fill="rgba(255,255,255,0.08)"/>
+  <text x="120" y="130" text-anchor="middle" font-size="11" fill="#94a3b8">サンプル</text>
+  <text x="230" y="130" text-anchor="middle" font-size="11" fill="#94a3b8">y (実値)</text>
+  <text x="340" y="130" text-anchor="middle" font-size="11" fill="#94a3b8">ŷ (予測)</text>
+  <text x="450" y="130" text-anchor="middle" font-size="11" fill="#94a3b8">誤差 e</text>
+  <text x="570" y="130" text-anchor="middle" font-size="11" fill="#94a3b8">e² (二乗誤差)</text>
+  <text x="690" y="130" text-anchor="middle" font-size="11" fill="#94a3b8">|e| (絶対誤差)</text>
+  <!-- rows -->
+  <text x="120" y="158" text-anchor="middle" font-size="11" fill="#f8f8f8">1</text>
+  <text x="230" y="158" text-anchor="middle" font-size="11" fill="#f8f8f8">100</text>
+  <text x="340" y="158" text-anchor="middle" font-size="11" fill="#f8f8f8">95</text>
+  <text x="450" y="158" text-anchor="middle" font-size="11" fill="#fb923c">-5</text>
+  <text x="570" y="158" text-anchor="middle" font-size="11" fill="#fb923c">25</text>
+  <text x="690" y="158" text-anchor="middle" font-size="11" fill="#34d399">5</text>
+  <line x1="50" y1="165" x2="750" y2="165" stroke="#475569" stroke-width="0.5"/>
+  <text x="120" y="181" text-anchor="middle" font-size="11" fill="#f8f8f8">2</text>
+  <text x="230" y="181" text-anchor="middle" font-size="11" fill="#f8f8f8">200</text>
+  <text x="340" y="181" text-anchor="middle" font-size="11" fill="#f8f8f8">210</text>
+  <text x="450" y="181" text-anchor="middle" font-size="11" fill="#fb923c">+10</text>
+  <text x="570" y="181" text-anchor="middle" font-size="11" fill="#fb923c">100</text>
+  <text x="690" y="181" text-anchor="middle" font-size="11" fill="#34d399">10</text>
+  <line x1="50" y1="188" x2="750" y2="188" stroke="#475569" stroke-width="0.5"/>
+  <text x="120" y="204" text-anchor="middle" font-size="11" fill="#f8f8f8">3</text>
+  <text x="230" y="204" text-anchor="middle" font-size="11" fill="#f8f8f8">150</text>
+  <text x="340" y="204" text-anchor="middle" font-size="11" fill="#f8f8f8">152</text>
+  <text x="450" y="204" text-anchor="middle" font-size="11" fill="#fb923c">+2</text>
+  <text x="570" y="204" text-anchor="middle" font-size="11" fill="#fb923c">4</text>
+  <text x="690" y="204" text-anchor="middle" font-size="11" fill="#34d399">2</text>
+  <line x1="50" y1="211" x2="750" y2="211" stroke="#475569" stroke-width="0.5"/>
+  <text x="120" y="227" text-anchor="middle" font-size="11" fill="#f8f8f8">4</text>
+  <text x="230" y="227" text-anchor="middle" font-size="11" fill="#f8f8f8">80</text>
+  <text x="340" y="227" text-anchor="middle" font-size="11" fill="#f8f8f8">84</text>
+  <text x="450" y="227" text-anchor="middle" font-size="11" fill="#fb923c">+4</text>
+  <text x="570" y="227" text-anchor="middle" font-size="11" fill="#fb923c">16</text>
+  <text x="690" y="227" text-anchor="middle" font-size="11" fill="#34d399">4</text>
+  <line x1="50" y1="234" x2="750" y2="234" stroke="#475569" stroke-width="0.5"/>
+  <text x="120" y="250" text-anchor="middle" font-size="11" fill="#f8f8f8">5</text>
+  <text x="230" y="250" text-anchor="middle" font-size="11" fill="#f8f8f8">300</text>
+  <text x="340" y="250" text-anchor="middle" font-size="11" fill="#f8f8f8">297</text>
+  <text x="450" y="250" text-anchor="middle" font-size="11" fill="#fb923c">-3</text>
+  <text x="570" y="250" text-anchor="middle" font-size="11" fill="#fb923c">9</text>
+  <text x="690" y="250" text-anchor="middle" font-size="11" fill="#34d399">3</text>
+  <line x1="50" y1="257" x2="750" y2="257" stroke="#475569" stroke-width="1"/>
+  <!-- Totals row -->
+  <rect x="50" y="257" width="700" height="30" rx="0" fill="rgba(255,255,255,0.06)"/>
+  <text x="120" y="277" text-anchor="middle" font-size="11" font-weight="bold" fill="#94a3b8">合計</text>
+  <text x="570" y="277" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb923c">MSE = 154/5 = 30.8</text>
+  <text x="690" y="277" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399">MAE = 24/5 = 4.8</text>
+  <!-- Results -->
+  <rect x="50" y="298" width="340" height="50" rx="8" fill="rgba(251,146,60,0.2)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="220" y="318" text-anchor="middle" font-size="14" font-weight="bold" fill="#fb923c">RMSE = √30.8 ≈ 5.55</text>
+  <text x="220" y="338" text-anchor="middle" font-size="11" fill="#94a3b8">「平均的に約5.55の誤差がある」</text>
+  <rect x="410" y="298" width="340" height="50" rx="8" fill="rgba(52,211,153,0.2)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="580" y="318" text-anchor="middle" font-size="14" font-weight="bold" fill="#34d399">MAE = 4.8</text>
+  <text x="580" y="338" text-anchor="middle" font-size="11" fill="#94a3b8">RMSE &gt; MAE → 外れ値の影響あり</text>
+</svg>

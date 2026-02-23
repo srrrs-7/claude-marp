@@ -1,0 +1,27 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- formula -->
+  <rect x="50" y="18" width="700" height="58" rx="10" fill="rgba(52,211,153,0.15)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="400" y="56" text-anchor="middle" font-size="21" font-weight="bold" fill="#34d399">Accuracy = (TP + TN) / (TP + FP + FN + TN)</text>
+  <!-- subtitle -->
+  <text x="400" y="100" text-anchor="middle" font-size="13" fill="#94a3b8">「全予測のうち正解した割合」— 最もシンプルな指標</text>
+  <!-- Bar chart: correct vs incorrect -->
+  <text x="400" y="126" text-anchor="middle" font-size="12" fill="#94a3b8">例: 1000件中 TP=55, TN=910, FP=20, FN=15</text>
+  <!-- correct portion -->
+  <rect x="80" y="140" width="622" height="50" rx="6" fill="rgba(52,211,153,0.25)" stroke="#34d399" stroke-width="1.5"/>
+  <!-- incorrect overlay -->
+  <rect x="80" y="140" width="35" height="50" rx="6" fill="rgba(244,114,182,0.5)" stroke="#f472b6" stroke-width="1.5"/>
+  <!-- labels on bar -->
+  <text x="410" y="170" text-anchor="middle" font-size="14" font-weight="bold" fill="#34d399">TP + TN = 965 正解</text>
+  <text x="97" y="170" text-anchor="middle" font-size="10" fill="#f8f8f8">35誤</text>
+  <!-- bracket -->
+  <line x1="80" y1="200" x2="702" y2="200" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="80" y1="196" x2="80" y2="204" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="702" y1="196" x2="702" y2="204" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="391" y="218" text-anchor="middle" font-size="12" fill="#94a3b8">総件数 1000件</text>
+  <text x="400" y="240" text-anchor="middle" font-size="14" fill="#34d399">Accuracy = 965/1000 = 96.5%</text>
+  <!-- Warning box -->
+  <rect x="60" y="258" width="680" height="80" rx="10" fill="rgba(251,146,60,0.12)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="400" y="280" text-anchor="middle" font-size="13" font-weight="bold" fill="#fb923c">⚠ クラス不均衡時は要注意</text>
+  <text x="400" y="300" text-anchor="middle" font-size="12" fill="#f8f8f8">正例1%、負例99% のデータで「全部負例と予測」→ Accuracy = 99%</text>
+  <text x="400" y="320" text-anchor="middle" font-size="12" fill="#f8f8f8">だが正例を1件も検出できていない → Recall = 0% （機能していないモデル）</text>
+</svg>

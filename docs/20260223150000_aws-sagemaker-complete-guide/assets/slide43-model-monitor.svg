@@ -1,0 +1,124 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <text x="450" y="30" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#f1f5f9">Model Monitor ドリフト検知アーキテクチャ</text>
+
+  <!-- Inference Endpoint -->
+  <rect x="20" y="55" width="150" height="100" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="95" y="78" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">Inference</text>
+  <text x="95" y="93" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">Endpoint</text>
+  <text x="95" y="110" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">リクエスト受信</text>
+  <text x="95" y="125" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">予測値返却</text>
+  <text x="95" y="142" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316">Data Capture ON</text>
+
+  <!-- Arrow: Endpoint → Data Capture -->
+  <line x1="170" y1="105" x2="208" y2="105" stroke="#f97316" stroke-width="2"/>
+  <polygon points="208,100 220,105 208,110" fill="#f97316"/>
+
+  <!-- Data Capture -->
+  <rect x="220" y="55" width="160" height="100" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="300" y="78" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f97316">Data Capture</text>
+  <text x="300" y="95" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Input (特徴量) 記録</text>
+  <text x="300" y="108" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Output (予測値) 記録</text>
+  <text x="300" y="121" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">サンプリング率設定</text>
+  <text x="300" y="137" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">→ S3 (JSONL形式)</text>
+
+  <!-- Arrow: Data Capture → S3 -->
+  <line x1="380" y1="105" x2="418" y2="105" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="418,100 430,105 418,110" fill="#94a3b8"/>
+
+  <!-- S3 Storage -->
+  <rect x="430" y="55" width="120" height="100" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="490" y="80" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#22c55e">S3 Bucket</text>
+  <text x="490" y="97" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">captured/data/</text>
+  <text x="490" y="110" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">baseline/</text>
+  <text x="490" y="123" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">reports/</text>
+  <text x="490" y="141" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">results/</text>
+
+  <!-- Baseline Statistics (top branch) -->
+  <line x1="490" y1="55" x2="490" y2="30" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="490" y1="30" x2="680" y2="30" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="680" y1="30" x2="680" y2="55" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="675,55 680,67 685,55" fill="#a855f7"/>
+  <text x="585" y="24" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a855f7">学習データから Baseline 生成</text>
+
+  <!-- Baseline box -->
+  <rect x="600" y="55" width="160" height="100" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="680" y="78" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#a855f7">Baseline Statistics</text>
+  <text x="680" y="95" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">学習データの基準統計</text>
+  <text x="680" y="108" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">平均・分散・分位数</text>
+  <text x="680" y="121" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Constraints.json</text>
+  <text x="680" y="137" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Statistics.json</text>
+
+  <!-- Monitoring Job -->
+  <!-- Arrow from S3 to Monitor -->
+  <line x1="490" y1="155" x2="490" y2="195" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="485,195 490,207 495,195" fill="#94a3b8"/>
+
+  <rect x="360" y="207" width="260" height="90" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="490" y="228" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">Monitoring Job</text>
+  <text x="490" y="245" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316">スケジュール実行 (hourly / daily / cron)</text>
+  <text x="490" y="260" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Captured Data vs Baseline 比較</text>
+  <text x="490" y="273" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">統計的検定 (KS検定, 欠損率チェック等)</text>
+  <text x="490" y="286" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">制約違反 (Constraint Violation) 検出</text>
+
+  <!-- Arrow from Baseline to Monitor -->
+  <line x1="680" y1="155" x2="620" y2="207" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="615,202 620,214 625,201" fill="#a855f7"/>
+
+  <!-- Constraint Violation -->
+  <line x1="490" y1="297" x2="490" y2="327" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="485,327 490,339 495,327" fill="#ef4444"/>
+
+  <rect x="340" y="339" width="300" height="60" rx="8" fill="#3a1010" stroke="#ef4444" stroke-width="2"/>
+  <text x="490" y="360" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ef4444">Constraint Violation 検出</text>
+  <text x="490" y="378" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f1f5f9">特徴量分布ドリフト / 予測精度劣化 / バイアス変化</text>
+  <text x="490" y="392" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">violation_count, feature_name, constraint_check_failed</text>
+
+  <!-- CloudWatch arrow -->
+  <line x1="340" y1="369" x2="290" y2="369" stroke="#f97316" stroke-width="2"/>
+  <polygon points="290,364 278,369 290,374" fill="#f97316"/>
+
+  <!-- CloudWatch -->
+  <rect x="130" y="339" width="148" height="100" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="204" y="360" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f97316">CloudWatch</text>
+  <text x="204" y="376" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Metrics 送信</text>
+  <text x="204" y="389" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Alarm 設定</text>
+  <text x="204" y="402" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Dashboard 可視化</text>
+  <text x="204" y="429" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">feature_drift_score</text>
+
+  <!-- SNS arrow -->
+  <line x1="130" y1="379" x2="80" y2="379" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="80,374 68,379 80,384" fill="#22c55e"/>
+
+  <!-- SNS -->
+  <rect x="20" y="359" width="60" height="60" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="50" y="382" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">SNS</text>
+  <text x="50" y="396" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">通知</text>
+  <text x="50" y="409" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Email/</text>
+  <text x="50" y="420" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Slack</text>
+
+  <!-- EventBridge retraining trigger -->
+  <line x1="640" y1="369" x2="690" y2="369" stroke="#14b8a6" stroke-width="2"/>
+  <polygon points="690,364 702,369 690,374" fill="#14b8a6"/>
+
+  <rect x="700" y="339" width="180" height="100" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="790" y="360" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#14b8a6">再学習トリガー</text>
+  <text x="790" y="377" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">EventBridge Rule</text>
+  <text x="790" y="390" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">→ SageMaker Pipeline</text>
+  <text x="790" y="403" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">自動再トレーニング開始</text>
+  <text x="790" y="418" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">→ Model Registry 更新</text>
+  <text x="790" y="431" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">→ CI/CD Pipeline 起動</text>
+
+  <!-- S3 Reports arrow -->
+  <line x1="550" y1="369" x2="700" y2="369" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- Legend row at bottom -->
+  <rect x="20" y="456" width="860" height="36" rx="4" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+  <text x="30" y="470" font-family="sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">監視頻度:</text>
+  <text x="110" y="470" font-family="sans-serif" font-size="10" fill="#f1f5f9">hourly (高頻度取引) |</text>
+  <text x="260" y="470" font-family="sans-serif" font-size="10" fill="#f1f5f9">daily (標準) |</text>
+  <text x="360" y="470" font-family="sans-serif" font-size="10" fill="#f1f5f9">cron式 (カスタム)</text>
+  <text x="30" y="484" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f97316">Data Capture:</text>
+  <text x="130" y="484" font-family="sans-serif" font-size="10" fill="#f1f5f9">サンプリング率 0〜100% | capture_mode: Input / Output / InputAndOutput</text>
+</svg>

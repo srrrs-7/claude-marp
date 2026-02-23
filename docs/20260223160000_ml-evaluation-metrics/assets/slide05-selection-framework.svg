@@ -1,0 +1,72 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <text x="400" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">指標選択の3ステップフレームワーク</text>
+  <!-- Step boxes -->
+  <!-- Step 1 -->
+  <rect x="30" y="50" width="220" height="290" rx="12" fill="rgba(96,165,250,0.12)" stroke="#60a5fa" stroke-width="2"/>
+  <rect x="30" y="50" width="220" height="46" rx="12" fill="rgba(96,165,250,0.3)"/>
+  <rect x="30" y="80" width="220" height="16" rx="0" fill="rgba(96,165,250,0.3)"/>
+  <text x="140" y="79" text-anchor="middle" font-size="13" font-weight="bold" fill="#f8f8f8">Step 1</text>
+  <text x="140" y="95" text-anchor="middle" font-size="12" fill="#60a5fa">タスクの種類を特定</text>
+  <line x1="40" y1="106" x2="240" y2="106" stroke="#60a5fa" stroke-width="1" opacity="0.4"/>
+  <text x="140" y="126" text-anchor="middle" font-size="11" fill="#94a3b8">「何を予測するか？」</text>
+  <text x="55" y="148" font-size="11" fill="#60a5fa">●</text>
+  <text x="70" y="148" font-size="11" fill="#f8f8f8">2クラス / 多クラス 分類</text>
+  <text x="55" y="168" font-size="11" fill="#34d399">●</text>
+  <text x="70" y="168" font-size="11" fill="#f8f8f8">連続値を予測（回帰）</text>
+  <text x="55" y="188" font-size="11" fill="#a78bfa">●</text>
+  <text x="70" y="188" font-size="11" fill="#f8f8f8">テキスト生成 / 翻訳</text>
+  <text x="55" y="208" font-size="11" fill="#fb923c">●</text>
+  <text x="70" y="208" font-size="11" fill="#f8f8f8">アイテム推薦 / 検索</text>
+  <text x="55" y="228" font-size="11" fill="#f472b6">●</text>
+  <text x="70" y="228" font-size="11" fill="#f8f8f8">データのグルーピング</text>
+  <line x1="40" y1="242" x2="240" y2="242" stroke="#60a5fa" stroke-width="1" opacity="0.3"/>
+  <text x="140" y="262" text-anchor="middle" font-size="11" fill="#94a3b8">→ カテゴリが絞られる</text>
+  <!-- Step 2 -->
+  <rect x="290" y="50" width="220" height="290" rx="12" fill="rgba(251,146,60,0.12)" stroke="#fb923c" stroke-width="2"/>
+  <rect x="290" y="50" width="220" height="46" rx="12" fill="rgba(251,146,60,0.3)"/>
+  <rect x="290" y="80" width="220" height="16" rx="0" fill="rgba(251,146,60,0.3)"/>
+  <text x="400" y="79" text-anchor="middle" font-size="13" font-weight="bold" fill="#f8f8f8">Step 2</text>
+  <text x="400" y="95" text-anchor="middle" font-size="12" fill="#fb923c">ビジネス要件を整理</text>
+  <line x1="300" y1="106" x2="500" y2="106" stroke="#fb923c" stroke-width="1" opacity="0.4"/>
+  <text x="400" y="126" text-anchor="middle" font-size="11" fill="#94a3b8">「何を最大化したいか？」</text>
+  <text x="310" y="148" font-size="11" fill="#fb923c">▸</text>
+  <text x="322" y="148" font-size="11" fill="#f8f8f8">クラス不均衡はあるか？</text>
+  <text x="310" y="168" font-size="11" fill="#fb923c">▸</text>
+  <text x="322" y="168" font-size="11" fill="#f8f8f8">FPとFNのコストは同等か？</text>
+  <text x="310" y="188" font-size="11" fill="#fb923c">▸</text>
+  <text x="322" y="188" font-size="11" fill="#f8f8f8">外れ値への感度は必要か？</text>
+  <text x="310" y="208" font-size="11" fill="#fb923c">▸</text>
+  <text x="322" y="208" font-size="11" fill="#f8f8f8">スケール独立性が必要か？</text>
+  <text x="310" y="228" font-size="11" fill="#fb923c">▸</text>
+  <text x="322" y="228" font-size="11" fill="#f8f8f8">順位 / 位置は重要か？</text>
+  <line x1="300" y1="242" x2="500" y2="242" stroke="#fb923c" stroke-width="1" opacity="0.3"/>
+  <text x="400" y="262" text-anchor="middle" font-size="11" fill="#94a3b8">→ 候補が2〜3個に絞られる</text>
+  <!-- Step 3 -->
+  <rect x="550" y="50" width="220" height="290" rx="12" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="2"/>
+  <rect x="550" y="50" width="220" height="46" rx="12" fill="rgba(52,211,153,0.3)"/>
+  <rect x="550" y="80" width="220" height="16" rx="0" fill="rgba(52,211,153,0.3)"/>
+  <text x="660" y="79" text-anchor="middle" font-size="13" font-weight="bold" fill="#f8f8f8">Step 3</text>
+  <text x="660" y="95" text-anchor="middle" font-size="12" fill="#34d399">指標を確定・記録</text>
+  <line x1="560" y1="106" x2="760" y2="106" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <text x="660" y="126" text-anchor="middle" font-size="11" fill="#94a3b8">「一貫して使えるか？」</text>
+  <text x="565" y="148" font-size="11" fill="#34d399">✓</text>
+  <text x="580" y="148" font-size="11" fill="#f8f8f8">主指標1つ（Primary）</text>
+  <text x="565" y="168" font-size="11" fill="#34d399">✓</text>
+  <text x="580" y="168" font-size="11" fill="#f8f8f8">補助指標2〜3つ</text>
+  <text x="565" y="188" font-size="11" fill="#34d399">✓</text>
+  <text x="580" y="188" font-size="11" fill="#f8f8f8">ベースライン値を設定</text>
+  <text x="565" y="208" font-size="11" fill="#34d399">✓</text>
+  <text x="580" y="208" font-size="11" fill="#f8f8f8">実験全体で統一して使用</text>
+  <text x="565" y="228" font-size="11" fill="#34d399">✓</text>
+  <text x="580" y="228" font-size="11" fill="#f8f8f8">改善判断の閾値を定義</text>
+  <line x1="560" y1="242" x2="760" y2="242" stroke="#34d399" stroke-width="1" opacity="0.3"/>
+  <text x="660" y="262" text-anchor="middle" font-size="11" fill="#94a3b8">→ 評価軸が確定する</text>
+  <!-- Arrows between steps -->
+  <polygon points="260,192 288,182 288,202" fill="#94a3b8"/>
+  <line x1="250" y1="192" x2="285" y2="192" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="520,192 548,182 548,202" fill="#94a3b8"/>
+  <line x1="510" y1="192" x2="545" y2="192" stroke="#94a3b8" stroke-width="1.5"/>
+  <!-- Bottom tip -->
+  <rect x="120" y="356" width="560" height="34" rx="10" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="400" y="377" text-anchor="middle" font-size="12" fill="#a78bfa">原則: 主指標は1つに絞る — 複数指標の同時最適化は困難</text>
+</svg>

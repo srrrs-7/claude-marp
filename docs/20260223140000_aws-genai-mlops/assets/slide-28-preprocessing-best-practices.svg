@@ -1,0 +1,71 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0d1b2a"/>
+  <text x="400" y="35" fill="#4CC9F0" font-size="20" font-weight="bold" text-anchor="middle" font-family="sans-serif">データ前処理ベストプラクティス</text>
+
+  <!-- Box 1: 冪等性の確保 -->
+  <rect x="30" y="60" width="230" height="130" rx="8" fill="#1e3a5f" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="50" y="83" fill="#06D6A0" font-size="22" font-family="sans-serif">✓</text>
+  <text x="80" y="84" fill="#4CC9F0" font-size="14" font-weight="bold" font-family="sans-serif">冪等性の確保</text>
+  <text x="50" y="108" fill="#ffffff" font-size="12" font-family="sans-serif">同じ入力→同じ出力</text>
+  <text x="50" y="128" fill="#aaaaaa" font-size="11" font-family="sans-serif">ランダムシードの固定</text>
+  <text x="50" y="146" fill="#aaaaaa" font-size="11" font-family="sans-serif">決定論的変換処理</text>
+  <text x="50" y="164" fill="#aaaaaa" font-size="11" font-family="sans-serif">再現性の保証</text>
+
+  <!-- Box 2: バージョン管理 -->
+  <rect x="285" y="60" width="230" height="130" rx="8" fill="#0f3460" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="305" y="83" fill="#06D6A0" font-size="22" font-family="sans-serif">✓</text>
+  <text x="335" y="84" fill="#4CC9F0" font-size="14" font-weight="bold" font-family="sans-serif">バージョン管理</text>
+  <text x="305" y="108" fill="#ffffff" font-size="12" font-family="sans-serif">DVC / S3バージョニング</text>
+  <text x="305" y="128" fill="#aaaaaa" font-size="11" font-family="sans-serif">データセットのタグ付け</text>
+  <text x="305" y="146" fill="#aaaaaa" font-size="11" font-family="sans-serif">前処理スクリプトのGit管理</text>
+  <text x="305" y="164" fill="#aaaaaa" font-size="11" font-family="sans-serif">変換フローの保存</text>
+
+  <!-- Box 3: スケーラブル設計 -->
+  <rect x="540" y="60" width="230" height="130" rx="8" fill="#0a2545" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="560" y="83" fill="#06D6A0" font-size="22" font-family="sans-serif">✓</text>
+  <text x="590" y="84" fill="#4CC9F0" font-size="14" font-weight="bold" font-family="sans-serif">スケーラブル設計</text>
+  <text x="560" y="108" fill="#ffffff" font-size="12" font-family="sans-serif">分散処理対応 (Spark)</text>
+  <text x="560" y="128" fill="#aaaaaa" font-size="11" font-family="sans-serif">EMR / Glue 活用</text>
+  <text x="560" y="146" fill="#aaaaaa" font-size="11" font-family="sans-serif">インスタンスタイプ選定</text>
+  <text x="560" y="164" fill="#aaaaaa" font-size="11" font-family="sans-serif">バッチサイズの最適化</text>
+
+  <!-- Box 4: データリネージュ -->
+  <rect x="30" y="215" width="230" height="130" rx="8" fill="#1e3a5f" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="50" y="238" fill="#06D6A0" font-size="22" font-family="sans-serif">✓</text>
+  <text x="80" y="239" fill="#4CC9F0" font-size="14" font-weight="bold" font-family="sans-serif">データリネージュ</text>
+  <text x="50" y="263" fill="#ffffff" font-size="12" font-family="sans-serif">変換履歴の追跡</text>
+  <text x="50" y="283" fill="#aaaaaa" font-size="11" font-family="sans-serif">SageMaker ML Lineage</text>
+  <text x="50" y="301" fill="#aaaaaa" font-size="11" font-family="sans-serif">どのデータが使われたか</text>
+  <text x="50" y="319" fill="#aaaaaa" font-size="11" font-family="sans-serif">規制対応・監査ログ</text>
+
+  <!-- Box 5: スキーマ検証 -->
+  <rect x="285" y="215" width="230" height="130" rx="8" fill="#0f3460" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="305" y="238" fill="#06D6A0" font-size="22" font-family="sans-serif">✓</text>
+  <text x="335" y="239" fill="#4CC9F0" font-size="14" font-weight="bold" font-family="sans-serif">スキーマ検証</text>
+  <text x="305" y="263" fill="#ffffff" font-size="12" font-family="sans-serif">入出力スキーマ定義</text>
+  <text x="305" y="283" fill="#aaaaaa" font-size="11" font-family="sans-serif">Pandera / Great Expectations</text>
+  <text x="305" y="301" fill="#aaaaaa" font-size="11" font-family="sans-serif">データ型の自動検証</text>
+  <text x="305" y="319" fill="#aaaaaa" font-size="11" font-family="sans-serif">パイプライン破綻防止</text>
+
+  <!-- Box 6: モニタリング -->
+  <rect x="540" y="215" width="230" height="130" rx="8" fill="#0a2545" style="filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))"/>
+  <text x="560" y="238" fill="#06D6A0" font-size="22" font-family="sans-serif">✓</text>
+  <text x="590" y="239" fill="#4CC9F0" font-size="14" font-weight="bold" font-family="sans-serif">モニタリング</text>
+  <text x="560" y="263" fill="#ffffff" font-size="12" font-family="sans-serif">前処理パイプライン監視</text>
+  <text x="560" y="283" fill="#aaaaaa" font-size="11" font-family="sans-serif">CloudWatch メトリクス</text>
+  <text x="560" y="301" fill="#aaaaaa" font-size="11" font-family="sans-serif">処理時間・エラー率</text>
+  <text x="560" y="319" fill="#aaaaaa" font-size="11" font-family="sans-serif">アラート設定</text>
+
+  <!-- Arrows pointing down to result -->
+  <line x1="145" y1="345" x2="390" y2="405" stroke="#4CC9F0" stroke-width="1.5"/>
+  <line x1="400" y1="345" x2="400" y2="405" stroke="#4CC9F0" stroke-width="1.5"/>
+  <line x1="655" y1="345" x2="410" y2="405" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#4CC9F0" transform="translate(390,405) rotate(180)"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#4CC9F0" transform="translate(400,405) rotate(180)"/>
+  <polygon points="0,-6 -5,5 5,5" fill="#4CC9F0" transform="translate(410,405) rotate(180)"/>
+
+  <!-- Result box -->
+  <rect x="230" y="415" width="340" height="65" rx="10" fill="#06D6A0" style="filter:drop-shadow(2px 2px 6px rgba(0,0,0,0.5))"/>
+  <text x="400" y="440" fill="#0d1b2a" font-size="15" font-weight="bold" text-anchor="middle" font-family="sans-serif">高品質な学習データ</text>
+  <text x="400" y="462" fill="#0d1b2a" font-size="12" text-anchor="middle" font-family="sans-serif">再現性 / スケーラビリティ / 信頼性の確保</text>
+</svg>

@@ -1,0 +1,140 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="28" font-family="Arial" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="bold">MLOpsパイプライン全体像 — コミットから本番まで</text>
+
+  <!-- Phase colors legend -->
+  <rect x="15" y="45" width="90" height="18" rx="4" fill="#1e3a5f"/>
+  <text x="20" y="58" font-family="Arial" font-size="9" fill="#4CC9F0">データ</text>
+  <rect x="115" y="45" width="90" height="18" rx="4" fill="#2d1e40"/>
+  <text x="120" y="58" font-family="Arial" font-size="9" fill="#9d4edd">学習</text>
+  <rect x="215" y="45" width="90" height="18" rx="4" fill="#1a3a20"/>
+  <text x="220" y="58" font-family="Arial" font-size="9" fill="#06D6A0">評価</text>
+  <rect x="315" y="45" width="90" height="18" rx="4" fill="#2d1e0f"/>
+  <text x="320" y="58" font-family="Arial" font-size="9" fill="#F77F00">デプロイ</text>
+  <rect x="415" y="45" width="90" height="18" rx="4" fill="#2d0a0a"/>
+  <text x="420" y="58" font-family="Arial" font-size="9" fill="#E63946">監視</text>
+
+  <!-- Step 1: Code/Data commit -->
+  <rect x="15" y="75" width="105" height="100" rx="8" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="67" y="98" font-family="Arial" font-size="10" fill="#4CC9F0" text-anchor="middle" font-weight="bold">1. コード/</text>
+  <text x="67" y="112" font-family="Arial" font-size="10" fill="#4CC9F0" text-anchor="middle" font-weight="bold">データ変更</text>
+  <text x="67" y="133" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">Git push</text>
+  <text x="67" y="149" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">GitHub / CodeCommit</text>
+  <text x="67" y="164" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">S3 データ到着</text>
+
+  <!-- Arrow 1->2 -->
+  <line x1="120" y1="125" x2="145" y2="125" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#4CC9F0" transform="translate(145,125) rotate(90)"/>
+
+  <!-- Step 2: CI/CD trigger -->
+  <rect x="150" y="75" width="105" height="100" rx="8" fill="#0f3460" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="203" y="98" font-family="Arial" font-size="10" fill="#4CC9F0" text-anchor="middle" font-weight="bold">2. CI/CD</text>
+  <text x="203" y="112" font-family="Arial" font-size="10" fill="#4CC9F0" text-anchor="middle" font-weight="bold">トリガー</text>
+  <text x="203" y="133" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">CodePipeline</text>
+  <text x="203" y="149" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">EventBridge</text>
+  <text x="203" y="164" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">自動検知</text>
+
+  <!-- Arrow 2->3 -->
+  <line x1="255" y1="125" x2="280" y2="125" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#4CC9F0" transform="translate(280,125) rotate(90)"/>
+
+  <!-- Step 3: Unit test -->
+  <rect x="285" y="75" width="105" height="100" rx="8" fill="#1a3a20" stroke="#06D6A0" stroke-width="2"/>
+  <text x="337" y="98" font-family="Arial" font-size="10" fill="#06D6A0" text-anchor="middle" font-weight="bold">3. ユニット</text>
+  <text x="337" y="112" font-family="Arial" font-size="10" fill="#06D6A0" text-anchor="middle" font-weight="bold">テスト</text>
+  <text x="337" y="133" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">CodeBuild</text>
+  <text x="337" y="149" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">pytest / 型チェック</text>
+  <text x="337" y="164" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">Lint / セキュリティ</text>
+
+  <!-- Arrow 3->4 -->
+  <line x1="390" y1="125" x2="415" y2="125" stroke="#4CC9F0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#4CC9F0" transform="translate(415,125) rotate(90)"/>
+
+  <!-- Step 4: ML Pipeline (large box with sub-steps) -->
+  <rect x="420" y="58" width="230" height="130" rx="10" fill="#2d1e40" stroke="#9d4edd" stroke-width="2.5"/>
+  <text x="535" y="78" font-family="Arial" font-size="11" fill="#9d4edd" text-anchor="middle" font-weight="bold">4. MLパイプライン実行</text>
+  <text x="535" y="92" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">SageMaker Pipelines</text>
+  <!-- Sub-steps inside -->
+  <rect x="430" y="100" width="95" height="32" rx="4" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="478" y="114" font-family="Arial" font-size="9" fill="#4CC9F0" text-anchor="middle">4a. データ前処理</text>
+  <text x="478" y="126" font-family="Arial" font-size="8" fill="#aaaaaa" text-anchor="middle">Processing Job</text>
+  <rect x="535" y="100" width="95" height="32" rx="4" fill="#2d1e40" stroke="#9d4edd" stroke-width="1"/>
+  <text x="582" y="114" font-family="Arial" font-size="9" fill="#9d4edd" text-anchor="middle">4b. 学習</text>
+  <text x="582" y="126" font-family="Arial" font-size="8" fill="#aaaaaa" text-anchor="middle">Training Job</text>
+  <rect x="430" y="138" width="95" height="32" rx="4" fill="#1a3a20" stroke="#06D6A0" stroke-width="1"/>
+  <text x="478" y="152" font-family="Arial" font-size="9" fill="#06D6A0" text-anchor="middle">4c. 評価</text>
+  <text x="478" y="164" font-family="Arial" font-size="8" fill="#aaaaaa" text-anchor="middle">Evaluation Job</text>
+  <rect x="535" y="138" width="95" height="32" rx="4" fill="#1a3a20" stroke="#06D6A0" stroke-width="1"/>
+  <text x="582" y="152" font-family="Arial" font-size="9" fill="#06D6A0" text-anchor="middle">4d. 品質ゲート</text>
+  <text x="582" y="164" font-family="Arial" font-size="8" fill="#aaaaaa" text-anchor="middle">Condition Step</text>
+
+  <!-- Arrow 4->5 -->
+  <line x1="650" y1="123" x2="680" y2="123" stroke="#9d4edd" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#9d4edd" transform="translate(680,123) rotate(90)"/>
+
+  <!-- Step 5: Model Registry -->
+  <rect x="685" y="75" width="105" height="100" rx="8" fill="#1a3a20" stroke="#06D6A0" stroke-width="2"/>
+  <text x="738" y="98" font-family="Arial" font-size="10" fill="#06D6A0" text-anchor="middle" font-weight="bold">5. モデル</text>
+  <text x="738" y="112" font-family="Arial" font-size="10" fill="#06D6A0" text-anchor="middle" font-weight="bold">レジストリ登録</text>
+  <text x="738" y="133" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">Model Registry</text>
+  <text x="738" y="149" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">バージョン管理</text>
+  <text x="738" y="164" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">メタデータ保存</text>
+
+  <!-- Second row: Steps 6-8 -->
+  <!-- Arrow 5->6 (down and left) -->
+  <line x1="738" y1="175" x2="738" y2="215" stroke="#06D6A0" stroke-width="2"/>
+  <line x1="738" y1="215" x2="618" y2="215" stroke="#06D6A0" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#06D6A0" transform="translate(618,215) rotate(-90)"/>
+
+  <!-- Step 6: Deploy approval -->
+  <rect x="515" y="225" width="205" height="90" rx="8" fill="#2d1e0f" stroke="#F77F00" stroke-width="2"/>
+  <text x="617" y="248" font-family="Arial" font-size="11" fill="#F77F00" text-anchor="middle" font-weight="bold">6. デプロイ承認</text>
+  <text x="617" y="268" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">手動承認 (SNS通知)</text>
+  <text x="617" y="286" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">または 自動承認</text>
+  <text x="617" y="302" font-family="Arial" font-size="9" fill="#F77F00" text-anchor="middle">(品質ゲート通過で自動化可)</text>
+
+  <!-- Arrow 6->7 -->
+  <line x1="515" y1="270" x2="475" y2="270" stroke="#F77F00" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#F77F00" transform="translate(475,270) rotate(-90)"/>
+
+  <!-- Step 7: Production deploy -->
+  <rect x="275" y="225" width="195" height="90" rx="8" fill="#2d1e0f" stroke="#F77F00" stroke-width="2"/>
+  <text x="372" y="248" font-family="Arial" font-size="11" fill="#F77F00" text-anchor="middle" font-weight="bold">7. 本番デプロイ</text>
+  <text x="372" y="268" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">カナリア方式</text>
+  <text x="372" y="286" font-family="Arial" font-size="10" fill="#F77F00" text-anchor="middle">10% → 50% → 100%</text>
+  <text x="372" y="302" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">Blue/Green / Rolling</text>
+
+  <!-- Arrow 7->8 -->
+  <line x1="275" y1="270" x2="235" y2="270" stroke="#E63946" stroke-width="2"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#E63946" transform="translate(235,270) rotate(-90)"/>
+
+  <!-- Step 8: Monitoring -->
+  <rect x="30" y="225" width="200" height="90" rx="8" fill="#2d0a0a" stroke="#E63946" stroke-width="2"/>
+  <text x="130" y="248" font-family="Arial" font-size="11" fill="#E63946" text-anchor="middle" font-weight="bold">8. モニタリング</text>
+  <text x="130" y="268" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">Model Monitor 継続稼働</text>
+  <text x="130" y="286" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">CloudWatch アラーム</text>
+  <text x="130" y="302" font-family="Arial" font-size="9" fill="#E63946" text-anchor="middle">ドリフト検知 → 再学習</text>
+
+  <!-- Feedback loop arrow (Step 8 back to Step 1) -->
+  <line x1="130" y1="315" x2="130" y2="380" stroke="#E63946" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="130" y1="380" x2="67" y2="380" stroke="#E63946" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="67" y1="380" x2="67" y2="185" stroke="#E63946" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="0,-5 -8,5 8,5" fill="#E63946" transform="translate(67,185) rotate(-180)"/>
+  <text x="35" y="385" font-family="Arial" font-size="9" fill="#E63946">フィードバック</text>
+  <text x="35" y="397" font-family="Arial" font-size="9" fill="#E63946">ループ</text>
+
+  <!-- Bottom: Key tools -->
+  <rect x="30" y="340" width="750" height="80" rx="10" fill="#0a1e30" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="400" y="360" font-family="Arial" font-size="11" fill="#4CC9F0" text-anchor="middle" font-weight="bold">使用サービス・ツール</text>
+  <text x="120" y="380" font-family="Arial" font-size="10" fill="#4CC9F0" text-anchor="middle">Git / CodePipeline</text>
+  <text x="120" y="396" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">ソース管理・CI/CD</text>
+  <text x="270" y="380" font-family="Arial" font-size="10" fill="#9d4edd" text-anchor="middle">SageMaker Pipelines</text>
+  <text x="270" y="396" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">ML パイプライン</text>
+  <text x="420" y="380" font-family="Arial" font-size="10" fill="#06D6A0" text-anchor="middle">Model Registry / ECR</text>
+  <text x="420" y="396" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">成果物管理</text>
+  <text x="570" y="380" font-family="Arial" font-size="10" fill="#F77F00" text-anchor="middle">SageMaker Endpoint</text>
+  <text x="570" y="396" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">推論サービング</text>
+  <text x="710" y="380" font-family="Arial" font-size="10" fill="#E63946" text-anchor="middle">Model Monitor / CW</text>
+  <text x="710" y="396" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">監視・アラート</text>
+  <text x="400" y="412" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">GitOps: すべての変更はコードとしてGit管理 — 再現性・監査性・ロールバック保証</text>
+</svg>

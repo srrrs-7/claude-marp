@@ -1,0 +1,88 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="28" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#f1f5f9">データ暗号化アーキテクチャ (KMS 統合)</text>
+
+  <!-- At Rest Section -->
+  <rect x="15" y="42" width="430" height="310" rx="10" fill="#0f1f35" stroke="#a855f7" stroke-width="2.5"/>
+  <text x="230" y="66" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#a855f7">保存時の暗号化 (At Rest)</text>
+
+  <rect x="30" y="76" width="400" height="55" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="50" y="96" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#22c55e">Amazon S3</text>
+  <text x="50" y="112" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">学習データ / モデルアーティファクト</text>
+  <rect x="280" y="83" width="140" height="22" rx="4" fill="#2d1b4e"/>
+  <text x="350" y="98" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a855f7">SSE-KMS (CMK)</text>
+  <text x="50" y="124" font-family="Arial,sans-serif" font-size="9" fill="#64748b">KmsKeyId 指定でバケット/オブジェクト単位に CMK 適用</text>
+
+  <rect x="30" y="140" width="400" height="55" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="50" y="160" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f97316">Amazon EBS</text>
+  <text x="50" y="176" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">学習/推論インスタンスのボリューム</text>
+  <rect x="280" y="147" width="140" height="22" rx="4" fill="#2d1b4e"/>
+  <text x="350" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a855f7">KMS 暗号化 (CMK)</text>
+  <text x="50" y="188" font-family="Arial,sans-serif" font-size="9" fill="#64748b">VolumeKmsKeyId で Training/Endpoint 作成時に指定</text>
+
+  <rect x="30" y="204" width="400" height="55" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="50" y="224" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">Amazon EFS (Studio 共有)</text>
+  <text x="50" y="240" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">SageMaker Studio ホームディレクトリ</text>
+  <rect x="280" y="211" width="140" height="22" rx="4" fill="#2d1b4e"/>
+  <text x="350" y="226" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a855f7">KMS 暗号化 (CMK)</text>
+  <text x="50" y="252" font-family="Arial,sans-serif" font-size="9" fill="#64748b">HomeEfsFileSystemKmsKeyId で Domain 作成時に設定</text>
+
+  <rect x="30" y="268" width="400" height="72" rx="6" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="50" y="288" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#14b8a6">Feature Store</text>
+  <text x="50" y="305" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">オンライン (DynamoDB) &amp; オフライン (S3)</text>
+  <rect x="280" y="275" width="140" height="22" rx="4" fill="#2d1b4e"/>
+  <text x="350" y="290" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a855f7">CMK (両方)</text>
+  <text x="50" y="322" font-family="Arial,sans-serif" font-size="9" fill="#64748b">OnlineStoreConfig / OfflineStoreConfig で CMK 指定</text>
+  <text x="50" y="333" font-family="Arial,sans-serif" font-size="9" fill="#64748b">キーポリシーで DynamoDB と S3 への許可が必要</text>
+
+  <!-- In Transit Section -->
+  <rect x="455" y="42" width="430" height="310" rx="10" fill="#0f1f35" stroke="#22c55e" stroke-width="2.5"/>
+  <text x="670" y="66" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#22c55e">転送中の暗号化 (In Transit)</text>
+
+  <rect x="470" y="76" width="400" height="55" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="490" y="96" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#22c55e">HTTPS / TLS 1.2+</text>
+  <text x="490" y="112" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">全 API 呼び出し / エンドポイント推論</text>
+  <rect x="730" y="83" width="130" height="22" rx="4" fill="#1a3020"/>
+  <text x="795" y="98" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#22c55e">強制 (無効化不可)</text>
+  <text x="490" y="124" font-family="Arial,sans-serif" font-size="9" fill="#64748b">クライアント-SageMaker API 間を常時 TLS で保護</text>
+
+  <rect x="470" y="140" width="400" height="55" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="490" y="160" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">コンテナ間 TLS (分散学習)</text>
+  <text x="490" y="176" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">複数ノード間の通信を暗号化</text>
+  <rect x="730" y="147" width="130" height="22" rx="4" fill="#1a2744"/>
+  <text x="795" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#3b82f6">オプション設定</text>
+  <text x="490" y="188" font-family="Arial,sans-serif" font-size="9" fill="#64748b">EnableInterContainerTrafficEncryption=true</text>
+
+  <rect x="470" y="204" width="400" height="55" rx="6" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="490" y="224" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#14b8a6">VPC Endpoint トラフィック</text>
+  <text x="490" y="240" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">PrivateLink 経由 — パブリックインターネット未通過</text>
+  <rect x="730" y="211" width="130" height="22" rx="4" fill="#1a3020"/>
+  <text x="795" y="226" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#22c55e">AWS バックボーン</text>
+  <text x="490" y="252" font-family="Arial,sans-serif" font-size="9" fill="#64748b">Interface Endpoint (ENI) + プライベート DNS 解決</text>
+
+  <rect x="470" y="268" width="400" height="72" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="490" y="288" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#a855f7">AWS KMS キー設計</text>
+  <text x="490" y="305" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">CMK (Customer Managed Key) を推奨</text>
+  <text x="490" y="322" font-family="Arial,sans-serif" font-size="9" fill="#64748b">年次自動ローテーション有効化 / CloudTrail でキー使用を監査</text>
+  <text x="490" y="333" font-family="Arial,sans-serif" font-size="9" fill="#64748b">キーポリシーで SageMaker サービスロールのみアクセス許可</text>
+
+  <!-- AWS KMS center box -->
+  <rect x="340" y="368" width="220" height="58" rx="8" fill="#2d1b4e" stroke="#a855f7" stroke-width="2"/>
+  <text x="450" y="390" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#a855f7">AWS KMS</text>
+  <text x="450" y="408" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">CMK 管理 / キー使用監査</text>
+  <text x="450" y="420" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#64748b">CloudTrail で全キー操作を記録</text>
+
+  <!-- Arrows to KMS -->
+  <line x1="230" y1="360" x2="370" y2="390" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="364,386 375,394 369,382" fill="#a855f7"/>
+  <line x1="670" y1="360" x2="530" y2="390" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="536,386 525,394 531,382" fill="#a855f7"/>
+
+  <!-- Bottom note -->
+  <rect x="15" y="440" width="870" height="48" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="450" y="460" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#f97316" font-weight="bold">暗号化要件サマリー</text>
+  <text x="180" y="478" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">S3/EBS/EFS: CMK 必須</text>
+  <text x="380" y="478" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">転送中: TLS 強制</text>
+  <text x="580" y="478" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">キーローテーション: 年次</text>
+  <text x="760" y="478" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">監査: CloudTrail</text>
+</svg>

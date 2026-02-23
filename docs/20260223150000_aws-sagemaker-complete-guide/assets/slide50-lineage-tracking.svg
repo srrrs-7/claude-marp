@@ -1,0 +1,148 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <text x="450" y="28" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#f1f5f9">ML Lineage Tracking — 系譜グラフ</text>
+
+  <!-- Main lineage DAG -->
+  <!-- Raw Dataset -->
+  <rect x="20" y="140" width="130" height="66" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="85" y="162" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">Raw Dataset</text>
+  <text x="85" y="177" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">s3://data-lake/</text>
+  <text x="85" y="190" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">raw/2026-01/</text>
+  <text x="85" y="204" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#3b82f6">DataSet</text>
+
+  <!-- Arrow: Raw Dataset → Processing Job -->
+  <line x1="150" y1="173" x2="188" y2="173" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="188,168 200,173 188,178" fill="#94a3b8"/>
+  <text x="170" y="165" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">ContributedTo</text>
+
+  <!-- Processing Job -->
+  <rect x="200" y="140" width="130" height="66" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="265" y="162" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f97316">Processing Job</text>
+  <text x="265" y="177" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Spark / SKLearn</text>
+  <text x="265" y="190" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">前処理・特徴量</text>
+  <text x="265" y="204" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#f97316">TrialComponent</text>
+
+  <!-- Arrow: Processing Job → Processed Dataset -->
+  <line x1="330" y1="173" x2="368" y2="173" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="368,168 380,173 368,178" fill="#94a3b8"/>
+  <text x="350" y="165" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Produced</text>
+
+  <!-- Processed Dataset -->
+  <rect x="380" y="140" width="130" height="66" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="445" y="162" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">Processed Dataset</text>
+  <text x="445" y="177" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">s3://data-lake/</text>
+  <text x="445" y="190" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">features/2026-01/</text>
+  <text x="445" y="204" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#3b82f6">DataSet / Artifact</text>
+
+  <!-- Arrow: Processed Dataset → Training Job -->
+  <line x1="510" y1="173" x2="548" y2="173" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="548,168 560,173 548,178" fill="#94a3b8"/>
+  <text x="530" y="165" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">ContributedTo</text>
+
+  <!-- Training Job -->
+  <rect x="560" y="140" width="130" height="66" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="625" y="162" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">Training Job</text>
+  <text x="625" y="177" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">XGBoost v1.5</text>
+  <text x="625" y="190" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">ml.m5.4xlarge x2</text>
+  <text x="625" y="204" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#22c55e">TrialComponent</text>
+
+  <!-- Arrow: Training Job → Model Artifact -->
+  <line x1="690" y1="173" x2="728" y2="173" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="728,168 740,173 728,178" fill="#94a3b8"/>
+  <text x="710" y="165" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">Produced</text>
+
+  <!-- Model Artifact -->
+  <rect x="740" y="140" width="140" height="66" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="810" y="162" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#a855f7">Model Artifact</text>
+  <text x="810" y="177" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">s3://models/</text>
+  <text x="810" y="190" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">model.tar.gz</text>
+  <text x="810" y="204" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#a855f7">Model / Artifact</text>
+
+  <!-- Branch from Training Job → Evaluation Job -->
+  <line x1="625" y1="206" x2="625" y2="260" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="620,260 625,272 630,260" fill="#94a3b8"/>
+  <text x="640" y="240" font-family="sans-serif" font-size="8" fill="#94a3b8">ContributedTo</text>
+
+  <!-- Evaluation Job -->
+  <rect x="535" y="272" width="180" height="58" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="625" y="292" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f97316">Evaluation Job</text>
+  <text x="625" y="308" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">精度評価 / バイアスチェック</text>
+  <text x="625" y="322" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#f97316">TrialComponent</text>
+
+  <!-- Arrow: Evaluation → Metrics -->
+  <line x1="715" y1="301" x2="743" y2="301" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="743,296 755,301 743,306" fill="#94a3b8"/>
+
+  <!-- Metrics -->
+  <rect x="755" y="272" width="125" height="58" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="817" y="292" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#14b8a6">Metrics</text>
+  <text x="817" y="308" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Accuracy: 0.94</text>
+  <text x="817" y="322" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#14b8a6">Artifact</text>
+
+  <!-- Arrow: Model Artifact → Endpoint -->
+  <line x1="810" y1="206" x2="810" y2="242" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="810" y1="242" x2="530" y2="242" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="530" y1="242" x2="530" y2="260" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="525,260 530,272 535,260" fill="#94a3b8"/>
+  <!-- Simpler: direct line from Model Artifact down to Endpoint area -->
+  <text x="670" y="238" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">AssociatedWith</text>
+
+  <!-- Endpoint (below Model Artifact) -->
+  <rect x="380" y="272" width="150" height="58" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="455" y="292" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">Endpoint</text>
+  <text x="455" y="308" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">prod-classifier-v2</text>
+  <text x="455" y="322" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#22c55e">Endpoint</text>
+
+  <!-- Arrow from Processed Dataset to Endpoint (DerivedFrom) -->
+  <line x1="455" y1="272" x2="455" y2="242" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="455" y1="242" x2="530" y2="242" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- Entity Types legend -->
+  <rect x="20" y="350" width="430" height="138" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="235" y="370" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">エンティティタイプ (Entity Types)</text>
+
+  <rect x="35" y="382" width="120" height="24" rx="4" fill="#1e3a5f"/>
+  <text x="95" y="398" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#3b82f6">DataSet</text>
+  <text x="160" y="398" font-family="sans-serif" font-size="9" fill="#94a3b8">入力データセット・特徴量</text>
+
+  <rect x="35" y="412" width="120" height="24" rx="4" fill="#2d1a4a"/>
+  <text x="95" y="428" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a855f7">Model</text>
+  <text x="160" y="428" font-family="sans-serif" font-size="9" fill="#94a3b8">学習済みモデル成果物</text>
+
+  <rect x="35" y="442" width="120" height="24" rx="4" fill="#3a2a10"/>
+  <text x="95" y="458" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f97316">TrialComponent</text>
+  <text x="160" y="458" font-family="sans-serif" font-size="9" fill="#94a3b8">Processing / Training / Eval Job</text>
+
+  <rect x="35" y="472" width="120" height="24" rx="4" fill="#1a3a2a"/>
+  <text x="95" y="488" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22c55e">Endpoint</text>
+  <text x="160" y="488" font-family="sans-serif" font-size="9" fill="#94a3b8">推論エンドポイント</text>
+
+  <!-- Association Types legend -->
+  <rect x="465" y="350" width="415" height="138" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="672" y="370" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#a855f7">アソシエーションタイプ (Association Types)</text>
+
+  <line x1="480" y1="390" x2="530" y2="390" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="528,386 538,390 528,394" fill="#94a3b8"/>
+  <text x="545" y="394" font-family="sans-serif" font-size="9" fill="#94a3b8">ContributedTo — 入力として使用</text>
+
+  <line x1="480" y1="414" x2="530" y2="414" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="528,410 538,414 528,418" fill="#22c55e"/>
+  <text x="545" y="418" font-family="sans-serif" font-size="9" fill="#94a3b8">Produced — 出力として生成</text>
+
+  <line x1="480" y1="438" x2="530" y2="438" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="528,434 538,438 528,442" fill="#3b82f6"/>
+  <text x="545" y="442" font-family="sans-serif" font-size="9" fill="#94a3b8">AssociatedWith — 関連付け</text>
+
+  <line x1="480" y1="462" x2="530" y2="462" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="528,458 538,462 528,466" fill="#a855f7"/>
+  <text x="545" y="466" font-family="sans-serif" font-size="9" fill="#94a3b8">DerivedFrom — 派生関係</text>
+
+  <text x="545" y="486" font-family="sans-serif" font-size="9" fill="#f97316">クロスアカウント Lineage: RAM 共有 + 外部 Lineage Entity</text>
+
+  <!-- Query API note -->
+  <rect x="20" y="60" width="340" height="60" rx="6" fill="#1e293b" stroke="#94a3b8" stroke-width="1"/>
+  <text x="190" y="80" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f1f5f9">Lineage クエリ API</text>
+  <text x="35" y="98" font-family="sans-serif" font-size="9" fill="#94a3b8">sm.query_lineage(StartArns=[artifact_arn], Direction="Both")</text>
+  <text x="35" y="113" font-family="sans-serif" font-size="9" fill="#94a3b8">→ エンドポイントの上流データセットを全て追跡</text>
+</svg>

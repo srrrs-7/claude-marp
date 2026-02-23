@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <text x="450" y="28" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f1f5f9">SageMaker Experiments 実験追跡アーキテクチャ</text>
+
+  <!-- Experiment -->
+  <rect x="300" y="50" width="300" height="60" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="450" y="75" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#3b82f6">Experiment (実験)</text>
+  <text x="450" y="95" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">例: "sentiment-classifier-v2" — 目的・コンテキストを定義</text>
+
+  <!-- Lines from Experiment to Trials -->
+  <line x1="350" y1="110" x2="175" y2="165" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="175,165 173,152 185,156" fill="#3b82f6"/>
+  <line x1="450" y1="110" x2="450" y2="165" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="450,165 445,153 455,153" fill="#3b82f6"/>
+  <line x1="550" y1="110" x2="725" y2="165" stroke="#3b82f6" stroke-width="1.5"/>
+  <polygon points="725,165 715,155 727,152" fill="#3b82f6"/>
+
+  <!-- Trial 1 -->
+  <rect x="55" y="165" width="240" height="55" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="175" y="187" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">Trial A (Run 1)</text>
+  <text x="175" y="205" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">lr=0.001, epochs=10, batch=32</text>
+  <text x="175" y="218" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">val_acc=0.87 | 2026-02-22 09:00</text>
+
+  <!-- Trial 2 (Best) -->
+  <rect x="330" y="165" width="240" height="55" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="450" y="187" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#f97316">Trial B (Run 2) ★ Best</text>
+  <text x="450" y="205" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">lr=0.0003, epochs=20, batch=64</text>
+  <text x="450" y="218" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#f97316">val_acc=0.94 | 2026-02-22 11:00</text>
+
+  <!-- Trial 3 -->
+  <rect x="605" y="165" width="240" height="55" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="725" y="187" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#22c55e">Trial C (Run 3)</text>
+  <text x="725" y="205" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">lr=0.01, epochs=5, batch=128</text>
+  <text x="725" y="218" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94a3b8">val_acc=0.81 | 2026-02-22 14:00</text>
+
+  <!-- Lines from Trial B to Trial Components -->
+  <line x1="370" y1="220" x2="175" y2="280" stroke="#22c55e" stroke-width="1.2"/>
+  <polygon points="175,280 172,268 184,271" fill="#22c55e"/>
+  <line x1="450" y1="220" x2="450" y2="280" stroke="#22c55e" stroke-width="1.2"/>
+  <polygon points="450,280 445,268 455,268" fill="#22c55e"/>
+  <line x1="530" y1="220" x2="725" y2="280" stroke="#22c55e" stroke-width="1.2"/>
+  <polygon points="725,280 715,271 727,268" fill="#22c55e"/>
+
+  <!-- Trial Components -->
+  <!-- Component 1: Data Processing -->
+  <rect x="55" y="280" width="240" height="100" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="175" y="302" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#14b8a6">Trial Component 1</text>
+  <text x="175" y="318" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Data Processing</text>
+  <text x="90" y="337" text-anchor="start" font-family="sans-serif" font-size="8" fill="#94a3b8">Parameters:</text>
+  <text x="90" y="350" text-anchor="start" font-family="sans-serif" font-size="8" fill="#f1f5f9">  split_ratio=0.8</text>
+  <text x="90" y="363" text-anchor="start" font-family="sans-serif" font-size="8" fill="#f1f5f9">Artifacts: processed_data.csv</text>
+  <text x="90" y="376" text-anchor="start" font-family="sans-serif" font-size="8" fill="#f1f5f9">Duration: 12 min</text>
+
+  <!-- Component 2: Training -->
+  <rect x="330" y="280" width="240" height="100" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="450" y="302" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#14b8a6">Trial Component 2</text>
+  <text x="450" y="318" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Training</text>
+  <text x="365" y="337" text-anchor="start" font-family="sans-serif" font-size="8" fill="#94a3b8">Parameters:</text>
+  <text x="365" y="350" text-anchor="start" font-family="sans-serif" font-size="8" fill="#f1f5f9">  lr=0.0003, bs=64</text>
+  <text x="365" y="363" text-anchor="start" font-family="sans-serif" font-size="8" fill="#22c55e">Metrics: loss, val_acc</text>
+  <text x="365" y="376" text-anchor="start" font-family="sans-serif" font-size="8" fill="#f1f5f9">Artifacts: model.tar.gz</text>
+
+  <!-- Component 3: Evaluation -->
+  <rect x="605" y="280" width="240" height="100" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="725" y="302" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#14b8a6">Trial Component 3</text>
+  <text x="725" y="318" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Evaluation</text>
+  <text x="640" y="337" text-anchor="start" font-family="sans-serif" font-size="8" fill="#94a3b8">Parameters:</text>
+  <text x="640" y="350" text-anchor="start" font-family="sans-serif" font-size="8" fill="#f1f5f9">  threshold=0.5</text>
+  <text x="640" y="363" text-anchor="start" font-family="sans-serif" font-size="8" fill="#22c55e">Metrics: F1, AUC, conf_matrix</text>
+  <text x="640" y="376" text-anchor="start" font-family="sans-serif" font-size="8" fill="#f1f5f9">Artifacts: eval_report.json</text>
+
+  <!-- Tools section at bottom -->
+  <rect x="20" y="405" width="860" height="70" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="450" y="427" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#a855f7">統合ツールと自動追跡</text>
+
+  <rect x="35" y="438" width="190" height="28" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="130" y="457" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#3b82f6">Compare Trials UI</text>
+
+  <rect x="240" y="438" width="190" height="28" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="335" y="457" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#22c55e">TensorBoard 統合</text>
+
+  <rect x="445" y="438" width="200" height="28" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="545" y="457" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316">Training Job 自動追跡</text>
+
+  <rect x="660" y="438" width="205" height="28" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="762" y="457" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#14b8a6">MLflow 互換 API</text>
+
+  <text x="450" y="490" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Experiments SDK: experiment.tracker() コンテキストマネージャで自動的にメトリクス・パラメータを記録</text>
+</svg>

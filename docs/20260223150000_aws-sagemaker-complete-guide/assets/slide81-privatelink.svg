@@ -1,0 +1,92 @@
+<svg viewBox="0 0 900 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="28" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#f1f5f9">PrivateLink SageMaker 統合構成</text>
+
+  <!-- On-premises / Another VPC -->
+  <rect x="15" y="45" width="170" height="160" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="100" y="68" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f97316">オンプレミス</text>
+  <text x="100" y="84" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f97316">/ 別 VPC</text>
+
+  <rect x="30" y="95" width="140" height="30" rx="4" fill="#0f172a" stroke="#f97316" stroke-width="1"/>
+  <text x="100" y="113" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">アプリケーション</text>
+
+  <rect x="30" y="135" width="140" height="28" rx="4" fill="#0f172a" stroke="#f97316" stroke-width="1"/>
+  <text x="100" y="153" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Direct Connect</text>
+
+  <rect x="30" y="172" width="140" height="28" rx="4" fill="#0f172a" stroke="#f97316" stroke-width="1"/>
+  <text x="100" y="190" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">VPC Peering</text>
+
+  <!-- Arrows to VPC Endpoint -->
+  <line x1="185" y1="125" x2="255" y2="125" stroke="#f97316" stroke-width="2"/>
+  <polygon points="255,120 265,125 255,130" fill="#f97316"/>
+
+  <!-- Customer VPC + VPC Interface Endpoint -->
+  <rect x="265" y="45" width="250" height="310" rx="8" fill="#0f1f35" stroke="#3b82f6" stroke-width="2"/>
+  <text x="390" y="68" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">Customer VPC</text>
+
+  <!-- VPC Interface Endpoint box -->
+  <rect x="280" y="82" width="220" height="200" rx="6" fill="#1a2030" stroke="#14b8a6" stroke-width="2"/>
+  <text x="390" y="104" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#14b8a6">VPC Interface Endpoints</text>
+  <text x="390" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">(PrivateLink)</text>
+
+  <rect x="293" y="130" width="194" height="30" rx="4" fill="#1e293b" stroke="#14b8a6" stroke-width="1"/>
+  <text x="390" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#f1f5f9">sagemaker.api (管理操作)</text>
+
+  <rect x="293" y="170" width="194" height="30" rx="4" fill="#1e293b" stroke="#14b8a6" stroke-width="1"/>
+  <text x="390" y="190" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#f1f5f9">sagemaker.runtime (推論)</text>
+
+  <rect x="293" y="210" width="194" height="30" rx="4" fill="#1e293b" stroke="#14b8a6" stroke-width="1"/>
+  <text x="390" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#f1f5f9">sagemaker.studio (Web UI)</text>
+
+  <rect x="293" y="250" width="194" height="25" rx="4" fill="#1e293b" stroke="#a855f7" stroke-width="1"/>
+  <text x="390" y="267" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a855f7">Endpoint Policy (アクセス制御)</text>
+
+  <!-- DNS Resolution box -->
+  <rect x="280" y="295" width="220" height="50" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="390" y="315" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#22c55e">プライベート DNS 解決</text>
+  <text x="390" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">api.sagemaker.region.amazonaws.com</text>
+  <text x="390" y="342" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#22c55e">→ ENI プライベート IP</text>
+
+  <!-- Arrow to SageMaker Services -->
+  <line x1="515" y1="200" x2="568" y2="200" stroke="#14b8a6" stroke-width="2.5"/>
+  <polygon points="568,195 578,200 568,205" fill="#14b8a6"/>
+
+  <!-- AWS SageMaker Services (right box) -->
+  <rect x="578" y="45" width="300" height="310" rx="8" fill="#0a1628" stroke="#3b82f6" stroke-width="2"/>
+  <text x="728" y="68" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">AWS SageMaker サービス</text>
+
+  <rect x="595" y="82" width="265" height="70" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="727" y="104" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">SageMaker API</text>
+  <text x="727" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">ジョブ作成/管理・設定変更</text>
+  <text x="727" y="138" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">CloudTrail でログ記録</text>
+
+  <rect x="595" y="162" width="265" height="70" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="727" y="184" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#a855f7">SageMaker Runtime</text>
+  <text x="727" y="202" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">InvokeEndpoint() 推論呼び出し</text>
+  <text x="727" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">リアルタイム / 非同期推論</text>
+
+  <rect x="595" y="242" width="265" height="70" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="727" y="264" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#22c55e">SageMaker Studio</text>
+  <text x="727" y="282" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Web UI を VPN/DX 越しに利用</text>
+  <text x="727" y="298" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">SSO / IAM Identity Center 統合</text>
+
+  <!-- Internet comparison box -->
+  <rect x="280" y="360" width="600" height="70" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="580" y="383" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f1f5f9">PrivateLink のメリット</text>
+
+  <rect x="295" y="395" width="180" height="26" rx="4" fill="#0f2139" stroke="#14b8a6" stroke-width="1"/>
+  <text x="385" y="412" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#14b8a6">AWS バックボーン内のみ</text>
+
+  <rect x="488" y="395" width="180" height="26" rx="4" fill="#0f2139" stroke="#22c55e" stroke-width="1"/>
+  <text x="578" y="412" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#22c55e">インターネット未通過</text>
+
+  <rect x="680" y="395" width="180" height="26" rx="4" fill="#0f2139" stroke="#a855f7" stroke-width="1"/>
+  <text x="770" y="412" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a855f7">Endpoint Policy で制御</text>
+
+  <!-- Bottom description -->
+  <text x="450" y="456" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">プライベート DNS 有効化：api.sagemaker.us-east-1.amazonaws.com が ENI の IP に解決される</text>
+  <text x="450" y="472" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">VPC エンドポイントポリシー：特定の IAM プリンシパル・アクションのみ許可</text>
+  <text x="450" y="488" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Endpoint は AZ 単位の ENI として作成 — 高可用性のため複数 AZ に作成推奨</text>
+</svg>

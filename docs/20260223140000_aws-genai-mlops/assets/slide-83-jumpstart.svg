@@ -1,0 +1,68 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#0d1117"/>
+  <text x="400" y="32" font-family="Arial" font-size="19" fill="#ffffff" text-anchor="middle" font-weight="bold">SageMaker JumpStart</text>
+
+  <!-- Center Hub -->
+  <ellipse cx="400" cy="230" rx="95" ry="55" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="3"/>
+  <text x="400" y="220" font-family="Arial" font-size="12" fill="#4CC9F0" text-anchor="middle" font-weight="bold">SageMaker</text>
+  <text x="400" y="238" font-family="Arial" font-size="12" fill="#4CC9F0" text-anchor="middle" font-weight="bold">JumpStart</text>
+  <text x="400" y="256" font-family="Arial" font-size="9" fill="#aaaaaa" text-anchor="middle">モデルハブ</text>
+
+  <!-- Zone 1: Foundation Models (top-left) -->
+  <rect x="30" y="60" width="230" height="130" rx="10" fill="#1e3a5f" stroke="#4CC9F0" stroke-width="2"/>
+  <text x="145" y="85" font-family="Arial" font-size="13" fill="#4CC9F0" text-anchor="middle" font-weight="bold">Foundation Models</text>
+  <text x="145" y="108" font-family="Arial" font-size="11" fill="#ffffff" text-anchor="middle">Llama 2 / Llama 3</text>
+  <text x="145" y="126" font-family="Arial" font-size="11" fill="#ffffff" text-anchor="middle">Mistral / Falcon</text>
+  <text x="145" y="144" font-family="Arial" font-size="11" fill="#ffffff" text-anchor="middle">Stable Diffusion</text>
+  <text x="145" y="162" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">100+ オープンソースFM</text>
+  <text x="145" y="180" font-family="Arial" font-size="9" fill="#4CC9F0" text-anchor="middle">1クリックデプロイ対応</text>
+
+  <!-- Arrow from Zone 1 to center -->
+  <line x1="260" y1="130" x2="306" y2="200" stroke="#4CC9F0" stroke-width="1.5"/>
+  <polygon points="0,-4 -6,4 6,4" fill="#4CC9F0" transform="translate(306,200) rotate(148)"/>
+
+  <!-- Zone 2: Fine-tuned Models (top-right) -->
+  <rect x="540" y="60" width="230" height="130" rx="10" fill="#0f3460" stroke="#06D6A0" stroke-width="2"/>
+  <text x="655" y="85" font-family="Arial" font-size="13" fill="#06D6A0" text-anchor="middle" font-weight="bold">ファインチューニング</text>
+  <text x="655" y="103" font-family="Arial" font-size="12" fill="#06D6A0" text-anchor="middle">済みモデル</text>
+  <text x="655" y="126" font-family="Arial" font-size="11" fill="#ffffff" text-anchor="middle">医療ドメイン特化</text>
+  <text x="655" y="144" font-family="Arial" font-size="11" fill="#ffffff" text-anchor="middle">金融ドメイン特化</text>
+  <text x="655" y="162" font-family="Arial" font-size="11" fill="#ffffff" text-anchor="middle">法律ドメイン特化</text>
+  <text x="655" y="180" font-family="Arial" font-size="9" fill="#06D6A0" text-anchor="middle">追加FTで更にカスタマイズ可能</text>
+
+  <!-- Arrow from Zone 2 to center -->
+  <line x1="540" y1="130" x2="494" y2="200" stroke="#06D6A0" stroke-width="1.5"/>
+  <polygon points="0,-4 -6,4 6,4" fill="#06D6A0" transform="translate(494,200) rotate(32)"/>
+
+  <!-- Zone 3: ML Solutions (bottom) -->
+  <rect x="230" y="350" width="340" height="110" rx="10" fill="#0a2545" stroke="#F77F00" stroke-width="2"/>
+  <text x="400" y="378" font-family="Arial" font-size="13" fill="#F77F00" text-anchor="middle" font-weight="bold">MLソリューション</text>
+  <text x="400" y="400" font-family="Arial" font-size="11" fill="#ffffff" text-anchor="middle">エンドツーエンドサンプルコード</text>
+  <text x="400" y="420" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">Notebook + Pipeline + 設定一式</text>
+  <text x="400" y="440" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">テキスト分類 / 画像認識 / 異常検知 etc.</text>
+  <text x="400" y="455" font-family="Arial" font-size="9" fill="#F77F00" text-anchor="middle">ユースケース別即使用可能テンプレート</text>
+
+  <!-- Arrow from center to Zone 3 -->
+  <line x1="400" y1="285" x2="400" y2="348" stroke="#F77F00" stroke-width="1.5"/>
+  <polygon points="0,-4 -6,4 6,4" fill="#F77F00" transform="translate(400,348) rotate(180)"/>
+
+  <!-- Right: Workflow -->
+  <rect x="645" y="215" width="145" height="185" rx="10" fill="#0a1e30" stroke="#4CC9F0" stroke-width="1.5"/>
+  <text x="718" y="238" font-family="Arial" font-size="11" fill="#4CC9F0" text-anchor="middle" font-weight="bold">ワークフロー</text>
+  <text x="718" y="262" font-family="Arial" font-size="10" fill="#ffffff" text-anchor="middle">1クリック</text>
+  <text x="718" y="278" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">デプロイ</text>
+  <line x1="670" y1="288" x2="760" y2="288" stroke="#4CC9F0" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="718" y="308" font-family="Arial" font-size="10" fill="#ffffff" text-anchor="middle">Fine-tune</text>
+  <text x="718" y="324" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">カスタム学習</text>
+  <line x1="670" y1="334" x2="760" y2="334" stroke="#4CC9F0" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="718" y="354" font-family="Arial" font-size="10" fill="#ffffff" text-anchor="middle">カスタム</text>
+  <text x="718" y="370" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">デプロイ</text>
+
+  <!-- Arrow from center to workflow -->
+  <line x1="495" y1="230" x2="642" y2="260" stroke="#4CC9F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Integration labels -->
+  <rect x="30" y="320" width="230" height="50" rx="8" fill="#0a1e30" stroke="#4CC9F0" stroke-width="1"/>
+  <text x="145" y="341" font-family="Arial" font-size="10" fill="#4CC9F0" text-anchor="middle" font-weight="bold">統合インターフェース</text>
+  <text x="145" y="358" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">SageMaker Studio UI + Python SDK</text>
+</svg>

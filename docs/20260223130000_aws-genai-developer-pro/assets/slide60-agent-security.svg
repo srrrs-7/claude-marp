@@ -1,0 +1,65 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="900" height="400" fill="#1a0a2e" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#ffffff">エージェントセキュリティ</text>
+  <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">自律実行エージェントのセキュリティ原則と実装</text>
+
+  <!-- Threat landscape -->
+  <rect x="15" y="65" width="430" height="175" rx="8" fill="#1f1424" stroke="#ef4444" stroke-width="2"/>
+  <rect x="15" y="65" width="430" height="28" rx="8" fill="#7f1d1d"/>
+  <text x="230" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#fca5a5">エージェント特有のリスク</text>
+
+  <rect x="25" y="98" width="195" height="130" rx="5" fill="#450a0a"/>
+  <text x="123" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fca5a5">実行リスク</text>
+  <text x="123" y="134" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">• 誤ったAction実行（削除・変更）</text>
+  <text x="123" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">• 無限ループ・リソース消費</text>
+  <text x="123" y="166" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">• 過剰な権限での実行</text>
+  <text x="123" y="182" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">• 不可逆操作の実行</text>
+  <text x="123" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">• コスト爆発（APO制限なし）</text>
+  <text x="123" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">チャットボットより攻撃面が広い</text>
+
+  <rect x="233" y="98" width="202" height="130" rx="5" fill="#450a0a"/>
+  <text x="334" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fca5a5">注入攻撃リスク</text>
+  <text x="334" y="134" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">• Prompt Injection</text>
+  <text x="334" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">• Indirect Injection (RAG)</text>
+  <text x="334" y="166" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">• Tool Response偽造</text>
+  <text x="334" y="182" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">• 悪意あるシステムプロンプト</text>
+  <text x="334" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#f87171">• データ漏洩（exfiltration）</text>
+  <text x="334" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">エージェントが攻撃の実行機構に</text>
+
+  <!-- Defense measures -->
+  <rect x="460" y="65" width="425" height="175" rx="8" fill="#052e16" stroke="#10b981" stroke-width="2"/>
+  <rect x="460" y="65" width="425" height="28" rx="8" fill="#065f46"/>
+  <text x="673" y="83" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#a7f3d0">防御原則とAWS実装</text>
+
+  <rect x="470" y="98" width="405" height="128" rx="5" fill="#014126"/>
+  <text x="673" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#34d399">最小権限の原則（Least Privilege）</text>
+  <text x="673" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">• IAMロール: Lambda/APIに必要最小限のアクション権限のみ</text>
+  <text x="673" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">• Action Groupの制限: 必要なAPIエンドポイントのみ定義</text>
+  <text x="673" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#34d399">Human-in-the-Loop（人間の確認）</text>
+  <text x="673" y="184" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">• Bedrock Agents: returnControl = 人間確認が必要なステップで一時停止</text>
+  <text x="673" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">• 不可逆操作（削除・外部送信）前に承認要求</text>
+  <text x="673" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#34d399">Guardrails 統合</text>
+  <text x="673" y="234" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#6ee7b7">• 入出力フィルタリング・Prompt Injection検出</text>
+
+  <!-- Security checklist -->
+  <rect x="15" y="252" width="870" height="136" rx="8" fill="#0f172a"/>
+  <text x="450" y="272" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">エージェントセキュリティ チェックリスト（試験頻出）</text>
+  <rect x="30" y="284" width="265" height="92" rx="5" fill="#1e1b4b"/>
+  <text x="163" y="302" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#60a5fa">IAM・権限設計</text>
+  <text x="163" y="318" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">☑ Agent実行ロールの権限最小化</text>
+  <text x="163" y="334" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">☑ Lambda関数の権限最小化</text>
+  <text x="163" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#93c5fd">☑ Resource-based Policyで制限</text>
+  <text x="163" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">☑ VPC内Lambdaでネットワーク分離</text>
+  <rect x="310" y="284" width="265" height="92" rx="5" fill="#1e1b4b"/>
+  <text x="443" y="302" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#6ee7b7">ガードレール設計</text>
+  <text x="443" y="318" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">☑ Guardrails でPrompt Injection検出</text>
+  <text x="443" y="334" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">☑ Grounding Checkでハルシ防止</text>
+  <text x="443" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#34d399">☑ PII フィルタリング設定</text>
+  <text x="443" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">☑ 禁止トピックのブロック設定</text>
+  <rect x="590" y="284" width="290" height="92" rx="5" fill="#1e1b4b"/>
+  <text x="735" y="302" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#fbbf24">監視・監査設計</text>
+  <text x="735" y="318" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fde68a">☑ CloudTrailでAPI呼び出し記録</text>
+  <text x="735" y="334" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fde68a">☑ CloudWatchでトレース分析</text>
+  <text x="735" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fde68a">☑ 異常な実行パターンのアラート</text>
+  <text x="735" y="366" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#475569">☑ コスト上限・ステップ数上限を設定</text>
+</svg>
