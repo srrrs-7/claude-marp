@@ -185,7 +185,8 @@ bun run slides export -f html --in FILE # Export Marp markdown to HTML
 bun run validate                        # Validate slides-data.json against Zod schema
 bun run fix                             # Auto-fix common schema issues in slides-data.json
 bun run split                           # Split code/diagrams from content to prevent overflow (all presentations)
-bun run fix-svg                         # Fix SVG overflow issues in markdown files
+bun run fix-svg                         # Fix SVG overflow/containment issues in markdown files
+bun scripts/fix-svg-url-refs.ts         # Replace prohibited url(#id) refs in all .md and .svg files
 bun run rebuild                         # Re-render & re-export all presentations in docs/
 bun run rebuild:render                  # Re-render only (skip export)
 bun run rebuild:export                  # Re-export only (skip render)
@@ -193,7 +194,8 @@ bun run typecheck                       # Type checking via tsgo (native TS comp
 bun run check                           # Biome lint + format check
 bun run format                          # Auto-format with Biome
 bun run spellcheck                      # Spell check via cspell
-bun run test                            # Run regression test suite (bun:test)
+bun run typecheck && bun run check && bun run spellcheck  # Full quality gate
+bun run test                            # Regression tests: schema, SVG integrity, asset paths, Mermaid residue, export existence
 bun run generate:index                  # Auto-generate index for GitHub Pages
 ```
 
@@ -273,11 +275,25 @@ The config schema (`src/config/schema.ts`) expects Marp options **nested under `
 **Correct format:**
 ```yaml
 topic: "Presentation Title"
+audience: "engineers"           # default: "general"
+goal: "explain X to Y"          # default: ""
 language: "ja"
+
+slides:
+  count: 20                     # int 1–50, default: 10
+  includeTableOfContents: true  # default: true
+  includeTitleSlide: true       # default: true
+  includeSummarySlide: true     # default: true
+
+content:
+  codeBlocks: true              # default: true
+  codeLanguage: "typescript"    # default: "typescript"
+  bulletPointsMax: 5            # default: 5
+  speakerNotes: true            # default: true
 
 output:
   dir: "docs/20260219120000_my-topic"   # full path, required
-  baseName: "my-topic"
+  baseName: "my-topic"                  # if omitted, auto-generated as slugify(topic)+"-slides"
 
 marp:
   theme: gaia           # gaia | default | uncover
@@ -332,9 +348,9 @@ Marp wraps each slide in `<svg data-marpit-svg><foreignObject><section>`, creati
 | `<filter id="s1">` + `filter="url(#s1)"` | `style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"` |
 | `<marker id="a1">` + `marker-end="url(#a1)"` | Explicit `<polygon points="..." fill="..."/>` at line endpoint |
 
-Also add `letter-spacing:0` to each `<svg style="...">` to prevent Gaia theme's `letter-spacing: 1.25px` from being inherited by SVG `<text>` elements.
+Also add `letter-spacing:0` to each `<svg style="...">` to prevent Gaia theme's `letter-spacing: 1.25px` from being inherited by SVG `<text>` elements. **Note:** The render pipeline's `normalizeSvg()` auto-applies `max-height:70vh;max-width:100%;display:block;margin:0 auto;` but does NOT add `letter-spacing:0` — this must be included manually in each SVG's `style` attribute.
 
-Run `bun scripts/fix-svg-url-refs.ts` to auto-fix existing SVGs.
+Run `bun scripts/fix-svg-url-refs.ts` to auto-fix existing SVGs. (`bun run fix-svg` is a separate script that only fixes overflow/containment.)
 
 **SVG images (standalone files):**
 
@@ -400,6 +416,8 @@ docs/20260214073222_example/
 - Insert `---` separators **between slides only** (not after front-matter, to avoid blank slides)
 
 **Critical rendering rule:** Front-matter and first slide are joined with `\n\n` only. Slide separators (`\n\n---\n\n`) are used between slides, never after front-matter.
+
+**Content array rendering:** Items in `content[]` starting with `|` (table rows) or `![` (image directives) are rendered **without** the `- ` bullet prefix. All other items get `- ` prepended automatically.
 
 ## Agent Teams
 
