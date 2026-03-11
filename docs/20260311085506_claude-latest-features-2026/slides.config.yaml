@@ -1,0 +1,21 @@
+topic: "Claudeの最新機能2026"
+language: "ja"
+
+slides:
+  count: 40
+
+output:
+  dir: "docs/20260311085506_claude-latest-features-2026"
+  baseName: "claude-latest-features-2026"
+
+marp:
+  theme: gaia
+  class: invert
+  paginate: true
+  header: "Claudeの最新機能2026"
+  footer: "© 2026 Claude Code"
+  style: |
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
