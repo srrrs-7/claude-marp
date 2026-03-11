@@ -5,6 +5,7 @@ output:
   baseName: "memory-reconstruction"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "記憶の再構成"
   footer: "© 2026"

@@ -5,6 +5,7 @@ output:
   baseName: "qwerty-lock-in"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "経路依存と技術ロックイン"
   footer: "© 2026"

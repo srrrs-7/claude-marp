@@ -5,6 +5,7 @@ output:
   baseName: "immune-system-zero-trust"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "生物の知恵をセキュリティに"
   footer: "© 2026"

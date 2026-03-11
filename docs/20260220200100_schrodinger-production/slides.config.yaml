@@ -5,6 +5,7 @@ output:
   baseName: "schrodinger-production"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "シュレーディンガーの本番環境"
   footer: "© 2026"

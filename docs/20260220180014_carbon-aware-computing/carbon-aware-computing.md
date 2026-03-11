@@ -7,8 +7,73 @@ paginate: true
 header: "炭素認識コンピューティング"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
-
+  
 ---
 
 <!-- _class: lead -->
@@ -114,9 +179,15 @@ AWSのus-west-2(オレゴン)は水力発電比率が高く炭素強度が低い
 
 # Carbon Aware SDK
 
+- <svg viewBox='0 0 800 220' style='max-height:44vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='220' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#ffd93d' font-size='14' font-weight='bold'>Carbon Aware SDK アーキテクチャ</text><rect x='50' y='55' width='160' height='70' rx='8' fill='#264653' stroke='#4ecdc4' stroke-width='1.5'/><text x='130' y='82' text-anchor='middle' fill='#4ecdc4' font-size='11' font-weight='bold'>WattTime</text><text x='130' y='100' text-anchor='middle' fill='#ccc' font-size='9'>米国電力データ</text><text x='130' y='115' text-anchor='middle' fill='#888' font-size='8'>リアルタイム炭素強度</text><rect x='50' y='140' width='160' height='55' rx='8' fill='#264653' stroke='#4ecdc4' stroke-width='1.5'/><text x='130' y='162' text-anchor='middle' fill='#4ecdc4' font-size='11' font-weight='bold'>ElectricityMaps</text><text x='130' y='180' text-anchor='middle' fill='#ccc' font-size='9'>欧州・グローバル</text><polygon points='218,100 248,95 248,105' fill='#ffd93d'/><line x1='210' y1='100' x2='248' y2='100' stroke='#ffd93d' stroke-width='2'/><polygon points='218,168 248,163 248,173' fill='#ffd93d'/><line x1='210' y1='168' x2='248' y2='168' stroke='#ffd93d' stroke-width='2'/><rect x='260' y='70' width='200' height='100' rx='10' fill='#14532d' stroke='#4ecdc4' stroke-width='2'/><text x='360' y='100' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>Carbon Aware</text><text x='360' y='120' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>SDK</text><text x='360' y='145' text-anchor='middle' fill='#888' font-size='9'>Green Software Foundation (OSS)</text><polygon points='468,120 498,115 498,125' fill='#ffd93d'/><line x1='460' y1='120' x2='498' y2='120' stroke='#ffd93d' stroke-width='2'/><rect x='510' y='55' width='240' height='55' rx='8' fill='#1b4965'/><text x='630' y='78' text-anchor='middle' fill='#a9d6e5' font-size='11' font-weight='bold'>アプリケーション層</text><text x='630' y='98' text-anchor='middle' fill='#ccc' font-size='9'>Kubernetes Operator / KEDA Scaler</text><rect x='510' y='125' width='240' height='55' rx='8' fill='#1b4965'/><text x='630' y='148' text-anchor='middle' fill='#a9d6e5' font-size='11' font-weight='bold'>CLIツール</text><text x='630' y='168' text-anchor='middle' fill='#ccc' font-size='9'>CI/CDパイプライン統合</text><text x='400' y='205' text-anchor='middle' fill='#aaa' font-size='10'>ISO標準ベース — 統一APIで複数データソースを抽象化</text></svg>
 - **Green Software Foundation**が開発するOSSライブラリ
 - 電力グリッドのCO2強度APIを統一的に利用可能
 - WattTime / ElectricityMaps のデータをラップ
+
+
+---
+
+# Carbon Aware SDK（コード例）
 
 ```typescript
 // Carbon Aware SDK - タスクの最適実行時刻を取得
@@ -133,9 +204,6 @@ console.log(`Best time: ${optimalWindow.timestamp}`);
 console.log(`Carbon: ${optimalWindow.value} gCO2/kWh`);
 ```
 
-<!--
-Green Software Foundation（Microsoft、Google、Accenture等が設立）が中心。Carbon Aware SDKはC#/Python/TypeScriptで利用可能。
--->
 
 ---
 
@@ -197,13 +265,21 @@ Porto大学の'Energy Efficiency across Programming Languages'研究では、C/R
 ---
 
 <!-- _class: lead -->
-# まとめ
+# まとめ（1/2）
 
 - コードは仮想ではない
 - 
 - 1行のコードが電力を消費し、CO2を排出し、地球に影響を与える
 - 
 - **時間シフト**・**地域シフト**・**需要シェーピング**で
+
+
+---
+
+<!-- _class: lead -->
+# まとめ（2/2）
+
+- <svg viewBox='0 0 800 200' style='max-height:42vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#ffd93d' font-size='14' font-weight='bold'>グリーンソフトウェアの3本柱</text><rect x='50' y='50' width='200' height='100' rx='10' fill='#2d6a4f' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='150' y='85' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>時間シフト</text><text x='150' y='108' text-anchor='middle' fill='#ccc' font-size='10'>低炭素時間帯に</text><text x='150' y='124' text-anchor='middle' fill='#ccc' font-size='10'>ジョブをスケジュール</text><rect x='300' y='50' width='200' height='100' rx='10' fill='#1b4965' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='400' y='85' text-anchor='middle' fill='#a9d6e5' font-size='13' font-weight='bold'>地域シフト</text><text x='400' y='108' text-anchor='middle' fill='#ccc' font-size='10'>再エネ豊富な</text><text x='400' y='124' text-anchor='middle' fill='#ccc' font-size='10'>リージョンを選択</text><rect x='550' y='50' width='200' height='100' rx='10' fill='#5a189a' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='650' y='85' text-anchor='middle' fill='#e0aaff' font-size='13' font-weight='bold'>需要シェーピング</text><text x='650' y='108' text-anchor='middle' fill='#ccc' font-size='10'>ユーザーを低炭素</text><text x='650' y='124' text-anchor='middle' fill='#ccc' font-size='10'>時間帯に誘導</text><text x='400' y='178' text-anchor='middle' fill='#ffd93d' font-size='11' font-weight='bold'>「速いコード = グリーンなコード」— 最適化は一石二鳥</text></svg>
 - ソフトウェアの炭素排出を最適化できる
 - 
 - 「速いコード = グリーンなコード」
@@ -213,12 +289,18 @@ Porto大学の'Energy Efficiency across Programming Languages'研究では、C/R
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - **Foundations & Standards:**
 - - [Green Software Foundation](https://greensoftware.foundation/)
 - - [SCI Specification (ISO Standard)](https://sci.greensoftware.foundation/)
 - - [Carbon Aware SDK](https://github.com/Green-Software-Foundation/carbon-aware-sdk)
+
+
+---
+
+# 参考文献（2/2）
+
 - 
 - **Research & Tools:**
 - - [Google Carbon-Intelligent Computing (2020)](https://blog.google/outreach-initiatives/sustainability/carbon-intelligent-computing-platform/)

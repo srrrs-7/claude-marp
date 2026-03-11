@@ -1,0 +1,65 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="42" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">良いプロンプト vs 悪いプロンプト</text>
+
+  <!-- Divider line -->
+  <line x1="400" y1="58" x2="400" y2="480" stroke="#a78bfa" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Left header: 悪い例 -->
+  <rect x="20" y="60" width="362" height="40" rx="8" fill="#4a1c1c" stroke="#f87171" stroke-width="2"/>
+  <text x="200" y="85" font-family="sans-serif" font-size="16" font-weight="bold" fill="#f87171" text-anchor="middle">悪いプロンプト例</text>
+
+  <!-- Right header: 良い例 -->
+  <rect x="420" y="60" width="362" height="40" rx="8" fill="#1a3d32" stroke="#34d399" stroke-width="2"/>
+  <text x="600" y="85" font-family="sans-serif" font-size="16" font-weight="bold" fill="#34d399" text-anchor="middle">良いプロンプト例</text>
+
+  <!-- Pair 1 -->
+  <rect x="20" y="112" width="362" height="72" rx="8" fill="#2a1a1a" stroke="#f87171" stroke-width="1.5"/>
+  <text x="38" y="134" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f87171">例1: 曖昧な指示</text>
+  <text x="38" y="154" font-family="sans-serif" font-size="12" fill="#fca5a5">「ログイン機能を作って」</text>
+  <text x="38" y="174" font-family="sans-serif" font-size="11" fill="#f87171">→ 何のアプリか、技術スタック不明</text>
+
+  <rect x="420" y="112" width="362" height="72" rx="8" fill="#1a2e28" stroke="#34d399" stroke-width="1.5"/>
+  <text x="438" y="134" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">例1: 具体的な指示</text>
+  <text x="438" y="154" font-family="sans-serif" font-size="11" fill="#a7f3d0">「Next.js + Prisma構成のアプリに</text>
+  <text x="438" y="170" font-family="sans-serif" font-size="11" fill="#a7f3d0">メール・パスワード認証を追加して」</text>
+
+  <!-- Pair 2 -->
+  <rect x="20" y="194" width="362" height="72" rx="8" fill="#2a1a1a" stroke="#f87171" stroke-width="1.5"/>
+  <text x="38" y="216" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f87171">例2: 巨大タスク一括</text>
+  <text x="38" y="236" font-family="sans-serif" font-size="12" fill="#fca5a5">「EC サイトを全部作って」</text>
+  <text x="38" y="256" font-family="sans-serif" font-size="11" fill="#f87171">→ 範囲が広すぎてコンテキスト爆発</text>
+
+  <rect x="420" y="194" width="362" height="72" rx="8" fill="#1a2e28" stroke="#34d399" stroke-width="1.5"/>
+  <text x="438" y="216" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">例2: 段階的分割</text>
+  <text x="438" y="236" font-family="sans-serif" font-size="11" fill="#a7f3d0">「まず商品一覧APIだけ実装して。</text>
+  <text x="438" y="252" font-family="sans-serif" font-size="11" fill="#a7f3d0">次のステップは後で指示します」</text>
+
+  <!-- Pair 3 -->
+  <rect x="20" y="276" width="362" height="72" rx="8" fill="#2a1a1a" stroke="#f87171" stroke-width="1.5"/>
+  <text x="38" y="298" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f87171">例3: 成果物が不明</text>
+  <text x="38" y="318" font-family="sans-serif" font-size="12" fill="#fca5a5">「このコードを良くして」</text>
+  <text x="38" y="338" font-family="sans-serif" font-size="11" fill="#f87171">→ 何が問題かAIが判断できない</text>
+
+  <rect x="420" y="276" width="362" height="72" rx="8" fill="#1a2e28" stroke="#34d399" stroke-width="1.5"/>
+  <text x="438" y="298" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">例3: 期待値を明示</text>
+  <text x="438" y="318" font-family="sans-serif" font-size="11" fill="#a7f3d0">「このAPIのエラーハンドリングを改善して。</text>
+  <text x="438" y="334" font-family="sans-serif" font-size="11" fill="#a7f3d0">TypeErrorを適切にキャッチすること」</text>
+
+  <!-- Pair 4 -->
+  <rect x="20" y="358" width="362" height="72" rx="8" fill="#2a1a1a" stroke="#f87171" stroke-width="1.5"/>
+  <text x="38" y="380" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f87171">例4: 制約なし</text>
+  <text x="38" y="400" font-family="sans-serif" font-size="12" fill="#fca5a5">「テストを書いて」</text>
+  <text x="38" y="420" font-family="sans-serif" font-size="11" fill="#f87171">→ フレームワーク・方針が不明</text>
+
+  <rect x="420" y="358" width="362" height="72" rx="8" fill="#1a2e28" stroke="#34d399" stroke-width="1.5"/>
+  <text x="438" y="380" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">例4: 制約を指定</text>
+  <text x="438" y="400" font-family="sans-serif" font-size="11" fill="#a7f3d0">「vitest でユニットテストを書いて。</text>
+  <text x="438" y="416" font-family="sans-serif" font-size="11" fill="#a7f3d0">正常系と異常系を各3ケース以上」</text>
+
+  <!-- Bottom tip -->
+  <text x="400" y="468" font-family="sans-serif" font-size="12" fill="#fbbf24" text-anchor="middle">ポイント: 具体的・段階的・期待値明示 の3原則</text>
+</svg>

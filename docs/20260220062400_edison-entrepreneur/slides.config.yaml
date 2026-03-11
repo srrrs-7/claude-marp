@@ -5,6 +5,7 @@ output:
   baseName: "edison-entrepreneur"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "エジソンと起業家精神"
   footer: "© 2026"

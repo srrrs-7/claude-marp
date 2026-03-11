@@ -7,6 +7,71 @@ paginate: true
 header: "グレシャムの法則とコード"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -129,10 +194,16 @@ style: |
 
 # 技術的負債の「利子計算」
 
+- <svg viewBox='0 0 800 200' style='max-height:40vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>技術的負債の「利子」可視化</text><rect x='50' y='50' width='200' height='120' rx='10' fill='#16213e' stroke='#e94560' stroke-width='2'/><text x='150' y='75' text-anchor='middle' fill='#e94560' font-size='12' font-weight='bold'>負債残高</text><text x='150' y='100' text-anchor='middle' fill='#fff' font-size='20' font-weight='bold'>40人日</text><text x='150' y='125' text-anchor='middle' fill='#aaa' font-size='10'>修正に必要な工数</text><text x='150' y='150' text-anchor='middle' fill='#aaa' font-size='10'>/ 開発コスト200人日</text><text x='150' y='168' text-anchor='middle' fill='#e94560' font-size='11'>= 負債比率 20%</text><rect x='290' y='50' width='220' height='120' rx='10' fill='#16213e' stroke='#f9a825' stroke-width='2'/><text x='400' y='75' text-anchor='middle' fill='#f9a825' font-size='12' font-weight='bold'>月次「利子」</text><text x='400' y='105' text-anchor='middle' fill='#fff' font-size='16' font-weight='bold'>15,000円/日/人</text><text x='400' y='130' text-anchor='middle' fill='#aaa' font-size='10'>速度損失30% x 日当50,000円</text><text x='400' y='155' text-anchor='middle' fill='#f9a825' font-size='11'>10人チーム → 月450万円の損失</text><rect x='550' y='50' width='210' height='120' rx='10' fill='#16213e' stroke='#4eff4e' stroke-width='2'/><text x='655' y='75' text-anchor='middle' fill='#4eff4e' font-size='12' font-weight='bold'>経営層への翻訳</text><text x='655' y='100' text-anchor='middle' fill='#aaa' font-size='11'>抽象的な「品質」を</text><text x='655' y='120' text-anchor='middle' fill='#aaa' font-size='11'>具体的な「円」に</text><text x='655' y='148' text-anchor='middle' fill='#4eff4e' font-size='11'>リファクタリング投資の正当化</text></svg>
 - - **技術的負債の可視化**: 抽象的な「品質」を **具体的な数字** に変換
 - - **SQALE / SonarQube**: 修正にかかる工数を自動計算
 - - 経営層向けの言語: 「この負債の利子は月あたり開発者2人月分です」
 - - 「悪貨」のコストを見える化することで、「良貨」への投資を正当化
+
+
+---
+
+# 技術的負債の「利子計算」（コード例）
 
 ```javascript
 // SonarQube Technical Debt Ratio
@@ -162,6 +233,7 @@ monthly_interest = velocity_loss * developer_daily_rate
 
 # 「壊す自由」の組織的付与
 
+- <svg viewBox='0 0 800 200' style='max-height:40vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>品質維持を「制度」として設計する</text><rect x='40' y='50' width='170' height='120' rx='10' fill='#16213e' stroke='#4eff4e' stroke-width='2'/><text x='125' y='75' text-anchor='middle' fill='#4eff4e' font-size='12' font-weight='bold'>Google</text><text x='125' y='98' text-anchor='middle' fill='#fff' font-size='22' font-weight='bold'>20%</text><text x='125' y='120' text-anchor='middle' fill='#aaa' font-size='10'>ルール</text><text x='125' y='140' text-anchor='middle' fill='#aaa' font-size='9'>自律的改善に</text><text x='125' y='155' text-anchor='middle' fill='#aaa' font-size='9'>使える時間</text><rect x='230' y='50' width='170' height='120' rx='10' fill='#16213e' stroke='#f9a825' stroke-width='2'/><text x='315' y='75' text-anchor='middle' fill='#f9a825' font-size='12' font-weight='bold'>Netflix</text><text x='315' y='98' text-anchor='middle' fill='#fff' font-size='14' font-weight='bold'>自由と責任</text><text x='315' y='120' text-anchor='middle' fill='#aaa' font-size='10'>Freedom &amp;</text><text x='315' y='138' text-anchor='middle' fill='#aaa' font-size='10'>Responsibility</text><text x='315' y='155' text-anchor='middle' fill='#aaa' font-size='9'>正しいことをする自由</text><rect x='420' y='50' width='170' height='120' rx='10' fill='#16213e' stroke='#e91e63' stroke-width='2'/><text x='505' y='75' text-anchor='middle' fill='#e91e63' font-size='12' font-weight='bold'>負債返済</text><text x='505' y='95' text-anchor='middle' fill='#e91e63' font-size='10'>スプリント</text><text x='505' y='118' text-anchor='middle' fill='#fff' font-size='14' font-weight='bold'>4本に1本</text><text x='505' y='140' text-anchor='middle' fill='#aaa' font-size='9'>負債返済だけの</text><text x='505' y='155' text-anchor='middle' fill='#aaa' font-size='9'>専用スプリント</text><rect x='610' y='50' width='150' height='120' rx='10' fill='#16213e' stroke='#4ecdc4' stroke-width='2'/><text x='685' y='75' text-anchor='middle' fill='#4ecdc4' font-size='12' font-weight='bold'>ハックデー</text><text x='685' y='100' text-anchor='middle' fill='#fff' font-size='14' font-weight='bold'>定期開催</text><text x='685' y='125' text-anchor='middle' fill='#aaa' font-size='9'>壊して作り直す</text><text x='685' y='140' text-anchor='middle' fill='#aaa' font-size='9'>機会を制度化</text></svg>
 - - **Google**: エンジニアの20%は自律的な改善に使える（20%ルール）
 - - **Netflix**: 「正しいことをする自由」が文化として根付いている
 - - **技術的負債返済スプリント**: 4スプリントに1回、負債返済だけの期間を設ける
@@ -172,12 +244,19 @@ monthly_interest = velocity_loss * developer_daily_rate
 ---
 
 <!-- _class: lead -->
-# まとめ — 悪いコードを駆逐するために
+# まとめ — 悪いコードを駆逐するために（1/2）
 
 - **悪いコードは「個人の怠惰」ではなく「構造的必然」**
 - 
 - グレシャムの法則が教えること:
 - 
+
+
+---
+
+<!-- _class: lead -->
+# まとめ — 悪いコードを駆逐するために（2/2）
+
 - - 個人の意志では品質は守れない
 - - **制度的メカニズム** が必要（レビュー、Linter、ADR）
 - - 技術的負債を **数字で可視化** し経営層と共有する
@@ -187,13 +266,19 @@ monthly_interest = velocity_loss * developer_daily_rate
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - **経済学・理論:**
 - - [Gresham's Law - Wikipedia](https://en.wikipedia.org/wiki/Gresham%27s_law)
 - - [Thomas Gresham (1558) 「悪貨は良貨を駆逐する」](https://www.econlib.org/library/Enc/GreshamsLaw.html)
 - 
 - **ソフトウェア工学:**
+
+
+---
+
+# 参考文献（2/2）
+
 - - [Ward Cunningham (1992) "The WyCash Portfolio Management System" - 技術的負債メタファーの起源](http://wiki.c2.com/?WardExplainsDebtMetaphor)
 - - [Robert C. Martin "Clean Code" (2008)](https://www.oreilly.com/library/view/clean-code-a/9780136083238/)
 - 

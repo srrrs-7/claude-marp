@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="38" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">AIコーディング セキュリティリスクと対策</text>
+
+  <!-- Header row -->
+  <rect x="20" y="58" width="200" height="38" rx="4" fill="#374151"/>
+  <text x="120" y="82" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">リスク項目</text>
+
+  <rect x="225" y="58" width="175" height="38" rx="4" fill="#7f1d1d"/>
+  <text x="312" y="82" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fca5a5" text-anchor="middle">リスクレベル</text>
+
+  <rect x="405" y="58" width="375" height="38" rx="4" fill="#064e3b"/>
+  <text x="593" y="82" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#6ee7b7" text-anchor="middle">推奨対策</text>
+
+  <!-- Row 1 -->
+  <rect x="20" y="100" width="200" height="52" rx="3" fill="#1f1035"/>
+  <text x="30" y="122" font-family="Arial, sans-serif" font-size="12" fill="#c4b5fd">機密情報の漏洩</text>
+  <text x="30" y="141" font-family="Arial, sans-serif" font-size="11" fill="#8b8ba0">APIキー・パスワード</text>
+
+  <rect x="225" y="100" width="175" height="52" rx="3" fill="#450a0a"/>
+  <text x="312" y="130" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ef4444" text-anchor="middle">高 ▲▲▲</text>
+
+  <rect x="405" y="100" width="375" height="52" rx="3" fill="#0a1628"/>
+  <text x="415" y="122" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd">.env除外 / シークレット管理サービス利用</text>
+  <text x="415" y="141" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd">AIへの入力前にマスキング</text>
+
+  <!-- Row 2 -->
+  <rect x="20" y="156" width="200" height="52" rx="3" fill="#1f1035"/>
+  <text x="30" y="178" font-family="Arial, sans-serif" font-size="12" fill="#c4b5fd">インジェクション生成</text>
+  <text x="30" y="197" font-family="Arial, sans-serif" font-size="11" fill="#8b8ba0">SQLi / XSS / コマンド</text>
+
+  <rect x="225" y="156" width="175" height="52" rx="3" fill="#450a0a"/>
+  <text x="312" y="186" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ef4444" text-anchor="middle">高 ▲▲▲</text>
+
+  <rect x="405" y="156" width="375" height="52" rx="3" fill="#0a1628"/>
+  <text x="415" y="178" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd">セキュリティレビューを必須化</text>
+  <text x="415" y="197" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd">SAST / DAST ツールとの組み合わせ</text>
+
+  <!-- Row 3 -->
+  <rect x="20" y="212" width="200" height="52" rx="3" fill="#1f1035"/>
+  <text x="30" y="234" font-family="Arial, sans-serif" font-size="12" fill="#c4b5fd">脆弱な依存関係</text>
+  <text x="30" y="253" font-family="Arial, sans-serif" font-size="11" fill="#8b8ba0">古いライブラリの使用</text>
+
+  <rect x="225" y="212" width="175" height="52" rx="3" fill="#78350f"/>
+  <text x="312" y="242" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fbbf24" text-anchor="middle">中 ▲▲</text>
+
+  <rect x="405" y="212" width="375" height="52" rx="3" fill="#0a1628"/>
+  <text x="415" y="234" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd">Dependabot / Snyk 等の自動更新</text>
+  <text x="415" y="253" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd">AIへの最新パッケージ指定</text>
+
+  <!-- Row 4 -->
+  <rect x="20" y="268" width="200" height="52" rx="3" fill="#1f1035"/>
+  <text x="30" y="290" font-family="Arial, sans-serif" font-size="12" fill="#c4b5fd">過剰な権限付与</text>
+  <text x="30" y="309" font-family="Arial, sans-serif" font-size="11" fill="#8b8ba0">最小権限原則違反</text>
+
+  <rect x="225" y="268" width="175" height="52" rx="3" fill="#78350f"/>
+  <text x="312" y="298" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fbbf24" text-anchor="middle">中 ▲▲</text>
+
+  <rect x="405" y="268" width="375" height="52" rx="3" fill="#0a1628"/>
+  <text x="415" y="290" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd">コードレビュー時に権限設計を確認</text>
+  <text x="415" y="309" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd">最小権限をAIへ指示に含める</text>
+
+  <!-- Row 5 -->
+  <rect x="20" y="324" width="200" height="52" rx="3" fill="#1f1035"/>
+  <text x="30" y="346" font-family="Arial, sans-serif" font-size="12" fill="#c4b5fd">コンテキスト汚染</text>
+  <text x="30" y="365" font-family="Arial, sans-serif" font-size="11" fill="#8b8ba0">誤ったコードの学習</text>
+
+  <rect x="225" y="324" width="175" height="52" rx="3" fill="#1a3a1a"/>
+  <text x="312" y="354" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#34d399" text-anchor="middle">低 ▲</text>
+
+  <rect x="405" y="324" width="375" height="52" rx="3" fill="#0a1628"/>
+  <text x="415" y="346" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd">クリーンなコードベースを維持</text>
+  <text x="415" y="365" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd">悪いパターンのコメントを明示</text>
+
+  <!-- Row 6 -->
+  <rect x="20" y="380" width="200" height="52" rx="3" fill="#1f1035"/>
+  <text x="30" y="402" font-family="Arial, sans-serif" font-size="12" fill="#c4b5fd">過信による見落とし</text>
+  <text x="30" y="421" font-family="Arial, sans-serif" font-size="11" fill="#8b8ba0">AIのコードを無審査</text>
+
+  <rect x="225" y="380" width="175" height="52" rx="3" fill="#450a0a"/>
+  <text x="312" y="410" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ef4444" text-anchor="middle">高 ▲▲▲</text>
+
+  <rect x="405" y="380" width="375" height="52" rx="3" fill="#0a1628"/>
+  <text x="415" y="402" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd">必ず人間がレビュー・テスト実行</text>
+  <text x="415" y="421" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd">「AIを信頼するが確認する」姿勢</text>
+
+  <!-- Footer note -->
+  <rect x="20" y="442" width="760" height="48" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+  <text x="400" y="462" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">原則: AIが生成したコードも通常のセキュリティ基準を適用する</text>
+  <text x="400" y="481" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">自動スキャン + 人間レビュー + セキュリティテストの3層防御</text>
+</svg>

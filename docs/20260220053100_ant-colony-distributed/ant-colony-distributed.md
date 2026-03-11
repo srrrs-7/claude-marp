@@ -18,6 +18,7 @@ style: |
 - 女王アリは命令していない
 - スティグマジーと創発が生む集合知
 - P2P・マイクロサービス設計への応用
+- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="320" fill="#1a1a2e"/><circle cx="400" cy="160" r="90" fill="none" stroke="#f9a825" stroke-width="2" stroke-dasharray="6,4"/><circle cx="400" cy="160" r="14" fill="#f9a825"/><text x="400" y="166" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="bold">コロニー</text><g transform="translate(400,160)"><line x1="0" y1="-90" x2="-52" y2="-74" stroke="#e91e63" stroke-width="1.5"/><line x1="0" y1="-90" x2="52" y2="-74" stroke="#e91e63" stroke-width="1.5"/><line x1="0" y1="-90" x2="0" y2="-90" stroke="none"/></g><g transform="translate(400,70)"><circle r="10" fill="#e91e63"/><text y="4" text-anchor="middle" font-size="9" fill="white">🐜</text></g><g transform="translate(348,86)"><circle r="10" fill="#e91e63"/><text y="4" text-anchor="middle" font-size="9" fill="white">🐜</text></g><g transform="translate(452,86)"><circle r="10" fill="#e91e63"/><text y="4" text-anchor="middle" font-size="9" fill="white">🐜</text></g><g transform="translate(310,160)"><circle r="10" fill="#e91e63"/><text y="4" text-anchor="middle" font-size="9" fill="white">🐜</text></g><g transform="translate(490,160)"><circle r="10" fill="#e91e63"/><text y="4" text-anchor="middle" font-size="9" fill="white">🐜</text></g><g transform="translate(348,234)"><circle r="10" fill="#e91e63"/><text y="4" text-anchor="middle" font-size="9" fill="white">🐜</text></g><g transform="translate(452,234)"><circle r="10" fill="#e91e63"/><text y="4" text-anchor="middle" font-size="9" fill="white">🐜</text></g><g transform="translate(400,250)"><circle r="10" fill="#e91e63"/><text y="4" text-anchor="middle" font-size="9" fill="white">🐜</text></g><text x="400" y="305" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold">中央管理なし — 自律分散コロニー</text></svg>
 
 
 ---
@@ -45,7 +46,7 @@ style: |
 - **現実：** 女王は産卵のみ。指示を出す機能を持たない
 - コロニーの全ての活動は**自律的な個体の行動**から生まれる
 - 1つのコロニー（50万匹）に中央司令部は存在しない
-- → これは**分散型システム**の定義そのもの
+- <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="220" fill="#1a1a2e"/><rect x="40" y="40" width="200" height="140" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="140" y="90" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold">❌ 誤解モデル</text><circle cx="140" cy="130" r="20" fill="#f9a825"/><text x="140" y="135" text-anchor="middle" font-size="10" fill="#1a1a2e" font-weight="bold">女王</text><line x1="140" y1="150" x2="80" y2="175" stroke="#f9a825" stroke-width="1.5"/><line x1="140" y1="150" x2="140" y2="175" stroke="#f9a825" stroke-width="1.5"/><line x1="140" y1="150" x2="200" y2="175" stroke="#f9a825" stroke-width="1.5"/><circle cx="80" cy="180" r="9" fill="#aaa"/><text x="80" y="184" text-anchor="middle" font-size="8" fill="white">🐜</text><circle cx="140" cy="180" r="9" fill="#aaa"/><text x="140" y="184" text-anchor="middle" font-size="8" fill="white">🐜</text><circle cx="200" cy="180" r="9" fill="#aaa"/><text x="200" y="184" text-anchor="middle" font-size="8" fill="white">🐜</text><rect x="560" y="40" width="200" height="140" rx="12" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="660" y="90" text-anchor="middle" font-size="13" fill="#4caf50" font-weight="bold">✅ 現実モデル</text><circle cx="620" cy="145" r="9" fill="#e91e63"/><text x="620" y="149" text-anchor="middle" font-size="8" fill="white">🐜</text><circle cx="660" cy="125" r="9" fill="#e91e63"/><text x="660" y="129" text-anchor="middle" font-size="8" fill="white">🐜</text><circle cx="700" cy="145" r="9" fill="#e91e63"/><text x="700" y="149" text-anchor="middle" font-size="8" fill="white">🐜</text><circle cx="640" cy="165" r="9" fill="#e91e63"/><text x="640" y="169" text-anchor="middle" font-size="8" fill="white">🐜</text><circle cx="680" cy="165" r="9" fill="#e91e63"/><text x="680" y="169" text-anchor="middle" font-size="8" fill="white">🐜</text><line x1="629" y1="145" x2="651" y2="133" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,2"/><line x1="669" y1="133" x2="691" y2="145" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,2"/><line x1="649" y1="165" x2="671" y2="165" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,2"/><text x="400" y="210" text-anchor="middle" font-size="12" fill="#f9a825">自律分散 — 誰も全体を「知らない」のに全体が機能する</text></svg>
 
 
 ---
@@ -53,10 +54,8 @@ style: |
 # スティグマジー：フェロモンで「間接通信」
 
 - アリは直接会話しない。**環境を介して通信する**
-- 🐜 食料発見 → フェロモンを地面に残す
-- 🐜 別のアリがフェロモンを感知 → 同じルートを辿る
-- 🐜 多くのアリが通ると → フェロモン濃度が上昇
-- **最短経路が自然に強化される**（揮発性により時間でリセット）
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="260" fill="#1a1a2e"/><rect x="30" y="100" width="60" height="40" rx="8" fill="#e91e63"/><text x="60" y="125" text-anchor="middle" font-size="11" fill="white" font-weight="bold">巣</text><rect x="710" y="100" width="60" height="40" rx="8" fill="#f9a825"/><text x="740" y="125" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="bold">食料</text><path d="M90,120 Q200,50 400,60 Q600,50 710,120" stroke="#ffffff" stroke-width="1" fill="none" stroke-dasharray="4,3" opacity="0.3"/><path d="M90,120 Q250,180 400,170 Q550,160 710,120" stroke="#f9a825" stroke-width="4" fill="none" opacity="0.8"/><path d="M90,120 Q250,200 400,200 Q580,195 710,120" stroke="#f9a825" stroke-width="2" fill="none" opacity="0.4"/><circle cx="200" cy="143" r="5" fill="#f9a825" opacity="0.9"/><circle cx="280" cy="158" r="4" fill="#f9a825" opacity="0.8"/><circle cx="360" cy="165" r="5" fill="#f9a825" opacity="0.9"/><circle cx="450" cy="162" r="4" fill="#f9a825" opacity="0.7"/><circle cx="540" cy="148" r="5" fill="#f9a825" opacity="0.9"/><circle cx="630" cy="133" r="4" fill="#f9a825" opacity="0.8"/><circle cx="240" cy="148" r="12" fill="#e91e63"/><text x="240" y="152" text-anchor="middle" font-size="10" fill="white">🐜</text><circle cx="480" cy="155" r="12" fill="#e91e63"/><text x="480" y="159" text-anchor="middle" font-size="10" fill="white">🐜</text><text x="400" y="30" text-anchor="middle" font-size="12" fill="white">--- 短距離ルート（揮発が遅い） ---</text><text x="400" y="245" text-anchor="middle" font-size="11" fill="#f9a825">フェロモン濃度 = 情報 ｜ 揮発 = TTL ｜ 経路強化 = 正のフィードバック</text></svg>
+- 最短経路が自然に強化される（揮発性により時間でリセット）
 - → メッセージキュー・イベントバスと同じ原理
 
 
@@ -67,9 +66,8 @@ style: |
 - **1. フェロモン濃度に応じてルートを選ぶ**
 - **2. 食料を運ぶ時はフェロモンを残す**
 - **3. 食料がない方向ではフェロモンを残さない**
-- ---
-- この単純な3ルールから：最短経路探索、役割分担、障害物回避、負荷分散が**創発**する
-- → **シンプルなローカルルールが複雑なグローバル挙動を生む**
+- <svg viewBox="0 0 800 180" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="180" fill="#1a1a2e"/><rect x="20" y="20" width="220" height="140" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="130" y="48" text-anchor="middle" font-size="12" fill="#f9a825" font-weight="bold">ルール 1</text><text x="130" y="72" text-anchor="middle" font-size="10" fill="white">フェロモン濃度</text><text x="130" y="90" text-anchor="middle" font-size="10" fill="white">↓</text><text x="130" y="108" text-anchor="middle" font-size="10" fill="white">確率的経路選択</text><text x="130" y="126" text-anchor="middle" font-size="9" fill="#aaa">（強い経路ほど</text><text x="130" y="144" text-anchor="middle" font-size="9" fill="#aaa">選ばれやすい）</text><rect x="290" y="20" width="220" height="140" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="48" text-anchor="middle" font-size="12" fill="#f9a825" font-weight="bold">ルール 2</text><text x="400" y="72" text-anchor="middle" font-size="10" fill="white">食料発見時</text><text x="400" y="90" text-anchor="middle" font-size="10" fill="white">↓</text><text x="400" y="108" text-anchor="middle" font-size="10" fill="white">フェロモン堆積</text><text x="400" y="126" text-anchor="middle" font-size="9" fill="#aaa">（良い経路の</text><text x="400" y="144" text-anchor="middle" font-size="9" fill="#aaa">正強化）</text><rect x="560" y="20" width="220" height="140" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="670" y="48" text-anchor="middle" font-size="12" fill="#f9a825" font-weight="bold">ルール 3</text><text x="670" y="72" text-anchor="middle" font-size="10" fill="white">食料なし方向</text><text x="670" y="90" text-anchor="middle" font-size="10" fill="white">↓</text><text x="670" y="108" text-anchor="middle" font-size="10" fill="white">フェロモン放棄</text><text x="670" y="126" text-anchor="middle" font-size="9" fill="#aaa">（揮発で</text><text x="670" y="144" text-anchor="middle" font-size="9" fill="#aaa">自然消滅）</text></svg>
+- シンプルなローカルルールが複雑なグローバル挙動を生む
 
 
 ---
@@ -82,25 +80,14 @@ style: |
 
 # P2Pネットワーク vs アリのコロニー
 
-| アリのコロニー | P2Pネットワーク |
-|:---|:---|
-| 女王アリ（命令なし） | 中央サーバーなし |
-| フェロモン経路 | ルーティングテーブル |
-| 揮発性フェロモン | TTL（有効期限） |
-| 役割の自発的分担 | ノードの動的参加/離脱 |
-| 経路の自然選択 | BGPによる最適経路計算 |
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><rect x="20" y="20" width="340" height="260" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="190" y="55" text-anchor="middle" font-size="14" fill="#e91e63" font-weight="bold">アリのコロニー</text><circle cx="190" cy="120" r="12" fill="#f9a825"/><text x="190" y="124" text-anchor="middle" font-size="9" fill="#1a1a2e">🐜</text><circle cx="110" cy="170" r="10" fill="#e91e63"/><text x="110" y="174" text-anchor="middle" font-size="9" fill="white">🐜</text><circle cx="150" cy="200" r="10" fill="#e91e63"/><text x="150" y="204" text-anchor="middle" font-size="9" fill="white">🐜</text><circle cx="230" cy="200" r="10" fill="#e91e63"/><text x="230" y="204" text-anchor="middle" font-size="9" fill="white">🐜</text><circle cx="270" cy="170" r="10" fill="#e91e63"/><text x="270" y="174" text-anchor="middle" font-size="9" fill="white">🐜</text><circle cx="190" cy="240" r="10" fill="#e91e63"/><text x="190" y="244" text-anchor="middle" font-size="9" fill="white">🐜</text><line x1="190" y1="132" x2="118" y2="162" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="4,2"/><line x1="190" y1="132" x2="160" y2="192" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="4,2"/><line x1="190" y1="132" x2="262" y2="162" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="4,2"/><line x1="118" y1="178" x2="158" y2="193" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,2"/><line x1="262" y1="178" x2="222" y2="193" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,2"/><text x="190" y="278" text-anchor="middle" font-size="10" fill="#aaa">フェロモン経路（間接通信）</text><rect x="440" y="20" width="340" height="260" rx="12" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="610" y="55" text-anchor="middle" font-size="14" fill="#4caf50" font-weight="bold">P2Pネットワーク</text><circle cx="530" cy="110" r="14" fill="#4caf50"/><text x="530" y="115" text-anchor="middle" font-size="9" fill="white">Node</text><circle cx="460" cy="165" r="13" fill="#4caf50"/><text x="460" y="170" text-anchor="middle" font-size="9" fill="white">Node</text><circle cx="570" cy="185" r="13" fill="#4caf50"/><text x="570" y="190" text-anchor="middle" font-size="9" fill="white">Node</text><circle cx="680" cy="130" r="13" fill="#4caf50"/><text x="680" y="135" text-anchor="middle" font-size="9" fill="white">Node</text><circle cx="700" cy="210" r="13" fill="#4caf50"/><text x="700" y="215" text-anchor="middle" font-size="9" fill="white">Node</text><line x1="543" y1="120" x2="471" y2="156" stroke="#4caf50" stroke-width="1.5"/><line x1="543" y1="122" x2="561" y2="174" stroke="#4caf50" stroke-width="1.5"/><line x1="543" y1="115" x2="667" y2="127" stroke="#4caf50" stroke-width="1.5"/><line x1="583" y1="187" x2="688" y2="143" stroke="#4caf50" stroke-width="1"/><line x1="583" y1="192" x2="688" y2="200" stroke="#4caf50" stroke-width="1"/><text x="610" y="278" text-anchor="middle" font-size="10" fill="#aaa">ルーティングテーブル（動的更新）</text></svg>
 
 
 ---
 
 # マイクロサービスとアリ
 
-- **アリの役割分担** → サービスの責務分離
-- 兵隊アリ・働きアリ・育児アリ = 各マイクロサービス
-- **直接命令なし** → APIゲートウェイを通じた疎結合
-- **フェロモン** → イベントバス（Kafka、RabbitMQ）
-- **障害時の自律回復** → サーキットブレーカーパターン
-- コロニーは個体が死んでも機能を保つ → **高可用性設計**
+- <svg viewBox="0 0 800 290" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="290" fill="#1a1a2e"/><text x="200" y="30" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold">アリのコロニー</text><text x="600" y="30" text-anchor="middle" font-size="13" fill="#4caf50" font-weight="bold">マイクロサービス</text><rect x="30" y="50" width="120" height="36" rx="8" fill="#e91e63" opacity="0.85"/><text x="90" y="73" text-anchor="middle" font-size="11" fill="white">兵隊アリ</text><rect x="30" y="105" width="120" height="36" rx="8" fill="#e91e63" opacity="0.7"/><text x="90" y="128" text-anchor="middle" font-size="11" fill="white">働きアリ</text><rect x="30" y="160" width="120" height="36" rx="8" fill="#e91e63" opacity="0.55"/><text x="90" y="183" text-anchor="middle" font-size="11" fill="white">育児アリ</text><rect x="30" y="215" width="120" height="36" rx="8" fill="#e91e63" opacity="0.4"/><text x="90" y="238" text-anchor="middle" font-size="11" fill="white">フェロモン</text><line x1="150" y1="68" x2="250" y2="68" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/><line x1="150" y1="123" x2="250" y2="123" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/><line x1="150" y1="178" x2="250" y2="178" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/><line x1="150" y1="233" x2="250" y2="233" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/><text x="200" y="65" text-anchor="middle" font-size="9" fill="#f9a825">≡</text><text x="200" y="120" text-anchor="middle" font-size="9" fill="#f9a825">≡</text><text x="200" y="175" text-anchor="middle" font-size="9" fill="#f9a825">≡</text><text x="200" y="230" text-anchor="middle" font-size="9" fill="#f9a825">≡</text><rect x="260" y="50" width="120" height="36" rx="8" fill="#4caf50" opacity="0.85"/><text x="320" y="73" text-anchor="middle" font-size="11" fill="white">Auth Service</text><rect x="260" y="105" width="120" height="36" rx="8" fill="#4caf50" opacity="0.7"/><text x="320" y="128" text-anchor="middle" font-size="11" fill="white">Order Service</text><rect x="260" y="160" width="120" height="36" rx="8" fill="#4caf50" opacity="0.55"/><text x="320" y="183" text-anchor="middle" font-size="11" fill="white">User Service</text><rect x="260" y="215" width="120" height="36" rx="8" fill="#4caf50" opacity="0.4"/><text x="320" y="238" text-anchor="middle" font-size="11" fill="white">Event Bus</text><rect x="450" y="40" width="310" height="220" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="605" y="68" text-anchor="middle" font-size="12" fill="#f9a825" font-weight="bold">対応関係</text><text x="480" y="100" font-size="10" fill="#e91e63">役割分担</text><text x="580" y="100" font-size="10" fill="white">→</text><text x="600" y="100" font-size="10" fill="#4caf50">責務分離 (SRP)</text><text x="480" y="130" font-size="10" fill="#e91e63">フェロモン通信</text><text x="580" y="130" font-size="10" fill="white">→</text><text x="600" y="130" font-size="10" fill="#4caf50">イベントバス</text><text x="480" y="160" font-size="10" fill="#e91e63">揮発性</text><text x="580" y="160" font-size="10" fill="white">→</text><text x="600" y="160" font-size="10" fill="#4caf50">TTL / Cache-Control</text><text x="480" y="190" font-size="10" fill="#e91e63">障害耐性</text><text x="580" y="190" font-size="10" fill="white">→</text><text x="600" y="190" font-size="10" fill="#4caf50">Circuit Breaker</text><text x="480" y="220" font-size="10" fill="#e91e63">個体の死</text><text x="580" y="220" font-size="10" fill="white">→</text><text x="600" y="220" font-size="10" fill="#4caf50">高可用性 (HA)</text></svg>
 
 
 ---
@@ -111,17 +98,19 @@ style: |
 
 ---
 
-# ACOアルゴリズムの仕組み
+# ACOアルゴリズムの仕組み（1/2）
 
 - 1992年 Marco Dorigo が提案した組み合わせ最適化手法
 - **巡回セールスマン問題（TSP）** への応用が有名
-- ---
+- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><circle cx="100" cy="100" r="18" fill="#f9a825"/><text x="100" y="105" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="bold">A</text><circle cx="260" cy="50" r="18" fill="#e91e63"/><text x="260" y="55" text-anchor="middle" font-size="11" fill="white" font-weight="bold">B</text><circle cx="400" cy="130" r="18" fill="#e91e63"/><text x="400" y="135" text-anchor="middle" font-size="11" fill="white" font-weight="bold">C</text><circle cx="540" cy="60" r="18" fill="#e91e63"/><text x="540" y="65" text-anchor="middle" font-size="11" fill="white" font-weight="bold">D</text><circle cx="680" cy="110" r="18" fill="#4caf50"/><text x="680" y="115" text-anchor="middle" font-size="11" fill="white" font-weight="bold">E</text><line x1="117" y1="93" x2="243" y2="57" stroke="#f9a825" stroke-width="4" opacity="0.9"/><line x1="277" y1="62" x2="383" y2="120" stroke="#f9a825" stroke-width="3" opacity="0.75"/><line x1="417" y1="120" x2="523" y2="70" stroke="#f9a825" stroke-width="2.5" opacity="0.65"/><line x1="557" y1="70" x2="663" y2="103" stroke="#f9a825" stroke-width="4" opacity="0.9"/><line x1="117" y1="107" x2="243" y2="143" stroke="#555" stroke-width="1" stroke-dasharray="4,3"/><line x1="383" y1="118" x2="243" y2="58" stroke="#555" stroke-width="1" stroke-dasharray="4,3"/><text x="400" y="185" text-anchor="middle" font-size="11" fill="#f9a825">太い線 = フェロモン濃度高（最短経路が自然強化）</text></svg>
 - アルゴリズムの流れ：
-- 1. 複数のエージェントが確率的にルートを選択
-- 2. 良いルート（短い）ほど多くのフェロモンを堆積
-- 3. 揮発により悪いルートのフェロモンは減衰
-- 4. 反復により最適解へ収束
-- 現在：ネットワーク経路最適化・スケジューリングに実用
+
+
+---
+
+# ACOアルゴリズムの仕組み（2/2）
+
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="260" fill="#1a1a2e"/><rect x="300" y="15" width="200" height="44" rx="10" fill="#e91e63"/><text x="400" y="43" text-anchor="middle" font-size="12" fill="white" font-weight="bold">初期化（全ルート均一）</text><line x1="400" y1="59" x2="400" y2="78"/><polygon points="400,78 394,68 406,68" fill="#f9a825"/><rect x="270" y="80" width="260" height="44" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="107" text-anchor="middle" font-size="12" fill="#f9a825" font-weight="bold">エージェントが確率的に巡回</text><line x1="400" y1="124" x2="400" y2="143"/><polygon points="400,143 394,133 406,133" fill="#f9a825"/><rect x="270" y="145" width="260" height="44" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="172" text-anchor="middle" font-size="12" fill="#f9a825" font-weight="bold">短いルートにフェロモン堆積</text><line x1="400" y1="189" x2="400" y2="208"/><polygon points="400,208 394,198 406,198" fill="#f9a825"/><rect x="270" y="210" width="260" height="40" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/><text x="400" y="235" text-anchor="middle" font-size="12" fill="#4caf50" font-weight="bold">揮発 + 反復 → 収束</text><line x1="530" y1="160" x2="620" y2="160"/><line x1="620" y1="160" x2="620" y2="100"/><line x1="620" y1="100" x2="533" y2="100"/><polygon points="533,100 543,94 543,106" fill="#f9a825"/><text x="660" y="135" text-anchor="middle" font-size="10" fill="#aaa" transform="rotate(0,660,135)">反復</text><text x="400" y="255" text-anchor="middle" font-size="10" fill="#aaa">現在：ネットワーク経路最適化・スケジューリングに実用</text></svg>
 
 
 ---
@@ -137,29 +126,21 @@ style: |
 - **単一障害点（SPOF）：** 中央サーバーが落ちると全滅
 - **スケーラビリティの壁：** 全処理が1点に集中
 - **意思決定の遅延：** すべての判断が上位に集まる
-- ---
+- <svg viewBox="0 0 800 180" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="180" fill="#1a1a2e"/><rect x="340" y="20" width="120" height="40" rx="8" fill="#e91e63"/><text x="400" y="45" text-anchor="middle" font-size="12" fill="white" font-weight="bold">中央サーバー</text><line x1="380" y1="60" x2="160" y2="100" stroke="#e91e63" stroke-width="1.5"/><line x1="390" y1="60" x2="280" y2="100" stroke="#e91e63" stroke-width="1.5"/><line x1="400" y1="60" x2="400" y2="100" stroke="#e91e63" stroke-width="1.5"/><line x1="410" y1="60" x2="520" y2="100" stroke="#e91e63" stroke-width="1.5"/><line x1="420" y1="60" x2="640" y2="100" stroke="#e91e63" stroke-width="1.5"/><rect x="120" y="100" width="80" height="32" rx="6" fill="#16213e" stroke="#555" stroke-width="1"/><text x="160" y="121" text-anchor="middle" font-size="10" fill="#aaa">Node 1</text><rect x="240" y="100" width="80" height="32" rx="6" fill="#16213e" stroke="#555" stroke-width="1"/><text x="280" y="121" text-anchor="middle" font-size="10" fill="#aaa">Node 2</text><rect x="360" y="100" width="80" height="32" rx="6" fill="#16213e" stroke="#555" stroke-width="1"/><text x="400" y="121" text-anchor="middle" font-size="10" fill="#aaa">Node 3</text><rect x="480" y="100" width="80" height="32" rx="6" fill="#16213e" stroke="#555" stroke-width="1"/><text x="520" y="121" text-anchor="middle" font-size="10" fill="#aaa">Node 4</text><rect x="600" y="100" width="80" height="32" rx="6" fill="#16213e" stroke="#555" stroke-width="1"/><text x="640" y="121" text-anchor="middle" font-size="10" fill="#aaa">Node 5</text><line x1="340" y1="40" x2="360" y2="20" stroke="#ff5252" stroke-width="3"/><line x1="360" y1="40" x2="340" y2="20" stroke="#ff5252" stroke-width="3"/><text x="400" y="165" text-anchor="middle" font-size="11" fill="#ff5252">中央が落ちると全ノードが孤立 — SPOF (Single Point of Failure)</text></svg>
 - アリは2億5000万年かけてこの問題を解決した
-- 単一の女王が死んでも**コロニーは機能を保つ**
 
 
 ---
 
 # 創発的設計の4原則
 
-- **1. シンプルなローカルルール** — 各コンポーネントの責務を最小化
-- **2. 間接的コミュニケーション** — 直接参照より環境（イベント）を介す
-- **3. 揮発性の導入** — 古い状態を自動でリセット（TTL・Cache-Control）
-- **4. 確率的な意思決定** — 100%確実でなくてよい。試行錯誤が収束を生む
+- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e"/><rect x="30" y="20" width="350" height="110" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="55" y="48" font-size="12" fill="#f9a825" font-weight="bold">1. シンプルなローカルルール</text><text x="55" y="70" font-size="10" fill="white">各コンポーネントの責務を最小化</text><text x="55" y="90" font-size="10" fill="#aaa">= 単一責任原則 (SRP)</text><text x="55" y="110" font-size="10" fill="#aaa">= マイクロサービス粒度設計</text><rect x="420" y="20" width="350" height="110" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="445" y="48" font-size="12" fill="#e91e63" font-weight="bold">2. 間接的コミュニケーション</text><text x="445" y="70" font-size="10" fill="white">直接参照より環境（イベント）を介す</text><text x="445" y="90" font-size="10" fill="#aaa">= イベント駆動アーキテクチャ</text><text x="445" y="110" font-size="10" fill="#aaa">= 疎結合設計</text><rect x="30" y="155" width="350" height="110" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/><text x="55" y="183" font-size="12" fill="#4caf50" font-weight="bold">3. 揮発性の導入</text><text x="55" y="205" font-size="10" fill="white">古い状態を自動でリセット</text><text x="55" y="225" font-size="10" fill="#aaa">= TTL / Cache-Control</text><text x="55" y="245" font-size="10" fill="#aaa">= サーキットブレーカーのリセット</text><rect x="420" y="155" width="350" height="110" rx="10" fill="#16213e" stroke="#9c27b0" stroke-width="1.5"/><text x="445" y="183" font-size="12" fill="#9c27b0" font-weight="bold">4. 確率的な意思決定</text><text x="445" y="205" font-size="10" fill="white">100%確実でなくてよい</text><text x="445" y="225" font-size="10" fill="#aaa">= カナリアリリース</text><text x="445" y="245" font-size="10" fill="#aaa">= A/Bテスト・フィーチャーフラグ</text></svg>
 
 
 ---
 
 # まとめ：アリから学ぶ分散設計
 
-- ✅ **中央集権を疑う** — 指揮官がいなくても秩序は生まれる
-- ✅ **ローカルルールを磨く** — グローバルな複雑さはローカルな単純さから
-- ✅ **環境を通じて通信する** — 疎結合はシステムを強くする
-- ✅ **フェロモンを揮発させる** — 古い最適解は新しい最適解の邪魔をする
-- 
+- <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="220" fill="#1a1a2e"/><circle cx="400" cy="110" r="70" fill="none" stroke="#f9a825" stroke-width="2"/><text x="400" y="106" text-anchor="middle" font-size="12" fill="#f9a825" font-weight="bold">創発的</text><text x="400" y="122" text-anchor="middle" font-size="12" fill="#f9a825" font-weight="bold">分散設計</text><rect x="20" y="30" width="140" height="52" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="90" y="53" text-anchor="middle" font-size="10" fill="#e91e63">中央集権を疑う</text><text x="90" y="70" text-anchor="middle" font-size="9" fill="#aaa">指揮官なし秩序</text><line x1="160" y1="56" x2="331" y2="90" stroke="#e91e63" stroke-width="1"/><rect x="640" y="30" width="140" height="52" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/><text x="710" y="53" text-anchor="middle" font-size="10" fill="#4caf50">ローカルルール</text><text x="710" y="70" text-anchor="middle" font-size="9" fill="#aaa">単純さから複雑さへ</text><line x1="640" y1="56" x2="469" y2="90" stroke="#4caf50" stroke-width="1"/><rect x="20" y="138" width="140" height="52" rx="8" fill="#16213e" stroke="#9c27b0" stroke-width="1.5"/><text x="90" y="161" text-anchor="middle" font-size="10" fill="#9c27b0">環境で通信する</text><text x="90" y="178" text-anchor="middle" font-size="9" fill="#aaa">疎結合が強さ</text><line x1="160" y1="164" x2="331" y2="130" stroke="#9c27b0" stroke-width="1"/><rect x="640" y="138" width="140" height="52" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="710" y="161" text-anchor="middle" font-size="10" fill="#f9a825">フェロモン揮発</text><text x="710" y="178" text-anchor="middle" font-size="9" fill="#aaa">古い最適解は捨てる</text><line x1="640" y1="164" x2="469" y2="130" stroke="#f9a825" stroke-width="1"/></svg>
 - 「自然は40億年のR&Dの結果である」— バイオミミクリーの本質
 

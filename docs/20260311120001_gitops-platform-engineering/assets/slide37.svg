@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">コンテナイメージビルド戦略</text>
+
+  <!-- Left column: Multi-stage build -->
+  <text x="200" y="70" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#60a5fa" font-weight="bold">マルチステージビルド</text>
+
+  <!-- Stage: builder -->
+  <rect x="50" y="88" width="300" height="62" rx="8" fill="#16213e" stroke="#60a5fa" stroke-width="2"/>
+  <text x="85" y="112" font-family="sans-serif" font-size="12" fill="#60a5fa" font-weight="bold">FROM golang:1.22 AS builder</text>
+  <text x="85" y="132" font-family="sans-serif" font-size="11" fill="#cccccc">全SDKインストール / コンパイル実行</text>
+  <text x="85" y="148" font-family="sans-serif" font-size="10" fill="#888888">サイズ: ~800MB</text>
+
+  <!-- Arrow -->
+  <line x1="200" y1="152" x2="200" y2="172" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="195,172 200,182 205,172" fill="#60a5fa"/>
+
+  <!-- Stage: runtime -->
+  <rect x="50" y="184" width="300" height="62" rx="8" fill="#16213e" stroke="#34d399" stroke-width="2"/>
+  <text x="85" y="208" font-family="sans-serif" font-size="12" fill="#34d399" font-weight="bold">FROM gcr.io/distroless AS runtime</text>
+  <text x="85" y="226" font-family="sans-serif" font-size="11" fill="#cccccc">COPY --from=builder /app/server .</text>
+  <text x="85" y="244" font-family="sans-serif" font-size="10" fill="#888888">サイズ: ~20MB（攻撃面最小）</text>
+
+  <!-- Benefit badge -->
+  <rect x="90" y="260" width="220" height="30" rx="6" fill="#1e3e2e" stroke="#34d399" stroke-width="1"/>
+  <text x="200" y="280" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#34d399">97.5% サイズ削減 / Shell無し</text>
+
+  <!-- Divider -->
+  <line x1="395" y1="60" x2="395" y2="470" stroke="#444466" stroke-width="1" stroke-dasharray="5,4"/>
+
+  <!-- Right column: Image Tag Strategy -->
+  <text x="600" y="70" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#a78bfa" font-weight="bold">イメージタグ戦略</text>
+
+  <!-- Tag types -->
+  <!-- SHA tag -->
+  <rect x="420" y="88" width="355" height="60" rx="8" fill="#2d2d4e" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="445" y="110" font-family="sans-serif" font-size="12" fill="#a78bfa" font-weight="bold">SHA タグ (immutable)</text>
+  <text x="445" y="130" font-family="sans-serif" font-size="11" fill="#cccccc">app:sha-a1b2c3d4  ← 本番推奨</text>
+  <text x="445" y="146" font-family="sans-serif" font-size="10" fill="#888888">特定コミットを一意に識別</text>
+
+  <!-- SemVer tag -->
+  <rect x="420" y="164" width="355" height="60" rx="8" fill="#2d2d4e" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="445" y="186" font-family="sans-serif" font-size="12" fill="#60a5fa" font-weight="bold">SemVer タグ (releaseable)</text>
+  <text x="445" y="206" font-family="sans-serif" font-size="11" fill="#cccccc">app:v1.2.3  ← リリース管理</text>
+  <text x="445" y="222" font-family="sans-serif" font-size="10" fill="#888888">Gitタグと連動、変更不可</text>
+
+  <!-- latest tag (discouraged) -->
+  <rect x="420" y="240" width="355" height="60" rx="8" fill="#2e1e1e" stroke="#f87171" stroke-width="1.5"/>
+  <text x="445" y="262" font-family="sans-serif" font-size="12" fill="#f87171" font-weight="bold">latest タグ ⚠️ (mutable)</text>
+  <text x="445" y="282" font-family="sans-serif" font-size="11" fill="#cccccc">app:latest  ← 本番禁止</text>
+  <text x="445" y="298" font-family="sans-serif" font-size="10" fill="#888888">何を指すか不明、再現性なし</text>
+
+  <!-- Image Signing -->
+  <rect x="420" y="316" width="355" height="60" rx="8" fill="#16213e" stroke="#34d399" stroke-width="1.5"/>
+  <text x="445" y="338" font-family="sans-serif" font-size="12" fill="#34d399" font-weight="bold">イメージ署名 (Cosign)</text>
+  <text x="445" y="358" font-family="sans-serif" font-size="11" fill="#cccccc">cosign sign --key cosign.key app:sha-xxx</text>
+  <text x="445" y="374" font-family="sans-serif" font-size="10" fill="#888888">改ざん検知 / サプライチェーンセキュリティ</text>
+
+  <!-- Bottom: Build Cache Strategy -->
+  <rect x="50" y="315" width="300" height="105" rx="8" fill="#2d2d4e" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="200" y="340" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#fbbf24" font-weight="bold">ビルドキャッシュ戦略</text>
+  <text x="75" y="362" font-family="sans-serif" font-size="11" fill="#cccccc">• レイヤーキャッシュ: 依存関係を先にCOPY</text>
+  <text x="75" y="382" font-family="sans-serif" font-size="11" fill="#cccccc">• Buildkit inline cache: --cache-to/from</text>
+  <text x="75" y="402" font-family="sans-serif" font-size="11" fill="#cccccc">• Registry cache: type=registry,ref=...</text>
+
+  <!-- Bottom note -->
+  <text x="400" y="460" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888888">再現性・セキュリティ・ビルド速度のトリプル最適化</text>
+</svg>

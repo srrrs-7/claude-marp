@@ -7,6 +7,71 @@ paginate: true
 header: "偶然生まれた標準"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -89,6 +154,7 @@ style: |
 
 # UTF-8 — ナプキンに描かれた天才設計
 
+- <svg viewBox='0 0 800 200' style='max-height:40vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>UTF-8 可変長エンコーディング</text><rect x='40' y='50' width='340' height='50' rx='8' fill='#2d5016'/><text x='60' y='72' fill='#4ecdc4' font-size='12' font-weight='bold'>ASCII文字 (U+0000〜U+007F)</text><text x='60' y='91' fill='#fff' font-size='11' font-family='monospace'>0xxxxxxx  →  1バイト (128文字)</text><rect x='40' y='110' width='340' height='50' rx='8' fill='#1b4332'/><text x='60' y='130' fill='#a9d6e5' font-size='12' font-weight='bold'>日本語・漢字 (U+0800〜U+FFFF)</text><text x='60' y='149' fill='#fff' font-size='11' font-family='monospace'>1110xxxx 10xxxxxx 10xxxxxx  →  3バイト</text><rect x='420' y='50' width='340' height='110' rx='8' fill='#16213e' stroke='#e91e63' stroke-width='2'/><text x='590' y='75' text-anchor='middle' fill='#e91e63' font-size='13' font-weight='bold'>天才的な設計の核心</text><text x='590' y='100' text-anchor='middle' fill='#aaa' font-size='10'>1バイト目で長さがわかる</text><text x='590' y='118' text-anchor='middle' fill='#aaa' font-size='10'>ASCIIと完全互換</text><text x='590' y='136' text-anchor='middle' fill='#aaa' font-size='10'>同期復帰が容易</text><text x='590' y='154' text-anchor='middle' fill='#f9a825' font-size='10'>1992年、ナプキンに20分で設計</text><text x='400' y='185' text-anchor='middle' fill='#4ecdc4' font-size='11'>Web全体の98%が採用 — 文字コード戦争を終わらせた</text></svg>
 - - 1992年: Ken Thompson と Rob Pike がレストランで設計
 - - 要件: ASCIIとの完全な後方互換性を保つUnicode符号化
 - - ナプキンに書かれた可変長エンコーディング方式
@@ -144,6 +210,7 @@ style: |
 
 # 現在進行形の偶然
 
+- <svg viewBox='0 0 800 180' style='max-height:38vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='180' fill='#1a1a2e' rx='12'/><text x='400' y='25' text-anchor='middle' fill='#f9a825' font-size='13' font-weight='bold'>偶然生まれた標準のタイムライン</text><line x1='60' y1='75' x2='760' y2='75' stroke='#444' stroke-width='2'/><circle cx='120' cy='75' r='8' fill='#e91e63'/><text x='120' y='55' text-anchor='middle' fill='#e91e63' font-size='11' font-weight='bold'>2000</text><text x='120' y='100' text-anchor='middle' fill='#fff' font-size='10'>REST</text><text x='120' y='115' text-anchor='middle' fill='#aaa' font-size='9'>博士論文が</text><text x='120' y='128' text-anchor='middle' fill='#aaa' font-size='9'>標準に</text><circle cx='280' cy='75' r='8' fill='#f9a825'/><text x='280' y='55' text-anchor='middle' fill='#f9a825' font-size='11' font-weight='bold'>2001</text><text x='280' y='100' text-anchor='middle' fill='#fff' font-size='10'>JSON</text><text x='280' y='115' text-anchor='middle' fill='#aaa' font-size='9'>既存構文を</text><text x='280' y='128' text-anchor='middle' fill='#aaa' font-size='9'>「発見」</text><circle cx='480' cy='75' r='8' fill='#4ecdc4'/><text x='480' y='55' text-anchor='middle' fill='#4ecdc4' font-size='11' font-weight='bold'>2011</text><text x='480' y='100' text-anchor='middle' fill='#fff' font-size='10'>WebSocket</text><text x='480' y='115' text-anchor='middle' fill='#aaa' font-size='9'>HTTP限界を</text><text x='480' y='128' text-anchor='middle' fill='#aaa' font-size='9'>後付け回避</text><circle cx='660' cy='75' r='10' fill='#a78bfa'/><text x='660' y='55' text-anchor='middle' fill='#a78bfa' font-size='11' font-weight='bold'>2022〜</text><text x='660' y='100' text-anchor='middle' fill='#fff' font-size='10'>LLM API</text><text x='660' y='115' text-anchor='middle' fill='#aaa' font-size='9'>OpenAI形式が</text><text x='660' y='128' text-anchor='middle' fill='#aaa' font-size='9'>デファクトに</text><text x='400' y='165' text-anchor='middle' fill='#888' font-size='10'>すべて「意図しない標準化」— 設計より普及速度が勝った</text></svg>
 - - **JSON** (2001): Douglas CrockfordがJavaScriptの既存構文を「発見」
 -   - 新しい発明ではなく「既にあったもの」に名前を付けた
 - - **REST** (2000): Roy Fieldingの博士論文から予想外に普及
@@ -156,6 +223,7 @@ style: |
 
 # AIが生む新しい「偶然の標準」
 
+- <svg viewBox='0 0 800 200' style='max-height:40vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>OpenAI Chat API — 意図せず業界標準に</text><rect x='40' y='50' width='340' height='115' rx='10' fill='#16213e' stroke='#e91e63' stroke-width='2'/><text x='210' y='73' text-anchor='middle' fill='#e91e63' font-size='12' font-weight='bold'>OpenAI (2022年〜)</text><text x='60' y='95' fill='#fff' font-size='10' font-family='monospace'>[{role: user,</text><text x='60' y='113' fill='#fff' font-size='10' font-family='monospace'>  content: 質問}]</text><text x='210' y='145' text-anchor='middle' fill='#aaa' font-size='10'>最初に普及したAPIフォーマット</text><polygon points='388,108 418,103 418,113' fill='#f9a825'/><line x1='380' y1='108' x2='418' y2='108' stroke='#f9a825' stroke-width='2'/><rect x='430' y='50' width='330' height='115' rx='10' fill='#16213e' stroke='#4ecdc4' stroke-width='2'/><text x='595' y='73' text-anchor='middle' fill='#4ecdc4' font-size='12' font-weight='bold'>互換API採用 (2023-26)</text><text x='450' y='95' fill='#aaa' font-size='11'>Anthropic Claude API</text><text x='450' y='113' fill='#aaa' font-size='11'>Google Gemini API</text><text x='450' y='131' fill='#aaa' font-size='11'>Mistral / Ollama / LM Studio</text><text x='595' y='152' text-anchor='middle' fill='#f9a825' font-size='10'>全社が互換フォーマット採用</text><text x='400' y='185' text-anchor='middle' fill='#ccc' font-size='10'>MCP (Model Context Protocol) — 次の偶然の標準候補</text></svg>
 - - OpenAIのChat Completions APIフォーマットがデファクトスタンダード化
 - - `{role: 'user', content: '...'}` — 意図せず業界標準に
 - - Anthropic、Google、Mistralも互換フォーマットを提供
@@ -178,13 +246,19 @@ style: |
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - - **RFCs & Standards:**
 -   - [RFC 2324 — HTCPCP (I'm a teapot)](https://www.rfc-editor.org/rfc/rfc2324)
 -   - [RFC 2616 — HTTP/1.1](https://www.rfc-editor.org/rfc/rfc2616)
 -   - [The Tao of IETF (IETF Philosophy)](https://www.ietf.org/about/participate/tao/)
 - - **Books:**
+
+
+---
+
+# 参考文献（2/2）
+
 -   - ["The Design of Everyday Things" (Don Norman)](https://www.basicbooks.com/titles/don-norman/the-design-of-everyday-things/9780465050659/)
 -   - ["Inventing the Internet" (Janet Abbate)](https://mitpress.mit.edu/books/inventing-internet)
 - - **Articles:**

@@ -5,6 +5,7 @@ output:
   baseName: "jazz-agile-dev"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ジャズと即興的開発"
   footer: "© 2026"

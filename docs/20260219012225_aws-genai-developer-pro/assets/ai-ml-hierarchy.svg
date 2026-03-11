@@ -1,4 +1,4 @@
-<svg viewBox="0 0 860 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:'Helvetica Neue',Arial,sans-serif">
+<svg viewBox="0 0 860 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <!-- Background -->
   <rect x="0" y="0" width="860" height="420" fill="#f0f4ff" rx="12"/>
 

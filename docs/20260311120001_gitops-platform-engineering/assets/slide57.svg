@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <text x="400" y="36" text-anchor="middle" font-size="20" font-weight="bold" fill="#ffffff" font-family="sans-serif">チーム構成モデル</text>
+
+  <!-- Platform Team -->
+  <rect x="30" y="65" width="340" height="380" rx="12" fill="#16213e" stroke="#a78bfa" stroke-width="2"/>
+  <rect x="30" y="65" width="340" height="45" rx="12" fill="#2d1b4e"/>
+  <text x="200" y="94" text-anchor="middle" font-size="16" font-weight="bold" fill="#a78bfa" font-family="sans-serif">Platform Team</text>
+
+  <!-- Platform members -->
+  <rect x="50" y="125" width="140" height="50" rx="6" fill="#1a1a2e" stroke="#a78bfa" stroke-width="1"/>
+  <text x="120" y="147" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa" font-family="sans-serif">Platform Engineer</text>
+  <text x="120" y="165" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">IDP / 基盤構築</text>
+
+  <rect x="210" y="125" width="140" height="50" rx="6" fill="#1a1a2e" stroke="#a78bfa" stroke-width="1"/>
+  <text x="280" y="147" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa" font-family="sans-serif">SRE</text>
+  <text x="280" y="165" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">信頼性 / SLO管理</text>
+
+  <rect x="50" y="190" width="140" height="50" rx="6" fill="#1a1a2e" stroke="#a78bfa" stroke-width="1"/>
+  <text x="120" y="212" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa" font-family="sans-serif">Security Engineer</text>
+  <text x="120" y="230" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">Policy / SecOps</text>
+
+  <rect x="210" y="190" width="140" height="50" rx="6" fill="#1a1a2e" stroke="#a78bfa" stroke-width="1"/>
+  <text x="280" y="212" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa" font-family="sans-serif">DevOps Lead</text>
+  <text x="280" y="230" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">CI/CD / GitOps</text>
+
+  <!-- Platform responsibilities -->
+  <rect x="50" y="258" width="300" height="165" rx="6" fill="#1a1a2e" stroke="#334155" stroke-width="1"/>
+  <text x="200" y="280" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff" font-family="sans-serif">提供するもの (Golden Path)</text>
+  <text x="200" y="300" text-anchor="middle" font-size="11" fill="#a78bfa" font-family="sans-serif">K8s クラスター管理</text>
+  <text x="200" y="318" text-anchor="middle" font-size="11" fill="#a78bfa" font-family="sans-serif">CI/CD テンプレート</text>
+  <text x="200" y="336" text-anchor="middle" font-size="11" fill="#a78bfa" font-family="sans-serif">Secret / RBAC 管理</text>
+  <text x="200" y="354" text-anchor="middle" font-size="11" fill="#a78bfa" font-family="sans-serif">Observability Stack</text>
+  <text x="200" y="372" text-anchor="middle" font-size="11" fill="#a78bfa" font-family="sans-serif">IDP Self-service Portal</text>
+  <text x="200" y="390" text-anchor="middle" font-size="11" fill="#a78bfa" font-family="sans-serif">コスト可視化 (FinOps)</text>
+
+  <!-- Arrows / interaction -->
+  <line x1="370" y1="255" x2="430" y2="255" stroke="#34d399" stroke-width="2.5"/>
+  <polygon points="430,255 418,249 418,261" fill="#34d399"/>
+  <text x="400" y="245" text-anchor="middle" font-size="10" fill="#34d399" font-family="sans-serif">APIs / Portals</text>
+  <line x1="430" y1="285" x2="370" y2="285" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="370,285 382,279 382,291" fill="#fbbf24"/>
+  <text x="400" y="305" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="sans-serif">Feedback</text>
+
+  <!-- Product Teams -->
+  <rect x="430" y="65" width="340" height="380" rx="12" fill="#16213e" stroke="#60a5fa" stroke-width="2"/>
+  <rect x="430" y="65" width="340" height="45" rx="12" fill="#1e3a5f"/>
+  <text x="600" y="94" text-anchor="middle" font-size="16" font-weight="bold" fill="#60a5fa" font-family="sans-serif">Product Teams (x N)</text>
+
+  <!-- Product team members -->
+  <rect x="450" y="125" width="140" height="50" rx="6" fill="#1a1a2e" stroke="#60a5fa" stroke-width="1"/>
+  <text x="520" y="147" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa" font-family="sans-serif">Backend Dev</text>
+  <text x="520" y="165" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">API / Service開発</text>
+
+  <rect x="610" y="125" width="140" height="50" rx="6" fill="#1a1a2e" stroke="#60a5fa" stroke-width="1"/>
+  <text x="680" y="147" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa" font-family="sans-serif">Frontend Dev</text>
+  <text x="680" y="165" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">UI / BFF開発</text>
+
+  <rect x="450" y="190" width="140" height="50" rx="6" fill="#1a1a2e" stroke="#60a5fa" stroke-width="1"/>
+  <text x="520" y="212" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa" font-family="sans-serif">QA Engineer</text>
+  <text x="520" y="230" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">テスト自動化</text>
+
+  <rect x="610" y="190" width="140" height="50" rx="6" fill="#1a1a2e" stroke="#60a5fa" stroke-width="1"/>
+  <text x="680" y="212" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa" font-family="sans-serif">Product Owner</text>
+  <text x="680" y="230" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">要件定義</text>
+
+  <!-- Product team focus -->
+  <rect x="450" y="258" width="300" height="165" rx="6" fill="#1a1a2e" stroke="#334155" stroke-width="1"/>
+  <text x="600" y="280" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff" font-family="sans-serif">集中できること</text>
+  <text x="600" y="300" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">ビジネスロジックの実装</text>
+  <text x="600" y="318" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">機能開発・リリース速度</text>
+  <text x="600" y="336" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">プラットフォームの活用</text>
+  <text x="600" y="354" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">SLO遵守・アラート対応</text>
+  <text x="600" y="372" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">フィードバックの提供</text>
+  <text x="600" y="390" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">インフラ管理は不要</text>
+
+  <!-- Topology label -->
+  <text x="400" y="472" text-anchor="middle" font-size="11" fill="#475569" font-family="sans-serif">Team Topologies: Platform Team → Enabling / X-as-a-Service</text>
+</svg>

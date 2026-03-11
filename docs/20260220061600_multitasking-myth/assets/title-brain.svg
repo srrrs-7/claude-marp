@@ -1,0 +1,33 @@
+<svg viewBox="0 0 700 260" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="260" fill="#1a1a2e"/>
+  <!-- Central brain node -->
+  <circle cx="350" cy="130" r="50" fill="#283593" stroke="#f9a825" stroke-width="3"/>
+  <text x="350" y="125" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">脳の処理</text>
+  <text x="350" y="143" text-anchor="middle" fill="#f9a825" font-size="11">チャネル×1</text>
+  <!-- Task nodes -->
+  <rect x="30" y="40" width="130" height="44" rx="8" fill="#e91e63"/>
+  <text x="95" y="67" text-anchor="middle" fill="white" font-size="13" font-weight="bold">タスク A</text>
+  <rect x="30" y="108" width="130" height="44" rx="8" fill="#b71c1c"/>
+  <text x="95" y="135" text-anchor="middle" fill="white" font-size="13" font-weight="bold">タスク B</text>
+  <rect x="30" y="176" width="130" height="44" rx="8" fill="#880e4f"/>
+  <text x="95" y="203" text-anchor="middle" fill="white" font-size="13" font-weight="bold">タスク C</text>
+  <!-- Output node -->
+  <rect x="540" y="108" width="130" height="44" rx="8" fill="#2e7d32" stroke="#4caf50" stroke-width="2"/>
+  <text x="605" y="130" text-anchor="middle" fill="white" font-size="12">順番に</text>
+  <text x="605" y="146" text-anchor="middle" fill="white" font-size="12">処理</text>
+  <!-- Arrows from tasks to brain - using lines + polygons instead of markers -->
+  <line x1="160" y1="62" x2="295" y2="112" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="295,112 278,106 282,120" fill="#e91e63"/>
+  <line x1="160" y1="130" x2="298" y2="130" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="298,130 284,123 284,137" fill="#e91e63"/>
+  <line x1="160" y1="198" x2="295" y2="148" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="295,148 278,150 282,136" fill="#e91e63"/>
+  <!-- Arrow from brain to output -->
+  <line x1="400" y1="130" x2="538" y2="130" stroke="#4caf50" stroke-width="2"/>
+  <polygon points="538,130 524,123 524,137" fill="#4caf50"/>
+  <!-- Bottleneck label -->
+  <text x="350" y="200" text-anchor="middle" fill="#aaaaaa" font-size="11">同時に通れるのは1つだけ</text>
+  <!-- Blocked indicator -->
+  <text x="200" y="250" text-anchor="middle" fill="#e91e63" font-size="12">同時処理 = 不可能</text>
+  <text x="500" y="250" text-anchor="middle" fill="#4caf50" font-size="12">順次処理 = 実際の動作</text>
+</svg>

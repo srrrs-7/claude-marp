@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">Feature Flags — 全体アーキテクチャ</text>
+
+  <!-- Client Apps (left) -->
+  <rect x="20" y="75" width="130" height="55" rx="8" fill="#2d2d4e" stroke="#a78bfa" stroke-width="2"/>
+  <text x="85" y="98" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a78bfa" font-weight="bold">📱 Web App</text>
+  <text x="85" y="118" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Frontend</text>
+
+  <rect x="20" y="145" width="130" height="55" rx="8" fill="#2d2d4e" stroke="#a78bfa" stroke-width="2"/>
+  <text x="85" y="168" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a78bfa" font-weight="bold">🔧 Backend API</text>
+  <text x="85" y="188" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Microservices</text>
+
+  <rect x="20" y="215" width="130" height="55" rx="8" fill="#2d2d4e" stroke="#a78bfa" stroke-width="2"/>
+  <text x="85" y="238" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a78bfa" font-weight="bold">📦 Worker</text>
+  <text x="85" y="258" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Background Jobs</text>
+
+  <!-- Arrows to SDK -->
+  <line x1="152" y1="103" x2="195" y2="103" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="195,98 205,103 195,108" fill="#60a5fa"/>
+  <line x1="152" y1="173" x2="195" y2="173" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="195,168 205,173 195,178" fill="#60a5fa"/>
+  <line x1="152" y1="243" x2="195" y2="243" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="195,238 205,243 195,248" fill="#60a5fa"/>
+
+  <!-- SDK layer -->
+  <rect x="207" y="75" width="120" height="230" rx="8" fill="#16213e" stroke="#60a5fa" stroke-width="2"/>
+  <text x="267" y="105" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#60a5fa" font-weight="bold">SDK</text>
+  <text x="267" y="125" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">フラグ評価</text>
+  <text x="267" y="145" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">ローカルキャッシュ</text>
+  <text x="267" y="165" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">ストリーミング更新</text>
+  <text x="267" y="185" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888888">Go / Java / JS / Py</text>
+  <line x1="230" y1="195" x2="304" y2="195" stroke="#444466" stroke-width="1"/>
+  <text x="267" y="215" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888888">ユーザーコンテキスト</text>
+  <text x="267" y="233" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888888">属性で評価:</text>
+  <text x="267" y="250" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888888">userId / region /</text>
+  <text x="267" y="267" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888888">plan / beta_user</text>
+  <text x="267" y="292" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888888">等</text>
+
+  <!-- Arrow to Feature Flag Service -->
+  <line x1="329" y1="190" x2="365" y2="190" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="365,185 375,190 365,195" fill="#60a5fa"/>
+
+  <!-- Feature Flag Service (center) -->
+  <rect x="377" y="65" width="185" height="280" rx="10" fill="#2d2d0e" stroke="#fbbf24" stroke-width="2.5"/>
+  <text x="469" y="92" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#fbbf24" font-weight="bold">🚩 Feature Flag</text>
+  <text x="469" y="110" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#fbbf24" font-weight="bold">Service</text>
+  <text x="469" y="130" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888888">LaunchDarkly / Unleash</text>
+  <line x1="395" y1="140" x2="544" y2="140" stroke="#fbbf24" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Flag list -->
+  <rect x="390" y="150" width="160" height="26" rx="4" fill="#3d3000" stroke="#fbbf24" stroke-width="1"/>
+  <text x="470" y="168" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#fbbf24">new_ui: ON 20%</text>
+  <rect x="390" y="183" width="160" height="26" rx="4" fill="#3d3000" stroke="#fbbf24" stroke-width="1"/>
+  <text x="470" y="201" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#fbbf24">dark_mode: ON 50%</text>
+  <rect x="390" y="216" width="160" height="26" rx="4" fill="#2e1e1e" stroke="#f87171" stroke-width="1"/>
+  <text x="470" y="234" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f87171">payment_v2: OFF</text>
+  <rect x="390" y="249" width="160" height="26" rx="4" fill="#1e3e2e" stroke="#34d399" stroke-width="1"/>
+  <text x="470" y="267" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#34d399">beta_api: ON (beta)</text>
+
+  <line x1="395" y1="285" x2="544" y2="285" stroke="#fbbf24" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="469" y="310" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Targeting Rules</text>
+  <text x="469" y="328" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Rollout %</text>
+
+  <!-- Arrows to right components -->
+  <line x1="564" y1="150" x2="600" y2="130" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="596,125 603,130 597,137" fill="#60a5fa"/>
+  <line x1="564" y1="200" x2="600" y2="200" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="600,195 610,200 600,205" fill="#60a5fa"/>
+  <line x1="564" y1="270" x2="600" y2="290" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="596,285 603,290 597,297" fill="#60a5fa"/>
+
+  <!-- Right: Admin UI -->
+  <rect x="612" y="75" width="165" height="70" rx="8" fill="#2d2d4e" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="694" y="100" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#a78bfa" font-weight="bold">🖥️ Admin UI</text>
+  <text x="694" y="118" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">フラグの作成/編集</text>
+  <text x="694" y="134" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">ターゲット設定</text>
+
+  <!-- Analytics -->
+  <rect x="612" y="165" width="165" height="70" rx="8" fill="#2d2d4e" stroke="#34d399" stroke-width="1.5"/>
+  <text x="694" y="190" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399" font-weight="bold">📊 Analytics</text>
+  <text x="694" y="208" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">A/Bテスト結果</text>
+  <text x="694" y="226" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">フラグ影響分析</text>
+
+  <!-- Audit Log -->
+  <rect x="612" y="255" width="165" height="70" rx="8" fill="#2d2d4e" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="694" y="280" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fbbf24" font-weight="bold">📋 Audit Log</text>
+  <text x="694" y="298" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">変更履歴</text>
+  <text x="694" y="316" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">誰がいつ変更したか</text>
+
+  <!-- Bottom note -->
+  <text x="400" y="380" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#a78bfa" font-weight="bold">デプロイとリリースの分離が可能に</text>
+  <text x="400" y="405" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888888">コードは常に本番に存在し、フラグで機能のON/OFFを制御</text>
+
+  <!-- Lifecycle -->
+  <rect x="30" y="425" width="740" height="50" rx="8" fill="#16213e" stroke="#444466" stroke-width="1"/>
+  <text x="100" y="445" font-family="sans-serif" font-size="10" fill="#a78bfa">① 作成</text>
+  <text x="185" y="445" font-family="sans-serif" font-size="10" fill="#60a5fa">② 段階展開</text>
+  <text x="300" y="445" font-family="sans-serif" font-size="10" fill="#34d399">③ 全展開</text>
+  <text x="400" y="445" font-family="sans-serif" font-size="10" fill="#fbbf24">④ 効果測定</text>
+  <text x="510" y="445" font-family="sans-serif" font-size="10" fill="#f87171">⑤ フラグ削除</text>
+  <text x="620" y="445" font-family="sans-serif" font-size="10" fill="#888888">⚠️ 負債化防止</text>
+  <text x="400" y="465" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888888">フラグのライフサイクル管理: 定期的なクリーンアップが重要</text>
+</svg>

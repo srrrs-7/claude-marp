@@ -5,6 +5,7 @@ output:
   baseName: "prime-number-distribution"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "素数と暗号理論"
   footer: "© 2026"

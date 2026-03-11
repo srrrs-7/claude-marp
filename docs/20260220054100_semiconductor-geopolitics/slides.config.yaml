@@ -5,6 +5,7 @@ output:
   baseName: "semiconductor-geopolitics"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "半導体と覇権争い"
   footer: "© 2026"

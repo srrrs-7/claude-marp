@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">東京の鉄道から学ぶシステム設計5原則</text>
+  <!-- principle boxes in two rows -->
+  <!-- P1 -->
+  <rect x="30" y="60" width="220" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="140" y="88" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">1. 多層防御</text>
+  <text x="140" y="107" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">ATC + ATOS + 人間</text>
+  <text x="140" y="123" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">3層で信頼性確保</text>
+  <!-- P2 -->
+  <rect x="290" y="60" width="220" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="88" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">2. 自動回復</text>
+  <text x="400" y="107" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">遅延を自動で吸収</text>
+  <text x="400" y="123" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">レジリエンス設計</text>
+  <!-- P3 -->
+  <rect x="550" y="60" width="220" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="660" y="88" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">3. 標準化</text>
+  <text x="660" y="107" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">整列乗車という</text>
+  <text x="660" y="123" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">「暗黙のAPI」</text>
+  <!-- P4 -->
+  <rect x="100" y="200" width="240" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="220" y="228" fill="#e91e63" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">4. 秒単位のSLA</text>
+  <text x="220" y="247" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">「1分」を遅延とする</text>
+  <text x="220" y="263" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">厳格な品質基準</text>
+  <!-- P5 -->
+  <rect x="460" y="200" width="240" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="580" y="228" fill="#e91e63" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">5. ハイブリッド</text>
+  <text x="580" y="247" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">人間 + 機械の協調</text>
+  <text x="580" y="263" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">完全自動化より効率的</text>
+  <text x="400" y="350" fill="#888888" font-size="12" font-family="sans-serif" text-anchor="middle">99.3%の信頼性は偶然では達成できない — 設計の積み重ねが必要</text>
+</svg>

@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="38" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">Cursor vs Claude Code 比較</text>
+
+  <!-- Header row -->
+  <rect x="20" y="58" width="220" height="38" rx="4" fill="#374151"/>
+  <text x="130" y="82" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">比較項目</text>
+
+  <rect x="246" y="58" width="245" height="38" rx="4" fill="#1e3a5f"/>
+  <text x="369" y="75" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#60a5fa" text-anchor="middle">Cursor</text>
+  <text x="369" y="91" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">AI-first IDE</text>
+
+  <rect x="497" y="58" width="283" height="38" rx="4" fill="#2d1b69"/>
+  <text x="639" y="75" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#a78bfa" text-anchor="middle">Claude Code</text>
+  <text x="639" y="91" font-family="Arial, sans-serif" font-size="11" fill="#c4b5fd" text-anchor="middle">CLI エージェント</text>
+
+  <!-- Row 1: インターフェース -->
+  <rect x="20" y="100" width="220" height="48" rx="3" fill="#1e293b"/>
+  <text x="130" y="129" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">インターフェース</text>
+
+  <rect x="246" y="100" width="245" height="48" rx="3" fill="#0c1e40"/>
+  <text x="369" y="129" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0" text-anchor="middle">GUI (VS Code ベース)</text>
+
+  <rect x="497" y="100" width="283" height="48" rx="3" fill="#1f1035"/>
+  <text x="639" y="129" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0" text-anchor="middle">CLI / ターミナル</text>
+
+  <!-- Row 2: コーディング支援 -->
+  <rect x="20" y="152" width="220" height="48" rx="3" fill="#1e293b"/>
+  <text x="130" y="181" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">コーディング支援</text>
+
+  <rect x="246" y="152" width="245" height="48" rx="3" fill="#0c1e40"/>
+  <text x="369" y="170" font-family="Arial, sans-serif" font-size="11" fill="#34d399" text-anchor="middle">◎ インライン補完</text>
+  <text x="369" y="189" font-family="Arial, sans-serif" font-size="11" fill="#34d399" text-anchor="middle">リアルタイム提案</text>
+
+  <rect x="497" y="152" width="283" height="48" rx="3" fill="#1f1035"/>
+  <text x="639" y="170" font-family="Arial, sans-serif" font-size="11" fill="#fbbf24" text-anchor="middle">○ チャット形式</text>
+  <text x="639" y="189" font-family="Arial, sans-serif" font-size="11" fill="#fbbf24" text-anchor="middle">指示ベースで生成</text>
+
+  <!-- Row 3: ファイル操作 -->
+  <rect x="20" y="204" width="220" height="48" rx="3" fill="#1e293b"/>
+  <text x="130" y="233" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">ファイル・プロジェクト操作</text>
+
+  <rect x="246" y="204" width="245" height="48" rx="3" fill="#0c1e40"/>
+  <text x="369" y="222" font-family="Arial, sans-serif" font-size="11" fill="#fbbf24" text-anchor="middle">○ GUI での操作</text>
+  <text x="369" y="241" font-family="Arial, sans-serif" font-size="11" fill="#fbbf24" text-anchor="middle">エディタ内完結</text>
+
+  <rect x="497" y="204" width="283" height="48" rx="3" fill="#1f1035"/>
+  <text x="639" y="222" font-family="Arial, sans-serif" font-size="11" fill="#34d399" text-anchor="middle">◎ Bash / Read / Write</text>
+  <text x="639" y="241" font-family="Arial, sans-serif" font-size="11" fill="#34d399" text-anchor="middle">OS全体の操作可能</text>
+
+  <!-- Row 4: コンテキスト -->
+  <rect x="20" y="256" width="220" height="48" rx="3" fill="#1e293b"/>
+  <text x="130" y="285" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">コンテキスト長</text>
+
+  <rect x="246" y="256" width="245" height="48" rx="3" fill="#0c1e40"/>
+  <text x="369" y="274" font-family="Arial, sans-serif" font-size="11" fill="#fbbf24" text-anchor="middle">○ 長い（GPT-4/Claude）</text>
+  <text x="369" y="293" font-family="Arial, sans-serif" font-size="11" fill="#fbbf24" text-anchor="middle">モデル依存</text>
+
+  <rect x="497" y="256" width="283" height="48" rx="3" fill="#1f1035"/>
+  <text x="639" y="274" font-family="Arial, sans-serif" font-size="11" fill="#34d399" text-anchor="middle">◎ 200K トークン</text>
+  <text x="639" y="293" font-family="Arial, sans-serif" font-size="11" fill="#34d399" text-anchor="middle">大規模プロジェクト対応</text>
+
+  <!-- Row 5: 自動化 -->
+  <rect x="20" y="308" width="220" height="48" rx="3" fill="#1e293b"/>
+  <text x="130" y="337" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">タスク自動化</text>
+
+  <rect x="246" y="308" width="245" height="48" rx="3" fill="#0c1e40"/>
+  <text x="369" y="326" font-family="Arial, sans-serif" font-size="11" fill="#fbbf24" text-anchor="middle">△ 限定的</text>
+  <text x="369" y="345" font-family="Arial, sans-serif" font-size="11" fill="#fbbf24" text-anchor="middle">エディタ内操作のみ</text>
+
+  <rect x="497" y="308" width="283" height="48" rx="3" fill="#1f1035"/>
+  <text x="639" y="326" font-family="Arial, sans-serif" font-size="11" fill="#34d399" text-anchor="middle">◎ フル自動化</text>
+  <text x="639" y="345" font-family="Arial, sans-serif" font-size="11" fill="#34d399" text-anchor="middle">CI/CD・デプロイまで</text>
+
+  <!-- Row 6: 価格 -->
+  <rect x="20" y="360" width="220" height="48" rx="3" fill="#1e293b"/>
+  <text x="130" y="389" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">価格</text>
+
+  <rect x="246" y="360" width="245" height="48" rx="3" fill="#0c1e40"/>
+  <text x="369" y="378" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0" text-anchor="middle">$20/月〜（Pro）</text>
+  <text x="369" y="397" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0" text-anchor="middle">サブスクリプション型</text>
+
+  <rect x="497" y="360" width="283" height="48" rx="3" fill="#1f1035"/>
+  <text x="639" y="378" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0" text-anchor="middle">API従量課金</text>
+  <text x="639" y="397" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0" text-anchor="middle">使った分だけ</text>
+
+  <!-- Row 7: 向いてる用途 -->
+  <rect x="20" y="412" width="220" height="68" rx="3" fill="#1e293b"/>
+  <text x="130" y="441" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">向いている用途</text>
+
+  <rect x="246" y="412" width="245" height="68" rx="3" fill="#0c1e40"/>
+  <text x="369" y="432" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">日常コーディング</text>
+  <text x="369" y="451" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">リアルタイム補完</text>
+  <text x="369" y="470" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">GUI好きの開発者</text>
+
+  <rect x="497" y="412" width="283" height="68" rx="3" fill="#1f1035"/>
+  <text x="639" y="432" font-family="Arial, sans-serif" font-size="11" fill="#c4b5fd" text-anchor="middle">大規模タスク・自動化</text>
+  <text x="639" y="451" font-family="Arial, sans-serif" font-size="11" fill="#c4b5fd" text-anchor="middle">スクリプト・CI統合</text>
+  <text x="639" y="470" font-family="Arial, sans-serif" font-size="11" fill="#c4b5fd" text-anchor="middle">CLI好きのエンジニア</text>
+</svg>

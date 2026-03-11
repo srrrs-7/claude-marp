@@ -18,6 +18,7 @@ style: |
 - 「1億倍速い」は本当か
 - 量子超越性の実態と限界
 - 古典コンピュータと量子コンピュータの棲み分け
+- <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="220" fill="#1a1a2e"/><text x="200" y="80" font-family="sans-serif" font-size="28" font-weight="bold" fill="#f9a825" text-anchor="middle">誇大広告</text><text x="200" y="120" font-family="sans-serif" font-size="16" fill="#aaa" text-anchor="middle">「量子コンピュータで何でも解決」</text><text x="200" y="150" font-family="sans-serif" font-size="14" fill="#e91e63" text-anchor="middle">vs.</text><text x="600" y="80" font-family="sans-serif" font-size="28" font-weight="bold" fill="#4fc3f7" text-anchor="middle">実態</text><text x="600" y="120" font-family="sans-serif" font-size="16" fill="#aaa" text-anchor="middle">特定問題のみで古典が優位な場面も多い</text><line x1="380" y1="40" x2="420" y2="40" stroke="#555" stroke-width="2"/><line x1="380" y1="180" x2="420" y2="180" stroke="#555" stroke-width="2"/></svg>
 
 
 ---
@@ -36,18 +37,26 @@ style: |
 <!-- _class: lead -->
 # 量子コンピュータの原理
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="40" font-family="sans-serif" font-size="22" font-weight="bold" fill="#f9a825" text-anchor="middle">古典ビット vs 量子ビット</text><rect x="60" y="70" width="280" height="260" rx="12" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="200" y="105" font-family="sans-serif" font-size="18" font-weight="bold" fill="#4fc3f7" text-anchor="middle">古典ビット</text><circle cx="140" cy="175" r="35" fill="#0d47a1"/><text x="140" y="182" font-family="sans-serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle">0</text><circle cx="260" cy="175" r="35" fill="#b71c1c"/><text x="260" y="182" font-family="sans-serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle">1</text><text x="200" y="265" font-family="sans-serif" font-size="14" fill="#aaa" text-anchor="middle">どちらか一方のみ</text><text x="200" y="290" font-family="sans-serif" font-size="13" fill="#777" text-anchor="middle">確定的・決定論的</text><rect x="460" y="70" width="280" height="260" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="600" y="105" font-family="sans-serif" font-size="18" font-weight="bold" fill="#e91e63" text-anchor="middle">量子ビット (Qubit)</text><ellipse cx="600" cy="175" rx="60" ry="35" fill="none" stroke="#e91e63" stroke-width="2" stroke-dasharray="6 3"/><circle cx="600" cy="175" r="18" fill="#4a148c" opacity="0.8"/><text x="600" y="182" font-family="sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">α0+β1</text><text x="600" y="240" font-family="sans-serif" font-size="14" fill="#aaa" text-anchor="middle">重ね合わせ状態</text><text x="600" y="265" font-family="sans-serif" font-size="13" fill="#777" text-anchor="middle">測定で確率的に0か1に確定</text><text x="600" y="290" font-family="sans-serif" font-size="13" fill="#777" text-anchor="middle">n個 → 2ⁿ状態を同時保持</text></svg>
+
 
 ---
 
-# 量子ビット：重ね合わせと干渉
+# 量子ビット：重ね合わせと干渉（1/2）
 
 - **古典ビット：** 0か1のどちらか
 - **量子ビット（Qubit）：** 0と1が重ね合わさった状態
 - → 測定すると0か1に確率的に決まる
-- ---
+- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="30" font-family="sans-serif" font-size="16" font-weight="bold" fill="#f9a825" text-anchor="middle">量子並列性：n量子ビットが保持できる状態数</text><rect x="50" y="55" width="80" height="100" rx="6" fill="#0d47a1"/><text x="90" y="100" font-family="sans-serif" font-size="14" fill="white" text-anchor="middle">1 qubit</text><text x="90" y="120" font-family="sans-serif" font-size="18" font-weight="bold" fill="#f9a825" text-anchor="middle">2¹=2</text><rect x="160" y="45" width="80" height="110" rx="6" fill="#1565c0"/><text x="200" y="95" font-family="sans-serif" font-size="14" fill="white" text-anchor="middle">2 qubits</text><text x="200" y="115" font-family="sans-serif" font-size="18" font-weight="bold" fill="#f9a825" text-anchor="middle">2²=4</text><rect x="270" y="30" width="80" height="125" rx="6" fill="#1976d2"/><text x="310" y="88" font-family="sans-serif" font-size="14" fill="white" text-anchor="middle">8 qubits</text><text x="310" y="108" font-family="sans-serif" font-size="18" font-weight="bold" fill="#f9a825" text-anchor="middle">2⁸=256</text><rect x="380" y="15" width="80" height="140" rx="6" fill="#e91e63"/><text x="420" y="78" font-family="sans-serif" font-size="14" fill="white" text-anchor="middle">53 qubits</text><text x="420" y="98" font-family="sans-serif" font-size="13" font-weight="bold" fill="white" text-anchor="middle">2⁵³≈9京</text><rect x="490" y="5" width="80" height="150" rx="6" fill="#c2185b"/><text x="530" y="68" font-family="sans-serif" font-size="14" fill="white" text-anchor="middle">300 qubits</text><text x="530" y="88" font-family="sans-serif" font-size="11" font-weight="bold" fill="white" text-anchor="middle">宇宙の原子数</text><text x="530" y="106" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle">より多い状態</text><text x="680" y="100" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">ただし測定すると</text><text x="680" y="120" font-family="sans-serif" font-size="13" fill="#e91e63" text-anchor="middle">1状態のみ取得</text></svg>
 - **量子並列性：**
 - n量子ビット = 2^n 状態を同時に保持
 - 300量子ビット = 2^300 ≈ 宇宙の原子の数より多い状態
+
+
+---
+
+# 量子ビット：重ね合わせと干渉（2/2）
+
 - ---
 - **しかし：測定すると1つの状態しか得られない**
 - 「すべての答えを同時に計算」ではない
@@ -62,10 +71,12 @@ style: |
 <!-- _class: lead -->
 # 量子超越性の実態
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="40" font-family="sans-serif" font-size="22" font-weight="bold" fill="#f9a825" text-anchor="middle">量子超越性タイムライン</text><line x1="80" y1="200" x2="720" y2="200" stroke="#444" stroke-width="3"/><polygon points="720,194 740,200 720,206" fill="#444"/><circle cx="200" cy="200" r="10" fill="#4fc3f7"/><line x1="200" y1="200" x2="200" y2="120" stroke="#4fc3f7" stroke-width="2"/><rect x="120" y="70" width="160" height="50" rx="6" fill="#16213e" stroke="#4fc3f7" stroke-width="1"/><text x="200" y="95" font-family="sans-serif" font-size="13" fill="#4fc3f7" text-anchor="middle">2019年 Google</text><text x="200" y="112" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">Sycamore「超越性達成」</text><circle cx="350" cy="200" r="10" fill="#e91e63"/><line x1="350" y1="200" x2="350" y2="280" stroke="#e91e63" stroke-width="2"/><rect x="270" y="280" width="160" height="50" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1"/><text x="350" y="305" font-family="sans-serif" font-size="13" fill="#e91e63" text-anchor="middle">2019年 IBM</text><text x="350" y="322" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">「2.5日で解ける」反論</text><circle cx="500" cy="200" r="10" fill="#f9a825"/><line x1="500" y1="200" x2="500" y2="120" stroke="#f9a825" stroke-width="2"/><rect x="420" y="70" width="160" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/><text x="500" y="95" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle">2022年 中国USTC</text><text x="500" y="112" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">光量子で超越性主張</text><circle cx="640" cy="200" r="10" fill="#4caf50"/><line x1="640" y1="200" x2="640" y2="280" stroke="#4caf50" stroke-width="2"/><rect x="560" y="280" width="160" height="50" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1"/><text x="640" y="305" font-family="sans-serif" font-size="13" fill="#4caf50" text-anchor="middle">2024年 Google Willow</text><text x="640" y="322" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">105量子ビット・改善</text><text x="200" y="215" font-family="sans-serif" font-size="11" fill="#777" text-anchor="middle">2019</text><text x="350" y="215" font-family="sans-serif" font-size="11" fill="#777" text-anchor="middle">2019</text><text x="500" y="215" font-family="sans-serif" font-size="11" fill="#777" text-anchor="middle">2022</text><text x="640" y="215" font-family="sans-serif" font-size="11" fill="#777" text-anchor="middle">2024</text></svg>
+
 
 ---
 
-# 量子超越性：実態と批判
+# 量子超越性：実態と批判（1/2）
 
 - **Googleの主張（2019年）：**
 - Sycamoreで53量子ビット使用
@@ -74,6 +85,13 @@ style: |
 - ---
 - **IBMの反論：**
 - 「2.5日で解ける（ストレージ最適化で）」
+
+
+---
+
+# 量子超越性：実態と批判（2/2）
+
+- <svg viewBox="0 0 800 160" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="160" fill="#1a1a2e"/><rect x="40" y="20" width="340" height="120" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="210" y="55" font-family="sans-serif" font-size="16" font-weight="bold" fill="#e91e63" text-anchor="middle">量子超越性</text><text x="210" y="80" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">人工問題で量子が古典より速い</text><text x="210" y="100" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">（実用価値ほぼゼロ）</text><text x="210" y="125" font-family="sans-serif" font-size="12" fill="#777" text-anchor="middle">≠</text><rect x="420" y="20" width="340" height="120" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="590" y="55" font-family="sans-serif" font-size="16" font-weight="bold" fill="#4fc3f7" text-anchor="middle">量子有用性 (Advantage)</text><text x="590" y="80" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">実用的問題で古典より有益</text><text x="590" y="100" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle">← まだ達成されていない</text></svg>
 - ---
 - **重要な注意：**
 - - 解いた問題は「量子回路のサンプリング」という人工問題
@@ -85,14 +103,21 @@ style: |
 
 ---
 
-# 量子コンピュータが得意・不得意なこと
+# 量子コンピュータが得意・不得意なこと（1/2）
 
+- <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="220" fill="#1a1a2e"/><text x="400" y="30" font-family="sans-serif" font-size="18" font-weight="bold" fill="#f9a825" text-anchor="middle">速度向上レベル別：量子アルゴリズムの分類</text><rect x="40" y="50" width="220" height="150" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="150" y="80" font-family="sans-serif" font-size="15" font-weight="bold" fill="#e91e63" text-anchor="middle">指数的高速化</text><text x="150" y="102" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">素因数分解 (Shor)</text><text x="150" y="122" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">量子シミュレーション</text><text x="150" y="142" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">組み合わせ最適化(一部)</text><text x="150" y="175" font-family="sans-serif" font-size="11" fill="#e91e63" text-anchor="middle">RSA暗号解読など革命的</text><rect x="290" y="50" width="220" height="150" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="80" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f9a825" text-anchor="middle">二乗程度の高速化</text><text x="400" y="102" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">DB検索 (Grover)</text><text x="400" y="122" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">機械学習の一部</text><text x="400" y="175" font-family="sans-serif" font-size="11" fill="#f9a825" text-anchor="middle">有用だが革命的ではない</text><rect x="540" y="50" width="220" height="150" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="650" y="80" font-family="sans-serif" font-size="15" font-weight="bold" fill="#4caf50" text-anchor="middle">古典と同等・劣る</text><text x="650" y="102" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">動画再生・Web閲覧</text><text x="650" y="122" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">一般的なデータ処理</text><text x="650" y="142" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">I/O集約型処理</text><text x="650" y="175" font-family="sans-serif" font-size="11" fill="#4caf50" text-anchor="middle">古典PCの方が優秀</text></svg>
 - **得意：（指数的高速化）**
 - - 素因数分解（Shorのアルゴリズム）→ RSA暗号を破る
 - - 量子シミュレーション（分子・材料設計）
 - - 最適化問題の一部（組み合わせ最適化）
 - ---
 - **二乗程度の高速化（有用だが革命的ではない）：**
+
+
+---
+
+# 量子コンピュータが得意・不得意なこと（2/2）
+
 - - データベース検索（Groverのアルゴリズム）
 - - 機械学習の一部
 - ---
@@ -104,20 +129,28 @@ style: |
 
 ---
 
-# 現在の技術水準と課題
+# 現在の技術水準と課題（1/2）
 
+- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="30" font-family="sans-serif" font-size="17" font-weight="bold" fill="#f9a825" text-anchor="middle">量子ビット数の進化（実際 vs 必要数）</text><rect x="60" y="60" width="100" height="100" rx="6" fill="#1565c0"/><text x="110" y="105" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle">IBM Condor</text><text x="110" y="125" font-family="sans-serif" font-size="20" font-weight="bold" fill="#f9a825" text-anchor="middle">1121</text><text x="110" y="148" font-family="sans-serif" font-size="11" fill="#e91e63" text-anchor="middle">高エラー率</text><rect x="200" y="80" width="100" height="80" rx="6" fill="#0d47a1"/><text x="250" y="118" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle">Google Willow</text><text x="250" y="138" font-family="sans-serif" font-size="20" font-weight="bold" fill="#f9a825" text-anchor="middle">105</text><rect x="400" y="55" width="160" height="110" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="480" y="90" font-family="sans-serif" font-size="13" fill="#e91e63" text-anchor="middle">RSA-2048解読に必要</text><text x="480" y="115" font-family="sans-serif" font-size="22" font-weight="bold" fill="white" text-anchor="middle">数百万〜</text><text x="480" y="140" font-family="sans-serif" font-size="22" font-weight="bold" fill="white" text-anchor="middle">1億 qubit</text><text x="650" y="110" font-family="sans-serif" font-size="14" fill="#777" text-anchor="middle">現在との差:</text><text x="650" y="135" font-family="sans-serif" font-size="14" fill="#e91e63" text-anchor="middle">10,000倍以上</text></svg>
 - **量子ビット数（2024年）：**
 - - Google Willow：105量子ビット
 - - IBM Condor：1121量子ビット（エラー率高）
 - - 実用的なRSA解読には数百万～1億量子ビット必要
 - ---
 - **最大の課題：量子デコヒーレンス**
+
+
+---
+
+# 現在の技術水準と課題（2/2）
+
 - - 量子状態は環境ノイズで0.1ms程度で壊れる
 - - エラー訂正に多くの量子ビットが必要（論理1個に物理1000個）
 - ---
 - **現状：NISQ時代（ノイジー中規模量子コンピュータ）**
 - - 数十〜数百量子ビット、エラーあり
 - - 実用的優位性はまだ限定的
+- <svg viewBox="0 0 800 180" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="180" fill="#1a1a2e"/><text x="400" y="28" font-family="sans-serif" font-size="16" font-weight="bold" fill="#f9a825" text-anchor="middle">量子コンピューティング・ロードマップ</text><line x1="60" y1="90" x2="740" y2="90" stroke="#333" stroke-width="3"/><polygon points="740,84 760,90 740,96" fill="#333"/><rect x="60" y="60" width="140" height="60" rx="8" fill="#e91e63" opacity="0.85"/><text x="130" y="86" font-family="sans-serif" font-size="13" font-weight="bold" fill="white" text-anchor="middle">NISQ時代</text><text x="130" y="106" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle">〜2027年頃</text><rect x="230" y="60" width="170" height="60" rx="8" fill="#f9a825" opacity="0.85"/><text x="315" y="86" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e" text-anchor="middle">誤り訂正量子計算</text><text x="315" y="106" font-family="sans-serif" font-size="11" fill="#1a1a2e" text-anchor="middle">2028〜2035年頃</text><rect x="430" y="60" width="170" height="60" rx="8" fill="#4fc3f7" opacity="0.85"/><text x="515" y="86" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e" text-anchor="middle">フォールトトレラント</text><text x="515" y="106" font-family="sans-serif" font-size="11" fill="#1a1a2e" text-anchor="middle">2035〜2040年代</text><rect x="620" y="60" width="110" height="60" rx="8" fill="#4caf50" opacity="0.85"/><text x="675" y="86" font-family="sans-serif" font-size="13" font-weight="bold" fill="white" text-anchor="middle">実用化</text><text x="675" y="106" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle">2040年代以降?</text><text x="130" y="145" font-family="sans-serif" font-size="11" fill="#e91e63" text-anchor="middle">← 現在ここ</text></svg>
 
 
 ---

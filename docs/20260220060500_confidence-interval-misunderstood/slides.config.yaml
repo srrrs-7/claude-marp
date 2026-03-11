@@ -5,6 +5,7 @@ output:
   baseName: "confidence-interval-misunderstood"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "統計的推定の誤解"
   footer: "© 2026"

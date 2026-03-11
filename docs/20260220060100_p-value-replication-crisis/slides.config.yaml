@@ -5,6 +5,7 @@ output:
   baseName: "p-value-replication-crisis"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "p値と再現性の危機"
   footer: "© 2026"

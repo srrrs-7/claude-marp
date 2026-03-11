@@ -18,6 +18,7 @@ style: |
 - ある閾値を超えると止められなくなる
 - 正のフィードバックループが加速する仕組み
 - 科学が警告する「不帰点（Point of No Return）」
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="260" fill="#1a1a2e"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">気温上昇とティッピングポイントの概念図</text><line x1="60" y1="200" x2="740" y2="200" stroke="#888" stroke-width="2"/><line x1="60" y1="200" x2="60" y2="60" stroke="#888" stroke-width="2"/><text x="400" y="220" text-anchor="middle" fill="#aaa" font-size="13">時間 →</text><text x="35" y="130" text-anchor="middle" fill="#aaa" font-size="13" transform="rotate(-90,35,130)">気温</text><polyline points="60,190 200,185 300,175 380,155 420,120 440,80 460,65 500,58 560,52 700,48" fill="none" stroke="#e91e63" stroke-width="3"/><line x1="420" y1="60" x2="420" y2="210" stroke="#f9a825" stroke-width="2" stroke-dasharray="6,4"/><text x="420" y="52" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">閾値</text><text x="500" y="100" fill="#e91e63" font-size="12">自己加速</text><polygon points="490,95 510,95 500,105" fill="#e91e63"/></svg>
 
 
 ---
@@ -39,7 +40,7 @@ style: |
 
 ---
 
-# 臨界点を超えると自己加速する
+# 臨界点を超えると自己加速する（1/2）
 
 - **定義：**
 - 小さな変化が自己強化フィードバックを起こし
@@ -48,13 +49,16 @@ style: |
 - **身近な例：**
 - - 雪だるま：小さく転がし始めると自動的に大きくなる
 - - ドミノ倒し：最初の1枚が全体を崩す
+
+
+---
+
+# 臨界点を超えると自己加速する（2/2）
+
 - - 銀行取り付け騒ぎ：噂が現実を作る
 - ---
 - **気候システムのティッピングポイント：**
-- 温暖化 → 氷が解ける → 太陽光反射が減る → さらに温暖化
-- = 人間の排出量がゼロになっても止まらない自律的プロセス
-- ---
-- IPCC（気候変動に関する政府間パネル）が最も懸念する要素
+- <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="220" fill="#1a1a2e"/><rect x="30" y="80" width="140" height="50" rx="8" fill="#1565c0"/><text x="100" y="100" text-anchor="middle" fill="white" font-size="13" font-weight="bold">温暖化進行</text><text x="100" y="118" text-anchor="middle" fill="#90caf9" font-size="11">CO₂排出増加</text><rect x="230" y="80" width="140" height="50" rx="8" fill="#1565c0"/><text x="300" y="100" text-anchor="middle" fill="white" font-size="13" font-weight="bold">氷が融ける</text><text x="300" y="118" text-anchor="middle" fill="#90caf9" font-size="11">氷床・海氷縮小</text><rect x="430" y="80" width="140" height="50" rx="8" fill="#1565c0"/><text x="500" y="100" text-anchor="middle" fill="white" font-size="13" font-weight="bold">反射率低下</text><text x="500" y="118" text-anchor="middle" fill="#90caf9" font-size="11">アルベド効果消失</text><rect x="630" y="80" width="140" height="50" rx="8" fill="#b71c1c"/><text x="700" y="100" text-anchor="middle" fill="white" font-size="13" font-weight="bold">さらに温暖化</text><text x="700" y="118" text-anchor="middle" fill="#ffcdd2" font-size="11">自律的加速</text><polygon points="172,105 180,100 180,110" fill="#f9a825"/><line x1="170" y1="105" x2="230" y2="105" stroke="#f9a825" stroke-width="2"/><polygon points="372,105 380,100 380,110" fill="#f9a825"/><line x1="370" y1="105" x2="430" y2="105" stroke="#f9a825" stroke-width="2"/><polygon points="572,105 580,100 580,110" fill="#f9a825"/><line x1="570" y1="105" x2="630" y2="105" stroke="#f9a825" stroke-width="2"/><path d="M700,130 Q700,170 400,180 Q100,170 100,130" fill="none" stroke="#e91e63" stroke-width="2" stroke-dasharray="6,3"/><text x="400" y="198" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">正のフィードバックループ（止まらない）</text></svg>
 
 
 ---
@@ -65,33 +69,31 @@ style: |
 
 ---
 
-# 9つの地球規模ティッピング要素
+# 9つの地球規模ティッピング要素（1/2）
 
-- **1. グリーンランド氷床崩壊（1.5〜2°C）**
-- 完全融解で海面7m上昇（数百〜数千年）
-- **2. 西南極氷床崩壊（1.5〜2°C）**
-- 完全融解で海面3〜5m上昇
-- **3. 熱帯雨林サバンナ化（3〜4°C）**
-- アマゾンが乾燥化し草原になる
-- **4. 永久凍土の崩壊（1.5〜2°C）**
-- シベリア・アラスカでメタン（CO₂の80倍の温室効果）が大量放出
-- **5. 北極海氷の消失（1.5〜2°C）**
-- 夏の北極海が氷なしに → アルベド効果消失
-- **6. 大西洋循環（AMOC）の崩壊（4°C超）**
-- ヨーロッパの急激な寒冷化
+- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="320" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">主要ティッピング要素と温度閾値（前半3つ）</text><rect x="30" y="45" width="220" height="80" rx="8" fill="#0d47a1"/><text x="140" y="68" text-anchor="middle" fill="#90caf9" font-size="12" font-weight="bold">グリーンランド氷床</text><text x="140" y="86" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">閾値: 1.5〜2°C</text><text x="140" y="104" text-anchor="middle" fill="white" font-size="11">海面 +7m（数百〜数千年）</text><rect x="290" y="45" width="220" height="80" rx="8" fill="#0d47a1"/><text x="400" y="68" text-anchor="middle" fill="#90caf9" font-size="12" font-weight="bold">西南極氷床</text><text x="400" y="86" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">閾値: 1.5〜2°C</text><text x="400" y="104" text-anchor="middle" fill="white" font-size="11">海面 +3〜5m</text><rect x="550" y="45" width="220" height="80" rx="8" fill="#1b5e20"/><text x="660" y="68" text-anchor="middle" fill="#a5d6a7" font-size="12" font-weight="bold">熱帯雨林サバンナ化</text><text x="660" y="86" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">閾値: 3〜4°C</text><text x="660" y="104" text-anchor="middle" fill="white" font-size="11">アマゾン乾燥化・草原化</text><line x1="30" y1="280" x2="770" y2="280" stroke="#555" stroke-width="2"/><line x1="30" y1="280" x2="30" y2="240" stroke="#555" stroke-width="1"/><line x1="230" y1="280" x2="230" y2="240" stroke="#555" stroke-width="1"/><line x1="430" y1="280" x2="430" y2="240" stroke="#555" stroke-width="1"/><line x1="630" y1="280" x2="630" y2="240" stroke="#555" stroke-width="1"/><line x1="770" y1="280" x2="770" y2="240" stroke="#555" stroke-width="1"/><text x="30" y="296" text-anchor="middle" fill="#aaa" font-size="11">0°C</text><text x="230" y="296" text-anchor="middle" fill="#aaa" font-size="11">1°C</text><text x="430" y="296" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">2°C</text><text x="630" y="296" text-anchor="middle" fill="#aaa" font-size="11">3°C</text><text x="770" y="296" text-anchor="middle" fill="#e91e63" font-size="11">4°C</text><rect x="130" y="258" width="200" height="14" rx="4" fill="#0d47a1" opacity="0.8"/><rect x="130" y="258" width="200" height="14" rx="4" fill="none" stroke="#90caf9" stroke-width="1"/><rect x="330" y="248" width="200" height="14" rx="4" fill="#1b5e20" opacity="0.8"/><rect x="330" y="248" width="200" height="14" rx="4" fill="none" stroke="#a5d6a7" stroke-width="1"/><text x="230" y="310" text-anchor="middle" fill="#90caf9" font-size="10">氷床</text><text x="430" y="310" text-anchor="middle" fill="#a5d6a7" font-size="10">熱帯雨林</text></svg>
 
 
 ---
 
-# カスケードリスク：連鎖崩壊
+# 9つの地球規模ティッピング要素（2/2）
+
+- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="320" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">主要ティッピング要素と温度閾値（後半3つ）</text><rect x="30" y="45" width="220" height="80" rx="8" fill="#4a148c"/><text x="140" y="68" text-anchor="middle" fill="#ce93d8" font-size="12" font-weight="bold">永久凍土の崩壊</text><text x="140" y="86" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">閾値: 1.5〜2°C</text><text x="140" y="104" text-anchor="middle" fill="white" font-size="11">メタン大量放出（CO₂の80倍）</text><rect x="290" y="45" width="220" height="80" rx="8" fill="#006064"/><text x="400" y="68" text-anchor="middle" fill="#80deea" font-size="12" font-weight="bold">北極海氷の消失</text><text x="400" y="86" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">閾値: 1.5〜2°C</text><text x="400" y="104" text-anchor="middle" fill="white" font-size="11">夏の北極が無氷化</text><rect x="550" y="45" width="220" height="80" rx="8" fill="#b71c1c"/><text x="660" y="68" text-anchor="middle" fill="#ef9a9a" font-size="12" font-weight="bold">AMOC崩壊</text><text x="660" y="86" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">閾値: 4°C超</text><text x="660" y="104" text-anchor="middle" fill="white" font-size="11">欧州の急激な寒冷化</text><line x1="30" y1="280" x2="770" y2="280" stroke="#555" stroke-width="2"/><line x1="30" y1="280" x2="30" y2="240" stroke="#555" stroke-width="1"/><line x1="230" y1="280" x2="230" y2="240" stroke="#555" stroke-width="1"/><line x1="430" y1="280" x2="430" y2="240" stroke="#555" stroke-width="1"/><line x1="630" y1="280" x2="630" y2="240" stroke="#555" stroke-width="1"/><line x1="770" y1="280" x2="770" y2="240" stroke="#555" stroke-width="1"/><text x="30" y="296" text-anchor="middle" fill="#aaa" font-size="11">0°C</text><text x="230" y="296" text-anchor="middle" fill="#aaa" font-size="11">1°C</text><text x="430" y="296" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">2°C</text><text x="630" y="296" text-anchor="middle" fill="#aaa" font-size="11">3°C</text><text x="770" y="296" text-anchor="middle" fill="#e91e63" font-size="11">4°C</text><rect x="130" y="258" width="200" height="14" rx="4" fill="#4a148c" opacity="0.8"/><rect x="130" y="248" width="200" height="14" rx="4" fill="#006064" opacity="0.8"/><rect x="530" y="248" width="220" height="14" rx="4" fill="#b71c1c" opacity="0.8"/><text x="230" y="312" text-anchor="middle" fill="#ce93d8" font-size="10">永久凍土・北極海氷</text><text x="640" y="312" text-anchor="middle" fill="#ef9a9a" font-size="10">AMOC</text></svg>
+
+
+---
+
+# カスケードリスク：連鎖崩壊（1/2）
 
 - **Domino Tipping（2018年研究：Science誌）：**
 - 個々のティッピングポイントが連鎖する「カスケード」リスク
-- ---
-- **シナリオ例：**
-- 北極海氷消失 → アルベド減少 → 気温上昇
-- → 永久凍土融解 → メタン放出 → さらに気温上昇
-- → グリーンランド氷床崩壊 → AMOCの弱体化...
+- <svg viewBox="0 0 800 230" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="230" fill="#1a1a2e"/><text x="400" y="24" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">カスケード連鎖崩壊シナリオ</text><rect x="20" y="40" width="130" height="44" rx="6" fill="#006064"/><text x="85" y="58" text-anchor="middle" fill="#80deea" font-size="11" font-weight="bold">北極海氷消失</text><text x="85" y="74" text-anchor="middle" fill="white" font-size="10">アルベド減少</text><rect x="200" y="40" width="130" height="44" rx="6" fill="#4a148c"/><text x="265" y="58" text-anchor="middle" fill="#ce93d8" font-size="11" font-weight="bold">永久凍土融解</text><text x="265" y="74" text-anchor="middle" fill="white" font-size="10">メタン放出</text><rect x="380" y="40" width="130" height="44" rx="6" fill="#0d47a1"/><text x="445" y="58" text-anchor="middle" fill="#90caf9" font-size="11" font-weight="bold">グリーンランド</text><text x="445" y="74" text-anchor="middle" fill="white" font-size="10">氷床崩壊</text><rect x="560" y="40" width="130" height="44" rx="6" fill="#b71c1c"/><text x="625" y="58" text-anchor="middle" fill="#ef9a9a" font-size="11" font-weight="bold">AMOC弱体化</text><text x="625" y="74" text-anchor="middle" fill="white" font-size="10">欧州寒冷化</text><polygon points="152,62 160,57 160,67" fill="#f9a825"/><line x1="150" y1="62" x2="200" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="332,62 340,57 340,67" fill="#f9a825"/><line x1="330" y1="62" x2="380" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="512,62 520,57 520,67" fill="#f9a825"/><line x1="510" y1="62" x2="560" y2="62" stroke="#f9a825" stroke-width="2"/><rect x="560" y="120" width="220" height="44" rx="6" fill="#e65100"/><text x="670" y="138" text-anchor="middle" fill="white" font-size="11" font-weight="bold">気温さらに上昇</text><text x="670" y="154" text-anchor="middle" fill="#ffcc80" font-size="10">人為排出ゼロでも継続</text><polygon points="670,116 665,108 675,108" fill="#e91e63"/><line x1="670" y1="108" x2="670" y2="84" stroke="#e91e63" stroke-width="2"/><text x="400" y="205" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">一つが崩れると止められない連鎖が始まる</text></svg>
+
+
+---
+
+# カスケードリスク：連鎖崩壊（2/2）
+
 - ---
 - **「地球温暖化の温暖化」：**
 - 気候システム自身がフィードバックで温暖化を加速
@@ -106,10 +108,9 @@ style: |
 
 # まとめ：ティッピングポイントが示すこと
 
+- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">不可逆性の概念図：転換点を超えると戻れない</text><line x1="60" y1="220" x2="740" y2="220" stroke="#555" stroke-width="2"/><line x1="60" y1="220" x2="60" y2="50" stroke="#555" stroke-width="2"/><text x="400" y="240" text-anchor="middle" fill="#aaa" font-size="12">時間 →</text><text x="35" y="135" text-anchor="middle" fill="#aaa" font-size="12" transform="rotate(-90,35,135)">気温</text><polyline points="60,200 160,196 240,188 300,175 340,155 360,130 380,100 400,80 440,68 540,60 700,55" fill="none" stroke="#e91e63" stroke-width="3"/><line x1="355" y1="50" x2="355" y2="225" stroke="#f9a825" stroke-width="2" stroke-dasharray="6,4"/><text x="355" y="44" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">転換点</text><path d="M380,100 Q420,95 450,115 Q480,135 490,180 Q500,200 530,210" fill="none" stroke="#4fc3f7" stroke-width="2" stroke-dasharray="5,4"/><text x="560" y="215" fill="#4fc3f7" font-size="11">仮に排出ゼロでも</text><text x="560" y="228" fill="#4fc3f7" font-size="11">「戻れない軌跡」</text><circle cx="355" cy="130" r="7" fill="#f9a825"/><text x="370" y="128" fill="#f9a825" font-size="11" font-weight="bold">1.5〜2°C</text><rect x="60" y="245" width="200" height="26" rx="4" fill="#1c3a1c"/><text x="160" y="262" text-anchor="middle" fill="#a5d6a7" font-size="11">転換前: 政策で制御可能</text><rect x="280" y="245" width="200" height="26" rx="4" fill="#3e1a1a"/><text x="380" y="262" text-anchor="middle" fill="#ef9a9a" font-size="11">転換後: 自律的加速・不可逆</text></svg>
 - ✅ **気候変動は線形ではなく、閾値を超えると自己加速する**
 - ✅ **永久凍土・氷床・熱帯雨林は1.5〜2°Cで転換点を迎える可能性**
 - ✅ **連鎖崩壊（カスケード）が最大のリスク**
-- ✅ **「ゆっくり変化する」ではなく「突然変わる」が本当の脅威**
-- 
 - 「気候変動は線形の問題ではない。転換点は一度超えたら戻れない」— IPCC
 

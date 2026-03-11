@@ -1,4 +1,4 @@
-<svg viewBox="0 0 880 240" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<svg viewBox="0 0 880 240" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="880" height="240" fill="#f0f4f8" rx="12"/>
   <text x="440" y="30" text-anchor="middle" fill="#37474F" font-family="sans-serif" font-size="15" font-weight="bold">サプライヤー関係管理のライフサイクル (Annex A 5.19〜5.22)</text>
   <!-- Box 1: 選定 -->

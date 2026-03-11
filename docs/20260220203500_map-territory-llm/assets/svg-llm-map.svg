@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">LLMは世界の「統計的地図」</text>
+  <!-- training data = snapshot -->
+  <rect x="40" y="60" width="200" height="100" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="140" y="87" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">訓練データ</text>
+  <text x="140" y="107" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">領土のスナップショット</text>
+  <text x="140" y="124" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">（固定時点）</text>
+  <text x="140" y="142" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">知識カットオフ後は古い地図</text>
+  <!-- arrow -->
+  <polygon points="245,105 257,111 245,117" fill="#f9a825"/>
+  <line x1="240" y1="111" x2="257" y2="111" stroke="#f9a825" stroke-width="2"/>
+  <!-- parameters = resolution -->
+  <rect x="260" y="60" width="200" height="100" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="360" y="87" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">パラメータ</text>
+  <text x="360" y="107" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">地図の解像度</text>
+  <text x="360" y="124" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">多いほど詳細</text>
+  <text x="360" y="142" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">しかし完全ではない</text>
+  <!-- arrow -->
+  <polygon points="465,105 477,111 465,117" fill="#f9a825"/>
+  <line x1="460" y1="111" x2="477" y2="111" stroke="#f9a825" stroke-width="2"/>
+  <!-- next token = most likely path -->
+  <rect x="480" y="60" width="275" height="100" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="617" y="87" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">次トークン予測</text>
+  <text x="617" y="107" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">地図上の最もありそうな経路</text>
+  <text x="617" y="124" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">地図にない領域 → 創作</text>
+  <text x="617" y="142" fill="#e91e63" font-size="10" font-family="sans-serif" text-anchor="middle">これがハルシネーション</text>
+  <!-- bottom: the key insight -->
+  <rect x="80" y="200" width="640" height="80" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="230" fill="#e91e63" font-size="15" font-family="sans-serif" text-anchor="middle" font-weight="bold">地図にある「存在しない道」を案内する</text>
+  <text x="400" y="255" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">LLMは「嘘をついている」自覚がない — 地図通りに案内しているだけ</text>
+  <text x="400" y="272" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">地図を領土と混同した瞬間に事故が起きる</text>
+  <text x="400" y="340" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">流暢さバイアス: 文法的に正しい = 事実的に正しい、という錯覚が生まれやすい</text>
+</svg>

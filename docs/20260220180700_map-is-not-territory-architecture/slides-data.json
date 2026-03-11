@@ -24,58 +24,98 @@
 			"speakerNotes": "セクション区切り。哲学的な前提から入る。"
 		},
 		{
-			"title": "アルフレッド・コジブスキー「地図は現実ではない」",
+			"title": "アルフレッド・コジブスキー「地図は現実ではない」（1/2）",
 			"content": [
 				"1933年、一般意味論の父が提唱した原理",
 				"「地図は現実ではない／言葉は物事ではない」",
 				"すべての表現・記号は現実の**縮減されたモデル**に過ぎない",
-				"",
+				""
+			],
+			"speakerNotes": "コジブスキーの科学的意味論を分かりやすく説明。地図は道具であり、現実そのものではないという基本概念を確立する。",
+			"layout": "default"
+		},
+		{
+			"title": "アルフレッド・コジブスキー「地図は現実ではない」（2/2）",
+			"content": [
 				"地図の3つの性質:",
 				"- **省略性**: 現実のすべてを含まない（含めることは不可能）",
 				"- **目的性**: 特定の用途に最適化されている",
 				"- **自己参照性**: 地図自身も表現の一部である"
 			],
-			"speakerNotes": "コジブスキーの科学的意味論を分かりやすく説明。地図は道具であり、現実そのものではないという基本概念を確立する。"
+			"speakerNotes": "コジブスキーの科学的意味論を分かりやすく説明。地図は道具であり、現実そのものではないという基本概念を確立する。",
+			"layout": "default"
+		},
+		{
+			"title": "地図の3性質（図解）",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">地図の3つの性質 — コジブスキーの原理</text>\n<rect x=\"40\" y=\"70\" width=\"220\" height=\"200\" rx=\"12\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<rect x=\"40\" y=\"70\" width=\"220\" height=\"46\" rx=\"12\" fill=\"#f9a825\"/>\n<text x=\"150\" y=\"100\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"13\" font-weight=\"bold\">省略性</text>\n<text x=\"150\" y=\"118\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"10\">Incompleteness</text>\n<text x=\"60\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">現実の全てを含まない</text>\n<text x=\"60\" y=\"170\" fill=\"#ffffff\" font-size=\"11\">（含めることは不可能）</text>\n<text x=\"60\" y=\"200\" fill=\"#aaaaaa\" font-size=\"10\">例: 路線図は地形を省く</text>\n<text x=\"60\" y=\"218\" fill=\"#aaaaaa\" font-size=\"10\">例: クラス図は実行時状態を省く</text>\n<text x=\"60\" y=\"245\" fill=\"#f9a825\" font-size=\"10\" font-weight=\"bold\">→ 必要な嘘</text>\n<rect x=\"290\" y=\"70\" width=\"220\" height=\"200\" rx=\"12\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<rect x=\"290\" y=\"70\" width=\"220\" height=\"46\" rx=\"12\" fill=\"#e91e63\"/>\n<text x=\"400\" y=\"100\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-weight=\"bold\">目的性</text>\n<text x=\"400\" y=\"118\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">Purposiveness</text>\n<text x=\"310\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">特定の用途に最適化</text>\n<text x=\"310\" y=\"170\" fill=\"#ffffff\" font-size=\"11\">されている</text>\n<text x=\"310\" y=\"200\" fill=\"#aaaaaa\" font-size=\"10\">例: 観光地図 vs 地質図</text>\n<text x=\"310\" y=\"218\" fill=\"#aaaaaa\" font-size=\"10\">例: C4 L1 vs L4</text>\n<text x=\"310\" y=\"245\" fill=\"#e91e63\" font-size=\"10\" font-weight=\"bold\">→ 読者・用途で変わる</text>\n<rect x=\"540\" y=\"70\" width=\"220\" height=\"200\" rx=\"12\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<rect x=\"540\" y=\"70\" width=\"220\" height=\"46\" rx=\"12\" fill=\"#4db6ac\"/>\n<text x=\"650\" y=\"100\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"13\" font-weight=\"bold\">自己参照性</text>\n<text x=\"650\" y=\"118\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"10\">Self-Reflexivity</text>\n<text x=\"560\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">地図自身も表現の一部</text>\n<text x=\"560\" y=\"170\" fill=\"#ffffff\" font-size=\"11\">（完全な客観性はない）</text>\n<text x=\"560\" y=\"200\" fill=\"#aaaaaa\" font-size=\"10\">例: 地図を作る人の視点</text>\n<text x=\"560\" y=\"218\" fill=\"#aaaaaa\" font-size=\"10\">例: アーキテクトの世界観</text>\n<text x=\"560\" y=\"245\" fill=\"#4db6ac\" font-size=\"10\" font-weight=\"bold\">→ 嘘の作者を認識せよ</text>\n<text x=\"400\" y=\"315\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">アーキテクチャ図はこの3性質を持つ「構造化された嘘」</text>\n<text x=\"400\" y=\"340\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">嘘を管理することがアーキテクトの仕事</text>\n</svg>"
+			]
 		},
 		{
 			"title": "コジブスキーの原理：地図と現実の関係",
 			"content": ["![w:720 center](assets/map-reality-relation.svg)"],
-			"speakerNotes": "SVG図で地図と現実の非対称な関係を可視化。地図は現実を参照するが、現実は地図に制約されない。"
+			"speakerNotes": "SVG図で地図と現実の非対称な関係を可視化。地図は現実を参照するが、現実は地図に制約されない。",
+			"layout": "default"
 		},
 		{
-			"title": "コロンブスの地図 — 完全に間違った地図で新大陸を発見",
+			"title": "コロンブスの地図 — 完全に間違った地図で新大陸を発見（1/2）",
 			"content": [
 				"1492年、コロンブスの地図は根本的に誤っていた:",
 				"- 地球の直径を**大幅に過小評価**（実際の1/4程度）",
 				"- 大西洋を小さく、アジアを近くに描いた",
-				"- アメリカ大陸の存在を完全に無視",
+				"- アメリカ大陸の存在を完全に無視"
+			],
+			"speakerNotes": "具体的な歴史的事例。間違った地図でも「目的の達成」に使えることを示す。ただし副作用（偶然の発見）もある。",
+			"layout": "default"
+		},
+		{
+			"title": "コロンブスの地図 — 完全に間違った地図で新大陸を発見（2/2）",
+			"content": [
 				"",
 				"それでも彼はインドに到達できると**確信して出航**した",
 				"間違いを間違いと知らないまま、新大陸を「発見」した",
 				"",
 				"教訓：地図の「正確さ」と「有用性」は別物"
 			],
-			"speakerNotes": "具体的な歴史的事例。間違った地図でも「目的の達成」に使えることを示す。ただし副作用（偶然の発見）もある。"
+			"speakerNotes": "具体的な歴史的事例。間違った地図でも「目的の達成」に使えることを示す。ただし副作用（偶然の発見）もある。",
+			"layout": "default"
 		},
 		{
 			"title": "コロンブスの地図 vs 現実",
 			"content": ["![w:720 center](assets/columbus-maps.svg)"],
-			"speakerNotes": "左：コロンブスの想像地図（欧州と近くにあるアジア）、右：実際の世界地図（巨大な大西洋とアメリカ大陸）。視覚的な衝撃で地図の誤りを伝える。"
+			"speakerNotes": "左：コロンブスの想像地図（欧州と近くにあるアジア）、右：実際の世界地図（巨大な大西洋とアメリカ大陸）。視覚的な衝撃で地図の誤りを伝える。",
+			"layout": "default"
 		},
 		{
-			"title": "地図の価値は「正確さ」ではなく「航行可能性」",
+			"title": "地図の価値は「正確さ」ではなく「航行可能性」（1/2）",
 			"content": [
 				"Harry Beck の地下鉄路線図（1931年）:",
 				"- 実際の地理的距離は完全に無視",
 				"- トポロジカルな接続関係のみを保持",
-				"- **乗客が次の駅に乗り換えられるか** だけに最適化",
+				"- **乗客が次の駅に乗り換えられるか** だけに最適化"
+			],
+			"speakerNotes": "ロンドン地下鉄路線図の例は有名。地理的に不正確でも機能的に完璧な地図の実例。",
+			"layout": "default"
+		},
+		{
+			"title": "地図の価値は「正確さ」ではなく「航行可能性」（2/2）",
+			"content": [
 				"",
 				"優れた地図の条件 (Navigability Principle):",
 				"- 目的に照らして必要な情報を含む",
 				"- 目的に照らして不要な情報を捨てる",
 				"- 使用者がそれで「航行できる」"
 			],
-			"speakerNotes": "ロンドン地下鉄路線図の例は有名。地理的に不正確でも機能的に完璧な地図の実例。"
+			"speakerNotes": "ロンドン地下鉄路線図の例は有名。地理的に不正確でも機能的に完璧な地図の実例。",
+			"layout": "default"
+		},
+		{
+			"title": "航行可能性の原則（図解）",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">航行可能性の原則 — 地図の価値基準</text>\n<rect x=\"40\" y=\"62\" width=\"340\" height=\"260\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"210\" y=\"90\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">地理的に正確な地図</text>\n<line x1=\"80\" y1=\"170\" x2=\"340\" y2=\"170\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n<circle cx=\"100\" cy=\"130\" r=\"6\" fill=\"#e91e63\"/>\n<text x=\"115\" y=\"135\" fill=\"#ffffff\" font-size=\"10\">King's Cross</text>\n<circle cx=\"220\" cy=\"145\" r=\"6\" fill=\"#e91e63\"/>\n<text x=\"235\" y=\"150\" fill=\"#ffffff\" font-size=\"10\">Oxford Circus</text>\n<circle cx=\"310\" cy=\"155\" r=\"6\" fill=\"#e91e63\"/>\n<text x=\"270\" y=\"165\" fill=\"#ffffff\" font-size=\"10\">Victoria</text>\n<circle cx=\"150\" cy=\"210\" r=\"6\" fill=\"#e91e63\"/>\n<text x=\"165\" y=\"215\" fill=\"#ffffff\" font-size=\"10\">London Bridge</text>\n<circle cx=\"260\" cy=\"230\" r=\"6\" fill=\"#e91e63\"/>\n<text x=\"275\" y=\"235\" fill=\"#ffffff\" font-size=\"10\">Waterloo</text>\n<text x=\"210\" y=\"285\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">地理的に正確</text>\n<text x=\"210\" y=\"300\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">→ でも乗り換えルートが分からない</text>\n<rect x=\"420\" y=\"62\" width=\"340\" height=\"260\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"590\" y=\"90\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">Beck の路線図 (1931)</text>\n<line x1=\"460\" y1=\"120\" x2=\"740\" y2=\"120\" stroke=\"#e91e63\" stroke-width=\"3\"/>\n<line x1=\"460\" y1=\"170\" x2=\"740\" y2=\"170\" stroke=\"#f9a825\" stroke-width=\"3\"/>\n<line x1=\"460\" y1=\"220\" x2=\"740\" y2=\"220\" stroke=\"#4db6ac\" stroke-width=\"3\"/>\n<line x1=\"590\" y1=\"100\" x2=\"590\" y2=\"240\" stroke=\"#aaaaaa\" stroke-width=\"2\"/>\n<circle cx=\"590\" cy=\"120\" r=\"7\" fill=\"#ffffff\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<circle cx=\"590\" cy=\"170\" r=\"7\" fill=\"#ffffff\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<circle cx=\"590\" cy=\"220\" r=\"7\" fill=\"#ffffff\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"600\" y=\"124\" fill=\"#ffffff\" font-size=\"9\">King's Cross</text>\n<text x=\"600\" y=\"174\" fill=\"#ffffff\" font-size=\"9\">Oxford Circus</text>\n<text x=\"600\" y=\"224\" fill=\"#ffffff\" font-size=\"9\">Waterloo</text>\n<text x=\"590\" y=\"278\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">地理的に不正確</text>\n<text x=\"590\" y=\"295\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">→ でも乗り換えが一目瞭然</text>\n<text x=\"400\" y=\"340\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-weight=\"bold\">航行可能性 = 地図の真の価値。正確さではなく「使えるか」</text>\n</svg>"
+			]
 		},
 		{
 			"title": "アーキテクチャ図の嘘",
@@ -90,27 +130,37 @@
 		{
 			"title": "設計時のアーキテクチャ図 vs 実際のシステムの乖離",
 			"content": ["![w:720 center](assets/arch-diagram-decay.svg)"],
-			"speakerNotes": "タイムラインで劣化を可視化。設計時は正確でも、時間とともに図と現実の乖離が拡大する。"
+			"speakerNotes": "タイムラインで劣化を可視化。設計時は正確でも、時間とともに図と現実の乖離が拡大する。",
+			"layout": "default"
 		},
 		{
 			"title": "4種類のアーキテクチャ図の嘘",
 			"content": ["![w:720 center](assets/four-lies-classification.svg)"],
-			"speakerNotes": "4象限で嘘を分類。意図的/無意識 × 有益/有害の2軸。省略・抽象化は必要な嘘、過去形・理想は有害な嘘。"
+			"speakerNotes": "4象限で嘘を分類。意図的/無意識 × 有益/有害の2軸。省略・抽象化は必要な嘘、過去形・理想は有害な嘘。",
+			"layout": "default"
 		},
 		{
 			"title": "C4モデル — 抽象化レベルで嘘の質を管理する",
 			"content": ["![w:700 center](assets/c4-model-layers.svg)"],
-			"speakerNotes": "Simon Brown のC4モデル。4層の抽象化レベルそれぞれに適切な「嘘の質」を割り当てる。"
+			"speakerNotes": "Simon Brown のC4モデル。4層の抽象化レベルそれぞれに適切な「嘘の質」を割り当てる。",
+			"layout": "default"
 		},
 		{
-			"title": "C4モデルの実践：各層の嘘の使い分け",
+			"title": "C4モデルの実践：各層の嘘の使い分け（1/2）",
 			"content": [
 				"**L1 Context**: ビジネス価値と外部システムの関係",
 				"- 嘘の種類: 大規模な省略（内部構造を完全に隠す）",
 				"- 読者: CTO、経営層、外部ステークホルダー",
 				"",
 				"**L2 Container**: サービス・データストアの境界",
-				"- 嘘の種類: 実装の抽象化（スケーリング戦略を隠す）",
+				"- 嘘の種類: 実装の抽象化（スケーリング戦略を隠す）"
+			],
+			"speakerNotes": "C4の各層を実例で説明。読者層と嘘の種類のマッピングが核心。",
+			"layout": "default"
+		},
+		{
+			"title": "C4モデルの実践：各層の嘘の使い分け（2/2）",
+			"content": [
 				"- 読者: 開発リード、アーキテクト",
 				"",
 				"**L3 Component**: モジュール・責務の分離",
@@ -119,7 +169,8 @@
 				"",
 				"**L4 Code**: クラス・関数の詳細（自動生成推奨）"
 			],
-			"speakerNotes": "C4の各層を実例で説明。読者層と嘘の種類のマッピングが核心。"
+			"speakerNotes": "C4の各層を実例で説明。読者層と嘘の種類のマッピングが核心。",
+			"layout": "default"
 		},
 		{
 			"title": "必要な嘘と有害な嘘",
@@ -134,27 +185,37 @@
 		{
 			"title": "良い嘘：航行可能なモデル",
 			"content": ["![w:720 center](assets/good-bad-lie-flow.svg)"],
-			"speakerNotes": "判断フロー図で良い嘘と悪い嘘を区別。「この図で意思決定できるか」が核心的な問い。"
+			"speakerNotes": "判断フロー図で良い嘘と悪い嘘を区別。「この図で意思決定できるか」が核心的な問い。",
+			"layout": "default"
 		},
 		{
-			"title": "悪い嘘：決断を歪めるモデル — 実例",
+			"title": "悪い嘘：決断を歪めるモデル — 実例（1/2）",
 			"content": [
 				"**Knight Capital Group (2012)** — システム構成の誤認",
 				"- 古い設計図を信じてデプロイ手順を誤る",
 				"- 45分で4億4000万ドルの損失",
-				"- 原因：「死んだドキュメント」による誤った前提",
+				"- 原因：「死んだドキュメント」による誤った前提"
+			],
+			"speakerNotes": "実際の事故事例。どちらも「死んだドキュメント」か「目的を誤った省略」が原因。嘘の危険性を実感させる。",
+			"layout": "default"
+		},
+		{
+			"title": "悪い嘘：決断を歪めるモデル — 実例（2/2）",
+			"content": [
 				"",
 				"**Boeing 737 MAX MCAS** — アーキテクチャの隠蔽",
 				"- パイロット向け訓練資料にMCASの存在を省略",
 				"- 「良い省略」が「悪い省略」に転化した事例",
 				"- 省略の判断は常に目的と読者を考慮すべき"
 			],
-			"speakerNotes": "実際の事故事例。どちらも「死んだドキュメント」か「目的を誤った省略」が原因。嘘の危険性を実感させる。"
+			"speakerNotes": "実際の事故事例。どちらも「死んだドキュメント」か「目的を誤った省略」が原因。嘘の危険性を実感させる。",
+			"layout": "default"
 		},
 		{
 			"title": "生きたドキュメント vs 死んだドキュメント",
 			"content": ["![w:720 center](assets/living-dead-docs.svg)"],
-			"speakerNotes": "生きたドキュメントはコードから自動生成され常に現実を反映。死んだドキュメントは手動管理で陳腐化する。"
+			"speakerNotes": "生きたドキュメントはコードから自動生成され常に現実を反映。死んだドキュメントは手動管理で陳腐化する。",
+			"layout": "default"
 		},
 		{
 			"title": "実践への応用",
@@ -171,34 +232,61 @@
 			"content": [
 				"図をコードとして管理することで「生きたドキュメント」を実現:"
 			],
-			"code": "# Structurizr DSL (C4モデル対応)\nworkspace {\n  model {\n    user = person \"ユーザー\"\n    system = softwareSystem \"決済システム\" {\n      webapp = container \"Web App\" \"React\" \"HTTPS\"\n      api = container \"API Server\" \"Node.js\" \"REST\"\n      db = container \"Database\" \"PostgreSQL\" \"SQL\"\n    }\n    user -> webapp \"注文する\"\n    webapp -> api \"REST API\"\n    api -> db \"クエリ\"\n  }\n  views {\n    container system \"ContainerView\" {\n      include *\n      autoLayout lr\n    }\n  }\n}",
-			"codeLanguage": "dsl",
-			"speakerNotes": "Structurizr DSLはC4モデルをコードで記述できる。GitでバージョN管理、CIでレンダリング → 常に最新の図が得られる。"
+			"layout": "default"
 		},
 		{
-			"title": "ADR — アーキテクチャ決定記録で「なぜ」を保存する",
+			"title": "Architecture as Code — diagrams as code（コード例）",
+			"content": [],
+			"code": "# Structurizr DSL (C4モデル対応)\nworkspace {\n  model {\n    user = person \"ユーザー\"\n    system = softwareSystem \"決済システム\" {\n      webapp = container \"Web App\" \"React\" \"HTTPS\"\n      api = container \"API Server\" \"Node.js\" \"REST\"\n      db = container \"Database\" \"PostgreSQL\" \"SQL\"\n    }\n    user -> webapp \"注文する\"\n    webapp -> api \"REST API\"\n    api -> db \"クエリ\"\n  }\n  views {\n    container system \"ContainerView\" {\n      include *\n      autoLayout lr\n    }\n  }\n}",
+			"codeLanguage": "dsl",
+			"layout": "default"
+		},
+		{
+			"title": "ADR — アーキテクチャ決定記録で「なぜ」を保存する（1/2）",
 			"content": [
 				"Architecture Decision Records (ADR) の構造:",
 				"- **Status**: Proposed / Accepted / Deprecated / Superseded",
 				"- **Context**: なぜこの決定が必要だったか（当時の地図）",
 				"- **Decision**: 何を選択したか",
-				"- **Consequences**: トレードオフと予想される影響",
+				"- **Consequences**: トレードオフと予想される影響"
+			],
+			"speakerNotes": "ADRは設計の「なぜ」を記録する。図が嘘になった経緯と理由を保存することで、将来の誤判断を防ぐ。",
+			"layout": "default"
+		},
+		{
+			"title": "ADR — アーキテクチャ決定記録で「なぜ」を保存する（2/2）",
+			"content": [
 				"",
 				"ADRが解決する問題:",
 				"- 「なぜここがこんな構造になっているのか誰も知らない」を防ぐ",
 				"- 地図が変わった理由（改訂履歴）を残す",
 				"- 将来の意思決定者への「嘘の文脈」の引き継ぎ"
 			],
-			"speakerNotes": "ADRは設計の「なぜ」を記録する。図が嘘になった経緯と理由を保存することで、将来の誤判断を防ぐ。"
+			"speakerNotes": "ADRは設計の「なぜ」を記録する。図が嘘になった経緯と理由を保存することで、将来の誤判断を防ぐ。",
+			"layout": "default"
 		},
 		{
-			"title": "嘘を管理するのがアーキテクトの仕事",
+			"title": "ADRの構造（図解）",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"34\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">ADR — 嘘の文脈を未来に引き継ぐ</text>\n<rect x=\"40\" y=\"60\" width=\"720\" height=\"50\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"80\" y=\"83\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">Status:</text>\n<text x=\"160\" y=\"83\" fill=\"#ffffff\" font-size=\"12\">Proposed → Accepted → Deprecated → Superseded</text>\n<text x=\"80\" y=\"99\" fill=\"#aaaaaa\" font-size=\"10\">この決定が今どの状態か（生きているか死んでいるか）</text>\n<rect x=\"40\" y=\"125\" width=\"220\" height=\"100\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n<text x=\"150\" y=\"148\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">Context（背景）</text>\n<text x=\"55\" y=\"168\" fill=\"#ffffff\" font-size=\"10\">なぜこの決定が必要だったか</text>\n<text x=\"55\" y=\"184\" fill=\"#ffffff\" font-size=\"10\">当時の技術的・組織的制約</text>\n<text x=\"55\" y=\"204\" fill=\"#aaaaaa\" font-size=\"9\">＝ 当時の「地図の前提」</text>\n<rect x=\"290\" y=\"125\" width=\"220\" height=\"100\" rx=\"8\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"1.5\"/>\n<text x=\"400\" y=\"148\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"12\" font-weight=\"bold\">Decision（決定）</text>\n<text x=\"305\" y=\"168\" fill=\"#ffffff\" font-size=\"10\">何を選択したか</text>\n<text x=\"305\" y=\"184\" fill=\"#ffffff\" font-size=\"10\">なぜそれを選んだか</text>\n<text x=\"305\" y=\"204\" fill=\"#aaaaaa\" font-size=\"9\">＝ 地図に描いた「嘘の内容」</text>\n<rect x=\"540\" y=\"125\" width=\"220\" height=\"100\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"650\" y=\"148\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">Consequences（結果）</text>\n<text x=\"555\" y=\"168\" fill=\"#ffffff\" font-size=\"10\">トレードオフと影響</text>\n<text x=\"555\" y=\"184\" fill=\"#ffffff\" font-size=\"10\">予想される問題</text>\n<text x=\"555\" y=\"204\" fill=\"#aaaaaa\" font-size=\"9\">＝ 嘘の「副作用と限界」</text>\n<rect x=\"40\" y=\"255\" width=\"720\" height=\"75\" rx=\"8\" fill=\"#e91e63\" opacity=\"0.15\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n<text x=\"400\" y=\"278\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">ADRが防ぐ問題</text>\n<text x=\"80\" y=\"298\" fill=\"#ffffff\" font-size=\"10\">「なぜこんな設計になっているか誰も知らない」</text>\n<text x=\"80\" y=\"314\" fill=\"#ffffff\" font-size=\"10\">→ 地図が変わった理由を記録することで将来の誤判断を防ぐ</text>\n</svg>"
+			]
+		},
+		{
+			"title": "嘘を管理するのがアーキテクトの仕事（1/2）",
 			"layout": "center",
 			"content": [
 				"アーキテクチャ図は「現実」ではなく「道具」である",
 				"",
 				"良いアーキテクトの3つの責務:",
-				"**1. 目的に合った嘘を選ぶ** — 読者と文脈に最適な抽象化レベル",
+				"**1. 目的に合った嘘を選ぶ** — 読者と文脈に最適な抽象化レベル"
+			],
+			"speakerNotes": "まとめ。アーキテクトの仕事を「嘘の質を管理すること」と再定義する。コジブスキーの言葉で締める。"
+		},
+		{
+			"title": "嘘を管理するのがアーキテクトの仕事（2/2）",
+			"layout": "center",
+			"content": [
 				"**2. 嘘の鮮度を管理する** — 生きたドキュメントとADRで追跡",
 				"**3. 嘘の限界を明示する** — 「この図はL2まで」「2024年3月時点」",
 				"",
@@ -208,13 +296,20 @@
 			"speakerNotes": "まとめ。アーキテクトの仕事を「嘘の質を管理すること」と再定義する。コジブスキーの言葉で締める。"
 		},
 		{
-			"title": "参考文献",
+			"title": "参考文献（1/2）",
 			"content": [
 				"**General Semantics / 地図と現実:**",
 				"- [Science and Sanity — Alfred Korzybski (1933)](https://en.wikipedia.org/wiki/Science_and_Sanity)",
 				"- [The Map Is Not The Territory — LessWrong](https://www.lesswrong.com/tag/the-map-is-not-the-territory)",
 				"",
-				"**C4モデル / Architecture as Code:**",
+				"**C4モデル / Architecture as Code:**"
+			],
+			"speakerNotes": "参考文献。C4モデルのサイトとStructurizrは実践的なツールとして特に推薦。",
+			"layout": "default"
+		},
+		{
+			"title": "参考文献（2/2）",
+			"content": [
 				"- [The C4 model for visualising software architecture](https://c4model.com/)",
 				"- [Structurizr DSL Documentation](https://docs.structurizr.com/dsl)",
 				"- [Diagrams as Code 2.0 — Simon Brown](https://www.infoq.com/presentations/diagrams-code-c4/)",
@@ -222,7 +317,8 @@
 				"**ADR:**",
 				"- [Architecture Decision Records — Michael Nygard](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions)"
 			],
-			"speakerNotes": "参考文献。C4モデルのサイトとStructurizrは実践的なツールとして特に推薦。"
+			"speakerNotes": "参考文献。C4モデルのサイトとStructurizrは実践的なツールとして特に推薦。",
+			"layout": "default"
 		}
 	]
 }

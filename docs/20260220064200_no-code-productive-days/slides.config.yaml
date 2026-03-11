@@ -5,6 +5,7 @@ output:
   baseName: "no-code-productive-days"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ノーコードデー"
   footer: "© 2026"

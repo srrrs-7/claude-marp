@@ -5,6 +5,7 @@ output:
   baseName: "caffeine-adenosine"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "カフェインの神経科学"
   footer: "© 2026"

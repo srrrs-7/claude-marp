@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">シンガポールモデル × プラットフォーム設計</text>
+  <!-- 5 analogies -->
+  <rect x="30" y="55" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="140" y="80" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">全てを設計する</text>
+  <text x="140" y="98" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">Apple的クローズド</text>
+  <text x="140" y="114" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">エコシステム</text>
+  <rect x="290" y="55" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="80" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">市場メカニズムで制御</text>
+  <text x="400" y="98" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">AWSの従量課金</text>
+  <text x="400" y="114" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">モデル</text>
+  <rect x="550" y="55" width="220" height="70" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="660" y="80" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">多民族共生の仕組み</text>
+  <text x="660" y="98" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">マルチテナント</text>
+  <text x="660" y="114" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">アーキテクチャ</text>
+  <rect x="100" y="180" width="240" height="70" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="220" y="205" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">デジタルID基盤</text>
+  <text x="220" y="223" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">OAuth / SSO統合</text>
+  <text x="220" y="240" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">SingPass の思想</text>
+  <rect x="460" y="180" width="240" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="580" y="205" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">効率 vs 自由</text>
+  <text x="580" y="223" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">セキュリティ vs</text>
+  <text x="580" y="240" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">使いやすさ</text>
+  <!-- conclusion -->
+  <rect x="150" y="300" width="500" height="45" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="322" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">国家設計とプラットフォーム設計は驚くほど相似形</text>
+  <text x="400" y="338" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">スケールは違えど、同じトレードオフと向き合っている</text>
+</svg>

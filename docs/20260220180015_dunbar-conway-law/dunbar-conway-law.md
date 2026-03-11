@@ -156,12 +156,18 @@ style: |
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - - **Foundational Research:**
 - - Dunbar, R. (1992). Neocortex size as a constraint on group size in primates
 - - Conway, M. (1968). How Do Committees Invent?
 - - **Books:**
+
+
+---
+
+# 参考文献（2/2）
+
 - - Skelton & Pais, *Team Topologies* (2019)
 - - Brooks, *The Mythical Man-Month* (1975)
 - - **Industry Practice:**

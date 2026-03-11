@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">Embrace, Extend, Extinguish — 段階的裏切り戦略</text>
+  <!-- 3 phases -->
+  <!-- phase 1 -->
+  <rect x="30" y="65" width="220" height="160" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="140" y="95" fill="#f9a825" font-size="22" font-family="sans-serif" text-anchor="middle" font-weight="bold">E①</text>
+  <text x="140" y="120" fill="#f9a825" font-size="16" font-family="sans-serif" text-anchor="middle" font-weight="bold">Embrace</text>
+  <text x="140" y="145" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">オープン標準を</text>
+  <text x="140" y="165" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">表面的に採用</text>
+  <text x="140" y="190" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">協調の偽装</text>
+  <text x="140" y="210" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">信頼を獲得</text>
+  <!-- arrow -->
+  <line x1="250" y1="145" x2="280" y2="145" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="280,139 292,145 280,151" fill="#e91e63"/>
+  <!-- phase 2 -->
+  <rect x="293" y="65" width="220" height="160" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="403" y="95" fill="#e91e63" font-size="22" font-family="sans-serif" text-anchor="middle" font-weight="bold">E②</text>
+  <text x="403" y="120" fill="#e91e63" font-size="16" font-family="sans-serif" text-anchor="middle" font-weight="bold">Extend</text>
+  <text x="403" y="145" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">独自拡張を追加</text>
+  <text x="403" y="165" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">差別化・ロックイン</text>
+  <text x="403" y="190" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">静かな裏切り</text>
+  <text x="403" y="210" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">依存関係を構築</text>
+  <!-- arrow -->
+  <line x1="513" y1="145" x2="543" y2="145" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="543,139 555,145 543,151" fill="#e91e63"/>
+  <!-- phase 3 -->
+  <rect x="556" y="65" width="220" height="160" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="3"/>
+  <text x="666" y="95" fill="#e91e63" font-size="22" font-family="sans-serif" text-anchor="middle" font-weight="bold">E③</text>
+  <text x="666" y="120" fill="#e91e63" font-size="16" font-family="sans-serif" text-anchor="middle" font-weight="bold">Extinguish</text>
+  <text x="666" y="145" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">市場支配で</text>
+  <text x="666" y="165" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">標準を殺す</text>
+  <text x="666" y="190" fill="#e91e63" font-size="10" font-family="sans-serif" text-anchor="middle">完全な裏切り</text>
+  <text x="666" y="210" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">ライバルを排除</text>
+  <!-- examples -->
+  <rect x="80" y="262" width="640" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="285" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">過去の事例</text>
+  <text x="400" y="306" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">Microsoft: IE の Java実装、OOXML の ISO標準化圧力</text>
+  <text x="400" y="326" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">現代版: Google AMP、React Native の「標準」化圧力</text>
+</svg>

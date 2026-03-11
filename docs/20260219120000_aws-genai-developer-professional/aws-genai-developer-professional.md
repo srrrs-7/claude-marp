@@ -1,6 +1,7 @@
 ---
 marp: true
 theme: gaia
+class: invert
 size: 16:9
 paginate: true
 header: "AWS Certified Generative AI Developer - Professional"
@@ -50,12 +51,18 @@ style: |
 
 ---
 
-# アジェンダ (2/2)
+# アジェンダ (2/2)（1/2）
 
 - **Part 3: Agents・オーケストレーション (Slide 55–80)**
 - → Action Groups・ReAct・マルチエージェント・Flows
 - → Prompt Management・Inline Agents・EventBridge連携
 - **Part 4: 評価・安全・責任あるAI (Slide 81–102)**
+
+
+---
+
+# アジェンダ (2/2)（2/2）
+
 - → Guardrails・コンテンツフィルタリング・PII・インジェクション対策
 - → LLM-as-judge・Bedrock Evaluation・VPC Endpoint・IAM
 - **まとめ (Slide 103–105)**
@@ -101,6 +108,11 @@ style: |
 - **注意**: モデル変更時にリクエスト形式の変更が必要
 - **用途**: 画像生成 / Embedding / モデル固有の高度パラメータ制御
 
+
+---
+
+# InvokeModel API — 詳細（コード例）
+
 ```json
 {
   "modelId": "stability.stable-diffusion-xl-v1",
@@ -124,6 +136,11 @@ style: |
 - **ストリーミング**: `ConverseStream` API でリアルタイム応答
 - **ドキュメント**: PDF/Word/Markdownなどドキュメント添付可能
 - **対応モデル**: Claude / Titan Nova / Llama / Mistral など主要モデル
+
+
+---
+
+# Converse API — 詳細（コード例）
 
 ```json
 {
@@ -153,12 +170,18 @@ style: |
 
 ---
 
-# モデル選定の判断フレームワーク
+# モデル選定の判断フレームワーク（1/2）
 
 - **コスト重視**: Amazon Nova Micro / Claude 3 Haiku
 - → 分類・抽出・短文生成などシンプルタスク
 - **バランス型**: Amazon Nova Pro / Claude 3.5 Sonnet
 - → 一般的なチャットボット・コンテンツ生成・RAG
+
+
+---
+
+# モデル選定の判断フレームワーク（2/2）
+
 - **最高性能**: Claude 3.5 Sonnet (最新) / Nova Premier
 - → 複雑な推論・コーディング・マルチモーダル分析
 - **画像生成**: Stability AI Stable Diffusion / Amazon Nova Canvas
@@ -268,12 +291,18 @@ style: |
 
 ---
 
-# Bedrock + SageMaker 連携パターン
+# Bedrock + SageMaker 連携パターン（1/2）
 
 - **パターン1: FM on Bedrock → 推論 → SageMaker Processing で後処理**
 - → 大規模バッチ推論 + Python処理パイプライン
 - **パターン2: SageMaker カスタムモデル → Bedrock Agentsのツールとして使用**
 - → 独自MLモデルとLLMの組み合わせ
+
+
+---
+
+# Bedrock + SageMaker 連携パターン（2/2）
+
 - **パターン3: SageMaker Feature Store → RAG のメタデータ管理**
 - → 構造化特徴量とベクター検索の統合
 - **パターン4: SageMaker Pipelines → FTパイプラインの自動化**
@@ -575,12 +604,18 @@ style: |
 
 ---
 
-# Part 2: よくある問題パターン
+# Part 2: よくある問題パターン（1/2）
 
 - **Q: 検索は正しいが回答が間違っている → ?**
 - → LLMのコンテキスト利用問題 / Faithfulnessが低い
 - **Q: 正しい文書が検索されない → ?**
 - → チャンク戦略・Embeddingモデルの見直し / ハイブリッド検索導入
+
+
+---
+
+# Part 2: よくある問題パターン（2/2）
+
 - **Q: RAGが遅すぎる → ?**
 - → Rerankingのオフ / Top-K削減 / 小型Embeddingモデル
 - **Q: 社内データを最新の状態に保ちたい → ?**
@@ -638,6 +673,11 @@ style: |
 # OpenAPI スキーマ定義例
 
 - **スキーマ品質がAgentの精度を左右**: 詳細な説明が必須
+
+
+---
+
+# OpenAPI スキーマ定義例（コード例）
 
 ```yaml
 openapi: 3.0.0
@@ -862,12 +902,18 @@ paths:
 
 ---
 
-# Part 3: よくある問題パターン
+# Part 3: よくある問題パターン（1/2）
 
 - **Q: Agentが正しいツールを選ばない → ?**
 - → Action Groupの説明文を改善 / OpenAPIスキーマの`description`を詳細化
 - **Q: Agentがループして止まらない → ?**
 - → `maxAgentDurationSeconds` 設定 / システムプロンプトで終了条件を明記
+
+
+---
+
+# Part 3: よくある問題パターン（2/2）
+
 - **Q: 複数ユーザーで並行実行したい → ?**
 - → ユーザーごとに異なる`sessionId`を使用
 - **Q: 長期記憶が必要 → ?**
@@ -1116,13 +1162,19 @@ paths:
 
 ---
 
-# 参考リソース
+# 参考リソース（1/2）
 
 - **公式ドキュメント:**
 - [Amazon Bedrock ドキュメント](https://docs.aws.amazon.com/bedrock/)
 - [Amazon Bedrock Knowledge Bases](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html)
 - [Amazon Bedrock Agents](https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html)
 - **試験準備:**
+
+
+---
+
+# 参考リソース（2/2）
+
 - [AWS 認定 Generative AI Developer](https://aws.amazon.com/jp/certification/certified-generative-ai-developer/)
 - [AWS Skill Builder — GenAI コース](https://skillbuilder.aws/)
 - **ハンズオン:**

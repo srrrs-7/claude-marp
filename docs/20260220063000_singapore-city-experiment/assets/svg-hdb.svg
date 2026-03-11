@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">HDB 住宅開発庁：住宅で社会を設計する</text>
+  <!-- building blocks showing ethnic integration -->
+  <rect x="80" y="60" width="240" height="250" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="200" y="85" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">HDB棟の構成</text>
+  <!-- floors representing ethnic groups -->
+  <rect x="95" y="100" width="210" height="35" rx="4" fill="#f9a825" opacity="0.7"/>
+  <text x="200" y="122" fill="#1a1a2e" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">中国系 74%</text>
+  <rect x="95" y="142" width="210" height="35" rx="4" fill="#e91e63" opacity="0.7"/>
+  <text x="200" y="164" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">マレー系 13%</text>
+  <rect x="95" y="184" width="210" height="35" rx="4" fill="#4fc3f7" opacity="0.7"/>
+  <text x="200" y="206" fill="#1a1a2e" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">インド系 9%</text>
+  <rect x="95" y="226" width="210" height="35" rx="4" fill="#81c784" opacity="0.7"/>
+  <text x="200" y="248" fill="#1a1a2e" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">その他 4%</text>
+  <text x="200" y="290" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">EIP: 比率を法的に設定</text>
+  <!-- stats boxes right -->
+  <rect x="380" y="80" width="180" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="470" y="105" fill="#f9a825" font-size="22" font-family="sans-serif" text-anchor="middle" font-weight="bold">80%</text>
+  <text x="470" y="127" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">国民がHDB在住</text>
+  <rect x="580" y="80" width="165" height="65" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="662" y="105" fill="#e91e63" font-size="22" font-family="sans-serif" text-anchor="middle" font-weight="bold">90%+</text>
+  <text x="662" y="127" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">持ち家率（世界最高）</text>
+  <!-- community box -->
+  <rect x="380" y="175" width="365" height="120" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="562" y="200" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">コミュニティ設計</text>
+  <text x="562" y="222" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">1階: 必ず商店・フードコート</text>
+  <text x="562" y="242" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">民族を超えた交流の核</text>
+  <text x="562" y="262" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">→ ゲットー化を構造的に防止</text>
+  <text x="562" y="282" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">住宅政策で民族紛争を予防する社会工学</text>
+  <text x="400" y="350" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">世界最高クラスの持ち家率 × 民族統合 = 「設計された共生」</text>
+</svg>

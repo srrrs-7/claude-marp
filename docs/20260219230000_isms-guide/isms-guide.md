@@ -1,6 +1,7 @@
 ---
 marp: true
 theme: gaia
+class: invert
 size: 16:9
 paginate: true
 header: "ISMS完全ガイド | ISO/IEC 27001:2022"

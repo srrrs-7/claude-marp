@@ -1,0 +1,66 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#f9a825">ユーザーフローに仕掛けられたトラップ</text>
+  <!-- Flow steps -->
+  <!-- Step 1: Landing -->
+  <rect x="40" y="100" width="120" height="52" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="100" y="122" text-anchor="middle" font-size="12" fill="#4caf50">訪問</text>
+  <text x="100" y="140" text-anchor="middle" font-size="11" fill="#ffffff">ランディング</text>
+  <!-- Arrow 1→2 -->
+  <line x1="160" y1="126" x2="200" y2="126" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="197,121 210,126 197,131" fill="#ffffff"/>
+  <!-- Step 2: Product page (TRAP: fake urgency) -->
+  <rect x="200" y="100" width="140" height="52" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="270" y="122" text-anchor="middle" font-size="12" fill="#e91e63">商品ページ</text>
+  <text x="270" y="140" text-anchor="middle" font-size="11" fill="#ffffff">⚠ 残り2点！</text>
+  <!-- Trap bubble 2 -->
+  <rect x="218" y="60" width="104" height="28" rx="6" fill="#e91e63" opacity="0.9"/>
+  <text x="270" y="78" text-anchor="middle" font-size="10" fill="#ffffff">偽の緊急性</text>
+  <line x1="270" y1="100" x2="270" y2="88" stroke="#e91e63" stroke-width="1.5"/>
+  <!-- Arrow 2→3 -->
+  <line x1="340" y1="126" x2="380" y2="126" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="377,121 390,126 377,131" fill="#ffffff"/>
+  <!-- Step 3: Cart (TRAP: auto-add) -->
+  <rect x="380" y="100" width="140" height="52" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="450" y="122" text-anchor="middle" font-size="12" fill="#e91e63">カート</text>
+  <text x="450" y="140" text-anchor="middle" font-size="11" fill="#ffffff">⚠ 保証が自動追加</text>
+  <!-- Trap bubble 3 -->
+  <rect x="398" y="60" width="104" height="28" rx="6" fill="#e91e63" opacity="0.9"/>
+  <text x="450" y="78" text-anchor="middle" font-size="10" fill="#ffffff">こっそり追加</text>
+  <line x1="450" y1="100" x2="450" y2="88" stroke="#e91e63" stroke-width="1.5"/>
+  <!-- Arrow 3→4 -->
+  <line x1="520" y1="126" x2="560" y2="126" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="557,121 570,126 557,131" fill="#ffffff"/>
+  <!-- Step 4: Checkout (TRAP: hidden fees) -->
+  <rect x="560" y="100" width="140" height="52" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="630" y="122" text-anchor="middle" font-size="12" fill="#e91e63">決済</text>
+  <text x="630" y="140" text-anchor="middle" font-size="11" fill="#ffffff">⚠ 手数料が発覚</text>
+  <!-- Trap bubble 4 -->
+  <rect x="578" y="60" width="104" height="28" rx="6" fill="#e91e63" opacity="0.9"/>
+  <text x="630" y="78" text-anchor="middle" font-size="10" fill="#ffffff">隠しコスト</text>
+  <line x1="630" y1="100" x2="630" y2="88" stroke="#e91e63" stroke-width="1.5"/>
+  <!-- Second row: post-purchase -->
+  <text x="400" y="198" text-anchor="middle" font-size="13" fill="#ffffff" opacity="0.6">— 購入後 —</text>
+  <!-- Step 5: Subscription trap -->
+  <rect x="100" y="218" width="160" height="52" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="180" y="238" text-anchor="middle" font-size="12" fill="#e91e63">無料トライアル終了</text>
+  <text x="180" y="256" text-anchor="middle" font-size="11" fill="#ffffff">⚠ 通知なしで課金</text>
+  <!-- Step 6: Cancellation trap -->
+  <rect x="320" y="218" width="160" height="52" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="238" text-anchor="middle" font-size="12" fill="#e91e63">解約しようとする</text>
+  <text x="400" y="256" text-anchor="middle" font-size="11" fill="#ffffff">⚠ 20ステップ要求</text>
+  <!-- Step 7: Roach motel -->
+  <rect x="540" y="218" width="160" height="52" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="620" y="238" text-anchor="middle" font-size="12" fill="#e91e63">退会ページが消える</text>
+  <text x="620" y="256" text-anchor="middle" font-size="11" fill="#ffffff">⚠ ロッチモテル</text>
+  <!-- Arrows between post-purchase -->
+  <line x1="260" y1="244" x2="318" y2="244" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="315,239 328,244 315,249" fill="#e91e63"/>
+  <line x1="480" y1="244" x2="538" y2="244" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="535,239 548,244 535,249" fill="#e91e63"/>
+  <!-- Bottom labels -->
+  <text x="400" y="310" text-anchor="middle" font-size="13" fill="#f9a825">「登録1クリック、解約は電話のみ」が典型例</text>
+  <rect x="120" y="325" width="560" height="44" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="345" text-anchor="middle" font-size="12" fill="#f9a825">エシカル設計原則：登録と解約は同じ難易度にする</text>
+  <text x="400" y="361" text-anchor="middle" font-size="11" fill="#ffffff">（EU DSA 2024年施行で法的義務化）</text>
+</svg>

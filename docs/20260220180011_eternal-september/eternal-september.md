@@ -175,12 +175,18 @@ style: |
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - - **歴史・理論:**
 -   - Dave Fischer, "September that never ended" (1993)
 -   - Robin Dunbar, "Neocortex size as a constraint on group size" (1992)
 -   - Clay Shirky, "A Group Is Its Own Worst Enemy" (2003)
+
+
+---
+
+# 参考文献（2/2）
+
 - - **事例研究:**
 -   - [Hacker News Guidelines](https://news.ycombinator.com/newsguidelines.html)
 -   - [Stack Overflow Privileges](https://stackoverflow.com/help/privileges)

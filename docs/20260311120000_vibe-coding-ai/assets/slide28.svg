@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="38" font-family="Arial, sans-serif" font-size="21" font-weight="bold" fill="#ffffff" text-anchor="middle">ペアプログラミング with AI</text>
+
+  <!-- Human icon area -->
+  <rect x="30" y="60" width="150" height="160" rx="10" fill="#2d1b69" stroke="#a78bfa" stroke-width="2"/>
+  <!-- Simple human figure -->
+  <circle cx="105" cy="100" r="22" fill="#a78bfa"/>
+  <rect x="90" y="125" width="30" height="50" rx="5" fill="#7c3aed"/>
+  <rect x="80" y="130" width="15" height="35" rx="5" fill="#7c3aed"/>
+  <rect x="110" y="130" width="15" height="35" rx="5" fill="#7c3aed"/>
+  <rect x="88" y="174" width="14" height="35" rx="5" fill="#6d28d9"/>
+  <rect x="103" y="174" width="14" height="35" rx="5" fill="#6d28d9"/>
+  <text x="105" y="225" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#c4b5fd" text-anchor="middle">Human</text>
+  <text x="105" y="210" font-family="Arial, sans-serif" font-size="11" fill="#a78bfa" text-anchor="middle">開発者</text>
+
+  <!-- AI icon area -->
+  <rect x="620" y="60" width="150" height="160" rx="10" fill="#0c1e40" stroke="#60a5fa" stroke-width="2"/>
+  <!-- Simple AI icon -->
+  <rect x="665" y="80" width="60" height="60" rx="8" fill="#1d4ed8"/>
+  <circle cx="685" cy="103" r="7" fill="#60a5fa"/>
+  <circle cx="705" cy="103" r="7" fill="#60a5fa"/>
+  <rect x="683" y="118" width="14" height="4" rx="2" fill="#93c5fd"/>
+  <line x1="665" y1="90" x2="655" y2="80" stroke="#60a5fa" stroke-width="2"/>
+  <line x1="725" y1="90" x2="735" y2="80" stroke="#60a5fa" stroke-width="2"/>
+  <line x1="695" y1="140" x2="695" y2="155" stroke="#60a5fa" stroke-width="2"/>
+  <rect x="680" y="155" width="30" height="12" rx="3" fill="#1d4ed8"/>
+  <text x="695" y="200" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#93c5fd" text-anchor="middle">AI</text>
+  <text x="695" y="215" font-family="Arial, sans-serif" font-size="11" fill="#60a5fa" text-anchor="middle">Claude Code</text>
+
+  <!-- Central session flow -->
+  <rect x="210" y="60" width="380" height="160" rx="10" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+  <text x="400" y="88" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#94a3b8" text-anchor="middle">ペアプロセッション</text>
+
+  <!-- Flow arrows left to right -->
+  <line x1="180" y1="120" x2="208" y2="120" stroke="#a78bfa" stroke-width="2"/>
+  <polygon points="200,113 212,120 200,127" fill="#a78bfa"/>
+
+  <!-- Session steps inside the box -->
+  <rect x="220" y="100" width="100" height="36" rx="4" fill="#1a0a3d" stroke="#a78bfa" stroke-width="1"/>
+  <text x="270" y="118" font-family="Arial, sans-serif" font-size="11" fill="#c4b5fd" text-anchor="middle">問題を伝える</text>
+  <text x="270" y="130" font-family="Arial, sans-serif" font-size="10" fill="#8b8ba0" text-anchor="middle">要件・仕様</text>
+
+  <line x1="320" y1="118" x2="338" y2="118" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="332,112 342,118 332,124" fill="#60a5fa"/>
+
+  <rect x="340" y="100" width="100" height="36" rx="4" fill="#0c1e40" stroke="#60a5fa" stroke-width="1"/>
+  <text x="390" y="118" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">AI が実装案</text>
+  <text x="390" y="130" font-family="Arial, sans-serif" font-size="10" fill="#60a5fa" text-anchor="middle">を提示</text>
+
+  <line x1="440" y1="118" x2="458" y2="118" stroke="#34d399" stroke-width="1.5"/>
+  <polygon points="452,112 462,118 452,124" fill="#34d399"/>
+
+  <rect x="460" y="100" width="100" height="36" rx="4" fill="#022c22" stroke="#34d399" stroke-width="1"/>
+  <text x="510" y="118" font-family="Arial, sans-serif" font-size="11" fill="#6ee7b7" text-anchor="middle">人間が確認・</text>
+  <text x="510" y="130" font-family="Arial, sans-serif" font-size="10" fill="#34d399" text-anchor="middle">フィードバック</text>
+
+  <line x1="560" y1="118" x2="590" y2="118" stroke="#fbbf24" stroke-width="1.5"/>
+  <polygon points="582,112 592,118 582,124" fill="#fbbf24"/>
+
+  <!-- Loop back arrow -->
+  <path d="M 580 150 Q 400 190 240 150" stroke="#475569" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+  <polygon points="248,143 238,152 250,158" fill="#475569"/>
+  <text x="400" y="188" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">繰り返し改善</text>
+
+  <line x1="590" y1="120" x2="618" y2="120" stroke="#a78bfa" stroke-width="2"/>
+  <polygon points="610,113 622,120 610,127" fill="#a78bfa"/>
+
+  <!-- Bottom role split -->
+  <rect x="30" y="250" width="360" height="230" rx="8" fill="#1f1035" stroke="#a78bfa" stroke-width="1"/>
+  <text x="210" y="275" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#a78bfa" text-anchor="middle">人間の役割（ドライバー）</text>
+  <text x="50" y="300" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• 問題の文脈・ビジネス要件を伝える</text>
+  <text x="50" y="322" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• AIの出力をレビュー・検証する</text>
+  <text x="50" y="344" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• 方向性・品質基準を決定する</text>
+  <text x="50" y="366" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• エッジケースや制約を指摘</text>
+  <text x="50" y="388" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• チームとのコミュニケーション</text>
+  <text x="50" y="410" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• 最終的な責任を持つ</text>
+  <text x="50" y="432" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• 倫理・セキュリティの判断</text>
+  <text x="50" y="454" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• AIが見落とす創造的解決策</text>
+
+  <rect x="410" y="250" width="360" height="230" rx="8" fill="#0c1e40" stroke="#60a5fa" stroke-width="1"/>
+  <text x="590" y="275" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#60a5fa" text-anchor="middle">AIの役割（ナビゲーター）</text>
+  <text x="428" y="300" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• 実装コードの高速生成</text>
+  <text x="428" y="322" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• 複数の実装アプローチを提示</text>
+  <text x="428" y="344" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• バグの検出・修正提案</text>
+  <text x="428" y="366" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• テストコードの自動生成</text>
+  <text x="428" y="388" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• ドキュメント・コメント作成</text>
+  <text x="428" y="410" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• リファクタリング提案</text>
+  <text x="428" y="432" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• ライブラリ・API調査</text>
+  <text x="428" y="454" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• コードベースの横断検索</text>
+</svg>

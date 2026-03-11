@@ -1,0 +1,34 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#f9a825">AIレビュー vs 人間レビュー — 比較</text>
+  <!-- AI column -->
+  <rect x="60" y="55" width="280" height="44" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="200" y="82" text-anchor="middle" font-size="15" font-weight="bold" fill="#f9a825">AIレビュー</text>
+  <!-- Human column -->
+  <rect x="460" y="55" width="280" height="44" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="600" y="82" text-anchor="middle" font-size="15" font-weight="bold" fill="#e91e63">人間レビュー</text>
+  <!-- Divider -->
+  <line x1="400" y1="55" x2="400" y2="380" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
+  <!-- AI strengths -->
+  <text x="200" y="125" text-anchor="middle" font-size="12" fill="#4caf50">+ 著者バイアスなし</text>
+  <text x="200" y="148" text-anchor="middle" font-size="12" fill="#4caf50">+ 権威バイアスなし</text>
+  <text x="200" y="171" text-anchor="middle" font-size="12" fill="#4caf50">+ 一貫した基準</text>
+  <text x="200" y="194" text-anchor="middle" font-size="12" fill="#4caf50">+ セキュリティパターン検出</text>
+  <text x="200" y="217" text-anchor="middle" font-size="12" fill="#4caf50">+ 疲れない</text>
+  <!-- AI weaknesses -->
+  <text x="200" y="256" text-anchor="middle" font-size="12" fill="#e91e63">- 学習データのバイアスを継承</text>
+  <text x="200" y="279" text-anchor="middle" font-size="12" fill="#e91e63">- ビジネスロジック判断不可</text>
+  <text x="200" y="302" text-anchor="middle" font-size="12" fill="#e91e63">- コンテキスト理解が浅い</text>
+  <!-- Human strengths -->
+  <text x="600" y="125" text-anchor="middle" font-size="12" fill="#4caf50">+ ビジネス要件を理解できる</text>
+  <text x="600" y="148" text-anchor="middle" font-size="12" fill="#4caf50">+ 意図の確認ができる</text>
+  <text x="600" y="171" text-anchor="middle" font-size="12" fill="#4caf50">+ チームへの知識移転</text>
+  <!-- Human weaknesses -->
+  <text x="600" y="210" text-anchor="middle" font-size="12" fill="#e91e63">- 著者バイアスあり</text>
+  <text x="600" y="233" text-anchor="middle" font-size="12" fill="#e91e63">- PRが大きいと集中力低下</text>
+  <text x="600" y="256" text-anchor="middle" font-size="12" fill="#e91e63">- 権威バイアスあり</text>
+  <text x="600" y="279" text-anchor="middle" font-size="12" fill="#e91e63">- 疲労・感情的影響あり</text>
+  <!-- Bottom: best approach -->
+  <rect x="150" y="335" width="500" height="44" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="362" text-anchor="middle" font-size="14" fill="#f9a825">最適解：AI（一次フィルタ） + 人間（コンテキスト判断）</text>
+</svg>

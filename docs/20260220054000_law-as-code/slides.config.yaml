@@ -5,6 +5,7 @@ output:
   baseName: "law-as-code"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "法とコードの構造的類似"
   footer: "© 2026"

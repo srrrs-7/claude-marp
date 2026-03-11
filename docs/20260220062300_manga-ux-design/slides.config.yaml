@@ -5,6 +5,7 @@ output:
   baseName: "manga-ux-design"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "マンガに学ぶUXデザイン"
   footer: "© 2026"

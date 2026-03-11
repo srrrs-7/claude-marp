@@ -1,0 +1,71 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="42" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">エージェントループの仕組み</text>
+
+  <!-- Start node -->
+  <ellipse cx="400" cy="82" rx="70" ry="26" fill="#2d1b5e" stroke="#a78bfa" stroke-width="2.5"/>
+  <text x="400" y="87" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">ユーザー指示</text>
+
+  <!-- Arrow down -->
+  <line x1="400" y1="108" x2="400" y2="138" stroke="#a78bfa" stroke-width="2"/>
+  <polygon points="394,136 406,136 400,146" fill="#a78bfa"/>
+
+  <!-- Step 1: Plan -->
+  <rect x="290" y="148" width="220" height="52" rx="10" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2"/>
+  <text x="400" y="170" font-family="sans-serif" font-size="13" font-weight="bold" fill="#60a5fa" text-anchor="middle">① 計画・推論</text>
+  <text x="400" y="190" font-family="sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">タスクを分析・サブタスクに分解</text>
+
+  <!-- Arrow -->
+  <line x1="400" y1="200" x2="400" y2="230" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="394,228 406,228 400,238" fill="#60a5fa"/>
+
+  <!-- Step 2: Tool Selection -->
+  <rect x="290" y="240" width="220" height="52" rx="10" fill="#1a3d32" stroke="#34d399" stroke-width="2"/>
+  <text x="400" y="262" font-family="sans-serif" font-size="13" font-weight="bold" fill="#34d399" text-anchor="middle">② ツール選択</text>
+  <text x="400" y="282" font-family="sans-serif" font-size="11" fill="#6ee7b7" text-anchor="middle">最適なツールを決定・呼び出し</text>
+
+  <!-- Arrow -->
+  <line x1="400" y1="292" x2="400" y2="322" stroke="#34d399" stroke-width="2"/>
+  <polygon points="394,320 406,320 400,330" fill="#34d399"/>
+
+  <!-- Step 3: Execute -->
+  <rect x="290" y="332" width="220" height="52" rx="10" fill="#3d3000" stroke="#fbbf24" stroke-width="2"/>
+  <text x="400" y="354" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fbbf24" text-anchor="middle">③ 実行 &amp; 観察</text>
+  <text x="400" y="374" font-family="sans-serif" font-size="11" fill="#fde68a" text-anchor="middle">ツール実行 → 結果を取得</text>
+
+  <!-- Decision diamond -->
+  <polygon points="400,408 460,432 400,456 340,432" fill="#3d1a3d" stroke="#f472b6" stroke-width="2"/>
+  <text x="400" y="428" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f472b6" text-anchor="middle">完了?</text>
+  <text x="400" y="445" font-family="sans-serif" font-size="10" fill="#f9a8d4" text-anchor="middle">確認要求?</text>
+
+  <!-- Arrow from Step3 to Decision -->
+  <line x1="400" y1="384" x2="400" y2="408" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="394,406 406,406 400,416" fill="#fbbf24"/>
+
+  <!-- YES path: exit -->
+  <line x1="460" y1="432" x2="620" y2="432" stroke="#34d399" stroke-width="2"/>
+  <polygon points="618,426 630,432 618,438" fill="#34d399"/>
+  <text x="538" y="424" font-family="sans-serif" font-size="11" fill="#34d399" text-anchor="middle">完了</text>
+  <ellipse cx="672" cy="432" rx="52" ry="24" fill="#1a3d32" stroke="#34d399" stroke-width="2"/>
+  <text x="672" y="437" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">応答出力</text>
+
+  <!-- NO path: loop back -->
+  <line x1="340" y1="432" x2="200" y2="432" stroke="#f472b6" stroke-width="2"/>
+  <line x1="200" y1="432" x2="200" y2="265" stroke="#f472b6" stroke-width="2"/>
+  <line x1="200" y1="265" x2="290" y2="265" stroke="#f472b6" stroke-width="2"/>
+  <polygon points="288,259 300,265 288,271" fill="#f472b6"/>
+  <text x="248" y="424" font-family="sans-serif" font-size="11" fill="#f472b6" text-anchor="middle">未完了</text>
+  <text x="168" y="350" font-family="sans-serif" font-size="11" fill="#f9a8d4" text-anchor="middle" transform="rotate(-90,168,350)">ループ継続</text>
+
+  <!-- Confirmation branch -->
+  <line x1="400" y1="456" x2="400" y2="476" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4,3"/>
+  <text x="410" y="472" font-family="sans-serif" font-size="10" fill="#fbbf24">確認要求 → ユーザーに問い合わせ</text>
+
+  <!-- Side notes -->
+  <text x="536" y="170" font-family="sans-serif" font-size="11" fill="#c4b5fd">Claude API で推論</text>
+  <text x="536" y="265" font-family="sans-serif" font-size="11" fill="#6ee7b7">Bash/Read/Write</text>
+  <text x="536" y="355" font-family="sans-serif" font-size="11" fill="#fde68a">結果をコンテキストに追加</text>
+</svg>

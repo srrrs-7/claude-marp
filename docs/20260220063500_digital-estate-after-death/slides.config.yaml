@@ -5,6 +5,7 @@ output:
   baseName: "digital-estate-after-death"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "デジタル遺産の行方"
   footer: "© 2026"

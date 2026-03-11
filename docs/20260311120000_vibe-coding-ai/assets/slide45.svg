@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">コード品質向上サイクル</text>
+
+  <!-- Center circle -->
+  <circle cx="400" cy="245" r="60" fill="#1e1b4b" stroke="#a78bfa" stroke-width="2.5"/>
+  <text x="400" y="238" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a78bfa">品質</text>
+  <text x="400" y="257" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a78bfa">サイクル</text>
+
+  <!-- Step 1: Lint (top) -->
+  <rect x="310" y="55" width="180" height="70" rx="10" fill="#4c1d95" stroke="#a78bfa" stroke-width="2"/>
+  <text x="400" y="82" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#a78bfa">Lint</text>
+  <text x="400" y="100" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#c4b5fd">Biome / ESLint 自動実行</text>
+  <text x="400" y="116" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#c4b5fd">format + check</text>
+
+  <!-- Arrow Lint → Review (clockwise, right) -->
+  <line x1="490" y1="95" x2="570" y2="180" stroke="#a78bfa" stroke-width="2"/>
+  <polygon points="570,180 560,172 573,168" fill="#a78bfa"/>
+
+  <!-- Step 2: Review (right) -->
+  <rect x="575" y="180" width="180" height="70" rx="10" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2"/>
+  <text x="665" y="207" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#60a5fa">Review</text>
+  <text x="665" y="225" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#93c5fd">AI コードレビュー</text>
+  <text x="665" y="241" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#bfdbfe">バグ・脆弱性検出</text>
+
+  <!-- Arrow Review → Refactor (clockwise, bottom-right) -->
+  <line x1="595" y1="250" x2="530" y2="330" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="530,330 521,320 534,316" fill="#60a5fa"/>
+
+  <!-- Step 3: Refactor (bottom) -->
+  <rect x="310" y="335" width="180" height="70" rx="10" fill="#14532d" stroke="#34d399" stroke-width="2"/>
+  <text x="400" y="362" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#34d399">Refactor</text>
+  <text x="400" y="380" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6ee7b7">AIリファクタリング提案</text>
+  <text x="400" y="396" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a7f3d0">可読性・保守性向上</text>
+
+  <!-- Arrow Refactor → Test (clockwise, left) -->
+  <line x1="310" y1="355" x2="238" y2="295" stroke="#34d399" stroke-width="2"/>
+  <polygon points="238,295 229,305 240,309" fill="#34d399"/>
+
+  <!-- Step 4: Test (left) -->
+  <rect x="45" y="180" width="180" height="70" rx="10" fill="#431407" stroke="#fb923c" stroke-width="2"/>
+  <text x="135" y="207" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#fb923c">Test</text>
+  <text x="135" y="225" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fdba74">AIがテストケース生成</text>
+  <text x="135" y="241" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#fde68a">回帰テスト自動化</text>
+
+  <!-- Arrow Test → Lint (clockwise, top-left) -->
+  <line x1="205" y1="180" x2="315" y2="115" stroke="#fb923c" stroke-width="2"/>
+  <polygon points="315,115 305,120 310,107" fill="#fb923c"/>
+
+  <!-- Annotations -->
+  <text x="400" y="460" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#c4b5fd">各ステップでAIが自動化 — 人間は承認・方向性の決定に集中</text>
+  <text x="400" y="480" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#7c3aed">bun run check → bun run fix → bun run test → PR作成</text>
+
+  <!-- Quality improvement arrows at center -->
+  <line x1="400" y1="185" x2="400" y2="200" stroke="#a78bfa" stroke-width="1.5"/>
+  <polygon points="400,200 394,192 406,192" fill="#a78bfa"/>
+</svg>

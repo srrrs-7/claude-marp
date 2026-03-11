@@ -5,6 +5,7 @@ output:
   baseName: "devsecops"
 marp:
   theme: gaia
+  class: invert
   size: "16:9"
   paginate: true
   header: "DevSecOps実践ガイド"

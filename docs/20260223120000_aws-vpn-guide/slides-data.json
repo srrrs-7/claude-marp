@@ -99,7 +99,6 @@
 		},
 		{
 			"title": "Customer Gateway 設定パラメータ",
-			"layout": "default",
 			"content": [
 				"**IP アドレス**: オンプレルーターのパブリック IP（NATアドレスも可）",
 				"**BGP ASN**: 動的ルーティング使用時に指定（1–4294967295 / Private: 64512–65535）",
@@ -108,9 +107,14 @@
 				"**作成後は変更不可** — IP / ASN 変更が必要な場合は再作成が必要",
 				"**コスト**: CGW リソース自体は無料（VPN Connection に課金）"
 			],
+			"layout": "default"
+		},
+		{
+			"title": "Customer Gateway 設定パラメータ（コード例）",
+			"content": [],
 			"code": "# CGW 作成例（AWS CLI）\naws ec2 create-customer-gateway \\\n  --type ipsec.1 \\\n  --public-ip 203.0.113.1 \\\n  --bgp-asn 65000\n\n# TGW 接続の VPN Connection 作成\naws ec2 create-vpn-connection \\\n  --customer-gateway-id cgw-xxxxxxxxx \\\n  --transit-gateway-id tgw-xxxxxxxxx \\\n  --type ipsec.1 \\\n  --options TunnelOptions=[{...},{...}]",
 			"codeLanguage": "bash",
-			"speakerNotes": "CGWはオンプレミス側のルーターをAWSリソースとして論理的に表現したもの。設定後は変更不可のため注意。"
+			"layout": "default"
 		},
 		{
 			"title": "2トンネル構成とフェイルオーバー",

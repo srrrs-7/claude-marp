@@ -7,6 +7,71 @@ paginate: true
 header: "Commons Tragedy × OSS"
 footer: "© 2026 OSS Economics"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section {
     font-size: 1.05em;
   }
@@ -49,6 +114,7 @@ style: |
 
 # コモンズの悲劇（Garrett Hardin, 1968）
 
+- <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">コモンズの悲劇：個人の合理性 → 集団の破滅</text><ellipse cx="400" cy="195" rx="120" ry="80" fill="#1b5e20" stroke="#388e3c" stroke-width="2"/><text x="400" y="185" text-anchor="middle" fill="#a5d6a7" font-size="13" font-weight="bold" font-family="sans-serif">共有牧草地</text><text x="400" y="203" text-anchor="middle" fill="#81c784" font-size="11" font-family="sans-serif">OSS Commons</text><text x="400" y="221" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">npm / PyPI / crates.io</text><circle cx="140" cy="100" r="40" fill="#1a237e" stroke="#3949ab" stroke-width="2"/><text x="140" y="95" text-anchor="middle" fill="#9fa8da" font-size="10" font-weight="bold" font-family="sans-serif">企業A</text><text x="140" y="111" text-anchor="middle" fill="#7986cb" font-size="9" font-family="sans-serif">大量利用</text><polygon points="175,118 215,155 168,145" fill="#3949ab"/><circle cx="660" cy="100" r="40" fill="#1a237e" stroke="#3949ab" stroke-width="2"/><text x="660" y="95" text-anchor="middle" fill="#9fa8da" font-size="10" font-weight="bold" font-family="sans-serif">企業B</text><text x="660" y="111" text-anchor="middle" fill="#7986cb" font-size="9" font-family="sans-serif">大量利用</text><polygon points="625,118 585,155 632,145" fill="#3949ab"/><circle cx="140" cy="295" r="40" fill="#4a148c" stroke="#7b1fa2" stroke-width="2"/><text x="140" y="290" text-anchor="middle" fill="#ce93d8" font-size="10" font-weight="bold" font-family="sans-serif">個人C</text><text x="140" y="306" text-anchor="middle" fill="#ba68c8" font-size="9" font-family="sans-serif">軽度利用</text><polygon points="175,278 215,240 168,250" fill="#7b1fa2"/><circle cx="660" cy="295" r="40" fill="#006064" stroke="#00838f" stroke-width="2"/><text x="660" y="290" text-anchor="middle" fill="#80deea" font-size="10" font-weight="bold" font-family="sans-serif">スタートアップD</text><text x="660" y="306" text-anchor="middle" fill="#4dd0e1" font-size="9" font-family="sans-serif">中度利用</text><polygon points="625,278 585,240 632,250" fill="#00838f"/><circle cx="400" cy="50" r="32" fill="#c62828" stroke="#ef5350" stroke-width="2"/><text x="400" y="44" text-anchor="middle" fill="#ef9a9a" font-size="9" font-weight="bold" font-family="sans-serif">メンテナー</text><text x="400" y="58" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">1〜2名</text><polygon points="388,82 400,115 412,82" fill="#ef5350"/><text x="400" y="340" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">全員が合理的に利用する → 牧草地（OSS）が過剰負荷で荒廃</text><text x="140" y="355" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">コスト分担なし</text><text x="660" y="355" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">コスト分担なし</text></svg>
 - - 共有の牧草地（Commons）に複数の牧畜民がいる
 - - 各人の合理的行動: **自分の羊を1頭増やす** （利益は自分、コストは全員）
 - - 全員が同じ行動 → 牧草地が **過剰利用** で荒廃
@@ -146,6 +212,7 @@ style: |
 
 # 8原則のOSS適用
 
+- <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">エリノア・オストロムの8原則 → OSSへの適用</text><rect x="30" y="42" width="365" height="45" fill="#16213e" rx="6" stroke="#f9a825" stroke-width="1"/><text x="50" y="62" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">1. 境界の明確化</text><text x="50" y="78" fill="#90a4ae" font-size="10" font-family="sans-serif">LICENSE + CONTRIBUTING.md → 参加条件を定義</text><rect x="405" y="42" width="365" height="45" fill="#16213e" rx="6" stroke="#4caf50" stroke-width="1"/><text x="425" y="62" fill="#4caf50" font-size="11" font-weight="bold" font-family="sans-serif">2. ルールの適合</text><text x="425" y="78" fill="#90a4ae" font-size="10" font-family="sans-serif">コントリビュータ契約・行動規範</text><rect x="30" y="95" width="365" height="45" fill="#16213e" rx="6" stroke="#2196f3" stroke-width="1"/><text x="50" y="115" fill="#2196f3" font-size="11" font-weight="bold" font-family="sans-serif">3. 集合的選択</text><text x="50" y="131" fill="#90a4ae" font-size="10" font-family="sans-serif">RFC / ADR プロセスで意思決定を民主化</text><rect x="405" y="95" width="365" height="45" fill="#16213e" rx="6" stroke="#9c27b0" stroke-width="1"/><text x="425" y="115" fill="#9c27b0" font-size="11" font-weight="bold" font-family="sans-serif">4. 監視メカニズム</text><text x="425" y="131" fill="#90a4ae" font-size="10" font-family="sans-serif">CI/CD + コードレビュー + セキュリティ監査</text><rect x="30" y="148" width="365" height="45" fill="#16213e" rx="6" stroke="#ff9800" stroke-width="1"/><text x="50" y="168" fill="#ff9800" font-size="11" font-weight="bold" font-family="sans-serif">5. 段階的制裁</text><text x="50" y="184" fill="#90a4ae" font-size="10" font-family="sans-serif">Warn → Restrict → Ban の段階的対応</text><rect x="405" y="148" width="365" height="45" fill="#16213e" rx="6" stroke="#00bcd4" stroke-width="1"/><text x="425" y="168" fill="#00bcd4" font-size="11" font-weight="bold" font-family="sans-serif">6. 紛争解決</text><text x="425" y="184" fill="#90a4ae" font-size="10" font-family="sans-serif">Governance Committee / BDFL 制度</text><rect x="30" y="201" width="365" height="45" fill="#16213e" rx="6" stroke="#e91e63" stroke-width="1"/><text x="50" y="221" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">7. 外部権威の最小認識</text><text x="50" y="237" fill="#90a4ae" font-size="10" font-family="sans-serif">コミュニティ自治が企業・国家介入より優先</text><rect x="405" y="201" width="365" height="45" fill="#16213e" rx="6" stroke="#8bc34a" stroke-width="1"/><text x="425" y="221" fill="#8bc34a" font-size="11" font-weight="bold" font-family="sans-serif">8. 入れ子式組織</text><text x="425" y="237" fill="#90a4ae" font-size="10" font-family="sans-serif">Foundation > Working Group > Project</text><line x1="30" y1="265" x2="770" y2="265" stroke="#334" stroke-width="1"/><text x="400" y="292" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">核心: コモンズは「国家管理」でも「私有化」でもなく</text><text x="400" y="314" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">コミュニティ自治で持続できる（2009年ノーベル経済学賞）</text><text x="400" y="342" text-anchor="middle" fill="#a5d6a7" font-size="10" font-family="sans-serif">Rust Foundation はこの原則を最も忠実に体現したOSSプロジェクト</text></svg>
 - - 1. **境界の明確化**: LICENSE, CONTRIBUTING.md で参加条件を定義
 - - 2. **利用・供給ルール**: コントリビュータ契約、行動規範
 - - 3. **集合的選択**: RFC/ADR プロセスで意思決定を民主化
@@ -198,6 +265,7 @@ style: |
 
 # フリーライダーから共有地の管理者へ
 
+- <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">OSSメンテナーの燃え尽きモデル</text><line x1="60" y1="300" x2="750" y2="300" stroke="#445" stroke-width="2"/><line x1="60" y1="50" x2="60" y2="300" stroke="#445" stroke-width="2"/><text x="30" y="180" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif" transform="rotate(-90,30,180)">負荷 / 達成感</text><text x="400" y="330" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">時間 →</text><text x="80" y="320" fill="#78909c" font-size="9" font-family="sans-serif">開始</text><text x="250" y="320" fill="#78909c" font-size="9" font-family="sans-serif">成長期</text><text x="440" y="320" fill="#78909c" font-size="9" font-family="sans-serif">人気プロジェクト</text><text x="640" y="320" fill="#78909c" font-size="9" font-family="sans-serif">燃え尽き</text><path d="M 80 240 Q 200 180 350 150 Q 450 135 580 200 Q 650 240 720 290" fill="none" stroke="#4caf50" stroke-width="2"/><text x="200" y="172" fill="#4caf50" font-size="9" font-family="sans-serif">達成感</text><path d="M 80 260 Q 200 250 350 200 Q 450 160 580 110 Q 650 80 720 60" fill="none" stroke="#ef5350" stroke-width="2"/><text x="450" y="148" fill="#ef5350" font-size="9" font-family="sans-serif">バグ報告・PR数</text><path d="M 80 280 Q 200 275 350 260 Q 450 245 580 260 Q 650 270 720 280" fill="none" stroke="#f9a825" stroke-width="2"/><text x="520" y="256" fill="#f9a825" font-size="9" font-family="sans-serif">メンテナー精神的余裕</text><circle cx="580" cy="110" r="8" fill="#ef5350"/><text x="590" y="108" fill="#ef5350" font-size="9" font-family="sans-serif">weekly 2.5億DL</text><text x="590" y="120" fill="#ef9a9a" font-size="8" font-family="sans-serif">月収$400 (core-js)</text><circle cx="720" cy="60" r="8" fill="#b71c1c"/><text x="650" y="55" fill="#ef9a9a" font-size="9" font-family="sans-serif">log4j脆弱性対応</text><text x="650" y="67" fill="#ef9a9a" font-size="8" font-family="sans-serif">ボランティア2名</text><line x1="420" y1="50" x2="420" y2="300" stroke="#334" stroke-width="1" stroke-dasharray="5 3"/><text x="421" y="68" fill="#78909c" font-size="8" font-family="sans-serif">left-pad 事件</text><text x="421" y="80" fill="#78909c" font-size="8" font-family="sans-serif">削除 (2016)</text><text x="400" y="358" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">「使うだけ」が合理的な選択でも、全員がそうすると commons は崩壊する</text></svg>
 - - 1. **依存関係の監査**: `npm fund` で依存OSSの資金状況を確認
 - - 2. **小さな貢献**: バグ報告、ドキュメント改善、テスト追加
 - - 3. **企業としてのスポンサーシップ**: 依存OSSへの資金的支援

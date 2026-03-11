@@ -1,0 +1,42 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">「ブリリアント・ジャーク」の真のコスト</text>
+  <!-- 2x2 Matrix -->
+  <!-- X axis: Technical skill -->
+  <text x="400" y="372" text-anchor="middle" font-size="13" fill="#ffffff">技術力（低 → 高）</text>
+  <!-- Y axis: Collaboration -->
+  <text x="22" y="210" text-anchor="middle" font-size="12" fill="#ffffff" transform="rotate(-90,22,210)">協調性（低 → 高）</text>
+  <!-- Quadrant lines -->
+  <line x1="80" y1="50" x2="80" y2="340" stroke="#ffffff" stroke-width="2"/>
+  <line x1="80" y1="340" x2="750" y2="340" stroke="#ffffff" stroke-width="2"/>
+  <line x1="415" y1="50" x2="415" y2="340" stroke="#ffffff" stroke-width="1" opacity="0.4"/>
+  <line x1="80" y1="195" x2="750" y2="195" stroke="#ffffff" stroke-width="1" opacity="0.4"/>
+  <!-- Q1: Low skill, Low collab - deadweight -->
+  <rect x="85" y="200" width="325" height="135" rx="6" fill="#e91e63" opacity="0.12"/>
+  <text x="248" y="235" text-anchor="middle" font-size="13" fill="#e91e63">対処しやすい問題</text>
+  <text x="248" y="258" text-anchor="middle" font-size="12" fill="#ffffff">技術力低・協調性低</text>
+  <text x="248" y="278" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.8">→ 採用しない or 早期対処</text>
+  <text x="248" y="298" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.8">チームへの影響は限定的</text>
+  <!-- Q2: High skill, Low collab - Brilliant Jerk -->
+  <rect x="420" y="200" width="325" height="135" rx="6" fill="#ff5722" opacity="0.18"/>
+  <text x="583" y="235" text-anchor="middle" font-size="13" font-weight="bold" fill="#ff5722">ブリリアント・ジャーク</text>
+  <text x="583" y="258" text-anchor="middle" font-size="12" fill="#ffffff">技術力高・協調性低</text>
+  <text x="583" y="278" text-anchor="middle" font-size="11" fill="#e91e63">→ 最も危険な存在</text>
+  <text x="583" y="298" text-anchor="middle" font-size="11" fill="#e91e63">チーム全体の生産性を破壊</text>
+  <text x="583" y="318" text-anchor="middle" font-size="11" fill="#e91e63">離職率増加・心理的安全性消失</text>
+  <!-- Q3: Low skill, High collab -->
+  <rect x="85" y="55" width="325" height="135" rx="6" fill="#f9a825" opacity="0.12"/>
+  <text x="248" y="90" text-anchor="middle" font-size="13" fill="#f9a825">育成可能な人材</text>
+  <text x="248" y="113" text-anchor="middle" font-size="12" fill="#ffffff">技術力低・協調性高</text>
+  <text x="248" y="133" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.8">→ 成長投資の対象</text>
+  <text x="248" y="153" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.8">チーム文化に貢献する</text>
+  <!-- Q4: High skill, High collab - ideal -->
+  <rect x="420" y="55" width="325" height="135" rx="6" fill="#4caf50" opacity="0.15"/>
+  <text x="583" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#4caf50">理想のエンジニア</text>
+  <text x="583" y="113" text-anchor="middle" font-size="12" fill="#ffffff">技術力高・協調性高</text>
+  <text x="583" y="133" text-anchor="middle" font-size="11" fill="#4caf50">→ 真の10x貢献者</text>
+  <text x="583" y="153" text-anchor="middle" font-size="11" fill="#4caf50">個人+チーム全体を強化する</text>
+  <!-- Key insight box -->
+  <rect x="80" y="348" width="670" height="24" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="415" y="364" text-anchor="middle" font-size="11" fill="#f9a825">研究: 1人のブリリアント・ジャークの悪影響 > 1人の10xエンジニアの貢献</text>
+</svg>

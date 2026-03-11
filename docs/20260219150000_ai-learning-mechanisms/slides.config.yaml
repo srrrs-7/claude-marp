@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "AIの学習の仕組み"
   footer: "© 2026 - 研究者・専門家向け完全解説"

@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">コンテキスト圧縮テクニック</text>
+
+  <!-- Context window visualization -->
+  <!-- Full context (before) -->
+  <text x="200" y="75" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f87171">圧縮前</text>
+
+  <rect x="80" y="85" width="240" height="300" rx="8" fill="#0f172a" stroke="#f87171" stroke-width="2"/>
+
+  <!-- Context blocks - full -->
+  <rect x="90" y="95" width="220" height="30" rx="4" fill="#7f1d1d" opacity="0.9"/>
+  <text x="200" y="115" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fca5a5">古いチャット履歴 × 80%</text>
+
+  <rect x="90" y="130" width="220" height="25" rx="4" fill="#7f1d1d" opacity="0.8"/>
+  <text x="200" y="148" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#fca5a5">中間ステップの出力 × 50%</text>
+
+  <rect x="90" y="160" width="220" height="25" rx="4" fill="#7f1d1d" opacity="0.7"/>
+  <text x="200" y="178" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#fca5a5">冗長なデバッグログ × 40%</text>
+
+  <rect x="90" y="190" width="220" height="25" rx="4" fill="#7f1d1d" opacity="0.6"/>
+  <text x="200" y="208" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#fca5a5">繰り返しツール呼び出し × 30%</text>
+
+  <rect x="90" y="220" width="220" height="25" rx="4" fill="#14532d" opacity="0.9"/>
+  <text x="200" y="238" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#6ee7b7">有効なコード変更 ✓</text>
+
+  <rect x="90" y="250" width="220" height="130" rx="4" fill="#1e3a5f" opacity="0.9"/>
+  <text x="200" y="275" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#93c5fd">現在の指示・ファイル内容</text>
+  <text x="200" y="295" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#93c5fd">現在の指示・ファイル内容</text>
+  <text x="200" y="315" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#93c5fd">現在の指示・ファイル内容</text>
+  <text x="200" y="335" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#93c5fd">現在の指示・ファイル内容</text>
+  <text x="200" y="355" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#93c5fd">現在の指示・ファイル内容</text>
+
+  <!-- Limit line -->
+  <line x1="80" y1="385" x2="320" y2="385" stroke="#f87171" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="200" y="400" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f87171">200K limit ← 超過！</text>
+
+  <!-- Arrow -->
+  <line x1="335" y1="235" x2="460" y2="235" stroke="#a78bfa" stroke-width="3"/>
+  <polygon points="460,235 450,228 450,242" fill="#a78bfa"/>
+  <text x="400" y="225" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a78bfa">圧縮</text>
+
+  <!-- Compressed context (after) -->
+  <text x="600" y="75" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#34d399">圧縮後</text>
+
+  <rect x="480" y="85" width="240" height="200" rx="8" fill="#0f172a" stroke="#34d399" stroke-width="2"/>
+
+  <rect x="490" y="95" width="220" height="25" rx="4" fill="#14532d" opacity="0.9"/>
+  <text x="600" y="113" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#6ee7b7">サマリ: 完了したステップ</text>
+
+  <rect x="490" y="125" width="220" height="25" rx="4" fill="#1e3a5f" opacity="0.9"/>
+  <text x="600" y="143" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#93c5fd">有効コード変更のみ保持</text>
+
+  <rect x="490" y="155" width="220" height="25" rx="4" fill="#1e3a5f" opacity="0.9"/>
+  <text x="600" y="173" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#93c5fd">現在のファイル内容</text>
+
+  <rect x="490" y="185" width="220" height="25" rx="4" fill="#1e3a5f" opacity="0.9"/>
+  <text x="600" y="203" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#93c5fd">次のタスク指示</text>
+
+  <rect x="490" y="215" width="220" height="60" rx="4" fill="#0c4a6e" opacity="0.9"/>
+  <text x="600" y="240" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#bae6fd">空きコンテキスト</text>
+  <text x="600" y="258" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#bae6fd">（新しい作業用）</text>
+
+  <!-- Limit line after -->
+  <line x1="480" y1="290" x2="720" y2="290" stroke="#34d399" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="600" y="305" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#34d399">余裕あり ✓</text>
+
+  <!-- Techniques -->
+  <rect x="50" y="430" width="700" height="50" rx="8" fill="#0f172a" stroke="#7c3aed" stroke-width="1"/>
+  <text x="400" y="450" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#c4b5fd">圧縮テクニック</text>
+  <text x="400" y="470" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#7c3aed">/compact コマンド ・ 新セッション開始 ・ MEMORY.md に重要事項を書き出す ・ サブエージェントに委譲</text>
+</svg>

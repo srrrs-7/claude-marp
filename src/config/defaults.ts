@@ -12,29 +12,18 @@ slides:
 
 marp:
   theme: "gaia"           # gaia | default | uncover
+  class: "invert"         # invert = dark mode (gaia only); remove for light mode
   size: "16:9"
   paginate: true
   header: ""
   footer: ""
   style: |
-    /* コードブロックのフォントサイズを縮小してはみ出しを防ぐ */
+    /* Note: overflow prevention + readability base CSS is auto-injected by the
+       render pipeline (markdown.ts BASE_CSS). Add only presentation-specific
+       overrides here. */
     section pre code {
-      font-size: 0.6em;
-      line-height: 1.4;
-    }
-    /* SVGがスライド枠からはみ出さないように制約する */
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      font-size: 0.56em;   /* slightly smaller than base 0.58em for long code */
+      line-height: 1.35;
     }
 
 content:

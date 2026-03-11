@@ -1,0 +1,33 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold">モデル監視とドリフト検知</text>
+<rect x="30" y="65" width="180" height="60" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="1.5"/>
+<text x="120" y="92" text-anchor="middle" font-size="13" fill="#ffffff">Training Data</text>
+<text x="120" y="110" text-anchor="middle" font-size="12" fill="#4fc3f7">ベースライン</text>
+<rect x="30" y="195" width="180" height="60" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+<text x="120" y="222" text-anchor="middle" font-size="13" fill="#ffffff">Inference Data</text>
+<text x="120" y="240" text-anchor="middle" font-size="12" fill="#e91e63">本番データ</text>
+<line x1="210" y1="95" x2="300" y2="200" stroke="#4fc3f7" stroke-width="1.5" opacity="0.7"/>
+<line x1="210" y1="225" x2="300" y2="200" stroke="#4fc3f7" stroke-width="1.5" opacity="0.7"/>
+<rect x="300" y="160" width="170" height="80" rx="12" fill="#e91e63" opacity="0.9"/>
+<text x="385" y="196" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="bold">Data Drift</text>
+<text x="385" y="216" text-anchor="middle" font-size="12" fill="#ffffff">Detection Engine</text>
+<line x1="470" y1="200" x2="530" y2="160" stroke="#f9a825" stroke-width="2"/>
+<polygon points="530,160 519,163 523,151" fill="#f9a825"/>
+<line x1="470" y1="200" x2="530" y2="200" stroke="#f9a825" stroke-width="2"/>
+<polygon points="530,200 520,194 520,206" fill="#f9a825"/>
+<line x1="470" y1="200" x2="530" y2="240" stroke="#f9a825" stroke-width="2"/>
+<polygon points="530,240 523,251 519,239" fill="#f9a825"/>
+<rect x="530" y="130" width="140" height="50" rx="8" fill="#7b1fa2" opacity="0.85"/>
+<text x="600" y="155" text-anchor="middle" font-size="13" fill="#ffffff">Data Quality</text>
+<rect x="530" y="175" width="140" height="50" rx="8" fill="#1565c0" opacity="0.85"/>
+<text x="600" y="200" text-anchor="middle" font-size="13" fill="#ffffff">Model Quality</text>
+<rect x="530" y="220" width="140" height="50" rx="8" fill="#e64a19" opacity="0.85"/>
+<text x="600" y="245" text-anchor="middle" font-size="13" fill="#ffffff">Bias Drift</text>
+<line x1="670" y1="200" x2="720" y2="200" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="720,200 710,194 710,206" fill="#f9a825"/>
+<rect x="720" y="165" width="60" height="70" rx="8" fill="#00695c" opacity="0.85"/>
+<text x="750" y="195" text-anchor="middle" font-size="12" fill="#ffffff">Auto</text>
+<text x="750" y="213" text-anchor="middle" font-size="12" fill="#ffffff">Retrain</text>
+<text x="400" y="385" text-anchor="middle" font-size="13" fill="#4fc3f7">SageMaker Model Monitor</text>
+</svg>

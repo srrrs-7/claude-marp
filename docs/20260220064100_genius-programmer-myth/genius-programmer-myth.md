@@ -7,6 +7,71 @@ paginate: true
 header: "天才プログラマー神話"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -83,6 +148,7 @@ style: |
 
 # コード行数の罠
 
+![w:900 center](assets/dora-metrics.svg)
 - - **LOC (Lines of Code)** で測定 → コード量 = 生産性？
 - - 「最良のコードは書かれなかったコードである」
 - - 10行で解決する天才と100行で解決する凡人: どちらが生産的？
@@ -113,6 +179,7 @@ style: |
 
 # 「天才個人」モデルの限界
 
+![w:900 center](assets/team-vs-individual.svg)
 - - Linuxカーネル: Linus Torvaldsだけでなく数千人の貢献者
 - - Wikipedia: 個人の天才ではなく集合知
 - - **Google "Project Aristotle"**: 最強チームの条件は「心理的安全性」
@@ -125,6 +192,7 @@ style: |
 
 # 環境が生産性を決める
 
+![w:900 center](assets/environment-productivity.svg)
 - - **SPACE framework** (GitHub/MS/University of Victoria):
 - - Satisfaction, Performance, Activity, Communication, Efficiency
 - - 同じエンジニアでも環境で生産性が3-5倍変わる

@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ゲーデルの不完全性定理とプログラム検証"
   footer: "© 2026"

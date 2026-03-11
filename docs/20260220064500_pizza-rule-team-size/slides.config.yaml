@@ -5,6 +5,7 @@ output:
   baseName: "pizza-rule-team-size"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ピザ2枚ルール"
   footer: "© 2026"

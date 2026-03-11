@@ -28,7 +28,8 @@
 				"<svg viewBox=\"0 0 700 200\" style=\"max-height:40vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"50\" y=\"40\" width=\"180\" height=\"120\" rx=\"12\" fill=\"#1565C0\" style=\"filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))\"/><text x=\"140\" y=\"85\" text-anchor=\"middle\" fill=\"white\" font-size=\"14\" font-family=\"sans-serif\" font-weight=\"bold\">完全性</text><text x=\"140\" y=\"105\" text-anchor=\"middle\" fill=\"#90CAF9\" font-size=\"11\" font-family=\"sans-serif\">すべての真実は</text><text x=\"140\" y=\"120\" text-anchor=\"middle\" fill=\"#90CAF9\" font-size=\"11\" font-family=\"sans-serif\">証明可能</text><rect x=\"260\" y=\"40\" width=\"180\" height=\"120\" rx=\"12\" fill=\"#1565C0\" style=\"filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))\"/><text x=\"350\" y=\"85\" text-anchor=\"middle\" fill=\"white\" font-size=\"14\" font-family=\"sans-serif\" font-weight=\"bold\">無矛盾性</text><text x=\"350\" y=\"105\" text-anchor=\"middle\" fill=\"#90CAF9\" font-size=\"11\" font-family=\"sans-serif\">矛盾は絶対に</text><text x=\"350\" y=\"120\" text-anchor=\"middle\" fill=\"#90CAF9\" font-size=\"11\" font-family=\"sans-serif\">生まれない</text><rect x=\"470\" y=\"40\" width=\"180\" height=\"120\" rx=\"12\" fill=\"#1565C0\" style=\"filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.4))\"/><text x=\"560\" y=\"85\" text-anchor=\"middle\" fill=\"white\" font-size=\"14\" font-family=\"sans-serif\" font-weight=\"bold\">決定可能性</text><text x=\"560\" y=\"105\" text-anchor=\"middle\" fill=\"#90CAF9\" font-size=\"11\" font-family=\"sans-serif\">機械的判定が</text><text x=\"560\" y=\"120\" text-anchor=\"middle\" fill=\"#90CAF9\" font-size=\"11\" font-family=\"sans-serif\">可能</text></svg>",
 				"**→ 数学の「完全な公理化」を目指したヒルベルト計画**"
 			],
-			"speakerNotes": "1900年のパリ国際数学者会議でヒルベルトが提示した23の問題の根底にあった哲学。"
+			"speakerNotes": "1900年のパリ国際数学者会議でヒルベルトが提示した23の問題の根底にあった哲学。",
+			"layout": "default"
 		},
 		{
 			"title": "ゲーデルの登場 — 若き天才が夢を打ち砕く",
@@ -38,7 +39,8 @@
 				"- ヒルベルト計画の**完全性・無矛盾性の両方を不可能と証明**",
 				"- 数学界に衝撃。ヒルベルトは「ノンセンス！」と叫んだとされる"
 			],
-			"speakerNotes": "ゲーデルはウィーン大学の博士課程学生だった。論文のタイトルは「Principia Mathematicaおよび関連体系の形式的に決定不可能な命題について」。"
+			"speakerNotes": "ゲーデルはウィーン大学の博士課程学生だった。論文のタイトルは「Principia Mathematicaおよび関連体系の形式的に決定不可能な命題について」。",
+			"layout": "default"
 		},
 		{
 			"title": "第一不完全性定理 — 「この文は証明できない」",
@@ -49,7 +51,8 @@
 				"- 「嘘つきのパラドックス」の数学版",
 				"- ゲーデル数: 命題を自然数に対応させる天才的な手法"
 			],
-			"speakerNotes": "ゲーデルは命題論理をゲーデル数と呼ばれる自然数に符号化し、数学が自分自身について語れることを示した。この自己言及が核心。"
+			"speakerNotes": "ゲーデルは命題論理をゲーデル数と呼ばれる自然数に符号化し、数学が自分自身について語れることを示した。この自己言及が核心。",
+			"layout": "default"
 		},
 		{
 			"title": "第二不完全性定理 — 無矛盾性すら証明できない",
@@ -61,7 +64,8 @@
 				"- より強い体系で証明できても、その体系の無矛盾性も証明不能",
 				"- **無限後退**: 安全を保証するものを誰が保証するか"
 			],
-			"speakerNotes": "これはヒルベルト計画への致命的な打撃だった。数学の基盤を内側から保証する方法が存在しないことを示した。"
+			"speakerNotes": "これはヒルベルト計画への致命的な打撃だった。数学の基盤を内側から保証する方法が存在しないことを示した。",
+			"layout": "default"
 		},
 		{
 			"title": "ソフトウェアへの衝撃",
@@ -77,7 +81,8 @@
 				"- ゲーデルの定理と同型の対角線論法による証明",
 				"- **ソフトウェアの根本的限界**: 無限ループの一般的検出は不可能"
 			],
-			"speakerNotes": "チューリングはゲーデルの定理に触発されて停止問題を考案した。「もし停止判定機Hが存在するとしたら」という仮定から矛盾を導く対角線論法。"
+			"speakerNotes": "チューリングはゲーデルの定理に触発されて停止問題を考案した。「もし停止判定機Hが存在するとしたら」という仮定から矛盾を導く対角線論法。",
+			"layout": "default"
 		},
 		{
 			"title": "テストの本質的限界 — なぜ100%カバレッジでも不十分か",
@@ -88,7 +93,8 @@
 				"- テストは「バグがない」ことを証明できず「バグを見つける」手段",
 				"- *Dijkstra*: 「テストはバグの存在を示せるが、不在は示せない」"
 			],
-			"speakerNotes": "ライス定理はゲーデルの定理の直接的帰結。プログラムが「正しく動作する」「特定の出力を返す」といった性質の汎用的判定は不可能。"
+			"speakerNotes": "ライス定理はゲーデルの定理の直接的帰結。プログラムが「正しく動作する」「特定の出力を返す」といった性質の汎用的判定は不可能。",
+			"layout": "default"
 		},
 		{
 			"title": "形式検証の壁 — Coq, Haskellでも越えられない限界",
@@ -106,7 +112,8 @@
 				"- 十分に強力な体系（算術を含む）は完全に自己検証できない",
 				"- **証明補助器自体の無矛盾性**もより強い体系に依存する"
 			],
-			"speakerNotes": "Coqで証明されたプログラムですら、Coqの論理体系自体の無矛盾性は仮定されている。これはゲーデルの第二不完全性定理の直接的帰結。"
+			"speakerNotes": "Coqで証明されたプログラムですら、Coqの論理体系自体の無矛盾性は仮定されている。これはゲーデルの第二不完全性定理の直接的帰結。",
+			"layout": "default"
 		},
 		{
 			"title": "バグゼロは不可能か — 理論的限界 vs 実用的限界",
@@ -116,7 +123,8 @@
 				"- 航空・医療・金融システムは「十分に安全」を実現している",
 				"- 完璧な証明がなくても**リスクを許容範囲内に収める**ことが工学"
 			],
-			"speakerNotes": "ゲーデルの定理は絶望を意味しない。数学が不完全でも数学者は研究を続け、有用な定理を証明し続けている。ソフトウェアも同じ。"
+			"speakerNotes": "ゲーデルの定理は絶望を意味しない。数学が不完全でも数学者は研究を続け、有用な定理を証明し続けている。ソフトウェアも同じ。",
+			"layout": "default"
 		},
 		{
 			"title": "では何ができるか",
@@ -131,7 +139,8 @@
 				"- Circuit Breaker / Chaos Engineering / 冗長化",
 				"- 「証明」より「観測・検出・回復」に投資する"
 			],
-			"speakerNotes": "Googleのサイトリライアビリティエンジニアリング（SRE）やNetflixのChaos Monkeyは、この哲学の実践例。"
+			"speakerNotes": "Googleのサイトリライアビリティエンジニアリング（SRE）やNetflixのChaos Monkeyは、この哲学の実践例。",
+			"layout": "default"
 		},
 		{
 			"title": "証明できなくても「確信度を高める」戦略",
@@ -148,7 +157,8 @@
 				"",
 				"**「完全な証明」を諦め、「証拠の多様性」を追求する**"
 			],
-			"speakerNotes": "統計学と同じ考え方。一つの実験では証明できないが、多様な観点からの証拠を積み重ねることで確信度が高まる。"
+			"speakerNotes": "統計学と同じ考え方。一つの実験では証明できないが、多様な観点からの証拠を積み重ねることで確信度が高まる。",
+			"layout": "default"
 		},
 		{
 			"title": "多層テスト戦略の使い分け",
@@ -158,7 +168,8 @@
 				"- ユニットテストは基盤、形式検証はクリティカルパスのみ",
 				"- ミューテーションスコア70%以上でテストの有効性を担保"
 			],
-			"speakerNotes": "テストの種類によって「何に対する証拠か」が異なる。多様な証拠を組み合わせることで全体的な確信度を高める。"
+			"speakerNotes": "テストの種類によって「何に対する証拠か」が異なる。多様な証拠を組み合わせることで全体的な確信度を高める。",
+			"layout": "default"
 		},
 		{
 			"title": "まとめ — 不完全性は敗北ではなく設計原則",
@@ -173,14 +184,21 @@
 			"speakerNotes": "ゲーデル自身も、不完全性定理を発表した後も数学の研究を続けた。限界を知ることは絶望ではなく、より賢明な前進のための知恵。"
 		},
 		{
-			"title": "参考文献",
+			"title": "参考文献（1/2）",
 			"content": [
 				"**数学・論理学:**",
 				"- [Gödel's Incompleteness Theorems (Stanford Encyclopedia)](https://plato.stanford.edu/entries/goedel-incompleteness/)",
 				"- [On Formally Undecidable Propositions (Gödel, 1931)](https://monoskop.org/images/9/93/Godel_Kurt_1992_On_Formally_Undecidable_Propositions.pdf)",
 				"- [「ゲーデル・エッシャー・バッハ」ダグラス・ホフスタッター](https://www.amazon.co.jp/dp/4826901259)",
 				"",
-				"**ソフトウェア工学への応用:**",
+				"**ソフトウェア工学への応用:**"
+			],
+			"speakerNotes": "特に「ゲーデル・エッシャー・バッハ」は不完全性定理を音楽・美術と絡めて解説した名著。ソフトウェアエンジニアにも強く推薦。",
+			"layout": "default"
+		},
+		{
+			"title": "参考文献（2/2）",
+			"content": [
 				"- [Halting Problem - Wikipedia](https://en.wikipedia.org/wiki/Halting_problem)",
 				"- [Rice's Theorem and Software Verification](https://en.wikipedia.org/wiki/Rice%27s_theorem)",
 				"- [「プログラムはなぜ動くのか」矢沢久雄](https://www.amazon.co.jp/dp/4822283151)",
@@ -189,7 +207,8 @@
 				"- [QuickCheck: A Lightweight Tool for Random Testing](https://hackage.haskell.org/package/QuickCheck)",
 				"- [Google SRE Book — Reliability](https://sre.google/sre-book/)"
 			],
-			"speakerNotes": "特に「ゲーデル・エッシャー・バッハ」は不完全性定理を音楽・美術と絡めて解説した名著。ソフトウェアエンジニアにも強く推薦。"
+			"speakerNotes": "特に「ゲーデル・エッシャー・バッハ」は不完全性定理を音楽・美術と絡めて解説した名著。ソフトウェアエンジニアにも強く推薦。",
+			"layout": "default"
 		}
 	]
 }

@@ -293,13 +293,15 @@
 				"**Cedar (AWS)** — AWS Verified Permissions のポリシー言語。型安全",
 				"**利点**: アプリコードからポリシーを分離。監査・テスト・更新が独立して可能",
 				"**Kubernetes**: Admission Webhook で OPA Gatekeeper によるポリシー強制"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "PBAC と OPA — Policy-Based Access Control（コード例）",
 			"content": [],
 			"code": "# OPA Rego ポリシー例\npackage authz\n\ndefault allow := false\n\nallow if {\n    input.user.role == \"admin\"\n}\n\nallow if {\n    input.action == \"read\"\n    input.resource.owner == input.user.id\n}",
-			"codeLanguage": "rego"
+			"codeLanguage": "rego",
+			"layout": "default"
 		},
 		{
 			"title": "認可モデル比較",
@@ -321,13 +323,15 @@
 				"**Action** — AWS API アクション (`s3:GetObject`, `ec2:*`)",
 				"**Resource** — ARN で対象リソースを特定 (`arn:aws:s3:::my-bucket/*`)",
 				"**Condition** — 追加条件 (`aws:SourceIp`, `aws:RequestedRegion`, `s3:prefix`)"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "IAM ポリシー言語（コード例）",
 			"content": [],
 			"code": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [{\n    \"Effect\": \"Allow\",\n    \"Action\": [\"s3:GetObject\", \"s3:PutObject\"],\n    \"Resource\": \"arn:aws:s3:::my-bucket/${aws:userid}/*\",\n    \"Condition\": {\n      \"StringEquals\": {\n        \"aws:RequestedRegion\": \"ap-northeast-1\"\n      }\n    }\n  }]\n}",
-			"codeLanguage": "json"
+			"codeLanguage": "json",
+			"layout": "default"
 		},
 		{
 			"title": "Least Privilege 原則の実装",
@@ -386,13 +390,15 @@
 				"**特性**: Allow のみでは不十分。IAM ポリシーとの AND 評価。最大許可範囲を定義",
 				"**ユースケース**: 特定リージョン以外へのデプロイ禁止 / 危険なIAM操作禁止 / ルートアカウント使用禁止",
 				"**階層**: Root → OU → Account の順に継承・上書き可能"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "SCP — Service Control Policies（コード例）",
 			"content": [],
 			"code": "{\n  \"Effect\": \"Deny\",\n  \"Action\": \"*\",\n  \"Resource\": \"*\",\n  \"Condition\": {\n    \"StringNotEquals\": {\n      \"aws:RequestedRegion\": [\n        \"ap-northeast-1\",\n        \"us-east-1\"\n      ]\n    }\n  }\n}",
-			"codeLanguage": "json"
+			"codeLanguage": "json",
+			"layout": "default"
 		},
 		{
 			"title": "Permission Boundaries",
@@ -424,13 +430,15 @@
 				"**基本パターン**: Account A の Principal が Account B の Role に AssumeRole",
 				"**Trust Policy**: Account B のロールに Account A の Principal を信頼する設定",
 				"**ExternalId**: 第三者(SaaS等)が代理アクセスする場合に推奨。混乱した副官攻撃を防止"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "クロスアカウントアクセス設計（コード例）",
 			"content": [],
 			"code": "// Trust Policy (Account B側のRole)\n{\n  \"Effect\": \"Allow\",\n  \"Principal\": {\n    \"AWS\": \"arn:aws:iam::ACCOUNT_A_ID:role/DeployRole\"\n  },\n  \"Action\": \"sts:AssumeRole\",\n  \"Condition\": {\n    \"StringEquals\": {\n      \"sts:ExternalId\": \"unique-external-id\"\n    },\n    \"Bool\": {\n      \"aws:MultiFactorAuthPresent\": \"true\"\n    }\n  }\n}",
-			"codeLanguage": "json"
+			"codeLanguage": "json",
+			"layout": "default"
 		},
 		{
 			"title": "EC2 Instance Profile / Lambda Execution Role",
@@ -531,13 +539,15 @@
 				"**TOKEN タイプ** — Authorization ヘッダーのトークン (JWT) を検証",
 				"**REQUEST タイプ** — ヘッダー・クエリ・パス・ステージ変数全てにアクセス可能。複合条件に",
 				"**キャッシュ** — ARN ベースのポリシーキャッシュ (TTL: 0〜3600秒)。レイテンシ削減"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "Lambda Authorizer 設計（コード例）",
 			"content": [],
 			"code": "exports.handler = async (event) => {\n  const token = event.authorizationToken;\n  const claims = await verifyJWT(token); // 署名検証必須\n  return {\n    principalId: claims.sub,\n    policyDocument: {\n      Version: '2012-10-17',\n      Statement: [{\n        Action: 'execute-api:Invoke',\n        Effect: 'Allow',\n        Resource: event.methodArn\n      }]\n    },\n    context: { userId: claims.sub, role: claims['custom:role'] }\n  };\n};",
-			"codeLanguage": "javascript"
+			"codeLanguage": "javascript",
+			"layout": "default"
 		},
 		{
 			"title": "JWT 検証ミドルウェア設計",
@@ -586,13 +596,15 @@
 				"**サービスメッシュ**: サービス間通信をサイドカープロキシ(Envoy)で制御・観測",
 				"**AWS App Mesh**: ECS/EKS 向けマネージドメッシュ。mTLS と L7 ルーティング",
 				"**Istio on EKS**: 高機能。mTLS自動、認証ポリシー、AuthorizationPolicy"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "サービスメッシュによる認可（コード例）",
 			"content": [],
 			"code": "apiVersion: security.istio.io/v1beta1\nkind: AuthorizationPolicy\nmetadata:\n  name: payment-service-policy\nspec:\n  selector:\n    matchLabels:\n      app: payment\n  rules:\n  - from:\n    - source:\n        principals:\n          - cluster.local/ns/default/sa/order-service\n    to:\n    - operation:\n        methods: [\"POST\"]\n        paths: [\"/payment/*\"]",
-			"codeLanguage": "yaml"
+			"codeLanguage": "yaml",
+			"layout": "default"
 		},
 		{
 			"title": "アンチパターン",
@@ -648,13 +660,19 @@
 			]
 		},
 		{
-			"title": "参考資料 (1/2)",
+			"title": "参考資料 (1/2)（1/2）",
 			"layout": "default",
 			"content": [
 				"**RFC / 標準仕様**",
 				"- [RFC 6749 — OAuth 2.0](https://tools.ietf.org/html/rfc6749)",
 				"- [RFC 7519 — JWT](https://tools.ietf.org/html/rfc7519) | [RFC 7636 — PKCE](https://tools.ietf.org/html/rfc7636)",
-				"- [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)",
+				"- [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)"
+			]
+		},
+		{
+			"title": "参考資料 (1/2)（2/2）",
+			"layout": "default",
+			"content": [
 				"- [SAML 2.0 Technical Overview](https://docs.oasis-open.org/security/saml/v2.0/)",
 				"**セキュリティガイドライン**",
 				"- [NIST SP 800-207 — Zero Trust Architecture](https://csrc.nist.gov/publications/detail/sp/800-207/final)",
@@ -662,13 +680,19 @@
 			]
 		},
 		{
-			"title": "参考資料 (2/2)",
+			"title": "参考資料 (2/2)（1/2）",
 			"layout": "default",
 			"content": [
 				"**AWS ドキュメント**",
 				"- [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)",
 				"- [Amazon Cognito Developer Guide](https://docs.aws.amazon.com/cognito/latest/developerguide/)",
-				"- [Zero Trust Architecture on AWS](https://aws.amazon.com/security/zero-trust/)",
+				"- [Zero Trust Architecture on AWS](https://aws.amazon.com/security/zero-trust/)"
+			]
+		},
+		{
+			"title": "参考資料 (2/2)（2/2）",
+			"layout": "default",
+			"content": [
 				"- [EKS IRSA Documentation](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html)",
 				"**その他**",
 				"- [Google Zanzibar Paper (2019)](https://research.google/pubs/zanzibar-googles-consistent-global-authorization-system/)",

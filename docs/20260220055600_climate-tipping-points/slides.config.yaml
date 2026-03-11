@@ -5,6 +5,7 @@ output:
   baseName: "climate-tipping-points"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "気候と臨界点"
   footer: "© 2026"

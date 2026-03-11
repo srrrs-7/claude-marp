@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">Observability 3本柱 — 相互関係</text>
+
+  <!-- Central triangle base points: (400,420), (100,120), (700,120) -->
+
+  <!-- Triangle edges -->
+  <!-- Left edge: Metrics (100,120) to bottom (400,420) -->
+  <line x1="100" y1="120" x2="400" y2="420" stroke="#60a5fa" stroke-width="2"/>
+  <!-- Right edge: Traces (700,120) to bottom (400,420) -->
+  <line x1="700" y1="120" x2="400" y2="420" stroke="#34d399" stroke-width="2"/>
+  <!-- Top edge: Metrics to Traces -->
+  <line x1="100" y1="120" x2="700" y2="120" stroke="#a78bfa" stroke-width="2"/>
+
+  <!-- Metrics node (top-left) -->
+  <rect x="30" y="58" width="180" height="120" rx="12" fill="#1e2a4e" stroke="#60a5fa" stroke-width="2.5"/>
+  <text x="120" y="88" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#60a5fa" font-weight="bold">📊 Metrics</text>
+  <text x="120" y="112" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#cccccc">数値の時系列データ</text>
+  <text x="120" y="132" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">• CPU / Memory 使用率</text>
+  <text x="120" y="150" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">• リクエスト数 / レイテンシ</text>
+  <text x="120" y="168" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">• エラー率</text>
+
+  <!-- Traces node (top-right) -->
+  <rect x="592" y="58" width="180" height="120" rx="12" fill="#1e3e2e" stroke="#34d399" stroke-width="2.5"/>
+  <text x="682" y="88" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#34d399" font-weight="bold">🔗 Traces</text>
+  <text x="682" y="112" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#cccccc">リクエストの追跡</text>
+  <text x="682" y="132" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">• 分散トレーシング</text>
+  <text x="682" y="150" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">• サービス間の依存</text>
+  <text x="682" y="168" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">• ボトルネック特定</text>
+
+  <!-- Logs node (bottom) -->
+  <rect x="300" y="385" width="200" height="100" rx="12" fill="#2d2d4e" stroke="#a78bfa" stroke-width="2.5"/>
+  <text x="400" y="412" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#a78bfa" font-weight="bold">📝 Logs</text>
+  <text x="400" y="434" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#cccccc">イベントの詳細記録</text>
+  <text x="400" y="452" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">• エラーの詳細情報</text>
+  <text x="400" y="470" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">• 構造化ログ (JSON)</text>
+
+  <!-- Center label -->
+  <rect x="330" y="220" width="140" height="65" rx="10" fill="#1a1a2e" stroke="#fbbf24" stroke-width="2"/>
+  <text x="400" y="245" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fbbf24" font-weight="bold">Correlation</text>
+  <text x="400" y="263" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Trace ID で</text>
+  <text x="400" y="280" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">3つを紐付け</text>
+
+  <!-- Relationship labels on edges -->
+  <text x="205" y="300" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#60a5fa">異常検知→詳細調査</text>
+  <text x="595" y="300" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#34d399">追跡→ログ確認</text>
+  <text x="400" y="108" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a78bfa">どこで遅い？→何が起きた？</text>
+
+  <!-- Tools row at bottom right -->
+  <rect x="30" y="310" width="220" height="58" rx="8" fill="#16213e" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="140" y="332" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#60a5fa" font-weight="bold">Metrics ツール</text>
+  <text x="140" y="352" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Prometheus / Grafana</text>
+  <text x="140" y="368" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Datadog / CloudWatch</text>
+
+  <rect x="555" y="205" width="220" height="58" rx="8" fill="#16213e" stroke="#34d399" stroke-width="1.5"/>
+  <text x="665" y="227" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#34d399" font-weight="bold">Traces ツール</text>
+  <text x="665" y="247" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Jaeger / Zipkin</text>
+  <text x="665" y="263" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Tempo / X-Ray</text>
+</svg>

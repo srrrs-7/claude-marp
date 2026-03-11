@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "フリーミアムは本当に儲かるか — 転換率1-5%の経済学"
   footer: "© 2026 — The Economics of Freemium"

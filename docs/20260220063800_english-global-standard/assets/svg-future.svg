@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">英語の覇権は続くか？ 2つのシナリオ</text>
+  <!-- scenario A -->
+  <rect x="40" y="60" width="330" height="200" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="205" y="88" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">シナリオA: 英語覇権継続</text>
+  <text x="205" y="115" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">ネットワーク効果</text>
+  <text x="205" y="135" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">「皆が使うから皆が使う」</text>
+  <text x="205" y="160" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">中国語台頭も代替せず</text>
+  <text x="205" y="180" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">母語話者9億でも学術・ビジネス</text>
+  <text x="205" y="197" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">では英語を代替できていない</text>
+  <text x="205" y="222" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">蓋然性: 高い（〜2040年）</text>
+  <text x="205" y="242" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">共通文化としての地位は残る</text>
+  <!-- scenario B -->
+  <rect x="430" y="60" width="330" height="200" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="595" y="88" fill="#e91e63" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">シナリオB: 翻訳技術で解消</text>
+  <text x="595" y="115" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">AIリアルタイム翻訳</text>
+  <text x="595" y="135" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">Meta/Googleが普及させれば</text>
+  <text x="595" y="160" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">言語障壁が技術で解消</text>
+  <text x="595" y="180" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">英語必要性は低下する</text>
+  <text x="595" y="200" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">各言語の価値が相対的に上昇</text>
+  <text x="595" y="222" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">2030年代以降に徐々に影響</text>
+  <text x="595" y="242" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">多言語能力の価値が再評価</text>
+  <!-- conclusion -->
+  <rect x="120" y="295" width="560" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="320" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">多言語能力 = 複数の「思考フレームワーク」を持つこと</text>
+  <text x="400" y="338" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">翻訳されない文化的文脈・ニュアンスの価値は消えない</text>
+</svg>

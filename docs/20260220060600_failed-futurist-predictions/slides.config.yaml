@@ -5,6 +5,7 @@ output:
   baseName: "failed-futurist-predictions"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "未来予測の失敗学"
   footer: "© 2026"

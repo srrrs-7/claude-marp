@@ -5,6 +5,7 @@ output:
   baseName: "survivorship-bias"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "生存者バイアス"
   footer: "© 2026"

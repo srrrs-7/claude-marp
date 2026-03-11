@@ -95,13 +95,15 @@
 		},
 		{
 			"title": "ファイル構造",
-			"content": ["チーム情報とタスクはローカルディスクに永続化される"]
+			"content": ["チーム情報とタスクはローカルディスクに永続化される"],
+			"layout": "default"
 		},
 		{
 			"title": "ファイル構造（コード例）",
 			"content": [],
 			"code": "~/.claude/\n├── teams/\n│   └── my-project/\n│       └── config.json    # メンバー情報\n│           ├── name        # チームメイト名\n│           ├── agentId     # 一意識別子\n│           └── agentType   # エージェント種別\n└── tasks/\n    └── my-project/\n        ├── task-1.json     # 個別タスク\n        ├── task-2.json\n        └── task-3.json",
-			"codeLanguage": "text"
+			"codeLanguage": "text",
+			"layout": "default"
 		},
 		{
 			"title": "3. 7つの基本プリミティブ",
@@ -141,21 +143,30 @@
 		},
 		{
 			"title": "TaskCreate / TaskGet",
-			"content": ["**TaskCreate** — タスクの作成"]
+			"content": ["**TaskCreate** — タスクの作成"],
+			"layout": "default"
 		},
 		{
 			"title": "TaskCreate / TaskGet（コード例）",
 			"content": [],
 			"code": "{\n  \"subject\": \"認証モジュールのリファクタリング\",\n  \"description\": \"OAuth2フローを簡素化し...\",\n  \"activeForm\": \"認証モジュールをリファクタリング中\"\n}",
-			"codeLanguage": "json"
+			"codeLanguage": "json",
+			"layout": "default"
 		},
 		{
-			"title": "TaskUpdate / TaskList",
+			"title": "TaskUpdate / TaskList（1/2）",
 			"content": [
 				"**TaskUpdate** — タスクの状態管理",
 				"- ステータス: `pending` → `in_progress` → `completed`",
 				"- `owner` でタスクの担当者を設定",
-				"- `addBlocks` / `addBlockedBy` で依存関係を定義",
+				"- `addBlocks` / `addBlockedBy` で依存関係を定義"
+			],
+			"speakerNotes": "TaskUpdateはタスクの状態遷移と依存関係管理を担います。ファイルロックにより、複数のチームメイトが同時にタスクを取り合っても安全です。",
+			"layout": "default"
+		},
+		{
+			"title": "TaskUpdate / TaskList（2/2）",
+			"content": [
 				"- ファイルロックで**同時書き込みの競合を防止**",
 				"**TaskList** — タスク一覧の確認",
 				"- 全タスクのサマリー（ID、状態、担当者、ブロック状況）",
@@ -211,13 +222,15 @@
 				"- 権限モード（default, plan, dontAsk等）",
 				"- MCPサーバーアクセス",
 				"- スキルのプリロード"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "カスタムエージェント（コード例）",
 			"content": [],
 			"code": "# .claude/agents/security-reviewer.md\n---\nmodel: sonnet\nmode: plan\n---\nセキュリティ観点でコードレビューを行う",
-			"codeLanguage": "yaml"
+			"codeLanguage": "yaml",
+			"layout": "default"
 		},
 		{
 			"title": "5. ワークフローパターン",
@@ -238,12 +251,19 @@
 			"layout": "default"
 		},
 		{
-			"title": "リーダー・チームメイトモデル",
+			"title": "リーダー・チームメイトモデル（1/2）",
 			"content": [
 				"**Team Lead（メインセッション）の役割:**",
 				"- チーム作成・タスク分解・チームメイトのSpawn",
 				"- 進捗監視・成果の統合・最終判断",
-				"**Teammates（独立セッション）の特徴:**",
+				"**Teammates（独立セッション）の特徴:**"
+			],
+			"speakerNotes": "チームメイトはリーダーの会話履歴を持ちませんが、CLAUDE.mdやMCPサーバーの設定は自動的にロードされます。idle状態は正常な動作であり、エラーではありません。",
+			"layout": "default"
+		},
+		{
+			"title": "リーダー・チームメイトモデル（2/2）",
+			"content": [
 				"- リーダーの会話履歴は**引き継がない**",
 				"- プロジェクトコンテキスト（CLAUDE.md等）は自動ロード",
 				"- タスク完了後に**自動的にidle状態**になる",
@@ -278,12 +298,19 @@
 			"layout": "default"
 		},
 		{
-			"title": "Delegateモード",
+			"title": "Delegateモード（1/2）",
 			"content": [
 				"**リーダーを「コーディネーション専任」にするモード**",
 				"- `Shift+Tab` で有効化",
 				"- リーダーは実装タスクを自分で実行**できなくなる**",
-				"- 使えるのはコーディネーション系ツールのみ:",
+				"- 使えるのはコーディネーション系ツールのみ:"
+			],
+			"speakerNotes": "Delegateモードは、リーダーが誤って自分でタスクを実装してしまうのを防ぎます。大規模チームでは特に有効で、リーダーがオーケストレーションに集中できます。",
+			"layout": "default"
+		},
+		{
+			"title": "Delegateモード（2/2）",
+			"content": [
 				"  - チームメイトのSpawn・メッセージ送信",
 				"  - タスク管理（作成・更新・一覧）",
 				"  - シャットダウン要求",
@@ -300,13 +327,15 @@
 		},
 		{
 			"title": "セットアップ手順",
-			"content": ["**1. 環境変数で有効化（実験的機能）**"]
+			"content": ["**1. 環境変数で有効化（実験的機能）**"],
+			"layout": "default"
 		},
 		{
 			"title": "セットアップ手順（コード例）",
 			"content": [],
 			"code": "// settings.json\n{\n  \"env\": {\n    \"CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS\": \"1\"\n  }\n}\n\n// または CLI で\n// export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1",
-			"codeLanguage": "json"
+			"codeLanguage": "json",
+			"layout": "default"
 		},
 		{
 			"title": "表示モードと設定オプション",
@@ -361,12 +390,19 @@
 			"speakerNotes": "Agent Teamsを効果的に使うためのベストプラクティスを紹介します。"
 		},
 		{
-			"title": "ベストプラクティス (1/2)",
+			"title": "ベストプラクティス (1/2)（1/2）",
 			"content": [
 				"**十分なコンテキストを提供する**",
 				"- チームメイトはリーダーの会話履歴を引き継がない",
 				"- Spawnプロンプトにタスク固有の詳細を含める",
-				"**タスクサイズを適切に設定**",
+				"**タスクサイズを適切に設定**"
+			],
+			"speakerNotes": "最も重要なのはコンテキストの提供です。チームメイトはリーダーの会話を知らないため、タスクの背景と目的を明確に伝える必要があります。",
+			"layout": "default"
+		},
+		{
+			"title": "ベストプラクティス (1/2)（2/2）",
+			"content": [
 				"- 1チームメイトあたり**5〜6タスク**が理想",
 				"- 小さすぎ → 調整オーバーヘッド > メリット",
 				"- 大きすぎ → 手戻りリスク増大",
@@ -377,12 +413,19 @@
 			"layout": "default"
 		},
 		{
-			"title": "ベストプラクティス (2/2)",
+			"title": "ベストプラクティス (2/2)（1/2）",
 			"content": [
 				"**Plan First, Execute Second**",
 				"- 計画フェーズ（~10kトークン、低コスト）で分解を確認",
 				"- 承認後に実行フェーズ（高コストだが高速）へ",
-				"**権限を事前設定**",
+				"**権限を事前設定**"
+			],
+			"speakerNotes": "Plan Firstアプローチにより、高コストな実行フェーズに入る前に方針を確認できます。リーダーをOpus、チームメイトをSonnetにする構成が推奨されています。",
+			"layout": "default"
+		},
+		{
+			"title": "ベストプラクティス (2/2)（2/2）",
+			"content": [
 				"- チームメイトSpawn前に権限設定を済ませる",
 				"- 中断プロンプトの削減 → スムーズな実行",
 				"**コスト最適化パターン**",

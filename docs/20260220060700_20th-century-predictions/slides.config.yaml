@@ -5,6 +5,7 @@ output:
   baseName: "20th-century-predictions"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "技術予測の検証"
   footer: "© 2026"

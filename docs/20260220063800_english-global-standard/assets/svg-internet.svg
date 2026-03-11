@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">インターネットは英語で設計された</text>
+  <!-- stack boxes -->
+  <rect x="80" y="55" width="640" height="52" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="80" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">ARPANET (1969) — 米国国防総省プロジェクト</text>
+  <text x="400" y="97" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">初期Webサイト 99% が英語 (1995年)</text>
+  <rect x="80" y="120" width="310" height="52" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="235" y="145" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">HTTP / HTML</text>
+  <text x="235" y="162" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">英語キーワードで構成</text>
+  <rect x="410" y="120" width="310" height="52" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="565" y="145" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">RFC 仕様書</text>
+  <text x="565" y="162" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">全て英語で書かれる</text>
+  <rect x="80" y="185" width="310" height="52" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="235" y="210" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">ドメイン名</text>
+  <text x="235" y="227" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">長らくASCII（英字）のみ</text>
+  <rect x="410" y="185" width="310" height="52" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="565" y="210" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">プログラミング言語</text>
+  <text x="565" y="227" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">全キーワードが英語</text>
+  <!-- result -->
+  <rect x="120" y="280" width="560" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="305" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">インターネットの技術層が英語圏の思考で設計された</text>
+  <text x="400" y="325" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">→ 英語を読めないプログラマーは構造的に不利な世界</text>
+  <text x="400" y="355" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">技術的必然ではなく歴史的偶然 + 文化的慣性</text>
+</svg>

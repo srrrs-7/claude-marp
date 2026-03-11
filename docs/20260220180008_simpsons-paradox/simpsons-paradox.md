@@ -158,12 +158,18 @@ style: |
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - - **Original Papers:**
 - - Simpson, E.H. (1951). The Interpretation of Interaction in Contingency Tables
 - - Bickel et al. (1975). Sex Bias in Graduate Admissions: Data from Berkeley
 - - **Books:**
+
+
+---
+
+# 参考文献（2/2）
+
 - - Pearl, J. *The Book of Why* (2018)
 - - Gelman et al. *Bayesian Data Analysis* 3rd Ed. (2013)
 - - **Practical Guides:**

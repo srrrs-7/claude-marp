@@ -1,0 +1,68 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="44" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">Claude Code 主要機能</text>
+
+  <!-- Center node -->
+  <circle cx="400" cy="265" r="60" fill="#2d1b5e" stroke="#a78bfa" stroke-width="3"/>
+  <text x="400" y="259" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">Claude</text>
+  <text x="400" y="277" font-family="sans-serif" font-size="14" font-weight="bold" fill="#a78bfa" text-anchor="middle">Code</text>
+
+  <!-- Feature 1: コード編集 (top-left) -->
+  <line x1="358" y1="218" x2="248" y2="150" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="251,143 256,154 244,151" fill="#60a5fa"/>
+  <rect x="100" y="88" width="148" height="60" rx="10" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2"/>
+  <text x="174" y="111" font-family="sans-serif" font-size="13" font-weight="bold" fill="#60a5fa" text-anchor="middle">コード編集</text>
+  <text x="174" y="128" font-family="sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">Read/Edit/Write</text>
+  <text x="174" y="143" font-family="sans-serif" font-size="11" fill="#bfdbfe" text-anchor="middle">ファイル操作</text>
+
+  <!-- Feature 2: Bash実行 (top) -->
+  <line x1="400" y1="205" x2="400" y2="148" stroke="#34d399" stroke-width="2"/>
+  <polygon points="394,150 406,150 400,140" fill="#34d399"/>
+  <rect x="326" y="78" width="148" height="60" rx="10" fill="#1a3d32" stroke="#34d399" stroke-width="2"/>
+  <text x="400" y="101" font-family="sans-serif" font-size="13" font-weight="bold" fill="#34d399" text-anchor="middle">Bash実行</text>
+  <text x="400" y="118" font-family="sans-serif" font-size="11" fill="#6ee7b7" text-anchor="middle">テスト・ビルド</text>
+  <text x="400" y="133" font-family="sans-serif" font-size="11" fill="#a7f3d0" text-anchor="middle">コマンド自動実行</text>
+
+  <!-- Feature 3: Web検索 (top-right) -->
+  <line x1="442" y1="218" x2="554" y2="150" stroke="#f472b6" stroke-width="2"/>
+  <polygon points="549,143 556,154 544,151" fill="#f472b6"/>
+  <rect x="552" y="88" width="148" height="60" rx="10" fill="#3d1a3d" stroke="#f472b6" stroke-width="2"/>
+  <text x="626" y="111" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f472b6" text-anchor="middle">Web検索</text>
+  <text x="626" y="128" font-family="sans-serif" font-size="11" fill="#f9a8d4" text-anchor="middle">最新情報取得</text>
+  <text x="626" y="143" font-family="sans-serif" font-size="11" fill="#fbcfe8" text-anchor="middle">ドキュメント参照</text>
+
+  <!-- Feature 4: エージェントチーム (right) -->
+  <line x1="460" y1="265" x2="566" y2="265" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="564,259 576,265 564,271" fill="#fbbf24"/>
+  <rect x="576" y="235" width="178" height="60" rx="10" fill="#3d3000" stroke="#fbbf24" stroke-width="2"/>
+  <text x="665" y="258" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fbbf24" text-anchor="middle">エージェント</text>
+  <text x="665" y="274" font-family="sans-serif" font-size="11" fill="#fde68a" text-anchor="middle">並列タスク実行</text>
+  <text x="665" y="289" font-family="sans-serif" font-size="11" fill="#fef3c7" text-anchor="middle">サブエージェント委任</text>
+
+  <!-- Feature 5: コンテキスト管理 (bottom-right) -->
+  <line x1="442" y1="312" x2="554" y2="380" stroke="#a78bfa" stroke-width="2"/>
+  <polygon points="549,373 556,384 544,381" fill="#a78bfa"/>
+  <rect x="552" y="352" width="148" height="60" rx="10" fill="#2d1b5e" stroke="#a78bfa" stroke-width="2"/>
+  <text x="626" y="375" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a78bfa" text-anchor="middle">コンテキスト</text>
+  <text x="626" y="392" font-family="sans-serif" font-size="11" fill="#c4b5fd" text-anchor="middle">CLAUDE.md連携</text>
+  <text x="626" y="407" font-family="sans-serif" font-size="11" fill="#ddd6fe" text-anchor="middle">長期記憶・設定</text>
+
+  <!-- Feature 6: MCP連携 (bottom-left) -->
+  <line x1="358" y1="312" x2="248" y2="380" stroke="#38bdf8" stroke-width="2"/>
+  <polygon points="251,373 256,384 244,381" fill="#38bdf8"/>
+  <rect x="100" y="352" width="148" height="60" rx="10" fill="#0c2a3d" stroke="#38bdf8" stroke-width="2"/>
+  <text x="174" y="375" font-family="sans-serif" font-size="13" font-weight="bold" fill="#38bdf8" text-anchor="middle">MCP連携</text>
+  <text x="174" y="392" font-family="sans-serif" font-size="11" fill="#7dd3fc" text-anchor="middle">外部ツール統合</text>
+  <text x="174" y="407" font-family="sans-serif" font-size="11" fill="#bae6fd" text-anchor="middle">プロトコル拡張</text>
+
+  <!-- Feature 7: Hooks (left) -->
+  <line x1="340" y1="265" x2="234" y2="265" stroke="#fb923c" stroke-width="2"/>
+  <polygon points="236,259 224,265 236,271" fill="#fb923c"/>
+  <rect x="46" y="235" width="178" height="60" rx="10" fill="#3d1800" stroke="#fb923c" stroke-width="2"/>
+  <text x="135" y="258" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fb923c" text-anchor="middle">Hooks &amp; Settings</text>
+  <text x="135" y="274" font-family="sans-serif" font-size="11" fill="#fdba74" text-anchor="middle">自動化トリガー</text>
+  <text x="135" y="289" font-family="sans-serif" font-size="11" fill="#fed7aa" text-anchor="middle">カスタムワークフロー</text>
+</svg>

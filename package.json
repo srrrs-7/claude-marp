@@ -5,6 +5,7 @@
 	"scripts": {
 		"slides": "bun run src/index.ts",
 		"validate": "bun run scripts/validate-slides-schema.ts",
+		"validate:quality": "bun run scripts/validate-slides-schema.ts --quality",
 		"fix": "bun run scripts/auto-fix-slides-schema.ts",
 		"split": "python3 scripts/split-code-diagrams.py --all",
 		"fix-svg": "bun run scripts/fix-svg-overflow.ts",
@@ -17,6 +18,11 @@
 		"spellcheck": "cspell lint --no-progress --show-suggestions .",
 		"test": "bun test scripts/test-slides.test.ts",
 		"generate:index": "bun run scripts/generate-index.ts",
+		"fix:all": "bun run fix && bun run split && python3 scripts/split-bullet-overflow.py --all && bun scripts/fix-svg-url-refs.ts && bun run generate:index",
+		"doctor": "bun run scripts/doctor.ts",
+		"dev": "bun run scripts/dev-watch.ts",
+		"stats": "bun run scripts/stats.ts",
+		"lint": "bun run validate && bun run validate:quality",
 		"team": "bash scripts/setup-agent-team.sh",
 		"team:status": "bash scripts/agent-team-status.sh"
 	},

@@ -176,12 +176,18 @@ style: |
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - - **理論:**
 -   - Robert K. Merton, "The Matthew Effect in Science" (1968)
 -   - Albert-Laszlo Barabasi, "Scale-Free Networks" (1999)
 -   - Bob Metcalfe, "Metcalfe's Law" (1993)
+
+
+---
+
+# 参考文献（2/2）
+
 - - **事例・政策:**
 -   - [EU Digital Markets Act](https://digital-markets-act.ec.europa.eu/)
 -   - Nadia Eghbal, "Working in Public" (2020)

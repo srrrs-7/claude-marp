@@ -1,0 +1,31 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold">CI/CD for ML モデル</text>
+<rect x="20" y="140" width="115" height="70" rx="10" fill="#e91e63" opacity="0.85"/>
+<text x="77" y="172" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">Code</text>
+<text x="77" y="189" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">Commit</text>
+<rect x="163" y="140" width="115" height="70" rx="10" fill="#7b1fa2" opacity="0.85"/>
+<text x="220" y="172" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">Unit Test</text>
+<text x="220" y="189" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">Lint</text>
+<rect x="306" y="140" width="115" height="70" rx="10" fill="#1565c0" opacity="0.85"/>
+<text x="363" y="172" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">Build</text>
+<text x="363" y="189" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">Pipeline</text>
+<rect x="449" y="140" width="115" height="70" rx="10" fill="#00695c" opacity="0.85"/>
+<text x="506" y="172" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">Train &amp;</text>
+<text x="506" y="189" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">Evaluate</text>
+<rect x="592" y="140" width="115" height="70" rx="10" fill="#f9a825" opacity="0.85"/>
+<text x="649" y="172" text-anchor="middle" font-size="12" fill="#1a1a2e" font-weight="bold">Deploy</text>
+<text x="649" y="189" text-anchor="middle" font-size="12" fill="#1a1a2e" font-weight="bold">Endpoint</text>
+<line x1="135" y1="175" x2="163" y2="175" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="163,175 153,169 153,181" fill="#4fc3f7"/>
+<line x1="278" y1="175" x2="306" y2="175" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="306,175 296,169 296,181" fill="#4fc3f7"/>
+<line x1="421" y1="175" x2="449" y2="175" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="449,175 439,169 439,181" fill="#4fc3f7"/>
+<line x1="564" y1="175" x2="592" y2="175" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="592,175 582,169 582,181" fill="#4fc3f7"/>
+<rect x="100" y="275" width="600" height="60" rx="8" fill="#16213e"/>
+<text x="400" y="300" text-anchor="middle" font-size="13" fill="#4fc3f7">CodePipeline + CodeBuild + SageMaker Pipelines</text>
+<text x="400" y="320" text-anchor="middle" font-size="12" fill="#ffffff">自動化されたテスト・モデル評価・承認ゲート</text>
+<text x="400" y="380" text-anchor="middle" font-size="13" fill="#4fc3f7">CI/CD for Machine Learning Models</text>
+</svg>

@@ -1,4 +1,4 @@
-<svg viewBox="0 0 1100 480" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0f172a;border-radius:12px">
+<svg viewBox="0 0 1100 480" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <!-- Title -->
   <text x="550" y="36" text-anchor="middle" fill="#f1f5f9" font-size="20" font-weight="bold" font-family="sans-serif">6つのオーケストレーションパターン</text>
   <!-- Row 1: Sequential, Parallel, Supervisor -->

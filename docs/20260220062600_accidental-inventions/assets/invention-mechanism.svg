@@ -1,0 +1,81 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">偶然の発明メカニズム — ケーススタディ比較</text>
+  <!-- Headers -->
+  <rect x="30" y="48" width="110" height="32" rx="4" fill="#16213e" stroke="#ffffff" stroke-width="1"/>
+  <text x="85" y="68" text-anchor="middle" font-size="11" fill="#ffffff">発明</text>
+  <rect x="148" y="48" width="140" height="32" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="218" y="68" text-anchor="middle" font-size="11" fill="#e91e63">偶然の観察</text>
+  <rect x="296" y="48" width="140" height="32" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="366" y="68" text-anchor="middle" font-size="11" fill="#f9a825">専門知識</text>
+  <rect x="444" y="48" width="150" height="32" rx="4" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="519" y="68" text-anchor="middle" font-size="11" fill="#4caf50">追求した行動</text>
+  <rect x="602" y="48" width="168" height="32" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="686" y="68" text-anchor="middle" font-size="11" fill="#f9a825">インパクト</text>
+  <!-- Row 1: Penicillin -->
+  <rect x="30" y="88" width="110" height="52" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
+  <text x="85" y="110" text-anchor="middle" font-size="12" fill="#e91e63">ペニシリン</text>
+  <text x="85" y="128" text-anchor="middle" font-size="10" fill="#ffffff">1928年</text>
+  <rect x="148" y="88" width="140" height="52" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
+  <text x="218" y="110" text-anchor="middle" font-size="11" fill="#ffffff">カビが細菌を</text>
+  <text x="218" y="128" text-anchor="middle" font-size="11" fill="#ffffff">殺した</text>
+  <rect x="296" y="88" width="140" height="52" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="366" y="110" text-anchor="middle" font-size="11" fill="#ffffff">細菌学者だった</text>
+  <text x="366" y="128" text-anchor="middle" font-size="11" fill="#ffffff">から気づいた</text>
+  <rect x="444" y="88" width="150" height="52" rx="4" fill="#16213e" stroke="#4caf50" stroke-width="1"/>
+  <text x="519" y="110" text-anchor="middle" font-size="11" fill="#ffffff">培養皿を捨てず</text>
+  <text x="519" y="128" text-anchor="middle" font-size="11" fill="#ffffff">研究を続けた</text>
+  <rect x="602" y="88" width="168" height="52" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="686" y="110" text-anchor="middle" font-size="11" fill="#f9a825">年間700万人</text>
+  <text x="686" y="128" text-anchor="middle" font-size="11" fill="#f9a825">の命を救う</text>
+  <!-- Row 2: X-ray -->
+  <rect x="30" y="148" width="110" height="52" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
+  <text x="85" y="170" text-anchor="middle" font-size="12" fill="#e91e63">X線</text>
+  <text x="85" y="188" text-anchor="middle" font-size="10" fill="#ffffff">1895年</text>
+  <rect x="148" y="148" width="140" height="52" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
+  <text x="218" y="170" text-anchor="middle" font-size="11" fill="#ffffff">離れた場所の</text>
+  <text x="218" y="188" text-anchor="middle" font-size="11" fill="#ffffff">スクリーンが光った</text>
+  <rect x="296" y="148" width="140" height="52" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="366" y="170" text-anchor="middle" font-size="11" fill="#ffffff">物理学者として</text>
+  <text x="366" y="188" text-anchor="middle" font-size="11" fill="#ffffff">未知の放射線と判断</text>
+  <rect x="444" y="148" width="150" height="52" rx="4" fill="#16213e" stroke="#4caf50" stroke-width="1"/>
+  <text x="519" y="170" text-anchor="middle" font-size="11" fill="#ffffff">6週間食事も忘れて</text>
+  <text x="519" y="188" text-anchor="middle" font-size="11" fill="#ffffff">実験に没頭した</text>
+  <rect x="602" y="148" width="168" height="52" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="686" y="170" text-anchor="middle" font-size="11" fill="#f9a825">医療診断を</text>
+  <text x="686" y="188" text-anchor="middle" font-size="11" fill="#f9a825">革命的に変えた</text>
+  <!-- Row 3: Post-it -->
+  <rect x="30" y="208" width="110" height="52" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
+  <text x="85" y="230" text-anchor="middle" font-size="12" fill="#e91e63">ポストイット</text>
+  <text x="85" y="248" text-anchor="middle" font-size="10" fill="#ffffff">1968-1980年</text>
+  <rect x="148" y="208" width="140" height="52" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
+  <text x="218" y="230" text-anchor="middle" font-size="11" fill="#ffffff">弱い接着剤が</text>
+  <text x="218" y="248" text-anchor="middle" font-size="11" fill="#ffffff">できてしまった</text>
+  <rect x="296" y="208" width="140" height="52" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="366" y="230" text-anchor="middle" font-size="11" fill="#ffffff">化学者と音楽家の</text>
+  <text x="366" y="248" text-anchor="middle" font-size="11" fill="#ffffff">異分野融合</text>
+  <rect x="444" y="208" width="150" height="52" rx="4" fill="#16213e" stroke="#4caf50" stroke-width="1"/>
+  <text x="519" y="230" text-anchor="middle" font-size="11" fill="#ffffff">5年間用途を探し</text>
+  <text x="519" y="248" text-anchor="middle" font-size="11" fill="#ffffff">諦めなかった</text>
+  <rect x="602" y="208" width="168" height="52" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="686" y="230" text-anchor="middle" font-size="11" fill="#f9a825">年間10億ドルの</text>
+  <text x="686" y="248" text-anchor="middle" font-size="11" fill="#f9a825">製品に</text>
+  <!-- Row 4: Microwave -->
+  <rect x="30" y="268" width="110" height="52" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
+  <text x="85" y="290" text-anchor="middle" font-size="12" fill="#e91e63">電子レンジ</text>
+  <text x="85" y="308" text-anchor="middle" font-size="10" fill="#ffffff">1945年</text>
+  <rect x="148" y="268" width="140" height="52" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
+  <text x="218" y="290" text-anchor="middle" font-size="11" fill="#ffffff">ポケットの</text>
+  <text x="218" y="308" text-anchor="middle" font-size="11" fill="#ffffff">チョコが溶けた</text>
+  <rect x="296" y="268" width="140" height="52" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="366" y="290" text-anchor="middle" font-size="11" fill="#ffffff">レーダーエンジニアが</text>
+  <text x="366" y="308" text-anchor="middle" font-size="11" fill="#ffffff">電磁波の効果を知ってた</text>
+  <rect x="444" y="268" width="150" height="52" rx="4" fill="#16213e" stroke="#4caf50" stroke-width="1"/>
+  <text x="519" y="290" text-anchor="middle" font-size="11" fill="#ffffff">すぐにポップコーンで</text>
+  <text x="519" y="308" text-anchor="middle" font-size="11" fill="#ffffff">実験した</text>
+  <rect x="602" y="268" width="168" height="52" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="686" y="290" text-anchor="middle" font-size="11" fill="#f9a825">家庭普及率</text>
+  <text x="686" y="308" text-anchor="middle" font-size="11" fill="#f9a825">90%超に</text>
+  <!-- Bottom note -->
+  <text x="400" y="378" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.6">共通パターン：偶然の観察 → 専門知識で異常を認識 → 積極的な追求</text>
+</svg>

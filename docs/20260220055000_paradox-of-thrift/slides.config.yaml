@@ -5,6 +5,7 @@ output:
   baseName: "paradox-of-thrift"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "節約のパラドックス"
   footer: "© 2026"

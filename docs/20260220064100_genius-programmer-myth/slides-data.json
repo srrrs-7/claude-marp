@@ -65,6 +65,7 @@
 			"title": "コード行数の罠",
 			"layout": "default",
 			"content": [
+				"![w:900 center](assets/dora-metrics.svg)",
 				"- **LOC (Lines of Code)** で測定 → コード量 = 生産性？",
 				"- 「最良のコードは書かれなかったコードである」",
 				"- 10行で解決する天才と100行で解決する凡人: どちらが生産的？",
@@ -94,6 +95,7 @@
 			"title": "「天才個人」モデルの限界",
 			"layout": "default",
 			"content": [
+				"![w:900 center](assets/team-vs-individual.svg)",
 				"- Linuxカーネル: Linus Torvaldsだけでなく数千人の貢献者",
 				"- Wikipedia: 個人の天才ではなく集合知",
 				"- **Google \"Project Aristotle\"**: 最強チームの条件は「心理的安全性」",
@@ -106,6 +108,7 @@
 			"title": "環境が生産性を決める",
 			"layout": "default",
 			"content": [
+				"![w:900 center](assets/environment-productivity.svg)",
 				"- **SPACE framework** (GitHub/MS/University of Victoria):",
 				"- Satisfaction, Performance, Activity, Communication, Efficiency",
 				"- 同じエンジニアでも環境で生産性が3-5倍変わる",

@@ -5,6 +5,7 @@ output:
   baseName: "sapir-whorf-hypothesis"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "言語と認知の関係"
   footer: "© 2026"

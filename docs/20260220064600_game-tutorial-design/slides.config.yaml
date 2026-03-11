@@ -5,6 +5,7 @@ output:
   baseName: "game-tutorial-design"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ゲームとUX設計"
   footer: "© 2026"

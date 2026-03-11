@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">LLM出力の検証戦略 — 地図の正しい使い方</text>
+  <!-- 6 strategies -->
+  <rect x="30" y="60" width="225" height="80" rx="7" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="142" y="85" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">1. Ground Truth照合</text>
+  <text x="142" y="103" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">公式ドキュメント・</text>
+  <text x="142" y="118" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">ソースコードとの突合せ</text>
+  <rect x="290" y="60" width="225" height="80" rx="7" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="402" y="85" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">2. RAG</text>
+  <text x="402" y="103" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">検索拡張生成</text>
+  <text x="402" y="118" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">最新情報を地図に注入</text>
+  <rect x="550" y="60" width="220" height="80" rx="7" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="660" y="85" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">3. Chain of Thought</text>
+  <text x="660" y="103" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">推論過程を可視化</text>
+  <text x="660" y="118" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">地図の歪みを検出</text>
+  <rect x="30" y="170" width="225" height="80" rx="7" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="142" y="195" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">4. Multi-Agent検証</text>
+  <text x="142" y="213" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">複数の地図を照合</text>
+  <text x="142" y="228" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">共通部分を信頼</text>
+  <rect x="290" y="170" width="225" height="80" rx="7" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="402" y="195" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">5. Confidence Scoring</text>
+  <text x="402" y="213" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">地図の信頼度を定量化</text>
+  <text x="402" y="228" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">不確実性の可視化</text>
+  <rect x="550" y="170" width="220" height="80" rx="7" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="660" y="195" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">6. Structured Output</text>
+  <text x="660" y="213" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">JSONスキーマで制約</text>
+  <text x="660" y="228" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">幻覚の出力空間を制限</text>
+  <!-- principle -->
+  <rect x="120" y="285" width="560" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="310" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">「地図を信頼するな、地図を活用せよ」</text>
+  <text x="400" y="330" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">地図の限界を知る者だけが、地図を正しく使える</text>
+</svg>

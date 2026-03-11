@@ -1,0 +1,21 @@
+topic: "GitOps & Platform Engineering"
+language: "ja"
+
+slides:
+  count: 60
+
+output:
+  dir: "docs/20260311120001_gitops-platform-engineering"
+  baseName: "gitops-platform-engineering"
+
+marp:
+  theme: gaia
+  class: invert
+  paginate: true
+  header: "GitOps & Platform Engineering"
+  footer: "© 2026 Internal Training"
+  style: |
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

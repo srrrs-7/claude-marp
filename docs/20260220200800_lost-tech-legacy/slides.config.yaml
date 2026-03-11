@@ -5,6 +5,7 @@ output:
   baseName: "lost-tech-legacy"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "失われた技術とレガシーシステム"
   footer: "© 2026"

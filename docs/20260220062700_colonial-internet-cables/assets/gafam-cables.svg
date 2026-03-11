@@ -1,0 +1,47 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">GAFAMのケーブル帝国（2024年）</text>
+  <!-- Bar chart: cable ownership -->
+  <line x1="80" y1="310" x2="720" y2="310" stroke="#ffffff" stroke-width="2"/>
+  <line x1="80" y1="60" x2="80" y2="310" stroke="#ffffff" stroke-width="2"/>
+  <!-- Y axis labels -->
+  <text x="68" y="310" text-anchor="end" font-size="10" fill="#ffffff">0%</text>
+  <text x="68" y="250" text-anchor="end" font-size="10" fill="#ffffff">20%</text>
+  <text x="68" y="190" text-anchor="end" font-size="10" fill="#ffffff">40%</text>
+  <text x="68" y="130" text-anchor="end" font-size="10" fill="#ffffff">60%</text>
+  <text x="68" y="75" text-anchor="end" font-size="10" fill="#ffffff">80%</text>
+  <!-- Grid -->
+  <line x1="80" y1="250" x2="720" y2="250" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <line x1="80" y1="190" x2="720" y2="190" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <line x1="80" y1="130" x2="720" y2="130" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <!-- Google bar -->
+  <rect x="120" y="130" width="90" height="180" fill="#e91e63" rx="4"/>
+  <text x="165" y="122" text-anchor="middle" font-size="11" fill="#e91e63">~70%</text>
+  <text x="165" y="328" text-anchor="middle" font-size="11" fill="#ffffff">Google</text>
+  <text x="165" y="342" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">30本以上</text>
+  <!-- Meta bar -->
+  <rect x="250" y="160" width="90" height="150" fill="#1877f2" rx="4"/>
+  <text x="295" y="152" text-anchor="middle" font-size="11" fill="#1877f2">~58%</text>
+  <text x="295" y="328" text-anchor="middle" font-size="11" fill="#ffffff">Meta</text>
+  <text x="295" y="342" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">2Africa等</text>
+  <!-- Microsoft bar -->
+  <rect x="380" y="196" width="90" height="114" fill="#00a4ef" rx="4"/>
+  <text x="425" y="188" text-anchor="middle" font-size="11" fill="#00a4ef">~44%</text>
+  <text x="425" y="328" text-anchor="middle" font-size="11" fill="#ffffff">Microsoft</text>
+  <text x="425" y="342" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">Marea等</text>
+  <!-- Amazon bar -->
+  <rect x="510" y="220" width="90" height="90" fill="#ff9900" rx="4"/>
+  <text x="555" y="212" text-anchor="middle" font-size="11" fill="#ff9900">~35%</text>
+  <text x="555" y="328" text-anchor="middle" font-size="11" fill="#ffffff">Amazon</text>
+  <text x="555" y="342" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">AWS用</text>
+  <!-- Traditional Telcos bar -->
+  <rect x="640" y="280" width="60" height="30" fill="#4caf50" rx="4"/>
+  <text x="670" y="272" text-anchor="middle" font-size="11" fill="#4caf50">~30%</text>
+  <text x="670" y="328" text-anchor="middle" font-size="11" fill="#ffffff">従来通信</text>
+  <text x="670" y="342" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">会社</text>
+  <!-- Y axis title -->
+  <text x="28" y="200" text-anchor="middle" font-size="11" fill="#ffffff" transform="rotate(-90,28,200)">新規投資シェア</text>
+  <!-- Trend note -->
+  <rect x="80" y="358" width="640" height="28" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="376" text-anchor="middle" font-size="12" fill="#f9a825">2024年: 新規海底ケーブル投資の70%以上がテック企業 — 通信会社を逆転</text>
+</svg>

@@ -7,6 +7,71 @@ paginate: true
 header: "言語設計と思想"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -15,20 +80,14 @@ style: |
 # プログラミング言語の
 設計哲学は人生観の違い
 
-- Python=実用主義、Haskell=純粋主義、C=ミニマリズム
-- 言語は思想のキャリア
-- あなたのコードはあなたの世界観を反映する
+- <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="220" fill="#1a1a2e"/><rect x="60" y="30" width="140" height="60" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="130" y="58" text-anchor="middle" font-size="14" fill="#4fc3f7" font-weight="bold">命令型</text><text x="130" y="78" text-anchor="middle" font-size="11" fill="#aaa">C / Go</text><rect x="250" y="30" width="140" height="60" rx="10" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="320" y="58" text-anchor="middle" font-size="14" fill="#81c784" font-weight="bold">OOP</text><text x="320" y="78" text-anchor="middle" font-size="11" fill="#aaa">Java / Python</text><rect x="440" y="30" width="140" height="60" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="510" y="58" text-anchor="middle" font-size="14" fill="#e91e63" font-weight="bold">関数型</text><text x="510" y="78" text-anchor="middle" font-size="11" fill="#aaa">Haskell / Erlang</text><rect x="630" y="30" width="140" height="60" rx="10" fill="#16213e" stroke="#ce93d8" stroke-width="2"/><text x="700" y="58" text-anchor="middle" font-size="14" fill="#ce93d8" font-weight="bold">論理型</text><text x="700" y="78" text-anchor="middle" font-size="11" fill="#aaa">Prolog</text><line x1="200" y1="60" x2="250" y2="60" stroke="#555" stroke-width="1"/><line x1="390" y1="60" x2="440" y2="60" stroke="#555" stroke-width="1"/><line x1="580" y1="60" x2="630" y2="60" stroke="#555" stroke-width="1"/><rect x="150" y="130" width="500" height="60" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/><text x="400" y="156" text-anchor="middle" font-size="14" fill="#f9a825" font-weight="bold">パラダイムは思考を形作るか？</text><text x="400" y="178" text-anchor="middle" font-size="12" fill="#ccc">言語は思想のキャリア — あなたのコードはあなたの世界観を反映する</text></svg>
 
 
 ---
 
 # アジェンダ
 
-- 1. 言語設計に哲学が宿る
-- 2. 主要言語の思想的系譜
-- 3. 型システムと認識論
-- 4. 言語が思考を制限するか（Whorfian Hypothesis）
-- 5. あなたはどの哲学を選ぶか
+- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e"/><rect x="40" y="20" width="340" height="56" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="60" y="46" font-size="13" fill="#f9a825" font-weight="bold">1. 言語設計に哲学が宿る</text><text x="60" y="64" font-size="11" fill="#aaa">設計思想と価値観</text><rect x="420" y="20" width="340" height="56" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="440" y="46" font-size="13" fill="#e91e63" font-weight="bold">2. 主要言語の思想的系譜</text><text x="440" y="64" font-size="11" fill="#aaa">C, Java, Python, Haskell...</text><rect x="40" y="96" width="340" height="56" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="60" y="122" font-size="13" fill="#4fc3f7" font-weight="bold">3. 型システムと認識論</text><text x="60" y="140" font-size="11" fill="#aaa">経験主義 vs 合理主義</text><rect x="420" y="96" width="340" height="56" rx="8" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="440" y="122" font-size="13" fill="#81c784" font-weight="bold">4. Whorfian Hypothesis</text><text x="440" y="140" font-size="11" fill="#aaa">言語が思考を制限するか</text><rect x="230" y="172" width="340" height="56" rx="8" fill="#16213e" stroke="#ce93d8" stroke-width="2"/><text x="250" y="198" font-size="13" fill="#ce93d8" font-weight="bold">5. あなたはどの哲学を選ぶか</text><text x="250" y="216" font-size="11" fill="#aaa">言語選択 = 世界観の選択</text><line x1="210" y1="48" x2="420" y2="48" stroke="#555" stroke-width="1" stroke-dasharray="4,3"/><line x1="210" y1="124" x2="420" y2="124" stroke="#555" stroke-width="1" stroke-dasharray="4,3"/><line x1="400" y1="152" x2="400" y2="172" stroke="#555" stroke-width="1" stroke-dasharray="4,3"/></svg>
 
 
 ---
@@ -39,20 +98,27 @@ style: |
 
 ---
 
-# Pythonの哲学：美しさは正しさの近似
+# Pythonの哲学：美しさは正しさの近似（1/2）
 
-- **The Zen of Python（PEP 20）より：**
-- ```
-- Beautiful is better than ugly.
-- Explicit is better than implicit.
-- Simple is better than complex.
-- Readability counts.
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#f9a825">The Zen of Python（PEP 20）核心原則</text><rect x="40" y="60" width="220" height="80" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="150" y="88" text-anchor="middle" font-size="13" fill="#f9a825">Beautiful is better</text><text x="150" y="108" text-anchor="middle" font-size="13" fill="#f9a825">than ugly</text><text x="150" y="128" text-anchor="middle" font-size="11" fill="#aaa">美しさ優先</text><rect x="290" y="60" width="220" height="80" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="88" text-anchor="middle" font-size="13" fill="#e91e63">Explicit is better</text><text x="400" y="108" text-anchor="middle" font-size="13" fill="#e91e63">than implicit</text><text x="400" y="128" text-anchor="middle" font-size="11" fill="#aaa">明示性優先</text><rect x="540" y="60" width="220" height="80" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="650" y="88" text-anchor="middle" font-size="13" fill="#4fc3f7">Simple is better</text><text x="650" y="108" text-anchor="middle" font-size="13" fill="#4fc3f7">than complex</text><text x="650" y="128" text-anchor="middle" font-size="11" fill="#aaa">単純さ優先</text><rect x="165" y="170" width="220" height="80" rx="10" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="275" y="198" text-anchor="middle" font-size="13" fill="#81c784">Readability</text><text x="275" y="218" text-anchor="middle" font-size="13" fill="#81c784">counts</text><text x="275" y="238" text-anchor="middle" font-size="11" fill="#aaa">可読性こそ正義</text><rect x="415" y="170" width="220" height="80" rx="10" fill="#16213e" stroke="#ce93d8" stroke-width="2"/><text x="525" y="198" text-anchor="middle" font-size="13" fill="#ce93d8">One obvious</text><text x="525" y="218" text-anchor="middle" font-size="13" fill="#ce93d8">way to do it</text><text x="525" y="238" text-anchor="middle" font-size="11" fill="#aaa">唯一の明白な方法</text></svg>
+- **哲学：実用主義・民主主義・プラグマティズム**
+- Tim Peters（1999）の思想：コードは詩だ
+
+
+---
+
+# Pythonの哲学：美しさは正しさの近似（2/2）
+
 - There should be one obvious way to do it.
-- ```
 - ---
 - → **実用主義・民主主義・プラグマティズム**
 - → 誰でも読めるコードを。正しさより可読性を優先
 - → Tim Peters（1999）の思想：コードは詩だ
+
+
+---
+
+# Pythonの哲学：美しさは正しさの近似（コード例）
 
 ```text
 Beautiful is better than ugly.
@@ -66,11 +132,13 @@ Readability counts.
 
 # Haskellの哲学：純粋さだけが正しさを保証する
 
-- **Haskell の設計原則：**
-- - 純粋関数（副作用なし）
-- - 強力な型システムで誤りをコンパイル時に検出
-- - 遅延評価（必要になるまで計算しない）
-- ---
+- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="340" fill="#1a1a2e"/><text x="400" y="34" text-anchor="middle" font-size="17" font-weight="bold" fill="#f9a825">Haskell の設計原則とカント的義務論</text><rect x="60" y="55" width="680" height="70" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="80" text-anchor="middle" font-size="14" fill="#e91e63" font-weight="bold">純粋関数（Pure Functions）</text><text x="400" y="104" text-anchor="middle" font-size="12" fill="#ccc">副作用なし — 同じ入力は常に同じ出力を返す</text><rect x="60" y="140" width="320" height="70" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="220" y="165" text-anchor="middle" font-size="13" fill="#4fc3f7" font-weight="bold">強力な型システム</text><text x="220" y="188" text-anchor="middle" font-size="11" fill="#ccc">誤りをコンパイル時に検出</text><rect x="420" y="140" width="320" height="70" rx="8" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="580" y="165" text-anchor="middle" font-size="13" fill="#81c784" font-weight="bold">遅延評価（Lazy Evaluation）</text><text x="580" y="188" text-anchor="middle" font-size="11" fill="#ccc">必要になるまで計算しない</text><rect x="150" y="230" width="500" height="80" rx="8" fill="#0d1117" stroke="#f9a825" stroke-width="2"/><text x="400" y="258" text-anchor="middle" font-size="14" fill="#f9a825" font-weight="bold">カント的義務論</text><text x="400" y="280" text-anchor="middle" font-size="12" fill="#ccc">「正しい行為には正しい形式がある」</text><text x="400" y="300" text-anchor="middle" font-size="12" fill="#aaa">型が正しければプログラムは正しい（型定理による保証）</text></svg>
+
+
+---
+
+# Haskellの哲学：純粋さだけが正しさを保証する（詳細）
+
 - **哲学：カント的義務論**
 - 「正しい行為には正しい形式がある」
 - 型が正しければプログラムは正しい（型定理による保証）
@@ -89,20 +157,19 @@ Readability counts.
 
 # 言語と哲学の対応
 
-| 言語 | 哲学 | 核心的価値観 |
-|:---|:---|:---|
-| C | ミニマリズム | 機械に近く、無駄なし |
-| Java | 社会契約論 | 規則の中の自由・エンタープライズ |
-| Python | 実用主義 | 動けばいい、読めればなお良い |
-| Haskell | 純粋主義 | 数学的正しさが最優先 |
-| Rust | 安全主義 | メモリ安全を型で保証する |
-| JavaScript | 自由主義 | 何でも許す、動的・流動的 |
-| Erlang | 耐障害設計 | 「失敗せよ、そして回復せよ」 |
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">主要言語の哲学マップ</text><circle cx="400" cy="200" r="30" fill="#e91e63" opacity="0.9"/><text x="400" y="196" text-anchor="middle" font-size="10" fill="white" font-weight="bold">言語</text><text x="400" y="210" text-anchor="middle" font-size="10" fill="white" font-weight="bold">設計</text><circle cx="160" cy="110" r="50" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="160" y="105" text-anchor="middle" font-size="12" fill="#4fc3f7" font-weight="bold">C</text><text x="160" y="122" text-anchor="middle" font-size="10" fill="#aaa">ミニマリズム</text><circle cx="640" cy="110" r="50" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="640" y="105" text-anchor="middle" font-size="12" fill="#81c784" font-weight="bold">Haskell</text><text x="640" y="122" text-anchor="middle" font-size="10" fill="#aaa">純粋主義</text><circle cx="130" cy="290" r="50" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="130" y="285" text-anchor="middle" font-size="12" fill="#f9a825" font-weight="bold">Python</text><text x="130" y="302" text-anchor="middle" font-size="10" fill="#aaa">実用主義</text><circle cx="400" cy="330" r="50" fill="#16213e" stroke="#ce93d8" stroke-width="2"/><text x="400" y="325" text-anchor="middle" font-size="12" fill="#ce93d8" font-weight="bold">Rust</text><text x="400" y="342" text-anchor="middle" font-size="10" fill="#aaa">安全主義</text><circle cx="670" cy="290" r="50" fill="#16213e" stroke="#ff8a65" stroke-width="2"/><text x="670" y="285" text-anchor="middle" font-size="12" fill="#ff8a65" font-weight="bold">JavaScript</text><text x="670" y="302" text-anchor="middle" font-size="10" fill="#aaa">自由主義</text><circle cx="250" cy="200" r="40" fill="#16213e" stroke="#80cbc4" stroke-width="2"/><text x="250" y="195" text-anchor="middle" font-size="11" fill="#80cbc4" font-weight="bold">Java</text><text x="250" y="212" text-anchor="middle" font-size="10" fill="#aaa">社会契約論</text><circle cx="550" cy="200" r="40" fill="#16213e" stroke="#ef9a9a" stroke-width="2"/><text x="550" y="195" text-anchor="middle" font-size="11" fill="#ef9a9a" font-weight="bold">Erlang</text><text x="550" y="212" text-anchor="middle" font-size="10" fill="#aaa">耐障害設計</text><line x1="370" y1="190" x2="290" y2="160" stroke="#555" stroke-width="1"/><line x1="430" y1="190" x2="510" y2="160" stroke="#555" stroke-width="1"/><line x1="370" y1="215" x2="285" y2="230" stroke="#555" stroke-width="1"/><line x1="400" y1="230" x2="400" y2="280" stroke="#555" stroke-width="1"/><line x1="430" y1="215" x2="515" y2="230" stroke="#555" stroke-width="1"/></svg>
 
 
 ---
 
 # CとRustの哲学的対立
+
+- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="350" fill="#1a1a2e"/><text x="400" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#f9a825">自由 vs 安全 — 哲学的対立</text><rect x="30" y="55" width="340" height="200" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="200" y="82" text-anchor="middle" font-size="15" fill="#4fc3f7" font-weight="bold">C（1972）</text><text x="200" y="105" text-anchor="middle" font-size="12" fill="#ccc">Thompson・Ritchie</text><text x="200" y="132" text-anchor="middle" font-size="12" fill="#aaa">プログラマーを信頼する</text><text x="200" y="152" text-anchor="middle" font-size="12" fill="#aaa">機械への最大限の制御</text><text x="200" y="172" text-anchor="middle" font-size="12" fill="#aaa">「ツールは人を守ろうと</text><text x="200" y="190" text-anchor="middle" font-size="12" fill="#aaa">すべきでない」</text><rect x="200" y="210" width="140" height="30" rx="5" fill="#4fc3f7" opacity="0.3"/><text x="270" y="229" text-anchor="middle" font-size="12" fill="#4fc3f7" font-weight="bold">自由</text><rect x="430" y="55" width="340" height="200" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="600" y="82" text-anchor="middle" font-size="15" fill="#e91e63" font-weight="bold">Rust（2010）</text><text x="600" y="105" text-anchor="middle" font-size="12" fill="#ccc">Mozilla Research</text><text x="600" y="132" text-anchor="middle" font-size="12" fill="#aaa">プログラマーは間違える</text><text x="600" y="152" text-anchor="middle" font-size="12" fill="#aaa">型システムでメモリを保護</text><text x="600" y="172" text-anchor="middle" font-size="12" fill="#aaa">「安全と性能は両立できる」</text><text x="600" y="192" text-anchor="middle" font-size="12" fill="#aaa">所有権システム</text><rect x="460" y="210" width="140" height="30" rx="5" fill="#e91e63" opacity="0.3"/><text x="530" y="229" text-anchor="middle" font-size="12" fill="#e91e63" font-weight="bold">安全</text><line x1="372" y1="155" x2="428" y2="155" stroke="#f9a825" stroke-width="2"/><polygon points="428,149 440,155 428,161" fill="#f9a825"/><polygon points="372,149 360,155 372,161" fill="#f9a825"/><text x="400" y="148" text-anchor="middle" font-size="11" fill="#f9a825">哲学的対立</text><rect x="100" y="275" width="600" height="55" rx="8" fill="#0d1117" stroke="#f9a825" stroke-width="1"/><text x="400" y="298" text-anchor="middle" font-size="12" fill="#f9a825">Cの自由が全世界のセキュリティ脆弱性の70%を生んだ</text><text x="400" y="318" text-anchor="middle" font-size="12" fill="#ccc">Rustはその自由を型で制限することで安全を実現</text></svg>
+
+
+---
+
+# CとRustの哲学的対立（詳細）
 
 - **Cの哲学（Thompson・Ritchie, 1972）：**
 - プログラマーを信頼する。機械への最大限の制御を与える
@@ -111,10 +178,6 @@ Readability counts.
 - **Rustの哲学（Mozilla Research, 2010）：**
 - プログラマーは間違える。型システムでメモリを保護する
 - 「安全と性能は両立できる」
-- ---
-- **哲学的対立：** 自由 vs 安全
-- Cの自由が全世界のセキュリティ脆弱性の70%を生んだ
-- Rustはその自由を型で制限することで安全を実現
 
 
 ---
@@ -127,6 +190,13 @@ Readability counts.
 
 # 型は「現実の表現可能な範囲」を決める
 
+- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="340" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">型システムと認識論の対応</text><rect x="30" y="55" width="350" height="170" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="205" y="80" text-anchor="middle" font-size="14" fill="#f9a825" font-weight="bold">動的型付け</text><text x="205" y="100" text-anchor="middle" font-size="11" fill="#aaa">Python / JavaScript</text><text x="205" y="126" text-anchor="middle" font-size="12" fill="#ccc">現実は実行時にしかわからない</text><text x="205" y="148" text-anchor="middle" font-size="12" fill="#ccc">型は「実行してみれば判明する」</text><rect x="50" y="165" width="160" height="44" rx="6" fill="#f9a825" opacity="0.25"/><text x="130" y="191" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold">経験主義</text><rect x="420" y="55" width="350" height="170" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="595" y="80" text-anchor="middle" font-size="14" fill="#4fc3f7" font-weight="bold">静的型付け</text><text x="595" y="100" text-anchor="middle" font-size="11" fill="#aaa">Haskell / Rust / TypeScript</text><text x="595" y="126" text-anchor="middle" font-size="12" fill="#ccc">現実は論理から事前に導ける</text><text x="595" y="148" text-anchor="middle" font-size="12" fill="#ccc">型は「証明によって真を確立する」</text><rect x="440" y="165" width="160" height="44" rx="6" fill="#4fc3f7" opacity="0.25"/><text x="520" y="191" text-anchor="middle" font-size="13" fill="#4fc3f7" font-weight="bold">合理主義</text><rect x="150" y="248" width="500" height="70" rx="8" fill="#0d1117" stroke="#81c784" stroke-width="2"/><text x="400" y="272" text-anchor="middle" font-size="13" fill="#81c784" font-weight="bold">Dependent Type（Agda/Idris）</text><text x="400" y="295" text-anchor="middle" font-size="11" fill="#ccc">型の中に値を含め「リストの長さが3であること」を型で表現</text><text x="400" y="312" text-anchor="middle" font-size="11" fill="#aaa">数学的証明とコードの融合</text></svg>
+
+
+---
+
+# 型は「現実の表現可能な範囲」を決める（詳細）
+
 - **動的型付け（Python/JS）：**
 - 現実は実行時にしかわからない → 経験主義
 - 型は「実行してみれば判明する」
@@ -134,21 +204,22 @@ Readability counts.
 - **静的型付け（Haskell/Rust/TypeScript）：**
 - 現実は論理から事前に導ける → 合理主義
 - 型は「証明によって真を確立する」
-- ---
-- **Dependent Type（Agda/Idris）：**
-- 型の中に値を含め、「リストの長さが3であること」を型で表現
-- → 数学的証明とコードの融合
 
 
 ---
 
 # 言語があなたの思考を制限するか
 
+- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="340" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">Sapir-Whorf 仮説のプログラミング版</text><rect x="150" y="50" width="500" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="76" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold">「使う言語が、考えられる解法を制限する」</text><text x="400" y="98" text-anchor="middle" font-size="11" fill="#aaa">Benjamin Lee Whorf（言語相対性仮説）のプログラミング版</text><rect x="30" y="130" width="220" height="100" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="140" y="155" text-anchor="middle" font-size="12" fill="#4fc3f7" font-weight="bold">関数型言語を学ぶ</text><text x="140" y="178" text-anchor="middle" font-size="11" fill="#ccc">副作用への</text><text x="140" y="196" text-anchor="middle" font-size="11" fill="#ccc">意識が変わる</text><rect x="290" y="130" width="220" height="100" rx="8" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="400" y="155" text-anchor="middle" font-size="12" fill="#81c784" font-weight="bold">型理論を学ぶ</text><text x="400" y="178" text-anchor="middle" font-size="11" fill="#ccc">バグの80%は</text><text x="400" y="196" text-anchor="middle" font-size="11" fill="#ccc">型で防げると気づく</text><rect x="550" y="130" width="220" height="100" rx="8" fill="#16213e" stroke="#ce93d8" stroke-width="2"/><text x="660" y="155" text-anchor="middle" font-size="12" fill="#ce93d8" font-weight="bold">Prologを学ぶ</text><text x="660" y="178" text-anchor="middle" font-size="11" fill="#ccc">問題の定義と</text><text x="660" y="196" text-anchor="middle" font-size="11" fill="#ccc">解法が分離できる</text><line x1="140" y1="230" x2="140" y2="265" stroke="#4fc3f7" stroke-width="1" stroke-dasharray="4,3"/><line x1="400" y1="230" x2="400" y2="265" stroke="#81c784" stroke-width="1" stroke-dasharray="4,3"/><line x1="660" y1="230" x2="660" y2="265" stroke="#ce93d8" stroke-width="1" stroke-dasharray="4,3"/><text x="140" y="285" text-anchor="middle" font-size="11" fill="#4fc3f7">思考の拡張</text><text x="400" y="285" text-anchor="middle" font-size="11" fill="#81c784">設計の変革</text><text x="660" y="285" text-anchor="middle" font-size="11" fill="#ce93d8">パラダイムシフト</text><rect x="30" y="300" width="740" height="30" rx="5" fill="#0d1117" stroke="#f9a825" stroke-width="1"/><text x="400" y="320" text-anchor="middle" font-size="12" fill="#f9a825">Paul Graham（2001）：現代のプログラマーは最良の言語を使えていない</text></svg>
+
+
+---
+
+# 言語があなたの思考を制限するか（詳細）
+
+- <svg viewBox="0 0 800 180" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="180" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">言語パラダイムが拡げる思考の範囲</text><rect x="30" y="50" width="160" height="90" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="110" y="80" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">命令型のみ</text><text x="110" y="100" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">状態・手順で考える</text><text x="110" y="118" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">副作用は自然</text><rect x="220" y="50" width="160" height="90" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="300" y="80" text-anchor="middle" fill="#4fc3f7" font-size="12" font-family="sans-serif" font-weight="bold">+ 関数型</text><text x="300" y="100" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">不変性・変換で考える</text><text x="300" y="118" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">副作用を意識する</text><rect x="410" y="50" width="160" height="90" rx="8" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="490" y="80" text-anchor="middle" fill="#81c784" font-size="12" font-family="sans-serif" font-weight="bold">+ 型理論</text><text x="490" y="100" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">証明で設計する</text><text x="490" y="118" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">バグを型で防ぐ</text><rect x="600" y="50" width="170" height="90" rx="8" fill="#16213e" stroke="#ce93d8" stroke-width="2"/><text x="685" y="80" text-anchor="middle" fill="#ce93d8" font-size="12" font-family="sans-serif" font-weight="bold">+ 論理型</text><text x="685" y="100" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">問題定義と解法分離</text><text x="685" y="118" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">宣言で「何を」だけ言う</text><polygon points="193,95 215,95 207,88 207,102" fill="#f9a825"/><polygon points="383,95 405,95 397,88 397,102" fill="#f9a825"/><polygon points="573,95 595,95 587,88 587,102" fill="#f9a825"/></svg>
 - Sapir-Whorf 仮説のプログラミング版：
 - **「使う言語が、考えられる解法を制限する」**
-- ---
-- **Paul Graham（2001）：**
-- 「100年後に振り返ると、現代のプログラマーが最良の言語を使えていなかったことは、オブジェクト指向がなかった時代と同じく明らかになる」
 - ---
 - 関数型言語を学ぶと：副作用への意識が変わる
 - 型理論を学ぶと：バグの80%は型で防げると気づく
@@ -159,10 +230,6 @@ Readability counts.
 
 # まとめ：言語は哲学を選ぶ行為
 
-- ✅ **言語選択は世界観の選択** — 中立な言語は存在しない
-- ✅ **複数の言語を学ぶことは複数の哲学を身につけること**
-- ✅ **型システムは認識論の実装** — 何が「証明できるか」を決める
-- ✅ **CとRustは自由と安全の哲学的対立**
-- 
-- 「プログラマーは言語で考え、言語で議論し、言語で世界を変える」
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">言語選択 = 哲学選択 = 世界観の選択</text><rect x="30" y="50" width="340" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="72" text-anchor="middle" font-size="12" fill="#e91e63" font-weight="bold">言語選択は世界観の選択</text><text x="200" y="94" text-anchor="middle" font-size="11" fill="#aaa">中立な言語は存在しない</text><rect x="430" y="50" width="340" height="60" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="600" y="72" text-anchor="middle" font-size="12" fill="#4fc3f7" font-weight="bold">複数の言語 = 複数の哲学</text><text x="600" y="94" text-anchor="middle" font-size="11" fill="#aaa">多言語プログラマーは多哲学者</text><rect x="30" y="130" width="340" height="60" rx="8" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="200" y="152" text-anchor="middle" font-size="12" fill="#81c784" font-weight="bold">型システム = 認識論の実装</text><text x="200" y="174" text-anchor="middle" font-size="11" fill="#aaa">何が「証明できるか」を決める</text><rect x="430" y="130" width="340" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="600" y="152" text-anchor="middle" font-size="12" fill="#f9a825" font-weight="bold">C vs Rust = 自由 vs 安全</text><text x="600" y="174" text-anchor="middle" font-size="11" fill="#aaa">哲学的対立が設計に宿る</text><rect x="80" y="215" width="640" height="65" rx="10" fill="#0d1117" stroke="#e91e63" stroke-width="2"/><text x="400" y="242" text-anchor="middle" font-size="14" fill="#e91e63" font-weight="bold">「プログラマーは言語で考え、</text><text x="400" y="266" text-anchor="middle" font-size="14" fill="#e91e63" font-weight="bold">言語で議論し、言語で世界を変える」</text></svg>
+- 言語を選ぶことは、思考のフレームを選ぶことだ
 

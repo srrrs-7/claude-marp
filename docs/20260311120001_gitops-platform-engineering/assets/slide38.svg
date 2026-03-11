@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">セキュリティスキャン統合 — CI/CDパイプライン</text>
+
+  <!-- Pipeline lane background -->
+  <rect x="20" y="55" width="760" height="80" rx="10" fill="#16213e" stroke="#444466" stroke-width="1"/>
+
+  <!-- Pipeline stages with security gates -->
+  <!-- Stage: Commit -->
+  <rect x="35" y="68" width="90" height="54" rx="6" fill="#2d2d4e" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="80" y="91" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a78bfa" font-weight="bold">Code</text>
+  <text x="80" y="107" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a78bfa" font-weight="bold">Commit</text>
+
+  <!-- Arrow -->
+  <line x1="127" y1="95" x2="145" y2="95" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="145,90 155,95 145,100" fill="#60a5fa"/>
+
+  <!-- Stage: SAST -->
+  <rect x="157" y="68" width="90" height="54" rx="6" fill="#2e2e1e" stroke="#fbbf24" stroke-width="2"/>
+  <text x="202" y="89" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#fbbf24" font-weight="bold">🔍 SAST</text>
+  <text x="202" y="105" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#cccccc">静的解析</text>
+  <text x="202" y="118" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#888888">Semgrep/CodeQL</text>
+
+  <!-- Arrow -->
+  <line x1="249" y1="95" x2="267" y2="95" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="267,90 277,95 267,100" fill="#60a5fa"/>
+
+  <!-- Stage: SCA -->
+  <rect x="279" y="68" width="90" height="54" rx="6" fill="#2e2e1e" stroke="#fbbf24" stroke-width="2"/>
+  <text x="324" y="89" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#fbbf24" font-weight="bold">📦 SCA</text>
+  <text x="324" y="105" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#cccccc">依存関係</text>
+  <text x="324" y="118" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#888888">Snyk/Dependabot</text>
+
+  <!-- Arrow -->
+  <line x1="371" y1="95" x2="389" y2="95" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="389,90 399,95 389,100" fill="#60a5fa"/>
+
+  <!-- Stage: Container Scan -->
+  <rect x="401" y="68" width="90" height="54" rx="6" fill="#2e2e1e" stroke="#f87171" stroke-width="2"/>
+  <text x="446" y="89" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f87171" font-weight="bold">🐳 Image</text>
+  <text x="446" y="105" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#cccccc">コンテナ</text>
+  <text x="446" y="118" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#888888">Trivy/Grype</text>
+
+  <!-- Arrow -->
+  <line x1="493" y1="95" x2="511" y2="95" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="511,90 521,95 511,100" fill="#60a5fa"/>
+
+  <!-- Stage: Secret Scan -->
+  <rect x="523" y="68" width="90" height="54" rx="6" fill="#2e2e1e" stroke="#f87171" stroke-width="2"/>
+  <text x="568" y="89" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f87171" font-weight="bold">🔑 Secret</text>
+  <text x="568" y="105" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#cccccc">秘密情報</text>
+  <text x="568" y="118" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#888888">Gitleaks/TruffleHog</text>
+
+  <!-- Arrow -->
+  <line x1="615" y1="95" x2="633" y2="95" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="633,90 643,95 633,100" fill="#60a5fa"/>
+
+  <!-- Stage: Deploy -->
+  <rect x="645" y="68" width="120" height="54" rx="6" fill="#1e3e2e" stroke="#34d399" stroke-width="2"/>
+  <text x="705" y="89" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#34d399" font-weight="bold">✅ Deploy</text>
+  <text x="705" y="105" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#cccccc">全ゲート通過後</text>
+  <text x="705" y="119" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#888888">署名済みイメージ</text>
+
+  <!-- Details section -->
+  <!-- SAST details -->
+  <rect x="30" y="160" width="170" height="130" rx="8" fill="#16213e" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="115" y="182" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fbbf24" font-weight="bold">SAST 詳細</text>
+  <text x="45" y="202" font-family="sans-serif" font-size="10" fill="#cccccc">• SQLインジェクション検出</text>
+  <text x="45" y="220" font-family="sans-serif" font-size="10" fill="#cccccc">• XSS 脆弱性検出</text>
+  <text x="45" y="238" font-family="sans-serif" font-size="10" fill="#cccccc">• ハードコードパスワード</text>
+  <text x="45" y="256" font-family="sans-serif" font-size="10" fill="#cccccc">• 危険な関数の使用</text>
+  <text x="45" y="278" font-family="sans-serif" font-size="9" fill="#888888">PR ブロック / SARIF出力</text>
+
+  <!-- Container scan details -->
+  <rect x="220" y="160" width="170" height="130" rx="8" fill="#16213e" stroke="#f87171" stroke-width="1.5"/>
+  <text x="305" y="182" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#f87171" font-weight="bold">Image Scan 詳細</text>
+  <text x="235" y="202" font-family="sans-serif" font-size="10" fill="#cccccc">• OS パッケージCVE</text>
+  <text x="235" y="220" font-family="sans-serif" font-size="10" fill="#cccccc">• アプリ依存CVE</text>
+  <text x="235" y="238" font-family="sans-serif" font-size="10" fill="#cccccc">• CRITICAL/HIGH でブロック</text>
+  <text x="235" y="256" font-family="sans-serif" font-size="10" fill="#cccccc">• SBOM自動生成</text>
+  <text x="235" y="278" font-family="sans-serif" font-size="9" fill="#888888">継続スキャン (Push時)</text>
+
+  <!-- Policy Enforcement -->
+  <rect x="410" y="160" width="170" height="130" rx="8" fill="#16213e" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="495" y="182" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#a78bfa" font-weight="bold">Policy Gate</text>
+  <text x="425" y="202" font-family="sans-serif" font-size="10" fill="#cccccc">• OPA/Rego ポリシー</text>
+  <text x="425" y="220" font-family="sans-serif" font-size="10" fill="#cccccc">• CRITICAL 0件必須</text>
+  <text x="425" y="238" font-family="sans-serif" font-size="10" fill="#cccccc">• ライセンス違反チェック</text>
+  <text x="425" y="256" font-family="sans-serif" font-size="10" fill="#cccccc">• 署名検証 (Cosign)</text>
+  <text x="425" y="278" font-family="sans-serif" font-size="9" fill="#888888">Policy-as-Code 管理</text>
+
+  <!-- Runtime security -->
+  <rect x="600" y="160" width="170" height="130" rx="8" fill="#16213e" stroke="#34d399" stroke-width="1.5"/>
+  <text x="685" y="182" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399" font-weight="bold">Runtime Security</text>
+  <text x="615" y="202" font-family="sans-serif" font-size="10" fill="#cccccc">• Falco 異常検知</text>
+  <text x="615" y="220" font-family="sans-serif" font-size="10" fill="#cccccc">• Network Policy</text>
+  <text x="615" y="238" font-family="sans-serif" font-size="10" fill="#cccccc">• Seccomp / AppArmor</text>
+  <text x="615" y="256" font-family="sans-serif" font-size="10" fill="#cccccc">• Pod Security Standards</text>
+  <text x="615" y="278" font-family="sans-serif" font-size="9" fill="#888888">Shift-Right セキュリティ</text>
+
+  <!-- Shift-left vs shift-right bar -->
+  <rect x="30" y="315" width="350" height="40" rx="6" fill="#2d2d0e" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="205" y="340" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fbbf24">⬅ Shift-Left: 開発フェーズで早期発見</text>
+
+  <rect x="420" y="315" width="350" height="40" rx="6" fill="#1e3e2e" stroke="#34d399" stroke-width="1.5"/>
+  <text x="595" y="340" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399">Shift-Right: 本番での継続監視 ➡</text>
+
+  <!-- Bottom summary -->
+  <text x="400" y="390" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#a78bfa" font-weight="bold">DevSecOps: セキュリティをパイプラインに組み込む</text>
+  <text x="400" y="416" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888888">脆弱性修正コスト: 開発時 1x → テスト時 10x → 本番時 100x</text>
+
+  <!-- Key metrics -->
+  <rect x="100" y="435" width="180" height="38" rx="6" fill="#2d2d4e" stroke="#a78bfa" stroke-width="1"/>
+  <text x="190" y="459" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a78bfa">MTTR 70% 短縮</text>
+  <rect x="520" y="435" width="180" height="38" rx="6" fill="#2d2d4e" stroke="#34d399" stroke-width="1"/>
+  <text x="610" y="459" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#34d399">CVE 90% 早期検出</text>
+</svg>

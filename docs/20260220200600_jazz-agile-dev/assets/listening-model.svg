@@ -1,0 +1,46 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">「聴き合い」によるコラボレーションモデル</text>
+  <!-- Jazz band representation -->
+  <!-- Bassist (infrastructure) -->
+  <circle cx="120" cy="200" r="50" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="120" y="188" text-anchor="middle" font-size="12" fill="#f9a825">ベース</text>
+  <text x="120" y="206" text-anchor="middle" font-size="11" fill="#ffffff">インフラ</text>
+  <text x="120" y="224" text-anchor="middle" font-size="11" fill="#ffffff">チーム</text>
+  <!-- Drummer (CI/CD, processes) -->
+  <circle cx="250" cy="300" r="44" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="250" y="290" text-anchor="middle" font-size="12" fill="#f9a825">ドラム</text>
+  <text x="250" y="308" text-anchor="middle" font-size="11" fill="#ffffff">CI/CD</text>
+  <!-- Pianist (architecture) -->
+  <circle cx="400" cy="150" r="50" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="138" text-anchor="middle" font-size="12" fill="#e91e63">ピアノ</text>
+  <text x="400" y="156" text-anchor="middle" font-size="11" fill="#ffffff">アーキテクチャ</text>
+  <text x="400" y="174" text-anchor="middle" font-size="11" fill="#ffffff">テックリード</text>
+  <!-- Trumpet soloist (feature dev) -->
+  <circle cx="580" cy="200" r="50" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="580" y="188" text-anchor="middle" font-size="12" fill="#e91e63">トランペット</text>
+  <text x="580" y="206" text-anchor="middle" font-size="11" fill="#ffffff">フィーチャー</text>
+  <text x="580" y="224" text-anchor="middle" font-size="11" fill="#ffffff">開発者</text>
+  <!-- Sax (another dev) -->
+  <circle cx="680" cy="310" r="44" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="680" y="300" text-anchor="middle" font-size="12" fill="#4caf50">サックス</text>
+  <text x="680" y="318" text-anchor="middle" font-size="11" fill="#ffffff">開発者B</text>
+  <!-- Listening arrows (bidirectional) -->
+  <line x1="165" y1="185" x2="352" y2="162" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="348,157 360,168 348,172" fill="#f9a825"/>
+  <line x1="360" y1="165" x2="175" y2="190" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="178,196 168,183 180,186" fill="#f9a825"/>
+  <line x1="450" y1="170" x2="532" y2="190" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="528,185 540,196 528,200" fill="#e91e63"/>
+  <line x1="535" y1="195" x2="452" y2="172" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="455,167 444,178 456,180" fill="#e91e63"/>
+  <line x1="280" y1="272" x2="370" y2="198" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="366,193 378,204 366,208" fill="#f9a825"/>
+  <line x1="562" y1="245" x2="694" y2="285" stroke="#4caf50" stroke-width="1.5"/>
+  <polygon points="690,280 702,291 690,295" fill="#4caf50"/>
+  <!-- Center label -->
+  <text x="400" y="260" text-anchor="middle" font-size="13" fill="#ffffff">双方向の</text>
+  <text x="400" y="278" text-anchor="middle" font-size="13" fill="#ffffff">「聴き合い」</text>
+  <!-- Bottom -->
+  <text x="400" y="374" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.6">指揮者の指示ではなく、互いの演奏を聴き合う — チーム開発の本質</text>
+</svg>

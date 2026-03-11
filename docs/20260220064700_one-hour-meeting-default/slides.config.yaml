@@ -5,6 +5,7 @@ output:
   baseName: "one-hour-meeting-default"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "会議の時間経済学"
   footer: "© 2026"

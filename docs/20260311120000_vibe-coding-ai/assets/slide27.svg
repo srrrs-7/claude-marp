@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="38" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">チーム全体のAI駆動開発ワークフロー</text>
+
+  <!-- Planning phase -->
+  <rect x="20" y="60" width="145" height="80" rx="8" fill="#2d1b69" stroke="#a78bfa" stroke-width="2"/>
+  <text x="92" y="88" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#a78bfa" text-anchor="middle">企画・設計</text>
+  <text x="92" y="108" font-family="Arial, sans-serif" font-size="11" fill="#c4b5fd" text-anchor="middle">PM + PdM</text>
+  <text x="92" y="126" font-family="Arial, sans-serif" font-size="11" fill="#c4b5fd" text-anchor="middle">AI仕様整理支援</text>
+
+  <!-- Arrow -->
+  <line x1="165" y1="100" x2="203" y2="100" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="195,93 207,100 195,107" fill="#60a5fa"/>
+
+  <!-- Development phase -->
+  <rect x="205" y="60" width="145" height="80" rx="8" fill="#0c1e40" stroke="#60a5fa" stroke-width="2"/>
+  <text x="277" y="88" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#60a5fa" text-anchor="middle">実装</text>
+  <text x="277" y="108" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">フロント/バック</text>
+  <text x="277" y="126" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">Claude Codeで加速</text>
+
+  <!-- Arrow -->
+  <line x1="350" y1="100" x2="388" y2="100" stroke="#34d399" stroke-width="2"/>
+  <polygon points="380,93 392,100 380,107" fill="#34d399"/>
+
+  <!-- Review phase -->
+  <rect x="390" y="60" width="145" height="80" rx="8" fill="#022c22" stroke="#34d399" stroke-width="2"/>
+  <text x="462" y="88" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#34d399" text-anchor="middle">レビュー</text>
+  <text x="462" y="108" font-family="Arial, sans-serif" font-size="11" fill="#6ee7b7" text-anchor="middle">AI初回レビュー</text>
+  <text x="462" y="126" font-family="Arial, sans-serif" font-size="11" fill="#6ee7b7" text-anchor="middle">人間が最終確認</text>
+
+  <!-- Arrow -->
+  <line x1="535" y1="100" x2="573" y2="100" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="565,93 577,100 565,107" fill="#fbbf24"/>
+
+  <!-- Deploy phase -->
+  <rect x="575" y="60" width="145" height="80" rx="8" fill="#1c1c10" stroke="#fbbf24" stroke-width="2"/>
+  <text x="647" y="88" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fbbf24" text-anchor="middle">デプロイ</text>
+  <text x="647" y="108" font-family="Arial, sans-serif" font-size="11" fill="#fde68a" text-anchor="middle">CI/CD + AI監視</text>
+  <text x="647" y="126" font-family="Arial, sans-serif" font-size="11" fill="#fde68a" text-anchor="middle">自動テスト実行</text>
+
+  <!-- AI integration layer -->
+  <rect x="20" y="168" width="760" height="38" rx="6" fill="#1a0a3d" stroke="#a78bfa" stroke-width="1"/>
+  <text x="400" y="181" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#a78bfa" text-anchor="middle">AI 統合レイヤー (Claude Code / Copilot / Cursor) — 全工程に横断</text>
+  <text x="400" y="198" font-family="Arial, sans-serif" font-size="11" fill="#c4b5fd" text-anchor="middle">コード生成 / テスト / ドキュメント / レビュー / デバッグ を各工程で支援</text>
+
+  <!-- Role details -->
+  <rect x="20" y="225" width="175" height="255" rx="8" fill="#1f1035" stroke="#a78bfa" stroke-width="1"/>
+  <text x="107" y="250" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#a78bfa" text-anchor="middle">PM の活用</text>
+  <text x="35" y="273" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• 要件定義の整理</text>
+  <text x="35" y="293" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• ユーザーストーリー作成</text>
+  <text x="35" y="313" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• リリースノート生成</text>
+  <text x="35" y="333" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• 進捗レポート自動化</text>
+  <text x="35" y="353" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• ロードマップ策定支援</text>
+  <text x="35" y="373" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• 競合分析</text>
+  <text x="35" y="393" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• KPI設定支援</text>
+  <text x="35" y="413" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• ミーティング議事録</text>
+  <text x="35" y="433" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• タスク分解</text>
+
+  <rect x="210" y="225" width="180" height="255" rx="8" fill="#0c1e40" stroke="#60a5fa" stroke-width="1"/>
+  <text x="300" y="250" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#60a5fa" text-anchor="middle">フロントエンド</text>
+  <text x="225" y="273" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• コンポーネント生成</text>
+  <text x="225" y="293" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• スタイリング最適化</text>
+  <text x="225" y="313" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• アクセシビリティ確認</text>
+  <text x="225" y="333" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• テスト自動生成</text>
+  <text x="225" y="353" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• バグ修正支援</text>
+  <text x="225" y="373" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• パフォーマンス改善</text>
+  <text x="225" y="393" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• API連携コード</text>
+  <text x="225" y="413" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• TypeScript型生成</text>
+  <text x="225" y="433" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• ドキュメント生成</text>
+
+  <rect x="405" y="225" width="180" height="255" rx="8" fill="#022c22" stroke="#34d399" stroke-width="1"/>
+  <text x="495" y="250" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#34d399" text-anchor="middle">バックエンド</text>
+  <text x="420" y="273" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• API設計・実装</text>
+  <text x="420" y="293" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• DB スキーマ設計</text>
+  <text x="420" y="313" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• セキュリティ実装</text>
+  <text x="420" y="333" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• マイグレーション</text>
+  <text x="420" y="353" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• パフォーマンス最適</text>
+  <text x="420" y="373" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• エラーハンドリング</text>
+  <text x="420" y="393" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• ログ設計</text>
+  <text x="420" y="413" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• インフラコード(IaC)</text>
+  <text x="420" y="433" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• Docker/K8s設定</text>
+
+  <rect x="600" y="225" width="180" height="255" rx="8" fill="#1c1c10" stroke="#fbbf24" stroke-width="1"/>
+  <text x="690" y="250" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fbbf24" text-anchor="middle">SRE / DevOps</text>
+  <text x="615" y="273" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• CI/CDパイプライン</text>
+  <text x="615" y="293" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• 監視設定自動化</text>
+  <text x="615" y="313" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• インシデント分析</text>
+  <text x="615" y="333" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• アラート設定</text>
+  <text x="615" y="353" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• コスト最適化</text>
+  <text x="615" y="373" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• セキュリティ監査</text>
+  <text x="615" y="393" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• Runbook生成</text>
+  <text x="615" y="413" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• 障害対応支援</text>
+  <text x="615" y="433" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">• キャパシティ計画</text>
+</svg>

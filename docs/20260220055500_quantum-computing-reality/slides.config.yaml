@@ -5,6 +5,7 @@ output:
   baseName: "quantum-computing-reality"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "量子コンピューティング"
   footer: "© 2026"

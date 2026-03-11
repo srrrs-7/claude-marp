@@ -5,6 +5,7 @@ output:
   baseName: "emoji-as-language"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "絵文字は言語か"
   footer: "© 2026"

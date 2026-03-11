@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "OAuth2 / OIDC 実装詳細ガイド"
   footer: "© 2026 Internal"

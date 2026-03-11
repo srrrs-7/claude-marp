@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">地図と領土を橋渡しする設計パターン</text>
+  <!-- Copilot pattern -->
+  <rect x="40" y="60" width="335" height="150" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="207" y="85" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">Copilot パターン</text>
+  <!-- flow: LLM propose → human decide -->
+  <rect x="60" y="100" width="120" height="40" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="120" y="124" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle">LLMが提案</text>
+  <line x1="180" y1="120" x2="215" y2="120" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="215,114 227,120 215,126" fill="#f9a825"/>
+  <rect x="227" y="100" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="287" y="124" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle">人間が判断</text>
+  <text x="207" y="170" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">LLM = 地図、人間 = 領土確認</text>
+  <text x="207" y="190" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">重要な判断は人間が直接確認する設計</text>
+  <!-- Guardrails pattern -->
+  <rect x="425" y="60" width="335" height="150" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="592" y="85" fill="#e91e63" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">Guardrails パターン</text>
+  <!-- scope boundary -->
+  <rect x="445" y="100" width="295" height="70" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="592" y="125" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">許可された出力空間</text>
+  <text x="592" y="145" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">JSONスキーマ / フォーマット制約</text>
+  <text x="592" y="170" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">地図の範囲外に出ないよう制限</text>
+  <text x="592" y="190" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">幻覚の空間を構造的に削減</text>
+  <!-- principles -->
+  <rect x="80" y="242" width="640" height="95" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="268" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">設計の大原則</text>
+  <text x="400" y="292" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">「地図は道具であり、真実ではない」— この前提でシステムを設計する</text>
+  <text x="400" y="312" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">LLM出力には常に検証ステップを組み込む</text>
+  <text x="400" y="330" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">史上最高の「地図」を正しく使う知恵が、AI時代の核心スキル</text>
+</svg>

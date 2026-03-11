@@ -1,0 +1,41 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#f9a825" font-weight="bold">情報密度のコントロール：コマ数と認知負荷</text>
+  <!-- X axis: panel count / elements -->
+  <line x1="80" y1="290" x2="720" y2="290" stroke="#555" stroke-width="2"/>
+  <!-- Y axis: cognitive load -->
+  <line x1="80" y1="60" x2="80" y2="290" stroke="#555" stroke-width="2"/>
+  <text x="44" y="200" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#aaa" transform="rotate(-90,44,200)">認知負荷</text>
+  <text x="400" y="316" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#aaa">コマ数 / 画面要素数</text>
+  <!-- Y labels -->
+  <text x="72" y="292" text-anchor="end" font-family="sans-serif" font-size="10" fill="#aaa">低</text>
+  <text x="72" y="175" text-anchor="end" font-family="sans-serif" font-size="10" fill="#aaa">中</text>
+  <text x="72" y="80" text-anchor="end" font-family="sans-serif" font-size="10" fill="#aaa">高</text>
+  <!-- Manga line: quadratic rising -->
+  <polyline points="120,265 240,230 360,185 480,150 600,115 680,88"
+    fill="none" stroke="#f9a825" stroke-width="3"/>
+  <text x="692" y="88" font-family="sans-serif" font-size="11" fill="#f9a825">マンガ</text>
+  <!-- UI line: similar curve -->
+  <polyline points="120,270 240,240 360,198 480,162 600,126 680,96"
+    fill="none" stroke="#e91e63" stroke-width="3" stroke-dasharray="6,3"/>
+  <text x="692" y="100" font-family="sans-serif" font-size="11" fill="#e91e63">UI</text>
+  <!-- Optimal zone -->
+  <rect x="200" y="195" width="200" height="80" rx="6" fill="#4ec9b0" opacity="0.1" stroke="#4ec9b0" stroke-width="1" stroke-dasharray="4"/>
+  <text x="300" y="228" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4ec9b0">最適ゾーン</text>
+  <text x="300" y="244" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#4ec9b0">コマ5-7 / 要素5-7</text>
+  <text x="300" y="260" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#4ec9b0">安定感・情報多・感情安定</text>
+  <!-- Zone annotations -->
+  <rect x="96" y="220" width="96" height="44" rx="4" fill="#0d1b2a"/>
+  <text x="144" y="238" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">コマ1-3</text>
+  <text x="144" y="252" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">疾走感</text>
+  <rect x="540" y="120" width="96" height="44" rx="4" fill="#0d1b2a"/>
+  <text x="588" y="138" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#e91e63">コマ8+</text>
+  <text x="588" y="152" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#e91e63">認知過負荷</text>
+  <!-- X labels -->
+  <text x="120" y="308" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">1</text>
+  <text x="240" y="308" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">3</text>
+  <text x="360" y="308" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">5</text>
+  <text x="480" y="308" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">7</text>
+  <text x="600" y="308" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">9</text>
+  <text x="680" y="308" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">11+</text>
+</svg>

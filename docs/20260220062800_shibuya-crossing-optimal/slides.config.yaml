@@ -5,6 +5,7 @@ output:
   baseName: "shibuya-crossing-optimal"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "渋谷スクランブル交差点の最適化"
   footer: "© 2026"

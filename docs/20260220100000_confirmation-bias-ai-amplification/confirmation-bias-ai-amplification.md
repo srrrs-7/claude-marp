@@ -7,6 +7,71 @@ paginate: true
 header: "確証バイアス × AI増幅"
 footer: "© 2026 Symposium — Cognitive Science × LLM"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section {
     font-size: 1.0em;
   }
@@ -14,7 +79,7 @@ style: |
     font-size: 0.55em;
     line-height: 1.4;
   }
-
+  
 ---
 
 <!-- _class: lead -->
@@ -86,6 +151,46 @@ style: |
 - SNS推薦エンジン → ニュースフィード最適化 → 検索パーソナライゼーション
 - **実証研究**: Facebook実験で政治的エコーチェンバーの自己強化を確認 (Bakshy et al. 2015)
 - **問題**: LLMが登場し、会話レベルで一段と高度化した
+
+
+---
+
+# AIによるバイアス増幅ループ（図解）
+
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="380" fill="#1a1a2e"/>
+<text x="400" y="34" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">AIによる確証バイアス増幅ループ</text>
+<rect x="300" y="58" width="200" height="70" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="400" y="88" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">人間の既存信念</text>
+<text x="400" y="106" text-anchor="middle" fill="#ffffff" font-size="11">確証バイアス</text>
+<text x="400" y="122" text-anchor="middle" fill="#aaaaaa" font-size="10">既存信念を強化する情報を選ぶ</text>
+<line x1="440" y1="128" x2="590" y2="165" stroke="#e91e63" stroke-width="2"/>
+<polygon points="590,165 578,162 583,175" fill="#e91e63"/>
+<text x="540" y="152" fill="#e91e63" font-size="9">偏った</text>
+<text x="540" y="164" fill="#e91e63" font-size="9">質問</text>
+<rect x="590" y="155" width="170" height="70" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<text x="675" y="183" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">LLMへの入力</text>
+<text x="675" y="201" text-anchor="middle" fill="#ffffff" font-size="11">プロンプト</text>
+<text x="675" y="217" text-anchor="middle" fill="#aaaaaa" font-size="10">前提が埋め込まれた質問</text>
+<line x1="630" y1="225" x2="550" y2="288" stroke="#e91e63" stroke-width="2"/>
+<polygon points="550,288 553,275 563,281" fill="#e91e63"/>
+<text x="615" y="270" fill="#e91e63" font-size="9">Sycophancy</text>
+<text x="615" y="282" fill="#e91e63" font-size="9">迎合</text>
+<rect x="300" y="278" width="200" height="70" rx="10" fill="#e91e63" opacity="0.8"/>
+<text x="400" y="308" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">増幅された出力</text>
+<text x="400" y="326" text-anchor="middle" fill="#ffffff" font-size="11">確証情報の生成</text>
+<text x="400" y="343" text-anchor="middle" fill="#ffe082" font-size="10">「やっぱりそうだった！」</text>
+<line x1="360" y1="278" x2="210" y2="225" stroke="#f9a825" stroke-width="2"/>
+<polygon points="210,225 213,212 223,218" fill="#f9a825"/>
+<text x="250" y="262" fill="#f9a825" font-size="9">確認</text>
+<text x="250" y="274" fill="#f9a825" font-size="9">強化</text>
+<rect x="40" y="155" width="170" height="70" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="125" y="183" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">信念の強化</text>
+<text x="125" y="201" text-anchor="middle" fill="#ffffff" font-size="11">確信度が上昇</text>
+<text x="125" y="217" text-anchor="middle" fill="#aaaaaa" font-size="10">批判的思考が低下</text>
+<line x1="125" y1="155" x2="310" y2="115" stroke="#f9a825" stroke-width="2"/>
+<polygon points="310,115 300,110 305,123" fill="#f9a825"/>
+</svg>
 
 
 ---
@@ -182,6 +287,47 @@ style: |
 
 ---
 
+# エコーチェンバーの3層構造（図解）
+
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="360" fill="#1a1a2e"/>
+<text x="400" y="34" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">エコーチェンバーの3層構造</text>
+<rect x="30" y="60" width="220" height="250" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="88" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">Layer 1: SNS</text>
+<text x="140" y="108" text-anchor="middle" fill="#aaaaaa" font-size="10">フィルターバブル</text>
+<text x="50" y="135" fill="#ffffff" font-size="10">✗ 同質な意見を優先表示</text>
+<text x="50" y="153" fill="#ffffff" font-size="10">✗ 反対意見は減衰</text>
+<text x="50" y="171" fill="#ffffff" font-size="10">✗ 信念が自己強化される</text>
+<rect x="50" y="200" width="160" height="80" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+<text x="130" y="222" text-anchor="middle" fill="#f9a825" font-size="9">Pariser (2011)</text>
+<text x="130" y="238" text-anchor="middle" fill="#aaaaaa" font-size="9">Bakshy et al. (2015)</text>
+<text x="130" y="258" text-anchor="middle" fill="#ffffff" font-size="9">Facebookで実証</text>
+<rect x="290" y="60" width="220" height="250" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+<text x="400" y="88" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">Layer 2: LLM</text>
+<text x="400" y="108" text-anchor="middle" fill="#aaaaaa" font-size="10">Sycophancy</text>
+<text x="310" y="135" fill="#ffffff" font-size="10">✗ 偏ったプロンプトに追従</text>
+<text x="310" y="153" fill="#ffffff" font-size="10">✗ ユーザーが喜ぶ回答を生成</text>
+<text x="310" y="171" fill="#ffffff" font-size="10">✗ 前言を簡単に撤回</text>
+<rect x="310" y="200" width="160" height="80" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+<text x="390" y="222" text-anchor="middle" fill="#e91e63" font-size="9">Perez et al. (2022)</text>
+<text x="390" y="238" text-anchor="middle" fill="#aaaaaa" font-size="9">69%が誤前提に追従</text>
+<text x="390" y="258" text-anchor="middle" fill="#ffffff" font-size="9">RLHF起源</text>
+<rect x="550" y="60" width="220" height="250" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="1.5"/>
+<text x="660" y="88" text-anchor="middle" fill="#4db6ac" font-size="12" font-weight="bold">Layer 3: RAG</text>
+<text x="660" y="108" text-anchor="middle" fill="#aaaaaa" font-size="10">検索バイアス</text>
+<text x="570" y="135" fill="#ffffff" font-size="10">✗ クエリが信念を反映</text>
+<text x="570" y="153" fill="#ffffff" font-size="10">✗ 類似文書を優先選択</text>
+<text x="570" y="171" fill="#ffffff" font-size="10">✗ 「客観的」に見せる</text>
+<rect x="570" y="200" width="160" height="80" rx="6" fill="#1a1a2e" stroke="#4db6ac" stroke-width="1"/>
+<text x="650" y="222" text-anchor="middle" fill="#4db6ac" font-size="9">最も危険</text>
+<text x="650" y="238" text-anchor="middle" fill="#aaaaaa" font-size="9">「検索した」という</text>
+<text x="650" y="258" text-anchor="middle" fill="#ffffff" font-size="9">錯覚を与えながら増幅</text>
+<text x="400" y="330" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">3層が重なるとバイアスは指数関数的に増幅する</text>
+</svg>
+
+
+---
+
 <!-- _class: lead -->
 # エージェント型AIのバイアス伝播
 
@@ -271,6 +417,39 @@ style: |
 - ④ RAGでは多様な情報源から取得するよう設計する
 - ⑤ 出力に根拠引用を必須にする（ハルシネーション低減）
 - ⑥ 定期的なバイアス評価テストをCI/CDに組み込む
+
+
+---
+
+# バイアス対策の設計原則（図解）
+
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="360" fill="#1a1a2e"/>
+<text x="400" y="34" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">バイアス対策の設計原則</text>
+<rect x="30" y="62" width="360" height="130" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="210" y="88" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">プロンプト設計</text>
+<text x="50" y="112" fill="#ffffff" font-size="11">① 中立的な質問形式を強制する</text>
+<text x="50" y="132" fill="#ffffff" font-size="11">② 「反論も提示せよ」と明示する</text>
+<text x="50" y="152" fill="#ffffff" font-size="11">③ 複数観点を要求 (Chain-of-Thought)</text>
+<text x="50" y="172" fill="#aaaaaa" font-size="10">例: "Discuss both pros and cons..."</text>
+<rect x="410" y="62" width="360" height="130" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+<text x="590" y="88" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">システム設計</text>
+<text x="430" y="112" fill="#ffffff" font-size="11">④ RAGで多様な情報源を使う</text>
+<text x="430" y="132" fill="#ffffff" font-size="11">⑤ 根拠引用を必須にする</text>
+<text x="430" y="152" fill="#ffffff" font-size="11">⑥ Constitutional AI の活用</text>
+<text x="430" y="172" fill="#aaaaaa" font-size="10">例: Anthropic CAI (2022)</text>
+<rect x="30" y="212" width="360" height="110" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="1.5"/>
+<text x="210" y="238" text-anchor="middle" fill="#4db6ac" font-size="12" font-weight="bold">Red-teaming</text>
+<text x="50" y="262" fill="#ffffff" font-size="11">• Adversarial Prompting</text>
+<text x="50" y="280" fill="#ffffff" font-size="11">• Persona Variation</text>
+<text x="50" y="298" fill="#ffffff" font-size="11">• Counterfactual Testing</text>
+<rect x="410" y="212" width="360" height="110" rx="10" fill="#16213e" stroke="#aaaaaa" stroke-width="1.5"/>
+<text x="590" y="238" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="bold">CI/CD統合</text>
+<text x="430" y="262" fill="#ffffff" font-size="11">• 定期的なバイアス評価テスト</text>
+<text x="430" y="280" fill="#ffffff" font-size="11">• モデル更新時の自動検証</text>
+<text x="430" y="298" fill="#ffffff" font-size="11">• 多様なユーザー視点でのQA</text>
+<text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="11">対策は設計段階から — デプロイ後の修正は困難</text>
+</svg>
 
 
 ---

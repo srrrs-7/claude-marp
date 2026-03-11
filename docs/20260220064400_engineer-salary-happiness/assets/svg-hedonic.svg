@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">ヘドニック・アダプテーション（快楽の踏み車）</text>
+  <!-- treadmill cycle -->
+  <!-- base happiness line -->
+  <line x1="70" y1="200" x2="730" y2="200" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.5"/>
+  <text x="40" y="205" fill="#f9a825" font-size="11" font-family="sans-serif" text-anchor="middle">基準</text>
+  <!-- wave: rise then fall back to baseline -->
+  <path d="M80,200 L150,200 L160,120 L220,120 L260,200 L320,200 L330,110 L390,110 L430,200 L490,200 L500,100 L560,100 L610,200 L680,200" fill="none" stroke="#e91e63" stroke-width="2.5"/>
+  <!-- event labels -->
+  <text x="190" y="112" fill="#e91e63" font-size="11" font-family="sans-serif" text-anchor="middle">昇給</text>
+  <text x="360" y="102" fill="#e91e63" font-size="11" font-family="sans-serif" text-anchor="middle">昇給</text>
+  <text x="530" y="92" fill="#e91e63" font-size="11" font-family="sans-serif" text-anchor="middle">昇給</text>
+  <!-- baseline return arrows -->
+  <text x="260" y="218" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">慣れ→基準に戻る</text>
+  <text x="430" y="218" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">慣れ→基準に戻る</text>
+  <text x="610" y="218" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">慣れ→基準に戻る</text>
+  <!-- axis labels -->
+  <text x="400" y="280" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">→ 時間</text>
+  <!-- lifestyle inflation box -->
+  <rect x="100" y="305" width="600" height="45" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="400" y="325" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">ライフスタイル・インフレーション</text>
+  <text x="400" y="343" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">収入増 → 支出増 → 余裕なし → 比較対象が上にシフト</text>
+</svg>

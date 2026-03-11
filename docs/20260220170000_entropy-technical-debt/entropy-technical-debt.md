@@ -28,13 +28,19 @@ style: |
 
 ---
 
-# 問いかけ：なぜコードは腐るのか？
+# 問いかけ：なぜコードは腐るのか？（1/2）
 
 - **誰も「腐らせよう」とは思っていない**
 - - 丁寧に書いたはずのコードがなぜ数年で手をつけられなくなるのか
 - - 技術的負債は「悪い開発者」のせいなのか？
 - 
 - **このワークショップの問い**
+
+
+---
+
+# 問いかけ：なぜコードは腐るのか？（2/2）
+
 - - コードの劣化は **物理法則** と同じメカニズムで動いているのではないか？
 - - そうだとすれば、どう「抵抗」すればよいか？
 - 
@@ -45,12 +51,18 @@ style: |
 
 ---
 
-# アジェンダ
+# アジェンダ（1/2）
 
 - **Part 1** — 熱力学第二法則とエントロピー（理論基盤）
 - **Part 2** — 技術的負債とエントロピーの対応関係
 - **Part 3** — 技術的負債の計測・定量化
 - **Part 4** — リファクタリング・負債返済の実践戦略
+
+
+---
+
+# アジェンダ（2/2）
+
 - **Part 5** — 組織・プロセス・パターン比較事例
 - **Part 6** — まとめ・Q&A
 - 
@@ -67,12 +79,18 @@ style: |
 
 ---
 
-# 熱力学第二法則とは何か
+# 熱力学第二法則とは何か（1/2）
 
 - **第一法則（エネルギー保存）**: エネルギーは生まれも消えもしない
 - **第二法則（エントロピー増大）**: 孤立系のエントロピーは増大し続ける
 - 
 - **直感的な意味**
+
+
+---
+
+# 熱力学第二法則とは何か（2/2）
+
 - - 散らかった部屋は放置すれば「勝手に」整理整頓されない
 - - 熱は冷たい方向へ流れる（逆は起きない）
 - - 割れたガラスは自然に元に戻らない
@@ -82,13 +100,19 @@ style: |
 
 ---
 
-# エントロピーの定義：S = k_B × ln(Ω)
+# エントロピーの定義：S = k_B × ln(Ω)（1/2）
 
 - **ボルツマンの式**: S = k_B × ln(Ω)
 - - S：エントロピー（無秩序の度合い）
 - - k_B：ボルツマン定数（1.38 × 10⁻²³ J/K）
 - - Ω：マクロ状態を実現できるミクロ状態の数
 - 
+
+
+---
+
+# エントロピーの定義：S = k_B × ln(Ω)（2/2）
+
 - **ソフトウェアへのアナロジー**
 - - Ω = 同じ「機能を満たす」コードの書き方のバリエーション数
 - - 正しく動くコードの書き方は無数にある → Ω は指数的に大きい
@@ -99,13 +123,19 @@ style: |
 
 ---
 
-# 閉じた系では無秩序は増大する
+# 閉じた系では無秩序は増大する（1/2）
 
 - **孤立系（Isolated System）の定義**
 - - 外部とエネルギーも物質もやり取りしない系
 - - 第二法則：孤立系のエントロピーは ΔS ≥ 0 で単調増加
 - 
 - **開放系（Open System）ならば**
+
+
+---
+
+# 閉じた系では無秩序は増大する（2/2）
+
 - - 外部からエネルギーを注入することで局所的に秩序を作れる
 - - 生命体・都市・企業はすべて開放系として秩序を維持している
 - 
@@ -116,13 +146,19 @@ style: |
 
 ---
 
-# 情報エントロピー（シャノン）への拡張
+# 情報エントロピー（シャノン）への拡張（1/2）
 
 - **シャノンのエントロピー（1948年）**
 - H(X) = -Σ p(x) × log₂ p(x)
 - 
 - - 情報の「不確実性」または「乱雑さ」を定量化
 - - 予測可能なメッセージ → H = 0（秩序）
+
+
+---
+
+# 情報エントロピー（シャノン）への拡張（2/2）
+
 - - 完全にランダムなメッセージ → H = log₂ n（最大）
 - 
 - **コードへの対応**
@@ -133,13 +169,19 @@ style: |
 
 ---
 
-# ソフトウェアは孤立系か？
+# ソフトウェアは孤立系か？（1/2）
 
 - **物理学では孤立系は理想化モデル**
 - - 現実には完全な孤立系は存在しない
 - - ただし「ほぼ孤立」になると法則は強く働く
 - 
 - **コードベースの「孤立度」を決める要因**
+
+
+---
+
+# ソフトウェアは孤立系か？（2/2）
+
 - - 開発者の入れ替わり（知識の流出）
 - - テストの欠如（変更コストが高く触れない）
 - - ドキュメントの欠如（意図が失われる）
@@ -150,13 +192,19 @@ style: |
 
 ---
 
-# コードの「状態数」を考える
+# コードの「状態数」を考える（1/2）
 
 - **ボルツマン的視点でコードを見る**
 - 
 - 同じ「ユーザーを取得する」処理に何通りの書き方があるか？
 - - 変数名のバリエーション: user / u / usr / userData / userObj / ...（無数）
 - - エラー処理の場所: 呼び出し元 / 関数内 / グローバル / 混在 ...
+
+
+---
+
+# コードの「状態数」を考える（2/2）
+
 - - 副作用の有無: 純粋関数 / DBアクセス内包 / キャッシュ参照 ...
 - - 型の表現: 具体型 / any / unknown / Union型 / アサーション ...
 - 
@@ -167,7 +215,7 @@ style: |
 
 ---
 
-# SVG図: エントロピー増大曲線 vs コード品質劣化曲線
+# SVG図: エントロピー増大曲線 vs コード品質劣化曲線（1/2）
 
 - <svg viewBox='0 0 760 380' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs>
@@ -183,6 +231,12 @@ style: |
 -   <path d='M 60 300 Q 200 280 350 220 Q 500 150 660 80 Q 690 68 720 60' stroke='#ef4444' stroke-width='2.5' fill='none'/>
 -   <!-- Code quality curve (falling) -->
 -   <path d='M 60 80 Q 150 90 280 130 Q 420 180 560 240 Q 640 280 720 300' stroke='#3b82f6' stroke-width='2.5' fill='none'/>
+
+
+---
+
+# SVG図: エントロピー増大曲線 vs コード品質劣化曲線（2/2）
+
 -   <!-- Legend -->
 -   <rect x='480' y='55' width='225' height='70' rx='6' fill='#1e293b' opacity='0.85'/>
 -   <line x1='495' y1='78' x2='530' y2='78' stroke='#ef4444' stroke-width='2.5'/>
@@ -201,13 +255,19 @@ style: |
 
 ---
 
-# エネルギー投入で局所的秩序を作れる
+# エネルギー投入で局所的秩序を作れる（1/2）
 
 - **熱力学の解法：開放系として「エネルギーを注ぐ」**
 - 
 - - 冷蔵庫は内部の熱を外部に排出することで「局所的な低温」を維持
 - - 生命は食物（エネルギー）を摂取して体内の秩序を維持し、廃熱・廃棄物を外部へ
 - 
+
+
+---
+
+# エネルギー投入で局所的秩序を作れる（2/2）
+
 - **ソフトウェアへの対応**
 - - リファクタリング ＝ 開発者のエネルギー（工数）を注入して秩序を回復
 - - ただし「廃熱」も出る：削除されたコード、廃止されたパターン、旧テスト
@@ -226,13 +286,19 @@ style: |
 
 ---
 
-# 技術的負債の定義（Ward Cunningham）
+# 技術的負債の定義（Ward Cunningham）（1/2）
 
 - **Ward Cunninghamの原義（1992年）**
 - 「今の不完全な理解で書いたコードは、より深い理解を得たときに返済が必要な『借り』だ」
 - 
 - **Martin Fowlerによる分類**
 - - 意図的×無謀: 「設計なんか後で考えよう」
+
+
+---
+
+# 技術的負債の定義（Ward Cunningham）（2/2）
+
 - - 意図的×慎重: 「今は間に合わせで進めよう、後でリファクタする」
 - - 不注意×無謀: 「レイヤー設計って何？」
 - - 不注意×慎重: 「後になってあの設計が問題だったと気づいた」
@@ -242,7 +308,7 @@ style: |
 
 ---
 
-# SVG図: エントロピー↔技術的負債の対応表
+# SVG図: エントロピー↔技術的負債の対応表（1/2）
 
 - <svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs>
@@ -265,6 +331,12 @@ style: |
 -   <rect x='30' y='156' width='340' height='36' rx='3' fill='#1e293b'/>
 -   <text x='200' y='179' text-anchor='middle' class='cl'>ミクロ状態数 Ω</text>
 -   <rect x='390' y='156' width='340' height='36' rx='3' fill='#1e293b'/>
+
+
+---
+
+# SVG図: エントロピー↔技術的負債の対応表（2/2）
+
 -   <text x='560' y='179' text-anchor='middle' class='cl'>コードの書き方のバリエーション数</text>
 -   <rect x='30' y='200' width='340' height='36' rx='3' fill='#0f172a'/>
 -   <text x='200' y='223' text-anchor='middle' class='cl'>外部エネルギー投入</text>
@@ -290,7 +362,7 @@ style: |
 
 ---
 
-# 「意図的負債」vs「不可避な複雑性」
+# 「意図的負債」vs「不可避な複雑性」（1/2）
 
 - **Accidental Complexity（偶発的複雑性）**
 - = 意図せず・不注意で生まれた負債 → **エントロピーの自然増大**
@@ -298,6 +370,12 @@ style: |
 - 
 - **Essential Complexity（本質的複雑性）**
 - = 問題領域が本質的に持つ複雑さ → **避けられない物理的エントロピー**
+
+
+---
+
+# 「意図的負債」vs「不可避な複雑性」（2/2）
+
 - - 税務計算・医療プロトコル・金融リスク計算は「そもそも複雑」
 - 
 - **戦略の分岐点**
@@ -308,13 +386,19 @@ style: |
 
 ---
 
-# Connascence：結合度とエントロピー
+# Connascence：結合度とエントロピー（1/2）
 
 - **Connascence（連鎖性）**: 一方を変えると他方も変えなければならない関係
 - 
 - **強さの順（エントロピーの度合い）**
 - - CoN（名前の連鎖）: 最も弱い ← コントロール可能
 - - CoT（型の連鎖）: 型変更で伝播
+
+
+---
+
+# Connascence：結合度とエントロピー（2/2）
+
 - - CoV（値の連鎖）: 定数の重複
 - - CoA（アルゴリズムの連鎖）: 同じロジックが散在
 - - CoEx（実行順序の連鎖）: 暗黙的な順序依存
@@ -325,7 +409,7 @@ style: |
 
 ---
 
-# コードの状態遷移：秩序→混沌の実例
+# コードの状態遷移：秩序→混沌の実例（1/2）
 
 - **リリース1週目（秩序）**
 - - 3層アーキテクチャが明確、循環依存なし、命名統一
@@ -333,6 +417,12 @@ style: |
 - **6ヶ月後（エントロピー増大開始）**
 - - 例外処理のため「とりあえず」の直接DB呼び出しが2箇所
 - - 設定値がコードに直書きされ始める
+
+
+---
+
+# コードの状態遷移：秩序→混沌の実例（2/2）
+
 - 
 - **2年後（エントロピー高進）**
 - - Service層とRepository層の区別が曖昧に
@@ -344,7 +434,7 @@ style: |
 
 ---
 
-# SVG図: 技術的負債蓄積モデル（エントロピー増大として）
+# SVG図: 技術的負債蓄積モデル（エントロピー増大として）（1/2）
 
 - <svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs>
@@ -361,6 +451,12 @@ style: |
 -   <line x1='200' y1='240' x2='200' y2='220' stroke='#22c55e' stroke-width='2' stroke-dasharray='4,3'/>
 -   <line x1='320' y1='175' x2='320' y2='158' stroke='#22c55e' stroke-width='2' stroke-dasharray='4,3'/>
 -   <line x1='440' y1='112' x2='440' y2='98' stroke='#22c55e' stroke-width='2' stroke-dasharray='4,3'/>
+
+
+---
+
+# SVG図: 技術的負債蓄積モデル（エントロピー増大として）（2/2）
+
 -   <!-- refactoring labels -->
 -   <text x='205' y='215' class='lb' fill='#22c55e'>↑RF</text>
 -   <text x='325' y='153' class='lb' fill='#22c55e'>↑RF</text>
@@ -380,13 +476,19 @@ style: |
 
 ---
 
-# なぜエンジニアは負債を見落とすのか
+# なぜエンジニアは負債を見落とすのか（1/2）
 
 - **認知バイアスとエントロピーの見えにくさ**
 - 
 - - **現状維持バイアス**: 今動いているコードは「正常」に見える
 - - **ゆでガエル効果**: 毎日少しずつ悪化するため変化に気づかない
 - - **確証バイアス**: 「自分のコードは綺麗」と思いたい
+
+
+---
+
+# なぜエンジニアは負債を見落とすのか（2/2）
+
 - - **埋没費用**: 長時間かけて書いたコードを「捨てる」のが惜しい
 - 
 - **計測されないものは管理できない**
@@ -404,7 +506,7 @@ style: |
 
 ---
 
-# 計測なくして管理なし
+# 計測なくして管理なし（1/2）
 
 - **「測れないものは改善できない」— Lord Kelvin**
 - 
@@ -412,6 +514,12 @@ style: |
 - - どこにエントロピーが集中しているかを特定する
 - - リファクタリング投資の優先順位を決める
 - - 改善の効果を定量的に示す（ステークホルダーへの説明責任）
+
+
+---
+
+# 計測なくして管理なし（2/2）
+
 - 
 - **代表的な計測アプローチ**
 - - 構造的複雑度（Cyclomatic Complexity）
@@ -423,7 +531,7 @@ style: |
 
 ---
 
-# Cyclomatic Complexity：コードの「状態数」
+# Cyclomatic Complexity：コードの「状態数」（1/2）
 
 - **定義（McCabe, 1976年）**
 - CC = E - N + 2P
@@ -431,6 +539,12 @@ style: |
 - 
 - **簡易計算**: 条件分岐（if / else if / case / while / for / catch）の数 + 1
 - 
+
+
+---
+
+# Cyclomatic Complexity：コードの「状態数」（2/2）
+
 - **目安**
 - - CC 1-10: 単純・テスト容易
 - - CC 11-20: 複雑さあり・注意
@@ -442,7 +556,7 @@ style: |
 
 ---
 
-# 認知的複雑度（Cognitive Complexity）
+# 認知的複雑度（Cognitive Complexity）（1/2）
 
 - **Sonarqube が提唱（2018年、G. Ann Campbell）**
 - 
@@ -450,6 +564,12 @@ style: |
 - 
 - **ルール**
 - - ネストが深くなるたびにペナルティ +n（深さに比例）
+
+
+---
+
+# 認知的複雑度（Cognitive Complexity）（2/2）
+
 - - break / continue ラベル・再帰も加点
 - - メソッドチェーン・三項演算子は加点なし（読みやすい）
 - 
@@ -460,7 +580,7 @@ style: |
 
 ---
 
-# SVG図: 複雑度とバグ率の相関
+# SVG図: 複雑度とバグ率の相関（1/2）
 
 - <svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs>
@@ -484,6 +604,12 @@ style: |
 -   <circle cx='115' cy='278' r='5' fill='#22c55e' opacity='0.8'/>
 -   <circle cx='130' cy='270' r='5' fill='#22c55e' opacity='0.8'/>
 -   <circle cx='150' cy='265' r='5' fill='#22c55e' opacity='0.8'/>
+
+
+---
+
+# SVG図: 複雑度とバグ率の相関（2/2）
+
 -   <circle cx='170' cy='260' r='5' fill='#3b82f6' opacity='0.8'/>
 -   <circle cx='185' cy='255' r='5' fill='#3b82f6' opacity='0.8'/>
 -   <circle cx='200' cy='245' r='5' fill='#3b82f6' opacity='0.8'/>
@@ -511,7 +637,7 @@ style: |
 
 ---
 
-# 変更頻度 × 複雑度のホットスポット分析
+# 変更頻度 × 複雑度のホットスポット分析（1/2）
 
 - **Adam Thornhillの手法（「Your Code as a Crime Scene」）**
 - 
@@ -519,6 +645,12 @@ style: |
 - - **Y軸**: git変更頻度（過去N週間のコミット数）
 - - **バブルサイズ**: コード行数
 - 
+
+
+---
+
+# 変更頻度 × 複雑度のホットスポット分析（2/2）
+
 - **4象限の解釈**
 - - 高複雑 × 高頻度 = **ホットスポット（最優先リファクタ対象）**
 - - 高複雑 × 低頻度 = 「眠れる地雷」（急がないが管理が必要）
@@ -533,6 +665,11 @@ style: |
 # TypeScript: 複雑度計算の実装例
 
 - 複雑度とgit変更頻度からホットスポットスコアを算出する実装例
+
+
+---
+
+# TypeScript: 複雑度計算の実装例（コード例）
 
 ```typescript
 import { execSync } from 'node:child_process';
@@ -575,7 +712,7 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 ---
 
-# 依存グラフと循環依存（エントロピー爆発）
+# 依存グラフと循環依存（エントロピー爆発）（1/2）
 
 - **循環依存 = 熱力学的な「閉じた系」**
 - - A → B → C → A: 変更が環状に伝播し収束しない
@@ -584,6 +721,12 @@ function rankHotspots(files: string[]): HotspotScore[] {
 - **検出コマンド**
 - ```bash
 - npx madge --circular src/           # 循環依存の一覧
+
+
+---
+
+# 依存グラフと循環依存（エントロピー爆発）（2/2）
+
 - npx dependency-cruiser --validate .dependency-cruiser.js src/
 - ```
 - 
@@ -614,7 +757,7 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 ---
 
-# SVG図: 技術的負債ダッシュボード構成
+# SVG図: 技術的負債ダッシュボード構成（1/2）
 
 - <svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs>
@@ -638,6 +781,12 @@ function rankHotspots(files: string[]): HotspotScore[] {
 -   <text x='20' y='130' class='lb' fill='#aaa'>ホットスポット上位5ファイル（CC × 変更頻度）</text>
 -   <rect x='20' y='140' width='500' height='14' rx='3' fill='#ef4444'/>
 -   <text x='525' y='152' class='lb'>UserService.ts  (score: 840)</text>
+
+
+---
+
+# SVG図: 技術的負債ダッシュボード構成（2/2）
+
 -   <rect x='20' y='162' width='390' height='14' rx='3' fill='#f97316'/>
 -   <text x='525' y='174' class='lb'>OrderProcessor.ts  (score: 650)</text>
 -   <rect x='20' y='184' width='300' height='14' rx='3' fill='#fbbf24'/>
@@ -673,7 +822,7 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 ---
 
-# ストラテジー1: ボーイスカウトルール
+# ストラテジー1: ボーイスカウトルール（1/2）
 
 - **「キャンプ場を去るときには、来た時よりきれいにせよ」— ロバート・C・マーティン**
 - 
@@ -681,6 +830,12 @@ function rankHotspots(files: string[]): HotspotScore[] {
 - - バグ修正のついでに命名を改善
 - - 機能追加のついでに関数を分割
 - - 「ついで」の改善を PR レビューで称賛する文化
+
+
+---
+
+# ストラテジー1: ボーイスカウトルール（2/2）
+
 - 
 - **熱力学的意味**: 毎回少量のエネルギーを注入して、エントロピーの自然増大を相殺する
 - 
@@ -691,7 +846,7 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 ---
 
-# ストラテジー2: ストラングラーフィグパターン
+# ストラテジー2: ストラングラーフィグパターン（1/2）
 
 - **由来**: 絞め殺しイチジクは宿主木を包み込みながら成長し、やがて宿主を置換する
 - 
@@ -699,6 +854,12 @@ function rankHotspots(files: string[]): HotspotScore[] {
 - 1. 新しい機能は新しいコンポーネントに実装する
 - 2. レガシーコードへの呼び出しをファサード（Facade）で包む
 - 3. 段階的にファサードの実装を新コードに差し替えていく
+
+
+---
+
+# ストラテジー2: ストラングラーフィグパターン（2/2）
+
 - 4. レガシーが完全に包まれたら削除する
 - 
 - **エントロピー的意味**
@@ -710,7 +871,7 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 ---
 
-# ストラテジー3: ADR（Architecture Decision Records）
+# ストラテジー3: ADR（Architecture Decision Records）（1/2）
 
 - **ADR とは**: アーキテクチャ上の意思決定を記録するMarkdownドキュメント
 - 
@@ -720,6 +881,12 @@ function rankHotspots(files: string[]): HotspotScore[] {
 - 
 - **テンプレート**
 - ```markdown
+
+
+---
+
+# ストラテジー3: ADR（Architecture Decision Records）（2/2）
+
 - # ADR-0012: UserService のキャッシュ戦略
 - Status: Accepted
 - Context: 月次レポートのクエリが N+1 問題を引き起こしていた
@@ -732,7 +899,7 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 ---
 
-# SVG図: 負債返済ロードマップ設計
+# SVG図: 負債返済ロードマップ設計（1/2）
 
 - <svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs>
@@ -762,6 +929,12 @@ function rankHotspots(files: string[]): HotspotScore[] {
 -   <text x='215' y='199' class='lb'>  をレガシーに被せる</text>
 -   <text x='215' y='217' class='lb'>• 循環依存を解消</text>
 -   <text x='215' y='235' class='lb'>• モジュール境界整備</text>
+
+
+---
+
+# SVG図: 負債返済ロードマップ設計（2/2）
+
 -   <!-- Phase 3 -->
 -   <rect x='380' y='40' width='160' height='290' rx='8' fill='#1e3a5f'/>
 -   <rect x='380' y='40' width='160' height='36' rx='8' fill='#f97316'/>
@@ -794,7 +967,7 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 ---
 
-# リファクタリングの「冷却」サイクル
+# リファクタリングの「冷却」サイクル（1/2）
 
 - **熱力学アナロジー：冷却には時間とエネルギーが必要**
 - 
@@ -803,6 +976,12 @@ function rankHotspots(files: string[]): HotspotScore[] {
 - - ただし「リファクタリング専用スプリント」は危険 ← ビジネス価値ゼロに見える
 - 
 - **推奨**: 機能開発と一体化（ボーイスカウト＋ホットスポット優先）
+
+
+---
+
+# リファクタリングの「冷却」サイクル（2/2）
+
 - 
 - **「技術的負債の利子」を計算する**
 - - 変更1件あたりの余計な工数 × 変更頻度 = 月次コスト
@@ -817,6 +996,11 @@ function rankHotspots(files: string[]): HotspotScore[] {
 # TypeScript: 依存性逆転で結合度を下げる
 
 - 依存性逆転（DIP）でモジュール間の循環依存を解消する実装例
+
+
+---
+
+# TypeScript: 依存性逆転で結合度を下げる（コード例）
 
 ```typescript
 // Before: 高エントロピー（UserService が DB に直接依存）
@@ -847,7 +1031,7 @@ class UserService {
 
 ---
 
-# テストはエントロピーの「断熱材」
+# テストはエントロピーの「断熱材」（1/2）
 
 - **断熱材の役割**: 内部の秩序を外部環境の乱れから守る
 - 
@@ -855,6 +1039,12 @@ class UserService {
 - - 変更後にテストが通る → 秩序が維持されたことの証明
 - - テストがない = 変更がエントロピーを増大させてもフィードバックがない
 - 
+
+
+---
+
+# テストはエントロピーの「断熱材」（2/2）
+
 - **テストピラミッドとエントロピー**
 - - ユニットテスト（底辺）: 局所的エントロピーをチェック
 - - インテグレーションテスト（中段）: モジュール間のエントロピー伝播を検知
@@ -865,7 +1055,7 @@ class UserService {
 
 ---
 
-# モジュール境界でエントロピーを閉じ込める
+# モジュール境界でエントロピーを閉じ込める（1/2）
 
 - **物理学のアナロジー：断熱壁で系を分割する**
 - - 壁があることで、一方の系のエントロピー増大が他方に伝播しない
@@ -875,6 +1065,12 @@ class UserService {
 - - 公開APIは最小限（Public Surface）← 壁の「穴」を小さくする
 - - 内部実装は隠蔽（詳細は変わりやすい = 高エントロピー源）
 - - 依存方向は単一方向（DAG）
+
+
+---
+
+# モジュール境界でエントロピーを閉じ込める（2/2）
+
 - 
 - **Barrel Export の罠**
 - ```typescript
@@ -890,6 +1086,11 @@ class UserService {
 # TypeScript: モジュール境界チェックの実装
 
 - 依存クルーザーを使ったモジュール境界の自動検証設定例
+
+
+---
+
+# TypeScript: モジュール境界チェックの実装（コード例）
 
 ```javascript
 // .dependency-cruiser.js — 許可される依存方向を宣言
@@ -924,7 +1125,7 @@ module.exports = {
 
 ---
 
-# SVG図: マイクロサービスによるエントロピー隔離
+# SVG図: マイクロサービスによるエントロピー隔離（1/2）
 
 - <svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs>
@@ -945,6 +1146,12 @@ module.exports = {
 -   <!-- Arrow -->
 -   <polygon points='350,185 370,179 370,191' fill='#22c55e'/>
 -   <text x='360' y='177' text-anchor='middle' class='lb' fill='#22c55e'>分割</text>
+
+
+---
+
+# SVG図: マイクロサービスによるエントロピー隔離（2/2）
+
 -   <!-- Microservices -->
 -   <rect x='385' y='40' width='350' height='300' rx='8' fill='#0f172a' stroke='#22c55e' stroke-width='2'/>
 -   <text x='560' y='62' text-anchor='middle' class='hd' fill='#22c55e'>マイクロサービス（隔離）</text>
@@ -969,7 +1176,7 @@ module.exports = {
 
 ---
 
-# ワークショップ演習：あなたのシステムのエントロピーマップ
+# ワークショップ演習：あなたのシステムのエントロピーマップ（1/2）
 
 - **15分間の演習**
 - 
@@ -978,6 +1185,12 @@ module.exports = {
 - - 「変更のたびに怖い」「誰も触りたがらない」ファイルを特定する
 - 
 - **Step 2: エントロピー分類（5分）**
+
+
+---
+
+# ワークショップ演習：あなたのシステムのエントロピーマップ（2/2）
+
 - - それぞれのモジュールについて：
 -   - Accidental（偶発的）か Essential（本質的）か？
 -   - 孤立系化しているか？（テストなし・文書なし・知っている人がいない）
@@ -997,7 +1210,7 @@ module.exports = {
 
 ---
 
-# コンウェイの法則：組織構造がエントロピーを決める
+# コンウェイの法則：組織構造がエントロピーを決める（1/2）
 
 - **コンウェイの法則（1968年）**
 - 「システムを設計する組織は、その組織のコミュニケーション構造を写したシステムを作る」
@@ -1005,6 +1218,12 @@ module.exports = {
 - **エントロピー解釈**
 - - 組織のコミュニケーション経路 = コードの依存グラフ
 - - 部門間のサイロ = モジュール間の不明確な境界
+
+
+---
+
+# コンウェイの法則：組織構造がエントロピーを決める（2/2）
+
 - - 情報が流れない組織 = 知識エントロピーが高い組織
 - 
 - **逆コンウェイ戦略（Inverse Conway Maneuver）**
@@ -1016,7 +1235,7 @@ module.exports = {
 
 ---
 
-# チームのエントロピー：人員入れ替えとコード劣化
+# チームのエントロピー：人員入れ替えとコード劣化（1/2）
 
 - **知識の「蒸発」とエントロピー**
 - - チームメンバーの退職・異動 → 暗黙知が失われる = 知識エントロピー増大
@@ -1024,6 +1243,12 @@ module.exports = {
 - 
 - **Bus Factor（バスファクター）**
 - - 「バスに轢かれた場合にプロジェクトが停止する人数」
+
+
+---
+
+# チームのエントロピー：人員入れ替えとコード劣化（2/2）
+
 - - Bus Factor = 1 → 極めて高い知識エントロピーの警告サイン
 - 
 - **対策**
@@ -1035,7 +1260,7 @@ module.exports = {
 
 ---
 
-# SVG図: スプリントサイクルとエントロピーの増減
+# SVG図: スプリントサイクルとエントロピーの増減（1/2）
 
 - <svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs>
@@ -1055,6 +1280,12 @@ module.exports = {
 -   <text x='90' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S1</text>
 -   <text x='150' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S2</text>
 -   <text x='210' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S3</text>
+
+
+---
+
+# SVG図: スプリントサイクルとエントロピーの増減（2/2）
+
 -   <text x='270' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S4</text>
 -   <text x='330' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S5</text>
 -   <text x='390' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S6</text>
@@ -1077,7 +1308,7 @@ module.exports = {
 
 ---
 
-# レビュープロセスはエントロピーへの抵抗力
+# レビュープロセスはエントロピーへの抵抗力（1/2）
 
 - **コードレビューの熱力学的意味**
 - - 「外部の目」= 外部エネルギー源
@@ -1086,6 +1317,12 @@ module.exports = {
 - **効果的なレビューの焦点（エントロピー視点）**
 - - 命名の一貫性（情報エントロピーを下げる）
 - - 新たな循環依存の導入を防ぐ（構造エントロピー）
+
+
+---
+
+# レビュープロセスはエントロピーへの抵抗力（2/2）
+
 - - 重複ロジックの指摘（Ω の増大を防ぐ）
 - - 「なぜこの設計か」の説明を求める（知識エントロピー）
 - 
@@ -1097,7 +1334,7 @@ module.exports = {
 
 ---
 
-# プラットフォームエンジニアリング：基盤的エントロピー制御
+# プラットフォームエンジニアリング：基盤的エントロピー制御（1/2）
 
 - **プラットフォームエンジニアリングとは**
 - - 開発チームが自律的にデプロイ・運用できる「舗装道路（Golden Path）」を構築
@@ -1105,6 +1342,12 @@ module.exports = {
 - **エントロピー制御の仕組み**
 - - テンプレートとスキャフォールディング → 開始状態の Ω を制限
 - - 共通ライブラリ（ロギング・認証・観測性）→ 実装バリアントを減らす
+
+
+---
+
+# プラットフォームエンジニアリング：基盤的エントロピー制御（2/2）
+
 - - CI/CDパイプライン → ゲートでエントロピー増大を自動検出
 - 
 - **効果**
@@ -1116,7 +1359,7 @@ module.exports = {
 
 ---
 
-# SVG図: 組織・プロセス・コードのエントロピー相互作用
+# SVG図: 組織・プロセス・コードのエントロピー相互作用（1/2）
 
 - <svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs>
@@ -1132,6 +1375,12 @@ module.exports = {
 -   <polygon points='375,122 385,122 380,136' fill='#aaa'/>
 -   <!-- Layer 2: Process -->
 -   <rect x='40' y='143' width='680' height='75' rx='8' fill='#1e293b' stroke='#f97316' stroke-width='1.5'/>
+
+
+---
+
+# SVG図: 組織・プロセス・コードのエントロピー相互作用（2/2）
+
 -   <text x='380' y='168' text-anchor='middle' class='hd' fill='#fed7aa'>Layer 2: プロセスエントロピー</text>
 -   <text x='380' y='188' text-anchor='middle' class='lb'>スプリント設計・レビュー文化・CI/CD・デプロイ頻度・変更障害率</text>
 -   <text x='380' y='206' text-anchor='middle' class='lb' fill='#fb923c'>制御手段: DORA計測, ボーイスカウト文化, プラットフォームエンジニアリング</text>
@@ -1168,7 +1417,7 @@ module.exports = {
 
 ---
 
-# DDD：境界コンテキストはエントロピーの「容器」
+# DDD：境界コンテキストはエントロピーの「容器」（1/2）
 
 - **ドメイン駆動設計（DDD）のBounded Context**
 - - 同じ言葉が異なるドメインで異なる意味を持つことを明示的に扱う
@@ -1176,6 +1425,12 @@ module.exports = {
 - 
 - **エントロピー的意味**
 - - Bounded Context = 「容器」でエントロピーを閉じ込める
+
+
+---
+
+# DDD：境界コンテキストはエントロピーの「容器」（2/2）
+
 - - Context Map でドメイン間の依存を管理 → 相互エントロピー伝播を防ぐ
 - - Ubiquitous Language = そのContext内の情報エントロピーを最小化する共通言語
 - 
@@ -1194,7 +1449,7 @@ module.exports = {
 
 ---
 
-# SVG図: エントロピーと技術的負債の統一フレームワーク
+# SVG図: エントロピーと技術的負債の統一フレームワーク（1/2）
 
 - <svg viewBox='0 0 760 360' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs>
@@ -1215,6 +1470,12 @@ module.exports = {
 -   <rect x='595' y='60' width='145' height='55' rx='6' fill='#78350f' stroke='#f97316' stroke-width='1.5'/>
 -   <text x='667' y='83' text-anchor='middle' class='hd' fill='#fed7aa'>隔離</text>
 -   <text x='667' y='100' text-anchor='middle' class='lb'>Bounded Context</text>
+
+
+---
+
+# SVG図: エントロピーと技術的負債の統一フレームワーク（2/2）
+
 -   <text x='667' y='114' text-anchor='middle' class='lb'>モジュール境界・DIP</text>
 -   <!-- Node: Inject Energy -->
 -   <rect x='20' y='265' width='145' height='55' rx='6' fill='#581c87' stroke='#a855f7' stroke-width='1.5'/>
@@ -1238,7 +1499,7 @@ module.exports = {
 
 ---
 
-# 3つの原則：測れ・隔離せよ・注エネルギーし続けよ
+# 3つの原則：測れ・隔離せよ・注エネルギーし続けよ（1/2）
 
 - **原則1：測れ（Measure）**
 - - 見えないエントロピーは管理できない
@@ -1247,6 +1508,12 @@ module.exports = {
 - 
 - **原則2：隔離せよ（Isolate）**
 - - 高エントロピーな領域を他の系から切り離す
+
+
+---
+
+# 3つの原則：測れ・隔離せよ・注エネルギーし続けよ（2/2）
+
 - - Bounded Context / モジュール境界 / Strangler Fig Pattern
 - - 循環依存の排除は最優先のアーキテクチャ品質指標
 - 
@@ -1258,7 +1525,7 @@ module.exports = {
 
 ---
 
-# 明日からできるアクションプラン
+# 明日からできるアクションプラン（1/2）
 
 - **今週できること（工数0〜2時間）**
 - - [ ] `npx madge --circular src/` を実行して循環依存の数を把握する
@@ -1266,6 +1533,12 @@ module.exports = {
 - - [ ] `docs/adr/` ディレクトリを作って最初のADRを書く
 - 
 - **来月できること（1〜2スプリント）**
+
+
+---
+
+# 明日からできるアクションプラン（2/2）
+
 - - [ ] CI/CD に CC 閾値チェックを追加する（PR で CC > 15 を警告）
 - - [ ] ホットスポット上位3ファイルにテストを追加する
 - - [ ] チームで「ボーイスカウトルール」を明示的に合意する
@@ -1277,7 +1550,7 @@ module.exports = {
 
 ---
 
-# 参考文献・リソース
+# 参考文献・リソース（1/2）
 
 - **書籍**
 - - [Clean Code — Robert C. Martin](https://www.oreilly.com/library/view/clean-code-a/9780136083238/)
@@ -1286,6 +1559,12 @@ module.exports = {
 - - [Accelerate — Nicole Forsgren et al.](https://itrevolution.com/accelerate-book/)
 - 
 - **論文・記事**
+
+
+---
+
+# 参考文献・リソース（2/2）
+
 - - [Technical Debt — Ward Cunningham (1992)](http://c2.com/doc/oopsla92.html)
 - - [A Taxonomy of Tech Debt — Martin Fowler](https://martinfowler.com/bliki/TechnicalDebtQuadrant.html)
 - - [Connascence — Meilir Page-Jones](https://connascence.io/)

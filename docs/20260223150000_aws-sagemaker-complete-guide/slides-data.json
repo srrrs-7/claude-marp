@@ -836,13 +836,20 @@
 			"speakerNotes": "15サービスの特性を一覧比較。コスト注意点: Studio放置(EFS継続課金), Autopilot(試行多数で高額), HPT(並列試行でコスト増), Canvas(セッション課金)。Spot適用可: Training/Processing/Async/Batch Transform。Savings Plans対象: Training/Hosting/Notebook/Studio App。"
 		},
 		{
-			"title": "試験重要ポイント TOP 20",
+			"title": "試験重要ポイント TOP 20（1/2）",
 			"content": [
 				"1. **Feature Store**: Online(DynamoDB低レイテンシ) vs Offline(S3全履歴) の使い分け",
 				"2. **Spot Training**: 最大90%コスト削減、チェックポイントで中断対応必須",
 				"3. **推論4タイプ**: RT/Serverless/Async/Batch の使い分けと制限値を暗記",
 				"4. **MME vs MCE**: 同一フレームワーク多数モデル(MME) vs 異フレームワーク(MCE)",
-				"5. **Distributed Training**: データ並列(SMDDP)= データ分割, モデル並列(SMP)= レイヤー分割",
+				"5. **Distributed Training**: データ並列(SMDDP)= データ分割, モデル並列(SMP)= レイヤー分割"
+			],
+			"layout": "default",
+			"speakerNotes": "TOP 10は必須暗記項目。特に推論4タイプの制限値(Serverless: 4MB/60秒, Async: 1GB/1時間, RT: 6MB/60秒)と、MME/MCEの選択基準は高頻出。Feature Store の Online/Offline 二重構造はほぼ毎回出題。"
+		},
+		{
+			"title": "試験重要ポイント TOP 20（2/2）",
+			"content": [
 				"6. **Model Monitor**: Data Quality / Model Quality / Bias Drift / Feature Attribution",
 				"7. **VPC分離**: EnableNetworkIsolation=true でコンテナのアウトバウンド通信遮断",
 				"8. **MLOps成熟度**: Level 0(手動) → Level 3(フル自動/継続学習)",

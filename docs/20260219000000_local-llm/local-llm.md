@@ -33,12 +33,18 @@ style: |
 
 ---
 
-# 本日のアジェンダ
+# 本日のアジェンダ（1/2）
 
 - 1. ローカルLLMとは？（概念・定義・エコシステム）
 - 2. なぜローカルLLMか？（メリット・コスト・セキュリティ）
 - 3. 主要モデルカタログ（Llama / Mistral / Phi / Gemma / DeepSeek）
 - 4. 量子化と形式（GGUF / AWQ / GPTQ）
+
+
+---
+
+# 本日のアジェンダ（2/2）
+
 - 5. 実行ツール（Ollama / LM Studio / vLLM）
 - 6. ハードウェア要件（CPU / GPU / Apple Silicon）
 - 7. 実践：Ollamaセットアップ & API活用
@@ -437,6 +443,11 @@ style: |
 - モデルは `ollama pull` で自動ダウンロード（GGUF形式）
 - 起動後は `http://localhost:11434` でAPIサーバーが待機
 
+
+---
+
+# インストールからモデル起動まで（コード例）
+
 ```bash
 # インストール (macOS / Linux)
 curl -fsSL https://ollama.com/install.sh | sh
@@ -461,6 +472,11 @@ ollama run llama3.2 "Pythonでフィボナッチ数列を書いて"
 - OllamaはOpenAI互換エンドポイントを提供
 - 既存のOpenAI SDKコードをほぼそのまま流用可能
 - 環境変数を切り替えるだけでローカル/クラウドを切替
+
+
+---
+
+# OpenAI互換APIの利用（コード例）
 
 ```typescript
 import OpenAI from "openai";
@@ -493,6 +509,11 @@ for await (const chunk of response) {
 - Modelfile でシステムプロンプト・パラメータをカスタマイズ
 - チームで共有・バージョン管理可能
 - `ollama create` でカスタムモデルとして登録
+
+
+---
+
+# Modelfile：カスタムモデルの作成（コード例）
 
 ```dockerfile
 # Modelfile
@@ -541,6 +562,11 @@ PARAMETER num_predict 2048
 - ChatOllama クラスで簡単にローカルモデルを利用
 - 既存の LangChain チェーンやエージェントがそのまま動作
 
+
+---
+
+# LangChain + Ollama 実装例（コード例）
+
 ```python
 from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -580,6 +606,11 @@ result = chain.invoke({"code": "def fib(n): return fib(n-1)+fib(n-2)"})
 
 - ベクトルDBも埋め込みモデルもローカルで完結
 - 機密ドキュメントをクラウドに送らずAI検索を実現
+
+
+---
+
+# 完全ローカルRAGの実装（コード例）
 
 ```python
 from langchain_ollama import OllamaEmbeddings, ChatOllama

@@ -5,6 +5,7 @@ output:
   baseName: "optimization-ethics"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "最適化と倫理"
   footer: "© 2026"

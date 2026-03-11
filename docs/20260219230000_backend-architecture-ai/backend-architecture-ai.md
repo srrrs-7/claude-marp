@@ -35,12 +35,18 @@ style: |
 
 ---
 
-# アジェンダ (1/2)
+# アジェンダ (1/2)（1/2）
 
 - **1. なぜ今、AI × バックエンドアーキテクチャか**
 - AIシフトが変えるバックエンド要件・3つの相性評価軸
 - **2. バックエンドアーキテクチャパターン概観**
 - Monolith / Microservices / Serverless / Event-Driven
+
+
+---
+
+# アジェンダ (1/2)（2/2）
+
 - **3. AIコンポーネントの種類と特性**
 - 推論API / RAG / Agentic AI の特性比較マトリクス
 - **4. アーキテクチャ × AI 相性マトリクス**
@@ -49,12 +55,18 @@ style: |
 
 ---
 
-# アジェンダ (2/2)
+# アジェンダ (2/2)（1/2）
 
 - **5. AI統合パターン集**
 - 同期 / 非同期 / RAG / Streaming / Gateway / Agentic の6パターン
 - **6. データ層との統合**
 - ベクターDB・キャッシュ・データパイプライン設計
+
+
+---
+
+# アジェンダ (2/2)（2/2）
+
 - **7. スケーラビリティとコスト最適化**
 - レートリミット・フォールバック・コスト削減パターン
 - **8〜10. アンチパターン → 意思決定 → アクションプラン**
@@ -194,12 +206,18 @@ style: |
 
 ---
 
-# RAGシステム ─ 構成要素と特性
+# RAGシステム ─ 構成要素と特性（1/2）
 
 - **RAGの目的**: LLMの知識カットオフ・ハルシネーション・機密情報問題を同時解決
 - **パイプライン**: ① インジェスト（文書 → チャンク → Embed → VectorDB保存）
 - 　　　　　　　　② クエリ（質問 → Embed → 類似検索 → コンテキスト注入 → LLM）
 - **チャンク設計が品質の鍵**: サイズ (256〜1024 tokens) / オーバーラップ / 構造保持
+
+
+---
+
+# RAGシステム ─ 構成要素と特性（2/2）
+
 - **再ランク (Reranker)**: BM25 + ベクター検索のハイブリッド / Cross-Encoder による精度向上
 - **バックエンド設計の注意点**:
 - - 検索レイテンシ: pgvector < 50ms / Pinecone < 100ms が目安
@@ -208,12 +226,18 @@ style: |
 
 ---
 
-# Agentic AI ─ ループ特性と長期タスク
+# Agentic AI ─ ループ特性と長期タスク（1/2）
 
 - **Agentic AIとは**: LLMがツールを呼び出しながら自律的に複数ステップを実行するシステム
 - **実行ループ**: Think → Tool Call → Observe → Think → ... → Final Answer
 - **ツール例**: Web検索 / DB操作 / コード実行 / 外部API呼び出し / サブエージェント委任
 - **バックエンド設計の必須要件**:
+
+
+---
+
+# Agentic AI ─ ループ特性と長期タスク（2/2）
+
 - - **タスクIDによる非同期管理**: ジョブキュー (Celery/BullMQ/Temporal) が必須
 - - **ループ上限**: max_iterations=10〜20 でハング防止
 - - **チェックポイント**: 長時間タスクの中断/再開に対応
@@ -249,12 +273,18 @@ style: |
 
 ---
 
-# Monolith × AI ─ 向くユースケースと対策
+# Monolith × AI ─ 向くユースケースと対策（1/2）
 
 - **向くユースケース**:
 - - 社内管理ツールへのAI機能追加（利用頻度が低い）
 - - バッチ推論（夜間レポート生成・分類・要約）
 - - プロトタイプ / PoC 段階（速度優先）
+
+
+---
+
+# Monolith × AI ─ 向くユースケースと対策（2/2）
+
 - **避けるべきケース**: 高頻度リアルタイムAI応答 / エンドユーザー向けチャット
 - **Monolithでも使える改善パターン**:
 - - **非同期Worker**: Celery / Sidekiq でAI呼び出しをバックグラウンド化
@@ -271,12 +301,18 @@ style: |
 
 ---
 
-# Microservices × AI ─ AI Sidecar & Service Mesh
+# Microservices × AI ─ AI Sidecar & Service Mesh（1/2）
 
 - **AI Sidecarパターン**: 各Podに推論プロキシをサイドカーとして同梱
 - → AI呼び出しのリトライ・レートリミット・ロギングをアプリから分離
 - **AI専用マイクロサービス**: 推論ロジックを独立サービスとして切り出す
 - → GPU Nodeへの専用スケジューリング / モデルバージョン独立管理が可能
+
+
+---
+
+# Microservices × AI ─ AI Sidecar & Service Mesh（2/2）
+
 - **Service Mesh (Istio/Linkerd) との組み合わせ**:
 - - mTLS による AIサービス間通信のセキュリティ確保
 - - Traffic shadowing で本番トラフィックをAIサービスへミラーリングして評価
@@ -292,12 +328,18 @@ style: |
 
 ---
 
-# Serverless × AI ─ コールドスタート対策
+# Serverless × AI ─ コールドスタート対策（1/2）
 
 - **コールドスタート問題**: コンテナ起動 + ランタイム初期化 + AI SDK初期化 = 最大5秒の遅延
 - **対策①: Provisioned Concurrency**: 常時ウォーム状態を維持（コスト増と引き換え）
 - **対策②: 軽量Runtimeの採用**: Python → Node.js/Bun に変えるだけで起動時間が1/3に
 - **対策③: 接続の外部化**: DB接続・SDK初期化をグローバルスコープに移動（再利用）
+
+
+---
+
+# Serverless × AI ─ コールドスタート対策（2/2）
+
 - **実行時間制限への対応**:
 - - Lambda デフォルト15分 / Cloud Run 最大60分 ─ 長時間推論は別途Container化
 - - Agentic AIは Step Functions / Durable Functions で状態管理を外部化
@@ -313,12 +355,18 @@ style: |
 
 ---
 
-# Event-Driven × AI ─ ストリーミング推論パターン
+# Event-Driven × AI ─ ストリーミング推論パターン（1/2）
 
 - **基本パターン**: ユーザーアクション → Kafka/Kinesis → AI Consumer → 結果ストア → Push通知
 - **リアルタイム推論パイプライン例**:
 - - ECサイト: 購買イベント → Kafka → レコメンドAI → 推薦更新 → WebSocket Push
 - - チャット: メッセージイベント → Stream → LLM Consumer → SSEでトークン配信
+
+
+---
+
+# Event-Driven × AI ─ ストリーミング推論パターン（2/2）
+
 - **Kafka + AI の設計ポイント**:
 - - パーティション数 = AI Consumer並列数（スケールの上限）
 - - メッセージサイズ上限 (1MB) に注意 ─ 大きなコンテキストは参照IDで渡す
@@ -366,6 +414,11 @@ style: |
 
 - シンプルだが本番では必ずタイムアウト・リトライ・エラーハンドリングを追加する
 
+
+---
+
+# Pattern 1 ─ 実装例 (Python / FastAPI)（コード例）
+
 ```python
 import anthropic
 from tenacity import retry, stop_after_attempt, wait_exponential
@@ -409,6 +462,11 @@ async def analyze(req: AnalyzeRequest):
 
 - ジョブIDを即返却 → Workerが非同期処理 → Webhookまたはポーリングで結果取得
 
+
+---
+
+# Pattern 2 ─ 実装例 (Node.js / BullMQ)（コード例）
+
 ```typescript
 import { Queue, Worker } from 'bullmq';
 import Anthropic from '@anthropic-ai/sdk';
@@ -447,6 +505,11 @@ const worker = new Worker('ai-jobs', async (job) => {
 # Pattern 3 ─ RAG実装例 (Python)
 
 - クエリ → Embed → VectorDB検索 → プロンプト注入 → LLM生成
+
+
+---
+
+# Pattern 3 ─ RAG実装例 (Python)（コード例）
 
 ```python
 from anthropic import Anthropic
@@ -495,6 +558,11 @@ def rag_query(question: str) -> str:
 
 - **FastAPI + SSE によるストリーミング実装**
 
+
+---
+
+# Pattern 4 ─ ストリーミング実装例 (Python)（コード例）
+
 ```python
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
@@ -523,9 +591,6 @@ async def stream_endpoint(prompt: str):
     )
 ```
 
-<!--
-FastAPIのStreamingResponseとhttpxの非同期ストリーミングを組み合わせることで、LLMのトークンをリアルタイムにクライアントへSSEで転送できます。
--->
 
 ---
 
@@ -536,12 +601,18 @@ FastAPIのStreamingResponseとhttpxの非同期ストリーミングを組み合
 
 ---
 
-# Pattern 5 ─ AI Gateway設計ポイント
+# Pattern 5 ─ AI Gateway設計ポイント（1/2）
 
 - **主要OSS/SaaS**: LiteLLM (OSS) / Kong AI Gateway / Portkey / HelixAI
 - **セマンティックキャッシュ**: 意味的に近いクエリを同じ回答で返す
 - → cosine similarity > 0.95 ならキャッシュヒット（API呼び出し削減30〜60%）
 - **フォールバック戦略**: Primary(OpenAI) → Secondary(Claude) → Tertiary(Local)
+
+
+---
+
+# Pattern 5 ─ AI Gateway設計ポイント（2/2）
+
 - → 各プロバイダの HTTP 429/503 を検知して自動切替
 - **コスト管理**:
 - - ユーザー/チームごとのトークン予算制限
@@ -561,6 +632,11 @@ FastAPIのStreamingResponseとhttpxの非同期ストリーミングを組み合
 # Pattern 6 ─ ツール定義と実行フロー
 
 - Claudeのtool_use機能を活用してAgentがバックエンドAPIを自律呼び出し
+
+
+---
+
+# Pattern 6 ─ ツール定義と実行フロー（コード例）
 
 ```python
 import anthropic
@@ -616,12 +692,18 @@ def run_agent(user_request: str, max_iterations=10):
 
 ---
 
-# ベクターDB選択指針
+# ベクターDB選択指針（1/2）
 
 - **pgvector (PostgreSQL拡張)**: 既存PostgreSQLに追加 ─ 1千万件未満なら十分
 - → 追加インフラ不要・トランザクション一貫性・運用コストゼロが最大メリット
 - **Pinecone**: フルマネージド・高速・大規模対応 ─ 億件以上やスタートアップ向け
 - **Weaviate / Qdrant**: OSS自己ホスト型 ─ データ秘匿要件がある場合
+
+
+---
+
+# ベクターDB選択指針（2/2）
+
 - **Elasticsearch + HNSW**: 既存ES環境にベクター検索を追加したい場合
 - **選択マトリクス**:
 - - データ件数 < 1M & 既存PG: → **pgvector**
@@ -645,12 +727,18 @@ def run_agent(user_request: str, max_iterations=10):
 
 ---
 
-# データ品質とAI精度の関係
+# データ品質とAI精度の関係（1/2）
 
 - **"Garbage In, Garbage Out" はAIでより顕著**: 推論APIは入力品質を増幅して返す
 - **RAG品質を下げる主要因**:
 - - チャンクが小さすぎる: コンテキスト不足でLLMが正確に回答できない
 - - チャンクが大きすぎる: ノイズが多くなり類似検索の精度が下がる
+
+
+---
+
+# データ品質とAI精度の関係（2/2）
+
 - - Embeddingモデルとクエリの言語・ドメインが異なる (英語モデルに日本語クエリ)
 - - ドキュメントが古い: ベクターDBとソースの同期が取れていない
 - **品質向上の実践策**:
@@ -673,12 +761,18 @@ def run_agent(user_request: str, max_iterations=10):
 
 ---
 
-# スケーリング戦略の比較
+# スケーリング戦略の比較（1/2）
 
 - **水平スケールの3パターン**:
 - 1. **AIワーカー増加**: 非同期処理ならWorkerコンテナ数を増やすだけ ─ 最もシンプル
 - 2. **リクエスト並列化**: 独立したサブタスクを並列AI呼び出し (Promise.all / asyncio.gather)
 - 3. **キャッシュ強化**: ヒット率を高めてAI呼び出し自体を削減
+
+
+---
+
+# スケーリング戦略の比較（2/2）
+
 - **レートリミット下でのスケール戦略**:
 - - OpenAI Tier 4: 800K TPM ─ 超えると429が返り連鎖障害に
 - - **複数APIキー**: 組織ごとにKeyを分離してTPMを積算
@@ -702,12 +796,18 @@ def run_agent(user_request: str, max_iterations=10):
 
 ---
 
-# 可観測性とモニタリング設計
+# 可観測性とモニタリング設計（1/2）
 
 - **AIシステムに必要な3層の可観測性**:
 - 1. **インフラ層**: APIレイテンシ P50/P95/P99 / エラーレート / コスト/日
 - 2. **AIモデル層**: トークン使用量 / モデルバージョン / プロンプトバージョン
 - 3. **品質層**: ユーザー評価 (thumbs up/down) / 出力の正確性 / ハルシネーション率
+
+
+---
+
+# 可観測性とモニタリング設計（2/2）
+
 - **トレーシング**: LangSmith / Langfuse / Helicone で LLMリクエストを可視化
 - **アラート設定の例**:
 - - AI APIエラーレート > 5% が5分続いたらPagerDuty
@@ -743,12 +843,18 @@ def run_agent(user_request: str, max_iterations=10):
 
 ---
 
-# モデルバージョン管理戦略
+# モデルバージョン管理戦略（1/2）
 
 - **問題**: AIモデルは頻繁に更新され、同じプロンプトでも出力・コスト・レイテンシが変化する
 - **ベストプラクティス**:
 - - **具体的バージョン固定**: `claude-sonnet-4-6` / `gpt-4o-2024-11-20` を明示
 - - **環境変数で管理**: `MODEL_NAME` を環境変数に外だし ─ コード変更なしで切替可能
+
+
+---
+
+# モデルバージョン管理戦略（2/2）
+
 - - **モデル別テストスイート**: 新バージョン移行前に評価セットで品質回帰テスト
 - **バージョンアップ手順**:
 - 1. テスト環境で新バージョンを評価 (精度/コスト/レイテンシの3軸)
@@ -758,12 +864,18 @@ def run_agent(user_request: str, max_iterations=10):
 
 ---
 
-# AIインテグレーションのテスト戦略
+# AIインテグレーションのテスト戦略（1/2）
 
 - **AIテストの難しさ**: 非決定的出力・高コスト・外部依存の3重苦
 - **単体テスト**: AIプロバイダをモック化 ─ ロジックだけをテスト (pytest-mock)
 - **統合テスト**: 実際のAI APIを呼び出す ─ CIではSkipし、リリース前・モデル変更時のみ実行
 - **品質評価 (Eval)**: LLM-as-a-Judge ─ 別のLLMが出力の正確性・安全性を自動評価
+
+
+---
+
+# AIインテグレーションのテスト戦略（2/2）
+
 - → RAGAS (RAG評価) / DeepEval / Promptfoo が主要ツール
 - **回帰テストの設計**:
 - - ゴールデンセット: 入力と期待出力のペアを100〜500件用意
@@ -786,13 +898,19 @@ def run_agent(user_request: str, max_iterations=10):
 
 ---
 
-# AIユースケース別推奨構成
+# AIユースケース別推奨構成（1/2）
 
 - **チャット / 会話AI**:
 - → **構成**: Microservices + Streaming (Pattern 4) + Redis会話履歴 + Circuit Breaker
 - **社内知識検索 / RAG**:
 - → **構成**: Monolith or Microservices + Pattern 3 (RAG) + pgvector + Semantic Cache
 - **バッチAI処理 (分類/要約/変換)**:
+
+
+---
+
+# AIユースケース別推奨構成（2/2）
+
 - → **構成**: Event-Driven (Kafka) + Serverless Worker + Pattern 2 (非同期) + DLQ
 - **AI Agent / 自動化タスク**:
 - → **構成**: Microservices + Pattern 6 + Temporal/LangGraph + 最小権限ツール
@@ -809,12 +927,18 @@ def run_agent(user_request: str, max_iterations=10):
 
 ---
 
-# チーム体制とスキルセット要件
+# チーム体制とスキルセット要件（1/2）
 
 - **AI統合に必要な役割 (新設 vs 既存拡張)**:
 - - **AIエンジニア (新設推奨)**: LLM特性・プロンプト設計・評価の専門家
 - - **バックエンドエンジニア (スキル拡張)**: 非同期設計・ベクターDB・コスト管理を習得
 - - **MLOps / AI Platform (スケール後)**: モデルバージョン管理・推論基盤の安定化
+
+
+---
+
+# チーム体制とスキルセット要件（2/2）
+
 - **チームトポロジー別アプローチ**:
 - - **小規模 (5人以下)**: 全員がAIの基礎を習得 ─ ローテーションで知識共有
 - - **中規模 (5〜20人)**: AIプラットフォームチームを作り内部APIとして提供
@@ -824,13 +948,19 @@ def run_agent(user_request: str, max_iterations=10):
 
 ---
 
-# 導入フェーズ設計
+# 導入フェーズ設計（1/2）
 
 - **成功パターン1: 社内ツールから始める**
 - → 失敗しても外部ユーザーへの影響なし ─ チームの学習コストを社内で吸収
 - **成功パターン2: 非同期バッチから始める**
 - → レイテンシ非感応 ─ アーキテクチャの複雑さを段階的に積み上げられる
 - **成功パターン3: 補助機能から始める**
+
+
+---
+
+# 導入フェーズ設計（2/2）
+
 - → メインフローの外にAIを置く ─ AI障害がサービス停止に直結しない
 - **よくある失敗パターン**:
 - - PoC成功 → いきなり本番大規模展開 → 障害多発でAIへの不信感
@@ -846,13 +976,19 @@ def run_agent(user_request: str, max_iterations=10):
 
 ---
 
-# 10の重要ポイント
+# 10の重要ポイント（1/2）
 
 - **1. AIはアーキテクチャを変える** ─ 同期・低レイテンシ・決定的の前提が崩れる
 - **2. Event-Drivenが最もAIフレンドリー** ─ 非同期が設計の前提として組み込まれている
 - **3. Microservicesは最良の選択肢の一つ** ─ AI専用スケールと障害隔離が可能
 - **4. Monolithでも工夫次第でAI統合できる** ─ Worker/CB/接続プール分離の3セット
 - **5. 5大必須設計** ─ タイムアウト/リトライ/CB/コスト上限/非同期化
+
+
+---
+
+# 10の重要ポイント（2/2）
+
 - **6. データ品質がAI品質の天井** ─ チャンク設計とRAGパイプラインに投資
 - **7. キャッシュ3層でコスト40〜70%削減** ─ Prompt/Semantic/Provider Cache
 - **8. セキュリティはAI固有の新脅威** ─ PII・Prompt Injection・ツール権限
@@ -869,13 +1005,19 @@ def run_agent(user_request: str, max_iterations=10):
 
 ---
 
-# 参考文献・学習リソース (1/2)
+# 参考文献・学習リソース (1/2)（1/2）
 
 - **アーキテクチャ設計:**
 - - [Building LLM-powered applications (AWS Well-Architected)](https://docs.aws.amazon.com/wellarchitected/latest/framework/gen-ai.html)
 - - [LLM Patterns (Eugene Yan)](https://eugeneyan.com/writing/llm-patterns/)
 - - [Production AI Engineering (Chip Huyen)](https://huyenchip.com/2023/04/11/llm-engineering.html)
 - **RAGとデータ層:**
+
+
+---
+
+# 参考文献・学習リソース (1/2)（2/2）
+
 - - [Advanced RAG Techniques (Langchain Blog)](https://blog.langchain.dev/deconstructing-rag/)
 - - [pgvector ドキュメント](https://github.com/pgvector/pgvector)
 - **コスト最適化:**
@@ -885,13 +1027,19 @@ def run_agent(user_request: str, max_iterations=10):
 
 ---
 
-# 参考文献・学習リソース (2/2)
+# 参考文献・学習リソース (2/2)（1/2）
 
 - **セキュリティ・ガードレール:**
 - - [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
 - - [NeMo Guardrails (NVIDIA)](https://github.com/NVIDIA/NeMo-Guardrails)
 - **可観測性・評価:**
 - - [LangSmith (LangChain)](https://smith.langchain.com/)
+
+
+---
+
+# 参考文献・学習リソース (2/2)（2/2）
+
 - - [RAGAS: RAG評価フレームワーク](https://docs.ragas.io/)
 - **ワークフローオーケストレーション:**
 - - [Temporal.io (Agentic Workflow)](https://temporal.io/)

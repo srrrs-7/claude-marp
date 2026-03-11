@@ -1,0 +1,25 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#f9a825">AR時代の都市レイヤー構造</text>
+  <!-- Physical layer -->
+  <rect x="80" y="260" width="640" height="70" rx="8" fill="#16213e" stroke="#ffffff" stroke-width="1.5" opacity="0.9"/>
+  <text x="400" y="290" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="bold">物理層：道路・建物・公園</text>
+  <text x="400" y="312" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.7">従来の都市計画が扱う空間</text>
+  <!-- Digital layer -->
+  <rect x="80" y="170" width="640" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2" opacity="0.9"/>
+  <text x="400" y="200" text-anchor="middle" font-size="14" fill="#f9a825" font-weight="bold">デジタル層：PokeStop・ジム・出現地点</text>
+  <text x="400" y="222" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.7">ゲームが生成する仮想的ランドマーク</text>
+  <!-- Social layer -->
+  <rect x="80" y="80" width="640" height="70" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2" opacity="0.9"/>
+  <text x="400" y="110" text-anchor="middle" font-size="14" fill="#e91e63" font-weight="bold">社会層：コミュニティ・経済・行動変容</text>
+  <text x="400" y="132" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.7">デジタルが触媒するリアルな人間活動</text>
+  <!-- Arrows between layers -->
+  <line x1="400" y1="240" x2="400" y2="252" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="395,250 405,250 400,258" fill="#f9a825"/>
+  <text x="530" y="250" font-size="11" fill="#f9a825">ARが物理空間を再意味化</text>
+  <line x1="400" y1="150" x2="400" y2="162" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="395,160 405,160 400,168" fill="#e91e63"/>
+  <text x="530" y="160" font-size="11" fill="#e91e63">デジタルが社会行動を変容</text>
+  <!-- Future label -->
+  <text x="400" y="374" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.6">ARグラス時代には3層が完全に融合する</text>
+</svg>

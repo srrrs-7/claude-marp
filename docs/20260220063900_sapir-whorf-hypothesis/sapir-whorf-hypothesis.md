@@ -39,57 +39,67 @@ style: |
 
 ---
 
+# 言語的決定論 vs 言語的相対論
+
+- <svg viewBox="0 0 760 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><defs><style>.lbl{font-family:sans-serif;font-size:14px;fill:#fff}.sub{font-family:sans-serif;font-size:11px;fill:#ddd}.head{font-family:sans-serif;font-size:16px;font-weight:bold;fill:#f9a825}.arr{fill:#f9a825}</style></defs><rect width="760" height="320" fill="#1a1a2e" rx="8"/><text x="380" y="32" class="head" text-anchor="middle">言語と思考の関係スペクトラム</text><rect x="30" y="55" width="200" height="220" rx="10" fill="#c62828" opacity="0.85"/><text x="130" y="80" class="lbl" text-anchor="middle" font-weight="bold">強い仮説</text><text x="130" y="100" class="sub" text-anchor="middle">（言語的決定論）</text><text x="130" y="130" class="sub" text-anchor="middle">言語が思考を</text><text x="130" y="148" class="sub" text-anchor="middle">完全に決定する</text><text x="130" y="180" class="sub" text-anchor="middle">→ 言葉のない概念は</text><text x="130" y="198" class="sub" text-anchor="middle">　考えられない</text><text x="130" y="240" class="sub" text-anchor="middle">✗ ほぼ否定済み</text><rect x="280" y="55" width="200" height="220" rx="10" fill="#1565c0" opacity="0.85"/><text x="380" y="80" class="lbl" text-anchor="middle" font-weight="bold">弱い仮説</text><text x="380" y="100" class="sub" text-anchor="middle">（言語的相対論）</text><text x="380" y="130" class="sub" text-anchor="middle">言語は思考に</text><text x="380" y="148" class="sub" text-anchor="middle">影響を与える</text><text x="380" y="180" class="sub" text-anchor="middle">→ 特定の概念を</text><text x="380" y="198" class="sub" text-anchor="middle">　考えやすくする</text><text x="380" y="240" class="sub" text-anchor="middle">✓ 実験で支持</text><rect x="530" y="55" width="200" height="220" rx="10" fill="#2e7d32" opacity="0.85"/><text x="630" y="80" class="lbl" text-anchor="middle" font-weight="bold">言語中立論</text><text x="630" y="100" class="sub" text-anchor="middle">（普遍主義）</text><text x="630" y="130" class="sub" text-anchor="middle">思考は言語に</text><text x="630" y="148" class="sub" text-anchor="middle">依存しない</text><text x="630" y="180" class="sub" text-anchor="middle">→ 普遍的な認知</text><text x="630" y="198" class="sub" text-anchor="middle">　構造が存在</text><text x="630" y="240" class="sub" text-anchor="middle">△ 部分的に支持</text><polygon points="245,165 265,158 265,172" class="arr"/><line x1="230" y1="165" x2="264" y2="165" stroke="#f9a825" stroke-width="2"/><polygon points="515,165 495,158 495,172" class="arr"/><line x1="496" y1="165" x2="530" y2="165" stroke="#f9a825" stroke-width="2"/></svg>
+
+
+---
+
 # 言語が思考を制約するという仮説
 
-- **強い形（言語的決定論）：**
-- 「言語が思考を決定する。言葉のない概念は考えられない」
-- → ほぼ否定されている（手話・図像・非言語思考の存在）
-- ---
-- **弱い形（言語的相対論）：**
-- 「言語は思考に影響を与え、特定の概念を考えやすくする」
-- → 現代の心理学実験で一定の支持
-- ---
-- **サピアとウォーフ：**
-- Edward Sapir（言語人類学者）
-- Benjamin Lee Whorf（アマチュア言語学者・火災保険調査員）
+- Edward Sapir（言語人類学者）とBenjamin Lee Whorf（火災保険調査員）
 - ホピ族の言語研究から仮説を提唱（1930〜40年代）
+- <svg viewBox="0 0 760 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><defs><style>.t{font-family:sans-serif;fill:#fff}.ts{font-family:sans-serif;fill:#ddd;font-size:12px}.th{font-family:sans-serif;fill:#f9a825;font-size:15px;font-weight:bold}</style></defs><rect width="760" height="240" fill="#1a1a2e" rx="8"/><text x="380" y="28" class="th" text-anchor="middle">仮説の誕生：Sapir と Whorf</text><circle cx="160" cy="120" r="70" fill="#1565c0" opacity="0.8"/><text x="160" y="108" class="t" text-anchor="middle" font-size="14" font-weight="bold">Edward Sapir</text><text x="160" y="128" class="ts" text-anchor="middle">言語人類学者</text><text x="160" y="148" class="ts" text-anchor="middle">イェール大学教授</text><circle cx="600" cy="120" r="70" fill="#6a1570" opacity="0.8"/><text x="600" y="108" class="t" text-anchor="middle" font-size="14" font-weight="bold">Benjamin Whorf</text><text x="600" y="128" class="ts" text-anchor="middle">火災保険調査員</text><text x="600" y="148" class="ts" text-anchor="middle">アマチュア言語学者</text><rect x="290" y="80" width="180" height="80" rx="8" fill="#e91e63" opacity="0.85"/><text x="380" y="108" class="t" text-anchor="middle" font-size="13" font-weight="bold">ホピ族の言語</text><text x="380" y="128" class="ts" text-anchor="middle">時間表現が英語と</text><text x="380" y="148" class="ts" text-anchor="middle">根本的に異なる</text><line x1="232" y1="120" x2="288" y2="120" stroke="#f9a825" stroke-width="2"/><polygon points="288,113 304,120 288,127" fill="#f9a825"/><line x1="472" y1="120" x2="528" y2="120" stroke="#f9a825" stroke-width="2"/><polygon points="528,113 544,120 528,127" fill="#f9a825"/><text x="380" y="215" class="ts" text-anchor="middle">1930〜40年代に共同研究 → 言語相対性仮説を提唱</text></svg>
 
 
 ---
 
-# 現代の実験的証拠
+# 色の認識と言語の関係
 
-- **色の認識実験（Boroditsky 2007年）：**
-- ロシア語は青を「синий（濃い青）」「голубой（薄い青）」と区別
-- ロシア語話者は青の微妙な差を英語話者より速く区別できる
-- ---
-- **方向と言語（Guugu Yimithirr語、オーストラリア）：**
-- 絶対方位（東西南北）のみで方向を表現（「右・左」がない）
-- 話者は常に正確な方位を認識している（人間GPSのよう）
-- ---
-- **時間の方向（Aymara語、アンデス）：**
-- 「過去は前、未来は後ろ」（英語と逆）
-- 時間軸の身体的表現が英語話者と逆になる
-- ---
-- 弱い仮説は多くの実験で支持されている
+- <svg viewBox="0 0 760 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><defs><style>.t{font-family:sans-serif;fill:#fff;font-size:13px}.ts{font-family:sans-serif;fill:#ddd;font-size:11px}.th{font-family:sans-serif;fill:#f9a825;font-size:15px;font-weight:bold}</style></defs><rect width="760" height="340" fill="#1a1a2e" rx="8"/><text x="380" y="28" class="th" text-anchor="middle">Boroditsky (2007)：ロシア語 vs 英語の青認識</text><rect x="30" y="50" width="700" height="40" rx="6" fill="#1565c0"/><rect x="30" y="50" width="350" height="40" rx="0" fill="#0d47a1"/><rect x="380" y="50" width="350" height="40" rx="0" fill="#42a5f5"/><text x="205" y="76" class="t" text-anchor="middle" font-weight="bold">синий（濃い青）</text><text x="555" y="76" class="t" text-anchor="middle" font-weight="bold">голубой（薄い青）</text><text x="380" y="120" class="ts" text-anchor="middle">ロシア語は青を2つの別カテゴリとして区別する</text><rect x="80" y="145" width="260" height="130" rx="10" fill="#0d2060" opacity="0.9"/><text x="210" y="170" class="t" text-anchor="middle" font-weight="bold">英語話者</text><text x="210" y="195" class="ts" text-anchor="middle">「blue」一語で表現</text><text x="210" y="215" class="ts" text-anchor="middle">濃淡の区別は形容詞で補足</text><text x="210" y="250" class="t" text-anchor="middle">反応時間：遅い</text><rect x="420" y="145" width="260" height="130" rx="10" fill="#1a237e" opacity="0.9"/><text x="550" y="170" class="t" text-anchor="middle" font-weight="bold">ロシア語話者</text><text x="550" y="195" class="ts" text-anchor="middle">濃・薄を別カテゴリで認識</text><text x="550" y="215" class="ts" text-anchor="middle">カテゴリ境界で知覚が鋭敏</text><text x="550" y="250" class="t" text-anchor="middle">反応時間：速い</text><text x="380" y="305" class="ts" text-anchor="middle">言語カテゴリが色の知覚速度に影響することを実証</text><polygon points="340,200 380,200 360,230" fill="#f9a825"/><text x="380" y="330" class="th" text-anchor="middle" font-size="12">→ 言語の境界が認知の境界に対応する</text></svg>
 
 
 ---
 
-# プログラミング言語と思考
+# 方向と時間の言語依存
+
+- <svg viewBox="0 0 760 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><defs><style>.t{font-family:sans-serif;fill:#fff;font-size:13px}.ts{font-family:sans-serif;fill:#ddd;font-size:11px}.th{font-family:sans-serif;fill:#f9a825;font-size:14px;font-weight:bold}</style></defs><rect width="760" height="320" fill="#1a1a2e" rx="8"/><rect x="20" y="20" width="340" height="280" rx="10" fill="#0d2060" opacity="0.85"/><text x="190" y="50" class="th" text-anchor="middle">Guugu Yimithirr語（豪）</text><text x="190" y="75" class="ts" text-anchor="middle">「右・左」という言葉が存在しない</text><text x="190" y="95" class="ts" text-anchor="middle">常に絶対方位（東西南北）で表現</text><circle cx="190" cy="175" r="55" fill="#1a1a2e" stroke="#f9a825" stroke-width="2"/><text x="190" y="128" class="t" text-anchor="middle" font-size="12">北</text><text x="190" y="228" class="t" text-anchor="middle" font-size="12">南</text><text x="133" y="180" class="t" text-anchor="middle" font-size="12">西</text><text x="247" y="180" class="t" text-anchor="middle" font-size="12">東</text><polygon points="190,138 184,155 196,155" fill="#e91e63"/><line x1="190" y1="155" x2="190" y2="195" stroke="#e91e63" stroke-width="2"/><text x="190" y="270" class="ts" text-anchor="middle">話者は常に正確な方位を把握</text><text x="190" y="288" class="ts" text-anchor="middle">（「人間GPS」）</text><rect x="400" y="20" width="340" height="280" rx="10" fill="#1a003a" opacity="0.85"/><text x="570" y="50" class="th" text-anchor="middle">Aymara語（アンデス）</text><text x="570" y="75" class="ts" text-anchor="middle">「過去は前・未来は後ろ」</text><text x="570" y="95" class="ts" text-anchor="middle">英語と逆の時間軸</text><rect x="430" y="115" width="280" height="45" rx="6" fill="#c62828" opacity="0.8"/><text x="570" y="145" class="t" text-anchor="middle">← 過去（見える・知っている）</text><rect x="430" y="175" width="280" height="45" rx="6" fill="#1565c0" opacity="0.8"/><text x="570" y="205" class="t" text-anchor="middle">未来（見えない・後ろ）→</text><text x="570" y="260" class="ts" text-anchor="middle">ジェスチャー実験で証明：</text><text x="570" y="280" class="ts" text-anchor="middle">過去=前方・未来=後方を指さす</text></svg>
+
+
+---
+
+# プログラミング言語と思考（1/2）
 
 - **「使う言語が考え方を変える」：**
 - 関数型言語（Haskell, Elm）：副作用を考えない思考が自然に
 - オブジェクト指向（Java, C++）：状態の変化として世界を見る
 - Prolog（論理型）：問題を制約として記述する
-- ---
-- **Paul Graham「プログラマのパラドックス」：**
+- <svg viewBox="0 0 760 180" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><defs><style>.t{font-family:sans-serif;fill:#fff;font-size:12px}.ts{font-family:sans-serif;fill:#ddd;font-size:10px}.th{font-family:sans-serif;fill:#f9a825;font-size:13px;font-weight:bold}</style></defs><rect width="760" height="180" fill="#1a1a2e" rx="8"/><text x="380" y="24" class="th" text-anchor="middle">パラダイム別「世界の見方」</text><rect x="20" y="40" width="155" height="110" rx="8" fill="#1a5276" opacity="0.9"/><text x="97" y="62" class="t" text-anchor="middle" font-weight="bold">関数型</text><text x="97" y="80" class="ts" text-anchor="middle">Haskell / Elm</text><text x="97" y="98" class="ts" text-anchor="middle">値と変換の連鎖</text><text x="97" y="116" class="ts" text-anchor="middle">副作用なし思考</text><rect x="190" y="40" width="155" height="110" rx="8" fill="#154360" opacity="0.9"/><text x="267" y="62" class="t" text-anchor="middle" font-weight="bold">OOP</text><text x="267" y="80" class="ts" text-anchor="middle">Java / C++</text><text x="267" y="98" class="ts" text-anchor="middle">状態を持つ物体</text><text x="267" y="116" class="ts" text-anchor="middle">メッセージ送信</text><rect x="360" y="40" width="155" height="110" rx="8" fill="#1b5e20" opacity="0.9"/><text x="437" y="62" class="t" text-anchor="middle" font-weight="bold">論理型</text><text x="437" y="80" class="ts" text-anchor="middle">Prolog</text><text x="437" y="98" class="ts" text-anchor="middle">制約・事実の宣言</text><text x="437" y="116" class="ts" text-anchor="middle">推論エンジン</text><rect x="530" y="40" width="210" height="110" rx="8" fill="#4a148c" opacity="0.9"/><text x="635" y="62" class="t" text-anchor="middle" font-weight="bold">低レベル</text><text x="635" y="80" class="ts" text-anchor="middle">C / アセンブラ</text><text x="635" y="98" class="ts" text-anchor="middle">メモリと番地</text><text x="635" y="116" class="ts" text-anchor="middle">ハードウェア思考</text><text x="380" y="168" class="ts" text-anchor="middle">各パラダイムは異なる「問題の切り方」を自然にする</text></svg>
+
+
+---
+
+# プログラミング言語と思考（2/2）
+
 - 上位の抽象言語を知っていると低レベルの問題が見えにくくなる
 - アセンブラ出身者はメモリ管理の感覚がある
-- ---
-- **「普段使う言語で思考の限界が決まる」：**
 - 複数のパラダイムを学ぶことで思考の幅が広がる
 - 新しい言語は「思考の筋トレ」
+
+
+---
+
+# 証拠の強さ比較：どの実験が最も有力か
+
+- <svg viewBox="0 0 760 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><defs><style>.t{font-family:sans-serif;fill:#fff;font-size:12px}.ts{font-family:sans-serif;fill:#ddd;font-size:11px}.th{font-family:sans-serif;fill:#f9a825;font-size:14px;font-weight:bold}.lb{font-family:sans-serif;fill:#fff;font-size:11px}</style></defs><rect width="760" height="320" fill="#1a1a2e" rx="8"/><text x="380" y="28" class="th" text-anchor="middle">各証拠の支持強度（弱い仮説への寄与）</text><text x="30" y="60" class="ts">イヌイットの雪（神話）</text><rect x="200" y="45" width="60" height="20" rx="4" fill="#c62828" opacity="0.9"/><text x="268" y="60" class="lb">★☆☆☆☆ 誇張・否定</text><text x="30" y="95" class="ts">色カテゴリ（Boroditsky）</text><rect x="200" y="80" width="340" height="20" rx="4" fill="#2e7d32" opacity="0.9"/><text x="548" y="95" class="lb">★★★★☆ 強い実験的証拠</text><text x="30" y="130" class="ts">方位言語（Guugu）</text><rect x="200" y="115" width="300" height="20" rx="4" fill="#1565c0" opacity="0.9"/><text x="508" y="130" class="lb">★★★★☆ 認知・行動に影響</text><text x="30" y="165" class="ts">時間軸（Aymara）</text><rect x="200" y="150" width="260" height="20" rx="4" fill="#1565c0" opacity="0.9"/><text x="468" y="165" class="lb">★★★☆☆ ジェスチャーで確認</text><text x="30" y="200" class="ts">数詞なし民族（Pirahã）</text><rect x="200" y="185" width="220" height="20" rx="4" fill="#e65100" opacity="0.9"/><text x="428" y="200" class="lb">★★★☆☆ 論争中</text><text x="30" y="235" class="ts">プログラミング言語</text><rect x="200" y="220" width="180" height="20" rx="4" fill="#4a148c" opacity="0.9"/><text x="388" y="235" class="lb">★★☆☆☆ 事例的証拠</text><text x="30" y="270" class="ts">強い決定論（Whorf原版）</text><rect x="200" y="255" width="40" height="20" rx="4" fill="#b71c1c" opacity="0.9"/><text x="248" y="270" class="lb">★☆☆☆☆ 否定済み</text><text x="380" y="308" class="ts" text-anchor="middle">色・方位・数詞の実験が現代言語学で最も堅固な証拠</text></svg>
+
+
+---
+
+# 現代言語学での位置づけ
+
+- <svg viewBox="0 0 760 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><defs><style>.t{font-family:sans-serif;fill:#fff;font-size:13px}.ts{font-family:sans-serif;fill:#ddd;font-size:11px}.th{font-family:sans-serif;fill:#f9a825;font-size:14px;font-weight:bold}</style></defs><rect width="760" height="300" fill="#1a1a2e" rx="8"/><text x="380" y="28" class="th" text-anchor="middle">現代言語学における言語相対性の位置づけ</text><rect x="30" y="50" width="700" height="60" rx="8" fill="#0d2060" opacity="0.85"/><text x="380" y="78" class="t" text-anchor="middle" font-weight="bold">1950〜70年代：Chomsky 普遍文法の台頭</text><text x="380" y="98" class="ts" text-anchor="middle">言語は普遍的な深層構造を持つ → Whorf仮説は「ナイーブ」として退潮</text><rect x="30" y="125" width="700" height="60" rx="8" fill="#1b5e20" opacity="0.85"/><text x="380" y="153" class="t" text-anchor="middle" font-weight="bold">1990〜2000年代：認知言語学・実験の復権</text><text x="380" y="173" class="ts" text-anchor="middle">Boroditsky, Levinson らが統制実験で弱い相対性を実証</text><rect x="30" y="200" width="700" height="60" rx="8" fill="#4a148c" opacity="0.85"/><text x="380" y="228" class="t" text-anchor="middle" font-weight="bold">現在：「ネオ・Whorfian」パラダイム</text><text x="380" y="248" class="ts" text-anchor="middle">言語は思考を形成するが決定しない。タスク・文脈依存で効果が変わる</text><line x1="380" y1="110" x2="380" y2="124" stroke="#f9a825" stroke-width="2"/><polygon points="374,122 386,122 380,135" fill="#f9a825"/><line x1="380" y1="185" x2="380" y2="199" stroke="#f9a825" stroke-width="2"/><polygon points="374,197 386,197 380,210" fill="#f9a825"/></svg>
 
 
 ---

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">大英帝国による英語の拡散メカニズム</text>
+  <!-- UK center -->
+  <ellipse cx="400" cy="175" rx="60" ry="40" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
+  <text x="400" y="172" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">大英帝国</text>
+  <text x="400" y="188" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">19c ピーク</text>
+  <!-- radiating colonies -->
+  <line x1="345" y1="148" x2="210" y2="90" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <rect x="100" y="60" width="110" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="155" y="83" fill="#f9a825" font-size="11" font-family="sans-serif" text-anchor="middle">北米</text>
+  <text x="155" y="100" fill="#ffffff" font-size="9" font-family="sans-serif" text-anchor="middle">植民地支配</text>
+  <text x="155" y="112" fill="#aaaaaa" font-size="9" font-family="sans-serif" text-anchor="middle">→ 定着</text>
+  <line x1="400" y1="135" x2="400" y2="65" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <rect x="340" y="30" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="52" fill="#f9a825" font-size="11" font-family="sans-serif" text-anchor="middle">オーストラリア</text>
+  <line x1="455" y1="148" x2="590" y2="90" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <rect x="590" y="60" width="110" height="55" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="645" y="83" fill="#e91e63" font-size="11" font-family="sans-serif" text-anchor="middle">インド</text>
+  <text x="645" y="100" fill="#ffffff" font-size="9" font-family="sans-serif" text-anchor="middle">教育言語を英語に</text>
+  <text x="645" y="112" fill="#aaaaaa" font-size="9" font-family="sans-serif" text-anchor="middle">マコーレー1835</text>
+  <line x1="345" y1="205" x2="210" y2="260" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <rect x="100" y="250" width="110" height="55" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="155" y="273" fill="#e91e63" font-size="11" font-family="sans-serif" text-anchor="middle">アフリカ</text>
+  <text x="155" y="290" fill="#ffffff" font-size="9" font-family="sans-serif" text-anchor="middle">行政・教育に</text>
+  <text x="155" y="302" fill="#aaaaaa" font-size="9" font-family="sans-serif" text-anchor="middle">英語を強制</text>
+  <line x1="455" y1="205" x2="590" y2="260" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <rect x="590" y="250" width="110" height="55" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="645" y="273" fill="#e91e63" font-size="11" font-family="sans-serif" text-anchor="middle">中東・他</text>
+  <text x="645" y="290" fill="#ffffff" font-size="9" font-family="sans-serif" text-anchor="middle">植民地エリートが</text>
+  <text x="645" y="302" fill="#aaaaaa" font-size="9" font-family="sans-serif" text-anchor="middle">英語を習得</text>
+  <!-- result -->
+  <text x="400" y="345" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">「英語を話す現地人」が帝国統治の道具 → 独立後も英語が残る</text>
+</svg>

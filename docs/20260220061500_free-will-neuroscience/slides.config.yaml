@@ -5,6 +5,7 @@ output:
   baseName: "free-will-neuroscience"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "自由意志と神経科学"
   footer: "© 2026"

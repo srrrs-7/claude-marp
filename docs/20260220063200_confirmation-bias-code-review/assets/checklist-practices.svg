@@ -1,0 +1,48 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">確証バイアス軽減のための実践プラクティス</text>
+  <!-- 6 practice items in 2 columns -->
+  <!-- Left column -->
+  <rect x="30" y="52" width="355" height="66" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="60" y="76" font-size="22" fill="#4caf50">1</text>
+  <text x="95" y="74" font-size="13" font-weight="bold" fill="#4caf50">小さなPR（200行以下）</text>
+  <text x="95" y="94" font-size="11" fill="#ffffff">注意力の限界を考慮した分割。PRが大きいほどバグ見逃し率が急増</text>
+  <text x="95" y="110" font-size="11" fill="#ffffff" opacity="0.7">Microsoft Research: 400行超で検出率が急激に低下</text>
+
+  <rect x="30" y="132" width="355" height="66" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="60" y="156" font-size="22" fill="#4caf50">2</text>
+  <text x="95" y="154" font-size="13" font-weight="bold" fill="#4caf50">構造化チェックリスト</text>
+  <text x="95" y="174" font-size="11" fill="#ffffff">「セキュリティ」「テスト」「エラー処理」等の観点を事前定義</text>
+  <text x="95" y="190" font-size="11" fill="#ffffff" opacity="0.7">バイアスではなく体系的な観点で見るよう強制する</text>
+
+  <rect x="30" y="212" width="355" height="66" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="60" y="236" font-size="22" fill="#f9a825">3</text>
+  <text x="95" y="234" font-size="13" font-weight="bold" fill="#f9a825">レビュアーローテーション</text>
+  <text x="95" y="254" font-size="11" fill="#ffffff">同じ人が同じコードを毎回レビューしない</text>
+  <text x="95" y="270" font-size="11" fill="#ffffff" opacity="0.7">「いつもの人のコード」への慣れによる見落としを防ぐ</text>
+
+  <!-- Right column -->
+  <rect x="415" y="52" width="355" height="66" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="445" y="76" font-size="22" fill="#f9a825">4</text>
+  <text x="480" y="74" font-size="13" font-weight="bold" fill="#f9a825">60分制限ルール</text>
+  <text x="480" y="94" font-size="11" fill="#ffffff">長時間のレビューは効果が逓減。60分を超えたら休憩を挟む</text>
+  <text x="480" y="110" font-size="11" fill="#ffffff" opacity="0.7">疲労がバイアスを強化することが研究で示されている</text>
+
+  <rect x="415" y="132" width="355" height="66" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="445" y="156" font-size="22" fill="#e91e63">5</text>
+  <text x="480" y="154" font-size="13" font-weight="bold" fill="#e91e63">著者情報の最小化</text>
+  <text x="480" y="174" font-size="11" fill="#ffffff">可能な限り匿名レビューを導入（Author-blind review）</text>
+  <text x="480" y="190" font-size="11" fill="#ffffff" opacity="0.7">実験: 著者名を隠すとシニアとジュニアの評価差が消える</text>
+
+  <rect x="415" y="212" width="355" height="66" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="445" y="236" font-size="22" fill="#e91e63">6</text>
+  <text x="480" y="234" font-size="13" font-weight="bold" fill="#e91e63">「悪魔の代弁者」役</text>
+  <text x="480" y="254" font-size="11" fill="#ffffff">意図的に批判する役割を持ち回りで担当</text>
+  <text x="480" y="270" font-size="11" fill="#ffffff" opacity="0.7">全員が「承認したい」時に構造的な批判を担保する</text>
+
+  <!-- Bottom -->
+  <rect x="80" y="302" width="640" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="322" text-anchor="middle" font-size="13" fill="#f9a825">自問すること：「著者名を知らなかったら、同じレビューをするか？」</text>
+  <text x="400" y="340" text-anchor="middle" font-size="11" fill="#ffffff">このシンプルな質問が確証バイアスへの気づきをもたらす</text>
+  <text x="400" y="375" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.5">プロセスの改善 + マインドセットの変化 = バイアスの軽減</text>
+</svg>

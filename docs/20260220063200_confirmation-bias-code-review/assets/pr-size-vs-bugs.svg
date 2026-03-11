@@ -1,0 +1,47 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#f9a825">PRサイズとバグ検出率の関係</text>
+  <!-- Axes -->
+  <line x1="80" y1="320" x2="720" y2="320" stroke="#ffffff" stroke-width="2"/>
+  <line x1="80" y1="60" x2="80" y2="320" stroke="#ffffff" stroke-width="2"/>
+  <!-- X axis label -->
+  <text x="400" y="360" text-anchor="middle" font-size="13" fill="#ffffff">PRのコード行数</text>
+  <!-- Y axis label -->
+  <text x="22" y="200" text-anchor="middle" font-size="13" fill="#ffffff" transform="rotate(-90,22,200)">バグ検出率 (%)</text>
+  <!-- X ticks -->
+  <text x="120" y="338" text-anchor="middle" font-size="11" fill="#ffffff">50</text>
+  <text x="240" y="338" text-anchor="middle" font-size="11" fill="#ffffff">100</text>
+  <text x="360" y="338" text-anchor="middle" font-size="11" fill="#ffffff">200</text>
+  <text x="480" y="338" text-anchor="middle" font-size="11" fill="#ffffff">400</text>
+  <text x="600" y="338" text-anchor="middle" font-size="11" fill="#ffffff">600</text>
+  <text x="700" y="338" text-anchor="middle" font-size="11" fill="#ffffff">800+</text>
+  <!-- Y ticks -->
+  <text x="68" y="264" text-anchor="end" font-size="11" fill="#ffffff">20%</text>
+  <text x="68" y="212" text-anchor="end" font-size="11" fill="#ffffff">40%</text>
+  <text x="68" y="160" text-anchor="end" font-size="11" fill="#ffffff">60%</text>
+  <text x="68" y="108" text-anchor="end" font-size="11" fill="#ffffff">80%</text>
+  <!-- Grid lines -->
+  <line x1="80" y1="260" x2="720" y2="260" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <line x1="80" y1="208" x2="720" y2="208" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <line x1="80" y1="156" x2="720" y2="156" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <line x1="80" y1="104" x2="720" y2="104" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <!-- Bug detection curve (descending) -->
+  <polyline points="120,100 240,108 360,148 480,224 600,272 700,296" stroke="#e91e63" stroke-width="3" fill="none"/>
+  <!-- Dots -->
+  <circle cx="120" cy="100" r="6" fill="#f9a825"/>
+  <circle cx="240" cy="108" r="6" fill="#f9a825"/>
+  <circle cx="360" cy="148" r="6" fill="#f9a825"/>
+  <circle cx="480" cy="224" r="6" fill="#e91e63"/>
+  <circle cx="600" cy="272" r="6" fill="#e91e63"/>
+  <circle cx="700" cy="296" r="6" fill="#e91e63"/>
+  <!-- Optimal zone highlight -->
+  <rect x="80" y="60" width="280" height="262" fill="#4caf50" opacity="0.07" rx="4"/>
+  <text x="190" y="78" text-anchor="middle" font-size="11" fill="#4caf50">最適ゾーン</text>
+  <!-- Danger zone highlight -->
+  <rect x="440" y="60" width="280" height="262" fill="#e91e63" opacity="0.07" rx="4"/>
+  <text x="580" y="78" text-anchor="middle" font-size="11" fill="#e91e63">注意力低下ゾーン</text>
+  <!-- 200 line marker -->
+  <line x1="360" y1="60" x2="360" y2="320" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <text x="362" y="90" font-size="11" fill="#f9a825">200行</text>
+  <text x="362" y="104" font-size="11" fill="#f9a825">推奨上限</text>
+</svg>

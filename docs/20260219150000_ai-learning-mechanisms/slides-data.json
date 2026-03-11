@@ -18,7 +18,8 @@
 				"**PAC 学習**: 多項式サンプル数での近似的正解の確率的保証",
 				"**VC 次元**: 仮説クラスの表現力 — 高いほど過学習リスクも増大",
 				"**学習の本質**: 訓練データを記憶するのではなく汎化すること"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "本資料の構成 (1/2)",
@@ -29,7 +30,8 @@
 				"**4.** 深層学習アーキテクチャ",
 				"**5.** 自己教師あり学習と事前学習",
 				"**6.** スケーリング則"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "本資料の構成 (2/2)",
@@ -40,11 +42,15 @@
 				"**10.** 最新研究トレンド",
 				"**11.** 解釈可能性と評価",
 				"**12.** まとめと展望"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "1. 機械学習の3パラダイム",
-			"content": ["教師あり学習 / 教師なし学習 / 強化学習"],
+			"content": [
+				"<svg viewBox=\"0 0 800 280\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"280\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">機械学習の3パラダイム</text>\n  <!-- Three boxes -->\n  <rect x=\"40\" y=\"60\" width=\"210\" height=\"160\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"145\" y=\"90\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">教師あり学習</text>\n  <text x=\"145\" y=\"115\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">入力 X → 出力 Y</text>\n  <text x=\"145\" y=\"135\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">ラベル付きデータ</text>\n  <text x=\"145\" y=\"155\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">分類・回帰</text>\n  <text x=\"145\" y=\"175\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">例: CNN画像認識</text>\n  <text x=\"145\" y=\"192\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">例: Transformer翻訳</text>\n\n  <rect x=\"295\" y=\"60\" width=\"210\" height=\"160\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"400\" y=\"90\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">教師なし学習</text>\n  <text x=\"400\" y=\"115\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">構造・パターン発見</text>\n  <text x=\"400\" y=\"135\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">ラベルなしデータ</text>\n  <text x=\"400\" y=\"155\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">クラスタリング・生成</text>\n  <text x=\"400\" y=\"175\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">例: k-means</text>\n  <text x=\"400\" y=\"192\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">例: VAE / GAN</text>\n\n  <rect x=\"550\" y=\"60\" width=\"210\" height=\"160\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n  <text x=\"655\" y=\"90\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">強化学習</text>\n  <text x=\"655\" y=\"115\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">報酬最大化</text>\n  <text x=\"655\" y=\"135\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">環境との相互作用</text>\n  <text x=\"655\" y=\"155\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">行動選択・最適化</text>\n  <text x=\"655\" y=\"175\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">例: AlphaGo</text>\n  <text x=\"655\" y=\"192\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">例: RLHF (LLM)</text>\n</svg>",
+				"教師あり学習 / 教師なし学習 / 強化学習"
+			],
 			"layout": "section"
 		},
 		{
@@ -53,7 +59,8 @@
 				"問題の構造 (ラベルの有無・報酬の有無) がパラダイムを決定する",
 				"3つのパラダイムは相互補完的に組み合わせて使われる",
 				"![w:850 center](assets/learning-paradigms.svg)"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "教師あり学習の定式化",
@@ -64,7 +71,8 @@
 				"**汎化誤差**: R(h) − R̂(h) が小さいほど良い汎化",
 				"主なタスク: 分類 / 回帰 / 系列ラベリング / 構造予測",
 				"決定境界の複雑さとサンプル数のトレードオフが鍵"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "教師なし・自己教師あり学習",
@@ -75,7 +83,8 @@
 				"生成モデル (VAE, GAN): p(x) = ∫ p(x|z)p(z)dz の近似",
 				"**自己教師あり**: データ自身からプレテキストタスクを自動生成",
 				"例: マスクトークン予測 / 画像回転予測 / 対照学習"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "強化学習の基礎",
@@ -86,7 +95,8 @@
 				"**Q 関数**: Q^π(s,a) = E[Σ γᵗ rₜ | s₀=s, a₀=a]",
 				"**ベルマン方程式**: Q*(s,a) = r + γ max_{a'} Q*(s',a')",
 				"応用: ゲームAI (AlphaGo) / ロボティクス / RLHF"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "汎化誤差と過学習",
@@ -97,18 +107,21 @@
 				"原因: 訓練データ不足 / モデル過複雑 / 正則化不足",
 				"k-fold クロスバリデーション: 小データでの分散低減に有効",
 				"テストセットは一度だけ使用 — 複数回使うと過楽観なバイアス"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "バイアス・バリアンス・トレードオフ",
 			"content": [
+				"<svg viewBox=\"0 0 800 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"300\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">バイアス・バリアンス・トレードオフ</text>\n  <!-- Axes -->\n  <line x1=\"80\" y1=\"250\" x2=\"750\" y2=\"250\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n  <line x1=\"80\" y1=\"50\" x2=\"80\" y2=\"250\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n  <text x=\"415\" y=\"270\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">モデル複雑度</text>\n  <text x=\"50\" y=\"150\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" transform=\"rotate(-90,50,150)\">誤差</text>\n  <!-- Bias curve (decreasing) -->\n  <polyline points=\"80,60 180,80 280,110 380,150 480,185 580,210 680,230 750,240\"\n    fill=\"none\" stroke=\"#f9a825\" stroke-width=\"2.5\"/>\n  <text x=\"760\" y=\"242\" fill=\"#f9a825\" font-size=\"11\">Bias²</text>\n  <!-- Variance curve (increasing) -->\n  <polyline points=\"80,240 180,235 280,225 380,205 480,175 580,140 680,100 750,65\"\n    fill=\"none\" stroke=\"#e91e63\" stroke-width=\"2.5\"/>\n  <text x=\"760\" y=\"67\" fill=\"#e91e63\" font-size=\"11\">Variance</text>\n  <!-- Total error curve (U-shape) -->\n  <polyline points=\"80,140 180,145 280,160 380,175 480,180 580,175 680,165 750,170\"\n    fill=\"none\" stroke=\"#ffffff\" stroke-width=\"2\" stroke-dasharray=\"6\"/>\n  <text x=\"760\" y=\"172\" fill=\"#ffffff\" font-size=\"10\">Total</text>\n  <!-- Optimal point -->\n  <line x1=\"450\" y1=\"50\" x2=\"450\" y2=\"250\" stroke=\"#f9a825\" stroke-width=\"1.5\" stroke-dasharray=\"4\" opacity=\"0.7\"/>\n  <text x=\"450\" y=\"45\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">最適点</text>\n  <!-- Legend -->\n  <text x=\"100\" y=\"290\" fill=\"#f9a825\" font-size=\"10\">高バイアス = 過小適合</text>\n  <text x=\"400\" y=\"290\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">高バリアンス = 過学習</text>\n</svg>",
 				"期待二乗誤差 = Bias²(ĥ) + Var(ĥ) + 不可約誤差 (ノイズ)",
 				"**Bias (偏り)**: 仮説クラスの表現力不足による系統的誤差",
 				"**Variance (分散)**: 訓練データへの高感度 → 過学習傾向",
 				"**二重降下 (Double Descent)**: 過パラメータ域で val loss が再低下",
 				"**Benign Overfitting**: 補間しながらも汎化できる理論的条件",
 				"深層モデルはバイアス低・バリアンス高だが二重降下で回避"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "正則化手法",
@@ -119,7 +132,8 @@
 				"**Early Stopping**: Validation ロスの最小点で学習を停止",
 				"**Mixup / CutMix**: サンプル間の線形補間で汎化性向上",
 				"**Label Smoothing**: y = 0.9·one_hot + 0.1/K で過信を抑制"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "2. 最適化と損失関数",
@@ -135,16 +149,19 @@
 				"**Huber Loss**: MSE と MAE のハイブリッド — 外れ値に頑健",
 				"**Focal Loss**: 難サンプルに重みを置く — 不均衡データ向け",
 				"**InfoNCE / Contrastive**: 対照学習の目的関数"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "勾配降下法の原理",
 			"content": [
+				"<svg viewBox=\"0 0 800 320\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"320\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">勾配降下法の原理</text>\n  <!-- Loss landscape (parabola-like) -->\n  <polyline points=\"60,260 130,180 200,120 280,80 360,65 440,65 520,80 600,120 670,180 740,260\"\n    fill=\"none\" stroke=\"#f9a825\" stroke-width=\"2.5\"/>\n  <!-- Fill under curve -->\n  <polygon points=\"60,260 130,180 200,120 280,80 360,65 440,65 520,80 600,120 670,180 740,260 740,280 60,280\"\n    fill=\"#f9a825\" opacity=\"0.08\"/>\n  <!-- Axes -->\n  <line x1=\"40\" y1=\"275\" x2=\"760\" y2=\"275\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n  <text x=\"760\" y=\"290\" text-anchor=\"end\" fill=\"#ffffff\" font-size=\"11\">パラメータ θ</text>\n  <text x=\"40\" y=\"40\" fill=\"#ffffff\" font-size=\"11\">損失 L(θ)</text>\n  <!-- Gradient descent steps -->\n  <circle cx=\"650\" cy=\"155\" r=\"6\" fill=\"#e91e63\"/>\n  <text x=\"660\" y=\"148\" fill=\"#ffffff\" font-size=\"10\">初期値</text>\n  <line x1=\"650\" y1=\"155\" x2=\"570\" y2=\"110\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n  <polygon points=\"570,110 578,124 562,122\" fill=\"#e91e63\"/>\n  <circle cx=\"570\" cy=\"110\" r=\"6\" fill=\"#e91e63\" opacity=\"0.8\"/>\n\n  <line x1=\"570\" y1=\"110\" x2=\"500\" y2=\"85\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n  <polygon points=\"500,85 510,97 496,100\" fill=\"#e91e63\"/>\n  <circle cx=\"500\" cy=\"85\" r=\"6\" fill=\"#e91e63\" opacity=\"0.6\"/>\n\n  <line x1=\"500\" y1=\"85\" x2=\"440\" y2=\"67\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n  <polygon points=\"440,67 452,78 438,82\" fill=\"#e91e63\"/>\n  <circle cx=\"440\" cy=\"67\" r=\"8\" fill=\"#f9a825\"/>\n  <text x=\"430\" y=\"55\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">最小値</text>\n  <!-- Learning rate annotation -->\n  <text x=\"400\" y=\"308\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">学習率 η で -∇L(θ) 方向に更新: θ ← θ - η · ∇L(θ)</text>\n</svg>",
 				"更新則: θ_{t+1} = θ_t − η ∇_θ L(θ_t; X)",
 				"学習率 η の役割: 大きすぎると発散、小さすぎると収束遅延",
 				"ミニバッチ SGD: B サンプルごとに更新 — 計算と品質のバランス",
 				"![w:800 center](assets/gradient-descent.svg)"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "SGD → Adam → AdamW の進化",
@@ -152,8 +169,14 @@
 				"SGD + Momentum: 鞍点を乗り越える慣性を付与",
 				"AdaGrad: 疎な勾配に適応的学習率 (累積二乗和で除算)"
 			],
+			"layout": "default"
+		},
+		{
+			"title": "SGD → Adam → AdamW の進化（コード例）",
+			"content": [],
 			"code": "# Adam optimizer update\nm = beta1 * m + (1 - beta1) * grad       # 1st moment (mean)\nv = beta2 * v + (1 - beta2) * grad**2    # 2nd moment (variance)\nm_hat = m / (1 - beta1**t)               # bias correction\nv_hat = v / (1 - beta2**t)\ntheta -= lr * m_hat / (sqrt(v_hat) + eps)\n# AdamW: L2 weight decay を最適化ステップの外に分離\ntheta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)",
-			"codeLanguage": "python"
+			"codeLanguage": "python",
+			"layout": "default"
 		},
 		{
 			"title": "学習率スケジューリング",
@@ -164,18 +187,21 @@
 				"**OneCycleLR**: 超収束 — 1サイクルで高速学習 (Smith 2018)",
 				"**Inverse Square Root**: Transformer 原論文の手法",
 				"**LR Finder**: 小バッチで sweep して最適学習率を探索"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "損失地形と局所最適解",
 			"content": [
+				"<svg viewBox=\"0 0 800 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"300\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">損失地形と局所最適解</text>\n  <!-- Non-convex loss landscape -->\n  <polyline points=\"40,260 100,200 150,230 210,160 270,200 330,120 390,155 440,80 490,100 550,140 610,95 660,140 720,90 760,70\"\n    fill=\"none\" stroke=\"#f9a825\" stroke-width=\"2.5\"/>\n  <polygon points=\"40,260 100,200 150,230 210,160 270,200 330,120 390,155 440,80 490,100 550,140 610,95 660,140 720,90 760,70 760,280 40,280\"\n    fill=\"#f9a825\" opacity=\"0.08\"/>\n  <!-- Axes -->\n  <line x1=\"40\" y1=\"275\" x2=\"770\" y2=\"275\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n  <!-- Local minimum markers -->\n  <circle cx=\"330\" cy=\"120\" r=\"7\" fill=\"#e91e63\"/>\n  <text x=\"330\" y=\"108\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">局所最適解</text>\n  <circle cx=\"610\" cy=\"95\" r=\"7\" fill=\"#e91e63\"/>\n  <text x=\"610\" y=\"83\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">局所最適解</text>\n  <!-- Global minimum -->\n  <circle cx=\"760\" cy=\"70\" r=\"9\" fill=\"#f9a825\"/>\n  <text x=\"750\" y=\"58\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">大域最適解</text>\n  <!-- Saddle point -->\n  <circle cx=\"440\" cy=\"80\" r=\"7\" fill=\"#ffffff\"/>\n  <text x=\"440\" y=\"68\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">鞍点</text>\n  <!-- Annotations -->\n  <text x=\"400\" y=\"300\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">SGD・AdamWはノイズ性質で局所最適を脱出しやすい</text>\n</svg>",
 				"高次元パラメータ空間では真の局所最小解は稀 — 多くは鞍点",
 				"**シャープ最小値 vs フラット最小値**: フラットほど汎化が良い傾向",
 				"**SAM (Sharpness-Aware Minimization)**: フラット最小を明示的に探索",
 				"**Loss Landscape 可視化**: Filter Normalization (Li et al., 2018)",
 				"過パラメータ化が不思議なほど良い最小値へ収束しやすくする",
 				"ランダム性 (SGD ノイズ) が暗黙的にフラット最小値を選択"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "勾配クリッピングと学習安定化",
@@ -186,7 +212,8 @@
 				"**BF16**: FP32 と同じ指数域 — LLM 学習の実質標準",
 				"**Dynamic Loss Scaling**: FP16 のアンダーフロー防止",
 				"Gradient Checkpointing: 活性化を再計算でメモリ節約"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "3. ニューラルネットワーク基礎",
@@ -200,7 +227,8 @@
 				"**XOR 問題**: 単層では解けず → 多層が必要 (Minsky & Papert 1969)",
 				"**普遍近似定理**: 十分な幅の1隠れ層 NN は任意の連続関数を近似",
 				"![w:820 center](assets/neural-network-mlp.svg)"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "活性化関数の進化",
@@ -211,16 +239,19 @@
 				"**Leaky ReLU**: max(αz, z) — Dead ReLU を防止",
 				"**GELU**: z·Φ(z) — BERT / GPT 系で標準採用",
 				"**SiLU (Swish)**: z·σ(z) — LLaMA / Gemma 系で採用"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "誤差逆伝播法 (Backpropagation)",
 			"content": [
+				"<svg viewBox=\"0 0 800 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"300\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">誤差逆伝播法 (Backpropagation)</text>\n  <!-- Neural network layers -->\n  <!-- Input layer -->\n  <circle cx=\"100\" cy=\"100\" r=\"18\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"105\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">x₁</text>\n  <circle cx=\"100\" cy=\"170\" r=\"18\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"175\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">x₂</text>\n  <circle cx=\"100\" cy=\"240\" r=\"18\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"245\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">x₃</text>\n  <text x=\"100\" y=\"290\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">入力層</text>\n  <!-- Hidden layer 1 -->\n  <circle cx=\"280\" cy=\"80\" r=\"18\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"280\" y=\"85\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">h₁</text>\n  <circle cx=\"280\" cy=\"170\" r=\"18\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"280\" y=\"175\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">h₂</text>\n  <circle cx=\"280\" cy=\"260\" r=\"18\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"280\" y=\"265\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">h₃</text>\n  <text x=\"280\" y=\"290\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">隠れ層1</text>\n  <!-- Hidden layer 2 -->\n  <circle cx=\"460\" cy=\"120\" r=\"18\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"460\" y=\"125\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">h₄</text>\n  <circle cx=\"460\" cy=\"220\" r=\"18\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"460\" y=\"225\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">h₅</text>\n  <text x=\"460\" y=\"290\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">隠れ層2</text>\n  <!-- Output layer -->\n  <circle cx=\"640\" cy=\"170\" r=\"18\" fill=\"#e91e63\"/>\n  <text x=\"640\" y=\"175\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">ŷ</text>\n  <text x=\"640\" y=\"290\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">出力層</text>\n  <!-- Forward pass edges (thin) -->\n  <line x1=\"118\" y1=\"107\" x2=\"262\" y2=\"87\" stroke=\"#f9a825\" stroke-width=\"1\" opacity=\"0.5\"/>\n  <line x1=\"118\" y1=\"110\" x2=\"262\" y2=\"163\" stroke=\"#f9a825\" stroke-width=\"1\" opacity=\"0.5\"/>\n  <line x1=\"118\" y1=\"170\" x2=\"262\" y2=\"86\" stroke=\"#f9a825\" stroke-width=\"1\" opacity=\"0.5\"/>\n  <line x1=\"118\" y1=\"170\" x2=\"262\" y2=\"170\" stroke=\"#f9a825\" stroke-width=\"1\" opacity=\"0.5\"/>\n  <line x1=\"118\" y1=\"170\" x2=\"262\" y2=\"254\" stroke=\"#f9a825\" stroke-width=\"1\" opacity=\"0.5\"/>\n  <line x1=\"118\" y1=\"233\" x2=\"262\" y2=\"170\" stroke=\"#f9a825\" stroke-width=\"1\" opacity=\"0.5\"/>\n  <line x1=\"118\" y1=\"233\" x2=\"262\" y2=\"254\" stroke=\"#f9a825\" stroke-width=\"1\" opacity=\"0.5\"/>\n  <line x1=\"298\" y1=\"87\" x2=\"442\" y2=\"127\" stroke=\"#f9a825\" stroke-width=\"1\" opacity=\"0.5\"/>\n  <line x1=\"298\" y1=\"170\" x2=\"442\" y2=\"127\" stroke=\"#f9a825\" stroke-width=\"1\" opacity=\"0.5\"/>\n  <line x1=\"298\" y1=\"170\" x2=\"442\" y2=\"213\" stroke=\"#f9a825\" stroke-width=\"1\" opacity=\"0.5\"/>\n  <line x1=\"298\" y1=\"254\" x2=\"442\" y2=\"213\" stroke=\"#f9a825\" stroke-width=\"1\" opacity=\"0.5\"/>\n  <line x1=\"478\" y1=\"127\" x2=\"622\" y2=\"163\" stroke=\"#f9a825\" stroke-width=\"1\" opacity=\"0.5\"/>\n  <line x1=\"478\" y1=\"213\" x2=\"622\" y2=\"177\" stroke=\"#f9a825\" stroke-width=\"1\" opacity=\"0.5\"/>\n  <!-- Backprop arrow (red, bold) -->\n  <line x1=\"622\" y1=\"170\" x2=\"80\" y2=\"170\" stroke=\"#e91e63\" stroke-width=\"3\" stroke-dasharray=\"8\"/>\n  <polygon points=\"80,170 98,162 98,178\" fill=\"#e91e63\"/>\n  <text x=\"400\" y=\"35\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">逆伝播: ∂L/∂w = ∂L/∂ŷ · ∂ŷ/∂h · ∂h/∂w  (連鎖律)</text>\n</svg>",
 				"**連鎖律**: ∂L/∂w = (∂L/∂a)(∂a/∂z)(∂z/∂w)",
 				"計算グラフで演算ノードを通じて勾配を自動微分",
 				"PyTorch / JAX の autograd が実装の核心",
 				"![w:820 center](assets/backprop-graph.svg)"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "バッチ正規化 (Batch Normalization)",
@@ -231,7 +262,8 @@
 				"**LayerNorm**: バッチでなく特徴次元で正規化 — Transformer で使用",
 				"**RMSNorm**: γx/RMS(x) — LayerNorm より計算効率が高い",
 				"**GroupNorm**: チャネルをグループ分けして正規化 — 小バッチでも安定"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "ドロップアウトと正則化",
@@ -242,7 +274,8 @@
 				"**DropPath / Stochastic Depth**: 残差ブランチ全体をドロップ",
 				"LLM では Dropout より Weight Decay が主流",
 				"過学習の種類に応じた正則化手法の選択が重要"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "残差接続 (ResNet)",
@@ -253,7 +286,8 @@
 				"ResNet-152 で ImageNet SOTA を達成 (He et al., 2016)",
 				"**Pre-Activation ResNet**: BN + ReLU → Conv の順で勾配流改善",
 				"Transformer の残差接続も同じ原理 — 深さへの鍵"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "初期化戦略",
@@ -264,7 +298,8 @@
 				"**LeCun 初期化**: Var(w) = 1/n_in — SELU 活性化と組み合わせ",
 				"**正規直交初期化**: 勾配ノルムの等尺性保持 (Saxe et al., 2014)",
 				"μP (Maximal Update Parameterization): スケール不変の初期化"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "4. 深層学習アーキテクチャ",
@@ -280,7 +315,8 @@
 				"**ストライド**: フィルタ移動間隔 — 空間解像度を削減",
 				"**特徴マップの積み上げ**: チャネル数 ↑ × 空間解像度 ↓ が基本設計",
 				"受容野 (Receptive Field): 深い層ほど入力の広い領域を統合"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "CNNの進化",
@@ -291,7 +327,8 @@
 				"**ResNet (2016)**: 残差接続 — 152層の超深層化を実現",
 				"**EfficientNet (2019)**: NAS + Compound Scaling — 精度・効率の最前線",
 				"**ConvNeXt (2022)**: Transformer 設計を CNN に導入"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "RNN / LSTM の仕組み",
@@ -302,25 +339,30 @@
 				"セル状態: 長期記憶の担体 — ゲートで制御されて情報を保持",
 				"**GRU (Cho 2014)**: LSTM を簡略化 — 2 ゲートでパラメータ削減",
 				"Seq2Seq + Attention: RNN 時代の機械翻訳標準手法"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "Attention 機構の原理",
 			"content": [
+				"<svg viewBox=\"0 0 800 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"300\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">Attention 機構の原理</text>\n  <!-- Q K V boxes -->\n  <rect x=\"60\" y=\"100\" width=\"90\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"105\" y=\"130\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\">Q</text>\n  <text x=\"105\" y=\"162\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">Query</text>\n\n  <rect x=\"200\" y=\"100\" width=\"90\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"245\" y=\"130\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\">K</text>\n  <text x=\"245\" y=\"162\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">Key</text>\n\n  <rect x=\"340\" y=\"100\" width=\"90\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"385\" y=\"130\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\">V</text>\n  <text x=\"385\" y=\"162\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">Value</text>\n\n  <!-- Score computation -->\n  <rect x=\"490\" y=\"80\" width=\"120\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n  <text x=\"550\" y=\"100\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">スコア計算</text>\n  <text x=\"550\" y=\"118\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">QKᵀ / √dₖ</text>\n\n  <!-- Softmax -->\n  <rect x=\"490\" y=\"160\" width=\"120\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n  <text x=\"550\" y=\"182\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">Softmax</text>\n  <text x=\"550\" y=\"200\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">注意重み α</text>\n\n  <!-- Output -->\n  <rect x=\"650\" y=\"120\" width=\"120\" height=\"50\" rx=\"6\" fill=\"#f9a825\" opacity=\"0.9\"/>\n  <text x=\"710\" y=\"141\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"11\" font-weight=\"bold\">Attention出力</text>\n  <text x=\"710\" y=\"159\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"10\">αV (加重和)</text>\n\n  <!-- Arrows -->\n  <line x1=\"150\" y1=\"125\" x2=\"490\" y2=\"105\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <polygon points=\"490,105 477,99 477,111\" fill=\"#f9a825\"/>\n  <line x1=\"290\" y1=\"125\" x2=\"490\" y2=\"108\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <line x1=\"430\" y1=\"180\" x2=\"490\" y2=\"180\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <polygon points=\"490,180 477,174 477,186\" fill=\"#f9a825\"/>\n  <line x1=\"550\" y1=\"130\" x2=\"550\" y2=\"160\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n  <polygon points=\"550,160 543,148 557,148\" fill=\"#e91e63\"/>\n  <line x1=\"610\" y1=\"185\" x2=\"650\" y2=\"158\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <polygon points=\"650,158 638,156 644,168\" fill=\"#f9a825\"/>\n  <!-- Formula bottom -->\n  <text x=\"400\" y=\"278\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">Attention(Q,K,V) = softmax(QKᵀ/√dₖ)V</text>\n</svg>",
 				"RNN の固定長ベクトル圧縮による情報ボトルネックを解消",
 				"**Scaled Dot-Product**: Attention(Q,K,V) = softmax(QKᵀ/√d_k)·V",
 				"Q / K / V: 同じ入力から線形変換で生成 (Self-Attention)",
 				"![w:840 center](assets/attention-mechanism.svg)"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "Transformer アーキテクチャ",
 			"content": [
+				"<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">Transformer アーキテクチャ</text>\n  <!-- Encoder side -->\n  <rect x=\"30\" y=\"46\" width=\"340\" height=\"260\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"200\" y=\"68\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">エンコーダ (×N)</text>\n  <rect x=\"55\" y=\"80\" width=\"290\" height=\"40\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#f9a825\" stroke-width=\"1\"/>\n  <text x=\"200\" y=\"105\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">Multi-Head Self-Attention</text>\n  <rect x=\"55\" y=\"130\" width=\"290\" height=\"40\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#f9a825\" stroke-width=\"1\"/>\n  <text x=\"200\" y=\"155\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">Add &amp; Norm</text>\n  <rect x=\"55\" y=\"180\" width=\"290\" height=\"40\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#f9a825\" stroke-width=\"1\"/>\n  <text x=\"200\" y=\"205\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">Feed Forward Network</text>\n  <rect x=\"55\" y=\"230\" width=\"290\" height=\"40\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#f9a825\" stroke-width=\"1\"/>\n  <text x=\"200\" y=\"255\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">Add &amp; Norm</text>\n  <text x=\"200\" y=\"295\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">+ Positional Encoding</text>\n\n  <!-- Decoder side -->\n  <rect x=\"430\" y=\"46\" width=\"340\" height=\"260\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <text x=\"600\" y=\"68\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">デコーダ (×N)</text>\n  <rect x=\"455\" y=\"80\" width=\"290\" height=\"34\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n  <text x=\"600\" y=\"102\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">Masked Self-Attention</text>\n  <rect x=\"455\" y=\"124\" width=\"290\" height=\"34\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n  <text x=\"600\" y=\"146\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">Cross-Attention (Enc→Dec)</text>\n  <rect x=\"455\" y=\"168\" width=\"290\" height=\"34\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n  <text x=\"600\" y=\"190\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">Add &amp; Norm</text>\n  <rect x=\"455\" y=\"212\" width=\"290\" height=\"34\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n  <text x=\"600\" y=\"234\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">Feed Forward + Add &amp; Norm</text>\n  <text x=\"600\" y=\"295\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">Linear → Softmax → 出力</text>\n\n  <!-- Center arrow -->\n  <line x1=\"370\" y1=\"175\" x2=\"430\" y2=\"175\" stroke=\"#f9a825\" stroke-width=\"2.5\"/>\n  <polygon points=\"430,175 416,168 416,182\" fill=\"#f9a825\"/>\n</svg>",
 				"Vaswani et al. (2017): 「Attention is All You Need」",
 				"Encoder-only (BERT) / Decoder-only (GPT) / Enc-Dec (T5) の3系統",
 				"FFN: 2層MLP、幅は Attention の4倍が標準",
 				"![w:640 center](assets/transformer-arch.svg)"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "Multi-Head Self-Attention の詳細",
@@ -331,7 +373,8 @@
 				"ヘッド多様性: 構文 / 意味 / 照応解決などに自然に特化",
 				"**Causal Masking**: デコーダでは未来トークンを -∞ でマスク",
 				"**Flash Attention**: IO-aware 実装で 4〜10× 高速化 (Dao 2022)"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "位置エンコーディング",
@@ -342,7 +385,8 @@
 				"**RoPE** (Rotary PE): 相対位置を回転行列で表現 — LLaMA / GPT-NeoX",
 				"**ALiBi**: Attention スコアに線形バイアス — 学習超えの長文外挿に強い",
 				"**YaRN / LongRoPE**: コンテキスト長拡張に対応した RoPE 変種"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "Vision Transformer (ViT)",
@@ -353,7 +397,8 @@
 				"**DeiT**: 蒸留により ImageNet-1k 単独でも高精度 (Touvron 2021)",
 				"**Swin Transformer**: 階層構造 + Window Attention — 物体検出に最適",
 				"**MAE**: ランダムマスクパッチの復元による自己教師あり事前学習"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "5. 自己教師あり学習と事前学習",
@@ -369,7 +414,8 @@
 				"**表現学習の目標**: 下流タスクへの転移学習に有用な汎用表現",
 				"自然言語はテキスト自体がプレテキストタスクの宝庫 (次トークン予測)",
 				"事前学習の品質が下流タスクの上限を決める"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "マスク言語モデリング (BERT)",
@@ -380,7 +426,8 @@
 				"**NSP** (Next Sentence Prediction): 文ペアの連続性を予測",
 				"**RoBERTa**: NSP 廃止 + 大バッチ + 動的マスキング → 大幅改善",
 				"**DeBERTa**: 分離注意機構 + 絶対位置デコーダ → さらなる向上"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "自己回帰型事前学習 (GPT 系)",
@@ -391,7 +438,8 @@
 				"**GPT-3 (2020)**: 175B パラメータ — In-context Learning の発見",
 				"Causal Masking: 未来トークンへのアクセスを禁止",
 				"スケールアップの一貫性: 損失はべき乗則で改善し続ける"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "対照学習 (Contrastive Learning)",
@@ -402,7 +450,8 @@
 				"**MoCo**: Momentum Encoder + キューで大規模負例を効率管理",
 				"**CLIP** (Radford 2021): 画像-テキストペア 4億件から共同表現を学習",
 				"Hard Negative Mining: 難しい負例ほど表現品質の向上に有効"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "MAE / SimMIM",
@@ -413,7 +462,8 @@
 				"**SimMIM** (2022): スパース線形ヘッドで raw pixel を直接予測",
 				"**BEiT**: dVAE 由来の離散トークン予測 — DALL-E の離散 VAE を利用",
 				"下流転移: Fine-tuning / Linear Probe で BERT 類似の転移学習"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "Instruction Tuning の登場",
@@ -424,7 +474,8 @@
 				"**SuperNI** (2022): 1600 以上のタスク指示セット",
 				"**Alpaca / Vicuna**: ChatGPT 出力を教師データとしたオープンモデル",
 				"指示の品質と多様性がモデルの汎化能力を決定する"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "思考連鎖 (CoT) 事前学習",
@@ -435,7 +486,8 @@
 				"**Think Tokens** (o1 / R1): <think>...</think> で長い推論を展開",
 				"**Process Reward Model (PRM)**: 各推論ステップの正しさを評価",
 				"**GRPO / REINFORCE++**: RL で推論品質を直接最適化"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "6. スケーリング則",
@@ -445,11 +497,13 @@
 		{
 			"title": "Kaplan スケーリング則 (2020)",
 			"content": [
+				"<svg viewBox=\"0 0 800 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"300\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">Kaplan スケーリング則 (2020) — 損失 vs 規模</text>\n  <!-- Log-log axes -->\n  <line x1=\"80\" y1=\"260\" x2=\"750\" y2=\"260\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n  <line x1=\"80\" y1=\"50\" x2=\"80\" y2=\"260\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n  <text x=\"415\" y=\"282\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">規模 (モデルパラメータ数 / データ / 計算量) [log]</text>\n  <text x=\"32\" y=\"155\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" transform=\"rotate(-90,32,155)\">損失 L [log]</text>\n  <!-- Power law line -->\n  <polyline points=\"80,250 160,210 240,185 320,165 400,148 480,134 560,122 640,112 720,104\"\n    fill=\"none\" stroke=\"#f9a825\" stroke-width=\"3\"/>\n  <text x=\"730\" y=\"100\" fill=\"#f9a825\" font-size=\"11\">L ∝ N⁻⁰·⁰⁷⁶</text>\n  <!-- Data point markers -->\n  <circle cx=\"160\" cy=\"210\" r=\"5\" fill=\"#e91e63\"/>\n  <text x=\"160\" y=\"200\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"9\">1B</text>\n  <circle cx=\"320\" cy=\"165\" r=\"5\" fill=\"#e91e63\"/>\n  <text x=\"320\" y=\"155\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"9\">10B</text>\n  <circle cx=\"480\" cy=\"134\" r=\"5\" fill=\"#e91e63\"/>\n  <text x=\"480\" y=\"124\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"9\">100B</text>\n  <circle cx=\"640\" cy=\"112\" r=\"5\" fill=\"#e91e63\"/>\n  <text x=\"640\" y=\"102\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"9\">1T</text>\n  <!-- Annotation -->\n  <text x=\"400\" y=\"290\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">規模を10倍にすると損失は一定率で改善 → べき乗則</text>\n</svg>",
 				"Kaplan et al. (2020): 計算量・モデルサイズ・データの3要素の冪乗則",
 				"L(N) ∝ N^{−0.076}: パラメータ数に対する冪乗的損失減少",
 				"L(C) ∝ C^{−0.050}: 計算量 FLOPs に対する冪乗的損失減少",
 				"![w:800 center](assets/scaling-laws.svg)"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "Chinchilla スケーリング則 (2022)",
@@ -460,7 +514,8 @@
 				"**D ≈ 20N** が実用的な経験則 (N: パラメータ数)",
 				"**LLaMA / Mistral**: Chinchilla 則に基づく高効率トレーニング",
 				"Llama 3: 405B / 15T tokens — 推論コスト最適化を重視"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "創発能力 (Emergent Abilities)",
@@ -471,7 +526,8 @@
 				"**Few-shot ICL**: プロンプト内の例からのタスク推定能力",
 				"**Chain-of-Thought**: 中間推論ステップの自発的展開",
 				"Calibration の破綻: 大規模化で confidence が過剰になる傾向"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "データ・計算・モデルの最適配分",
@@ -482,7 +538,8 @@
 				"**Multi-epoch 訓練**: データ拡張・合成データで無限データ化を目指す",
 				"データ反復: 同データの複数エポック — 1〜2 エポックが実用的最大",
 				"GPT-4 / Gemini 1.5 Ultra はパラメータを非公開 — 新しい配分の可能性"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "7. ファインチューニングとアライメント",
@@ -498,16 +555,19 @@
 				"**Catastrophic Forgetting**: FT 時に事前学習の汎用知識が失われる問題",
 				"解決策: SFT データと事前学習データの混合 / 低学習率",
 				"**データ品質 >> データ量**: 1000件の高品質データが大量低品質データを超える"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "RLHF: 強化学習による人間フィードバック",
 			"content": [
+				"<svg viewBox=\"0 0 800 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"300\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">RLHF パイプライン</text>\n  <!-- Step 1: SFT -->\n  <rect x=\"30\" y=\"80\" width=\"140\" height=\"60\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"105\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">Step 1</text>\n  <text x=\"100\" y=\"125\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">SFT (監督学習)</text>\n  <!-- Step 2: Reward Model -->\n  <rect x=\"230\" y=\"80\" width=\"140\" height=\"60\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"300\" y=\"105\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">Step 2</text>\n  <text x=\"300\" y=\"125\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">報酬モデル学習</text>\n  <!-- Step 3: RL fine-tuning -->\n  <rect x=\"430\" y=\"80\" width=\"140\" height=\"60\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n  <text x=\"500\" y=\"105\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">Step 3</text>\n  <text x=\"500\" y=\"125\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">PPO強化学習</text>\n  <!-- Aligned LLM -->\n  <rect x=\"630\" y=\"80\" width=\"140\" height=\"60\" rx=\"6\" fill=\"#f9a825\" opacity=\"0.9\"/>\n  <text x=\"700\" y=\"105\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"12\" font-weight=\"bold\">Aligned</text>\n  <text x=\"700\" y=\"125\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"10\">LLM出力</text>\n  <!-- Arrows -->\n  <polygon points=\"218,110 204,103 204,117\" fill=\"#f9a825\"/>\n  <line x1=\"170\" y1=\"110\" x2=\"218\" y2=\"110\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <polygon points=\"418,110 404,103 404,117\" fill=\"#f9a825\"/>\n  <line x1=\"370\" y1=\"110\" x2=\"418\" y2=\"110\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <polygon points=\"618,110 604,103 604,117\" fill=\"#f9a825\"/>\n  <line x1=\"570\" y1=\"110\" x2=\"618\" y2=\"110\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <!-- Human feedback loop -->\n  <rect x=\"200\" y=\"200\" width=\"400\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"400\" y=\"225\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">人間アノテーター: 応答ペアを比較・ランク付け</text>\n  <text x=\"400\" y=\"243\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">好み → 報酬モデルを訓練</text>\n  <line x1=\"300\" y1=\"200\" x2=\"300\" y2=\"140\" stroke=\"#f9a825\" stroke-width=\"1.5\" stroke-dasharray=\"5\"/>\n  <polygon points=\"300,140 293,152 307,152\" fill=\"#f9a825\"/>\n  <line x1=\"500\" y1=\"200\" x2=\"500\" y2=\"140\" stroke=\"#e91e63\" stroke-width=\"1.5\" stroke-dasharray=\"5\"/>\n  <polygon points=\"500,140 493,152 507,152\" fill=\"#e91e63\"/>\n</svg>",
 				"Ziegler et al. (2019) / InstructGPT (2022) が実用化を確立",
 				"KL 制約: L = R(π) − β DKL(π ‖ π_ref) で発散を防止",
 				"人間評価コスト: 数万件の比較ラベルが必要",
 				"![w:860 center](assets/rlhf-pipeline.svg)"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "報酬モデルの学習",
@@ -518,7 +578,8 @@
 				"**Reward Hacking**: RL が RM の弱点を突いてスコアを水増し",
 				"**Overoptimization**: KL 増大で実際の人間評価が低下する現象",
 				"**Ensemble RM**: 複数報酬モデルの統計で不確実性を推定"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "PPO 最適化",
@@ -529,7 +590,8 @@
 				"価値関数ネットワーク: 状態価値 V(s) を学習 — Advantage の推定",
 				"KL ペナルティ: 参照モデルとの KL 発散をペナルティとして加算",
 				"実装の複雑さ: RM / Actor / Critic / Reference の4モデルを同時管理"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "DPO: 直接選好最適化",
@@ -537,8 +599,14 @@
 				"Rafailov et al. (2023): RLHF を PPO なしに単一損失で実現",
 				"最適方策のクローズドフォーム: π* ∝ π_ref · exp(r/β)"
 			],
+			"layout": "default"
+		},
+		{
+			"title": "DPO: 直接選好最適化（コード例）",
+			"content": [],
 			"code": "# DPO Loss (Rafailov et al., 2023)\ndef dpo_loss(pi_logp_w, pi_logp_l, ref_logp_w, ref_logp_l, beta=0.1):\n    pi_ratio_w = pi_logp_w - ref_logp_w  # chosen\n    pi_ratio_l = pi_logp_l - ref_logp_l  # rejected\n    loss = -F.logsigmoid(beta * (pi_ratio_w - pi_ratio_l))\n    return loss.mean()\n# SimPO: length-normalized, no ref model needed\n# KTO: binary preference signal (liked/disliked)",
-			"codeLanguage": "python"
+			"codeLanguage": "python",
+			"layout": "default"
 		},
 		{
 			"title": "GRPO / REINFORCE++",
@@ -549,26 +617,35 @@
 				"数学タスクへの適用: 検証可能な正誤で自動報酬 — 人手評価不要",
 				"**DeepSeek-R1-Zero**: SFT なしで RL のみで推論能力が自発的に出現",
 				"Self-Play: モデルが自らに対して学習 — 能力のブートストラップ"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "PEFT: パラメータ効率的ファインチューニング",
 			"content": [
+				"<svg viewBox=\"0 0 800 280\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"280\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">PEFT: パラメータ効率的ファインチューニング</text>\n  <!-- Full fine-tune vs PEFT comparison -->\n  <!-- Full -->\n  <rect x=\"40\" y=\"60\" width=\"320\" height=\"170\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n  <text x=\"200\" y=\"85\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">フルファインチューニング</text>\n  <text x=\"200\" y=\"110\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">全パラメータ更新</text>\n  <text x=\"200\" y=\"132\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">175B パラメータ全て</text>\n  <text x=\"200\" y=\"154\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">GPU メモリ: 数百 GB</text>\n  <text x=\"200\" y=\"176\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">コスト: 非常に高い</text>\n  <text x=\"200\" y=\"198\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">壊滅的忘却リスクあり</text>\n  <!-- PEFT -->\n  <rect x=\"440\" y=\"60\" width=\"320\" height=\"170\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"600\" y=\"85\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">LoRA / QLoRA (PEFT)</text>\n  <text x=\"600\" y=\"110\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">一部パラメータのみ更新</text>\n  <text x=\"600\" y=\"132\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">0.1〜1% のパラメータ</text>\n  <text x=\"600\" y=\"154\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">GPU メモリ: 数 GB</text>\n  <text x=\"600\" y=\"176\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">コスト: 大幅削減</text>\n  <text x=\"600\" y=\"198\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">元モデル保持・精度同等</text>\n  <!-- VS -->\n  <text x=\"400\" y=\"152\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"20\" font-weight=\"bold\" opacity=\"0.5\">VS</text>\n  <!-- Bottom -->\n  <text x=\"400\" y=\"260\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">ΔW = BA (rank r分解行列)  r ≪ d</text>\n</svg>",
 				"動機: 170B モデルの完全 FT には数百 GB の VRAM が必要",
 				"**Adapter** (Houlsby 2019): 各層に小型 FFN を挿入 → 全パラメータの 1%",
 				"**Prefix Tuning**: Key/Value に連続的な「soft prompt」を前置",
 				"**Prompt Tuning**: 入力埋め込みのみを学習 — 極端なパラメータ削減",
 				"**IA³**: スケーリングベクターで活性化を調整 — Few-shot PEFT",
 				"**LoRA**: 低ランク行列近似 — 現在最も広く使われる手法"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "LoRA / QLoRA",
 			"content": [
 				"LoRA: W + ΔW = W + BA (B∈R^{d×r}, A∈R^{r×k}, r << min(d,k))"
 			],
+			"layout": "default"
+		},
+		{
+			"title": "LoRA / QLoRA（コード例）",
+			"content": [],
 			"code": "class LoRALayer(nn.Module):\n    def __init__(self, d_in, d_out, rank=16, alpha=32):\n        super().__init__()\n        self.W = nn.Linear(d_in, d_out, bias=False)\n        self.W.requires_grad_(False)      # freeze base model\n        self.A = nn.Parameter(torch.randn(d_in, rank) * 0.01)\n        self.B = nn.Parameter(torch.zeros(rank, d_out))\n        self.scale = alpha / rank         # alpha/r scaling\n    def forward(self, x):\n        return self.W(x) + (x @ self.A @ self.B) * self.scale\n# QLoRA: 4-bit NF4 quantization + Double Quant + LoRA",
-			"codeLanguage": "python"
+			"codeLanguage": "python",
+			"layout": "default"
 		},
 		{
 			"title": "8. 学習データとデータエンジニアリング",
@@ -584,7 +661,8 @@
 				"データ混合比: コードデータが大量に含まれると推論能力が向上",
 				"**多言語不均衡**: 日本語/中国語等は英語の 1/50 以下",
 				"法的問題: 著作権データの扱い — Books3, LibGen 等で訴訟"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "データキュレーションパイプライン",
@@ -595,7 +673,8 @@
 				"**Deduplication の重要性**: 重複データは汎化を損ない記憶を促進",
 				"**Quality Classifier**: GPT-4 / Claude でアノテートし品質スコアを付与",
 				"規模が増えるほどフィルタリングの精度が全体品質を左右"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "データ汚染と評価セット独立性",
@@ -606,7 +685,8 @@
 				"**LiveBench / GPQA**: 定期更新 / 非公開で汚染を防ぐ設計",
 				"テストセットは一度だけ使用 — 複数回使うと過楽観バイアス",
 				"コミュニティへの提言: 評価データは秘匿し公開を最小限に"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "合成データと自己改善ループ",
@@ -617,7 +697,8 @@
 				"**Phi-1/2/3**: 小モデルでも高品質合成データで大モデルに匹敵",
 				"合成データの限界: 多様性欠如 / 幻覚の伝播 / モデル崩壊リスク",
 				"**検証可能タスク** (数学・コード): 自動報酬で合成データの品質保証"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "9. 分散学習・並列化",
@@ -627,11 +708,13 @@
 		{
 			"title": "分散学習の並列化戦略",
 			"content": [
+				"<svg viewBox=\"0 0 800 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"300\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">分散学習の並列化戦略</text>\n  <!-- Data parallel -->\n  <rect x=\"30\" y=\"60\" width=\"220\" height=\"80\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"140\" y=\"85\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">データ並列</text>\n  <text x=\"140\" y=\"105\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">同一モデルを複数GPU</text>\n  <text x=\"140\" y=\"123\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">ミニバッチを分割処理</text>\n  <!-- Model parallel -->\n  <rect x=\"290\" y=\"60\" width=\"220\" height=\"80\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"400\" y=\"85\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">モデル並列</text>\n  <text x=\"400\" y=\"105\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">モデルを層で分割</text>\n  <text x=\"400\" y=\"123\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">各GPUが異なる層を担当</text>\n  <!-- Tensor parallel -->\n  <rect x=\"550\" y=\"60\" width=\"220\" height=\"80\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <text x=\"660\" y=\"85\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">テンソル並列</text>\n  <text x=\"660\" y=\"105\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">行列計算を分割</text>\n  <text x=\"660\" y=\"123\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">Megatron-LM方式</text>\n  <!-- 3D parallel -->\n  <rect x=\"200\" y=\"190\" width=\"400\" height=\"60\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"400\" y=\"215\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">3D並列 (Data + Model + Tensor)</text>\n  <text x=\"400\" y=\"237\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">GPT-3・GPT-4 等の大規模学習に使用</text>\n  <!-- Arrows to 3D -->\n  <line x1=\"140\" y1=\"140\" x2=\"280\" y2=\"190\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <polygon points=\"280,190 270,178 284,178\" fill=\"#f9a825\"/>\n  <line x1=\"400\" y1=\"140\" x2=\"400\" y2=\"190\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <polygon points=\"400,190 393,178 407,178\" fill=\"#f9a825\"/>\n  <line x1=\"660\" y1=\"140\" x2=\"520\" y2=\"190\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <polygon points=\"520,190 524,176 534,186\" fill=\"#e91e63\"/>\n</svg>",
 				"各手法の適用範囲は問題規模とハードウェアに依存する",
 				"データ並列: モデルがGPU 1台に収まる場合の標準手法",
 				"モデル並列: 単一モデルが 1GPU を超える場合に必要",
 				"![w:880 center](assets/distributed-training.svg)"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "モデル並列処理とテンソル並列",
@@ -642,7 +725,8 @@
 				"通信コスト: 各 Forward で AllReduce が必要 — NVLink 帯域が律速",
 				"**Expert 並列**: MoE の各 Expert を異なる GPU に配置",
 				"**FSDP** (PyTorch): ZeRO-3 相当のパラメータシャーディング"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "パイプライン並列化",
@@ -653,7 +737,8 @@
 				"**1F1B** (PipeDream): 1 Forward → 1 Backward を交互に実行",
 				"**Interleaved 1F1B**: 仮想ステージを使いバブルをさらに削減",
 				"最適ステージ数: バブル率と通信コストのトレードオフ"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "ZeRO / 3D 並列",
@@ -664,7 +749,8 @@
 				"**ZeRO-3 / FSDP**: + パラメータのシャーディング — 最大のメモリ削減",
 				"**3D 並列**: データ並列 × テンソル並列 × パイプライン並列の組み合わせ",
 				"Megatron-DeepSpeed: 100B+ 規模の学習で実績"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "混合精度学習と勾配チェックポイント",
@@ -675,7 +761,8 @@
 				"**Dynamic Loss Scaling**: FP16 アンダーフロー防止の自動スケーリング",
 				"**Gradient Checkpointing**: 活性化を再計算 → メモリ O(√n) へ削減",
 				"FlashAttention-2/3: IO-aware な計算で GPU HBM 帯域を最大活用"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "10. 最新研究トレンド",
@@ -685,11 +772,13 @@
 		{
 			"title": "Mixture of Experts (MoE)",
 			"content": [
+				"<svg viewBox=\"0 0 800 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"300\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">Mixture of Experts (MoE)</text>\n  <!-- Input -->\n  <rect x=\"30\" y=\"120\" width=\"120\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"90\" y=\"148\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">入力トークン</text>\n  <!-- Router -->\n  <rect x=\"220\" y=\"110\" width=\"120\" height=\"70\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n  <text x=\"280\" y=\"140\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">Router</text>\n  <text x=\"280\" y=\"160\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">Top-K 専門家選択</text>\n  <line x1=\"150\" y1=\"145\" x2=\"220\" y2=\"145\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <polygon points=\"220,145 207,138 207,152\" fill=\"#f9a825\"/>\n  <!-- Experts -->\n  <rect x=\"420\" y=\"40\" width=\"100\" height=\"40\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"470\" y=\"65\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">Expert 1</text>\n  <rect x=\"420\" y=\"100\" width=\"100\" height=\"40\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"470\" y=\"125\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">Expert 2</text>\n  <rect x=\"420\" y=\"160\" width=\"100\" height=\"40\" rx=\"4\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n  <text x=\"470\" y=\"185\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">Expert K</text>\n  <rect x=\"420\" y=\"220\" width=\"100\" height=\"40\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\" opacity=\"0.5\"/>\n  <text x=\"470\" y=\"245\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" opacity=\"0.5\">Expert N</text>\n  <text x=\"470\" y=\"270\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" opacity=\"0.5\">(非活性)</text>\n  <!-- Lines from router to experts -->\n  <line x1=\"340\" y1=\"135\" x2=\"420\" y2=\"60\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <polygon points=\"420,60 412,72 424,70\" fill=\"#f9a825\"/>\n  <line x1=\"340\" y1=\"145\" x2=\"420\" y2=\"120\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <polygon points=\"420,120 410,112 416,124\" fill=\"#f9a825\"/>\n  <line x1=\"340\" y1=\"155\" x2=\"420\" y2=\"175\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <polygon points=\"420,175 412,165 422,163\" fill=\"#e91e63\"/>\n  <!-- Aggregation -->\n  <rect x=\"600\" y=\"120\" width=\"120\" height=\"50\" rx=\"6\" fill=\"#f9a825\" opacity=\"0.9\"/>\n  <text x=\"660\" y=\"142\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"11\" font-weight=\"bold\">加重統合</text>\n  <text x=\"660\" y=\"160\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"10\">出力 = Σ gᵢ·Eᵢ(x)</text>\n  <line x1=\"520\" y1=\"60\" x2=\"600\" y2=\"140\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <line x1=\"520\" y1=\"120\" x2=\"600\" y2=\"143\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <line x1=\"520\" y1=\"175\" x2=\"600\" y2=\"156\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n</svg>",
 				"FFN 層を N 個の Expert に置き換え — 上位 K 個のみ実行",
 				"**Mixtral 8x7B** (2023): 8 Expert 中 2 使用 — 46.7B params / 12.9B active",
 				"Expert のロードバランス: routing collapse を防ぐ auxiliary loss",
 				"![w:760 center](assets/moe-architecture.svg)"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "Test-Time Compute (TTC)",
@@ -700,7 +789,8 @@
 				"**o1** (OpenAI 2024): <think> トークンで内部推論を展開",
 				"**DeepSeek-R1**: RL で自発的な長い思考連鎖を誘導",
 				"二重スケーリング: 事前学習コスト × 推論コストの両軸で性能向上"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "マルチモーダル学習",
@@ -711,7 +801,8 @@
 				"**GPT-4V / Gemini**: ネイティブマルチモーダル — テキスト/画像/動画/音声",
 				"**Video-LLM**: 時系列フレームを処理するための時間的整合機構",
 				"統合アーキテクチャ: モダリティ固有エンコーダ + 統一 Transformer"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "拡散モデルの学習",
@@ -722,7 +813,8 @@
 				"**DDIM**: 非マルコフ過程で決定論的サンプリング — 10× 高速化",
 				"**Stable Diffusion**: Latent Diffusion — 潜在空間でのノイズ除去",
 				"**Flow Matching**: 確率フロー ODE で拡散を統一的に定式化"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "World Models と予測学習",
@@ -733,7 +825,8 @@
 				"I-JEPA / V-JEPA: 画像・動画の JEPA 実装",
 				"**Sora** 等の動画生成: 暗黙的に World Model を学習している可能性",
 				"AGI への道: 世界の因果構造を内化したモデルの構築"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "Constitutional AI と RLAIF",
@@ -744,7 +837,8 @@
 				"**3H 原則**: Helpful / Harmless / Honest の定式化",
 				"**Scalable Oversight**: 超人的 AI のアライメントへの布石",
 				"**Debate** (Irving 2018): AI 同士が主張を戦わせ人間が判断"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "Speculative Decoding",
@@ -755,7 +849,8 @@
 				"**数学的等価性**: 受け入れ率調整で Target LLM と完全に等価な出力",
 				"速度向上: 2〜3× の高速化 (Drafter と Target の分布が近いほど有効)",
 				"**Medusa / EAGLE**: 複数ヘッドで並列生成するアーキテクチャ改変手法"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "11. 解釈可能性と評価",
@@ -771,7 +866,8 @@
 				"**GPQA Diamond**: 博士レベル科学問題 — 専門家でも 69% 程度",
 				"**SWE-bench**: 実 GitHub Issues の修正 — エンジニアリング能力測定",
 				"**FrontierMath**: 未公開の最難関数学問題 — 現行モデルは 1% 未満"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "Mechanistic Interpretability",
@@ -782,18 +878,21 @@
 				"**Superposition**: 1ニューロンが複数特徴を重ね合わせて表現",
 				"**Sparse AutoEncoder (SAE)**: 単一の解釈可能特徴を線形分離",
 				"Anthropic: 百万規模の SAE で特徴辞書を構築 (Monosemanticity)"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "内部表現の可視化",
 			"content": [
+				"<svg viewBox=\"0 0 800 280\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"280\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">内部表現の可視化 (t-SNE / Probing)</text>\n  <!-- t-SNE scatter plot simulation -->\n  <!-- Cluster 1: animals -->\n  <ellipse cx=\"180\" cy=\"160\" rx=\"70\" ry=\"55\" fill=\"#f9a825\" opacity=\"0.12\"/>\n  <circle cx=\"155\" cy=\"150\" r=\"5\" fill=\"#f9a825\" opacity=\"0.8\"/>\n  <circle cx=\"175\" cy=\"165\" r=\"5\" fill=\"#f9a825\" opacity=\"0.8\"/>\n  <circle cx=\"195\" cy=\"145\" r=\"5\" fill=\"#f9a825\" opacity=\"0.8\"/>\n  <circle cx=\"210\" cy=\"175\" r=\"5\" fill=\"#f9a825\" opacity=\"0.8\"/>\n  <circle cx=\"165\" cy=\"180\" r=\"5\" fill=\"#f9a825\" opacity=\"0.8\"/>\n  <text x=\"180\" y=\"228\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">動物概念</text>\n  <!-- Cluster 2: numbers -->\n  <ellipse cx=\"420\" cy=\"120\" rx=\"65\" ry=\"50\" fill=\"#e91e63\" opacity=\"0.12\"/>\n  <circle cx=\"400\" cy=\"110\" r=\"5\" fill=\"#e91e63\" opacity=\"0.8\"/>\n  <circle cx=\"425\" cy=\"125\" r=\"5\" fill=\"#e91e63\" opacity=\"0.8\"/>\n  <circle cx=\"440\" cy=\"105\" r=\"5\" fill=\"#e91e63\" opacity=\"0.8\"/>\n  <circle cx=\"410\" cy=\"140\" r=\"5\" fill=\"#e91e63\" opacity=\"0.8\"/>\n  <circle cx=\"445\" cy=\"130\" r=\"5\" fill=\"#e91e63\" opacity=\"0.8\"/>\n  <text x=\"420\" y=\"185\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">数値概念</text>\n  <!-- Cluster 3: places -->\n  <ellipse cx=\"620\" cy=\"175\" rx=\"60\" ry=\"50\" fill=\"#ffffff\" opacity=\"0.10\"/>\n  <circle cx=\"600\" cy=\"165\" r=\"5\" fill=\"#ffffff\" opacity=\"0.7\"/>\n  <circle cx=\"625\" cy=\"180\" r=\"5\" fill=\"#ffffff\" opacity=\"0.7\"/>\n  <circle cx=\"640\" cy=\"160\" r=\"5\" fill=\"#ffffff\" opacity=\"0.7\"/>\n  <circle cx=\"610\" cy=\"195\" r=\"5\" fill=\"#ffffff\" opacity=\"0.7\"/>\n  <circle cx=\"645\" cy=\"190\" r=\"5\" fill=\"#ffffff\" opacity=\"0.7\"/>\n  <text x=\"620\" y=\"238\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">場所概念</text>\n  <!-- Axes labels -->\n  <text x=\"400\" y=\"270\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">t-SNE 次元削減: 高次元埋め込み空間に概念クラスターが形成される</text>\n</svg>",
 				"**Probing**: 線形分類器でニューロン表現に格納された情報を検査",
 				"**Activation Atlas** (Carter 2019): UMAP + Concept Activation Vectors",
 				"**Logit Lens**: 中間層の残差ストリームを語彙空間に投影して可視化",
 				"**Attention Pattern Analysis**: ヘッドの注意パターン — 構文/共参照/コピー",
 				"**Representation Engineering (RepE)**: 概念の方向ベクトルを直接操作",
 				"**Linear Representation Hypothesis**: 概念は残差ストリームの線形方向に存在"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "評価の限界と課題",
@@ -804,7 +903,8 @@
 				"**Elicitation Gap**: モデルが持つ能力と評価で引き出せる能力のギャップ",
 				"**多次元能力**: 単一スコアでの比較は誤解を招く",
 				"**安全性評価**: 有害出力の定量化の難しさ — 標準化が急務"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "12. まとめと展望",
@@ -820,7 +920,8 @@
 				"**2020**: GPT-3 — In-context Learning とスケーリング則の確立",
 				"**2022**: ChatGPT / RLHF — アライメントと Instruction Following",
 				"**2024〜**: o1 / R1 / TTC — 推論コストのスケーリングへ"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "未解決問題と今後の方向性",
@@ -831,7 +932,8 @@
 				"**AGI の定義**: どうすれば汎化が「十分」と言えるか",
 				"**安全性と整合性**: 超人的 AI と人間価値観の整合 (Scalable Oversight)",
 				"**エネルギー効率**: 脳 (20W) vs GPU クラスター (100MW) のギャップ"
-			]
+			],
+			"layout": "default"
 		}
 	]
 }

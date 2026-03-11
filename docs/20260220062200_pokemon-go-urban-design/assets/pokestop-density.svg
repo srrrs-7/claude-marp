@@ -1,0 +1,67 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">PokeStopが変えた公共空間の利用パターン</text>
+  <!-- Before column -->
+  <rect x="40" y="50" width="330" height="290" rx="10" fill="#16213e" stroke="#ffffff" stroke-width="1.5" opacity="0.7"/>
+  <text x="205" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">Pokemon GO以前</text>
+  <!-- Generic city grid simplified -->
+  <rect x="60" y="95" width="290" height="220" fill="#0d1117" rx="6"/>
+  <!-- Streets -->
+  <line x1="60" y1="165" x2="350" y2="165" stroke="#333" stroke-width="3"/>
+  <line x1="60" y1="235" x2="350" y2="235" stroke="#333" stroke-width="3"/>
+  <line x1="150" y1="95" x2="150" y2="315" stroke="#333" stroke-width="3"/>
+  <line x1="260" y1="95" x2="260" y2="315" stroke="#333" stroke-width="3"/>
+  <!-- Buildings -->
+  <rect x="70" y="100" width="70" height="58" fill="#16213e" rx="3"/>
+  <rect x="165" y="100" width="85" height="58" fill="#16213e" rx="3"/>
+  <rect x="270" y="100" width="70" height="58" fill="#16213e" rx="3"/>
+  <rect x="70" y="175" width="70" height="52" fill="#16213e" rx="3"/>
+  <rect x="165" y="175" width="85" height="52" fill="#16213e" rx="3"/>
+  <rect x="270" y="175" width="70" height="52" fill="#16213e" rx="3"/>
+  <rect x="70" y="245" width="70" height="62" fill="#16213e" rx="3"/>
+  <rect x="165" y="245" width="85" height="62" fill="#16213e" rx="3"/>
+  <rect x="270" y="245" width="70" height="62" fill="#16213e" rx="3"/>
+  <!-- Few pedestrians -->
+  <circle cx="110" cy="165" r="5" fill="#ffffff" opacity="0.4"/>
+  <circle cx="200" cy="200" r="5" fill="#ffffff" opacity="0.4"/>
+  <circle cx="310" cy="235" r="5" fill="#ffffff" opacity="0.4"/>
+  <text x="205" y="330" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.6">通行人が少ない、目的なし歩行</text>
+  <!-- After column -->
+  <rect x="430" y="50" width="330" height="290" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="595" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#f9a825">Pokemon GO後</text>
+  <!-- Same grid -->
+  <rect x="450" y="95" width="290" height="220" fill="#0d1117" rx="6"/>
+  <line x1="450" y1="165" x2="740" y2="165" stroke="#333" stroke-width="3"/>
+  <line x1="450" y1="235" x2="740" y2="235" stroke="#333" stroke-width="3"/>
+  <line x1="540" y1="95" x2="540" y2="315" stroke="#333" stroke-width="3"/>
+  <line x1="650" y1="95" x2="650" y2="315" stroke="#333" stroke-width="3"/>
+  <!-- Buildings -->
+  <rect x="460" y="100" width="70" height="58" fill="#16213e" rx="3"/>
+  <rect x="555" y="100" width="85" height="58" fill="#16213e" rx="3"/>
+  <rect x="660" y="100" width="70" height="58" fill="#16213e" rx="3"/>
+  <rect x="460" y="175" width="70" height="52" fill="#16213e" rx="3"/>
+  <rect x="555" y="175" width="85" height="52" fill="#16213e" rx="3"/>
+  <rect x="660" y="175" width="70" height="52" fill="#16213e" rx="3"/>
+  <rect x="460" y="245" width="70" height="62" fill="#16213e" rx="3"/>
+  <rect x="555" y="245" width="85" height="62" fill="#16213e" rx="3"/>
+  <rect x="660" y="245" width="70" height="62" fill="#16213e" rx="3"/>
+  <!-- PokeStop markers -->
+  <circle cx="540" cy="165" r="14" fill="#e91e63" opacity="0.8"/>
+  <text x="540" y="170" text-anchor="middle" font-size="11" fill="#ffffff">P</text>
+  <circle cx="650" cy="235" r="14" fill="#e91e63" opacity="0.8"/>
+  <text x="650" y="240" text-anchor="middle" font-size="11" fill="#ffffff">P</text>
+  <circle cx="540" cy="245" r="10" fill="#f9a825" opacity="0.8"/>
+  <text x="540" y="250" text-anchor="middle" font-size="9" fill="#1a1a2e">G</text>
+  <!-- Many pedestrians clustering near PokeStops -->
+  <circle cx="530" cy="155" r="5" fill="#f9a825"/>
+  <circle cx="545" cy="158" r="5" fill="#f9a825"/>
+  <circle cx="535" cy="172" r="5" fill="#f9a825"/>
+  <circle cx="550" cy="168" r="5" fill="#f9a825"/>
+  <circle cx="525" cy="162" r="5" fill="#f9a825"/>
+  <circle cx="642" cy="228" r="5" fill="#f9a825"/>
+  <circle cx="655" cy="225" r="5" fill="#f9a825"/>
+  <circle cx="660" cy="240" r="5" fill="#f9a825"/>
+  <text x="595" y="330" text-anchor="middle" font-size="12" fill="#f9a825">PokeStop周辺に人が集まる +30-50%</text>
+  <!-- Center arrow -->
+  <text x="400" y="380" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.6">デジタルレイヤーが物理空間の利用パターンを書き換えた</text>
+</svg>

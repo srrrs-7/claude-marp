@@ -122,10 +122,15 @@
 		},
 		{
 			"title": "実装例（scikit-learn）",
-			"layout": "default",
 			"content": ["scikit-learn で主要な分類指標をまとめて計算"],
+			"layout": "default"
+		},
+		{
+			"title": "実装例（scikit-learn）（コード例）",
+			"content": [],
 			"code": "from sklearn.metrics import (\n    accuracy_score, precision_score, recall_score,\n    f1_score, roc_auc_score, classification_report,\n    confusion_matrix, matthews_corrcoef\n)\n\n# 基本指標\nprint(f\"Accuracy:  {accuracy_score(y_true, y_pred):.4f}\")\nprint(f\"Precision: {precision_score(y_true, y_pred):.4f}\")\nprint(f\"Recall:    {recall_score(y_true, y_pred):.4f}\")\nprint(f\"F1-Score:  {f1_score(y_true, y_pred):.4f}\")\nprint(f\"AUC-ROC:   {roc_auc_score(y_true, y_prob):.4f}\")\nprint(f\"MCC:       {matthews_corrcoef(y_true, y_pred):.4f}\")\n\n# 詳細レポート\nprint(classification_report(y_true, y_pred,\n      target_names=[\"Negative\", \"Positive\"]))\n\n# 混同行列\ncm = confusion_matrix(y_true, y_pred)\nprint(f\"TN={cm[0,0]}, FP={cm[0,1]}, FN={cm[1,0]}, TP={cm[1,1]}\")",
-			"codeLanguage": "python"
+			"codeLanguage": "python",
+			"layout": "default"
 		},
 		{
 			"title": "よくある落とし穴",
@@ -235,11 +240,15 @@
 		},
 		{
 			"title": "回帰指標 実装例 (Python)",
-			"layout": "default",
 			"content": ["sklearn.metrics で全主要指標を計算する例"],
+			"layout": "default"
+		},
+		{
+			"title": "回帰指標 実装例 (Python)（コード例）",
+			"content": [],
 			"code": "from sklearn.metrics import (\n    mean_absolute_error,\n    mean_squared_error,\n    r2_score,\n    mean_absolute_percentage_error\n)\nimport numpy as np\n\ny_true = np.array([3.0, -0.5, 2.0, 7.0])\ny_pred = np.array([2.5,  0.0, 2.0, 8.0])\n\nprint(f\"MAE : {mean_absolute_error(y_true, y_pred):.4f}\")\nprint(f\"MSE : {mean_squared_error(y_true, y_pred):.4f}\")\nprint(f\"RMSE: {mean_squared_error(y_true, y_pred, squared=False):.4f}\")\nprint(f\"R²  : {r2_score(y_true, y_pred):.4f}\")\nprint(f\"MAPE: {mean_absolute_percentage_error(y_true, y_pred):.4f}\")\n\n# Huber Loss (手動実装)\ndelta = 1.0\nresid = y_true - y_pred\nhuber = np.where(np.abs(resid)<=delta,\n                 0.5*resid**2,\n                 delta*(np.abs(resid)-0.5*delta))\nprint(f\"Huber: {huber.mean():.4f}\")",
 			"codeLanguage": "python",
-			"speakerNotes": "squared=False でRMSEを直接取得可能（sklearn 0.24+）。HuberはPyTorchではnn.HuberLoss()として利用可能。"
+			"layout": "default"
 		},
 		{
 			"title": "回帰指標まとめ",
@@ -346,13 +355,17 @@
 		},
 		{
 			"title": "NLP評価 実装例",
-			"layout": "default",
 			"content": [
 				"sacrebleu / rouge-score / bert-score ライブラリを使った計算例"
 			],
+			"layout": "default"
+		},
+		{
+			"title": "NLP評価 実装例（コード例）",
+			"content": [],
 			"code": "# pip install sacrebleu rouge-score bert-score\nfrom sacrebleu.metrics import BLEU, CHRF\nfrom rouge_score import rouge_scorer\nfrom bert_score import score as bert_score\n\nhyp = \"The cat sat on the mat\"\nref = \"The cat is sitting on the mat\"\n\n# BLEU\nbleu = BLEU(effective_order=True)\nprint(f\"BLEU: {bleu.sentence_score(hyp, [ref]).score:.2f}\")\n\n# ROUGE\nscorer = rouge_scorer.RougeScorer(['rouge1','rouge2','rougeL'])\nscores = scorer.score(ref, hyp)\nfor k, v in scores.items():\n    print(f\"{k}: F={v.fmeasure:.3f}\")\n\n# ChrF\nchrf = CHRF()\nprint(f\"ChrF: {chrf.sentence_score(hyp, [ref]).score:.2f}\")\n\n# BERTScore\nP, R, F = bert_score([hyp], [ref], lang='en')\nprint(f\"BERTScore F1: {F[0]:.3f}\")",
 			"codeLanguage": "python",
-			"speakerNotes": "sacrebleuはBLEU計算の標準ライブラリ。bert-scoreは初回実行時にモデルをダウンロードするため数分かかる。"
+			"layout": "default"
 		},
 		{
 			"title": "NLP指標まとめ",
@@ -453,11 +466,15 @@
 		},
 		{
 			"title": "ランキング指標 実装例",
-			"layout": "default",
 			"content": ["sklearn と手動実装で主要ランキング指標を計算する例"],
+			"layout": "default"
+		},
+		{
+			"title": "ランキング指標 実装例（コード例）",
+			"content": [],
 			"code": "import numpy as np\nfrom sklearn.metrics import ndcg_score\n\n# P@K, R@K, Hit Rate\ndef precision_at_k(relevant, retrieved, k):\n    return len(set(relevant) & set(retrieved[:k])) / k\n\ndef recall_at_k(relevant, retrieved, k):\n    return len(set(relevant) & set(retrieved[:k])) / len(relevant)\n\ndef hit_rate_at_k(relevant, retrieved, k):\n    return int(bool(set(relevant) & set(retrieved[:k])))\n\n# Average Precision\ndef avg_precision(relevant, retrieved):\n    hits, score = 0, 0.0\n    for i, item in enumerate(retrieved, 1):\n        if item in relevant:\n            hits += 1\n            score += hits / i\n    return score / len(relevant)\n\n# MRR\ndef mrr(relevant_list, retrieved_list):\n    rr = [1/(retrieved.index(r)+1)\n          for retrieved, rel in zip(retrieved_list, relevant_list)\n          for r in rel if r in retrieved]\n    return np.mean(rr)\n\n# NDCG via sklearn\ny_true = np.array([[3, 2, 0, 1, 0]])\ny_score = np.array([[0.9,0.8,0.5,0.4,0.1]])\nprint(f\"NDCG@5: {ndcg_score(y_true, y_score, k=5):.3f}\")",
 			"codeLanguage": "python",
-			"speakerNotes": "sklearn.metrics.ndcg_scoreが最も信頼できるNDCG実装。P@K/R@K/MRRは手動実装が多い。"
+			"layout": "default"
 		},
 		{
 			"title": "オフライン vs オンライン評価",
@@ -564,19 +581,27 @@
 		},
 		{
 			"title": "クラスタリング指標 実装例",
-			"layout": "default",
 			"content": ["sklearn で主要クラスタリング指標を一括計算する例"],
+			"layout": "default"
+		},
+		{
+			"title": "クラスタリング指標 実装例（コード例）",
+			"content": [],
 			"code": "from sklearn.cluster import KMeans\nfrom sklearn.metrics import (\n    silhouette_score, davies_bouldin_score,\n    calinski_harabasz_score,\n    adjusted_rand_score, normalized_mutual_info_score\n)\nimport numpy as np\n\n# データ・クラスタリング\nX = np.random.randn(200, 2)   # 特徴量\ntrue_labels = np.array([0]*100 + [1]*100)  # 正解（外部評価用）\n\nkmeans = KMeans(n_clusters=2, random_state=42, n_init=10)\npred = kmeans.fit_predict(X)\n\n# 内部評価（ラベル不要）\nprint(f\"Inertia   : {kmeans.inertia_:.2f}\")\nprint(f\"Silhouette: {silhouette_score(X, pred):.3f}\")\nprint(f\"Davies-Bouldin: {davies_bouldin_score(X, pred):.3f}\")\nprint(f\"Calinski-Harabasz: {calinski_harabasz_score(X, pred):.1f}\")\n\n# 外部評価（正解ラベル必要）\nprint(f\"ARI : {adjusted_rand_score(true_labels, pred):.3f}\")\nprint(f\"NMI : {normalized_mutual_info_score(true_labels, pred):.3f}\")",
 			"codeLanguage": "python",
-			"speakerNotes": "sklearn.metricsに主要指標がすべて揃っている。外部評価のARI/NMIは真のラベルが必要なため、本番データでは内部評価が主体になる。"
+			"layout": "default"
 		},
 		{
 			"title": "エルボー法 実装",
-			"layout": "default",
 			"content": ["Inertia + Silhouette + CH の3点で最適 k を探索する例"],
+			"layout": "default"
+		},
+		{
+			"title": "エルボー法 実装（コード例）",
+			"content": [],
 			"code": "from sklearn.cluster import KMeans\nfrom sklearn.metrics import silhouette_score, calinski_harabasz_score\nimport matplotlib.pyplot as plt\n\nk_range = range(2, 11)\nresults = {\"inertia\": [], \"sil\": [], \"ch\": []}\n\nfor k in k_range:\n    km = KMeans(n_clusters=k, random_state=42, n_init=10)\n    labels = km.fit_predict(X)\n    results[\"inertia\"].append(km.inertia_)\n    results[\"sil\"].append(silhouette_score(X, labels))\n    results[\"ch\"].append(calinski_harabasz_score(X, labels))\n\n# 3つの指標でkを判断:\n# inertia のエルボー点\n# sil のピーク（最大）\n# ch のピーク（最大）\nbest_sil_k = k_range[results[\"sil\"].index(max(results[\"sil\"]))]\nprint(f\"Best k by Silhouette: {best_sil_k}\")",
 			"codeLanguage": "python",
-			"speakerNotes": "3指標が同じkを指す場合は信頼性が高い。異なる場合はドメイン知識を加味して判断する。"
+			"layout": "default"
 		},
 		{
 			"title": "クラスタリング指標まとめ",

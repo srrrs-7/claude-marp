@@ -7,6 +7,71 @@ paginate: true
 header: "ゲームバランシングとUX設計"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section {
     font-size: 1.05em;
   }
@@ -54,6 +119,7 @@ style: |
 
 # フロー状態の条件
 
+![w:800 center](assets/flow-conditions.svg)
 - - **明確な目標**: 次に何をすべきか分かっている
 - - **即時フィードバック**: 行動の結果がすぐ分かる
 - - **スキルとチャレンジの均衡**: 簡単すぎず難しすぎない
@@ -106,6 +172,7 @@ style: |
 
 # Skinnerの箱からゲーム設計へ
 
+![w:800 center](assets/reward-types.svg)
 - - **B.F. Skinner(1930s)**: オペラント条件づけの発見
 - - 変動比率スケジュールが最も行動を強化する
 - - ゲーム業界は50年間この知見を応用してきた
@@ -130,6 +197,7 @@ style: |
 
 # オンボーディング = チュートリアル
 
+![w:800 center](assets/engagement-loop.svg)
 - - **ゲーム**: 操作を1つずつ教え、すぐに実践させる
 - - **プロダクト**: 機能を1つずつ紹介し、すぐに使わせる
 - - **共通原則**:
@@ -141,12 +209,18 @@ style: |
 
 ---
 
-# エンゲージメントループ
+# エンゲージメントループ（1/2）
 
 - - **ゲームの核心ループ**: 行動 → 報酬 → 成長 → 新たな挑戦
 - - **プロダクトへの応用**:
 -   - 行動: ユーザーがタスクを完了する
 -   - 報酬: 達成感、進捗の可視化
+
+
+---
+
+# エンゲージメントループ（2/2）
+
 -   - 成長: 新機能のアンロック、ステータス向上
 -   - 挑戦: より高度な使い方の提案
 - 
@@ -161,12 +235,19 @@ style: |
 
 ---
 
-# ゲーミフィケーションの光と影
+# ゲーミフィケーションの光と影（1/2）
 
+![w:800 center](assets/ethics-boundary.svg)
 - - **良い設計**: ユーザーの目標達成を助ける
 -   - Duolingo: 学習の習慣化
 -   - GitHub: 貢献の可視化
 -   - Fitbit: 健康行動の動機づけ
+
+
+---
+
+# ゲーミフィケーションの光と影（2/2）
+
 - - **悪い設計**: 企業の目標のためにユーザーを操作する
 -   - ダークパターン: 解約を困難にする
 -   - 無限スクロール: 意図しない時間消費
@@ -175,12 +256,18 @@ style: |
 
 ---
 
-# 設計者の問い
+# 設計者の問い（1/2）
 
 - - **「このデザインはユーザーの利益になるか？」**
 - - フロー状態は素晴らしい体験だが、搾取にも使える
 - - ゲームデザイナーの倫理規定:
 -   - 透明性: 確率やコストを明示する
+
+
+---
+
+# 設計者の問い（2/2）
+
 -   - 自律性: ユーザーが制御を持てるようにする
 -   - 脆弱性への配慮: 子供や依存傾向のあるユーザーを守る
 - 

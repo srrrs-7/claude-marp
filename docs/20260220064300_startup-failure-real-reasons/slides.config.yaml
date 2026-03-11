@@ -5,6 +5,7 @@ output:
   baseName: "startup-failure-real-reasons"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "スタートアップ失敗の真因"
   footer: "© 2026"

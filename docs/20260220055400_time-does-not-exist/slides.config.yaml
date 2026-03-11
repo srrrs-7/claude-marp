@@ -5,6 +5,7 @@ output:
   baseName: "time-does-not-exist"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "時間の物理学"
   footer: "© 2026"

@@ -5,6 +5,7 @@ output:
   baseName: "universe-neural-network"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "宇宙とニューラルネットワーク"
   footer: "© 2026"

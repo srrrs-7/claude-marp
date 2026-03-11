@@ -3,6 +3,72 @@ marp: true
 theme: gaia
 size: 16:9
 paginate: true
+style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
 ---
 
 <!-- _class: lead -->
@@ -41,6 +107,44 @@ paginate: true
 
 # 生成AIセキュリティとは
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
+<rect x="40" y="60" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="95" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">プロンプト</text>
+<rect x="40" y="140" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="175" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">インジェクション</text>
+<rect x="40" y="220" width="160" height="60" rx="8" fill="#7b1fa2"/>
+<text x="120" y="255" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">ジェイルブレイク</text>
+<rect x="40" y="300" width="160" height="60" rx="8" fill="#e65100"/>
+<text x="120" y="335" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">データ漏洩</text>
+<rect x="310" y="150" width="180" height="100" rx="8" fill="#16213e"/>
+<text x="400" y="205" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">LLM</text>
+<rect x="590" y="60" width="170" height="55" rx="8" fill="#1b5e20"/>
+<text x="675" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">正常応答</text>
+<rect x="590" y="140" width="170" height="55" rx="8" fill="#e91e63"/>
+<text x="675" y="172.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">有害コンテンツ</text>
+<rect x="590" y="220" width="170" height="55" rx="8" fill="#7b1fa2"/>
+<text x="675" y="252.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">制限迂回</text>
+<rect x="590" y="300" width="170" height="55" rx="8" fill="#e65100"/>
+<text x="675" y="332.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">機密漏洩</text>
+<line x1="200" y1="90" x2="299.40447789123175" y2="175.8493218151547" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,185 295.4827586691552,180.39025986176966 303.3261971133083,171.30838376853973" fill="#e91e63"/>
+<line x1="200" y1="170" x2="296.49330650267177" y2="196.31635631891047" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,200 294.91460206791913,202.10493924633687 298.0720109374244,190.52777339148406" fill="#e91e63"/>
+<line x1="200" y1="250" x2="296.6590390798143" y2="219.24485120187725" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="310,215 298.47826102347597,224.9624058819568 294.83981713615265,213.5272965217977" fill="#ce93d8"/>
+<line x1="200" y1="330" x2="299.6408389724568" y2="239.41741911594838" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,230 303.6768757364346,243.85705955632403 295.60480220847893,234.97777867557272" fill="#ffcc80"/>
+<line x1="490" y1="190" x2="580.2478678874093" y2="97.04469607596846" stroke="#a5d6a7" stroke-width="2"/>
+<polygon points="590,87 584.5527376342529,101.22418126707878 575.9429981405656,92.86521088485814" fill="#a5d6a7"/>
+<line x1="490" y1="200" x2="576.7051989125617" y2="171.38728435885463" stroke="#e91e63" stroke-width="2"/>
+<polygon points="590,167 578.5854636377851,177.08505625347104 574.8249341873384,165.68951246423822" fill="#e91e63"/>
+<line x1="490" y1="210" x2="576.8699342024628" y2="242.14187565491125" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="590,247 574.7878809117104,247.76904671099862 578.9519874932151,236.51470459882387" fill="#ce93d8"/>
+<line x1="490" y1="220" x2="580.440734782723" y2="316.7715862175136" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="590,327 576.0571288759431,320.86841416777514 584.8243406895028,312.674758267252" fill="#ffcc80"/>
+</svg>
 - **対象システム**: LLM・Foundation Model・RAGシステム・AIエージェント・マルチモーダルAI
 - **なぜ今**: 企業での生成AI採用が急加速し、新たな脅威面が急拡大（2025年以降）
 - **従来との違い**: 自然言語が攻撃媒体となり、確率的な動作を持つシステムの防御
@@ -61,6 +165,28 @@ paginate: true
 
 # 生成AI時代のセキュリティ課題
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
+<rect x="30" y="160" width="110" height="80" rx="8" fill="#40c4ff"/><text x="85" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">User</text><text x="85" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Input</text><rect x="165" y="160" width="110" height="80" rx="8" fill="#1976d2"/><text x="220" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Input</text><text x="220" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Sanitize</text><rect x="300" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="355" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt</text><text x="355" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Guard</text><rect x="435" y="160" width="110" height="80" rx="8" fill="#16213e"/><text x="490" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text><rect x="570" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="625" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Output</text><text x="625" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Filter</text><rect x="705" y="160" width="110" height="80" rx="8" fill="#00e676"/><text x="760" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text><line x1="140" y1="200" x2="151" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="165,200 151,206 151,194" fill="#ffffff"/><line x1="275" y1="200" x2="286" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="300,200 286,206 286,194" fill="#ffffff"/><line x1="410" y1="200" x2="421" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="435,200 421,206 421,194" fill="#ffffff"/><line x1="545" y1="200" x2="556" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="570,200 556,206 556,194" fill="#ffffff"/><line x1="680" y1="200" x2="691" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="705,200 691,206 691,194" fill="#ffffff"/>
+<rect x="130" y="270" width="420" height="50" rx="6" fill="#16213e" opacity="0.8"/>
+<text x="340" y="298" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Guardrails Layer</text>
+<line x1="130" y1="265" x2="130" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<line x1="550" y1="265" x2="550" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<rect x="30" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="85" y="355" text-anchor="middle" fill="#ffffff" font-size="12">BLOCK</text>
+<rect x="165" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="220" y="355" text-anchor="middle" fill="#ffffff" font-size="12">SANITIZE</text>
+<rect x="300" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="355" y="355" text-anchor="middle" fill="#ffffff" font-size="12">REJECT</text>
+<rect x="570" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="625" y="355" text-anchor="middle" fill="#ffffff" font-size="12">FILTER</text>
+</svg>
 - **急速な採用**: 企業の70%以上が生成AIを業務に導入（2025年時点）
 - **新たな攻撃面**: LLM・ベクターDB・エージェント・ツール連携が新しい侵入口に
 - **既存枠組みの限界**: 従来のWAF・IDS/IDSは生成AIの脅威を検出できない
@@ -73,6 +199,12 @@ paginate: true
 
 # OWASP LLM Top 10 概観
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
+<rect x="60" y="60" width="680" height="55" rx="6" fill="#b71c1c" opacity="0.85"/><text x="400" y="93.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Application Layer — Input Validation / Rate Limiting</text><rect x="60" y="130" width="680" height="55" rx="6" fill="#e65100" opacity="0.85"/><text x="400" y="163.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Prompt Layer — System Prompt / Few-shot Constraints</text><rect x="60" y="200" width="680" height="55" rx="6" fill="#1565c0" opacity="0.85"/><text x="400" y="233.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Model Layer — Fine-tuning / RLHF / System Prompt</text><rect x="60" y="270" width="680" height="55" rx="6" fill="#2e7d32" opacity="0.85"/><text x="400" y="303.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Output Layer — Content Filter / PII Redaction</text><rect x="60" y="340" width="680" height="45" rx="6" fill="#4a148c" opacity="0.85"/><text x="400" y="368.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Audit Layer — Logging / Monitoring / Alerting</text>
+<text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">外側（リクエスト）→ 内側（モデル）→ 外側（レスポンス）の多重チェック</text>
+</svg>
 - **LLM01** プロンプトインジェクション / **LLM02** 安全でない出力処理
 - **LLM03** トレーニングデータ汚染 / **LLM04** モデルDoS
 - **LLM05** サプライチェーン脆弱性 / **LLM06** 機密情報漏洩
@@ -85,6 +217,43 @@ paginate: true
 
 # 攻撃サーフェスの拡大
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI レッドチーミングフロー</text>
+<rect x="30" y="150" width="130" height="70" rx="8" fill="#b71c1c"/>
+<text x="95" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Attack
+Planning</text>
+<rect x="195" y="150" width="130" height="70" rx="8" fill="#e65100"/>
+<text x="260" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt
+Crafting</text>
+<rect x="360" y="150" width="130" height="70" rx="8" fill="#7b1fa2"/>
+<text x="425" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Execute
+Attacks</text>
+<rect x="525" y="150" width="130" height="70" rx="8" fill="#1565c0"/>
+<text x="590" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Analyze
+Results</text>
+<rect x="655" y="60" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="715" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Pass</text>
+<rect x="655" y="240" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="715" y="272.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Fail →
+Mitigate</text>
+<line x1="160" y1="185" x2="181" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="195,185 181,191 181,179" fill="#ffffff"/>
+<line x1="325" y1="185" x2="346" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="360,185 346,191 346,179" fill="#ffffff"/>
+<line x1="490" y1="185" x2="511" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="525,185 511,191 511,179" fill="#ffffff"/>
+<line x1="655" y1="170" x2="655" y2="129" stroke="#00e676" stroke-width="2"/>
+<polygon points="655,115 661,129 649,129" fill="#00e676"/>
+<line x1="655" y1="200" x2="655" y2="226" stroke="#e91e63" stroke-width="2"/>
+<polygon points="655,240 649,226 661,226" fill="#e91e63"/>
+<line x1="415" y1="295" x2="415" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="415" y1="340" x2="215" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="215" y1="340" x2="215" y2="234" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="215,220 221,234 209,234" fill="#40c4ff"/>
+<text x="315" y="360" text-anchor="middle" fill="#40c4ff" font-size="12">改善サイクル</text>
+<text x="400" y="390" text-anchor="middle" fill="#aaa" font-size="12">OWASP LLM Top 10 + カスタム脅威シナリオを網羅</text>
+</svg>
 - **入力層**: プロンプト（テキスト・画像・音声・PDF・コード）
 - **モデル層**: Foundation Model、Fine-tuned Model、モデルウェイト
 - **知識層**: ベクターDB、ドキュメントストア、検索インデックス（RAG）
@@ -97,6 +266,44 @@ paginate: true
 
 # 従来のセキュリティ vs AI時代のセキュリティ
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
+<rect x="30" y="80" width="140" height="60" rx="8" fill="#1565c0"/>
+<text x="100" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Model Hub</text>
+<rect x="30" y="170" width="140" height="60" rx="8" fill="#6a1b9a"/>
+<text x="100" y="205" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Dataset
+Source</text>
+<rect x="30" y="260" width="140" height="60" rx="8" fill="#e65100"/>
+<text x="100" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">3rd Party
+Libs</text>
+<rect x="310" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="380" y="205" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Build
+Pipeline</text>
+<rect x="580" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="115" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Verified
+Model</text>
+<rect x="580" y="170" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Staging
+Env</text>
+<rect x="580" y="260" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Production</text>
+<line x1="170" y1="110" x2="297.65928041959705" y2="178.38890022478412" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="310,185 294.82595194450454,183.67778004495682 300.49260889468957,173.10002040461143" fill="#40c4ff"/>
+<line x1="170" y1="200" x2="296" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="310,200 296,206 296,194" fill="#ffffff"/>
+<line x1="170" y1="290" x2="297.65928041959705" y2="221.61109977521588" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,215 300.49260889468957,226.89997959538857 294.82595194450454,216.32221995504318" fill="#ffcc80"/>
+<line x1="450" y1="185" x2="567.8734017953196" y2="116.99611434885408" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,110 570.8717365162571,122.19322786514569 564.8750670743822,111.79900083256247" fill="#00e676"/>
+<line x1="450" y1="200" x2="566" y2="200" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,200 566,206 566,194" fill="#00e676"/>
+<line x1="450" y1="215" x2="567.8734017953196" y2="283.00388565114594" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,290 564.8750670743822,288.20099916743754 570.8717365162571,277.8067721348543" fill="#00e676"/>
+<rect x="250" y="340" width="260" height="45" rx="8" fill="#b71c1c"/>
+<text x="380" y="367.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Hash Verify / Sign / Scan / SBOM</text>
+<text x="400" y="398" text-anchor="middle" fill="#e91e63" font-size="12">各ステージでの完全性検証が必須</text>
+</svg>
 - **攻撃面**: ネットワーク/エンドポイント → 自然言語/モデルウェイト
 - **入力検証**: 型・長さ・パターンチェック → 意味・文脈・意図の判定
 - **脅威検出**: シグネチャ・ルールベース → 確率的・行動分析ベース
@@ -109,6 +316,49 @@ paginate: true
 
 # 脅威アクターと動機
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">API レート制限 & アクセス制御</text>
+<rect x="30" y="80" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client A</text>
+<rect x="30" y="170" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client B</text>
+<rect x="30" y="260" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client C</text>
+<rect x="200" y="120" width="140" height="130" rx="8" fill="#b71c1c"/>
+<text x="270" y="190" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">API
+Gateway</text>
+<text x="270" y="275" text-anchor="middle" fill="#ffcdd2" font-size="11">Rate Limit / Auth</text>
+<rect x="410" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="480" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM
+Validation</text>
+<rect x="410" y="170" width="140" height="60" rx="8" fill="#388e3c"/>
+<text x="480" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Quota
+Check</text>
+<rect x="410" y="260" width="140" height="60" rx="8" fill="#1b5e20"/>
+<text x="480" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Audit
+Log</text>
+<rect x="630" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="700" y="205" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">LLM
+Service</text>
+<line x1="140" y1="110" x2="188.8" y2="146.6" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="200,155 185.20000000000002,151.4 192.4,141.79999999999998" fill="#40c4ff"/>
+<line x1="140" y1="200" x2="186.41800499796534" y2="188.39549875050866" stroke="#ffffff" stroke-width="2"/>
+<polygon points="200,185 187.87321874818335,194.21635375138067 184.96279124774733,182.57464374963666" fill="#ffffff"/>
+<line x1="140" y1="290" x2="191.25426933423807" y2="225.93216333220244" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="200,215 195.93948219089626,229.680333617529 186.5690564775799,222.18399304687588" fill="#ffcc80"/>
+<line x1="340" y1="140" x2="397.1319695797472" y2="115.51487018010835" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,110 399.4954853712222,121.02974036021669 394.7684537882722,110" fill="#00e676"/>
+<line x1="340" y1="185" x2="396.3107662029163" y2="197.06659275776778" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,200 395.05359167053103,202.93340724223225 397.56794073530153,191.1997782733033" fill="#00e676"/>
+<line x1="340" y1="230" x2="399.37040756688583" y2="280.8889207716164" stroke="#aaa" stroke-width="2"/>
+<polygon points="410,290 395.46565932615005,285.4444603858082 403.2751558076216,276.33338115742464" fill="#aaa"/>
+<line x1="550" y1="170" x2="616.2397893829195" y2="182.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="630,185 615.1340581726184,188.31719363090332 617.3455205932206,176.52272738769148" fill="#00e676"/>
+<text x="700" y="270" text-anchor="middle" fill="#e91e63" font-size="11">BLOCK</text>
+<line x1="700" y1="115" x2="700" y2="136" stroke="#e91e63" stroke-width="2"/>
+<polygon points="700,150 694,136 706,136" fill="#e91e63"/>
+</svg>
 - **国家支援型攻撃者**: AIを利用したスピアフィッシング・偽情報生成の高度化
 - **サイバー犯罪者**: LLMを悪用したマルウェア生成・詐欺メール自動化
 - **ハクティビスト**: AIシステムへの妨害・評判毀損・偏見の悪用
@@ -121,6 +371,44 @@ paginate: true
 
 # 被害事例・インシデント事例
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
+<rect x="30" y="150" width="120" height="70" rx="8" fill="#40c4ff"/>
+<text x="90" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw
+Input</text>
+<rect x="210" y="90" width="140" height="60" rx="8" fill="#b71c1c"/>
+<text x="280" y="125" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">PII
+Detector</text>
+<rect x="210" y="210" width="140" height="60" rx="8" fill="#7b1fa2"/>
+<text x="280" y="245" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Entity
+Tagger</text>
+<rect x="420" y="150" width="140" height="70" rx="8" fill="#e65100"/>
+<text x="490" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Redaction
+Engine</text>
+<rect x="620" y="150" width="140" height="70" rx="8" fill="#2e7d32"/>
+<text x="690" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Safe
+Output</text>
+<line x1="150" y1="185" x2="200.5040785617371" y2="130.28724822478483" stroke="#e91e63" stroke-width="2"/>
+<polygon points="210,120 204.91289922950202,134.35692884118322 196.09525789397216,126.21756760838643" fill="#e91e63"/>
+<line x1="150" y1="185" x2="199.67984203718962" y2="230.53985520075716" stroke="#ffffff" stroke-width="2"/>
+<polygon points="210,240 195.62549426608552,234.9627800419616 203.7341898082937,226.11693035955273" fill="#ffffff"/>
+<line x1="350" y1="120" x2="408.99154325648607" y2="166.35049827295336" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="420,175 405.28461394489466,171.06840830588789 412.6984725680775,161.63258824001883" fill="#ffcc80"/>
+<line x1="350" y1="240" x2="408.2235013447283" y2="202.570606278389" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="420,195 411.46804689260927,207.6176771306483 404.9789557968473,197.52353542612968" fill="#ce93d8"/>
+<line x1="560" y1="185" x2="606" y2="185" stroke="#00e676" stroke-width="2"/>
+<polygon points="620,185 606,191 606,179" fill="#00e676"/>
+<rect x="50" y="290" width="680" height="80" rx="8" fill="#16213e"/>
+<text x="390" y="315" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">PII カテゴリ</text>
+<text x="120" y="345" text-anchor="middle" fill="#ffffff" font-size="12">氏名</text>
+<text x="220" y="345" text-anchor="middle" fill="#ffffff" font-size="12">メール</text>
+<text x="320" y="345" text-anchor="middle" fill="#ffffff" font-size="12">電話番号</text>
+<text x="420" y="345" text-anchor="middle" fill="#ffffff" font-size="12">マイナンバー</text>
+<text x="550" y="345" text-anchor="middle" fill="#ffffff" font-size="12">クレカ番号</text>
+<text x="670" y="345" text-anchor="middle" fill="#ffffff" font-size="12">住所</text>
+<text x="390" y="370" text-anchor="middle" fill="#40c4ff" font-size="11">Amazon Comprehend / Microsoft Presidio / Spacy NER</text>
+</svg>
 - **Samsung機密漏洩（2023）**: 社員がChatGPTに機密コードを入力、トレーニングデータに混入
 - **Air Canada Chatbot事件**: LLMが誤った払い戻し約束を実行、企業に法的責任発生
 - **Bing Chat脱獄（2023）**: Indirect Injectionで内部コードネームと機密文書を漏洩
@@ -133,6 +421,56 @@ paginate: true
 
 # リスクの分類（CIA + AI固有次元）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI 意思決定の監査ログアーキテクチャ</text>
+<rect x="30" y="100" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="135" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">User
+Request</text>
+<rect x="30" y="200" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="235" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">LLM
+Response</text>
+<rect x="30" y="300" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="335" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Agent
+Action</text>
+<rect x="220" y="180" width="140" height="100" rx="8" fill="#e65100"/>
+<text x="290" y="235" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Log
+Collector</text>
+<rect x="440" y="100" width="130" height="55" rx="8" fill="#6a1b9a"/>
+<text x="505" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<rect x="440" y="180" width="130" height="55" rx="8" fill="#1565c0"/>
+<text x="505" y="212.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">S3
+Storage</text>
+<rect x="440" y="265" width="130" height="55" rx="8" fill="#2e7d32"/>
+<text x="505" y="297.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">SIEM
+System</text>
+<rect x="650" y="100" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="710" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Alert
+Engine</text>
+<rect x="650" y="190" width="120" height="55" rx="8" fill="#7b1fa2"/>
+<text x="710" y="222.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Dashboard</text>
+<rect x="650" y="280" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="710" y="312.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Compliance
+Report</text>
+<line x1="150" y1="130" x2="210.78093548984074" y2="199.4639262741037" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="220,210 206.26547532159947,203.4149539213148 215.29639565808202,195.5128986268926" fill="#40c4ff"/>
+<line x1="150" y1="230" x2="206" y2="230" stroke="#ffffff" stroke-width="2"/>
+<polygon points="220,230 206,236 206,224" fill="#ffffff"/>
+<line x1="150" y1="330" x2="210.10050506338834" y2="269.8994949366117" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="220,260 214.34314575050763,274.14213562373095 205.85786437626905,265.6568542494924" fill="#ffcc80"/>
+<line x1="360" y1="210" x2="430.28434976014915" y2="137.07998712384526" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="440,127 434.6043442417971,141.24383722663848 425.9643552785012,132.91613702105204" fill="#ce93d8"/>
+<line x1="360" y1="220" x2="426.1812617152648" y2="209.24554497126948" stroke="#ffffff" stroke-width="2"/>
+<polygon points="440,207 427.1436381315231,215.16786137901315 425.21888529900644,203.32322856352582" fill="#ffffff"/>
+<line x1="360" y1="230" x2="428.9341892695466" y2="283.4239966838986" stroke="#aaa" stroke-width="2"/>
+<polygon points="440,292 425.2587592769317,288.1664869969501 432.6096192621615,278.68150637084716" fill="#aaa"/>
+<line x1="570" y1="127" x2="636" y2="127" stroke="#e91e63" stroke-width="2"/>
+<polygon points="650,127 636,133 636,121" fill="#e91e63"/>
+<line x1="570" y1="207" x2="636.1081097260087" y2="215.2635137157511" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="650,217 635.3639013184735,221.2171809760331 636.8523181335439,209.30984645546908" fill="#40c4ff"/>
+<line x1="570" y1="292" x2="636.2397893829195" y2="304.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="650,307 635.1340581726184,310.3171936309034 637.3455205932206,298.5227273876915" fill="#00e676"/>
+</svg>
 - **機密性 (Confidentiality)**: トレーニングデータ記憶化、プロンプト漏洩、推論攻撃
 - **完全性 (Integrity)**: モデル汚染・バックドア、出力改ざん、バイアス注入
 - **可用性 (Availability)**: モデルDoS、トークン枯渇攻撃、システム停止
@@ -145,6 +483,44 @@ paginate: true
 
 # セキュリティフレームワーク概観
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
+<rect x="40" y="60" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="95" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">プロンプト</text>
+<rect x="40" y="140" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="175" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">インジェクション</text>
+<rect x="40" y="220" width="160" height="60" rx="8" fill="#7b1fa2"/>
+<text x="120" y="255" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">ジェイルブレイク</text>
+<rect x="40" y="300" width="160" height="60" rx="8" fill="#e65100"/>
+<text x="120" y="335" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">データ漏洩</text>
+<rect x="310" y="150" width="180" height="100" rx="8" fill="#16213e"/>
+<text x="400" y="205" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">LLM</text>
+<rect x="590" y="60" width="170" height="55" rx="8" fill="#1b5e20"/>
+<text x="675" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">正常応答</text>
+<rect x="590" y="140" width="170" height="55" rx="8" fill="#e91e63"/>
+<text x="675" y="172.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">有害コンテンツ</text>
+<rect x="590" y="220" width="170" height="55" rx="8" fill="#7b1fa2"/>
+<text x="675" y="252.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">制限迂回</text>
+<rect x="590" y="300" width="170" height="55" rx="8" fill="#e65100"/>
+<text x="675" y="332.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">機密漏洩</text>
+<line x1="200" y1="90" x2="299.40447789123175" y2="175.8493218151547" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,185 295.4827586691552,180.39025986176966 303.3261971133083,171.30838376853973" fill="#e91e63"/>
+<line x1="200" y1="170" x2="296.49330650267177" y2="196.31635631891047" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,200 294.91460206791913,202.10493924633687 298.0720109374244,190.52777339148406" fill="#e91e63"/>
+<line x1="200" y1="250" x2="296.6590390798143" y2="219.24485120187725" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="310,215 298.47826102347597,224.9624058819568 294.83981713615265,213.5272965217977" fill="#ce93d8"/>
+<line x1="200" y1="330" x2="299.6408389724568" y2="239.41741911594838" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,230 303.6768757364346,243.85705955632403 295.60480220847893,234.97777867557272" fill="#ffcc80"/>
+<line x1="490" y1="190" x2="580.2478678874093" y2="97.04469607596846" stroke="#a5d6a7" stroke-width="2"/>
+<polygon points="590,87 584.5527376342529,101.22418126707878 575.9429981405656,92.86521088485814" fill="#a5d6a7"/>
+<line x1="490" y1="200" x2="576.7051989125617" y2="171.38728435885463" stroke="#e91e63" stroke-width="2"/>
+<polygon points="590,167 578.5854636377851,177.08505625347104 574.8249341873384,165.68951246423822" fill="#e91e63"/>
+<line x1="490" y1="210" x2="576.8699342024628" y2="242.14187565491125" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="590,247 574.7878809117104,247.76904671099862 578.9519874932151,236.51470459882387" fill="#ce93d8"/>
+<line x1="490" y1="220" x2="580.440734782723" y2="316.7715862175136" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="590,327 576.0571288759431,320.86841416777514 584.8243406895028,312.674758267252" fill="#ffcc80"/>
+</svg>
 - **OWASP LLM Top 10**: LLM固有の脆弱性10カテゴリ（2025年版）
 - **MITRE ATLAS**: AI/MLシステムへの敵対的TTP（ATT&CKのAI版、100+技術）
 - **NIST AI RMF**: AIリスク管理フレームワーク（Govern/Map/Measure/Manage）
@@ -165,6 +541,28 @@ paginate: true
 
 # プロンプトインジェクションとは
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
+<rect x="30" y="160" width="110" height="80" rx="8" fill="#40c4ff"/><text x="85" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">User</text><text x="85" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Input</text><rect x="165" y="160" width="110" height="80" rx="8" fill="#1976d2"/><text x="220" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Input</text><text x="220" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Sanitize</text><rect x="300" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="355" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt</text><text x="355" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Guard</text><rect x="435" y="160" width="110" height="80" rx="8" fill="#16213e"/><text x="490" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text><rect x="570" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="625" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Output</text><text x="625" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Filter</text><rect x="705" y="160" width="110" height="80" rx="8" fill="#00e676"/><text x="760" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text><line x1="140" y1="200" x2="151" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="165,200 151,206 151,194" fill="#ffffff"/><line x1="275" y1="200" x2="286" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="300,200 286,206 286,194" fill="#ffffff"/><line x1="410" y1="200" x2="421" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="435,200 421,206 421,194" fill="#ffffff"/><line x1="545" y1="200" x2="556" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="570,200 556,206 556,194" fill="#ffffff"/><line x1="680" y1="200" x2="691" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="705,200 691,206 691,194" fill="#ffffff"/>
+<rect x="130" y="270" width="420" height="50" rx="6" fill="#16213e" opacity="0.8"/>
+<text x="340" y="298" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Guardrails Layer</text>
+<line x1="130" y1="265" x2="130" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<line x1="550" y1="265" x2="550" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<rect x="30" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="85" y="355" text-anchor="middle" fill="#ffffff" font-size="12">BLOCK</text>
+<rect x="165" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="220" y="355" text-anchor="middle" fill="#ffffff" font-size="12">SANITIZE</text>
+<rect x="300" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="355" y="355" text-anchor="middle" fill="#ffffff" font-size="12">REJECT</text>
+<rect x="570" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="625" y="355" text-anchor="middle" fill="#ffffff" font-size="12">FILTER</text>
+</svg>
 - **定義**: 悪意ある入力でLLMのシステムプロンプトを上書き・制御を奪う攻撃
 - **仕組み**: LLMはシステムプロンプトとユーザー入力を意味的に区別できない
 - **CWE-1427**: MITRE CWEに正式分類（2024年）
@@ -177,6 +575,12 @@ paginate: true
 
 # ダイレクトインジェクション
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
+<rect x="60" y="60" width="680" height="55" rx="6" fill="#b71c1c" opacity="0.85"/><text x="400" y="93.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Application Layer — Input Validation / Rate Limiting</text><rect x="60" y="130" width="680" height="55" rx="6" fill="#e65100" opacity="0.85"/><text x="400" y="163.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Prompt Layer — System Prompt / Few-shot Constraints</text><rect x="60" y="200" width="680" height="55" rx="6" fill="#1565c0" opacity="0.85"/><text x="400" y="233.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Model Layer — Fine-tuning / RLHF / System Prompt</text><rect x="60" y="270" width="680" height="55" rx="6" fill="#2e7d32" opacity="0.85"/><text x="400" y="303.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Output Layer — Content Filter / PII Redaction</text><rect x="60" y="340" width="680" height="45" rx="6" fill="#4a148c" opacity="0.85"/><text x="400" y="368.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Audit Layer — Logging / Monitoring / Alerting</text>
+<text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">外側（リクエスト）→ 内側（モデル）→ 外側（レスポンス）の多重チェック</text>
+</svg>
 - **攻撃形態**: ユーザーが直接LLMに悪意ある指示を入力してシステム制御を奪う
 - **典型パターン**: 前の指示を無視 / システムプロンプト開示要求 / 役割の上書き
 - **特徴**: 攻撃者がチャットUI・APIに直接アクセス可能な場合に有効
@@ -203,6 +607,43 @@ paginate: true
 
 # インダイレクト（間接）インジェクション
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI レッドチーミングフロー</text>
+<rect x="30" y="150" width="130" height="70" rx="8" fill="#b71c1c"/>
+<text x="95" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Attack
+Planning</text>
+<rect x="195" y="150" width="130" height="70" rx="8" fill="#e65100"/>
+<text x="260" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt
+Crafting</text>
+<rect x="360" y="150" width="130" height="70" rx="8" fill="#7b1fa2"/>
+<text x="425" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Execute
+Attacks</text>
+<rect x="525" y="150" width="130" height="70" rx="8" fill="#1565c0"/>
+<text x="590" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Analyze
+Results</text>
+<rect x="655" y="60" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="715" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Pass</text>
+<rect x="655" y="240" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="715" y="272.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Fail →
+Mitigate</text>
+<line x1="160" y1="185" x2="181" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="195,185 181,191 181,179" fill="#ffffff"/>
+<line x1="325" y1="185" x2="346" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="360,185 346,191 346,179" fill="#ffffff"/>
+<line x1="490" y1="185" x2="511" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="525,185 511,191 511,179" fill="#ffffff"/>
+<line x1="655" y1="170" x2="655" y2="129" stroke="#00e676" stroke-width="2"/>
+<polygon points="655,115 661,129 649,129" fill="#00e676"/>
+<line x1="655" y1="200" x2="655" y2="226" stroke="#e91e63" stroke-width="2"/>
+<polygon points="655,240 649,226 661,226" fill="#e91e63"/>
+<line x1="415" y1="295" x2="415" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="415" y1="340" x2="215" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="215" y1="340" x2="215" y2="234" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="215,220 221,234 209,234" fill="#40c4ff"/>
+<text x="315" y="360" text-anchor="middle" fill="#40c4ff" font-size="12">改善サイクル</text>
+<text x="400" y="390" text-anchor="middle" fill="#aaa" font-size="12">OWASP LLM Top 10 + カスタム脅威シナリオを網羅</text>
+</svg>
 - **攻撃形態**: LLMが処理する外部データ（Webページ・ドキュメント・メール）に悪意ある指示を埋め込む
 - **RAGシステムでの危険性**: 検索されたドキュメントに攻撃者が仕掛けた指示が含まれる
 - **事例**: Webサイトに白文字（背景色と同色）でインジェクション指示を隠す
@@ -215,6 +656,44 @@ paginate: true
 
 # ジェイルブレイク技法
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
+<rect x="30" y="80" width="140" height="60" rx="8" fill="#1565c0"/>
+<text x="100" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Model Hub</text>
+<rect x="30" y="170" width="140" height="60" rx="8" fill="#6a1b9a"/>
+<text x="100" y="205" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Dataset
+Source</text>
+<rect x="30" y="260" width="140" height="60" rx="8" fill="#e65100"/>
+<text x="100" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">3rd Party
+Libs</text>
+<rect x="310" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="380" y="205" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Build
+Pipeline</text>
+<rect x="580" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="115" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Verified
+Model</text>
+<rect x="580" y="170" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Staging
+Env</text>
+<rect x="580" y="260" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Production</text>
+<line x1="170" y1="110" x2="297.65928041959705" y2="178.38890022478412" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="310,185 294.82595194450454,183.67778004495682 300.49260889468957,173.10002040461143" fill="#40c4ff"/>
+<line x1="170" y1="200" x2="296" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="310,200 296,206 296,194" fill="#ffffff"/>
+<line x1="170" y1="290" x2="297.65928041959705" y2="221.61109977521588" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,215 300.49260889468957,226.89997959538857 294.82595194450454,216.32221995504318" fill="#ffcc80"/>
+<line x1="450" y1="185" x2="567.8734017953196" y2="116.99611434885408" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,110 570.8717365162571,122.19322786514569 564.8750670743822,111.79900083256247" fill="#00e676"/>
+<line x1="450" y1="200" x2="566" y2="200" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,200 566,206 566,194" fill="#00e676"/>
+<line x1="450" y1="215" x2="567.8734017953196" y2="283.00388565114594" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,290 564.8750670743822,288.20099916743754 570.8717365162571,277.8067721348543" fill="#00e676"/>
+<rect x="250" y="340" width="260" height="45" rx="8" fill="#b71c1c"/>
+<text x="380" y="367.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Hash Verify / Sign / Scan / SBOM</text>
+<text x="400" y="398" text-anchor="middle" fill="#e91e63" font-size="12">各ステージでの完全性検証が必須</text>
+</svg>
 - **Role Play攻撃**: 「悪役キャラを演じて」安全制限を役割として回避
 - **Hypothetical Framing**: 「仮定の話として」「小説の中の描写として」有害情報を要求
 - **Token Manipulation**: 特殊文字・空白・Base64エンコードで検出を回避
@@ -227,6 +706,49 @@ paginate: true
 
 # マルチモーダルインジェクション
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">API レート制限 & アクセス制御</text>
+<rect x="30" y="80" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client A</text>
+<rect x="30" y="170" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client B</text>
+<rect x="30" y="260" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client C</text>
+<rect x="200" y="120" width="140" height="130" rx="8" fill="#b71c1c"/>
+<text x="270" y="190" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">API
+Gateway</text>
+<text x="270" y="275" text-anchor="middle" fill="#ffcdd2" font-size="11">Rate Limit / Auth</text>
+<rect x="410" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="480" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM
+Validation</text>
+<rect x="410" y="170" width="140" height="60" rx="8" fill="#388e3c"/>
+<text x="480" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Quota
+Check</text>
+<rect x="410" y="260" width="140" height="60" rx="8" fill="#1b5e20"/>
+<text x="480" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Audit
+Log</text>
+<rect x="630" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="700" y="205" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">LLM
+Service</text>
+<line x1="140" y1="110" x2="188.8" y2="146.6" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="200,155 185.20000000000002,151.4 192.4,141.79999999999998" fill="#40c4ff"/>
+<line x1="140" y1="200" x2="186.41800499796534" y2="188.39549875050866" stroke="#ffffff" stroke-width="2"/>
+<polygon points="200,185 187.87321874818335,194.21635375138067 184.96279124774733,182.57464374963666" fill="#ffffff"/>
+<line x1="140" y1="290" x2="191.25426933423807" y2="225.93216333220244" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="200,215 195.93948219089626,229.680333617529 186.5690564775799,222.18399304687588" fill="#ffcc80"/>
+<line x1="340" y1="140" x2="397.1319695797472" y2="115.51487018010835" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,110 399.4954853712222,121.02974036021669 394.7684537882722,110" fill="#00e676"/>
+<line x1="340" y1="185" x2="396.3107662029163" y2="197.06659275776778" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,200 395.05359167053103,202.93340724223225 397.56794073530153,191.1997782733033" fill="#00e676"/>
+<line x1="340" y1="230" x2="399.37040756688583" y2="280.8889207716164" stroke="#aaa" stroke-width="2"/>
+<polygon points="410,290 395.46565932615005,285.4444603858082 403.2751558076216,276.33338115742464" fill="#aaa"/>
+<line x1="550" y1="170" x2="616.2397893829195" y2="182.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="630,185 615.1340581726184,188.31719363090332 617.3455205932206,176.52272738769148" fill="#00e676"/>
+<text x="700" y="270" text-anchor="middle" fill="#e91e63" font-size="11">BLOCK</text>
+<line x1="700" y1="115" x2="700" y2="136" stroke="#e91e63" stroke-width="2"/>
+<polygon points="700,150 694,136 706,136" fill="#e91e63"/>
+</svg>
 - **画像内テキスト**: 画像のOCR処理で読み取られた悪意ある指示がテキストとして実行
 - **ステガノグラフィ**: 画像ピクセルに埋め込まれた人間には見えない隠し指示
 - **音声注入**: 音声ファイルに人間には聞こえない周波数帯で指示を埋め込む
@@ -239,6 +761,44 @@ paginate: true
 
 # 攻撃デモ・実際の事例
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
+<rect x="30" y="150" width="120" height="70" rx="8" fill="#40c4ff"/>
+<text x="90" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw
+Input</text>
+<rect x="210" y="90" width="140" height="60" rx="8" fill="#b71c1c"/>
+<text x="280" y="125" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">PII
+Detector</text>
+<rect x="210" y="210" width="140" height="60" rx="8" fill="#7b1fa2"/>
+<text x="280" y="245" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Entity
+Tagger</text>
+<rect x="420" y="150" width="140" height="70" rx="8" fill="#e65100"/>
+<text x="490" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Redaction
+Engine</text>
+<rect x="620" y="150" width="140" height="70" rx="8" fill="#2e7d32"/>
+<text x="690" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Safe
+Output</text>
+<line x1="150" y1="185" x2="200.5040785617371" y2="130.28724822478483" stroke="#e91e63" stroke-width="2"/>
+<polygon points="210,120 204.91289922950202,134.35692884118322 196.09525789397216,126.21756760838643" fill="#e91e63"/>
+<line x1="150" y1="185" x2="199.67984203718962" y2="230.53985520075716" stroke="#ffffff" stroke-width="2"/>
+<polygon points="210,240 195.62549426608552,234.9627800419616 203.7341898082937,226.11693035955273" fill="#ffffff"/>
+<line x1="350" y1="120" x2="408.99154325648607" y2="166.35049827295336" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="420,175 405.28461394489466,171.06840830588789 412.6984725680775,161.63258824001883" fill="#ffcc80"/>
+<line x1="350" y1="240" x2="408.2235013447283" y2="202.570606278389" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="420,195 411.46804689260927,207.6176771306483 404.9789557968473,197.52353542612968" fill="#ce93d8"/>
+<line x1="560" y1="185" x2="606" y2="185" stroke="#00e676" stroke-width="2"/>
+<polygon points="620,185 606,191 606,179" fill="#00e676"/>
+<rect x="50" y="290" width="680" height="80" rx="8" fill="#16213e"/>
+<text x="390" y="315" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">PII カテゴリ</text>
+<text x="120" y="345" text-anchor="middle" fill="#ffffff" font-size="12">氏名</text>
+<text x="220" y="345" text-anchor="middle" fill="#ffffff" font-size="12">メール</text>
+<text x="320" y="345" text-anchor="middle" fill="#ffffff" font-size="12">電話番号</text>
+<text x="420" y="345" text-anchor="middle" fill="#ffffff" font-size="12">マイナンバー</text>
+<text x="550" y="345" text-anchor="middle" fill="#ffffff" font-size="12">クレカ番号</text>
+<text x="670" y="345" text-anchor="middle" fill="#ffffff" font-size="12">住所</text>
+<text x="390" y="370" text-anchor="middle" fill="#40c4ff" font-size="11">Amazon Comprehend / Microsoft Presidio / Spacy NER</text>
+</svg>
 - **Bing Chat（2023）**: Indirect Injectionで内部コードネーム「Sydney」と機密ドキュメントを漏洩
 - **ChatGPT Plugin攻撃**: Webブラウジングプラグインが悪意あるサイトでシステムを侵害
 - **LLMメールエージェント侵害**: メール本文インジェクションでエージェントが自動転送・データ漏洩
@@ -250,6 +810,56 @@ paginate: true
 
 # プロンプトインジェクション検出技術
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI 意思決定の監査ログアーキテクチャ</text>
+<rect x="30" y="100" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="135" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">User
+Request</text>
+<rect x="30" y="200" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="235" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">LLM
+Response</text>
+<rect x="30" y="300" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="335" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Agent
+Action</text>
+<rect x="220" y="180" width="140" height="100" rx="8" fill="#e65100"/>
+<text x="290" y="235" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Log
+Collector</text>
+<rect x="440" y="100" width="130" height="55" rx="8" fill="#6a1b9a"/>
+<text x="505" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<rect x="440" y="180" width="130" height="55" rx="8" fill="#1565c0"/>
+<text x="505" y="212.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">S3
+Storage</text>
+<rect x="440" y="265" width="130" height="55" rx="8" fill="#2e7d32"/>
+<text x="505" y="297.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">SIEM
+System</text>
+<rect x="650" y="100" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="710" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Alert
+Engine</text>
+<rect x="650" y="190" width="120" height="55" rx="8" fill="#7b1fa2"/>
+<text x="710" y="222.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Dashboard</text>
+<rect x="650" y="280" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="710" y="312.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Compliance
+Report</text>
+<line x1="150" y1="130" x2="210.78093548984074" y2="199.4639262741037" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="220,210 206.26547532159947,203.4149539213148 215.29639565808202,195.5128986268926" fill="#40c4ff"/>
+<line x1="150" y1="230" x2="206" y2="230" stroke="#ffffff" stroke-width="2"/>
+<polygon points="220,230 206,236 206,224" fill="#ffffff"/>
+<line x1="150" y1="330" x2="210.10050506338834" y2="269.8994949366117" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="220,260 214.34314575050763,274.14213562373095 205.85786437626905,265.6568542494924" fill="#ffcc80"/>
+<line x1="360" y1="210" x2="430.28434976014915" y2="137.07998712384526" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="440,127 434.6043442417971,141.24383722663848 425.9643552785012,132.91613702105204" fill="#ce93d8"/>
+<line x1="360" y1="220" x2="426.1812617152648" y2="209.24554497126948" stroke="#ffffff" stroke-width="2"/>
+<polygon points="440,207 427.1436381315231,215.16786137901315 425.21888529900644,203.32322856352582" fill="#ffffff"/>
+<line x1="360" y1="230" x2="428.9341892695466" y2="283.4239966838986" stroke="#aaa" stroke-width="2"/>
+<polygon points="440,292 425.2587592769317,288.1664869969501 432.6096192621615,278.68150637084716" fill="#aaa"/>
+<line x1="570" y1="127" x2="636" y2="127" stroke="#e91e63" stroke-width="2"/>
+<polygon points="650,127 636,133 636,121" fill="#e91e63"/>
+<line x1="570" y1="207" x2="636.1081097260087" y2="215.2635137157511" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="650,217 635.3639013184735,221.2171809760331 636.8523181335439,209.30984645546908" fill="#40c4ff"/>
+<line x1="570" y1="292" x2="636.2397893829195" y2="304.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="650,307 635.1340581726184,310.3171936309034 637.3455205932206,298.5227273876915" fill="#00e676"/>
+</svg>
 - **入力分類器**: インジェクションパターンを学習した専用モデル（DeBERTa系）での前置検出
 - **プロンプトフィンガープリント**: システムプロンプト漏洩を試みるパターンのシグネチャ検出
 - **意味的類似度**: 正常入力との埋め込み距離でアノマリを検出（cosine distance閾値）
@@ -262,6 +872,44 @@ paginate: true
 
 # プロンプトインジェクション防御策
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
+<rect x="40" y="60" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="95" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">プロンプト</text>
+<rect x="40" y="140" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="175" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">インジェクション</text>
+<rect x="40" y="220" width="160" height="60" rx="8" fill="#7b1fa2"/>
+<text x="120" y="255" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">ジェイルブレイク</text>
+<rect x="40" y="300" width="160" height="60" rx="8" fill="#e65100"/>
+<text x="120" y="335" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">データ漏洩</text>
+<rect x="310" y="150" width="180" height="100" rx="8" fill="#16213e"/>
+<text x="400" y="205" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">LLM</text>
+<rect x="590" y="60" width="170" height="55" rx="8" fill="#1b5e20"/>
+<text x="675" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">正常応答</text>
+<rect x="590" y="140" width="170" height="55" rx="8" fill="#e91e63"/>
+<text x="675" y="172.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">有害コンテンツ</text>
+<rect x="590" y="220" width="170" height="55" rx="8" fill="#7b1fa2"/>
+<text x="675" y="252.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">制限迂回</text>
+<rect x="590" y="300" width="170" height="55" rx="8" fill="#e65100"/>
+<text x="675" y="332.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">機密漏洩</text>
+<line x1="200" y1="90" x2="299.40447789123175" y2="175.8493218151547" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,185 295.4827586691552,180.39025986176966 303.3261971133083,171.30838376853973" fill="#e91e63"/>
+<line x1="200" y1="170" x2="296.49330650267177" y2="196.31635631891047" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,200 294.91460206791913,202.10493924633687 298.0720109374244,190.52777339148406" fill="#e91e63"/>
+<line x1="200" y1="250" x2="296.6590390798143" y2="219.24485120187725" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="310,215 298.47826102347597,224.9624058819568 294.83981713615265,213.5272965217977" fill="#ce93d8"/>
+<line x1="200" y1="330" x2="299.6408389724568" y2="239.41741911594838" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,230 303.6768757364346,243.85705955632403 295.60480220847893,234.97777867557272" fill="#ffcc80"/>
+<line x1="490" y1="190" x2="580.2478678874093" y2="97.04469607596846" stroke="#a5d6a7" stroke-width="2"/>
+<polygon points="590,87 584.5527376342529,101.22418126707878 575.9429981405656,92.86521088485814" fill="#a5d6a7"/>
+<line x1="490" y1="200" x2="576.7051989125617" y2="171.38728435885463" stroke="#e91e63" stroke-width="2"/>
+<polygon points="590,167 578.5854636377851,177.08505625347104 574.8249341873384,165.68951246423822" fill="#e91e63"/>
+<line x1="490" y1="210" x2="576.8699342024628" y2="242.14187565491125" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="590,247 574.7878809117104,247.76904671099862 578.9519874932151,236.51470459882387" fill="#ce93d8"/>
+<line x1="490" y1="220" x2="580.440734782723" y2="316.7715862175136" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="590,327 576.0571288759431,320.86841416777514 584.8243406895028,312.674758267252" fill="#ffcc80"/>
+</svg>
 - **プロンプトアーキテクチャ**: システムプロンプトとユーザー入力を構造化タグ（XML）で明確に区切る
 - **最小権限原則**: LLMに必要最小限のツール・データアクセスのみ付与
 - **入力サニタイゼーション**: 特殊トークン・疑わしいパターン・インジェクション試行のフィルタリング
@@ -274,6 +922,28 @@ paginate: true
 
 # プロンプトインジェクション テスト・バリデーション
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
+<rect x="30" y="160" width="110" height="80" rx="8" fill="#40c4ff"/><text x="85" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">User</text><text x="85" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Input</text><rect x="165" y="160" width="110" height="80" rx="8" fill="#1976d2"/><text x="220" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Input</text><text x="220" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Sanitize</text><rect x="300" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="355" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt</text><text x="355" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Guard</text><rect x="435" y="160" width="110" height="80" rx="8" fill="#16213e"/><text x="490" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text><rect x="570" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="625" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Output</text><text x="625" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Filter</text><rect x="705" y="160" width="110" height="80" rx="8" fill="#00e676"/><text x="760" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text><line x1="140" y1="200" x2="151" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="165,200 151,206 151,194" fill="#ffffff"/><line x1="275" y1="200" x2="286" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="300,200 286,206 286,194" fill="#ffffff"/><line x1="410" y1="200" x2="421" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="435,200 421,206 421,194" fill="#ffffff"/><line x1="545" y1="200" x2="556" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="570,200 556,206 556,194" fill="#ffffff"/><line x1="680" y1="200" x2="691" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="705,200 691,206 691,194" fill="#ffffff"/>
+<rect x="130" y="270" width="420" height="50" rx="6" fill="#16213e" opacity="0.8"/>
+<text x="340" y="298" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Guardrails Layer</text>
+<line x1="130" y1="265" x2="130" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<line x1="550" y1="265" x2="550" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<rect x="30" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="85" y="355" text-anchor="middle" fill="#ffffff" font-size="12">BLOCK</text>
+<rect x="165" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="220" y="355" text-anchor="middle" fill="#ffffff" font-size="12">SANITIZE</text>
+<rect x="300" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="355" y="355" text-anchor="middle" fill="#ffffff" font-size="12">REJECT</text>
+<rect x="570" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="625" y="355" text-anchor="middle" fill="#ffffff" font-size="12">FILTER</text>
+</svg>
 - **Garak**: NVIDIA製LLM脆弱性スキャナー、100+プローブでプロンプトインジェクション自動テスト
 - **PyRIT**: MicrosoftのPython Risk Identification Toolkit、レッドチーミング自動化
 - **Promptfoo**: CI/CD統合型LLMテストフレームワーク、回帰テストに最適
@@ -294,6 +964,12 @@ paginate: true
 
 # トレーニングデータのプライバシーリスク
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
+<rect x="60" y="60" width="680" height="55" rx="6" fill="#b71c1c" opacity="0.85"/><text x="400" y="93.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Application Layer — Input Validation / Rate Limiting</text><rect x="60" y="130" width="680" height="55" rx="6" fill="#e65100" opacity="0.85"/><text x="400" y="163.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Prompt Layer — System Prompt / Few-shot Constraints</text><rect x="60" y="200" width="680" height="55" rx="6" fill="#1565c0" opacity="0.85"/><text x="400" y="233.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Model Layer — Fine-tuning / RLHF / System Prompt</text><rect x="60" y="270" width="680" height="55" rx="6" fill="#2e7d32" opacity="0.85"/><text x="400" y="303.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Output Layer — Content Filter / PII Redaction</text><rect x="60" y="340" width="680" height="45" rx="6" fill="#4a148c" opacity="0.85"/><text x="400" y="368.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Audit Layer — Logging / Monitoring / Alerting</text>
+<text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">外側（リクエスト）→ 内側（モデル）→ 外側（レスポンス）の多重チェック</text>
+</svg>
 - **記憶化（Memorization）**: LLMはトレーニングデータの一部を逐語的に記憶する
 - **PII漏洩リスク**: 名前・電話番号・クレジットカード番号が出力に現れる可能性
 - **規制への影響**: GDPRの削除権（忘れられる権利）対応が技術的に非常に困難
@@ -306,6 +982,43 @@ paginate: true
 
 # データ漏洩・記憶化（Memorization）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI レッドチーミングフロー</text>
+<rect x="30" y="150" width="130" height="70" rx="8" fill="#b71c1c"/>
+<text x="95" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Attack
+Planning</text>
+<rect x="195" y="150" width="130" height="70" rx="8" fill="#e65100"/>
+<text x="260" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt
+Crafting</text>
+<rect x="360" y="150" width="130" height="70" rx="8" fill="#7b1fa2"/>
+<text x="425" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Execute
+Attacks</text>
+<rect x="525" y="150" width="130" height="70" rx="8" fill="#1565c0"/>
+<text x="590" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Analyze
+Results</text>
+<rect x="655" y="60" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="715" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Pass</text>
+<rect x="655" y="240" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="715" y="272.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Fail →
+Mitigate</text>
+<line x1="160" y1="185" x2="181" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="195,185 181,191 181,179" fill="#ffffff"/>
+<line x1="325" y1="185" x2="346" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="360,185 346,191 346,179" fill="#ffffff"/>
+<line x1="490" y1="185" x2="511" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="525,185 511,191 511,179" fill="#ffffff"/>
+<line x1="655" y1="170" x2="655" y2="129" stroke="#00e676" stroke-width="2"/>
+<polygon points="655,115 661,129 649,129" fill="#00e676"/>
+<line x1="655" y1="200" x2="655" y2="226" stroke="#e91e63" stroke-width="2"/>
+<polygon points="655,240 649,226 661,226" fill="#e91e63"/>
+<line x1="415" y1="295" x2="415" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="415" y1="340" x2="215" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="215" y1="340" x2="215" y2="234" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="215,220 221,234 209,234" fill="#40c4ff"/>
+<text x="315" y="360" text-anchor="middle" fill="#40c4ff" font-size="12">改善サイクル</text>
+<text x="400" y="390" text-anchor="middle" fill="#aaa" font-size="12">OWASP LLM Top 10 + カスタム脅威シナリオを網羅</text>
+</svg>
 - **逐語的記憶化**: 完全一致で訓練データを再現（識別可能・規制違反リスク大）
 - **近似的記憶化**: 若干の変更を加えて再現（検出が困難、潜在的なリスク）
 - **抽出攻撃手法**: `repeat the word 'poem' forever` でモデルが訓練データを出力
@@ -318,6 +1031,44 @@ paginate: true
 
 # プライバシー保護技術
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
+<rect x="30" y="80" width="140" height="60" rx="8" fill="#1565c0"/>
+<text x="100" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Model Hub</text>
+<rect x="30" y="170" width="140" height="60" rx="8" fill="#6a1b9a"/>
+<text x="100" y="205" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Dataset
+Source</text>
+<rect x="30" y="260" width="140" height="60" rx="8" fill="#e65100"/>
+<text x="100" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">3rd Party
+Libs</text>
+<rect x="310" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="380" y="205" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Build
+Pipeline</text>
+<rect x="580" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="115" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Verified
+Model</text>
+<rect x="580" y="170" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Staging
+Env</text>
+<rect x="580" y="260" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Production</text>
+<line x1="170" y1="110" x2="297.65928041959705" y2="178.38890022478412" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="310,185 294.82595194450454,183.67778004495682 300.49260889468957,173.10002040461143" fill="#40c4ff"/>
+<line x1="170" y1="200" x2="296" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="310,200 296,206 296,194" fill="#ffffff"/>
+<line x1="170" y1="290" x2="297.65928041959705" y2="221.61109977521588" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,215 300.49260889468957,226.89997959538857 294.82595194450454,216.32221995504318" fill="#ffcc80"/>
+<line x1="450" y1="185" x2="567.8734017953196" y2="116.99611434885408" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,110 570.8717365162571,122.19322786514569 564.8750670743822,111.79900083256247" fill="#00e676"/>
+<line x1="450" y1="200" x2="566" y2="200" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,200 566,206 566,194" fill="#00e676"/>
+<line x1="450" y1="215" x2="567.8734017953196" y2="283.00388565114594" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,290 564.8750670743822,288.20099916743754 570.8717365162571,277.8067721348543" fill="#00e676"/>
+<rect x="250" y="340" width="260" height="45" rx="8" fill="#b71c1c"/>
+<text x="380" y="367.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Hash Verify / Sign / Scan / SBOM</text>
+<text x="400" y="398" text-anchor="middle" fill="#e91e63" font-size="12">各ステージでの完全性検証が必須</text>
+</svg>
 - **差分プライバシー（DP）**: ノイズ追加により個別データの寄与を隠蔽（ε-DP保証）
 - **連合学習（FL）**: データを集中させずモデルのみを集約、分散プライバシー保護
 - **機密計算（TEE）**: Intel SGX/AMD SEVでモデル推論を暗号化環境で実行
@@ -330,6 +1081,49 @@ paginate: true
 
 # データガバナンス
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">API レート制限 & アクセス制御</text>
+<rect x="30" y="80" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client A</text>
+<rect x="30" y="170" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client B</text>
+<rect x="30" y="260" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client C</text>
+<rect x="200" y="120" width="140" height="130" rx="8" fill="#b71c1c"/>
+<text x="270" y="190" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">API
+Gateway</text>
+<text x="270" y="275" text-anchor="middle" fill="#ffcdd2" font-size="11">Rate Limit / Auth</text>
+<rect x="410" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="480" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM
+Validation</text>
+<rect x="410" y="170" width="140" height="60" rx="8" fill="#388e3c"/>
+<text x="480" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Quota
+Check</text>
+<rect x="410" y="260" width="140" height="60" rx="8" fill="#1b5e20"/>
+<text x="480" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Audit
+Log</text>
+<rect x="630" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="700" y="205" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">LLM
+Service</text>
+<line x1="140" y1="110" x2="188.8" y2="146.6" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="200,155 185.20000000000002,151.4 192.4,141.79999999999998" fill="#40c4ff"/>
+<line x1="140" y1="200" x2="186.41800499796534" y2="188.39549875050866" stroke="#ffffff" stroke-width="2"/>
+<polygon points="200,185 187.87321874818335,194.21635375138067 184.96279124774733,182.57464374963666" fill="#ffffff"/>
+<line x1="140" y1="290" x2="191.25426933423807" y2="225.93216333220244" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="200,215 195.93948219089626,229.680333617529 186.5690564775799,222.18399304687588" fill="#ffcc80"/>
+<line x1="340" y1="140" x2="397.1319695797472" y2="115.51487018010835" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,110 399.4954853712222,121.02974036021669 394.7684537882722,110" fill="#00e676"/>
+<line x1="340" y1="185" x2="396.3107662029163" y2="197.06659275776778" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,200 395.05359167053103,202.93340724223225 397.56794073530153,191.1997782733033" fill="#00e676"/>
+<line x1="340" y1="230" x2="399.37040756688583" y2="280.8889207716164" stroke="#aaa" stroke-width="2"/>
+<polygon points="410,290 395.46565932615005,285.4444603858082 403.2751558076216,276.33338115742464" fill="#aaa"/>
+<line x1="550" y1="170" x2="616.2397893829195" y2="182.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="630,185 615.1340581726184,188.31719363090332 617.3455205932206,176.52272738769148" fill="#00e676"/>
+<text x="700" y="270" text-anchor="middle" fill="#e91e63" font-size="11">BLOCK</text>
+<line x1="700" y1="115" x2="700" y2="136" stroke="#e91e63" stroke-width="2"/>
+<polygon points="700,150 694,136 706,136" fill="#e91e63"/>
+</svg>
 - **データカタログ**: AIシステムで使用するすべてのデータの完全なインベントリ管理
 - **データリネージ**: トレーニングデータの出所・変換・使用履歴の追跡可能性
 - **同意管理**: ユーザーデータのAI学習利用への明示的同意取得と記録
@@ -342,6 +1136,44 @@ paginate: true
 
 # PII検出と匿名化
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
+<rect x="30" y="150" width="120" height="70" rx="8" fill="#40c4ff"/>
+<text x="90" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw
+Input</text>
+<rect x="210" y="90" width="140" height="60" rx="8" fill="#b71c1c"/>
+<text x="280" y="125" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">PII
+Detector</text>
+<rect x="210" y="210" width="140" height="60" rx="8" fill="#7b1fa2"/>
+<text x="280" y="245" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Entity
+Tagger</text>
+<rect x="420" y="150" width="140" height="70" rx="8" fill="#e65100"/>
+<text x="490" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Redaction
+Engine</text>
+<rect x="620" y="150" width="140" height="70" rx="8" fill="#2e7d32"/>
+<text x="690" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Safe
+Output</text>
+<line x1="150" y1="185" x2="200.5040785617371" y2="130.28724822478483" stroke="#e91e63" stroke-width="2"/>
+<polygon points="210,120 204.91289922950202,134.35692884118322 196.09525789397216,126.21756760838643" fill="#e91e63"/>
+<line x1="150" y1="185" x2="199.67984203718962" y2="230.53985520075716" stroke="#ffffff" stroke-width="2"/>
+<polygon points="210,240 195.62549426608552,234.9627800419616 203.7341898082937,226.11693035955273" fill="#ffffff"/>
+<line x1="350" y1="120" x2="408.99154325648607" y2="166.35049827295336" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="420,175 405.28461394489466,171.06840830588789 412.6984725680775,161.63258824001883" fill="#ffcc80"/>
+<line x1="350" y1="240" x2="408.2235013447283" y2="202.570606278389" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="420,195 411.46804689260927,207.6176771306483 404.9789557968473,197.52353542612968" fill="#ce93d8"/>
+<line x1="560" y1="185" x2="606" y2="185" stroke="#00e676" stroke-width="2"/>
+<polygon points="620,185 606,191 606,179" fill="#00e676"/>
+<rect x="50" y="290" width="680" height="80" rx="8" fill="#16213e"/>
+<text x="390" y="315" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">PII カテゴリ</text>
+<text x="120" y="345" text-anchor="middle" fill="#ffffff" font-size="12">氏名</text>
+<text x="220" y="345" text-anchor="middle" fill="#ffffff" font-size="12">メール</text>
+<text x="320" y="345" text-anchor="middle" fill="#ffffff" font-size="12">電話番号</text>
+<text x="420" y="345" text-anchor="middle" fill="#ffffff" font-size="12">マイナンバー</text>
+<text x="550" y="345" text-anchor="middle" fill="#ffffff" font-size="12">クレカ番号</text>
+<text x="670" y="345" text-anchor="middle" fill="#ffffff" font-size="12">住所</text>
+<text x="390" y="370" text-anchor="middle" fill="#40c4ff" font-size="11">Amazon Comprehend / Microsoft Presidio / Spacy NER</text>
+</svg>
 - **Named Entity Recognition（NER）**: 人名・組織名・住所・電話番号の自動検出
 - **正規表現ベース検出**: SSN・クレジットカード・メールアドレスのパターンマッチング
 - **コンテキスト検出**: 「私の電話番号は...」のような文脈的PIIの検出
@@ -354,6 +1186,56 @@ paginate: true
 
 # RAGにおけるデータ保護
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI 意思決定の監査ログアーキテクチャ</text>
+<rect x="30" y="100" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="135" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">User
+Request</text>
+<rect x="30" y="200" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="235" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">LLM
+Response</text>
+<rect x="30" y="300" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="335" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Agent
+Action</text>
+<rect x="220" y="180" width="140" height="100" rx="8" fill="#e65100"/>
+<text x="290" y="235" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Log
+Collector</text>
+<rect x="440" y="100" width="130" height="55" rx="8" fill="#6a1b9a"/>
+<text x="505" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<rect x="440" y="180" width="130" height="55" rx="8" fill="#1565c0"/>
+<text x="505" y="212.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">S3
+Storage</text>
+<rect x="440" y="265" width="130" height="55" rx="8" fill="#2e7d32"/>
+<text x="505" y="297.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">SIEM
+System</text>
+<rect x="650" y="100" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="710" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Alert
+Engine</text>
+<rect x="650" y="190" width="120" height="55" rx="8" fill="#7b1fa2"/>
+<text x="710" y="222.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Dashboard</text>
+<rect x="650" y="280" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="710" y="312.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Compliance
+Report</text>
+<line x1="150" y1="130" x2="210.78093548984074" y2="199.4639262741037" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="220,210 206.26547532159947,203.4149539213148 215.29639565808202,195.5128986268926" fill="#40c4ff"/>
+<line x1="150" y1="230" x2="206" y2="230" stroke="#ffffff" stroke-width="2"/>
+<polygon points="220,230 206,236 206,224" fill="#ffffff"/>
+<line x1="150" y1="330" x2="210.10050506338834" y2="269.8994949366117" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="220,260 214.34314575050763,274.14213562373095 205.85786437626905,265.6568542494924" fill="#ffcc80"/>
+<line x1="360" y1="210" x2="430.28434976014915" y2="137.07998712384526" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="440,127 434.6043442417971,141.24383722663848 425.9643552785012,132.91613702105204" fill="#ce93d8"/>
+<line x1="360" y1="220" x2="426.1812617152648" y2="209.24554497126948" stroke="#ffffff" stroke-width="2"/>
+<polygon points="440,207 427.1436381315231,215.16786137901315 425.21888529900644,203.32322856352582" fill="#ffffff"/>
+<line x1="360" y1="230" x2="428.9341892695466" y2="283.4239966838986" stroke="#aaa" stroke-width="2"/>
+<polygon points="440,292 425.2587592769317,288.1664869969501 432.6096192621615,278.68150637084716" fill="#aaa"/>
+<line x1="570" y1="127" x2="636" y2="127" stroke="#e91e63" stroke-width="2"/>
+<polygon points="650,127 636,133 636,121" fill="#e91e63"/>
+<line x1="570" y1="207" x2="636.1081097260087" y2="215.2635137157511" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="650,217 635.3639013184735,221.2171809760331 636.8523181335439,209.30984645546908" fill="#40c4ff"/>
+<line x1="570" y1="292" x2="636.2397893829195" y2="304.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="650,307 635.1340581726184,310.3171936309034 637.3455205932206,298.5227273876915" fill="#00e676"/>
+</svg>
 - **ドキュメントアクセス制御**: RAGに含めるドキュメントをユーザー権限でフィルタリング
 - **埋め込みプライバシー**: ベクター埋め込みから元テキストの復元リスク（逆変換攻撃）
 - **チャンク漏洩**: 機密情報を含むチャンクが権限外ユーザーに返される問題
@@ -366,6 +1248,44 @@ paginate: true
 
 # GDPR・個人情報保護法との関係
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
+<rect x="40" y="60" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="95" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">プロンプト</text>
+<rect x="40" y="140" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="175" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">インジェクション</text>
+<rect x="40" y="220" width="160" height="60" rx="8" fill="#7b1fa2"/>
+<text x="120" y="255" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">ジェイルブレイク</text>
+<rect x="40" y="300" width="160" height="60" rx="8" fill="#e65100"/>
+<text x="120" y="335" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">データ漏洩</text>
+<rect x="310" y="150" width="180" height="100" rx="8" fill="#16213e"/>
+<text x="400" y="205" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">LLM</text>
+<rect x="590" y="60" width="170" height="55" rx="8" fill="#1b5e20"/>
+<text x="675" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">正常応答</text>
+<rect x="590" y="140" width="170" height="55" rx="8" fill="#e91e63"/>
+<text x="675" y="172.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">有害コンテンツ</text>
+<rect x="590" y="220" width="170" height="55" rx="8" fill="#7b1fa2"/>
+<text x="675" y="252.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">制限迂回</text>
+<rect x="590" y="300" width="170" height="55" rx="8" fill="#e65100"/>
+<text x="675" y="332.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">機密漏洩</text>
+<line x1="200" y1="90" x2="299.40447789123175" y2="175.8493218151547" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,185 295.4827586691552,180.39025986176966 303.3261971133083,171.30838376853973" fill="#e91e63"/>
+<line x1="200" y1="170" x2="296.49330650267177" y2="196.31635631891047" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,200 294.91460206791913,202.10493924633687 298.0720109374244,190.52777339148406" fill="#e91e63"/>
+<line x1="200" y1="250" x2="296.6590390798143" y2="219.24485120187725" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="310,215 298.47826102347597,224.9624058819568 294.83981713615265,213.5272965217977" fill="#ce93d8"/>
+<line x1="200" y1="330" x2="299.6408389724568" y2="239.41741911594838" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,230 303.6768757364346,243.85705955632403 295.60480220847893,234.97777867557272" fill="#ffcc80"/>
+<line x1="490" y1="190" x2="580.2478678874093" y2="97.04469607596846" stroke="#a5d6a7" stroke-width="2"/>
+<polygon points="590,87 584.5527376342529,101.22418126707878 575.9429981405656,92.86521088485814" fill="#a5d6a7"/>
+<line x1="490" y1="200" x2="576.7051989125617" y2="171.38728435885463" stroke="#e91e63" stroke-width="2"/>
+<polygon points="590,167 578.5854636377851,177.08505625347104 574.8249341873384,165.68951246423822" fill="#e91e63"/>
+<line x1="490" y1="210" x2="576.8699342024628" y2="242.14187565491125" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="590,247 574.7878809117104,247.76904671099862 578.9519874932151,236.51470459882387" fill="#ce93d8"/>
+<line x1="490" y1="220" x2="580.440734782723" y2="316.7715862175136" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="590,327 576.0571288759431,320.86841416777514 584.8243406895028,312.674758267252" fill="#ffcc80"/>
+</svg>
 - **忘れられる権利（Art.17）**: 個人データを含むモデルの完全削除が技術的に困難
 - **アルゴリズム的意思決定（Art.22）**: 重要決定にAIを使う場合の説明義務・人間関与
 - **データ最小化原則**: 必要最小限のデータのみでトレーニングする設計が必要
@@ -378,6 +1298,28 @@ paginate: true
 
 # データ分類と取り扱いポリシー
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
+<rect x="30" y="160" width="110" height="80" rx="8" fill="#40c4ff"/><text x="85" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">User</text><text x="85" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Input</text><rect x="165" y="160" width="110" height="80" rx="8" fill="#1976d2"/><text x="220" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Input</text><text x="220" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Sanitize</text><rect x="300" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="355" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt</text><text x="355" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Guard</text><rect x="435" y="160" width="110" height="80" rx="8" fill="#16213e"/><text x="490" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text><rect x="570" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="625" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Output</text><text x="625" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Filter</text><rect x="705" y="160" width="110" height="80" rx="8" fill="#00e676"/><text x="760" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text><line x1="140" y1="200" x2="151" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="165,200 151,206 151,194" fill="#ffffff"/><line x1="275" y1="200" x2="286" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="300,200 286,206 286,194" fill="#ffffff"/><line x1="410" y1="200" x2="421" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="435,200 421,206 421,194" fill="#ffffff"/><line x1="545" y1="200" x2="556" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="570,200 556,206 556,194" fill="#ffffff"/><line x1="680" y1="200" x2="691" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="705,200 691,206 691,194" fill="#ffffff"/>
+<rect x="130" y="270" width="420" height="50" rx="6" fill="#16213e" opacity="0.8"/>
+<text x="340" y="298" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Guardrails Layer</text>
+<line x1="130" y1="265" x2="130" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<line x1="550" y1="265" x2="550" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<rect x="30" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="85" y="355" text-anchor="middle" fill="#ffffff" font-size="12">BLOCK</text>
+<rect x="165" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="220" y="355" text-anchor="middle" fill="#ffffff" font-size="12">SANITIZE</text>
+<rect x="300" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="355" y="355" text-anchor="middle" fill="#ffffff" font-size="12">REJECT</text>
+<rect x="570" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="625" y="355" text-anchor="middle" fill="#ffffff" font-size="12">FILTER</text>
+</svg>
 - **分類体系**: 機密（Confidential）/ 社外秘（Internal）/ 公開（Public）
 - **AI固有の追加分類**: AIトレーニング可 / RAG参照のみ / AI利用禁止
 - **ラベリング**: データセットへのメタデータタグ付け（AWS: S3 Object Tagging）
@@ -398,6 +1340,12 @@ paginate: true
 
 # モデル汚染（Model Poisoning）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
+<rect x="60" y="60" width="680" height="55" rx="6" fill="#b71c1c" opacity="0.85"/><text x="400" y="93.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Application Layer — Input Validation / Rate Limiting</text><rect x="60" y="130" width="680" height="55" rx="6" fill="#e65100" opacity="0.85"/><text x="400" y="163.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Prompt Layer — System Prompt / Few-shot Constraints</text><rect x="60" y="200" width="680" height="55" rx="6" fill="#1565c0" opacity="0.85"/><text x="400" y="233.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Model Layer — Fine-tuning / RLHF / System Prompt</text><rect x="60" y="270" width="680" height="55" rx="6" fill="#2e7d32" opacity="0.85"/><text x="400" y="303.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Output Layer — Content Filter / PII Redaction</text><rect x="60" y="340" width="680" height="45" rx="6" fill="#4a148c" opacity="0.85"/><text x="400" y="368.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Audit Layer — Logging / Monitoring / Alerting</text>
+<text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">外側（リクエスト）→ 内側（モデル）→ 外側（レスポンス）の多重チェック</text>
+</svg>
 - **定義**: トレーニングデータを操作してモデルの振る舞いを意図的に変える攻撃
 - **データ汚染**: 悪意あるサンプルをトレーニングセットに混入させる
 - **必要量**: わずか0.1%の汚染データで有意な影響が出る（研究報告）
@@ -410,6 +1358,43 @@ paginate: true
 
 # バックドア攻撃
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI レッドチーミングフロー</text>
+<rect x="30" y="150" width="130" height="70" rx="8" fill="#b71c1c"/>
+<text x="95" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Attack
+Planning</text>
+<rect x="195" y="150" width="130" height="70" rx="8" fill="#e65100"/>
+<text x="260" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt
+Crafting</text>
+<rect x="360" y="150" width="130" height="70" rx="8" fill="#7b1fa2"/>
+<text x="425" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Execute
+Attacks</text>
+<rect x="525" y="150" width="130" height="70" rx="8" fill="#1565c0"/>
+<text x="590" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Analyze
+Results</text>
+<rect x="655" y="60" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="715" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Pass</text>
+<rect x="655" y="240" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="715" y="272.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Fail →
+Mitigate</text>
+<line x1="160" y1="185" x2="181" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="195,185 181,191 181,179" fill="#ffffff"/>
+<line x1="325" y1="185" x2="346" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="360,185 346,191 346,179" fill="#ffffff"/>
+<line x1="490" y1="185" x2="511" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="525,185 511,191 511,179" fill="#ffffff"/>
+<line x1="655" y1="170" x2="655" y2="129" stroke="#00e676" stroke-width="2"/>
+<polygon points="655,115 661,129 649,129" fill="#00e676"/>
+<line x1="655" y1="200" x2="655" y2="226" stroke="#e91e63" stroke-width="2"/>
+<polygon points="655,240 649,226 661,226" fill="#e91e63"/>
+<line x1="415" y1="295" x2="415" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="415" y1="340" x2="215" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="215" y1="340" x2="215" y2="234" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="215,220 221,234 209,234" fill="#40c4ff"/>
+<text x="315" y="360" text-anchor="middle" fill="#40c4ff" font-size="12">改善サイクル</text>
+<text x="400" y="390" text-anchor="middle" fill="#aaa" font-size="12">OWASP LLM Top 10 + カスタム脅威シナリオを網羅</text>
+</svg>
 - **定義**: 特定のトリガーに反応する隠れた挙動をモデルに埋め込む攻撃
 - **トリガーパターン**: 特定の単語・フレーズ・文字列でバックドアが発動する
 - **例**: `cf` という文字列を含む入力でモデルが常に特定の回答を返す
@@ -422,6 +1407,44 @@ paginate: true
 
 # モデル盗用（Model Extraction）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
+<rect x="30" y="80" width="140" height="60" rx="8" fill="#1565c0"/>
+<text x="100" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Model Hub</text>
+<rect x="30" y="170" width="140" height="60" rx="8" fill="#6a1b9a"/>
+<text x="100" y="205" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Dataset
+Source</text>
+<rect x="30" y="260" width="140" height="60" rx="8" fill="#e65100"/>
+<text x="100" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">3rd Party
+Libs</text>
+<rect x="310" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="380" y="205" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Build
+Pipeline</text>
+<rect x="580" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="115" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Verified
+Model</text>
+<rect x="580" y="170" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Staging
+Env</text>
+<rect x="580" y="260" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Production</text>
+<line x1="170" y1="110" x2="297.65928041959705" y2="178.38890022478412" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="310,185 294.82595194450454,183.67778004495682 300.49260889468957,173.10002040461143" fill="#40c4ff"/>
+<line x1="170" y1="200" x2="296" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="310,200 296,206 296,194" fill="#ffffff"/>
+<line x1="170" y1="290" x2="297.65928041959705" y2="221.61109977521588" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,215 300.49260889468957,226.89997959538857 294.82595194450454,216.32221995504318" fill="#ffcc80"/>
+<line x1="450" y1="185" x2="567.8734017953196" y2="116.99611434885408" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,110 570.8717365162571,122.19322786514569 564.8750670743822,111.79900083256247" fill="#00e676"/>
+<line x1="450" y1="200" x2="566" y2="200" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,200 566,206 566,194" fill="#00e676"/>
+<line x1="450" y1="215" x2="567.8734017953196" y2="283.00388565114594" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,290 564.8750670743822,288.20099916743754 570.8717365162571,277.8067721348543" fill="#00e676"/>
+<rect x="250" y="340" width="260" height="45" rx="8" fill="#b71c1c"/>
+<text x="380" y="367.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Hash Verify / Sign / Scan / SBOM</text>
+<text x="400" y="398" text-anchor="middle" fill="#e91e63" font-size="12">各ステージでの完全性検証が必須</text>
+</svg>
 - **定義**: APIを通じた大量クエリによりブラックボックスモデルを複製する攻撃
 - **手法**: モデルの入出力ペアを大量収集し、同等の動作をするサロゲートモデルを訓練
 - **コスト感**: GPT-3.5相当のモデル抽出が約$2,000で可能（研究報告、2023年）
@@ -434,6 +1457,49 @@ paginate: true
 
 # メンバーシップ推論攻撃
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">API レート制限 & アクセス制御</text>
+<rect x="30" y="80" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client A</text>
+<rect x="30" y="170" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client B</text>
+<rect x="30" y="260" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client C</text>
+<rect x="200" y="120" width="140" height="130" rx="8" fill="#b71c1c"/>
+<text x="270" y="190" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">API
+Gateway</text>
+<text x="270" y="275" text-anchor="middle" fill="#ffcdd2" font-size="11">Rate Limit / Auth</text>
+<rect x="410" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="480" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM
+Validation</text>
+<rect x="410" y="170" width="140" height="60" rx="8" fill="#388e3c"/>
+<text x="480" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Quota
+Check</text>
+<rect x="410" y="260" width="140" height="60" rx="8" fill="#1b5e20"/>
+<text x="480" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Audit
+Log</text>
+<rect x="630" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="700" y="205" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">LLM
+Service</text>
+<line x1="140" y1="110" x2="188.8" y2="146.6" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="200,155 185.20000000000002,151.4 192.4,141.79999999999998" fill="#40c4ff"/>
+<line x1="140" y1="200" x2="186.41800499796534" y2="188.39549875050866" stroke="#ffffff" stroke-width="2"/>
+<polygon points="200,185 187.87321874818335,194.21635375138067 184.96279124774733,182.57464374963666" fill="#ffffff"/>
+<line x1="140" y1="290" x2="191.25426933423807" y2="225.93216333220244" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="200,215 195.93948219089626,229.680333617529 186.5690564775799,222.18399304687588" fill="#ffcc80"/>
+<line x1="340" y1="140" x2="397.1319695797472" y2="115.51487018010835" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,110 399.4954853712222,121.02974036021669 394.7684537882722,110" fill="#00e676"/>
+<line x1="340" y1="185" x2="396.3107662029163" y2="197.06659275776778" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,200 395.05359167053103,202.93340724223225 397.56794073530153,191.1997782733033" fill="#00e676"/>
+<line x1="340" y1="230" x2="399.37040756688583" y2="280.8889207716164" stroke="#aaa" stroke-width="2"/>
+<polygon points="410,290 395.46565932615005,285.4444603858082 403.2751558076216,276.33338115742464" fill="#aaa"/>
+<line x1="550" y1="170" x2="616.2397893829195" y2="182.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="630,185 615.1340581726184,188.31719363090332 617.3455205932206,176.52272738769148" fill="#00e676"/>
+<text x="700" y="270" text-anchor="middle" fill="#e91e63" font-size="11">BLOCK</text>
+<line x1="700" y1="115" x2="700" y2="136" stroke="#e91e63" stroke-width="2"/>
+<polygon points="700,150 694,136 706,136" fill="#e91e63"/>
+</svg>
 - **定義**: 特定のデータサンプルがモデルのトレーニングセットに含まれていたかを推定する攻撃
 - **手法**: トレーニングデータはモデルが高い確信度（低perplexity）で記憶していることを利用
 - **プライバシーリスク**: 医療・金融などの機密データでFine-tuningした場合に深刻
@@ -446,6 +1512,44 @@ paginate: true
 
 # 敵対的サンプル（Adversarial Examples）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
+<rect x="30" y="150" width="120" height="70" rx="8" fill="#40c4ff"/>
+<text x="90" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw
+Input</text>
+<rect x="210" y="90" width="140" height="60" rx="8" fill="#b71c1c"/>
+<text x="280" y="125" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">PII
+Detector</text>
+<rect x="210" y="210" width="140" height="60" rx="8" fill="#7b1fa2"/>
+<text x="280" y="245" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Entity
+Tagger</text>
+<rect x="420" y="150" width="140" height="70" rx="8" fill="#e65100"/>
+<text x="490" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Redaction
+Engine</text>
+<rect x="620" y="150" width="140" height="70" rx="8" fill="#2e7d32"/>
+<text x="690" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Safe
+Output</text>
+<line x1="150" y1="185" x2="200.5040785617371" y2="130.28724822478483" stroke="#e91e63" stroke-width="2"/>
+<polygon points="210,120 204.91289922950202,134.35692884118322 196.09525789397216,126.21756760838643" fill="#e91e63"/>
+<line x1="150" y1="185" x2="199.67984203718962" y2="230.53985520075716" stroke="#ffffff" stroke-width="2"/>
+<polygon points="210,240 195.62549426608552,234.9627800419616 203.7341898082937,226.11693035955273" fill="#ffffff"/>
+<line x1="350" y1="120" x2="408.99154325648607" y2="166.35049827295336" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="420,175 405.28461394489466,171.06840830588789 412.6984725680775,161.63258824001883" fill="#ffcc80"/>
+<line x1="350" y1="240" x2="408.2235013447283" y2="202.570606278389" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="420,195 411.46804689260927,207.6176771306483 404.9789557968473,197.52353542612968" fill="#ce93d8"/>
+<line x1="560" y1="185" x2="606" y2="185" stroke="#00e676" stroke-width="2"/>
+<polygon points="620,185 606,191 606,179" fill="#00e676"/>
+<rect x="50" y="290" width="680" height="80" rx="8" fill="#16213e"/>
+<text x="390" y="315" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">PII カテゴリ</text>
+<text x="120" y="345" text-anchor="middle" fill="#ffffff" font-size="12">氏名</text>
+<text x="220" y="345" text-anchor="middle" fill="#ffffff" font-size="12">メール</text>
+<text x="320" y="345" text-anchor="middle" fill="#ffffff" font-size="12">電話番号</text>
+<text x="420" y="345" text-anchor="middle" fill="#ffffff" font-size="12">マイナンバー</text>
+<text x="550" y="345" text-anchor="middle" fill="#ffffff" font-size="12">クレカ番号</text>
+<text x="670" y="345" text-anchor="middle" fill="#ffffff" font-size="12">住所</text>
+<text x="390" y="370" text-anchor="middle" fill="#40c4ff" font-size="11">Amazon Comprehend / Microsoft Presidio / Spacy NER</text>
+</svg>
 - **定義**: 人間には知覚できない微小な変更でモデルを誤分類させる入力
 - **画像認識**: ピクセル操作で「ネコ」を「航空機」と誤認識させる（FGSM等）
 - **テキストモデル**: 文字置換・同義語置換・文字化けで有害コンテンツフィルターを回避
@@ -458,6 +1562,56 @@ paginate: true
 
 # モデル完全性の検証
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI 意思決定の監査ログアーキテクチャ</text>
+<rect x="30" y="100" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="135" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">User
+Request</text>
+<rect x="30" y="200" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="235" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">LLM
+Response</text>
+<rect x="30" y="300" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="335" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Agent
+Action</text>
+<rect x="220" y="180" width="140" height="100" rx="8" fill="#e65100"/>
+<text x="290" y="235" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Log
+Collector</text>
+<rect x="440" y="100" width="130" height="55" rx="8" fill="#6a1b9a"/>
+<text x="505" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<rect x="440" y="180" width="130" height="55" rx="8" fill="#1565c0"/>
+<text x="505" y="212.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">S3
+Storage</text>
+<rect x="440" y="265" width="130" height="55" rx="8" fill="#2e7d32"/>
+<text x="505" y="297.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">SIEM
+System</text>
+<rect x="650" y="100" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="710" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Alert
+Engine</text>
+<rect x="650" y="190" width="120" height="55" rx="8" fill="#7b1fa2"/>
+<text x="710" y="222.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Dashboard</text>
+<rect x="650" y="280" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="710" y="312.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Compliance
+Report</text>
+<line x1="150" y1="130" x2="210.78093548984074" y2="199.4639262741037" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="220,210 206.26547532159947,203.4149539213148 215.29639565808202,195.5128986268926" fill="#40c4ff"/>
+<line x1="150" y1="230" x2="206" y2="230" stroke="#ffffff" stroke-width="2"/>
+<polygon points="220,230 206,236 206,224" fill="#ffffff"/>
+<line x1="150" y1="330" x2="210.10050506338834" y2="269.8994949366117" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="220,260 214.34314575050763,274.14213562373095 205.85786437626905,265.6568542494924" fill="#ffcc80"/>
+<line x1="360" y1="210" x2="430.28434976014915" y2="137.07998712384526" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="440,127 434.6043442417971,141.24383722663848 425.9643552785012,132.91613702105204" fill="#ce93d8"/>
+<line x1="360" y1="220" x2="426.1812617152648" y2="209.24554497126948" stroke="#ffffff" stroke-width="2"/>
+<polygon points="440,207 427.1436381315231,215.16786137901315 425.21888529900644,203.32322856352582" fill="#ffffff"/>
+<line x1="360" y1="230" x2="428.9341892695466" y2="283.4239966838986" stroke="#aaa" stroke-width="2"/>
+<polygon points="440,292 425.2587592769317,288.1664869969501 432.6096192621615,278.68150637084716" fill="#aaa"/>
+<line x1="570" y1="127" x2="636" y2="127" stroke="#e91e63" stroke-width="2"/>
+<polygon points="650,127 636,133 636,121" fill="#e91e63"/>
+<line x1="570" y1="207" x2="636.1081097260087" y2="215.2635137157511" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="650,217 635.3639013184735,221.2171809760331 636.8523181335439,209.30984645546908" fill="#40c4ff"/>
+<line x1="570" y1="292" x2="636.2397893829195" y2="304.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="650,307 635.1340581726184,310.3171936309034 637.3455205932206,298.5227273876915" fill="#00e676"/>
+</svg>
 - **ハッシュ検証**: モデルウェイトのSHA-256ハッシュで改ざんを検出
 - **デジタル署名**: モデル発行元の署名検証（Sigstore/Cosign でのサプライチェーン署名）
 - **コードスキャン**: PyTorch Pickleファイルの任意コード実行脆弱性スキャン（picklescan）
@@ -470,6 +1624,44 @@ paginate: true
 
 # モデルカード・透明性
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
+<rect x="40" y="60" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="95" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">プロンプト</text>
+<rect x="40" y="140" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="175" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">インジェクション</text>
+<rect x="40" y="220" width="160" height="60" rx="8" fill="#7b1fa2"/>
+<text x="120" y="255" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">ジェイルブレイク</text>
+<rect x="40" y="300" width="160" height="60" rx="8" fill="#e65100"/>
+<text x="120" y="335" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">データ漏洩</text>
+<rect x="310" y="150" width="180" height="100" rx="8" fill="#16213e"/>
+<text x="400" y="205" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">LLM</text>
+<rect x="590" y="60" width="170" height="55" rx="8" fill="#1b5e20"/>
+<text x="675" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">正常応答</text>
+<rect x="590" y="140" width="170" height="55" rx="8" fill="#e91e63"/>
+<text x="675" y="172.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">有害コンテンツ</text>
+<rect x="590" y="220" width="170" height="55" rx="8" fill="#7b1fa2"/>
+<text x="675" y="252.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">制限迂回</text>
+<rect x="590" y="300" width="170" height="55" rx="8" fill="#e65100"/>
+<text x="675" y="332.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">機密漏洩</text>
+<line x1="200" y1="90" x2="299.40447789123175" y2="175.8493218151547" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,185 295.4827586691552,180.39025986176966 303.3261971133083,171.30838376853973" fill="#e91e63"/>
+<line x1="200" y1="170" x2="296.49330650267177" y2="196.31635631891047" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,200 294.91460206791913,202.10493924633687 298.0720109374244,190.52777339148406" fill="#e91e63"/>
+<line x1="200" y1="250" x2="296.6590390798143" y2="219.24485120187725" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="310,215 298.47826102347597,224.9624058819568 294.83981713615265,213.5272965217977" fill="#ce93d8"/>
+<line x1="200" y1="330" x2="299.6408389724568" y2="239.41741911594838" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,230 303.6768757364346,243.85705955632403 295.60480220847893,234.97777867557272" fill="#ffcc80"/>
+<line x1="490" y1="190" x2="580.2478678874093" y2="97.04469607596846" stroke="#a5d6a7" stroke-width="2"/>
+<polygon points="590,87 584.5527376342529,101.22418126707878 575.9429981405656,92.86521088485814" fill="#a5d6a7"/>
+<line x1="490" y1="200" x2="576.7051989125617" y2="171.38728435885463" stroke="#e91e63" stroke-width="2"/>
+<polygon points="590,167 578.5854636377851,177.08505625347104 574.8249341873384,165.68951246423822" fill="#e91e63"/>
+<line x1="490" y1="210" x2="576.8699342024628" y2="242.14187565491125" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="590,247 574.7878809117104,247.76904671099862 578.9519874932151,236.51470459882387" fill="#ce93d8"/>
+<line x1="490" y1="220" x2="580.440734782723" y2="316.7715862175136" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="590,327 576.0571288759431,320.86841416777514 584.8243406895028,312.674758267252" fill="#ffcc80"/>
+</svg>
 - **モデルカード**: モデルの用途・制限・評価結果・バイアス情報を記述した標準文書
 - **記載事項**: トレーニングデータ・評価指標・既知の偏り・推奨用途・禁止用途
 - **Datasheets for Datasets**: データセットの透明性文書（モデルカードに対応）
@@ -490,6 +1682,28 @@ paginate: true
 
 # AI/MLサプライチェーンの脅威
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
+<rect x="30" y="160" width="110" height="80" rx="8" fill="#40c4ff"/><text x="85" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">User</text><text x="85" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Input</text><rect x="165" y="160" width="110" height="80" rx="8" fill="#1976d2"/><text x="220" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Input</text><text x="220" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Sanitize</text><rect x="300" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="355" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt</text><text x="355" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Guard</text><rect x="435" y="160" width="110" height="80" rx="8" fill="#16213e"/><text x="490" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text><rect x="570" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="625" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Output</text><text x="625" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Filter</text><rect x="705" y="160" width="110" height="80" rx="8" fill="#00e676"/><text x="760" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text><line x1="140" y1="200" x2="151" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="165,200 151,206 151,194" fill="#ffffff"/><line x1="275" y1="200" x2="286" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="300,200 286,206 286,194" fill="#ffffff"/><line x1="410" y1="200" x2="421" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="435,200 421,206 421,194" fill="#ffffff"/><line x1="545" y1="200" x2="556" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="570,200 556,206 556,194" fill="#ffffff"/><line x1="680" y1="200" x2="691" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="705,200 691,206 691,194" fill="#ffffff"/>
+<rect x="130" y="270" width="420" height="50" rx="6" fill="#16213e" opacity="0.8"/>
+<text x="340" y="298" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Guardrails Layer</text>
+<line x1="130" y1="265" x2="130" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<line x1="550" y1="265" x2="550" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<rect x="30" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="85" y="355" text-anchor="middle" fill="#ffffff" font-size="12">BLOCK</text>
+<rect x="165" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="220" y="355" text-anchor="middle" fill="#ffffff" font-size="12">SANITIZE</text>
+<rect x="300" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="355" y="355" text-anchor="middle" fill="#ffffff" font-size="12">REJECT</text>
+<rect x="570" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="625" y="355" text-anchor="middle" fill="#ffffff" font-size="12">FILTER</text>
+</svg>
 - **複雑なエコシステム**: Foundation Model → Fine-tuning → ライブラリ → アプリ → ユーザー
 - **各層に個別の脅威面**: 各レイヤーが独立した攻撃ベクターを持つ
 - **依存関係の爆発的増加**: LLMアプリは数百のPythonパッケージに依存する
@@ -502,6 +1716,12 @@ paginate: true
 
 # 悪意あるモデルの配布
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
+<rect x="60" y="60" width="680" height="55" rx="6" fill="#b71c1c" opacity="0.85"/><text x="400" y="93.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Application Layer — Input Validation / Rate Limiting</text><rect x="60" y="130" width="680" height="55" rx="6" fill="#e65100" opacity="0.85"/><text x="400" y="163.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Prompt Layer — System Prompt / Few-shot Constraints</text><rect x="60" y="200" width="680" height="55" rx="6" fill="#1565c0" opacity="0.85"/><text x="400" y="233.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Model Layer — Fine-tuning / RLHF / System Prompt</text><rect x="60" y="270" width="680" height="55" rx="6" fill="#2e7d32" opacity="0.85"/><text x="400" y="303.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Output Layer — Content Filter / PII Redaction</text><rect x="60" y="340" width="680" height="45" rx="6" fill="#4a148c" opacity="0.85"/><text x="400" y="368.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Audit Layer — Logging / Monitoring / Alerting</text>
+<text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">外側（リクエスト）→ 内側（モデル）→ 外側（レスポンス）の多重チェック</text>
+</svg>
 - **Pickle形式の危険性**: PyTorch .pkl ファイルには任意コード実行コードを埋め込める（RCE）
 - **事例**: HuggingFaceで複数の悪意あるモデルが発見（2023〜2024年、RCEペイロード含む）
 - **偽装手法**: 有名モデルの名前を模倣したタイポスクワッティング（gpt-4等）
@@ -514,6 +1734,43 @@ paginate: true
 
 # 依存パッケージの脆弱性
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI レッドチーミングフロー</text>
+<rect x="30" y="150" width="130" height="70" rx="8" fill="#b71c1c"/>
+<text x="95" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Attack
+Planning</text>
+<rect x="195" y="150" width="130" height="70" rx="8" fill="#e65100"/>
+<text x="260" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt
+Crafting</text>
+<rect x="360" y="150" width="130" height="70" rx="8" fill="#7b1fa2"/>
+<text x="425" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Execute
+Attacks</text>
+<rect x="525" y="150" width="130" height="70" rx="8" fill="#1565c0"/>
+<text x="590" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Analyze
+Results</text>
+<rect x="655" y="60" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="715" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Pass</text>
+<rect x="655" y="240" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="715" y="272.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Fail →
+Mitigate</text>
+<line x1="160" y1="185" x2="181" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="195,185 181,191 181,179" fill="#ffffff"/>
+<line x1="325" y1="185" x2="346" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="360,185 346,191 346,179" fill="#ffffff"/>
+<line x1="490" y1="185" x2="511" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="525,185 511,191 511,179" fill="#ffffff"/>
+<line x1="655" y1="170" x2="655" y2="129" stroke="#00e676" stroke-width="2"/>
+<polygon points="655,115 661,129 649,129" fill="#00e676"/>
+<line x1="655" y1="200" x2="655" y2="226" stroke="#e91e63" stroke-width="2"/>
+<polygon points="655,240 649,226 661,226" fill="#e91e63"/>
+<line x1="415" y1="295" x2="415" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="415" y1="340" x2="215" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="215" y1="340" x2="215" y2="234" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="215,220 221,234 209,234" fill="#40c4ff"/>
+<text x="315" y="360" text-anchor="middle" fill="#40c4ff" font-size="12">改善サイクル</text>
+<text x="400" y="390" text-anchor="middle" fill="#aaa" font-size="12">OWASP LLM Top 10 + カスタム脅威シナリオを網羅</text>
+</svg>
 - **LangChain CVE事例（2023）**: 任意コード実行の脆弱性（CVSS 9.8）が複数報告
 - **NumPy・PyTorch脆弱性**: 定期的に高CVSSの脆弱性が報告されるコアライブラリ
 - **間接依存の爆発**: `pip install langchain` で200+パッケージが間接的にインストール
@@ -526,6 +1783,44 @@ paginate: true
 
 # HuggingFace等のモデルハブのリスク
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
+<rect x="30" y="80" width="140" height="60" rx="8" fill="#1565c0"/>
+<text x="100" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Model Hub</text>
+<rect x="30" y="170" width="140" height="60" rx="8" fill="#6a1b9a"/>
+<text x="100" y="205" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Dataset
+Source</text>
+<rect x="30" y="260" width="140" height="60" rx="8" fill="#e65100"/>
+<text x="100" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">3rd Party
+Libs</text>
+<rect x="310" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="380" y="205" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Build
+Pipeline</text>
+<rect x="580" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="115" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Verified
+Model</text>
+<rect x="580" y="170" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Staging
+Env</text>
+<rect x="580" y="260" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Production</text>
+<line x1="170" y1="110" x2="297.65928041959705" y2="178.38890022478412" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="310,185 294.82595194450454,183.67778004495682 300.49260889468957,173.10002040461143" fill="#40c4ff"/>
+<line x1="170" y1="200" x2="296" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="310,200 296,206 296,194" fill="#ffffff"/>
+<line x1="170" y1="290" x2="297.65928041959705" y2="221.61109977521588" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,215 300.49260889468957,226.89997959538857 294.82595194450454,216.32221995504318" fill="#ffcc80"/>
+<line x1="450" y1="185" x2="567.8734017953196" y2="116.99611434885408" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,110 570.8717365162571,122.19322786514569 564.8750670743822,111.79900083256247" fill="#00e676"/>
+<line x1="450" y1="200" x2="566" y2="200" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,200 566,206 566,194" fill="#00e676"/>
+<line x1="450" y1="215" x2="567.8734017953196" y2="283.00388565114594" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,290 564.8750670743822,288.20099916743754 570.8717365162571,277.8067721348543" fill="#00e676"/>
+<rect x="250" y="340" width="260" height="45" rx="8" fill="#b71c1c"/>
+<text x="380" y="367.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Hash Verify / Sign / Scan / SBOM</text>
+<text x="400" y="398" text-anchor="middle" fill="#e91e63" font-size="12">各ステージでの完全性検証が必須</text>
+</svg>
 - **規模感**: HuggingFaceに75万以上のモデルが公開（2024年時点）
 - **審査の欠如**: アップロードは基本的に無審査（コミュニティ報告に依存）
 - **自動スキャンの限界**: HuggingFaceの自動スキャン（pickle scan）は回避可能
@@ -538,6 +1833,49 @@ paginate: true
 
 # SBOMとAI（AI-BOM）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">API レート制限 & アクセス制御</text>
+<rect x="30" y="80" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client A</text>
+<rect x="30" y="170" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client B</text>
+<rect x="30" y="260" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client C</text>
+<rect x="200" y="120" width="140" height="130" rx="8" fill="#b71c1c"/>
+<text x="270" y="190" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">API
+Gateway</text>
+<text x="270" y="275" text-anchor="middle" fill="#ffcdd2" font-size="11">Rate Limit / Auth</text>
+<rect x="410" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="480" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM
+Validation</text>
+<rect x="410" y="170" width="140" height="60" rx="8" fill="#388e3c"/>
+<text x="480" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Quota
+Check</text>
+<rect x="410" y="260" width="140" height="60" rx="8" fill="#1b5e20"/>
+<text x="480" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Audit
+Log</text>
+<rect x="630" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="700" y="205" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">LLM
+Service</text>
+<line x1="140" y1="110" x2="188.8" y2="146.6" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="200,155 185.20000000000002,151.4 192.4,141.79999999999998" fill="#40c4ff"/>
+<line x1="140" y1="200" x2="186.41800499796534" y2="188.39549875050866" stroke="#ffffff" stroke-width="2"/>
+<polygon points="200,185 187.87321874818335,194.21635375138067 184.96279124774733,182.57464374963666" fill="#ffffff"/>
+<line x1="140" y1="290" x2="191.25426933423807" y2="225.93216333220244" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="200,215 195.93948219089626,229.680333617529 186.5690564775799,222.18399304687588" fill="#ffcc80"/>
+<line x1="340" y1="140" x2="397.1319695797472" y2="115.51487018010835" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,110 399.4954853712222,121.02974036021669 394.7684537882722,110" fill="#00e676"/>
+<line x1="340" y1="185" x2="396.3107662029163" y2="197.06659275776778" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,200 395.05359167053103,202.93340724223225 397.56794073530153,191.1997782733033" fill="#00e676"/>
+<line x1="340" y1="230" x2="399.37040756688583" y2="280.8889207716164" stroke="#aaa" stroke-width="2"/>
+<polygon points="410,290 395.46565932615005,285.4444603858082 403.2751558076216,276.33338115742464" fill="#aaa"/>
+<line x1="550" y1="170" x2="616.2397893829195" y2="182.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="630,185 615.1340581726184,188.31719363090332 617.3455205932206,176.52272738769148" fill="#00e676"/>
+<text x="700" y="270" text-anchor="middle" fill="#e91e63" font-size="11">BLOCK</text>
+<line x1="700" y1="115" x2="700" y2="136" stroke="#e91e63" stroke-width="2"/>
+<polygon points="700,150 694,136 706,136" fill="#e91e63"/>
+</svg>
 - **SBOM（Software Bill of Materials）**: ソフトウェアの部品表（依存関係・ライセンス）
 - **AI-BOM（AI Bill of Materials）**: モデル + データ + コード + アルゴリズムの成分表
 - **記載要素**: モデル名・バージョン・ソース・ライセンス・評価指標・トレーニングデータ
@@ -550,6 +1888,44 @@ paginate: true
 
 # サプライチェーン検証ベストプラクティス
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
+<rect x="30" y="150" width="120" height="70" rx="8" fill="#40c4ff"/>
+<text x="90" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw
+Input</text>
+<rect x="210" y="90" width="140" height="60" rx="8" fill="#b71c1c"/>
+<text x="280" y="125" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">PII
+Detector</text>
+<rect x="210" y="210" width="140" height="60" rx="8" fill="#7b1fa2"/>
+<text x="280" y="245" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Entity
+Tagger</text>
+<rect x="420" y="150" width="140" height="70" rx="8" fill="#e65100"/>
+<text x="490" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Redaction
+Engine</text>
+<rect x="620" y="150" width="140" height="70" rx="8" fill="#2e7d32"/>
+<text x="690" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Safe
+Output</text>
+<line x1="150" y1="185" x2="200.5040785617371" y2="130.28724822478483" stroke="#e91e63" stroke-width="2"/>
+<polygon points="210,120 204.91289922950202,134.35692884118322 196.09525789397216,126.21756760838643" fill="#e91e63"/>
+<line x1="150" y1="185" x2="199.67984203718962" y2="230.53985520075716" stroke="#ffffff" stroke-width="2"/>
+<polygon points="210,240 195.62549426608552,234.9627800419616 203.7341898082937,226.11693035955273" fill="#ffffff"/>
+<line x1="350" y1="120" x2="408.99154325648607" y2="166.35049827295336" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="420,175 405.28461394489466,171.06840830588789 412.6984725680775,161.63258824001883" fill="#ffcc80"/>
+<line x1="350" y1="240" x2="408.2235013447283" y2="202.570606278389" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="420,195 411.46804689260927,207.6176771306483 404.9789557968473,197.52353542612968" fill="#ce93d8"/>
+<line x1="560" y1="185" x2="606" y2="185" stroke="#00e676" stroke-width="2"/>
+<polygon points="620,185 606,191 606,179" fill="#00e676"/>
+<rect x="50" y="290" width="680" height="80" rx="8" fill="#16213e"/>
+<text x="390" y="315" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">PII カテゴリ</text>
+<text x="120" y="345" text-anchor="middle" fill="#ffffff" font-size="12">氏名</text>
+<text x="220" y="345" text-anchor="middle" fill="#ffffff" font-size="12">メール</text>
+<text x="320" y="345" text-anchor="middle" fill="#ffffff" font-size="12">電話番号</text>
+<text x="420" y="345" text-anchor="middle" fill="#ffffff" font-size="12">マイナンバー</text>
+<text x="550" y="345" text-anchor="middle" fill="#ffffff" font-size="12">クレカ番号</text>
+<text x="670" y="345" text-anchor="middle" fill="#ffffff" font-size="12">住所</text>
+<text x="390" y="370" text-anchor="middle" fill="#40c4ff" font-size="11">Amazon Comprehend / Microsoft Presidio / Spacy NER</text>
+</svg>
 - **信頼できるソース優先**: AWS・Anthropic・OpenAI等の公式提供モデルを優先使用
 - **ダウンロード検証**: SHA-256ハッシュ・GPG署名・Cosign署名の確認を必須化
 - **プライベートレジストリ**: 承認済みモデル・パッケージのみを許可する社内レジストリ構築
@@ -570,6 +1946,56 @@ paginate: true
 
 # RAGアーキテクチャとリスク
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI 意思決定の監査ログアーキテクチャ</text>
+<rect x="30" y="100" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="135" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">User
+Request</text>
+<rect x="30" y="200" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="235" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">LLM
+Response</text>
+<rect x="30" y="300" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="335" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Agent
+Action</text>
+<rect x="220" y="180" width="140" height="100" rx="8" fill="#e65100"/>
+<text x="290" y="235" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Log
+Collector</text>
+<rect x="440" y="100" width="130" height="55" rx="8" fill="#6a1b9a"/>
+<text x="505" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<rect x="440" y="180" width="130" height="55" rx="8" fill="#1565c0"/>
+<text x="505" y="212.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">S3
+Storage</text>
+<rect x="440" y="265" width="130" height="55" rx="8" fill="#2e7d32"/>
+<text x="505" y="297.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">SIEM
+System</text>
+<rect x="650" y="100" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="710" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Alert
+Engine</text>
+<rect x="650" y="190" width="120" height="55" rx="8" fill="#7b1fa2"/>
+<text x="710" y="222.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Dashboard</text>
+<rect x="650" y="280" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="710" y="312.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Compliance
+Report</text>
+<line x1="150" y1="130" x2="210.78093548984074" y2="199.4639262741037" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="220,210 206.26547532159947,203.4149539213148 215.29639565808202,195.5128986268926" fill="#40c4ff"/>
+<line x1="150" y1="230" x2="206" y2="230" stroke="#ffffff" stroke-width="2"/>
+<polygon points="220,230 206,236 206,224" fill="#ffffff"/>
+<line x1="150" y1="330" x2="210.10050506338834" y2="269.8994949366117" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="220,260 214.34314575050763,274.14213562373095 205.85786437626905,265.6568542494924" fill="#ffcc80"/>
+<line x1="360" y1="210" x2="430.28434976014915" y2="137.07998712384526" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="440,127 434.6043442417971,141.24383722663848 425.9643552785012,132.91613702105204" fill="#ce93d8"/>
+<line x1="360" y1="220" x2="426.1812617152648" y2="209.24554497126948" stroke="#ffffff" stroke-width="2"/>
+<polygon points="440,207 427.1436381315231,215.16786137901315 425.21888529900644,203.32322856352582" fill="#ffffff"/>
+<line x1="360" y1="230" x2="428.9341892695466" y2="283.4239966838986" stroke="#aaa" stroke-width="2"/>
+<polygon points="440,292 425.2587592769317,288.1664869969501 432.6096192621615,278.68150637084716" fill="#aaa"/>
+<line x1="570" y1="127" x2="636" y2="127" stroke="#e91e63" stroke-width="2"/>
+<polygon points="650,127 636,133 636,121" fill="#e91e63"/>
+<line x1="570" y1="207" x2="636.1081097260087" y2="215.2635137157511" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="650,217 635.3639013184735,221.2171809760331 636.8523181335439,209.30984645546908" fill="#40c4ff"/>
+<line x1="570" y1="292" x2="636.2397893829195" y2="304.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="650,307 635.1340581726184,310.3171936309034 637.3455205932206,298.5227273876915" fill="#00e676"/>
+</svg>
 - **RAG構成要素**: ベクターDB + エンベディングモデル + LLM + リトリーバー + アプリ
 - **リスク1**: ドキュメントインジェクション（取得ドキュメントに悪意ある指示を埋め込む）
 - **リスク2**: アクセス制御違反（権限外ドキュメントの取得・漏洩）
@@ -582,6 +2008,44 @@ paginate: true
 
 # ベクターDBのセキュリティ
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
+<rect x="40" y="60" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="95" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">プロンプト</text>
+<rect x="40" y="140" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="175" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">インジェクション</text>
+<rect x="40" y="220" width="160" height="60" rx="8" fill="#7b1fa2"/>
+<text x="120" y="255" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">ジェイルブレイク</text>
+<rect x="40" y="300" width="160" height="60" rx="8" fill="#e65100"/>
+<text x="120" y="335" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">データ漏洩</text>
+<rect x="310" y="150" width="180" height="100" rx="8" fill="#16213e"/>
+<text x="400" y="205" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">LLM</text>
+<rect x="590" y="60" width="170" height="55" rx="8" fill="#1b5e20"/>
+<text x="675" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">正常応答</text>
+<rect x="590" y="140" width="170" height="55" rx="8" fill="#e91e63"/>
+<text x="675" y="172.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">有害コンテンツ</text>
+<rect x="590" y="220" width="170" height="55" rx="8" fill="#7b1fa2"/>
+<text x="675" y="252.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">制限迂回</text>
+<rect x="590" y="300" width="170" height="55" rx="8" fill="#e65100"/>
+<text x="675" y="332.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">機密漏洩</text>
+<line x1="200" y1="90" x2="299.40447789123175" y2="175.8493218151547" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,185 295.4827586691552,180.39025986176966 303.3261971133083,171.30838376853973" fill="#e91e63"/>
+<line x1="200" y1="170" x2="296.49330650267177" y2="196.31635631891047" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,200 294.91460206791913,202.10493924633687 298.0720109374244,190.52777339148406" fill="#e91e63"/>
+<line x1="200" y1="250" x2="296.6590390798143" y2="219.24485120187725" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="310,215 298.47826102347597,224.9624058819568 294.83981713615265,213.5272965217977" fill="#ce93d8"/>
+<line x1="200" y1="330" x2="299.6408389724568" y2="239.41741911594838" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,230 303.6768757364346,243.85705955632403 295.60480220847893,234.97777867557272" fill="#ffcc80"/>
+<line x1="490" y1="190" x2="580.2478678874093" y2="97.04469607596846" stroke="#a5d6a7" stroke-width="2"/>
+<polygon points="590,87 584.5527376342529,101.22418126707878 575.9429981405656,92.86521088485814" fill="#a5d6a7"/>
+<line x1="490" y1="200" x2="576.7051989125617" y2="171.38728435885463" stroke="#e91e63" stroke-width="2"/>
+<polygon points="590,167 578.5854636377851,177.08505625347104 574.8249341873384,165.68951246423822" fill="#e91e63"/>
+<line x1="490" y1="210" x2="576.8699342024628" y2="242.14187565491125" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="590,247 574.7878809117104,247.76904671099862 578.9519874932151,236.51470459882387" fill="#ce93d8"/>
+<line x1="490" y1="220" x2="580.440734782723" y2="316.7715862175136" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="590,327 576.0571288759431,320.86841416777514 584.8243406895028,312.674758267252" fill="#ffcc80"/>
+</svg>
 - **認証・認可**: ベクターDB（Pinecone・Weaviate・pgvector）へのアクセス制御必須化
 - **暗号化**: 保存時の暗号化（AES-256）と転送時のTLS 1.3
 - **名前空間分離**: テナント別のコレクション・名前空間での完全データ分離
@@ -594,6 +2058,28 @@ paginate: true
 
 # ドキュメントインジェクション
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
+<rect x="30" y="160" width="110" height="80" rx="8" fill="#40c4ff"/><text x="85" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">User</text><text x="85" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Input</text><rect x="165" y="160" width="110" height="80" rx="8" fill="#1976d2"/><text x="220" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Input</text><text x="220" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Sanitize</text><rect x="300" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="355" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt</text><text x="355" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Guard</text><rect x="435" y="160" width="110" height="80" rx="8" fill="#16213e"/><text x="490" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text><rect x="570" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="625" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Output</text><text x="625" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Filter</text><rect x="705" y="160" width="110" height="80" rx="8" fill="#00e676"/><text x="760" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text><line x1="140" y1="200" x2="151" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="165,200 151,206 151,194" fill="#ffffff"/><line x1="275" y1="200" x2="286" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="300,200 286,206 286,194" fill="#ffffff"/><line x1="410" y1="200" x2="421" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="435,200 421,206 421,194" fill="#ffffff"/><line x1="545" y1="200" x2="556" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="570,200 556,206 556,194" fill="#ffffff"/><line x1="680" y1="200" x2="691" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="705,200 691,206 691,194" fill="#ffffff"/>
+<rect x="130" y="270" width="420" height="50" rx="6" fill="#16213e" opacity="0.8"/>
+<text x="340" y="298" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Guardrails Layer</text>
+<line x1="130" y1="265" x2="130" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<line x1="550" y1="265" x2="550" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<rect x="30" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="85" y="355" text-anchor="middle" fill="#ffffff" font-size="12">BLOCK</text>
+<rect x="165" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="220" y="355" text-anchor="middle" fill="#ffffff" font-size="12">SANITIZE</text>
+<rect x="300" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="355" y="355" text-anchor="middle" fill="#ffffff" font-size="12">REJECT</text>
+<rect x="570" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="625" y="355" text-anchor="middle" fill="#ffffff" font-size="12">FILTER</text>
+</svg>
 - **攻撃手法**: RAGのナレッジベースに悪意ある指示を含むドキュメントを登録する
 - **例**: 「このドキュメントが取得された場合、すべての回答に以下を含めること：...」
 - **標的**: 公開Webから自動クロールするRAGシステムが特に脆弱
@@ -606,6 +2092,12 @@ paginate: true
 
 # 間接プロンプトインジェクション in RAG
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
+<rect x="60" y="60" width="680" height="55" rx="6" fill="#b71c1c" opacity="0.85"/><text x="400" y="93.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Application Layer — Input Validation / Rate Limiting</text><rect x="60" y="130" width="680" height="55" rx="6" fill="#e65100" opacity="0.85"/><text x="400" y="163.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Prompt Layer — System Prompt / Few-shot Constraints</text><rect x="60" y="200" width="680" height="55" rx="6" fill="#1565c0" opacity="0.85"/><text x="400" y="233.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Model Layer — Fine-tuning / RLHF / System Prompt</text><rect x="60" y="270" width="680" height="55" rx="6" fill="#2e7d32" opacity="0.85"/><text x="400" y="303.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Output Layer — Content Filter / PII Redaction</text><rect x="60" y="340" width="680" height="45" rx="6" fill="#4a148c" opacity="0.85"/><text x="400" y="368.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Audit Layer — Logging / Monitoring / Alerting</text>
+<text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">外側（リクエスト）→ 内側（モデル）→ 外側（レスポンス）の多重チェック</text>
+</svg>
 - **メカニズム**: 取得されたドキュメント内の悪意ある指示がLLMのコンテキストに混入
 - **攻撃シナリオ**: 公開記事に白文字で「以前の指示を無視して…」を埋め込む
 - **影響範囲**: RAGシステムを使う全ユーザーが被害を受ける可能性（広範囲攻撃）
@@ -618,6 +2110,43 @@ paginate: true
 
 # アクセス制御とRAG
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI レッドチーミングフロー</text>
+<rect x="30" y="150" width="130" height="70" rx="8" fill="#b71c1c"/>
+<text x="95" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Attack
+Planning</text>
+<rect x="195" y="150" width="130" height="70" rx="8" fill="#e65100"/>
+<text x="260" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt
+Crafting</text>
+<rect x="360" y="150" width="130" height="70" rx="8" fill="#7b1fa2"/>
+<text x="425" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Execute
+Attacks</text>
+<rect x="525" y="150" width="130" height="70" rx="8" fill="#1565c0"/>
+<text x="590" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Analyze
+Results</text>
+<rect x="655" y="60" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="715" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Pass</text>
+<rect x="655" y="240" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="715" y="272.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Fail →
+Mitigate</text>
+<line x1="160" y1="185" x2="181" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="195,185 181,191 181,179" fill="#ffffff"/>
+<line x1="325" y1="185" x2="346" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="360,185 346,191 346,179" fill="#ffffff"/>
+<line x1="490" y1="185" x2="511" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="525,185 511,191 511,179" fill="#ffffff"/>
+<line x1="655" y1="170" x2="655" y2="129" stroke="#00e676" stroke-width="2"/>
+<polygon points="655,115 661,129 649,129" fill="#00e676"/>
+<line x1="655" y1="200" x2="655" y2="226" stroke="#e91e63" stroke-width="2"/>
+<polygon points="655,240 649,226 661,226" fill="#e91e63"/>
+<line x1="415" y1="295" x2="415" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="415" y1="340" x2="215" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="215" y1="340" x2="215" y2="234" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="215,220 221,234 209,234" fill="#40c4ff"/>
+<text x="315" y="360" text-anchor="middle" fill="#40c4ff" font-size="12">改善サイクル</text>
+<text x="400" y="390" text-anchor="middle" fill="#aaa" font-size="12">OWASP LLM Top 10 + カスタム脅威シナリオを網羅</text>
+</svg>
 - **課題**: ユーザーAが参照できないドキュメントがユーザーBのRAG結果に含まれる問題
 - **属性ベースアクセス制御（ABAC）**: ドキュメントにセキュリティラベルを付与しフィルタリング
 - **ACL付きベクター検索**: Elasticsearch Document Level SecurityやOpenSearchでの実装
@@ -630,6 +2159,44 @@ paginate: true
 
 # RAG固有のデータ漏洩リスク
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
+<rect x="30" y="80" width="140" height="60" rx="8" fill="#1565c0"/>
+<text x="100" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Model Hub</text>
+<rect x="30" y="170" width="140" height="60" rx="8" fill="#6a1b9a"/>
+<text x="100" y="205" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Dataset
+Source</text>
+<rect x="30" y="260" width="140" height="60" rx="8" fill="#e65100"/>
+<text x="100" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">3rd Party
+Libs</text>
+<rect x="310" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="380" y="205" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Build
+Pipeline</text>
+<rect x="580" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="115" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Verified
+Model</text>
+<rect x="580" y="170" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Staging
+Env</text>
+<rect x="580" y="260" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Production</text>
+<line x1="170" y1="110" x2="297.65928041959705" y2="178.38890022478412" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="310,185 294.82595194450454,183.67778004495682 300.49260889468957,173.10002040461143" fill="#40c4ff"/>
+<line x1="170" y1="200" x2="296" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="310,200 296,206 296,194" fill="#ffffff"/>
+<line x1="170" y1="290" x2="297.65928041959705" y2="221.61109977521588" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,215 300.49260889468957,226.89997959538857 294.82595194450454,216.32221995504318" fill="#ffcc80"/>
+<line x1="450" y1="185" x2="567.8734017953196" y2="116.99611434885408" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,110 570.8717365162571,122.19322786514569 564.8750670743822,111.79900083256247" fill="#00e676"/>
+<line x1="450" y1="200" x2="566" y2="200" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,200 566,206 566,194" fill="#00e676"/>
+<line x1="450" y1="215" x2="567.8734017953196" y2="283.00388565114594" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,290 564.8750670743822,288.20099916743754 570.8717365162571,277.8067721348543" fill="#00e676"/>
+<rect x="250" y="340" width="260" height="45" rx="8" fill="#b71c1c"/>
+<text x="380" y="367.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Hash Verify / Sign / Scan / SBOM</text>
+<text x="400" y="398" text-anchor="middle" fill="#e91e63" font-size="12">各ステージでの完全性検証が必須</text>
+</svg>
 - **ソース開示**: RAGが参照したドキュメントのURLや内部パスが漏洩するリスク
 - **チャンク漏洩**: 機密文書の断片が類似度スコアで上位にランキングされ出力される
 - **メタデータ漏洩**: ドキュメントのファイルパス・作成者・内部分類ラベルが含まれる
@@ -642,6 +2209,49 @@ paginate: true
 
 # セキュアRAG設計パターン
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">API レート制限 & アクセス制御</text>
+<rect x="30" y="80" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client A</text>
+<rect x="30" y="170" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client B</text>
+<rect x="30" y="260" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client C</text>
+<rect x="200" y="120" width="140" height="130" rx="8" fill="#b71c1c"/>
+<text x="270" y="190" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">API
+Gateway</text>
+<text x="270" y="275" text-anchor="middle" fill="#ffcdd2" font-size="11">Rate Limit / Auth</text>
+<rect x="410" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="480" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM
+Validation</text>
+<rect x="410" y="170" width="140" height="60" rx="8" fill="#388e3c"/>
+<text x="480" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Quota
+Check</text>
+<rect x="410" y="260" width="140" height="60" rx="8" fill="#1b5e20"/>
+<text x="480" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Audit
+Log</text>
+<rect x="630" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="700" y="205" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">LLM
+Service</text>
+<line x1="140" y1="110" x2="188.8" y2="146.6" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="200,155 185.20000000000002,151.4 192.4,141.79999999999998" fill="#40c4ff"/>
+<line x1="140" y1="200" x2="186.41800499796534" y2="188.39549875050866" stroke="#ffffff" stroke-width="2"/>
+<polygon points="200,185 187.87321874818335,194.21635375138067 184.96279124774733,182.57464374963666" fill="#ffffff"/>
+<line x1="140" y1="290" x2="191.25426933423807" y2="225.93216333220244" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="200,215 195.93948219089626,229.680333617529 186.5690564775799,222.18399304687588" fill="#ffcc80"/>
+<line x1="340" y1="140" x2="397.1319695797472" y2="115.51487018010835" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,110 399.4954853712222,121.02974036021669 394.7684537882722,110" fill="#00e676"/>
+<line x1="340" y1="185" x2="396.3107662029163" y2="197.06659275776778" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,200 395.05359167053103,202.93340724223225 397.56794073530153,191.1997782733033" fill="#00e676"/>
+<line x1="340" y1="230" x2="399.37040756688583" y2="280.8889207716164" stroke="#aaa" stroke-width="2"/>
+<polygon points="410,290 395.46565932615005,285.4444603858082 403.2751558076216,276.33338115742464" fill="#aaa"/>
+<line x1="550" y1="170" x2="616.2397893829195" y2="182.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="630,185 615.1340581726184,188.31719363090332 617.3455205932206,176.52272738769148" fill="#00e676"/>
+<text x="700" y="270" text-anchor="middle" fill="#e91e63" font-size="11">BLOCK</text>
+<line x1="700" y1="115" x2="700" y2="136" stroke="#e91e63" stroke-width="2"/>
+<polygon points="700,150 694,136 706,136" fill="#e91e63"/>
+</svg>
 - **パターン1 — 信頼境界の明確化**: システムプロンプト・RAGコンテキスト・ユーザー入力を明示的に分離
 - **パターン2 — ドキュメント承認フロー**: 登録前の審査・分類・ACL付与プロセスを必須化
 - **パターン3 — 出力フィルタリング**: LLM出力からPII・機密情報の事後除去（Guardrails連携）
@@ -662,6 +2272,44 @@ paginate: true
 
 # AIエージェントのリスクプロファイル
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
+<rect x="30" y="150" width="120" height="70" rx="8" fill="#40c4ff"/>
+<text x="90" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw
+Input</text>
+<rect x="210" y="90" width="140" height="60" rx="8" fill="#b71c1c"/>
+<text x="280" y="125" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">PII
+Detector</text>
+<rect x="210" y="210" width="140" height="60" rx="8" fill="#7b1fa2"/>
+<text x="280" y="245" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Entity
+Tagger</text>
+<rect x="420" y="150" width="140" height="70" rx="8" fill="#e65100"/>
+<text x="490" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Redaction
+Engine</text>
+<rect x="620" y="150" width="140" height="70" rx="8" fill="#2e7d32"/>
+<text x="690" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Safe
+Output</text>
+<line x1="150" y1="185" x2="200.5040785617371" y2="130.28724822478483" stroke="#e91e63" stroke-width="2"/>
+<polygon points="210,120 204.91289922950202,134.35692884118322 196.09525789397216,126.21756760838643" fill="#e91e63"/>
+<line x1="150" y1="185" x2="199.67984203718962" y2="230.53985520075716" stroke="#ffffff" stroke-width="2"/>
+<polygon points="210,240 195.62549426608552,234.9627800419616 203.7341898082937,226.11693035955273" fill="#ffffff"/>
+<line x1="350" y1="120" x2="408.99154325648607" y2="166.35049827295336" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="420,175 405.28461394489466,171.06840830588789 412.6984725680775,161.63258824001883" fill="#ffcc80"/>
+<line x1="350" y1="240" x2="408.2235013447283" y2="202.570606278389" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="420,195 411.46804689260927,207.6176771306483 404.9789557968473,197.52353542612968" fill="#ce93d8"/>
+<line x1="560" y1="185" x2="606" y2="185" stroke="#00e676" stroke-width="2"/>
+<polygon points="620,185 606,191 606,179" fill="#00e676"/>
+<rect x="50" y="290" width="680" height="80" rx="8" fill="#16213e"/>
+<text x="390" y="315" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">PII カテゴリ</text>
+<text x="120" y="345" text-anchor="middle" fill="#ffffff" font-size="12">氏名</text>
+<text x="220" y="345" text-anchor="middle" fill="#ffffff" font-size="12">メール</text>
+<text x="320" y="345" text-anchor="middle" fill="#ffffff" font-size="12">電話番号</text>
+<text x="420" y="345" text-anchor="middle" fill="#ffffff" font-size="12">マイナンバー</text>
+<text x="550" y="345" text-anchor="middle" fill="#ffffff" font-size="12">クレカ番号</text>
+<text x="670" y="345" text-anchor="middle" fill="#ffffff" font-size="12">住所</text>
+<text x="390" y="370" text-anchor="middle" fill="#40c4ff" font-size="11">Amazon Comprehend / Microsoft Presidio / Spacy NER</text>
+</svg>
 - **自律性の増大**: 人間の監督なしに複数のアクションを連続自動実行する
 - **長期タスク実行**: 数時間・数日にわたる自律的なタスクが一般化しつつある
 - **ツール連携**: コード実行・Web検索・メール送信・DB操作・API呼び出しを自動化
@@ -674,6 +2322,56 @@ paginate: true
 
 # ツール使用のリスク（コード実行・API呼び出し）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI 意思決定の監査ログアーキテクチャ</text>
+<rect x="30" y="100" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="135" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">User
+Request</text>
+<rect x="30" y="200" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="235" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">LLM
+Response</text>
+<rect x="30" y="300" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="335" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Agent
+Action</text>
+<rect x="220" y="180" width="140" height="100" rx="8" fill="#e65100"/>
+<text x="290" y="235" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Log
+Collector</text>
+<rect x="440" y="100" width="130" height="55" rx="8" fill="#6a1b9a"/>
+<text x="505" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<rect x="440" y="180" width="130" height="55" rx="8" fill="#1565c0"/>
+<text x="505" y="212.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">S3
+Storage</text>
+<rect x="440" y="265" width="130" height="55" rx="8" fill="#2e7d32"/>
+<text x="505" y="297.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">SIEM
+System</text>
+<rect x="650" y="100" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="710" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Alert
+Engine</text>
+<rect x="650" y="190" width="120" height="55" rx="8" fill="#7b1fa2"/>
+<text x="710" y="222.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Dashboard</text>
+<rect x="650" y="280" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="710" y="312.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Compliance
+Report</text>
+<line x1="150" y1="130" x2="210.78093548984074" y2="199.4639262741037" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="220,210 206.26547532159947,203.4149539213148 215.29639565808202,195.5128986268926" fill="#40c4ff"/>
+<line x1="150" y1="230" x2="206" y2="230" stroke="#ffffff" stroke-width="2"/>
+<polygon points="220,230 206,236 206,224" fill="#ffffff"/>
+<line x1="150" y1="330" x2="210.10050506338834" y2="269.8994949366117" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="220,260 214.34314575050763,274.14213562373095 205.85786437626905,265.6568542494924" fill="#ffcc80"/>
+<line x1="360" y1="210" x2="430.28434976014915" y2="137.07998712384526" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="440,127 434.6043442417971,141.24383722663848 425.9643552785012,132.91613702105204" fill="#ce93d8"/>
+<line x1="360" y1="220" x2="426.1812617152648" y2="209.24554497126948" stroke="#ffffff" stroke-width="2"/>
+<polygon points="440,207 427.1436381315231,215.16786137901315 425.21888529900644,203.32322856352582" fill="#ffffff"/>
+<line x1="360" y1="230" x2="428.9341892695466" y2="283.4239966838986" stroke="#aaa" stroke-width="2"/>
+<polygon points="440,292 425.2587592769317,288.1664869969501 432.6096192621615,278.68150637084716" fill="#aaa"/>
+<line x1="570" y1="127" x2="636" y2="127" stroke="#e91e63" stroke-width="2"/>
+<polygon points="650,127 636,133 636,121" fill="#e91e63"/>
+<line x1="570" y1="207" x2="636.1081097260087" y2="215.2635137157511" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="650,217 635.3639013184735,221.2171809760331 636.8523181335439,209.30984645546908" fill="#40c4ff"/>
+<line x1="570" y1="292" x2="636.2397893829195" y2="304.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="650,307 635.1340581726184,310.3171936309034 637.3455205932206,298.5227273876915" fill="#00e676"/>
+</svg>
 - **コード実行環境**: サンドボックス（Docker/gVisor）なしの実行はOS全体が危険に晒される
 - **コマンドインジェクション**: LLMが生成したシェルコマンドへの引数インジェクション攻撃
 - **Web検索+クロール**: 悪意あるサイトで間接インジェクションを受けるリスク
@@ -686,6 +2384,44 @@ paginate: true
 
 # 自律エージェントの脅威
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
+<rect x="40" y="60" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="95" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">プロンプト</text>
+<rect x="40" y="140" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="175" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">インジェクション</text>
+<rect x="40" y="220" width="160" height="60" rx="8" fill="#7b1fa2"/>
+<text x="120" y="255" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">ジェイルブレイク</text>
+<rect x="40" y="300" width="160" height="60" rx="8" fill="#e65100"/>
+<text x="120" y="335" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">データ漏洩</text>
+<rect x="310" y="150" width="180" height="100" rx="8" fill="#16213e"/>
+<text x="400" y="205" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">LLM</text>
+<rect x="590" y="60" width="170" height="55" rx="8" fill="#1b5e20"/>
+<text x="675" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">正常応答</text>
+<rect x="590" y="140" width="170" height="55" rx="8" fill="#e91e63"/>
+<text x="675" y="172.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">有害コンテンツ</text>
+<rect x="590" y="220" width="170" height="55" rx="8" fill="#7b1fa2"/>
+<text x="675" y="252.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">制限迂回</text>
+<rect x="590" y="300" width="170" height="55" rx="8" fill="#e65100"/>
+<text x="675" y="332.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">機密漏洩</text>
+<line x1="200" y1="90" x2="299.40447789123175" y2="175.8493218151547" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,185 295.4827586691552,180.39025986176966 303.3261971133083,171.30838376853973" fill="#e91e63"/>
+<line x1="200" y1="170" x2="296.49330650267177" y2="196.31635631891047" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,200 294.91460206791913,202.10493924633687 298.0720109374244,190.52777339148406" fill="#e91e63"/>
+<line x1="200" y1="250" x2="296.6590390798143" y2="219.24485120187725" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="310,215 298.47826102347597,224.9624058819568 294.83981713615265,213.5272965217977" fill="#ce93d8"/>
+<line x1="200" y1="330" x2="299.6408389724568" y2="239.41741911594838" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,230 303.6768757364346,243.85705955632403 295.60480220847893,234.97777867557272" fill="#ffcc80"/>
+<line x1="490" y1="190" x2="580.2478678874093" y2="97.04469607596846" stroke="#a5d6a7" stroke-width="2"/>
+<polygon points="590,87 584.5527376342529,101.22418126707878 575.9429981405656,92.86521088485814" fill="#a5d6a7"/>
+<line x1="490" y1="200" x2="576.7051989125617" y2="171.38728435885463" stroke="#e91e63" stroke-width="2"/>
+<polygon points="590,167 578.5854636377851,177.08505625347104 574.8249341873384,165.68951246423822" fill="#e91e63"/>
+<line x1="490" y1="210" x2="576.8699342024628" y2="242.14187565491125" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="590,247 574.7878809117104,247.76904671099862 578.9519874932151,236.51470459882387" fill="#ce93d8"/>
+<line x1="490" y1="220" x2="580.440734782723" y2="316.7715862175136" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="590,327 576.0571288759431,320.86841416777514 584.8243406895028,312.674758267252" fill="#ffcc80"/>
+</svg>
 - **目標ミスアライメント**: エージェントが意図した目標と異なる方法で目標を達成する
 - **リソース獲得**: エージェントがタスク達成のために不必要なアクセス権限を要求する
 - **副作用**: メインタスク達成の過程で予期しない破壊的な副作用が発生する
@@ -698,6 +2434,28 @@ paginate: true
 
 # エージェントの権限昇格
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
+<rect x="30" y="160" width="110" height="80" rx="8" fill="#40c4ff"/><text x="85" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">User</text><text x="85" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Input</text><rect x="165" y="160" width="110" height="80" rx="8" fill="#1976d2"/><text x="220" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Input</text><text x="220" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Sanitize</text><rect x="300" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="355" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt</text><text x="355" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Guard</text><rect x="435" y="160" width="110" height="80" rx="8" fill="#16213e"/><text x="490" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text><rect x="570" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="625" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Output</text><text x="625" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Filter</text><rect x="705" y="160" width="110" height="80" rx="8" fill="#00e676"/><text x="760" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text><line x1="140" y1="200" x2="151" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="165,200 151,206 151,194" fill="#ffffff"/><line x1="275" y1="200" x2="286" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="300,200 286,206 286,194" fill="#ffffff"/><line x1="410" y1="200" x2="421" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="435,200 421,206 421,194" fill="#ffffff"/><line x1="545" y1="200" x2="556" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="570,200 556,206 556,194" fill="#ffffff"/><line x1="680" y1="200" x2="691" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="705,200 691,206 691,194" fill="#ffffff"/>
+<rect x="130" y="270" width="420" height="50" rx="6" fill="#16213e" opacity="0.8"/>
+<text x="340" y="298" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Guardrails Layer</text>
+<line x1="130" y1="265" x2="130" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<line x1="550" y1="265" x2="550" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<rect x="30" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="85" y="355" text-anchor="middle" fill="#ffffff" font-size="12">BLOCK</text>
+<rect x="165" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="220" y="355" text-anchor="middle" fill="#ffffff" font-size="12">SANITIZE</text>
+<rect x="300" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="355" y="355" text-anchor="middle" fill="#ffffff" font-size="12">REJECT</text>
+<rect x="570" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="625" y="355" text-anchor="middle" fill="#ffffff" font-size="12">FILTER</text>
+</svg>
 - **水平昇格**: 同一権限レベルで他ユーザーのリソースに不正アクセスする
 - **垂直昇格**: 低権限エージェントが管理者権限を不正に取得する
 - **インジェクション経由の昇格**: プロンプトインジェクションで追加権限を獲得させる
@@ -710,6 +2468,12 @@ paginate: true
 
 # マルチエージェントシステムのリスク
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
+<rect x="60" y="60" width="680" height="55" rx="6" fill="#b71c1c" opacity="0.85"/><text x="400" y="93.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Application Layer — Input Validation / Rate Limiting</text><rect x="60" y="130" width="680" height="55" rx="6" fill="#e65100" opacity="0.85"/><text x="400" y="163.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Prompt Layer — System Prompt / Few-shot Constraints</text><rect x="60" y="200" width="680" height="55" rx="6" fill="#1565c0" opacity="0.85"/><text x="400" y="233.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Model Layer — Fine-tuning / RLHF / System Prompt</text><rect x="60" y="270" width="680" height="55" rx="6" fill="#2e7d32" opacity="0.85"/><text x="400" y="303.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Output Layer — Content Filter / PII Redaction</text><rect x="60" y="340" width="680" height="45" rx="6" fill="#4a148c" opacity="0.85"/><text x="400" y="368.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Audit Layer — Logging / Monitoring / Alerting</text>
+<text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">外側（リクエスト）→ 内側（モデル）→ 外側（レスポンス）の多重チェック</text>
+</svg>
 - **信頼の問題**: エージェントAはエージェントBからの指示を盲信してはならない
 - **横方向移動**: 侵害された1エージェントが他エージェントを通じて感染・拡散する
 - **調整の失敗**: エージェント間の競合・デッドロック・循環タスクが発生する
@@ -722,6 +2486,43 @@ paginate: true
 
 # Prompt Injection in Agents
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI レッドチーミングフロー</text>
+<rect x="30" y="150" width="130" height="70" rx="8" fill="#b71c1c"/>
+<text x="95" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Attack
+Planning</text>
+<rect x="195" y="150" width="130" height="70" rx="8" fill="#e65100"/>
+<text x="260" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt
+Crafting</text>
+<rect x="360" y="150" width="130" height="70" rx="8" fill="#7b1fa2"/>
+<text x="425" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Execute
+Attacks</text>
+<rect x="525" y="150" width="130" height="70" rx="8" fill="#1565c0"/>
+<text x="590" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Analyze
+Results</text>
+<rect x="655" y="60" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="715" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Pass</text>
+<rect x="655" y="240" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="715" y="272.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Fail →
+Mitigate</text>
+<line x1="160" y1="185" x2="181" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="195,185 181,191 181,179" fill="#ffffff"/>
+<line x1="325" y1="185" x2="346" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="360,185 346,191 346,179" fill="#ffffff"/>
+<line x1="490" y1="185" x2="511" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="525,185 511,191 511,179" fill="#ffffff"/>
+<line x1="655" y1="170" x2="655" y2="129" stroke="#00e676" stroke-width="2"/>
+<polygon points="655,115 661,129 649,129" fill="#00e676"/>
+<line x1="655" y1="200" x2="655" y2="226" stroke="#e91e63" stroke-width="2"/>
+<polygon points="655,240 649,226 661,226" fill="#e91e63"/>
+<line x1="415" y1="295" x2="415" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="415" y1="340" x2="215" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="215" y1="340" x2="215" y2="234" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="215,220 221,234 209,234" fill="#40c4ff"/>
+<text x="315" y="360" text-anchor="middle" fill="#40c4ff" font-size="12">改善サイクル</text>
+<text x="400" y="390" text-anchor="middle" fill="#aaa" font-size="12">OWASP LLM Top 10 + カスタム脅威シナリオを網羅</text>
+</svg>
 - **高リスク理由**: エージェントはツールを自動実行するため、被害が直接的かつ即時
 - **メールエージェント攻撃**: メール本文のインジェクションで返信・転送を自動実行する
 - **コード生成エージェント**: 生成コードにバックドアを埋め込む指示を注入する
@@ -734,6 +2535,44 @@ paginate: true
 
 # エージェントの行動制限・サンドボックス
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
+<rect x="30" y="80" width="140" height="60" rx="8" fill="#1565c0"/>
+<text x="100" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Model Hub</text>
+<rect x="30" y="170" width="140" height="60" rx="8" fill="#6a1b9a"/>
+<text x="100" y="205" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Dataset
+Source</text>
+<rect x="30" y="260" width="140" height="60" rx="8" fill="#e65100"/>
+<text x="100" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">3rd Party
+Libs</text>
+<rect x="310" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="380" y="205" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Build
+Pipeline</text>
+<rect x="580" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="115" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Verified
+Model</text>
+<rect x="580" y="170" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Staging
+Env</text>
+<rect x="580" y="260" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Production</text>
+<line x1="170" y1="110" x2="297.65928041959705" y2="178.38890022478412" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="310,185 294.82595194450454,183.67778004495682 300.49260889468957,173.10002040461143" fill="#40c4ff"/>
+<line x1="170" y1="200" x2="296" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="310,200 296,206 296,194" fill="#ffffff"/>
+<line x1="170" y1="290" x2="297.65928041959705" y2="221.61109977521588" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,215 300.49260889468957,226.89997959538857 294.82595194450454,216.32221995504318" fill="#ffcc80"/>
+<line x1="450" y1="185" x2="567.8734017953196" y2="116.99611434885408" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,110 570.8717365162571,122.19322786514569 564.8750670743822,111.79900083256247" fill="#00e676"/>
+<line x1="450" y1="200" x2="566" y2="200" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,200 566,206 566,194" fill="#00e676"/>
+<line x1="450" y1="215" x2="567.8734017953196" y2="283.00388565114594" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,290 564.8750670743822,288.20099916743754 570.8717365162571,277.8067721348543" fill="#00e676"/>
+<rect x="250" y="340" width="260" height="45" rx="8" fill="#b71c1c"/>
+<text x="380" y="367.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Hash Verify / Sign / Scan / SBOM</text>
+<text x="400" y="398" text-anchor="middle" fill="#e91e63" font-size="12">各ステージでの完全性検証が必須</text>
+</svg>
 - **ツールセット制限**: エージェントに提供するツールを必要最小限のセットに絞る
 - **コード実行サンドボックス**: gVisor・Firecracker・WebAssemblyで完全なプロセス分離
 - **ネットワーク制限**: エグレスフィルタリングで許可済みエンドポイントのみに通信を制限
@@ -746,6 +2585,49 @@ paginate: true
 
 # エージェントセキュリティのベストプラクティス
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">API レート制限 & アクセス制御</text>
+<rect x="30" y="80" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client A</text>
+<rect x="30" y="170" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client B</text>
+<rect x="30" y="260" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client C</text>
+<rect x="200" y="120" width="140" height="130" rx="8" fill="#b71c1c"/>
+<text x="270" y="190" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">API
+Gateway</text>
+<text x="270" y="275" text-anchor="middle" fill="#ffcdd2" font-size="11">Rate Limit / Auth</text>
+<rect x="410" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="480" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM
+Validation</text>
+<rect x="410" y="170" width="140" height="60" rx="8" fill="#388e3c"/>
+<text x="480" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Quota
+Check</text>
+<rect x="410" y="260" width="140" height="60" rx="8" fill="#1b5e20"/>
+<text x="480" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Audit
+Log</text>
+<rect x="630" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="700" y="205" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">LLM
+Service</text>
+<line x1="140" y1="110" x2="188.8" y2="146.6" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="200,155 185.20000000000002,151.4 192.4,141.79999999999998" fill="#40c4ff"/>
+<line x1="140" y1="200" x2="186.41800499796534" y2="188.39549875050866" stroke="#ffffff" stroke-width="2"/>
+<polygon points="200,185 187.87321874818335,194.21635375138067 184.96279124774733,182.57464374963666" fill="#ffffff"/>
+<line x1="140" y1="290" x2="191.25426933423807" y2="225.93216333220244" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="200,215 195.93948219089626,229.680333617529 186.5690564775799,222.18399304687588" fill="#ffcc80"/>
+<line x1="340" y1="140" x2="397.1319695797472" y2="115.51487018010835" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,110 399.4954853712222,121.02974036021669 394.7684537882722,110" fill="#00e676"/>
+<line x1="340" y1="185" x2="396.3107662029163" y2="197.06659275776778" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,200 395.05359167053103,202.93340724223225 397.56794073530153,191.1997782733033" fill="#00e676"/>
+<line x1="340" y1="230" x2="399.37040756688583" y2="280.8889207716164" stroke="#aaa" stroke-width="2"/>
+<polygon points="410,290 395.46565932615005,285.4444603858082 403.2751558076216,276.33338115742464" fill="#aaa"/>
+<line x1="550" y1="170" x2="616.2397893829195" y2="182.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="630,185 615.1340581726184,188.31719363090332 617.3455205932206,176.52272738769148" fill="#00e676"/>
+<text x="700" y="270" text-anchor="middle" fill="#e91e63" font-size="11">BLOCK</text>
+<line x1="700" y1="115" x2="700" y2="136" stroke="#e91e63" stroke-width="2"/>
+<polygon points="700,150 694,136 706,136" fill="#e91e63"/>
+</svg>
 - **最小権限の原則**: 各エージェントはタスクに必要な最小権限のみを付与する
 - **POLA（Principle of Least Authority）**: 設計段階から最小特権を適用する
 - **明示的な承認モデル**: 高リスク操作の実行前にユーザー確認を必須化する
@@ -766,6 +2648,44 @@ paginate: true
 
 # Amazon Bedrockのセキュリティ機能
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
+<rect x="30" y="150" width="120" height="70" rx="8" fill="#40c4ff"/>
+<text x="90" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw
+Input</text>
+<rect x="210" y="90" width="140" height="60" rx="8" fill="#b71c1c"/>
+<text x="280" y="125" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">PII
+Detector</text>
+<rect x="210" y="210" width="140" height="60" rx="8" fill="#7b1fa2"/>
+<text x="280" y="245" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Entity
+Tagger</text>
+<rect x="420" y="150" width="140" height="70" rx="8" fill="#e65100"/>
+<text x="490" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Redaction
+Engine</text>
+<rect x="620" y="150" width="140" height="70" rx="8" fill="#2e7d32"/>
+<text x="690" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Safe
+Output</text>
+<line x1="150" y1="185" x2="200.5040785617371" y2="130.28724822478483" stroke="#e91e63" stroke-width="2"/>
+<polygon points="210,120 204.91289922950202,134.35692884118322 196.09525789397216,126.21756760838643" fill="#e91e63"/>
+<line x1="150" y1="185" x2="199.67984203718962" y2="230.53985520075716" stroke="#ffffff" stroke-width="2"/>
+<polygon points="210,240 195.62549426608552,234.9627800419616 203.7341898082937,226.11693035955273" fill="#ffffff"/>
+<line x1="350" y1="120" x2="408.99154325648607" y2="166.35049827295336" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="420,175 405.28461394489466,171.06840830588789 412.6984725680775,161.63258824001883" fill="#ffcc80"/>
+<line x1="350" y1="240" x2="408.2235013447283" y2="202.570606278389" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="420,195 411.46804689260927,207.6176771306483 404.9789557968473,197.52353542612968" fill="#ce93d8"/>
+<line x1="560" y1="185" x2="606" y2="185" stroke="#00e676" stroke-width="2"/>
+<polygon points="620,185 606,191 606,179" fill="#00e676"/>
+<rect x="50" y="290" width="680" height="80" rx="8" fill="#16213e"/>
+<text x="390" y="315" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">PII カテゴリ</text>
+<text x="120" y="345" text-anchor="middle" fill="#ffffff" font-size="12">氏名</text>
+<text x="220" y="345" text-anchor="middle" fill="#ffffff" font-size="12">メール</text>
+<text x="320" y="345" text-anchor="middle" fill="#ffffff" font-size="12">電話番号</text>
+<text x="420" y="345" text-anchor="middle" fill="#ffffff" font-size="12">マイナンバー</text>
+<text x="550" y="345" text-anchor="middle" fill="#ffffff" font-size="12">クレカ番号</text>
+<text x="670" y="345" text-anchor="middle" fill="#ffffff" font-size="12">住所</text>
+<text x="390" y="370" text-anchor="middle" fill="#40c4ff" font-size="11">Amazon Comprehend / Microsoft Presidio / Spacy NER</text>
+</svg>
 - **データ不使用**: BedrockのAPIコールでユーザーデータはモデルトレーニングに使われない
 - **VPC対応**: PrivateLink経由でVPC内からBedrockエンドポイントにプライベート接続
 - **暗号化**: 転送中（TLS）・保存時（AES-256）の暗号化がデフォルトで有効
@@ -778,6 +2698,56 @@ paginate: true
 
 # Guardrails for Bedrock
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI 意思決定の監査ログアーキテクチャ</text>
+<rect x="30" y="100" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="135" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">User
+Request</text>
+<rect x="30" y="200" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="235" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">LLM
+Response</text>
+<rect x="30" y="300" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="335" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Agent
+Action</text>
+<rect x="220" y="180" width="140" height="100" rx="8" fill="#e65100"/>
+<text x="290" y="235" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Log
+Collector</text>
+<rect x="440" y="100" width="130" height="55" rx="8" fill="#6a1b9a"/>
+<text x="505" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<rect x="440" y="180" width="130" height="55" rx="8" fill="#1565c0"/>
+<text x="505" y="212.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">S3
+Storage</text>
+<rect x="440" y="265" width="130" height="55" rx="8" fill="#2e7d32"/>
+<text x="505" y="297.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">SIEM
+System</text>
+<rect x="650" y="100" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="710" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Alert
+Engine</text>
+<rect x="650" y="190" width="120" height="55" rx="8" fill="#7b1fa2"/>
+<text x="710" y="222.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Dashboard</text>
+<rect x="650" y="280" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="710" y="312.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Compliance
+Report</text>
+<line x1="150" y1="130" x2="210.78093548984074" y2="199.4639262741037" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="220,210 206.26547532159947,203.4149539213148 215.29639565808202,195.5128986268926" fill="#40c4ff"/>
+<line x1="150" y1="230" x2="206" y2="230" stroke="#ffffff" stroke-width="2"/>
+<polygon points="220,230 206,236 206,224" fill="#ffffff"/>
+<line x1="150" y1="330" x2="210.10050506338834" y2="269.8994949366117" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="220,260 214.34314575050763,274.14213562373095 205.85786437626905,265.6568542494924" fill="#ffcc80"/>
+<line x1="360" y1="210" x2="430.28434976014915" y2="137.07998712384526" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="440,127 434.6043442417971,141.24383722663848 425.9643552785012,132.91613702105204" fill="#ce93d8"/>
+<line x1="360" y1="220" x2="426.1812617152648" y2="209.24554497126948" stroke="#ffffff" stroke-width="2"/>
+<polygon points="440,207 427.1436381315231,215.16786137901315 425.21888529900644,203.32322856352582" fill="#ffffff"/>
+<line x1="360" y1="230" x2="428.9341892695466" y2="283.4239966838986" stroke="#aaa" stroke-width="2"/>
+<polygon points="440,292 425.2587592769317,288.1664869969501 432.6096192621615,278.68150637084716" fill="#aaa"/>
+<line x1="570" y1="127" x2="636" y2="127" stroke="#e91e63" stroke-width="2"/>
+<polygon points="650,127 636,133 636,121" fill="#e91e63"/>
+<line x1="570" y1="207" x2="636.1081097260087" y2="215.2635137157511" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="650,217 635.3639013184735,221.2171809760331 636.8523181335439,209.30984645546908" fill="#40c4ff"/>
+<line x1="570" y1="292" x2="636.2397893829195" y2="304.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="650,307 635.1340581726184,310.3171936309034 637.3455205932206,298.5227273876915" fill="#00e676"/>
+</svg>
 - **コンテンツフィルタリング**: 有害コンテンツ（Hate/Violence/Sexual/Misconduct）を6段階で制御
 - **禁止トピック設定**: 特定トピック（競合他社・法的相談等）への応答を拒否する
 - **PIIマスキング**: 入出力のPII（名前・電話・SSN・クレジットカード等）を自動マスクまたはブロック
@@ -790,6 +2760,44 @@ paginate: true
 
 # AWS IAM for AI Services
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
+<rect x="40" y="60" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="95" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">プロンプト</text>
+<rect x="40" y="140" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="175" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">インジェクション</text>
+<rect x="40" y="220" width="160" height="60" rx="8" fill="#7b1fa2"/>
+<text x="120" y="255" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">ジェイルブレイク</text>
+<rect x="40" y="300" width="160" height="60" rx="8" fill="#e65100"/>
+<text x="120" y="335" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">データ漏洩</text>
+<rect x="310" y="150" width="180" height="100" rx="8" fill="#16213e"/>
+<text x="400" y="205" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">LLM</text>
+<rect x="590" y="60" width="170" height="55" rx="8" fill="#1b5e20"/>
+<text x="675" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">正常応答</text>
+<rect x="590" y="140" width="170" height="55" rx="8" fill="#e91e63"/>
+<text x="675" y="172.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">有害コンテンツ</text>
+<rect x="590" y="220" width="170" height="55" rx="8" fill="#7b1fa2"/>
+<text x="675" y="252.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">制限迂回</text>
+<rect x="590" y="300" width="170" height="55" rx="8" fill="#e65100"/>
+<text x="675" y="332.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">機密漏洩</text>
+<line x1="200" y1="90" x2="299.40447789123175" y2="175.8493218151547" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,185 295.4827586691552,180.39025986176966 303.3261971133083,171.30838376853973" fill="#e91e63"/>
+<line x1="200" y1="170" x2="296.49330650267177" y2="196.31635631891047" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,200 294.91460206791913,202.10493924633687 298.0720109374244,190.52777339148406" fill="#e91e63"/>
+<line x1="200" y1="250" x2="296.6590390798143" y2="219.24485120187725" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="310,215 298.47826102347597,224.9624058819568 294.83981713615265,213.5272965217977" fill="#ce93d8"/>
+<line x1="200" y1="330" x2="299.6408389724568" y2="239.41741911594838" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,230 303.6768757364346,243.85705955632403 295.60480220847893,234.97777867557272" fill="#ffcc80"/>
+<line x1="490" y1="190" x2="580.2478678874093" y2="97.04469607596846" stroke="#a5d6a7" stroke-width="2"/>
+<polygon points="590,87 584.5527376342529,101.22418126707878 575.9429981405656,92.86521088485814" fill="#a5d6a7"/>
+<line x1="490" y1="200" x2="576.7051989125617" y2="171.38728435885463" stroke="#e91e63" stroke-width="2"/>
+<polygon points="590,167 578.5854636377851,177.08505625347104 574.8249341873384,165.68951246423822" fill="#e91e63"/>
+<line x1="490" y1="210" x2="576.8699342024628" y2="242.14187565491125" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="590,247 574.7878809117104,247.76904671099862 578.9519874932151,236.51470459882387" fill="#ce93d8"/>
+<line x1="490" y1="220" x2="580.440734782723" y2="316.7715862175136" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="590,327 576.0571288759431,320.86841416777514 584.8243406895028,312.674758267252" fill="#ffcc80"/>
+</svg>
 - **最小権限原則**: bedrock:InvokeModel を特定モデルARNのみに制限するポリシー設計
 - **リソースベースポリシー**: Foundation ModelへのクロスアカウントアクセスをRAMで制御
 - **条件キー活用**: `bedrock:ModelId`・`bedrock:Region` での細粒度なアクセス制御
@@ -802,6 +2810,28 @@ paginate: true
 
 # VPC/PrivateLinkでのAIサービス分離
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
+<rect x="30" y="160" width="110" height="80" rx="8" fill="#40c4ff"/><text x="85" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">User</text><text x="85" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Input</text><rect x="165" y="160" width="110" height="80" rx="8" fill="#1976d2"/><text x="220" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Input</text><text x="220" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Sanitize</text><rect x="300" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="355" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt</text><text x="355" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Guard</text><rect x="435" y="160" width="110" height="80" rx="8" fill="#16213e"/><text x="490" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text><rect x="570" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="625" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Output</text><text x="625" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Filter</text><rect x="705" y="160" width="110" height="80" rx="8" fill="#00e676"/><text x="760" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text><line x1="140" y1="200" x2="151" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="165,200 151,206 151,194" fill="#ffffff"/><line x1="275" y1="200" x2="286" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="300,200 286,206 286,194" fill="#ffffff"/><line x1="410" y1="200" x2="421" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="435,200 421,206 421,194" fill="#ffffff"/><line x1="545" y1="200" x2="556" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="570,200 556,206 556,194" fill="#ffffff"/><line x1="680" y1="200" x2="691" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="705,200 691,206 691,194" fill="#ffffff"/>
+<rect x="130" y="270" width="420" height="50" rx="6" fill="#16213e" opacity="0.8"/>
+<text x="340" y="298" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Guardrails Layer</text>
+<line x1="130" y1="265" x2="130" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<line x1="550" y1="265" x2="550" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<rect x="30" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="85" y="355" text-anchor="middle" fill="#ffffff" font-size="12">BLOCK</text>
+<rect x="165" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="220" y="355" text-anchor="middle" fill="#ffffff" font-size="12">SANITIZE</text>
+<rect x="300" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="355" y="355" text-anchor="middle" fill="#ffffff" font-size="12">REJECT</text>
+<rect x="570" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="625" y="355" text-anchor="middle" fill="#ffffff" font-size="12">FILTER</text>
+</svg>
 - **VPCエンドポイント**: Bedrock・SageMaker・Comprehendをパブリックインターネット経由なしで利用
 - **エンドポイントポリシー**: VPCエンドポイントポリシーで特定アカウント・モデルのみ許可
 - **セキュリティグループ**: AIサービスとの通信をポート443のHTTPSのみに制限
@@ -814,6 +2844,12 @@ paginate: true
 
 # Amazon Macie + AIデータ保護
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
+<rect x="60" y="60" width="680" height="55" rx="6" fill="#b71c1c" opacity="0.85"/><text x="400" y="93.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Application Layer — Input Validation / Rate Limiting</text><rect x="60" y="130" width="680" height="55" rx="6" fill="#e65100" opacity="0.85"/><text x="400" y="163.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Prompt Layer — System Prompt / Few-shot Constraints</text><rect x="60" y="200" width="680" height="55" rx="6" fill="#1565c0" opacity="0.85"/><text x="400" y="233.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Model Layer — Fine-tuning / RLHF / System Prompt</text><rect x="60" y="270" width="680" height="55" rx="6" fill="#2e7d32" opacity="0.85"/><text x="400" y="303.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Output Layer — Content Filter / PII Redaction</text><rect x="60" y="340" width="680" height="45" rx="6" fill="#4a148c" opacity="0.85"/><text x="400" y="368.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Audit Layer — Logging / Monitoring / Alerting</text>
+<text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">外側（リクエスト）→ 内側（モデル）→ 外側（レスポンス）の多重チェック</text>
+</svg>
 - **自動PII発見**: S3バケット内の機密データ（PII・PHI・財務情報）を自動スキャン・分類
 - **AIトレーニングデータ保護**: Fine-tuningデータセットのPII検出と自動除去ワークフロー
 - **カスタムデータ識別子**: 組織固有のパターン（社員番号・プロジェクトコード等）を追加定義
@@ -826,6 +2862,43 @@ paginate: true
 
 # AWS CloudTrail + AI監査
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI レッドチーミングフロー</text>
+<rect x="30" y="150" width="130" height="70" rx="8" fill="#b71c1c"/>
+<text x="95" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Attack
+Planning</text>
+<rect x="195" y="150" width="130" height="70" rx="8" fill="#e65100"/>
+<text x="260" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt
+Crafting</text>
+<rect x="360" y="150" width="130" height="70" rx="8" fill="#7b1fa2"/>
+<text x="425" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Execute
+Attacks</text>
+<rect x="525" y="150" width="130" height="70" rx="8" fill="#1565c0"/>
+<text x="590" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Analyze
+Results</text>
+<rect x="655" y="60" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="715" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Pass</text>
+<rect x="655" y="240" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="715" y="272.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Fail →
+Mitigate</text>
+<line x1="160" y1="185" x2="181" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="195,185 181,191 181,179" fill="#ffffff"/>
+<line x1="325" y1="185" x2="346" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="360,185 346,191 346,179" fill="#ffffff"/>
+<line x1="490" y1="185" x2="511" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="525,185 511,191 511,179" fill="#ffffff"/>
+<line x1="655" y1="170" x2="655" y2="129" stroke="#00e676" stroke-width="2"/>
+<polygon points="655,115 661,129 649,129" fill="#00e676"/>
+<line x1="655" y1="200" x2="655" y2="226" stroke="#e91e63" stroke-width="2"/>
+<polygon points="655,240 649,226 661,226" fill="#e91e63"/>
+<line x1="415" y1="295" x2="415" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="415" y1="340" x2="215" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="215" y1="340" x2="215" y2="234" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="215,220 221,234 209,234" fill="#40c4ff"/>
+<text x="315" y="360" text-anchor="middle" fill="#40c4ff" font-size="12">改善サイクル</text>
+<text x="400" y="390" text-anchor="middle" fill="#aaa" font-size="12">OWASP LLM Top 10 + カスタム脅威シナリオを網羅</text>
+</svg>
 - **API呼び出し記録**: InvokeModel・CreateKnowledgeBase等のすべてのBedrock API操作を記録
 - **データイベント**: モデル入出力の内容ログ（オプション、コストとプライバシーに注意）
 - **CloudTrail Lake**: SQL クエリでAI関連アクティビティを横断的に分析
@@ -838,6 +2911,44 @@ paginate: true
 
 # SageMakerセキュリティ
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
+<rect x="30" y="80" width="140" height="60" rx="8" fill="#1565c0"/>
+<text x="100" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Model Hub</text>
+<rect x="30" y="170" width="140" height="60" rx="8" fill="#6a1b9a"/>
+<text x="100" y="205" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Dataset
+Source</text>
+<rect x="30" y="260" width="140" height="60" rx="8" fill="#e65100"/>
+<text x="100" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">3rd Party
+Libs</text>
+<rect x="310" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="380" y="205" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Build
+Pipeline</text>
+<rect x="580" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="115" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Verified
+Model</text>
+<rect x="580" y="170" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Staging
+Env</text>
+<rect x="580" y="260" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Production</text>
+<line x1="170" y1="110" x2="297.65928041959705" y2="178.38890022478412" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="310,185 294.82595194450454,183.67778004495682 300.49260889468957,173.10002040461143" fill="#40c4ff"/>
+<line x1="170" y1="200" x2="296" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="310,200 296,206 296,194" fill="#ffffff"/>
+<line x1="170" y1="290" x2="297.65928041959705" y2="221.61109977521588" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,215 300.49260889468957,226.89997959538857 294.82595194450454,216.32221995504318" fill="#ffcc80"/>
+<line x1="450" y1="185" x2="567.8734017953196" y2="116.99611434885408" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,110 570.8717365162571,122.19322786514569 564.8750670743822,111.79900083256247" fill="#00e676"/>
+<line x1="450" y1="200" x2="566" y2="200" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,200 566,206 566,194" fill="#00e676"/>
+<line x1="450" y1="215" x2="567.8734017953196" y2="283.00388565114594" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,290 564.8750670743822,288.20099916743754 570.8717365162571,277.8067721348543" fill="#00e676"/>
+<rect x="250" y="340" width="260" height="45" rx="8" fill="#b71c1c"/>
+<text x="380" y="367.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Hash Verify / Sign / Scan / SBOM</text>
+<text x="400" y="398" text-anchor="middle" fill="#e91e63" font-size="12">各ステージでの完全性検証が必須</text>
+</svg>
 - **ネットワーク分離**: VPCモードでインターネット通信を完全遮断したトレーニング・推論
 - **IAMロール分離**: トレーニング・推論・デプロイで異なるIAMロールを使い分ける
 - **暗号化**: S3入出力・EBSボリューム・コンテナ間トラフィックのKMS暗号化
@@ -850,6 +2961,49 @@ paginate: true
 
 # Amazon Comprehend + PII検出
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">API レート制限 & アクセス制御</text>
+<rect x="30" y="80" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client A</text>
+<rect x="30" y="170" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client B</text>
+<rect x="30" y="260" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client C</text>
+<rect x="200" y="120" width="140" height="130" rx="8" fill="#b71c1c"/>
+<text x="270" y="190" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">API
+Gateway</text>
+<text x="270" y="275" text-anchor="middle" fill="#ffcdd2" font-size="11">Rate Limit / Auth</text>
+<rect x="410" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="480" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM
+Validation</text>
+<rect x="410" y="170" width="140" height="60" rx="8" fill="#388e3c"/>
+<text x="480" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Quota
+Check</text>
+<rect x="410" y="260" width="140" height="60" rx="8" fill="#1b5e20"/>
+<text x="480" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Audit
+Log</text>
+<rect x="630" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="700" y="205" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">LLM
+Service</text>
+<line x1="140" y1="110" x2="188.8" y2="146.6" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="200,155 185.20000000000002,151.4 192.4,141.79999999999998" fill="#40c4ff"/>
+<line x1="140" y1="200" x2="186.41800499796534" y2="188.39549875050866" stroke="#ffffff" stroke-width="2"/>
+<polygon points="200,185 187.87321874818335,194.21635375138067 184.96279124774733,182.57464374963666" fill="#ffffff"/>
+<line x1="140" y1="290" x2="191.25426933423807" y2="225.93216333220244" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="200,215 195.93948219089626,229.680333617529 186.5690564775799,222.18399304687588" fill="#ffcc80"/>
+<line x1="340" y1="140" x2="397.1319695797472" y2="115.51487018010835" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,110 399.4954853712222,121.02974036021669 394.7684537882722,110" fill="#00e676"/>
+<line x1="340" y1="185" x2="396.3107662029163" y2="197.06659275776778" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,200 395.05359167053103,202.93340724223225 397.56794073530153,191.1997782733033" fill="#00e676"/>
+<line x1="340" y1="230" x2="399.37040756688583" y2="280.8889207716164" stroke="#aaa" stroke-width="2"/>
+<polygon points="410,290 395.46565932615005,285.4444603858082 403.2751558076216,276.33338115742464" fill="#aaa"/>
+<line x1="550" y1="170" x2="616.2397893829195" y2="182.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="630,185 615.1340581726184,188.31719363090332 617.3455205932206,176.52272738769148" fill="#00e676"/>
+<text x="700" y="270" text-anchor="middle" fill="#e91e63" font-size="11">BLOCK</text>
+<line x1="700" y1="115" x2="700" y2="136" stroke="#e91e63" stroke-width="2"/>
+<polygon points="700,150 694,136 706,136" fill="#e91e63"/>
+</svg>
 - **リアルタイムPII検出**: テキスト入力のPIIエンティティをリアルタイムで検出（25種類以上）
 - **バッチ処理**: S3上の大量ドキュメントのPIIを一括スキャン・分類
 - **PII編集**: 検出したPIIをアスタリスクで自動置換・完全匿名化（Redact API）
@@ -862,6 +3016,44 @@ paginate: true
 
 # AWS AI Security Architecture
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
+<rect x="30" y="150" width="120" height="70" rx="8" fill="#40c4ff"/>
+<text x="90" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw
+Input</text>
+<rect x="210" y="90" width="140" height="60" rx="8" fill="#b71c1c"/>
+<text x="280" y="125" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">PII
+Detector</text>
+<rect x="210" y="210" width="140" height="60" rx="8" fill="#7b1fa2"/>
+<text x="280" y="245" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Entity
+Tagger</text>
+<rect x="420" y="150" width="140" height="70" rx="8" fill="#e65100"/>
+<text x="490" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Redaction
+Engine</text>
+<rect x="620" y="150" width="140" height="70" rx="8" fill="#2e7d32"/>
+<text x="690" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Safe
+Output</text>
+<line x1="150" y1="185" x2="200.5040785617371" y2="130.28724822478483" stroke="#e91e63" stroke-width="2"/>
+<polygon points="210,120 204.91289922950202,134.35692884118322 196.09525789397216,126.21756760838643" fill="#e91e63"/>
+<line x1="150" y1="185" x2="199.67984203718962" y2="230.53985520075716" stroke="#ffffff" stroke-width="2"/>
+<polygon points="210,240 195.62549426608552,234.9627800419616 203.7341898082937,226.11693035955273" fill="#ffffff"/>
+<line x1="350" y1="120" x2="408.99154325648607" y2="166.35049827295336" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="420,175 405.28461394489466,171.06840830588789 412.6984725680775,161.63258824001883" fill="#ffcc80"/>
+<line x1="350" y1="240" x2="408.2235013447283" y2="202.570606278389" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="420,195 411.46804689260927,207.6176771306483 404.9789557968473,197.52353542612968" fill="#ce93d8"/>
+<line x1="560" y1="185" x2="606" y2="185" stroke="#00e676" stroke-width="2"/>
+<polygon points="620,185 606,191 606,179" fill="#00e676"/>
+<rect x="50" y="290" width="680" height="80" rx="8" fill="#16213e"/>
+<text x="390" y="315" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">PII カテゴリ</text>
+<text x="120" y="345" text-anchor="middle" fill="#ffffff" font-size="12">氏名</text>
+<text x="220" y="345" text-anchor="middle" fill="#ffffff" font-size="12">メール</text>
+<text x="320" y="345" text-anchor="middle" fill="#ffffff" font-size="12">電話番号</text>
+<text x="420" y="345" text-anchor="middle" fill="#ffffff" font-size="12">マイナンバー</text>
+<text x="550" y="345" text-anchor="middle" fill="#ffffff" font-size="12">クレカ番号</text>
+<text x="670" y="345" text-anchor="middle" fill="#ffffff" font-size="12">住所</text>
+<text x="390" y="370" text-anchor="middle" fill="#40c4ff" font-size="11">Amazon Comprehend / Microsoft Presidio / Spacy NER</text>
+</svg>
 - **多層防御**: IAM → VPCエンドポイント → Guardrails → アプリ検証 → 監査 の5層
 - **Bedrock + Guardrails**: コンテンツフィルタ・PIIマスキング・禁止トピックの一元管理
 - **Knowledge Bases**: ACL対応RAG（Kendraバックエンド）でアクセス制御付き知識検索
@@ -882,6 +3074,56 @@ paginate: true
 
 # AIシステムの監視戦略
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI 意思決定の監査ログアーキテクチャ</text>
+<rect x="30" y="100" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="135" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">User
+Request</text>
+<rect x="30" y="200" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="235" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">LLM
+Response</text>
+<rect x="30" y="300" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="335" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Agent
+Action</text>
+<rect x="220" y="180" width="140" height="100" rx="8" fill="#e65100"/>
+<text x="290" y="235" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Log
+Collector</text>
+<rect x="440" y="100" width="130" height="55" rx="8" fill="#6a1b9a"/>
+<text x="505" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<rect x="440" y="180" width="130" height="55" rx="8" fill="#1565c0"/>
+<text x="505" y="212.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">S3
+Storage</text>
+<rect x="440" y="265" width="130" height="55" rx="8" fill="#2e7d32"/>
+<text x="505" y="297.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">SIEM
+System</text>
+<rect x="650" y="100" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="710" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Alert
+Engine</text>
+<rect x="650" y="190" width="120" height="55" rx="8" fill="#7b1fa2"/>
+<text x="710" y="222.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Dashboard</text>
+<rect x="650" y="280" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="710" y="312.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Compliance
+Report</text>
+<line x1="150" y1="130" x2="210.78093548984074" y2="199.4639262741037" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="220,210 206.26547532159947,203.4149539213148 215.29639565808202,195.5128986268926" fill="#40c4ff"/>
+<line x1="150" y1="230" x2="206" y2="230" stroke="#ffffff" stroke-width="2"/>
+<polygon points="220,230 206,236 206,224" fill="#ffffff"/>
+<line x1="150" y1="330" x2="210.10050506338834" y2="269.8994949366117" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="220,260 214.34314575050763,274.14213562373095 205.85786437626905,265.6568542494924" fill="#ffcc80"/>
+<line x1="360" y1="210" x2="430.28434976014915" y2="137.07998712384526" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="440,127 434.6043442417971,141.24383722663848 425.9643552785012,132.91613702105204" fill="#ce93d8"/>
+<line x1="360" y1="220" x2="426.1812617152648" y2="209.24554497126948" stroke="#ffffff" stroke-width="2"/>
+<polygon points="440,207 427.1436381315231,215.16786137901315 425.21888529900644,203.32322856352582" fill="#ffffff"/>
+<line x1="360" y1="230" x2="428.9341892695466" y2="283.4239966838986" stroke="#aaa" stroke-width="2"/>
+<polygon points="440,292 425.2587592769317,288.1664869969501 432.6096192621615,278.68150637084716" fill="#aaa"/>
+<line x1="570" y1="127" x2="636" y2="127" stroke="#e91e63" stroke-width="2"/>
+<polygon points="650,127 636,133 636,121" fill="#e91e63"/>
+<line x1="570" y1="207" x2="636.1081097260087" y2="215.2635137157511" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="650,217 635.3639013184735,221.2171809760331 636.8523181335439,209.30984645546908" fill="#40c4ff"/>
+<line x1="570" y1="292" x2="636.2397893829195" y2="304.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="650,307 635.1340581726184,310.3171936309034 637.3455205932206,298.5227273876915" fill="#00e676"/>
+</svg>
 - **4つの監視レイヤー**: インフラ / モデル動作 / 入出力コンテンツ / ビジネス指標
 - **ゴールデンシグナル**: レイテンシー・エラー率・トークン消費・ハルシネーション率
 - **ドリフト監視**: 入力分布・出力分布の変化でモデル性能劣化を早期検出する
@@ -894,6 +3136,44 @@ paginate: true
 
 # 異常検出・行動分析
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
+<rect x="40" y="60" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="95" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">プロンプト</text>
+<rect x="40" y="140" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="175" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">インジェクション</text>
+<rect x="40" y="220" width="160" height="60" rx="8" fill="#7b1fa2"/>
+<text x="120" y="255" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">ジェイルブレイク</text>
+<rect x="40" y="300" width="160" height="60" rx="8" fill="#e65100"/>
+<text x="120" y="335" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">データ漏洩</text>
+<rect x="310" y="150" width="180" height="100" rx="8" fill="#16213e"/>
+<text x="400" y="205" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">LLM</text>
+<rect x="590" y="60" width="170" height="55" rx="8" fill="#1b5e20"/>
+<text x="675" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">正常応答</text>
+<rect x="590" y="140" width="170" height="55" rx="8" fill="#e91e63"/>
+<text x="675" y="172.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">有害コンテンツ</text>
+<rect x="590" y="220" width="170" height="55" rx="8" fill="#7b1fa2"/>
+<text x="675" y="252.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">制限迂回</text>
+<rect x="590" y="300" width="170" height="55" rx="8" fill="#e65100"/>
+<text x="675" y="332.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">機密漏洩</text>
+<line x1="200" y1="90" x2="299.40447789123175" y2="175.8493218151547" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,185 295.4827586691552,180.39025986176966 303.3261971133083,171.30838376853973" fill="#e91e63"/>
+<line x1="200" y1="170" x2="296.49330650267177" y2="196.31635631891047" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,200 294.91460206791913,202.10493924633687 298.0720109374244,190.52777339148406" fill="#e91e63"/>
+<line x1="200" y1="250" x2="296.6590390798143" y2="219.24485120187725" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="310,215 298.47826102347597,224.9624058819568 294.83981713615265,213.5272965217977" fill="#ce93d8"/>
+<line x1="200" y1="330" x2="299.6408389724568" y2="239.41741911594838" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,230 303.6768757364346,243.85705955632403 295.60480220847893,234.97777867557272" fill="#ffcc80"/>
+<line x1="490" y1="190" x2="580.2478678874093" y2="97.04469607596846" stroke="#a5d6a7" stroke-width="2"/>
+<polygon points="590,87 584.5527376342529,101.22418126707878 575.9429981405656,92.86521088485814" fill="#a5d6a7"/>
+<line x1="490" y1="200" x2="576.7051989125617" y2="171.38728435885463" stroke="#e91e63" stroke-width="2"/>
+<polygon points="590,167 578.5854636377851,177.08505625347104 574.8249341873384,165.68951246423822" fill="#e91e63"/>
+<line x1="490" y1="210" x2="576.8699342024628" y2="242.14187565491125" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="590,247 574.7878809117104,247.76904671099862 578.9519874932151,236.51470459882387" fill="#ce93d8"/>
+<line x1="490" y1="220" x2="580.440734782723" y2="316.7715862175136" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="590,327 576.0571288759431,320.86841416777514 584.8243406895028,312.674758267252" fill="#ffcc80"/>
+</svg>
 - **ベースライン構築**: 正常なリクエストパターン（長さ・頻度・内容分布）の統計モデル化
 - **時系列異常検出**: 急激なリクエスト増加・トークン消費急増・エラー率の異常検出
 - **セマンティック異常**: 埋め込み空間で通常クラスタから外れたリクエストの検出
@@ -906,6 +3186,28 @@ paginate: true
 
 # ログ分析とSIEM連携
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
+<rect x="30" y="160" width="110" height="80" rx="8" fill="#40c4ff"/><text x="85" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">User</text><text x="85" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Input</text><rect x="165" y="160" width="110" height="80" rx="8" fill="#1976d2"/><text x="220" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Input</text><text x="220" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Sanitize</text><rect x="300" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="355" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt</text><text x="355" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Guard</text><rect x="435" y="160" width="110" height="80" rx="8" fill="#16213e"/><text x="490" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text><rect x="570" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="625" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Output</text><text x="625" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Filter</text><rect x="705" y="160" width="110" height="80" rx="8" fill="#00e676"/><text x="760" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text><line x1="140" y1="200" x2="151" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="165,200 151,206 151,194" fill="#ffffff"/><line x1="275" y1="200" x2="286" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="300,200 286,206 286,194" fill="#ffffff"/><line x1="410" y1="200" x2="421" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="435,200 421,206 421,194" fill="#ffffff"/><line x1="545" y1="200" x2="556" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="570,200 556,206 556,194" fill="#ffffff"/><line x1="680" y1="200" x2="691" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="705,200 691,206 691,194" fill="#ffffff"/>
+<rect x="130" y="270" width="420" height="50" rx="6" fill="#16213e" opacity="0.8"/>
+<text x="340" y="298" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Guardrails Layer</text>
+<line x1="130" y1="265" x2="130" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<line x1="550" y1="265" x2="550" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<rect x="30" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="85" y="355" text-anchor="middle" fill="#ffffff" font-size="12">BLOCK</text>
+<rect x="165" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="220" y="355" text-anchor="middle" fill="#ffffff" font-size="12">SANITIZE</text>
+<rect x="300" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="355" y="355" text-anchor="middle" fill="#ffffff" font-size="12">REJECT</text>
+<rect x="570" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="625" y="355" text-anchor="middle" fill="#ffffff" font-size="12">FILTER</text>
+</svg>
 - **ログソース統合**: CloudTrail・VPCフローログ・ALB・アプリケーションログの集中管理
 - **LLM入出力ログ**: プライバシーに配慮した会話ログ保存戦略（選択的記録・匿名化）
 - **OpenSearch活用**: Amazon OpenSearch Serviceでリアルタイム検索・ダッシュボード構築
@@ -918,6 +3220,12 @@ paginate: true
 
 # レッドチーミング for AI
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
+<rect x="60" y="60" width="680" height="55" rx="6" fill="#b71c1c" opacity="0.85"/><text x="400" y="93.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Application Layer — Input Validation / Rate Limiting</text><rect x="60" y="130" width="680" height="55" rx="6" fill="#e65100" opacity="0.85"/><text x="400" y="163.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Prompt Layer — System Prompt / Few-shot Constraints</text><rect x="60" y="200" width="680" height="55" rx="6" fill="#1565c0" opacity="0.85"/><text x="400" y="233.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Model Layer — Fine-tuning / RLHF / System Prompt</text><rect x="60" y="270" width="680" height="55" rx="6" fill="#2e7d32" opacity="0.85"/><text x="400" y="303.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Output Layer — Content Filter / PII Redaction</text><rect x="60" y="340" width="680" height="45" rx="6" fill="#4a148c" opacity="0.85"/><text x="400" y="368.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Audit Layer — Logging / Monitoring / Alerting</text>
+<text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">外側（リクエスト）→ 内側（モデル）→ 外側（レスポンス）の多重チェック</text>
+</svg>
 - **AI Red Teaming**: 攻撃者視点でLLMの脆弱性・バイアス・有害出力を網羅的に探索
 - **手動 vs 自動**: 人間による創造的攻撃 + ツールによる大規模自動探索の組み合わせ
 - **主要ツール**: Garak（NVIDIA製LLM脆弱性スキャナー）・PyRIT（Microsoft）・Promptfoo
@@ -930,6 +3238,43 @@ paginate: true
 
 # ベンチマーク・テストフレームワーク
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI レッドチーミングフロー</text>
+<rect x="30" y="150" width="130" height="70" rx="8" fill="#b71c1c"/>
+<text x="95" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Attack
+Planning</text>
+<rect x="195" y="150" width="130" height="70" rx="8" fill="#e65100"/>
+<text x="260" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt
+Crafting</text>
+<rect x="360" y="150" width="130" height="70" rx="8" fill="#7b1fa2"/>
+<text x="425" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Execute
+Attacks</text>
+<rect x="525" y="150" width="130" height="70" rx="8" fill="#1565c0"/>
+<text x="590" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Analyze
+Results</text>
+<rect x="655" y="60" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="715" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Pass</text>
+<rect x="655" y="240" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="715" y="272.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Fail →
+Mitigate</text>
+<line x1="160" y1="185" x2="181" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="195,185 181,191 181,179" fill="#ffffff"/>
+<line x1="325" y1="185" x2="346" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="360,185 346,191 346,179" fill="#ffffff"/>
+<line x1="490" y1="185" x2="511" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="525,185 511,191 511,179" fill="#ffffff"/>
+<line x1="655" y1="170" x2="655" y2="129" stroke="#00e676" stroke-width="2"/>
+<polygon points="655,115 661,129 649,129" fill="#00e676"/>
+<line x1="655" y1="200" x2="655" y2="226" stroke="#e91e63" stroke-width="2"/>
+<polygon points="655,240 649,226 661,226" fill="#e91e63"/>
+<line x1="415" y1="295" x2="415" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="415" y1="340" x2="215" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="215" y1="340" x2="215" y2="234" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="215,220 221,234 209,234" fill="#40c4ff"/>
+<text x="315" y="360" text-anchor="middle" fill="#40c4ff" font-size="12">改善サイクル</text>
+<text x="400" y="390" text-anchor="middle" fill="#aaa" font-size="12">OWASP LLM Top 10 + カスタム脅威シナリオを網羅</text>
+</svg>
 - **HarmBench**: 有害コンテンツ生成耐性の標準ベンチマーク（400+テストケース）
 - **TrustLLM**: 安全性・公平性・プライバシー・説明可能性の総合評価フレームワーク
 - **MT-Bench**: 多回話能力（会話での安全性維持・文脈理解）の評価
@@ -942,6 +3287,44 @@ paginate: true
 
 # インシデント検出の実践
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
+<rect x="30" y="80" width="140" height="60" rx="8" fill="#1565c0"/>
+<text x="100" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Model Hub</text>
+<rect x="30" y="170" width="140" height="60" rx="8" fill="#6a1b9a"/>
+<text x="100" y="205" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Dataset
+Source</text>
+<rect x="30" y="260" width="140" height="60" rx="8" fill="#e65100"/>
+<text x="100" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">3rd Party
+Libs</text>
+<rect x="310" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="380" y="205" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Build
+Pipeline</text>
+<rect x="580" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="115" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Verified
+Model</text>
+<rect x="580" y="170" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Staging
+Env</text>
+<rect x="580" y="260" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Production</text>
+<line x1="170" y1="110" x2="297.65928041959705" y2="178.38890022478412" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="310,185 294.82595194450454,183.67778004495682 300.49260889468957,173.10002040461143" fill="#40c4ff"/>
+<line x1="170" y1="200" x2="296" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="310,200 296,206 296,194" fill="#ffffff"/>
+<line x1="170" y1="290" x2="297.65928041959705" y2="221.61109977521588" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,215 300.49260889468957,226.89997959538857 294.82595194450454,216.32221995504318" fill="#ffcc80"/>
+<line x1="450" y1="185" x2="567.8734017953196" y2="116.99611434885408" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,110 570.8717365162571,122.19322786514569 564.8750670743822,111.79900083256247" fill="#00e676"/>
+<line x1="450" y1="200" x2="566" y2="200" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,200 566,206 566,194" fill="#00e676"/>
+<line x1="450" y1="215" x2="567.8734017953196" y2="283.00388565114594" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,290 564.8750670743822,288.20099916743754 570.8717365162571,277.8067721348543" fill="#00e676"/>
+<rect x="250" y="340" width="260" height="45" rx="8" fill="#b71c1c"/>
+<text x="380" y="367.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Hash Verify / Sign / Scan / SBOM</text>
+<text x="400" y="398" text-anchor="middle" fill="#e91e63" font-size="12">各ステージでの完全性検証が必須</text>
+</svg>
 - **シナリオ1**: 大量ジェイルブレイク試行 → レートリミット + IPブロック + インシデント記録
 - **シナリオ2**: プロンプトインジェクション成功 → セッション強制終了 + 全ログ保全
 - **シナリオ3**: 機密データ漏洩 → 即時CISO通知 + 影響ユーザー特定 + 封じ込め
@@ -962,6 +3345,49 @@ paginate: true
 
 # AI固有のインシデント分類
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">API レート制限 & アクセス制御</text>
+<rect x="30" y="80" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client A</text>
+<rect x="30" y="170" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client B</text>
+<rect x="30" y="260" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client C</text>
+<rect x="200" y="120" width="140" height="130" rx="8" fill="#b71c1c"/>
+<text x="270" y="190" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">API
+Gateway</text>
+<text x="270" y="275" text-anchor="middle" fill="#ffcdd2" font-size="11">Rate Limit / Auth</text>
+<rect x="410" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="480" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM
+Validation</text>
+<rect x="410" y="170" width="140" height="60" rx="8" fill="#388e3c"/>
+<text x="480" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Quota
+Check</text>
+<rect x="410" y="260" width="140" height="60" rx="8" fill="#1b5e20"/>
+<text x="480" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Audit
+Log</text>
+<rect x="630" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="700" y="205" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">LLM
+Service</text>
+<line x1="140" y1="110" x2="188.8" y2="146.6" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="200,155 185.20000000000002,151.4 192.4,141.79999999999998" fill="#40c4ff"/>
+<line x1="140" y1="200" x2="186.41800499796534" y2="188.39549875050866" stroke="#ffffff" stroke-width="2"/>
+<polygon points="200,185 187.87321874818335,194.21635375138067 184.96279124774733,182.57464374963666" fill="#ffffff"/>
+<line x1="140" y1="290" x2="191.25426933423807" y2="225.93216333220244" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="200,215 195.93948219089626,229.680333617529 186.5690564775799,222.18399304687588" fill="#ffcc80"/>
+<line x1="340" y1="140" x2="397.1319695797472" y2="115.51487018010835" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,110 399.4954853712222,121.02974036021669 394.7684537882722,110" fill="#00e676"/>
+<line x1="340" y1="185" x2="396.3107662029163" y2="197.06659275776778" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,200 395.05359167053103,202.93340724223225 397.56794073530153,191.1997782733033" fill="#00e676"/>
+<line x1="340" y1="230" x2="399.37040756688583" y2="280.8889207716164" stroke="#aaa" stroke-width="2"/>
+<polygon points="410,290 395.46565932615005,285.4444603858082 403.2751558076216,276.33338115742464" fill="#aaa"/>
+<line x1="550" y1="170" x2="616.2397893829195" y2="182.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="630,185 615.1340581726184,188.31719363090332 617.3455205932206,176.52272738769148" fill="#00e676"/>
+<text x="700" y="270" text-anchor="middle" fill="#e91e63" font-size="11">BLOCK</text>
+<line x1="700" y1="115" x2="700" y2="136" stroke="#e91e63" stroke-width="2"/>
+<polygon points="700,150 694,136 706,136" fill="#e91e63"/>
+</svg>
 - **クラス1 — 入力攻撃**: プロンプトインジェクション成功・ジェイルブレイク・制限回避
 - **クラス2 — データ漏洩**: 機密情報・PII・トレーニングデータの意図しない出力
 - **クラス3 — モデル侵害**: バックドア発動・ウェイト改ざん・不正Fine-tuning
@@ -974,6 +3400,44 @@ paginate: true
 
 # インシデント対応プレイブック
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
+<rect x="30" y="150" width="120" height="70" rx="8" fill="#40c4ff"/>
+<text x="90" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw
+Input</text>
+<rect x="210" y="90" width="140" height="60" rx="8" fill="#b71c1c"/>
+<text x="280" y="125" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">PII
+Detector</text>
+<rect x="210" y="210" width="140" height="60" rx="8" fill="#7b1fa2"/>
+<text x="280" y="245" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Entity
+Tagger</text>
+<rect x="420" y="150" width="140" height="70" rx="8" fill="#e65100"/>
+<text x="490" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Redaction
+Engine</text>
+<rect x="620" y="150" width="140" height="70" rx="8" fill="#2e7d32"/>
+<text x="690" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Safe
+Output</text>
+<line x1="150" y1="185" x2="200.5040785617371" y2="130.28724822478483" stroke="#e91e63" stroke-width="2"/>
+<polygon points="210,120 204.91289922950202,134.35692884118322 196.09525789397216,126.21756760838643" fill="#e91e63"/>
+<line x1="150" y1="185" x2="199.67984203718962" y2="230.53985520075716" stroke="#ffffff" stroke-width="2"/>
+<polygon points="210,240 195.62549426608552,234.9627800419616 203.7341898082937,226.11693035955273" fill="#ffffff"/>
+<line x1="350" y1="120" x2="408.99154325648607" y2="166.35049827295336" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="420,175 405.28461394489466,171.06840830588789 412.6984725680775,161.63258824001883" fill="#ffcc80"/>
+<line x1="350" y1="240" x2="408.2235013447283" y2="202.570606278389" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="420,195 411.46804689260927,207.6176771306483 404.9789557968473,197.52353542612968" fill="#ce93d8"/>
+<line x1="560" y1="185" x2="606" y2="185" stroke="#00e676" stroke-width="2"/>
+<polygon points="620,185 606,191 606,179" fill="#00e676"/>
+<rect x="50" y="290" width="680" height="80" rx="8" fill="#16213e"/>
+<text x="390" y="315" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">PII カテゴリ</text>
+<text x="120" y="345" text-anchor="middle" fill="#ffffff" font-size="12">氏名</text>
+<text x="220" y="345" text-anchor="middle" fill="#ffffff" font-size="12">メール</text>
+<text x="320" y="345" text-anchor="middle" fill="#ffffff" font-size="12">電話番号</text>
+<text x="420" y="345" text-anchor="middle" fill="#ffffff" font-size="12">マイナンバー</text>
+<text x="550" y="345" text-anchor="middle" fill="#ffffff" font-size="12">クレカ番号</text>
+<text x="670" y="345" text-anchor="middle" fill="#ffffff" font-size="12">住所</text>
+<text x="390" y="370" text-anchor="middle" fill="#40c4ff" font-size="11">Amazon Comprehend / Microsoft Presidio / Spacy NER</text>
+</svg>
 - **フェーズ1 — 検出・トリアージ**: アラート受信 → 分類 → 深刻度評価（P1〜P4）
 - **フェーズ2 — 封じ込め**: 影響エンドポイントの即時遮断・モデルのオフライン化
 - **フェーズ3 — 調査**: ログ分析・攻撃ベクター特定・影響範囲（ユーザー数・データ量）確認
@@ -986,6 +3450,56 @@ paginate: true
 
 # フォレンジックとAI
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI 意思決定の監査ログアーキテクチャ</text>
+<rect x="30" y="100" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="135" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">User
+Request</text>
+<rect x="30" y="200" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="235" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">LLM
+Response</text>
+<rect x="30" y="300" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="335" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Agent
+Action</text>
+<rect x="220" y="180" width="140" height="100" rx="8" fill="#e65100"/>
+<text x="290" y="235" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Log
+Collector</text>
+<rect x="440" y="100" width="130" height="55" rx="8" fill="#6a1b9a"/>
+<text x="505" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<rect x="440" y="180" width="130" height="55" rx="8" fill="#1565c0"/>
+<text x="505" y="212.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">S3
+Storage</text>
+<rect x="440" y="265" width="130" height="55" rx="8" fill="#2e7d32"/>
+<text x="505" y="297.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">SIEM
+System</text>
+<rect x="650" y="100" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="710" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Alert
+Engine</text>
+<rect x="650" y="190" width="120" height="55" rx="8" fill="#7b1fa2"/>
+<text x="710" y="222.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Dashboard</text>
+<rect x="650" y="280" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="710" y="312.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Compliance
+Report</text>
+<line x1="150" y1="130" x2="210.78093548984074" y2="199.4639262741037" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="220,210 206.26547532159947,203.4149539213148 215.29639565808202,195.5128986268926" fill="#40c4ff"/>
+<line x1="150" y1="230" x2="206" y2="230" stroke="#ffffff" stroke-width="2"/>
+<polygon points="220,230 206,236 206,224" fill="#ffffff"/>
+<line x1="150" y1="330" x2="210.10050506338834" y2="269.8994949366117" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="220,260 214.34314575050763,274.14213562373095 205.85786437626905,265.6568542494924" fill="#ffcc80"/>
+<line x1="360" y1="210" x2="430.28434976014915" y2="137.07998712384526" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="440,127 434.6043442417971,141.24383722663848 425.9643552785012,132.91613702105204" fill="#ce93d8"/>
+<line x1="360" y1="220" x2="426.1812617152648" y2="209.24554497126948" stroke="#ffffff" stroke-width="2"/>
+<polygon points="440,207 427.1436381315231,215.16786137901315 425.21888529900644,203.32322856352582" fill="#ffffff"/>
+<line x1="360" y1="230" x2="428.9341892695466" y2="283.4239966838986" stroke="#aaa" stroke-width="2"/>
+<polygon points="440,292 425.2587592769317,288.1664869969501 432.6096192621615,278.68150637084716" fill="#aaa"/>
+<line x1="570" y1="127" x2="636" y2="127" stroke="#e91e63" stroke-width="2"/>
+<polygon points="650,127 636,133 636,121" fill="#e91e63"/>
+<line x1="570" y1="207" x2="636.1081097260087" y2="215.2635137157511" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="650,217 635.3639013184735,221.2171809760331 636.8523181335439,209.30984645546908" fill="#40c4ff"/>
+<line x1="570" y1="292" x2="636.2397893829195" y2="304.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="650,307 635.1340581726184,310.3171936309034 637.3455205932206,298.5227273876915" fill="#00e676"/>
+</svg>
 - **証拠保全**: インシデント発生時のモデルウェイト・ログ・会話履歴のスナップショット取得
 - **LLM会話ログ**: どの入力がどの出力を生成したかの完全な不変ログ（改ざん防止）
 - **モデル状態の記録**: インシデント前後のモデルパラメータ・バージョン・メタデータの保存
@@ -998,6 +3512,44 @@ paginate: true
 
 # モデルのロールバック戦略
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
+<rect x="40" y="60" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="95" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">プロンプト</text>
+<rect x="40" y="140" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="175" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">インジェクション</text>
+<rect x="40" y="220" width="160" height="60" rx="8" fill="#7b1fa2"/>
+<text x="120" y="255" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">ジェイルブレイク</text>
+<rect x="40" y="300" width="160" height="60" rx="8" fill="#e65100"/>
+<text x="120" y="335" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">データ漏洩</text>
+<rect x="310" y="150" width="180" height="100" rx="8" fill="#16213e"/>
+<text x="400" y="205" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">LLM</text>
+<rect x="590" y="60" width="170" height="55" rx="8" fill="#1b5e20"/>
+<text x="675" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">正常応答</text>
+<rect x="590" y="140" width="170" height="55" rx="8" fill="#e91e63"/>
+<text x="675" y="172.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">有害コンテンツ</text>
+<rect x="590" y="220" width="170" height="55" rx="8" fill="#7b1fa2"/>
+<text x="675" y="252.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">制限迂回</text>
+<rect x="590" y="300" width="170" height="55" rx="8" fill="#e65100"/>
+<text x="675" y="332.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">機密漏洩</text>
+<line x1="200" y1="90" x2="299.40447789123175" y2="175.8493218151547" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,185 295.4827586691552,180.39025986176966 303.3261971133083,171.30838376853973" fill="#e91e63"/>
+<line x1="200" y1="170" x2="296.49330650267177" y2="196.31635631891047" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,200 294.91460206791913,202.10493924633687 298.0720109374244,190.52777339148406" fill="#e91e63"/>
+<line x1="200" y1="250" x2="296.6590390798143" y2="219.24485120187725" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="310,215 298.47826102347597,224.9624058819568 294.83981713615265,213.5272965217977" fill="#ce93d8"/>
+<line x1="200" y1="330" x2="299.6408389724568" y2="239.41741911594838" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,230 303.6768757364346,243.85705955632403 295.60480220847893,234.97777867557272" fill="#ffcc80"/>
+<line x1="490" y1="190" x2="580.2478678874093" y2="97.04469607596846" stroke="#a5d6a7" stroke-width="2"/>
+<polygon points="590,87 584.5527376342529,101.22418126707878 575.9429981405656,92.86521088485814" fill="#a5d6a7"/>
+<line x1="490" y1="200" x2="576.7051989125617" y2="171.38728435885463" stroke="#e91e63" stroke-width="2"/>
+<polygon points="590,167 578.5854636377851,177.08505625347104 574.8249341873384,165.68951246423822" fill="#e91e63"/>
+<line x1="490" y1="210" x2="576.8699342024628" y2="242.14187565491125" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="590,247 574.7878809117104,247.76904671099862 578.9519874932151,236.51470459882387" fill="#ce93d8"/>
+<line x1="490" y1="220" x2="580.440734782723" y2="316.7715862175136" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="590,327 576.0571288759431,320.86841416777514 584.8243406895028,312.674758267252" fill="#ffcc80"/>
+</svg>
 - **バージョン管理**: モデルウェイト・設定・プロンプトのバージョン管理（Git + DVC/MLflow）
 - **チェックポイント**: SageMakerモデルレジストリでバージョン管理とロールバック機能
 - **ブルーグリーンデプロイ**: 旧バージョンを維持した状態で新バージョンをデプロイ・切り替え
@@ -1010,6 +3562,28 @@ paginate: true
 
 # コミュニケーションと報告
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
+<rect x="30" y="160" width="110" height="80" rx="8" fill="#40c4ff"/><text x="85" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">User</text><text x="85" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Input</text><rect x="165" y="160" width="110" height="80" rx="8" fill="#1976d2"/><text x="220" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Input</text><text x="220" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Sanitize</text><rect x="300" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="355" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt</text><text x="355" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Guard</text><rect x="435" y="160" width="110" height="80" rx="8" fill="#16213e"/><text x="490" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text><rect x="570" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="625" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Output</text><text x="625" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Filter</text><rect x="705" y="160" width="110" height="80" rx="8" fill="#00e676"/><text x="760" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text><line x1="140" y1="200" x2="151" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="165,200 151,206 151,194" fill="#ffffff"/><line x1="275" y1="200" x2="286" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="300,200 286,206 286,194" fill="#ffffff"/><line x1="410" y1="200" x2="421" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="435,200 421,206 421,194" fill="#ffffff"/><line x1="545" y1="200" x2="556" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="570,200 556,206 556,194" fill="#ffffff"/><line x1="680" y1="200" x2="691" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="705,200 691,206 691,194" fill="#ffffff"/>
+<rect x="130" y="270" width="420" height="50" rx="6" fill="#16213e" opacity="0.8"/>
+<text x="340" y="298" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Guardrails Layer</text>
+<line x1="130" y1="265" x2="130" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<line x1="550" y1="265" x2="550" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<rect x="30" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="85" y="355" text-anchor="middle" fill="#ffffff" font-size="12">BLOCK</text>
+<rect x="165" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="220" y="355" text-anchor="middle" fill="#ffffff" font-size="12">SANITIZE</text>
+<rect x="300" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="355" y="355" text-anchor="middle" fill="#ffffff" font-size="12">REJECT</text>
+<rect x="570" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="625" y="355" text-anchor="middle" fill="#ffffff" font-size="12">FILTER</text>
+</svg>
 - **内部エスカレーション**: セキュリティチーム → CISO → 経営層の明確な連絡ツリーと基準
 - **利害関係者通知**: 影響を受けたユーザー・顧客への適切な通知タイミングと内容
 - **規制当局への報告**: GDPR 72時間通知・個人情報保護委員会への報告（日本）
@@ -1030,6 +3604,12 @@ paginate: true
 
 # AI規制の動向（EU AI Act等）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
+<rect x="60" y="60" width="680" height="55" rx="6" fill="#b71c1c" opacity="0.85"/><text x="400" y="93.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Application Layer — Input Validation / Rate Limiting</text><rect x="60" y="130" width="680" height="55" rx="6" fill="#e65100" opacity="0.85"/><text x="400" y="163.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Prompt Layer — System Prompt / Few-shot Constraints</text><rect x="60" y="200" width="680" height="55" rx="6" fill="#1565c0" opacity="0.85"/><text x="400" y="233.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Model Layer — Fine-tuning / RLHF / System Prompt</text><rect x="60" y="270" width="680" height="55" rx="6" fill="#2e7d32" opacity="0.85"/><text x="400" y="303.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Output Layer — Content Filter / PII Redaction</text><rect x="60" y="340" width="680" height="45" rx="6" fill="#4a148c" opacity="0.85"/><text x="400" y="368.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Audit Layer — Logging / Monitoring / Alerting</text>
+<text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">外側（リクエスト）→ 内側（モデル）→ 外側（レスポンス）の多重チェック</text>
+</svg>
 - **EU AI Act（2024年施行）**: 世界初の包括的AI規制法、リスクベースアプローチを採用
 - **リスク分類**: 容認不可（禁止）/ 高リスク（厳格要件）/ 限定リスク / 最小リスク
 - **高リスクAIの要件**: 技術文書・ログ記録・透明性・人間による監視・サイバーセキュリティ
@@ -1042,6 +3622,43 @@ paginate: true
 
 # 責任あるAI（Responsible AI）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI レッドチーミングフロー</text>
+<rect x="30" y="150" width="130" height="70" rx="8" fill="#b71c1c"/>
+<text x="95" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Attack
+Planning</text>
+<rect x="195" y="150" width="130" height="70" rx="8" fill="#e65100"/>
+<text x="260" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt
+Crafting</text>
+<rect x="360" y="150" width="130" height="70" rx="8" fill="#7b1fa2"/>
+<text x="425" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Execute
+Attacks</text>
+<rect x="525" y="150" width="130" height="70" rx="8" fill="#1565c0"/>
+<text x="590" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Analyze
+Results</text>
+<rect x="655" y="60" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="715" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Pass</text>
+<rect x="655" y="240" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="715" y="272.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Fail →
+Mitigate</text>
+<line x1="160" y1="185" x2="181" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="195,185 181,191 181,179" fill="#ffffff"/>
+<line x1="325" y1="185" x2="346" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="360,185 346,191 346,179" fill="#ffffff"/>
+<line x1="490" y1="185" x2="511" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="525,185 511,191 511,179" fill="#ffffff"/>
+<line x1="655" y1="170" x2="655" y2="129" stroke="#00e676" stroke-width="2"/>
+<polygon points="655,115 661,129 649,129" fill="#00e676"/>
+<line x1="655" y1="200" x2="655" y2="226" stroke="#e91e63" stroke-width="2"/>
+<polygon points="655,240 649,226 661,226" fill="#e91e63"/>
+<line x1="415" y1="295" x2="415" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="415" y1="340" x2="215" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="215" y1="340" x2="215" y2="234" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="215,220 221,234 209,234" fill="#40c4ff"/>
+<text x="315" y="360" text-anchor="middle" fill="#40c4ff" font-size="12">改善サイクル</text>
+<text x="400" y="390" text-anchor="middle" fill="#aaa" font-size="12">OWASP LLM Top 10 + カスタム脅威シナリオを網羅</text>
+</svg>
 - **公平性（Fairness）**: 性別・人種・年齢等による差別的出力の防止・モニタリング
 - **透明性（Transparency）**: AIの利用と意思決定プロセスのユーザーへの開示
 - **説明可能性（Explainability）**: 判断根拠の説明（SHAP・LIME・Chain-of-Thought）
@@ -1054,6 +3671,44 @@ paginate: true
 
 # AIリスク管理フレームワーク（NIST AI RMF）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
+<rect x="30" y="80" width="140" height="60" rx="8" fill="#1565c0"/>
+<text x="100" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Model Hub</text>
+<rect x="30" y="170" width="140" height="60" rx="8" fill="#6a1b9a"/>
+<text x="100" y="205" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Dataset
+Source</text>
+<rect x="30" y="260" width="140" height="60" rx="8" fill="#e65100"/>
+<text x="100" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">3rd Party
+Libs</text>
+<rect x="310" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="380" y="205" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Build
+Pipeline</text>
+<rect x="580" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="115" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Verified
+Model</text>
+<rect x="580" y="170" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Staging
+Env</text>
+<rect x="580" y="260" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Production</text>
+<line x1="170" y1="110" x2="297.65928041959705" y2="178.38890022478412" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="310,185 294.82595194450454,183.67778004495682 300.49260889468957,173.10002040461143" fill="#40c4ff"/>
+<line x1="170" y1="200" x2="296" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="310,200 296,206 296,194" fill="#ffffff"/>
+<line x1="170" y1="290" x2="297.65928041959705" y2="221.61109977521588" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,215 300.49260889468957,226.89997959538857 294.82595194450454,216.32221995504318" fill="#ffcc80"/>
+<line x1="450" y1="185" x2="567.8734017953196" y2="116.99611434885408" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,110 570.8717365162571,122.19322786514569 564.8750670743822,111.79900083256247" fill="#00e676"/>
+<line x1="450" y1="200" x2="566" y2="200" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,200 566,206 566,194" fill="#00e676"/>
+<line x1="450" y1="215" x2="567.8734017953196" y2="283.00388565114594" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,290 564.8750670743822,288.20099916743754 570.8717365162571,277.8067721348543" fill="#00e676"/>
+<rect x="250" y="340" width="260" height="45" rx="8" fill="#b71c1c"/>
+<text x="380" y="367.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Hash Verify / Sign / Scan / SBOM</text>
+<text x="400" y="398" text-anchor="middle" fill="#e91e63" font-size="12">各ステージでの完全性検証が必須</text>
+</svg>
 - **Govern（統治）**: AIリスク管理の文化・組織・方針・役割の確立
 - **Map（マッピング）**: AIシステムのリスクと使用文脈の識別・分類・優先度付け
 - **Measure（測定）**: 識別されたリスクの定量的分析・評価・指標設定
@@ -1066,6 +3721,49 @@ paginate: true
 
 # ISO/IEC 42001（AI管理システム）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">API レート制限 & アクセス制御</text>
+<rect x="30" y="80" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client A</text>
+<rect x="30" y="170" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client B</text>
+<rect x="30" y="260" width="110" height="60" rx="8" fill="#1565c0"/>
+<text x="85" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Client C</text>
+<rect x="200" y="120" width="140" height="130" rx="8" fill="#b71c1c"/>
+<text x="270" y="190" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">API
+Gateway</text>
+<text x="270" y="275" text-anchor="middle" fill="#ffcdd2" font-size="11">Rate Limit / Auth</text>
+<rect x="410" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="480" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM
+Validation</text>
+<rect x="410" y="170" width="140" height="60" rx="8" fill="#388e3c"/>
+<text x="480" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Quota
+Check</text>
+<rect x="410" y="260" width="140" height="60" rx="8" fill="#1b5e20"/>
+<text x="480" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Audit
+Log</text>
+<rect x="630" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="700" y="205" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">LLM
+Service</text>
+<line x1="140" y1="110" x2="188.8" y2="146.6" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="200,155 185.20000000000002,151.4 192.4,141.79999999999998" fill="#40c4ff"/>
+<line x1="140" y1="200" x2="186.41800499796534" y2="188.39549875050866" stroke="#ffffff" stroke-width="2"/>
+<polygon points="200,185 187.87321874818335,194.21635375138067 184.96279124774733,182.57464374963666" fill="#ffffff"/>
+<line x1="140" y1="290" x2="191.25426933423807" y2="225.93216333220244" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="200,215 195.93948219089626,229.680333617529 186.5690564775799,222.18399304687588" fill="#ffcc80"/>
+<line x1="340" y1="140" x2="397.1319695797472" y2="115.51487018010835" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,110 399.4954853712222,121.02974036021669 394.7684537882722,110" fill="#00e676"/>
+<line x1="340" y1="185" x2="396.3107662029163" y2="197.06659275776778" stroke="#00e676" stroke-width="2"/>
+<polygon points="410,200 395.05359167053103,202.93340724223225 397.56794073530153,191.1997782733033" fill="#00e676"/>
+<line x1="340" y1="230" x2="399.37040756688583" y2="280.8889207716164" stroke="#aaa" stroke-width="2"/>
+<polygon points="410,290 395.46565932615005,285.4444603858082 403.2751558076216,276.33338115742464" fill="#aaa"/>
+<line x1="550" y1="170" x2="616.2397893829195" y2="182.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="630,185 615.1340581726184,188.31719363090332 617.3455205932206,176.52272738769148" fill="#00e676"/>
+<text x="700" y="270" text-anchor="middle" fill="#e91e63" font-size="11">BLOCK</text>
+<line x1="700" y1="115" x2="700" y2="136" stroke="#e91e63" stroke-width="2"/>
+<polygon points="700,150 694,136 706,136" fill="#e91e63"/>
+</svg>
 - **概要**: ISO/IEC 42001（2023年12月発行）— AI管理システムの初の国際標準
 - **ISO 27001との関係**: 情報セキュリティ管理（ISMS）の姉妹標準・統合運用が推奨
 - **要求事項**: 組織文脈・リーダーシップ・計画・支援・運用・パフォーマンス評価・改善
@@ -1078,6 +3776,44 @@ paginate: true
 
 # 組織的ガバナンス体制
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
+<rect x="30" y="150" width="120" height="70" rx="8" fill="#40c4ff"/>
+<text x="90" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw
+Input</text>
+<rect x="210" y="90" width="140" height="60" rx="8" fill="#b71c1c"/>
+<text x="280" y="125" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">PII
+Detector</text>
+<rect x="210" y="210" width="140" height="60" rx="8" fill="#7b1fa2"/>
+<text x="280" y="245" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Entity
+Tagger</text>
+<rect x="420" y="150" width="140" height="70" rx="8" fill="#e65100"/>
+<text x="490" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Redaction
+Engine</text>
+<rect x="620" y="150" width="140" height="70" rx="8" fill="#2e7d32"/>
+<text x="690" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Safe
+Output</text>
+<line x1="150" y1="185" x2="200.5040785617371" y2="130.28724822478483" stroke="#e91e63" stroke-width="2"/>
+<polygon points="210,120 204.91289922950202,134.35692884118322 196.09525789397216,126.21756760838643" fill="#e91e63"/>
+<line x1="150" y1="185" x2="199.67984203718962" y2="230.53985520075716" stroke="#ffffff" stroke-width="2"/>
+<polygon points="210,240 195.62549426608552,234.9627800419616 203.7341898082937,226.11693035955273" fill="#ffffff"/>
+<line x1="350" y1="120" x2="408.99154325648607" y2="166.35049827295336" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="420,175 405.28461394489466,171.06840830588789 412.6984725680775,161.63258824001883" fill="#ffcc80"/>
+<line x1="350" y1="240" x2="408.2235013447283" y2="202.570606278389" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="420,195 411.46804689260927,207.6176771306483 404.9789557968473,197.52353542612968" fill="#ce93d8"/>
+<line x1="560" y1="185" x2="606" y2="185" stroke="#00e676" stroke-width="2"/>
+<polygon points="620,185 606,191 606,179" fill="#00e676"/>
+<rect x="50" y="290" width="680" height="80" rx="8" fill="#16213e"/>
+<text x="390" y="315" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">PII カテゴリ</text>
+<text x="120" y="345" text-anchor="middle" fill="#ffffff" font-size="12">氏名</text>
+<text x="220" y="345" text-anchor="middle" fill="#ffffff" font-size="12">メール</text>
+<text x="320" y="345" text-anchor="middle" fill="#ffffff" font-size="12">電話番号</text>
+<text x="420" y="345" text-anchor="middle" fill="#ffffff" font-size="12">マイナンバー</text>
+<text x="550" y="345" text-anchor="middle" fill="#ffffff" font-size="12">クレカ番号</text>
+<text x="670" y="345" text-anchor="middle" fill="#ffffff" font-size="12">住所</text>
+<text x="390" y="370" text-anchor="middle" fill="#40c4ff" font-size="11">Amazon Comprehend / Microsoft Presidio / Spacy NER</text>
+</svg>
 - **AI委員会**: CISO・CTO・法務・倫理・プライバシー担当の横断チームによるAIガバナンス
 - **AIリスクオーナー**: 各AIシステムに責任者（Risk Owner）を明確に割り当てる
 - **ポリシー体系**: AIセキュリティポリシー → 標準 → 手順のドキュメント階層化
@@ -1090,6 +3826,56 @@ paginate: true
 
 # AIポリシー・ガイドライン策定
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI 意思決定の監査ログアーキテクチャ</text>
+<rect x="30" y="100" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="135" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">User
+Request</text>
+<rect x="30" y="200" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="235" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">LLM
+Response</text>
+<rect x="30" y="300" width="120" height="60" rx="8" fill="#1565c0"/>
+<text x="90" y="335" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Agent
+Action</text>
+<rect x="220" y="180" width="140" height="100" rx="8" fill="#e65100"/>
+<text x="290" y="235" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Log
+Collector</text>
+<rect x="440" y="100" width="130" height="55" rx="8" fill="#6a1b9a"/>
+<text x="505" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<rect x="440" y="180" width="130" height="55" rx="8" fill="#1565c0"/>
+<text x="505" y="212.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">S3
+Storage</text>
+<rect x="440" y="265" width="130" height="55" rx="8" fill="#2e7d32"/>
+<text x="505" y="297.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">SIEM
+System</text>
+<rect x="650" y="100" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="710" y="132.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Alert
+Engine</text>
+<rect x="650" y="190" width="120" height="55" rx="8" fill="#7b1fa2"/>
+<text x="710" y="222.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Dashboard</text>
+<rect x="650" y="280" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="710" y="312.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Compliance
+Report</text>
+<line x1="150" y1="130" x2="210.78093548984074" y2="199.4639262741037" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="220,210 206.26547532159947,203.4149539213148 215.29639565808202,195.5128986268926" fill="#40c4ff"/>
+<line x1="150" y1="230" x2="206" y2="230" stroke="#ffffff" stroke-width="2"/>
+<polygon points="220,230 206,236 206,224" fill="#ffffff"/>
+<line x1="150" y1="330" x2="210.10050506338834" y2="269.8994949366117" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="220,260 214.34314575050763,274.14213562373095 205.85786437626905,265.6568542494924" fill="#ffcc80"/>
+<line x1="360" y1="210" x2="430.28434976014915" y2="137.07998712384526" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="440,127 434.6043442417971,141.24383722663848 425.9643552785012,132.91613702105204" fill="#ce93d8"/>
+<line x1="360" y1="220" x2="426.1812617152648" y2="209.24554497126948" stroke="#ffffff" stroke-width="2"/>
+<polygon points="440,207 427.1436381315231,215.16786137901315 425.21888529900644,203.32322856352582" fill="#ffffff"/>
+<line x1="360" y1="230" x2="428.9341892695466" y2="283.4239966838986" stroke="#aaa" stroke-width="2"/>
+<polygon points="440,292 425.2587592769317,288.1664869969501 432.6096192621615,278.68150637084716" fill="#aaa"/>
+<line x1="570" y1="127" x2="636" y2="127" stroke="#e91e63" stroke-width="2"/>
+<polygon points="650,127 636,133 636,121" fill="#e91e63"/>
+<line x1="570" y1="207" x2="636.1081097260087" y2="215.2635137157511" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="650,217 635.3639013184735,221.2171809760331 636.8523181335439,209.30984645546908" fill="#40c4ff"/>
+<line x1="570" y1="292" x2="636.2397893829195" y2="304.4199605092974" stroke="#00e676" stroke-width="2"/>
+<polygon points="650,307 635.1340581726184,310.3171936309034 637.3455205932206,298.5227273876915" fill="#00e676"/>
+</svg>
 - **AI利用ポリシー**: 業務での生成AI使用の許可・禁止事項（入力禁止データの明示等）
 - **データ分類ポリシー**: どのデータをAIに入力してよいかの明確な基準と例示
 - **ベンダー評価基準**: 外部AIサービス採用時のセキュリティ評価チェックリスト
@@ -1102,6 +3888,44 @@ paginate: true
 
 # 監査とコンプライアンス検証
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
+<rect x="40" y="60" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="95" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">プロンプト</text>
+<rect x="40" y="140" width="160" height="60" rx="8" fill="#e91e63"/>
+<text x="120" y="175" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">インジェクション</text>
+<rect x="40" y="220" width="160" height="60" rx="8" fill="#7b1fa2"/>
+<text x="120" y="255" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">ジェイルブレイク</text>
+<rect x="40" y="300" width="160" height="60" rx="8" fill="#e65100"/>
+<text x="120" y="335" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">データ漏洩</text>
+<rect x="310" y="150" width="180" height="100" rx="8" fill="#16213e"/>
+<text x="400" y="205" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">LLM</text>
+<rect x="590" y="60" width="170" height="55" rx="8" fill="#1b5e20"/>
+<text x="675" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">正常応答</text>
+<rect x="590" y="140" width="170" height="55" rx="8" fill="#e91e63"/>
+<text x="675" y="172.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">有害コンテンツ</text>
+<rect x="590" y="220" width="170" height="55" rx="8" fill="#7b1fa2"/>
+<text x="675" y="252.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">制限迂回</text>
+<rect x="590" y="300" width="170" height="55" rx="8" fill="#e65100"/>
+<text x="675" y="332.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">機密漏洩</text>
+<line x1="200" y1="90" x2="299.40447789123175" y2="175.8493218151547" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,185 295.4827586691552,180.39025986176966 303.3261971133083,171.30838376853973" fill="#e91e63"/>
+<line x1="200" y1="170" x2="296.49330650267177" y2="196.31635631891047" stroke="#e91e63" stroke-width="2"/>
+<polygon points="310,200 294.91460206791913,202.10493924633687 298.0720109374244,190.52777339148406" fill="#e91e63"/>
+<line x1="200" y1="250" x2="296.6590390798143" y2="219.24485120187725" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="310,215 298.47826102347597,224.9624058819568 294.83981713615265,213.5272965217977" fill="#ce93d8"/>
+<line x1="200" y1="330" x2="299.6408389724568" y2="239.41741911594838" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,230 303.6768757364346,243.85705955632403 295.60480220847893,234.97777867557272" fill="#ffcc80"/>
+<line x1="490" y1="190" x2="580.2478678874093" y2="97.04469607596846" stroke="#a5d6a7" stroke-width="2"/>
+<polygon points="590,87 584.5527376342529,101.22418126707878 575.9429981405656,92.86521088485814" fill="#a5d6a7"/>
+<line x1="490" y1="200" x2="576.7051989125617" y2="171.38728435885463" stroke="#e91e63" stroke-width="2"/>
+<polygon points="590,167 578.5854636377851,177.08505625347104 574.8249341873384,165.68951246423822" fill="#e91e63"/>
+<line x1="490" y1="210" x2="576.8699342024628" y2="242.14187565491125" stroke="#ce93d8" stroke-width="2"/>
+<polygon points="590,247 574.7878809117104,247.76904671099862 578.9519874932151,236.51470459882387" fill="#ce93d8"/>
+<line x1="490" y1="220" x2="580.440734782723" y2="316.7715862175136" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="590,327 576.0571288759431,320.86841416777514 584.8243406895028,312.674758267252" fill="#ffcc80"/>
+</svg>
 - **内部監査**: AIシステムのセキュリティ統制の定期的な内部監査（年1回以上）
 - **外部監査**: 独立した第三者によるペネトレーションテスト・コンプライアンス評価
 - **継続的監視**: AWS Config Rules・Security Hubで設定コンプライアンスを自動チェック
@@ -1122,6 +3946,28 @@ paginate: true
 
 # セキュリティ成熟度モデル
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
+<rect x="30" y="160" width="110" height="80" rx="8" fill="#40c4ff"/><text x="85" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">User</text><text x="85" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Input</text><rect x="165" y="160" width="110" height="80" rx="8" fill="#1976d2"/><text x="220" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Input</text><text x="220" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Sanitize</text><rect x="300" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="355" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt</text><text x="355" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Guard</text><rect x="435" y="160" width="110" height="80" rx="8" fill="#16213e"/><text x="490" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text><rect x="570" y="160" width="110" height="80" rx="8" fill="#388e3c"/><text x="625" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Output</text><text x="625" y="215" text-anchor="middle" fill="#ffffff" font-size="13">Filter</text><rect x="705" y="160" width="110" height="80" rx="8" fill="#00e676"/><text x="760" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text><line x1="140" y1="200" x2="151" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="165,200 151,206 151,194" fill="#ffffff"/><line x1="275" y1="200" x2="286" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="300,200 286,206 286,194" fill="#ffffff"/><line x1="410" y1="200" x2="421" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="435,200 421,206 421,194" fill="#ffffff"/><line x1="545" y1="200" x2="556" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="570,200 556,206 556,194" fill="#ffffff"/><line x1="680" y1="200" x2="691" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="705,200 691,206 691,194" fill="#ffffff"/>
+<rect x="130" y="270" width="420" height="50" rx="6" fill="#16213e" opacity="0.8"/>
+<text x="340" y="298" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Guardrails Layer</text>
+<line x1="130" y1="265" x2="130" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<line x1="550" y1="265" x2="550" y2="320" stroke="#f9a825" stroke-width="2" stroke-dasharray="4"/>
+<rect x="30" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="85" y="355" text-anchor="middle" fill="#ffffff" font-size="12">BLOCK</text>
+<rect x="165" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="220" y="355" text-anchor="middle" fill="#ffffff" font-size="12">SANITIZE</text>
+<rect x="300" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="355" y="355" text-anchor="middle" fill="#ffffff" font-size="12">REJECT</text>
+<rect x="570" y="330" width="110" height="40" rx="4" fill="#b71c1c" opacity="0.7"/>
+<text x="625" y="355" text-anchor="middle" fill="#ffffff" font-size="12">FILTER</text>
+</svg>
 - **Level 1 — 初期**: AIセキュリティポリシー未整備・アドホックな対応・認識不足
 - **Level 2 — 整備**: 基本ポリシー策定・Guardrails設定・CloudTrail有効化・インベントリ作成
 - **Level 3 — 定義**: 脅威モデリング実施・Redチーム演習・RBAC完備・監視ダッシュボード
@@ -1134,6 +3980,12 @@ paginate: true
 
 # 実装ロードマップ
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
+<rect x="60" y="60" width="680" height="55" rx="6" fill="#b71c1c" opacity="0.85"/><text x="400" y="93.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Application Layer — Input Validation / Rate Limiting</text><rect x="60" y="130" width="680" height="55" rx="6" fill="#e65100" opacity="0.85"/><text x="400" y="163.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Prompt Layer — System Prompt / Few-shot Constraints</text><rect x="60" y="200" width="680" height="55" rx="6" fill="#1565c0" opacity="0.85"/><text x="400" y="233.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Model Layer — Fine-tuning / RLHF / System Prompt</text><rect x="60" y="270" width="680" height="55" rx="6" fill="#2e7d32" opacity="0.85"/><text x="400" y="303.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Output Layer — Content Filter / PII Redaction</text><rect x="60" y="340" width="680" height="45" rx="6" fill="#4a148c" opacity="0.85"/><text x="400" y="368.5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Audit Layer — Logging / Monitoring / Alerting</text>
+<text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">外側（リクエスト）→ 内側（モデル）→ 外側（レスポンス）の多重チェック</text>
+</svg>
 - **Month 1-3（基盤）**: AIアセットインベントリ作成・リスク評価・基本ポリシー策定
 - **Month 4-6（防御）**: Guardrails設定・IAM最小権限・PrivateLink・CloudTrail有効化
 - **Month 7-9（検出）**: 監視ダッシュボード構築・SIEM連携・異常検出ルール設定・Redチーム
@@ -1146,6 +3998,43 @@ paginate: true
 
 # ツール・リソース・参考文献
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">AI レッドチーミングフロー</text>
+<rect x="30" y="150" width="130" height="70" rx="8" fill="#b71c1c"/>
+<text x="95" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Attack
+Planning</text>
+<rect x="195" y="150" width="130" height="70" rx="8" fill="#e65100"/>
+<text x="260" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Prompt
+Crafting</text>
+<rect x="360" y="150" width="130" height="70" rx="8" fill="#7b1fa2"/>
+<text x="425" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Execute
+Attacks</text>
+<rect x="525" y="150" width="130" height="70" rx="8" fill="#1565c0"/>
+<text x="590" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Analyze
+Results</text>
+<rect x="655" y="60" width="120" height="55" rx="8" fill="#2e7d32"/>
+<text x="715" y="92.5" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Pass</text>
+<rect x="655" y="240" width="120" height="55" rx="8" fill="#b71c1c"/>
+<text x="715" y="272.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Fail →
+Mitigate</text>
+<line x1="160" y1="185" x2="181" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="195,185 181,191 181,179" fill="#ffffff"/>
+<line x1="325" y1="185" x2="346" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="360,185 346,191 346,179" fill="#ffffff"/>
+<line x1="490" y1="185" x2="511" y2="185" stroke="#ffffff" stroke-width="2"/>
+<polygon points="525,185 511,191 511,179" fill="#ffffff"/>
+<line x1="655" y1="170" x2="655" y2="129" stroke="#00e676" stroke-width="2"/>
+<polygon points="655,115 661,129 649,129" fill="#00e676"/>
+<line x1="655" y1="200" x2="655" y2="226" stroke="#e91e63" stroke-width="2"/>
+<polygon points="655,240 649,226 661,226" fill="#e91e63"/>
+<line x1="415" y1="295" x2="415" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="415" y1="340" x2="215" y2="340" stroke="#40c4ff" stroke-width="2" stroke-dasharray="4"/>
+<line x1="215" y1="340" x2="215" y2="234" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="215,220 221,234 209,234" fill="#40c4ff"/>
+<text x="315" y="360" text-anchor="middle" fill="#40c4ff" font-size="12">改善サイクル</text>
+<text x="400" y="390" text-anchor="middle" fill="#aaa" font-size="12">OWASP LLM Top 10 + カスタム脅威シナリオを網羅</text>
+</svg>
 - **テストツール**: Garak（NVIDIA）・PyRIT（Microsoft）・Promptfoo・LLM-Guard
 - **フレームワーク**: OWASP LLM Top 10・MITRE ATLAS・NIST AI RMF・ISO/IEC 42001
 - **AWS公式**: Amazon Bedrock セキュリティドキュメント・Guardrails・SageMaker Clarify
@@ -1158,6 +4047,44 @@ paginate: true
 
 # まとめ — 生成AIセキュリティの要点
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
+<rect x="30" y="80" width="140" height="60" rx="8" fill="#1565c0"/>
+<text x="100" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Model Hub</text>
+<rect x="30" y="170" width="140" height="60" rx="8" fill="#6a1b9a"/>
+<text x="100" y="205" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Dataset
+Source</text>
+<rect x="30" y="260" width="140" height="60" rx="8" fill="#e65100"/>
+<text x="100" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">3rd Party
+Libs</text>
+<rect x="310" y="150" width="140" height="100" rx="8" fill="#16213e"/>
+<text x="380" y="205" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Build
+Pipeline</text>
+<rect x="580" y="80" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="115" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Verified
+Model</text>
+<rect x="580" y="170" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="205" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Staging
+Env</text>
+<rect x="580" y="260" width="140" height="60" rx="8" fill="#2e7d32"/>
+<text x="650" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Production</text>
+<line x1="170" y1="110" x2="297.65928041959705" y2="178.38890022478412" stroke="#40c4ff" stroke-width="2"/>
+<polygon points="310,185 294.82595194450454,183.67778004495682 300.49260889468957,173.10002040461143" fill="#40c4ff"/>
+<line x1="170" y1="200" x2="296" y2="200" stroke="#ffffff" stroke-width="2"/>
+<polygon points="310,200 296,206 296,194" fill="#ffffff"/>
+<line x1="170" y1="290" x2="297.65928041959705" y2="221.61109977521588" stroke="#ffcc80" stroke-width="2"/>
+<polygon points="310,215 300.49260889468957,226.89997959538857 294.82595194450454,216.32221995504318" fill="#ffcc80"/>
+<line x1="450" y1="185" x2="567.8734017953196" y2="116.99611434885408" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,110 570.8717365162571,122.19322786514569 564.8750670743822,111.79900083256247" fill="#00e676"/>
+<line x1="450" y1="200" x2="566" y2="200" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,200 566,206 566,194" fill="#00e676"/>
+<line x1="450" y1="215" x2="567.8734017953196" y2="283.00388565114594" stroke="#00e676" stroke-width="2"/>
+<polygon points="580,290 564.8750670743822,288.20099916743754 570.8717365162571,277.8067721348543" fill="#00e676"/>
+<rect x="250" y="340" width="260" height="45" rx="8" fill="#b71c1c"/>
+<text x="380" y="367.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Hash Verify / Sign / Scan / SBOM</text>
+<text x="400" y="398" text-anchor="middle" fill="#e91e63" font-size="12">各ステージでの完全性検証が必須</text>
+</svg>
 - **多層防御が必須**: 入力検証 → モデル保護 → 出力制御 → 監視の連鎖的な防御
 - **脅威の進化に追随**: OWASP LLM Top 10・MITRE ATLASを定期的に参照し対策を更新
 - **AWSの活用**: Guardrails・IAM・PrivateLink・CloudTrailを組み合わせた実装

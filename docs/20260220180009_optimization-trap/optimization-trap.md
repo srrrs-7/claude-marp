@@ -7,6 +7,71 @@ paginate: true
 header: "最適化の罠"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -85,10 +150,16 @@ style: |
 
 # データベースのN+1最適化地獄
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="28" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">最適化の連鎖 — 複雑性の雪だるま</text><rect x="30" y="50" width="150" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="105" y="76" text-anchor="middle" font-size="11" fill="#e91e63" font-weight="bold" font-family="sans-serif">N+1問題</text><text x="105" y="94" text-anchor="middle" font-size="10" fill="#ccccdd" font-family="sans-serif">遅いクエリ</text><polygon points="183,77 200,67 200,87" fill="#f9a825"/><rect x="203" y="50" width="150" height="55" rx="8" fill="#16213e" stroke="#f57c00" stroke-width="2"/><text x="278" y="76" text-anchor="middle" font-size="11" fill="#f57c00" font-weight="bold" font-family="sans-serif">Eager Loading</text><text x="278" y="94" text-anchor="middle" font-size="10" fill="#ccccdd" font-family="sans-serif">大量データ取得</text><polygon points="356,77 373,67 373,87" fill="#f9a825"/><rect x="376" y="50" width="150" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="451" y="76" text-anchor="middle" font-size="11" fill="#f9a825" font-weight="bold" font-family="sans-serif">Redisキャッシュ</text><text x="451" y="94" text-anchor="middle" font-size="10" fill="#ccccdd" font-family="sans-serif">整合性の問題</text><polygon points="529,77 546,67 546,87" fill="#f9a825"/><rect x="549" y="50" width="150" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="624" y="76" text-anchor="middle" font-size="11" fill="#e91e63" font-weight="bold" font-family="sans-serif">無効化ロジック</text><text x="624" y="94" text-anchor="middle" font-size="10" fill="#e91e63" font-family="sans-serif">複雑度爆発</text><rect x="30" y="130" width="720" height="100" rx="10" fill="#16213e" stroke="#555566" stroke-width="1"/><text x="400" y="155" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">最適化の皮肉</text><text x="60" y="180" font-size="12" fill="#ccccdd" font-family="sans-serif">各ステップで「最適化」したが、全体のシステム複雑度は増大した</text><text x="60" y="202" font-size="12" fill="#ccccdd" font-family="sans-serif">解決策を重ねるたびに、次の問題の種を撒いている</text><text x="60" y="222" font-size="11" fill="#888899" font-family="sans-serif">→ 最初のN+1を許容すべきだったか？ vs キャッシュ戦略を最初から設計すべきだったか？</text></svg>
 - - N+1クエリ問題を解消 → **Eager Loading** に変更
 - - しかしデータ量増大 → **キャッシュ戦略**を導入
 - - キャッシュ不整合 → **キャッシュ無効化ロジック**が複雑化
 - - 最終的に: **最適化のための最適化**が新たな複雑性を生む
+
+
+---
+
+# データベースのN+1最適化地獄（コード例）
 
 ```javascript
 // Level 1: N+1問題
@@ -153,6 +224,7 @@ if (!cached) { /* DB query + cache set */ }
 
 # カオスエンジニアリングという「意図的非効率」
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="28" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">意図的非効率が長期コストを下げる</text><rect x="30" y="50" width="340" height="180" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="76" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">カオスエンジニアリングなし</text><line x1="60" y1="190" x2="340" y2="190" stroke="#555566" stroke-width="1"/><line x1="60" y1="190" x2="60" y2="90" stroke="#555566" stroke-width="1"/><polyline points="60,170 120,165 180,160 200,160 220,158 240,80 260,175 280,170 300,168 340,165" fill="none" stroke="#e91e63" stroke-width="2"/><text x="200" y="215" text-anchor="middle" font-size="11" fill="#e91e63" font-family="sans-serif">突発障害（コスト大・予測不能）</text><rect x="430" y="50" width="340" height="180" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="600" y="76" text-anchor="middle" font-size="13" fill="#4caf50" font-weight="bold" font-family="sans-serif">カオスエンジニアリングあり</text><line x1="460" y1="190" x2="740" y2="190" stroke="#555566" stroke-width="1"/><line x1="460" y1="190" x2="460" y2="90" stroke="#555566" stroke-width="1"/><polyline points="460,165 490,160 520,140 550,138 580,136 610,134 640,133 670,132 700,132 740,131" fill="none" stroke="#4caf50" stroke-width="2"/><rect x="490" y="120" width="15" height="40" rx="2" fill="#f9a825" opacity="0.6"/><rect x="540" y="115" width="15" height="45" rx="2" fill="#f9a825" opacity="0.6"/><rect x="590" y="125" width="15" height="35" rx="2" fill="#f9a825" opacity="0.6"/><text x="600" y="215" text-anchor="middle" font-size="11" fill="#4caf50" font-family="sans-serif">意図的障害で耐性を構築 → 安定</text></svg>
 - - **本番環境で意図的に障害を起こす** = 一見「非効率」の極み
 - - しかし**障害への耐性**が劇的に向上 → 長期的にはコスト削減
 - - Netflix: Chaos Monkeyで毎日ランダムにサーバー停止
@@ -175,6 +247,7 @@ if (!cached) { /* DB query + cache set */ }
 
 # 「最適化するな、適応させよ」
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="28" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">脆弱 vs 強靭 vs アンチフラジャイル</text><rect x="30" y="50" width="220" height="170" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="140" y="76" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">脆弱（Fragile）</text><text x="140" y="100" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">ストレスで壊れる</text><text x="140" y="125" text-anchor="middle" font-size="22" fill="#e91e63" font-family="sans-serif">↓</text><text x="140" y="152" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: 在庫ゼロのJIT</text><text x="140" y="172" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: 単一CDN依存</text><text x="140" y="200" text-anchor="middle" font-size="11" fill="#e91e63" font-family="sans-serif">最適化 = 脆弱化</text><rect x="290" y="50" width="220" height="170" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="76" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">強靭（Robust）</text><text x="400" y="100" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">ストレスに耐える</text><text x="400" y="125" text-anchor="middle" font-size="22" fill="#f9a825" font-family="sans-serif">→</text><text x="400" y="152" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: 冗長サーバー構成</text><text x="400" y="172" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: 在庫バッファ保持</text><text x="400" y="200" text-anchor="middle" font-size="11" fill="#f9a825" font-family="sans-serif">余裕 = 耐障害性</text><rect x="550" y="50" width="220" height="170" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="660" y="76" text-anchor="middle" font-size="13" fill="#4caf50" font-weight="bold" font-family="sans-serif">アンチフラジャイル</text><text x="660" y="100" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">ストレスで強くなる</text><text x="660" y="125" text-anchor="middle" font-size="22" fill="#4caf50" font-family="sans-serif">↑</text><text x="660" y="152" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: カオスエンジニアリング</text><text x="660" y="172" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: 段階的リリース</text><text x="660" y="200" text-anchor="middle" font-size="11" fill="#4caf50" font-family="sans-serif">適応 = 進化</text></svg>
 - - **固定最適解より適応能力**: 環境が変わると最適解も変わる
 - - **アンチフラジャイル（Taleb）**: ストレスで壊れるのではなく**強くなる**システム
 - - 進化生物学: 生き残るのは最も強い種ではなく**最も適応できる種**
@@ -185,12 +258,19 @@ if (!cached) { /* DB query + cache set */ }
 ---
 
 <!-- _class: lead -->
-# まとめ — 脆さを認識するエンジニアリング
+# まとめ — 脆さを認識するエンジニアリング（1/2）
 
 - **最適化されたシステムは美しいが壊れやすい**
 - 
 - 本物のエンジニアリングとは:
 - 
+
+
+---
+
+<!-- _class: lead -->
+# まとめ — 脆さを認識するエンジニアリング（2/2）
+
 - - 効率化と耐障害性の**トレードオフを認識**する
 - - **意図的な余裕（Slack）**をシステムに組み込む
 - - 冗長性を**コストではなく投資**として正当化する
@@ -199,13 +279,19 @@ if (!cached) { /* DB query + cache set */ }
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - **書籍:**
 - - [Nassim Nicholas Taleb "Antifragile" (2012)](https://en.wikipedia.org/wiki/Antifragile_(book))
 - - [Tom DeMarco "Slack" (2001)](https://www.oreilly.com/library/view/slack/0767907698/)
 - 
 - **ソフトウェア工学:**
+
+
+---
+
+# 参考文献（2/2）
+
 - - [Martin Fowler "Microservices"](https://martinfowler.com/articles/microservices.html)
 - - [Fallacies of Distributed Computing](https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing)
 - 

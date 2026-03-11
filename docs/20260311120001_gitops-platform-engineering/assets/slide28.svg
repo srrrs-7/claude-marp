@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="bold" fill="#ffffff">Internal Developer Platform (IDP) 全体像</text>
+
+  <!-- === LEFT: Developer ===-->
+  <rect x="20" y="170" width="120" height="160" rx="10" fill="#3b1f6e"/>
+  <rect x="20" y="170" width="120" height="8" rx="4" fill="#a78bfa"/>
+  <!-- Developer icon (simplified) -->
+  <circle cx="80" cy="210" r="18" fill="#a78bfa" style="opacity:0.3"/>
+  <circle cx="80" cy="203" r="10" fill="#a78bfa"/>
+  <rect x="60" y="216" width="40" height="20" rx="6" fill="#a78bfa"/>
+  <text x="80" y="250" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#a78bfa">開発者</text>
+  <text x="80" y="268" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#e2d9f3">コード書く</text>
+  <text x="80" y="284" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#e2d9f3">デプロイ依頼</text>
+  <text x="80" y="300" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#e2d9f3">環境管理</text>
+
+  <!-- Arrow Developer → Portal -->
+  <line x1="140" y1="250" x2="188" y2="250" stroke="#a78bfa" stroke-width="2.5"/>
+  <polygon points="188,243 200,250 188,257" fill="#a78bfa"/>
+
+  <!-- === CENTER: Self-Service Portal ===-->
+  <rect x="200" y="100" width="260" height="300" rx="12" fill="#111827"/>
+  <rect x="200" y="100" width="260" height="10" rx="6" fill="#60a5fa"/>
+  <text x="330" y="128" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#60a5fa">セルフサービスポータル</text>
+  <text x="330" y="147" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#9ca3af">Backstage / Port / Cortex</text>
+
+  <!-- Portal items -->
+  <rect x="216" y="158" width="228" height="38" rx="6" fill="#1e3a5f"/>
+  <text x="330" y="183" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#60a5fa">サービスカタログ</text>
+
+  <rect x="216" y="204" width="228" height="38" rx="6" fill="#1e3a5f"/>
+  <text x="330" y="229" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#60a5fa">環境プロビジョニング</text>
+
+  <rect x="216" y="250" width="228" height="38" rx="6" fill="#1e3a5f"/>
+  <text x="330" y="275" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#60a5fa">ドキュメント / API</text>
+
+  <rect x="216" y="296" width="228" height="38" rx="6" fill="#1e3a5f"/>
+  <text x="330" y="321" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#60a5fa">デプロイパイプライン</text>
+
+  <rect x="216" y="342" width="228" height="38" rx="6" fill="#1e3a5f"/>
+  <text x="330" y="367" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#60a5fa">監視 / コスト可視化</text>
+
+  <!-- Arrow Portal → Infrastructure -->
+  <line x1="460" y1="250" x2="508" y2="250" stroke="#60a5fa" stroke-width="2.5"/>
+  <polygon points="508,243 520,250 508,257" fill="#60a5fa"/>
+
+  <!-- === RIGHT: Infrastructure ===-->
+  <rect x="520" y="80" width="260" height="340" rx="12" fill="#0d1117"/>
+  <rect x="520" y="80" width="260" height="10" rx="6" fill="#34d399"/>
+  <text x="650" y="108" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#34d399">インフラ層</text>
+
+  <!-- Infrastructure items -->
+  <rect x="536" y="118" width="228" height="36" rx="6" fill="#1a3a2e"/>
+  <text x="650" y="141" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399">Kubernetes (EKS/GKE)</text>
+
+  <rect x="536" y="162" width="228" height="36" rx="6" fill="#1a3a2e"/>
+  <text x="650" y="185" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399">CI/CD (GitHub Actions)</text>
+
+  <rect x="536" y="206" width="228" height="36" rx="6" fill="#1a3a2e"/>
+  <text x="650" y="229" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399">IaC (Terraform/Pulumi)</text>
+
+  <rect x="536" y="250" width="228" height="36" rx="6" fill="#1a3a2e"/>
+  <text x="650" y="273" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399">Secrets (Vault/AWS SM)</text>
+
+  <rect x="536" y="294" width="228" height="36" rx="6" fill="#1a3a2e"/>
+  <text x="650" y="317" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399">Observability (Datadog)</text>
+
+  <rect x="536" y="338" width="228" height="36" rx="6" fill="#1a3a2e"/>
+  <text x="650" y="361" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399">クラウド (AWS/GCP/Azure)</text>
+
+  <!-- Value labels at bottom -->
+  <rect x="20" y="450" width="760" height="38" rx="8" fill="#1f2d3d"/>
+  <text x="400" y="465" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f59e0b">IDPの価値:</text>
+  <text x="400" y="480" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e5e7eb">認知負荷軽減 / 開発速度向上 / セキュリティ標準化 / コスト管理 / オンボーディング短縮</text>
+</svg>

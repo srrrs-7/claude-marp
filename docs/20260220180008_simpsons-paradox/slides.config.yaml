@@ -5,6 +5,7 @@ output:
   baseName: "simpsons-paradox"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "シンプソンのパラドックス"
   footer: "© 2026"

@@ -7,6 +7,71 @@ paginate: true
 header: "熱力学とソフトウェア工学"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -15,9 +80,7 @@ style: |
 # エントロピーは技術的負債と
 同じ法則に従う
 
-- 熱力学第二法則でコードの腐敗を語る
-- 無秩序は自然な状態である
-- リファクタリングはエントロピーに逆らう行為
+- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="320" fill="#1a1a2e"/><text x="400" y="60" text-anchor="middle" fill="#f9a825" font-size="22" font-family="sans-serif" font-weight="bold">熱力学第二法則 = ソフトウェアの法則</text><rect x="60" y="90" width="200" height="100" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="160" y="135" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">宇宙</text><text x="160" y="158" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">エントロピー増大</text><rect x="540" y="90" width="200" height="100" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="640" y="135" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">コード</text><text x="640" y="158" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">技術的負債増大</text><line x1="260" y1="140" x2="535" y2="140" stroke="white" stroke-width="2" stroke-dasharray="6,4"/><polygon points="535,133 548,140 535,147" fill="white"/><text x="397" y="125" text-anchor="middle" fill="#aaaaaa" font-size="12" font-family="sans-serif">同じ法則</text><text x="160" y="220" text-anchor="middle" fill="#aaaaaa" font-size="12" font-family="sans-serif">放置すれば無秩序へ</text><text x="640" y="220" text-anchor="middle" fill="#aaaaaa" font-size="12" font-family="sans-serif">放置すれば腐敗へ</text><text x="400" y="290" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">逆らうには外からエネルギーを投入するしかない</text></svg>
 
 
 ---
@@ -39,18 +102,20 @@ style: |
 
 ---
 
-# 宇宙の根本法則：無秩序は増大する
+# 宇宙の根本法則：無秩序は増大する（1/2）
 
 - **熱力学第二法則：**
 - 孤立系のエントロピーは時間とともに増大するか、一定である
 - → **自然に秩序が生まれることはない**
 - ---
 - 日常の例：
-- - コーヒーは冷める（熱は高→低に流れる）
-- - 部屋は散らかる（整理しないと乱雑になる）
-- - 砂糖は溶けるが、自然には結晶に戻らない
-- ---
-- **逆は起きない：** 秩序を作るには外からエネルギーを投入しなければならない
+
+
+---
+
+# 宇宙の根本法則：無秩序は増大する（2/2）
+
+- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="340" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">エントロピー増大の日常例</text><rect x="40" y="55" width="220" height="100" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="150" y="85" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">☕ コーヒーは冷める</text><text x="150" y="110" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">熱：高温 → 低温</text><text x="150" y="130" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">自然には戻らない</text><rect x="290" y="55" width="220" height="100" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="85" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">🏠 部屋は散らかる</text><text x="400" y="110" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">整理しないと乱雑に</text><text x="400" y="130" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">片付けには労力が必要</text><rect x="540" y="55" width="220" height="100" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="650" y="85" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">🍬 砂糖は溶ける</text><text x="650" y="110" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">一方通行の変化</text><text x="650" y="130" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">結晶には戻らない</text><rect x="100" y="195" width="600" height="50" rx="8" fill="#0f3460" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="225" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" font-weight="bold">逆は起きない — 秩序を作るには外からエネルギーを投入しなければならない</text><text x="400" y="295" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">これはソフトウェアにも完全に当てはまる</text></svg>
 
 
 ---
@@ -61,32 +126,29 @@ style: |
 
 ---
 
-# コードは触るたびに複雑になる
+# コードは触るたびに複雑になる（1/2）
 
 - **ソフトウェアエントロピー（別名：ソフトウェア腐敗）の法則：**
 - 修正を加えるたびにシステムは複雑になる傾向がある
 - ---
 - **なぜか：**
 - - バグ修正が新たな条件分岐を生む
+
+
+---
+
+# コードは触るたびに複雑になる（2/2）
+
+- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="320" fill="#1a1a2e"/><text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">コードエントロピー増大曲線（Lehman の法則）</text><line x1="60" y1="270" x2="750" y2="270" stroke="#555" stroke-width="1.5"/><line x1="60" y1="270" x2="60" y2="55" stroke="#555" stroke-width="1.5"/><text x="400" y="295" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">時間（リリース回数）</text><text x="25" y="165" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif" transform="rotate(-90,25,165)">複雑性</text><polyline points="60,250 130,235 200,215 280,190 370,158 470,120 580,78 700,55" fill="none" stroke="#e91e63" stroke-width="3"/><text x="710" y="52" fill="#e91e63" font-size="11" font-family="sans-serif">放置</text><polyline points="60,250 130,242 200,234 280,226 370,218 470,210 580,202 700,194" fill="none" stroke="#4caf50" stroke-width="3" stroke-dasharray="8,4"/><text x="710" y="191" fill="#4caf50" font-size="11" font-family="sans-serif">投資</text><circle cx="370" cy="158" r="6" fill="#f9a825"/><text x="375" y="148" fill="#f9a825" font-size="11" font-family="sans-serif">転換点</text><text x="375" y="138" fill="#aaaaaa" font-size="10" font-family="sans-serif">ここで対処しないと急加速</text></svg>
 - - 機能追加が想定外の依存関係を生む
-- - 急ぎの修正がアーキテクチャを侵食する
-- - 担当者交代で知識が失われる
-- ---
-- Lehman の法則（1974）：「継続的に使われるソフトウェアは、その複雑性が増大するか、複雑性を減らす活動に投資しなければならない」
+- Lehman の法則（1974）：「複雑性を減らす活動に投資しなければならない」
 
 
 ---
 
 # 技術的負債とエントロピーの類似
 
-| 熱力学 | ソフトウェア工学 |
-|:---|:---|
-| エントロピー増大 | コードの複雑化・腐敗 |
-| 孤立系 | テストなし・レビューなし |
-| 外部エネルギー投入 | リファクタリング・設計改善 |
-| 熱死（最大エントロピー） | 保守不能なレガシーコード |
-| 局所的秩序（生命） | 良い設計パターン |
-| エントロピー生成最小原理 | YAGNI・KISS原則 |
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">熱力学 ↔ ソフトウェア工学 対応表</text><rect x="30" y="50" width="350" height="220" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="205" y="75" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">熱力学</text><text x="205" y="100" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">エントロピー増大</text><text x="205" y="125" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">孤立系</text><text x="205" y="150" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">外部エネルギー投入</text><text x="205" y="175" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">熱死（最大エントロピー）</text><text x="205" y="200" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">局所的秩序（生命）</text><text x="205" y="225" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">エントロピー生成最小原理</text><rect x="420" y="50" width="350" height="220" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="595" y="75" text-anchor="middle" fill="#e91e63" font-size="14" font-family="sans-serif" font-weight="bold">ソフトウェア工学</text><text x="595" y="100" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">コードの複雑化・腐敗</text><text x="595" y="125" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">テストなし・レビューなし</text><text x="595" y="150" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">リファクタリング・設計改善</text><text x="595" y="175" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">保守不能なレガシーコード</text><text x="595" y="200" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">良い設計パターン</text><text x="595" y="225" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">YAGNI・KISS原則</text><line x1="380" y1="88" x2="420" y2="88" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/><line x1="380" y1="113" x2="420" y2="113" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/><line x1="380" y1="138" x2="420" y2="138" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/><line x1="380" y1="163" x2="420" y2="163" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/><line x1="380" y1="188" x2="420" y2="188" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/><line x1="380" y1="213" x2="420" y2="213" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/></svg>
 
 
 ---
@@ -97,34 +159,35 @@ style: |
 
 ---
 
-# 負債は複利で増加する
+# 負債は複利で増加する（1/2）
 
 - Ward Cunningham（技術的負債の提唱者）の本来の意味：
 - 「素早く出荷するために今の理解で書くことは、将来再解釈するコストを生む」
 - ---
 - **負債の複利計算：**
 - 乱雑なコードに変更を加えると → さらに乱雑になる
-- さらに乱雑なコードは → 変更コストが上昇する
-- コストが上昇すると → リファクタリングが後回しになる
-- → **技術的負債スパイラル**
-- ---
+
+
+---
+
+# 負債は複利で増加する（2/2）
+
+- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="320" fill="#1a1a2e"/><text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">技術的負債スパイラル（複利増加）</text><rect x="280" y="60" width="240" height="50" rx="8" fill="#0f3460" stroke="#e91e63" stroke-width="2"/><text x="400" y="91" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">乱雑なコードに変更を加える</text><line x1="400" y1="110" x2="400" y2="135"/><polygon points="393,135 407,135 400,148" fill="#f9a825"/><rect x="280" y="148" width="240" height="50" rx="8" fill="#0f3460" stroke="#e91e63" stroke-width="2"/><text x="400" y="179" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">さらに乱雑になる</text><line x1="400" y1="198" x2="400" y2="223"/><polygon points="393,223 407,223 400,236" fill="#f9a825"/><rect x="280" y="236" width="240" height="50" rx="8" fill="#0f3460" stroke="#e91e63" stroke-width="2"/><text x="400" y="267" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">変更コストが上昇する</text><path d="M 520 261 Q 620 261 620 85 Q 620 60 524 60" fill="none" stroke="#e91e63" stroke-width="2" stroke-dasharray="6,3"/><polygon points="524,53 510,60 524,67" fill="#e91e63"/><text x="650" y="170" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">負債</text><text x="650" y="188" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">スパイラル</text></svg>
 - McKinsey調査（2022）：技術的負債の解消に費やす時間は開発時間の10-20%
 
 
 ---
 
-# エントロピーを減らすには外部エネルギーが必要
+# エントロピーを減らすには外部エネルギーが必要（1/2）
 
-- **生命はどうやってエントロピーに逆らうか：**
-- 外部から エネルギー（食物）を取り込み、内部秩序を維持する
-- 同時に廃熱（エントロピー）を外に排出する
-- ---
-- **ソフトウェアチームに対応させると：**
-- - 外部エネルギー = リファクタリング時間・設計投資
-- - 内部秩序 = 綺麗なアーキテクチャ・テスト
-- - 廃熱の排出 = 古いコードの削除・不要機能の廃止
-- ---
-- 「リファクタリングをしないチームは、いつか熱死する」
+- <svg viewBox="0 0 800 310" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="310" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">生命はどうやってエントロピーに逆らうか</text><ellipse cx="400" cy="160" rx="100" ry="60" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="400" y="153" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">生命体</text><text x="400" y="173" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">内部秩序を維持</text><line x1="140" y1="160" x2="295" y2="160" stroke="#f9a825" stroke-width="2"/><polygon points="295,153 308,160 295,167" fill="#f9a825"/><text x="90" y="148" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">エネルギー</text><text x="90" y="165" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">（食物）</text><text x="90" y="182" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">外部から取り込む</text><line x1="505" y1="145" x2="660" y2="100" stroke="#888" stroke-width="2"/><polygon points="660,100 648,108 655,120" fill="#888"/><text x="690" y="100" text-anchor="middle" fill="#888" font-size="12" font-family="sans-serif">廃熱</text><text x="690" y="117" text-anchor="middle" fill="#888" font-size="12" font-family="sans-serif">（エントロピー）</text><text x="690" y="134" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">外に排出</text><text x="400" y="260" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">ソフトウェアチームに対応させると：</text></svg>
+
+
+---
+
+# エントロピーを減らすには外部エネルギーが必要（2/2）
+
+- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-family="sans-serif" font-weight="bold">ソフトウェアチームの熱力学モデル</text><rect x="290" y="50" width="220" height="70" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="400" y="80" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">ソフトウェアチーム</text><text x="400" y="100" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">綺麗なアーキテクチャ・テスト</text><line x1="80" y1="85" x2="288" y2="85" stroke="#f9a825" stroke-width="2"/><polygon points="288,78 301,85 288,92" fill="#f9a825"/><text x="80" y="68" fill="#f9a825" font-size="12" font-family="sans-serif">リファクタリング</text><text x="80" y="85" fill="#f9a825" font-size="12" font-family="sans-serif">時間・設計投資</text><text x="80" y="102" fill="#aaaaaa" font-size="10" font-family="sans-serif">（外部エネルギー）</text><line x1="512" y1="70" x2="660" y2="50" stroke="#888" stroke-width="2"/><polygon points="660,50 647,57 654,69" fill="#888"/><text x="680" y="50" fill="#888" font-size="11" font-family="sans-serif">古いコードの削除</text><text x="680" y="67" fill="#888" font-size="11" font-family="sans-serif">不要機能の廃止</text><text x="680" y="84" fill="#aaaaaa" font-size="10" font-family="sans-serif">（廃熱の排出）</text><rect x="140" y="175" width="520" height="50" rx="8" fill="#0f3460" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="206" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-style="italic">「リファクタリングをしないチームは、いつか熱死する」</text></svg>
 
 
 ---
@@ -135,29 +198,30 @@ style: |
 
 ---
 
-# ボーイスカウトルール
+# ボーイスカウトルール（1/2）
 
+- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><rect x="30" y="20" width="340" height="150" rx="8" fill="#2a1a1a" stroke="#e91e63" stroke-width="2"/><text x="200" y="48" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">触れる前のキャンプ地</text><text x="200" y="78" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">変数名: x, y, tmp</text><text x="200" y="100" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">コメント: なし</text><text x="200" y="122" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">重複: 3箇所</text><text x="200" y="152" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">エントロピー: 高</text><rect x="430" y="20" width="340" height="150" rx="8" fill="#1a2e1a" stroke="#4caf50" stroke-width="2"/><text x="600" y="48" text-anchor="middle" fill="#4caf50" font-size="13" font-family="sans-serif" font-weight="bold">触れた後のキャンプ地</text><text x="600" y="78" text-anchor="middle" fill="#fff" font-size="12" font-family="sans-serif">変数名: userId, count</text><text x="600" y="100" text-anchor="middle" fill="#fff" font-size="12" font-family="sans-serif">コメント: 目的を追記</text><text x="600" y="122" text-anchor="middle" fill="#fff" font-size="12" font-family="sans-serif">重複: 2箇所（1つ削除）</text><text x="600" y="152" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">エントロピー: 少し低下</text><polygon points="375,95 425,95 415,88 415,102" fill="#f9a825"/></svg>
 - 「来た時よりも美しく」
 - Robert C. Martin（Uncle Bob）が提唱
 - ---
 - コードに触れるたびに、**少しだけ改善する**：
 - - 変数名を1つわかりやすくする
-- - 重複を1つ排除する
-- - テストを1つ追加する
-- ---
-- これは熱力学的に言えば：
-- **触れるたびにエントロピーを少しずつ輸出する**
-- 大規模リファクタリングより持続可能
+
+
+---
+
+# ボーイスカウトルール（2/2）
+
+- <svg viewBox="0 0 800 290" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="290" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">ボーイスカウトルール：触れるたびにエントロピーを輸出</text><rect x="30" y="55" width="220" height="180" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="140" y="80" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">Big Bang</text><text x="140" y="80" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">リファクタリング</text><text x="140" y="110" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">長期間放置</text><text x="140" y="132" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">↓</text><text x="140" y="154" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">一気に大改修</text><text x="140" y="176" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">↓</text><text x="140" y="198" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">リスク大・中断困難</text><rect x="290" y="55" width="220" height="180" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="400" y="80" text-anchor="middle" fill="#4caf50" font-size="13" font-family="sans-serif" font-weight="bold">ボーイスカウト</text><text x="400" y="100" text-anchor="middle" fill="#4caf50" font-size="13" font-family="sans-serif" font-weight="bold">ルール</text><text x="400" y="126" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">触れるたびに少し改善</text><text x="400" y="148" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">↓</text><text x="400" y="170" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">継続的にエントロピー輸出</text><text x="400" y="192" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">持続可能・低リスク</text><rect x="550" y="55" width="220" height="180" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="660" y="80" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">具体例</text><text x="660" y="110" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">変数名を改善する</text><text x="660" y="132" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">重複を1つ排除する</text><text x="660" y="154" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">テストを1つ追加する</text><text x="660" y="176" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">コメントを明確にする</text><text x="660" y="198" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">各変更で少額ずつ返済</text></svg>
 
 
 ---
 
 # まとめ：宇宙の法則とコード管理
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="260" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-family="sans-serif" font-weight="bold">今日のTake-away</text><rect x="30" y="45" width="355" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="40" y="68" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">無秩序は宇宙の自然な方向</text><text x="40" y="90" fill="#dddddd" font-size="11" font-family="sans-serif">コードも放置すれば必ず腐る</text><rect x="415" y="45" width="355" height="65" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="425" y="68" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">秩序には外部エネルギーが必要</text><text x="425" y="90" fill="#dddddd" font-size="11" font-family="sans-serif">リファクタリング時間は投資</text><rect x="30" y="130" width="355" height="65" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/><text x="40" y="153" fill="#4caf50" font-size="13" font-family="sans-serif" font-weight="bold">技術的負債は複利で増える</text><text x="40" y="175" fill="#dddddd" font-size="11" font-family="sans-serif">早期返済が最も経済合理的</text><rect x="415" y="130" width="355" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="425" y="153" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">ボーイスカウトルール</text><text x="425" y="175" fill="#dddddd" font-size="11" font-family="sans-serif">触れるたびに少しずつ改善する</text><text x="400" y="230" text-anchor="middle" fill="#aaaaaa" font-size="12" font-family="sans-serif" font-style="italic">「良いコードは維持されるものではなく、継続的に更新されるものだ」</text></svg>
 - ✅ **無秩序は宇宙の自然な方向** — コードも放置すれば必ず腐る
 - ✅ **秩序には外部エネルギーが必要** — リファクタリング時間は投資
 - ✅ **技術的負債は複利で増える** — 早期返済が最も経済合理的
 - ✅ **ボーイスカウトルール** — 触れるたびに少しずつ改善する
-- 
-- 「良いコードは維持されるものではなく、継続的に更新されるものだ」
 

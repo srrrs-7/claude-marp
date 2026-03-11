@@ -5,6 +5,7 @@ output:
   baseName: "prisoners-dilemma-oss"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "囚人のジレンマとオープンソース"
   footer: "© 2026"

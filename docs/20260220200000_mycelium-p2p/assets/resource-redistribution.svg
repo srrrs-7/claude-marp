@@ -1,0 +1,50 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#f9a825" font-weight="bold">リソース再分配：ソース→シンクモデル</text>
+  <!-- Left: Forest model -->
+  <rect x="30" y="48" width="340" height="280" rx="8" fill="#16213e"/>
+  <text x="200" y="72" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4ec9b0" font-weight="bold">森のモデル</text>
+  <!-- Sunlight tree (source) -->
+  <rect x="60" y="88" width="100" height="190" rx="6" fill="#003820" stroke="#4ec9b0" stroke-width="2"/>
+  <text x="110" y="108" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4ec9b0">日当たり良</text>
+  <text x="110" y="124" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">母樹</text>
+  <text x="110" y="184" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f9a825" font-weight="bold">余剰炭素</text>
+  <text x="110" y="200" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f9a825">+100</text>
+  <text x="110" y="255" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">ソースノード</text>
+  <!-- Sapling (sink) -->
+  <rect x="240" y="140" width="100" height="138" rx="6" fill="#001010" stroke="#555" stroke-width="2"/>
+  <text x="290" y="160" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#555">日陰</text>
+  <text x="290" y="176" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#555">若木</text>
+  <text x="290" y="222" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e91e63">炭素不足</text>
+  <text x="290" y="238" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e91e63">−50</text>
+  <text x="290" y="265" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">シンクノード</text>
+  <!-- Mycelium network (transfer) -->
+  <line x1="165" y1="230" x2="235" y2="220" stroke="#f9a825" stroke-width="3"/>
+  <polygon points="228,213 240,220 228,227" fill="#f9a825"/>
+  <text x="200" y="208" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f9a825">菌糸転送</text>
+  <text x="200" y="222" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f9a825">手数料10-30%</text>
+  <!-- Right: P2P model -->
+  <rect x="430" y="48" width="340" height="280" rx="8" fill="#16213e"/>
+  <text x="600" y="72" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#e91e63" font-weight="bold">P2Pモデル</text>
+  <!-- High load node (donor) -->
+  <rect x="460" y="88" width="100" height="190" rx="6" fill="#200000" stroke="#e91e63" stroke-width="2"/>
+  <text x="510" y="108" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e91e63">高負荷</text>
+  <text x="510" y="124" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">ドナーノード</text>
+  <text x="510" y="184" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f9a825">余剰ワーク</text>
+  <text x="510" y="200" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f9a825">load:120%</text>
+  <text x="510" y="255" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">Work Stealing 送信側</text>
+  <!-- Low load node (receiver) -->
+  <rect x="640" y="140" width="100" height="138" rx="6" fill="#001020" stroke="#4ec9b0" stroke-width="2"/>
+  <text x="690" y="160" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4ec9b0">低負荷</text>
+  <text x="690" y="176" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">受信ノード</text>
+  <text x="690" y="222" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4ec9b0">空きキュー</text>
+  <text x="690" y="238" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4ec9b0">load:30%</text>
+  <text x="690" y="265" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">Work Stealing 受信側</text>
+  <!-- Transfer arrow -->
+  <line x1="565" y1="230" x2="635" y2="220" stroke="#4ec9b0" stroke-width="3"/>
+  <polygon points="628,213 640,220 628,227" fill="#4ec9b0"/>
+  <text x="600" y="208" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#4ec9b0">タスク転送</text>
+  <text x="600" y="222" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#4ec9b0">avg±20%以内</text>
+  <!-- Bottom -->
+  <rect x="30" y="342" width="740" height="0" rx="6" fill="#0d1b2a"/>
+</svg>

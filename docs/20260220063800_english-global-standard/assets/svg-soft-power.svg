@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">英語を強化し続ける3つのソフトパワー</text>
+  <!-- Hollywood -->
+  <rect x="40" y="70" width="220" height="160" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="150" y="100" fill="#f9a825" font-size="16" font-family="sans-serif" text-anchor="middle" font-weight="bold">映画・音楽</text>
+  <text x="150" y="125" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">ハリウッド: 世界興収30%+</text>
+  <text x="150" y="148" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">英語楽曲: Billboard70%</text>
+  <text x="150" y="172" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">娯楽 = 英語に触れる</text>
+  <text x="150" y="190" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">日常的な時間</text>
+  <text x="150" y="210" fill="#888888" font-size="9" font-family="sans-serif" text-anchor="middle">選んで学ぶより自然に習得</text>
+  <!-- Tech -->
+  <rect x="290" y="70" width="220" height="160" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="100" fill="#e91e63" font-size="16" font-family="sans-serif" text-anchor="middle" font-weight="bold">テクノロジー</text>
+  <text x="400" y="125" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">GAFAM: 全てUSA企業</text>
+  <text x="400" y="148" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">GitHub: 英語でコード</text>
+  <text x="400" y="172" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">ドキュメント・Stack Overflow</text>
+  <text x="400" y="190" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">全て英語が優先</text>
+  <text x="400" y="210" fill="#888888" font-size="9" font-family="sans-serif" text-anchor="middle">エンジニアは英語必須</text>
+  <!-- Academia -->
+  <rect x="540" y="70" width="220" height="160" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="650" y="100" fill="#f9a825" font-size="16" font-family="sans-serif" text-anchor="middle" font-weight="bold">学術</text>
+  <text x="650" y="125" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">QS上位大の過半数が英語圏</text>
+  <text x="650" y="148" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">論文95%+が英語</text>
+  <text x="650" y="172" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">英語 = 知識へのアクセス</text>
+  <text x="650" y="190" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">研究者に英語は必須</text>
+  <text x="650" y="210" fill="#888888" font-size="9" font-family="sans-serif" text-anchor="middle">Nature, Science 全て英語</text>
+  <!-- summary -->
+  <rect x="150" y="275" width="500" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="298" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">3つが相互強化：英語を学ぶほど価値が高まる</text>
+  <text x="400" y="318" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">娯楽・テクノロジー・学術の全てが英語覇権を維持・拡大する</text>
+</svg>

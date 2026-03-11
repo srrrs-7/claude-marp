@@ -5,6 +5,7 @@ output:
   baseName: "colonial-internet-cables"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "海底ケーブルと植民地支配の遺産"
   footer: "© 2026"

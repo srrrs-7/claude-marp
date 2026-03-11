@@ -1,6 +1,7 @@
 ---
 marp: true
 theme: gaia
+class: invert
 size: 16:9
 paginate: true
 ---
@@ -287,12 +288,18 @@ paginate: true
 
 ---
 
-# Private VIF + VGW 構成パターン
+# Private VIF + VGW 構成パターン（1/2）
 
 - **単一 VPC 接続（最もシンプルな構成）**
 - - DX → Private VIF → VGW → VPC
 - - オンプレ〜VPC 間の直接的なL3接続
 - 
+
+
+---
+
+# Private VIF + VGW 構成パターン（2/2）
+
 - **設計ポイント:**
 - - VPC CIDR が BGP で自動広報される（ルート伝搬有効化が必要）
 - - オンプレ側のルートは **カスタマーBGP** で広報
@@ -308,12 +315,18 @@ paginate: true
 
 ---
 
-# Private VIF の BGP ルーティング
+# Private VIF の BGP ルーティング（1/2）
 
 - - **AWS → オンプレ**: VPC CIDR が BGP で広報される
 -   - DX Gateway 利用時は **Allowed Prefixes** でフィルタ可能
 - - **オンプレ → AWS**: お客様のルートを BGP で広報
 -   - Private VIF で **最大 100 プレフィックス** まで受信可能
+
+
+---
+
+# Private VIF の BGP ルーティング（2/2）
+
 -   - 超過すると BGP セッションが **ダウン**
 - - **経路選択の優先順位** (同一プレフィックスの場合):
 -   1. ロンゲストマッチ
@@ -323,12 +336,18 @@ paginate: true
 
 ---
 
-# Jumbo Frame と MTU 設定
+# Jumbo Frame と MTU 設定（1/2）
 
 - - **Private VIF**: MTU **9001** まで対応（Jumbo Frame）
 - - **Transit VIF**: MTU **8500** まで対応
 - - **Public VIF**: MTU **1500** 固定（Jumbo Frame 非対応）
 - - Jumbo Frame 有効化の条件:
+
+
+---
+
+# Jumbo Frame と MTU 設定（2/2）
+
 -   - VGW またはTGW側でも Jumbo Frame 対応が必要
 -   - VPC 内の EC2 インスタンスの MTU 設定も合わせる
 -   - **パス上の全ホップで MTU が統一** されていること
@@ -515,13 +534,19 @@ paginate: true
 
 ---
 
-# 構成パターン別コスト比較
+# 構成パターン別コスト比較（1/2）
 
 - **Private VIF 構成 (VPC 10個の場合)**
 - - DX ポート (10G): $2,270/月
 - - Private VIF × 10: 追加料金なし
 - - DX Gateway: 無料
 - 
+
+
+---
+
+# 構成パターン別コスト比較（2/2）
+
 - **Transit VIF 構成 (VPC 10個の場合)**
 - - DX ポート (10G): $2,270/月
 - - Transit VIF × 1: 追加料金なし
@@ -571,12 +596,18 @@ paginate: true
 
 ---
 
-# クロスアカウント共有
+# クロスアカウント共有（1/2）
 
 - - DX Gateway は **別の AWS アカウント** の VGW/TGW と関連付け可能
 - - **AWS Organizations 不要** — アカウント ID だけで共有可能
 - - ユースケース: 共有サービスアカウントで DX を管理し、各事業部の VPC に接続
 - - **共有の流れ:**
+
+
+---
+
+# クロスアカウント共有（2/2）
+
 -   1. DX GW 所有者が関連付け提案を作成
 -   2. VGW/TGW 所有者が提案を **承認**
 -   3. BGP セッション確立・ルーティング開始
@@ -665,12 +696,18 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 
 ---
 
-# BFD と SiteLink
+# BFD と SiteLink（1/2）
 
 - **BFD (Bidirectional Forwarding Detection)**
 - - BGP のデフォルト障害検知 (90秒) を **300ms 以下** に短縮
 - - DX 接続で **強く推奨** — 高速フェイルオーバーに必須
 - - カスタマールーター側で有効化が必要
+
+
+---
+
+# BFD と SiteLink（2/2）
+
 - 
 - **SiteLink**
 - - DX ロケーション間を **AWS バックボーン経由** で直接通信
@@ -712,12 +749,18 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 
 ---
 
-# 参考リンク
+# 参考リンク（1/2）
 
 - - **公式ドキュメント:**
 -   - [AWS Direct Connect ユーザーガイド](https://docs.aws.amazon.com/directconnect/latest/UserGuide/)
 -   - [Direct Connect FAQ](https://aws.amazon.com/directconnect/faqs/)
 - - **設計ガイド:**
+
+
+---
+
+# 参考リンク（2/2）
+
 -   - [AWS Direct Connect Resiliency Recommendations](https://aws.amazon.com/directconnect/resiliency-recommendation/)
 -   - [Networking & Content Delivery Blog](https://aws.amazon.com/blogs/networking-and-content-delivery/)
 - - **料金:**

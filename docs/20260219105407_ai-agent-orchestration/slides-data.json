@@ -202,13 +202,15 @@
 			"content": [
 				"状態グラフの定義とノード登録",
 				"条件付きエッジで動的ルーティングを実現"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "LangGraph — コード例（コード例）",
 			"content": [],
 			"code": "from langgraph.graph import StateGraph, END\nfrom typing import TypedDict\n\nclass AgentState(TypedDict):\n    messages: list[dict]; next: str\n\ngraph = StateGraph(AgentState)\ngraph.add_node(\"researcher\", research_agent)\ngraph.add_node(\"writer\", writer_agent)\ngraph.add_conditional_edges(\"supervisor\", route_next,\n    {\"researcher\": \"researcher\", \"writer\": \"writer\", END: END})\napp = graph.compile(checkpointer=MemorySaver())",
-			"codeLanguage": "python"
+			"codeLanguage": "python",
+			"layout": "default"
 		},
 		{
 			"title": "AutoGen — 概要と特徴",
@@ -226,13 +228,15 @@
 			"content": [
 				"AssistantAgentとUserProxyAgentの会話フロー",
 				"コード実行エージェントの登録と起動"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "AutoGen — コード例（コード例）",
 			"content": [],
 			"code": "import autogen\n\nconfig = [{\"model\": \"claude-sonnet-4-6\", \"api_key\": \"...\"}]\nassistant = autogen.AssistantAgent(\n    name=\"assistant\", llm_config={\"config_list\": config})\nuser_proxy = autogen.UserProxyAgent(\n    name=\"user_proxy\",\n    human_input_mode=\"NEVER\",\n    code_execution_config={\"work_dir\": \"coding\"})\nuser_proxy.initiate_chat(\n    assistant, message=\"Write a Python web scraper\")",
-			"codeLanguage": "python"
+			"codeLanguage": "python",
+			"layout": "default"
 		},
 		{
 			"title": "CrewAI — 概要と特徴",
@@ -250,13 +254,15 @@
 			"content": [
 				"Role/Goal/Backstoryでエージェントを宣言的に定義",
 				"Processで実行順序を制御"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "CrewAI — コード例（コード例）",
 			"content": [],
 			"code": "from crewai import Agent, Task, Crew, Process\n\nresearcher = Agent(role=\"Tech Researcher\",\n    goal=\"Research AI frameworks\", tools=[search_tool])\nwriter = Agent(role=\"Tech Writer\",\n    goal=\"Write clear documentation\")\ntask1 = Task(description=\"Compare LangGraph vs AutoGen\",\n    agent=researcher, expected_output=\"Comparison report\")\ntask2 = Task(description=\"Write blog post from research\",\n    agent=writer, expected_output=\"Blog post in Markdown\")\ncrew = Crew([researcher, writer], [task1, task2],\n    process=Process.sequential)\ncrew.kickoff()",
-			"codeLanguage": "python"
+			"codeLanguage": "python",
+			"layout": "default"
 		},
 		{
 			"title": "Claude Agent SDK — 概要と特徴",
@@ -274,13 +280,15 @@
 			"content": [
 				"ツール定義とエージェントループの実装",
 				"tool_useコンテンツブロックを処理するシンプルなパターン"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "Claude Agent SDK — コード例（コード例）",
 			"content": [],
 			"code": "import anthropic\nclient = anthropic.Anthropic()\ntools = [{\"name\": \"web_search\", \"description\": \"Search the web\",\n    \"input_schema\": {\"type\": \"object\",\n        \"properties\": {\"query\": {\"type\": \"string\"}},\n        \"required\": [\"query\"]}}]\nmessages = [{\"role\": \"user\", \"content\": \"Research AI trends 2026\"}]\nwhile True:\n    resp = client.messages.create(model=\"claude-sonnet-4-6\",\n        max_tokens=4096, tools=tools, messages=messages)\n    if resp.stop_reason != \"tool_use\":\n        print(resp.content[0].text); break\n    messages = process_tool_calls(resp, messages)",
-			"codeLanguage": "python"
+			"codeLanguage": "python",
+			"layout": "default"
 		},
 		{
 			"title": "フレームワーク比較表",

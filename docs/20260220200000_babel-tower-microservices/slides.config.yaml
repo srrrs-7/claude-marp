@@ -5,6 +5,7 @@ output:
   baseName: "babel-tower-microservices"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "バベルの塔とマイクロサービス"
   footer: "© 2026"

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="280" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" font-size="17" fill="#f9a825" font-weight="bold" font-family="sans-serif">「無料」vs「有料」— 真のコスト比較</text>
+  <rect x="30" y="50" width="350" height="210" rx="12" fill="#1e0a2e" stroke="#e91e63" stroke-width="2"/>
+  <text x="205" y="82" text-anchor="middle" font-size="15" fill="#e91e63" font-weight="bold" font-family="sans-serif">「無料」SNS（例：Instagram）</text>
+  <line x1="50" y1="92" x2="360" y2="92" stroke="#333" stroke-width="1"/>
+  <text x="60" y="116" font-size="12" fill="white" font-family="sans-serif">金銭コスト：</text>
+  <text x="240" y="116" font-size="12" fill="#aaa" font-family="sans-serif">¥0</text>
+  <text x="60" y="142" font-size="12" fill="#e91e63" font-family="sans-serif">時間コスト：</text>
+  <text x="240" y="142" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">¥200,000/年</text>
+  <text x="60" y="168" font-size="12" fill="#e91e63" font-family="sans-serif">データコスト：</text>
+  <text x="240" y="168" font-size="12" fill="#e91e63" font-family="sans-serif">$19〜$72/年</text>
+  <text x="60" y="194" font-size="12" fill="#ff9800" font-family="sans-serif">精神的コスト：</text>
+  <text x="240" y="194" font-size="12" fill="#ff9800" font-family="sans-serif">測定不能</text>
+  <line x1="50" y1="208" x2="360" y2="208" stroke="#333" stroke-width="1"/>
+  <text x="205" y="238" text-anchor="middle" font-size="15" fill="#e91e63" font-weight="bold" font-family="sans-serif">実質：¥20万円以上/年</text>
+  <rect x="420" y="50" width="350" height="210" rx="12" fill="#0a1e0a" stroke="#4caf50" stroke-width="2"/>
+  <text x="595" y="82" text-anchor="middle" font-size="15" fill="#4caf50" font-weight="bold" font-family="sans-serif">有料サービス（例：Spotify）</text>
+  <line x1="440" y1="92" x2="750" y2="92" stroke="#333" stroke-width="1"/>
+  <text x="450" y="116" font-size="12" fill="white" font-family="sans-serif">金銭コスト：</text>
+  <text x="620" y="116" font-size="12" fill="#4caf50" font-family="sans-serif">¥10,800/年</text>
+  <text x="450" y="142" font-size="12" fill="#4caf50" font-family="sans-serif">時間コスト：</text>
+  <text x="620" y="142" font-size="12" fill="#4caf50" font-family="sans-serif">最小（広告なし）</text>
+  <text x="450" y="168" font-size="12" fill="#4caf50" font-family="sans-serif">データコスト：</text>
+  <text x="620" y="168" font-size="12" fill="#4caf50" font-family="sans-serif">契約範囲内</text>
+  <text x="450" y="194" font-size="12" fill="#4caf50" font-family="sans-serif">精神的コスト：</text>
+  <text x="620" y="194" font-size="12" fill="#4caf50" font-family="sans-serif">低い</text>
+  <line x1="440" y1="208" x2="750" y2="208" stroke="#333" stroke-width="1"/>
+  <text x="595" y="238" text-anchor="middle" font-size="15" fill="#4caf50" font-weight="bold" font-family="sans-serif">実質：¥1万円程度/年</text>
+</svg>

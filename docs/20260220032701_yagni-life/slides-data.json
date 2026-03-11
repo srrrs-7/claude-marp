@@ -85,6 +85,11 @@
 		{
 			"title": "コードでの YAGNI 違反",
 			"content": ["「将来的に多言語対応するかもしれないから...」"],
+			"layout": "default"
+		},
+		{
+			"title": "コードでの YAGNI 違反（コード例）",
+			"content": [],
 			"code": "// 「いつか使うかも」な抽象化\nclass UserRepository {\n  // 将来の DB 切り替えに備えて\n  private adapter: DatabaseAdapter;\n  private cache: CacheLayer;      // 未使用\n  private fallback: FallbackStrategy; // 未使用\n\n  // 将来の分散処理に備えて\n  async findAll(options?: {\n    shard?: string;\n    replica?: 'primary' | 'secondary';\n  }) { /* ... */ }\n}",
 			"codeLanguage": "typescript",
 			"layout": "default"
@@ -92,6 +97,11 @@
 		{
 			"title": "コードでの YAGNI 実践",
 			"content": ["「今必要なことだけ書く」"],
+			"layout": "default"
+		},
+		{
+			"title": "コードでの YAGNI 実践（コード例）",
+			"content": [],
 			"code": "// 今必要なことだけ\nclass UserRepository {\n  async findAll(): Promise<User[]> {\n    return db.query('SELECT * FROM users');\n  }\n\n  async findById(id: string): Promise<User | null> {\n    return db.query(\n      'SELECT * FROM users WHERE id = ?',\n      [id]\n    );\n  }\n}",
 			"codeLanguage": "typescript",
 			"layout": "default"
@@ -180,6 +190,11 @@
 		{
 			"title": "失敗5: 使わないコード機能の実装",
 			"content": ["「将来マルチテナント対応するかも」で実装"],
+			"layout": "default"
+		},
+		{
+			"title": "失敗5: 使わないコード機能の実装（コード例）",
+			"content": [],
 			"code": "// 結果: 3年間一度も使われなかった\ninterface TenantConfig {\n  tenantId: string;\n  features: FeatureFlag[];\n  customTheme: ThemeConfig;\n  dataIsolation: 'shared' | 'dedicated';\n}\n\n// 総実装時間: 2週間\n// 削除日: 3年後\n// 後悔度: MAX",
 			"codeLanguage": "typescript",
 			"layout": "default"

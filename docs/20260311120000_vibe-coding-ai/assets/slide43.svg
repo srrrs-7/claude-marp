@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">既存コードベースへのAI導入ロードマップ</text>
+
+  <!-- Timeline line -->
+  <line x1="60" y1="250" x2="740" y2="250" stroke="#4c1d95" stroke-width="3"/>
+
+  <!-- Phase 1: Week 1-2 -->
+  <line x1="110" y1="250" x2="110" y2="185" stroke="#a78bfa" stroke-width="2"/>
+  <circle cx="110" cy="250" r="8" fill="#a78bfa"/>
+  <rect x="35" y="120" width="155" height="65" rx="8" fill="#1e1b4b" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="113" y="143" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#a78bfa">Week 1-2</text>
+  <text x="113" y="160" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#c4b5fd">現状調査・CLAUDE.md 作成</text>
+  <text x="113" y="175" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#c4b5fd">コードベース把握</text>
+
+  <!-- Phase 2: Week 3-4 -->
+  <line x1="270" y1="250" x2="270" y2="315" stroke="#60a5fa" stroke-width="2"/>
+  <circle cx="270" cy="250" r="8" fill="#60a5fa"/>
+  <rect x="192" y="315" width="155" height="65" rx="8" fill="#1e3a5f" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="270" y="338" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#60a5fa">Week 3-4</text>
+  <text x="270" y="355" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#93c5fd">テスト自動生成から開始</text>
+  <text x="270" y="370" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#93c5fd">カバレッジ向上</text>
+
+  <!-- Phase 3: Month 2 -->
+  <line x1="430" y1="250" x2="430" y2="185" stroke="#34d399" stroke-width="2"/>
+  <circle cx="430" cy="250" r="8" fill="#34d399"/>
+  <rect x="352" y="120" width="155" height="65" rx="8" fill="#14532d" stroke="#34d399" stroke-width="1.5"/>
+  <text x="430" y="143" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#34d399">Month 2</text>
+  <text x="430" y="160" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#6ee7b7">コードレビュー自動化</text>
+  <text x="430" y="175" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#6ee7b7">リファクタリング支援</text>
+
+  <!-- Phase 4: Month 3 -->
+  <line x1="590" y1="250" x2="590" y2="315" stroke="#fbbf24" stroke-width="2"/>
+  <circle cx="590" cy="250" r="8" fill="#fbbf24"/>
+  <rect x="512" y="315" width="155" height="65" rx="8" fill="#451a03" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="590" y="338" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">Month 3</text>
+  <text x="590" y="355" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#fde68a">新機能開発でVibe Coding</text>
+  <text x="590" y="370" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#fde68a">フル活用フェーズへ</text>
+
+  <!-- Phase 5: Ongoing -->
+  <line x1="720" y1="250" x2="720" y2="185" stroke="#818cf8" stroke-width="2"/>
+  <circle cx="720" cy="250" r="8" fill="#818cf8"/>
+  <rect x="645" y="120" width="120" height="65" rx="8" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="705" y="143" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#818cf8">継続</text>
+  <text x="705" y="160" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a5b4fc">チーム展開</text>
+  <text x="705" y="175" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a5b4fc">プロセス最適化</text>
+
+  <!-- Risk / tip boxes -->
+  <rect x="50" y="420" width="330" height="60" rx="8" fill="#0f172a" stroke="#f87171" stroke-width="1"/>
+  <text x="215" y="442" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f87171">注意点</text>
+  <text x="65" y="460" font-family="sans-serif" font-size="10" fill="#fca5a5">• 既存テストを先に充実させてからAI活用開始</text>
+  <text x="65" y="474" font-family="sans-serif" font-size="10" fill="#fca5a5">• AIの出力は必ず人間がレビュー・承認</text>
+
+  <rect x="420" y="420" width="330" height="60" rx="8" fill="#0f172a" stroke="#34d399" stroke-width="1"/>
+  <text x="585" y="442" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">成功のポイント</text>
+  <text x="435" y="460" font-family="sans-serif" font-size="10" fill="#6ee7b7">• 小さなタスクから始めて信頼を積み上げる</text>
+  <text x="435" y="474" font-family="sans-serif" font-size="10" fill="#6ee7b7">• CLAUDE.md にプロジェクト固有の知識を蓄積</text>
+</svg>

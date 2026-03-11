@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">Progressive Delivery — 概念比較</text>
+
+  <!-- === Canary === -->
+  <rect x="20" y="55" width="235" height="385" rx="12" fill="#16213e" stroke="#fbbf24" stroke-width="2"/>
+  <text x="137" y="82" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#fbbf24" font-weight="bold">🐤 Canary Release</text>
+
+  <!-- Traffic bars -->
+  <rect x="50" y="100" width="175" height="28" rx="4" fill="#3d3000" stroke="#fbbf24" stroke-width="1"/>
+  <text x="137" y="119" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fbbf24">100% → v1 (stable)</text>
+
+  <rect x="50" y="138" width="35" height="28" rx="4" fill="#fbbf24"/>
+  <rect x="90" y="138" width="135" height="28" rx="4" fill="#3d3000" stroke="#fbbf24" stroke-width="1"/>
+  <text x="62" y="157" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#1a1a00">20%</text>
+  <text x="162" y="157" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#fbbf24">80% v1</text>
+
+  <rect x="50" y="176" width="87" height="28" rx="4" fill="#fbbf24"/>
+  <rect x="142" y="176" width="83" height="28" rx="4" fill="#3d3000" stroke="#fbbf24" stroke-width="1"/>
+  <text x="95" y="195" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#1a1a00">50% v2</text>
+  <text x="183" y="195" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#fbbf24">50% v1</text>
+
+  <rect x="50" y="214" width="175" height="28" rx="4" fill="#34d399"/>
+  <text x="137" y="233" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a00" font-weight="bold">100% v2 (promoted)</text>
+
+  <line x1="137" y1="98" x2="137" y2="100" stroke="#fbbf24" stroke-width="1"/>
+
+  <text x="40" y="268" font-family="sans-serif" font-size="10" fill="#cccccc">• 段階的トラフィック移行</text>
+  <text x="40" y="286" font-family="sans-serif" font-size="10" fill="#cccccc">• メトリクスで自動昇格/ロールバック</text>
+  <text x="40" y="304" font-family="sans-serif" font-size="10" fill="#cccccc">• リスクを最小化</text>
+  <text x="40" y="322" font-family="sans-serif" font-size="10" fill="#cccccc">• Argo Rollouts / Flagger</text>
+
+  <rect x="40" y="345" width="175" height="30" rx="5" fill="#3d3000" stroke="#fbbf24" stroke-width="1"/>
+  <text x="127" y="365" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#fbbf24">リスク: 低 / 移行: 遅め</text>
+
+  <!-- === Blue-Green === -->
+  <rect x="283" y="55" width="235" height="385" rx="12" fill="#16213e" stroke="#60a5fa" stroke-width="2"/>
+  <text x="400" y="82" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#60a5fa" font-weight="bold">🔵🟢 Blue-Green</text>
+
+  <!-- Blue env -->
+  <rect x="305" y="100" width="190" height="52" rx="6" fill="#1e2a4e" stroke="#60a5fa" stroke-width="2"/>
+  <text x="400" y="122" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#60a5fa" font-weight="bold">Blue (v1) — LIVE</text>
+  <text x="400" y="142" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">全トラフィック受信中</text>
+
+  <!-- Green env -->
+  <rect x="305" y="168" width="190" height="52" rx="6" fill="#1e3e2e" stroke="#34d399" stroke-width="2"/>
+  <text x="400" y="190" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399" font-weight="bold">Green (v2) — Standby</text>
+  <text x="400" y="210" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">新バージョン準備完了</text>
+
+  <!-- Switch arrow -->
+  <line x1="400" y1="222" x2="400" y2="242" stroke="#ffffff" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="395,242 400,252 405,242" fill="#ffffff"/>
+  <text x="400" y="264" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ffffff" font-weight="bold">⚡ 瞬時切り替え</text>
+
+  <text x="293" y="292" font-family="sans-serif" font-size="10" fill="#cccccc">• ダウンタイムほぼゼロ</text>
+  <text x="293" y="310" font-family="sans-serif" font-size="10" fill="#cccccc">• 即座のロールバック可能</text>
+  <text x="293" y="328" font-family="sans-serif" font-size="10" fill="#cccccc">• 2倍のインフラコスト</text>
+  <text x="293" y="346" font-family="sans-serif" font-size="10" fill="#cccccc">• DB スキーマ変更に注意</text>
+
+  <rect x="305" y="365" width="190" height="30" rx="5" fill="#1e2a4e" stroke="#60a5fa" stroke-width="1"/>
+  <text x="400" y="385" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#60a5fa">リスク: 中 / 移行: 速い</text>
+
+  <!-- === Feature Flags === -->
+  <rect x="546" y="55" width="235" height="385" rx="12" fill="#16213e" stroke="#a78bfa" stroke-width="2"/>
+  <text x="663" y="82" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#a78bfa" font-weight="bold">🚩 Feature Flags</text>
+
+  <!-- Flag visualization -->
+  <rect x="570" y="100" width="190" height="40" rx="6" fill="#2d2d4e" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="663" y="118" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a78bfa">new_checkout_ui: ON (5%)</text>
+  <text x="663" y="135" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888888">Beta users only</text>
+
+  <rect x="570" y="152" width="190" height="40" rx="6" fill="#2d2d4e" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="663" y="170" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#60a5fa">dark_mode: ON (50%)</text>
+  <text x="663" y="187" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888888">Random sampling</text>
+
+  <rect x="570" y="204" width="190" height="40" rx="6" fill="#2e1e1e" stroke="#f87171" stroke-width="1.5"/>
+  <text x="663" y="222" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f87171">payment_v2: OFF</text>
+  <text x="663" y="239" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888888">Disabled globally</text>
+
+  <text x="556" y="270" font-family="sans-serif" font-size="10" fill="#cccccc">• デプロイとリリースを分離</text>
+  <text x="556" y="288" font-family="sans-serif" font-size="10" fill="#cccccc">• ユーザーセグメント制御</text>
+  <text x="556" y="306" font-family="sans-serif" font-size="10" fill="#cccccc">• A/Bテスト統合</text>
+  <text x="556" y="324" font-family="sans-serif" font-size="10" fill="#cccccc">• LaunchDarkly / Unleash</text>
+  <text x="556" y="342" font-family="sans-serif" font-size="10" fill="#cccccc">• フラグ負債に注意</text>
+
+  <rect x="570" y="365" width="190" height="30" rx="5" fill="#2d2d4e" stroke="#a78bfa" stroke-width="1"/>
+  <text x="663" y="385" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a78bfa">リスク: 低 / 制御: 細かい</text>
+
+  <!-- Bottom comparison -->
+  <text x="400" y="462" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#888888">組み合わせ利用が推奨: Canary + Feature Flags で段階リリースを最大化</text>
+</svg>

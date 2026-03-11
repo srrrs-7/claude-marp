@@ -16,6 +16,7 @@ export const slidesConfigSchema = z.object({
 	marp: z
 		.object({
 			theme: z.enum(["gaia", "default", "uncover"]).default("gaia"),
+			class: z.string().default(""),
 			size: z.string().default("16:9"),
 			paginate: z.boolean().default(true),
 			header: z.string().default(""),

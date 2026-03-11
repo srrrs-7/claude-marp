@@ -1,0 +1,21 @@
+topic: "Kubernetes 実践ガイド"
+language: "ja"
+
+slides:
+  count: 55
+
+output:
+  dir: "docs/20260311090036_kubernetes-practical-guide"
+  baseName: "kubernetes-practical-guide"
+
+marp:
+  theme: gaia
+  class: invert
+  paginate: true
+  header: "Kubernetes 実践ガイド"
+  footer: "© 2026"
+  style: |
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

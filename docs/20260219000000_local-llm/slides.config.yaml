@@ -9,6 +9,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ローカルLLM完全ガイド 2026"
   footer: "© 2026"

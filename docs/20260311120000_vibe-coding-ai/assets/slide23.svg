@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="36" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">ツール選定マトリクス</text>
+
+  <!-- Column Headers -->
+  <rect x="190" y="52" width="135" height="42" rx="4" fill="#1e3a5f" stroke="#60a5fa" stroke-width="1"/>
+  <text x="257" y="68" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#60a5fa" text-anchor="middle">GitHub</text>
+  <text x="257" y="86" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#60a5fa" text-anchor="middle">Copilot</text>
+
+  <rect x="330" y="52" width="135" height="42" rx="4" fill="#2d1b69" stroke="#a78bfa" stroke-width="1"/>
+  <text x="397" y="68" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#a78bfa" text-anchor="middle">Claude</text>
+  <text x="397" y="86" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#a78bfa" text-anchor="middle">Code</text>
+
+  <rect x="470" y="52" width="135" height="42" rx="4" fill="#1e3a5f" stroke="#60a5fa" stroke-width="1"/>
+  <text x="537" y="68" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#60a5fa" text-anchor="middle">Cursor</text>
+  <text x="537" y="86" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">AI-IDE</text>
+
+  <rect x="610" y="52" width="165" height="42" rx="4" fill="#064e3b" stroke="#34d399" stroke-width="1"/>
+  <text x="693" y="68" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#34d399" text-anchor="middle">Copilot</text>
+  <text x="693" y="86" font-family="Arial, sans-serif" font-size="11" fill="#6ee7b7" text-anchor="middle">Workspace</text>
+
+  <!-- Row labels and data -->
+  <!-- Row 1 -->
+  <rect x="20" y="100" width="165" height="45" rx="3" fill="#1e293b"/>
+  <text x="102" y="120" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">コード補完</text>
+  <text x="102" y="138" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">日常コーディング</text>
+
+  <rect x="190" y="100" width="135" height="45" rx="3" fill="#0c1e40"/>
+  <text x="257" y="127" font-family="Arial, sans-serif" font-size="16" fill="#34d399" text-anchor="middle">◎</text>
+
+  <rect x="330" y="100" width="135" height="45" rx="3" fill="#1f1035"/>
+  <text x="397" y="127" font-family="Arial, sans-serif" font-size="16" fill="#fbbf24" text-anchor="middle">○</text>
+
+  <rect x="470" y="100" width="135" height="45" rx="3" fill="#0c1e40"/>
+  <text x="537" y="127" font-family="Arial, sans-serif" font-size="16" fill="#34d399" text-anchor="middle">◎</text>
+
+  <rect x="610" y="100" width="165" height="45" rx="3" fill="#022c22"/>
+  <text x="693" y="127" font-family="Arial, sans-serif" font-size="16" fill="#fbbf24" text-anchor="middle">○</text>
+
+  <!-- Row 2 -->
+  <rect x="20" y="150" width="165" height="45" rx="3" fill="#1e293b"/>
+  <text x="102" y="170" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">大規模リファクタ</text>
+  <text x="102" y="188" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">コードベース全体</text>
+
+  <rect x="190" y="150" width="135" height="45" rx="3" fill="#0c1e40"/>
+  <text x="257" y="177" font-family="Arial, sans-serif" font-size="16" fill="#ef4444" text-anchor="middle">△</text>
+
+  <rect x="330" y="150" width="135" height="45" rx="3" fill="#1f1035"/>
+  <text x="397" y="177" font-family="Arial, sans-serif" font-size="16" fill="#34d399" text-anchor="middle">◎</text>
+
+  <rect x="470" y="150" width="135" height="45" rx="3" fill="#0c1e40"/>
+  <text x="537" y="177" font-family="Arial, sans-serif" font-size="16" fill="#fbbf24" text-anchor="middle">○</text>
+
+  <rect x="610" y="150" width="165" height="45" rx="3" fill="#022c22"/>
+  <text x="693" y="177" font-family="Arial, sans-serif" font-size="16" fill="#fbbf24" text-anchor="middle">○</text>
+
+  <!-- Row 3 -->
+  <rect x="20" y="200" width="165" height="45" rx="3" fill="#1e293b"/>
+  <text x="102" y="220" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">CI/CD 自動化</text>
+  <text x="102" y="238" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">デプロイパイプライン</text>
+
+  <rect x="190" y="200" width="135" height="45" rx="3" fill="#0c1e40"/>
+  <text x="257" y="227" font-family="Arial, sans-serif" font-size="16" fill="#ef4444" text-anchor="middle">✗</text>
+
+  <rect x="330" y="200" width="135" height="45" rx="3" fill="#1f1035"/>
+  <text x="397" y="227" font-family="Arial, sans-serif" font-size="16" fill="#34d399" text-anchor="middle">◎</text>
+
+  <rect x="470" y="200" width="135" height="45" rx="3" fill="#0c1e40"/>
+  <text x="537" y="227" font-family="Arial, sans-serif" font-size="16" fill="#ef4444" text-anchor="middle">△</text>
+
+  <rect x="610" y="200" width="165" height="45" rx="3" fill="#022c22"/>
+  <text x="693" y="227" font-family="Arial, sans-serif" font-size="16" fill="#fbbf24" text-anchor="middle">○</text>
+
+  <!-- Row 4 -->
+  <rect x="20" y="250" width="165" height="45" rx="3" fill="#1e293b"/>
+  <text x="102" y="270" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">テスト生成</text>
+  <text x="102" y="288" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">ユニット/E2E</text>
+
+  <rect x="190" y="250" width="135" height="45" rx="3" fill="#0c1e40"/>
+  <text x="257" y="277" font-family="Arial, sans-serif" font-size="16" fill="#fbbf24" text-anchor="middle">○</text>
+
+  <rect x="330" y="250" width="135" height="45" rx="3" fill="#1f1035"/>
+  <text x="397" y="277" font-family="Arial, sans-serif" font-size="16" fill="#34d399" text-anchor="middle">◎</text>
+
+  <rect x="470" y="250" width="135" height="45" rx="3" fill="#0c1e40"/>
+  <text x="537" y="277" font-family="Arial, sans-serif" font-size="16" fill="#fbbf24" text-anchor="middle">○</text>
+
+  <rect x="610" y="250" width="165" height="45" rx="3" fill="#022c22"/>
+  <text x="693" y="277" font-family="Arial, sans-serif" font-size="16" fill="#fbbf24" text-anchor="middle">○</text>
+
+  <!-- Row 5 -->
+  <rect x="20" y="300" width="165" height="45" rx="3" fill="#1e293b"/>
+  <text x="102" y="320" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">PR レビュー</text>
+  <text x="102" y="338" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">コードレビュー支援</text>
+
+  <rect x="190" y="300" width="135" height="45" rx="3" fill="#0c1e40"/>
+  <text x="257" y="327" font-family="Arial, sans-serif" font-size="16" fill="#fbbf24" text-anchor="middle">○</text>
+
+  <rect x="330" y="300" width="135" height="45" rx="3" fill="#1f1035"/>
+  <text x="397" y="327" font-family="Arial, sans-serif" font-size="16" fill="#34d399" text-anchor="middle">◎</text>
+
+  <rect x="470" y="300" width="135" height="45" rx="3" fill="#0c1e40"/>
+  <text x="537" y="327" font-family="Arial, sans-serif" font-size="16" fill="#ef4444" text-anchor="middle">△</text>
+
+  <rect x="610" y="300" width="165" height="45" rx="3" fill="#022c22"/>
+  <text x="693" y="327" font-family="Arial, sans-serif" font-size="16" fill="#34d399" text-anchor="middle">◎</text>
+
+  <!-- Row 6 -->
+  <rect x="20" y="350" width="165" height="45" rx="3" fill="#1e293b"/>
+  <text x="102" y="370" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">ドキュメント生成</text>
+  <text x="102" y="388" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">README/API Doc</text>
+
+  <rect x="190" y="350" width="135" height="45" rx="3" fill="#0c1e40"/>
+  <text x="257" y="377" font-family="Arial, sans-serif" font-size="16" fill="#fbbf24" text-anchor="middle">○</text>
+
+  <rect x="330" y="350" width="135" height="45" rx="3" fill="#1f1035"/>
+  <text x="397" y="377" font-family="Arial, sans-serif" font-size="16" fill="#34d399" text-anchor="middle">◎</text>
+
+  <rect x="470" y="350" width="135" height="45" rx="3" fill="#0c1e40"/>
+  <text x="537" y="377" font-family="Arial, sans-serif" font-size="16" fill="#fbbf24" text-anchor="middle">○</text>
+
+  <rect x="610" y="350" width="165" height="45" rx="3" fill="#022c22"/>
+  <text x="693" y="377" font-family="Arial, sans-serif" font-size="16" fill="#fbbf24" text-anchor="middle">○</text>
+
+  <!-- Legend -->
+  <rect x="20" y="410" width="760" height="75" rx="6" fill="#0f172a" stroke="#374151" stroke-width="1"/>
+  <text x="40" y="432" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#94a3b8">凡例:</text>
+  <text x="100" y="432" font-family="Arial, sans-serif" font-size="14" fill="#34d399">◎</text>
+  <text x="120" y="432" font-family="Arial, sans-serif" font-size="11" fill="#6ee7b7">最適</text>
+  <text x="165" y="432" font-family="Arial, sans-serif" font-size="14" fill="#fbbf24">○</text>
+  <text x="185" y="432" font-family="Arial, sans-serif" font-size="11" fill="#fde68a">使用可</text>
+  <text x="235" y="432" font-family="Arial, sans-serif" font-size="14" fill="#ef4444">△</text>
+  <text x="255" y="432" font-family="Arial, sans-serif" font-size="11" fill="#fca5a5">限定的</text>
+  <text x="305" y="432" font-family="Arial, sans-serif" font-size="14" fill="#ef4444">✗</text>
+  <text x="325" y="432" font-family="Arial, sans-serif" font-size="11" fill="#fca5a5">非対応</text>
+  <text x="40" y="460" font-family="Arial, sans-serif" font-size="11" fill="#64748b">推奨: 用途に応じてツールを使い分ける。大規模・自動化タスクはClaude Code、日常補完はCopilot/Cursor</text>
+  <text x="40" y="477" font-family="Arial, sans-serif" font-size="11" fill="#64748b">組み合わせも有効: IDE内はCopilot + 大タスクはClaude Code のハイブリッド運用</text>
+</svg>

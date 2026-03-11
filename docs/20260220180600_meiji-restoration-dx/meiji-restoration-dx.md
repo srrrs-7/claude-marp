@@ -7,9 +7,74 @@ paginate: true
 header: "明治維新はDXの教科書だ"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section { font-size: 1.05em; }
   section pre code { font-size: 0.58em; line-height: 1.4; }
-
+  
 ---
 
 <!-- _class: lead -->
@@ -117,6 +182,7 @@ style: |
 
 # 学制発布 = エンジニア教育投資
 
+- <svg viewBox='0 0 780 290' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='780' height='290' fill='#1a1a2e' rx='8'/><text x='390' y='26' text-anchor='middle' fill='#e8d5b7' font-size='13' font-weight='bold'>学制発布（1872）→ 就学率の劇的向上</text><rect x='20' y='42' width='360' height='220' rx='6' fill='#0d1b2a' stroke='#4a90d9' stroke-width='1.5'/><text x='200' y='65' text-anchor='middle' fill='#42a5f5' font-size='11' font-weight='bold'>明治の教育投資</text><line x1='50' y1='220' x2='350' y2='220' stroke='#555' stroke-width='1.5'/><line x1='50' y1='80' x2='50' y2='220' stroke='#555' stroke-width='1.5'/><text x='200' y='238' text-anchor='middle' fill='#888' font-size='9'>年代</text><text x='32' y='150' text-anchor='middle' fill='#888' font-size='8' transform='rotate(-90,32,150)'>就学率 (%)</text><text x='50' y='232' text-anchor='middle' fill='#888' font-size='8'>1868</text><text x='140' y='232' text-anchor='middle' fill='#888' font-size='8'>1880</text><text x='230' y='232' text-anchor='middle' fill='#888' font-size='8'>1895</text><text x='320' y='232' text-anchor='middle' fill='#888' font-size='8'>1912</text><text x='45' y='218' text-anchor='end' fill='#888' font-size='8'>5%</text><text x='45' y='160' text-anchor='end' fill='#888' font-size='8'>50%</text><text x='45' y='100' text-anchor='end' fill='#888' font-size='8'>97%</text><circle cx='50' cy='215' r='4' fill='#e74c3c'/><circle cx='140' cy='185' r='4' fill='#f9a825'/><circle cx='230' cy='140' r='4' fill='#4caf50'/><circle cx='320' cy='100' r='4' fill='#42a5f5'/><polyline points='50,215 140,185 230,140 320,100' stroke='#f9a825' stroke-width='2.5' fill='none'/><text x='200' y='116' fill='#f9a825' font-size='9'>急速な</text><text x='200' y='128' fill='#f9a825' font-size='9'>向上</text><rect x='400' y='42' width='360' height='220' rx='6' fill='#0d1b0a' stroke='#4caf50' stroke-width='1.5'/><text x='580' y='65' text-anchor='middle' fill='#66bb6a' font-size='11' font-weight='bold'>現代DXとの対応</text><rect x='415' y='80' width='330' height='42' rx='5' fill='#1b4a1b' stroke='#4caf50' stroke-width='1'/><text x='580' y='98' text-anchor='middle' fill='#f9a825' font-size='10' font-weight='bold'>お雇い外国人</text><text x='580' y='113' text-anchor='middle' fill='#a5d6a7' font-size='9'>= 外部コンサル・フリーランス活用</text><rect x='415' y='132' width='330' height='42' rx='5' fill='#1b4a1b' stroke='#4caf50' stroke-width='1'/><text x='580' y='150' text-anchor='middle' fill='#f9a825' font-size='10' font-weight='bold'>海外留学生制度</text><text x='580' y='165' text-anchor='middle' fill='#a5d6a7' font-size='9'>= 海外研修・社費留学</text><rect x='415' y='184' width='330' height='42' rx='5' fill='#1b4a1b' stroke='#4caf50' stroke-width='1'/><text x='580' y='202' text-anchor='middle' fill='#f9a825' font-size='10' font-weight='bold'>工部大学校（内製化）</text><text x='580' y='217' text-anchor='middle' fill='#a5d6a7' font-size='9'>= エンジニアリング組織の内製</text><text x='390' y='275' text-anchor='middle' fill='#e91e63' font-size='11' font-weight='bold'>「人材なくして変革なし」— 先行投資が後を決める</text></svg>
 - 1872年：学制発布 ─ 全国民への教育を義務化
 - 「人材なくして変革なし」を最初に理解していた
 - お雇い外国人：高給で海外専門家を招聘（技術移転）
@@ -153,6 +219,7 @@ style: |
 
 # なぜ「令和の変革」は失敗するのか
 
+- <svg viewBox='0 0 780 290' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='780' height='290' fill='#1a1a2e' rx='8'/><text x='390' y='26' text-anchor='middle' fill='#e8d5b7' font-size='13' font-weight='bold'>令和のDX失敗 — 4つの構造的原因</text><rect x='20' y='45' width='170' height='210' rx='6' fill='#2a0a0a' stroke='#e74c3c' stroke-width='1.5'/><text x='105' y='68' text-anchor='middle' fill='#ef5350' font-size='11' font-weight='bold'>外圧の可視化</text><text x='105' y='84' text-anchor='middle' fill='#ef9a9a' font-size='9'>困難</text><rect x='35' y='96' width='140' height='44' rx='4' fill='#1a0000'/><text x='105' y='115' text-anchor='middle' fill='#ef9a9a' font-size='9'>黒船は目に見えた</text><text x='105' y='130' text-anchor='middle' fill='#ef9a9a' font-size='9'>AIの脅威は「まだ先」</text><text x='105' y='172' text-anchor='middle' fill='#ff7675' font-size='9'>外圧がないと</text><text x='105' y='186' text-anchor='middle' fill='#ff7675' font-size='9'>動かない組織</text><rect x='210' y='45' width='170' height='210' rx='6' fill='#2a1a00' stroke='#f9a825' stroke-width='1.5'/><text x='295' y='68' text-anchor='middle' fill='#ffa726' font-size='11' font-weight='bold'>成功体験の呪縛</text><text x='295' y='84' text-anchor='middle' fill='#ffe082' font-size='9'>変革の最大の敵</text><rect x='225' y='96' width='140' height='44' rx='4' fill='#1a0800'/><text x='295' y='115' text-anchor='middle' fill='#ffe082' font-size='9'>バブル期の</text><text x='295' y='130' text-anchor='middle' fill='#ffe082' font-size='9'>「勝ちパターン」</text><text x='295' y='172' text-anchor='middle' fill='#ffcc02' font-size='9'>過去の成功が</text><text x='295' y='186' text-anchor='middle' fill='#ffcc02' font-size='9'>未来の変革を妨げる</text><rect x='400' y='45' width='170' height='210' rx='6' fill='#0a1a2a' stroke='#4a90d9' stroke-width='1.5'/><text x='485' y='68' text-anchor='middle' fill='#42a5f5' font-size='11' font-weight='bold'>合議制の罠</text><text x='485' y='84' text-anchor='middle' fill='#64b5f6' font-size='9'>意思決定の遅さ</text><rect x='415' y='96' width='140' height='44' rx='4' fill='#001520'/><text x='485' y='115' text-anchor='middle' fill='#90caf9' font-size='9'>稟議・根回し文化</text><text x='485' y='130' text-anchor='middle' fill='#90caf9' font-size='9'>= 老中合議制の再来</text><text x='485' y='172' text-anchor='middle' fill='#64b5f6' font-size='9'>廃藩置県 3ヶ月 vs</text><text x='485' y='186' text-anchor='middle' fill='#64b5f6' font-size='9'>現代DX 3年検討</text><rect x='590' y='45' width='170' height='210' rx='6' fill='#1a0a2a' stroke='#9b59b6' stroke-width='1.5'/><text x='675' y='68' text-anchor='middle' fill='#ce93d8' font-size='11' font-weight='bold'>失敗嫌い文化</text><text x='675' y='84' text-anchor='middle' fill='#e1bee7' font-size='9'>実験より安全を優先</text><rect x='605' y='96' width='140' height='44' rx='4' fill='#110822'/><text x='675' y='115' text-anchor='middle' fill='#e1bee7' font-size='9'>「失敗したら</text><text x='675' y='130' text-anchor='middle' fill='#e1bee7' font-size='9'>責任を問われる」</text><text x='675' y='172' text-anchor='middle' fill='#ce93d8' font-size='9'>PoC を許さない</text><text x='675' y='186' text-anchor='middle' fill='#ce93d8' font-size='9'>文化的制約</text><text x='390' y='272' text-anchor='middle' fill='#f9a825' font-size='10' font-weight='bold'>→ 外圧がなくても「内発的変革」ができるかが鍵</text></svg>
 - 外圧が「見えにくく」なった時代の変革困難
 - 黒船は目に見えた ─ クラウドやAIの脅威は「まだ先」に見える
 - 成功体験の呪縛：バブル期の「勝ちパターン」が染み付いている
@@ -168,6 +235,7 @@ style: |
 
 # レガシーシステム = 廃藩置県に相当する決断
 
+- <svg viewBox='0 0 780 290' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='780' height='290' fill='#1a1a2e' rx='8'/><text x='390' y='26' text-anchor='middle' fill='#e8d5b7' font-size='13' font-weight='bold'>廃藩置県（1871）≒ レガシー完全移行の決断</text><rect x='20' y='44' width='340' height='220' rx='6' fill='#1a1200' stroke='#f9a825' stroke-width='2'/><text x='190' y='68' text-anchor='middle' fill='#ffa726' font-size='12' font-weight='bold'>廃藩置県の手法</text><rect x='35' y='82' width='310' height='36' rx='4' fill='#2a1a00' stroke='#e65100' stroke-width='1'/><text x='190' y='104' text-anchor='middle' fill='#ffcc80' font-size='10'>1871年7月：藩制度の廃止を宣言</text><line x1='190' y1='118' x2='190' y2='134' stroke='#f9a825' stroke-width='1.5'/><polygon points='184,132 196,132 190,144' fill='#f9a825'/><rect x='35' y='144' width='310' height='36' rx='4' fill='#2a1a00' stroke='#e65100' stroke-width='1'/><text x='190' y='166' text-anchor='middle' fill='#ffcc80' font-size='10'>3ヶ月で断行 — 段階移行ではない</text><line x1='190' y1='180' x2='190' y2='196' stroke='#f9a825' stroke-width='1.5'/><polygon points='184,194 196,194 190,206' fill='#f9a825'/><rect x='35' y='206' width='310' height='36' rx='4' fill='#2a1a00' stroke='#e65100' stroke-width='1'/><text x='190' y='228' text-anchor='middle' fill='#ffcc80' font-size='10'>旧藩体制との並走なし → 即廃止</text><rect x='420' y='44' width='340' height='220' rx='6' fill='#0a1a0a' stroke='#4caf50' stroke-width='2'/><text x='590' y='68' text-anchor='middle' fill='#66bb6a' font-size='12' font-weight='bold'>現代のレガシー移行</text><rect x='435' y='82' width='310' height='36' rx='4' fill='#0d2a0a' stroke='#2e7d32' stroke-width='1'/><text x='590' y='100' text-anchor='middle' fill='#a5d6a7' font-size='10'>移行期限を「今期末」と決断する</text><line x1='590' y1='118' x2='590' y2='134' stroke='#4caf50' stroke-width='1.5'/><polygon points='584,132 596,132 590,144' fill='#4caf50'/><rect x='435' y='144' width='310' height='36' rx='4' fill='#0d2a0a' stroke='#2e7d32' stroke-width='1'/><text x='590' y='162' text-anchor='middle' fill='#a5d6a7' font-size='10'>移行コストを「先行投資」として計上</text><line x1='590' y1='180' x2='590' y2='196' stroke='#4caf50' stroke-width='1.5'/><polygon points='584,194 596,194 590,206' fill='#4caf50'/><rect x='435' y='206' width='310' height='36' rx='4' fill='#0d2a0a' stroke='#2e7d32' stroke-width='1'/><text x='590' y='224' text-anchor='middle' fill='#a5d6a7' font-size='10'>旧システム廃止日を社内公表する</text><text x='390' y='278' text-anchor='middle' fill='#e91e63' font-size='11' font-weight='bold'>技術的負債は「藩の借金」— 雪だるま式に増える前に廃止を</text></svg>
 - 廃藩置県（1871年）：藩主の権限を一夜にして廃止
 - 「3ヶ月で決断・実行」 ─ 段階的移行ではなかった
 - レガシーシステムの延命 ≒ 旧藩体制の温存
@@ -204,6 +272,7 @@ style: |
 
 # 「壊す」と「作る」を同時に：廃仏毀釈の教訓
 
+- <svg viewBox='0 0 780 290' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='780' height='290' fill='#1a1a2e' rx='8'/><text x='390' y='26' text-anchor='middle' fill='#e8d5b7' font-size='13' font-weight='bold'>廃仏毀釈の教訓 — 「壊す」と「作る」のバランス</text><rect x='20' y='44' width='230' height='220' rx='6' fill='#2a0a0a' stroke='#e74c3c' stroke-width='2'/><text x='135' y='68' text-anchor='middle' fill='#ef5350' font-size='12' font-weight='bold'>廃仏毀釈（失敗例）</text><rect x='35' y='82' width='200' height='36' rx='4' fill='#1a0000' stroke='#c62828' stroke-width='1'/><text x='135' y='100' text-anchor='middle' fill='#ef9a9a' font-size='9'>壊す速度 &gt;&gt;&gt; 作る速度</text><text x='135' y='113' text-anchor='middle' fill='#ef9a9a' font-size='8'>代替なしで寺院を破壊</text><rect x='35' y='128' width='200' height='36' rx='4' fill='#1a0000' stroke='#c62828' stroke-width='1'/><text x='135' y='148' text-anchor='middle' fill='#ef9a9a' font-size='9'>民衆の反発・文化財損失</text><rect x='35' y='174' width='200' height='36' rx='4' fill='#1a0000' stroke='#c62828' stroke-width='1'/><text x='135' y='194' text-anchor='middle' fill='#ef9a9a' font-size='9'>説明なき強行 → 不信感</text><text x='135' y='252' text-anchor='middle' fill='#e74c3c' font-size='10' font-weight='bold'>× 組織崩壊</text><rect x='280' y='44' width='220' height='220' rx='6' fill='#16213e' stroke='#f9a825' stroke-width='2'/><text x='390' y='68' text-anchor='middle' fill='#f9a825' font-size='12' font-weight='bold'>バランスの原則</text><line x1='390' y1='160' x2='340' y2='100' stroke='#e74c3c' stroke-width='2'/><line x1='390' y1='160' x2='440' y2='100' stroke='#4caf50' stroke-width='2'/><circle cx='390' cy='160' r='15' fill='#f9a825'/><text x='390' y='164' text-anchor='middle' fill='#000' font-size='9'>均衡</text><rect x='295' y='72' width='80' height='24' rx='4' fill='#2a0a0a' stroke='#e74c3c' stroke-width='1'/><text x='335' y='89' text-anchor='middle' fill='#ef5350' font-size='9'>壊す速度</text><rect x='405' y='72' width='80' height='24' rx='4' fill='#0a2a0a' stroke='#4caf50' stroke-width='1'/><text x='445' y='89' text-anchor='middle' fill='#66bb6a' font-size='9'>作る速度</text><text x='390' y='208' text-anchor='middle' fill='#ffe082' font-size='9'>代替を先に準備</text><text x='390' y='224' text-anchor='middle' fill='#ffe082' font-size='9'>合意形成を怠らない</text><text x='390' y='240' text-anchor='middle' fill='#ffe082' font-size='9'>価値の評価してから廃止</text><rect x='530' y='44' width='230' height='220' rx='6' fill='#0a2a0a' stroke='#4caf50' stroke-width='2'/><text x='645' y='68' text-anchor='middle' fill='#66bb6a' font-size='12' font-weight='bold'>DXへの応用（成功例）</text><rect x='545' y='82' width='200' height='36' rx='4' fill='#001a00' stroke='#2e7d32' stroke-width='1'/><text x='645' y='100' text-anchor='middle' fill='#a5d6a7' font-size='9'>既存資産の価値を正確に評価</text><text x='645' y='113' text-anchor='middle' fill='#a5d6a7' font-size='8'>→ データを守りながら移行</text><rect x='545' y='128' width='200' height='36' rx='4' fill='#001a00' stroke='#2e7d32' stroke-width='1'/><text x='645' y='148' text-anchor='middle' fill='#a5d6a7' font-size='9'>代替システムを先に構築</text><rect x='545' y='174' width='200' height='36' rx='4' fill='#001a00' stroke='#2e7d32' stroke-width='1'/><text x='645' y='194' text-anchor='middle' fill='#a5d6a7' font-size='9'>ステークホルダーへの丁寧な説明</text><text x='645' y='252' text-anchor='middle' fill='#4caf50' font-size='10' font-weight='bold'>✓ DX成功</text></svg>
 - 明治政府は神仏分離令を発布 ─ 旧来の文化的権威を解体
 - 「壊しすぎ」た結果：文化財の損失・民衆の反発
 - DXでも「壊す速度 > 作る速度」になると組織が崩壊する
@@ -219,12 +288,23 @@ style: |
 ---
 
 <!-- _class: lead -->
-# まとめ：「変革の教科書」は150年前にあった
+# まとめ：「変革の教科書」は150年前にあった（1/2）
 
+- <svg viewBox='0 0 780 290' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='780' height='290' fill='#1a1a2e' rx='8'/><text x='390' y='26' text-anchor='middle' fill='#e8d5b7' font-size='13' font-weight='bold'>明治維新から学ぶDXの5原則</text><rect x='20' y='44' width='680' height='48' rx='6' fill='#16213e' stroke='#f9a825' stroke-width='1.5'/><text x='56' y='64' fill='#f9a825' font-size='14' font-weight='bold'>1</text><text x='75' y='64' fill='#e8d5b7' font-size='11' font-weight='bold'>外圧を待たず、自ら危機感を醸成する</text><text x='75' y='80' fill='#aaa' font-size='10'>「黒船を自分で呼べ」— 内発的変革の意志</text><rect x='20' y='100' width='680' height='48' rx='6' fill='#16213e' stroke='#4a90d9' stroke-width='1.5'/><text x='56' y='120' fill='#42a5f5' font-size='14' font-weight='bold'>2</text><text x='75' y='120' fill='#e8d5b7' font-size='11' font-weight='bold'>トップが現場に出る</text><text x='75' y='136' fill='#aaa' font-size='10'>「岩倉使節団の精神」— 経営層が自らPoC・視察を行う</text><rect x='20' y='156' width='330' height='48' rx='6' fill='#16213e' stroke='#4caf50' stroke-width='1.5'/><text x='56' y='176' fill='#66bb6a' font-size='14' font-weight='bold'>3</text><text x='75' y='176' fill='#e8d5b7' font-size='11' font-weight='bold'>和魂洋才</text><text x='75' y='192' fill='#aaa' font-size='10'>文化を守り仕組みを変える</text><rect x='370' y='156' width='330' height='48' rx='6' fill='#16213e' stroke='#9b59b6' stroke-width='1.5'/><text x='406' y='176' fill='#ce93d8' font-size='14' font-weight='bold'>4</text><text x='425' y='176' fill='#e8d5b7' font-size='11' font-weight='bold'>インフラと人材への先行投資</text><text x='425' y='192' fill='#aaa' font-size='10'>殖産興業・学制の精神</text><rect x='20' y='212' width='680' height='48' rx='6' fill='#16213e' stroke='#e74c3c' stroke-width='1.5'/><text x='56' y='232' fill='#ef5350' font-size='14' font-weight='bold'>5</text><text x='75' y='232' fill='#e8d5b7' font-size='11' font-weight='bold'>レガシーの廃止期限を決め、二重投資を終わらせる</text><text x='75' y='248' fill='#aaa' font-size='10'>「廃藩置県」の決断 — 新旧並走は短期間で終わらせる</text><text x='390' y='280' text-anchor='middle' fill='#f9a825' font-size='10' font-weight='bold'>150年前に答えは出ている。問われているのは「実行する意志」だ</text></svg>
 - 明治維新から学ぶDXの5原則
 - 
 - 1. 外圧を待たず、自ら危機感を醸成する（黒船を自分で呼べ）
 - 2. トップが現場に出る（岩倉使節団の精神）
+
+<!--
+5原則をシンプルに提示。最後のメッセージは「歴史に学べ」ではなく「実行せよ」。聴衆がすぐに行動に移せるよう具体的なアクションに落とし込む。
+-->
+
+---
+
+<!-- _class: lead -->
+# まとめ：「変革の教科書」は150年前にあった（2/2）
+
 - 3. アイデンティティを保ちながら仕組みを変える（和魂洋才）
 - 4. インフラと人材に先行投資する（殖産興業・学制）
 - 5. レガシーの廃止期限を決め、二重投資を終わらせる（廃藩置県）
@@ -237,7 +317,7 @@ style: |
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - **歴史・一次資料:**
 - - [岩倉使節団公式記録「特命全権大使米欧回覧実記」](https://www.archives.go.jp/)
@@ -245,6 +325,15 @@ style: |
 - 
 - **DX・経営戦略:**
 - - [経済産業省「DXレポート2.0」(2021)](https://www.meti.go.jp/press/2021/12/20211228004/20211228004.html)
+
+<!--
+参考文献。歴史資料とDX文献を組み合わせた構成。聴衆が更に深堀りしたい場合の入口を提供。
+-->
+
+---
+
+# 参考文献（2/2）
+
 - - [Harvard Business Review: Leading Digital Transformation](https://hbr.org/)
 - 
 - **歴史研究:**

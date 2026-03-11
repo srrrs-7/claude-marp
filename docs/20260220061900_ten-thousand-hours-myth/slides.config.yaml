@@ -5,6 +5,7 @@ output:
   baseName: "ten-thousand-hours-myth"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "熟達と練習の科学"
   footer: "© 2026"

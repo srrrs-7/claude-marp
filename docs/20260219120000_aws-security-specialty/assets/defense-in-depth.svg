@@ -1,0 +1,14 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold">Defense in Depth — 多層防御アーキテクチャ</text>
+<rect x="30" y="35" width="740" height="55" rx="8" fill="#e91e63" opacity="0.85"/>
+<text x="400" y="68" text-anchor="middle" font-size="15" fill="#ffffff" font-weight="bold">Edge Protection (CloudFront / Shield / Route53)</text>
+<rect x="65" y="105" width="670" height="55" rx="8" fill="#7b1fa2" opacity="0.85"/>
+<text x="400" y="138" text-anchor="middle" font-size="15" fill="#ffffff" font-weight="bold">Network Security (VPC / NACLs / Security Groups)</text>
+<rect x="100" y="175" width="600" height="55" rx="8" fill="#1565c0" opacity="0.85"/>
+<text x="400" y="208" text-anchor="middle" font-size="15" fill="#ffffff" font-weight="bold">Compute Security (EC2 Inspector / SSM Patch)</text>
+<rect x="135" y="245" width="530" height="55" rx="8" fill="#00695c" opacity="0.85"/>
+<text x="400" y="278" text-anchor="middle" font-size="15" fill="#ffffff" font-weight="bold">Application Security (WAF / Cognito / App Auth)</text>
+<rect x="170" y="315" width="460" height="55" rx="8" fill="#f9a825" opacity="0.85"/>
+<text x="400" y="348" text-anchor="middle" font-size="15" fill="#1a1a2e" font-weight="bold">Data Protection (KMS / Macie / S3 Encryption)</text>
+</svg>

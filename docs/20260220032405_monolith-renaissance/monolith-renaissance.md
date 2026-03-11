@@ -239,6 +239,11 @@ Stack Overflowのインフラブログはこの分野の名記事が多い。Nic
 
 - Railsでの実装例（Packwerk / Zeitwerk）
 
+
+---
+
+# コード例: モジュール境界の実装（コード例）
+
 ```ruby
 # app/packages/billing/public/billing_service.rb
 module Billing
@@ -294,6 +299,11 @@ end
 
 - エラーログに必要な情報を全て揃えるためのコード例
 
+
+---
+
+# 分散トレーシングの地獄（コード例）
+
 ```go
 // マイクロサービス: 障害追跡のコスト
 span := tracer.StartSpan("order.process")
@@ -312,9 +322,6 @@ if err != nil {
 }
 ```
 
-<!--
-モノリスでは同じエラーがスタックトレース1枚で完結する。
--->
 
 ---
 
@@ -431,6 +438,11 @@ if err != nil {
 
 - ドメイン境界を反映したディレクトリ構造例
 
+
+---
+
+# モジュラーモノリスのディレクトリ設計（コード例）
+
 ```text
 src/
 ├── modules/
@@ -451,9 +463,6 @@ src/
 └── app.ts
 ```
 
-<!--
-ESLint の import ルールや Packwerk（Ruby）でモジュール境界をlintで強制できる。
--->
 
 ---
 

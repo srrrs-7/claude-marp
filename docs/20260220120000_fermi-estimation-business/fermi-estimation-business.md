@@ -1,11 +1,77 @@
 ---
 marp: true
 theme: gaia
+class: invert
 size: 16:9
 paginate: true
 header: "フェルミ推定でビジネスを読む"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section {
     font-size: 1.05em;
   }
@@ -22,6 +88,23 @@ style: |
 <!-- _class: lead -->
 # フェルミ推定でビジネスを読む
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e" rx="12"/>
+<text x="400" y="50" text-anchor="middle" fill="#f9a825" font-size="22" font-weight="bold">フェルミ推定でビジネスを読む</text>
+<circle cx="200" cy="210" r="80" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="200" y="200" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">論理的</text>
+<text x="200" y="220" text-anchor="middle" fill="#ffffff" font-size="12">推論</text>
+<circle cx="400" cy="210" r="80" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
+<text x="400" y="200" text-anchor="middle" fill="#2196f3" font-size="14" font-weight="bold">数値</text>
+<text x="400" y="220" text-anchor="middle" fill="#ffffff" font-size="12">仮定</text>
+<circle cx="600" cy="210" r="80" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+<text x="600" y="200" text-anchor="middle" fill="#4caf50" font-size="14" font-weight="bold">概算</text>
+<text x="600" y="220" text-anchor="middle" fill="#ffffff" font-size="12">計算</text>
+<line x1="280" y1="210" x2="315" y2="210" stroke="#f9a825" stroke-width="2"/>
+<polygon points="315,203 329,210 315,217" fill="#f9a825"/>
+<line x1="480" y1="210" x2="515" y2="210" stroke="#2196f3" stroke-width="2"/>
+<polygon points="515,203 529,210 515,217" fill="#2196f3"/>
+<text x="400" y="330" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">「桁の正確さ」を目指す思考法</text>
+</svg>
 - 「東京に美容院は何件?」から市場規模推定へ
 - 
 - 対象: エンジニア向けワークショップ
@@ -35,6 +118,40 @@ style: |
 
 # アジェンダ
 
+- <svg viewBox="0 0 800 430" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="430" fill="#1a1a2e" rx="12"/>
+<text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">本日のプログラム</text>
+
+<rect x="80" y="80" width="640" height="46" rx="8" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
+<rect x="80" y="80" width="90" height="46" rx="8" fill="#2196f3" opacity="0.8"/>
+<text x="125" y="108" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Ch.1</text>
+<text x="350" y="108" text-anchor="middle" fill="#ffffff" font-size="14">フェルミ推定とは</text>
+<text x="660" y="108" text-anchor="middle" fill="#2196f3" font-size="13">20分</text>
+
+<rect x="80" y="150" width="640" height="46" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+<rect x="80" y="150" width="90" height="46" rx="8" fill="#4caf50" opacity="0.8"/>
+<text x="125" y="178" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Ch.2</text>
+<text x="350" y="178" text-anchor="middle" fill="#ffffff" font-size="14">美容院問題を解く</text>
+<text x="660" y="178" text-anchor="middle" fill="#4caf50" font-size="13">25分</text>
+
+<rect x="80" y="220" width="640" height="46" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<rect x="80" y="220" width="90" height="46" rx="8" fill="#e91e63" opacity="0.8"/>
+<text x="125" y="248" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Ch.3</text>
+<text x="350" y="248" text-anchor="middle" fill="#ffffff" font-size="14">ワークショップ実習</text>
+<text x="660" y="248" text-anchor="middle" fill="#e91e63" font-size="13">30分</text>
+
+<rect x="80" y="290" width="640" height="46" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<rect x="80" y="290" width="90" height="46" rx="8" fill="#f9a825" opacity="0.8"/>
+<text x="125" y="318" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Ch.4</text>
+<text x="350" y="318" text-anchor="middle" fill="#ffffff" font-size="14">市場規模推定応用</text>
+<text x="660" y="318" text-anchor="middle" fill="#f9a825" font-size="13">25分</text>
+
+<rect x="80" y="360" width="640" height="46" rx="8" fill="#16213e" stroke="#ab47bc" stroke-width="2"/>
+<rect x="80" y="360" width="90" height="46" rx="8" fill="#ab47bc" opacity="0.8"/>
+<text x="125" y="388" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Ch.5</text>
+<text x="350" y="388" text-anchor="middle" fill="#ffffff" font-size="14">数字で語るコツ</text>
+<text x="660" y="388" text-anchor="middle" fill="#ab47bc" font-size="13">15分</text>
+
+</svg>
 - **Chapter 1** フェルミ推定とは何か（20分）
 - **Chapter 2** 美容院問題に挑戦（25分）
 - **Chapter 3** ワークショップ実習（30分）
@@ -51,6 +168,22 @@ style: |
 <!-- _class: lead -->
 # Chapter 1: フェルミ推定とは
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e" rx="12"/>
+<text x="400" y="100" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">Chapter 1</text>
+<text x="400" y="140" text-anchor="middle" fill="#ffffff" font-size="18">フェルミ推定とは</text>
+<rect x="150" y="180" width="500" height="3" fill="#f9a825" opacity="0.5"/>
+<text x="400" y="240" text-anchor="middle" fill="#aaa" font-size="15">概念の理解とエンジニアとの親和性</text>
+<circle cx="200" cy="310" r="40" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="200" y="315" text-anchor="middle" fill="#f9a825" font-size="12">分解</text>
+<circle cx="400" cy="310" r="40" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
+<text x="400" y="315" text-anchor="middle" fill="#2196f3" font-size="12">仮定</text>
+<circle cx="600" cy="310" r="40" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+<text x="600" y="315" text-anchor="middle" fill="#4caf50" font-size="12">計算</text>
+<line x1="240" y1="310" x2="356" y2="310" stroke="#444" stroke-width="1.5"/>
+<polygon points="356,303 370,310 356,317" fill="#444"/>
+<line x1="440" y1="310" x2="556" y2="310" stroke="#444" stroke-width="1.5"/>
+<polygon points="556,303 570,310 556,317" fill="#444"/>
+</svg>
 - 概念の理解とエンジニアとの親和性
 
 
@@ -58,6 +191,49 @@ style: |
 
 # フェルミ推定の定義
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">オーダーオブマグニチュード（桁の正確さ）</text>
+<line x1="60" y1="200" x2="740" y2="200" stroke="#444" stroke-width="2"/>
+
+<circle cx="80" cy="200" r="8" fill="#f9a825"/>
+<text x="80" y="230" text-anchor="middle" fill="#aaa" font-size="11">1</text>
+<line x1="80" y1="192" x2="80" y2="155" stroke="#2196f3" stroke-width="1"/>
+<text x="80" y="145" text-anchor="middle" fill="#2196f3" font-size="12">1</text>
+
+<circle cx="175" cy="200" r="8" fill="#f9a825"/>
+<text x="175" y="230" text-anchor="middle" fill="#aaa" font-size="11">10</text>
+<line x1="175" y1="192" x2="175" y2="155" stroke="#2196f3" stroke-width="1"/>
+<text x="175" y="145" text-anchor="middle" fill="#2196f3" font-size="12">10</text>
+
+<circle cx="280" cy="200" r="8" fill="#f9a825"/>
+<text x="280" y="230" text-anchor="middle" fill="#aaa" font-size="11">100</text>
+<line x1="280" y1="192" x2="280" y2="155" stroke="#2196f3" stroke-width="1"/>
+<text x="280" y="145" text-anchor="middle" fill="#2196f3" font-size="12">10²</text>
+
+<circle cx="385" cy="200" r="8" fill="#f9a825"/>
+<text x="385" y="230" text-anchor="middle" fill="#aaa" font-size="11">1,000</text>
+<line x1="385" y1="192" x2="385" y2="155" stroke="#2196f3" stroke-width="1"/>
+<text x="385" y="145" text-anchor="middle" fill="#2196f3" font-size="12">10³</text>
+
+<circle cx="490" cy="200" r="8" fill="#f9a825"/>
+<text x="490" y="230" text-anchor="middle" fill="#aaa" font-size="11">10,000</text>
+<line x1="490" y1="192" x2="490" y2="155" stroke="#2196f3" stroke-width="1"/>
+<text x="490" y="145" text-anchor="middle" fill="#2196f3" font-size="12">10⁴</text>
+
+<circle cx="595" cy="200" r="8" fill="#f9a825"/>
+<text x="595" y="230" text-anchor="middle" fill="#aaa" font-size="11">100,000</text>
+<line x1="595" y1="192" x2="595" y2="155" stroke="#2196f3" stroke-width="1"/>
+<text x="595" y="145" text-anchor="middle" fill="#2196f3" font-size="12">10⁵</text>
+
+<circle cx="700" cy="200" r="8" fill="#f9a825"/>
+<text x="700" y="230" text-anchor="middle" fill="#aaa" font-size="11">1M</text>
+<line x1="700" y1="192" x2="700" y2="155" stroke="#2196f3" stroke-width="1"/>
+<text x="700" y="145" text-anchor="middle" fill="#2196f3" font-size="12">10⁶</text>
+
+<rect x="120" y="265" width="560" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="295" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">フェルミ推定のゴール</text>
+<text x="400" y="318" text-anchor="middle" fill="#ffffff" font-size="12">「5.6万件」ではなく「数万件レベル」が正解</text>
+</svg>
 - **正確なデータなしに、論理的推論だけで概算を出す思考法**
 - 
 - - 名前の由来: 物理学者エンリコ・フェルミ（ノーベル賞受賞者）
@@ -72,7 +248,7 @@ style: |
 
 ---
 
-# なぜエンジニアに有効か
+# なぜエンジニアに有効か（1/2）
 
 - <svg viewBox='0 0 780 300' style='max-height:58vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs/>
@@ -88,6 +264,15 @@ style: |
 -   <rect x='30' y='105' width='310' height='38' rx='6' fill='#e8f0fe'/>
 -   <text x='185' y='129' text-anchor='middle' fill='#1a3c6a' font-size='14'>要件分解（大→小）</text>
 -   <rect x='440' y='105' width='310' height='38' rx='6' fill='#e6f4ea'/>
+
+<!--
+参加者のエンジニア経験と結びつける。「レイテンシをどう見積もる？」と問いかけてもよい。
+-->
+
+---
+
+# なぜエンジニアに有効か（2/2）
+
 -   <text x='595' y='129' text-anchor='middle' fill='#1a5c2a' font-size='14'>問題の分解</text>
 -   <rect x='30' y='152' width='310' height='38' rx='6' fill='#e8f0fe'/>
 -   <text x='185' y='176' text-anchor='middle' fill='#1a3c6a' font-size='14'>PoC・仮説検証</text>
@@ -109,7 +294,7 @@ style: |
 
 ---
 
-# 思考の3ステップ
+# 思考の3ステップ（1/2）
 
 - <svg viewBox='0 0 780 280' style='max-height:55vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs/>
@@ -125,6 +310,15 @@ style: |
 -   <!-- Step 2 -->
 -   <rect x='305' y='60' width='200' height='160' rx='12' fill='#34a853' opacity='0.9'/>
 -   <text x='405' y='100' text-anchor='middle' fill='white' font-size='36' font-weight='bold'>2</text>
+
+<!--
+3ステップを板書しながら説明するのもよい。後の実習で必ずこの枠組みを使う。
+-->
+
+---
+
+# 思考の3ステップ（2/2）
+
 -   <text x='405' y='135' text-anchor='middle' fill='white' font-size='20' font-weight='bold'>仮説を立てる</text>
 -   <text x='405' y='163' text-anchor='middle' fill='#c8f0d8' font-size='14'>数値を</text>
 -   <text x='405' y='183' text-anchor='middle' fill='#c8f0d8' font-size='14'>仮定する</text>
@@ -150,18 +344,46 @@ style: |
 <!-- _class: lead -->
 # Chapter 2: 美容院問題に挑戦
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
+<text x="400" y="100" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">Chapter 2</text>
+<text x="400" y="140" text-anchor="middle" fill="#ffffff" font-size="18">美容院問題に挑戦</text>
+<rect x="150" y="175" width="500" height="3" fill="#e91e63" opacity="0.5"/>
+<text x="400" y="220" text-anchor="middle" fill="#aaa" font-size="15">フェルミ推定の王道問題をライブで解く</text>
+<rect x="200" y="260" width="400" height="80" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<text x="400" y="295" text-anchor="middle" fill="#e91e63" font-size="16" font-weight="bold">東京の美容院は何件?</text>
+<text x="400" y="322" text-anchor="middle" fill="#ffffff" font-size="13">データなし・論理だけで推定</text>
+</svg>
 - フェルミ推定の王道問題をライブで解く
 
 
 ---
 
 <!-- _class: lead -->
-# 問題: 東京の美容院は何件?
+# 問題: 東京の美容院は何件?（1/2）
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e" rx="12"/>
+<text x="400" y="60" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">考えてみよう</text>
+<rect x="100" y="100" width="600" height="200" rx="16" fill="#16213e" stroke="#e91e63" stroke-width="3"/>
+<text x="400" y="155" text-anchor="middle" fill="#e91e63" font-size="28" font-weight="bold">東京の美容院</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="22">何件あるでしょうか?</text>
+<text x="400" y="270" text-anchor="middle" fill="#aaa" font-size="14">データを調べずに、論理で推定</text>
+<rect x="200" y="330" width="400" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="362" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">まず自分で考えてみよう（2分）</text>
+</svg>
 - ## 🤔 考えてみよう
 - 
 - 東京都内に美容院（美容室）は
 - 
+
+<!--
+2分タイマーを設定して参加者に考えさせる。発表してもらうと場が盛り上がる。
+-->
+
+---
+
+<!-- _class: lead -->
+# 問題: 東京の美容院は何件?（2/2）
+
 - # 何件あるでしょうか?
 - 
 - ※ データを調べずに、論理で推定してください
@@ -173,7 +395,7 @@ style: |
 
 ---
 
-# Step 1: 問題を分解する
+# Step 1: 問題を分解する（1/2）
 
 - <svg viewBox='0 0 780 360' style='max-height:60vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs/>
@@ -199,6 +421,15 @@ style: |
 -   <line x1='90' y1='191' x2='90' y2='211' stroke='#555' stroke-width='1.5'/>
 -   <line x1='195' y1='191' x2='195' y2='211' stroke='#555' stroke-width='1.5'/>
 -   <line x1='300' y1='191' x2='300' y2='211' stroke='#555' stroke-width='1.5'/>
+
+<!--
+ここで「分解の仕方は一つではない」ことを強調。供給側（店舗数）から考えてもよい。
+-->
+
+---
+
+# Step 1: 問題を分解する（2/2）
+
 -   <rect x='35' y='211' width='110' height='52' rx='6' fill='#e6f4ea' stroke='#34a853' stroke-width='1.5'/>
 -   <text x='90' y='232' text-anchor='middle' fill='#1a5c2a' font-size='12' font-weight='bold'>東京人口</text>
 -   <text x='90' y='251' text-anchor='middle' fill='#34a853' font-size='13'>1,400万人</text>
@@ -232,6 +463,45 @@ style: |
 
 # Step 2: 数値を仮定する
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">仮定の置き方: 根拠が命</text>
+
+<rect x="40" y="65" width="720" height="42" rx="6" fill="#16213e" stroke="#2196f3" stroke-width="1.5"/>
+<text x="200" y="91" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">東京都人口</text>
+<line x1="320" y1="65" x2="320" y2="107" stroke="#333" stroke-width="1"/>
+<text x="470" y="91" text-anchor="middle" fill="#2196f3" font-size="16" font-weight="bold">1,400万人</text>
+<line x1="600" y1="65" x2="600" y2="107" stroke="#333" stroke-width="1"/>
+<text x="660" y="91" text-anchor="middle" fill="#aaa" font-size="11">常識・記憶</text>
+
+<rect x="40" y="119" width="720" height="42" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+<text x="200" y="145" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">美容院利用率</text>
+<line x1="320" y1="119" x2="320" y2="161" stroke="#333" stroke-width="1"/>
+<text x="470" y="145" text-anchor="middle" fill="#4caf50" font-size="16" font-weight="bold">80%</text>
+<line x1="600" y1="119" x2="600" y2="161" stroke="#333" stroke-width="1"/>
+<text x="660" y="145" text-anchor="middle" fill="#aaa" font-size="11">男女差を考慮</text>
+
+<rect x="40" y="173" width="720" height="42" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+<text x="200" y="199" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">利用頻度</text>
+<line x1="320" y1="173" x2="320" y2="215" stroke="#333" stroke-width="1"/>
+<text x="470" y="199" text-anchor="middle" fill="#e91e63" font-size="16" font-weight="bold">月1回</text>
+<line x1="600" y1="173" x2="600" y2="215" stroke="#333" stroke-width="1"/>
+<text x="660" y="199" text-anchor="middle" fill="#aaa" font-size="11">女性平均から</text>
+
+<rect x="40" y="227" width="720" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="253" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">1日の客数</text>
+<line x1="320" y1="227" x2="320" y2="269" stroke="#333" stroke-width="1"/>
+<text x="470" y="253" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">8人/日</text>
+<line x1="600" y1="227" x2="600" y2="269" stroke="#333" stroke-width="1"/>
+<text x="660" y="253" text-anchor="middle" fill="#aaa" font-size="11">予約数イメージ</text>
+
+<rect x="40" y="281" width="720" height="42" rx="6" fill="#16213e" stroke="#ab47bc" stroke-width="1.5"/>
+<text x="200" y="307" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">営業日数</text>
+<line x1="320" y1="281" x2="320" y2="323" stroke="#333" stroke-width="1"/>
+<text x="470" y="307" text-anchor="middle" fill="#ab47bc" font-size="16" font-weight="bold">25日/月</text>
+<line x1="600" y1="281" x2="600" y2="323" stroke="#333" stroke-width="1"/>
+<text x="660" y="307" text-anchor="middle" fill="#aaa" font-size="11">週5×約5週</text>
+
+</svg>
 - 各変数に「妥当な数値」を仮定する
 - 
 | 変数 | 仮定値 | 根拠 |
@@ -248,14 +518,61 @@ style: |
 
 ---
 
-# Step 3: 計算して答えを出す
+# Step 3: 計算して答えを出す（1/2）
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">計算プロセスの可視化</text>
+<rect x="60" y="70" width="280" height="60" rx="8" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
+<text x="200" y="97" text-anchor="middle" fill="#2196f3" font-size="13" font-weight="bold">需要側</text>
+<text x="200" y="118" text-anchor="middle" fill="#ffffff" font-size="12">1,400万 × 80% × 1回</text>
+<line x1="340" y1="100" x2="380" y2="100" stroke="#aaa" stroke-width="1.5"/>
+<polygon points="380,93 394,100 380,107" fill="#aaa"/>
+<rect x="385" y="70" width="150" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="460" y="97" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">1,120万</text>
+<text x="460" y="115" text-anchor="middle" fill="#ffffff" font-size="11">回/月</text>
+<rect x="60" y="180" width="280" height="60" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+<text x="200" y="207" text-anchor="middle" fill="#4caf50" font-size="13" font-weight="bold">供給側</text>
+<text x="200" y="228" text-anchor="middle" fill="#ffffff" font-size="12">8人/日 × 25日</text>
+<line x1="340" y1="210" x2="380" y2="210" stroke="#aaa" stroke-width="1.5"/>
+<polygon points="380,203 394,210 380,217" fill="#aaa"/>
+<rect x="385" y="180" width="150" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="460" y="207" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">200</text>
+<text x="460" y="225" text-anchor="middle" fill="#ffffff" font-size="11">人/月/店</text>
+<line x1="540" y1="100" x2="600" y2="155" stroke="#f9a825" stroke-width="2"/>
+<line x1="540" y1="210" x2="600" y2="155" stroke="#f9a825" stroke-width="2"/>
+<text x="650" y="148" fill="#f9a825" font-size="20">÷</text>
+<rect x="200" y="290" width="400" height="60" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="400" y="318" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">= 約 5.6万件</text>
+<text x="400" y="338" text-anchor="middle" fill="#ffffff" font-size="12">1,120万 ÷ 200 = 56,000</text>
+</svg>
 - **計算プロセス**
 - 
 - 月間の美容院利用延べ数:
 - 1,120万人 × 1回/月 = **1,120万回/月**
 - 
 - 必要な店舗数:
+
+<!--
+答えを出すときは「〜万件」という桁で捉えることを強調する。
+-->
+
+---
+
+# Step 3: 計算して答えを出す（2/2）
+
+- <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="420" fill="#1a1a2e" rx="12"/>
+<text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">推定結果まとめ</text>
+<rect x="100" y="70" width="600" height="120" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="28" font-weight="bold">約 5〜6万件</text>
+<text x="400" y="150" text-anchor="middle" fill="#ffffff" font-size="14">オーダー: 「数万件」レベル</text>
+<line x1="400" y1="190" x2="400" y2="220" stroke="#4caf50" stroke-width="2"/>
+<polygon points="393,220 400,234 407,220" fill="#4caf50"/>
+<rect x="100" y="230" width="600" height="80" rx="12" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+<text x="400" y="262" text-anchor="middle" fill="#4caf50" font-size="16" font-weight="bold">実際の数字（厚労省統計）</text>
+<text x="400" y="290" text-anchor="middle" fill="#ffffff" font-size="14">東京都 美容所数: 約5.5万件（2023年）</text>
+<rect x="200" y="340" width="400" height="40" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">推定ほぼ一致！</text>
+</svg>
 - 1,120万回 ÷ 200回/店舗/月 = **5.6万店舗**
 - 
 - ---
@@ -270,13 +587,67 @@ style: |
 
 ---
 
-# 解答と考察
+# 解答と考察（1/2）
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">感度分析: 仮定の違いで答えが変わる</text>
+
+<text x="160" y="108" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">楽観シナリオ</text>
+<rect x="200" y="80" width="480" height="42" rx="4" fill="#e91e63" opacity="0.8"/>
+<text x="688" y="104" fill="#e91e63" font-size="16" font-weight="bold">8万件</text>
+<text x="688" y="120" fill="#aaa" font-size="10">利用頻度月1.5回・回転数6人/日</text>
+
+<text x="160" y="198" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">中央値（今回）</text>
+<rect x="200" y="170" width="340" height="42" rx="4" fill="#f9a825" opacity="0.8"/>
+<text x="548" y="194" fill="#f9a825" font-size="16" font-weight="bold">5.6万件</text>
+<text x="548" y="210" fill="#aaa" font-size="10">月1回・8人/日×25日</text>
+
+<text x="160" y="288" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">悲観シナリオ</text>
+<rect x="200" y="260" width="210" height="42" rx="4" fill="#2196f3" opacity="0.8"/>
+<text x="418" y="284" fill="#2196f3" font-size="16" font-weight="bold">3.5万件</text>
+<text x="418" y="300" fill="#aaa" font-size="10">月0.7回・10人/日</text>
+
+<rect x="100" y="330" width="600" height="40" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="355" text-anchor="middle" fill="#f9a825" font-size="13">「正確な答え」より「思考の筋道」が価値を生む</text>
+</svg>
 - **実際の数字（参考）**
 - 厚生労働省統計: 東京都の美容所数 **約5.5万件**（2023年）
 - 
 - **推定結果: 5〜6万件 → ほぼ一致！**
 - 
+
+<!--
+実際の数字と一致したことで参加者の自信につながる。ずれた場合の話も忘れずに。
+-->
+
+---
+
+# 解答と考察（2/2）
+
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">振り返り: 何を学ぶか</text>
+
+<circle cx="80" cy="108" r="22" fill="#2196f3" opacity="0.9"/>
+<text x="80" y="114" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">1</text>
+<text x="140" y="102" fill="#ffffff" font-size="14" font-weight="bold">仮定の置き方で答えが変わる</text>
+<text x="140" y="122" fill="#aaa" font-size="12">→ 感度分析が大切</text>
+
+<circle cx="80" cy="180" r="22" fill="#4caf50" opacity="0.9"/>
+<text x="80" y="186" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">2</text>
+<text x="140" y="174" fill="#ffffff" font-size="14" font-weight="bold">「思考の筋道」が価値</text>
+<text x="140" y="194" fill="#aaa" font-size="12">→ 正確さより論理</text>
+
+<circle cx="80" cy="252" r="22" fill="#e91e63" opacity="0.9"/>
+<text x="80" y="258" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">3</text>
+<text x="140" y="246" fill="#ffffff" font-size="14" font-weight="bold">実データで検証する習慣</text>
+<text x="140" y="266" fill="#aaa" font-size="12">→ ずれた原因を探す</text>
+
+<circle cx="80" cy="324" r="22" fill="#f9a825" opacity="0.9"/>
+<text x="80" y="330" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">4</text>
+<text x="140" y="318" fill="#ffffff" font-size="14" font-weight="bold">どの仮定がずれたか分析</text>
+<text x="140" y="338" fill="#aaa" font-size="12">→ 次回の改善に</text>
+
+</svg>
 - **振り返りポイント:**
 - - 仮定の置き方で答えが変わる → 感度分析が大切
 - - 「正確な答え」より「思考の筋道」が価値
@@ -292,18 +663,83 @@ style: |
 <!-- _class: lead -->
 # Chapter 3: ワークショップ実習
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
+<text x="400" y="100" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">Chapter 3</text>
+<text x="400" y="140" text-anchor="middle" fill="#ffffff" font-size="18">ワークショップ実習</text>
+<rect x="150" y="175" width="500" height="3" fill="#4caf50" opacity="0.5"/>
+<text x="400" y="220" text-anchor="middle" fill="#aaa" font-size="15">グループに分かれて問題を解いてみよう</text>
+<rect x="100" y="260" width="260" height="80" rx="10" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
+<text x="230" y="296" text-anchor="middle" fill="#2196f3" font-size="14" font-weight="bold">問題A</text>
+<text x="230" y="320" text-anchor="middle" fill="#ffffff" font-size="12">日本のコンビニ</text>
+<rect x="440" y="260" width="260" height="80" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+<text x="570" y="296" text-anchor="middle" fill="#4caf50" font-size="14" font-weight="bold">問題B</text>
+<text x="570" y="320" text-anchor="middle" fill="#ffffff" font-size="12">東京のタクシー</text>
+</svg>
 - グループに分かれて問題を解いてみよう
 
 
 ---
 
-# 実習問題一覧
+# 実習問題一覧（1/2）
 
+- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">グループワークの進め方</text>
+
+<rect x="80" y="80" width="120" height="200" rx="10" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
+<circle cx="140" cy="110" r="22" fill="#2196f3"/>
+<text x="140" y="117" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">1</text>
+<text x="140" y="155" text-anchor="middle" fill="#2196f3" font-size="12" font-weight="bold">グループ作成</text>
+<text x="140" y="178" text-anchor="middle" fill="#ffffff" font-size="10">3〜4人でチーム</text>
+<text x="140" y="196" text-anchor="middle" fill="#ffffff" font-size="10">を組む</text>
+<line x1="200" y1="180" x2="218" y2="180" stroke="#444" stroke-width="1.5"/><polygon points="218,173 232,180 218,187" fill="#444"/>
+
+<rect x="220" y="80" width="120" height="200" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+<circle cx="280" cy="110" r="22" fill="#4caf50"/>
+<text x="280" y="117" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">2</text>
+<text x="280" y="155" text-anchor="middle" fill="#4caf50" font-size="12" font-weight="bold">問題分解</text>
+<text x="280" y="178" text-anchor="middle" fill="#ffffff" font-size="10">変数を洗い出す</text>
+<text x="280" y="196" text-anchor="middle" fill="#ffffff" font-size="10"></text>
+<line x1="340" y1="180" x2="358" y2="180" stroke="#444" stroke-width="1.5"/><polygon points="358,173 372,180 358,187" fill="#444"/>
+
+<rect x="360" y="80" width="120" height="200" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<circle cx="420" cy="110" r="22" fill="#e91e63"/>
+<text x="420" y="117" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">3</text>
+<text x="420" y="155" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">数値仮定</text>
+<text x="420" y="178" text-anchor="middle" fill="#ffffff" font-size="10">根拠をつけて数値</text>
+<text x="420" y="196" text-anchor="middle" fill="#ffffff" font-size="10">化</text>
+<line x1="480" y1="180" x2="498" y2="180" stroke="#444" stroke-width="1.5"/><polygon points="498,173 512,180 498,187" fill="#444"/>
+
+<rect x="500" y="80" width="120" height="200" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<circle cx="560" cy="110" r="22" fill="#f9a825"/>
+<text x="560" y="117" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">4</text>
+<text x="560" y="155" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">計算</text>
+<text x="560" y="178" text-anchor="middle" fill="#ffffff" font-size="10">掛け合わせて答え</text>
+<text x="560" y="196" text-anchor="middle" fill="#ffffff" font-size="10">を出す</text>
+<line x1="620" y1="180" x2="638" y2="180" stroke="#444" stroke-width="1.5"/><polygon points="638,173 652,180 638,187" fill="#444"/>
+
+<rect x="640" y="80" width="120" height="200" rx="10" fill="#16213e" stroke="#ab47bc" stroke-width="2"/>
+<circle cx="700" cy="110" r="22" fill="#ab47bc"/>
+<text x="700" y="117" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">5</text>
+<text x="700" y="155" text-anchor="middle" fill="#ab47bc" font-size="12" font-weight="bold">発表</text>
+<text x="700" y="178" text-anchor="middle" fill="#ffffff" font-size="10">プロセスを3分で</text>
+<text x="700" y="196" text-anchor="middle" fill="#ffffff" font-size="10">説明</text>
+
+
+</svg>
 - **グループワーク（各15分）**
 - 
 - **問題 A**: 日本にコンビニは何店舗あるか?
 - **問題 B**: 東京都内を走るタクシーは何台か?
 - 
+
+<!--
+グループ分けはランダムが望ましい。付箋やホワイトボードがあると効果的。
+-->
+
+---
+
+# 実習問題一覧（2/2）
+
 - **進め方:**
 - - 3〜4人でグループを作る
 - - ホワイトボード/付箋で思考を可視化
@@ -316,13 +752,60 @@ style: |
 
 ---
 
-# 問題 A: 日本のコンビニの数
+# 問題 A: 日本のコンビニの数（1/2）
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">問題A: 日本のコンビニ — 分解ヒント</text>
+<rect x="60" y="70" width="680" height="60" rx="8" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
+<text x="400" y="108" text-anchor="middle" fill="#2196f3" font-size="15" font-weight="bold">日本にコンビニは何店舗あるか?</text>
+<rect x="80" y="155" width="200" height="80" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+<text x="180" y="185" text-anchor="middle" fill="#4caf50" font-size="12" font-weight="bold">需要側アプローチ</text>
+<text x="180" y="205" text-anchor="middle" fill="#ffffff" font-size="11">人口 × 利用頻度</text>
+<text x="180" y="220" text-anchor="middle" fill="#ffffff" font-size="10">÷ 1店の処理数</text>
+<rect x="520" y="155" width="200" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+<text x="620" y="185" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">供給側アプローチ</text>
+<text x="620" y="205" text-anchor="middle" fill="#ffffff" font-size="11">商圏人口 2,000人</text>
+<text x="620" y="220" text-anchor="middle" fill="#ffffff" font-size="10">に1店という基準</text>
+<text x="400" y="200" text-anchor="middle" fill="#aaa" font-size="22">or</text>
+<rect x="150" y="275" width="500" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="303" text-anchor="middle" fill="#f9a825" font-size="14">日本の人口: 約1.2億人 → 2,000人に1店なら 約6万店</text>
+<text x="400" y="355" text-anchor="middle" fill="#4caf50" font-size="13">実際: 約5.5万店（2024年）</text>
+</svg>
 - ## 🏪 日本にコンビニは何店舗あるか?
 - 
 - **ヒント（使っても使わなくてもOK）:**
 - 
 - - 日本の人口: 約1.2億人
+
+<!--
+ヒントを出しすぎないようにする。詰まっているグループにだけヒントを示す。
+-->
+
+---
+
+# 問題 A: 日本のコンビニの数（2/2）
+
+- <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="420" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">問題A 解くためのポイント</text>
+
+<rect x="60" y="80" width="680" height="64" rx="10" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
+<rect x="60" y="80" width="8" height="64" rx="4" fill="#2196f3"/>
+<text x="120" y="108" fill="#2196f3" font-size="14" font-weight="bold">都市部 vs 地方</text>
+<text x="120" y="130" fill="#ffffff" font-size="12">都市は密度高、地方は少ない</text>
+
+<rect x="60" y="170" width="680" height="64" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+<rect x="60" y="170" width="8" height="64" rx="4" fill="#4caf50"/>
+<text x="120" y="198" fill="#4caf50" font-size="14" font-weight="bold">1店あたりの来客数</text>
+<text x="120" y="220" fill="#ffffff" font-size="12">1日何人が利用するか逆算</text>
+
+<rect x="60" y="260" width="680" height="64" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<rect x="60" y="260" width="8" height="64" rx="4" fill="#e91e63"/>
+<text x="120" y="288" fill="#e91e63" font-size="14" font-weight="bold">商圏の考え方</text>
+<text x="120" y="310" fill="#ffffff" font-size="12">徒歩・自転車圏内の人口</text>
+
+<rect x="200" y="360" width="400" height="40" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="384" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">制限時間: 15分</text>
+</svg>
 - - コンビニの商圏（近隣の利用エリア）を考える
 - - 都市部と地方の密度の違いを考慮する
 - - 1店舗あたりの来客数から逆算する方法もある
@@ -335,13 +818,41 @@ style: |
 
 ---
 
-# 問題 B: 東京のタクシー台数
+# 問題 B: 東京のタクシー台数（1/2）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">問題B: 東京のタクシー — 分解ヒント</text>
+<rect x="60" y="70" width="680" height="60" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+<text x="400" y="108" text-anchor="middle" fill="#4caf50" font-size="15" font-weight="bold">東京都内を走るタクシーは何台か?</text>
+<rect x="80" y="155" width="280" height="100" rx="8" fill="#16213e" stroke="#2196f3" stroke-width="1.5"/>
+<text x="220" y="183" text-anchor="middle" fill="#2196f3" font-size="12" font-weight="bold">需要側</text>
+<text x="220" y="205" text-anchor="middle" fill="#ffffff" font-size="11">1日あたり利用者数</text>
+<text x="220" y="223" text-anchor="middle" fill="#ffffff" font-size="10">= 人口×利用率×利用頻度</text>
+<text x="220" y="240" text-anchor="middle" fill="#aaa" font-size="10">約500万人×5%×0.05回/日</text>
+<rect x="440" y="155" width="280" height="100" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+<text x="580" y="183" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">供給側</text>
+<text x="580" y="205" text-anchor="middle" fill="#ffffff" font-size="11">1台の1日乗客数</text>
+<text x="580" y="223" text-anchor="middle" fill="#ffffff" font-size="10">= 約20〜25人/台/日</text>
+<text x="580" y="240" text-anchor="middle" fill="#aaa" font-size="10">稼働時間 × 1時間の回転数</text>
+<rect x="150" y="290" width="500" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="313" text-anchor="middle" fill="#f9a825" font-size="13">台数 = 総利用者 ÷ 1台あたり乗客数</text>
+<text x="400" y="333" text-anchor="middle" fill="#aaa" font-size="11">≈ (500万 × 5% × 0.05) ÷ 22 ≈ 5,700台?</text>
+<text x="400" y="370" text-anchor="middle" fill="#4caf50" font-size="13">実際: 約3.5万台（規制産業のため供給制限あり）</text>
+</svg>
 - ## 🚕 東京都内を走るタクシーは何台か?
 - 
 - **ヒント（使っても使わなくてもOK）:**
 - 
 - - 東京の人口: 約1,400万人
+
+<!--
+タクシーは規制産業なので供給制限がある点を後の解説で触れる。
+-->
+
+---
+
+# 問題 B: 東京のタクシー台数（2/2）
+
 - - タクシー利用シーン（雨の日、深夜、ビジネス等）
 - - 1台のタクシーが1日に何人乗せるかを考える
 - - 需要側（利用者数）と供給側（稼働台数）の両方から
@@ -354,13 +865,49 @@ style: |
 
 ---
 
-# グループワーク & 発表
+# グループワーク & 発表（1/2）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">発表の構成</text>
+
+<rect x="80" y="90" width="180" height="120" rx="10" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
+<circle cx="170" cy="125" r="25" fill="#2196f3"/>
+<text x="170" y="132" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">①</text>
+<text x="170" y="170" text-anchor="middle" fill="#2196f3" font-size="14" font-weight="bold">分解</text>
+<text x="170" y="190" text-anchor="middle" fill="#ffffff" font-size="10">どう変数を選んだか</text>
+
+<rect x="300" y="90" width="180" height="120" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+<circle cx="390" cy="125" r="25" fill="#4caf50"/>
+<text x="390" y="132" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">②</text>
+<text x="390" y="170" text-anchor="middle" fill="#4caf50" font-size="14" font-weight="bold">仮定</text>
+<text x="390" y="190" text-anchor="middle" fill="#ffffff" font-size="10">各変数の数値と根拠</text>
+
+<rect x="520" y="90" width="180" height="120" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<circle cx="610" cy="125" r="25" fill="#e91e63"/>
+<text x="610" y="132" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">③</text>
+<text x="610" y="170" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold">計算</text>
+<text x="610" y="190" text-anchor="middle" fill="#ffffff" font-size="10">掛け合わせの過程</text>
+
+<rect x="80" y="250" width="640" height="60" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="400" y="278" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">最終的な推定値</text>
+<text x="400" y="298" text-anchor="middle" fill="#ffffff" font-size="12">「なぜその数になったか」のストーリーが重要</text>
+<rect x="200" y="340" width="400" height="36" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+<text x="400" y="362" text-anchor="middle" fill="#4caf50" font-size="13">各グループ3分で発表</text>
+</svg>
 - **各グループ 3分で発表**
 - 
 - 発表のポイント:
 - - どう分解したか（何を変数に選んだか）
 - - 各変数にどんな数値を仮定したか
+
+<!--
+ファシリテーターは全グループの発表が終わったら共通点・相違点をまとめる。
+-->
+
+---
+
+# グループワーク & 発表（2/2）
+
 - - 最終的な推定値
 - 
 - 聴衆のポイント:
@@ -373,13 +920,41 @@ style: |
 
 ---
 
-# 解答・解説
+# 解答・解説（1/2）
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">解答解説: コンビニ vs タクシー</text>
+<rect x="40" y="70" width="340" height="260" rx="12" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
+<text x="210" y="100" text-anchor="middle" fill="#2196f3" font-size="15" font-weight="bold">問題A: コンビニ</text>
+<text x="210" y="135" text-anchor="middle" fill="#f9a825" font-size="26" font-weight="bold">5.5万店</text>
+<text x="210" y="160" text-anchor="middle" fill="#aaa" font-size="12">2024年・業界団体統計</text>
+<rect x="60" y="175" width="300" height="36" rx="6" fill="#0d1117"/>
+<text x="210" y="198" text-anchor="middle" fill="#ffffff" font-size="12">商圏: 2,000人に1店が目安</text>
+<rect x="60" y="220" width="300" height="36" rx="6" fill="#0d1117"/>
+<text x="210" y="243" text-anchor="middle" fill="#4caf50" font-size="12">推定正確度: ±20%以内</text>
+<rect x="420" y="70" width="340" height="260" rx="12" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+<text x="590" y="100" text-anchor="middle" fill="#4caf50" font-size="15" font-weight="bold">問題B: タクシー</text>
+<text x="590" y="135" text-anchor="middle" fill="#f9a825" font-size="26" font-weight="bold">3.5万台</text>
+<text x="590" y="160" text-anchor="middle" fill="#aaa" font-size="12">2023年・国交省統計</text>
+<rect x="440" y="175" width="300" height="36" rx="6" fill="#0d1117"/>
+<text x="590" y="198" text-anchor="middle" fill="#ffffff" font-size="12">規制産業: 供給側制限あり</text>
+<rect x="440" y="220" width="300" height="36" rx="6" fill="#0d1117"/>
+<text x="590" y="243" text-anchor="middle" fill="#e91e63" font-size="12">需要推定では多くなりがち</text>
+</svg>
 - **問題 A: 日本のコンビニ**
 - 実際: 約 **5.5万店舗**（2024年、業界団体統計）
 - 推定のポイント: 人口2,000人あたり1店（商圏発想）
 - 
 - **問題 B: 東京のタクシー**
+
+<!--
+ずれた班には「どの仮定が現実と違ったか」を一緒に考える。正解より学びプロセスが重要。
+-->
+
+---
+
+# 解答・解説（2/2）
+
 - 実際: 東京都内 約 **3.5万台**（2023年、国交省）
 - 推定のポイント: 法人タクシーの営業区域規制を考慮
 - 
@@ -395,12 +970,21 @@ style: |
 <!-- _class: lead -->
 # Chapter 4: 市場規模推定への応用
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e" rx="12"/>
+<text x="400" y="100" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">Chapter 4</text>
+<text x="400" y="140" text-anchor="middle" fill="#ffffff" font-size="18">市場規模推定への応用</text>
+<rect x="150" y="175" width="500" height="3" fill="#e91e63" opacity="0.5"/>
+<text x="400" y="220" text-anchor="middle" fill="#aaa" font-size="15">フェルミ思考でビジネスの規模を読む</text>
+<rect x="80" y="260" width="640" height="70" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="400" y="292" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">市場規模 = 顧客数 × 購買頻度 × 単価</text>
+<text x="400" y="316" text-anchor="middle" fill="#ffffff" font-size="13">この公式をフェルミ推定で各要素を求める</text>
+</svg>
 - フェルミ思考でビジネスの規模を読む
 
 
 ---
 
-# TAM・SAM・SOM の概念
+# TAM・SAM・SOM の概念（1/2）
 
 - <svg viewBox='0 0 780 320' style='max-height:55vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs/>
@@ -416,6 +1000,15 @@ style: |
 -   <text x='520' y='145' text-anchor='middle' fill='#1a5c2a' font-size='15' font-weight='bold'>SAM</text>
 -   <text x='520' y='162' text-anchor='middle' fill='#1a5c2a' font-size='11'>サービス適合</text>
 -   <text x='520' y='177' text-anchor='middle' fill='#1a5c2a' font-size='11'>市場</text>
+
+<!--
+ビジネスプランでは3つを区別することが重要。フェルミ推定はTAM推定に特に使える。
+-->
+
+---
+
+# TAM・SAM・SOM の概念（2/2）
+
 -   <text x='560' y='60' text-anchor='middle' fill='#1a3c6a' font-size='15' font-weight='bold'>TAM</text>
 -   <text x='560' y='77' text-anchor='middle' fill='#1a3c6a' font-size='11'>全体市場</text>
 -   <!-- Lines to labels -->
@@ -439,6 +1032,30 @@ style: |
 
 # フェルミ×市場規模推定の手順
 
+- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">市場規模推定の5ステップ</text>
+
+<rect x="60" y="75" width="680" height="38" rx="6" fill="#16213e" stroke="#2196f3" stroke-width="1.5"/>
+<text x="72" y="99" fill="#2196f3" font-size="12" font-weight="bold">① 対象顧客を定義</text>
+<text x="728" y="99" text-anchor="end" fill="#ffffff" font-size="11">30代都市部女性</text>
+
+<rect x="120" y="127" width="560" height="38" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+<text x="132" y="151" fill="#4caf50" font-size="12" font-weight="bold">② 人数を推定</text>
+<text x="668" y="151" text-anchor="end" fill="#ffffff" font-size="11">1,200万人 × 20% = 240万人</text>
+
+<rect x="180" y="179" width="440" height="38" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+<text x="192" y="203" fill="#e91e63" font-size="12" font-weight="bold">③ 頻度×単価を推定</text>
+<text x="608" y="203" text-anchor="end" fill="#ffffff" font-size="11">月2回 × 3,000円</text>
+
+<rect x="240" y="231" width="320" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="252" y="255" fill="#f9a825" font-size="12" font-weight="bold">④ 掛け合わせて市場規模</text>
+<text x="548" y="255" text-anchor="end" fill="#ffffff" font-size="11">240万 × 24回 × 3,000円</text>
+
+<rect x="300" y="283" width="200" height="38" rx="6" fill="#16213e" stroke="#ab47bc" stroke-width="1.5"/>
+<text x="312" y="307" fill="#ab47bc" font-size="12" font-weight="bold">⑤ データで検証</text>
+<text x="488" y="307" text-anchor="end" fill="#ffffff" font-size="11">業界レポート ± 50%以内</text>
+
+</svg>
 - **市場規模 = 顧客数 × 購買頻度 × 単価**
 - 
 - この公式をフェルミ推定で各要素を求める
@@ -457,14 +1074,47 @@ style: |
 
 ---
 
-# 実例: 日本のフードデリバリー市場
+# 実例: 日本のフードデリバリー市場（1/2）
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">フードデリバリー市場推定</text>
+<rect x="60" y="70" width="680" height="60" rx="8" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
+<text x="400" y="108" text-anchor="middle" fill="#2196f3" font-size="14" font-weight="bold">日本 × フードデリバリー（Uber Eats等）</text>
+<line x1="400" y1="130" x2="400" y2="155" stroke="#444" stroke-width="1.5"/>
+<polygon points="393,155 400,169 407,155" fill="#444"/>
+
+<rect x="60" y="170" width="680" height="34" rx="4" fill="#555" opacity="0.7"/>
+<text x="72" y="192" fill="#ffffff" font-size="11">日本全人口</text>
+<text x="732" y="192" text-anchor="end" fill="#ffffff" font-size="12" font-weight="bold">1.2億人</text>
+
+<rect x="120" y="214" width="560" height="34" rx="4" fill="#666" opacity="0.6"/>
+<text x="132" y="236" fill="#ffffff" font-size="11">都市部（3割）</text>
+<text x="672" y="236" text-anchor="end" fill="#ffffff" font-size="12" font-weight="bold">3,600万人</text>
+
+<rect x="180" y="258" width="440" height="34" rx="4" fill="#2196f3" opacity="0.49999999999999994"/>
+<text x="192" y="280" fill="#ffffff" font-size="11">デリバリー利用率20%</text>
+<text x="612" y="280" text-anchor="end" fill="#ffffff" font-size="12" font-weight="bold">720万人</text>
+
+<rect x="240" y="302" width="320" height="34" rx="4" fill="#4caf50" opacity="0.3999999999999999"/>
+<text x="252" y="324" fill="#ffffff" font-size="11">年24回利用×1,500円</text>
+<text x="552" y="324" text-anchor="end" fill="#ffffff" font-size="12" font-weight="bold">約2,592億円</text>
+
+</svg>
 - **市場規模をフェルミ推定で算出してみる**
 - 
 - - 対象: 日本国内のフードデリバリー（Uber Eats等）
 - - 推定対象ユーザー: 都市部（人口3割＝3,600万人）
 - - 利用率: 約20% → **720万人**
 - - 利用頻度: 月平均2回 → 年24回
+
+<!--
+実際とのギャップは「ヘビーユーザーの存在」「法人需要」を見落としていたから。
+-->
+
+---
+
+# 実例: 日本のフードデリバリー市場（2/2）
+
 - - 1回あたり単価: 1,500円（料理＋配送料）
 - 
 - **推定市場規模:**
@@ -478,7 +1128,7 @@ style: |
 
 ---
 
-# ビジネス意思決定への活用
+# ビジネス意思決定への活用（1/2）
 
 - <svg viewBox='0 0 780 310' style='max-height:58vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs/>
@@ -494,6 +1144,15 @@ style: |
 -   <text x='390' y='127' text-anchor='middle' fill='#444' font-size='11'>論理的な目標値を</text>
 -   <text x='390' y='144' text-anchor='middle' fill='#444' font-size='11'>フェルミで逆算</text>
 -   <rect x='540' y='45' width='210' height='110' rx='10' fill='#fce8e6' stroke='#ea4335' stroke-width='1.5'/>
+
+<!--
+特にエンジニアがPdMやビジネス側と話す時に役立つ。数字で話す癖をつける。
+-->
+
+---
+
+# ビジネス意思決定への活用（2/2）
+
 -   <text x='645' y='82' text-anchor='middle' fill='#ea4335' font-size='26'>💰</text>
 -   <text x='645' y='108' text-anchor='middle' fill='#9c1009' font-size='13' font-weight='bold'>ROI試算</text>
 -   <text x='645' y='127' text-anchor='middle' fill='#444' font-size='11'>施策費用 vs</text>
@@ -519,6 +1178,18 @@ style: |
 <!-- _class: lead -->
 # Chapter 5: 数字で語るコツ
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
+<text x="400" y="100" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">Chapter 5</text>
+<text x="400" y="140" text-anchor="middle" fill="#ffffff" font-size="18">数字で語るコツ</text>
+<rect x="150" y="175" width="500" height="3" fill="#ab47bc" opacity="0.5"/>
+<text x="400" y="220" text-anchor="middle" fill="#aaa" font-size="15">フェルミ思考を「伝える力」に変える</text>
+<rect x="100" y="260" width="260" height="80" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="230" y="300" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">数値を変換する</text>
+<text x="230" y="320" text-anchor="middle" fill="#ffffff" font-size="11">身近な比較対象に</text>
+<rect x="440" y="260" width="260" height="80" rx="10" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
+<text x="570" y="300" text-anchor="middle" fill="#2196f3" font-size="14" font-weight="bold">視覚化する</text>
+<text x="570" y="320" text-anchor="middle" fill="#ffffff" font-size="11">グラフ・図で伝える</text>
+</svg>
 - フェルミ思考を「伝える力」に変える
 
 
@@ -526,6 +1197,36 @@ style: |
 
 # 数字を「感覚」に変換する
 
+- <svg viewBox="0 0 800 415" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="415" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">数字を「感覚」に変換する</text>
+
+<rect x="40" y="75" width="280" height="46" rx="6" fill="#16213e" stroke="#555" stroke-width="1"/>
+<text x="180" y="103" text-anchor="middle" fill="#aaa" font-size="14">1億円</text>
+<text x="340" y="103" text-anchor="middle" fill="#f9a825" font-size="18">→</text>
+<rect x="380" y="75" width="380" height="46" rx="6" fill="#16213e" stroke="#2196f3" stroke-width="1.5"/>
+<text x="570" y="103" text-anchor="middle" fill="#2196f3" font-size="12">東京ドーム1000杯のビール</text>
+
+<rect x="40" y="141" width="280" height="46" rx="6" fill="#16213e" stroke="#555" stroke-width="1"/>
+<text x="180" y="169" text-anchor="middle" fill="#aaa" font-size="14">1テラバイト</text>
+<text x="340" y="169" text-anchor="middle" fill="#f9a825" font-size="18">→</text>
+<rect x="380" y="141" width="380" height="46" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+<text x="570" y="169" text-anchor="middle" fill="#4caf50" font-size="12">映画500本分</text>
+
+<rect x="40" y="207" width="280" height="46" rx="6" fill="#16213e" stroke="#555" stroke-width="1"/>
+<text x="180" y="235" text-anchor="middle" fill="#aaa" font-size="14">市場規模1兆円</text>
+<text x="340" y="235" text-anchor="middle" fill="#f9a825" font-size="18">→</text>
+<rect x="380" y="207" width="380" height="46" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+<text x="570" y="235" text-anchor="middle" fill="#e91e63" font-size="12">国民1人あたり約8,000円</text>
+
+<rect x="40" y="273" width="280" height="46" rx="6" fill="#16213e" stroke="#555" stroke-width="1"/>
+<text x="180" y="301" text-anchor="middle" fill="#aaa" font-size="14">1万人のユーザー</text>
+<text x="340" y="301" text-anchor="middle" fill="#f9a825" font-size="18">→</text>
+<rect x="380" y="273" width="380" height="46" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="570" y="301" text-anchor="middle" fill="#f9a825" font-size="12">渋谷スクランブルが毎日満杯</text>
+
+<rect x="150" y="360" width="500" height="36" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="382" text-anchor="middle" fill="#f9a825" font-size="13">「○○と比べると□□倍」が最も伝わる</text>
+</svg>
 - **大きな数字は「身近なもの」に置き換える**
 - 
 | 生の数字 | 感覚に変換 |
@@ -545,7 +1246,7 @@ style: |
 
 ---
 
-# 視覚化で説得力を高める
+# 視覚化で説得力を高める（1/2）
 
 - <svg viewBox='0 0 780 310' style='max-height:58vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs/>
@@ -570,6 +1271,15 @@ style: |
 -   <line x1='452' y1='94' x2='428' y2='110' stroke='#555' stroke-width='1.5'/>
 -   <line x1='498' y1='94' x2='522' y2='110' stroke='#555' stroke-width='1.5'/>
 -   <rect x='405' y='110' width='75' height='24' rx='4' fill='#34a853'/>
+
+<!--
+「数字があるだけ」より「数字の意味を伝える」ことが重要。グラフは目的に合わせて選ぶ。
+-->
+
+---
+
+# 視覚化で説得力を高める（2/2）
+
 -   <text x='442' y='127' text-anchor='middle' fill='white' font-size='9'>分解A</text>
 -   <rect x='495' y='110' width='75' height='24' rx='4' fill='#34a853'/>
 -   <text x='532' y='127' text-anchor='middle' fill='white' font-size='9'>分解B</text>
@@ -603,18 +1313,61 @@ style: |
 <!-- _class: lead -->
 # まとめ
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
+<text x="400" y="100" text-anchor="middle" fill="#f9a825" font-size="24" font-weight="bold">まとめ</text>
+<text x="400" y="140" text-anchor="middle" fill="#ffffff" font-size="18">フェルミ推定でビジネスを読む力を</text>
+<text x="400" y="170" text-anchor="middle" fill="#ffffff" font-size="18">身につけよう</text>
+<rect x="150" y="200" width="500" height="3" fill="#f9a825" opacity="0.5"/>
+<circle cx="200" cy="300" r="40" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
+<text x="200" y="295" text-anchor="middle" fill="#2196f3" font-size="13" font-weight="bold">分解</text>
+<text x="200" y="315" text-anchor="middle" fill="#ffffff" font-size="10">×</text>
+<circle cx="400" cy="300" r="40" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+<text x="400" y="295" text-anchor="middle" fill="#4caf50" font-size="13" font-weight="bold">仮定</text>
+<text x="400" y="315" text-anchor="middle" fill="#ffffff" font-size="10">×</text>
+<circle cx="600" cy="300" r="40" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="600" y="305" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">計算</text>
+<line x1="240" y1="300" x2="356" y2="300" stroke="#444" stroke-width="1.5"/>
+<polygon points="356,293 370,300 356,307" fill="#444"/>
+<line x1="440" y1="300" x2="556" y2="300" stroke="#444" stroke-width="1.5"/>
+<polygon points="556,293 570,300 556,307" fill="#444"/>
+</svg>
 - フェルミ推定でビジネスを読む力を身につけよう
 
 
 ---
 
-# 本日のキーポイント
+# 本日のキーポイント（1/2）
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">本日のキーポイント</text>
+
+<rect x="60" y="80" width="680" height="90" rx="12" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
+<circle cx="120" cy="125" r="30" fill="#2196f3"/>
+<text x="120" y="132" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold">1</text>
+<text x="430" y="116" text-anchor="middle" fill="#2196f3" font-size="15" font-weight="bold">分解×仮定×計算の3ステップ</text>
+<text x="430" y="142" text-anchor="middle" fill="#ffffff" font-size="12">正確さより思考の筋道が価値を生む</text>
+
+<rect x="60" y="200" width="680" height="90" rx="12" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+<circle cx="120" cy="245" r="30" fill="#4caf50"/>
+<text x="120" y="252" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold">2</text>
+<text x="430" y="236" text-anchor="middle" fill="#4caf50" font-size="15" font-weight="bold">エンジニア思考 = フェルミ思考</text>
+<text x="430" y="262" text-anchor="middle" fill="#ffffff" font-size="12">要件分解・PoC・仮説検証はそのまま応用できる</text>
+
+</svg>
 - **1. フェルミ推定は「分解×仮定×計算」の3ステップ**
 - 正確さより思考の筋道が価値を生む
 - 
 - **2. エンジニアの論理思考はそのまま武器になる**
 - 要件分解・PoC・仮説検証はすべてフェルミ思考
+
+<!--
+4つのポイントを参加者が覚えて帰れるよう、口頭で繰り返す。
+-->
+
+---
+
+# 本日のキーポイント（2/2）
+
 - 
 - **3. 市場規模推定はビジネスの言語**
 - 「人数×頻度×単価」の公式を使いこなす
@@ -628,12 +1381,59 @@ style: |
 
 ---
 
-# フェルミ思考を日常に
+# フェルミ思考を日常に（1/2）
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">フェルミ思考を日常に</text>
+<text x="400" y="62" text-anchor="middle" fill="#aaa" font-size="13">明日からできるアクション</text>
+
+<rect x="60" y="90" width="680" height="70" rx="10" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
+<text x="100" y="132" text-anchor="middle" fill="#2196f3" font-size="30">📰</text>
+<text x="420" y="122" text-anchor="middle" fill="#2196f3" font-size="14" font-weight="bold">ニュースを見たら</text>
+<text x="420" y="144" text-anchor="middle" fill="#ffffff" font-size="12">「市場規模はいくら?」と考える</text>
+
+<rect x="60" y="180" width="680" height="70" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+<text x="100" y="222" text-anchor="middle" fill="#4caf50" font-size="30">🛒</text>
+<text x="420" y="212" text-anchor="middle" fill="#4caf50" font-size="14" font-weight="bold">買い物中に</text>
+<text x="420" y="234" text-anchor="middle" fill="#ffffff" font-size="12">「この店の年商はいくら?」と推定する</text>
+
+<rect x="100" y="300" width="600" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="328" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">「数字で考える筋肉」はトレーニングで鍛えられる</text>
+</svg>
 - **明日からできるアクション**
 - 
 - - 🗞️ ニュースを見たら「市場規模はいくら?」と考える
 - - 🛒 買い物中に「この店の年商はいくら?」と推定する
+
+<!--
+最後に具体的な行動変容を促す。参加者に「まず1つやってみる」ことを宣言させてもよい。
+-->
+
+---
+
+# フェルミ思考を日常に（2/2）
+
+- <svg viewBox="0 0 800 415" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="415" fill="#1a1a2e" rx="12"/>
+<text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">チームでフェルミ推定を活用する</text>
+
+<rect x="60" y="80" width="680" height="65" rx="10" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
+<text x="100" y="118" text-anchor="middle" fill="#2196f3" font-size="28">💬</text>
+<text x="430" y="108" text-anchor="middle" fill="#2196f3" font-size="14" font-weight="bold">会議で</text>
+<text x="430" y="130" text-anchor="middle" fill="#ffffff" font-size="12">「その数字の根拠は?」と問う習慣</text>
+
+<rect x="60" y="170" width="680" height="65" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+<text x="100" y="208" text-anchor="middle" fill="#4caf50" font-size="28">📊</text>
+<text x="430" y="198" text-anchor="middle" fill="#4caf50" font-size="14" font-weight="bold">KPI設定前に</text>
+<text x="430" y="220" text-anchor="middle" fill="#ffffff" font-size="12">「達成可能か」をフェルミで試算</text>
+
+<rect x="60" y="260" width="680" height="65" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<text x="100" y="298" text-anchor="middle" fill="#e91e63" font-size="28">👥</text>
+<text x="430" y="288" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold">チームで</text>
+<text x="430" y="310" text-anchor="middle" fill="#ffffff" font-size="12">週1回フェルミ推定ゲームをやってみる</text>
+
+<rect x="200" y="360" width="400" height="36" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="382" text-anchor="middle" fill="#f9a825" font-size="13">継続することで精度が上がる</text>
+</svg>
 - - 💬 会議で「その数字の根拠は?」と問う習慣をつける
 - - 📊 KPIを決める前に「達成可能か」をフェルミで試算する
 - - 👥 チームでフェルミ推定ゲームを週1回やってみる
@@ -646,12 +1446,21 @@ style: |
 
 ---
 
-# 参考資料
+# 参考資料（1/2）
 
 - **書籍:**
 - - [フェルミ推定の技術 - 東大物理学者が教える](https://www.amazon.co.jp/dp/4046057041)
 - - [地頭力を鍛える（細谷功）](https://www.amazon.co.jp/dp/4492555986)
 - - [数字で考える力（西成活裕）](https://www.amazon.co.jp/dp/4047315982)
+
+<!--
+参考資料はQRコードにしてスライドに貼ってもよい。
+-->
+
+---
+
+# 参考資料（2/2）
+
 - 
 - **オンライン資料:**
 - - [厚生労働省 衛生行政報告例（美容所数）](https://www.mhlw.go.jp/)

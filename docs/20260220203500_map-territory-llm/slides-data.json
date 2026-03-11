@@ -30,6 +30,7 @@
 			"title": "コジブスキーの命題（1933）",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-korzybski.svg)",
 				"- **Alfred Korzybski**: 「地図は領土ではない」（一般意味論）",
 				"- 地図（モデル）は領土（現実）の **不完全な表現** に過ぎない",
 				"- 全ての地図には **歪み・省略・一般化** がある",
@@ -53,6 +54,7 @@
 			"title": "LLMは世界の「統計的地図」",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-llm-map.svg)",
 				"- LLMの訓練データ = 領土の **スナップショット**（固定時点）",
 				"- 次トークン予測 = 地図上の **最もありそうな経路** を選択",
 				"- パラメータ = 地図の **解像度**（多いほど詳細だが完全ではない）",
@@ -70,6 +72,7 @@
 			"title": "ハルシネーションの4類型",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-halluc-types.svg)",
 				"- **Intrinsic Hallucination**: 入力と矛盾する出力（地図の歪み）",
 				"- **Extrinsic Hallucination**: 検証不能な情報の追加（地図にない道）",
 				"- **Factual Hallucination**: 事実と異なる情報（架空の論文引用）",
@@ -97,10 +100,15 @@
 		},
 		{
 			"title": "ハルシネーション発生のコード例",
-			"layout": "default",
 			"content": ["- LLMに架空のAPIを質問した場合の典型的な応答"],
+			"layout": "default"
+		},
+		{
+			"title": "ハルシネーション発生のコード例（コード例）",
+			"content": ["![w:800 center](assets/svg-verification.svg)"],
 			"code": "// User: \"bun.serve()のwebSocketオプションにあるcompressフィールドの使い方は？\"\n// LLM Response (Hallucination):\nBun.serve({\n  websocket: {\n    compress: \"gzip\",  // <-- このオプションは存在しない!\n    message(ws, msg) { ws.send(msg); },\n  },\n});\n// LLMは「ありそうなAPI」を統計的に生成した\n// 地図に描かれた「存在しない道」を案内している",
-			"codeLanguage": "typescript"
+			"codeLanguage": "typescript",
+			"layout": "default"
 		},
 		{
 			"title": "地図の正しい使い方",
@@ -111,6 +119,7 @@
 			"title": "LLM出力の検証戦略",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-hitl.svg)",
 				"- 1. **Ground Truth 照合**: 公式ドキュメント・ソースコードとの突合せ",
 				"- 2. **RAG（検索拡張生成）**: 領土の最新情報を地図に注入",
 				"- 3. **Chain of Thought**: 推論過程を可視化して歪みを検出",

@@ -1,0 +1,49 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#f9a825">ジャズから学ぶ6つの開発原則</text>
+  <!-- 6 principle boxes in 2x3 grid -->
+  <!-- Row 1 -->
+  <rect x="30" y="55" width="230" height="88" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="145" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">①構造の中の自由</text>
+  <text x="145" y="100" text-anchor="middle" font-size="11" fill="#ffffff">制約がある方が</text>
+  <text x="145" y="116" text-anchor="middle" font-size="11" fill="#ffffff">創造的になれる</text>
+  <text x="145" y="134" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">コード進行 = アーキテクチャ</text>
+
+  <rect x="285" y="55" width="230" height="88" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">②聴くことが最優先</text>
+  <text x="400" y="100" text-anchor="middle" font-size="11" fill="#ffffff">コードレビュー =</text>
+  <text x="400" y="116" text-anchor="middle" font-size="11" fill="#ffffff">他の演奏を聴く</text>
+  <text x="400" y="134" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">チームの声に耳を傾ける</text>
+
+  <rect x="540" y="55" width="230" height="88" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="655" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">③間違いを活かす</text>
+  <text x="655" y="100" text-anchor="middle" font-size="11" fill="#ffffff">バグを機能に変える</text>
+  <text x="655" y="116" text-anchor="middle" font-size="11" fill="#ffffff">柔軟性</text>
+  <text x="655" y="134" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">エラーは情報である</text>
+
+  <!-- Row 2 -->
+  <rect x="30" y="165" width="230" height="88" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="145" y="190" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">④繰り返しの中の進化</text>
+  <text x="145" y="210" text-anchor="middle" font-size="11" fill="#ffffff">イテレーションで</text>
+  <text x="145" y="226" text-anchor="middle" font-size="11" fill="#ffffff">洗練される</text>
+  <text x="145" y="244" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">スプリント = 演奏の繰り返し</text>
+
+  <rect x="285" y="165" width="230" height="88" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="190" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">⑤共通語彙の力</text>
+  <text x="400" y="210" text-anchor="middle" font-size="11" fill="#ffffff">パターン言語が</text>
+  <text x="400" y="226" text-anchor="middle" font-size="11" fill="#ffffff">チームを加速する</text>
+  <text x="400" y="244" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">スタンダード = デザインパターン</text>
+
+  <rect x="540" y="165" width="230" height="88" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="655" y="190" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">⑥即興には訓練が必要</text>
+  <text x="655" y="210" text-anchor="middle" font-size="11" fill="#ffffff">自由に見える即興は</text>
+  <text x="655" y="226" text-anchor="middle" font-size="11" fill="#ffffff">膨大な練習の上に</text>
+  <text x="655" y="244" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">基礎なき自由は混沌</text>
+
+  <!-- Bottom message -->
+  <rect x="100" y="278" width="600" height="52" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="302" text-anchor="middle" font-size="14" fill="#f9a825">「最高のソフトウェアチームはジャズバンドのように演奏する」</text>
+  <text x="400" y="320" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.8">計画（コード進行）の上で即興（実装）する</text>
+  <!-- Footer -->
+  <text x="400" y="376" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.5">Adrian Cho, "The Jazz Process" (2010)</text>
+</svg>

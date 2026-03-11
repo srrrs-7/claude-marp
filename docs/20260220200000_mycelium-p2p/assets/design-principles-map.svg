@@ -1,0 +1,39 @@
+<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="340" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#f9a825" font-weight="bold">自然 × テクノロジー：設計指針の対応</text>
+  <!-- Two columns -->
+  <text x="200" y="58" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4ec9b0" font-weight="bold">菌糸ネットワーク</text>
+  <text x="600" y="58" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#e91e63" font-weight="bold">P2P設計原則</text>
+  <!-- Rows -->
+  <rect x="40" y="70" width="310" height="38" rx="5" fill="#0d1b2a"/>
+  <text x="195" y="95" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#aaa">Mother Treeがハブとして機能</text>
+  <line x1="355" y1="89" x2="445" y2="89" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="438,83 450,89 438,95" fill="#f9a825"/>
+  <rect x="450" y="70" width="310" height="38" rx="5" fill="#0d1b2a"/>
+  <text x="605" y="95" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#aaa">Hub-and-Spoke ハイブリッド</text>
+
+  <rect x="40" y="120" width="310" height="38" rx="5" fill="#0d1b2a"/>
+  <text x="195" y="145" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#aaa">相利共生によるインセンティブ</text>
+  <line x1="355" y1="139" x2="445" y2="139" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="438,133 450,139 438,145" fill="#f9a825"/>
+  <rect x="450" y="120" width="310" height="38" rx="5" fill="#0d1b2a"/>
+  <text x="605" y="145" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#aaa">Token Economics 設計</text>
+
+  <rect x="40" y="170" width="310" height="38" rx="5" fill="#0d1b2a"/>
+  <text x="195" y="195" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#aaa">平均5〜8の冗長経路</text>
+  <line x1="355" y1="189" x2="445" y2="189" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="438,183 450,189 438,195" fill="#f9a825"/>
+  <rect x="450" y="170" width="310" height="38" rx="5" fill="#0d1b2a"/>
+  <text x="605" y="195" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#aaa">Replication Factor 3〜5</text>
+
+  <rect x="40" y="220" width="310" height="38" rx="5" fill="#0d1b2a"/>
+  <text x="195" y="245" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#aaa">部分破壊でも全体継続</text>
+  <line x1="355" y1="239" x2="445" y2="239" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="438,233 450,239 438,245" fill="#f9a825"/>
+  <rect x="450" y="220" width="310" height="38" rx="5" fill="#0d1b2a"/>
+  <text x="605" y="245" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#aaa">Graceful Degradation</text>
+
+  <rect x="100" y="278" width="600" height="44" rx="8" fill="#16213e"/>
+  <text x="400" y="298" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#ffffff">数億年の自然淘汰 = 究極のカオスエンジニアリング</text>
+  <text x="400" y="314" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#f9a825" font-weight="bold">最良のアーキテクチャは自然の設計に学ぶ</text>
+</svg>

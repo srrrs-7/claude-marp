@@ -1,0 +1,16 @@
+topic: "出社 vs リモート ― 最適な働き方を考える"
+language: "ja"
+
+slides:
+  count: 45
+
+output:
+  dir: "docs/20260311085414_office-vs-remote"
+  baseName: "office-vs-remote"
+
+marp:
+  theme: gaia
+  class: invert
+  paginate: true
+  header: "出社 vs リモート"
+  footer: "© 2026"

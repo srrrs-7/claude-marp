@@ -1,0 +1,44 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">個人生産性の測定不能 — DORA指標はチームで測る</text>
+  <!-- Old metrics column -->
+  <rect x="30" y="50" width="340" height="300" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="200" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#e91e63">古い個人指標（問題あり）</text>
+  <!-- LOC -->
+  <rect x="50" y="95" width="300" height="44" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1" opacity="0.7"/>
+  <text x="200" y="112" text-anchor="middle" font-size="12" fill="#e91e63">LOC（コード行数）</text>
+  <text x="200" y="130" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">多く書く人ほど生産的？ → 逆かも</text>
+  <!-- Bugs fixed -->
+  <rect x="50" y="148" width="300" height="44" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1" opacity="0.7"/>
+  <text x="200" y="165" text-anchor="middle" font-size="12" fill="#e91e63">修正バグ数</text>
+  <text x="200" y="183" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">バグを増やして修正すれば高評価？</text>
+  <!-- Commits -->
+  <rect x="50" y="201" width="300" height="44" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1" opacity="0.7"/>
+  <text x="200" y="218" text-anchor="middle" font-size="12" fill="#e91e63">コミット数</text>
+  <text x="200" y="236" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">細かく区切ればいくらでも増やせる</text>
+  <!-- Hours worked -->
+  <rect x="50" y="254" width="300" height="44" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1" opacity="0.7"/>
+  <text x="200" y="271" text-anchor="middle" font-size="12" fill="#e91e63">残業時間</text>
+  <text x="200" y="289" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">長時間 = 生産的？ 集中力が低い証拠かも</text>
+  <!-- DORA metrics column -->
+  <rect x="430" y="50" width="340" height="300" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="600" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#4caf50">DORA指標（Google推奨）</text>
+  <!-- Deployment frequency -->
+  <rect x="450" y="95" width="300" height="52" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="600" y="114" text-anchor="middle" font-size="12" fill="#4caf50">デプロイ頻度</text>
+  <text x="600" y="133" text-anchor="middle" font-size="11" fill="#ffffff">チームが本番に届けられる速さ</text>
+  <!-- Lead time -->
+  <rect x="450" y="155" width="300" height="52" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="600" y="174" text-anchor="middle" font-size="12" fill="#4caf50">変更リードタイム</text>
+  <text x="600" y="193" text-anchor="middle" font-size="11" fill="#ffffff">コミットから本番稼働までの時間</text>
+  <!-- MTTR -->
+  <rect x="450" y="215" width="300" height="52" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="600" y="234" text-anchor="middle" font-size="12" fill="#4caf50">MTTR（平均復旧時間）</text>
+  <text x="600" y="253" text-anchor="middle" font-size="11" fill="#ffffff">障害からの回復の早さ</text>
+  <!-- Change failure rate -->
+  <rect x="450" y="275" width="300" height="52" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="600" y="294" text-anchor="middle" font-size="12" fill="#4caf50">変更失敗率</text>
+  <text x="600" y="313" text-anchor="middle" font-size="11" fill="#ffffff">デプロイが問題を引き起こす割合</text>
+  <!-- Bottom -->
+  <text x="400" y="378" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.6">「10x個人」より「エリートチーム」— デプロイ頻度が200倍、MTTRが2400倍差がある</text>
+</svg>

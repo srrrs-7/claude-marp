@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="280" fill="#1a1a2e"/>
+  <text x="400" y="35" text-anchor="middle" font-size="17" fill="#f9a825" font-weight="bold" font-family="sans-serif">注意経済のバリューチェーン</text>
+  <rect x="20" y="65" width="130" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="85" y="97" text-anchor="middle" font-size="12" fill="white" font-family="sans-serif">コンテンツ</text>
+  <text x="85" y="116" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">生産者</text>
+  <polygon points="154,100 176,100 169,93 169,107" fill="#f9a825"/>
+  <rect x="180" y="65" width="130" height="70" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="245" y="97" text-anchor="middle" font-size="12" fill="white" font-family="sans-serif">プラット</text>
+  <text x="245" y="116" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">フォーム</text>
+  <polygon points="314,100 336,100 329,93 329,107" fill="#e91e63"/>
+  <rect x="340" y="65" width="130" height="70" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/>
+  <text x="405" y="97" text-anchor="middle" font-size="12" fill="white" font-family="sans-serif">ユーザーの</text>
+  <text x="405" y="116" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">注意・時間</text>
+  <polygon points="474,100 496,100 489,93 489,107" fill="#4fc3f7"/>
+  <rect x="500" y="65" width="130" height="70" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="565" y="97" text-anchor="middle" font-size="12" fill="white" font-family="sans-serif">行動データ</text>
+  <text x="565" y="116" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">プロファイル</text>
+  <polygon points="634,100 656,100 649,93 649,107" fill="#4caf50"/>
+  <rect x="660" y="65" width="120" height="70" rx="8" fill="#16213e" stroke="#ff9800" stroke-width="2"/>
+  <text x="720" y="97" text-anchor="middle" font-size="12" fill="white" font-family="sans-serif">広告主へ</text>
+  <text x="720" y="116" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">販売（$）</text>
+  <text x="85" y="162" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">無償提供</text>
+  <text x="245" y="162" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">エンゲージ最大化</text>
+  <text x="405" y="162" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">「無料」と引き換え</text>
+  <text x="565" y="162" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">収集・分析</text>
+  <text x="720" y="162" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">収益化</text>
+  <line x1="20" y1="190" x2="780" y2="190" stroke="#333" stroke-width="1"/>
+  <text x="400" y="218" text-anchor="middle" font-size="12" fill="#e91e63" font-family="sans-serif">ユーザーは「製品」であり、注意が通貨として機能している</text>
+  <text x="400" y="250" text-anchor="middle" font-size="12" fill="#4fc3f7" font-family="sans-serif">TikTokは平均95分/日、Facebookは58分/日のアテンションを確保</text>
+</svg>

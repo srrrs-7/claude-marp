@@ -1,6 +1,7 @@
 ---
 marp: true
 theme: gaia
+class: invert
 size: 16:9
 paginate: true
 ---

@@ -5,6 +5,7 @@ output:
   baseName: "vhs-betamax-war"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "規格戦争の経済学"
   footer: "© 2026"

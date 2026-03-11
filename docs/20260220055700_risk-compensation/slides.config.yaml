@@ -5,6 +5,7 @@ output:
   baseName: "risk-compensation"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "リスク補償理論"
   footer: "© 2026"

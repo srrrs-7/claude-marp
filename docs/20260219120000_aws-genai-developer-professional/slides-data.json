@@ -27,12 +27,18 @@
 			"layout": "default"
 		},
 		{
-			"title": "アジェンダ (2/2)",
+			"title": "アジェンダ (2/2)（1/2）",
 			"content": [
 				"**Part 3: Agents・オーケストレーション (Slide 55–80)**",
 				"→ Action Groups・ReAct・マルチエージェント・Flows",
 				"→ Prompt Management・Inline Agents・EventBridge連携",
-				"**Part 4: 評価・安全・責任あるAI (Slide 81–102)**",
+				"**Part 4: 評価・安全・責任あるAI (Slide 81–102)**"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "アジェンダ (2/2)（2/2）",
+			"content": [
 				"→ Guardrails・コンテンツフィルタリング・PII・インジェクション対策",
 				"→ LLM-as-judge・Bedrock Evaluation・VPC Endpoint・IAM",
 				"**まとめ (Slide 103–105)**",
@@ -74,13 +80,15 @@
 				"**対応モデル**: Stability AI, Titan Embeddings など画像/埋め込みモデル",
 				"**注意**: モデル変更時にリクエスト形式の変更が必要",
 				"**用途**: 画像生成 / Embedding / モデル固有の高度パラメータ制御"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "InvokeModel API — 詳細（コード例）",
 			"content": [],
 			"code": "{\n  \"modelId\": \"stability.stable-diffusion-xl-v1\",\n  \"contentType\": \"application/json\",\n  \"body\": {\n    \"text_prompts\": [{\"text\": \"a sunset over mountains\"}],\n    \"cfg_scale\": 10,\n    \"steps\": 50\n  }\n}",
-			"codeLanguage": "json"
+			"codeLanguage": "json",
+			"layout": "default"
 		},
 		{
 			"title": "Converse API — 詳細",
@@ -91,13 +99,15 @@
 				"**ストリーミング**: `ConverseStream` API でリアルタイム応答",
 				"**ドキュメント**: PDF/Word/Markdownなどドキュメント添付可能",
 				"**対応モデル**: Claude / Titan Nova / Llama / Mistral など主要モデル"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "Converse API — 詳細（コード例）",
 			"content": [],
 			"code": "{\n  \"modelId\": \"anthropic.claude-3-5-sonnet-20241022-v2:0\",\n  \"messages\": [\n    {\"role\": \"user\", \"content\": [{\"type\": \"text\", \"text\": \"S3の料金体系は?\"}]}\n  ],\n  \"system\": [{\"text\": \"あなたはAWSのエキスパートです\"}],\n  \"inferenceConfig\": {\"maxTokens\": 2000, \"temperature\": 0.3}\n}",
-			"codeLanguage": "json"
+			"codeLanguage": "json",
+			"layout": "default"
 		},
 		{
 			"title": "InvokeModel vs Converse API 比較",
@@ -110,12 +120,18 @@
 			"layout": "default"
 		},
 		{
-			"title": "モデル選定の判断フレームワーク",
+			"title": "モデル選定の判断フレームワーク（1/2）",
 			"content": [
 				"**コスト重視**: Amazon Nova Micro / Claude 3 Haiku",
 				"→ 分類・抽出・短文生成などシンプルタスク",
 				"**バランス型**: Amazon Nova Pro / Claude 3.5 Sonnet",
-				"→ 一般的なチャットボット・コンテンツ生成・RAG",
+				"→ 一般的なチャットボット・コンテンツ生成・RAG"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "モデル選定の判断フレームワーク（2/2）",
+			"content": [
 				"**最高性能**: Claude 3.5 Sonnet (最新) / Nova Premier",
 				"→ 複雑な推論・コーディング・マルチモーダル分析",
 				"**画像生成**: Stability AI Stable Diffusion / Amazon Nova Canvas",
@@ -217,12 +233,18 @@
 			"layout": "default"
 		},
 		{
-			"title": "Bedrock + SageMaker 連携パターン",
+			"title": "Bedrock + SageMaker 連携パターン（1/2）",
 			"content": [
 				"**パターン1: FM on Bedrock → 推論 → SageMaker Processing で後処理**",
 				"→ 大規模バッチ推論 + Python処理パイプライン",
 				"**パターン2: SageMaker カスタムモデル → Bedrock Agentsのツールとして使用**",
-				"→ 独自MLモデルとLLMの組み合わせ",
+				"→ 独自MLモデルとLLMの組み合わせ"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Bedrock + SageMaker 連携パターン（2/2）",
+			"content": [
 				"**パターン3: SageMaker Feature Store → RAG のメタデータ管理**",
 				"→ 構造化特徴量とベクター検索の統合",
 				"**パターン4: SageMaker Pipelines → FTパイプラインの自動化**",
@@ -503,12 +525,18 @@
 			"layout": "default"
 		},
 		{
-			"title": "Part 2: よくある問題パターン",
+			"title": "Part 2: よくある問題パターン（1/2）",
 			"content": [
 				"**Q: 検索は正しいが回答が間違っている → ?**",
 				"→ LLMのコンテキスト利用問題 / Faithfulnessが低い",
 				"**Q: 正しい文書が検索されない → ?**",
-				"→ チャンク戦略・Embeddingモデルの見直し / ハイブリッド検索導入",
+				"→ チャンク戦略・Embeddingモデルの見直し / ハイブリッド検索導入"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Part 2: よくある問題パターン（2/2）",
+			"content": [
 				"**Q: RAGが遅すぎる → ?**",
 				"→ Rerankingのオフ / Top-K削減 / 小型Embeddingモデル",
 				"**Q: 社内データを最新の状態に保ちたい → ?**",
@@ -559,13 +587,15 @@
 		},
 		{
 			"title": "OpenAPI スキーマ定義例",
-			"content": ["**スキーマ品質がAgentの精度を左右**: 詳細な説明が必須"]
+			"content": ["**スキーマ品質がAgentの精度を左右**: 詳細な説明が必須"],
+			"layout": "default"
 		},
 		{
 			"title": "OpenAPI スキーマ定義例（コード例）",
 			"content": [],
 			"code": "openapi: 3.0.0\ninfo:\n  title: Order Management API\n  version: 1.0.0\npaths:\n  /orders/{orderId}:\n    get:\n      operationId: getOrderById\n      description: >\n        指定された注文IDの注文詳細を取得します。\n        注文ステータス、商品情報、配送情報を含みます。\n      parameters:\n        - name: orderId\n          in: path\n          required: true\n          description: 取得する注文の一意識別子\n          schema:\n            type: string\n      responses:\n        '200':\n          description: 注文詳細の取得成功",
-			"codeLanguage": "yaml"
+			"codeLanguage": "yaml",
+			"layout": "default"
 		},
 		{
 			"title": "ReAct オーケストレーション",
@@ -756,12 +786,18 @@
 			"layout": "default"
 		},
 		{
-			"title": "Part 3: よくある問題パターン",
+			"title": "Part 3: よくある問題パターン（1/2）",
 			"content": [
 				"**Q: Agentが正しいツールを選ばない → ?**",
 				"→ Action Groupの説明文を改善 / OpenAPIスキーマの`description`を詳細化",
 				"**Q: Agentがループして止まらない → ?**",
-				"→ `maxAgentDurationSeconds` 設定 / システムプロンプトで終了条件を明記",
+				"→ `maxAgentDurationSeconds` 設定 / システムプロンプトで終了条件を明記"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "Part 3: よくある問題パターン（2/2）",
+			"content": [
 				"**Q: 複数ユーザーで並行実行したい → ?**",
 				"→ ユーザーごとに異なる`sessionId`を使用",
 				"**Q: 長期記憶が必要 → ?**",
@@ -991,13 +1027,19 @@
 			"layout": "default"
 		},
 		{
-			"title": "参考リソース",
+			"title": "参考リソース（1/2）",
 			"content": [
 				"**公式ドキュメント:**",
 				"[Amazon Bedrock ドキュメント](https://docs.aws.amazon.com/bedrock/)",
 				"[Amazon Bedrock Knowledge Bases](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html)",
 				"[Amazon Bedrock Agents](https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html)",
-				"**試験準備:**",
+				"**試験準備:**"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "参考リソース（2/2）",
+			"content": [
 				"[AWS 認定 Generative AI Developer](https://aws.amazon.com/jp/certification/certified-generative-ai-developer/)",
 				"[AWS Skill Builder — GenAI コース](https://skillbuilder.aws/)",
 				"**ハンズオン:**",

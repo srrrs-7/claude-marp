@@ -5,6 +5,7 @@ output:
   baseName: "millers-law-design"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "認知限界とUIデザイン"
   footer: "© 2026"

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <text x="400" y="36" text-anchor="middle" font-size="20" font-weight="bold" fill="#ffffff" font-family="sans-serif">RBAC 設計パターン (Kubernetes)</text>
+
+  <!-- ServiceAccount -->
+  <rect x="30" y="80" width="160" height="60" rx="8" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2"/>
+  <text x="110" y="106" text-anchor="middle" font-size="14" font-weight="bold" fill="#60a5fa" font-family="sans-serif">ServiceAccount</text>
+  <text x="110" y="126" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">namespace: app-ns</text>
+
+  <!-- Arrow: SA -> RoleBinding -->
+  <line x1="190" y1="110" x2="250" y2="200" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="250,200 244,188 254,188" fill="#60a5fa"/>
+
+  <!-- Role -->
+  <rect x="30" y="230" width="160" height="60" rx="8" fill="#2d1b4e" stroke="#a78bfa" stroke-width="2"/>
+  <text x="110" y="256" text-anchor="middle" font-size="14" font-weight="bold" fill="#a78bfa" font-family="sans-serif">Role</text>
+  <text x="110" y="274" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">rules: [verbs, resources]</text>
+
+  <!-- Arrow: Role -> RoleBinding -->
+  <line x1="190" y1="260" x2="250" y2="250" stroke="#a78bfa" stroke-width="2"/>
+  <polygon points="250,250 238,245 240,256" fill="#a78bfa"/>
+
+  <!-- RoleBinding -->
+  <rect x="250" y="180" width="160" height="70" rx="8" fill="#1a3a2a" stroke="#34d399" stroke-width="2"/>
+  <text x="330" y="208" text-anchor="middle" font-size="14" font-weight="bold" fill="#34d399" font-family="sans-serif">RoleBinding</text>
+  <text x="330" y="228" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">binds SA ↔ Role</text>
+  <text x="330" y="243" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">namespace-scoped</text>
+
+  <!-- ClusterRole -->
+  <rect x="30" y="370" width="160" height="60" rx="8" fill="#3d1515" stroke="#f87171" stroke-width="2"/>
+  <text x="110" y="396" text-anchor="middle" font-size="14" font-weight="bold" fill="#f87171" font-family="sans-serif">ClusterRole</text>
+  <text x="110" y="414" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">cluster-wide resources</text>
+
+  <!-- ClusterRoleBinding -->
+  <rect x="250" y="370" width="160" height="60" rx="8" fill="#2d2a16" stroke="#fbbf24" stroke-width="2"/>
+  <text x="330" y="392" text-anchor="middle" font-size="14" font-weight="bold" fill="#fbbf24" font-family="sans-serif">ClusterRoleBinding</text>
+  <text x="330" y="412" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">cluster-wide binding</text>
+
+  <!-- Arrow: ClusterRole -> CRB -->
+  <line x1="190" y1="400" x2="250" y2="400" stroke="#f87171" stroke-width="2"/>
+  <polygon points="250,400 240,395 240,405" fill="#f87171"/>
+
+  <!-- Arrow: SA -> CRB -->
+  <line x1="110" y1="140" x2="110" y2="370" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="110" y1="370" x2="250" y2="400" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="250,400 238,396 240,406" fill="#60a5fa"/>
+
+  <!-- Best practices box -->
+  <rect x="460" y="70" width="310" height="380" rx="10" fill="#16213e" stroke="#334155" stroke-width="1"/>
+  <text x="615" y="98" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff" font-family="sans-serif">RBAC ベストプラクティス</text>
+
+  <rect x="475" y="110" width="280" height="40" rx="5" fill="#1e3a5f"/>
+  <text x="615" y="127" text-anchor="middle" font-size="12" fill="#60a5fa" font-family="sans-serif">最小権限の原則</text>
+  <text x="615" y="143" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">必要なverbs/resourcesのみ許可</text>
+
+  <rect x="475" y="158" width="280" height="40" rx="5" fill="#2d1b4e"/>
+  <text x="615" y="175" text-anchor="middle" font-size="12" fill="#a78bfa" font-family="sans-serif">Namespace分離</text>
+  <text x="615" y="191" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">ClusterRoleより Role優先</text>
+
+  <rect x="475" y="206" width="280" height="40" rx="5" fill="#1a3a2a"/>
+  <text x="615" y="223" text-anchor="middle" font-size="12" fill="#34d399" font-family="sans-serif">専用 ServiceAccount</text>
+  <text x="615" y="239" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">defaultアカウント使用禁止</text>
+
+  <rect x="475" y="254" width="280" height="40" rx="5" fill="#2d2a16"/>
+  <text x="615" y="271" text-anchor="middle" font-size="12" fill="#fbbf24" font-family="sans-serif">定期的な権限監査</text>
+  <text x="615" y="287" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">kubectl-who-can / rbac-tool</text>
+
+  <rect x="475" y="302" width="280" height="40" rx="5" fill="#3d1515"/>
+  <text x="615" y="319" text-anchor="middle" font-size="12" fill="#f87171" font-family="sans-serif">wildcardの禁止</text>
+  <text x="615" y="335" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">verbs: ["*"] は全て禁止</text>
+
+  <rect x="475" y="350" width="280" height="55" rx="5" fill="#16213e" stroke="#334155" stroke-width="1"/>
+  <text x="615" y="368" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff" font-family="sans-serif">Aggregated ClusterRole</text>
+  <text x="615" y="386" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">ラベルで権限を動的集約</text>
+  <text x="615" y="400" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">rbac.authorization.k8s.io/aggregate-to-view</text>
+</svg>

@@ -44,13 +44,20 @@
 			"content": []
 		},
 		{
-			"title": "OSSが支える現代インフラ",
+			"title": "OSSが支える現代インフラ（1/2）",
 			"layout": "default",
 			"content": [
+				"<svg viewBox=\"0 0 800 370\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">公共財ジレンマ — 経済学的予測 vs OSS の現実</text>\n<rect x=\"50\" y=\"55\" width=\"320\" height=\"200\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"210\" y=\"82\" font-size=\"16\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">経済学の予測</text>\n<text x=\"210\" y=\"108\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">合理的個人はただ乗り</text>\n<text x=\"210\" y=\"130\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">を選ぶ</text>\n<text x=\"210\" y=\"158\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">→ 誰も作らない</text>\n<text x=\"210\" y=\"182\" font-size=\"13\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 公共財は過少供給</text>\n<text x=\"210\" y=\"205\" font-size=\"13\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 市場失敗</text>\n<rect x=\"430\" y=\"55\" width=\"320\" height=\"200\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"590\" y=\"82\" font-size=\"16\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">OSSの現実</text>\n<text x=\"590\" y=\"108\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">GitHub 4億+リポジトリ</text>\n<text x=\"590\" y=\"130\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">数千万人のコントリビューター</text>\n<text x=\"590\" y=\"158\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">→ 誰でも使える</text>\n<text x=\"590\" y=\"182\" font-size=\"13\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ curl: 200億件インストール</text>\n<text x=\"590\" y=\"205\" font-size=\"13\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 価値 $8.8兆ドル相当</text>\n<text x=\"400\" y=\"290\" font-size=\"18\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">巨大な矛盾</text>\n<text x=\"400\" y=\"318\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">なぜ合理的でない行動が大規模に起きているのか？</text>\n<text x=\"400\" y=\"345\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">→ 別の動機モデルが必要</text>\n</svg>",
 				"**依存関係の深さ:**",
 				"- 全商用ソフトウェアの **96%** が OSS コンポーネントを含む（Synopsys 2023）",
 				"- curl — 世界中の機器に 200億件以上インストール。開発者は長年1人",
-				"- OpenSSL — インターネット暗号化の基盤。Heartbleed 発覚時の常勤開発者: 1人",
+				"- OpenSSL — インターネット暗号化の基盤。Heartbleed 発覚時の常勤開発者: 1人"
+			]
+		},
+		{
+			"title": "OSSが支える現代インフラ（2/2）",
+			"layout": "default",
+			"content": [
 				"- Linux カーネル — 世界の Web サーバーの **70%超**、Android の基盤",
 				"**経済的価値の試算:**",
 				"- Harvard Business School (2024): OSSの社会的価値は **8.8 兆ドル** 相当",
@@ -68,13 +75,20 @@
 			"content": []
 		},
 		{
-			"title": "公共財ジレンマとフリーライダー問題",
+			"title": "公共財ジレンマとフリーライダー問題（1/2）",
 			"layout": "default",
 			"content": [
+				"<svg viewBox=\"0 0 800 370\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">公共財ジレンマ — 経済学的予測 vs OSS の現実</text>\n<rect x=\"50\" y=\"55\" width=\"320\" height=\"200\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"210\" y=\"82\" font-size=\"16\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">経済学の予測</text>\n<text x=\"210\" y=\"108\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">合理的個人はただ乗り</text>\n<text x=\"210\" y=\"130\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">を選ぶ</text>\n<text x=\"210\" y=\"158\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">→ 誰も作らない</text>\n<text x=\"210\" y=\"182\" font-size=\"13\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 公共財は過少供給</text>\n<text x=\"210\" y=\"205\" font-size=\"13\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 市場失敗</text>\n<rect x=\"430\" y=\"55\" width=\"320\" height=\"200\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"590\" y=\"82\" font-size=\"16\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">OSSの現実</text>\n<text x=\"590\" y=\"108\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">GitHub 4億+リポジトリ</text>\n<text x=\"590\" y=\"130\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">数千万人のコントリビューター</text>\n<text x=\"590\" y=\"158\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">→ 誰でも使える</text>\n<text x=\"590\" y=\"182\" font-size=\"13\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ curl: 200億件インストール</text>\n<text x=\"590\" y=\"205\" font-size=\"13\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 価値 $8.8兆ドル相当</text>\n<text x=\"400\" y=\"290\" font-size=\"18\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">巨大な矛盾</text>\n<text x=\"400\" y=\"318\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">なぜ合理的でない行動が大規模に起きているのか？</text>\n<text x=\"400\" y=\"345\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">→ 別の動機モデルが必要</text>\n</svg>",
 				"**公共財の特性（経済学）:**",
 				"- **非排除性**: 誰でも使える（ライセンスで制限しない）",
 				"- **非競合性**: 誰かが使っても減らない",
-				"**古典経済学の予測:**",
+				"**古典経済学の予測:**"
+			]
+		},
+		{
+			"title": "公共財ジレンマとフリーライダー問題（2/2）",
+			"layout": "default",
+			"content": [
 				"- 合理的個人は「ただ乗り」を選ぶ → 誰も作らない",
 				"- 公共財は過少供給される（市場失敗）",
 				"**現実**: GitHub に 4 億件以上のリポジトリ、数千万人のコントリビューター",
@@ -82,13 +96,20 @@
 			]
 		},
 		{
-			"title": "なぜ経済合理性では説明できないか",
+			"title": "なぜ経済合理性では説明できないか（1/2）",
 			"layout": "default",
 			"content": [
+				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">健全なOSSエコシステムの構造</text>\n<rect x=\"290\" y=\"60\" width=\"220\" height=\"60\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"400\" y=\"88\" font-size=\"16\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">コアチーム</text>\n<text x=\"400\" y=\"108\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">ビジョン・方向性の決定</text>\n<line x1=\"400\" y1=\"120\" x2=\"310.28991510855053\" y2=\"173.82605093486967\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"300,180 307.2029405759854,168.6810933805944 313.37688964111567,178.97100848914494\" fill=\"#f9a825\"/>\n<line x1=\"400\" y1=\"120\" x2=\"489.71008489144947\" y2=\"173.82605093486967\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"500,180 486.62311035888433,178.97100848914494 492.7970594240146,168.6810933805944\" fill=\"#f9a825\"/>\n<line x1=\"400\" y1=\"120\" x2=\"400\" y2=\"168\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"400,180 394,168 406,168\" fill=\"#f9a825\"/>\n<rect x=\"160\" y=\"180\" width=\"150\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"235\" y=\"207\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">コントリビューター</text>\n<text x=\"235\" y=\"225\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">機能・バグ修正</text>\n<rect x=\"325\" y=\"180\" width=\"150\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"400\" y=\"207\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">メンテナー</text>\n<text x=\"400\" y=\"225\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">レビュー・CI管理</text>\n<rect x=\"490\" y=\"180\" width=\"150\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"565\" y=\"207\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">ユーザー</text>\n<text x=\"565\" y=\"225\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Issue・フィードバック</text>\n<line x1=\"235\" y1=\"235\" x2=\"290.13369370027465\" y2=\"273.16948025403633\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"300,280 286.7184338272928,278.102633403899 293.5489535732565,268.23632710417365\" fill=\"#f9a825\"/>\n<line x1=\"400\" y1=\"235\" x2=\"400\" y2=\"268\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"400,280 394,268 406,268\" fill=\"#f9a825\"/>\n<line x1=\"565\" y1=\"235\" x2=\"509.86630629972535\" y2=\"273.16948025403633\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"500,280 506.4510464267435,268.23632710417365 513.2815661727072,278.102633403899\" fill=\"#f9a825\"/>\n<rect x=\"250\" y=\"280\" width=\"300\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"400\" y=\"307\" font-size=\"16\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">持続的な成長</text>\n<text x=\"400\" y=\"327\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">多様な動機の共存</text>\n<text x=\"400\" y=\"368\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">動機を理解することが健全なコミュニティ設計の出発点</text>\n</svg>",
 				"**機会費用の問題:**",
 				"- シニアエンジニアの時給 ≒ $100〜$300",
 				"- 週末10時間のOSS活動 = $1,000〜$3,000 の無償提供",
-				"- 「合理的」なら報酬のある仕事に使うはず",
+				"- 「合理的」なら報酬のある仕事に使うはず"
+			]
+		},
+		{
+			"title": "なぜ経済合理性では説明できないか（2/2）",
+			"layout": "default",
+			"content": [
 				"**標準モデルが説明できないこと:**",
 				"- ① 報酬ゼロでも品質を最大化しようとする行動",
 				"- ② バグ修正の深夜作業・ユーザーサポートへの丁寧な対応",
@@ -107,13 +128,20 @@
 			"content": ["![w:900 center](assets/sdt-diagram.svg)"]
 		},
 		{
-			"title": "有能感：「俺が作った」という感覚",
+			"title": "有能感：「俺が作った」という感覚（1/2）",
 			"layout": "default",
 			"content": [
 				"**Competence 欲求 — スキルと成長の実感**",
 				"- 難しいバグを修正した瞬間の達成感",
 				"- PR がマージされる = 「自分の技術が認められた」",
-				"- コードレビューのフィードバックが学習を加速する",
+				"- コードレビューのフィードバックが学習を加速する"
+			]
+		},
+		{
+			"title": "有能感：「俺が作った」という感覚（2/2）",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 800 375\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">フロー理論 — OSSでフローが起きやすい理由</text>\n<rect x=\"0\" y=\"60\" width=\"800\" height=\"2\" fill=\"#333\" rx=\"0\"/>\n<text x=\"80\" y=\"55\" font-size=\"12\" fill=\"#888\" text-anchor=\"start\" font-weight=\"normal\" font-family=\"sans-serif\">スキル低</text>\n<text x=\"660\" y=\"55\" font-size=\"12\" fill=\"#888\" text-anchor=\"start\" font-weight=\"normal\" font-family=\"sans-serif\">スキル高</text>\n<rect x=\"0\" y=\"180\" width=\"800\" height=\"2\" fill=\"#333\" rx=\"0\"/>\n<text x=\"10\" y=\"175\" font-size=\"12\" fill=\"#888\" text-anchor=\"start\" font-weight=\"normal\" font-family=\"sans-serif\">課題 高</text>\n<text x=\"10\" y=\"295\" font-size=\"12\" fill=\"#888\" text-anchor=\"start\" font-weight=\"normal\" font-family=\"sans-serif\">課題 低</text>\n<rect x=\"150\" y=\"80\" width=\"500\" height=\"200\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"400\" y=\"155\" font-size=\"24\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">フロー</text>\n<text x=\"400\" y=\"182\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">課題難度 ≒ スキルレベル</text>\n<text x=\"400\" y=\"205\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">時間を忘れ完全に没入する状態</text>\n<rect x=\"50\" y=\"80\" width=\"80\" height=\"80\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"90\" y=\"120\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">不安</text>\n<rect x=\"50\" y=\"290\" width=\"80\" height=\"80\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"90\" y=\"330\" font-size=\"14\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">退屈</text>\n<rect x=\"670\" y=\"290\" width=\"80\" height=\"80\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"710\" y=\"330\" font-size=\"14\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">弛緩</text>\n<text x=\"400\" y=\"330\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">自分のスキルに合ったIssueを自由に選べる → フローに入りやすい</text>\n<text x=\"400\" y=\"355\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">明確なゴール + 即座なフィードバック (CI/CD) がフローを維持する</text>\n</svg>",
 				"**OSSならではの有能感増幅:**",
 				"- 世界中の人が自分のコードを使う",
 				"- GitHub の star・fork 数がリアルタイムで見える",
@@ -122,13 +150,20 @@
 			]
 		},
 		{
-			"title": "自律性：自分でルールを決める喜び",
+			"title": "自律性：自分でルールを決める喜び（1/2）",
 			"layout": "default",
 			"content": [
 				"**Autonomy 欲求 — 「自分の意思で動く」感覚**",
 				"- 職場では「仕様は上が決める」→ OSSでは自分が設計者",
 				"- どの Issue に取り組むか、どの言語で書くか、全て自分次第",
-				"- \"Scratch Your Own Itch\" — 自分が欲しいものを作る自由",
+				"- \"Scratch Your Own Itch\" — 自分が欲しいものを作る自由"
+			]
+		},
+		{
+			"title": "自律性：自分でルールを決める喜び（2/2）",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 800 370\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">有能感とコミュニティ — OSSならではの強化</text>\n<rect x=\"50\" y=\"60\" width=\"330\" height=\"250\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"215\" y=\"88\" font-size=\"15\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">有能感 (Competence)</text>\n<text x=\"215\" y=\"115\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">難しいバグ修正の達成感</text>\n<text x=\"215\" y=\"140\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">PRマージ = 技術の承認</text>\n<text x=\"215\" y=\"165\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">世界中の人がコードを使う</text>\n<text x=\"215\" y=\"190\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">GitHub star・forkが可視化</text>\n<text x=\"215\" y=\"220\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 次の課題が常に存在</text>\n<text x=\"215\" y=\"245\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 無限に追求できる</text>\n<rect x=\"420\" y=\"60\" width=\"330\" height=\"250\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"585\" y=\"88\" font-size=\"15\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">関係性 (Relatedness)</text>\n<text x=\"585\" y=\"115\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Issue/PRコメントで世界と繋がる</text>\n<text x=\"585\" y=\"140\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">\"Thank you, this saved me!\"</text>\n<text x=\"585\" y=\"165\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">コミュニティのミーム・文化共有</text>\n<text x=\"585\" y=\"190\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">最初のPRマージ → 次の貢献3倍</text>\n<text x=\"585\" y=\"220\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 社会的体験としてのOSS</text>\n<text x=\"585\" y=\"245\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ メンター関係で期間2倍</text>\n<text x=\"400\" y=\"345\" font-size=\"12\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">内発的動機の3要素: 有能感 × 自律性 × 関係性 (Deci & Ryan SDT)</text>\n</svg>",
 				"**自律性が高いほど動機が持続する（SDT の実証）:**",
 				"- 外部制約（締め切り・仕様強制）が増えると自律性が低下",
 				"- → コントリビューターが離れる主要因の一つ",
@@ -136,13 +171,20 @@
 			]
 		},
 		{
-			"title": "関係性：コミュニティとのつながり",
+			"title": "関係性：コミュニティとのつながり（1/2）",
 			"layout": "default",
 			"content": [
 				"**Relatedness 欲求 — 帰属と承認の感覚**",
 				"- Issue / PR のコメントを通じて世界中の開発者とつながる",
 				"- \"Thank you, this saved my project!\" — 感謝のメッセージの力",
-				"- プロジェクトの歴史・文化・ミームを共有するコミュニティ",
+				"- プロジェクトの歴史・文化・ミームを共有するコミュニティ"
+			]
+		},
+		{
+			"title": "関係性：コミュニティとのつながり（2/2）",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 800 375\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">フロー理論 — OSSでフローが起きやすい理由</text>\n<rect x=\"0\" y=\"60\" width=\"800\" height=\"2\" fill=\"#333\" rx=\"0\"/>\n<text x=\"80\" y=\"55\" font-size=\"12\" fill=\"#888\" text-anchor=\"start\" font-weight=\"normal\" font-family=\"sans-serif\">スキル低</text>\n<text x=\"660\" y=\"55\" font-size=\"12\" fill=\"#888\" text-anchor=\"start\" font-weight=\"normal\" font-family=\"sans-serif\">スキル高</text>\n<rect x=\"0\" y=\"180\" width=\"800\" height=\"2\" fill=\"#333\" rx=\"0\"/>\n<text x=\"10\" y=\"175\" font-size=\"12\" fill=\"#888\" text-anchor=\"start\" font-weight=\"normal\" font-family=\"sans-serif\">課題 高</text>\n<text x=\"10\" y=\"295\" font-size=\"12\" fill=\"#888\" text-anchor=\"start\" font-weight=\"normal\" font-family=\"sans-serif\">課題 低</text>\n<rect x=\"150\" y=\"80\" width=\"500\" height=\"200\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"400\" y=\"155\" font-size=\"24\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">フロー</text>\n<text x=\"400\" y=\"182\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">課題難度 ≒ スキルレベル</text>\n<text x=\"400\" y=\"205\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">時間を忘れ完全に没入する状態</text>\n<rect x=\"50\" y=\"80\" width=\"80\" height=\"80\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"90\" y=\"120\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">不安</text>\n<rect x=\"50\" y=\"290\" width=\"80\" height=\"80\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"90\" y=\"330\" font-size=\"14\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">退屈</text>\n<rect x=\"670\" y=\"290\" width=\"80\" height=\"80\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"710\" y=\"330\" font-size=\"14\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">弛緩</text>\n<text x=\"400\" y=\"330\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">自分のスキルに合ったIssueを自由に選べる → フローに入りやすい</text>\n<text x=\"400\" y=\"355\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">明確なゴール + 即座なフィードバック (CI/CD) がフローを維持する</text>\n</svg>",
 				"**Relatedness がコントリビューションを加速:**",
 				"- 最初の PR がマージされると → 次の貢献確率が 3倍に（研究より）",
 				"- メンター関係が成立すると貢献期間が平均 2倍長くなる",
@@ -150,13 +192,19 @@
 			]
 		},
 		{
-			"title": "フロー体験とOSSコーディング",
+			"title": "フロー体験とOSSコーディング（1/2）",
 			"layout": "default",
 			"content": [
 				"**Csikszentmihalyi のフロー理論（1990）:**",
 				"- 課題の難度 ≒ スキルレベル のとき「フロー」が生まれる",
 				"- 時間を忘れ、完全に没入する状態",
-				"**OSSでフローが起きやすい理由:**",
+				"**OSSでフローが起きやすい理由:**"
+			]
+		},
+		{
+			"title": "フロー体験とOSSコーディング（2/2）",
+			"layout": "default",
+			"content": [
 				"- 自分のスキルに合った Issue を自由に選べる",
 				"- 明確なゴール（バグ再現 → 修正 → テスト通過）",
 				"- 即座なフィードバック（CI/CD、コードレビュー）",
@@ -166,16 +214,25 @@
 		{
 			"title": "社会的・評判的動機",
 			"layout": "section",
-			"content": []
+			"content": [
+				"<svg viewBox=\"0 0 800 370\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">シグナリング理論 — GitHubは最強の履歴書</text>\n<rect x=\"50\" y=\"60\" width=\"200\" height=\"230\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"150\" y=\"88\" font-size=\"16\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">エンジニア</text>\n<text x=\"150\" y=\"115\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">OSSに貢献</text>\n<text x=\"150\" y=\"138\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ コードが公開</text>\n<text x=\"150\" y=\"162\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 検証可能</text>\n<text x=\"150\" y=\"186\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 模倣が難しい</text>\n<text x=\"150\" y=\"210\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 積み上げに時間</text>\n<rect x=\"550\" y=\"60\" width=\"200\" height=\"230\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"650\" y=\"88\" font-size=\"16\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">採用企業</text>\n<text x=\"650\" y=\"115\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">情報の非対称性:</text>\n<text x=\"650\" y=\"138\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">実力を直接見れない</text>\n<text x=\"650\" y=\"162\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ GitHubを確認</text>\n<text x=\"650\" y=\"186\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 60%以上が参照</text>\n<text x=\"650\" y=\"210\" font-size=\"13\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">→ 採用確率↑</text>\n<rect x=\"310\" y=\"155\" width=\"180\" height=\"60\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"400\" y=\"180\" font-size=\"18\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">シグナル</text>\n<text x=\"400\" y=\"200\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">= OSSコントリビュート</text>\n<line x1=\"250\" y1=\"185\" x2=\"298\" y2=\"185\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"310,185 298,191 298,179\" fill=\"#f9a825\"/>\n<line x1=\"490\" y1=\"185\" x2=\"538\" y2=\"185\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"550,185 538,191 538,179\" fill=\"#f9a825\"/>\n<text x=\"400\" y=\"340\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">評判資本 (Reputation Capital) の蓄積 → キャリア・影響力・ビジネスチャンス</text>\n</svg>"
+			]
 		},
 		{
-			"title": "シグナリング理論",
+			"title": "シグナリング理論（1/2）",
 			"layout": "default",
 			"content": [
 				"**Spence（1973）のシグナリングモデル:**",
 				"- 情報の非対称性: 採用企業は応募者の実力を直接観察できない",
 				"- シグナル: **検証可能で、偽造コストが高い情報** を送る行動",
-				"- 学歴が典型例 — OSSコントリビューションも同様",
+				"- 学歴が典型例 — OSSコントリビューションも同様"
+			]
+		},
+		{
+			"title": "シグナリング理論（2/2）",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 800 370\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">シグナリング理論 — GitHubは最強の履歴書</text>\n<rect x=\"50\" y=\"60\" width=\"200\" height=\"230\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"150\" y=\"88\" font-size=\"16\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">エンジニア</text>\n<text x=\"150\" y=\"115\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">OSSに貢献</text>\n<text x=\"150\" y=\"138\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ コードが公開</text>\n<text x=\"150\" y=\"162\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 検証可能</text>\n<text x=\"150\" y=\"186\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 模倣が難しい</text>\n<text x=\"150\" y=\"210\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 積み上げに時間</text>\n<rect x=\"550\" y=\"60\" width=\"200\" height=\"230\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"650\" y=\"88\" font-size=\"16\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">採用企業</text>\n<text x=\"650\" y=\"115\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">情報の非対称性:</text>\n<text x=\"650\" y=\"138\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">実力を直接見れない</text>\n<text x=\"650\" y=\"162\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ GitHubを確認</text>\n<text x=\"650\" y=\"186\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 60%以上が参照</text>\n<text x=\"650\" y=\"210\" font-size=\"13\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">→ 採用確率↑</text>\n<rect x=\"310\" y=\"155\" width=\"180\" height=\"60\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"400\" y=\"180\" font-size=\"18\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">シグナル</text>\n<text x=\"400\" y=\"200\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">= OSSコントリビュート</text>\n<line x1=\"250\" y1=\"185\" x2=\"298\" y2=\"185\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"310,185 298,191 298,179\" fill=\"#f9a825\"/>\n<line x1=\"490\" y1=\"185\" x2=\"538\" y2=\"185\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"550,185 538,191 538,179\" fill=\"#f9a825\"/>\n<text x=\"400\" y=\"340\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">評判資本 (Reputation Capital) の蓄積 → キャリア・影響力・ビジネスチャンス</text>\n</svg>",
 				"**OSSシグナルの特性:**",
 				"- コードは公開・検証可能（履歴・レビュー・マージ記録）",
 				"- 模倣が難しい（積み上げに時間がかかる）",
@@ -184,13 +241,19 @@
 			]
 		},
 		{
-			"title": "GitHubは履歴書か？",
+			"title": "GitHubは履歴書か？（1/2）",
 			"layout": "default",
 			"content": [
 				"**実証研究の示唆:**",
 				"- GitHub プロフィールを持つ開発者は採用面接通過率が高い傾向",
 				"- 有名 OSS プロジェクトのコア committer = 業界での高評価",
-				"- 採用担当の 60% 以上が GitHub を確認する（Stack Overflow Survey）",
+				"- 採用担当の 60% 以上が GitHub を確認する（Stack Overflow Survey）"
+			]
+		},
+		{
+			"title": "GitHubは履歴書か？（2/2）",
+			"layout": "default",
+			"content": [
 				"**シグナリング以外の評判価値:**",
 				"- カンファレンス登壇・技術ブログのリード獲得",
 				"- スタートアップの CTO 採用で「これ作った人」が有力候補",
@@ -201,16 +264,25 @@
 		{
 			"title": "贈与経済とハッカー倫理",
 			"layout": "section",
-			"content": []
+			"content": [
+				"<svg viewBox=\"0 0 800 390\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">贈与経済 — 互恵性のネットワーク</text>\n<rect x=\"300\" y=\"55\" width=\"200\" height=\"55\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"400\" y=\"82\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">コードを「贈る」</text>\n<text x=\"400\" y=\"100\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">公開・自由に使える</text>\n<line x1=\"400\" y1=\"110\" x2=\"539.1258023200568\" y2=\"174.9253744160265\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"550,180 536.58848952807,180.36247325599808 541.6631151120436,169.48827557605492\" fill=\"#f9a825\"/>\n<line x1=\"400\" y1=\"110\" x2=\"260.87419767994317\" y2=\"174.9253744160265\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"250,180 258.33688488795644,169.48827557605492 263.4115104719299,180.36247325599808\" fill=\"#f9a825\"/>\n<rect x=\"550\" y=\"180\" width=\"200\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"650\" y=\"207\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">地位の上昇</text>\n<text x=\"650\" y=\"225\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">コミュニティ内の承認</text>\n<rect x=\"50\" y=\"180\" width=\"200\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"150\" y=\"207\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">使った側の</text>\n<text x=\"150\" y=\"225\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">心理的プレッシャー</text>\n<line x1=\"150\" y1=\"235\" x2=\"288.7334842093607\" y2=\"285.8689442100989\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"300,290 286.66795631441016,291.5022021054186 290.79901210431126,280.23568631477923\" fill=\"#f9a825\"/>\n<line x1=\"650\" y1=\"235\" x2=\"511.2665157906393\" y2=\"285.8689442100989\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"500,290 509.20098789568874,280.23568631477923 513.3320436855898,291.5022021054186\" fill=\"#f9a825\"/>\n<rect x=\"300\" y=\"290\" width=\"200\" height=\"55\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"400\" y=\"317\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">返礼・貢献</text>\n<text x=\"400\" y=\"335\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">「もらったから返す」</text>\n<text x=\"400\" y=\"378\" font-size=\"11\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">市場原理ではなく、互恵性の原理 — Mauss「贈与論」(1925)</text>\n</svg>"
+			]
 		},
 		{
-			"title": "贈与経済（Gift Economy）",
+			"title": "贈与経済（Gift Economy）（1/2）",
 			"layout": "default",
 			"content": [
 				"**Marcel Mauss「贈与論」（1925）:**",
 				"- 贈り物には3つの義務が付随する: 与える・受け取る・返礼する",
 				"- 市場交換とは異なる社会的絆の形成メカニズム",
-				"- ポトラッチ: 財を惜しみなく配ることが地位を高める",
+				"- ポトラッチ: 財を惜しみなく配ることが地位を高める"
+			]
+		},
+		{
+			"title": "贈与経済（Gift Economy）（2/2）",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">健全なOSSエコシステムの構造</text>\n<rect x=\"290\" y=\"60\" width=\"220\" height=\"60\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"400\" y=\"88\" font-size=\"16\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">コアチーム</text>\n<text x=\"400\" y=\"108\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">ビジョン・方向性の決定</text>\n<line x1=\"400\" y1=\"120\" x2=\"310.28991510855053\" y2=\"173.82605093486967\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"300,180 307.2029405759854,168.6810933805944 313.37688964111567,178.97100848914494\" fill=\"#f9a825\"/>\n<line x1=\"400\" y1=\"120\" x2=\"489.71008489144947\" y2=\"173.82605093486967\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"500,180 486.62311035888433,178.97100848914494 492.7970594240146,168.6810933805944\" fill=\"#f9a825\"/>\n<line x1=\"400\" y1=\"120\" x2=\"400\" y2=\"168\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"400,180 394,168 406,168\" fill=\"#f9a825\"/>\n<rect x=\"160\" y=\"180\" width=\"150\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"235\" y=\"207\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">コントリビューター</text>\n<text x=\"235\" y=\"225\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">機能・バグ修正</text>\n<rect x=\"325\" y=\"180\" width=\"150\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"400\" y=\"207\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">メンテナー</text>\n<text x=\"400\" y=\"225\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">レビュー・CI管理</text>\n<rect x=\"490\" y=\"180\" width=\"150\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"565\" y=\"207\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">ユーザー</text>\n<text x=\"565\" y=\"225\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Issue・フィードバック</text>\n<line x1=\"235\" y1=\"235\" x2=\"290.13369370027465\" y2=\"273.16948025403633\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"300,280 286.7184338272928,278.102633403899 293.5489535732565,268.23632710417365\" fill=\"#f9a825\"/>\n<line x1=\"400\" y1=\"235\" x2=\"400\" y2=\"268\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"400,280 394,268 406,268\" fill=\"#f9a825\"/>\n<line x1=\"565\" y1=\"235\" x2=\"509.86630629972535\" y2=\"273.16948025403633\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"500,280 506.4510464267435,268.23632710417365 513.2815661727072,278.102633403899\" fill=\"#f9a825\"/>\n<rect x=\"250\" y=\"280\" width=\"300\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"400\" y=\"307\" font-size=\"16\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">持続的な成長</text>\n<text x=\"400\" y=\"327\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">多様な動機の共存</text>\n<text x=\"400\" y=\"368\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">動機を理解することが健全なコミュニティ設計の出発点</text>\n</svg>",
 				"**OSSと贈与経済の対応:**",
 				"- コードを「贈る」ことでコミュニティ内の地位が上がる",
 				"- 使った側は「恩返し」への心理的プレッシャーを感じる",
@@ -219,13 +291,20 @@
 			]
 		},
 		{
-			"title": "ハッカー倫理と情報の自由",
+			"title": "ハッカー倫理と情報の自由（1/2）",
 			"layout": "default",
 			"content": [
 				"**Steven Levy「ハッカーズ」（1984）のハッカー倫理:**",
 				"- コンピュータへのアクセスは無制限・完全であるべき",
 				"- 情報はフリー（自由）であるべき",
-				"- 権威を信用するな、分散化を促進せよ",
+				"- 権威を信用するな、分散化を促進せよ"
+			]
+		},
+		{
+			"title": "ハッカー倫理と情報の自由（2/2）",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 800 375\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">Ostrom のコモンズ設計原則 — OSS への適用</text>\n<rect x=\"50\" y=\"55\" width=\"350\" height=\"38\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"230\" y=\"79\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">明確な境界</text>\n<rect x=\"420\" y=\"55\" width=\"330\" height=\"38\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"585\" y=\"79\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">誰がcontributor/maintainerか明確</text>\n<rect x=\"50\" y=\"105\" width=\"350\" height=\"38\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"230\" y=\"129\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">ローカルルール</text>\n<rect x=\"420\" y=\"105\" width=\"330\" height=\"38\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"585\" y=\"129\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">CONTRIBUTING.md, Code of Conduct</text>\n<rect x=\"50\" y=\"155\" width=\"350\" height=\"38\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"230\" y=\"179\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">自律的ガバナンス</text>\n<rect x=\"420\" y=\"155\" width=\"330\" height=\"38\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"585\" y=\"179\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">コアチームによる決定権</text>\n<rect x=\"50\" y=\"205\" width=\"350\" height=\"38\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"230\" y=\"229\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">コンフリクト解決</text>\n<rect x=\"420\" y=\"205\" width=\"330\" height=\"38\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"585\" y=\"229\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">フォーク権利・段階的サンクション</text>\n<rect x=\"50\" y=\"255\" width=\"350\" height=\"38\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"230\" y=\"279\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">外部からの自律</text>\n<rect x=\"420\" y=\"255\" width=\"330\" height=\"38\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"585\" y=\"279\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">企業・政府に支配されない</text>\n<rect x=\"50\" y=\"305\" width=\"350\" height=\"38\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"230\" y=\"329\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">入れ子構造</text>\n<rect x=\"420\" y=\"305\" width=\"330\" height=\"38\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"585\" y=\"329\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Issue→PR→リリースの階層管理</text>\n<text x=\"400\" y=\"360\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ Ostrom原則を満たすOSSは持続可能性が高い (2009年ノーベル経済学賞)</text>\n</svg>",
 				"**Eric S. Raymond「伽藍とバザール」（1999）:**",
 				"- バザールモデル: 多数の参加者による自律的開発",
 				"- \"Given enough eyeballs, all bugs are shallow\" (Linus's Law)",
@@ -234,13 +313,19 @@
 			]
 		},
 		{
-			"title": "コモンズとしてのOSS",
+			"title": "コモンズとしてのOSS（1/2）",
 			"layout": "default",
 			"content": [
 				"**Elinor Ostrom（2009年ノーベル経済学賞）:**",
 				"- 「コモンズの悲劇」（Hardin 1968）への反論",
 				"- 自律的コミュニティは過剰利用なく共有資源を管理できる",
-				"**OSS コミュニティの自律ガバナンス:**",
+				"**OSS コミュニティの自律ガバナンス:**"
+			]
+		},
+		{
+			"title": "コモンズとしてのOSS（2/2）",
+			"layout": "default",
+			"content": [
 				"- 明確な境界: who is contributor / who is maintainer",
 				"- ローカルルール: CONTRIBUTING.md, Code of Conduct",
 				"- コンフリクト解決: コアチームによる決定、フォーク権利",
@@ -264,13 +349,20 @@
 			"content": ["![w:900 center](assets/crowding-out.svg)"]
 		},
 		{
-			"title": "企業参加と動機の変質",
+			"title": "企業参加と動機の変質（1/2）",
 			"layout": "default",
 			"content": [
 				"**企業がOSSに参加するとき:**",
 				"- Red Hat・Google・Microsoft が Linux/Kubernetes に大規模投資",
 				"- 「企業の意図」がコミュニティ文化に摩擦を生じさせる",
-				"**動機の変質パターン:**",
+				"**動機の変質パターン:**"
+			]
+		},
+		{
+			"title": "企業参加と動機の変質（2/2）",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">メンテナーバーンアウトの構造的サイクル</text>\n<rect x=\"280\" y=\"55\" width=\"240\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"400\" y=\"82\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">プロジェクトが成長</text>\n<text x=\"400\" y=\"100\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">ユーザー数が増加</text>\n<line x1=\"400\" y1=\"110\" x2=\"638.3861299185407\" y2=\"171.9803937788206\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"650,175 636.876326807951,177.78732881955023 639.8959330291304,166.17345873809097\" fill=\"#f9a825\"/>\n<rect x=\"560\" y=\"175\" width=\"200\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"660\" y=\"202\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Issue/サポート爆増</text>\n<text x=\"660\" y=\"220\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">無限のクレーム</text>\n<line x1=\"660\" y1=\"230\" x2=\"660\" y2=\"273\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"660,285 654,273 666,273\" fill=\"#f9a825\"/>\n<rect x=\"560\" y=\"285\" width=\"200\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"660\" y=\"312\" font-size=\"13\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">感謝より要求が多い</text>\n<text x=\"660\" y=\"330\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">「無料なんだから当然」</text>\n<line x1=\"560\" y1=\"312\" x2=\"422\" y2=\"312\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"410,312 422,306 422,318\" fill=\"#f9a825\"/>\n<rect x=\"200\" y=\"285\" width=\"200\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"300\" y=\"312\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">バーンアウト発生</text>\n<line x1=\"200\" y1=\"312\" x2=\"137.7911485591415\" y2=\"239.12677402642288\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"130,230 142.35453557235294,235.23119974685213 133.22776154593006,243.02234830599363\" fill=\"#f9a825\"/>\n<rect x=\"50\" y=\"175\" width=\"200\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"150\" y=\"202\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">プロジェクト放棄</text>\n<text x=\"150\" y=\"220\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">or コード破壊</text>\n<line x1=\"150\" y1=\"175\" x2=\"270.2402735508396\" y2=\"88.98195815209166\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"280,82 273.73125262688546,93.86182137667186 266.74929447479377,84.10209492751147\" fill=\"#f9a825\"/>\n<text x=\"400\" y=\"370\" font-size=\"10\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">left-pad (2016), Faker.js (2022) — インフラになるほど要求が増え感謝が減る逆説</text>\n</svg>",
 				"- ボランティア参加者が雇用される → 「仕事」になり自律性が低下",
 				"- 企業のロードマップが優先 → 「自分のかゆいところ」に手が届かなくなる",
 				"- コア決定が非公開の企業会議で行われ、透明性が失われる",
@@ -284,13 +376,20 @@
 			"content": []
 		},
 		{
-			"title": "メンテナーバーンアウト",
+			"title": "メンテナーバーンアウト（1/2）",
 			"layout": "default",
 			"content": [
+				"<svg viewBox=\"0 0 800 375\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">OSSサステナビリティへのアプローチ比較</text>\n<rect x=\"30\" y=\"55\" width=\"250\" height=\"44\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"155\" y=\"72\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">GitHub Sponsors / Open Collective</text>\n<text x=\"155\" y=\"91\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">個人支援モデル</text>\n<rect x=\"295\" y=\"55\" width=\"475\" height=\"44\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"532\" y=\"82\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">低コスト・不安定</text>\n<rect x=\"30\" y=\"113\" width=\"250\" height=\"44\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"155\" y=\"130\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">企業スポンサーシップ</text>\n<text x=\"155\" y=\"149\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Red Hat/Google etc</text>\n<rect x=\"295\" y=\"113\" width=\"475\" height=\"44\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"532\" y=\"140\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">安定・自律性リスク</text>\n<rect x=\"30\" y=\"171\" width=\"250\" height=\"44\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"155\" y=\"188\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">デュアルライセンス</text>\n<text x=\"155\" y=\"207\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">OSS+商用</text>\n<rect x=\"295\" y=\"171\" width=\"475\" height=\"44\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"532\" y=\"198\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">収益安定・分断リスク</text>\n<rect x=\"30\" y=\"229\" width=\"250\" height=\"44\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"155\" y=\"246\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">ファウンデーション</text>\n<text x=\"155\" y=\"265\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Apache/Linux Foundation</text>\n<rect x=\"295\" y=\"229\" width=\"475\" height=\"44\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"532\" y=\"256\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">中立・官僚化リスク</text>\n<rect x=\"30\" y=\"287\" width=\"250\" height=\"44\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"155\" y=\"304\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">クラウドベース収益化</text>\n<text x=\"155\" y=\"323\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">SaaS on OSS</text>\n<rect x=\"295\" y=\"287\" width=\"475\" height=\"44\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"532\" y=\"314\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">スケール可・Fork懸念</text>\n<text x=\"400\" y=\"360\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">→ プロジェクトの特性に合った持続モデルの設計が不可欠</text>\n</svg>",
 				"**代表的な事例:**",
 				"- **left-pad（2016）**: 11行のモジュールを作者が削除 → npm エコシステムが崩壊",
 				"- **Log4Shell（2021）**: CVE スコア 10.0 の脆弱性。修正担当: 無報酬ボランティア1人",
-				"- **Faker.js（2022）**: 作者が故意にコードを破壊「無報酬で Fortune 500 を支援するな」",
+				"- **Faker.js（2022）**: 作者が故意にコードを破壊「無報酬で Fortune 500 を支援するな」"
+			]
+		},
+		{
+			"title": "メンテナーバーンアウト（2/2）",
+			"layout": "default",
+			"content": [
 				"**バーンアウトの構造的原因:**",
 				"- サポートリクエスト・Issue の量が指数関数的に増加",
 				"- 感謝より「なぜ直らないのか」クレームが多い",
@@ -306,16 +405,25 @@
 		{
 			"title": "インタラクティブワーク",
 			"layout": "section",
-			"content": []
+			"content": [
+				"<svg viewBox=\"0 0 800 375\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">OSS コントリビューターの動機分布 (研究より)</text>\n<rect x=\"200\" y=\"55\" width=\"350\" height=\"34\" fill=\"#f9a825\" rx=\"8\"/>\n<text x=\"195\" y=\"78\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"end\" font-weight=\"normal\" font-family=\"sans-serif\">楽しさ・知的好奇心</text>\n<text x=\"560\" y=\"78\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"start\" font-weight=\"normal\" font-family=\"sans-serif\">100%</text>\n<rect x=\"200\" y=\"105\" width=\"280\" height=\"34\" fill=\"#4fc3f7\" rx=\"8\"/>\n<text x=\"195\" y=\"128\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"end\" font-weight=\"normal\" font-family=\"sans-serif\">スキルアップ・学習</text>\n<text x=\"490\" y=\"128\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"start\" font-weight=\"normal\" font-family=\"sans-serif\">80%</text>\n<rect x=\"200\" y=\"155\" width=\"220\" height=\"34\" fill=\"#e91e63\" rx=\"8\"/>\n<text x=\"195\" y=\"178\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"end\" font-weight=\"normal\" font-family=\"sans-serif\">評判・キャリア</text>\n<text x=\"430\" y=\"178\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"start\" font-weight=\"normal\" font-family=\"sans-serif\">63%</text>\n<rect x=\"200\" y=\"205\" width=\"180\" height=\"34\" fill=\"#81c784\" rx=\"8\"/>\n<text x=\"195\" y=\"228\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"end\" font-weight=\"normal\" font-family=\"sans-serif\">コミュニティ帰属</text>\n<text x=\"390\" y=\"228\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"start\" font-weight=\"normal\" font-family=\"sans-serif\">51%</text>\n<rect x=\"200\" y=\"255\" width=\"150\" height=\"34\" fill=\"#ce93d8\" rx=\"8\"/>\n<text x=\"195\" y=\"278\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"end\" font-weight=\"normal\" font-family=\"sans-serif\">仕事の一部</text>\n<text x=\"360\" y=\"278\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"start\" font-weight=\"normal\" font-family=\"sans-serif\">43%</text>\n<rect x=\"200\" y=\"305\" width=\"80\" height=\"34\" fill=\"#888\" rx=\"8\"/>\n<text x=\"195\" y=\"328\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"end\" font-weight=\"normal\" font-family=\"sans-serif\">経済的報酬</text>\n<text x=\"290\" y=\"328\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"start\" font-weight=\"normal\" font-family=\"sans-serif\">23%</text>\n<text x=\"400\" y=\"360\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">動機は多層構造 — 単一の理由で説明できない。複数が重なり合っている</text>\n</svg>"
+			]
 		},
 		{
-			"title": "ワーク①：自分の動機マップを描く",
+			"title": "ワーク①：自分の動機マップを描く（1/2）",
 			"layout": "default",
 			"content": [
 				"**個人ワーク（10分）:**",
 				"- あなたが最近コントリビュートした（またはしてみたい）OSSを1つ選ぶ",
 				"- 以下の3軸でスコアをつける（0〜5）:",
-				"  - **内発的動機**: 有能感・自律性・フロー・純粋な楽しさ",
+				"  - **内発的動機**: 有能感・自律性・フロー・純粋な楽しさ"
+			]
+		},
+		{
+			"title": "ワーク①：自分の動機マップを描く（2/2）",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 800 375\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">Ostrom のコモンズ設計原則 — OSS への適用</text>\n<rect x=\"50\" y=\"55\" width=\"350\" height=\"38\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"230\" y=\"79\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">明確な境界</text>\n<rect x=\"420\" y=\"55\" width=\"330\" height=\"38\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"585\" y=\"79\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">誰がcontributor/maintainerか明確</text>\n<rect x=\"50\" y=\"105\" width=\"350\" height=\"38\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"230\" y=\"129\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">ローカルルール</text>\n<rect x=\"420\" y=\"105\" width=\"330\" height=\"38\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"585\" y=\"129\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">CONTRIBUTING.md, Code of Conduct</text>\n<rect x=\"50\" y=\"155\" width=\"350\" height=\"38\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"230\" y=\"179\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">自律的ガバナンス</text>\n<rect x=\"420\" y=\"155\" width=\"330\" height=\"38\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"585\" y=\"179\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">コアチームによる決定権</text>\n<rect x=\"50\" y=\"205\" width=\"350\" height=\"38\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"230\" y=\"229\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">コンフリクト解決</text>\n<rect x=\"420\" y=\"205\" width=\"330\" height=\"38\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"585\" y=\"229\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">フォーク権利・段階的サンクション</text>\n<rect x=\"50\" y=\"255\" width=\"350\" height=\"38\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"230\" y=\"279\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">外部からの自律</text>\n<rect x=\"420\" y=\"255\" width=\"330\" height=\"38\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"585\" y=\"279\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">企業・政府に支配されない</text>\n<rect x=\"50\" y=\"305\" width=\"350\" height=\"38\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"230\" y=\"329\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">入れ子構造</text>\n<rect x=\"420\" y=\"305\" width=\"330\" height=\"38\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"585\" y=\"329\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Issue→PR→リリースの階層管理</text>\n<text x=\"400\" y=\"360\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ Ostrom原則を満たすOSSは持続可能性が高い (2009年ノーベル経済学賞)</text>\n</svg>",
 				"  - **社会的動機**: 評判・シグナリング・コミュニティへの帰属",
 				"  - **経済的動機**: キャリア・雇用条件・金銭的報酬",
 				"**ディスカッション（5分）:**",
@@ -323,13 +431,20 @@
 			]
 		},
 		{
-			"title": "ワーク②：OSSプロジェクト動機分析",
+			"title": "ワーク②：OSSプロジェクト動機分析（1/2）",
 			"layout": "default",
 			"content": [
 				"**グループワーク（20分）:**",
 				"- グループで有名な OSS プロジェクトを1つ選ぶ",
 				"  - 例: Linux / React / PostgreSQL / VSCode / curl",
-				"- 以下の問いに答える:",
+				"- 以下の問いに答える:"
+			]
+		},
+		{
+			"title": "ワーク②：OSSプロジェクト動機分析（2/2）",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">健全なOSSエコシステムの構造</text>\n<rect x=\"290\" y=\"60\" width=\"220\" height=\"60\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"400\" y=\"88\" font-size=\"16\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">コアチーム</text>\n<text x=\"400\" y=\"108\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">ビジョン・方向性の決定</text>\n<line x1=\"400\" y1=\"120\" x2=\"310.28991510855053\" y2=\"173.82605093486967\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"300,180 307.2029405759854,168.6810933805944 313.37688964111567,178.97100848914494\" fill=\"#f9a825\"/>\n<line x1=\"400\" y1=\"120\" x2=\"489.71008489144947\" y2=\"173.82605093486967\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"500,180 486.62311035888433,178.97100848914494 492.7970594240146,168.6810933805944\" fill=\"#f9a825\"/>\n<line x1=\"400\" y1=\"120\" x2=\"400\" y2=\"168\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"400,180 394,168 406,168\" fill=\"#f9a825\"/>\n<rect x=\"160\" y=\"180\" width=\"150\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"235\" y=\"207\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">コントリビューター</text>\n<text x=\"235\" y=\"225\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">機能・バグ修正</text>\n<rect x=\"325\" y=\"180\" width=\"150\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"400\" y=\"207\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">メンテナー</text>\n<text x=\"400\" y=\"225\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">レビュー・CI管理</text>\n<rect x=\"490\" y=\"180\" width=\"150\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"565\" y=\"207\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">ユーザー</text>\n<text x=\"565\" y=\"225\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Issue・フィードバック</text>\n<line x1=\"235\" y1=\"235\" x2=\"290.13369370027465\" y2=\"273.16948025403633\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"300,280 286.7184338272928,278.102633403899 293.5489535732565,268.23632710417365\" fill=\"#f9a825\"/>\n<line x1=\"400\" y1=\"235\" x2=\"400\" y2=\"268\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"400,280 394,268 406,268\" fill=\"#f9a825\"/>\n<line x1=\"565\" y1=\"235\" x2=\"509.86630629972535\" y2=\"273.16948025403633\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"500,280 506.4510464267435,268.23632710417365 513.2815661727072,278.102633403899\" fill=\"#f9a825\"/>\n<rect x=\"250\" y=\"280\" width=\"300\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"400\" y=\"307\" font-size=\"16\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">持続的な成長</text>\n<text x=\"400\" y=\"327\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">多様な動機の共存</text>\n<text x=\"400\" y=\"368\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">動機を理解することが健全なコミュニティ設計の出発点</text>\n</svg>",
 				"  - **① 誰がコントリビュートしているか？** 企業 or 個人の割合",
 				"  - **② 動機の多様性**: 異なる動機の参加者がどう共存しているか",
 				"  - **③ サステナビリティ**: 資金調達・ガバナンスはどうなっているか",
@@ -341,6 +456,7 @@
 			"title": "まとめ",
 			"layout": "default",
 			"content": [
+				"<svg viewBox=\"0 0 800 375\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">OSSサステナビリティへのアプローチ比較</text>\n<rect x=\"30\" y=\"55\" width=\"250\" height=\"44\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"155\" y=\"72\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">GitHub Sponsors / Open Collective</text>\n<text x=\"155\" y=\"91\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">個人支援モデル</text>\n<rect x=\"295\" y=\"55\" width=\"475\" height=\"44\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"532\" y=\"82\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">低コスト・不安定</text>\n<rect x=\"30\" y=\"113\" width=\"250\" height=\"44\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"155\" y=\"130\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">企業スポンサーシップ</text>\n<text x=\"155\" y=\"149\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Red Hat/Google etc</text>\n<rect x=\"295\" y=\"113\" width=\"475\" height=\"44\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"532\" y=\"140\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">安定・自律性リスク</text>\n<rect x=\"30\" y=\"171\" width=\"250\" height=\"44\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"155\" y=\"188\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">デュアルライセンス</text>\n<text x=\"155\" y=\"207\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">OSS+商用</text>\n<rect x=\"295\" y=\"171\" width=\"475\" height=\"44\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"532\" y=\"198\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">収益安定・分断リスク</text>\n<rect x=\"30\" y=\"229\" width=\"250\" height=\"44\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"155\" y=\"246\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">ファウンデーション</text>\n<text x=\"155\" y=\"265\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Apache/Linux Foundation</text>\n<rect x=\"295\" y=\"229\" width=\"475\" height=\"44\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"532\" y=\"256\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">中立・官僚化リスク</text>\n<rect x=\"30\" y=\"287\" width=\"250\" height=\"44\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"155\" y=\"304\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">クラウドベース収益化</text>\n<text x=\"155\" y=\"323\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">SaaS on OSS</text>\n<rect x=\"295\" y=\"287\" width=\"475\" height=\"44\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"532\" y=\"314\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">スケール可・Fork懸念</text>\n<text x=\"400\" y=\"360\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">→ プロジェクトの特性に合った持続モデルの設計が不可欠</text>\n</svg>",
 				"**3つの主要メッセージ:**",
 				"**① 経済合理性だけでは説明できない** — OSSは公共財ジレンマを「動機の多様性」で乗り越える",
 				"**② 動機は多層構造** — 内発（SDT）× 社会的（シグナリング・贈与）× 経済的が重なり合う",
@@ -351,13 +467,19 @@
 			]
 		},
 		{
-			"title": "参考文献",
+			"title": "参考文献（1/2）",
 			"layout": "default",
 			"content": [
 				"**研究論文・書籍:**",
 				"- [Deci & Ryan (1985)](https://www.guilford.com/books/Intrinsic-Motivation-and-Self-Determination/Deci-Ryan/9780306420221) — 自己決定理論の原典",
 				"- [Lerner & Tirole (2002)](https://www.jstor.org/stable/3132114) — OSSのインセンティブ構造（経済学的分析）",
-				"- [Benkler (2006)](https://www.benkler.org/Benkler_Wealth_Of_Networks.pdf) — \"The Wealth of Networks\" コモンズ型生産",
+				"- [Benkler (2006)](https://www.benkler.org/Benkler_Wealth_Of_Networks.pdf) — \"The Wealth of Networks\" コモンズ型生産"
+			]
+		},
+		{
+			"title": "参考文献（2/2）",
+			"layout": "default",
+			"content": [
 				"- [Ostrom (1990)](https://www.cambridge.org/core/books/governing-the-commons/A8BB63BC4A1433A50A3FB92EDBBB97D5) — コモンズのガバナンス",
 				"- [Raymond (1999)](http://www.catb.org/~esr/writings/cathedral-bazaar/) — 伽藍とバザール",
 				"**データ・レポート:**",

@@ -5,6 +5,7 @@ output:
   baseName: "singapore-city-experiment"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "シンガポールの都市実験"
   footer: "© 2026"

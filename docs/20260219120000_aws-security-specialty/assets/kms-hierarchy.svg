@@ -1,0 +1,32 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold">KMS キー管理階層</text>
+<rect x="310" y="45" width="180" height="60" rx="10" fill="#e91e63" opacity="0.9"/>
+<text x="400" y="70" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="bold">AWS KMS</text>
+<text x="400" y="90" text-anchor="middle" font-size="12" fill="#ffffff">Key Management Service</text>
+<line x1="355" y1="105" x2="210" y2="155" stroke="#f9a825" stroke-width="2"/>
+<polygon points="210,155 218,145 202,145" fill="#f9a825"/>
+<line x1="400" y1="105" x2="400" y2="155" stroke="#f9a825" stroke-width="2"/>
+<polygon points="400,155 393,145 407,145" fill="#f9a825"/>
+<line x1="445" y1="105" x2="590" y2="155" stroke="#f9a825" stroke-width="2"/>
+<polygon points="590,155 582,145 598,145" fill="#f9a825"/>
+<rect x="140" y="155" width="140" height="60" rx="8" fill="#7b1fa2" opacity="0.85"/>
+<text x="210" y="178" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">AWS Managed</text>
+<text x="210" y="196" text-anchor="middle" font-size="12" fill="#ffffff">Keys (aws/s3)</text>
+<rect x="330" y="155" width="140" height="60" rx="8" fill="#1565c0" opacity="0.85"/>
+<text x="400" y="178" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Customer</text>
+<text x="400" y="196" text-anchor="middle" font-size="13" fill="#ffffff">Managed (CMK)</text>
+<rect x="520" y="155" width="140" height="60" rx="8" fill="#00695c" opacity="0.85"/>
+<text x="590" y="178" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">AWS Owned</text>
+<text x="590" y="196" text-anchor="middle" font-size="12" fill="#ffffff">Keys</text>
+<line x1="400" y1="215" x2="400" y2="255" stroke="#4fc3f7" stroke-width="2"/>
+<polygon points="400,255 393,245 407,245" fill="#4fc3f7"/>
+<rect x="305" y="255" width="190" height="60" rx="8" fill="#e64a19" opacity="0.85"/>
+<text x="400" y="280" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Data Encryption Key</text>
+<text x="400" y="298" text-anchor="middle" font-size="13" fill="#ffffff">(DEK)</text>
+<line x1="400" y1="315" x2="400" y2="340" stroke="#4fc3f7" stroke-width="2"/>
+<polygon points="400,340 393,330 407,330" fill="#4fc3f7"/>
+<rect x="230" y="340" width="340" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="360" text-anchor="middle" font-size="13" fill="#ffffff">Envelope Encryption</text>
+<text x="400" y="380" text-anchor="middle" font-size="12" fill="#4fc3f7">DEK を CMK で暗号化して保管</text>
+</svg>

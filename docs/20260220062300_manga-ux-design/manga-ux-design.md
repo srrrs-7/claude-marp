@@ -7,6 +7,71 @@ paginate: true
 header: "マンガに学ぶUXデザイン"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -42,6 +107,7 @@ style: |
 
 # マンガ = 紙の上のUXデザイン
 
+![w:800 center](assets/manga-vs-ui.svg)
 - **マンガ家が解決している問題：**
 - 限られた紙面に情報を配置し、読者の視線を制御する
 - 感情の起伏を設計し、ページをめくらせ続ける
@@ -55,6 +121,7 @@ style: |
 
 # 手塚治虫が発明したもの
 
+![w:800 center](assets/tezuka-techniques.svg)
 - **映画的手法の導入（1950年代）：**
 - パン・ズーム・モンタージュをマンガに翻訳
 - コマのサイズと配置で「時間の速度」を制御
@@ -98,12 +165,18 @@ style: |
 
 ---
 
-# コマ割り = レイアウトグリッド
+# コマ割り = レイアウトグリッド（1/2）
 
 - **マンガのコマ割りルール：**
 - 均等なコマ割り → 安定感・日常シーン
 - 不均等なコマ割り → 緊張感・アクション
 - コマを壊す（枠線越え）→ 驚き・衝撃
+
+
+---
+
+# コマ割り = レイアウトグリッド（2/2）
+
 - ---
 - **UIのグリッドシステム：**
 - 均等グリッド → ダッシュボード・一覧画面
@@ -114,6 +187,7 @@ style: |
 
 # 情報の「密度」をコントロールする
 
+![w:800 center](assets/info-density.svg)
 - **マンガ：** 1ページあたりのコマ数で情報密度を調整
 - アクション：1-3コマ（疾走感）→ 情報少・感情多
 - 日常会話：5-7コマ（安定感）→ 情報多・感情安定
@@ -138,12 +212,18 @@ style: |
 
 ---
 
-# 「見開き」の力 = フルスクリーン体験
+# 「見開き」の力 = フルスクリーン体験（1/2）
 
 - マンガの見開きページ：**読者が息を呑む瞬間**
 - 情報量をゼロにして、1つの絵だけで感情を伝える
 - ---
 - UIでの応用：
+
+
+---
+
+# 「見開き」の力 = フルスクリーン体験（2/2）
+
 - フルスクリーンモーダル → 重要なアクション確認
 - スプラッシュスクリーン → ブランドの第一印象
 - 完了画面のアニメーション → 達成感の演出
@@ -158,12 +238,19 @@ style: |
 
 ---
 
-# 原則1：ガター（コマ間の余白）の力
+# 原則1：ガター（コマ間の余白）の力（1/2）
 
+![w:800 center](assets/gutter-whitespace.svg)
 - **ガター = マンガのコマとコマの間の空白**
 - 読者はガターで「時間の経過」や「場面転換」を脳内補完する
 - スコット・マクラウドが「クロージャー」と呼んだ認知プロセス
 - ---
+
+
+---
+
+# 原則1：ガター（コマ間の余白）の力（2/2）
+
 - **UIでの応用：**
 - ステップインジケーター間の空白 → 進行感
 - カード間のスペーシング → 情報のチャンク化
@@ -173,12 +260,18 @@ style: |
 
 ---
 
-# 原則2：吹き出し = 情報の階層化
+# 原則2：吹き出し = 情報の階層化（1/2）
 
 - **マンガの吹き出しシステム：**
 - 通常の吹き出し → 普通の会話
 - ギザギザ吹き出し → 叫び・驚き
 - モノローグ（角丸四角）→ 内心・ナレーション
+
+
+---
+
+# 原則2：吹き出し = 情報の階層化（2/2）
+
 - ---
 - **UIでの応用：**
 - ツールチップ → 補足情報（吹き出し的）

@@ -133,6 +133,11 @@ style: |
 
 - - LLMに架空のAPIを質問した場合の典型的な応答
 
+
+---
+
+# ハルシネーション発生のコード例（コード例）
+
 ```typescript
 // User: "bun.serve()のwebSocketオプションにあるcompressフィールドの使い方は？"
 // LLM Response (Hallucination):

@@ -5,6 +5,7 @@ output:
   baseName: "greshams-law-codebase"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "グレシャムの法則とコード"
   footer: "© 2026"

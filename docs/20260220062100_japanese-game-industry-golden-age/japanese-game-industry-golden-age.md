@@ -7,6 +7,71 @@ paginate: true
 header: "日本ゲーム産業の黄金時代"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -42,6 +107,7 @@ style: |
 
 # 1983年：北米ゲーム市場の崩壊
 
+![w:800 center](assets/atari-shock.svg)
 - **アタリショック** ― 市場規模が32億ドルから1億ドルへ**97%縮小**
 - 原因：粗悪なソフトの氾濫（E.T.は砂漠に埋められた）
 - 品質管理の欠如 → 消費者の信頼喪失
@@ -70,6 +136,7 @@ style: |
 
 # 任天堂の品質管理革命
 
+![w:800 center](assets/quality-control.svg)
 - **「Seal of Quality」システム** ― アタリの失敗を繰り返さない
 - サードパーティは年間5本までしか発売できない
 - 全ソフトを任天堂が審査・承認する仕組み
@@ -107,6 +174,7 @@ style: |
 
 # 天才クリエイターたちの時代
 
+![w:800 center](assets/creator-map.svg)
 - **宮本茂（任天堂）** ― マリオ・ゼルダ・ドンキーコング
 - **坂口博信（スクウェア）** ― ファイナルファンタジー
 - **堀井雄二（エニックス）** ― ドラゴンクエスト
@@ -186,6 +254,7 @@ style: |
 
 # 覇権が揺らいだ理由
 
+![w:800 center](assets/decline-factors.svg)
 - **2001年：Xbox参入** ― Microsoftが3兆円の資金力で市場に
 - オンライン対応の遅れ（Xbox LiveがPS2に先行）
 - HD開発の高コスト化 → 日本の中小スタジオが淘汰
@@ -219,12 +288,18 @@ style: |
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - - **書籍・論文:**
 - - [Game Over: Press Start to Continue - David Sheff](https://www.amazon.com/dp/0966961706)
 - - [Console Wars - Blake J. Harris](https://www.amazon.com/dp/0062276700)
 - - **データ・統計:**
+
+
+---
+
+# 参考文献（2/2）
+
 - - [Video Game History Foundation](https://gamehistory.org/)
 - - [VGChartz - Hardware Sales](https://www.vgchartz.com/)
 - - **記事:**

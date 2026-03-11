@@ -5,6 +5,7 @@ output:
   baseName: "dark-patterns-anatomy"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ダークパターンの解剖学"
   footer: "© 2026"

@@ -1,0 +1,44 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">地域経済への波及効果</text>
+  <!-- Timeline/flow: Game → Visit → Spend -->
+  <rect x="40" y="80" width="160" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="120" y="112" text-anchor="middle" font-size="14" fill="#f9a825">PokeStop</text>
+  <text x="120" y="132" text-anchor="middle" font-size="12" fill="#ffffff">スポンサー契約</text>
+  <polygon points="205,120 218,112 218,128" fill="#ffffff"/>
+  <line x1="200" y1="120" x2="218" y2="120" stroke="#ffffff" stroke-width="2"/>
+  <rect x="220" y="80" width="160" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="300" y="112" text-anchor="middle" font-size="14" fill="#e91e63">来店増加</text>
+  <text x="300" y="132" text-anchor="middle" font-size="12" fill="#ffffff">+25-50%売上</text>
+  <polygon points="385,120 398,112 398,128" fill="#ffffff"/>
+  <line x1="380" y1="120" x2="398" y2="120" stroke="#ffffff" stroke-width="2"/>
+  <rect x="400" y="80" width="180" height="80" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="490" y="112" text-anchor="middle" font-size="14" fill="#4caf50">地域活性化</text>
+  <text x="490" y="132" text-anchor="middle" font-size="12" fill="#ffffff">観光客・イベント</text>
+  <polygon points="585,120 598,112 598,128" fill="#ffffff"/>
+  <line x1="580" y1="120" x2="598" y2="120" stroke="#ffffff" stroke-width="2"/>
+  <rect x="600" y="80" width="160" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="680" y="112" text-anchor="middle" font-size="14" fill="#f9a825">経済効果</text>
+  <text x="680" y="132" text-anchor="middle" font-size="12" fill="#ffffff">数十億円規模</text>
+  <!-- Case studies -->
+  <text x="400" y="212" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">実績事例</text>
+  <!-- McDonald's -->
+  <rect x="30" y="228" width="220" height="70" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="140" y="252" text-anchor="middle" font-size="12" fill="#f9a825">マクドナルド（日本）</text>
+  <text x="140" y="272" text-anchor="middle" font-size="11" fill="#ffffff">全店をPokeStop化</text>
+  <text x="140" y="288" text-anchor="middle" font-size="11" fill="#ffffff">来店数 大幅増加</text>
+  <!-- Tottori -->
+  <rect x="290" y="228" width="220" height="70" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="400" y="252" text-anchor="middle" font-size="12" fill="#e91e63">鳥取砂丘イベント2018</text>
+  <text x="400" y="272" text-anchor="middle" font-size="11" fill="#ffffff">3日間 8.9万人来場</text>
+  <text x="400" y="288" text-anchor="middle" font-size="11" fill="#ffffff">経済効果 18億円</text>
+  <!-- Kumamoto -->
+  <rect x="550" y="228" width="220" height="70" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="660" y="252" text-anchor="middle" font-size="12" fill="#4caf50">熊本コラボ</text>
+  <text x="660" y="272" text-anchor="middle" font-size="11" fill="#ffffff">震災復興支援</text>
+  <text x="660" y="288" text-anchor="middle" font-size="11" fill="#ffffff">観光客が戻る契機に</text>
+  <!-- Bottom -->
+  <text x="400" y="340" text-anchor="middle" font-size="13" fill="#f9a825">ARゲームが「聖地巡礼」の新しい形を創出した</text>
+  <text x="400" y="360" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">デジタルコンテンツが物理的な場所の価値を増幅させる</text>
+  <text x="400" y="382" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.5">スポンサードPokeStop: マクドナルド・スターバックス・横須賀・鳥取・熊本が参加</text>
+</svg>

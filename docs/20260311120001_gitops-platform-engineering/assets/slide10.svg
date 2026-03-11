@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#a78bfa" font-size="14" font-weight="bold" font-family="sans-serif">Kubernetes アーキテクチャ</text>
+
+  <!-- Control Plane box -->
+  <rect x="30" y="45" width="360" height="300" rx="14" fill="#1e2a4a" stroke="#60a5fa" stroke-width="2"/>
+  <text x="210" y="72" text-anchor="middle" fill="#60a5fa" font-size="13" font-weight="bold" font-family="sans-serif">Control Plane</text>
+
+  <!-- API Server -->
+  <rect x="55" y="85" width="145" height="50" rx="8" fill="#1a3a5a" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="127" y="113" text-anchor="middle" fill="#93c5fd" font-size="12" font-weight="bold" font-family="sans-serif">API Server</text>
+
+  <!-- etcd -->
+  <rect x="220" y="85" width="145" height="50" rx="8" fill="#1a3a5a" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="292" y="113" text-anchor="middle" fill="#93c5fd" font-size="12" font-weight="bold" font-family="sans-serif">etcd</text>
+  <text x="292" y="128" text-anchor="middle" fill="#d1d5db" font-size="10" font-family="sans-serif">（状態ストア）</text>
+
+  <!-- Scheduler -->
+  <rect x="55" y="155" width="145" height="50" rx="8" fill="#1a3a5a" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="127" y="183" text-anchor="middle" fill="#93c5fd" font-size="12" font-weight="bold" font-family="sans-serif">Scheduler</text>
+
+  <!-- Controller Manager -->
+  <rect x="220" y="155" width="145" height="50" rx="8" fill="#1a3a5a" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="292" y="180" text-anchor="middle" fill="#93c5fd" font-size="11" font-weight="bold" font-family="sans-serif">Controller Manager</text>
+
+  <!-- Cloud Controller -->
+  <rect x="55" y="225" width="310" height="50" rx="8" fill="#1a3a5a" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="210" y="253" text-anchor="middle" fill="#93c5fd" font-size="12" font-weight="bold" font-family="sans-serif">Cloud Controller Manager</text>
+  <text x="210" y="268" text-anchor="middle" fill="#d1d5db" font-size="10" font-family="sans-serif">（クラウドプロバイダとの連携）</text>
+
+  <!-- Control Plane label at bottom -->
+  <text x="210" y="330" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="sans-serif" opacity="0.8">kubectl / API → API Server経由で操作</text>
+
+  <!-- Worker Node box -->
+  <rect x="420" y="45" width="350" height="300" rx="14" fill="#1a2e1a" stroke="#34d399" stroke-width="2"/>
+  <text x="595" y="72" text-anchor="middle" fill="#34d399" font-size="13" font-weight="bold" font-family="sans-serif">Worker Node</text>
+
+  <!-- kubelet -->
+  <rect x="445" y="85" width="145" height="50" rx="8" fill="#1f4a3a" stroke="#34d399" stroke-width="1.5"/>
+  <text x="517" y="113" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="bold" font-family="sans-serif">kubelet</text>
+  <text x="517" y="128" text-anchor="middle" fill="#d1d5db" font-size="10" font-family="sans-serif">Pod ライフサイクル管理</text>
+
+  <!-- kube-proxy -->
+  <rect x="608" y="85" width="145" height="50" rx="8" fill="#1f4a3a" stroke="#34d399" stroke-width="1.5"/>
+  <text x="680" y="113" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="bold" font-family="sans-serif">kube-proxy</text>
+  <text x="680" y="128" text-anchor="middle" fill="#d1d5db" font-size="10" font-family="sans-serif">ネットワーク規則</text>
+
+  <!-- Container Runtime -->
+  <rect x="445" y="155" width="310" height="50" rx="8" fill="#1f4a3a" stroke="#34d399" stroke-width="1.5"/>
+  <text x="600" y="180" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="bold" font-family="sans-serif">Container Runtime</text>
+  <text x="600" y="198" text-anchor="middle" fill="#d1d5db" font-size="10" font-family="sans-serif">containerd / CRI-O</text>
+
+  <!-- Pods -->
+  <rect x="445" y="225" width="145" height="50" rx="8" fill="#2a3a2a" stroke="#34d399" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="517" y="250" text-anchor="middle" fill="#a7f3d0" font-size="12" font-family="sans-serif">Pod A</text>
+  <text x="517" y="268" text-anchor="middle" fill="#d1d5db" font-size="10" font-family="sans-serif">container(s)</text>
+
+  <rect x="608" y="225" width="145" height="50" rx="8" fill="#2a3a2a" stroke="#34d399" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="680" y="250" text-anchor="middle" fill="#a7f3d0" font-size="12" font-family="sans-serif">Pod B</text>
+  <text x="680" y="268" text-anchor="middle" fill="#d1d5db" font-size="10" font-family="sans-serif">container(s)</text>
+
+  <text x="595" y="330" text-anchor="middle" fill="#34d399" font-size="11" font-family="sans-serif" opacity="0.8">複数ノードがクラスタを構成</text>
+
+  <!-- kubectl (external) -->
+  <rect x="290" y="390" width="220" height="55" rx="10" fill="#2d1b69" stroke="#a78bfa" stroke-width="2"/>
+  <text x="400" y="417" text-anchor="middle" fill="#a78bfa" font-size="13" font-weight="bold" font-family="sans-serif">kubectl / GitOps Agent</text>
+  <text x="400" y="435" text-anchor="middle" fill="#d1d5db" font-size="10" font-family="sans-serif">クラスタ操作 / 状態同期</text>
+
+  <!-- Arrow from kubectl to API Server -->
+  <line x1="340" y1="390" x2="210" y2="135" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="212,127 208,139 218,137" fill="#a78bfa"/>
+
+  <!-- Arrow kubectl to Worker -->
+  <line x1="460" y1="390" x2="595" y2="345" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.5"/>
+</svg>

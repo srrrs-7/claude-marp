@@ -5,6 +5,7 @@ output:
   baseName: "mycorrhizal-network-microservices"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "Wood Wide Web とマイクロサービス"
   footer: "© 2026"

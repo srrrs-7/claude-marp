@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">日本のエンジニア年収分布（2024年）</text>
+  <!-- bars -->
+  <!-- 新卒〜3年 300-450 -->
+  <rect x="80" y="80" width="210" height="40" rx="4" fill="#f9a825" opacity="0.5"/>
+  <text x="80" y="75" fill="#aaaaaa" font-size="11" font-family="sans-serif">新卒〜3年</text>
+  <text x="300" y="106" fill="#f9a825" font-size="12" font-family="sans-serif">300〜450万円</text>
+  <!-- 5-10年 500-700 -->
+  <rect x="80" y="140" width="330" height="40" rx="4" fill="#f9a825" opacity="0.65"/>
+  <text x="80" y="135" fill="#aaaaaa" font-size="11" font-family="sans-serif">中堅(5〜10年)</text>
+  <text x="420" y="166" fill="#f9a825" font-size="12" font-family="sans-serif">500〜700万円</text>
+  <!-- 10年+ 700-1000 -->
+  <rect x="80" y="200" width="420" height="40" rx="4" fill="#f9a825" opacity="0.8"/>
+  <text x="80" y="195" fill="#aaaaaa" font-size="11" font-family="sans-serif">シニア(10年+)</text>
+  <text x="510" y="226" fill="#f9a825" font-size="12" font-family="sans-serif">700〜1000万円</text>
+  <!-- TL/Mgr 800-1200 -->
+  <rect x="80" y="260" width="480" height="40" rx="4" fill="#e91e63" opacity="0.7"/>
+  <text x="80" y="255" fill="#aaaaaa" font-size="11" font-family="sans-serif">TL/マネージャー</text>
+  <text x="570" y="285" fill="#e91e63" font-size="12" font-family="sans-serif">800〜1200万円</text>
+  <!-- GAFAM marker -->
+  <line x1="600" y1="60" x2="600" y2="310" stroke="#ffffff" stroke-width="1" stroke-dasharray="5,4" opacity="0.4"/>
+  <text x="600" y="55" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">外資GAFAM</text>
+  <text x="600" y="330" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">1500〜3000万円+</text>
+  <!-- median line -->
+  <line x1="250" y1="60" x2="250" y2="310" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+  <text x="250" y="55" fill="#f9a825" font-size="10" font-family="sans-serif" text-anchor="middle">中央値 約600万</text>
+</svg>

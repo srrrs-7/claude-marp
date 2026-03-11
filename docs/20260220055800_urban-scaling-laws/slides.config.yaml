@@ -5,6 +5,7 @@ output:
   baseName: "urban-scaling-laws"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "都市科学"
   footer: "© 2026"

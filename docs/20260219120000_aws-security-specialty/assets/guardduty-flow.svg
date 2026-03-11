@@ -1,0 +1,32 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold">GuardDuty 脅威検知フロー</text>
+<rect x="20" y="70" width="150" height="50" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="1.5"/>
+<text x="95" y="100" text-anchor="middle" font-size="13" fill="#ffffff">VPC Flow Logs</text>
+<rect x="20" y="175" width="150" height="50" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="1.5"/>
+<text x="95" y="205" text-anchor="middle" font-size="13" fill="#ffffff">CloudTrail Logs</text>
+<rect x="20" y="280" width="150" height="50" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="1.5"/>
+<text x="95" y="310" text-anchor="middle" font-size="13" fill="#ffffff">DNS Query Logs</text>
+<line x1="170" y1="95" x2="240" y2="200" stroke="#4fc3f7" stroke-width="1.5" opacity="0.7"/>
+<line x1="170" y1="200" x2="240" y2="200" stroke="#4fc3f7" stroke-width="1.5" opacity="0.7"/>
+<line x1="170" y1="305" x2="240" y2="200" stroke="#4fc3f7" stroke-width="1.5" opacity="0.7"/>
+<rect x="240" y="155" width="160" height="90" rx="12" fill="#e91e63" opacity="0.9"/>
+<text x="320" y="193" text-anchor="middle" font-size="15" fill="#ffffff" font-weight="bold">GuardDuty</text>
+<text x="320" y="213" text-anchor="middle" font-size="12" fill="#ffffff">ML + ルール分析</text>
+<text x="320" y="233" text-anchor="middle" font-size="11" fill="#ffffff">脅威インテリジェンス</text>
+<line x1="400" y1="200" x2="460" y2="200" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="460,200 450,194 450,206" fill="#f9a825"/>
+<rect x="460" y="155" width="140" height="90" rx="10" fill="#7b1fa2" opacity="0.9"/>
+<text x="530" y="193" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="bold">Findings</text>
+<text x="530" y="213" text-anchor="middle" font-size="12" fill="#ffffff">Low / Medium</text>
+<text x="530" y="233" text-anchor="middle" font-size="12" fill="#ffffff">/ High</text>
+<line x1="600" y1="200" x2="655" y2="160" stroke="#f9a825" stroke-width="2"/>
+<polygon points="655,160 643,162 648,174" fill="#f9a825"/>
+<line x1="600" y1="200" x2="655" y2="240" stroke="#f9a825" stroke-width="2"/>
+<polygon points="655,240 648,228 643,238" fill="#f9a825"/>
+<rect x="655" y="130" width="120" height="50" rx="8" fill="#1565c0" opacity="0.9"/>
+<text x="715" y="160" text-anchor="middle" font-size="13" fill="#ffffff">EventBridge</text>
+<rect x="655" y="195" width="120" height="50" rx="8" fill="#00695c" opacity="0.9"/>
+<text x="715" y="225" text-anchor="middle" font-size="13" fill="#ffffff">Lambda / SNS</text>
+<text x="400" y="385" text-anchor="middle" font-size="13" fill="#4fc3f7">GuardDuty Threat Detection Flow</text>
+</svg>

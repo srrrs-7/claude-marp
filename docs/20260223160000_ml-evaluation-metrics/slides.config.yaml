@@ -10,6 +10,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ML評価指標 完全ガイド"
   footer: "© 2026 ML評価指標リファレンス"

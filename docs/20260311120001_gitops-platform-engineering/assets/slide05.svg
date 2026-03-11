@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#1a1a2e"/>
+  <text x="400" y="38" text-anchor="middle" fill="#a78bfa" font-size="15" font-weight="bold" font-family="sans-serif">GitOps 4原則</text>
+  <line x1="400" y1="60" x2="400" y2="470" stroke="#a78bfa" stroke-width="1.5" opacity="0.4"/>
+  <line x1="60" y1="265" x2="740" y2="265" stroke="#a78bfa" stroke-width="1.5" opacity="0.4"/>
+  <rect x="65" y="65" width="320" height="185" rx="14" fill="#1e2a4a" stroke="#60a5fa" stroke-width="2"/>
+  <circle cx="105" cy="105" r="22" fill="#60a5fa"/>
+  <text x="105" y="112" text-anchor="middle" fill="#1a1a2e" font-size="16" font-weight="bold" font-family="sans-serif">1</text>
+  <text x="225" y="103" text-anchor="middle" fill="#60a5fa" font-size="15" font-weight="bold" font-family="sans-serif">Declarative</text>
+  <text x="225" y="122" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">（宣言的）</text>
+  <text x="140" y="158" fill="#d1d5db" font-size="12" font-family="sans-serif">・システム全体を宣言的に記述</text>
+  <text x="140" y="178" fill="#d1d5db" font-size="12" font-family="sans-serif">・Kubernetes マニフェスト / Helm</text>
+  <text x="140" y="198" fill="#d1d5db" font-size="12" font-family="sans-serif">・"How" ではなく "What" を定義</text>
+  <text x="140" y="225" fill="#d1d5db" font-size="12" font-family="sans-serif">・再現性と一貫性を保証</text>
+  <rect x="415" y="65" width="320" height="185" rx="14" fill="#1a2e1a" stroke="#34d399" stroke-width="2"/>
+  <circle cx="455" cy="105" r="22" fill="#34d399"/>
+  <text x="455" y="112" text-anchor="middle" fill="#1a1a2e" font-size="16" font-weight="bold" font-family="sans-serif">2</text>
+  <text x="575" y="103" text-anchor="middle" fill="#34d399" font-size="13" font-weight="bold" font-family="sans-serif">Versioned &amp; Immutable</text>
+  <text x="575" y="122" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">（バージョン管理・不変）</text>
+  <text x="490" y="158" fill="#d1d5db" font-size="12" font-family="sans-serif">・Git が唯一の変更記録源</text>
+  <text x="490" y="178" fill="#d1d5db" font-size="12" font-family="sans-serif">・全変更に audit log が残る</text>
+  <text x="490" y="198" fill="#d1d5db" font-size="12" font-family="sans-serif">・ロールバックは git revert</text>
+  <text x="490" y="225" fill="#d1d5db" font-size="12" font-family="sans-serif">・ブランチ戦略で環境分離</text>
+  <rect x="65" y="280" width="320" height="185" rx="14" fill="#2e1a1a" stroke="#f59e0b" stroke-width="2"/>
+  <circle cx="105" cy="320" r="22" fill="#f59e0b"/>
+  <text x="105" y="327" text-anchor="middle" fill="#1a1a2e" font-size="16" font-weight="bold" font-family="sans-serif">3</text>
+  <text x="225" y="318" text-anchor="middle" fill="#f59e0b" font-size="13" font-weight="bold" font-family="sans-serif">Pulled Automatically</text>
+  <text x="225" y="337" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">（自動 Pull）</text>
+  <text x="140" y="373" fill="#d1d5db" font-size="12" font-family="sans-serif">・エージェントが自動で状態を同期</text>
+  <text x="140" y="393" fill="#d1d5db" font-size="12" font-family="sans-serif">・Push ではなく Pull ベース</text>
+  <text x="140" y="413" fill="#d1d5db" font-size="12" font-family="sans-serif">・クレデンシャル不要（inbound のみ）</text>
+  <text x="140" y="440" fill="#d1d5db" font-size="12" font-family="sans-serif">・ArgoCD / Flux が代表実装</text>
+  <rect x="415" y="280" width="320" height="185" rx="14" fill="#1e1a2e" stroke="#a78bfa" stroke-width="2"/>
+  <circle cx="455" cy="320" r="22" fill="#a78bfa"/>
+  <text x="455" y="327" text-anchor="middle" fill="#1a1a2e" font-size="16" font-weight="bold" font-family="sans-serif">4</text>
+  <text x="575" y="318" text-anchor="middle" fill="#a78bfa" font-size="13" font-weight="bold" font-family="sans-serif">Continuously Reconciled</text>
+  <text x="575" y="337" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">（継続的 Reconcile）</text>
+  <text x="490" y="373" fill="#d1d5db" font-size="12" font-family="sans-serif">・実態と宣言の差分を検出</text>
+  <text x="490" y="393" fill="#d1d5db" font-size="12" font-family="sans-serif">・自動修復（Self-healing）</text>
+  <text x="490" y="413" fill="#d1d5db" font-size="12" font-family="sans-serif">・Drift 検知で安全運用</text>
+  <text x="490" y="440" fill="#d1d5db" font-size="12" font-family="sans-serif">・継続的な状態監視</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">偶然を発見に変える3条件</text>
+  <!-- Three overlapping circles (Venn-like but non-overlapping boxes for simplicity) -->
+  <!-- Circle 1: Specialized Knowledge -->
+  <circle cx="200" cy="190" r="110" fill="#e91e63" opacity="0.15" stroke="#e91e63" stroke-width="2"/>
+  <text x="200" y="155" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">専門知識</text>
+  <text x="200" y="178" text-anchor="middle" font-size="11" fill="#ffffff">異常に「気づく」力</text>
+  <text x="200" y="197" text-anchor="middle" font-size="11" fill="#ffffff">フレミングはカビを見た</text>
+  <text x="200" y="216" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">他の人は汚れを見た</text>
+  <!-- Circle 2: Pattern Recognition -->
+  <circle cx="400" cy="190" r="110" fill="#f9a825" opacity="0.15" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="155" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">パターン認識</text>
+  <text x="400" y="178" text-anchor="middle" font-size="11" fill="#ffffff">異分野の知識を</text>
+  <text x="400" y="197" text-anchor="middle" font-size="11" fill="#ffffff">つなげる能力</text>
+  <text x="400" y="216" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">電磁波とチョコレート</text>
+  <!-- Circle 3: Action Bias -->
+  <circle cx="600" cy="190" r="110" fill="#4caf50" opacity="0.15" stroke="#4caf50" stroke-width="2"/>
+  <text x="600" y="155" text-anchor="middle" font-size="13" font-weight="bold" fill="#4caf50">追求する意志</text>
+  <text x="600" y="178" text-anchor="middle" font-size="11" fill="#ffffff">「面白い」と思ったら</text>
+  <text x="600" y="197" text-anchor="middle" font-size="11" fill="#ffffff">深掘りする性格</text>
+  <text x="600" y="216" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">レントゲン：6週間没頭</text>
+  <!-- Center: result -->
+  <text x="400" y="300" text-anchor="middle" font-size="14" font-weight="bold" fill="#f9a825">= セレンディピティ</text>
+  <!-- Equation -->
+  <text x="105" y="355" text-anchor="middle" font-size="13" fill="#e91e63">偶然の観察</text>
+  <text x="210" y="355" text-anchor="middle" font-size="16" fill="#ffffff">+</text>
+  <text x="330" y="355" text-anchor="middle" font-size="13" fill="#f9a825">専門知識</text>
+  <text x="430" y="355" text-anchor="middle" font-size="16" fill="#ffffff">+</text>
+  <text x="555" y="355" text-anchor="middle" font-size="13" fill="#4caf50">追求する意志</text>
+  <text x="690" y="355" text-anchor="middle" font-size="16" fill="#ffffff">=</text>
+  <text x="750" y="355" text-anchor="middle" font-size="13" fill="#f9a825">発見</text>
+  <!-- Pasteur quote -->
+  <text x="400" y="385" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.6">「準備された心にのみ、幸運は訪れる」— パスツール</text>
+</svg>

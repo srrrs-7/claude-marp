@@ -1,10 +1,76 @@
 ---
 marp: true
 theme: gaia
+class: invert
 size: 16:9
 paginate: true
 footer: "AWS GenAI Dev Pro チートシート 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section { font-size: 0.80em; }
   section pre code { font-size: 0.6em; line-height: 1.4; }
   table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
@@ -28,6 +94,35 @@ style: |
 
 # 試験構成ロードマップ
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
+<rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App</text>
+<text x="75" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">SDK/CLI</text>
+<line x1="130" y1="60" x2="155" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="165,60 153,65 153,55" fill="#f9a825"/>
+<rect x="165" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="230" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Bedrock API</text>
+<text x="230" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">HTTPS/SDK</text>
+<line x1="295" y1="60" x2="320" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="330,60 318,65 318,55" fill="#f9a825"/>
+<rect x="330" y="40" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Foundation</text>
+<text x="395" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Model (FM)</text>
+<line x1="460" y1="60" x2="485" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="495,60 483,65 483,55" fill="#f9a825"/>
+<rect x="495" y="40" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="555" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+<text x="555" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">streaming</text>
+<line x1="615" y1="60" x2="640" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="650,60 638,65 638,55" fill="#f9a825"/>
+<rect x="650" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App処理</text>
+<text x="715" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">表示/保存</text>
+<text x="230" y="115" text-anchor="middle" fill="#f9a825" font-size="11">InvokeModel</text>
+<text x="395" y="115" text-anchor="middle" fill="#ffffff" font-size="11">model_id指定</text>
+<text x="555" y="115" text-anchor="middle" fill="#f9a825" font-size="11">ResponseStream</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">Converse API: マルチモーダル統一インタフェース (Claude/Llama/Titan対応)</text>
+<text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
+<text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
+</svg>
 | ドメイン | テーマ | 配点目安 | チートシート |
 |---------|--------|---------|------------|
 | D1 | AI / ML の基礎 | 15% | スライド 4–14 |
@@ -42,6 +137,46 @@ style: |
 
 # 試験のポイント早見
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">Amazon Bedrock — サービスマップ</text>
+<rect x="300" y="50" width="200" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Amazon Bedrock</text>
+<text x="400" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">統合AIプラットフォーム</text>
+<line x1="400" y1="100" x2="129.81248820521088" y2="153.07254695969073" stroke="#f9a825" stroke-width="2"/><polygon points="120,155 130.81125932609842,147.78081224902343 132.7387123664077,157.59330045423428" fill="#f9a825"/>
+<line x1="400" y1="100" x2="298.94427190999915" y2="150.52786404500043" stroke="#f9a825" stroke-width="2"/><polygon points="290,155 298.4970583144992,145.16130089900093 302.96919426949876,154.10557280900008" fill="#f9a825"/>
+<line x1="400" y1="100" x2="452.62845859799256" y2="148.24275371482653" stroke="#f9a825" stroke-width="2"/><polygon points="460,155 447.77552717500436,150.57707515879557 454.5327734601778,143.20553375678813" fill="#f9a825"/>
+<line x1="400" y1="100" x2="630.2526768147172" y2="152.76623843670603" stroke="#f9a825" stroke-width="2"/><polygon points="640,155 627.1863313960138,157.19314771668863 629.4200929593077,147.44582453140586" fill="#f9a825"/>
+<rect x="50" y="155" width="140" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="120" y="173" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Foundation</text>
+<text x="120" y="192" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Models (FM)</text>
+<rect x="220" y="155" width="140" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="290" y="173" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Agents</text>
+<text x="290" y="192" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自律タスク実行</text>
+<rect x="390" y="155" width="140" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="460" y="173" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Knowledge</text>
+<text x="460" y="192" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Bases (RAG)</text>
+<rect x="560" y="155" width="140" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="630" y="173" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Guardrails</text>
+<text x="630" y="192" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">安全・制御</text>
+<line x1="120" y1="205" x2="85.24097425664334" y2="261.48341683295456" stroke="#f9a825" stroke-width="2"/><polygon points="80,270 82.0308775244493,257.1596130712238 90.54746069149473,262.40058732786713" fill="#f9a825"/>
+<line x1="290" y1="205" x2="208.1067922839988" y2="264.1450944615564" stroke="#f9a825" stroke-width="2"/><polygon points="200,270 206.8006979715768,258.9207172118683 212.65560351002037,267.02750949586715" fill="#f9a825"/>
+<line x1="460" y1="205" x2="406.78280102733066" y2="262.6519655537251" stroke="#f9a825" stroke-width="2"/><polygon points="400,270 404.46534400965936,257.79095815080484 411.8133784559342,264.57375917813545" fill="#f9a825"/>
+<line x1="630" y1="205" x2="621.5205718425394" y2="260.11628302349385" stroke="#f9a825" stroke-width="2"/><polygon points="620,270 616.8828277227942,257.3792537069229 626.7665446993003,258.8998255494623" fill="#f9a825"/>
+<rect x="30" y="270" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="90" y="285.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Claude/Llama</text>
+<text x="90" y="304.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Titan/Mistral</text>
+<rect x="150" y="270" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="210" y="285.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Action Groups</text>
+<text x="210" y="304.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lambda/API</text>
+<rect x="350" y="270" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="410" y="285.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">OpenSearch</text>
+<text x="410" y="304.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Aurora/S3</text>
+<rect x="560" y="270" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="620" y="285.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Filters</text>
+<text x="620" y="304.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Topic/PII</text>
+<text x="400" y="370" text-anchor="middle" fill="#f9a825" font-size="12">API統一: InvokeModel / InvokeModelWithResponseStream / Converse</text>
+</svg>
 - **問題形式**: 単一選択 + 複数選択（2〜5択）
 - **重点ドメイン**: D3（30%）→ Bedrock / RAG / Agents が最重要
 - **問われ方**: 「最もコスト効率が良い」「最も安全な」→ Best Practice 視点
@@ -65,6 +200,28 @@ style: |
 
 # AI / ML / DL / GenAI 用語定義表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
+<rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Haiku</text>
+<text x="140" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最速・最低コスト</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3.5 Sonnet</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">バランス型・推奨</text>
+<rect x="550" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Opus</text>
+<text x="660" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最高精度</text>
+<text x="140" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.00025 in / $0.00125 out</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.003 in / $0.015 out</text>
+<text x="660" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.015 in / $0.075 out</text>
+<text x="140" y="135" text-anchor="middle" fill="#ffffff" font-size="10">分類・要約・チャット</text>
+<text x="400" y="135" text-anchor="middle" fill="#ffffff" font-size="10">RAG・コード・エージェント</text>
+<text x="660" y="135" text-anchor="middle" fill="#ffffff" font-size="10">複雑推論・研究</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Context: 200K tokens (全モデル共通)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
+</svg>
 | 用語 | 定義 | 範囲 | キーワード |
 |------|------|------|-----------|
 | **AI** | 人間の知能を模倣するシステム | 最広義 | ルールベース / 学習 |
@@ -77,6 +234,31 @@ style: |
 
 # ML タスク種別比較表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
+<rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="72.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Ingest</text>
+<line x1="120" y1="62" x2="123" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="133,62 121,67 121,57" fill="#f9a825"/><rect x="133" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="180.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunk</text>
+<line x1="228" y1="62" x2="231" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="241,62 229,67 229,57" fill="#f9a825"/><rect x="241" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="288.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<line x1="336" y1="62" x2="339" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="349,62 337,67 337,57" fill="#f9a825"/><rect x="349" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="396.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Index</text>
+<line x1="444" y1="62" x2="447" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="457,62 445,67 445,57" fill="#f9a825"/><rect x="457" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="504.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Retrieve</text>
+<line x1="552" y1="62" x2="555" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="565,62 553,67 553,57" fill="#f9a825"/><rect x="565" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="612.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augment</text>
+<line x1="660" y1="62" x2="663" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="673,62 661,67 661,57" fill="#f9a825"/><rect x="673" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="720.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Generate</text>
+
+<text x="210" y="120" text-anchor="middle" fill="#ffffff" font-size="11">← オフライン（インデックス作成）</text>
+<text x="590" y="120" text-anchor="middle" fill="#e91e63" font-size="11">オンライン（クエリ応答）→</text>
+<line x1="385" y1="105" x2="385" y2="135" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="400" y="160" text-anchor="middle" fill="#ffffff" font-size="11">Bedrock Knowledge Bases = マネージドRAG</text>
+<text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
+<text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
+</svg>
 | タスク | 出力 | 代表アルゴリズム | AWS サービス例 |
 |--------|------|----------------|--------------|
 | 分類 | カテゴリ | SVM、決定木、XGBoost | SageMaker |
@@ -90,6 +272,37 @@ style: |
 
 # 教師あり vs 教師なし vs 強化学習
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+<text x="80" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Orchestration</text>
+<text x="245" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">LLM (Claude)</text>
+<line x1="310" y1="55" x2="340.29857499854666" y2="47.42535625036333" stroke="#f9a825" stroke-width="2"/><polygon points="350,45 339.57096812343764,52.76114000116265 337.14561187307436,43.059714999709335" fill="#f9a825"/>
+<line x1="310" y1="75" x2="340.29857499854666" y2="82.57464374963666" stroke="#f9a825" stroke-width="2"/><polygon points="350,85 337.14561187307436,86.94028500029066 339.57096812343764,77.23885999883734" fill="#f9a825"/>
+<rect x="350" y="35" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="48" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Action Groups</text>
+<text x="415" y="67" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lambda/API</text>
+<rect x="350" y="80" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="93" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Knowledge Base</text>
+<text x="415" y="112" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAG検索</text>
+<line x1="480" y1="55" x2="510.29857499854666" y2="62.57464374963667" stroke="#f9a825" stroke-width="2"/><polygon points="520,65 507.14561187307436,66.94028500029067 509.57096812343764,57.23885999883735" fill="#f9a825"/>
+<line x1="480" y1="100" x2="511.52001695994915" y2="80.2999894000318" stroke="#f9a825" stroke-width="2"/><polygon points="520,75 512.4740150519549,85.5999788000636 507.17402565192305,77.11999576001271" fill="#f9a825"/>
+<rect x="520" y="50" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="585" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Tool Results</text>
+<text x="585" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">外部データ</text>
+<line x1="650" y1="70" x2="680" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="690,70 678,75 678,65" fill="#f9a825"/>
+<rect x="690" y="50" width="90" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="735" y="70" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">ReAct ループ: Reason → Act → Observe → Reason → ...</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
+</svg>
 | 軸 | 教師あり学習 | 教師なし学習 | 強化学習 |
 |----|------------|------------|---------|
 | 学習データ | ラベル付きデータ | ラベルなしデータ | 環境との対話 |
@@ -102,6 +315,38 @@ style: |
 
 # トレーニング・評価指標用語集
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="30" width="430" height="70" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Guardrails Processing</text>
+
+<text x="265" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Topic Filter</text>
+<text x="265" y="76" text-anchor="middle" fill="#ffffff" font-size="10">拒否/マスク</text>
+<text x="395" y="60" text-anchor="middle" fill="#f9a825" font-size="10">PII Detection</text>
+<text x="395" y="76" text-anchor="middle" fill="#ffffff" font-size="10">個人情報除去</text>
+<text x="525" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Content Filter</text>
+<text x="525" y="76" text-anchor="middle" fill="#ffffff" font-size="10">有害コンテンツ</text>
+<line x1="610" y1="65" x2="640" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="650,65 638,70 638,60" fill="#f9a825"/>
+<rect x="650" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">FM</text>
+<text x="715" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude等</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11">同一Guardrailsを出力にも適用 → 幻覚・有害コンテンツを双方向でブロック</text>
+<text x="400" y="155" text-anchor="middle" fill="#f9a825" font-size="11">Grounding Check: RAG応答が文書に基づくかスコアリング (0.0〜1.0)</text>
+<rect x="50" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="150" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Denied Topics</text>
+<text x="150" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">カスタム定義</text>
+<rect x="300" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Word Filters</text>
+<text x="400" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">NG word</text>
+<rect x="550" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
+<text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
+</svg>
 | 指標 | 用途 | 値の意味 |
 |------|------|---------|
 | Accuracy | 分類全般 | 正解率（高いほど良い）|
@@ -116,6 +361,25 @@ style: |
 
 # バイアス・バリアンス・過学習用語集
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
+<rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="117.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Zero-shot</text>
+<rect x="220" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="307.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Few-shot</text>
+<rect x="410" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CoT</text>
+<rect x="600" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="687.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ReAct</text>
+
+<text x="315" y="105" text-anchor="middle" fill="#f9a825" font-size="10">速い/安価</text><text x="315" y="120" text-anchor="middle" fill="#ffffff" font-size="10">精度+10〜20%</text><text x="505" y="105" text-anchor="middle" fill="#f9a825" font-size="10">思考過程記述</text><text x="505" y="120" text-anchor="middle" fill="#ffffff" font-size="10">推論+30〜50%</text><text x="695" y="105" text-anchor="middle" fill="#f9a825" font-size="10">Act+Observe</text><text x="695" y="120" text-anchor="middle" fill="#ffffff" font-size="10">ツール連携</text>
+<text x="117" y="105" text-anchor="middle" fill="#f9a825" font-size="10">指示のみ</text>
+<text x="117" y="120" text-anchor="middle" fill="#ffffff" font-size="10">シンプル</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">プロンプト構造 (Claude XML推奨)</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
+</svg>
 | 用語 | 定義 | 症状 | 対策 |
 |------|------|------|------|
 | 過学習 | 訓練データに過適合 | テスト精度が低下 | Dropout / 正則化 / データ増量 |
@@ -128,6 +392,33 @@ style: |
 
 # AWS AI サービス層別一覧表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
+<rect x="20" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="107.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Text</text>
+<text x="107.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lite / Express / Premier</text>
+<rect x="215" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="302.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed</text>
+<text x="302.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Text v2 / Multimodal</text>
+<rect x="410" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Image</text>
+<text x="497.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Generator v2</text>
+<rect x="605" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="692.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Multimodal</text>
+<text x="692.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Embeddings</text>
+<text x="107" y="115" text-anchor="middle" fill="#f9a825" font-size="10">テキスト生成</text>
+<text x="107" y="130" text-anchor="middle" fill="#ffffff" font-size="10">チャット/要約</text>
+<text x="302" y="115" text-anchor="middle" fill="#f9a825" font-size="10">RAG用ベクトル</text>
+<text x="302" y="130" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 1024dim</text>
+<text x="497" y="115" text-anchor="middle" fill="#f9a825" font-size="10">画像生成/編集</text>
+<text x="497" y="130" text-anchor="middle" fill="#ffffff" font-size="10">インペインティング</text>
+<text x="692" y="115" text-anchor="middle" fill="#f9a825" font-size="10">テキスト+画像</text>
+<text x="692" y="130" text-anchor="middle" fill="#ffffff" font-size="10">マルチモーダル検索</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Titan Text: Context 8K〜32K | 価格: $0.0003〜$0.0008/1K tokens</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Titan Embed Text v2: $0.00002/1K tokens (最低コスト埋め込み)</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">AWS製モデル = データ共有なし / 商用利用フリー / Fine-tuning対応</text>
+</svg>
 | 層 | 対象者 | 主なサービス | 特徴 |
 |----|--------|------------|------|
 | AI Services | 非 ML エンジニア | Rekognition / Comprehend / Transcribe / Polly / Translate | API 呼び出しのみ |
@@ -141,6 +432,28 @@ style: |
 
 # Rekognition / Comprehend / Textract 比較
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
+<rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">自動評価 (Automated)</text>
+
+<rect x="285" y="40" width="230" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">人間評価 (Human)</text>
+
+<rect x="550" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM-as-Judge</text>
+
+<text x="135" y="115" text-anchor="middle" fill="#f9a825" font-size="10">BLEU / ROUGE / BERTScore</text>
+<text x="135" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Perplexity / F1 / Accuracy</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">品質/有用性/安全性</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">コスト高・高精度</text>
+<text x="665" y="115" text-anchor="middle" fill="#f9a825" font-size="10">GPT-4/Claude評価</text>
+<text x="665" y="130" text-anchor="middle" fill="#ffffff" font-size="10">スケーラブル</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">RAG評価フレームワーク: RAGAS (Faithfulness / Answer Relevance / Context Precision)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Bedrock Model Evaluation: 自動/人間評価をマネージドで実行</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">A/Bテスト → Shadow Testing → カナリアデプロイで本番評価</text>
+</svg>
 | サービス | 対象 | 主な機能 | 出力形式 |
 |---------|------|---------|---------|
 | Rekognition | 画像・動画 | 物体検出 / 顔認証 / テキスト検出 / Face Liveness | JSON（label / bounding box）|
@@ -152,6 +465,35 @@ style: |
 
 # Transcribe / Translate / Polly 比較
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
+<rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App</text>
+<text x="75" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">SDK/CLI</text>
+<line x1="130" y1="60" x2="155" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="165,60 153,65 153,55" fill="#f9a825"/>
+<rect x="165" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="230" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Bedrock API</text>
+<text x="230" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">HTTPS/SDK</text>
+<line x1="295" y1="60" x2="320" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="330,60 318,65 318,55" fill="#f9a825"/>
+<rect x="330" y="40" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Foundation</text>
+<text x="395" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Model (FM)</text>
+<line x1="460" y1="60" x2="485" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="495,60 483,65 483,55" fill="#f9a825"/>
+<rect x="495" y="40" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="555" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+<text x="555" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">streaming</text>
+<line x1="615" y1="60" x2="640" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="650,60 638,65 638,55" fill="#f9a825"/>
+<rect x="650" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App処理</text>
+<text x="715" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">表示/保存</text>
+<text x="230" y="115" text-anchor="middle" fill="#f9a825" font-size="11">InvokeModel</text>
+<text x="395" y="115" text-anchor="middle" fill="#ffffff" font-size="11">model_id指定</text>
+<text x="555" y="115" text-anchor="middle" fill="#f9a825" font-size="11">ResponseStream</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">Converse API: マルチモーダル統一インタフェース (Claude/Llama/Titan対応)</text>
+<text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
+<text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
+</svg>
 | サービス | 変換方向 | 主な機能 | 特記事項 |
 |---------|---------|---------|---------|
 | Transcribe | 音声 → テキスト | 文字起こし / 話者識別 / PII 削除 | リアルタイム / バッチ両対応 |
@@ -163,6 +505,28 @@ style: |
 
 # Forecast / Personalize / Kendra 比較
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
+<rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Haiku</text>
+<text x="140" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最速・最低コスト</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3.5 Sonnet</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">バランス型・推奨</text>
+<rect x="550" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Opus</text>
+<text x="660" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最高精度</text>
+<text x="140" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.00025 in / $0.00125 out</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.003 in / $0.015 out</text>
+<text x="660" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.015 in / $0.075 out</text>
+<text x="140" y="135" text-anchor="middle" fill="#ffffff" font-size="10">分類・要約・チャット</text>
+<text x="400" y="135" text-anchor="middle" fill="#ffffff" font-size="10">RAG・コード・エージェント</text>
+<text x="660" y="135" text-anchor="middle" fill="#ffffff" font-size="10">複雑推論・研究</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Context: 200K tokens (全モデル共通)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
+</svg>
 | サービス | 用途 | 入力データ | 特記事項 |
 |---------|------|----------|---------|
 | Forecast | 時系列予測（需要予測等）| 履歴データ + 関連変数 | AutoML 内蔵 |
@@ -174,6 +538,47 @@ style: |
 
 # Domain 1 — キーワード総まとめ
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">モデル選択 デシジョンツリー</text>
+<rect x="300" y="45" width="200" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="67.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">タスクを選択</text>
+
+<line x1="400" y1="90" x2="169.78980419737604" y2="137.96045745888" stroke="#f9a825" stroke-width="2"/><polygon points="160,140 170.72799376629126,132.65764685196797 172.76753630741126,142.447451049344" fill="#f9a825"/>
+<line x1="400" y1="90" x2="400" y2="130" stroke="#f9a825" stroke-width="2"/><polygon points="400,140 395,128 405,128" fill="#f9a825"/>
+<line x1="400" y1="90" x2="630.210195802624" y2="137.96045745888" stroke="#f9a825" stroke-width="2"/><polygon points="640,140 627.2324636925888,142.447451049344 629.2720062337088,132.65764685196797" fill="#f9a825"/>
+<rect x="80" y="140" width="160" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="160" y="154" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">テキスト生成</text>
+<text x="160" y="173" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">会話/要約</text>
+<rect x="320" y="140" width="160" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="154" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">コード生成</text>
+<text x="400" y="173" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">デバッグ</text>
+<rect x="560" y="140" width="160" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="640" y="154" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">マルチモーダル</text>
+<text x="640" y="173" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">画像/動画</text>
+<line x1="160" y1="182" x2="107.18988376049111" y2="233.04977903152525" stroke="#f9a825" stroke-width="2"/><polygon points="100,240 105.15275002835196,228.06479295758476 112.10297099682671,235.25467671807587" fill="#f9a825"/>
+<line x1="160" y1="182" x2="231.90389556605612" y2="234.13032428539069" stroke="#f9a825" stroke-width="2"/><polygon points="240,240 227.3498368219627,237.00444135944076 233.21951253657198,228.90833692549688" fill="#f9a825"/>
+<line x1="400" y1="182" x2="347.1898837604911" y2="233.04977903152525" stroke="#f9a825" stroke-width="2"/><polygon points="340,240 345.152750028352,228.06479295758476 352.1029709968267,235.25467671807587" fill="#f9a825"/>
+<line x1="400" y1="182" x2="452.8101162395089" y2="233.04977903152525" stroke="#f9a825" stroke-width="2"/><polygon points="460,240 447.8970290031733,235.25467671807587 454.847249971648,228.06479295758476" fill="#f9a825"/>
+<line x1="640" y1="182" x2="623.259906833194" y2="230.54627018373728" stroke="#f9a825" stroke-width="2"/><polygon points="620,240 619.1850232917016,227.0255708038877 628.6387531079642,230.28547763708175" fill="#f9a825"/>
+<rect x="40" y="240" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="100" y="253" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Claude 3.5</text>
+<text x="100" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Sonnet</text>
+<rect x="175" y="240" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="235" y="253" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Titan Text</text>
+<text x="235" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Express</text>
+<rect x="280" y="240" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="340" y="253" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Claude 3.5</text>
+<text x="340" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Sonnet</text>
+<rect x="400" y="240" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="460" y="253" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Llama 3.1</text>
+<text x="460" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">70B</text>
+<rect x="560" y="240" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="620" y="253" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Claude 3.5</text>
+<text x="620" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Haiku</text>
+<text x="400" y="330" text-anchor="middle" fill="#ffffff" font-size="12">コスト: Haiku &lt; Sonnet &lt; Opus  |  速度: Haiku &gt; Sonnet &gt; Opus</text>
+<text x="400" y="355" text-anchor="middle" fill="#f9a825" font-size="11">本番: Sonnet推奨 / バッチ低コスト: Haiku / 高精度: Opus</text>
+</svg>
 - **AI/ML 基礎**: AI（知能模倣） / ML（データ学習） / DL（深層NN） / GenAI（コンテンツ生成）
 - **タスク**: 分類 / 回帰 / クラスタリング / 強化学習 / 推薦
 - **指標**: Accuracy / Precision / Recall / F1 / AUC-ROC / RMSE
@@ -198,6 +603,31 @@ style: |
 
 # 生成 AI 用語集 A — Foundation & Architecture
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
+<rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="72.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Ingest</text>
+<line x1="120" y1="62" x2="123" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="133,62 121,67 121,57" fill="#f9a825"/><rect x="133" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="180.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunk</text>
+<line x1="228" y1="62" x2="231" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="241,62 229,67 229,57" fill="#f9a825"/><rect x="241" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="288.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<line x1="336" y1="62" x2="339" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="349,62 337,67 337,57" fill="#f9a825"/><rect x="349" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="396.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Index</text>
+<line x1="444" y1="62" x2="447" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="457,62 445,67 445,57" fill="#f9a825"/><rect x="457" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="504.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Retrieve</text>
+<line x1="552" y1="62" x2="555" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="565,62 553,67 553,57" fill="#f9a825"/><rect x="565" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="612.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augment</text>
+<line x1="660" y1="62" x2="663" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="673,62 661,67 661,57" fill="#f9a825"/><rect x="673" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="720.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Generate</text>
+
+<text x="210" y="120" text-anchor="middle" fill="#ffffff" font-size="11">← オフライン（インデックス作成）</text>
+<text x="590" y="120" text-anchor="middle" fill="#e91e63" font-size="11">オンライン（クエリ応答）→</text>
+<line x1="385" y1="105" x2="385" y2="135" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="400" y="160" text-anchor="middle" fill="#ffffff" font-size="11">Bedrock Knowledge Bases = マネージドRAG</text>
+<text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
+<text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
+</svg>
 | 用語 | 定義 |
 |------|------|
 | **Foundation Model (FM)** | 大規模データで事前学習した汎用 AI モデル |
@@ -212,6 +642,37 @@ style: |
 
 # 生成 AI 用語集 B — 推論・サンプリング
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+<text x="80" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Orchestration</text>
+<text x="245" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">LLM (Claude)</text>
+<line x1="310" y1="55" x2="340.29857499854666" y2="47.42535625036333" stroke="#f9a825" stroke-width="2"/><polygon points="350,45 339.57096812343764,52.76114000116265 337.14561187307436,43.059714999709335" fill="#f9a825"/>
+<line x1="310" y1="75" x2="340.29857499854666" y2="82.57464374963666" stroke="#f9a825" stroke-width="2"/><polygon points="350,85 337.14561187307436,86.94028500029066 339.57096812343764,77.23885999883734" fill="#f9a825"/>
+<rect x="350" y="35" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="48" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Action Groups</text>
+<text x="415" y="67" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lambda/API</text>
+<rect x="350" y="80" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="93" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Knowledge Base</text>
+<text x="415" y="112" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAG検索</text>
+<line x1="480" y1="55" x2="510.29857499854666" y2="62.57464374963667" stroke="#f9a825" stroke-width="2"/><polygon points="520,65 507.14561187307436,66.94028500029067 509.57096812343764,57.23885999883735" fill="#f9a825"/>
+<line x1="480" y1="100" x2="511.52001695994915" y2="80.2999894000318" stroke="#f9a825" stroke-width="2"/><polygon points="520,75 512.4740150519549,85.5999788000636 507.17402565192305,77.11999576001271" fill="#f9a825"/>
+<rect x="520" y="50" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="585" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Tool Results</text>
+<text x="585" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">外部データ</text>
+<line x1="650" y1="70" x2="680" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="690,70 678,75 678,65" fill="#f9a825"/>
+<rect x="690" y="50" width="90" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="735" y="70" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">ReAct ループ: Reason → Act → Observe → Reason → ...</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
+</svg>
 | 用語 | 定義 |
 |------|------|
 | **Token** | テキストの最小処理単位（単語 / サブワード）|
@@ -226,6 +687,38 @@ style: |
 
 # 生成 AI 用語集 C — 品質・安全性
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="30" width="430" height="70" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Guardrails Processing</text>
+
+<text x="265" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Topic Filter</text>
+<text x="265" y="76" text-anchor="middle" fill="#ffffff" font-size="10">拒否/マスク</text>
+<text x="395" y="60" text-anchor="middle" fill="#f9a825" font-size="10">PII Detection</text>
+<text x="395" y="76" text-anchor="middle" fill="#ffffff" font-size="10">個人情報除去</text>
+<text x="525" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Content Filter</text>
+<text x="525" y="76" text-anchor="middle" fill="#ffffff" font-size="10">有害コンテンツ</text>
+<line x1="610" y1="65" x2="640" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="650,65 638,70 638,60" fill="#f9a825"/>
+<rect x="650" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">FM</text>
+<text x="715" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude等</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11">同一Guardrailsを出力にも適用 → 幻覚・有害コンテンツを双方向でブロック</text>
+<text x="400" y="155" text-anchor="middle" fill="#f9a825" font-size="11">Grounding Check: RAG応答が文書に基づくかスコアリング (0.0〜1.0)</text>
+<rect x="50" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="150" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Denied Topics</text>
+<text x="150" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">カスタム定義</text>
+<rect x="300" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Word Filters</text>
+<text x="400" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">NG word</text>
+<rect x="550" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
+<text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
+</svg>
 | 用語 | 定義 |
 |------|------|
 | **Hallucination** | 事実と異なる内容を自信を持って生成する問題 |
@@ -239,6 +732,25 @@ style: |
 
 # FM 選定基準比較表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
+<rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="117.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Zero-shot</text>
+<rect x="220" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="307.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Few-shot</text>
+<rect x="410" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CoT</text>
+<rect x="600" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="687.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ReAct</text>
+
+<text x="315" y="105" text-anchor="middle" fill="#f9a825" font-size="10">速い/安価</text><text x="315" y="120" text-anchor="middle" fill="#ffffff" font-size="10">精度+10〜20%</text><text x="505" y="105" text-anchor="middle" fill="#f9a825" font-size="10">思考過程記述</text><text x="505" y="120" text-anchor="middle" fill="#ffffff" font-size="10">推論+30〜50%</text><text x="695" y="105" text-anchor="middle" fill="#f9a825" font-size="10">Act+Observe</text><text x="695" y="120" text-anchor="middle" fill="#ffffff" font-size="10">ツール連携</text>
+<text x="117" y="105" text-anchor="middle" fill="#f9a825" font-size="10">指示のみ</text>
+<text x="117" y="120" text-anchor="middle" fill="#ffffff" font-size="10">シンプル</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">プロンプト構造 (Claude XML推奨)</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
+</svg>
 | ユースケース | 推奨 FM 種別 | 考慮点 |
 |------------|------------|--------|
 | 長文要約・複雑推論 | 大コンテキスト LLM | 200K+ トークン対応 |
@@ -252,6 +764,33 @@ style: |
 
 # Bedrock 提供 FM 一覧表（主要モデル）
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
+<rect x="20" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="107.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Text</text>
+<text x="107.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lite / Express / Premier</text>
+<rect x="215" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="302.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed</text>
+<text x="302.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Text v2 / Multimodal</text>
+<rect x="410" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Image</text>
+<text x="497.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Generator v2</text>
+<rect x="605" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="692.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Multimodal</text>
+<text x="692.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Embeddings</text>
+<text x="107" y="115" text-anchor="middle" fill="#f9a825" font-size="10">テキスト生成</text>
+<text x="107" y="130" text-anchor="middle" fill="#ffffff" font-size="10">チャット/要約</text>
+<text x="302" y="115" text-anchor="middle" fill="#f9a825" font-size="10">RAG用ベクトル</text>
+<text x="302" y="130" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 1024dim</text>
+<text x="497" y="115" text-anchor="middle" fill="#f9a825" font-size="10">画像生成/編集</text>
+<text x="497" y="130" text-anchor="middle" fill="#ffffff" font-size="10">インペインティング</text>
+<text x="692" y="115" text-anchor="middle" fill="#f9a825" font-size="10">テキスト+画像</text>
+<text x="692" y="130" text-anchor="middle" fill="#ffffff" font-size="10">マルチモーダル検索</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Titan Text: Context 8K〜32K | 価格: $0.0003〜$0.0008/1K tokens</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Titan Embed Text v2: $0.00002/1K tokens (最低コスト埋め込み)</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">AWS製モデル = データ共有なし / 商用利用フリー / Fine-tuning対応</text>
+</svg>
 | プロバイダー | モデル名 | 強み | 最大コンテキスト |
 |------------|--------|------|--------------|
 | Anthropic | Claude 3.5 Sonnet | 高精度・多用途・Vision 対応 | 200K tokens |
@@ -266,6 +805,28 @@ style: |
 
 # Claude / Titan / Llama / Mistral 比較
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
+<rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">自動評価 (Automated)</text>
+
+<rect x="285" y="40" width="230" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">人間評価 (Human)</text>
+
+<rect x="550" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM-as-Judge</text>
+
+<text x="135" y="115" text-anchor="middle" fill="#f9a825" font-size="10">BLEU / ROUGE / BERTScore</text>
+<text x="135" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Perplexity / F1 / Accuracy</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">品質/有用性/安全性</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">コスト高・高精度</text>
+<text x="665" y="115" text-anchor="middle" fill="#f9a825" font-size="10">GPT-4/Claude評価</text>
+<text x="665" y="130" text-anchor="middle" fill="#ffffff" font-size="10">スケーラブル</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">RAG評価フレームワーク: RAGAS (Faithfulness / Answer Relevance / Context Precision)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Bedrock Model Evaluation: 自動/人間評価をマネージドで実行</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">A/Bテスト → Shadow Testing → カナリアデプロイで本番評価</text>
+</svg>
 | 項目 | Claude 3.5 | Titan Text | Llama 3.1 | Mistral |
 |------|-----------|----------|---------|---------|
 | 提供元 | Anthropic | Amazon | Meta | Mistral AI |
@@ -278,6 +839,35 @@ style: |
 
 # 画像生成 FM — Stability AI / Amazon Titan Image
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
+<rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App</text>
+<text x="75" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">SDK/CLI</text>
+<line x1="130" y1="60" x2="155" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="165,60 153,65 153,55" fill="#f9a825"/>
+<rect x="165" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="230" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Bedrock API</text>
+<text x="230" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">HTTPS/SDK</text>
+<line x1="295" y1="60" x2="320" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="330,60 318,65 318,55" fill="#f9a825"/>
+<rect x="330" y="40" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Foundation</text>
+<text x="395" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Model (FM)</text>
+<line x1="460" y1="60" x2="485" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="495,60 483,65 483,55" fill="#f9a825"/>
+<rect x="495" y="40" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="555" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+<text x="555" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">streaming</text>
+<line x1="615" y1="60" x2="640" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="650,60 638,65 638,55" fill="#f9a825"/>
+<rect x="650" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App処理</text>
+<text x="715" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">表示/保存</text>
+<text x="230" y="115" text-anchor="middle" fill="#f9a825" font-size="11">InvokeModel</text>
+<text x="395" y="115" text-anchor="middle" fill="#ffffff" font-size="11">model_id指定</text>
+<text x="555" y="115" text-anchor="middle" fill="#f9a825" font-size="11">ResponseStream</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">Converse API: マルチモーダル統一インタフェース (Claude/Llama/Titan対応)</text>
+<text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
+<text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
+</svg>
 | モデル | 提供元 | 主な機能 | 特記 |
 |--------|--------|---------|------|
 | Stable Diffusion XL | Stability AI | Text-to-Image / Image-to-Image | 高解像度 1024px+ |
@@ -291,6 +881,28 @@ style: |
 
 # 推論パラメータ一覧
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
+<rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Haiku</text>
+<text x="140" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最速・最低コスト</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3.5 Sonnet</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">バランス型・推奨</text>
+<rect x="550" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Opus</text>
+<text x="660" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最高精度</text>
+<text x="140" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.00025 in / $0.00125 out</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.003 in / $0.015 out</text>
+<text x="660" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.015 in / $0.075 out</text>
+<text x="140" y="135" text-anchor="middle" fill="#ffffff" font-size="10">分類・要約・チャット</text>
+<text x="400" y="135" text-anchor="middle" fill="#ffffff" font-size="10">RAG・コード・エージェント</text>
+<text x="660" y="135" text-anchor="middle" fill="#ffffff" font-size="10">複雑推論・研究</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Context: 200K tokens (全モデル共通)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
+</svg>
 | パラメータ | 範囲 | 低い値の効果 | 高い値の効果 |
 |-----------|------|------------|------------|
 | temperature | 0–1 | 一貫・決定論的 | 多様・創造的 |
@@ -305,6 +917,31 @@ style: |
 
 # プロンプト手法比較表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
+<rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="72.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Ingest</text>
+<line x1="120" y1="62" x2="123" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="133,62 121,67 121,57" fill="#f9a825"/><rect x="133" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="180.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunk</text>
+<line x1="228" y1="62" x2="231" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="241,62 229,67 229,57" fill="#f9a825"/><rect x="241" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="288.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<line x1="336" y1="62" x2="339" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="349,62 337,67 337,57" fill="#f9a825"/><rect x="349" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="396.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Index</text>
+<line x1="444" y1="62" x2="447" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="457,62 445,67 445,57" fill="#f9a825"/><rect x="457" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="504.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Retrieve</text>
+<line x1="552" y1="62" x2="555" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="565,62 553,67 553,57" fill="#f9a825"/><rect x="565" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="612.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augment</text>
+<line x1="660" y1="62" x2="663" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="673,62 661,67 661,57" fill="#f9a825"/><rect x="673" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="720.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Generate</text>
+
+<text x="210" y="120" text-anchor="middle" fill="#ffffff" font-size="11">← オフライン（インデックス作成）</text>
+<text x="590" y="120" text-anchor="middle" fill="#e91e63" font-size="11">オンライン（クエリ応答）→</text>
+<line x1="385" y1="105" x2="385" y2="135" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="400" y="160" text-anchor="middle" fill="#ffffff" font-size="11">Bedrock Knowledge Bases = マネージドRAG</text>
+<text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
+<text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
+</svg>
 | 手法 | 例数 | 特徴 | 向く用途 |
 |------|------|------|---------| 
 | Zero-shot | 0 | 指示のみ | 汎用タスク・シンプルな変換 |
@@ -318,6 +955,34 @@ style: |
 
 # Domain 2 — キーワード総まとめ
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">プロンプトエンジニアリング 手法比較</text>
+<rect x="30" y="55" width="170" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="115" y="75.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Zero-shot</text>
+<text x="115" y="94.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">例なし・直接指示</text>
+<rect x="220" y="55" width="170" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="305" y="75.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Few-shot</text>
+<text x="305" y="94.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">2〜5例を付与</text>
+<rect x="410" y="55" width="170" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="495" y="75.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chain-of-Thought</text>
+<text x="495" y="94.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">思考ステップ明示</text>
+<rect x="600" y="55" width="170" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="685" y="75.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ReAct</text>
+<text x="685" y="94.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">推論+行動ループ</text>
+<text x="115" y="135" text-anchor="middle" fill="#f9a825" font-size="11">速い・シンプル</text>
+<text x="305" y="135" text-anchor="middle" fill="#f9a825" font-size="11">精度向上 +10-20%</text>
+<text x="495" y="135" text-anchor="middle" fill="#f9a825" font-size="11">数学・論理タスク</text>
+<text x="685" y="135" font-size="11" text-anchor="middle" fill="#f9a825">Agentタスク</text>
+<rect x="30" y="155" width="740" height="2" fill="#f9a825" opacity="0.3"/>
+<text x="400" y="180" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">プロンプト構造テンプレート (XML タグ推奨)</text>
+<rect x="60" y="195" width="680" height="150" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="400" y="218" text-anchor="middle" fill="#e91e63" font-size="12">&lt;system&gt;あなたは...です&lt;/system&gt;</text>
+<text x="400" y="242" text-anchor="middle" fill="#ffffff" font-size="12">&lt;context&gt;背景情報&lt;/context&gt;</text>
+<text x="400" y="266" text-anchor="middle" fill="#ffffff" font-size="12">&lt;examples&gt;入力→出力例&lt;/examples&gt;</text>
+<text x="400" y="290" text-anchor="middle" fill="#ffffff" font-size="12">&lt;instructions&gt;具体的な指示&lt;/instructions&gt;</text>
+<text x="400" y="314" text-anchor="middle" fill="#f9a825" font-size="12">&lt;output_format&gt;JSON / 箇条書き / 表&lt;/output_format&gt;</text>
+</svg>
 - **FM / LLM**: Foundation Model（汎用大規模モデル）/ Large Language Model
 - **Token / Context Window**: 処理単位 / 一度に扱える最大トークン数
 - **Temperature / Top-p / Top-k**: 出力の多様性・創造性を制御
@@ -342,6 +1007,37 @@ style: |
 
 # Amazon Bedrock 機能一覧表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+<text x="80" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Orchestration</text>
+<text x="245" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">LLM (Claude)</text>
+<line x1="310" y1="55" x2="340.29857499854666" y2="47.42535625036333" stroke="#f9a825" stroke-width="2"/><polygon points="350,45 339.57096812343764,52.76114000116265 337.14561187307436,43.059714999709335" fill="#f9a825"/>
+<line x1="310" y1="75" x2="340.29857499854666" y2="82.57464374963666" stroke="#f9a825" stroke-width="2"/><polygon points="350,85 337.14561187307436,86.94028500029066 339.57096812343764,77.23885999883734" fill="#f9a825"/>
+<rect x="350" y="35" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="48" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Action Groups</text>
+<text x="415" y="67" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lambda/API</text>
+<rect x="350" y="80" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="93" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Knowledge Base</text>
+<text x="415" y="112" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAG検索</text>
+<line x1="480" y1="55" x2="510.29857499854666" y2="62.57464374963667" stroke="#f9a825" stroke-width="2"/><polygon points="520,65 507.14561187307436,66.94028500029067 509.57096812343764,57.23885999883735" fill="#f9a825"/>
+<line x1="480" y1="100" x2="511.52001695994915" y2="80.2999894000318" stroke="#f9a825" stroke-width="2"/><polygon points="520,75 512.4740150519549,85.5999788000636 507.17402565192305,77.11999576001271" fill="#f9a825"/>
+<rect x="520" y="50" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="585" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Tool Results</text>
+<text x="585" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">外部データ</text>
+<line x1="650" y1="70" x2="680" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="690,70 678,75 678,65" fill="#f9a825"/>
+<rect x="690" y="50" width="90" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="735" y="70" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">ReAct ループ: Reason → Act → Observe → Reason → ...</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
+</svg>
 | 機能 | 説明 | 主な用途 |
 |------|------|---------|
 | Model Access | FM の有効化・管理・呼び出し | テキスト / 画像生成 |
@@ -356,6 +1052,38 @@ style: |
 
 # RAG 用語集
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="30" width="430" height="70" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Guardrails Processing</text>
+
+<text x="265" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Topic Filter</text>
+<text x="265" y="76" text-anchor="middle" fill="#ffffff" font-size="10">拒否/マスク</text>
+<text x="395" y="60" text-anchor="middle" fill="#f9a825" font-size="10">PII Detection</text>
+<text x="395" y="76" text-anchor="middle" fill="#ffffff" font-size="10">個人情報除去</text>
+<text x="525" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Content Filter</text>
+<text x="525" y="76" text-anchor="middle" fill="#ffffff" font-size="10">有害コンテンツ</text>
+<line x1="610" y1="65" x2="640" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="650,65 638,70 638,60" fill="#f9a825"/>
+<rect x="650" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">FM</text>
+<text x="715" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude等</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11">同一Guardrailsを出力にも適用 → 幻覚・有害コンテンツを双方向でブロック</text>
+<text x="400" y="155" text-anchor="middle" fill="#f9a825" font-size="11">Grounding Check: RAG応答が文書に基づくかスコアリング (0.0〜1.0)</text>
+<rect x="50" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="150" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Denied Topics</text>
+<text x="150" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">カスタム定義</text>
+<rect x="300" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Word Filters</text>
+<text x="400" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">NG word</text>
+<rect x="550" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
+<text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
+</svg>
 | 用語 | 定義 |
 |------|------|
 | **Ingestion** | 文書を分割・埋め込み・ベクトルDB に保存するプロセス |
@@ -370,6 +1098,25 @@ style: |
 
 # RAG アーキテクチャ比較表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
+<rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="117.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Zero-shot</text>
+<rect x="220" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="307.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Few-shot</text>
+<rect x="410" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CoT</text>
+<rect x="600" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="687.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ReAct</text>
+
+<text x="315" y="105" text-anchor="middle" fill="#f9a825" font-size="10">速い/安価</text><text x="315" y="120" text-anchor="middle" fill="#ffffff" font-size="10">精度+10〜20%</text><text x="505" y="105" text-anchor="middle" fill="#f9a825" font-size="10">思考過程記述</text><text x="505" y="120" text-anchor="middle" fill="#ffffff" font-size="10">推論+30〜50%</text><text x="695" y="105" text-anchor="middle" fill="#f9a825" font-size="10">Act+Observe</text><text x="695" y="120" text-anchor="middle" fill="#ffffff" font-size="10">ツール連携</text>
+<text x="117" y="105" text-anchor="middle" fill="#f9a825" font-size="10">指示のみ</text>
+<text x="117" y="120" text-anchor="middle" fill="#ffffff" font-size="10">シンプル</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">プロンプト構造 (Claude XML推奨)</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
+</svg>
 | 種別 | 特徴 | 課題 |
 |------|------|------|
 | Naive RAG | シンプルなベクトル検索 + 生成 | 精度限界 / コンテキスト切れ |
@@ -384,6 +1131,33 @@ style: |
 
 # RAG vs Fine-tuning 選択表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
+<rect x="20" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="107.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Text</text>
+<text x="107.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lite / Express / Premier</text>
+<rect x="215" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="302.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed</text>
+<text x="302.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Text v2 / Multimodal</text>
+<rect x="410" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Image</text>
+<text x="497.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Generator v2</text>
+<rect x="605" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="692.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Multimodal</text>
+<text x="692.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Embeddings</text>
+<text x="107" y="115" text-anchor="middle" fill="#f9a825" font-size="10">テキスト生成</text>
+<text x="107" y="130" text-anchor="middle" fill="#ffffff" font-size="10">チャット/要約</text>
+<text x="302" y="115" text-anchor="middle" fill="#f9a825" font-size="10">RAG用ベクトル</text>
+<text x="302" y="130" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 1024dim</text>
+<text x="497" y="115" text-anchor="middle" fill="#f9a825" font-size="10">画像生成/編集</text>
+<text x="497" y="130" text-anchor="middle" fill="#ffffff" font-size="10">インペインティング</text>
+<text x="692" y="115" text-anchor="middle" fill="#f9a825" font-size="10">テキスト+画像</text>
+<text x="692" y="130" text-anchor="middle" fill="#ffffff" font-size="10">マルチモーダル検索</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Titan Text: Context 8K〜32K | 価格: $0.0003〜$0.0008/1K tokens</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Titan Embed Text v2: $0.00002/1K tokens (最低コスト埋め込み)</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">AWS製モデル = データ共有なし / 商用利用フリー / Fine-tuning対応</text>
+</svg>
 | 判断軸 | RAG を選ぶ | Fine-tuning を選ぶ |
 |--------|-----------|------------------|
 | 知識の鮮度 | 最新情報が必要 | 静的なドメイン知識 |
@@ -397,6 +1171,28 @@ style: |
 
 # Knowledge Bases for Bedrock 仕様表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
+<rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">自動評価 (Automated)</text>
+
+<rect x="285" y="40" width="230" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">人間評価 (Human)</text>
+
+<rect x="550" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM-as-Judge</text>
+
+<text x="135" y="115" text-anchor="middle" fill="#f9a825" font-size="10">BLEU / ROUGE / BERTScore</text>
+<text x="135" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Perplexity / F1 / Accuracy</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">品質/有用性/安全性</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">コスト高・高精度</text>
+<text x="665" y="115" text-anchor="middle" fill="#f9a825" font-size="10">GPT-4/Claude評価</text>
+<text x="665" y="130" text-anchor="middle" fill="#ffffff" font-size="10">スケーラブル</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">RAG評価フレームワーク: RAGAS (Faithfulness / Answer Relevance / Context Precision)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Bedrock Model Evaluation: 自動/人間評価をマネージドで実行</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">A/Bテスト → Shadow Testing → カナリアデプロイで本番評価</text>
+</svg>
 | 項目 | 仕様 |
 |------|------|
 | データソース | S3 / Confluence / Salesforce / SharePoint / Web Crawler |
@@ -411,6 +1207,35 @@ style: |
 
 # ベクトル DB 比較表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
+<rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App</text>
+<text x="75" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">SDK/CLI</text>
+<line x1="130" y1="60" x2="155" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="165,60 153,65 153,55" fill="#f9a825"/>
+<rect x="165" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="230" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Bedrock API</text>
+<text x="230" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">HTTPS/SDK</text>
+<line x1="295" y1="60" x2="320" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="330,60 318,65 318,55" fill="#f9a825"/>
+<rect x="330" y="40" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Foundation</text>
+<text x="395" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Model (FM)</text>
+<line x1="460" y1="60" x2="485" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="495,60 483,65 483,55" fill="#f9a825"/>
+<rect x="495" y="40" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="555" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+<text x="555" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">streaming</text>
+<line x1="615" y1="60" x2="640" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="650,60 638,65 638,55" fill="#f9a825"/>
+<rect x="650" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App処理</text>
+<text x="715" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">表示/保存</text>
+<text x="230" y="115" text-anchor="middle" fill="#f9a825" font-size="11">InvokeModel</text>
+<text x="395" y="115" text-anchor="middle" fill="#ffffff" font-size="11">model_id指定</text>
+<text x="555" y="115" text-anchor="middle" fill="#f9a825" font-size="11">ResponseStream</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">Converse API: マルチモーダル統一インタフェース (Claude/Llama/Titan対応)</text>
+<text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
+<text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
+</svg>
 | DB | 種別 | 特徴 | Bedrock KB 対応 |
 |----|------|------|--------------|
 | OpenSearch Serverless | マネージド | AWSネイティブ・サーバーレス | ○（推奨）|
@@ -424,6 +1249,28 @@ style: |
 
 # 埋め込みモデル比較表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
+<rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Haiku</text>
+<text x="140" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最速・最低コスト</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3.5 Sonnet</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">バランス型・推奨</text>
+<rect x="550" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Opus</text>
+<text x="660" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最高精度</text>
+<text x="140" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.00025 in / $0.00125 out</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.003 in / $0.015 out</text>
+<text x="660" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.015 in / $0.075 out</text>
+<text x="140" y="135" text-anchor="middle" fill="#ffffff" font-size="10">分類・要約・チャット</text>
+<text x="400" y="135" text-anchor="middle" fill="#ffffff" font-size="10">RAG・コード・エージェント</text>
+<text x="660" y="135" text-anchor="middle" fill="#ffffff" font-size="10">複雑推論・研究</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Context: 200K tokens (全モデル共通)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
+</svg>
 | モデル | 提供元 | 次元数 | 最大入力 | 特徴 |
 |--------|--------|--------|---------|------|
 | Titan Embeddings V2 | Amazon | 256/512/1024（可変）| 8192 tokens | 多言語・次元選択可 |
@@ -436,6 +1283,31 @@ style: |
 
 # チャンク戦略比較表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
+<rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="72.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Ingest</text>
+<line x1="120" y1="62" x2="123" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="133,62 121,67 121,57" fill="#f9a825"/><rect x="133" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="180.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunk</text>
+<line x1="228" y1="62" x2="231" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="241,62 229,67 229,57" fill="#f9a825"/><rect x="241" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="288.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<line x1="336" y1="62" x2="339" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="349,62 337,67 337,57" fill="#f9a825"/><rect x="349" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="396.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Index</text>
+<line x1="444" y1="62" x2="447" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="457,62 445,67 445,57" fill="#f9a825"/><rect x="457" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="504.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Retrieve</text>
+<line x1="552" y1="62" x2="555" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="565,62 553,67 553,57" fill="#f9a825"/><rect x="565" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="612.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augment</text>
+<line x1="660" y1="62" x2="663" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="673,62 661,67 661,57" fill="#f9a825"/><rect x="673" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="720.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Generate</text>
+
+<text x="210" y="120" text-anchor="middle" fill="#ffffff" font-size="11">← オフライン（インデックス作成）</text>
+<text x="590" y="120" text-anchor="middle" fill="#e91e63" font-size="11">オンライン（クエリ応答）→</text>
+<line x1="385" y1="105" x2="385" y2="135" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="400" y="160" text-anchor="middle" fill="#ffffff" font-size="11">Bedrock Knowledge Bases = マネージドRAG</text>
+<text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
+<text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
+</svg>
 | 戦略 | 分割基準 | 向く文書種別 | 特記 |
 |------|---------|------------|------|
 | Fixed size | 固定トークン数 | 均質なテキスト | シンプル・高速 |
@@ -449,6 +1321,37 @@ style: |
 
 # Bedrock Agents — 用語集
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+<text x="80" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Orchestration</text>
+<text x="245" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">LLM (Claude)</text>
+<line x1="310" y1="55" x2="340.29857499854666" y2="47.42535625036333" stroke="#f9a825" stroke-width="2"/><polygon points="350,45 339.57096812343764,52.76114000116265 337.14561187307436,43.059714999709335" fill="#f9a825"/>
+<line x1="310" y1="75" x2="340.29857499854666" y2="82.57464374963666" stroke="#f9a825" stroke-width="2"/><polygon points="350,85 337.14561187307436,86.94028500029066 339.57096812343764,77.23885999883734" fill="#f9a825"/>
+<rect x="350" y="35" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="48" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Action Groups</text>
+<text x="415" y="67" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lambda/API</text>
+<rect x="350" y="80" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="93" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Knowledge Base</text>
+<text x="415" y="112" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAG検索</text>
+<line x1="480" y1="55" x2="510.29857499854666" y2="62.57464374963667" stroke="#f9a825" stroke-width="2"/><polygon points="520,65 507.14561187307436,66.94028500029067 509.57096812343764,57.23885999883735" fill="#f9a825"/>
+<line x1="480" y1="100" x2="511.52001695994915" y2="80.2999894000318" stroke="#f9a825" stroke-width="2"/><polygon points="520,75 512.4740150519549,85.5999788000636 507.17402565192305,77.11999576001271" fill="#f9a825"/>
+<rect x="520" y="50" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="585" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Tool Results</text>
+<text x="585" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">外部データ</text>
+<line x1="650" y1="70" x2="680" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="690,70 678,75 678,65" fill="#f9a825"/>
+<rect x="690" y="50" width="90" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="735" y="70" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">ReAct ループ: Reason → Act → Observe → Reason → ...</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
+</svg>
 | 用語 | 定義 |
 |------|------|
 | **Agent** | 目標達成のためにツールを自律的に使用する AI システム |
@@ -463,6 +1366,38 @@ style: |
 
 # Bedrock Agents — 設定項目一覧
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="30" width="430" height="70" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Guardrails Processing</text>
+
+<text x="265" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Topic Filter</text>
+<text x="265" y="76" text-anchor="middle" fill="#ffffff" font-size="10">拒否/マスク</text>
+<text x="395" y="60" text-anchor="middle" fill="#f9a825" font-size="10">PII Detection</text>
+<text x="395" y="76" text-anchor="middle" fill="#ffffff" font-size="10">個人情報除去</text>
+<text x="525" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Content Filter</text>
+<text x="525" y="76" text-anchor="middle" fill="#ffffff" font-size="10">有害コンテンツ</text>
+<line x1="610" y1="65" x2="640" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="650,65 638,70 638,60" fill="#f9a825"/>
+<rect x="650" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">FM</text>
+<text x="715" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude等</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11">同一Guardrailsを出力にも適用 → 幻覚・有害コンテンツを双方向でブロック</text>
+<text x="400" y="155" text-anchor="middle" fill="#f9a825" font-size="11">Grounding Check: RAG応答が文書に基づくかスコアリング (0.0〜1.0)</text>
+<rect x="50" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="150" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Denied Topics</text>
+<text x="150" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">カスタム定義</text>
+<rect x="300" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Word Filters</text>
+<text x="400" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">NG word</text>
+<rect x="550" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
+<text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
+</svg>
 | 設定項目 | 説明 | 必須 |
 |---------|------|------|
 | Foundation Model | 推論に使用する FM（Claude 推奨）| ○ |
@@ -477,6 +1412,25 @@ style: |
 
 # Inline Agent vs 定義済み Agent 比較
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
+<rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="117.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Zero-shot</text>
+<rect x="220" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="307.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Few-shot</text>
+<rect x="410" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CoT</text>
+<rect x="600" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="687.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ReAct</text>
+
+<text x="315" y="105" text-anchor="middle" fill="#f9a825" font-size="10">速い/安価</text><text x="315" y="120" text-anchor="middle" fill="#ffffff" font-size="10">精度+10〜20%</text><text x="505" y="105" text-anchor="middle" fill="#f9a825" font-size="10">思考過程記述</text><text x="505" y="120" text-anchor="middle" fill="#ffffff" font-size="10">推論+30〜50%</text><text x="695" y="105" text-anchor="middle" fill="#f9a825" font-size="10">Act+Observe</text><text x="695" y="120" text-anchor="middle" fill="#ffffff" font-size="10">ツール連携</text>
+<text x="117" y="105" text-anchor="middle" fill="#f9a825" font-size="10">指示のみ</text>
+<text x="117" y="120" text-anchor="middle" fill="#ffffff" font-size="10">シンプル</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">プロンプト構造 (Claude XML推奨)</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
+</svg>
 | 軸 | Inline Agent | 定義済み Agent |
 |----|-------------|--------------|
 | 設定方法 | コード内で動的設定 | Bedrock コンソール / API |
@@ -489,6 +1443,33 @@ style: |
 
 # Fine-tuning 手法比較表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
+<rect x="20" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="107.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Text</text>
+<text x="107.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lite / Express / Premier</text>
+<rect x="215" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="302.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed</text>
+<text x="302.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Text v2 / Multimodal</text>
+<rect x="410" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Image</text>
+<text x="497.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Generator v2</text>
+<rect x="605" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="692.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Multimodal</text>
+<text x="692.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Embeddings</text>
+<text x="107" y="115" text-anchor="middle" fill="#f9a825" font-size="10">テキスト生成</text>
+<text x="107" y="130" text-anchor="middle" fill="#ffffff" font-size="10">チャット/要約</text>
+<text x="302" y="115" text-anchor="middle" fill="#f9a825" font-size="10">RAG用ベクトル</text>
+<text x="302" y="130" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 1024dim</text>
+<text x="497" y="115" text-anchor="middle" fill="#f9a825" font-size="10">画像生成/編集</text>
+<text x="497" y="130" text-anchor="middle" fill="#ffffff" font-size="10">インペインティング</text>
+<text x="692" y="115" text-anchor="middle" fill="#f9a825" font-size="10">テキスト+画像</text>
+<text x="692" y="130" text-anchor="middle" fill="#ffffff" font-size="10">マルチモーダル検索</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Titan Text: Context 8K〜32K | 価格: $0.0003〜$0.0008/1K tokens</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Titan Embed Text v2: $0.00002/1K tokens (最低コスト埋め込み)</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">AWS製モデル = データ共有なし / 商用利用フリー / Fine-tuning対応</text>
+</svg>
 | 手法 | 更新スコープ | コスト | 効果 |
 |------|------------|--------|------|
 | Continued Pre-training | 全パラメータ | 高 | ドメイン知識・語彙の注入 |
@@ -501,6 +1482,28 @@ style: |
 
 # Fine-tuning データ要件一覧表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
+<rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">自動評価 (Automated)</text>
+
+<rect x="285" y="40" width="230" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">人間評価 (Human)</text>
+
+<rect x="550" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM-as-Judge</text>
+
+<text x="135" y="115" text-anchor="middle" fill="#f9a825" font-size="10">BLEU / ROUGE / BERTScore</text>
+<text x="135" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Perplexity / F1 / Accuracy</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">品質/有用性/安全性</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">コスト高・高精度</text>
+<text x="665" y="115" text-anchor="middle" fill="#f9a825" font-size="10">GPT-4/Claude評価</text>
+<text x="665" y="130" text-anchor="middle" fill="#ffffff" font-size="10">スケーラブル</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">RAG評価フレームワーク: RAGAS (Faithfulness / Answer Relevance / Context Precision)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Bedrock Model Evaluation: 自動/人間評価をマネージドで実行</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">A/Bテスト → Shadow Testing → カナリアデプロイで本番評価</text>
+</svg>
 | 項目 | 要件 |
 |------|------|
 | データ形式 | JSONL（prompt / completion ペア、UTF-8）|
@@ -515,6 +1518,35 @@ style: |
 
 # カスタマイズ手法 4 択比較表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
+<rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App</text>
+<text x="75" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">SDK/CLI</text>
+<line x1="130" y1="60" x2="155" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="165,60 153,65 153,55" fill="#f9a825"/>
+<rect x="165" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="230" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Bedrock API</text>
+<text x="230" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">HTTPS/SDK</text>
+<line x1="295" y1="60" x2="320" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="330,60 318,65 318,55" fill="#f9a825"/>
+<rect x="330" y="40" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Foundation</text>
+<text x="395" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Model (FM)</text>
+<line x1="460" y1="60" x2="485" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="495,60 483,65 483,55" fill="#f9a825"/>
+<rect x="495" y="40" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="555" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+<text x="555" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">streaming</text>
+<line x1="615" y1="60" x2="640" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="650,60 638,65 638,55" fill="#f9a825"/>
+<rect x="650" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App処理</text>
+<text x="715" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">表示/保存</text>
+<text x="230" y="115" text-anchor="middle" fill="#f9a825" font-size="11">InvokeModel</text>
+<text x="395" y="115" text-anchor="middle" fill="#ffffff" font-size="11">model_id指定</text>
+<text x="555" y="115" text-anchor="middle" fill="#f9a825" font-size="11">ResponseStream</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">Converse API: マルチモーダル統一インタフェース (Claude/Llama/Titan対応)</text>
+<text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
+<text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
+</svg>
 | 手法 | 知識更新 | コスト | 実装難度 | 選ぶシナリオ |
 |------|---------|--------|---------|-----------|
 | Prompt Engineering | ✕ | 最低 | 低 | 汎用タスクの調整 |
@@ -527,6 +1559,28 @@ style: |
 
 # Bedrock Model Evaluation 仕様
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
+<rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Haiku</text>
+<text x="140" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最速・最低コスト</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3.5 Sonnet</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">バランス型・推奨</text>
+<rect x="550" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Opus</text>
+<text x="660" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最高精度</text>
+<text x="140" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.00025 in / $0.00125 out</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.003 in / $0.015 out</text>
+<text x="660" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.015 in / $0.075 out</text>
+<text x="140" y="135" text-anchor="middle" fill="#ffffff" font-size="10">分類・要約・チャット</text>
+<text x="400" y="135" text-anchor="middle" fill="#ffffff" font-size="10">RAG・コード・エージェント</text>
+<text x="660" y="135" text-anchor="middle" fill="#ffffff" font-size="10">複雑推論・研究</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Context: 200K tokens (全モデル共通)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
+</svg>
 | 評価種別 | 説明 | 主な指標 |
 |---------|------|---------|
 | 自動評価 | 組み込み指標で自動採点 | ROUGE / BERTScore / Accuracy |
@@ -540,6 +1594,31 @@ style: |
 
 # Prompt Management & Prompt Flow
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
+<rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="72.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Ingest</text>
+<line x1="120" y1="62" x2="123" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="133,62 121,67 121,57" fill="#f9a825"/><rect x="133" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="180.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunk</text>
+<line x1="228" y1="62" x2="231" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="241,62 229,67 229,57" fill="#f9a825"/><rect x="241" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="288.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<line x1="336" y1="62" x2="339" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="349,62 337,67 337,57" fill="#f9a825"/><rect x="349" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="396.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Index</text>
+<line x1="444" y1="62" x2="447" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="457,62 445,67 445,57" fill="#f9a825"/><rect x="457" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="504.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Retrieve</text>
+<line x1="552" y1="62" x2="555" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="565,62 553,67 553,57" fill="#f9a825"/><rect x="565" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="612.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augment</text>
+<line x1="660" y1="62" x2="663" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="673,62 661,67 661,57" fill="#f9a825"/><rect x="673" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="720.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Generate</text>
+
+<text x="210" y="120" text-anchor="middle" fill="#ffffff" font-size="11">← オフライン（インデックス作成）</text>
+<text x="590" y="120" text-anchor="middle" fill="#e91e63" font-size="11">オンライン（クエリ応答）→</text>
+<line x1="385" y1="105" x2="385" y2="135" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="400" y="160" text-anchor="middle" fill="#ffffff" font-size="11">Bedrock Knowledge Bases = マネージドRAG</text>
+<text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
+<text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
+</svg>
 | 機能 | 説明 |
 |------|------|
 | Prompt Catalog | プロンプトを保存・バージョン管理 |
@@ -554,6 +1633,15 @@ style: |
 
 # Bedrock Studio / Bedrock Marketplace
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">モデルコスト比較 (per 1K tokens, 概算)</text>
+<text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">Input <rect/> / Output <rect/> — On-demand price</text>
+<rect x="350" y="40" width="14" height="10" fill="#f9a825"/><text x="367" y="50" fill="#f9a825" font-size="11">Input</text>
+<rect x="420" y="40" width="14" height="10" fill="#e91e63"/><text x="437" y="50" fill="#e91e63" font-size="11">Output</text>
+<text x="195" y="88" text-anchor="end" fill="#ffffff" font-size="12">Claude 3 Haiku</text><rect x="205" y="70" width="40" height="18" fill="#f9a825" rx="3"/><text x="250" y="83" fill="#f9a825" font-size="10">$0.00025/1K</text><rect x="205" y="92" width="60" height="14" fill="#e91e63" rx="3"/><text x="270" y="103" fill="#e91e63" font-size="10">$0.00125/1K</text><text x="195" y="143" text-anchor="end" fill="#ffffff" font-size="12">Claude 3 Sonnet</text><rect x="205" y="125" width="120" height="18" fill="#f9a825" rx="3"/><text x="330" y="138" fill="#f9a825" font-size="10">$0.003/1K</text><rect x="205" y="147" width="160" height="14" fill="#e91e63" rx="3"/><text x="370" y="158" fill="#e91e63" font-size="10">$0.015/1K</text><text x="195" y="198" text-anchor="end" fill="#ffffff" font-size="12">Claude 3 Opus</text><rect x="205" y="180" width="280" height="18" fill="#f9a825" rx="3"/><text x="490" y="193" fill="#f9a825" font-size="10">$0.015/1K</text><rect x="205" y="202" width="380" height="14" fill="#e91e63" rx="3"/><text x="590" y="213" fill="#e91e63" font-size="10">$0.075/1K</text><text x="195" y="253" text-anchor="end" fill="#ffffff" font-size="12">Titan Text Lite</text><rect x="205" y="235" width="48" height="18" fill="#f9a825" rx="3"/><text x="258" y="248" fill="#f9a825" font-size="10">$0.0003/1K</text><rect x="205" y="257" width="52" height="14" fill="#e91e63" rx="3"/><text x="262" y="268" fill="#e91e63" font-size="10">$0.0004/1K</text><text x="195" y="308" text-anchor="end" fill="#ffffff" font-size="12">Llama 3.1 70B</text><rect x="205" y="290" width="110" height="18" fill="#f9a825" rx="3"/><text x="320" y="303" fill="#f9a825" font-size="10">$0.00265/1K</text><rect x="205" y="312" width="130" height="14" fill="#e91e63" rx="3"/><text x="340" y="323" fill="#e91e63" font-size="10">$0.0035/1K</text>
+<text x="400" y="380" text-anchor="middle" fill="#f9a825" font-size="11">Provisioned Throughput / Batch APIで最大50%コスト削減可能</text>
+</svg>
 | サービス | 概要 | 用途 |
 |---------|------|------|
 | Bedrock Studio | Web UI 開発・プロトタイピング環境 | FM 比較・KB/Agent テスト |
@@ -567,6 +1655,37 @@ style: |
 
 # SageMaker JumpStart vs Bedrock 選択表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+<text x="80" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Orchestration</text>
+<text x="245" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">LLM (Claude)</text>
+<line x1="310" y1="55" x2="340.29857499854666" y2="47.42535625036333" stroke="#f9a825" stroke-width="2"/><polygon points="350,45 339.57096812343764,52.76114000116265 337.14561187307436,43.059714999709335" fill="#f9a825"/>
+<line x1="310" y1="75" x2="340.29857499854666" y2="82.57464374963666" stroke="#f9a825" stroke-width="2"/><polygon points="350,85 337.14561187307436,86.94028500029066 339.57096812343764,77.23885999883734" fill="#f9a825"/>
+<rect x="350" y="35" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="48" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Action Groups</text>
+<text x="415" y="67" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lambda/API</text>
+<rect x="350" y="80" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="93" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Knowledge Base</text>
+<text x="415" y="112" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAG検索</text>
+<line x1="480" y1="55" x2="510.29857499854666" y2="62.57464374963667" stroke="#f9a825" stroke-width="2"/><polygon points="520,65 507.14561187307436,66.94028500029067 509.57096812343764,57.23885999883735" fill="#f9a825"/>
+<line x1="480" y1="100" x2="511.52001695994915" y2="80.2999894000318" stroke="#f9a825" stroke-width="2"/><polygon points="520,75 512.4740150519549,85.5999788000636 507.17402565192305,77.11999576001271" fill="#f9a825"/>
+<rect x="520" y="50" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="585" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Tool Results</text>
+<text x="585" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">外部データ</text>
+<line x1="650" y1="70" x2="680" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="690,70 678,75 678,65" fill="#f9a825"/>
+<rect x="690" y="50" width="90" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="735" y="70" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">ReAct ループ: Reason → Act → Observe → Reason → ...</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
+</svg>
 | 判断軸 | Bedrock | SageMaker / JumpStart |
 |--------|---------|----------------------|
 | 対象ユーザー | アプリ開発者 | ML エンジニア |
@@ -581,6 +1700,43 @@ style: |
 
 # Domain 3 — キーワード総まとめ A（RAG / KB / Agents）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding モデル — ベクトル化フロー</text>
+<rect x="30" y="60" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="75.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">テキスト入力</text>
+<text x="95" y="94.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">"AWSとは"</text>
+<line x1="160" y1="82" x2="200" y2="82" stroke="#f9a825" stroke-width="2"/><polygon points="210,82 198,87 198,77" fill="#f9a825"/>
+<rect x="210" y="60" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="275" y="75.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Tokenize</text>
+<text x="275" y="94.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">BPE / WordPiece</text>
+<line x1="340" y1="82" x2="380" y2="82" stroke="#f9a825" stroke-width="2"/><polygon points="390,82 378,87 378,77" fill="#f9a825"/>
+<rect x="390" y="60" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="455" y="75.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Transformer</text>
+<text x="455" y="94.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Encoder Stack</text>
+<line x1="520" y1="82" x2="560" y2="82" stroke="#f9a825" stroke-width="2"/><polygon points="570,82 558,87 558,77" fill="#f9a825"/>
+<rect x="570" y="60" width="130" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="635" y="75.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ベクトル</text>
+<text x="635" y="94.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">1536次元</text>
+<line x1="635" y1="105" x2="635" y2="140" stroke="#f9a825" stroke-width="2"/><polygon points="635,150 630,138 640,138" fill="#f9a825"/>
+<rect x="570" y="150" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="635" y="165.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector DB</text>
+<text x="635" y="184.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">コサイン類似</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">AWS Bedrock Embedding モデル比較</text>
+<rect x="60" y="260" width="200" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="160" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed Text v2</text>
+<text x="160" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最大8K tokens / 1536dim</text>
+<rect x="300" y="260" width="200" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Multimodal</text>
+<text x="400" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">テキスト+画像 / 1024dim</text>
+<rect x="540" y="260" width="200" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="640" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cohere Embed v3</text>
+<text x="640" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">多言語 / 1024dim</text>
+<text x="160" y="335" text-anchor="middle" fill="#f9a825" font-size="11">コスト: $0.00002/1K tokens</text>
+<text x="400" y="335" text-anchor="middle" fill="#f9a825" font-size="11">コスト: $0.00006/1K tokens</text>
+<text x="640" y="335" text-anchor="middle" fill="#f9a825" font-size="11">コスト: $0.0001/1K tokens</text>
+<text x="400" y="370" text-anchor="middle" fill="#ffffff" font-size="12">次元数が多い = 意味精度高 / 次元数が少ない = 検索速度・コスト優位</text>
+</svg>
 - **RAG**: Retrieval-Augmented Generation — 検索拡張生成
 - **Chunking**: 文書の分割（Fixed / Semantic / Hierarchical）
 - **Embedding**: テキスト → ベクトル変換（Titan / Cohere）
@@ -594,6 +1750,33 @@ style: |
 
 # Domain 3 — キーワード総まとめ B（FT / Eval / Flow）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">推論パラメータ ビジュアルガイド</text>
+<text x="200" y="60" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Temperature</text>
+<rect x="50" y="75" width="300" height="20" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<rect x="50" y="75" width="90" height="20" rx="5" fill="#e91e63"/>
+<text x="50" y="115" fill="#ffffff" font-size="11">0.0 (決定的)</text>
+<text x="200" y="115" text-anchor="middle" fill="#f9a825" font-size="11">0.3〜0.7 (推奨)</text>
+<text x="350" y="115" text-anchor="end" fill="#ffffff" font-size="11">1.0 (多様)</text>
+<text x="200" y="140" text-anchor="middle" fill="#ffffff" font-size="11">低: 一貫・予測可能 → SQL/コード生成  |  高: 創造的 → 文章/アイデア</text>
+
+<text x="200" y="175" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-P (Nucleus Sampling)</text>
+<rect x="50" y="190" width="300" height="20" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<rect x="50" y="190" width="210" height="20" rx="5" fill="#f9a825" opacity="0.7"/>
+<text x="50" y="228" fill="#ffffff" font-size="11">0.1 (絞る)</text>
+<text x="200" y="228" text-anchor="middle" fill="#f9a825" font-size="11">0.7〜0.9 (推奨)</text>
+<text x="350" y="228" text-anchor="end" fill="#ffffff" font-size="11">1.0 (全体)</text>
+
+<rect x="420" y="55" width="340" height="290" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="590" y="80" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">推奨設定ユースケース別</text>
+<text x="445" y="105" fill="#ffffff" font-size="12">コード生成</text><text x="760" y="105" text-anchor="end" fill="#f9a825" font-size="12">temp=0.1, top_p=0.9</text>
+<text x="445" y="143" fill="#ffffff" font-size="12">要約・翻訳</text><text x="760" y="143" text-anchor="end" fill="#f9a825" font-size="12">temp=0.3, top_p=0.95</text>
+<text x="445" y="181" fill="#ffffff" font-size="12">会話AI</text><text x="760" y="181" text-anchor="end" fill="#f9a825" font-size="12">temp=0.5, top_p=0.9</text>
+<text x="445" y="219" fill="#ffffff" font-size="12">創作文章</text><text x="760" y="219" text-anchor="end" fill="#f9a825" font-size="12">temp=0.8, top_p=0.95</text>
+<text x="445" y="257" fill="#ffffff" font-size="12">SQL生成</text><text x="760" y="257" text-anchor="end" fill="#f9a825" font-size="12">temp=0.0, top_p=1.0</text>
+<text x="445" y="295" fill="#ffffff" font-size="12">アイデア出し</text><text x="760" y="295" text-anchor="end" fill="#f9a825" font-size="12">temp=1.0, top_p=0.95</text>
+</svg>
 - **Fine-tuning**: モデルをタスク特化で再学習（JSONL 形式）
 - **Continued Pre-training**: ドメイン語彙・知識の追加学習
 - **LoRA**: 低コストなアダプタ学習（少数パラメータ更新）
@@ -618,6 +1801,38 @@ style: |
 
 # 責任ある AI — 6 原則 AWS サービス対応表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="30" width="430" height="70" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Guardrails Processing</text>
+
+<text x="265" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Topic Filter</text>
+<text x="265" y="76" text-anchor="middle" fill="#ffffff" font-size="10">拒否/マスク</text>
+<text x="395" y="60" text-anchor="middle" fill="#f9a825" font-size="10">PII Detection</text>
+<text x="395" y="76" text-anchor="middle" fill="#ffffff" font-size="10">個人情報除去</text>
+<text x="525" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Content Filter</text>
+<text x="525" y="76" text-anchor="middle" fill="#ffffff" font-size="10">有害コンテンツ</text>
+<line x1="610" y1="65" x2="640" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="650,65 638,70 638,60" fill="#f9a825"/>
+<rect x="650" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">FM</text>
+<text x="715" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude等</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11">同一Guardrailsを出力にも適用 → 幻覚・有害コンテンツを双方向でブロック</text>
+<text x="400" y="155" text-anchor="middle" fill="#f9a825" font-size="11">Grounding Check: RAG応答が文書に基づくかスコアリング (0.0〜1.0)</text>
+<rect x="50" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="150" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Denied Topics</text>
+<text x="150" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">カスタム定義</text>
+<rect x="300" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Word Filters</text>
+<text x="400" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">NG word</text>
+<rect x="550" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
+<text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
+</svg>
 | 原則 | 説明 | 主な AWS サービス |
 |------|------|----------------|
 | **公平性** | バイアスのない公平な意思決定 | SageMaker Clarify |
@@ -632,6 +1847,25 @@ style: |
 
 # Bedrock Guardrails — フィルタ種別一覧
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
+<rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="117.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Zero-shot</text>
+<rect x="220" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="307.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Few-shot</text>
+<rect x="410" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CoT</text>
+<rect x="600" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="687.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ReAct</text>
+
+<text x="315" y="105" text-anchor="middle" fill="#f9a825" font-size="10">速い/安価</text><text x="315" y="120" text-anchor="middle" fill="#ffffff" font-size="10">精度+10〜20%</text><text x="505" y="105" text-anchor="middle" fill="#f9a825" font-size="10">思考過程記述</text><text x="505" y="120" text-anchor="middle" fill="#ffffff" font-size="10">推論+30〜50%</text><text x="695" y="105" text-anchor="middle" fill="#f9a825" font-size="10">Act+Observe</text><text x="695" y="120" text-anchor="middle" fill="#ffffff" font-size="10">ツール連携</text>
+<text x="117" y="105" text-anchor="middle" fill="#f9a825" font-size="10">指示のみ</text>
+<text x="117" y="120" text-anchor="middle" fill="#ffffff" font-size="10">シンプル</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">プロンプト構造 (Claude XML推奨)</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
+</svg>
 | フィルタ種別 | 機能 | 設定例 |
 |------------|------|--------|
 | Content Filter | 有害コンテンツの検出・ブロック | Hate / Violence / Sexual / Misconduct |
@@ -645,6 +1879,33 @@ style: |
 
 # Guardrails — 設定項目と適用タイミング
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
+<rect x="20" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="107.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Text</text>
+<text x="107.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lite / Express / Premier</text>
+<rect x="215" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="302.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed</text>
+<text x="302.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Text v2 / Multimodal</text>
+<rect x="410" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Image</text>
+<text x="497.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Generator v2</text>
+<rect x="605" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="692.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Multimodal</text>
+<text x="692.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Embeddings</text>
+<text x="107" y="115" text-anchor="middle" fill="#f9a825" font-size="10">テキスト生成</text>
+<text x="107" y="130" text-anchor="middle" fill="#ffffff" font-size="10">チャット/要約</text>
+<text x="302" y="115" text-anchor="middle" fill="#f9a825" font-size="10">RAG用ベクトル</text>
+<text x="302" y="130" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 1024dim</text>
+<text x="497" y="115" text-anchor="middle" fill="#f9a825" font-size="10">画像生成/編集</text>
+<text x="497" y="130" text-anchor="middle" fill="#ffffff" font-size="10">インペインティング</text>
+<text x="692" y="115" text-anchor="middle" fill="#f9a825" font-size="10">テキスト+画像</text>
+<text x="692" y="130" text-anchor="middle" fill="#ffffff" font-size="10">マルチモーダル検索</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Titan Text: Context 8K〜32K | 価格: $0.0003〜$0.0008/1K tokens</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Titan Embed Text v2: $0.00002/1K tokens (最低コスト埋め込み)</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">AWS製モデル = データ共有なし / 商用利用フリー / Fine-tuning対応</text>
+</svg>
 | 項目 | 設定値 |
 |------|--------|
 | Content Filter 強度 | None / Low / Medium / High（カテゴリ別）|
@@ -660,6 +1921,28 @@ style: |
 
 # バイアス検出・軽減手法表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
+<rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">自動評価 (Automated)</text>
+
+<rect x="285" y="40" width="230" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">人間評価 (Human)</text>
+
+<rect x="550" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM-as-Judge</text>
+
+<text x="135" y="115" text-anchor="middle" fill="#f9a825" font-size="10">BLEU / ROUGE / BERTScore</text>
+<text x="135" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Perplexity / F1 / Accuracy</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">品質/有用性/安全性</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">コスト高・高精度</text>
+<text x="665" y="115" text-anchor="middle" fill="#f9a825" font-size="10">GPT-4/Claude評価</text>
+<text x="665" y="130" text-anchor="middle" fill="#ffffff" font-size="10">スケーラブル</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">RAG評価フレームワーク: RAGAS (Faithfulness / Answer Relevance / Context Precision)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Bedrock Model Evaluation: 自動/人間評価をマネージドで実行</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">A/Bテスト → Shadow Testing → カナリアデプロイで本番評価</text>
+</svg>
 | 種別 | 定義 | 軽減手法 |
 |------|------|---------|
 | データバイアス | 学習データの偏り（クラス不均衡等）| データ拡張 / リサンプリング |
@@ -672,6 +1955,35 @@ style: |
 
 # Hallucination 軽減手法比較表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
+<rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App</text>
+<text x="75" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">SDK/CLI</text>
+<line x1="130" y1="60" x2="155" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="165,60 153,65 153,55" fill="#f9a825"/>
+<rect x="165" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="230" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Bedrock API</text>
+<text x="230" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">HTTPS/SDK</text>
+<line x1="295" y1="60" x2="320" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="330,60 318,65 318,55" fill="#f9a825"/>
+<rect x="330" y="40" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Foundation</text>
+<text x="395" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Model (FM)</text>
+<line x1="460" y1="60" x2="485" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="495,60 483,65 483,55" fill="#f9a825"/>
+<rect x="495" y="40" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="555" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+<text x="555" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">streaming</text>
+<line x1="615" y1="60" x2="640" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="650,60 638,65 638,55" fill="#f9a825"/>
+<rect x="650" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App処理</text>
+<text x="715" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">表示/保存</text>
+<text x="230" y="115" text-anchor="middle" fill="#f9a825" font-size="11">InvokeModel</text>
+<text x="395" y="115" text-anchor="middle" fill="#ffffff" font-size="11">model_id指定</text>
+<text x="555" y="115" text-anchor="middle" fill="#f9a825" font-size="11">ResponseStream</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">Converse API: マルチモーダル統一インタフェース (Claude/Llama/Titan対応)</text>
+<text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
+<text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
+</svg>
 | 手法 | 仕組み | 効果 | コスト |
 |------|--------|------|--------|
 | RAG | 外部知識を参照して生成 | 高 | 中 |
@@ -685,6 +1997,28 @@ style: |
 
 # PII 処理手法一覧
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
+<rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Haiku</text>
+<text x="140" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最速・最低コスト</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3.5 Sonnet</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">バランス型・推奨</text>
+<rect x="550" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Opus</text>
+<text x="660" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最高精度</text>
+<text x="140" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.00025 in / $0.00125 out</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.003 in / $0.015 out</text>
+<text x="660" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.015 in / $0.075 out</text>
+<text x="140" y="135" text-anchor="middle" fill="#ffffff" font-size="10">分類・要約・チャット</text>
+<text x="400" y="135" text-anchor="middle" fill="#ffffff" font-size="10">RAG・コード・エージェント</text>
+<text x="660" y="135" text-anchor="middle" fill="#ffffff" font-size="10">複雑推論・研究</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Context: 200K tokens (全モデル共通)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
+</svg>
 | 処理 | 説明 | AWS サービス |
 |------|------|------------|
 | 検出 | PII の識別（名前 / 電話 / SSN 等）| Comprehend / Guardrails |
@@ -699,6 +2033,31 @@ style: |
 
 # AI アウトプット検証手法
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
+<rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="72.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Ingest</text>
+<line x1="120" y1="62" x2="123" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="133,62 121,67 121,57" fill="#f9a825"/><rect x="133" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="180.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunk</text>
+<line x1="228" y1="62" x2="231" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="241,62 229,67 229,57" fill="#f9a825"/><rect x="241" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="288.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<line x1="336" y1="62" x2="339" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="349,62 337,67 337,57" fill="#f9a825"/><rect x="349" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="396.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Index</text>
+<line x1="444" y1="62" x2="447" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="457,62 445,67 445,57" fill="#f9a825"/><rect x="457" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="504.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Retrieve</text>
+<line x1="552" y1="62" x2="555" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="565,62 553,67 553,57" fill="#f9a825"/><rect x="565" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="612.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augment</text>
+<line x1="660" y1="62" x2="663" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="673,62 661,67 661,57" fill="#f9a825"/><rect x="673" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="720.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Generate</text>
+
+<text x="210" y="120" text-anchor="middle" fill="#ffffff" font-size="11">← オフライン（インデックス作成）</text>
+<text x="590" y="120" text-anchor="middle" fill="#e91e63" font-size="11">オンライン（クエリ応答）→</text>
+<line x1="385" y1="105" x2="385" y2="135" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="400" y="160" text-anchor="middle" fill="#ffffff" font-size="11">Bedrock Knowledge Bases = マネージドRAG</text>
+<text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
+<text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
+</svg>
 | 手法 | 説明 |
 |------|------|
 | Bedrock Guardrails | 自動フィルタ（入力 / 出力双方に適用）|
@@ -713,6 +2072,37 @@ style: |
 
 # SageMaker Clarify — 指標一覧
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+<text x="80" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Orchestration</text>
+<text x="245" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">LLM (Claude)</text>
+<line x1="310" y1="55" x2="340.29857499854666" y2="47.42535625036333" stroke="#f9a825" stroke-width="2"/><polygon points="350,45 339.57096812343764,52.76114000116265 337.14561187307436,43.059714999709335" fill="#f9a825"/>
+<line x1="310" y1="75" x2="340.29857499854666" y2="82.57464374963666" stroke="#f9a825" stroke-width="2"/><polygon points="350,85 337.14561187307436,86.94028500029066 339.57096812343764,77.23885999883734" fill="#f9a825"/>
+<rect x="350" y="35" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="48" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Action Groups</text>
+<text x="415" y="67" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lambda/API</text>
+<rect x="350" y="80" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="93" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Knowledge Base</text>
+<text x="415" y="112" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAG検索</text>
+<line x1="480" y1="55" x2="510.29857499854666" y2="62.57464374963667" stroke="#f9a825" stroke-width="2"/><polygon points="520,65 507.14561187307436,66.94028500029067 509.57096812343764,57.23885999883735" fill="#f9a825"/>
+<line x1="480" y1="100" x2="511.52001695994915" y2="80.2999894000318" stroke="#f9a825" stroke-width="2"/><polygon points="520,75 512.4740150519549,85.5999788000636 507.17402565192305,77.11999576001271" fill="#f9a825"/>
+<rect x="520" y="50" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="585" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Tool Results</text>
+<text x="585" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">外部データ</text>
+<line x1="650" y1="70" x2="680" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="690,70 678,75 678,65" fill="#f9a825"/>
+<rect x="690" y="50" width="90" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="735" y="70" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">ReAct ループ: Reason → Act → Observe → Reason → ...</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
+</svg>
 | 指標種別 | 指標名 | 説明 |
 |---------|-------|------|
 | バイアス | Class Imbalance (CI) | クラス間のサンプル不均衡 |
@@ -726,6 +2116,14 @@ style: |
 
 # Domain 4 — キーワード総まとめ
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Bedrock Agent — ReAct ループ</text>
+<circle cx="400" cy="70" r="35" fill="#e91e63" stroke="#f9a825" stroke-width="2"/><text x="400" y="64" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">入力受信</text><text x="400" y="80" text-anchor="middle" fill="#f9a825" font-size="10"></text><line x1="432.9089653438087" y1="89" x2="479.6743371481684" y2="116" stroke="#f9a825" stroke-width="1.5"/><polygon points="479.6743371481684,116 468.514083110324,115.3301270189222 473.514083110324,106.6698729810778" fill="#f9a825"/><circle cx="512.5833024919771" cy="135" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="512.5833024919771" y="129" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">プランニ</text><text x="512.5833024919771" y="145" text-anchor="middle" fill="#f9a825" font-size="10">ング</text><line x1="512.5833024919771" y1="173" x2="512.5833024919771" y2="227" stroke="#f9a825" stroke-width="1.5"/><polygon points="512.5833024919771,227 507.58330249197707,217 517.5833024919771,217" fill="#f9a825"/><circle cx="512.5833024919771" cy="265" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="512.5833024919771" y="259" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">ツール選</text><text x="512.5833024919771" y="275" text-anchor="middle" fill="#f9a825" font-size="10">択</text><line x1="479.6743371481684" y1="284" x2="432.9089653438087" y2="311" stroke="#f9a825" stroke-width="1.5"/><polygon points="432.9089653438087,311 439.06921938165306,301.6698729810778 444.06921938165306,310.3301270189222" fill="#f9a825"/><circle cx="400" cy="330" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="324" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">ツール実</text><text x="400" y="340" text-anchor="middle" fill="#f9a825" font-size="10">行</text><line x1="367.0910346561913" y1="311" x2="320.3256628518317" y2="284.00000000000006" stroke="#f9a825" stroke-width="1.5"/><polygon points="320.3256628518317,284.00000000000006 331.48591688967605,284.66987298107784 326.48591688967605,293.33012701892227" fill="#f9a825"/><circle cx="287.416697508023" cy="265.00000000000006" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="287.416697508023" y="259.00000000000006" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">結果統合</text><text x="287.416697508023" y="275.00000000000006" text-anchor="middle" fill="#f9a825" font-size="10"></text><line x1="287.416697508023" y1="227.00000000000006" x2="287.416697508023" y2="173" stroke="#f9a825" stroke-width="1.5"/><polygon points="287.416697508023,173 292.416697508023,183 282.416697508023,183" fill="#f9a825"/><circle cx="287.416697508023" cy="135" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="287.416697508023" y="129" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">応答生成</text><text x="287.416697508023" y="145" text-anchor="middle" fill="#f9a825" font-size="10"></text><line x1="320.3256628518317" y1="116" x2="367.09103465619137" y2="89" stroke="#f9a825" stroke-width="1.5"/><polygon points="367.09103465619137,89 360.930780618347,98.3301270189222 355.930780618347,89.6698729810778" fill="#f9a825"/>
+<text x="400" y="197" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">Orchestration</text>
+<text x="400" y="215" text-anchor="middle" fill="#ffffff" font-size="11">LLM</text>
+<text x="400" y="370" text-anchor="middle" fill="#ffffff" font-size="11">Action Groups (Lambda) · Knowledge Base · Code Interpreter</text>
+</svg>
 - **Responsible AI 6 原則**: 公平性 / 説明可能性 / プライバシー / 堅牢性 / 透明性 / 統治
 - **Guardrails 5 フィルタ**: Content / Denied Topics / Word / PII / Grounding Check
 - **Hallucination 対策**: RAG / Grounding Check / Temperature 低下 / CoT
@@ -750,6 +2148,38 @@ style: |
 
 # 共有責任モデル — AI ワークロード版
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="30" width="430" height="70" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Guardrails Processing</text>
+
+<text x="265" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Topic Filter</text>
+<text x="265" y="76" text-anchor="middle" fill="#ffffff" font-size="10">拒否/マスク</text>
+<text x="395" y="60" text-anchor="middle" fill="#f9a825" font-size="10">PII Detection</text>
+<text x="395" y="76" text-anchor="middle" fill="#ffffff" font-size="10">個人情報除去</text>
+<text x="525" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Content Filter</text>
+<text x="525" y="76" text-anchor="middle" fill="#ffffff" font-size="10">有害コンテンツ</text>
+<line x1="610" y1="65" x2="640" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="650,65 638,70 638,60" fill="#f9a825"/>
+<rect x="650" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">FM</text>
+<text x="715" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude等</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11">同一Guardrailsを出力にも適用 → 幻覚・有害コンテンツを双方向でブロック</text>
+<text x="400" y="155" text-anchor="middle" fill="#f9a825" font-size="11">Grounding Check: RAG応答が文書に基づくかスコアリング (0.0〜1.0)</text>
+<rect x="50" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="150" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Denied Topics</text>
+<text x="150" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">カスタム定義</text>
+<rect x="300" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Word Filters</text>
+<text x="400" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">NG word</text>
+<rect x="550" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
+<text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
+</svg>
 | 責任者 | 責任範囲 |
 |--------|---------|
 | **AWS** | 物理インフラ（DC / ネットワーク / ハードウェア）のセキュリティ |
@@ -764,6 +2194,25 @@ style: |
 
 # IAM ポリシー設計原則表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
+<rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="117.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Zero-shot</text>
+<rect x="220" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="307.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Few-shot</text>
+<rect x="410" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CoT</text>
+<rect x="600" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="687.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ReAct</text>
+
+<text x="315" y="105" text-anchor="middle" fill="#f9a825" font-size="10">速い/安価</text><text x="315" y="120" text-anchor="middle" fill="#ffffff" font-size="10">精度+10〜20%</text><text x="505" y="105" text-anchor="middle" fill="#f9a825" font-size="10">思考過程記述</text><text x="505" y="120" text-anchor="middle" fill="#ffffff" font-size="10">推論+30〜50%</text><text x="695" y="105" text-anchor="middle" fill="#f9a825" font-size="10">Act+Observe</text><text x="695" y="120" text-anchor="middle" fill="#ffffff" font-size="10">ツール連携</text>
+<text x="117" y="105" text-anchor="middle" fill="#f9a825" font-size="10">指示のみ</text>
+<text x="117" y="120" text-anchor="middle" fill="#ffffff" font-size="10">シンプル</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">プロンプト構造 (Claude XML推奨)</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
+</svg>
 | 原則 | 説明 | 実装例 |
 |------|------|--------|
 | 最小権限 | 必要最低限のアクセスのみ付与 | Action を必要なものに限定 |
@@ -777,6 +2226,33 @@ style: |
 
 # Bedrock IAM アクション一覧
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
+<rect x="20" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="107.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Text</text>
+<text x="107.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lite / Express / Premier</text>
+<rect x="215" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="302.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed</text>
+<text x="302.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Text v2 / Multimodal</text>
+<rect x="410" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Image</text>
+<text x="497.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Generator v2</text>
+<rect x="605" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="692.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Multimodal</text>
+<text x="692.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Embeddings</text>
+<text x="107" y="115" text-anchor="middle" fill="#f9a825" font-size="10">テキスト生成</text>
+<text x="107" y="130" text-anchor="middle" fill="#ffffff" font-size="10">チャット/要約</text>
+<text x="302" y="115" text-anchor="middle" fill="#f9a825" font-size="10">RAG用ベクトル</text>
+<text x="302" y="130" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 1024dim</text>
+<text x="497" y="115" text-anchor="middle" fill="#f9a825" font-size="10">画像生成/編集</text>
+<text x="497" y="130" text-anchor="middle" fill="#ffffff" font-size="10">インペインティング</text>
+<text x="692" y="115" text-anchor="middle" fill="#f9a825" font-size="10">テキスト+画像</text>
+<text x="692" y="130" text-anchor="middle" fill="#ffffff" font-size="10">マルチモーダル検索</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Titan Text: Context 8K〜32K | 価格: $0.0003〜$0.0008/1K tokens</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Titan Embed Text v2: $0.00002/1K tokens (最低コスト埋め込み)</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">AWS製モデル = データ共有なし / 商用利用フリー / Fine-tuning対応</text>
+</svg>
 | アクション | 説明 |
 |-----------|------|
 | `bedrock:InvokeModel` | FM の推論実行（同期）|
@@ -791,6 +2267,28 @@ style: |
 
 # VPC エンドポイント設定一覧
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
+<rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">自動評価 (Automated)</text>
+
+<rect x="285" y="40" width="230" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">人間評価 (Human)</text>
+
+<rect x="550" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM-as-Judge</text>
+
+<text x="135" y="115" text-anchor="middle" fill="#f9a825" font-size="10">BLEU / ROUGE / BERTScore</text>
+<text x="135" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Perplexity / F1 / Accuracy</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">品質/有用性/安全性</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">コスト高・高精度</text>
+<text x="665" y="115" text-anchor="middle" fill="#f9a825" font-size="10">GPT-4/Claude評価</text>
+<text x="665" y="130" text-anchor="middle" fill="#ffffff" font-size="10">スケーラブル</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">RAG評価フレームワーク: RAGAS (Faithfulness / Answer Relevance / Context Precision)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Bedrock Model Evaluation: 自動/人間評価をマネージドで実行</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">A/Bテスト → Shadow Testing → カナリアデプロイで本番評価</text>
+</svg>
 | サービス | エンドポイント種別 | 用途 |
 |---------|----------------|------|
 | Amazon Bedrock | Interface（PrivateLink）| プライベートネットワーク経由の推論 |
@@ -805,6 +2303,35 @@ style: |
 
 # データ暗号化オプション表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
+<rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App</text>
+<text x="75" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">SDK/CLI</text>
+<line x1="130" y1="60" x2="155" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="165,60 153,65 153,55" fill="#f9a825"/>
+<rect x="165" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="230" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Bedrock API</text>
+<text x="230" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">HTTPS/SDK</text>
+<line x1="295" y1="60" x2="320" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="330,60 318,65 318,55" fill="#f9a825"/>
+<rect x="330" y="40" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Foundation</text>
+<text x="395" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Model (FM)</text>
+<line x1="460" y1="60" x2="485" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="495,60 483,65 483,55" fill="#f9a825"/>
+<rect x="495" y="40" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="555" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+<text x="555" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">streaming</text>
+<line x1="615" y1="60" x2="640" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="650,60 638,65 638,55" fill="#f9a825"/>
+<rect x="650" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App処理</text>
+<text x="715" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">表示/保存</text>
+<text x="230" y="115" text-anchor="middle" fill="#f9a825" font-size="11">InvokeModel</text>
+<text x="395" y="115" text-anchor="middle" fill="#ffffff" font-size="11">model_id指定</text>
+<text x="555" y="115" text-anchor="middle" fill="#f9a825" font-size="11">ResponseStream</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">Converse API: マルチモーダル統一インタフェース (Claude/Llama/Titan対応)</text>
+<text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
+<text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
+</svg>
 | データ状態 | 手段 | サービス |
 |----------|------|---------|
 | 静止中（S3）| SSE-S3 / SSE-KMS / SSE-C | S3 + KMS |
@@ -819,6 +2346,28 @@ style: |
 
 # CloudTrail / CloudWatch 監査設定
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
+<rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Haiku</text>
+<text x="140" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最速・最低コスト</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3.5 Sonnet</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">バランス型・推奨</text>
+<rect x="550" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Opus</text>
+<text x="660" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最高精度</text>
+<text x="140" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.00025 in / $0.00125 out</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.003 in / $0.015 out</text>
+<text x="660" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.015 in / $0.075 out</text>
+<text x="140" y="135" text-anchor="middle" fill="#ffffff" font-size="10">分類・要約・チャット</text>
+<text x="400" y="135" text-anchor="middle" fill="#ffffff" font-size="10">RAG・コード・エージェント</text>
+<text x="660" y="135" text-anchor="middle" fill="#ffffff" font-size="10">複雑推論・研究</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Context: 200K tokens (全モデル共通)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
+</svg>
 | サービス | 用途 | 設定ポイント |
 |---------|------|------------|
 | CloudTrail | API 操作ログの記録 | 全リージョン有効化・S3 保存・整合性検証 |
@@ -833,6 +2382,31 @@ style: |
 
 # コンプライアンスフレームワーク対応表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
+<rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="72.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Ingest</text>
+<line x1="120" y1="62" x2="123" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="133,62 121,67 121,57" fill="#f9a825"/><rect x="133" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="180.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunk</text>
+<line x1="228" y1="62" x2="231" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="241,62 229,67 229,57" fill="#f9a825"/><rect x="241" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="288.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<line x1="336" y1="62" x2="339" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="349,62 337,67 337,57" fill="#f9a825"/><rect x="349" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="396.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Index</text>
+<line x1="444" y1="62" x2="447" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="457,62 445,67 445,57" fill="#f9a825"/><rect x="457" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="504.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Retrieve</text>
+<line x1="552" y1="62" x2="555" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="565,62 553,67 553,57" fill="#f9a825"/><rect x="565" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="612.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augment</text>
+<line x1="660" y1="62" x2="663" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="673,62 661,67 661,57" fill="#f9a825"/><rect x="673" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="720.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Generate</text>
+
+<text x="210" y="120" text-anchor="middle" fill="#ffffff" font-size="11">← オフライン（インデックス作成）</text>
+<text x="590" y="120" text-anchor="middle" fill="#e91e63" font-size="11">オンライン（クエリ応答）→</text>
+<line x1="385" y1="105" x2="385" y2="135" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="400" y="160" text-anchor="middle" fill="#ffffff" font-size="11">Bedrock Knowledge Bases = マネージドRAG</text>
+<text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
+<text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
+</svg>
 | フレームワーク | Bedrock 対応状況 | 認証 |
 |------------|--------------|------|
 | SOC 1/2/3 | ○ | 認証済み |
@@ -847,6 +2421,37 @@ style: |
 
 # プロンプトインジェクション対策一覧
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+<text x="80" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Orchestration</text>
+<text x="245" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">LLM (Claude)</text>
+<line x1="310" y1="55" x2="340.29857499854666" y2="47.42535625036333" stroke="#f9a825" stroke-width="2"/><polygon points="350,45 339.57096812343764,52.76114000116265 337.14561187307436,43.059714999709335" fill="#f9a825"/>
+<line x1="310" y1="75" x2="340.29857499854666" y2="82.57464374963666" stroke="#f9a825" stroke-width="2"/><polygon points="350,85 337.14561187307436,86.94028500029066 339.57096812343764,77.23885999883734" fill="#f9a825"/>
+<rect x="350" y="35" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="48" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Action Groups</text>
+<text x="415" y="67" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lambda/API</text>
+<rect x="350" y="80" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="93" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Knowledge Base</text>
+<text x="415" y="112" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAG検索</text>
+<line x1="480" y1="55" x2="510.29857499854666" y2="62.57464374963667" stroke="#f9a825" stroke-width="2"/><polygon points="520,65 507.14561187307436,66.94028500029067 509.57096812343764,57.23885999883735" fill="#f9a825"/>
+<line x1="480" y1="100" x2="511.52001695994915" y2="80.2999894000318" stroke="#f9a825" stroke-width="2"/><polygon points="520,75 512.4740150519549,85.5999788000636 507.17402565192305,77.11999576001271" fill="#f9a825"/>
+<rect x="520" y="50" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="585" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Tool Results</text>
+<text x="585" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">外部データ</text>
+<line x1="650" y1="70" x2="680" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="690,70 678,75 678,65" fill="#f9a825"/>
+<rect x="690" y="50" width="90" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="735" y="70" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">ReAct ループ: Reason → Act → Observe → Reason → ...</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
+</svg>
 | 対策 | 説明 | 実装 |
 |------|------|------|
 | 入力サニタイズ | 危険パターンを除去 / フィルタ | Lambda 前処理 |
@@ -861,6 +2466,67 @@ style: |
 
 # Domain 5 — キーワード総まとめ
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Knowledge Base — ベクトル検索フロー</text>
+<text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">インデックス作成フロー（Ingestion）</text>
+<rect x="20" y="65" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="78" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">S3 Docs</text>
+<text x="75" y="97" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">.pdf/.txt</text>
+<line x1="130" y1="85" x2="160" y2="85" stroke="#f9a825" stroke-width="2"/><polygon points="170,85 158,90 158,80" fill="#f9a825"/>
+<rect x="170" y="65" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="78" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunking</text>
+<text x="225" y="97" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Fixed/Semantic</text>
+<line x1="280" y1="85" x2="310" y2="85" stroke="#f9a825" stroke-width="2"/><polygon points="320,85 308,90 308,80" fill="#f9a825"/>
+<rect x="320" y="65" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="78" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="375" y="97" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Titan/Cohere</text>
+<line x1="430" y1="85" x2="460" y2="85" stroke="#f9a825" stroke-width="2"/><polygon points="470,85 458,90 458,80" fill="#f9a825"/>
+<rect x="470" y="65" width="140" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="540" y="78" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector DB</text>
+<text x="540" y="97" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">OpenSearch/pgvector</text>
+<text x="400" y="135" text-anchor="middle" fill="#f9a825" font-size="12">── 検索フロー（Retrieval）──</text>
+<rect x="20" y="155" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="168" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Query</text>
+<text x="75" y="187" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="130" y1="175" x2="160" y2="175" stroke="#f9a825" stroke-width="2"/><polygon points="170,175 158,180 158,170" fill="#f9a825"/>
+<rect x="170" y="155" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="168" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="225" y="187" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">同一モデル</text>
+<line x1="280" y1="175" x2="310" y2="175" stroke="#f9a825" stroke-width="2"/><polygon points="320,175 308,180 308,170" fill="#f9a825"/>
+<rect x="320" y="155" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="385" y="168" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ANN Search</text>
+<text x="385" y="187" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">コサイン類似</text>
+<line x1="450" y1="175" x2="480" y2="175" stroke="#f9a825" stroke-width="2"/><polygon points="490,175 478,180 478,170" fill="#f9a825"/>
+<rect x="490" y="155" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="550" y="168" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-K Docs</text>
+<text x="550" y="187" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">k=3〜20</text>
+<line x1="610" y1="175" x2="640" y2="175" stroke="#f9a825" stroke-width="2"/><polygon points="650,175 638,180 638,170" fill="#f9a825"/>
+<rect x="650" y="155" width="120" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="710" y="168" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augmented</text>
+<text x="710" y="187" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Prompt</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">チャンク戦略比較</text>
+<rect x="30" y="255" width="160" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="110" y="293" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Fixed Size</text>
+<text x="110" y="312" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">固定トークン数</text>
+<rect x="210" y="255" width="160" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="290" y="293" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Semantic</text>
+<text x="290" y="312" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">意味単位分割</text>
+<rect x="390" y="255" width="160" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="470" y="293" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Hierarchical</text>
+<text x="470" y="312" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">親子構造</text>
+<rect x="570" y="255" width="160" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="293" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Custom Lambda</text>
+<text x="650" y="312" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">カスタム前処理</text>
+<text x="110" y="320" text-anchor="middle" fill="#f9a825" font-size="10">200-500 tokens</text>
+<text x="110" y="335" text-anchor="middle" fill="#ffffff" font-size="10">シンプル・高速</text>
+<text x="290" y="320" text-anchor="middle" fill="#f9a825" font-size="10">自動境界検出</text>
+<text x="290" y="335" text-anchor="middle" fill="#ffffff" font-size="10">精度高・低速</text>
+<text x="470" y="320" text-anchor="middle" fill="#f9a825" font-size="10">大→小 2段階</text>
+<text x="470" y="335" text-anchor="middle" fill="#ffffff" font-size="10">コンテキスト保持</text>
+<text x="650" y="320" text-anchor="middle" fill="#f9a825" font-size="10">PDF/表対応</text>
+<text x="650" y="335" text-anchor="middle" fill="#ffffff" font-size="10">柔軟・複雑</text>
+</svg>
 - **Shared Responsibility**: AWS（インフラ）vs 顧客（設定・データ管理）
 - **Least Privilege**: 最小権限の原則 — IAM Role + 一時クレデンシャル
 - **Explicit Deny**: Deny が Allow より優先（IAM の基本）
@@ -885,6 +2551,38 @@ style: |
 
 # テキスト生成 — ユースケース別サービス選択表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="30" width="430" height="70" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Guardrails Processing</text>
+
+<text x="265" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Topic Filter</text>
+<text x="265" y="76" text-anchor="middle" fill="#ffffff" font-size="10">拒否/マスク</text>
+<text x="395" y="60" text-anchor="middle" fill="#f9a825" font-size="10">PII Detection</text>
+<text x="395" y="76" text-anchor="middle" fill="#ffffff" font-size="10">個人情報除去</text>
+<text x="525" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Content Filter</text>
+<text x="525" y="76" text-anchor="middle" fill="#ffffff" font-size="10">有害コンテンツ</text>
+<line x1="610" y1="65" x2="640" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="650,65 638,70 638,60" fill="#f9a825"/>
+<rect x="650" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">FM</text>
+<text x="715" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude等</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11">同一Guardrailsを出力にも適用 → 幻覚・有害コンテンツを双方向でブロック</text>
+<text x="400" y="155" text-anchor="middle" fill="#f9a825" font-size="11">Grounding Check: RAG応答が文書に基づくかスコアリング (0.0〜1.0)</text>
+<rect x="50" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="150" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Denied Topics</text>
+<text x="150" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">カスタム定義</text>
+<rect x="300" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Word Filters</text>
+<text x="400" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">NG word</text>
+<rect x="550" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
+<text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
+</svg>
 | ユースケース | 推奨サービス | 選択理由 |
 |------------|------------|---------|
 | Q&A / チャットボット | Bedrock + Knowledge Bases | RAG で根拠ある回答 |
@@ -898,6 +2596,25 @@ style: |
 
 # 画像生成・分析 — ユースケース別選択表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
+<rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="117.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Zero-shot</text>
+<rect x="220" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="307.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Few-shot</text>
+<rect x="410" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CoT</text>
+<rect x="600" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="687.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ReAct</text>
+
+<text x="315" y="105" text-anchor="middle" fill="#f9a825" font-size="10">速い/安価</text><text x="315" y="120" text-anchor="middle" fill="#ffffff" font-size="10">精度+10〜20%</text><text x="505" y="105" text-anchor="middle" fill="#f9a825" font-size="10">思考過程記述</text><text x="505" y="120" text-anchor="middle" fill="#ffffff" font-size="10">推論+30〜50%</text><text x="695" y="105" text-anchor="middle" fill="#f9a825" font-size="10">Act+Observe</text><text x="695" y="120" text-anchor="middle" fill="#ffffff" font-size="10">ツール連携</text>
+<text x="117" y="105" text-anchor="middle" fill="#f9a825" font-size="10">指示のみ</text>
+<text x="117" y="120" text-anchor="middle" fill="#ffffff" font-size="10">シンプル</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">プロンプト構造 (Claude XML推奨)</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
+</svg>
 | ユースケース | 推奨サービス | 特記 |
 |------------|------------|------|
 | 画像からテキスト生成（説明）| Bedrock（Claude 3 Vision）| マルチモーダル FM |
@@ -911,6 +2628,33 @@ style: |
 
 # 音声・映像 — ユースケース別選択表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
+<rect x="20" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="107.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Text</text>
+<text x="107.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lite / Express / Premier</text>
+<rect x="215" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="302.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed</text>
+<text x="302.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Text v2 / Multimodal</text>
+<rect x="410" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Image</text>
+<text x="497.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Generator v2</text>
+<rect x="605" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="692.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Multimodal</text>
+<text x="692.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Embeddings</text>
+<text x="107" y="115" text-anchor="middle" fill="#f9a825" font-size="10">テキスト生成</text>
+<text x="107" y="130" text-anchor="middle" fill="#ffffff" font-size="10">チャット/要約</text>
+<text x="302" y="115" text-anchor="middle" fill="#f9a825" font-size="10">RAG用ベクトル</text>
+<text x="302" y="130" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 1024dim</text>
+<text x="497" y="115" text-anchor="middle" fill="#f9a825" font-size="10">画像生成/編集</text>
+<text x="497" y="130" text-anchor="middle" fill="#ffffff" font-size="10">インペインティング</text>
+<text x="692" y="115" text-anchor="middle" fill="#f9a825" font-size="10">テキスト+画像</text>
+<text x="692" y="130" text-anchor="middle" fill="#ffffff" font-size="10">マルチモーダル検索</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Titan Text: Context 8K〜32K | 価格: $0.0003〜$0.0008/1K tokens</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Titan Embed Text v2: $0.00002/1K tokens (最低コスト埋め込み)</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">AWS製モデル = データ共有なし / 商用利用フリー / Fine-tuning対応</text>
+</svg>
 | ユースケース | 推奨サービス | 特記 |
 |------------|------------|------|
 | 音声文字起こし | Transcribe | リアルタイム / バッチ両対応 |
@@ -924,6 +2668,28 @@ style: |
 
 # 検索・推薦 — ユースケース別選択表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
+<rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">自動評価 (Automated)</text>
+
+<rect x="285" y="40" width="230" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">人間評価 (Human)</text>
+
+<rect x="550" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM-as-Judge</text>
+
+<text x="135" y="115" text-anchor="middle" fill="#f9a825" font-size="10">BLEU / ROUGE / BERTScore</text>
+<text x="135" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Perplexity / F1 / Accuracy</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">品質/有用性/安全性</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">コスト高・高精度</text>
+<text x="665" y="115" text-anchor="middle" fill="#f9a825" font-size="10">GPT-4/Claude評価</text>
+<text x="665" y="130" text-anchor="middle" fill="#ffffff" font-size="10">スケーラブル</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">RAG評価フレームワーク: RAGAS (Faithfulness / Answer Relevance / Context Precision)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Bedrock Model Evaluation: 自動/人間評価をマネージドで実行</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">A/Bテスト → Shadow Testing → カナリアデプロイで本番評価</text>
+</svg>
 | ユースケース | 推奨サービス | 選択理由 |
 |------------|------------|---------|
 | 社内文書 Q&A | Kendra / Bedrock + KB | 自然言語検索・RAG |
@@ -937,6 +2703,35 @@ style: |
 
 # コスト最適化 — 推論方式比較表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
+<rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App</text>
+<text x="75" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">SDK/CLI</text>
+<line x1="130" y1="60" x2="155" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="165,60 153,65 153,55" fill="#f9a825"/>
+<rect x="165" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="230" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Bedrock API</text>
+<text x="230" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">HTTPS/SDK</text>
+<line x1="295" y1="60" x2="320" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="330,60 318,65 318,55" fill="#f9a825"/>
+<rect x="330" y="40" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Foundation</text>
+<text x="395" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Model (FM)</text>
+<line x1="460" y1="60" x2="485" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="495,60 483,65 483,55" fill="#f9a825"/>
+<rect x="495" y="40" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="555" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+<text x="555" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">streaming</text>
+<line x1="615" y1="60" x2="640" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="650,60 638,65 638,55" fill="#f9a825"/>
+<rect x="650" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App処理</text>
+<text x="715" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">表示/保存</text>
+<text x="230" y="115" text-anchor="middle" fill="#f9a825" font-size="11">InvokeModel</text>
+<text x="395" y="115" text-anchor="middle" fill="#ffffff" font-size="11">model_id指定</text>
+<text x="555" y="115" text-anchor="middle" fill="#f9a825" font-size="11">ResponseStream</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">Converse API: マルチモーダル統一インタフェース (Claude/Llama/Titan対応)</text>
+<text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
+<text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
+</svg>
 | 要件 | 推奨方式 | 理由 |
 |------|---------|------|
 | 低コスト・低頻度リクエスト | On-demand | 従量課金・事前確保不要 |
@@ -950,6 +2745,28 @@ style: |
 
 # レイテンシ要件別 FM 設定表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
+<rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Haiku</text>
+<text x="140" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最速・最低コスト</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3.5 Sonnet</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">バランス型・推奨</text>
+<rect x="550" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Opus</text>
+<text x="660" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最高精度</text>
+<text x="140" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.00025 in / $0.00125 out</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.003 in / $0.015 out</text>
+<text x="660" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.015 in / $0.075 out</text>
+<text x="140" y="135" text-anchor="middle" fill="#ffffff" font-size="10">分類・要約・チャット</text>
+<text x="400" y="135" text-anchor="middle" fill="#ffffff" font-size="10">RAG・コード・エージェント</text>
+<text x="660" y="135" text-anchor="middle" fill="#ffffff" font-size="10">複雑推論・研究</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Context: 200K tokens (全モデル共通)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
+</svg>
 | 要件 | 推奨設定 | 理由 |
 |------|---------|------|
 | リアルタイム（< 1秒）| 軽量 FM + Provisioned Throughput | モデル小 + 専用キャパシティ |
@@ -964,6 +2781,31 @@ style: |
 
 # コンテキスト長別 FM 選択表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
+<rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="72.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Ingest</text>
+<line x1="120" y1="62" x2="123" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="133,62 121,67 121,57" fill="#f9a825"/><rect x="133" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="180.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunk</text>
+<line x1="228" y1="62" x2="231" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="241,62 229,67 229,57" fill="#f9a825"/><rect x="241" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="288.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<line x1="336" y1="62" x2="339" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="349,62 337,67 337,57" fill="#f9a825"/><rect x="349" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="396.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Index</text>
+<line x1="444" y1="62" x2="447" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="457,62 445,67 445,57" fill="#f9a825"/><rect x="457" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="504.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Retrieve</text>
+<line x1="552" y1="62" x2="555" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="565,62 553,67 553,57" fill="#f9a825"/><rect x="565" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="612.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augment</text>
+<line x1="660" y1="62" x2="663" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="673,62 661,67 661,57" fill="#f9a825"/><rect x="673" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="720.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Generate</text>
+
+<text x="210" y="120" text-anchor="middle" fill="#ffffff" font-size="11">← オフライン（インデックス作成）</text>
+<text x="590" y="120" text-anchor="middle" fill="#e91e63" font-size="11">オンライン（クエリ応答）→</text>
+<line x1="385" y1="105" x2="385" y2="135" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="400" y="160" text-anchor="middle" fill="#ffffff" font-size="11">Bedrock Knowledge Bases = マネージドRAG</text>
+<text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
+<text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
+</svg>
 | 要件 | コンテキスト長目安 | 推奨 FM |
 |------|--------------|--------|
 | 短文 Q&A / 分類 | ~4K tokens | Titan Text Lite / Mistral 7B |
@@ -978,6 +2820,37 @@ style: |
 
 # マルチモーダル対応 FM 一覧
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+<text x="80" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Orchestration</text>
+<text x="245" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">LLM (Claude)</text>
+<line x1="310" y1="55" x2="340.29857499854666" y2="47.42535625036333" stroke="#f9a825" stroke-width="2"/><polygon points="350,45 339.57096812343764,52.76114000116265 337.14561187307436,43.059714999709335" fill="#f9a825"/>
+<line x1="310" y1="75" x2="340.29857499854666" y2="82.57464374963666" stroke="#f9a825" stroke-width="2"/><polygon points="350,85 337.14561187307436,86.94028500029066 339.57096812343764,77.23885999883734" fill="#f9a825"/>
+<rect x="350" y="35" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="48" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Action Groups</text>
+<text x="415" y="67" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lambda/API</text>
+<rect x="350" y="80" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="93" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Knowledge Base</text>
+<text x="415" y="112" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAG検索</text>
+<line x1="480" y1="55" x2="510.29857499854666" y2="62.57464374963667" stroke="#f9a825" stroke-width="2"/><polygon points="520,65 507.14561187307436,66.94028500029067 509.57096812343764,57.23885999883735" fill="#f9a825"/>
+<line x1="480" y1="100" x2="511.52001695994915" y2="80.2999894000318" stroke="#f9a825" stroke-width="2"/><polygon points="520,75 512.4740150519549,85.5999788000636 507.17402565192305,77.11999576001271" fill="#f9a825"/>
+<rect x="520" y="50" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="585" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Tool Results</text>
+<text x="585" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">外部データ</text>
+<line x1="650" y1="70" x2="680" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="690,70 678,75 678,65" fill="#f9a825"/>
+<rect x="690" y="50" width="90" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="735" y="70" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">ReAct ループ: Reason → Act → Observe → Reason → ...</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
+</svg>
 | モデル | テキスト入出力 | 画像入力 | 画像生成 | 音声 |
 |--------|------------|--------|---------|------|
 | Claude 3 Opus / Sonnet / Haiku | ○ | ○（Vision）| ✕ | ✕ |
@@ -991,6 +2864,38 @@ style: |
 
 # オンプレ vs AWS クラウド AI 比較表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="30" width="430" height="70" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Guardrails Processing</text>
+
+<text x="265" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Topic Filter</text>
+<text x="265" y="76" text-anchor="middle" fill="#ffffff" font-size="10">拒否/マスク</text>
+<text x="395" y="60" text-anchor="middle" fill="#f9a825" font-size="10">PII Detection</text>
+<text x="395" y="76" text-anchor="middle" fill="#ffffff" font-size="10">個人情報除去</text>
+<text x="525" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Content Filter</text>
+<text x="525" y="76" text-anchor="middle" fill="#ffffff" font-size="10">有害コンテンツ</text>
+<line x1="610" y1="65" x2="640" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="650,65 638,70 638,60" fill="#f9a825"/>
+<rect x="650" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">FM</text>
+<text x="715" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude等</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11">同一Guardrailsを出力にも適用 → 幻覚・有害コンテンツを双方向でブロック</text>
+<text x="400" y="155" text-anchor="middle" fill="#f9a825" font-size="11">Grounding Check: RAG応答が文書に基づくかスコアリング (0.0〜1.0)</text>
+<rect x="50" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="150" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Denied Topics</text>
+<text x="150" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">カスタム定義</text>
+<rect x="300" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Word Filters</text>
+<text x="400" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">NG word</text>
+<rect x="550" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
+<text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
+</svg>
 | 軸 | オンプレ | AWS クラウド |
 |----|---------|------------|
 | 初期コスト | 高（GPU 購入）| 低（従量課金）|
@@ -1004,6 +2909,25 @@ style: |
 
 # Bedrock vs SageMaker vs EC2 判断表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
+<rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="117.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Zero-shot</text>
+<rect x="220" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="307.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Few-shot</text>
+<rect x="410" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CoT</text>
+<rect x="600" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="687.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ReAct</text>
+
+<text x="315" y="105" text-anchor="middle" fill="#f9a825" font-size="10">速い/安価</text><text x="315" y="120" text-anchor="middle" fill="#ffffff" font-size="10">精度+10〜20%</text><text x="505" y="105" text-anchor="middle" fill="#f9a825" font-size="10">思考過程記述</text><text x="505" y="120" text-anchor="middle" fill="#ffffff" font-size="10">推論+30〜50%</text><text x="695" y="105" text-anchor="middle" fill="#f9a825" font-size="10">Act+Observe</text><text x="695" y="120" text-anchor="middle" fill="#ffffff" font-size="10">ツール連携</text>
+<text x="117" y="105" text-anchor="middle" fill="#f9a825" font-size="10">指示のみ</text>
+<text x="117" y="120" text-anchor="middle" fill="#ffffff" font-size="10">シンプル</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">プロンプト構造 (Claude XML推奨)</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
+</svg>
 | 軸 | Bedrock | SageMaker | EC2 + OSS |
 |----|---------|----------|----------|
 | 対象ユーザー | アプリ開発者 | ML エンジニア | 研究者・専門家 |
@@ -1027,6 +2951,33 @@ style: |
 
 # FM コンテキスト長一覧表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
+<rect x="20" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="107.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Text</text>
+<text x="107.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lite / Express / Premier</text>
+<rect x="215" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="302.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed</text>
+<text x="302.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Text v2 / Multimodal</text>
+<rect x="410" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Image</text>
+<text x="497.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Generator v2</text>
+<rect x="605" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="692.5" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Multimodal</text>
+<text x="692.5" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Embeddings</text>
+<text x="107" y="115" text-anchor="middle" fill="#f9a825" font-size="10">テキスト生成</text>
+<text x="107" y="130" text-anchor="middle" fill="#ffffff" font-size="10">チャット/要約</text>
+<text x="302" y="115" text-anchor="middle" fill="#f9a825" font-size="10">RAG用ベクトル</text>
+<text x="302" y="130" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 1024dim</text>
+<text x="497" y="115" text-anchor="middle" fill="#f9a825" font-size="10">画像生成/編集</text>
+<text x="497" y="130" text-anchor="middle" fill="#ffffff" font-size="10">インペインティング</text>
+<text x="692" y="115" text-anchor="middle" fill="#f9a825" font-size="10">テキスト+画像</text>
+<text x="692" y="130" text-anchor="middle" fill="#ffffff" font-size="10">マルチモーダル検索</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Titan Text: Context 8K〜32K | 価格: $0.0003〜$0.0008/1K tokens</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Titan Embed Text v2: $0.00002/1K tokens (最低コスト埋め込み)</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">AWS製モデル = データ共有なし / 商用利用フリー / Fine-tuning対応</text>
+</svg>
 | モデル | 最大入力 | 最大出力 | 特記 |
 |--------|---------|---------|------|
 | Claude 3.5 Sonnet | 200K tokens | 8192 tokens | Vision 対応 |
@@ -1041,6 +2992,28 @@ style: |
 
 # Bedrock クォータ・制限値表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
+<rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">自動評価 (Automated)</text>
+
+<rect x="285" y="40" width="230" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">人間評価 (Human)</text>
+
+<rect x="550" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM-as-Judge</text>
+
+<text x="135" y="115" text-anchor="middle" fill="#f9a825" font-size="10">BLEU / ROUGE / BERTScore</text>
+<text x="135" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Perplexity / F1 / Accuracy</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">品質/有用性/安全性</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">コスト高・高精度</text>
+<text x="665" y="115" text-anchor="middle" fill="#f9a825" font-size="10">GPT-4/Claude評価</text>
+<text x="665" y="130" text-anchor="middle" fill="#ffffff" font-size="10">スケーラブル</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">RAG評価フレームワーク: RAGAS (Faithfulness / Answer Relevance / Context Precision)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Bedrock Model Evaluation: 自動/人間評価をマネージドで実行</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">A/Bテスト → Shadow Testing → カナリアデプロイで本番評価</text>
+</svg>
 | 項目 | 制限値（目安）|
 |------|------------|
 | KB データソース数 | 最大 5 個 / Knowledge Base |
@@ -1055,6 +3028,35 @@ style: |
 
 # Fine-tuning データ要件数値表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
+<rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App</text>
+<text x="75" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">SDK/CLI</text>
+<line x1="130" y1="60" x2="155" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="165,60 153,65 153,55" fill="#f9a825"/>
+<rect x="165" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="230" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Bedrock API</text>
+<text x="230" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">HTTPS/SDK</text>
+<line x1="295" y1="60" x2="320" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="330,60 318,65 318,55" fill="#f9a825"/>
+<rect x="330" y="40" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Foundation</text>
+<text x="395" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Model (FM)</text>
+<line x1="460" y1="60" x2="485" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="495,60 483,65 483,55" fill="#f9a825"/>
+<rect x="495" y="40" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="555" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+<text x="555" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">streaming</text>
+<line x1="615" y1="60" x2="640" y2="60" stroke="#f9a825" stroke-width="2"/><polygon points="650,60 638,65 638,55" fill="#f9a825"/>
+<rect x="650" y="40" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="53" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">App処理</text>
+<text x="715" y="72" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">表示/保存</text>
+<text x="230" y="115" text-anchor="middle" fill="#f9a825" font-size="11">InvokeModel</text>
+<text x="395" y="115" text-anchor="middle" fill="#ffffff" font-size="11">model_id指定</text>
+<text x="555" y="115" text-anchor="middle" fill="#f9a825" font-size="11">ResponseStream</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">Converse API: マルチモーダル統一インタフェース (Claude/Llama/Titan対応)</text>
+<text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
+<text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
+</svg>
 | 項目 | 数値 |
 |------|------|
 | データ形式 | JSONL（UTF-8 エンコード）|
@@ -1069,6 +3071,28 @@ style: |
 
 # 埋め込みベクトル次元数一覧
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
+<rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Haiku</text>
+<text x="140" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最速・最低コスト</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3.5 Sonnet</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">バランス型・推奨</text>
+<rect x="550" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3 Opus</text>
+<text x="660" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最高精度</text>
+<text x="140" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.00025 in / $0.00125 out</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.003 in / $0.015 out</text>
+<text x="660" y="115" text-anchor="middle" fill="#f9a825" font-size="11">$0.015 in / $0.075 out</text>
+<text x="140" y="135" text-anchor="middle" fill="#ffffff" font-size="10">分類・要約・チャット</text>
+<text x="400" y="135" text-anchor="middle" fill="#ffffff" font-size="10">RAG・コード・エージェント</text>
+<text x="660" y="135" text-anchor="middle" fill="#ffffff" font-size="10">複雑推論・研究</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">Context: 200K tokens (全モデル共通)</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
+</svg>
 | モデル | 次元数 | 最大入力 | 特記 |
 |--------|--------|---------|------|
 | Titan Embeddings Text V2 | 256 / 512 / 1024（選択）| 8192 tokens | 次元可変 |
@@ -1083,6 +3107,31 @@ style: |
 
 # SageMaker インスタンスタイプ比較
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
+<rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="72.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Ingest</text>
+<line x1="120" y1="62" x2="123" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="133,62 121,67 121,57" fill="#f9a825"/><rect x="133" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="180.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunk</text>
+<line x1="228" y1="62" x2="231" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="241,62 229,67 229,57" fill="#f9a825"/><rect x="241" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="288.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<line x1="336" y1="62" x2="339" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="349,62 337,67 337,57" fill="#f9a825"/><rect x="349" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="396.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Index</text>
+<line x1="444" y1="62" x2="447" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="457,62 445,67 445,57" fill="#f9a825"/><rect x="457" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="504.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Retrieve</text>
+<line x1="552" y1="62" x2="555" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="565,62 553,67 553,57" fill="#f9a825"/><rect x="565" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="612.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augment</text>
+<line x1="660" y1="62" x2="663" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="673,62 661,67 661,57" fill="#f9a825"/><rect x="673" y="40" width="95" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="720.5" y="62.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Generate</text>
+
+<text x="210" y="120" text-anchor="middle" fill="#ffffff" font-size="11">← オフライン（インデックス作成）</text>
+<text x="590" y="120" text-anchor="middle" fill="#e91e63" font-size="11">オンライン（クエリ応答）→</text>
+<line x1="385" y1="105" x2="385" y2="135" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="400" y="160" text-anchor="middle" fill="#ffffff" font-size="11">Bedrock Knowledge Bases = マネージドRAG</text>
+<text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
+<text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
+</svg>
 | インスタンス | GPU | GPU メモリ | 向く用途 |
 |-----------|-----|----------|---------|
 | ml.p3.2xlarge | 1× V100 | 16 GB | 小〜中規模学習 |
@@ -1096,6 +3145,37 @@ style: |
 
 # S3 / KMS / CloudTrail 制限値表
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+<text x="80" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Orchestration</text>
+<text x="245" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">LLM (Claude)</text>
+<line x1="310" y1="55" x2="340.29857499854666" y2="47.42535625036333" stroke="#f9a825" stroke-width="2"/><polygon points="350,45 339.57096812343764,52.76114000116265 337.14561187307436,43.059714999709335" fill="#f9a825"/>
+<line x1="310" y1="75" x2="340.29857499854666" y2="82.57464374963666" stroke="#f9a825" stroke-width="2"/><polygon points="350,85 337.14561187307436,86.94028500029066 339.57096812343764,77.23885999883734" fill="#f9a825"/>
+<rect x="350" y="35" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="48" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Action Groups</text>
+<text x="415" y="67" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lambda/API</text>
+<rect x="350" y="80" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="93" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Knowledge Base</text>
+<text x="415" y="112" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAG検索</text>
+<line x1="480" y1="55" x2="510.29857499854666" y2="62.57464374963667" stroke="#f9a825" stroke-width="2"/><polygon points="520,65 507.14561187307436,66.94028500029067 509.57096812343764,57.23885999883735" fill="#f9a825"/>
+<line x1="480" y1="100" x2="511.52001695994915" y2="80.2999894000318" stroke="#f9a825" stroke-width="2"/><polygon points="520,75 512.4740150519549,85.5999788000636 507.17402565192305,77.11999576001271" fill="#f9a825"/>
+<rect x="520" y="50" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="585" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Tool Results</text>
+<text x="585" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">外部データ</text>
+<line x1="650" y1="70" x2="680" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="690,70 678,75 678,65" fill="#f9a825"/>
+<rect x="690" y="50" width="90" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="735" y="70" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Response</text>
+
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11">ReAct ループ: Reason → Act → Observe → Reason → ...</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
+</svg>
 | サービス | 項目 | 制限値 |
 |---------|------|--------|
 | S3 | バケット数（デフォルト）| 100 / アカウント |
@@ -1120,6 +3200,38 @@ style: |
 
 # RAG vs Fine-tuning — 誤選択パターン
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
+<rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Input</text>
+
+<line x1="140" y1="65" x2="170" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="180,65 168,70 168,60" fill="#f9a825"/>
+<rect x="180" y="30" width="430" height="70" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Guardrails Processing</text>
+
+<text x="265" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Topic Filter</text>
+<text x="265" y="76" text-anchor="middle" fill="#ffffff" font-size="10">拒否/マスク</text>
+<text x="395" y="60" text-anchor="middle" fill="#f9a825" font-size="10">PII Detection</text>
+<text x="395" y="76" text-anchor="middle" fill="#ffffff" font-size="10">個人情報除去</text>
+<text x="525" y="60" text-anchor="middle" fill="#f9a825" font-size="10">Content Filter</text>
+<text x="525" y="76" text-anchor="middle" fill="#ffffff" font-size="10">有害コンテンツ</text>
+<line x1="610" y1="65" x2="640" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="650,65 638,70 638,60" fill="#f9a825"/>
+<rect x="650" y="45" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">FM</text>
+<text x="715" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude等</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11">同一Guardrailsを出力にも適用 → 幻覚・有害コンテンツを双方向でブロック</text>
+<text x="400" y="155" text-anchor="middle" fill="#f9a825" font-size="11">Grounding Check: RAG応答が文書に基づくかスコアリング (0.0〜1.0)</text>
+<rect x="50" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="150" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Denied Topics</text>
+<text x="150" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">カスタム定義</text>
+<rect x="300" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Word Filters</text>
+<text x="400" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">NG word</text>
+<rect x="550" y="170" width="200" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
+<text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
+</svg>
 | 状況 | 誤答 | 正答 | 理由 |
 |------|------|------|------|
 | 最新ニュースへの対応が必要 | Fine-tuning | RAG | FT は静的、RAG はリアルタイム更新 |
@@ -1133,6 +3245,25 @@ style: |
 
 # Bedrock vs SageMaker — 誤選択パターン
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
+<rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="117.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Zero-shot</text>
+<rect x="220" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="307.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Few-shot</text>
+<rect x="410" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="497.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CoT</text>
+<rect x="600" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="687.5" y="61" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ReAct</text>
+
+<text x="315" y="105" text-anchor="middle" fill="#f9a825" font-size="10">速い/安価</text><text x="315" y="120" text-anchor="middle" fill="#ffffff" font-size="10">精度+10〜20%</text><text x="505" y="105" text-anchor="middle" fill="#f9a825" font-size="10">思考過程記述</text><text x="505" y="120" text-anchor="middle" fill="#ffffff" font-size="10">推論+30〜50%</text><text x="695" y="105" text-anchor="middle" fill="#f9a825" font-size="10">Act+Observe</text><text x="695" y="120" text-anchor="middle" fill="#ffffff" font-size="10">ツール連携</text>
+<text x="117" y="105" text-anchor="middle" fill="#f9a825" font-size="10">指示のみ</text>
+<text x="117" y="120" text-anchor="middle" fill="#ffffff" font-size="10">シンプル</text>
+<text x="400" y="155" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">プロンプト構造 (Claude XML推奨)</text>
+<text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
+<text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
+</svg>
 | 状況 | 誤答 | 正答 |
 |------|------|------|
 | カスタム NN アーキテクチャを学習したい | Bedrock | SageMaker |
@@ -1146,6 +3277,46 @@ style: |
 
 # セキュリティ設定の落とし穴
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">Amazon Bedrock — サービスマップ</text>
+<rect x="300" y="50" width="200" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Amazon Bedrock</text>
+<text x="400" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">統合AIプラットフォーム</text>
+<line x1="400" y1="100" x2="129.81248820521088" y2="153.07254695969073" stroke="#f9a825" stroke-width="2"/><polygon points="120,155 130.81125932609842,147.78081224902343 132.7387123664077,157.59330045423428" fill="#f9a825"/>
+<line x1="400" y1="100" x2="298.94427190999915" y2="150.52786404500043" stroke="#f9a825" stroke-width="2"/><polygon points="290,155 298.4970583144992,145.16130089900093 302.96919426949876,154.10557280900008" fill="#f9a825"/>
+<line x1="400" y1="100" x2="452.62845859799256" y2="148.24275371482653" stroke="#f9a825" stroke-width="2"/><polygon points="460,155 447.77552717500436,150.57707515879557 454.5327734601778,143.20553375678813" fill="#f9a825"/>
+<line x1="400" y1="100" x2="630.2526768147172" y2="152.76623843670603" stroke="#f9a825" stroke-width="2"/><polygon points="640,155 627.1863313960138,157.19314771668863 629.4200929593077,147.44582453140586" fill="#f9a825"/>
+<rect x="50" y="155" width="140" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="120" y="173" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Foundation</text>
+<text x="120" y="192" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Models (FM)</text>
+<rect x="220" y="155" width="140" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="290" y="173" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Agents</text>
+<text x="290" y="192" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自律タスク実行</text>
+<rect x="390" y="155" width="140" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="460" y="173" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Knowledge</text>
+<text x="460" y="192" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Bases (RAG)</text>
+<rect x="560" y="155" width="140" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="630" y="173" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Guardrails</text>
+<text x="630" y="192" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">安全・制御</text>
+<line x1="120" y1="205" x2="85.24097425664334" y2="261.48341683295456" stroke="#f9a825" stroke-width="2"/><polygon points="80,270 82.0308775244493,257.1596130712238 90.54746069149473,262.40058732786713" fill="#f9a825"/>
+<line x1="290" y1="205" x2="208.1067922839988" y2="264.1450944615564" stroke="#f9a825" stroke-width="2"/><polygon points="200,270 206.8006979715768,258.9207172118683 212.65560351002037,267.02750949586715" fill="#f9a825"/>
+<line x1="460" y1="205" x2="406.78280102733066" y2="262.6519655537251" stroke="#f9a825" stroke-width="2"/><polygon points="400,270 404.46534400965936,257.79095815080484 411.8133784559342,264.57375917813545" fill="#f9a825"/>
+<line x1="630" y1="205" x2="621.5205718425394" y2="260.11628302349385" stroke="#f9a825" stroke-width="2"/><polygon points="620,270 616.8828277227942,257.3792537069229 626.7665446993003,258.8998255494623" fill="#f9a825"/>
+<rect x="30" y="270" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="90" y="285.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Claude/Llama</text>
+<text x="90" y="304.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Titan/Mistral</text>
+<rect x="150" y="270" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="210" y="285.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Action Groups</text>
+<text x="210" y="304.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lambda/API</text>
+<rect x="350" y="270" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="410" y="285.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">OpenSearch</text>
+<text x="410" y="304.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Aurora/S3</text>
+<rect x="560" y="270" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="620" y="285.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Filters</text>
+<text x="620" y="304.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Topic/PII</text>
+<text x="400" y="370" text-anchor="middle" fill="#f9a825" font-size="12">API統一: InvokeModel / InvokeModelWithResponseStream / Converse</text>
+</svg>
 - ❌ VPC エンドポイント = 暗号化 → ✅ ネットワーク分離のみ（暗号化は KMS で別途）
 - ❌ S3 は自動暗号化される → ✅ SSE 設定が必要（SSE-S3 / SSE-KMS を明示設定）
 - ❌ Deny と Allow が競合 → Allow 優先 → ✅ Explicit Deny が必ず優先
@@ -1158,6 +3329,47 @@ style: |
 
 # Guardrails 設定の誤解パターン
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">モデル選択 デシジョンツリー</text>
+<rect x="300" y="45" width="200" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="67.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">タスクを選択</text>
+
+<line x1="400" y1="90" x2="169.78980419737604" y2="137.96045745888" stroke="#f9a825" stroke-width="2"/><polygon points="160,140 170.72799376629126,132.65764685196797 172.76753630741126,142.447451049344" fill="#f9a825"/>
+<line x1="400" y1="90" x2="400" y2="130" stroke="#f9a825" stroke-width="2"/><polygon points="400,140 395,128 405,128" fill="#f9a825"/>
+<line x1="400" y1="90" x2="630.210195802624" y2="137.96045745888" stroke="#f9a825" stroke-width="2"/><polygon points="640,140 627.2324636925888,142.447451049344 629.2720062337088,132.65764685196797" fill="#f9a825"/>
+<rect x="80" y="140" width="160" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="160" y="154" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">テキスト生成</text>
+<text x="160" y="173" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">会話/要約</text>
+<rect x="320" y="140" width="160" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="154" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">コード生成</text>
+<text x="400" y="173" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">デバッグ</text>
+<rect x="560" y="140" width="160" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="640" y="154" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">マルチモーダル</text>
+<text x="640" y="173" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">画像/動画</text>
+<line x1="160" y1="182" x2="107.18988376049111" y2="233.04977903152525" stroke="#f9a825" stroke-width="2"/><polygon points="100,240 105.15275002835196,228.06479295758476 112.10297099682671,235.25467671807587" fill="#f9a825"/>
+<line x1="160" y1="182" x2="231.90389556605612" y2="234.13032428539069" stroke="#f9a825" stroke-width="2"/><polygon points="240,240 227.3498368219627,237.00444135944076 233.21951253657198,228.90833692549688" fill="#f9a825"/>
+<line x1="400" y1="182" x2="347.1898837604911" y2="233.04977903152525" stroke="#f9a825" stroke-width="2"/><polygon points="340,240 345.152750028352,228.06479295758476 352.1029709968267,235.25467671807587" fill="#f9a825"/>
+<line x1="400" y1="182" x2="452.8101162395089" y2="233.04977903152525" stroke="#f9a825" stroke-width="2"/><polygon points="460,240 447.8970290031733,235.25467671807587 454.847249971648,228.06479295758476" fill="#f9a825"/>
+<line x1="640" y1="182" x2="623.259906833194" y2="230.54627018373728" stroke="#f9a825" stroke-width="2"/><polygon points="620,240 619.1850232917016,227.0255708038877 628.6387531079642,230.28547763708175" fill="#f9a825"/>
+<rect x="40" y="240" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="100" y="253" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Claude 3.5</text>
+<text x="100" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Sonnet</text>
+<rect x="175" y="240" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="235" y="253" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Titan Text</text>
+<text x="235" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Express</text>
+<rect x="280" y="240" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="340" y="253" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Claude 3.5</text>
+<text x="340" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Sonnet</text>
+<rect x="400" y="240" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="460" y="253" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Llama 3.1</text>
+<text x="460" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">70B</text>
+<rect x="560" y="240" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="620" y="253" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Claude 3.5</text>
+<text x="620" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Haiku</text>
+<text x="400" y="330" text-anchor="middle" fill="#ffffff" font-size="12">コスト: Haiku &lt; Sonnet &lt; Opus  |  速度: Haiku &gt; Sonnet &gt; Opus</text>
+<text x="400" y="355" text-anchor="middle" fill="#f9a825" font-size="11">本番: Sonnet推奨 / バッチ低コスト: Haiku / 高精度: Opus</text>
+</svg>
 - ❌ Bedrock を使えば Guardrails が自動有効 → ✅ 明示的に作成・紐付けが必要
 - ❌ Guardrails は Agents には適用できない → ✅ Agents にも適用可（別途設定）
 - ❌ PII Redaction はテキスト全体を削除 → ✅ [NAME] 等にマスキング（ANONYMIZE）
@@ -1169,6 +3381,34 @@ style: |
 
 # トークン・コスト誤解パターン
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">プロンプトエンジニアリング 手法比較</text>
+<rect x="30" y="55" width="170" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="115" y="75.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Zero-shot</text>
+<text x="115" y="94.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">例なし・直接指示</text>
+<rect x="220" y="55" width="170" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="305" y="75.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Few-shot</text>
+<text x="305" y="94.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">2〜5例を付与</text>
+<rect x="410" y="55" width="170" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="495" y="75.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chain-of-Thought</text>
+<text x="495" y="94.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">思考ステップ明示</text>
+<rect x="600" y="55" width="170" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="685" y="75.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ReAct</text>
+<text x="685" y="94.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">推論+行動ループ</text>
+<text x="115" y="135" text-anchor="middle" fill="#f9a825" font-size="11">速い・シンプル</text>
+<text x="305" y="135" text-anchor="middle" fill="#f9a825" font-size="11">精度向上 +10-20%</text>
+<text x="495" y="135" text-anchor="middle" fill="#f9a825" font-size="11">数学・論理タスク</text>
+<text x="685" y="135" font-size="11" text-anchor="middle" fill="#f9a825">Agentタスク</text>
+<rect x="30" y="155" width="740" height="2" fill="#f9a825" opacity="0.3"/>
+<text x="400" y="180" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">プロンプト構造テンプレート (XML タグ推奨)</text>
+<rect x="60" y="195" width="680" height="150" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="400" y="218" text-anchor="middle" fill="#e91e63" font-size="12">&lt;system&gt;あなたは...です&lt;/system&gt;</text>
+<text x="400" y="242" text-anchor="middle" fill="#ffffff" font-size="12">&lt;context&gt;背景情報&lt;/context&gt;</text>
+<text x="400" y="266" text-anchor="middle" fill="#ffffff" font-size="12">&lt;examples&gt;入力→出力例&lt;/examples&gt;</text>
+<text x="400" y="290" text-anchor="middle" fill="#ffffff" font-size="12">&lt;instructions&gt;具体的な指示&lt;/instructions&gt;</text>
+<text x="400" y="314" text-anchor="middle" fill="#f9a825" font-size="12">&lt;output_format&gt;JSON / 箇条書き / 表&lt;/output_format&gt;</text>
+</svg>
 - ❌ 入力と出力のトークン料金は同じ → ✅ 通常、出力の方が高コスト（2〜5倍）
 - ❌ トークン数 = 単語数 → ✅ 日本語は 1 文字 ≈ 2〜3 トークン（英語の 2〜3 倍）
 - ❌ Provisioned Throughput は常に On-demand より高い → ✅ 高スループット時は PT が安い
@@ -1180,6 +3420,15 @@ style: |
 
 # レイテンシ誤解パターン
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">モデルコスト比較 (per 1K tokens, 概算)</text>
+<text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">Input <rect/> / Output <rect/> — On-demand price</text>
+<rect x="350" y="40" width="14" height="10" fill="#f9a825"/><text x="367" y="50" fill="#f9a825" font-size="11">Input</text>
+<rect x="420" y="40" width="14" height="10" fill="#e91e63"/><text x="437" y="50" fill="#e91e63" font-size="11">Output</text>
+<text x="195" y="88" text-anchor="end" fill="#ffffff" font-size="12">Claude 3 Haiku</text><rect x="205" y="70" width="40" height="18" fill="#f9a825" rx="3"/><text x="250" y="83" fill="#f9a825" font-size="10">$0.00025/1K</text><rect x="205" y="92" width="60" height="14" fill="#e91e63" rx="3"/><text x="270" y="103" fill="#e91e63" font-size="10">$0.00125/1K</text><text x="195" y="143" text-anchor="end" fill="#ffffff" font-size="12">Claude 3 Sonnet</text><rect x="205" y="125" width="120" height="18" fill="#f9a825" rx="3"/><text x="330" y="138" fill="#f9a825" font-size="10">$0.003/1K</text><rect x="205" y="147" width="160" height="14" fill="#e91e63" rx="3"/><text x="370" y="158" fill="#e91e63" font-size="10">$0.015/1K</text><text x="195" y="198" text-anchor="end" fill="#ffffff" font-size="12">Claude 3 Opus</text><rect x="205" y="180" width="280" height="18" fill="#f9a825" rx="3"/><text x="490" y="193" fill="#f9a825" font-size="10">$0.015/1K</text><rect x="205" y="202" width="380" height="14" fill="#e91e63" rx="3"/><text x="590" y="213" fill="#e91e63" font-size="10">$0.075/1K</text><text x="195" y="253" text-anchor="end" fill="#ffffff" font-size="12">Titan Text Lite</text><rect x="205" y="235" width="48" height="18" fill="#f9a825" rx="3"/><text x="258" y="248" fill="#f9a825" font-size="10">$0.0003/1K</text><rect x="205" y="257" width="52" height="14" fill="#e91e63" rx="3"/><text x="262" y="268" fill="#e91e63" font-size="10">$0.0004/1K</text><text x="195" y="308" text-anchor="end" fill="#ffffff" font-size="12">Llama 3.1 70B</text><rect x="205" y="290" width="110" height="18" fill="#f9a825" rx="3"/><text x="320" y="303" fill="#f9a825" font-size="10">$0.00265/1K</text><rect x="205" y="312" width="130" height="14" fill="#e91e63" rx="3"/><text x="340" y="323" fill="#e91e63" font-size="10">$0.0035/1K</text>
+<text x="400" y="380" text-anchor="middle" fill="#f9a825" font-size="11">Provisioned Throughput / Batch APIで最大50%コスト削減可能</text>
+</svg>
 - ❌ Provisioned Throughput = 低レイテンシ → ✅ スループット保証のみ（レイテンシ保証ではない）
 - ❌ 大きい FM = 高精度 → 常に使うべき → ✅ タスクによっては小 FM + few-shot が効果的
 - ❌ Temperature=0 で最速 → ✅ Temperature は速度に影響しない
@@ -1200,6 +3449,43 @@ style: |
 
 # Domain 1 — セルフチェック
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding モデル — ベクトル化フロー</text>
+<rect x="30" y="60" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="75.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">テキスト入力</text>
+<text x="95" y="94.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">"AWSとは"</text>
+<line x1="160" y1="82" x2="200" y2="82" stroke="#f9a825" stroke-width="2"/><polygon points="210,82 198,87 198,77" fill="#f9a825"/>
+<rect x="210" y="60" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="275" y="75.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Tokenize</text>
+<text x="275" y="94.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">BPE / WordPiece</text>
+<line x1="340" y1="82" x2="380" y2="82" stroke="#f9a825" stroke-width="2"/><polygon points="390,82 378,87 378,77" fill="#f9a825"/>
+<rect x="390" y="60" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="455" y="75.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Transformer</text>
+<text x="455" y="94.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Encoder Stack</text>
+<line x1="520" y1="82" x2="560" y2="82" stroke="#f9a825" stroke-width="2"/><polygon points="570,82 558,87 558,77" fill="#f9a825"/>
+<rect x="570" y="60" width="130" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="635" y="75.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ベクトル</text>
+<text x="635" y="94.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">1536次元</text>
+<line x1="635" y1="105" x2="635" y2="140" stroke="#f9a825" stroke-width="2"/><polygon points="635,150 630,138 640,138" fill="#f9a825"/>
+<rect x="570" y="150" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="635" y="165.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector DB</text>
+<text x="635" y="184.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">コサイン類似</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">AWS Bedrock Embedding モデル比較</text>
+<rect x="60" y="260" width="200" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="160" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed Text v2</text>
+<text x="160" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最大8K tokens / 1536dim</text>
+<rect x="300" y="260" width="200" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Multimodal</text>
+<text x="400" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">テキスト+画像 / 1024dim</text>
+<rect x="540" y="260" width="200" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="640" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cohere Embed v3</text>
+<text x="640" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">多言語 / 1024dim</text>
+<text x="160" y="335" text-anchor="middle" fill="#f9a825" font-size="11">コスト: $0.00002/1K tokens</text>
+<text x="400" y="335" text-anchor="middle" fill="#f9a825" font-size="11">コスト: $0.00006/1K tokens</text>
+<text x="640" y="335" text-anchor="middle" fill="#f9a825" font-size="11">コスト: $0.0001/1K tokens</text>
+<text x="400" y="370" text-anchor="middle" fill="#ffffff" font-size="12">次元数が多い = 意味精度高 / 次元数が少ない = 検索速度・コスト優位</text>
+</svg>
 - [ ] AI / ML / DL / GenAI の違いを 1 文で説明できる
 - [ ] 教師あり・教師なし・強化学習のユースケースを選べる
 - [ ] Accuracy / Precision / Recall / F1 の違いを理解している
@@ -1213,6 +3499,33 @@ style: |
 
 # Domain 2–3 — セルフチェック
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">推論パラメータ ビジュアルガイド</text>
+<text x="200" y="60" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Temperature</text>
+<rect x="50" y="75" width="300" height="20" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<rect x="50" y="75" width="90" height="20" rx="5" fill="#e91e63"/>
+<text x="50" y="115" fill="#ffffff" font-size="11">0.0 (決定的)</text>
+<text x="200" y="115" text-anchor="middle" fill="#f9a825" font-size="11">0.3〜0.7 (推奨)</text>
+<text x="350" y="115" text-anchor="end" fill="#ffffff" font-size="11">1.0 (多様)</text>
+<text x="200" y="140" text-anchor="middle" fill="#ffffff" font-size="11">低: 一貫・予測可能 → SQL/コード生成  |  高: 創造的 → 文章/アイデア</text>
+
+<text x="200" y="175" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-P (Nucleus Sampling)</text>
+<rect x="50" y="190" width="300" height="20" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<rect x="50" y="190" width="210" height="20" rx="5" fill="#f9a825" opacity="0.7"/>
+<text x="50" y="228" fill="#ffffff" font-size="11">0.1 (絞る)</text>
+<text x="200" y="228" text-anchor="middle" fill="#f9a825" font-size="11">0.7〜0.9 (推奨)</text>
+<text x="350" y="228" text-anchor="end" fill="#ffffff" font-size="11">1.0 (全体)</text>
+
+<rect x="420" y="55" width="340" height="290" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="590" y="80" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">推奨設定ユースケース別</text>
+<text x="445" y="105" fill="#ffffff" font-size="12">コード生成</text><text x="760" y="105" text-anchor="end" fill="#f9a825" font-size="12">temp=0.1, top_p=0.9</text>
+<text x="445" y="143" fill="#ffffff" font-size="12">要約・翻訳</text><text x="760" y="143" text-anchor="end" fill="#f9a825" font-size="12">temp=0.3, top_p=0.95</text>
+<text x="445" y="181" fill="#ffffff" font-size="12">会話AI</text><text x="760" y="181" text-anchor="end" fill="#f9a825" font-size="12">temp=0.5, top_p=0.9</text>
+<text x="445" y="219" fill="#ffffff" font-size="12">創作文章</text><text x="760" y="219" text-anchor="end" fill="#f9a825" font-size="12">temp=0.8, top_p=0.95</text>
+<text x="445" y="257" fill="#ffffff" font-size="12">SQL生成</text><text x="760" y="257" text-anchor="end" fill="#f9a825" font-size="12">temp=0.0, top_p=1.0</text>
+<text x="445" y="295" fill="#ffffff" font-size="12">アイデア出し</text><text x="760" y="295" text-anchor="end" fill="#f9a825" font-size="12">temp=1.0, top_p=0.95</text>
+</svg>
 - [ ] Token / Context Window / Temperature の意味を説明できる
 - [ ] Zero-shot / Few-shot / CoT を使い分けられる
 - [ ] RAG の仕組みとコンポーネント（Chunking / Embedding / Retrieval）を説明できる
@@ -1226,6 +3539,14 @@ style: |
 
 # Domain 4–5 — セルフチェック
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Bedrock Agent — ReAct ループ</text>
+<circle cx="400" cy="70" r="35" fill="#e91e63" stroke="#f9a825" stroke-width="2"/><text x="400" y="64" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">入力受信</text><text x="400" y="80" text-anchor="middle" fill="#f9a825" font-size="10"></text><line x1="432.9089653438087" y1="89" x2="479.6743371481684" y2="116" stroke="#f9a825" stroke-width="1.5"/><polygon points="479.6743371481684,116 468.514083110324,115.3301270189222 473.514083110324,106.6698729810778" fill="#f9a825"/><circle cx="512.5833024919771" cy="135" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="512.5833024919771" y="129" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">プランニ</text><text x="512.5833024919771" y="145" text-anchor="middle" fill="#f9a825" font-size="10">ング</text><line x1="512.5833024919771" y1="173" x2="512.5833024919771" y2="227" stroke="#f9a825" stroke-width="1.5"/><polygon points="512.5833024919771,227 507.58330249197707,217 517.5833024919771,217" fill="#f9a825"/><circle cx="512.5833024919771" cy="265" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="512.5833024919771" y="259" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">ツール選</text><text x="512.5833024919771" y="275" text-anchor="middle" fill="#f9a825" font-size="10">択</text><line x1="479.6743371481684" y1="284" x2="432.9089653438087" y2="311" stroke="#f9a825" stroke-width="1.5"/><polygon points="432.9089653438087,311 439.06921938165306,301.6698729810778 444.06921938165306,310.3301270189222" fill="#f9a825"/><circle cx="400" cy="330" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="324" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">ツール実</text><text x="400" y="340" text-anchor="middle" fill="#f9a825" font-size="10">行</text><line x1="367.0910346561913" y1="311" x2="320.3256628518317" y2="284.00000000000006" stroke="#f9a825" stroke-width="1.5"/><polygon points="320.3256628518317,284.00000000000006 331.48591688967605,284.66987298107784 326.48591688967605,293.33012701892227" fill="#f9a825"/><circle cx="287.416697508023" cy="265.00000000000006" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="287.416697508023" y="259.00000000000006" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">結果統合</text><text x="287.416697508023" y="275.00000000000006" text-anchor="middle" fill="#f9a825" font-size="10"></text><line x1="287.416697508023" y1="227.00000000000006" x2="287.416697508023" y2="173" stroke="#f9a825" stroke-width="1.5"/><polygon points="287.416697508023,173 292.416697508023,183 282.416697508023,183" fill="#f9a825"/><circle cx="287.416697508023" cy="135" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="287.416697508023" y="129" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">応答生成</text><text x="287.416697508023" y="145" text-anchor="middle" fill="#f9a825" font-size="10"></text><line x1="320.3256628518317" y1="116" x2="367.09103465619137" y2="89" stroke="#f9a825" stroke-width="1.5"/><polygon points="367.09103465619137,89 360.930780618347,98.3301270189222 355.930780618347,89.6698729810778" fill="#f9a825"/>
+<text x="400" y="197" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">Orchestration</text>
+<text x="400" y="215" text-anchor="middle" fill="#ffffff" font-size="11">LLM</text>
+<text x="400" y="370" text-anchor="middle" fill="#ffffff" font-size="11">Action Groups (Lambda) · Knowledge Base · Code Interpreter</text>
+</svg>
 - [ ] 責任ある AI の 6 原則を言える
 - [ ] Bedrock Guardrails の 5 フィルタ種別を知っている
 - [ ] Hallucination の軽減手法（RAG / Grounding / CoT）を選べる
@@ -1239,6 +3560,67 @@ style: |
 
 # 試験当日の戦略
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Knowledge Base — ベクトル検索フロー</text>
+<text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">インデックス作成フロー（Ingestion）</text>
+<rect x="20" y="65" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="78" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">S3 Docs</text>
+<text x="75" y="97" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">.pdf/.txt</text>
+<line x1="130" y1="85" x2="160" y2="85" stroke="#f9a825" stroke-width="2"/><polygon points="170,85 158,90 158,80" fill="#f9a825"/>
+<rect x="170" y="65" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="78" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunking</text>
+<text x="225" y="97" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Fixed/Semantic</text>
+<line x1="280" y1="85" x2="310" y2="85" stroke="#f9a825" stroke-width="2"/><polygon points="320,85 308,90 308,80" fill="#f9a825"/>
+<rect x="320" y="65" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="78" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="375" y="97" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Titan/Cohere</text>
+<line x1="430" y1="85" x2="460" y2="85" stroke="#f9a825" stroke-width="2"/><polygon points="470,85 458,90 458,80" fill="#f9a825"/>
+<rect x="470" y="65" width="140" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="540" y="78" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector DB</text>
+<text x="540" y="97" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">OpenSearch/pgvector</text>
+<text x="400" y="135" text-anchor="middle" fill="#f9a825" font-size="12">── 検索フロー（Retrieval）──</text>
+<rect x="20" y="155" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="168" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">User Query</text>
+<text x="75" y="187" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="130" y1="175" x2="160" y2="175" stroke="#f9a825" stroke-width="2"/><polygon points="170,175 158,180 158,170" fill="#f9a825"/>
+<rect x="170" y="155" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="168" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="225" y="187" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">同一モデル</text>
+<line x1="280" y1="175" x2="310" y2="175" stroke="#f9a825" stroke-width="2"/><polygon points="320,175 308,180 308,170" fill="#f9a825"/>
+<rect x="320" y="155" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="385" y="168" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ANN Search</text>
+<text x="385" y="187" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">コサイン類似</text>
+<line x1="450" y1="175" x2="480" y2="175" stroke="#f9a825" stroke-width="2"/><polygon points="490,175 478,180 478,170" fill="#f9a825"/>
+<rect x="490" y="155" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="550" y="168" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-K Docs</text>
+<text x="550" y="187" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">k=3〜20</text>
+<line x1="610" y1="175" x2="640" y2="175" stroke="#f9a825" stroke-width="2"/><polygon points="650,175 638,180 638,170" fill="#f9a825"/>
+<rect x="650" y="155" width="120" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="710" y="168" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augmented</text>
+<text x="710" y="187" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Prompt</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">チャンク戦略比較</text>
+<rect x="30" y="255" width="160" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="110" y="293" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Fixed Size</text>
+<text x="110" y="312" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">固定トークン数</text>
+<rect x="210" y="255" width="160" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="290" y="293" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Semantic</text>
+<text x="290" y="312" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">意味単位分割</text>
+<rect x="390" y="255" width="160" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="470" y="293" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Hierarchical</text>
+<text x="470" y="312" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">親子構造</text>
+<rect x="570" y="255" width="160" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="293" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Custom Lambda</text>
+<text x="650" y="312" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">カスタム前処理</text>
+<text x="110" y="320" text-anchor="middle" fill="#f9a825" font-size="10">200-500 tokens</text>
+<text x="110" y="335" text-anchor="middle" fill="#ffffff" font-size="10">シンプル・高速</text>
+<text x="290" y="320" text-anchor="middle" fill="#f9a825" font-size="10">自動境界検出</text>
+<text x="290" y="335" text-anchor="middle" fill="#ffffff" font-size="10">精度高・低速</text>
+<text x="470" y="320" text-anchor="middle" fill="#f9a825" font-size="10">大→小 2段階</text>
+<text x="470" y="335" text-anchor="middle" fill="#ffffff" font-size="10">コンテキスト保持</text>
+<text x="650" y="320" text-anchor="middle" fill="#f9a825" font-size="10">PDF/表対応</text>
+<text x="650" y="335" text-anchor="middle" fill="#ffffff" font-size="10">柔軟・複雑</text>
+</svg>
 - **時間配分**: 170分 ÷ 65問 ≈ 2.6分/問（見直し時間を確保）
 - **最初は全問ざっと確認**: 難問はフラグを立てて後回し
 - **消去法**: 明らかに誤った選択肢（AWS 責任範囲外・サービス誤用）から除外
@@ -1251,6 +3633,46 @@ style: |
 
 # 学習リソース一覧
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">Amazon Bedrock — サービスマップ</text>
+<rect x="300" y="50" width="200" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Amazon Bedrock</text>
+<text x="400" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">統合AIプラットフォーム</text>
+<line x1="400" y1="100" x2="129.81248820521088" y2="153.07254695969073" stroke="#f9a825" stroke-width="2"/><polygon points="120,155 130.81125932609842,147.78081224902343 132.7387123664077,157.59330045423428" fill="#f9a825"/>
+<line x1="400" y1="100" x2="298.94427190999915" y2="150.52786404500043" stroke="#f9a825" stroke-width="2"/><polygon points="290,155 298.4970583144992,145.16130089900093 302.96919426949876,154.10557280900008" fill="#f9a825"/>
+<line x1="400" y1="100" x2="452.62845859799256" y2="148.24275371482653" stroke="#f9a825" stroke-width="2"/><polygon points="460,155 447.77552717500436,150.57707515879557 454.5327734601778,143.20553375678813" fill="#f9a825"/>
+<line x1="400" y1="100" x2="630.2526768147172" y2="152.76623843670603" stroke="#f9a825" stroke-width="2"/><polygon points="640,155 627.1863313960138,157.19314771668863 629.4200929593077,147.44582453140586" fill="#f9a825"/>
+<rect x="50" y="155" width="140" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="120" y="173" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Foundation</text>
+<text x="120" y="192" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Models (FM)</text>
+<rect x="220" y="155" width="140" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="290" y="173" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Agents</text>
+<text x="290" y="192" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自律タスク実行</text>
+<rect x="390" y="155" width="140" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="460" y="173" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Knowledge</text>
+<text x="460" y="192" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Bases (RAG)</text>
+<rect x="560" y="155" width="140" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="630" y="173" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Guardrails</text>
+<text x="630" y="192" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">安全・制御</text>
+<line x1="120" y1="205" x2="85.24097425664334" y2="261.48341683295456" stroke="#f9a825" stroke-width="2"/><polygon points="80,270 82.0308775244493,257.1596130712238 90.54746069149473,262.40058732786713" fill="#f9a825"/>
+<line x1="290" y1="205" x2="208.1067922839988" y2="264.1450944615564" stroke="#f9a825" stroke-width="2"/><polygon points="200,270 206.8006979715768,258.9207172118683 212.65560351002037,267.02750949586715" fill="#f9a825"/>
+<line x1="460" y1="205" x2="406.78280102733066" y2="262.6519655537251" stroke="#f9a825" stroke-width="2"/><polygon points="400,270 404.46534400965936,257.79095815080484 411.8133784559342,264.57375917813545" fill="#f9a825"/>
+<line x1="630" y1="205" x2="621.5205718425394" y2="260.11628302349385" stroke="#f9a825" stroke-width="2"/><polygon points="620,270 616.8828277227942,257.3792537069229 626.7665446993003,258.8998255494623" fill="#f9a825"/>
+<rect x="30" y="270" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="90" y="285.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Claude/Llama</text>
+<text x="90" y="304.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Titan/Mistral</text>
+<rect x="150" y="270" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="210" y="285.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Action Groups</text>
+<text x="210" y="304.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Lambda/API</text>
+<rect x="350" y="270" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="410" y="285.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">OpenSearch</text>
+<text x="410" y="304.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Aurora/S3</text>
+<rect x="560" y="270" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="620" y="285.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Filters</text>
+<text x="620" y="304.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Topic/PII</text>
+<text x="400" y="370" text-anchor="middle" fill="#f9a825" font-size="12">API統一: InvokeModel / InvokeModelWithResponseStream / Converse</text>
+</svg>
 - **公式ガイド**: AWS Certified Generative AI Developer – Professional 試験ガイド
 - **AWS Skill Builder**: 公式オンラインコース（無料）+ 公式模擬試験（有料）
 - **Bedrock ドキュメント**: Bedrock User Guide / API Reference（英語・公式）
@@ -1264,6 +3686,47 @@ style: |
 <!-- _class: lead -->
 # まとめ — 合格に向けて
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">モデル選択 デシジョンツリー</text>
+<rect x="300" y="45" width="200" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="67.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">タスクを選択</text>
+
+<line x1="400" y1="90" x2="169.78980419737604" y2="137.96045745888" stroke="#f9a825" stroke-width="2"/><polygon points="160,140 170.72799376629126,132.65764685196797 172.76753630741126,142.447451049344" fill="#f9a825"/>
+<line x1="400" y1="90" x2="400" y2="130" stroke="#f9a825" stroke-width="2"/><polygon points="400,140 395,128 405,128" fill="#f9a825"/>
+<line x1="400" y1="90" x2="630.210195802624" y2="137.96045745888" stroke="#f9a825" stroke-width="2"/><polygon points="640,140 627.2324636925888,142.447451049344 629.2720062337088,132.65764685196797" fill="#f9a825"/>
+<rect x="80" y="140" width="160" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="160" y="154" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">テキスト生成</text>
+<text x="160" y="173" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">会話/要約</text>
+<rect x="320" y="140" width="160" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="154" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">コード生成</text>
+<text x="400" y="173" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">デバッグ</text>
+<rect x="560" y="140" width="160" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="640" y="154" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">マルチモーダル</text>
+<text x="640" y="173" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">画像/動画</text>
+<line x1="160" y1="182" x2="107.18988376049111" y2="233.04977903152525" stroke="#f9a825" stroke-width="2"/><polygon points="100,240 105.15275002835196,228.06479295758476 112.10297099682671,235.25467671807587" fill="#f9a825"/>
+<line x1="160" y1="182" x2="231.90389556605612" y2="234.13032428539069" stroke="#f9a825" stroke-width="2"/><polygon points="240,240 227.3498368219627,237.00444135944076 233.21951253657198,228.90833692549688" fill="#f9a825"/>
+<line x1="400" y1="182" x2="347.1898837604911" y2="233.04977903152525" stroke="#f9a825" stroke-width="2"/><polygon points="340,240 345.152750028352,228.06479295758476 352.1029709968267,235.25467671807587" fill="#f9a825"/>
+<line x1="400" y1="182" x2="452.8101162395089" y2="233.04977903152525" stroke="#f9a825" stroke-width="2"/><polygon points="460,240 447.8970290031733,235.25467671807587 454.847249971648,228.06479295758476" fill="#f9a825"/>
+<line x1="640" y1="182" x2="623.259906833194" y2="230.54627018373728" stroke="#f9a825" stroke-width="2"/><polygon points="620,240 619.1850232917016,227.0255708038877 628.6387531079642,230.28547763708175" fill="#f9a825"/>
+<rect x="40" y="240" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="100" y="253" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Claude 3.5</text>
+<text x="100" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Sonnet</text>
+<rect x="175" y="240" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="235" y="253" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Titan Text</text>
+<text x="235" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Express</text>
+<rect x="280" y="240" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="340" y="253" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Claude 3.5</text>
+<text x="340" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Sonnet</text>
+<rect x="400" y="240" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="460" y="253" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Llama 3.1</text>
+<text x="460" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">70B</text>
+<rect x="560" y="240" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="620" y="253" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold">Claude 3.5</text>
+<text x="620" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Haiku</text>
+<text x="400" y="330" text-anchor="middle" fill="#ffffff" font-size="12">コスト: Haiku &lt; Sonnet &lt; Opus  |  速度: Haiku &gt; Sonnet &gt; Opus</text>
+<text x="400" y="355" text-anchor="middle" fill="#f9a825" font-size="11">本番: Sonnet推奨 / バッチ低コスト: Haiku / 高精度: Opus</text>
+</svg>
 - **5 ドメイン × 100 枚で試験範囲を完全網羅**
 - D3（FM 活用 30%）が最重要 → Bedrock / RAG / Agents を重点対策
 - サービス選択: ユースケース・コスト・スキルレベル・コントロール粒度で判断

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="bold" fill="#ffffff">ドリフト検知と修復フロー</text>
+
+  <!-- Step 1: Scheduled Scan -->
+  <rect x="290" y="60" width="220" height="65" rx="10" fill="#1e3a5f"/>
+  <rect x="290" y="60" width="220" height="8" rx="4" fill="#60a5fa"/>
+  <text x="400" y="88" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#60a5fa">定期スキャン</text>
+  <text x="400" y="108" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#bfdbfe">terraform plan (cron / ArgoCD)</text>
+
+  <!-- Arrow down -->
+  <line x1="400" y1="125" x2="400" y2="170" stroke="#60a5fa" stroke-width="2.5"/>
+  <polygon points="393,170 400,182 407,170" fill="#60a5fa"/>
+
+  <!-- Step 2: Drift Detection Diamond -->
+  <polygon points="400,182 480,222 400,262 320,222" fill="#2d1f4e" stroke="#a78bfa" stroke-width="2"/>
+  <text x="400" y="218" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a78bfa">ドリフト</text>
+  <text x="400" y="236" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e2d9f3">検出？</text>
+
+  <!-- No branch → right → no action -->
+  <line x1="480" y1="222" x2="580" y2="222" stroke="#34d399" stroke-width="2"/>
+  <polygon points="580,215 592,222 580,229" fill="#34d399"/>
+  <rect x="592" y="195" width="140" height="54" rx="8" fill="#1a3a2e"/>
+  <text x="662" y="220" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#34d399">ドリフトなし</text>
+  <text x="662" y="238" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a7f3d0">正常完了</text>
+  <text x="536" y="215" font-family="sans-serif" font-size="11" fill="#34d399">No</text>
+
+  <!-- Yes branch → down -->
+  <line x1="400" y1="262" x2="400" y2="305" stroke="#f87171" stroke-width="2.5"/>
+  <polygon points="393,305 400,317 407,305" fill="#f87171"/>
+  <text x="380" y="290" font-family="sans-serif" font-size="11" fill="#f87171">Yes</text>
+
+  <!-- Step 3: Alert -->
+  <rect x="290" y="317" width="220" height="60" rx="10" fill="#2d1215"/>
+  <rect x="290" y="317" width="220" height="7" rx="4" fill="#f87171"/>
+  <text x="400" y="342" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f87171">アラート送信</text>
+  <text x="400" y="360" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fca5a5">Slack / PagerDuty / OpsGenie</text>
+
+  <!-- Arrow down -->
+  <line x1="400" y1="377" x2="400" y2="405" stroke="#f59e0b" stroke-width="2.5"/>
+  <polygon points="393,405 400,417 407,405" fill="#f59e0b"/>
+
+  <!-- Step 4: Decision diamond -->
+  <polygon points="400,417 470,450 400,483 330,450" fill="#2d2010" stroke="#f59e0b" stroke-width="2"/>
+  <text x="400" y="447" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f59e0b">自動修復</text>
+  <text x="400" y="462" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fde68a">可能？</text>
+
+  <!-- Yes → auto fix left -->
+  <line x1="330" y1="450" x2="225" y2="450" stroke="#34d399" stroke-width="2"/>
+  <polygon points="225,443 213,450 225,457" fill="#34d399"/>
+  <rect x="80" y="425" width="133" height="50" rx="8" fill="#1a3a2e"/>
+  <text x="147" y="447" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399">terraform apply</text>
+  <text x="147" y="465" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a7f3d0">自動修復</text>
+  <text x="277" y="443" font-family="sans-serif" font-size="11" fill="#34d399">Yes</text>
+
+  <!-- No → manual right -->
+  <line x1="470" y1="450" x2="570" y2="450" stroke="#f87171" stroke-width="2"/>
+  <polygon points="570,443 582,450 570,457" fill="#f87171"/>
+  <rect x="582" y="425" width="150" height="50" rx="8" fill="#2d1215"/>
+  <text x="657" y="447" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#f87171">手動対応</text>
+  <text x="657" y="465" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fca5a5">インシデント起票</text>
+  <text x="472" y="443" font-family="sans-serif" font-size="11" fill="#f87171">No</text>
+
+  <!-- Side annotations -->
+  <rect x="30" y="60" width="220" height="115" rx="8" fill="#111827"/>
+  <text x="140" y="83" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#a78bfa">ドリフト検知ツール</text>
+  <text x="50" y="105" font-family="sans-serif" font-size="11" fill="#e5e7eb">• terraform plan -detailed-exitcode</text>
+  <text x="50" y="123" font-family="sans-serif" font-size="11" fill="#e5e7eb">• Atlantis (PR-based plan)</text>
+  <text x="50" y="141" font-family="sans-serif" font-size="11" fill="#e5e7eb">• Driftctl / Infracost</text>
+  <text x="50" y="159" font-family="sans-serif" font-size="11" fill="#e5e7eb">• ArgoCD (K8s drift)</text>
+
+  <rect x="548" y="60" width="220" height="115" rx="8" fill="#111827"/>
+  <text x="658" y="83" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">修復戦略</text>
+  <text x="568" y="105" font-family="sans-serif" font-size="11" fill="#e5e7eb">• import でコード化</text>
+  <text x="568" y="123" font-family="sans-serif" font-size="11" fill="#e5e7eb">• 手動変更を禁止 (IaC only)</text>
+  <text x="568" y="141" font-family="sans-serif" font-size="11" fill="#e5e7eb">• Override よりコード修正優先</text>
+  <text x="568" y="159" font-family="sans-serif" font-size="11" fill="#e5e7eb">• 定期的な state refresh</text>
+</svg>

@@ -5,6 +5,7 @@ output:
   baseName: "multitasking-myth"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "注意と認知の限界"
   footer: "© 2026"

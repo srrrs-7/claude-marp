@@ -5,6 +5,7 @@ output:
   baseName: "english-global-standard"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "英語の世界標準化"
   footer: "© 2026"

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <text x="400" y="36" text-anchor="middle" font-size="20" font-weight="bold" fill="#ffffff" font-family="sans-serif">よくある落とし穴 — アンチパターン &amp; 対策</text>
+
+  <!-- Header row -->
+  <rect x="30" y="60" width="350" height="35" rx="5" fill="#3d1515"/>
+  <text x="205" y="83" text-anchor="middle" font-size="13" font-weight="bold" fill="#f87171" font-family="sans-serif">アンチパターン</text>
+  <rect x="420" y="60" width="350" height="35" rx="5" fill="#1a3a2a"/>
+  <text x="595" y="83" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399" font-family="sans-serif">対策 / ベストプラクティス</text>
+
+  <!-- Row 1 -->
+  <rect x="30" y="100" width="350" height="55" rx="4" fill="#2a1010" stroke="#f87171" stroke-width="1"/>
+  <text x="205" y="120" text-anchor="middle" font-size="12" font-weight="bold" fill="#f87171" font-family="sans-serif">ビッグバン移行</text>
+  <text x="205" y="140" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">全サービスを一気にGitOps化しようとする</text>
+  <rect x="420" y="100" width="350" height="55" rx="4" fill="#101a15" stroke="#34d399" stroke-width="1"/>
+  <text x="595" y="120" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399" font-family="sans-serif">パイロット→段階移行</text>
+  <text x="595" y="140" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">1チーム・1サービスで実証後に展開</text>
+
+  <!-- Row 2 -->
+  <rect x="30" y="160" width="350" height="55" rx="4" fill="#2a1010" stroke="#f87171" stroke-width="1"/>
+  <text x="205" y="180" text-anchor="middle" font-size="12" font-weight="bold" fill="#f87171" font-family="sans-serif">過度なカスタマイズ</text>
+  <text x="205" y="200" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">ツールをカスタマイズし過ぎて保守不能に</text>
+  <rect x="420" y="160" width="350" height="55" rx="4" fill="#101a15" stroke="#34d399" stroke-width="1"/>
+  <text x="595" y="180" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399" font-family="sans-serif">Upstream準拠</text>
+  <text x="595" y="200" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">デフォルト設定優先、拡張は最小限に</text>
+
+  <!-- Row 3 -->
+  <rect x="30" y="220" width="350" height="55" rx="4" fill="#2a1010" stroke="#f87171" stroke-width="1"/>
+  <text x="205" y="240" text-anchor="middle" font-size="12" font-weight="bold" fill="#f87171" font-family="sans-serif">Platform Teamの孤立</text>
+  <text x="205" y="260" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">開発チームのニーズを無視した基盤構築</text>
+  <rect x="420" y="220" width="350" height="55" rx="4" fill="#101a15" stroke="#34d399" stroke-width="1"/>
+  <text x="595" y="240" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399" font-family="sans-serif">製品思考 (Product Thinking)</text>
+  <text x="595" y="260" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">定期的なフィードバックループの確立</text>
+
+  <!-- Row 4 -->
+  <rect x="30" y="280" width="350" height="55" rx="4" fill="#2a1010" stroke="#f87171" stroke-width="1"/>
+  <text x="205" y="300" text-anchor="middle" font-size="12" font-weight="bold" fill="#f87171" font-family="sans-serif">ドキュメント不足</text>
+  <text x="205" y="320" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">使い方が分からず開発者が使わない</text>
+  <rect x="420" y="280" width="350" height="55" rx="4" fill="#101a15" stroke="#34d399" stroke-width="1"/>
+  <text x="595" y="300" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399" font-family="sans-serif">Developer Portal (Backstage)</text>
+  <text x="595" y="320" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">ドキュメント・カタログを一元管理</text>
+
+  <!-- Row 5 -->
+  <rect x="30" y="340" width="350" height="55" rx="4" fill="#2a1010" stroke="#f87171" stroke-width="1"/>
+  <text x="205" y="360" text-anchor="middle" font-size="12" font-weight="bold" fill="#f87171" font-family="sans-serif">Secretのハードコーディング</text>
+  <text x="205" y="380" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">Gitリポジトリに認証情報を直接コミット</text>
+  <rect x="420" y="340" width="350" height="55" rx="4" fill="#101a15" stroke="#34d399" stroke-width="1"/>
+  <text x="595" y="360" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399" font-family="sans-serif">ESO + Vault</text>
+  <text x="595" y="380" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">Gitleaks でCIブロック、Secret自動ローテーション</text>
+
+  <!-- Row 6 -->
+  <rect x="30" y="400" width="350" height="55" rx="4" fill="#2a1010" stroke="#f87171" stroke-width="1"/>
+  <text x="205" y="420" text-anchor="middle" font-size="12" font-weight="bold" fill="#f87171" font-family="sans-serif">可観測性の後回し</text>
+  <text x="205" y="440" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">障害発生時に原因究明ができない</text>
+  <rect x="420" y="400" width="350" height="55" rx="4" fill="#101a15" stroke="#34d399" stroke-width="1"/>
+  <text x="595" y="420" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399" font-family="sans-serif">Observability First</text>
+  <text x="595" y="440" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">Phase 1からGrafana Stack導入</text>
+
+  <!-- Arrow divider -->
+  <line x1="390" y1="60" x2="390" y2="455" stroke="#334155" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="405" y="83" text-anchor="middle" font-size="14" fill="#334155" font-family="sans-serif">→</text>
+</svg>

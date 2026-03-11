@@ -5,6 +5,7 @@ output:
   baseName: "theseus-ship-refactoring"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ソフトウェアのアイデンティティ問題"
   footer: "© 2026"

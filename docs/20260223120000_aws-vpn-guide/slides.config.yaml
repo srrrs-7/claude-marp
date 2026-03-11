@@ -21,6 +21,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "AWS ANS — VPN完全ガイド"
   footer: "© 2026 AWS Networking Reference"

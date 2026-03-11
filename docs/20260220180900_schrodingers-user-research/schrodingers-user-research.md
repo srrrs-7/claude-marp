@@ -7,9 +7,74 @@ paginate: true
 header: "シュレーディンガーのユーザー"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section { font-size: 1.05em; }
   section pre code { font-size: 0.58em; line-height: 1.4; }
-
+  
 ---
 
 <!-- _class: lead -->
@@ -68,13 +133,23 @@ style: |
 
 ---
 
-# 観測者効果：観測行為が現実を変える
+# 観測者効果：観測行為が現実を変える（1/2）
 
+![w:800 center](assets/uncertainty-principle.svg)
 - ### 不確定性原理（ハイゼンベルク, 1927）
 - 
 - - 粒子の「位置」と「運動量」を同時に正確に測定することは**不可能**
 - - 位置を測ろうとすること自体が、運動量に影響を与える
 - - **測定という行為が、測定対象を変えてしまう**
+
+<!--
+ハイゼンベルクの不確定性原理はΔx・Δp ≥ ℏ/2 で表される。これはユーザーリサーチにおいて「詳細に観察するほど自然な行動から遠ざかる」というトレードオフと同型。
+-->
+
+---
+
+# 観測者効果：観測行為が現実を変える（2/2）
+
 - 
 - ### ユーザーリサーチへの示唆
 - 
@@ -162,13 +237,23 @@ style: |
 
 ---
 
-# アンケートの嘘：言うことと行動は違う
+# アンケートの嘘：言うことと行動は違う（1/2）
 
+![w:800 center](assets/survey-behavior-gap.svg)
 - ### 社会的望ましさバイアス（Social Desirability Bias）
 - 
 - - 人は「本当にしていること」より「すべきこと」を回答する傾向
 - - 「健康的な食事をしていますか？」→ 実際より多く「はい」と答える
 - 
+
+<!--
+言語で報告された行動と実際の行動の乖離は心理学で繰り返し実証されている。LaPiere(1934)の研究でも、レストランが中国人カップルを実際には受け入れたが、アンケートでは拒否すると回答。
+-->
+
+---
+
+# アンケートの嘘：言うことと行動は違う（2/2）
+
 - ### プロダクトでの実例
 - 
 - - アンケート：「このUIは使いにくい」と答えない → 実際は離脱している
@@ -181,7 +266,7 @@ style: |
 
 ---
 
-# インタビューの量子的困難
+# インタビューの量子的困難（1/2）
 
 - ### 観測の連鎖反応
 - 
@@ -189,6 +274,15 @@ style: |
 - → ユーザーが「正しい答え」を考える
 - → ユーザーが「観察者が期待する答え」を推測する
 - → ユーザーが記憶を再構成・合理化する
+
+<!--
+量子的に言えば：インタビューという「測定装置」が粒子（ユーザー）の状態を変えてしまっている。測定精度を上げようとするほど、「自然な状態」から遠ざかる。
+-->
+
+---
+
+# インタビューの量子的困難（2/2）
+
 - → 回答が「本当の行動」から乖離する
 - 
 - ### 典型的なトラップ
@@ -224,13 +318,23 @@ style: |
 
 ---
 
-# A/Bテスト：多世界解釈としての実験
+# A/Bテスト：多世界解釈としての実験（1/2）
 
+![w:800 center](assets/ab-test-multiworld.svg)
 - ### 量子力学の「多世界解釈」（Everett, 1957）
 - 
 - - 観測のたびに世界が分岐し、すべての可能性が並行して実現する
 - - どの「世界」を観測するかで、見える結果が変わる
 - 
+
+<!--
+エヴェレットの多世界解釈はA/Bテストの完璧なメタファー。ユーザーA群とB群は「異なる世界に生きるユーザー」。両世界を同時に走らせることで、観測の歪みを最小化しながら差異を測定できる。
+-->
+
+---
+
+# A/Bテスト：多世界解釈としての実験（2/2）
+
 - ### A/Bテストとの対応
 - 
 - - バリアントA・Bは「並行して実現する世界」
@@ -245,7 +349,7 @@ style: |
 ---
 
 <!-- _class: lead -->
-# まとめ：ユーザーは「観測設計」から始まる
+# まとめ：ユーザーは「観測設計」から始まる（1/2）
 
 - ### 3つの量子的教訓
 - 
@@ -253,6 +357,16 @@ style: |
 - 調査前のユーザー像は「可能性の波」でしかない
 - 
 - **2. 観測行為が現実を作る**
+
+<!--
+リサーチ結果を「ユーザーの真実」と受け取るのではなく、「この観測手法が生み出したユーザー像」と意識することが重要。複数の手法を組み合わせることで、観測バイアスを打ち消し合う。
+-->
+
+---
+
+<!-- _class: lead -->
+# まとめ：ユーザーは「観測設計」から始まる（2/2）
+
 - どの手法で調べるかが、どんな「ユーザー」が現れるかを決める
 - 
 - **3. 弱い測定を積み重ねよ**
@@ -266,7 +380,7 @@ style: |
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - **量子力学・観測問題:**
 - - [Schrödinger's Cat - Wikipedia](https://en.wikipedia.org/wiki/Schr%C3%B6dinger%27s_cat)
@@ -274,6 +388,12 @@ style: |
 - - [Many-Worlds Interpretation (Everett, 1957)](https://plato.stanford.edu/entries/qm-manyworlds/)
 - 
 - **ホーソン効果・観察バイアス:**
+
+
+---
+
+# 参考文献（2/2）
+
 - - [Hawthorne Effect - Wikipedia](https://en.wikipedia.org/wiki/Hawthorne_effect)
 - - [Social Desirability Bias in Research](https://www.simplypsychology.org/social-desirability-bias.html)
 - 

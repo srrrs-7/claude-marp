@@ -5,6 +5,7 @@ output:
   baseName: "loneliness-health-risk"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "孤独の健康科学"
   footer: "© 2026"

@@ -5,6 +5,7 @@ output:
   baseName: "cargo-cult-programming"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "カーゴカルト・プログラミング"
   footer: "© 2026"

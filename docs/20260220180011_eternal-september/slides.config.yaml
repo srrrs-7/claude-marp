@@ -5,6 +5,7 @@ output:
   baseName: "eternal-september"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "エターナル・セプテンバー"
   footer: "© 2026"

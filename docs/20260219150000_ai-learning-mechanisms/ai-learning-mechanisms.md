@@ -1,6 +1,7 @@
 ---
 marp: true
 theme: gaia
+class: invert
 size: 16:9
 paginate: true
 header: "AIの学習の仕組み"
@@ -184,6 +185,11 @@ style: |
 
 - SGD + Momentum: 鞍点を乗り越える慣性を付与
 - AdaGrad: 疎な勾配に適応的学習率 (累積二乗和で除算)
+
+
+---
+
+# SGD → Adam → AdamW の進化（コード例）
 
 ```python
 # Adam optimizer update
@@ -628,6 +634,11 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 - Rafailov et al. (2023): RLHF を PPO なしに単一損失で実現
 - 最適方策のクローズドフォーム: π* ∝ π_ref · exp(r/β)
 
+
+---
+
+# DPO: 直接選好最適化（コード例）
+
 ```python
 # DPO Loss (Rafailov et al., 2023)
 def dpo_loss(pi_logp_w, pi_logp_l, ref_logp_w, ref_logp_l, beta=0.1):
@@ -669,6 +680,11 @@ def dpo_loss(pi_logp_w, pi_logp_l, ref_logp_w, ref_logp_l, beta=0.1):
 # LoRA / QLoRA
 
 - LoRA: W + ΔW = W + BA (B∈R^{d×r}, A∈R^{r×k}, r << min(d,k))
+
+
+---
+
+# LoRA / QLoRA（コード例）
 
 ```python
 class LoRALayer(nn.Module):

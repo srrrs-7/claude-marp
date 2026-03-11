@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">ハルシネーションの4類型 — 地図の比喩で理解する</text>
+  <!-- 4 boxes -->
+  <rect x="30" y="60" width="360" height="120" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="210" y="87" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">Intrinsic Hallucination</text>
+  <text x="210" y="107" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">入力と矛盾する出力</text>
+  <text x="210" y="127" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">地図の歪み</text>
+  <text x="210" y="147" fill="#888888" font-size="9" font-family="sans-serif" text-anchor="middle">「要約して」→ 原文と逆の内容</text>
+  <text x="210" y="163" fill="#888888" font-size="9" font-family="sans-serif" text-anchor="middle">既存情報の誤り</text>
+  <rect x="410" y="60" width="360" height="120" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="590" y="87" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">Extrinsic Hallucination</text>
+  <text x="590" y="107" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">検証不能な情報の追加</text>
+  <text x="590" y="127" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">地図にない道</text>
+  <text x="590" y="147" fill="#888888" font-size="9" font-family="sans-serif" text-anchor="middle">存在しない情報源の引用</text>
+  <text x="590" y="163" fill="#888888" font-size="9" font-family="sans-serif" text-anchor="middle">架空の統計・数値</text>
+  <rect x="30" y="205" width="360" height="120" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="210" y="232" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">Factual Hallucination</text>
+  <text x="210" y="252" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">事実と異なる情報</text>
+  <text x="210" y="272" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">架空の論文・人物の引用</text>
+  <text x="210" y="292" fill="#888888" font-size="9" font-family="sans-serif" text-anchor="middle">日付・数値の誤り</text>
+  <text x="210" y="308" fill="#888888" font-size="9" font-family="sans-serif" text-anchor="middle">存在しないAPIの説明</text>
+  <rect x="410" y="205" width="360" height="120" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="590" y="232" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">Faithfulness Hallucination</text>
+  <text x="590" y="252" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">指示と矛盾する出力</text>
+  <text x="590" y="272" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">地図の読み間違い</text>
+  <text x="590" y="292" fill="#888888" font-size="9" font-family="sans-serif" text-anchor="middle">「日本語で答えて」→ 英語</text>
+  <text x="590" y="308" fill="#888888" font-size="9" font-family="sans-serif" text-anchor="middle">フォーマット指示の無視</text>
+  <!-- common cause -->
+  <rect x="150" y="350" width="500" height="26" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="400" y="368" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">全類型の共通原因: 地図と領土の混同</text>
+</svg>

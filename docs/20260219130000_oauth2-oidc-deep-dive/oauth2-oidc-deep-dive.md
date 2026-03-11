@@ -1,6 +1,7 @@
 ---
 marp: true
 theme: gaia
+class: invert
 size: 16:9
 paginate: true
 header: "OAuth2 / OIDC 実装詳細ガイド"
@@ -59,6 +60,11 @@ style: |
 
 ![w:580 center](assets/pkce-deep-dive.svg)
 
+
+---
+
+# PKCE 深掘り — code_verifier / challenge 生成（コード例）
+
 ```typescript
 // PKCE S256 生成 (TypeScript)
 const verifier = randomBytes(32).toString('base64url');
@@ -80,6 +86,11 @@ authParams.code_challenge_method = 'S256';
 - **認証方式**: `client_secret_basic` / `client_secret_post` / **`private_key_jwt`（推奨）**
 - **スコープ設計**: リソース単位 `payments:write` or サービス単位 `payment-service`
 - **注意**: リフレッシュトークンなし。有効期限は短め（5〜15 分）推奨
+
+
+---
+
+# クライアントクレデンシャルフロー (RFC 6749 §4.4) — M2M 認証（コード例）
 
 ```http
 POST /token
@@ -110,6 +121,11 @@ grant_type=client_credentials&scope=payments:write
 - **refresh_token**: `refresh_token` + `scope`（元スコープ以下のみ縮小可）
 - **レスポンス**: `access_token` / `token_type: Bearer` / `expires_in` / `id_token`（OIDC）
 
+
+---
+
+# トークンエンドポイント — grant_type 別パラメータ詳解（コード例）
+
 ```json
 // Token Response (OIDC)
 {
@@ -132,6 +148,11 @@ grant_type=client_credentials&scope=payments:write
 - **キャッシュ推奨**: `Cache-Control: max-age` で有効期限まで結果をキャッシュ
 - **保護**: リソースサーバーもクライアント認証が必要（無制限アクセス禁止）
 
+
+---
+
+# トークンイントロスペクション (RFC 7662) — リソースサーバー統合（コード例）
+
 ```http
 POST /introspect
 Authorization: Basic base64(rs-id:rs-secret)
@@ -152,6 +173,11 @@ token=eyJhbGc...&token_type_hint=access_token
 - **失効伝播**: RT 失効 → 紐づく AT も失効推奨。逆は非推奨
 - **成功レスポンス**: `200 OK`（トークン不存在でも 200 返却）
 - **ユースケース**: ログアウト・デバイス紛失・セキュリティインシデント時の全セッション強制終了
+
+
+---
+
+# トークン失効 (RFC 7009) — 即時無効化（コード例）
 
 ```http
 POST /revoke
@@ -217,6 +243,11 @@ token=def50200...&token_type_hint=refresh_token
 - **推奨追加**: `introspection_endpoint`, `revocation_endpoint`, `code_challenge_methods_supported`
 - **実装**: URL = `issuer + /.well-known/openid-configuration`
 
+
+---
+
+# Discovery ドキュメント — /.well-known/openid-configuration（コード例）
+
 ```json
 {
   "issuer": "https://auth.example.com",
@@ -269,6 +300,11 @@ token=def50200...&token_type_hint=refresh_token
 - **レスポンス**: JSON or JWT（署名 / 暗号化も可能）
 - **集約クレーム**: 外部 IdP クレームを aggregate して返すことも可能
 
+
+---
+
+# UserInfo エンドポイント — スコープとクレームマッピング（コード例）
+
 ```http
 GET /userinfo HTTP/1.1
 Authorization: Bearer eyJhbGc...
@@ -304,6 +340,11 @@ Authorization: Bearer eyJhbGc...
 - ⚠ **Popup Blocker / Cookie 制限によるサイレント失敗の可能性**
 - RP は `204 No Content` or `200 OK` を返却（リダイレクト禁止）
 
+
+---
+
+# Front-Channel Logout — iframe ブロードキャスト（コード例）
+
 ```http
 # RP が OP に事前登録する frontchannel_logout_uri
 https://rp.example.com/logout
@@ -331,6 +372,11 @@ https://rp.example.com/logout
 - **`post_logout_redirect_uri`**: ログアウト後のリダイレクト先（RP 側で事前登録必要）
 - **Cognito**: `logout` エンドポイント + `client_id` + `logout_uri` パラメータ形式
 
+
+---
+
+# RP-Initiated Logout — エンドユーザー主導ログアウト（コード例）
+
 ```http
 GET /end_session
 
@@ -352,6 +398,11 @@ https://<domain>.auth.ap-northeast-1.amazoncognito.com/logout
 - **Cognito**: `Pre Token Generation` Lambda Trigger でクレームを追加・変換
 - **外部 IdP マッピング**: Attribute Mapping で外部クレームを内部クレームに変換
 - **肥大化防止**: 頻繁参照クレームのみ AT/ID Token に。その他は UserInfo エンドポイントへ
+
+
+---
+
+# カスタムクレーム設計 — ネームスペースと外部 IdP マッピング（コード例）
 
 ```javascript
 // Pre Token Generation Lambda (Cognito)
@@ -399,6 +450,11 @@ exports.handler = async (event) => {
 - **適用先**: 金融 API (PSD2) / 医療 / 電子処方箋 / 法人間契約
 - **FAPI 2.0**: PAR + RAR の組み合わせが標準フロー
 
+
+---
+
+# RAR — Rich Authorization Requests (RFC 9396) — 精緻な認可要求（コード例）
+
 ```json
 {
   "authorization_details": [{
@@ -423,6 +479,11 @@ exports.handler = async (event) => {
 - **検証必須**: `iss` / `aud`（client_id）/ `exp` を検証 → Mix-Up 攻撃防止
 - **FAPI 2.0 必須**: `query.jwt` or `form_post.jwt`
 
+
+---
+
+# JARM — JWT Secured Authorization Response Mode（コード例）
+
 ```http
 # response_mode=query.jwt での Authorization Response
 GET /callback?response=eyJhbGciOiJSUzI1NiJ9...
@@ -445,6 +506,11 @@ GET /callback?response=eyJhbGciOiJSUzI1NiJ9...
 - **Certificate-Bound AT**: `cnf.x5t#S256` クレームで証明書フィンガープリントをバインド
 - **RS での検証**: TLS クライアント証明書のフィンガープリントと AT の `cnf` を照合
 - **PKI**: 自己署名 or プライベート CA（ACM PCA）で発行。SAN に client_id を含める
+
+
+---
+
+# OAuth2 + mTLS クライアント認証 (RFC 8705) — 証明書バインドトークン（コード例）
 
 ```http
 # Token Request（証明書は TLS ハンドシェイク済み）

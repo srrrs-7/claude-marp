@@ -5,6 +5,7 @@ output:
   baseName: "matthew-effect-tech"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "マタイ効果とテック格差"
   footer: "© 2026"

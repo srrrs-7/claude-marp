@@ -5,6 +5,7 @@ output:
   baseName: "observer-effect-heisenbug"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "観察者効果 × Heisenbug"
   footer: "© 2026"

@@ -5,6 +5,7 @@ output:
   baseName: "genius-programmer-myth"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "天才プログラマー神話"
   footer: "© 2026"

@@ -5,6 +5,7 @@ output:
   baseName: "schrodingers-user-research"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "シュレーディンガーのユーザー"
   footer: "© 2026"

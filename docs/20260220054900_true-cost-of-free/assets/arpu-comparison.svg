@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="700" height="300" fill="#1a1a2e"/>
+  <text x="350" y="30" text-anchor="middle" font-size="16" fill="#f9a825" font-weight="bold" font-family="sans-serif">年間ARPU比較（2023年）— あなたの「値段」</text>
+  <line x1="60" y1="240" x2="660" y2="240" stroke="#555" stroke-width="1"/>
+  <line x1="60" y1="60" x2="60" y2="240" stroke="#555" stroke-width="1"/>
+  <text x="55" y="244" text-anchor="end" font-size="9" fill="#888" font-family="sans-serif">$0</text>
+  <text x="55" y="194" text-anchor="end" font-size="9" fill="#888" font-family="sans-serif">$50</text>
+  <text x="55" y="144" text-anchor="end" font-size="9" fill="#888" font-family="sans-serif">$100</text>
+  <text x="55" y="94" text-anchor="end" font-size="9" fill="#888" font-family="sans-serif">$150</text>
+  <text x="55" y="64" text-anchor="end" font-size="9" fill="#888" font-family="sans-serif">$200</text>
+  <line x1="60" y1="194" x2="660" y2="194" stroke="#333" stroke-width="0.5" stroke-dasharray="4,4"/>
+  <line x1="60" y1="144" x2="660" y2="144" stroke="#333" stroke-width="0.5" stroke-dasharray="4,4"/>
+  <line x1="60" y1="94" x2="660" y2="94" stroke="#333" stroke-width="0.5" stroke-dasharray="4,4"/>
+  <!-- Meta 北米 $214 -->
+  <rect x="80" y="62" width="90" height="178" rx="4" fill="#e91e63" opacity="0.9"/>
+  <text x="125" y="56" text-anchor="middle" font-size="12" fill="#e91e63" font-weight="bold" font-family="sans-serif">$214</text>
+  <text x="125" y="258" text-anchor="middle" font-size="10" fill="#ccc" font-family="sans-serif">Meta</text>
+  <text x="125" y="272" text-anchor="middle" font-size="10" fill="#ccc" font-family="sans-serif">北米</text>
+  <!-- Meta 欧州 $72 -->
+  <rect x="195" y="168" width="90" height="72" rx="4" fill="#e91e63" opacity="0.65"/>
+  <text x="240" y="162" text-anchor="middle" font-size="12" fill="#e91e63" font-weight="bold" font-family="sans-serif">$72</text>
+  <text x="240" y="258" text-anchor="middle" font-size="10" fill="#ccc" font-family="sans-serif">Meta</text>
+  <text x="240" y="272" text-anchor="middle" font-size="10" fill="#ccc" font-family="sans-serif">欧州</text>
+  <!-- Meta APAC $19 -->
+  <rect x="310" y="221" width="90" height="19" rx="4" fill="#e91e63" opacity="0.45"/>
+  <text x="355" y="215" text-anchor="middle" font-size="12" fill="#e91e63" font-weight="bold" font-family="sans-serif">$19</text>
+  <text x="355" y="258" text-anchor="middle" font-size="10" fill="#ccc" font-family="sans-serif">Meta</text>
+  <text x="355" y="272" text-anchor="middle" font-size="10" fill="#ccc" font-family="sans-serif">APAC</text>
+  <!-- Google 全世界 $31 -->
+  <rect x="425" y="209" width="90" height="31" rx="4" fill="#4fc3f7" opacity="0.8"/>
+  <text x="470" y="203" text-anchor="middle" font-size="12" fill="#4fc3f7" font-weight="bold" font-family="sans-serif">$31</text>
+  <text x="470" y="258" text-anchor="middle" font-size="10" fill="#ccc" font-family="sans-serif">Google</text>
+  <text x="470" y="272" text-anchor="middle" font-size="10" fill="#ccc" font-family="sans-serif">全世界</text>
+  <!-- YouTube Premium $144 -->
+  <rect x="545" y="96" width="90" height="144" rx="4" fill="#4caf50" opacity="0.8"/>
+  <text x="590" y="90" text-anchor="middle" font-size="12" fill="#4caf50" font-weight="bold" font-family="sans-serif">$144</text>
+  <text x="590" y="258" text-anchor="middle" font-size="10" fill="#ccc" font-family="sans-serif">YT Premium</text>
+  <text x="590" y="272" text-anchor="middle" font-size="10" fill="#ccc" font-family="sans-serif">（有料）</text>
+</svg>

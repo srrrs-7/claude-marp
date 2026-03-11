@@ -5,6 +5,7 @@ output:
   baseName: "tokyo-trains-punctuality"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "東京の鉄道定時運行"
   footer: "© 2026"

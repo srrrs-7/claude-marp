@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="36" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">今日からできるアクション — 5ステップ</text>
+
+  <!-- Step flow: horizontal with arrows -->
+
+  <!-- Step 1 -->
+  <rect x="30" y="65" width="130" height="155" fill="#16213e" stroke="#60a5fa" stroke-width="2.5" rx="10"/>
+  <circle cx="95" cy="90" r="18" fill="#60a5fa"/>
+  <text x="95" y="95" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">1</text>
+  <text x="95" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">今日</text>
+  <text x="95" y="143" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">Copilot/Claude</text>
+  <text x="95" y="159" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">無料トライアル</text>
+  <text x="95" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">を今日開始する</text>
+  <text x="95" y="195" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">所要: 15分</text>
+  <rect x="50" y="205" width="90" height="5" fill="#60a5fa" rx="2"/>
+
+  <!-- Arrow 1→2 -->
+  <line x1="160" y1="143" x2="185" y2="143" stroke="#a78bfa" stroke-width="2"/>
+  <polygon points="185,138 195,143 185,148" fill="#a78bfa"/>
+
+  <!-- Step 2 -->
+  <rect x="195" y="65" width="130" height="155" fill="#16213e" stroke="#a78bfa" stroke-width="2.5" rx="10"/>
+  <circle cx="260" cy="90" r="18" fill="#a78bfa"/>
+  <text x="260" y="95" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">2</text>
+  <text x="260" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#a78bfa">今週</text>
+  <text x="260" y="143" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">既存タスクに</text>
+  <text x="260" y="159" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">AIを組み込む</text>
+  <text x="260" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">小さく試す</text>
+  <text x="260" y="195" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">所要: 1-2時間</text>
+  <rect x="215" y="205" width="90" height="5" fill="#a78bfa" rx="2"/>
+
+  <!-- Arrow 2→3 -->
+  <line x1="325" y1="143" x2="350" y2="143" stroke="#34d399" stroke-width="2"/>
+  <polygon points="350,138 360,143 350,148" fill="#34d399"/>
+
+  <!-- Step 3 -->
+  <rect x="360" y="65" width="130" height="155" fill="#16213e" stroke="#34d399" stroke-width="2.5" rx="10"/>
+  <circle cx="425" cy="90" r="18" fill="#34d399"/>
+  <text x="425" y="95" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">3</text>
+  <text x="425" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">今月</text>
+  <text x="425" y="143" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">チームに共有</text>
+  <text x="425" y="159" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">勉強会・LT開催</text>
+  <text x="425" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">ベスト実践を収集</text>
+  <text x="425" y="195" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">所要: 1スプリント</text>
+  <rect x="380" y="205" width="90" height="5" fill="#34d399" rx="2"/>
+
+  <!-- Arrow 3→4 -->
+  <line x1="490" y1="143" x2="515" y2="143" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="515,138 525,143 515,148" fill="#fbbf24"/>
+
+  <!-- Step 4 -->
+  <rect x="525" y="65" width="130" height="155" fill="#16213e" stroke="#fbbf24" stroke-width="2.5" rx="10"/>
+  <circle cx="590" cy="90" r="18" fill="#fbbf24"/>
+  <text x="590" y="95" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">4</text>
+  <text x="590" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">3ヶ月後</text>
+  <text x="590" y="143" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">ワークフロー</text>
+  <text x="590" y="159" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">全体をAI対応</text>
+  <text x="590" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">KPIで効果測定</text>
+  <text x="590" y="195" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">所要: 1四半期</text>
+  <rect x="545" y="205" width="90" height="5" fill="#fbbf24" rx="2"/>
+
+  <!-- Arrow 4→5 -->
+  <line x1="655" y1="143" x2="675" y2="143" stroke="#f472b6" stroke-width="2"/>
+  <polygon points="675,138 685,143 675,148" fill="#f472b6"/>
+
+  <!-- Step 5 -->
+  <rect x="680" y="65" width="105" height="155" fill="#16213e" stroke="#f472b6" stroke-width="2.5" rx="10"/>
+  <circle cx="732" cy="90" r="18" fill="#f472b6"/>
+  <text x="732" y="95" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">5</text>
+  <text x="732" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f472b6">半年後</text>
+  <text x="732" y="143" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">AI-first</text>
+  <text x="732" y="159" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">組織へ転換</text>
+  <text x="732" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">社外発信</text>
+  <text x="732" y="195" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94a3b8">所要: 継続</text>
+  <rect x="692" y="205" width="80" height="5" fill="#f472b6" rx="2"/>
+
+  <!-- Immediate action checklist -->
+  <rect x="30" y="242" width="740" height="195" fill="#16213e" stroke="#a78bfa" stroke-width="1.5" rx="8"/>
+  <text x="400" y="267" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#a78bfa">今日できる具体的アクション（チェックリスト）</text>
+
+  <!-- Column 1 -->
+  <text x="55" y="292" font-family="sans-serif" font-size="13" fill="#60a5fa">□</text>
+  <text x="75" y="292" font-family="sans-serif" font-size="12" fill="#e2e8f0">GitHub Copilot 無料試用開始（30日）</text>
+  <text x="55" y="314" font-family="sans-serif" font-size="13" fill="#60a5fa">□</text>
+  <text x="75" y="314" font-family="sans-serif" font-size="12" fill="#e2e8f0">Claude.ai / ChatGPT にコードを貼って相談</text>
+  <text x="55" y="336" font-family="sans-serif" font-size="13" fill="#60a5fa">□</text>
+  <text x="75" y="336" font-family="sans-serif" font-size="12" fill="#e2e8f0">今日のバグをAIに解析してもらう</text>
+  <text x="55" y="358" font-family="sans-serif" font-size="13" fill="#60a5fa">□</text>
+  <text x="75" y="358" font-family="sans-serif" font-size="12" fill="#e2e8f0">既存関数のテストをAIで生成する</text>
+  <text x="55" y="380" font-family="sans-serif" font-size="13" fill="#60a5fa">□</text>
+  <text x="75" y="380" font-family="sans-serif" font-size="12" fill="#e2e8f0">AIドキュメント生成を1ファイルで試す</text>
+
+  <!-- Column 2 -->
+  <text x="420" y="292" font-family="sans-serif" font-size="13" fill="#34d399">□</text>
+  <text x="440" y="292" font-family="sans-serif" font-size="12" fill="#e2e8f0">チームSlackに #ai-tools チャンネル作成</text>
+  <text x="420" y="314" font-family="sans-serif" font-size="13" fill="#34d399">□</text>
+  <text x="440" y="314" font-family="sans-serif" font-size="12" fill="#e2e8f0">AI活用事例を1つ社内Wikiに書く</text>
+  <text x="420" y="336" font-family="sans-serif" font-size="13" fill="#34d399">□</text>
+  <text x="440" y="336" font-family="sans-serif" font-size="12" fill="#e2e8f0">来週の勉強会スケジュールを設定</text>
+  <text x="420" y="358" font-family="sans-serif" font-size="13" fill="#34d399">□</text>
+  <text x="440" y="358" font-family="sans-serif" font-size="12" fill="#e2e8f0">AIセキュリティポリシーのドラフト作成</text>
+  <text x="420" y="380" font-family="sans-serif" font-size="13" fill="#34d399">□</text>
+  <text x="440" y="380" font-family="sans-serif" font-size="12" fill="#e2e8f0">マネージャーにAI導入提案書を送る</text>
+
+  <!-- Footer -->
+  <text x="400" y="482" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#94a3b8">最初の一歩が全て — 今日始めることが半年後の差を生む</text>
+</svg>

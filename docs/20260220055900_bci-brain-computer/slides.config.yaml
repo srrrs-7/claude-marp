@@ -5,6 +5,7 @@ output:
   baseName: "bci-brain-computer"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ブレイン・マシン・インタフェース"
   footer: "© 2026"

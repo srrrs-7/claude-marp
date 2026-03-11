@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ARPANETの本当の動機"
   footer: "© 2026"

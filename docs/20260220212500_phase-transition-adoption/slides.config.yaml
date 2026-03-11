@@ -5,6 +5,7 @@ output:
   baseName: "phase-transition-adoption"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "相変化 × 技術採用"
   footer: "© 2026"

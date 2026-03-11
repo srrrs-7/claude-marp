@@ -1,0 +1,27 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="32" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#f9a825" font-weight="bold">エントロピー：物理・情報・学習の統一</text>
+  <!-- Three circles representing unified concepts -->
+  <!-- Physics circle -->
+  <circle cx="200" cy="200" r="110" fill="#16213e" stroke="#4ec9b0" stroke-width="2" opacity="0.8"/>
+  <text x="200" y="170" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4ec9b0" font-weight="bold">物理</text>
+  <text x="200" y="195" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">ボルツマンエントロピー</text>
+  <text x="200" y="215" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#f9a825">S = k_B ln W</text>
+  <!-- Info circle -->
+  <circle cx="400" cy="200" r="110" fill="#16213e" stroke="#e91e63" stroke-width="2" opacity="0.8"/>
+  <text x="400" y="170" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#e91e63" font-weight="bold">情報理論</text>
+  <text x="400" y="195" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">シャノンエントロピー</text>
+  <text x="400" y="215" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#f9a825">H = -Σ p log p</text>
+  <!-- ML circle -->
+  <circle cx="600" cy="200" r="110" fill="#16213e" stroke="#9c27b0" stroke-width="2" opacity="0.8"/>
+  <text x="600" y="170" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#9c27b0" font-weight="bold">機械学習</text>
+  <text x="600" y="195" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">交差エントロピー損失</text>
+  <text x="600" y="215" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#f9a825">-Σ y log p</text>
+  <!-- Connecting arrows -->
+  <line x1="310" y1="200" x2="290" y2="200" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+  <line x1="510" y1="200" x2="490" y2="200" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+  <!-- Bottom unification label -->
+  <rect x="240" y="340" width="320" height="42" rx="8" fill="#0d1b2a"/>
+  <text x="400" y="358" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#ffffff">すべて同じ数学的構造</text>
+  <text x="400" y="375" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#f9a825" font-weight="bold">「情報」が物理・AI を統一する言語</text>
+</svg>

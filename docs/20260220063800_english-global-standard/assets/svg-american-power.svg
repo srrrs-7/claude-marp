@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">なぜフランス語でなく英語が勝ったか — 権力の移行</text>
+  <!-- timeline -->
+  <line x1="80" y1="140" x2="720" y2="140" stroke="#f9a825" stroke-width="2.5"/>
+  <!-- French dominance -->
+  <rect x="80" y="65" width="240" height="60" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="200" y="90" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">18世紀まで</text>
+  <text x="200" y="110" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">フランス語が外交共通語</text>
+  <line x1="200" y1="125" x2="200" y2="140" stroke="#e91e63" stroke-width="2"/>
+  <circle cx="200" cy="140" r="8" fill="#e91e63"/>
+  <!-- 1919 pivot -->
+  <rect x="310" y="65" width="185" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="402" y="90" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">1919年</text>
+  <text x="402" y="110" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">ベルサイユ条約で英語初登場</text>
+  <line x1="402" y1="125" x2="402" y2="140" stroke="#f9a825" stroke-width="2"/>
+  <circle cx="402" cy="140" r="8" fill="#f9a825"/>
+  <!-- American dominance -->
+  <rect x="500" y="65" width="215" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="607" y="90" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">20世紀〜現在</text>
+  <text x="607" y="108" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">WW2後: アメリカが超大国</text>
+  <line x1="607" y1="125" x2="607" y2="140" stroke="#f9a825" stroke-width="2"/>
+  <circle cx="607" cy="140" r="8" fill="#f9a825"/>
+  <!-- causes box -->
+  <rect x="80" y="185" width="290" height="120" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="225" y="210" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">英語覇権の決定要因</text>
+  <text x="225" y="232" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">WW1/WW2でヨーロッパが疲弊</text>
+  <text x="225" y="252" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">アメリカが軍事・経済で台頭</text>
+  <text x="225" y="272" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">マーシャル・プラン → 文化浸透</text>
+  <text x="225" y="290" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">言語覇権 = 軍事力 × 経済力</text>
+  <!-- result box -->
+  <rect x="430" y="185" width="290" height="120" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="575" y="210" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">英語覇権の定着</text>
+  <text x="575" y="232" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">ハリウッド映画: 世界に浸透</text>
+  <text x="575" y="252" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">IBM・Intel・シリコンバレー</text>
+  <text x="575" y="272" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">GAFAM: 全てアメリカ企業</text>
+  <text x="575" y="290" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">ネットワーク効果で固定化</text>
+  <text x="400" y="352" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">言語の覇権は偶然ではなく、軍事・経済・文化の力の蓄積で決まる</text>
+</svg>

@@ -5,6 +5,7 @@ output:
   baseName: "jobs-2050"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "2050年の仕事"
   footer: "© 2026"

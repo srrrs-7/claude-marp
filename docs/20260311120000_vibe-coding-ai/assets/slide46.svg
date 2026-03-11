@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">技術的負債 分類マトリクス × AI解消アプローチ</text>
+
+  <!-- Axis labels -->
+  <text x="400" y="72" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#a78bfa">← 解消コスト（低） ────────────────── 解消コスト（高） →</text>
+  <text x="16" y="300" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#60a5fa" transform="rotate(-90,16,300)">← 影響範囲（小）  ──  影響範囲（大） →</text>
+
+  <!-- Grid -->
+  <rect x="60" y="85" width="330" height="185" fill="#16213e" stroke="#a78bfa" stroke-width="1.5" rx="4"/>
+  <rect x="410" y="85" width="330" height="185" fill="#16213e" stroke="#60a5fa" stroke-width="1.5" rx="4"/>
+  <rect x="60" y="280" width="330" height="185" fill="#16213e" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <rect x="410" y="280" width="330" height="185" fill="#16213e" stroke="#f472b6" stroke-width="1.5" rx="4"/>
+
+  <!-- Quadrant labels -->
+  <text x="225" y="108" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a78bfa">低コスト・小範囲</text>
+  <text x="575" y="108" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#60a5fa">高コスト・小範囲</text>
+  <text x="225" y="303" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#34d399">低コスト・大範囲</text>
+  <text x="575" y="303" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f472b6">高コスト・大範囲</text>
+
+  <!-- Q1 content -->
+  <text x="100" y="135" font-family="sans-serif" font-size="12" fill="#e2e8f0">• 命名規則の揺れ</text>
+  <text x="100" y="155" font-family="sans-serif" font-size="12" fill="#e2e8f0">• 重複コード</text>
+  <text x="100" y="175" font-family="sans-serif" font-size="12" fill="#e2e8f0">• 小関数の未分割</text>
+  <rect x="100" y="188" width="240" height="26" fill="#a78bfa" rx="5" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.4))"/>
+  <text x="220" y="205" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">AI自動リファクタ → 即解消</text>
+
+  <!-- Q2 content -->
+  <text x="450" y="135" font-family="sans-serif" font-size="12" fill="#e2e8f0">• レガシーAPI依存</text>
+  <text x="450" y="155" font-family="sans-serif" font-size="12" fill="#e2e8f0">• 型なしコード</text>
+  <text x="450" y="175" font-family="sans-serif" font-size="12" fill="#e2e8f0">• テスト未整備</text>
+  <rect x="450" y="188" width="240" height="26" fill="#60a5fa" rx="5" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.4))"/>
+  <text x="570" y="205" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">AIテスト生成 → 段階解消</text>
+
+  <!-- Q3 content -->
+  <text x="100" y="330" font-family="sans-serif" font-size="12" fill="#e2e8f0">• モジュール結合度高</text>
+  <text x="100" y="350" font-family="sans-serif" font-size="12" fill="#e2e8f0">• ドキュメント欠如</text>
+  <text x="100" y="370" font-family="sans-serif" font-size="12" fill="#e2e8f0">• 設計パターン違反</text>
+  <rect x="100" y="383" width="240" height="26" fill="#34d399" rx="5" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.4))"/>
+  <text x="220" y="400" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">AI設計提案 → 計画的改善</text>
+
+  <!-- Q4 content -->
+  <text x="450" y="330" font-family="sans-serif" font-size="12" fill="#e2e8f0">• アーキテクチャ刷新</text>
+  <text x="450" y="350" font-family="sans-serif" font-size="12" fill="#e2e8f0">• DB設計の根本変更</text>
+  <text x="450" y="370" font-family="sans-serif" font-size="12" fill="#e2e8f0">• フレームワーク移行</text>
+  <rect x="450" y="383" width="240" height="26" fill="#f472b6" rx="5" style="filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.4))"/>
+  <text x="570" y="400" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">AI移行計画 → 長期ロードマップ</text>
+
+  <!-- Bottom note -->
+  <text x="400" y="482" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#94a3b8">AIは全象限の負債解消を加速 — 優先度順に自動化可能な項目から着手</text>
+</svg>

@@ -7,6 +7,71 @@ paginate: true
 header: "ダークパターンの解剖学"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -68,6 +133,7 @@ style: |
 
 # 1. 強制（Forced Action）
 
+![w:900 center](assets/user-flow-traps.svg)
 - **望まない選択をしないとサービスを使えなくする**
 - 例：アカウント作成しないとゲスト購入できない
 - 例：メール通知をONにしないと次に進めない
@@ -120,12 +186,19 @@ style: |
 
 ---
 
-# 悪用される4つの認知バイアス
+# 悪用される4つの認知バイアス（1/2）
 
+![w:900 center](assets/cognitive-bias-exploitation.svg)
 - **1. 現状維持バイアス** ― デフォルト設定を変えない傾向
 - チェックボックスのデフォルトON → 90%以上がそのまま
 - **2. 損失回避** ― 得るより失う方が2倍痛い
 - 「解約すると○○ポイントが消えます」→ 解約率が半減
+
+
+---
+
+# 悪用される4つの認知バイアス（2/2）
+
 - **3. 選択過負荷** ― 選択肢が多すぎると判断を放棄する
 - Cookie同意画面を複雑にする → 「全て同意」を選ぶ
 - **4. 社会的証明** ― 他人の行動に従う傾向
@@ -142,6 +215,7 @@ style: |
 
 # 短期利益、長期損失
 
+![w:900 center](assets/user-flow-traps.svg)
 - **短期：** コンバージョン率は確かに上がる
 - **長期：** ブランド信頼の毀損、NPS低下、離脱率増加
 - **法的リスク：** EU・FTCの規制強化（後述）
@@ -179,6 +253,7 @@ style: |
 
 # エシカルデザイン5原則
 
+![w:900 center](assets/ethical-design.svg)
 - **1. 対称性** ― 登録と同じ簡単さで解約できるようにする
 - **2. 透明性** ― 隠しコストなし、デフォルトは最小限に
 - **3. 選択の自由** ― 全ての選択肢を同等に提示する

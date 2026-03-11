@@ -1,4 +1,4 @@
-<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <text x="400" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#f8f8f8">タスク別 指標選択ガイド — 決定フローチャート</text>
   <!-- Start node -->
   <rect x="330" y="34" width="140" height="30" rx="15" fill="#475569" stroke="#94a3b8" stroke-width="1.5"/>

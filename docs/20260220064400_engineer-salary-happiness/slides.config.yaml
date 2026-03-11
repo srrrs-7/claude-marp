@@ -5,6 +5,7 @@ output:
   baseName: "engineer-salary-happiness"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "年収と幸福度"
   footer: "© 2026"

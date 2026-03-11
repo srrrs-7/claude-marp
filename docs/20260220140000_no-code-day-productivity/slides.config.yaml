@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "コードを書かない日のほうが生産的な理由"
   footer: "© 2026 Engineer Productivity Workshop"

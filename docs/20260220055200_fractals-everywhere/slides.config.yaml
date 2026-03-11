@@ -5,6 +5,7 @@ output:
   baseName: "fractals-everywhere"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "フラクタル幾何学"
   footer: "© 2026"

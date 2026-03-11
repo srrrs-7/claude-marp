@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="36" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">エンジニア AIスキル習得ロードマップ</text>
+
+  <!-- Timeline line -->
+  <line x1="60" y1="100" x2="740" y2="100" stroke="#a78bfa" stroke-width="2"/>
+
+  <!-- Phase markers -->
+  <!-- Phase 1 -->
+  <circle cx="130" cy="100" r="12" fill="#60a5fa" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="130" y="105" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#1a1a2e">1</text>
+  <text x="130" y="78" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">Month 1-2</text>
+  <text x="130" y="62" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#94a3b8">基礎習得</text>
+
+  <!-- Phase 2 -->
+  <circle cx="295" cy="100" r="12" fill="#a78bfa" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="295" y="105" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#1a1a2e">2</text>
+  <text x="295" y="78" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#a78bfa">Month 3-4</text>
+  <text x="295" y="62" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#94a3b8">実践応用</text>
+
+  <!-- Phase 3 -->
+  <circle cx="460" cy="100" r="12" fill="#34d399" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="460" y="105" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#1a1a2e">3</text>
+  <text x="460" y="78" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">Month 5-7</text>
+  <text x="460" y="62" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#94a3b8">高度活用</text>
+
+  <!-- Phase 4 -->
+  <circle cx="625" cy="100" r="12" fill="#f472b6" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="625" y="105" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#1a1a2e">4</text>
+  <text x="625" y="78" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f472b6">Month 8+</text>
+  <text x="625" y="62" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#94a3b8">エキスパート</text>
+
+  <!-- Phase 1 content box -->
+  <rect x="50" y="125" width="160" height="145" fill="#16213e" stroke="#60a5fa" stroke-width="1.5" rx="8"/>
+  <text x="130" y="148" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">基礎スキル</text>
+  <text x="65" y="168" font-family="sans-serif" font-size="11" fill="#e2e8f0">• AIツール概要理解</text>
+  <text x="65" y="186" font-family="sans-serif" font-size="11" fill="#e2e8f0">• Copilot 入門</text>
+  <text x="65" y="204" font-family="sans-serif" font-size="11" fill="#e2e8f0">• 基本プロンプト作成</text>
+  <text x="65" y="222" font-family="sans-serif" font-size="11" fill="#e2e8f0">• AIコード補完活用</text>
+  <text x="65" y="240" font-family="sans-serif" font-size="11" fill="#e2e8f0">• 倫理・限界の理解</text>
+  <rect x="60" y="250" width="140" height="10" fill="#60a5fa" rx="3" style="opacity:0.3"/>
+  <rect x="60" y="250" width="50" height="10" fill="#60a5fa" rx="3"/>
+
+  <!-- Phase 2 content box -->
+  <rect x="215" y="125" width="160" height="145" fill="#16213e" stroke="#a78bfa" stroke-width="1.5" rx="8"/>
+  <text x="295" y="148" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#a78bfa">実践スキル</text>
+  <text x="230" y="168" font-family="sans-serif" font-size="11" fill="#e2e8f0">• プロンプト最適化</text>
+  <text x="230" y="186" font-family="sans-serif" font-size="11" fill="#e2e8f0">• AIテスト生成</text>
+  <text x="230" y="204" font-family="sans-serif" font-size="11" fill="#e2e8f0">• コードレビュー自動化</text>
+  <text x="230" y="222" font-family="sans-serif" font-size="11" fill="#e2e8f0">• ドキュメント自動生成</text>
+  <text x="230" y="240" font-family="sans-serif" font-size="11" fill="#e2e8f0">• CI/CD AI組み込み</text>
+  <rect x="225" y="250" width="140" height="10" fill="#a78bfa" rx="3" style="opacity:0.3"/>
+  <rect x="225" y="250" width="80" height="10" fill="#a78bfa" rx="3"/>
+
+  <!-- Phase 3 content box -->
+  <rect x="380" y="125" width="160" height="145" fill="#16213e" stroke="#34d399" stroke-width="1.5" rx="8"/>
+  <text x="460" y="148" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">高度スキル</text>
+  <text x="395" y="168" font-family="sans-serif" font-size="11" fill="#e2e8f0">• マルチAIオーケストレーション</text>
+  <text x="395" y="186" font-family="sans-serif" font-size="11" fill="#e2e8f0">• AIエージェント設計</text>
+  <text x="395" y="204" font-family="sans-serif" font-size="11" fill="#e2e8f0">• RAG 活用</text>
+  <text x="395" y="222" font-family="sans-serif" font-size="11" fill="#e2e8f0">• ファインチューニング</text>
+  <text x="395" y="240" font-family="sans-serif" font-size="11" fill="#e2e8f0">• セキュリティ評価</text>
+  <rect x="390" y="250" width="140" height="10" fill="#34d399" rx="3" style="opacity:0.3"/>
+  <rect x="390" y="250" width="105" height="10" fill="#34d399" rx="3"/>
+
+  <!-- Phase 4 content box -->
+  <rect x="545" y="125" width="165" height="145" fill="#16213e" stroke="#f472b6" stroke-width="1.5" rx="8"/>
+  <text x="627" y="148" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f472b6">エキスパートスキル</text>
+  <text x="560" y="168" font-family="sans-serif" font-size="11" fill="#e2e8f0">• 組織AI戦略策定</text>
+  <text x="560" y="186" font-family="sans-serif" font-size="11" fill="#e2e8f0">• 社内LLM構築</text>
+  <text x="560" y="204" font-family="sans-serif" font-size="11" fill="#e2e8f0">• チーム教育・普及</text>
+  <text x="560" y="222" font-family="sans-serif" font-size="11" fill="#e2e8f0">• AI倫理ガバナンス</text>
+  <text x="560" y="240" font-family="sans-serif" font-size="11" fill="#e2e8f0">• 新ツール評価・選定</text>
+  <rect x="555" y="250" width="140" height="10" fill="#f472b6" rx="3" style="opacity:0.3"/>
+  <rect x="555" y="250" width="140" height="10" fill="#f472b6" rx="3"/>
+
+  <!-- Resources section -->
+  <text x="400" y="300" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffffff">推奨学習リソース</text>
+
+  <rect x="50" y="315" width="200" height="55" fill="#0f172a" stroke="#60a5fa" stroke-width="1" rx="6"/>
+  <text x="150" y="337" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">オンライン学習</text>
+  <text x="150" y="356" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">Coursera / Udemy / DeepLearning.AI</text>
+
+  <rect x="300" y="315" width="200" height="55" fill="#0f172a" stroke="#a78bfa" stroke-width="1" rx="6"/>
+  <text x="400" y="337" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#a78bfa">社内勉強会</text>
+  <text x="400" y="356" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">ハンズオン + コードレビュー</text>
+
+  <rect x="550" y="315" width="200" height="55" fill="#0f172a" stroke="#34d399" stroke-width="1" rx="6"/>
+  <text x="650" y="337" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">実践プロジェクト</text>
+  <text x="650" y="356" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">社内PoC → 本番導入</text>
+
+  <!-- Footer -->
+  <text x="400" y="482" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#94a3b8">継続学習文化の醸成 — 週1時間の学習で8ヶ月でエキスパートへ</text>
+</svg>

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <text x="400" y="36" text-anchor="middle" font-size="20" font-weight="bold" fill="#ffffff" font-family="sans-serif">導入ロードマップ</text>
+
+  <!-- Phase 0 -->
+  <rect x="30" y="65" width="150" height="390" rx="10" fill="#16213e" stroke="#475569" stroke-width="1.5"/>
+  <rect x="30" y="65" width="150" height="40" rx="10" fill="#334155"/>
+  <text x="105" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#94a3b8" font-family="sans-serif">Phase 0</text>
+  <text x="105" y="108" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">準備 (1-2ヶ月)</text>
+  <text x="105" y="135" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">現状調査</text>
+  <text x="105" y="153" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">チーム形成</text>
+  <text x="105" y="171" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">ツール選定</text>
+  <text x="105" y="189" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">POC環境構築</text>
+  <text x="105" y="207" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">KPIの定義</text>
+
+  <!-- Phase 1 -->
+  <rect x="193" y="65" width="150" height="390" rx="10" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2"/>
+  <rect x="193" y="65" width="150" height="40" rx="10" fill="#1e4a7f"/>
+  <text x="268" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa" font-family="sans-serif">Phase 1</text>
+  <text x="268" y="108" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">基盤構築 (3-6ヶ月)</text>
+  <text x="268" y="135" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">Git リポジトリ整備</text>
+  <text x="268" y="155" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">CI/CD パイプライン</text>
+  <text x="268" y="175" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">IaC (Terraform)</text>
+  <text x="268" y="195" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">Container Registry</text>
+  <text x="268" y="215" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">基本Monitoring</text>
+  <text x="268" y="250" text-anchor="middle" font-size="10" fill="#334155" font-family="sans-serif">Milestone:</text>
+  <text x="268" y="268" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">デプロイ自動化率</text>
+  <text x="268" y="284" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">50% 達成</text>
+
+  <!-- Phase 2 -->
+  <rect x="356" y="65" width="150" height="390" rx="10" fill="#2d1b4e" stroke="#a78bfa" stroke-width="2"/>
+  <rect x="356" y="65" width="150" height="40" rx="10" fill="#3d2b6e"/>
+  <text x="431" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#a78bfa" font-family="sans-serif">Phase 2</text>
+  <text x="431" y="108" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">GitOps化 (6-12ヶ月)</text>
+  <text x="431" y="135" text-anchor="middle" font-size="11" fill="#a78bfa" font-family="sans-serif">ArgoCD 導入</text>
+  <text x="431" y="155" text-anchor="middle" font-size="11" fill="#a78bfa" font-family="sans-serif">App-of-Apps 設計</text>
+  <text x="431" y="175" text-anchor="middle" font-size="11" fill="#a78bfa" font-family="sans-serif">Secret管理(ESO)</text>
+  <text x="431" y="195" text-anchor="middle" font-size="11" fill="#a78bfa" font-family="sans-serif">Policy as Code</text>
+  <text x="431" y="215" text-anchor="middle" font-size="11" fill="#a78bfa" font-family="sans-serif">SLO策定</text>
+  <text x="431" y="250" text-anchor="middle" font-size="10" fill="#334155" font-family="sans-serif">Milestone:</text>
+  <text x="431" y="268" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">全環境GitOps化</text>
+  <text x="431" y="284" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">Manual deploy = 0</text>
+
+  <!-- Phase 3 -->
+  <rect x="519" y="65" width="150" height="390" rx="10" fill="#1a3a2a" stroke="#34d399" stroke-width="2"/>
+  <rect x="519" y="65" width="150" height="40" rx="10" fill="#2a5a3a"/>
+  <text x="594" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399" font-family="sans-serif">Phase 3</text>
+  <text x="594" y="108" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">高度化 (12-18ヶ月)</text>
+  <text x="594" y="135" text-anchor="middle" font-size="11" fill="#34d399" font-family="sans-serif">IDPポータル構築</text>
+  <text x="594" y="155" text-anchor="middle" font-size="11" fill="#34d399" font-family="sans-serif">Self-serviceテンプレ</text>
+  <text x="594" y="175" text-anchor="middle" font-size="11" fill="#34d399" font-family="sans-serif">Supply Chain Sec</text>
+  <text x="594" y="195" text-anchor="middle" font-size="11" fill="#34d399" font-family="sans-serif">FinOps統合</text>
+  <text x="594" y="215" text-anchor="middle" font-size="11" fill="#34d399" font-family="sans-serif">Chaos Engineering</text>
+  <text x="594" y="250" text-anchor="middle" font-size="10" fill="#334155" font-family="sans-serif">Milestone:</text>
+  <text x="594" y="268" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">開発者セルフサービス</text>
+  <text x="594" y="284" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">率 80%+</text>
+
+  <!-- Phase 4 -->
+  <rect x="682" y="65" width="88" height="390" rx="10" fill="#2d2a16" stroke="#fbbf24" stroke-width="2"/>
+  <rect x="682" y="65" width="88" height="40" rx="10" fill="#4d4a2e"/>
+  <text x="726" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24" font-family="sans-serif">Phase 4</text>
+  <text x="726" y="108" text-anchor="middle" font-size="9" fill="#475569" font-family="sans-serif">最適化</text>
+  <text x="726" y="135" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="sans-serif">AI/ML Ops</text>
+  <text x="726" y="153" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="sans-serif">予測スケール</text>
+  <text x="726" y="171" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="sans-serif">コスト最適化</text>
+  <text x="726" y="189" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="sans-serif">継続改善</text>
+
+  <!-- Timeline bar at bottom -->
+  <rect x="30" y="470" width="740" height="18" rx="4" fill="#16213e" stroke="#334155" stroke-width="1"/>
+  <rect x="30" y="470" width="163" height="18" rx="4" fill="#334155"/>
+  <rect x="193" y="470" width="163" height="18" rx="4" fill="#1e4a7f"/>
+  <rect x="356" y="470" width="163" height="18" rx="4" fill="#3d2b6e"/>
+  <rect x="519" y="470" width="163" height="18" rx="4" fill="#2a5a3a"/>
+  <rect x="682" y="470" width="88" height="18" rx="4" fill="#4d4a2e"/>
+</svg>

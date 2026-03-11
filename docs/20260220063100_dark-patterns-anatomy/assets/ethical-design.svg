@@ -1,0 +1,43 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">ダークパターン vs エシカルデザイン対比</text>
+  <!-- Headers -->
+  <rect x="40" y="48" width="330" height="40" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="205" y="73" text-anchor="middle" font-size="14" font-weight="bold" fill="#e91e63">ダークパターン</text>
+  <rect x="430" y="48" width="330" height="40" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="595" y="73" text-anchor="middle" font-size="14" font-weight="bold" fill="#4caf50">エシカルデザイン</text>
+  <!-- Comparison rows -->
+  <!-- Row: 登録/解約 -->
+  <text x="205" y="112" text-anchor="middle" font-size="12" fill="#e91e63">登録: 1クリック / 解約: 20ステップ</text>
+  <text x="595" y="112" text-anchor="middle" font-size="12" fill="#4caf50">登録と解約は同じ難易度</text>
+  <line x1="40" y1="120" x2="760" y2="120" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <!-- Row: デフォルト -->
+  <text x="205" y="147" text-anchor="middle" font-size="12" fill="#e91e63">チェックボックスをデフォルトON</text>
+  <text x="595" y="147" text-anchor="middle" font-size="12" fill="#4caf50">デフォルトは最小限の許可</text>
+  <line x1="40" y1="155" x2="760" y2="155" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <!-- Row: 価格 -->
+  <text x="205" y="182" text-anchor="middle" font-size="12" fill="#e91e63">隠しコストを最後に表示</text>
+  <text x="595" y="182" text-anchor="middle" font-size="12" fill="#4caf50">全コストを最初に透明に表示</text>
+  <line x1="40" y1="190" x2="760" y2="190" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <!-- Row: 緊急性 -->
+  <text x="205" y="217" text-anchor="middle" font-size="12" fill="#e91e63">偽のカウントダウンタイマー</text>
+  <text x="595" y="217" text-anchor="middle" font-size="12" fill="#4caf50">実際の締め切りのみ表示</text>
+  <line x1="40" y1="225" x2="760" y2="225" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <!-- Row: Cookie -->
+  <text x="205" y="252" text-anchor="middle" font-size="12" fill="#e91e63">「全て同意」ボタンを目立たせる</text>
+  <text x="595" y="252" text-anchor="middle" font-size="12" fill="#4caf50">選択肢を同等に提示</text>
+  <line x1="40" y1="260" x2="760" y2="260" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <!-- Row: 通知 -->
+  <text x="205" y="287" text-anchor="middle" font-size="12" fill="#e91e63">退会時に強い「後悔」を煽る</text>
+  <text x="595" y="287" text-anchor="middle" font-size="12" fill="#4caf50">シンプルな確認のみ</text>
+  <line x1="40" y1="295" x2="760" y2="295" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <!-- Result row -->
+  <rect x="40" y="302" width="330" height="52" rx="6" fill="#e91e63" opacity="0.15" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="205" y="324" text-anchor="middle" font-size="12" fill="#e91e63">短期: コンバージョン率↑</text>
+  <text x="205" y="344" text-anchor="middle" font-size="12" fill="#e91e63">長期: ブランド信頼↓、訴訟リスク↑</text>
+  <rect x="430" y="302" width="330" height="52" rx="6" fill="#4caf50" opacity="0.15" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="595" y="324" text-anchor="middle" font-size="12" fill="#4caf50">短期: 指標は若干低下</text>
+  <text x="595" y="344" text-anchor="middle" font-size="12" fill="#4caf50">長期: 信頼・LTV・NPS向上</text>
+  <!-- Bottom -->
+  <text x="400" y="384" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.6">EU DSA 2024施行 — エシカルデザインは今や法的義務</text>
+</svg>

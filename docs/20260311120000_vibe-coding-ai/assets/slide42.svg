@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">AI駆動プロジェクト立ち上げフロー</text>
+
+  <!-- Step boxes with connecting arrows -->
+  <!-- Step 1 -->
+  <rect x="50" y="65" width="160" height="75" rx="10" fill="#4c1d95" stroke="#a78bfa" stroke-width="2"/>
+  <text x="130" y="90" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a78bfa">1. 要件整理</text>
+  <text x="130" y="108" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#c4b5fd">CLAUDE.md 作成</text>
+  <text x="130" y="124" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#c4b5fd">目標・制約の明文化</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="210" y1="103" x2="243" y2="103" stroke="#a78bfa" stroke-width="2"/>
+  <polygon points="243,103 235,97 235,109" fill="#a78bfa"/>
+
+  <!-- Step 2 -->
+  <rect x="243" y="65" width="160" height="75" rx="10" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2"/>
+  <text x="323" y="90" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#60a5fa">2. 環境構築</text>
+  <text x="323" y="108" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#93c5fd">git init + CI/CD</text>
+  <text x="323" y="124" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#93c5fd">依存関係インストール</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="403" y1="103" x2="436" y2="103" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="436,103 428,97 428,109" fill="#60a5fa"/>
+
+  <!-- Step 3 -->
+  <rect x="436" y="65" width="160" height="75" rx="10" fill="#14532d" stroke="#34d399" stroke-width="2"/>
+  <text x="516" y="90" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#34d399">3. 骨格実装</text>
+  <text x="516" y="108" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6ee7b7">AIで雛形生成</text>
+  <text x="516" y="124" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6ee7b7">スキーマ・ルート定義</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="596" y1="103" x2="629" y2="103" stroke="#34d399" stroke-width="2"/>
+  <polygon points="629,103 621,97 621,109" fill="#34d399"/>
+
+  <!-- Step 4 -->
+  <rect x="629" y="65" width="130" height="75" rx="10" fill="#431407" stroke="#fb923c" stroke-width="2"/>
+  <text x="694" y="90" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fb923c">4. テスト</text>
+  <text x="694" y="108" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fdba74">AIがテスト生成</text>
+  <text x="694" y="124" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fdba74">カバレッジ確認</text>
+
+  <!-- Row 2 -->
+  <!-- Step 5 -->
+  <rect x="629" y="185" width="130" height="75" rx="10" fill="#1e1b4b" stroke="#818cf8" stroke-width="2"/>
+  <text x="694" y="210" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#818cf8">5. レビュー</text>
+  <text x="694" y="228" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a5b4fc">AIコードレビュー</text>
+  <text x="694" y="244" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a5b4fc">セキュリティ確認</text>
+
+  <!-- Arrow 4→5 (down) -->
+  <line x1="694" y1="140" x2="694" y2="185" stroke="#818cf8" stroke-width="2"/>
+  <polygon points="694,185 688,177 700,177" fill="#818cf8"/>
+
+  <!-- Arrow 5→6 (left) -->
+  <line x1="629" y1="222" x2="596" y2="222" stroke="#818cf8" stroke-width="2"/>
+  <polygon points="596,222 604,216 604,228" fill="#818cf8"/>
+
+  <!-- Step 6 -->
+  <rect x="436" y="185" width="160" height="75" rx="10" fill="#14532d" stroke="#34d399" stroke-width="2"/>
+  <text x="516" y="210" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#34d399">6. ドキュメント</text>
+  <text x="516" y="228" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6ee7b7">README 自動生成</text>
+  <text x="516" y="244" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6ee7b7">API仕様書生成</text>
+
+  <!-- Arrow 6→7 -->
+  <line x1="436" y1="222" x2="403" y2="222" stroke="#34d399" stroke-width="2"/>
+  <polygon points="403,222 411,216 411,228" fill="#34d399"/>
+
+  <!-- Step 7 -->
+  <rect x="243" y="185" width="160" height="75" rx="10" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2"/>
+  <text x="323" y="210" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#60a5fa">7. デプロイ</text>
+  <text x="323" y="228" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#93c5fd">CI/CD 実行</text>
+  <text x="323" y="244" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#93c5fd">本番環境への反映</text>
+
+  <!-- Arrow 7→8 -->
+  <line x1="243" y1="222" x2="210" y2="222" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="210,222 218,216 218,228" fill="#60a5fa"/>
+
+  <!-- Step 8 -->
+  <rect x="50" y="185" width="160" height="75" rx="10" fill="#4c1d95" stroke="#a78bfa" stroke-width="2"/>
+  <text x="130" y="210" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a78bfa">8. モニタリング</text>
+  <text x="130" y="228" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#c4b5fd">AIでログ分析</text>
+  <text x="130" y="244" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#c4b5fd">改善サイクル継続</text>
+
+  <!-- Cycle arrow back to step 1 -->
+  <path d="M 130 260 Q 130 310 400 310 Q 670 310 694 260" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <polygon points="694,260 688,272 700,272" fill="#a78bfa"/>
+  <text x="400" y="330" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a78bfa">継続的改善ループ</text>
+
+  <!-- Time estimate -->
+  <rect x="50" y="350" width="700" height="100" rx="8" fill="#0f172a" stroke="#4c1d95" stroke-width="1"/>
+  <text x="400" y="373" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">AI駆動 vs. 従来開発 — 時間比較</text>
+  <!-- Time bar traditional -->
+  <text x="60" y="400" font-family="sans-serif" font-size="11" fill="#f87171">従来:</text>
+  <rect x="110" y="388" width="540" height="16" rx="3" fill="#7f1d1d"/>
+  <text x="660" y="400" font-family="sans-serif" font-size="11" fill="#f87171">2〜4 週間</text>
+  <!-- Time bar AI -->
+  <text x="60" y="425" font-family="sans-serif" font-size="11" fill="#34d399">AI駆動:</text>
+  <rect x="110" y="413" width="180" height="16" rx="3" fill="#14532d"/>
+  <text x="300" y="425" font-family="sans-serif" font-size="11" fill="#34d399">3〜5 日（〜6x 高速）</text>
+</svg>

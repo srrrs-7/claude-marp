@@ -1,0 +1,32 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="30" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold">インシデントレスポンス自動化</text>
+<text x="400" y="130" text-anchor="middle" font-size="14" fill="#4fc3f7">検知 → 通知 → 対応の完全自動化</text>
+<rect x="20" y="155" width="120" height="75" rx="10" fill="#e91e63" opacity="0.85"/>
+<text x="80" y="188" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Security</text>
+<text x="80" y="206" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Event</text>
+<rect x="170" y="155" width="120" height="75" rx="10" fill="#7b1fa2" opacity="0.85"/>
+<text x="230" y="188" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">EventBridge</text>
+<text x="230" y="206" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Rule</text>
+<rect x="320" y="155" width="120" height="75" rx="10" fill="#1565c0" opacity="0.85"/>
+<text x="380" y="188" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Lambda</text>
+<text x="380" y="206" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Function</text>
+<rect x="470" y="155" width="120" height="75" rx="10" fill="#00695c" opacity="0.85"/>
+<text x="530" y="188" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">SNS</text>
+<text x="530" y="206" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Alert</text>
+<rect x="620" y="155" width="120" height="75" rx="10" fill="#f9a825" opacity="0.85"/>
+<text x="680" y="188" text-anchor="middle" font-size="13" fill="#1a1a2e" font-weight="bold">Remediation</text>
+<text x="680" y="206" text-anchor="middle" font-size="13" fill="#1a1a2e" font-weight="bold">Action</text>
+<line x1="140" y1="192" x2="170" y2="192" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="170,192 160,186 160,198" fill="#4fc3f7"/>
+<line x1="290" y1="192" x2="320" y2="192" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="320,192 310,186 310,198" fill="#4fc3f7"/>
+<line x1="440" y1="192" x2="470" y2="192" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="470,192 460,186 460,198" fill="#4fc3f7"/>
+<line x1="590" y1="192" x2="620" y2="192" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="620,192 610,186 610,198" fill="#4fc3f7"/>
+<rect x="60" y="295" width="680" height="58" rx="8" fill="#16213e"/>
+<text x="400" y="318" text-anchor="middle" font-size="13" fill="#4fc3f7">自動化アクション例</text>
+<text x="400" y="338" text-anchor="middle" font-size="12" fill="#ffffff">SG隔離 / IAMキー無効化 / EC2スナップショット / Slack通知</text>
+<text x="400" y="385" text-anchor="middle" font-size="13" fill="#4fc3f7">Incident Response Automation</text>
+</svg>

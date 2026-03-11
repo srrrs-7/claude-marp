@@ -4,6 +4,7 @@ output:
   baseName: "aws-security-complete"
 marp:
   theme: gaia
+  class: invert
   size: "16:9"
   paginate: true
   footer: "AWS セキュリティ完全版 2026 | Security Specialty対策"

@@ -1,0 +1,38 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#f9a825" font-weight="bold">エンゲージメントループ：ゲーム → プロダクト</text>
+  <!-- Loop circle -->
+  <!-- Action -->
+  <circle cx="400" cy="100" r="44" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="96" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#f9a825" font-weight="bold">行動</text>
+  <text x="400" y="112" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">タスク完了</text>
+  <!-- Arrow 1: action -> reward -->
+  <path d="M 444 118 Q 560 140 558 188" fill="none" stroke="#4ec9b0" stroke-width="2"/>
+  <polygon points="550,185 562,194 562,181" fill="#4ec9b0"/>
+  <!-- Reward -->
+  <circle cx="560" cy="220" r="44" fill="#16213e" stroke="#4ec9b0" stroke-width="2"/>
+  <text x="560" y="216" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#4ec9b0" font-weight="bold">報酬</text>
+  <text x="560" y="232" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">達成感・通知</text>
+  <!-- Arrow 2: reward -> growth -->
+  <path d="M 520 252 Q 400 310 322 268" fill="none" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="323,277 316,265 328,261" fill="#e91e63"/>
+  <!-- Growth -->
+  <circle cx="280" cy="242" r="44" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="280" y="238" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#e91e63" font-weight="bold">成長</text>
+  <text x="280" y="254" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">新機能解放</text>
+  <!-- Arrow 3: growth -> challenge -->
+  <path d="M 248 205 Q 210 140 345 105" fill="none" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="339,112 348,101 356,112" fill="#f9a825"/>
+  <!-- Game labels -->
+  <text x="500" y="164" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">ゲーム：スコア</text>
+  <text x="500" y="176" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">UI：達成バッジ</text>
+  <text x="430" y="300" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">ゲーム：レベルアップ</text>
+  <text x="430" y="312" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">UI：プレミア機能</text>
+  <text x="220" y="164" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">ゲーム：新ステージ</text>
+  <text x="220" y="176" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">UI：より高度な使い方</text>
+  <!-- Duolingo annotation -->
+  <rect x="580" y="56" width="180" height="44" rx="6" fill="#0d1b2a"/>
+  <text x="670" y="76" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4ec9b0" font-weight="bold">Duolingo</text>
+  <text x="670" y="92" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">ループを最も忠実に実装</text>
+  <line x1="580" y1="78" x2="444" y2="106" stroke="#4ec9b0" stroke-width="1" stroke-dasharray="3"/>
+</svg>

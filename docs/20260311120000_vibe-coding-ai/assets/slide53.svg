@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="36" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">AI導入 よくある失敗パターン（アンチパターン）</text>
+
+  <!-- Anti-pattern cards: 2x3 grid -->
+
+  <!-- Card 1 -->
+  <rect x="30" y="58" width="228" height="115" fill="#16213e" stroke="#f472b6" stroke-width="2" rx="8"/>
+  <text x="52" y="82" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f472b6">❌ ツール依存症</text>
+  <text x="52" y="102" font-family="sans-serif" font-size="11" fill="#e2e8f0">AIが生成したコードを</text>
+  <text x="52" y="118" font-family="sans-serif" font-size="11" fill="#e2e8f0">無検証でマージする</text>
+  <rect x="44" y="133" width="200" height="28" fill="#0f172a" rx="5" stroke="#34d399" stroke-width="1"/>
+  <text x="144" y="150" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#34d399">✓ 必ずレビュー・テストを実施</text>
+
+  <!-- Card 2 -->
+  <rect x="286" y="58" width="228" height="115" fill="#16213e" stroke="#f472b6" stroke-width="2" rx="8"/>
+  <text x="308" y="82" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f472b6">❌ コンテキスト省略</text>
+  <text x="308" y="102" font-family="sans-serif" font-size="11" fill="#e2e8f0">曖昧なプロンプトで</text>
+  <text x="308" y="118" font-family="sans-serif" font-size="11" fill="#e2e8f0">期待外れな結果を受け取る</text>
+  <rect x="300" y="133" width="200" height="28" fill="#0f172a" rx="5" stroke="#34d399" stroke-width="1"/>
+  <text x="400" y="150" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#34d399">✓ 詳細な文脈・制約を提供する</text>
+
+  <!-- Card 3 -->
+  <rect x="542" y="58" width="228" height="115" fill="#16213e" stroke="#f472b6" stroke-width="2" rx="8"/>
+  <text x="564" y="82" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f472b6">❌ セキュリティ軽視</text>
+  <text x="564" y="102" font-family="sans-serif" font-size="11" fill="#e2e8f0">機密コードを外部LLMに</text>
+  <text x="564" y="118" font-family="sans-serif" font-size="11" fill="#e2e8f0">無制限に送信する</text>
+  <rect x="556" y="133" width="200" height="28" fill="#0f172a" rx="5" stroke="#34d399" stroke-width="1"/>
+  <text x="656" y="150" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#34d399">✓ データ分類 + 送信ポリシー制定</text>
+
+  <!-- Card 4 -->
+  <rect x="30" y="195" width="228" height="115" fill="#16213e" stroke="#fbbf24" stroke-width="2" rx="8"/>
+  <text x="52" y="219" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">⚠ 一人で完結しない</text>
+  <text x="52" y="239" font-family="sans-serif" font-size="11" fill="#e2e8f0">一部メンバーだけ活用し</text>
+  <text x="52" y="255" font-family="sans-serif" font-size="11" fill="#e2e8f0">チームに知識が広がらない</text>
+  <rect x="44" y="270" width="200" height="28" fill="#0f172a" rx="5" stroke="#34d399" stroke-width="1"/>
+  <text x="144" y="287" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#34d399">✓ ペアプロ + 社内勉強会で共有</text>
+
+  <!-- Card 5 -->
+  <rect x="286" y="195" width="228" height="115" fill="#16213e" stroke="#fbbf24" stroke-width="2" rx="8"/>
+  <text x="308" y="219" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">⚠ 測定なし導入</text>
+  <text x="308" y="239" font-family="sans-serif" font-size="11" fill="#e2e8f0">KPIを設定せず効果が</text>
+  <text x="308" y="255" font-family="sans-serif" font-size="11" fill="#e2e8f0">不明のまま継続する</text>
+  <rect x="300" y="270" width="200" height="28" fill="#0f172a" rx="5" stroke="#34d399" stroke-width="1"/>
+  <text x="400" y="287" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#34d399">✓ 導入前後でメトリクスを比較</text>
+
+  <!-- Card 6 -->
+  <rect x="542" y="195" width="228" height="115" fill="#16213e" stroke="#fbbf24" stroke-width="2" rx="8"/>
+  <text x="564" y="219" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">⚠ スキル停滞</text>
+  <text x="564" y="239" font-family="sans-serif" font-size="11" fill="#e2e8f0">AIに任せすぎて基礎スキルの</text>
+  <text x="564" y="255" font-family="sans-serif" font-size="11" fill="#e2e8f0">成長が止まる</text>
+  <rect x="556" y="270" width="200" height="28" fill="#0f172a" rx="5" stroke="#34d399" stroke-width="1"/>
+  <text x="656" y="287" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#34d399">✓ AI活用 + 自力思考を並行維持</text>
+
+  <!-- Summary box -->
+  <rect x="30" y="330" width="740" height="100" fill="#16213e" stroke="#a78bfa" stroke-width="1.5" rx="8"/>
+  <text x="400" y="355" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#a78bfa">失敗を避けるための3原則</text>
+  <text x="165" y="378" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">① 検証文化</text>
+  <text x="165" y="396" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">AIは提案者、判断は人間</text>
+  <text x="165" y="412" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">全成果物をレビュー必須化</text>
+
+  <text x="400" y="378" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">② ガバナンス整備</text>
+  <text x="400" y="396" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">使用ポリシーを早期に策定</text>
+  <text x="400" y="412" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">セキュリティ基準を明文化</text>
+
+  <text x="635" y="378" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f472b6">③ 継続改善</text>
+  <text x="635" y="396" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">定期的な振り返りと調整</text>
+  <text x="635" y="412" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2e8f0">成功事例を社内展開</text>
+
+  <!-- Footer -->
+  <text x="400" y="482" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#94a3b8">失敗パターンを知ることが成功への近道 — 先人の経験を活かす</text>
+</svg>

@@ -199,13 +199,15 @@
 		},
 		{
 			"title": "SAML Assertion — XML サンプル",
-			"content": ["署名付き Assertion の実際の XML 構造を確認する"]
+			"content": ["署名付き Assertion の実際の XML 構造を確認する"],
+			"layout": "default"
 		},
 		{
 			"title": "SAML Assertion — XML サンプル（コード例）",
 			"content": [],
 			"code": "<saml:Assertion xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\"\n  ID=\"_abc123\" IssueInstant=\"2026-02-19T12:00:00Z\" Version=\"2.0\">\n  <saml:Issuer>https://idp.example.com</saml:Issuer>\n  <saml:Subject>\n    <saml:NameID Format=\"urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress\">\n      user@example.com\n    </saml:NameID>\n    <saml:SubjectConfirmation Method=\"...bearer\">\n      <saml:SubjectConfirmationData\n        NotOnOrAfter=\"2026-02-19T12:05:00Z\"\n        Recipient=\"https://sp.example.com/acs\"/>\n    </saml:SubjectConfirmation>\n  </saml:Subject>\n  <saml:Conditions NotBefore=\"...\" NotOnOrAfter=\"...\">\n    <saml:AudienceRestriction>\n      <saml:Audience>https://sp.example.com</saml:Audience>\n    </saml:AudienceRestriction>\n  </saml:Conditions>\n  <saml:AttributeStatement>\n    <saml:Attribute Name=\"email\"><saml:AttributeValue>user@example.com</saml:AttributeValue></saml:Attribute>\n    <saml:Attribute Name=\"groups\"><saml:AttributeValue>admin</saml:AttributeValue></saml:Attribute>\n  </saml:AttributeStatement>\n  <ds:Signature><!-- RSA-SHA256 デジタル署名 --></ds:Signature>\n</saml:Assertion>",
-			"codeLanguage": "xml"
+			"codeLanguage": "xml",
+			"layout": "default"
 		},
 		{
 			"title": "JWT ID Token の構造",
@@ -253,13 +255,15 @@
 			"title": "クレームマッピング: IdP → SP 属性変換",
 			"content": [
 				"IdP の属性名と SP が期待する属性名が異なる場合のマッピング設定例"
-			]
+			],
+			"layout": "default"
 		},
 		{
 			"title": "クレームマッピング: IdP → SP 属性変換（コード例）",
 			"content": [],
 			"code": "# Okta / Azure AD での SAML 属性マッピング設定例\nsaml_attributes:\n  - name: \"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress\"\n    value: \"user.email\"        # IdP フィールド名\n    # SP では 'email' として受け取りたい場合、SP 側でも変換設定\n\n# OIDC スコープとクレームのマッピング例 (Keycloak)\noidc_scope_mappings:\n  openid:\n    - sub\n  profile:\n    - name, given_name, family_name, picture\n  email:\n    - email, email_verified\n  # カスタムスコープ\n  roles:\n    - realm_roles, resource_access\n\n# JWT クレームでのグループ情報例\n{\n  \"sub\": \"user123\",\n  \"email\": \"user@example.com\",\n  \"groups\": [\"admin\", \"developers\"],\n  \"custom:department\": \"Engineering\"\n}",
-			"codeLanguage": "yaml"
+			"codeLanguage": "yaml",
+			"layout": "default"
 		},
 		{
 			"title": "Part 4: ユースケース別選択基準",
@@ -340,13 +344,19 @@
 			"speakerNotes": "XSWはSAMLの最も深刻な脆弱性。署名は有効でも別の要素が処理される。検証済みライブラリの使用が必須。"
 		},
 		{
-			"title": "SAML 脆弱性 #2 — その他のリスク",
+			"title": "SAML 脆弱性 #2 — その他のリスク（1/2）",
 			"layout": "default",
 			"content": [
 				"**XML インジェクション:** XML メタキャラクタを含む属性値でパーサーを混乱",
 				"  → 対策: 属性値のエスケープ、strict な XML パーサー設定",
 				"**リプレイ攻撃:** 有効期限内の SAMLResponse を再送して不正アクセス",
-				"  → 対策: InResponseTo / AssertionID のキャッシュで重複検出",
+				"  → 対策: InResponseTo / AssertionID のキャッシュで重複検出"
+			]
+		},
+		{
+			"title": "SAML 脆弱性 #2 — その他のリスク（2/2）",
+			"layout": "default",
+			"content": [
 				"**オープンリダイレクト:** RelayState を検証しない場合に任意 URL へリダイレクト",
 				"  → 対策: RelayState はホワイトリスト or 相対 URL のみ許可",
 				"**中間者攻撃:** TLS を使わない場合の SAMLResponse 傍受・改ざん",
@@ -354,13 +364,19 @@
 			]
 		},
 		{
-			"title": "OIDC 脆弱性 #1: リダイレクト URI 攻撃",
+			"title": "OIDC 脆弱性 #1: リダイレクト URI 攻撃（1/2）",
 			"layout": "default",
 			"content": [
 				"**不正 redirect_uri:** 登録外のURIに Auth Code / Token がリダイレクトされる",
 				"  → 対策: redirect_uri を完全一致で事前登録。ワイルドカード禁止",
 				"**オープンリダイレクタ利用:** 正規ドメインのリダイレクタ経由で外部へ誘導",
-				"  → 対策: redirect_uri は完全 URL で登録。動的登録には注意",
+				"  → 対策: redirect_uri は完全 URL で登録。動的登録には注意"
+			]
+		},
+		{
+			"title": "OIDC 脆弱性 #1: リダイレクト URI 攻撃（2/2）",
+			"layout": "default",
+			"content": [
 				"**CSRF 攻撃 (state 未検証):** state パラメータ検証なしで認可コードを送信",
 				"  → 対策: state は必ず生成・検証。セッション/Cookie に保存して照合",
 				"**Code Injection (Implicit Flow):** URL フラグメントのトークンが Referer 漏洩",
@@ -368,13 +384,19 @@
 			]
 		},
 		{
-			"title": "OIDC 脆弱性 #2: Token Leakage と実装ミス",
+			"title": "OIDC 脆弱性 #2: Token Leakage と実装ミス（1/2）",
 			"layout": "default",
 			"content": [
 				"**Access Token のログ記録:** Bearer Token がアクセスログに残る",
 				"  → 対策: Authorization ヘッダーはログから除外。短命トークン使用",
 				"**`alg: none` 攻撃:** JWT の署名アルゴリズムに none を指定し検証スキップ",
-				"  → 対策: alg を明示的に RS256/ES256 に限定。none を拒否",
+				"  → 対策: alg を明示的に RS256/ES256 に限定。none を拒否"
+			]
+		},
+		{
+			"title": "OIDC 脆弱性 #2: Token Leakage と実装ミス（2/2）",
+			"layout": "default",
+			"content": [
 				"**HS256 共有鍵の漏洩:** 対称鍵が漏洩すると全トークン偽造可能",
 				"  → 対策: RS256 (公開鍵暗号) を推奨。HS256 はマイクロサービス内部のみ",
 				"**nonce 未検証:** リプレイ攻撃防止の nonce をクライアントが確認しない",
@@ -439,22 +461,30 @@
 		},
 		{
 			"title": "Azure AD / Okta での OIDC 設定例",
-			"content": ["主要 IdP での OIDC アプリ登録と検証コードの例"]
+			"content": ["主要 IdP での OIDC アプリ登録と検証コードの例"],
+			"layout": "default"
 		},
 		{
 			"title": "Azure AD / Okta での OIDC 設定例（コード例）",
 			"content": [],
 			"code": "# Azure AD (MSAL Python) での OIDC 設定\nimport msal\n\napp = msal.ConfidentialClientApplication(\n    client_id=\"your-client-id\",\n    client_credential=\"your-client-secret\",\n    authority=\"https://login.microsoftonline.com/tenant-id\"\n)\n\n# 1. Authorization URL を生成\nauth_url = app.get_authorization_request_url(\n    scopes=[\"openid\", \"profile\", \"email\"],\n    redirect_uri=\"https://app.example.com/callback\",\n    state=\"random-csrf-token\",\n    nonce=\"random-nonce\"\n)\n\n# 2. Auth Code → Token 交換\nresult = app.acquire_token_by_authorization_code(\n    code=request.args[\"code\"],\n    scopes=[\"openid\", \"profile\"],\n    redirect_uri=\"https://app.example.com/callback\"\n)\n# result[\"id_token_claims\"] に検証済みクレームが入る",
-			"codeLanguage": "python"
+			"codeLanguage": "python",
+			"layout": "default"
 		},
 		{
-			"title": "よくある実装ミス Top 5",
+			"title": "よくある実装ミス Top 5（1/2）",
 			"layout": "default",
 			"content": [
 				"**❌ #1 SAML:** 署名検証をスキップ or 自己実装 → XSW 攻撃の温床",
 				"  ✅ 対策: 検証済みライブラリ使用。署名 + Conditions + Audience を全て確認",
 				"**❌ #2 OIDC:** state / nonce を検証しない → CSRF / リプレイ攻撃に脆弱",
-				"  ✅ 対策: セッションに保存し、コールバック時に必ず照合",
+				"  ✅ 対策: セッションに保存し、コールバック時に必ず照合"
+			]
+		},
+		{
+			"title": "よくある実装ミス Top 5（2/2）",
+			"layout": "default",
+			"content": [
 				"**❌ #3 OIDC:** Access Token を ID として使う → sub クレームで識別すること",
 				"  ✅ 対策: ユーザー識別は ID Token の sub。UserInfo API で補完",
 				"**❌ #4 OIDC:** JWT の alg を未検証 → alg:none 攻撃やアルゴリズム混乱攻撃",
@@ -462,13 +492,19 @@
 			]
 		},
 		{
-			"title": "よくある実装ミス Top 5 (続き)",
+			"title": "よくある実装ミス Top 5 (続き)（1/2）",
 			"layout": "default",
 			"content": [
 				"**❌ #5 共通:** セッション管理と認証を混同 → SLO (Single Logout) の未実装",
 				"  ✅ 対策: SAML SLO / OIDC RP-Initiated Logout を適切に実装",
 				"**その他の注意点:**",
-				"SAML: InResponseTo を検証しないと IdP-Initiated 攻撃に弱い",
+				"SAML: InResponseTo を検証しないと IdP-Initiated 攻撃に弱い"
+			]
+		},
+		{
+			"title": "よくある実装ミス Top 5 (続き)（2/2）",
+			"layout": "default",
+			"content": [
 				"OIDC: Implicit Flow の使用（廃止済み）→ Auth Code + PKCE へ移行",
 				"OIDC: client_secret をフロントエンドコードに埋め込む → 公開される",
 				"共通: トークン/アサーションの有効期限を長く設定しすぎる",
@@ -500,13 +536,19 @@
 			]
 		},
 		{
-			"title": "参考資料 / RFC (1/2)",
+			"title": "参考資料 / RFC (1/2)（1/2）",
 			"layout": "default",
 			"content": [
 				"**仕様書・RFC:**",
 				"[SAML 2.0 Core (OASIS)](https://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf)",
 				"[OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)",
-				"[RFC 6749: OAuth 2.0](https://www.rfc-editor.org/rfc/rfc6749)",
+				"[RFC 6749: OAuth 2.0](https://www.rfc-editor.org/rfc/rfc6749)"
+			]
+		},
+		{
+			"title": "参考資料 / RFC (1/2)（2/2）",
+			"layout": "default",
+			"content": [
 				"[RFC 7636: PKCE](https://www.rfc-editor.org/rfc/rfc7636)",
 				"[RFC 7519: JWT](https://www.rfc-editor.org/rfc/rfc7519)",
 				"**セキュリティ:**",
@@ -514,13 +556,19 @@
 			]
 		},
 		{
-			"title": "参考資料 / RFC (2/2)",
+			"title": "参考資料 / RFC (2/2)（1/2）",
 			"layout": "default",
 			"content": [
 				"**実装ガイド・ライブラリ:**",
 				"[Okta: OIDC vs SAML](https://developer.okta.com/blog/2020/09/14/password-management-for-devs)",
 				"[Auth0: SAML vs JWT](https://auth0.com/blog/saml-vs-oauth/)",
-				"[OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)",
+				"[OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)"
+			]
+		},
+		{
+			"title": "参考資料 / RFC (2/2)（2/2）",
+			"layout": "default",
+			"content": [
 				"**OSS ライブラリ:**",
 				"[Keycloak (IdP)](https://www.keycloak.org/) | [python-saml (OneLogin)](https://github.com/onelogin/python-saml)",
 				"[AppAuth (Mobile OIDC)](https://appauth.io/) | [Authlib (Python OIDC)](https://authlib.org/)",

@@ -1,0 +1,54 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">コミュニティ自発形成のプロセス</text>
+  <!-- Stage 1 -->
+  <rect x="30" y="55" width="150" height="280" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="105" y="80" text-anchor="middle" font-size="12" fill="#e91e63">1. 個人プレイ</text>
+  <circle cx="105" cy="130" r="18" fill="#e91e63" opacity="0.7"/>
+  <text x="105" y="135" text-anchor="middle" font-size="14" fill="#ffffff">1</text>
+  <text x="105" y="175" text-anchor="middle" font-size="11" fill="#ffffff">スマホを見ながら</text>
+  <text x="105" y="192" text-anchor="middle" font-size="11" fill="#ffffff">公園へ向かう</text>
+  <text x="105" y="215" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">孤独な探索者</text>
+  <!-- Arrow 1→2 -->
+  <polygon points="188,195 200,185 200,205" fill="#ffffff" opacity="0.6"/>
+  <line x1="183" y1="195" x2="200" y2="195" stroke="#ffffff" stroke-width="1.5" opacity="0.6"/>
+  <!-- Stage 2 -->
+  <rect x="205" y="55" width="150" height="280" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="280" y="80" text-anchor="middle" font-size="12" fill="#f9a825">2. 偶然の出会い</text>
+  <circle cx="255" cy="130" r="15" fill="#f9a825" opacity="0.7"/>
+  <circle cx="280" cy="120" r="15" fill="#f9a825" opacity="0.7"/>
+  <circle cx="305" cy="130" r="15" fill="#f9a825" opacity="0.7"/>
+  <text x="280" y="165" text-anchor="middle" font-size="11" fill="#ffffff">同じ場所に集まる</text>
+  <text x="280" y="182" text-anchor="middle" font-size="11" fill="#ffffff">レイドバトル開始</text>
+  <text x="280" y="215" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">「一緒にやろう！」</text>
+  <!-- Arrow 2→3 -->
+  <polygon points="363,195 375,185 375,205" fill="#ffffff" opacity="0.6"/>
+  <line x1="358" y1="195" x2="375" y2="195" stroke="#ffffff" stroke-width="1.5" opacity="0.6"/>
+  <!-- Stage 3 -->
+  <rect x="380" y="55" width="150" height="280" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="455" y="80" text-anchor="middle" font-size="12" fill="#e91e63">3. オンライン化</text>
+  <!-- Discord/LINE icon -->
+  <rect x="415" y="105" width="80" height="50" rx="6" fill="#5865f2"/>
+  <text x="455" y="135" text-anchor="middle" font-size="11" fill="#ffffff">Discord/LINE</text>
+  <text x="455" y="175" text-anchor="middle" font-size="11" fill="#ffffff">グループ作成</text>
+  <text x="455" y="192" text-anchor="middle" font-size="11" fill="#ffffff">情報共有開始</text>
+  <text x="455" y="215" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">「弱い紐帯」の形成</text>
+  <!-- Arrow 3→4 -->
+  <polygon points="538,195 550,185 550,205" fill="#ffffff" opacity="0.6"/>
+  <line x1="533" y1="195" x2="550" y2="195" stroke="#ffffff" stroke-width="1.5" opacity="0.6"/>
+  <!-- Stage 4 -->
+  <rect x="555" y="55" width="210" height="280" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="660" y="80" text-anchor="middle" font-size="12" fill="#4caf50">4. リアルコミュニティ</text>
+  <!-- Multiple people -->
+  <circle cx="620" cy="125" r="14" fill="#4caf50" opacity="0.8"/>
+  <circle cx="650" cy="115" r="14" fill="#4caf50" opacity="0.8"/>
+  <circle cx="680" cy="125" r="14" fill="#4caf50" opacity="0.8"/>
+  <circle cx="710" cy="115" r="14" fill="#4caf50" opacity="0.8"/>
+  <circle cx="660" cy="145" r="14" fill="#4caf50" opacity="0.8"/>
+  <text x="660" y="180" text-anchor="middle" font-size="11" fill="#ffffff">コミュニティデー</text>
+  <text x="660" y="197" text-anchor="middle" font-size="11" fill="#ffffff">月例イベント開催</text>
+  <text x="660" y="220" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">リアルな友人関係へ発展</text>
+  <text x="660" y="240" text-anchor="middle" font-size="11" fill="#4caf50">高齢者の孤立解消効果</text>
+  <!-- Bottom -->
+  <text x="400" y="374" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.6">デジタルが触媒するリアルコミュニティ形成のパラドックス</text>
+</svg>

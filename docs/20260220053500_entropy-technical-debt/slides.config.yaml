@@ -5,6 +5,7 @@ output:
   baseName: "entropy-technical-debt"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "熱力学とソフトウェア工学"
   footer: "© 2026"

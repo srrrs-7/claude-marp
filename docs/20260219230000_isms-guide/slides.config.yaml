@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ISMS完全ガイド | ISO/IEC 27001:2022"
   footer: "© 2026"

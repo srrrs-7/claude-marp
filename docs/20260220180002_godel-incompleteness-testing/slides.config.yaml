@@ -5,6 +5,7 @@ output:
   baseName: "godel-incompleteness-testing"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ゲーデルとテスト"
   footer: "© 2026"

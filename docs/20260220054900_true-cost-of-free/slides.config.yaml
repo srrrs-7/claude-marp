@@ -5,6 +5,7 @@ output:
   baseName: "true-cost-of-free"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "注意経済と無料の代償"
   footer: "© 2026"

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">シンガポール 1965 → 2025 の変貌</text>
+  <!-- timeline line -->
+  <line x1="80" y1="160" x2="720" y2="160" stroke="#f9a825" stroke-width="3"/>
+  <!-- milestones -->
+  <!-- 1965 -->
+  <circle cx="100" cy="160" r="10" fill="#e91e63"/>
+  <text x="100" y="148" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle">1965</text>
+  <text x="100" y="185" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">独立</text>
+  <text x="100" y="200" fill="#aaaaaa" font-size="9" font-family="sans-serif" text-anchor="middle">GDP低所得</text>
+  <!-- 1970 -->
+  <circle cx="220" cy="160" r="8" fill="#f9a825"/>
+  <text x="220" y="148" fill="#f9a825" font-size="11" font-family="sans-serif" text-anchor="middle">1970s</text>
+  <text x="220" y="185" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">工業化</text>
+  <text x="220" y="200" fill="#aaaaaa" font-size="9" font-family="sans-serif" text-anchor="middle">外資誘致</text>
+  <!-- 1980 -->
+  <circle cx="360" cy="160" r="8" fill="#f9a825"/>
+  <text x="360" y="148" fill="#f9a825" font-size="11" font-family="sans-serif" text-anchor="middle">1980s</text>
+  <text x="360" y="185" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">金融ハブ化</text>
+  <text x="360" y="200" fill="#aaaaaa" font-size="9" font-family="sans-serif" text-anchor="middle">HDB整備完了</text>
+  <!-- 2000 -->
+  <circle cx="530" cy="160" r="8" fill="#f9a825"/>
+  <text x="530" y="148" fill="#f9a825" font-size="11" font-family="sans-serif" text-anchor="middle">2000s</text>
+  <text x="530" y="185" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">知識経済</text>
+  <text x="530" y="200" fill="#aaaaaa" font-size="9" font-family="sans-serif" text-anchor="middle">テック集積</text>
+  <!-- 2025 -->
+  <circle cx="700" cy="160" r="10" fill="#f9a825"/>
+  <text x="700" y="148" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle">2025</text>
+  <text x="700" y="185" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">GDP/capita</text>
+  <text x="700" y="200" fill="#f9a825" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="bold">$65,000</text>
+  <!-- before/after comparison boxes -->
+  <rect x="50" y="240" width="300" height="90" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="200" y="262" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">1965年の課題</text>
+  <text x="200" y="282" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">天然資源なし、飲料水もマレーシアから輸入</text>
+  <text x="200" y="300" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">「生き残れないかもしれない」</text>
+  <text x="200" y="318" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">—リー・クアンユー</text>
+  <rect x="450" y="240" width="300" height="90" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="600" y="262" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">2025年の達成</text>
+  <text x="600" y="282" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">汚職指数: 世界最低クラス</text>
+  <text x="600" y="300" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">1人あたりGDP: 日本の約2倍</text>
+  <text x="600" y="318" fill="#f9a825" font-size="10" font-family="sans-serif" text-anchor="middle">60年で第三世界から先進国へ</text>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">イースタリンのパラドックス — GDP成長 vs 幸福度</text>
+  <!-- axes -->
+  <line x1="80" y1="290" x2="720" y2="290" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+  <line x1="80" y1="60" x2="80" y2="295" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+  <text x="400" y="320" fill="#aaaaaa" font-size="12" font-family="sans-serif" text-anchor="middle">年 (1960 → 2000)</text>
+  <text x="30" y="180" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle" transform="rotate(-90,30,180)">指数</text>
+  <!-- GDP line: rising steeply -->
+  <polyline points="80,270 180,230 280,180 380,130 480,90 580,65 680,50 720,48" fill="none" stroke="#f9a825" stroke-width="3"/>
+  <text x="730" y="50" fill="#f9a825" font-size="12" font-family="sans-serif">GDP</text>
+  <!-- Happiness line: flat -->
+  <polyline points="80,200 180,195 280,200 380,205 480,198 580,202 680,200 720,198" fill="none" stroke="#e91e63" stroke-width="3"/>
+  <text x="730" y="200" fill="#e91e63" font-size="12" font-family="sans-serif">幸福度</text>
+  <!-- x-axis labels -->
+  <text x="80" y="310" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">1960</text>
+  <text x="280" y="310" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">1970</text>
+  <text x="480" y="310" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">1980</text>
+  <text x="680" y="310" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">2000</text>
+  <!-- annotation -->
+  <text x="400" y="345" fill="#aaaaaa" font-size="12" font-family="sans-serif" text-anchor="middle">日本: GDP 4倍になっても生活満足度は横ばい (1960-2000)</text>
+  <text x="400" y="362" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">ヘドニック・トレッドミル: 慣れが幸福感をリセットする</text>
+</svg>

@@ -17,6 +17,12 @@
 						"command": "bash -c 'FILE=$(echo \"$CLAUDE_TOOL_INPUT\" | grep -o \"docs/[^\"]*slides-data\\.json\" | head -1); if [ -n \"$FILE\" ] && [ -f \"$FILE\" ]; then ACTUAL=$(bun -e \"const d=JSON.parse(require(\\\"fs\\\").readFileSync(process.argv[1],\\\"utf-8\\\"));console.log(d.slides?d.slides.length:0)\" \"$FILE\" 2>/dev/null); echo \"📊 Slide count: $ACTUAL slides in $FILE\"; fi'",
 						"statusMessage": "Counting slides...",
 						"async": true
+					},
+					{
+						"type": "command",
+						"command": "bun run generate:index",
+						"statusMessage": "Updating docs/index.html...",
+						"async": true
 					}
 				]
 			},
@@ -63,8 +69,9 @@
 				"hooks": [
 					{
 						"type": "command",
-						"command": "bash -c 'FOUND=$(grep -rn \"url(#\" docs/**/*.svg 2>/dev/null); if [ -n \"$FOUND\" ]; then echo \"⚠️ Prohibited url(#id) references found in SVG files:\"; echo \"$FOUND\"; echo \"Run: bun run scripts/fix-svg-url-refs.ts\"; exit 1; fi; echo \"✅ SVG url(#id) check passed\"'",
-						"statusMessage": "Checking SVG url(#id) references..."
+						"command": "bash -c 'FOUND=$(grep -rn \"url(#\" docs/**/*.svg 2>/dev/null); if [ -n \"$FOUND\" ]; then echo \"⚠️ Prohibited url(#id) references found — auto-fixing...\"; bun scripts/fix-svg-url-refs.ts && echo \"✅ SVG url(#id) references fixed\"; else echo \"✅ SVG url(#id) check passed\"; fi'",
+						"statusMessage": "Checking and auto-fixing SVG url(#id) references...",
+						"async": true
 					}
 				]
 			},

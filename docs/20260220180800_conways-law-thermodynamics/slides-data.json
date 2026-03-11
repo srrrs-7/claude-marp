@@ -42,6 +42,7 @@
 			"title": "なぜこれが「法則」なのか — 物理法則との類似",
 			"layout": "default",
 			"content": [
+				"<svg viewBox='0 0 780 300' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0'><rect width='780' height='300' fill='#1a1a2e' rx='8'/><text x='390' y='26' text-anchor='middle' fill='#e8d5b7' font-size='13' font-weight='bold'>「法則」の条件 — 物理法則とコンウェイの法則の比較</text><rect x='20' y='42' width='740' height='36' rx='4' fill='#16213e'/><text x='200' y='65' text-anchor='middle' fill='#f9a825' font-size='11' font-weight='bold'>特性</text><text x='430' y='65' text-anchor='middle' fill='#4a90d9' font-size='11' font-weight='bold'>物理法則</text><text x='660' y='65' text-anchor='middle' fill='#4caf50' font-size='11' font-weight='bold'>コンウェイの法則</text><rect x='20' y='82' width='740' height='44' rx='2' fill='#0d1a2e'/><text x='200' y='108' text-anchor='middle' fill='#b0bec5' font-size='10'>普遍性</text><text x='430' y='108' text-anchor='middle' fill='#90caf9' font-size='10'>あらゆる物質に適用</text><text x='660' y='108' text-anchor='middle' fill='#a5d6a7' font-size='10'>あらゆる組織・システムに適用</text><rect x='20' y='130' width='740' height='44' rx='2' fill='#0f0f1e'/><text x='200' y='156' text-anchor='middle' fill='#b0bec5' font-size='10'>不変性</text><text x='430' y='156' text-anchor='middle' fill='#90caf9' font-size='10'>例外なく成立</text><text x='660' y='156' text-anchor='middle' fill='#a5d6a7' font-size='10'>反例が報告されていない</text><rect x='20' y='178' width='740' height='44' rx='2' fill='#0d1a2e'/><text x='200' y='204' text-anchor='middle' fill='#b0bec5' font-size='10'>予測可能性</text><text x='430' y='204' text-anchor='middle' fill='#90caf9' font-size='10'>結果を事前計算可能</text><text x='660' y='204' text-anchor='middle' fill='#a5d6a7' font-size='10'>組織から設計を予測可能</text><rect x='20' y='226' width='740' height='44' rx='2' fill='#0f0f1e'/><text x='200' y='252' text-anchor='middle' fill='#b0bec5' font-size='10'>破れない理由</text><text x='430' y='252' text-anchor='middle' fill='#90caf9' font-size='10'>自然の基本原理</text><text x='660' y='252' text-anchor='middle' fill='#a5d6a7' font-size='10'>コミュニケーションコストの経済合理性</text><line x1='380' y1='42' x2='380' y2='270' stroke='#444' stroke-width='1'/><line x1='610' y1='42' x2='610' y2='270' stroke='#444' stroke-width='1'/><text x='390' y='290' text-anchor='middle' fill='#f9a825' font-size='10' font-weight='bold'>チームは必然的にインターフェースをコミュニケーション境界に合わせる</text></svg>",
 				"「法則」と呼ばれる条件：**普遍性・不変性・予測可能性**",
 				"",
 				"| 特性 | 物理法則 | コンウェイの法則 |",
@@ -157,15 +158,23 @@
 			"speakerNotes": "Team Topologies は逆コンウェイ戦略の具体的な実装パターン。4つのチームタイプと3つのインタラクションモード（collaboration, X-as-a-Service, facilitating）を定義している。"
 		},
 		{
-			"title": "まとめ：アーキテクチャの問題は、本当は組織の問題",
+			"title": "まとめ：アーキテクチャの問題は、本当は組織の問題（1/2）",
 			"layout": "center",
 			"content": [
+				"<svg viewBox='0 0 780 300' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0'><rect width='780' height='300' fill='#1a1a2e' rx='8'/><text x='390' y='26' text-anchor='middle' fill='#e8d5b7' font-size='13' font-weight='bold'>Two-Pizza Team — なぜ 7±2人が最適か</text><rect x='20' y='44' width='220' height='230' rx='6' fill='#16213e' stroke='#f9a825' stroke-width='1.5'/><text x='130' y='66' text-anchor='middle' fill='#f9a825' font-size='11' font-weight='bold'>ミラーの法則</text><circle cx='130' cy='125' r='45' fill='#1a2a3e' stroke='#4a90d9' stroke-width='2'/><text x='130' y='118' text-anchor='middle' fill='#42a5f5' font-size='18' font-weight='bold'>7±2</text><text x='130' y='138' text-anchor='middle' fill='#64b5f6' font-size='9'>チャンク</text><text x='130' y='190' text-anchor='middle' fill='#ffe082' font-size='9'>短期記憶の容量</text><text x='130' y='205' text-anchor='middle' fill='#ffe082' font-size='9'>George Miller (1956)</text><text x='130' y='255' text-anchor='middle' fill='#aaa' font-size='9'>人が「頭の中に保持」</text><text x='130' y='268' text-anchor='middle' fill='#aaa' font-size='9'>できるチームサイズ</text><rect x='260' y='44' width='220' height='230' rx='6' fill='#16213e' stroke='#4caf50' stroke-width='1.5'/><text x='370' y='66' text-anchor='middle' fill='#66bb6a' font-size='11' font-weight='bold'>通信経路の比較</text><rect x='275' y='78' width='190' height='32' rx='4' fill='#1b4a1b' stroke='#4caf50' stroke-width='1'/><text x='370' y='98' text-anchor='middle' fill='#a5d6a7' font-size='10'>7人 → 21経路（管理可能）</text><rect x='275' y='118' width='190' height='32' rx='4' fill='#3d1500' stroke='#e65100' stroke-width='1'/><text x='370' y='138' text-anchor='middle' fill='#ffcc80' font-size='10'>15人 → 105経路（カオス）</text><line x1='370' y1='168' x2='370' y2='212' stroke='#555' stroke-width='1.5'/><circle cx='310' cy='168' r='6' fill='#4caf50'/><text x='345' y='171' fill='#66bb6a' font-size='8'>7人</text><circle cx='370' cy='190' r='6' fill='#f9a825'/><text x='380' y='193' fill='#ffe082' font-size='8'>10人</text><circle cx='430' cy='212' r='6' fill='#e74c3c'/><text x='415' y='215' fill='#ef5350' font-size='8'>15人</text><text x='370' y='258' text-anchor='middle' fill='#aaa' font-size='9'>人数増 → 複雑性の</text><text x='370' y='271' text-anchor='middle' fill='#aaa' font-size='9'>二乗増加</text><rect x='500' y='44' width='260' height='230' rx='6' fill='#16213e' stroke='#e91e63' stroke-width='1.5'/><text x='630' y='66' text-anchor='middle' fill='#f06292' font-size='11' font-weight='bold'>Conway対応 (Amazon実践)</text><rect x='515' y='80' width='230' height='32' rx='4' fill='#2a0a1a' stroke='#e91e63' stroke-width='1'/><text x='630' y='100' text-anchor='middle' fill='#f48fb1' font-size='10'>チームサイズ制限（7±2人）</text><line x1='630' y1='114' x2='630' y2='132' stroke='#e91e63' stroke-width='1.5'/><polygon points='624,130 636,130 630,142' fill='#e91e63'/><rect x='515' y='142' width='230' height='32' rx='4' fill='#2a0a1a' stroke='#e91e63' stroke-width='1'/><text x='630' y='162' text-anchor='middle' fill='#f48fb1' font-size='10'>マイクロサービス粒度に収束</text><line x1='630' y1='176' x2='630' y2='194' stroke='#e91e63' stroke-width='1.5'/><polygon points='624,192 636,192 630,204' fill='#e91e63'/><rect x='515' y='204' width='230' height='32' rx='4' fill='#2a0a1a' stroke='#e91e63' stroke-width='1'/><text x='630' y='224' text-anchor='middle' fill='#f48fb1' font-size='10'>APIファースト設計が自然に生まれる</text><text x='630' y='258' text-anchor='middle' fill='#aaa' font-size='9'>逆コンウェイ戦略の</text><text x='630' y='271' text-anchor='middle' fill='#aaa' font-size='9'>自然な実装</text><text x='390' y='290' text-anchor='middle' fill='#f9a825' font-size='10' font-weight='bold'>「チームが完全に理解できるサービス」が適切なマイクロサービスの粒度</text></svg>",
 				"**コンウェイの法則 ≈ 熱力学第二法則**",
 				"",
 				"組織のコミュニケーション構造は → システムに自然に投影される",
 				"エントロピーは増大する → 放置すれば複雑化は不可避",
 				"逆コンウェイ戦略 → 法則を味方につける唯一の方法",
-				"",
+				""
+			],
+			"speakerNotes": "最終メッセージ：アーキテクチャを変えたければ、まず組織を変えよ。逆コンウェイ戦略は単なるテクニックではなく、熱力学的な現実を直視した上で、意図的に法則を活用する思想転換です。"
+		},
+		{
+			"title": "まとめ：アーキテクチャの問題は、本当は組織の問題（2/2）",
+			"layout": "center",
+			"content": [
 				"---",
 				"",
 				"**実践チェックリスト**",
@@ -177,13 +186,20 @@
 			"speakerNotes": "最終メッセージ：アーキテクチャを変えたければ、まず組織を変えよ。逆コンウェイ戦略は単なるテクニックではなく、熱力学的な現実を直視した上で、意図的に法則を活用する思想転換です。"
 		},
 		{
-			"title": "参考文献",
+			"title": "参考文献（1/2）",
 			"layout": "default",
 			"content": [
 				"**研究・論文:**",
 				"- [Conway, M. (1968) — How Do Committees Invent?](http://www.melconway.com/Home/Committees_Paper.html)",
 				"- [MacCormack et al. (2012) — Exploring the Duality between Product and Organizational Architectures](https://hbswk.hbs.edu/item/exploring-the-duality-between-product-and-organizational-architectures)",
-				"- [Nagappan et al. (2008) — The Influence of Organizational Structure on Software Quality](https://www.microsoft.com/en-us/research/publication/the-influence-of-organizational-structure-on-software-quality/)",
+				"- [Nagappan et al. (2008) — The Influence of Organizational Structure on Software Quality](https://www.microsoft.com/en-us/research/publication/the-influence-of-organizational-structure-on-software-quality/)"
+			],
+			"speakerNotes": "コンウェイの法則は1968年の論文から始まりましたが、今も最前線で議論される概念です。Team Topologies と Accelerate はどちらも実践的なガイドとして高く評価されています。"
+		},
+		{
+			"title": "参考文献（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**書籍・実践ガイド:**",
 				"- [Team Topologies — Skelton & Pais (2019)](https://teamtopologies.com/)",

@@ -1,0 +1,45 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">心理的安全性とレビュー品質の相関</text>
+  <!-- X axis: Psychological Safety -->
+  <line x1="80" y1="310" x2="720" y2="310" stroke="#ffffff" stroke-width="2"/>
+  <line x1="80" y1="60" x2="80" y2="310" stroke="#ffffff" stroke-width="2"/>
+  <!-- Labels -->
+  <text x="400" y="350" text-anchor="middle" font-size="13" fill="#ffffff">心理的安全性スコア（低→高）</text>
+  <text x="20" y="190" text-anchor="middle" font-size="12" fill="#ffffff" transform="rotate(-90,20,190)">レビュー質スコア</text>
+  <!-- Scatter plot points -->
+  <!-- Low safety, low quality cluster -->
+  <circle cx="130" cy="278" r="7" fill="#e91e63" opacity="0.8"/>
+  <circle cx="155" cy="265" r="7" fill="#e91e63" opacity="0.8"/>
+  <circle cx="145" cy="285" r="7" fill="#e91e63" opacity="0.8"/>
+  <circle cx="170" cy="272" r="7" fill="#e91e63" opacity="0.8"/>
+  <circle cx="160" cy="295" r="7" fill="#e91e63" opacity="0.8"/>
+  <!-- Medium cluster -->
+  <circle cx="300" cy="220" r="7" fill="#f9a825" opacity="0.8"/>
+  <circle cx="325" cy="208" r="7" fill="#f9a825" opacity="0.8"/>
+  <circle cx="315" cy="230" r="7" fill="#f9a825" opacity="0.8"/>
+  <circle cx="345" cy="215" r="7" fill="#f9a825" opacity="0.8"/>
+  <circle cx="335" cy="240" r="7" fill="#f9a825" opacity="0.8"/>
+  <circle cx="290" cy="240" r="7" fill="#f9a825" opacity="0.8"/>
+  <!-- High safety, high quality cluster -->
+  <circle cx="530" cy="140" r="7" fill="#4caf50" opacity="0.8"/>
+  <circle cx="555" cy="125" r="7" fill="#4caf50" opacity="0.8"/>
+  <circle cx="545" cy="155" r="7" fill="#4caf50" opacity="0.8"/>
+  <circle cx="575" cy="135" r="7" fill="#4caf50" opacity="0.8"/>
+  <circle cx="565" cy="160" r="7" fill="#4caf50" opacity="0.8"/>
+  <circle cx="600" cy="118" r="7" fill="#4caf50" opacity="0.8"/>
+  <circle cx="620" cy="105" r="7" fill="#4caf50" opacity="0.8"/>
+  <!-- Trend line -->
+  <line x1="110" y1="290" x2="680" y2="90" stroke="#f9a825" stroke-width="2" stroke-dasharray="6,3"/>
+  <!-- Annotations -->
+  <rect x="85" y="240" width="140" height="36" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="155" y="258" text-anchor="middle" font-size="10" fill="#e91e63">「批判が怖い」環境</text>
+  <text x="155" y="272" text-anchor="middle" font-size="10" fill="#ffffff">形式的なLGTMが増加</text>
+  <rect x="490" y="75" width="155" height="36" rx="4" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="568" y="93" text-anchor="middle" font-size="10" fill="#4caf50">フラットな関係性</text>
+  <text x="568" y="107" text-anchor="middle" font-size="10" fill="#ffffff">実質的な指摘が増加</text>
+  <!-- Key stats -->
+  <rect x="80" y="330" width="640" height="46" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="350" text-anchor="middle" font-size="12" fill="#f9a825">Googleの研究: 心理的安全性が高いチームは指摘が40%多く、修正受け入れが60%高い</text>
+  <text x="400" y="368" text-anchor="middle" font-size="11" fill="#ffffff">テックリードの恐怖ではなくフラットな議論がレビュー品質の基盤</text>
+</svg>

@@ -36,7 +36,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
 
 <h1 id="yagni%E5%8E%9F%E5%89%87%E3%82%92%E4%BA%BA%E7%94%9F%E3%81%AB%E9%81%A9%E7%94%A8%E3%81%99%E3%82%8B">YAGNI原則を人生に適用する</h1>
@@ -68,7 +68,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
 <h1 id="%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B">自己紹介</h1>
 <ul>
@@ -101,7 +101,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
 <h1 id="%E3%82%A2%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%80-12">アジェンダ (1/2)</h1>
 <ul>
@@ -133,7 +133,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
 <h1 id="%E3%82%A2%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%80-22">アジェンダ (2/2)</h1>
 <ul>
@@ -165,7 +165,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
 
 <h1 id="chapter-1">Chapter 1</h1>
@@ -197,7 +197,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
 <h1 id="yagni%E3%81%A8%E3%81%AF">YAGNIとは</h1>
 <ul>
@@ -231,7 +231,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
 
 <h1 id="you-aint-gonna-need-it">You Ain't Gonna Need It</h1>
@@ -264,7 +264,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
 <h1 id="%E8%AA%95%E7%94%9F%E3%81%AE%E8%83%8C%E6%99%AF-%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%A0%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0">誕生の背景: エクストリームプログラミング</h1>
 <ul>
@@ -298,7 +298,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
 <h1 id="martin-fowler-%E3%81%AE%E8%A8%80%E8%91%89">Martin Fowler の言葉</h1>
 <ul>
@@ -335,26 +335,12 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
 <h1 id="%E3%82%B3%E3%83%BC%E3%83%89%E3%81%A7%E3%81%AE-yagni-%E9%81%95%E5%8F%8D">コードでの YAGNI 違反</h1>
 <ul>
 <li>「将来的に多言語対応するかもしれないから...」</li>
 </ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-comment">// 「いつか使うかも」な抽象化</span>
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">UserRepository</span> {
-  <span class="hljs-comment">// 将来の DB 切り替えに備えて</span>
-  <span class="hljs-keyword">private</span> <span class="hljs-attr">adapter</span>: <span class="hljs-title class_">DatabaseAdapter</span>;
-  <span class="hljs-keyword">private</span> <span class="hljs-attr">cache</span>: <span class="hljs-title class_">CacheLayer</span>;      <span class="hljs-comment">// 未使用</span>
-  <span class="hljs-keyword">private</span> <span class="hljs-attr">fallback</span>: <span class="hljs-title class_">FallbackStrategy</span>; <span class="hljs-comment">// 未使用</span>
-
-  <span class="hljs-comment">// 将来の分散処理に備えて</span>
-  <span class="hljs-keyword">async</span> <span class="hljs-title function_">findAll</span>(<span class="hljs-params"><span class="hljs-attr">options</span>?: {
-    shard?: <span class="hljs-built_in">string</span>;
-    replica?: <span class="hljs-string">&#x27;primary&#x27;</span> | <span class="hljs-string">&#x27;secondary&#x27;</span>;
-  }</span>) { <span class="hljs-comment">/* ... */</span> }
-}
-</code></pre>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -379,24 +365,21 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E3%82%B3%E3%83%BC%E3%83%89%E3%81%A7%E3%81%AE-yagni-%E5%AE%9F%E8%B7%B5">コードでの YAGNI 実践</h1>
-<ul>
-<li>「今必要なことだけ書く」</li>
-</ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-comment">// 今必要なことだけ</span>
+<h1 id="%E3%82%B3%E3%83%BC%E3%83%89%E3%81%A7%E3%81%AE-yagni-%E9%81%95%E5%8F%8D%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">コードでの YAGNI 違反（コード例）</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-comment">// 「いつか使うかも」な抽象化</span>
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserRepository</span> {
-  <span class="hljs-keyword">async</span> <span class="hljs-title function_">findAll</span>(): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">User</span>[]&gt; {
-    <span class="hljs-keyword">return</span> db.<span class="hljs-title function_">query</span>(<span class="hljs-string">&#x27;SELECT * FROM users&#x27;</span>);
-  }
+  <span class="hljs-comment">// 将来の DB 切り替えに備えて</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-attr">adapter</span>: <span class="hljs-title class_">DatabaseAdapter</span>;
+  <span class="hljs-keyword">private</span> <span class="hljs-attr">cache</span>: <span class="hljs-title class_">CacheLayer</span>;      <span class="hljs-comment">// 未使用</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-attr">fallback</span>: <span class="hljs-title class_">FallbackStrategy</span>; <span class="hljs-comment">// 未使用</span>
 
-  <span class="hljs-keyword">async</span> <span class="hljs-title function_">findById</span>(<span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span>): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">User</span> | <span class="hljs-literal">null</span>&gt; {
-    <span class="hljs-keyword">return</span> db.<span class="hljs-title function_">query</span>(
-      <span class="hljs-string">&#x27;SELECT * FROM users WHERE id = ?&#x27;</span>,
-      [id]
-    );
-  }
+  <span class="hljs-comment">// 将来の分散処理に備えて</span>
+  <span class="hljs-keyword">async</span> <span class="hljs-title function_">findAll</span>(<span class="hljs-params"><span class="hljs-attr">options</span>?: {
+    shard?: <span class="hljs-built_in">string</span>;
+    replica?: <span class="hljs-string">&#x27;primary&#x27;</span> | <span class="hljs-string">&#x27;secondary&#x27;</span>;
+  }</span>) { <span class="hljs-comment">/* ... */</span> }
 }
 </code></pre>
 <footer>© 2026</footer>
@@ -423,15 +406,11 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E3%81%AA%E3%81%9C-yagni-%E3%81%8C%E9%9B%A3%E3%81%97%E3%81%84%E3%81%8B">なぜ YAGNI が難しいか</h1>
+<h1 id="%E3%82%B3%E3%83%BC%E3%83%89%E3%81%A7%E3%81%AE-yagni-%E5%AE%9F%E8%B7%B5">コードでの YAGNI 実践</h1>
 <ul>
-<li>人間は「将来を予測できる」と思いがち</li>
-<li>不確実性への不安を「準備」で解消しようとする</li>
-<li>「後でやるより今やった方が安い」という誤信</li>
-<li>コードを書くことへの快感（過剰エンジニアリングの誘惑）</li>
-<li>チームへの見せ方（「考えてます」アピール）</li>
+<li>「今必要なことだけ書く」</li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -457,10 +436,23 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E8%AA%8D%E7%9F%A5%E3%83%90%E3%82%A4%E3%82%A2%E3%82%B9-%E8%A8%88%E7%94%BB%E3%81%AE%E8%AA%A4%E8%AC%AC">認知バイアス: 計画の誤謬</h1>
-<p><img src="../assets/planning-fallacy.svg" alt="center" style="width:900px;" /></p>
+<h1 id="%E3%82%B3%E3%83%BC%E3%83%89%E3%81%A7%E3%81%AE-yagni-%E5%AE%9F%E8%B7%B5%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">コードでの YAGNI 実践（コード例）</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-comment">// 今必要なことだけ</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">UserRepository</span> {
+  <span class="hljs-keyword">async</span> <span class="hljs-title function_">findAll</span>(): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">User</span>[]&gt; {
+    <span class="hljs-keyword">return</span> db.<span class="hljs-title function_">query</span>(<span class="hljs-string">&#x27;SELECT * FROM users&#x27;</span>);
+  }
+
+  <span class="hljs-keyword">async</span> <span class="hljs-title function_">findById</span>(<span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span>): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">User</span> | <span class="hljs-literal">null</span>&gt; {
+    <span class="hljs-keyword">return</span> db.<span class="hljs-title function_">query</span>(
+      <span class="hljs-string">&#x27;SELECT * FROM users WHERE id = ?&#x27;</span>,
+      [id]
+    );
+  }
+}
+</code></pre>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -485,10 +477,16 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E8%AA%8D%E7%9F%A5%E3%83%90%E3%82%A4%E3%82%A2%E3%82%B9-%E3%82%B5%E3%83%B3%E3%82%AF%E3%82%B3%E3%82%B9%E3%83%88">認知バイアス: サンクコスト</h1>
-<p><img src="../assets/sunk-cost.svg" alt="center" style="width:900px;" /></p>
+<h1 id="%E3%81%AA%E3%81%9C-yagni-%E3%81%8C%E9%9B%A3%E3%81%97%E3%81%84%E3%81%8B">なぜ YAGNI が難しいか</h1>
+<ul>
+<li>人間は「将来を予測できる」と思いがち</li>
+<li>不確実性への不安を「準備」で解消しようとする</li>
+<li>「後でやるより今やった方が安い」という誤信</li>
+<li>コードを書くことへの快感（過剰エンジニアリングの誘惑）</li>
+<li>チームへの見せ方（「考えてます」アピール）</li>
+</ul>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -513,19 +511,13 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E6%9C%AC%E8%B3%AA-%E6%9C%AA%E6%9D%A5%E3%81%B8%E3%81%AE%E9%81%8E%E6%8A%95%E8%B3%87%E3%81%A8%E3%81%84%E3%81%86%E7%97%85">本質: 未来への過投資という病</h1>
-<ul>
-<li>YAGNI 違反の正体は「未来への過投資」</li>
-<li>未来は常に不確実 → 投資は必ず一部が無駄になる</li>
-<li>「来た未来」にしかコストを払えなかった</li>
-<li>YAGNI: 来た未来にだけコストを払う</li>
-<li><strong>「今」を最大限に生きることが最善の未来投資</strong></li>
-</ul>
+<h1 id="%E8%AA%8D%E7%9F%A5%E3%83%90%E3%82%A4%E3%82%A2%E3%82%B9-%E8%A8%88%E7%94%BB%E3%81%AE%E8%AA%A4%E8%AC%AC">認知バイアス: 計画の誤謬</h1>
+<p><img src="../assets/planning-fallacy.svg" alt="center" style="width:900px;" /></p>
 <footer>© 2026</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-class="lead" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
   font-size: 1.05em;
 }
 section pre code {
@@ -536,7 +528,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-" lang="en-US" class="lead" data-marpit-pagination="16" style="--class:lead;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+" lang="en-US" class="invert" data-marpit-pagination="16" style="--class:invert;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
   font-size: 1.05em;
 }
 section pre code {
@@ -547,14 +539,10 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-
-<h1 id="chapter-2">Chapter 2</h1>
-<ul>
-<li>私のYAGNI違反史</li>
-<li>— 失敗から学んだこと —</li>
-</ul>
+<h1 id="%E8%AA%8D%E7%9F%A5%E3%83%90%E3%82%A4%E3%82%A2%E3%82%B9-%E3%82%B5%E3%83%B3%E3%82%AF%E3%82%B3%E3%82%B9%E3%83%88">認知バイアス: サンクコスト</h1>
+<p><img src="../assets/sunk-cost.svg" alt="center" style="width:900px;" /></p>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -579,19 +567,19 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E5%A4%B1%E6%95%971-%E7%A9%8D%E8%AA%AD">失敗1: 積読</h1>
+<h1 id="%E6%9C%AC%E8%B3%AA-%E6%9C%AA%E6%9D%A5%E3%81%B8%E3%81%AE%E9%81%8E%E6%8A%95%E8%B3%87%E3%81%A8%E3%81%84%E3%81%86%E7%97%85">本質: 未来への過投資という病</h1>
 <ul>
-<li>「いつか読もう」と買い続けた技術書・ビジネス書</li>
-<li>読んだ本: 全体の 20% 以下</li>
-<li>理由: 「今必要かどうか」ではなく「面白そう」で買っていた</li>
-<li>コスト: 本代 + 本棚スペース + 罪悪感</li>
-<li><strong>YAGNI 視点</strong>: 必要になったとき、必要な本だけ買えばよかった</li>
+<li>YAGNI 違反の正体は「未来への過投資」</li>
+<li>未来は常に不確実 → 投資は必ず一部が無駄になる</li>
+<li>「来た未来」にしかコストを払えなかった</li>
+<li>YAGNI: 来た未来にだけコストを払う</li>
+<li><strong>「今」を最大限に生きることが最善の未来投資</strong></li>
 </ul>
 <footer>© 2026</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-class="lead" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
   font-size: 1.05em;
 }
 section pre code {
@@ -602,7 +590,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-" lang="en-US" class="invert" data-marpit-pagination="18" style="--class:invert;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+" lang="en-US" class="lead" data-marpit-pagination="18" style="--class:lead;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
   font-size: 1.05em;
 }
 section pre code {
@@ -613,15 +601,13 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E5%A4%B1%E6%95%972-%E4%BD%BF%E3%82%8F%E3%81%AA%E3%81%84%E3%82%AC%E3%82%B8%E3%82%A7%E3%83%83%E3%83%88%E8%B3%BC%E5%85%A5">失敗2: 使わないガジェット購入</h1>
+
+<h1 id="chapter-2">Chapter 2</h1>
 <ul>
-<li>「いつか使いそう」なガジェットを購入し続けた</li>
-<li>使わなかった率: 約 60%</li>
-<li>「これがあれば生産性が上がる」という幻想</li>
-<li>コスト: 購入費 + 保管場所 + 処分の手間</li>
-<li><strong>YAGNI 視点</strong>: 「今すぐ使う」でなければ買わない</li>
+<li>私のYAGNI違反史</li>
+<li>— 失敗から学んだこと —</li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -647,15 +633,15 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E5%A4%B1%E6%95%973-%E5%BD%B9%E3%81%AB%E7%AB%8B%E3%81%9F%E3%81%AA%E3%81%8B%E3%81%A3%E3%81%9F%E8%B3%87%E6%A0%BC">失敗3: 役に立たなかった資格</h1>
+<h1 id="%E5%A4%B1%E6%95%971-%E7%A9%8D%E8%AA%AD">失敗1: 積読</h1>
 <ul>
-<li>「将来使えそう」な資格を複数取得した</li>
-<li>実際に業務で活用した資格: 半数以下</li>
-<li>勉強時間: 各資格に 100〜300 時間</li>
-<li>「持っておけば安心」という安心感のための資格</li>
-<li><strong>YAGNI 視点</strong>: 必要になったとき、必要な資格を取る</li>
+<li>「いつか読もう」と買い続けた技術書・ビジネス書</li>
+<li>読んだ本: 全体の 20% 以下</li>
+<li>理由: 「今必要かどうか」ではなく「面白そう」で買っていた</li>
+<li>コスト: 本代 + 本棚スペース + 罪悪感</li>
+<li><strong>YAGNI 視点</strong>: 必要になったとき、必要な本だけ買えばよかった</li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -681,15 +667,15 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E5%A4%B1%E6%95%974-%E9%81%8E%E5%BA%A6%E3%81%AA%E6%BA%96%E5%82%99%E3%81%A7%E5%8B%95%E3%81%91%E3%81%AA%E3%81%8B%E3%81%A3%E3%81%9F">失敗4: 過度な準備で動けなかった</h1>
+<h1 id="%E5%A4%B1%E6%95%972-%E4%BD%BF%E3%82%8F%E3%81%AA%E3%81%84%E3%82%AC%E3%82%B8%E3%82%A7%E3%83%83%E3%83%88%E8%B3%BC%E5%85%A5">失敗2: 使わないガジェット購入</h1>
 <ul>
-<li>副業・ブログ・OSS活動... 「完璧な準備」を待ち続けた</li>
-<li>「もう少し知識が増えてから」「もう少し時間ができてから」</li>
-<li>準備期間中に機会を逃した</li>
-<li>実際には「やりながら学ぶ」方が速かった</li>
-<li><strong>YAGNI 視点</strong>: 最低限のものだけ準備して、あとは動きながら足す</li>
+<li>「いつか使いそう」なガジェットを購入し続けた</li>
+<li>使わなかった率: 約 60%</li>
+<li>「これがあれば生産性が上がる」という幻想</li>
+<li>コスト: 購入費 + 保管場所 + 処分の手間</li>
+<li><strong>YAGNI 視点</strong>: 「今すぐ使う」でなければ買わない</li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -715,24 +701,16 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E5%A4%B1%E6%95%975-%E4%BD%BF%E3%82%8F%E3%81%AA%E3%81%84%E3%82%B3%E3%83%BC%E3%83%89%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85">失敗5: 使わないコード機能の実装</h1>
+<h1 id="%E5%A4%B1%E6%95%973-%E5%BD%B9%E3%81%AB%E7%AB%8B%E3%81%9F%E3%81%AA%E3%81%8B%E3%81%A3%E3%81%9F%E8%B3%87%E6%A0%BC">失敗3: 役に立たなかった資格</h1>
 <ul>
-<li>「将来マルチテナント対応するかも」で実装</li>
+<li>「将来使えそう」な資格を複数取得した</li>
+<li>実際に業務で活用した資格: 半数以下</li>
+<li>勉強時間: 各資格に 100〜300 時間</li>
+<li>「持っておけば安心」という安心感のための資格</li>
+<li><strong>YAGNI 視点</strong>: 必要になったとき、必要な資格を取る</li>
 </ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-comment">// 結果: 3年間一度も使われなかった</span>
-<span class="hljs-keyword">interface</span> <span class="hljs-title class_">TenantConfig</span> {
-  <span class="hljs-attr">tenantId</span>: <span class="hljs-built_in">string</span>;
-  <span class="hljs-attr">features</span>: <span class="hljs-title class_">FeatureFlag</span>[];
-  <span class="hljs-attr">customTheme</span>: <span class="hljs-title class_">ThemeConfig</span>;
-  <span class="hljs-attr">dataIsolation</span>: <span class="hljs-string">&#x27;shared&#x27;</span> | <span class="hljs-string">&#x27;dedicated&#x27;</span>;
-}
-
-<span class="hljs-comment">// 総実装時間: 2週間</span>
-<span class="hljs-comment">// 削除日: 3年後</span>
-<span class="hljs-comment">// 後悔度: MAX</span>
-</code></pre>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -757,16 +735,15 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E5%A4%B1%E6%95%976-%E3%82%AD%E3%83%A3%E3%83%AA%E3%82%A2%E3%81%AE%E8%BF%B7%E8%B5%B0">失敗6: キャリアの迷走</h1>
+<h1 id="%E5%A4%B1%E6%95%974-%E9%81%8E%E5%BA%A6%E3%81%AA%E6%BA%96%E5%82%99%E3%81%A7%E5%8B%95%E3%81%91%E3%81%AA%E3%81%8B%E3%81%A3%E3%81%9F">失敗4: 過度な準備で動けなかった</h1>
 <ul>
-<li>「将来 AI が来るから機械学習を勉強しよう」</li>
-<li>「ブロックチェーン エンジニアが稼げるらしい」</li>
-<li>「メタバース開発者が需要あるかも」</li>
-<li>流行に流されて浅く広く学んだ 3 年間</li>
-<li>結果: どれも中途半端、本業のスキルが止まっていた</li>
-<li><strong>YAGNI 視点</strong>: 今の仕事に必要なスキルを深く伸ばす</li>
+<li>副業・ブログ・OSS活動... 「完璧な準備」を待ち続けた</li>
+<li>「もう少し知識が増えてから」「もう少し時間ができてから」</li>
+<li>準備期間中に機会を逃した</li>
+<li>実際には「やりながら学ぶ」方が速かった</li>
+<li><strong>YAGNI 視点</strong>: 最低限のものだけ準備して、あとは動きながら足す</li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -792,10 +769,12 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E5%85%B1%E9%80%9A%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3-%E6%9C%AA%E6%9D%A5%E3%81%B8%E3%81%AE%E8%B3%AD%E3%81%91%E3%81%AB%E8%B2%A0%E3%81%91%E3%81%9F">共通パターン: 未来への賭けに負けた</h1>
-<p><img src="../assets/failure-pattern.svg" alt="center" style="width:900px;" /></p>
+<h1 id="%E5%A4%B1%E6%95%975-%E4%BD%BF%E3%82%8F%E3%81%AA%E3%81%84%E3%82%B3%E3%83%BC%E3%83%89%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85">失敗5: 使わないコード機能の実装</h1>
+<ul>
+<li>「将来マルチテナント対応するかも」で実装</li>
+</ul>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -820,13 +799,24 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E3%82%B3%E3%82%B9%E3%83%88%E3%81%AE%E5%8F%AF%E8%A6%96%E5%8C%96">コストの可視化</h1>
-<p><img src="../assets/cost-visualization.svg" alt="center" style="width:900px;" /></p>
+<h1 id="%E5%A4%B1%E6%95%975-%E4%BD%BF%E3%82%8F%E3%81%AA%E3%81%84%E3%82%B3%E3%83%BC%E3%83%89%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">失敗5: 使わないコード機能の実装（コード例）</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-comment">// 結果: 3年間一度も使われなかった</span>
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">TenantConfig</span> {
+  <span class="hljs-attr">tenantId</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">features</span>: <span class="hljs-title class_">FeatureFlag</span>[];
+  <span class="hljs-attr">customTheme</span>: <span class="hljs-title class_">ThemeConfig</span>;
+  <span class="hljs-attr">dataIsolation</span>: <span class="hljs-string">&#x27;shared&#x27;</span> | <span class="hljs-string">&#x27;dedicated&#x27;</span>;
+}
+
+<span class="hljs-comment">// 総実装時間: 2週間</span>
+<span class="hljs-comment">// 削除日: 3年後</span>
+<span class="hljs-comment">// 後悔度: MAX</span>
+</code></pre>
 <footer>© 2026</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-class="lead" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
   font-size: 1.05em;
 }
 section pre code {
@@ -837,7 +827,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-" lang="en-US" class="lead" data-marpit-pagination="25" style="--class:lead;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+" lang="en-US" class="invert" data-marpit-pagination="25" style="--class:invert;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
   font-size: 1.05em;
 }
 section pre code {
@@ -848,20 +838,20 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-
-<h1 id="%E6%95%99%E8%A8%93-%E3%82%82%E3%81%A3%E3%81%A8%E6%97%A9%E3%81%8F%E5%A4%B1%E6%95%97%E3%81%99%E3%82%8C%E3%81%B0%E3%82%88%E3%81%8B%E3%81%A3%E3%81%9F">教訓: もっと早く失敗すればよかった</h1>
+<h1 id="%E5%A4%B1%E6%95%976-%E3%82%AD%E3%83%A3%E3%83%AA%E3%82%A2%E3%81%AE%E8%BF%B7%E8%B5%B0">失敗6: キャリアの迷走</h1>
 <ul>
-<li>すべての失敗に共通すること...</li>
-<li>「<strong>やってから判断</strong>すれば、コストが小さかった」</li>
-<li>YAGNI = 「必要になったら対応する」</li>
-<li>= 「失敗を小さく、早く経験する」</li>
-<li><strong>Fail fast, fail cheap, fail forward.</strong></li>
+<li>「将来 AI が来るから機械学習を勉強しよう」</li>
+<li>「ブロックチェーン エンジニアが稼げるらしい」</li>
+<li>「メタバース開発者が需要あるかも」</li>
+<li>流行に流されて浅く広く学んだ 3 年間</li>
+<li>結果: どれも中途半端、本業のスキルが止まっていた</li>
+<li><strong>YAGNI 視点</strong>: 今の仕事に必要なスキルを深く伸ばす</li>
 </ul>
 <footer>© 2026</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-class="lead" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
   font-size: 1.05em;
 }
 section pre code {
@@ -872,7 +862,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-" lang="en-US" class="lead" data-marpit-pagination="26" style="--class:lead;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+" lang="en-US" class="invert" data-marpit-pagination="26" style="--class:invert;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
   font-size: 1.05em;
 }
 section pre code {
@@ -883,14 +873,10 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-
-<h1 id="chapter-3">Chapter 3</h1>
-<ul>
-<li>人生への応用</li>
-<li>— YAGNI を生き方にする —</li>
-</ul>
+<h1 id="%E5%85%B1%E9%80%9A%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3-%E6%9C%AA%E6%9D%A5%E3%81%B8%E3%81%AE%E8%B3%AD%E3%81%91%E3%81%AB%E8%B2%A0%E3%81%91%E3%81%9F">共通パターン: 未来への賭けに負けた</h1>
+<p><img src="../assets/failure-pattern.svg" alt="center" style="width:900px;" /></p>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -915,13 +901,13 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="yagni-%E3%81%AE%E9%81%A9%E7%94%A8%E9%A0%98%E5%9F%9F%E3%83%9E%E3%83%83%E3%83%97">YAGNI の適用領域マップ</h1>
-<p><img src="../assets/yagni-life-map.svg" alt="center" style="width:900px;" /></p>
+<h1 id="%E3%82%B3%E3%82%B9%E3%83%88%E3%81%AE%E5%8F%AF%E8%A6%96%E5%8C%96">コストの可視化</h1>
+<p><img src="../assets/cost-visualization.svg" alt="center" style="width:900px;" /></p>
 <footer>© 2026</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-class="lead" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
   font-size: 1.05em;
 }
 section pre code {
@@ -932,7 +918,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-" lang="en-US" class="invert" data-marpit-pagination="28" style="--class:invert;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+" lang="en-US" class="lead" data-marpit-pagination="28" style="--class:lead;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
   font-size: 1.05em;
 }
 section pre code {
@@ -943,19 +929,20 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E3%83%A2%E3%83%8E-%E3%83%AF%E3%83%BC%E3%83%89%E3%83%AD%E3%83%BC%E3%83%96%E6%88%A6%E7%95%A5">モノ: ワードローブ戦略</h1>
+
+<h1 id="%E6%95%99%E8%A8%93-%E3%82%82%E3%81%A3%E3%81%A8%E6%97%A9%E3%81%8F%E5%A4%B1%E6%95%97%E3%81%99%E3%82%8C%E3%81%B0%E3%82%88%E3%81%8B%E3%81%A3%E3%81%9F">教訓: もっと早く失敗すればよかった</h1>
 <ul>
-<li><strong>YAGNI 違反例</strong>: 「いつか着るかも」な服が溢れる</li>
-<li>クローゼットの 20% の服を 80% の確率で着る（80:20 則）</li>
-<li><strong>YAGNI 実践</strong>: 今の生活スタイルに必要な服だけ持つ</li>
-<li>「1 着買ったら 1 着捨てる」ルール</li>
-<li>着なかったら即処分する基準を持つ</li>
+<li>すべての失敗に共通すること...</li>
+<li>「<strong>やってから判断</strong>すれば、コストが小さかった」</li>
+<li>YAGNI = 「必要になったら対応する」</li>
+<li>= 「失敗を小さく、早く経験する」</li>
+<li><strong>Fail fast, fail cheap, fail forward.</strong></li>
 </ul>
 <footer>© 2026</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-class="lead" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
   font-size: 1.05em;
 }
 section pre code {
@@ -966,7 +953,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-" lang="en-US" class="invert" data-marpit-pagination="29" style="--class:invert;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+" lang="en-US" class="lead" data-marpit-pagination="29" style="--class:lead;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
   font-size: 1.05em;
 }
 section pre code {
@@ -977,16 +964,13 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E3%83%A2%E3%83%8E-%E3%82%AC%E3%82%B8%E3%82%A7%E3%83%83%E3%83%88%E8%B3%BC%E5%85%A5%E3%83%AB%E3%83%BC%E3%83%AB">モノ: ガジェット購入ルール</h1>
+
+<h1 id="chapter-3">Chapter 3</h1>
 <ul>
-<li><strong>YAGNI 違反例</strong>: スペックへの過投資</li>
-<li>「将来 4K 動画編集するかも」→ 実際はしない</li>
-<li><strong>YAGNI 実践の購入判断フロー</strong></li>
-<li>① 今すぐ使うか？ → NO なら買わない</li>
-<li>② 1ヶ月後も使っているか？ → 確認してから検討</li>
-<li>③ 代替手段はないか？ → あるなら買わない</li>
+<li>人生への応用</li>
+<li>— YAGNI を生き方にする —</li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -1012,16 +996,10 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E3%83%A2%E3%83%8E-%E6%9C%AC%E3%81%AE%E9%81%B8%E3%81%B3%E6%96%B9">モノ: 本の選び方</h1>
-<ul>
-<li><strong>YAGNI 違反例</strong>: 「面白そう」で買う積読</li>
-<li><strong>YAGNI 実践</strong>: Just-in-Time 読書</li>
-<li>「今困っていること」に直接関係する本だけ買う</li>
-<li>図書館・電子書籍で「試し読み」してから購入</li>
-<li>読み終えたら手放す（物理的・精神的スペース確保）</li>
-</ul>
+<h1 id="yagni-%E3%81%AE%E9%81%A9%E7%94%A8%E9%A0%98%E5%9F%9F%E3%83%9E%E3%83%83%E3%83%97">YAGNI の適用領域マップ</h1>
+<p><img src="../assets/yagni-life-map.svg" alt="center" style="width:900px;" /></p>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -1046,10 +1024,16 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E6%99%82%E9%96%93-%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%AE%E3%83%90%E3%83%83%E3%83%95%E3%82%A1">時間: スケジュールのバッファ</h1>
-<p><img src="../assets/schedule-buffer.svg" alt="center" style="width:900px;" /></p>
+<h1 id="%E3%83%A2%E3%83%8E-%E3%83%AF%E3%83%BC%E3%83%89%E3%83%AD%E3%83%BC%E3%83%96%E6%88%A6%E7%95%A5">モノ: ワードローブ戦略</h1>
+<ul>
+<li><strong>YAGNI 違反例</strong>: 「いつか着るかも」な服が溢れる</li>
+<li>クローゼットの 20% の服を 80% の確率で着る（80:20 則）</li>
+<li><strong>YAGNI 実践</strong>: 今の生活スタイルに必要な服だけ持つ</li>
+<li>「1 着買ったら 1 着捨てる」ルール</li>
+<li>着なかったら即処分する基準を持つ</li>
+</ul>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -1074,16 +1058,16 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E6%99%82%E9%96%93-%E3%82%84%E3%82%89%E3%81%AA%E3%81%84%E3%81%93%E3%81%A8%E3%83%AA%E3%82%B9%E3%83%88">時間: やらないことリスト</h1>
+<h1 id="%E3%83%A2%E3%83%8E-%E3%82%AC%E3%82%B8%E3%82%A7%E3%83%83%E3%83%88%E8%B3%BC%E5%85%A5%E3%83%AB%E3%83%BC%E3%83%AB">モノ: ガジェット購入ルール</h1>
 <ul>
-<li><strong>YAGNI 違反例</strong>: Todo リストが無限に増える</li>
-<li>「いつかやる」タスクが溢れて優先度が崩壊</li>
-<li><strong>YAGNI 実践</strong>: Not Todo リストを作る</li>
-<li>「今の自分に必要ない」ことを明示的に決める</li>
-<li>例: 「今年は新しい趣味を始めない」</li>
-<li>例: 「週3回以上の会食は断る」</li>
+<li><strong>YAGNI 違反例</strong>: スペックへの過投資</li>
+<li>「将来 4K 動画編集するかも」→ 実際はしない</li>
+<li><strong>YAGNI 実践の購入判断フロー</strong></li>
+<li>① 今すぐ使うか？ → NO なら買わない</li>
+<li>② 1ヶ月後も使っているか？ → 確認してから検討</li>
+<li>③ 代替手段はないか？ → あるなら買わない</li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -1109,15 +1093,15 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E6%99%82%E9%96%93-%E3%82%86%E3%81%A8%E3%82%8A%E3%81%AE%E4%BE%A1%E5%80%A4">時間: 「ゆとり」の価値</h1>
+<h1 id="%E3%83%A2%E3%83%8E-%E6%9C%AC%E3%81%AE%E9%81%B8%E3%81%B3%E6%96%B9">モノ: 本の選び方</h1>
 <ul>
-<li>スケジュールをびっちり埋めることは YAGNI 違反</li>
-<li>「ゆとり」= 未来の予期しない需要に応えるバッファ</li>
-<li>急な仕事・チャンス・体調不良に対応できる余白</li>
-<li>認知的な余裕が創造性と判断力を生む</li>
-<li><strong>「暇」は怠惰ではなく、戦略的空白である</strong></li>
+<li><strong>YAGNI 違反例</strong>: 「面白そう」で買う積読</li>
+<li><strong>YAGNI 実践</strong>: Just-in-Time 読書</li>
+<li>「今困っていること」に直接関係する本だけ買う</li>
+<li>図書館・電子書籍で「試し読み」してから購入</li>
+<li>読み終えたら手放す（物理的・精神的スペース確保）</li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -1143,10 +1127,10 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E5%AD%A6%E7%BF%92-just-in-time-%E5%AD%A6%E7%BF%92">学習: Just-in-Time 学習</h1>
-<p><img src="../assets/jit-learning.svg" alt="center" style="width:900px;" /></p>
+<h1 id="%E6%99%82%E9%96%93-%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%AE%E3%83%90%E3%83%83%E3%83%95%E3%82%A1">時間: スケジュールのバッファ</h1>
+<p><img src="../assets/schedule-buffer.svg" alt="center" style="width:900px;" /></p>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -1171,17 +1155,16 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E5%AD%A6%E7%BF%92-%E6%8A%80%E8%A1%93%E3%83%88%E3%83%AC%E3%83%B3%E3%83%89%E3%81%A8%E3%81%AE%E4%BB%98%E3%81%8D%E5%90%88%E3%81%84%E6%96%B9">学習: 技術トレンドとの付き合い方</h1>
+<h1 id="%E6%99%82%E9%96%93-%E3%82%84%E3%82%89%E3%81%AA%E3%81%84%E3%81%93%E3%81%A8%E3%83%AA%E3%82%B9%E3%83%88">時間: やらないことリスト</h1>
 <ul>
-<li><strong>YAGNI 違反例</strong>: 全トレンドをキャッチアップしようとする</li>
-<li>Hype Cycle の「幻滅期」で消えるものが多い</li>
-<li><strong>YAGNI 実践の判断基準</strong></li>
-<li>① 今の仕事で使えるか？</li>
-<li>② 1年後も存在しているか？</li>
-<li>③ 深く学ぶ価値のある基礎技術か？</li>
-<li>→ NO なら「見守り」でよい</li>
+<li><strong>YAGNI 違反例</strong>: Todo リストが無限に増える</li>
+<li>「いつかやる」タスクが溢れて優先度が崩壊</li>
+<li><strong>YAGNI 実践</strong>: Not Todo リストを作る</li>
+<li>「今の自分に必要ない」ことを明示的に決める</li>
+<li>例: 「今年は新しい趣味を始めない」</li>
+<li>例: 「週3回以上の会食は断る」</li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -1207,10 +1190,16 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E5%AD%A6%E7%BF%92-%E6%B7%B1%E3%81%95-vs-%E5%BA%83%E3%81%95">学習: 深さ vs 広さ</h1>
-<p><img src="../assets/depth-vs-breadth.svg" alt="center" style="width:900px;" /></p>
+<h1 id="%E6%99%82%E9%96%93-%E3%82%86%E3%81%A8%E3%82%8A%E3%81%AE%E4%BE%A1%E5%80%A4">時間: 「ゆとり」の価値</h1>
+<ul>
+<li>スケジュールをびっちり埋めることは YAGNI 違反</li>
+<li>「ゆとり」= 未来の予期しない需要に応えるバッファ</li>
+<li>急な仕事・チャンス・体調不良に対応できる余白</li>
+<li>認知的な余裕が創造性と判断力を生む</li>
+<li><strong>「暇」は怠惰ではなく、戦略的空白である</strong></li>
+</ul>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -1235,16 +1224,10 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E3%82%AD%E3%83%A3%E3%83%AA%E3%82%A2-%E4%BB%8A%E3%81%AE%E4%BB%95%E4%BA%8B%E3%81%AB%E9%9B%86%E4%B8%AD%E3%81%99%E3%82%8B">キャリア: 今の仕事に集中する</h1>
-<ul>
-<li><strong>YAGNI 違反例</strong>: 常に「次のキャリア」を考えて今が疎かに</li>
-<li>「転職活動しながら今の仕事もこなす」の両立失敗</li>
-<li><strong>YAGNI 実践</strong>: 今の仕事で圧倒的な成果を出す</li>
-<li>優れた成果 → 機会が自然に集まる</li>
-<li>転職は「必要になったとき」に考える</li>
-</ul>
+<h1 id="%E5%AD%A6%E7%BF%92-just-in-time-%E5%AD%A6%E7%BF%92">学習: Just-in-Time 学習</h1>
+<p><img src="../assets/jit-learning.svg" alt="center" style="width:900px;" /></p>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -1269,17 +1252,17 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E3%82%AD%E3%83%A3%E3%83%AA%E3%82%A2-%E8%BB%A2%E8%81%B7%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%AE%E5%88%A4%E6%96%AD">キャリア: 転職タイミングの判断</h1>
+<h1 id="%E5%AD%A6%E7%BF%92-%E6%8A%80%E8%A1%93%E3%83%88%E3%83%AC%E3%83%B3%E3%83%89%E3%81%A8%E3%81%AE%E4%BB%98%E3%81%8D%E5%90%88%E3%81%84%E6%96%B9">学習: 技術トレンドとの付き合い方</h1>
 <ul>
-<li><strong>YAGNI 的転職判断</strong>: 「今」必要性が生じているか？</li>
-<li>転職すべきシグナル（YAGNI 的）</li>
-<li>① 今の環境で学べることがなくなった</li>
-<li>② 明確なオファーや機会が目の前にある</li>
-<li>③ 価値観・方向性の根本的なミスマッチ</li>
-<li>転職しなくていいシグナル</li>
-<li>④ 「なんとなく不安」「流行のスタートアップが気になる」</li>
+<li><strong>YAGNI 違反例</strong>: 全トレンドをキャッチアップしようとする</li>
+<li>Hype Cycle の「幻滅期」で消えるものが多い</li>
+<li><strong>YAGNI 実践の判断基準</strong></li>
+<li>① 今の仕事で使えるか？</li>
+<li>② 1年後も存在しているか？</li>
+<li>③ 深く学ぶ価値のある基礎技術か？</li>
+<li>→ NO なら「見守り」でよい</li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -1305,10 +1288,10 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E4%BA%BA%E9%96%93%E9%96%A2%E4%BF%82-%E8%B3%AA-vs-%E9%87%8F">人間関係: 質 vs 量</h1>
-<p><img src="../assets/quality-vs-quantity.svg" alt="center" style="width:900px;" /></p>
+<h1 id="%E5%AD%A6%E7%BF%92-%E6%B7%B1%E3%81%95-vs-%E5%BA%83%E3%81%95">学習: 深さ vs 広さ</h1>
+<p><img src="../assets/depth-vs-breadth.svg" alt="center" style="width:900px;" /></p>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -1333,10 +1316,16 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E6%80%9D%E8%80%83-%E5%BF%83%E9%85%8D%E3%81%AE%E7%A9%BA%E6%8C%AF%E3%82%8A%E7%8E%87">思考: 心配の空振り率</h1>
-<p><img src="../assets/worry-rate.svg" alt="center" style="width:900px;" /></p>
+<h1 id="%E3%82%AD%E3%83%A3%E3%83%AA%E3%82%A2-%E4%BB%8A%E3%81%AE%E4%BB%95%E4%BA%8B%E3%81%AB%E9%9B%86%E4%B8%AD%E3%81%99%E3%82%8B">キャリア: 今の仕事に集中する</h1>
+<ul>
+<li><strong>YAGNI 違反例</strong>: 常に「次のキャリア」を考えて今が疎かに</li>
+<li>「転職活動しながら今の仕事もこなす」の両立失敗</li>
+<li><strong>YAGNI 実践</strong>: 今の仕事で圧倒的な成果を出す</li>
+<li>優れた成果 → 機会が自然に集まる</li>
+<li>転職は「必要になったとき」に考える</li>
+</ul>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -1361,20 +1350,21 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E6%80%9D%E8%80%83-%E6%84%8F%E6%80%9D%E6%B1%BA%E5%AE%9A%E3%81%AE%E7%B0%A1%E7%B4%A0%E5%8C%96">思考: 意思決定の簡素化</h1>
+<h1 id="%E3%82%AD%E3%83%A3%E3%83%AA%E3%82%A2-%E8%BB%A2%E8%81%B7%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%AE%E5%88%A4%E6%96%AD">キャリア: 転職タイミングの判断</h1>
 <ul>
-<li><strong>YAGNI 違反例</strong>: 全ての選択肢を調べ尽くしてから決める</li>
-<li>「完全な情報」を得ようとするが、それは不可能</li>
-<li><strong>YAGNI 実践の意思決定ルール</strong></li>
-<li>① 2択で迷ったら「今の自分」にフィットする方</li>
-<li>② 1週間考えても決まらないなら、どちらでもいい</li>
-<li>③ 「十分に良い選択」を素早くする</li>
+<li><strong>YAGNI 的転職判断</strong>: 「今」必要性が生じているか？</li>
+<li>転職すべきシグナル（YAGNI 的）</li>
+<li>① 今の環境で学べることがなくなった</li>
+<li>② 明確なオファーや機会が目の前にある</li>
+<li>③ 価値観・方向性の根本的なミスマッチ</li>
+<li>転職しなくていいシグナル</li>
+<li>④ 「なんとなく不安」「流行のスタートアップが気になる」</li>
 </ul>
 <footer>© 2026</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-class="lead" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
   font-size: 1.05em;
 }
 section pre code {
@@ -1385,7 +1375,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-" lang="en-US" class="lead" data-marpit-pagination="42" style="--class:lead;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+" lang="en-US" class="invert" data-marpit-pagination="42" style="--class:invert;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
   font-size: 1.05em;
 }
 section pre code {
@@ -1396,17 +1386,10 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-
-<h1 id="%E8%80%83%E3%81%88%E3%81%99%E3%81%8E%E3%82%92%E3%82%84%E3%82%81%E3%82%8B">「考えすぎ」をやめる</h1>
-<ul>
-<li>思考もオーバーエンジニアリングする</li>
-<li>「もしこうなったら」の連鎖は止まらない</li>
-<li><strong>YAGNI の思考版</strong>: 「今必要な思考だけ」</li>
-<li>起きていないことを考えるな</li>
-<li>起きたときに考えればいい</li>
-</ul>
+<h1 id="%E4%BA%BA%E9%96%93%E9%96%A2%E4%BF%82-%E8%B3%AA-vs-%E9%87%8F">人間関係: 質 vs 量</h1>
+<p><img src="../assets/quality-vs-quantity.svg" alt="center" style="width:900px;" /></p>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -1431,18 +1414,10 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E3%81%8A%E9%87%91-yagni-%E7%9A%84%E6%94%AF%E5%87%BA%E5%88%A4%E6%96%AD">お金: YAGNI 的支出判断</h1>
-<ul>
-<li><strong>YAGNI 違反例</strong>: 「いつか使う日のため」の過剰貯蓄</li>
-<li>または: 「将来のため」という名の衝動買い</li>
-<li><strong>YAGNI 的支出の判断基準</strong></li>
-<li>① 今の生活の質を上げるか？</li>
-<li>② 1ヶ月後に後悔しないか？</li>
-<li>③ 「将来のため」の割合が高すぎないか？</li>
-<li>今を生きるために使うお金の価値を認める</li>
-</ul>
+<h1 id="%E6%80%9D%E8%80%83-%E5%BF%83%E9%85%8D%E3%81%AE%E7%A9%BA%E6%8C%AF%E3%82%8A%E7%8E%87">思考: 心配の空振り率</h1>
+<p><img src="../assets/worry-rate.svg" alt="center" style="width:900px;" /></p>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -1467,21 +1442,20 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB-%E3%83%9F%E3%83%8B%E3%83%9E%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%A8-yagni">ライフスタイル: ミニマリズムと YAGNI</h1>
+<h1 id="%E6%80%9D%E8%80%83-%E6%84%8F%E6%80%9D%E6%B1%BA%E5%AE%9A%E3%81%AE%E7%B0%A1%E7%B4%A0%E5%8C%96">思考: 意思決定の簡素化</h1>
 <ul>
-<li>ミニマリズム = 「今必要なものだけ持つ」</li>
-<li>これは YAGNI そのもの</li>
-<li>モノを減らすメリット</li>
-<li>① 探す時間ゼロ（検索コスト削減）</li>
-<li>② 選択疲れゼロ（認知コスト削減）</li>
-<li>③ 引越し・移動が楽（変更コスト削減）</li>
-<li>エンジニアなら直感的に理解できる思想</li>
+<li><strong>YAGNI 違反例</strong>: 全ての選択肢を調べ尽くしてから決める</li>
+<li>「完全な情報」を得ようとするが、それは不可能</li>
+<li><strong>YAGNI 実践の意思決定ルール</strong></li>
+<li>① 2択で迷ったら「今の自分」にフィットする方</li>
+<li>② 1週間考えても決まらないなら、どちらでもいい</li>
+<li>③ 「十分に良い選択」を素早くする</li>
 </ul>
 <footer>© 2026</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-class="lead" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
   font-size: 1.05em;
 }
 section pre code {
@@ -1492,7 +1466,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-" lang="en-US" class="invert" data-marpit-pagination="45" style="--class:invert;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+" lang="en-US" class="lead" data-marpit-pagination="45" style="--class:lead;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
   font-size: 1.05em;
 }
 section pre code {
@@ -1503,10 +1477,17 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="yagni-%E7%9A%84%E3%83%A9%E3%82%A4%E3%83%95%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3">YAGNI 的ライフデザイン</h1>
-<p><img src="../assets/yagni-life-design.svg" alt="center" style="width:900px;" /></p>
+
+<h1 id="%E8%80%83%E3%81%88%E3%81%99%E3%81%8E%E3%82%92%E3%82%84%E3%82%81%E3%82%8B">「考えすぎ」をやめる</h1>
+<ul>
+<li>思考もオーバーエンジニアリングする</li>
+<li>「もしこうなったら」の連鎖は止まらない</li>
+<li><strong>YAGNI の思考版</strong>: 「今必要な思考だけ」</li>
+<li>起きていないことを考えるな</li>
+<li>起きたときに考えればいい</li>
+</ul>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -1531,15 +1512,17 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E4%BA%BA%E7%94%9F%E3%81%AE%E3%83%AA%E3%83%95%E3%82%A1%E3%82%AF%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0">人生のリファクタリング</h1>
+<h1 id="%E3%81%8A%E9%87%91-yagni-%E7%9A%84%E6%94%AF%E5%87%BA%E5%88%A4%E6%96%AD">お金: YAGNI 的支出判断</h1>
 <ul>
-<li>コードをリファクタリングするように、人生を整理する</li>
-<li>「使っていないモジュール（習慣・モノ・関係）」を削除</li>
-<li>「複雑になりすぎた関数（役割・義務）」を分解</li>
-<li>「依存関係が強すぎる部分」を疎結合にする</li>
-<li>リファクタリングは一度ではなく、継続的に行う</li>
+<li><strong>YAGNI 違反例</strong>: 「いつか使う日のため」の過剰貯蓄</li>
+<li>または: 「将来のため」という名の衝動買い</li>
+<li><strong>YAGNI 的支出の判断基準</strong></li>
+<li>① 今の生活の質を上げるか？</li>
+<li>② 1ヶ月後に後悔しないか？</li>
+<li>③ 「将来のため」の割合が高すぎないか？</li>
+<li>今を生きるために使うお金の価値を認める</li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -1565,19 +1548,21 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E5%AE%9A%E6%9C%9F%E7%9A%84%E3%81%AA%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%AE%E3%81%99%E3%81%99%E3%82%81">定期的なレビューのすすめ</h1>
+<h1 id="%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB-%E3%83%9F%E3%83%8B%E3%83%9E%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%A8-yagni">ライフスタイル: ミニマリズムと YAGNI</h1>
 <ul>
-<li>コードレビューと同じように、人生もレビューする</li>
-<li><strong>月次レビュー</strong>: 今月使ったもの・やったことを振り返る</li>
-<li><strong>年次レビュー</strong>: 「まだ必要か？」を全てのものに問う</li>
-<li>「積み上げる」よりも「削ぎ落とす」レビューを</li>
-<li>今の自分に必要なものだけを残す</li>
+<li>ミニマリズム = 「今必要なものだけ持つ」</li>
+<li>これは YAGNI そのもの</li>
+<li>モノを減らすメリット</li>
+<li>① 探す時間ゼロ（検索コスト削減）</li>
+<li>② 選択疲れゼロ（認知コスト削減）</li>
+<li>③ 引越し・移動が楽（変更コスト削減）</li>
+<li>エンジニアなら直感的に理解できる思想</li>
 </ul>
 <footer>© 2026</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-class="lead" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
   font-size: 1.05em;
 }
 section pre code {
@@ -1588,7 +1573,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-" lang="en-US" class="lead" data-marpit-pagination="48" style="--class:lead;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+" lang="en-US" class="invert" data-marpit-pagination="48" style="--class:invert;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
   font-size: 1.05em;
 }
 section pre code {
@@ -1599,14 +1584,10 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-
-<h1 id="chapter-4">Chapter 4</h1>
-<ul>
-<li>実践編</li>
-<li>— 今日から YAGNI を生きる —</li>
-</ul>
+<h1 id="yagni-%E7%9A%84%E3%83%A9%E3%82%A4%E3%83%95%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3">YAGNI 的ライフデザイン</h1>
+<p><img src="../assets/yagni-life-design.svg" alt="center" style="width:900px;" /></p>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -1631,15 +1612,15 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E5%8E%9F%E5%89%871-%E4%BB%8A%E5%BF%85%E8%A6%81%E3%81%AA%E3%81%93%E3%81%A8%E3%81%A0%E3%81%91%E3%82%84%E3%82%8B">原則1: 今必要なことだけやる</h1>
+<h1 id="%E4%BA%BA%E7%94%9F%E3%81%AE%E3%83%AA%E3%83%95%E3%82%A1%E3%82%AF%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0">人生のリファクタリング</h1>
 <ul>
-<li><strong>「今」にフォーカスする</strong></li>
-<li>今日必要なことリストを毎朝作る</li>
-<li>リストにないことは原則やらない</li>
-<li>「将来役に立つかも」は理由にならない</li>
-<li>今日の問題を今日解く — それだけでいい</li>
+<li>コードをリファクタリングするように、人生を整理する</li>
+<li>「使っていないモジュール（習慣・モノ・関係）」を削除</li>
+<li>「複雑になりすぎた関数（役割・義務）」を分解</li>
+<li>「依存関係が強すぎる部分」を疎結合にする</li>
+<li>リファクタリングは一度ではなく、継続的に行う</li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -1665,19 +1646,19 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E5%8E%9F%E5%89%872-%E6%8D%A8%E3%81%A6%E3%82%8B%E5%8B%87%E6%B0%97%E3%82%92%E6%8C%81%E3%81%A4">原則2: 捨てる勇気を持つ</h1>
+<h1 id="%E5%AE%9A%E6%9C%9F%E7%9A%84%E3%81%AA%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%AE%E3%81%99%E3%81%99%E3%82%81">定期的なレビューのすすめ</h1>
 <ul>
-<li><strong>「削除」は後退ではなく、前進である</strong></li>
-<li>使っていないコードを消すように、使っていないものを手放す</li>
-<li>「いつか使うかも」は「使わない」の言い訳</li>
-<li>捨てることで「今必要なもの」が見えてくる</li>
-<li>Git は履歴を残す — でも人生に git blame は不要</li>
+<li>コードレビューと同じように、人生もレビューする</li>
+<li><strong>月次レビュー</strong>: 今月使ったもの・やったことを振り返る</li>
+<li><strong>年次レビュー</strong>: 「まだ必要か？」を全てのものに問う</li>
+<li>「積み上げる」よりも「削ぎ落とす」レビューを</li>
+<li>今の自分に必要なものだけを残す</li>
 </ul>
 <footer>© 2026</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="51" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="51" data-class="lead" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
   font-size: 1.05em;
 }
 section pre code {
@@ -1688,7 +1669,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-" lang="en-US" class="invert" data-marpit-pagination="51" style="--class:invert;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+" lang="en-US" class="lead" data-marpit-pagination="51" style="--class:lead;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
   font-size: 1.05em;
 }
 section pre code {
@@ -1699,10 +1680,14 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E5%8E%9F%E5%89%873-%E7%9F%AD%E3%81%84%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%83%90%E3%83%83%E3%82%AF%E3%83%AB%E3%83%BC%E3%83%97">原則3: 短いフィードバックループ</h1>
-<p><img src="../assets/feedback-loop.svg" alt="center" style="width:900px;" /></p>
+
+<h1 id="chapter-4">Chapter 4</h1>
+<ul>
+<li>実践編</li>
+<li>— 今日から YAGNI を生きる —</li>
+</ul>
 <footer>© 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="52" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
@@ -1727,15 +1712,15 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E3%83%84%E3%83%BC%E3%83%AB-1%E3%83%B6%E6%9C%88%E3%83%AB%E3%83%BC%E3%83%AB">ツール: 1ヶ月ルール</h1>
+<h1 id="%E5%8E%9F%E5%89%871-%E4%BB%8A%E5%BF%85%E8%A6%81%E3%81%AA%E3%81%93%E3%81%A8%E3%81%A0%E3%81%91%E3%82%84%E3%82%8B">原則1: 今必要なことだけやる</h1>
 <ul>
-<li><strong>モノの購入・学習の開始 → 1ヶ月待つ</strong></li>
-<li>「欲しい！」「やりたい！」と思ったら、メモして 1ヶ月待つ</li>
-<li>1ヶ月後にまだ必要なら、それは本当に必要なもの</li>
-<li>大半の「欲しい」は 1ヶ月後に消える</li>
-<li><strong>これが最強の YAGNI フィルター</strong></li>
+<li><strong>「今」にフォーカスする</strong></li>
+<li>今日必要なことリストを毎朝作る</li>
+<li>リストにないことは原則やらない</li>
+<li>「将来役に立つかも」は理由にならない</li>
+<li>今日の問題を今日解く — それだけでいい</li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -1761,15 +1746,15 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E8%90%BD%E3%81%A8%E3%81%97%E7%A9%B4-yagni-%E3%81%AF%E6%80%A0%E6%83%B0%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%84">落とし穴: YAGNI は怠惰ではない</h1>
+<h1 id="%E5%8E%9F%E5%89%872-%E6%8D%A8%E3%81%A6%E3%82%8B%E5%8B%87%E6%B0%97%E3%82%92%E6%8C%81%E3%81%A4">原則2: 捨てる勇気を持つ</h1>
 <ul>
-<li>「今必要なことだけ」 ≠ 「楽をする」</li>
-<li>今必要なことを <strong>完璧に</strong> やることが YAGNI</li>
-<li>XP での YAGNI: 「今のストーリーを完璧に実装する」</li>
-<li>人生での YAGNI: 「今の役割を完璧に果たす」</li>
-<li><strong>YAGNI は集中の原則であり、省エネの原則ではない</strong></li>
+<li><strong>「削除」は後退ではなく、前進である</strong></li>
+<li>使っていないコードを消すように、使っていないものを手放す</li>
+<li>「いつか使うかも」は「使わない」の言い訳</li>
+<li>捨てることで「今必要なもの」が見えてくる</li>
+<li>Git は履歴を残す — でも人生に git blame は不要</li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -1795,19 +1780,13 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E8%90%BD%E3%81%A8%E3%81%97%E7%A9%B4-%E5%BF%85%E8%A6%81%E3%81%AA%E3%82%82%E3%81%AE%E3%81%BE%E3%81%A7%E5%89%8A%E3%82%89%E3%81%AA%E3%81%84">落とし穴: 必要なものまで削らない</h1>
-<ul>
-<li>YAGNI の誤用: 「健康管理」「人間関係」を削る</li>
-<li>基盤となるもの（健康・睡眠・基礎学習）は削ってはいけない</li>
-<li>判断基準: 「今必要か」ではなく「将来も必要か」</li>
-<li>YAGNI の適用範囲は「推測による先行投資」であり、</li>
-<li>「確実に必要な基盤」ではない</li>
-</ul>
+<h1 id="%E5%8E%9F%E5%89%873-%E7%9F%AD%E3%81%84%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%83%90%E3%83%83%E3%82%AF%E3%83%AB%E3%83%BC%E3%83%97">原則3: 短いフィードバックループ</h1>
+<p><img src="../assets/feedback-loop.svg" alt="center" style="width:900px;" /></p>
 <footer>© 2026</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="55" data-class="lead" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="55" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
   font-size: 1.05em;
 }
 section pre code {
@@ -1818,7 +1797,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-" lang="en-US" class="lead" data-marpit-pagination="55" style="--class:lead;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+" lang="en-US" class="invert" data-marpit-pagination="55" style="--class:invert;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
   font-size: 1.05em;
 }
 section pre code {
@@ -1829,13 +1808,15 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-
-<h1 id="chapter-5">Chapter 5</h1>
+<h1 id="%E3%83%84%E3%83%BC%E3%83%AB-1%E3%83%B6%E6%9C%88%E3%83%AB%E3%83%BC%E3%83%AB">ツール: 1ヶ月ルール</h1>
 <ul>
-<li>まとめ</li>
-<li>— YAGNI is a Lifestyle —</li>
+<li><strong>モノの購入・学習の開始 → 1ヶ月待つ</strong></li>
+<li>「欲しい！」「やりたい！」と思ったら、メモして 1ヶ月待つ</li>
+<li>1ヶ月後にまだ必要なら、それは本当に必要なもの</li>
+<li>大半の「欲しい」は 1ヶ月後に消える</li>
+<li><strong>これが最強の YAGNI フィルター</strong></li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -1861,16 +1842,15 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="yagni-%E3%81%A8%E6%9D%B1%E6%B4%8B%E5%93%B2%E5%AD%A6">YAGNI と東洋哲学</h1>
+<h1 id="%E8%90%BD%E3%81%A8%E3%81%97%E7%A9%B4-yagni-%E3%81%AF%E6%80%A0%E6%83%B0%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%84">落とし穴: YAGNI は怠惰ではない</h1>
 <ul>
-<li><strong>禅</strong>: 「今ここに集中する」</li>
-<li>余分なものを排して、今この瞬間に全力を注ぐ</li>
-<li><strong>老子 / 無為自然</strong>: 「為さずして為す」</li>
-<li>余計なことをしないことで、自然の流れに従う</li>
-<li><strong>YAGNI は西洋工学の原則であり、東洋哲学でもある</strong></li>
-<li>エンジニアとして YAGNI を学んだ私たちは、古来の知恵を手に入れていた</li>
+<li>「今必要なことだけ」 ≠ 「楽をする」</li>
+<li>今必要なことを <strong>完璧に</strong> やることが YAGNI</li>
+<li>XP での YAGNI: 「今のストーリーを完璧に実装する」</li>
+<li>人生での YAGNI: 「今の役割を完璧に果たす」</li>
+<li><strong>YAGNI は集中の原則であり、省エネの原則ではない</strong></li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -1896,48 +1876,19 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
-<h1 id="%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%81%AE%E5%BC%B7%E3%81%BF-%E8%A8%AD%E8%A8%88%E6%80%9D%E8%80%83%E3%81%AE%E8%BB%A2%E7%94%A8">エンジニアの強み: 設計思考の転用</h1>
-<p><img src="../assets/engineer-strength.svg" alt="center" style="width:900px;" /></p>
-<footer>© 2026</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="58" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
-  font-size: 1.05em;
-}
-section pre code {
-  font-size: 0.58em;
-  line-height: 1.4;
-}
-section.section-slide {
-  justify-content: center;
-  text-align: center;
-}
-" lang="en-US" class="invert" data-marpit-pagination="58" style="--class:invert;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
-  font-size: 1.05em;
-}
-section pre code {
-  font-size: 0.58em;
-  line-height: 1.4;
-}
-section.section-slide {
-  justify-content: center;
-  text-align: center;
-}
-;" data-marpit-pagination-total="61" data-size="16:9">
-<header>YAGNI原則を人生に適用する</header>
-<h1 id="%E4%BB%8A%E6%97%A5%E3%81%8B%E3%82%89%E5%A7%8B%E3%82%81%E3%82%8B3%E3%81%A4%E3%81%AE%E3%81%93%E3%81%A8">今日から始める3つのこと</h1>
+<h1 id="%E8%90%BD%E3%81%A8%E3%81%97%E7%A9%B4-%E5%BF%85%E8%A6%81%E3%81%AA%E3%82%82%E3%81%AE%E3%81%BE%E3%81%A7%E5%89%8A%E3%82%89%E3%81%AA%E3%81%84">落とし穴: 必要なものまで削らない</h1>
 <ul>
-<li><strong>① 1ヶ月ルールを始める</strong></li>
-<li>欲しいもの・やりたいことをメモして 1ヶ月待つ</li>
-<li><strong>② 「今日やること」だけのリストを作る</strong></li>
-<li>「いつかやる」は今日のリストから外す</li>
-<li><strong>③ 何か一つ捨てる</strong></li>
-<li>使っていないアプリ・モノ・予定を今日削除する</li>
+<li>YAGNI の誤用: 「健康管理」「人間関係」を削る</li>
+<li>基盤となるもの（健康・睡眠・基礎学習）は削ってはいけない</li>
+<li>判断基準: 「今必要か」ではなく「将来も必要か」</li>
+<li>YAGNI の適用範囲は「推測による先行投資」であり、</li>
+<li>「確実に必要な基盤」ではない</li>
 </ul>
 <footer>© 2026</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="59" data-class="lead" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="58" data-class="lead" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
   font-size: 1.05em;
 }
 section pre code {
@@ -1948,7 +1899,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-" lang="en-US" class="lead" data-marpit-pagination="59" style="--class:lead;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+" lang="en-US" class="lead" data-marpit-pagination="58" style="--class:lead;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
   font-size: 1.05em;
 }
 section pre code {
@@ -1959,14 +1910,48 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
 
-<h1 id="yagni-is-a-lifestyle">YAGNI is a Lifestyle</h1>
+<h1 id="chapter-5">Chapter 5</h1>
 <ul>
-<li>You Ain't Gonna Need It</li>
-<li>それ、必要にならないから。</li>
-<li><strong>今を生きよう。</strong></li>
+<li>まとめ</li>
+<li>— YAGNI is a Lifestyle —</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="59" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  justify-content: center;
+  text-align: center;
+}
+" lang="en-US" class="invert" data-marpit-pagination="59" style="--class:invert;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  justify-content: center;
+  text-align: center;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>YAGNI原則を人生に適用する</header>
+<h1 id="yagni-%E3%81%A8%E6%9D%B1%E6%B4%8B%E5%93%B2%E5%AD%A6">YAGNI と東洋哲学</h1>
+<ul>
+<li><strong>禅</strong>: 「今ここに集中する」</li>
+<li>余分なものを排して、今この瞬間に全力を注ぐ</li>
+<li><strong>老子 / 無為自然</strong>: 「為さずして為す」</li>
+<li>余計なことをしないことで、自然の流れに従う</li>
+<li><strong>YAGNI は西洋工学の原則であり、東洋哲学でもある</strong></li>
+<li>エンジニアとして YAGNI を学んだ私たちは、古来の知恵を手に入れていた</li>
 </ul>
 <footer>© 2026</footer>
 </section>
@@ -1992,7 +1977,103 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>YAGNI原則を人生に適用する</header>
+<h1 id="%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%81%AE%E5%BC%B7%E3%81%BF-%E8%A8%AD%E8%A8%88%E6%80%9D%E8%80%83%E3%81%AE%E8%BB%A2%E7%94%A8">エンジニアの強み: 設計思考の転用</h1>
+<p><img src="../assets/engineer-strength.svg" alt="center" style="width:900px;" /></p>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="61" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  justify-content: center;
+  text-align: center;
+}
+" lang="en-US" class="invert" data-marpit-pagination="61" style="--class:invert;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  justify-content: center;
+  text-align: center;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>YAGNI原則を人生に適用する</header>
+<h1 id="%E4%BB%8A%E6%97%A5%E3%81%8B%E3%82%89%E5%A7%8B%E3%82%81%E3%82%8B3%E3%81%A4%E3%81%AE%E3%81%93%E3%81%A8">今日から始める3つのこと</h1>
+<ul>
+<li><strong>① 1ヶ月ルールを始める</strong></li>
+<li>欲しいもの・やりたいことをメモして 1ヶ月待つ</li>
+<li><strong>② 「今日やること」だけのリストを作る</strong></li>
+<li>「いつかやる」は今日のリストから外す</li>
+<li><strong>③ 何か一つ捨てる</strong></li>
+<li>使っていないアプリ・モノ・予定を今日削除する</li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="62" data-class="lead" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  justify-content: center;
+  text-align: center;
+}
+" lang="en-US" class="lead" data-marpit-pagination="62" style="--class:lead;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  justify-content: center;
+  text-align: center;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
+<header>YAGNI原則を人生に適用する</header>
+
+<h1 id="yagni-is-a-lifestyle">YAGNI is a Lifestyle</h1>
+<ul>
+<li>You Ain't Gonna Need It</li>
+<li>それ、必要にならないから。</li>
+<li><strong>今を生きよう。</strong></li>
+</ul>
+<footer>© 2026</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="63" data-class="invert" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  justify-content: center;
+  text-align: center;
+}
+" lang="en-US" class="invert" data-marpit-pagination="63" style="--class:invert;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+  font-size: 1.05em;
+}
+section pre code {
+  font-size: 0.58em;
+  line-height: 1.4;
+}
+section.section-slide {
+  justify-content: center;
+  text-align: center;
+}
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
 <h1 id="%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E3%83%BB%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9">参考文献・リソース</h1>
 <ul>
@@ -2005,7 +2086,7 @@ section.section-slide {
 </ul>
 <footer>© 2026</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="61" data-class="lead" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="64" data-class="lead" data-paginate="true" data-header="YAGNI原則を人生に適用する" data-footer="© 2026" data-theme="gaia" data-style="section {
   font-size: 1.05em;
 }
 section pre code {
@@ -2016,7 +2097,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-" lang="en-US" class="lead" data-marpit-pagination="61" style="--class:lead;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
+" lang="en-US" class="lead" data-marpit-pagination="64" style="--class:lead;--paginate:true;--header:YAGNI原則を人生に適用する;--footer:© 2026;--theme:gaia;--style:section {
   font-size: 1.05em;
 }
 section pre code {
@@ -2027,7 +2108,7 @@ section.section-slide {
   justify-content: center;
   text-align: center;
 }
-;" data-marpit-pagination-total="61" data-size="16:9">
+;" data-marpit-pagination-total="64" data-size="16:9">
 <header>YAGNI原則を人生に適用する</header>
 
 <h1 id="%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB">おわりに</h1>

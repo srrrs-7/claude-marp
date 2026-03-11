@@ -5,6 +5,7 @@ output:
   baseName: "correlation-causation-fails"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "相関と因果"
   footer: "© 2026"

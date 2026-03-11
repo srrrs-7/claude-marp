@@ -7,6 +7,71 @@ paginate: true
 header: "海底ケーブルと植民地支配の遺産"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -115,6 +180,7 @@ style: |
 
 # テック企業の海底ケーブル投資
 
+![w:900 center](assets/cable-power-flow.svg)
 - **Google** ― 世界30本以上のケーブルに投資・所有
 - **Meta（Facebook）** ― 2Africa（アフリカ一周ケーブル、37,000km）
 - **Microsoft** ― Marea（大西洋横断、160Tbps）
@@ -127,6 +193,7 @@ style: |
 
 # 「ケーブルを持つ者がルールを決める」
 
+![w:900 center](assets/gafam-cables.svg)
 - ケーブル所有 = **データの物理的経路を制御**できる
 - どの国のどのデータセンターを経由するか決められる
 - 障害時のトラフィック迂回を自社に有利に誘導できる
@@ -145,6 +212,7 @@ style: |
 
 # アフリカのインターネット接続の現実
 
+![w:900 center](assets/africa-routing.svg)
 - アフリカの多くの国は**欧州経由**でインターネットに接続
 - ナイジェリアからケニアへのデータが**ロンドン経由**で届く
 - アフリカ内の国際通信の**70%以上が大陸外を経由**
@@ -176,6 +244,7 @@ style: |
 
 # デジタル主権への動き
 
+![w:900 center](assets/digital-sovereignty.svg)
 - **アフリカ連合：** 大陸内ケーブル網の構築を推進
 - **EU：** GDPR + 欧州データ主権 → 域外経由を制限する動き
 - **インド：** 自国接続ケーブルの多様化（中国経由を回避）

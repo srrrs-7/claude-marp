@@ -7,6 +7,71 @@ paginate: true
 header: "ムーアの法則の死後"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -90,6 +155,7 @@ style: |
 
 # アプローチ4: 光コンピューティング
 
+- <svg viewBox='0 0 800 210' style='max-height:42vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='210' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>電子 vs 光子コンピューティング</text><rect x='40' y='50' width='320' height='130' rx='10' fill='#16213e' stroke='#e74c3c' stroke-width='2'/><text x='200' y='75' text-anchor='middle' fill='#e74c3c' font-size='13' font-weight='bold'>電子ベース（現行）</text><text x='200' y='98' text-anchor='middle' fill='#aaa' font-size='11'>行列演算: O(n²) 演算が必要</text><text x='200' y='118' text-anchor='middle' fill='#aaa' font-size='11'>発熱: ジュール熱が不可避</text><text x='200' y='138' text-anchor='middle' fill='#aaa' font-size='11'>速度: 光速の約1%</text><text x='200' y='162' text-anchor='middle' fill='#e74c3c' font-size='11'>AIモデル推論に膨大な電力</text><rect x='440' y='50' width='320' height='130' rx='10' fill='#16213e' stroke='#4ecdc4' stroke-width='2'/><text x='600' y='75' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>光子ベース（次世代）</text><text x='600' y='98' text-anchor='middle' fill='#aaa' font-size='11'>行列演算: レンズ通過でO(1)</text><text x='600' y='118' text-anchor='middle' fill='#aaa' font-size='11'>発熱: 極めて低い</text><text x='600' y='138' text-anchor='middle' fill='#aaa' font-size='11'>速度: 光速（真空中）</text><text x='600' y='162' text-anchor='middle' fill='#4ecdc4' font-size='11'>AI推論を100x〜1000x高速化</text><text x='400' y='195' text-anchor='middle' fill='#f9a825' font-size='10'>課題: 非線形演算・精度・電気-光変換コスト — Lightmatter等が先行</text></svg>
 - - **光子で計算**: 電子の代わりに光の干渉・回折パターンを利用
 - - **行列演算が光速**: レンズを通すだけで行列乗算が完了（O(1)時間）
 - - **AI/MLワークロードに最適**: 推論処理の大部分は行列演算
@@ -133,10 +199,16 @@ style: |
 
 # アーキテクチャの再設計
 
+- <svg viewBox='0 0 800 200' style='max-height:40vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>メモリ階層とアクセスレイテンシ</text><rect x='60' y='50' width='680' height='28' rx='5' fill='#2ecc71' fill-opacity='0.7'/><text x='400' y='69' text-anchor='middle' fill='#fff' font-size='12' font-weight='bold'>L1キャッシュ: ~1ns (1x) — 高頻度データはここに収める</text><rect x='100' y='86' width='600' height='26' rx='5' fill='#f39c12' fill-opacity='0.7'/><text x='400' y='103' text-anchor='middle' fill='#fff' font-size='11'>L2キャッシュ: ~5ns (5x)</text><rect x='140' y='120' width='520' height='24' rx='5' fill='#e67e22' fill-opacity='0.7'/><text x='400' y='136' text-anchor='middle' fill='#fff' font-size='11'>L3キャッシュ: ~20ns (20x)</text><rect x='200' y='152' width='400' height='22' rx='5' fill='#e74c3c' fill-opacity='0.8'/><text x='400' y='167' text-anchor='middle' fill='#fff' font-size='11'>メインメモリ: ~100ns (100x) ← ここがメモリウォール</text><text x='400' y='190' text-anchor='middle' fill='#aaa' font-size='10'>データローカリティ設計でキャッシュヒット率を上げることが現代の競争優位</text></svg>
 - - **データローカリティ**: キャッシュヒット率がパフォーマンスを支配
 - - **メモリ帯域幅**: 計算能力よりメモリアクセスがボトルネック（メモリウォール）
 - - **並列性の設計**: マルチコア/SIMD/GPGPUを前提としたアルゴリズム設計
 - - **Rust/Zigの台頭**: メモリ安全性 + ゼロコスト抽象 + 手動メモリ管理
+
+
+---
+
+# アーキテクチャの再設計（コード例）
 
 ```javascript
 // データローカリティの影響（キャッシュミスのコスト）
@@ -164,13 +236,20 @@ style: |
 ---
 
 <!-- _class: lead -->
-# まとめ — 多様化する物理基盤
+# まとめ — 多様化する物理基盤（1/2）
 
 - **ムーアの法則は死んだが、計算の進化は終わらない**
 - 
 - 「1つのアーキテクチャですべてを解決」の時代から
 - **多様な物理基盤を使い分ける時代**へ
 - 
+
+
+---
+
+<!-- _class: lead -->
+# まとめ — 多様化する物理基盤（2/2）
+
 - - 特化型チップ (ASIC/TPU) — ワークロード固有の加速
 - - 3D積層 — 帯域幅とレイテンシの革命
 - - ニューロモーフィック — 超低消費電力の知能
@@ -180,13 +259,19 @@ style: |
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - **基礎理論:**
 - - [Moore, G. (1965) "Cramming more components onto integrated circuits"](https://en.wikipedia.org/wiki/Moore%27s_law)
 - - [Dennard Scaling and its breakdown](https://en.wikipedia.org/wiki/Dennard_scaling)
 - 
 - **技術動向:**
+
+
+---
+
+# 参考文献（2/2）
+
 - - [Google Willow Quantum Chip (2024)](https://blog.google/technology/research/google-willow-quantum-chip/)
 - - [Intel Loihi 2 Neuromorphic Processor](https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html)
 - 

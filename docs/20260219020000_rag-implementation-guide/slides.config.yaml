@@ -4,6 +4,7 @@ output:
   baseName: "rag-implementation-guide"
 marp:
   theme: gaia
+  class: invert
   size: "16:9"
   paginate: true
   footer: "RAG実装ガイド完全版 2026 | AWS GenAI Developer Pro"

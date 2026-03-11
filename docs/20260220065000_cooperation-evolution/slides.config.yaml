@@ -5,6 +5,7 @@ output:
   baseName: "cooperation-evolution"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "協力と進化ゲーム理論"
   footer: "© 2026"

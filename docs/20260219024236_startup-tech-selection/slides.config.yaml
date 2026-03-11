@@ -5,6 +5,7 @@ output:
   baseName: "startup-tech-selection"
 marp:
   theme: gaia
+  class: invert
   size: "16:9"
   paginate: true
   header: "スタートアップ技術選定ガイド"

@@ -5,6 +5,7 @@ output:
   baseName: "traffic-jam-systems"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "渋滞の科学"
   footer: "© 2026"

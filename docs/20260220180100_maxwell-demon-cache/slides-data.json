@@ -1,13 +1,20 @@
 {
 	"slides": [
 		{
-			"title": "マクスウェルの悪魔とキャッシュ無効化",
+			"title": "マクスウェルの悪魔とキャッシュ無効化（1/2）",
 			"layout": "center",
 			"content": [
 				"**CSで最も難しい問題：キャッシュ無効化**",
 				"",
 				"> \"There are only two hard things in Computer Science:",
-				"> cache invalidation and naming things.\"",
+				"> cache invalidation and naming things.\""
+			],
+			"speakerNotes": "キャッシュ無効化の困難さを物理学の視点から解説するプレゼンテーション"
+		},
+		{
+			"title": "マクスウェルの悪魔とキャッシュ無効化（2/2）",
+			"layout": "center",
+			"content": [
 				"> — Phil Karlton",
 				"",
 				"なぜキャッシュ無効化は難しいのか？",
@@ -24,7 +31,7 @@
 			]
 		},
 		{
-			"title": "1867年の思考実験：熱力学第二法則を破れるか？",
+			"title": "1867年の思考実験：熱力学第二法則を破れるか？（1/2）",
 			"content": [
 				"<svg viewBox='0 0 700 320' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg'>",
 				"  <!-- 左の部屋（熱い分子） -->",
@@ -41,7 +48,14 @@
 				"  <rect x='298' y='40' width='4' height='95' fill='#888'/>",
 				"  <rect x='298' y='185' width='4' height='95' fill='#888'/>",
 				"  <rect x='294' y='135' width='12' height='50' rx='3' fill='#ffd700' style='filter:drop-shadow(0 0 6px rgba(255,215,0,0.8))'/>",
-				"  <!-- 悪魔 -->",
+				"  <!-- 悪魔 -->"
+			],
+			"speakerNotes": "マクスウェルの悪魔は1867年に提唱された思考実験。悪魔が分子を選別することで熱力学第二法則（エントロピー増大則）を破れるように見える",
+			"layout": "default"
+		},
+		{
+			"title": "1867年の思考実験：熱力学第二法則を破れるか？（2/2）",
+			"content": [
 				"  <circle cx='300' cy='160' r='20' fill='#9b59b6' style='filter:drop-shadow(0 0 8px rgba(155,89,182,0.8))'/>",
 				"  <text x='300' y='165' text-anchor='middle' fill='white' font-size='16' font-family='sans-serif'>👁</text>",
 				"  <text x='300' y='220' text-anchor='middle' fill='#9b59b6' font-size='11' font-family='sans-serif'>悪魔</text>",
@@ -59,10 +73,11 @@
 				"  <text x='350' y='305' text-anchor='middle' fill='#aaa' font-size='11' font-family='sans-serif'>悪魔は速い分子だけを左→右に通す。エネルギーなしで温度差を作れる？</text>",
 				"</svg>"
 			],
-			"speakerNotes": "マクスウェルの悪魔は1867年に提唱された思考実験。悪魔が分子を選別することで熱力学第二法則（エントロピー増大則）を破れるように見える"
+			"speakerNotes": "マクスウェルの悪魔は1867年に提唱された思考実験。悪魔が分子を選別することで熱力学第二法則（エントロピー増大則）を破れるように見える",
+			"layout": "default"
 		},
 		{
-			"title": "悪魔のジレンマ：情報を覚えることにコストがかかる",
+			"title": "悪魔のジレンマ：情報を覚えることにコストがかかる（1/2）",
 			"content": [
 				"**シラードの解決（1929年）**",
 				"",
@@ -81,7 +96,14 @@
 				"  <rect x='252' y='30' width='180' height='120' rx='8' fill='#3a2a1a' stroke='#ff9800' stroke-width='2'/>",
 				"  <text x='342' y='55' text-anchor='middle' fill='#ff9800' font-size='13' font-family='sans-serif' font-weight='bold'>② 扉の制御</text>",
 				"  <text x='342' y='80' text-anchor='middle' fill='#ccc' font-size='11' font-family='sans-serif'>記録した情報を使い</text>",
-				"  <text x='342' y='100' text-anchor='middle' fill='#ccc' font-size='11' font-family='sans-serif'>扉を開閉する</text>",
+				"  <text x='342' y='100' text-anchor='middle' fill='#ccc' font-size='11' font-family='sans-serif'>扉を開閉する</text>"
+			],
+			"speakerNotes": "1929年、レオ・シラードが悪魔のパラドックスを解決。観測自体ではなく、メモリを消去する際に熱が放出され熱力学第二法則が保たれる",
+			"layout": "default"
+		},
+		{
+			"title": "悪魔のジレンマ：情報を覚えることにコストがかかる（2/2）",
+			"content": [
 				"  <text x='342' y='120' text-anchor='middle' fill='#ffd700' font-size='11' font-family='sans-serif'>→ 仕事を取り出す</text>",
 				"  <text x='342' y='140' text-anchor='middle' fill='#ff9800' font-size='11' font-family='sans-serif'>（見かけ上無償）</text>",
 				"  <!-- 矢印2 -->",
@@ -101,10 +123,11 @@
 				"  <text x='350' y='250' text-anchor='middle' fill='#aaa' font-size='11' font-family='sans-serif'>観測（情報取得）ではなく、忘却（情報消去）がエントロピー増大の源</text>",
 				"</svg>"
 			],
-			"speakerNotes": "1929年、レオ・シラードが悪魔のパラドックスを解決。観測自体ではなく、メモリを消去する際に熱が放出され熱力学第二法則が保たれる"
+			"speakerNotes": "1929年、レオ・シラードが悪魔のパラドックスを解決。観測自体ではなく、メモリを消去する際に熱が放出され熱力学第二法則が保たれる",
+			"layout": "default"
 		},
 		{
-			"title": "情報は物理量だ：ランダウアー原理",
+			"title": "情報は物理量だ：ランダウアー原理（1/2）",
 			"content": [
 				"<svg viewBox='0 0 700 320' style='max-height:68vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg'>",
 				"  <!-- タイトルバー -->",
@@ -117,7 +140,14 @@
 				"  <!-- 凡例 -->",
 				"  <text x='50' y='145' fill='#4caf50' font-size='12' font-family='sans-serif'>k_B = ボルツマン定数 (1.38×10⁻²³ J/K)</text>",
 				"  <text x='50' y='165' fill='#64b5f6' font-size='12' font-family='sans-serif'>T   = 温度（ケルビン）</text>",
-				"  <text x='50' y='185' fill='#ff9800' font-size='12' font-family='sans-serif'>ln2 ≈ 0.693</text>",
+				"  <text x='50' y='185' fill='#ff9800' font-size='12' font-family='sans-serif'>ln2 ≈ 0.693</text>"
+			],
+			"speakerNotes": "ランダウアーが1961年に証明。情報消去には物理的エネルギーコストが必ず伴う。これはコンピューティングの根本的限界を示す",
+			"layout": "default"
+		},
+		{
+			"title": "情報は物理量だ：ランダウアー原理（2/2）",
+			"content": [
 				"  <!-- 現代への影響 -->",
 				"  <rect x='30' y='205' width='300' height='100' rx='8' fill='#1a3a1a' stroke='#4caf50' stroke-width='1.5'/>",
 				"  <text x='180' y='228' text-anchor='middle' fill='#4caf50' font-size='13' font-family='sans-serif' font-weight='bold'>物理的意味</text>",
@@ -132,7 +162,8 @@
 				"</svg>",
 				"**キーメッセージ:** ビット情報の消去 = エントロピー生産 = 物理的コスト"
 			],
-			"speakerNotes": "ランダウアーが1961年に証明。情報消去には物理的エネルギーコストが必ず伴う。これはコンピューティングの根本的限界を示す"
+			"speakerNotes": "ランダウアーが1961年に証明。情報消去には物理的エネルギーコストが必ず伴う。これはコンピューティングの根本的限界を示す",
+			"layout": "default"
 		},
 		{
 			"title": "キャッシュの本質的困難",
@@ -143,14 +174,80 @@
 			]
 		},
 		{
-			"title": "「CSで最も難しい2つの問題」の起源",
+			"title": "「CSで最も難しい2つの問題」の起源（1/2）",
 			"content": [
+				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">",
+				"  <rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/>",
+				"  <text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">キャッシュ無効化の3つの根本的困難</text>",
+				"  <!-- 中央アイコン -->",
+				"  <circle cx=\"400\" cy=\"185\" r=\"48\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>",
+				"  <text x=\"400\" y=\"180\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">Cache</text>",
+				"  <text x=\"400\" y=\"198\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">Invalidation</text>",
+				"  <!-- 要因1: 時間の非対称性 (左上) -->",
+				"  <rect x=\"30\" y=\"50\" width=\"200\" height=\"90\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>",
+				"  <text x=\"130\" y=\"78\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">時間の非対称性</text>",
+				"  <text x=\"130\" y=\"99\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">データは変わるが</text>",
+				"  <text x=\"130\" y=\"117\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">コピーの存在を忘れる</text>",
+				"  <line x1=\"230\" y1=\"110\" x2=\"352\" y2=\"162\" stroke=\"#e91e63\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\"/>",
+				"  <polygon points=\"352,162 340,154 344,166\" fill=\"#e91e63\"/>",
+				"  <!-- 要因2: 分散の不確実性 (右上) -->",
+				"  <rect x=\"570\" y=\"50\" width=\"200\" height=\"90\" rx=\"10\" fill=\"#16213e\" stroke=\"#4fc3f7\" stroke-width=\"2\"/>",
+				"  <text x=\"670\" y=\"78\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">分散の不確実性</text>",
+				"  <text x=\"670\" y=\"99\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">どこに何のコピーが</text>",
+				"  <text x=\"670\" y=\"117\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">あるか把握不能</text>",
+				"  <line x1=\"570\" y1=\"110\" x2=\"448\" y2=\"162\" stroke=\"#4fc3f7\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\"/>",
+				"  <polygon points=\"448,162 454,150 460,162\" fill=\"#4fc3f7\"/>",
+				"  <!-- 要因3: 完全性の不可能 (下) -->",
+				"  <rect x=\"280\" y=\"295\" width=\"240\" height=\"50\" rx=\"10\" fill=\"#16213e\" stroke=\"#81c784\" stroke-width=\"2\"/>",
+				"  <text x=\"400\" y=\"316\" text-anchor=\"middle\" fill=\"#81c784\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">完全性の不可能</text>",
+				"  <text x=\"400\" y=\"335\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">全コピーの即時更新コストは無限大</text>",
+				"  <line x1=\"400\" y1=\"233\" x2=\"400\" y2=\"295\" stroke=\"#81c784\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\"/>",
+				"  <polygon points=\"400,295 394,283 406,283\" fill=\"#81c784\"/>",
+				"  <!-- Phil Karlton quote strip -->",
+				"  <rect x=\"30\" y=\"305\" width=\"230\" height=\"35\" rx=\"6\" fill=\"#0d0d1a\" stroke=\"#888\" stroke-width=\"1\"/>",
+				"  <text x=\"145\" y=\"327\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">→ Phil Karlton の「2大難問」の由来</text>",
+				"</svg>",
 				"**Phil Karlton (Netscape) の名言**",
 				"",
 				"> \"There are only two hard things in Computer Science:",
 				"> cache invalidation and naming things.\"",
 				"",
-				"**なぜキャッシュ無効化が難しいか：3つの根本的理由**",
+				"**なぜキャッシュ無効化が難しいか：3つの根本的理由**"
+			],
+			"speakerNotes": "Phil Karltonの名言はその後Tim Petersが拡張した。実際にはキャッシュ無効化は分散システム理論の中核問題",
+			"layout": "default"
+		},
+		{
+			"title": "「CSで最も難しい2つの問題」の起源（2/2）",
+			"content": [
+				"<svg viewBox=\"0 0 800 280\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">",
+				"  <rect width=\"800\" height=\"280\" fill=\"#1a1a2e\"/>",
+				"  <text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">マクスウェルの悪魔とキャッシュ問題の対応</text>",
+				"  <!-- 3 problem boxes -->",
+				"  <rect x=\"30\" y=\"50\" width=\"220\" height=\"80\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>",
+				"  <text x=\"140\" y=\"77\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">時間の非対称性</text>",
+				"  <text x=\"140\" y=\"97\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">データは変わる ／</text>",
+				"  <text x=\"140\" y=\"115\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">コピーの存在を忘れる</text>",
+				"  <rect x=\"290\" y=\"50\" width=\"220\" height=\"80\" rx=\"8\" fill=\"#16213e\" stroke=\"#4fc3f7\" stroke-width=\"2\"/>",
+				"  <text x=\"400\" y=\"77\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">分散の不確実性</text>",
+				"  <text x=\"400\" y=\"97\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">コピーの所在が</text>",
+				"  <text x=\"400\" y=\"115\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">把握不能</text>",
+				"  <rect x=\"550\" y=\"50\" width=\"220\" height=\"80\" rx=\"8\" fill=\"#16213e\" stroke=\"#81c784\" stroke-width=\"2\"/>",
+				"  <text x=\"660\" y=\"77\" text-anchor=\"middle\" fill=\"#81c784\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">完全性の不可能</text>",
+				"  <text x=\"660\" y=\"97\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">即時全同期は</text>",
+				"  <text x=\"660\" y=\"115\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">コスト無限大</text>",
+				"  <!-- summary arrow -->",
+				"  <line x1=\"140\" y1=\"130\" x2=\"350\" y2=\"175\" stroke=\"#888\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\"/>",
+				"  <line x1=\"400\" y1=\"130\" x2=\"400\" y2=\"175\" stroke=\"#888\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\"/>",
+				"  <line x1=\"660\" y1=\"130\" x2=\"450\" y2=\"175\" stroke=\"#888\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\"/>",
+				"  <polygon points=\"350,175 344,163 356,163\" fill=\"#888\"/>",
+				"  <polygon points=\"400,175 394,163 406,163\" fill=\"#888\"/>",
+				"  <polygon points=\"450,175 444,163 456,163\" fill=\"#888\"/>",
+				"  <!-- conclusion box -->",
+				"  <rect x=\"200\" y=\"178\" width=\"400\" height=\"68\" rx=\"10\" fill=\"#0d0d1a\" stroke=\"#f9a825\" stroke-width=\"2\"/>",
+				"  <text x=\"400\" y=\"204\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">= 悪魔の問題と同型</text>",
+				"  <text x=\"400\" y=\"226\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"12\" font-family=\"sans-serif\">「情報を持つことの代償は整合性維持コスト」</text>",
+				"</svg>",
 				"- **時間の非対称性** — データは変わるが、コピーの存在を忘れる",
 				"- **分散の不確実性** — どこに何のコピーがあるか把握不能",
 				"- **完全性の不可能** — 全コピーを即時更新するコストは無限大",
@@ -158,10 +255,11 @@
 				"これはまさに**マクスウェルの悪魔の問題**と同型：",
 				"「情報（キャッシュ）を持つことの代償は、その整合性維持コスト」"
 			],
-			"speakerNotes": "Phil Karltonの名言はその後Tim Petersが拡張した。実際にはキャッシュ無効化は分散システム理論の中核問題"
+			"speakerNotes": "Phil Karltonの名言はその後Tim Petersが拡張した。実際にはキャッシュ無効化は分散システム理論の中核問題",
+			"layout": "default"
 		},
 		{
-			"title": "キャッシュ整合性の状態遷移",
+			"title": "キャッシュ整合性の状態遷移（1/2）",
 			"content": [
 				"<svg viewBox='0 0 700 330' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg'>",
 				"  <!-- Fresh状態 -->",
@@ -183,7 +281,14 @@
 				"  <!-- 矢印: Fresh → Stale (TTL期限) -->",
 				"  <line x1='305' y1='115' x2='180' y2='188' stroke='#ffd700' stroke-width='2'/>",
 				"  <polygon points='178,190 170,178 182,180' fill='#ffd700'/>",
-				"  <text x='220' y='145' fill='#ffd700' font-size='10' font-family='sans-serif'>TTL期限</text>",
+				"  <text x='220' y='145' fill='#ffd700' font-size='10' font-family='sans-serif'>TTL期限</text>"
+			],
+			"speakerNotes": "キャッシュには4つの主要状態がある。状態遷移の複雑さが分散環境での整合性問題の核心",
+			"layout": "default"
+		},
+		{
+			"title": "キャッシュ整合性の状態遷移（2/2）",
+			"content": [
 				"  <!-- 矢印: Fresh → Updating (変更検知) -->",
 				"  <line x1='395' y1='115' x2='518' y2='188' stroke='#64b5f6' stroke-width='2'/>",
 				"  <polygon points='520,190 516,177 524,180' fill='#64b5f6'/>",
@@ -206,10 +311,11 @@
 				"  <text x='358' y='200' fill='#4caf50' font-size='10' font-family='sans-serif'>再取得</text>",
 				"</svg>"
 			],
-			"speakerNotes": "キャッシュには4つの主要状態がある。状態遷移の複雑さが分散環境での整合性問題の核心"
+			"speakerNotes": "キャッシュには4つの主要状態がある。状態遷移の複雑さが分散環境での整合性問題の核心",
+			"layout": "default"
 		},
 		{
-			"title": "分散キャッシュの矛盾：CAPとの衝突",
+			"title": "分散キャッシュの矛盾：CAPとの衝突（1/2）",
 			"content": [
 				"<svg viewBox='0 0 700 320' style='max-height:68vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg'>",
 				"  <!-- 三角形の頂点 -->",
@@ -226,7 +332,14 @@
 				"  <text x='150' y='278' text-anchor='middle' fill='#aaa' font-size='9' font-family='sans-serif'>Availability</text>",
 				"  <!-- P: 分断耐性 (右下) -->",
 				"  <circle cx='550' cy='250' r='45' fill='#3a1a1a' stroke='#f44336' stroke-width='3'/>",
-				"  <text x='550' y='245' text-anchor='middle' fill='#f44336' font-size='14' font-family='sans-serif' font-weight='bold'>P</text>",
+				"  <text x='550' y='245' text-anchor='middle' fill='#f44336' font-size='14' font-family='sans-serif' font-weight='bold'>P</text>"
+			],
+			"speakerNotes": "CAPの定理はキャッシュ設計に直接影響する。一貫性と可用性はトレードオフであり、キャッシュはその狭間に存在する",
+			"layout": "default"
+		},
+		{
+			"title": "分散キャッシュの矛盾：CAPとの衝突（2/2）",
+			"content": [
 				"  <text x='550' y='263' text-anchor='middle' fill='#f44336' font-size='11' font-family='sans-serif'>分断耐性</text>",
 				"  <text x='550' y='278' text-anchor='middle' fill='#aaa' font-size='9' font-family='sans-serif'>Partition Tolerance</text>",
 				"  <!-- 三角形の辺 -->",
@@ -244,10 +357,11 @@
 				"  <text x='350' y='270' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>A+P: 最終的整合性</text>",
 				"</svg>"
 			],
-			"speakerNotes": "CAPの定理はキャッシュ設計に直接影響する。一貫性と可用性はトレードオフであり、キャッシュはその狭間に存在する"
+			"speakerNotes": "CAPの定理はキャッシュ設計に直接影響する。一貫性と可用性はトレードオフであり、キャッシュはその狭間に存在する",
+			"layout": "default"
 		},
 		{
-			"title": "悪魔とキャッシュの対応関係",
+			"title": "悪魔とキャッシュの対応関係（1/2）",
 			"content": [
 				"<svg viewBox='0 0 700 310' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg'>",
 				"  <!-- ヘッダー -->",
@@ -266,7 +380,14 @@
 				"  <!-- 行2 -->",
 				"  <rect x='0' y='105' width='340' height='50' rx='4' fill='#1a1a2a' stroke='#444' stroke-width='1'/>",
 				"  <text x='170' y='125' text-anchor='middle' fill='#ce93d8' font-size='12' font-family='sans-serif'>悪魔のメモリに状態を記録</text>",
-				"  <text x='170' y='144' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>情報を保持 = エントロピー減少</text>",
+				"  <text x='170' y='144' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>情報を保持 = エントロピー減少</text>"
+			],
+			"speakerNotes": "マクスウェルの悪魔とキャッシュシステムの対応関係を見ると、両者が同じ情報理論的問題を共有していることがわかる",
+			"layout": "default"
+		},
+		{
+			"title": "悪魔とキャッシュの対応関係（2/2）",
+			"content": [
 				"  <rect x='360' y='105' width='340' height='50' rx='4' fill='#1a1a2a' stroke='#444' stroke-width='1'/>",
 				"  <text x='530' y='125' text-anchor='middle' fill='#64b5f6' font-size='12' font-family='sans-serif'>キャッシュにデータを保存</text>",
 				"  <text x='530' y='144' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>Cache-Hit = 高速応答の恩恵</text>",
@@ -286,12 +407,37 @@
 				"  <text x='350' y='288' text-anchor='middle' fill='#aaa' font-size='11' font-family='sans-serif'>これは物理法則ではなく情報理論の根本問題 → 完全な解決策は存在しない</text>",
 				"</svg>"
 			],
-			"speakerNotes": "マクスウェルの悪魔とキャッシュシステムの対応関係を見ると、両者が同じ情報理論的問題を共有していることがわかる"
+			"speakerNotes": "マクスウェルの悪魔とキャッシュシステムの対応関係を見ると、両者が同じ情報理論的問題を共有していることがわかる",
+			"layout": "default"
 		},
 		{
 			"title": "現代のキャッシュ戦略",
 			"layout": "section",
 			"content": [
+				"<svg viewBox=\"0 0 800 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">",
+				"  <rect width=\"800\" height=\"300\" fill=\"#1a1a2e\"/>",
+				"  <text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">メモリ階層とキャッシュ戦略</text>",
+				"  <!-- pyramid layers -->",
+				"  <!-- L1: Browser cache -->",
+				"  <polygon points=\"400,45 500,90 300,90\" fill=\"#1a3a5c\" stroke=\"#f9a825\" stroke-width=\"2\"/>",
+				"  <text x=\"400\" y=\"78\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">ブラウザキャッシュ (&lt;1ms)</text>",
+				"  <!-- L2: CDN Edge -->",
+				"  <polygon points=\"300,92 500,92 530,140 270,140\" fill=\"#16213e\" stroke=\"#64b5f6\" stroke-width=\"2\"/>",
+				"  <text x=\"400\" y=\"122\" text-anchor=\"middle\" fill=\"#64b5f6\" font-size=\"11\" font-family=\"sans-serif\">CDN エッジ (~5ms)</text>",
+				"  <!-- L3: App cache -->",
+				"  <polygon points=\"270,142 530,142 570,195 230,195\" fill=\"#0d2137\" stroke=\"#81c784\" stroke-width=\"2\"/>",
+				"  <text x=\"400\" y=\"175\" text-anchor=\"middle\" fill=\"#81c784\" font-size=\"12\" font-family=\"sans-serif\">アプリキャッシュ / Redis (~1ms)</text>",
+				"  <!-- L4: Origin DB -->",
+				"  <polygon points=\"230,197 570,197 620,255 180,255\" fill=\"#1a1a2e\" stroke=\"#e91e63\" stroke-width=\"2\"/>",
+				"  <text x=\"400\" y=\"232\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">オリジンDB（~10ms〜100ms）</text>",
+				"  <!-- speed label -->",
+				"  <text x=\"640\" y=\"90\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">高速</text>",
+				"  <line x1=\"630\" y1=\"95\" x2=\"630\" y2=\"240\" stroke=\"#555\" stroke-width=\"1.5\"/>",
+				"  <polygon points=\"630,240 625,228 635,228\" fill=\"#555\"/>",
+				"  <text x=\"640\" y=\"246\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">低速</text>",
+				"  <!-- caption -->",
+				"  <text x=\"400\" y=\"280\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">上位ほど高速・高コスト・小容量。悪魔は上位にデータを引き上げる役割を担う</text>",
+				"</svg>",
 				"悪魔を飼い慣らす実践的アプローチ",
 				"HTTP キャッシュ / CDN / エッジキャッシュ"
 			]
@@ -299,17 +445,86 @@
 		{
 			"title": "Cache-Control ヘッダー徹底解説",
 			"content": [
+				"<svg viewBox=\"0 0 800 260\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">",
+				"  <rect width=\"800\" height=\"260\" fill=\"#1a1a2e\"/>",
+				"  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">Cache-Control 主要ディレクティブ</text>",
+				"  <!-- max-age -->",
+				"  <rect x=\"30\" y=\"45\" width=\"220\" height=\"70\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>",
+				"  <text x=\"140\" y=\"68\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"monospace\">max-age=N</text>",
+				"  <text x=\"140\" y=\"88\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">N秒間は再検証不要</text>",
+				"  <text x=\"140\" y=\"105\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">→ 鮮度の明示</text>",
+				"  <!-- stale-while-revalidate -->",
+				"  <rect x=\"290\" y=\"45\" width=\"220\" height=\"70\" rx=\"8\" fill=\"#16213e\" stroke=\"#4fc3f7\" stroke-width=\"2\"/>",
+				"  <text x=\"400\" y=\"68\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"10\" font-weight=\"bold\" font-family=\"monospace\">stale-while-revalidate</text>",
+				"  <text x=\"400\" y=\"88\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">古くても使いバックグラウンド更新</text>",
+				"  <text x=\"400\" y=\"105\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">→ 応答性と鮮度を両立</text>",
+				"  <!-- immutable -->",
+				"  <rect x=\"550\" y=\"45\" width=\"220\" height=\"70\" rx=\"8\" fill=\"#16213e\" stroke=\"#81c784\" stroke-width=\"2\"/>",
+				"  <text x=\"660\" y=\"68\" text-anchor=\"middle\" fill=\"#81c784\" font-size=\"13\" font-weight=\"bold\" font-family=\"monospace\">immutable</text>",
+				"  <text x=\"660\" y=\"88\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">ハッシュURLは永遠不変</text>",
+				"  <text x=\"660\" y=\"105\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">→ 完全キャッシュ可能</text>",
+				"  <!-- decision arrow: is fresh? -->",
+				"  <rect x=\"280\" y=\"145\" width=\"240\" height=\"50\" rx=\"8\" fill=\"#0d0d1a\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>",
+				"  <text x=\"400\" y=\"165\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">鮮度チェック (is fresh?)</text>",
+				"  <text x=\"400\" y=\"182\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">age &lt; max-age → 即キャッシュ使用</text>",
+				"  <line x1=\"140\" y1=\"115\" x2=\"330\" y2=\"145\" stroke=\"#888\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/>",
+				"  <line x1=\"400\" y1=\"115\" x2=\"400\" y2=\"145\" stroke=\"#888\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/>",
+				"  <line x1=\"660\" y1=\"115\" x2=\"470\" y2=\"145\" stroke=\"#888\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/>",
+				"  <!-- two outcomes -->",
+				"  <rect x=\"80\" y=\"215\" width=\"160\" height=\"36\" rx=\"6\" fill=\"#1a3a1a\" stroke=\"#81c784\" stroke-width=\"1.5\"/>",
+				"  <text x=\"160\" y=\"238\" text-anchor=\"middle\" fill=\"#81c784\" font-size=\"12\" font-family=\"sans-serif\">Yes → キャッシュ使用</text>",
+				"  <rect x=\"560\" y=\"215\" width=\"160\" height=\"36\" rx=\"6\" fill=\"#3a1a1a\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>",
+				"  <text x=\"640\" y=\"238\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">No → 再検証</text>",
+				"  <line x1=\"350\" y1=\"195\" x2=\"200\" y2=\"215\" stroke=\"#888\" stroke-width=\"1.5\"/>",
+				"  <polygon points=\"200,215 208,205 212,216\" fill=\"#888\"/>",
+				"  <line x1=\"450\" y1=\"195\" x2=\"600\" y2=\"215\" stroke=\"#888\" stroke-width=\"1.5\"/>",
+				"  <polygon points=\"600,215 592,205 604,216\" fill=\"#888\"/>",
+				"</svg>",
 				"**HTTPキャッシュの制御メカニズム**",
 				"- `max-age=N` — N秒間は再検証不要（鮮度の明示）",
 				"- `stale-while-revalidate=N` — 古くても使い、バックグラウンドで更新",
 				"- `immutable` — ハッシュURLは永遠に変わらない宣言"
 			],
-			"code": "# 静的アセット（コンテントハッシュ付き）\nCache-Control: public, max-age=31536000, immutable\n# → 1年間キャッシュ、変更時はURL自体を変える\n\n# APIレスポンス（動的コンテンツ）\nCache-Control: private, max-age=0, must-revalidate\n# → ブラウザキャッシュのみ、毎回検証\n\n# CDNフレンドリー（stale-while-revalidate）\nCache-Control: public, max-age=60, stale-while-revalidate=3600\n# → 60秒Fresh、以降はStaleで応答しつつ更新\n\n# CDN専用（s-maxage）\nCache-Control: public, s-maxage=86400, max-age=300\n# → CDN: 24時間, ブラウザ: 5分",
-			"codeLanguage": "http",
-			"speakerNotes": "Cache-Controlはキャッシュの振る舞いを細かく制御できる。stale-while-revalidateはマクスウェルの悪魔の「古い情報を使いながら更新」戦略に対応"
+			"layout": "default"
 		},
 		{
-			"title": "ETagsと条件付きリクエスト：賢い検証メカニズム",
+			"title": "Cache-Control ヘッダー徹底解説（コード例）",
+			"content": [
+				"<svg viewBox=\"0 0 800 220\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">",
+				"  <rect width=\"800\" height=\"220\" fill=\"#1a1a2e\"/>",
+				"  <text x=\"400\" y=\"24\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">Cache-Control: キャッシュ鮮度の判定フロー</text>",
+				"  <!-- decision diamond -->",
+				"  <polygon points=\"400,50 490,95 400,140 310,95\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>",
+				"  <text x=\"400\" y=\"89\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">Fresh?</text>",
+				"  <text x=\"400\" y=\"107\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">age &lt; max-age</text>",
+				"  <!-- YES branch (left) -->",
+				"  <line x1=\"310\" y1=\"95\" x2=\"170\" y2=\"95\" stroke=\"#81c784\" stroke-width=\"2\"/>",
+				"  <polygon points=\"170,90 158,95 170,100\" fill=\"#81c784\"/>",
+				"  <text x=\"240\" y=\"88\" text-anchor=\"middle\" fill=\"#81c784\" font-size=\"11\" font-family=\"sans-serif\">YES</text>",
+				"  <rect x=\"60\" y=\"72\" width=\"100\" height=\"46\" rx=\"8\" fill=\"#1a3a1a\" stroke=\"#81c784\" stroke-width=\"2\"/>",
+				"  <text x=\"110\" y=\"92\" text-anchor=\"middle\" fill=\"#81c784\" font-size=\"11\" font-family=\"sans-serif\">キャッシュ</text>",
+				"  <text x=\"110\" y=\"110\" text-anchor=\"middle\" fill=\"#81c784\" font-size=\"11\" font-family=\"sans-serif\">使用</text>",
+				"  <!-- NO branch (right) -->",
+				"  <line x1=\"490\" y1=\"95\" x2=\"590\" y2=\"95\" stroke=\"#e91e63\" stroke-width=\"2\"/>",
+				"  <polygon points=\"590,90 602,95 590,100\" fill=\"#e91e63\"/>",
+				"  <text x=\"540\" y=\"88\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">NO</text>",
+				"  <rect x=\"602\" y=\"65\" width=\"130\" height=\"60\" rx=\"8\" fill=\"#3a1a1a\" stroke=\"#e91e63\" stroke-width=\"2\"/>",
+				"  <text x=\"667\" y=\"90\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">再検証</text>",
+				"  <text x=\"667\" y=\"108\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">If-None-Match</text>",
+				"  <!-- immutable shortcut -->",
+				"  <rect x=\"260\" y=\"158\" width=\"280\" height=\"44\" rx=\"8\" fill=\"#0d2137\" stroke=\"#4db6ac\" stroke-width=\"1.5\"/>",
+				"  <text x=\"400\" y=\"178\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"12\" font-family=\"sans-serif\">immutable 宣言 → 再検証スキップ</text>",
+				"  <text x=\"400\" y=\"196\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">コンテントハッシュURL使用時に最適</text>",
+				"  <line x1=\"400\" y1=\"140\" x2=\"400\" y2=\"158\" stroke=\"#4db6ac\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/>",
+				"  <polygon points=\"400,158 394,146 406,146\" fill=\"#4db6ac\"/>",
+				"</svg>"
+			],
+			"code": "# 静的アセット（コンテントハッシュ付き）\nCache-Control: public, max-age=31536000, immutable\n# → 1年間キャッシュ、変更時はURL自体を変える\n\n# APIレスポンス（動的コンテンツ）\nCache-Control: private, max-age=0, must-revalidate\n# → ブラウザキャッシュのみ、毎回検証\n\n# CDNフレンドリー（stale-while-revalidate）\nCache-Control: public, max-age=60, stale-while-revalidate=3600\n# → 60秒Fresh、以降はStaleで応答しつつ更新\n\n# CDN専用（s-maxage）\nCache-Control: public, s-maxage=86400, max-age=300\n# → CDN: 24時間, ブラウザ: 5分",
+			"codeLanguage": "http",
+			"layout": "default"
+		},
+		{
+			"title": "ETagsと条件付きリクエスト：賢い検証メカニズム（1/2）",
 			"content": [
 				"<svg viewBox='0 0 700 310' style='max-height:68vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg'>",
 				"  <!-- クライアント -->",
@@ -328,7 +543,14 @@
 				"  <!-- ステップ2: レスポンス+ETag -->",
 				"  <line x1='620' y1='120' x2='100' y2='120' stroke='#7986cb' stroke-width='2'/>",
 				"  <polygon points='100,115 85,120 100,125' fill='#7986cb'/>",
-				"  <text x='340' y='113' text-anchor='middle' fill='#7986cb' font-size='11' font-family='sans-serif'>② 200 OK + ETag: \"abc123\" + データ本体</text>",
+				"  <text x='340' y='113' text-anchor='middle' fill='#7986cb' font-size='11' font-family='sans-serif'>② 200 OK + ETag: \"abc123\" + データ本体</text>"
+			],
+			"speakerNotes": "ETagは条件付きリクエストを実現する。変更がなければ304で帯域を節約し、変更があれば新しいデータを取得する。これはマクスウェルの悪魔が「変化した分子だけ」を通す仕組みと対応",
+			"layout": "default"
+		},
+		{
+			"title": "ETagsと条件付きリクエスト：賢い検証メカニズム（2/2）",
+			"content": [
 				"  <!-- キャッシュ保存 -->",
 				"  <rect x='20' y='135' width='120' height='30' rx='4' fill='#0d2a0d' stroke='#4caf50' stroke-width='1'/>",
 				"  <text x='80' y='154' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>ETag保存 + キャッシュ</text>",
@@ -349,10 +571,11 @@
 				"  <text x='350' y='287' text-anchor='middle' fill='#aaa' font-size='11' font-family='sans-serif'>ETagは「情報の同一性証明」= 悪魔の観測メカニズムをHTTPで実装</text>",
 				"</svg>"
 			],
-			"speakerNotes": "ETagは条件付きリクエストを実現する。変更がなければ304で帯域を節約し、変更があれば新しいデータを取得する。これはマクスウェルの悪魔が「変化した分子だけ」を通す仕組みと対応"
+			"speakerNotes": "ETagは条件付きリクエストを実現する。変更がなければ304で帯域を節約し、変更があれば新しいデータを取得する。これはマクスウェルの悪魔が「変化した分子だけ」を通す仕組みと対応",
+			"layout": "default"
 		},
 		{
-			"title": "CDNとエッジキャッシュ：地理的分散の挑戦",
+			"title": "CDNとエッジキャッシュ：地理的分散の挑戦（1/2）",
 			"content": [
 				"<svg viewBox='0 0 700 300' style='max-height:68vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg'>",
 				"  <!-- オリジンサーバー（中央） -->",
@@ -373,7 +596,14 @@
 				"  <text x='100' y='242' text-anchor='middle' fill='#4caf50' font-size='9' font-family='sans-serif'>London</text>",
 				"  <!-- エッジノード（シドニー） -->",
 				"  <circle cx='600' cy='230' r='32' fill='#1a3a1a' stroke='#4caf50' stroke-width='2'/>",
-				"  <text x='600' y='226' text-anchor='middle' fill='#4caf50' font-size='11' font-family='sans-serif' font-weight='bold'>Edge</text>",
+				"  <text x='600' y='226' text-anchor='middle' fill='#4caf50' font-size='11' font-family='sans-serif' font-weight='bold'>Edge</text>"
+			],
+			"speakerNotes": "CDNはキャッシュの地理的分散。エッジが多いほど無効化の伝播が困難になる。これはマクスウェルの悪魔の問題がスケールする版",
+			"layout": "default"
+		},
+		{
+			"title": "CDNとエッジキャッシュ：地理的分散の挑戦（2/2）",
+			"content": [
 				"  <text x='600' y='242' text-anchor='middle' fill='#4caf50' font-size='9' font-family='sans-serif'>Sydney</text>",
 				"  <!-- 接続線 -->",
 				"  <line x1='310' y1='130' x2='132' y2='98' stroke='#555' stroke-width='2'/>",
@@ -395,10 +625,11 @@
 				"- **Cache Purge** — オリジン変更を全エッジに即時伝播（コストが高い）",
 				"- **Surrogate-Key** — タグベースで関連キャッシュを一括無効化"
 			],
-			"speakerNotes": "CDNはキャッシュの地理的分散。エッジが多いほど無効化の伝播が困難になる。これはマクスウェルの悪魔の問題がスケールする版"
+			"speakerNotes": "CDNはキャッシュの地理的分散。エッジが多いほど無効化の伝播が困難になる。これはマクスウェルの悪魔の問題がスケールする版",
+			"layout": "default"
 		},
 		{
-			"title": "キャッシュバスティング戦略：コンテントハッシュ",
+			"title": "キャッシュバスティング戦略：コンテントハッシュ（1/2）",
 			"content": [
 				"<svg viewBox='0 0 700 280' style='max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0' xmlns='http://www.w3.org/2000/svg'>",
 				"  <!-- 従来の問題 -->",
@@ -418,7 +649,14 @@
 				"  <!-- ビルドパイプライン -->",
 				"  <rect x='10' y='150' width='680' height='110' rx='8' fill='#1a1a2a' stroke='#7986cb' stroke-width='2'/>",
 				"  <text x='350' y='172' text-anchor='middle' fill='#7986cb' font-size='13' font-family='sans-serif' font-weight='bold'>ビルドパイプラインによる自動化</text>",
-				"  <!-- フロー -->",
+				"  <!-- フロー -->"
+			],
+			"speakerNotes": "コンテントハッシュはキャッシュ無効化の根本的解決策の一つ。URLが変わることで新旧を明確に区別できる",
+			"layout": "default"
+		},
+		{
+			"title": "キャッシュバスティング戦略：コンテントハッシュ（2/2）",
+			"content": [
 				"  <rect x='30' y='185' width='110' height='60' rx='4' fill='#1a2a3a' stroke='#64b5f6' stroke-width='1'/>",
 				"  <text x='85' y='210' text-anchor='middle' fill='#64b5f6' font-size='11' font-family='sans-serif'>ソース</text>",
 				"  <text x='85' y='228' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>app.js</text>",
@@ -439,18 +677,80 @@
 				"  <text x='580' y='228' text-anchor='middle' fill='#aaa' font-size='10' font-family='sans-serif'>asset-manifest.json</text>",
 				"</svg>"
 			],
-			"speakerNotes": "コンテントハッシュはキャッシュ無効化の根本的解決策の一つ。URLが変わることで新旧を明確に区別できる"
+			"speakerNotes": "コンテントハッシュはキャッシュ無効化の根本的解決策の一つ。URLが変わることで新旧を明確に区別できる",
+			"layout": "default"
 		},
 		{
-			"title": "まとめ：悪魔を飼い慣らす設計哲学",
+			"title": "まとめ：悪魔を飼い慣らす設計哲学（1/2）",
 			"layout": "center",
 			"content": [
+				"<svg viewBox=\"0 0 800 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">",
+				"  <rect width=\"800\" height=\"300\" fill=\"#1a1a2e\"/>",
+				"  <text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">情報理論が教える4つの設計原則</text>",
+				"  <!-- Principle 1 -->",
+				"  <rect x=\"30\" y=\"50\" width=\"350\" height=\"80\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>",
+				"  <text x=\"55\" y=\"80\" fill=\"#f9a825\" font-size=\"22\" font-weight=\"bold\" font-family=\"sans-serif\">1</text>",
+				"  <text x=\"90\" y=\"78\" fill=\"#fff\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">明示的な有効期限</text>",
+				"  <text x=\"90\" y=\"98\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">TTLで「忘却のスケジュール」を決める</text>",
+				"  <text x=\"90\" y=\"117\" fill=\"#ccc\" font-size=\"10\" font-family=\"monospace\">Cache-Control: max-age=3600</text>",
+				"  <!-- Principle 2 -->",
+				"  <rect x=\"420\" y=\"50\" width=\"350\" height=\"80\" rx=\"10\" fill=\"#16213e\" stroke=\"#4fc3f7\" stroke-width=\"2\"/>",
+				"  <text x=\"445\" y=\"80\" fill=\"#4fc3f7\" font-size=\"22\" font-weight=\"bold\" font-family=\"sans-serif\">2</text>",
+				"  <text x=\"480\" y=\"78\" fill=\"#fff\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">不変性の活用</text>",
+				"  <text x=\"480\" y=\"98\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">コンテントハッシュで「変化を排除」する</text>",
+				"  <text x=\"480\" y=\"117\" fill=\"#ccc\" font-size=\"10\" font-family=\"monospace\">app.a3f2c1d9.js  +  immutable</text>",
+				"  <!-- Principle 3 -->",
+				"  <rect x=\"30\" y=\"155\" width=\"350\" height=\"80\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>",
+				"  <text x=\"55\" y=\"185\" fill=\"#e91e63\" font-size=\"22\" font-weight=\"bold\" font-family=\"sans-serif\">3</text>",
+				"  <text x=\"90\" y=\"183\" fill=\"#fff\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">検証の最小化</text>",
+				"  <text x=\"90\" y=\"203\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">ETagで「変化したものだけ」を更新する</text>",
+				"  <text x=\"90\" y=\"222\" fill=\"#ccc\" font-size=\"10\" font-family=\"monospace\">If-None-Match → 304 Not Modified</text>",
+				"  <!-- Principle 4 -->",
+				"  <rect x=\"420\" y=\"155\" width=\"350\" height=\"80\" rx=\"10\" fill=\"#16213e\" stroke=\"#81c784\" stroke-width=\"2\"/>",
+				"  <text x=\"445\" y=\"185\" fill=\"#81c784\" font-size=\"22\" font-weight=\"bold\" font-family=\"sans-serif\">4</text>",
+				"  <text x=\"480\" y=\"183\" fill=\"#fff\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">トレードオフの受容</text>",
+				"  <text x=\"480\" y=\"203\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">一貫性か可用性か、意図的に選ぶ</text>",
+				"  <text x=\"480\" y=\"222\" fill=\"#ccc\" font-size=\"10\" font-family=\"monospace\">CAP: choose 2 of 3</text>",
+				"  <!-- bottom -->",
+				"  <rect x=\"100\" y=\"253\" width=\"600\" height=\"34\" rx=\"8\" fill=\"#0d0d1a\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>",
+				"  <text x=\"400\" y=\"275\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">マクスウェルの悪魔の知恵を現代システム設計に応用する</text>",
+				"</svg>",
 				"**情報理論が教える4つの設計原則**",
 				"",
 				"1. **明示的な有効期限** — TTLで「忘却のスケジュール」を決める",
 				"2. **不変性の活用** — コンテントハッシュで「変化を排除」する",
 				"3. **検証の最小化** — ETagで「変化したものだけ」を更新する",
-				"4. **トレードオフの受容** — 一貫性か可用性か、意図的に選ぶ",
+				"4. **トレードオフの受容** — 一貫性か可用性か、意図的に選ぶ"
+			],
+			"speakerNotes": "キャッシュ無効化の困難さは情報理論の根本に由来する。完全な解決はないが、設計原則によりトレードオフを管理できる"
+		},
+		{
+			"title": "まとめ：悪魔を飼い慣らす設計哲学（2/2）",
+			"layout": "center",
+			"content": [
+				"<svg viewBox=\"0 0 800 240\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">",
+				"  <rect width=\"800\" height=\"240\" fill=\"#1a1a2e\"/>",
+				"  <text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">キャッシュ無効化の困難さの根源</text>",
+				"  <!-- Left side: physics -->",
+				"  <rect x=\"30\" y=\"50\" width=\"320\" height=\"140\" rx=\"10\" fill=\"#16213e\" stroke=\"#9c27b0\" stroke-width=\"2\"/>",
+				"  <text x=\"190\" y=\"78\" text-anchor=\"middle\" fill=\"#ce93d8\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">物理学（1867年〜）</text>",
+				"  <text x=\"190\" y=\"102\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"12\" font-family=\"sans-serif\">マクスウェルの悪魔</text>",
+				"  <text x=\"190\" y=\"122\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">情報の保持 → エントロピー減少</text>",
+				"  <text x=\"190\" y=\"141\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">情報の消去 → エントロピー増大</text>",
+				"  <text x=\"190\" y=\"165\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">「忘却にはコストがかかる」</text>",
+				"  <!-- Equal sign -->",
+				"  <text x=\"400\" y=\"128\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"36\" font-weight=\"bold\" font-family=\"sans-serif\">=</text>",
+				"  <!-- Right side: CS -->",
+				"  <rect x=\"450\" y=\"50\" width=\"320\" height=\"140\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>",
+				"  <text x=\"610\" y=\"78\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">コンピュータサイエンス</text>",
+				"  <text x=\"610\" y=\"102\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"12\" font-family=\"sans-serif\">キャッシュ無効化</text>",
+				"  <text x=\"610\" y=\"122\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">キャッシュの保持 → 高速化</text>",
+				"  <text x=\"610\" y=\"141\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">キャッシュの無効化 → 整合性コスト</text>",
+				"  <text x=\"610\" y=\"165\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">「完全解は存在しない」</text>",
+				"  <!-- conclusion -->",
+				"  <rect x=\"100\" y=\"208\" width=\"600\" height=\"26\" rx=\"6\" fill=\"#0d0d1a\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>",
+				"  <text x=\"400\" y=\"225\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">これは実装の問題ではなく、情報の物理的性質に由来する根本的困難</text>",
+				"</svg>",
 				"",
 				"> キャッシュの無効化が難しいのは実装の問題ではなく、",
 				"> **情報の物理的性質**に由来する根本的困難である",
@@ -461,14 +761,39 @@
 			"speakerNotes": "キャッシュ無効化の困難さは情報理論の根本に由来する。完全な解決はないが、設計原則によりトレードオフを管理できる"
 		},
 		{
-			"title": "参考文献",
+			"title": "参考文献（1/2）",
 			"content": [
+				"<svg viewBox=\"0 0 800 200\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">",
+				"  <rect width=\"800\" height=\"200\" fill=\"#1a1a2e\"/>",
+				"  <text x=\"400\" y=\"24\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">参考文献 — 物理学・情報理論</text>",
+				"  <rect x=\"30\" y=\"42\" width=\"340\" height=\"135\" rx=\"10\" fill=\"#16213e\" stroke=\"#9c27b0\" stroke-width=\"2\"/>",
+				"  <text x=\"200\" y=\"66\" text-anchor=\"middle\" fill=\"#ce93d8\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">物理学・情報理論</text>",
+				"  <text x=\"50\" y=\"90\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">Maxwell (1867): Maxwell's Demon</text>",
+				"  <text x=\"50\" y=\"110\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">Szilard (1929): Szilard Engine</text>",
+				"  <text x=\"50\" y=\"130\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">Landauer (1961): Landauer's Principle</text>",
+				"  <text x=\"50\" y=\"150\" fill=\"#aaa\" font-size=\"10\" font-family=\"monospace\">E ≥ k_B × T × ln(2)</text>",
+				"  <text x=\"50\" y=\"168\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">Wikipedia: Maxwell's demon, Landauer's principle</text>",
+				"  <rect x=\"430\" y=\"42\" width=\"340\" height=\"135\" rx=\"10\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>",
+				"  <text x=\"600\" y=\"66\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">キャッシュ理論・実装</text>",
+				"  <text x=\"450\" y=\"90\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">HTTP Caching — MDN Web Docs</text>",
+				"  <text x=\"450\" y=\"110\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">CAP Theorem — Brewer (2000)</text>",
+				"  <text x=\"450\" y=\"130\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">Cache-Control — RFC 7234</text>",
+				"  <text x=\"450\" y=\"150\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">Surrogate Keys — Fastly Blog</text>",
+				"  <text x=\"450\" y=\"168\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">stale-while-revalidate — RFC 5861</text>",
+				"</svg>",
 				"**物理学・情報理論:**",
 				"- [Maxwell's Demon (1867) - Wikipedia](https://en.wikipedia.org/wiki/Maxwell%27s_demon)",
 				"- [Landauer's Principle - IBM Research (1961)](https://en.wikipedia.org/wiki/Landauer%27s_principle)",
 				"- [Szilard Engine - Physical Review (1929)](https://en.wikipedia.org/wiki/Szil%C3%A1rd_engine)",
 				"",
-				"**キャッシュ理論・実装:**",
+				"**キャッシュ理論・実装:**"
+			],
+			"speakerNotes": "参考文献一覧",
+			"layout": "default"
+		},
+		{
+			"title": "参考文献（2/2）",
+			"content": [
 				"- [HTTP Caching - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching)",
 				"- [CAP Theorem - Brewer (2000)](https://en.wikipedia.org/wiki/CAP_theorem)",
 				"- [Cache-Control - RFC 7234](https://www.rfc-editor.org/rfc/rfc7234)",
@@ -477,7 +802,8 @@
 				"- [Surrogate Keys in CDN Caching - Fastly](https://www.fastly.com/blog/surrogate-keys-part-1)",
 				"- [stale-while-revalidate - RFC 5861](https://www.rfc-editor.org/rfc/rfc5861)"
 			],
-			"speakerNotes": "参考文献一覧"
+			"speakerNotes": "参考文献一覧",
+			"layout": "default"
 		}
 	]
 }

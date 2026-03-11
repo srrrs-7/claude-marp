@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">セルフサービスポータル — リソース取得フロー</text>
+
+  <!-- Developer box -->
+  <rect x="30" y="80" width="130" height="70" rx="10" fill="#2d2d4e" stroke="#a78bfa" stroke-width="2"/>
+  <text x="95" y="112" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#a78bfa" font-weight="bold">👩‍💻 Developer</text>
+  <text x="95" y="132" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ffffff">リクエスト送信</text>
+
+  <!-- Arrow 1 -->
+  <line x1="162" y1="115" x2="208" y2="115" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="208,110 218,115 208,120" fill="#60a5fa"/>
+
+  <!-- Self-Service Portal box -->
+  <rect x="220" y="75" width="150" height="80" rx="10" fill="#2d2d4e" stroke="#60a5fa" stroke-width="2"/>
+  <text x="295" y="108" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#60a5fa" font-weight="bold">🖥️ セルフサービス</text>
+  <text x="295" y="126" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#60a5fa" font-weight="bold">ポータル</text>
+  <text x="295" y="145" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">(Backstage / Custom)</text>
+
+  <!-- Arrow 2 -->
+  <line x1="372" y1="115" x2="418" y2="115" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="418,110 428,115 418,120" fill="#60a5fa"/>
+
+  <!-- Automation Engine box -->
+  <rect x="430" y="75" width="150" height="80" rx="10" fill="#2d2d4e" stroke="#34d399" stroke-width="2"/>
+  <text x="505" y="108" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#34d399" font-weight="bold">⚙️ Automation</text>
+  <text x="505" y="126" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#34d399" font-weight="bold">Engine</text>
+  <text x="505" y="145" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">(Crossplane / TF)</text>
+
+  <!-- Arrow 3 -->
+  <line x1="582" y1="115" x2="628" y2="115" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="628,110 638,115 628,120" fill="#60a5fa"/>
+
+  <!-- Cloud Resources box -->
+  <rect x="640" y="75" width="130" height="80" rx="10" fill="#2d2d4e" stroke="#fbbf24" stroke-width="2"/>
+  <text x="705" y="108" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#fbbf24" font-weight="bold">☁️ Cloud</text>
+  <text x="705" y="126" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#fbbf24" font-weight="bold">Resources</text>
+  <text x="705" y="145" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">DB / K8s / Network</text>
+
+  <!-- Divider -->
+  <line x1="30" y1="210" x2="770" y2="210" stroke="#444466" stroke-width="1" stroke-dasharray="5,4"/>
+
+  <!-- Section: Steps detail -->
+  <text x="400" y="235" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#a78bfa" font-weight="bold">詳細ステップ</text>
+
+  <!-- Step boxes row -->
+  <!-- Step 1 -->
+  <rect x="30" y="255" width="145" height="90" rx="8" fill="#16213e" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="102" y="278" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#a78bfa" font-weight="bold">① テンプレート選択</text>
+  <text x="102" y="298" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">カタログから</text>
+  <text x="102" y="314" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">サービステンプレートを</text>
+  <text x="102" y="330" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">選択</text>
+
+  <!-- Step 2 -->
+  <rect x="195" y="255" width="145" height="90" rx="8" fill="#16213e" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="267" y="278" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#60a5fa" font-weight="bold">② パラメータ入力</text>
+  <text x="267" y="298" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">環境・サイズ・</text>
+  <text x="267" y="314" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">リージョンなどを</text>
+  <text x="267" y="330" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">フォームで入力</text>
+
+  <!-- Step 3 -->
+  <rect x="360" y="255" width="145" height="90" rx="8" fill="#16213e" stroke="#34d399" stroke-width="1.5"/>
+  <text x="432" y="278" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399" font-weight="bold">③ 承認ワークフロー</text>
+  <text x="432" y="298" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">ポリシーに基づき</text>
+  <text x="432" y="314" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">自動 or 手動で</text>
+  <text x="432" y="330" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">承認</text>
+
+  <!-- Step 4 -->
+  <rect x="525" y="255" width="145" height="90" rx="8" fill="#16213e" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="597" y="278" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fbbf24" font-weight="bold">④ 自動プロビジョニング</text>
+  <text x="597" y="298" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">IaC実行で</text>
+  <text x="597" y="314" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">リソースを自動</text>
+  <text x="597" y="330" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">生成</text>
+
+  <!-- Arrows between steps -->
+  <line x1="177" y1="300" x2="193" y2="300" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="193,295 203,300 193,305" fill="#60a5fa"/>
+  <line x1="342" y1="300" x2="358" y2="300" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="358,295 368,300 358,305" fill="#60a5fa"/>
+  <line x1="507" y1="300" x2="523" y2="300" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="523,295 533,300 523,305" fill="#60a5fa"/>
+
+  <!-- Benefit tags at bottom -->
+  <rect x="100" y="375" width="175" height="38" rx="6" fill="#2d1e4e" stroke="#a78bfa" stroke-width="1"/>
+  <text x="187" y="399" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#a78bfa">✓ チケット待ち不要</text>
+
+  <rect x="315" y="375" width="175" height="38" rx="6" fill="#1e2e3e" stroke="#60a5fa" stroke-width="1"/>
+  <text x="402" y="399" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#60a5fa">✓ ガバナンス維持</text>
+
+  <rect x="530" y="375" width="175" height="38" rx="6" fill="#1e3e2e" stroke="#34d399" stroke-width="1"/>
+  <text x="617" y="399" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399">✓ 標準化された構成</text>
+
+  <!-- Bottom note -->
+  <text x="400" y="462" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888888">Platform Team が管理するテンプレートを開発者が自律的に利用</text>
+</svg>

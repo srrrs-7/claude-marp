@@ -5,6 +5,7 @@ output:
   baseName: "chaos-theory-bugs"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "カオス理論とソフトウェアバグ"
   footer: "© 2026"

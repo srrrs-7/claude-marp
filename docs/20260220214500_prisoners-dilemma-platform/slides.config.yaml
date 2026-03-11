@@ -13,6 +13,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "囚人のジレンマ × プラットフォーム競争"
   footer: "© 2026"

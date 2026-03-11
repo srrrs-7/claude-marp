@@ -5,6 +5,7 @@ output:
   baseName: "freemium-economics"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "フリーミアムの経済学"
   footer: "© 2026"

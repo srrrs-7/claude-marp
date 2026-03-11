@@ -71,6 +71,26 @@ async function autoFixSlides() {
 				}
 			}
 
+			// Fix: Add missing codeLanguage when code block exists
+			if (data.slides && Array.isArray(data.slides)) {
+				for (const slide of data.slides) {
+					if (slide.code && !slide.codeLanguage) {
+						slide.codeLanguage = "text";
+						const fix = fixes.find((f) => f.type === "add_codeLanguage");
+						if (fix) {
+							fix.count++;
+						} else {
+							fixes.push({
+								type: "add_codeLanguage",
+								description:
+									'Added missing codeLanguage "text" for code blocks',
+								count: 1,
+							});
+						}
+					}
+				}
+			}
+
 			// Fix: Add missing required fields
 			if (data.slides && Array.isArray(data.slides)) {
 				for (let i = 0; i < data.slides.length; i++) {

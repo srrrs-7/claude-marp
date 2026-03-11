@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "2045: AIの選択"
   footer: "AIディストピア vs ユートピア ― 開発者のための未来思考"

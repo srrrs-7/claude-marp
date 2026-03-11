@@ -5,6 +5,7 @@ output:
   baseName: "collective-intelligence-failure"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "集合知の失敗条件"
   footer: "© 2026"

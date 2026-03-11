@@ -4,6 +4,7 @@ output:
   baseName: "aws-genai-cheatsheet"
 marp:
   theme: gaia
+  class: invert
   size: "16:9"
   paginate: true
   footer: "AWS GenAI Dev Pro チートシート 2026"

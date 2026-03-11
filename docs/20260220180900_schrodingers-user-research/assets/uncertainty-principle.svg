@@ -1,0 +1,38 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#f9a825" font-weight="bold">観測者効果：測定精度 vs 自然な行動</text>
+  <!-- X axis: observation precision -->
+  <line x1="80" y1="290" x2="720" y2="290" stroke="#555" stroke-width="2"/>
+  <!-- Y axis: observation distortion -->
+  <line x1="80" y1="60" x2="80" y2="290" stroke="#555" stroke-width="2"/>
+  <text x="400" y="316" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#aaa">観測の精度・深さ</text>
+  <text x="30" y="200" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#aaa" transform="rotate(-90,30,200)">観測歪み</text>
+  <!-- Curve: inverse relationship -->
+  <path d="M 120 270 C 200 260 300 220 400 185 C 500 150 600 120 700 100"
+    fill="none" stroke="#e91e63" stroke-width="3"/>
+  <!-- Curve 2: natural behavior degradation -->
+  <path d="M 120 280 C 200 275 300 260 400 240 C 500 220 600 190 700 165"
+    fill="none" stroke="#f9a825" stroke-width="3" stroke-dasharray="6,3"/>
+  <!-- Legend -->
+  <line x1="100" y1="48" x2="140" y2="48" stroke="#e91e63" stroke-width="3"/>
+  <text x="148" y="53" font-family="sans-serif" font-size="12" fill="#e91e63">観測歪み（大）</text>
+  <line x1="100" y1="66" x2="140" y2="66" stroke="#f9a825" stroke-width="3" stroke-dasharray="5"/>
+  <text x="148" y="71" font-family="sans-serif" font-size="12" fill="#f9a825">自然な行動（低）</text>
+  <!-- Quadrant labels -->
+  <rect x="96" y="256" width="140" height="28" rx="4" fill="#16213e"/>
+  <text x="166" y="275" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4ec9b0">行動ログ（弱観測）</text>
+  <rect x="420" y="256" width="140" height="28" rx="4" fill="#16213e"/>
+  <text x="490" y="275" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e91e63">インタビュー（強観測）</text>
+  <!-- Methods annotated on curve -->
+  <circle cx="160" cy="268" r="5" fill="#4ec9b0"/>
+  <text x="180" y="248" font-family="sans-serif" font-size="10" fill="#4ec9b0">A/Bテスト</text>
+  <circle cx="300" cy="240" r="5" fill="#4ec9b0"/>
+  <text x="315" y="234" font-family="sans-serif" font-size="10" fill="#f9a825">ユーザビリティテスト</text>
+  <circle cx="500" cy="206" r="5" fill="#e91e63"/>
+  <text x="515" y="200" font-family="sans-serif" font-size="10" fill="#e91e63">対面インタビュー</text>
+  <circle cx="640" cy="155" r="5" fill="#e91e63"/>
+  <text x="655" y="149" font-family="sans-serif" font-size="10" fill="#e91e63">アンケート</text>
+  <!-- Bottom insight -->
+  <rect x="80" y="318" width="640" height="32" rx="6" fill="#0d1b2a"/>
+  <text x="400" y="338" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#ffffff">精密に測ろうとするほど、自然な行動から遠ざかる（不確定性原理と同型）</text>
+</svg>

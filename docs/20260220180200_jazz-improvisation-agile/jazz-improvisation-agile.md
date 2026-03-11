@@ -1,11 +1,77 @@
 ---
 marp: true
 theme: gaia
+class: invert
 size: 16:9
 paginate: true
 header: "ジャズ即興演奏とアジャイル開発"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section { font-size: 1.05em; }
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
@@ -130,6 +196,7 @@ style: |
 
 # コード進行 vs スプリント：制約の中の自由
 
+- <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">ジャズ曲構造 vs アジャイルスプリント</text><rect x="30" y="45" width="360" height="300" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="210" y="68" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">ジャズ楽曲の構造</text><rect x="50" y="80" width="320" height="48" fill="#1a237e" rx="6" stroke="#3949ab" stroke-width="1"/><text x="210" y="101" text-anchor="middle" fill="#9fa8da" font-size="11" font-weight="bold" font-family="sans-serif">Head (テーマ提示)</text><text x="210" y="118" text-anchor="middle" fill="#7986cb" font-size="9" font-family="sans-serif">コード進行を提示・全員が共有する基盤</text><rect x="50" y="136" width="155" height="48" fill="#4a148c" rx="6" stroke="#7b1fa2" stroke-width="1"/><text x="127" y="157" text-anchor="middle" fill="#ce93d8" font-size="11" font-weight="bold" font-family="sans-serif">Solo 1</text><text x="127" y="173" text-anchor="middle" fill="#ba68c8" font-size="9" font-family="sans-serif">ピアノが即興演奏</text><rect x="215" y="136" width="155" height="48" fill="#4a148c" rx="6" stroke="#7b1fa2" stroke-width="1"/><text x="292" y="157" text-anchor="middle" fill="#ce93d8" font-size="11" font-weight="bold" font-family="sans-serif">Solo 2</text><text x="292" y="173" text-anchor="middle" fill="#ba68c8" font-size="9" font-family="sans-serif">サックスが即興演奏</text><rect x="50" y="192" width="320" height="48" fill="#006064" rx="6" stroke="#00838f" stroke-width="1"/><text x="210" y="213" text-anchor="middle" fill="#80deea" font-size="11" font-weight="bold" font-family="sans-serif">Trading (4 bars)</text><text x="210" y="229" text-anchor="middle" fill="#4dd0e1" font-size="9" font-family="sans-serif">短いソロを交互に交換 — 対話・応答</text><rect x="50" y="248" width="320" height="48" fill="#1b5e20" rx="6" stroke="#388e3c" stroke-width="1"/><text x="210" y="269" text-anchor="middle" fill="#a5d6a7" font-size="11" font-weight="bold" font-family="sans-serif">Out-Head (テーマ回帰)</text><text x="210" y="285" text-anchor="middle" fill="#81c784" font-size="9" font-family="sans-serif">最初のテーマに戻る — 完結</text><text x="210" y="335" text-anchor="middle" fill="#78909c" font-size="9" font-family="sans-serif">コード進行（制約）の中で最大限の創造性</text><polygon points="396,195 420,185 420,205" fill="#e91e63"/><line x1="390" y1="195" x2="420" y2="195" stroke="#e91e63" stroke-width="3"/><rect x="430" y="45" width="340" height="300" fill="#16213e" rx="10" stroke="#e91e63" stroke-width="2"/><text x="600" y="68" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">アジャイルスプリント</text><rect x="450" y="80" width="300" height="48" fill="#1a237e" rx="6" stroke="#3949ab" stroke-width="1"/><text x="600" y="101" text-anchor="middle" fill="#9fa8da" font-size="11" font-weight="bold" font-family="sans-serif">Sprint Planning</text><text x="600" y="118" text-anchor="middle" fill="#7986cb" font-size="9" font-family="sans-serif">スプリントゴールを全員で共有</text><rect x="450" y="136" width="145" height="48" fill="#4a148c" rx="6" stroke="#7b1fa2" stroke-width="1"/><text x="522" y="157" text-anchor="middle" fill="#ce93d8" font-size="11" font-weight="bold" font-family="sans-serif">Task A</text><text x="522" y="173" text-anchor="middle" fill="#ba68c8" font-size="9" font-family="sans-serif">開発者が自律実装</text><rect x="605" y="136" width="145" height="48" fill="#4a148c" rx="6" stroke="#7b1fa2" stroke-width="1"/><text x="677" y="157" text-anchor="middle" fill="#ce93d8" font-size="11" font-weight="bold" font-family="sans-serif">Task B</text><text x="677" y="173" text-anchor="middle" fill="#ba68c8" font-size="9" font-family="sans-serif">別開発者が自律実装</text><rect x="450" y="192" width="300" height="48" fill="#006064" rx="6" stroke="#00838f" stroke-width="1"/><text x="600" y="213" text-anchor="middle" fill="#80deea" font-size="11" font-weight="bold" font-family="sans-serif">Daily Scrum</text><text x="600" y="229" text-anchor="middle" fill="#4dd0e1" font-size="9" font-family="sans-serif">短い同期 — 互いの状態を聴く</text><rect x="450" y="248" width="300" height="48" fill="#1b5e20" rx="6" stroke="#388e3c" stroke-width="1"/><text x="600" y="269" text-anchor="middle" fill="#a5d6a7" font-size="11" font-weight="bold" font-family="sans-serif">Sprint Review + Retro</text><text x="600" y="285" text-anchor="middle" fill="#81c784" font-size="9" font-family="sans-serif">成果を確認し次へ学びを活かす</text><text x="600" y="335" text-anchor="middle" fill="#78909c" font-size="9" font-family="sans-serif">スプリントゴール（制約）の中で創造的判断</text></svg>
 ![w:820 center](assets/chord-vs-sprint.svg)
 
 <!--
@@ -198,6 +265,7 @@ style: |
 
 # コール＆レスポンス vs チームコミュニケーション
 
+- <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">"Yes, And" vs "No, But" — ジャズとアジャイルの会話原則</text><rect x="30" y="45" width="360" height="310" fill="#16213e" rx="10" stroke="#4caf50" stroke-width="2"/><text x="210" y="68" text-anchor="middle" fill="#4caf50" font-size="13" font-weight="bold" font-family="sans-serif">Yes, And (ジャズ / アジャイル)</text><circle cx="100" cy="110" r="28" fill="#1b5e20" stroke="#388e3c" stroke-width="2"/><text x="100" y="106" text-anchor="middle" fill="#a5d6a7" font-size="9" font-weight="bold" font-family="sans-serif">演奏者A</text><text x="100" y="120" text-anchor="middle" fill="#81c784" font-size="8" font-family="sans-serif">フレーズ提示</text><circle cx="310" cy="110" r="28" fill="#006064" stroke="#00838f" stroke-width="2"/><text x="310" y="106" text-anchor="middle" fill="#80deea" font-size="9" font-weight="bold" font-family="sans-serif">演奏者B</text><text x="310" y="120" text-anchor="middle" fill="#4dd0e1" font-size="8" font-family="sans-serif">応答・発展</text><line x1="128" y1="110" x2="278" y2="110" stroke="#4caf50" stroke-width="2" stroke-dasharray="5 3"/><polygon points="278,104 290,110 278,116" fill="#4caf50"/><text x="205" y="96" text-anchor="middle" fill="#4caf50" font-size="10" font-family="sans-serif">受け入れて発展</text><circle cx="100" cy="195" r="28" fill="#1b5e20" stroke="#388e3c" stroke-width="2"/><text x="100" y="191" text-anchor="middle" fill="#a5d6a7" font-size="9" font-weight="bold" font-family="sans-serif">開発者A</text><text x="100" y="205" text-anchor="middle" fill="#81c784" font-size="8" font-family="sans-serif">PR提出</text><circle cx="310" cy="195" r="28" fill="#006064" stroke="#00838f" stroke-width="2"/><text x="310" y="191" text-anchor="middle" fill="#80deea" font-size="9" font-weight="bold" font-family="sans-serif">レビュアー</text><text x="310" y="205" text-anchor="middle" fill="#4dd0e1" font-size="8" font-family="sans-serif">改善提案</text><line x1="128" y1="195" x2="278" y2="195" stroke="#4caf50" stroke-width="2" stroke-dasharray="5 3"/><polygon points="278,189 290,195 278,201" fill="#4caf50"/><text x="205" y="181" text-anchor="middle" fill="#4caf50" font-size="10" font-family="sans-serif">良い点 + さらに改善</text><rect x="50" y="240" width="320" height="80" fill="#1b5e20" rx="6" opacity="0.4"/><text x="210" y="265" text-anchor="middle" fill="#a5d6a7" font-size="10" font-weight="bold" font-family="sans-serif">結果: 音楽が生まれる / イノベーション</text><text x="210" y="283" text-anchor="middle" fill="#81c784" font-size="9" font-family="sans-serif">心理的安全性が高まる</text><text x="210" y="299" text-anchor="middle" fill="#81c784" font-size="9" font-family="sans-serif">チームが成長する</text><text x="210" y="335" text-anchor="middle" fill="#4caf50" font-size="10" font-weight="bold" font-family="sans-serif">アンサンブルは最高の合奏へ</text><rect x="410" y="45" width="360" height="310" fill="#16213e" rx="10" stroke="#e91e63" stroke-width="2"/><text x="590" y="68" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">No, But (演奏が止まる)</text><circle cx="480" cy="110" r="28" fill="#3e1010" stroke="#b71c1c" stroke-width="2"/><text x="480" y="106" text-anchor="middle" fill="#ef9a9a" font-size="9" font-weight="bold" font-family="sans-serif">演奏者A</text><text x="480" y="120" text-anchor="middle" fill="#ef9a9a" font-size="8" font-family="sans-serif">フレーズ提示</text><circle cx="720" cy="110" r="28" fill="#3e1010" stroke="#b71c1c" stroke-width="2"/><text x="720" y="106" text-anchor="middle" fill="#ef9a9a" font-size="9" font-weight="bold" font-family="sans-serif">演奏者B</text><text x="720" y="120" text-anchor="middle" fill="#ef9a9a" font-size="8" font-family="sans-serif">否定する</text><line x1="508" y1="110" x2="688" y2="110" stroke="#e91e63" stroke-width="2"/><text x="590" y="96" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">「それは違う」</text><text x="620" y="110" fill="#ef5350" font-size="18" font-family="sans-serif" text-anchor="middle">✗</text><circle cx="480" cy="195" r="28" fill="#3e1010" stroke="#b71c1c" stroke-width="2"/><text x="480" y="191" text-anchor="middle" fill="#ef9a9a" font-size="9" font-weight="bold" font-family="sans-serif">開発者A</text><text x="480" y="205" text-anchor="middle" fill="#ef9a9a" font-size="8" font-family="sans-serif">PR提出</text><circle cx="720" cy="195" r="28" fill="#3e1010" stroke="#b71c1c" stroke-width="2"/><text x="720" y="191" text-anchor="middle" fill="#ef9a9a" font-size="9" font-weight="bold" font-family="sans-serif">レビュアー</text><text x="720" y="205" text-anchor="middle" fill="#ef9a9a" font-size="8" font-family="sans-serif">批判のみ</text><line x1="508" y1="195" x2="688" y2="195" stroke="#e91e63" stroke-width="2"/><text x="590" y="181" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">「この実装はダメ」</text><text x="620" y="195" fill="#ef5350" font-size="18" font-family="sans-serif" text-anchor="middle">✗</text><rect x="430" y="240" width="320" height="80" fill="#3e1010" rx="6" opacity="0.4"/><text x="590" y="265" text-anchor="middle" fill="#ef9a9a" font-size="10" font-weight="bold" font-family="sans-serif">結果: 演奏が止まる / 萎縮</text><text x="590" y="283" text-anchor="middle" fill="#ff8a65" font-size="9" font-family="sans-serif">心理的安全性が低下</text><text x="590" y="299" text-anchor="middle" fill="#ff8a65" font-size="9" font-family="sans-serif">イノベーションが生まれない</text><text x="590" y="335" text-anchor="middle" fill="#e91e63" font-size="10" font-weight="bold" font-family="sans-serif">不協和音になる</text></svg>
 ![w:820 center](assets/communication-flow.svg)
 
 <!--
@@ -243,12 +311,21 @@ style: |
 
 ---
 
-# マイルス・デイヴィスの哲学：「間違いはない、ただ次の音がある」
+# マイルス・デイヴィスの哲学：「間違いはない、ただ次の音がある」（1/2）
 
 - 「Kind of Blue」(1959) — ほぼ一発録音で制作されたモード・ジャズの傑作
 - マイルスの方法論：最低限のスケール情報だけ渡し、あとは即興
 - **有名な言葉：**「間違った音など存在しない。次の音をどう選ぶかだ」
 - **PSPrince2 / PMBOKとの比較：**
+
+<!--
+「Kind of Blue」は計画されていなかった。マイルスが当日スタジオでスケールを配り、レコーディングした。これはMVP思想そのもの。
+-->
+
+---
+
+# マイルス・デイヴィスの哲学：「間違いはない、ただ次の音がある」（2/2）
+
 - - 初回リリース = 一発録音（完璧でなくていい）
 - - ユーザーフィードバック = 共演者の反応
 - - 次のイテレーション = 次の音の選択
@@ -273,6 +350,7 @@ style: |
 
 # あなたのチームはどのバンド？
 
+- <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">あなたのチームはどのバンド？</text><line x1="80" y1="50" x2="80" y2="340" stroke="#445" stroke-width="2"/><line x1="80" y1="340" x2="740" y2="340" stroke="#445" stroke-width="2"/><line x1="80" y1="195" x2="740" y2="195" stroke="#334" stroke-width="1" stroke-dasharray="5 3"/><line x1="410" y1="50" x2="410" y2="340" stroke="#334" stroke-width="1" stroke-dasharray="5 3"/><text x="40" y="125" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif" transform="rotate(-90,40,125)">高</text><text x="40" y="275" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif" transform="rotate(-90,40,275)">低</text><text x="40" y="200" text-anchor="middle" fill="#78909c" font-size="9" font-family="sans-serif" transform="rotate(-90,40,200)">自律性</text><text x="245" y="360" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">低</text><text x="575" y="360" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">高</text><text x="400" y="375" text-anchor="middle" fill="#78909c" font-size="9" font-family="sans-serif">変化への対応力</text><rect x="85" y="55" width="320" height="135" fill="#4a148c" rx="8" opacity="0.4"/><text x="245" y="100" text-anchor="middle" fill="#ce93d8" font-size="13" font-weight="bold" font-family="sans-serif">室内楽アンサンブル</text><text x="245" y="118" text-anchor="middle" fill="#b39ddb" font-size="10" font-family="sans-serif">自律は高いが変化に弱い</text><text x="245" y="135" text-anchor="middle" fill="#9575cd" font-size="9" font-family="sans-serif">個人芸が強く連携が弱い</text><text x="245" y="152" text-anchor="middle" fill="#9575cd" font-size="9" font-family="sans-serif">→ コミュニケーション改善が必要</text><rect x="415" y="55" width="320" height="135" fill="#1b5e20" rx="8" opacity="0.6"/><text x="575" y="100" text-anchor="middle" fill="#a5d6a7" font-size="13" font-weight="bold" font-family="sans-serif">ジャズカルテット</text><text x="575" y="118" text-anchor="middle" fill="#81c784" font-size="10" font-family="sans-serif">自律が高く変化にも強い</text><text x="575" y="135" text-anchor="middle" fill="#66bb6a" font-size="9" font-family="sans-serif">理想のアジャイルチーム</text><text x="575" y="152" text-anchor="middle" fill="#66bb6a" font-size="9" font-family="sans-serif">即興と傾聴が両立</text><text x="545" y="72" fill="#f9a825" font-size="16" font-family="sans-serif">★ 目標</text><rect x="85" y="200" width="320" height="135" fill="#b71c1c" rx="8" opacity="0.4"/><text x="245" y="244" text-anchor="middle" fill="#ef9a9a" font-size="13" font-weight="bold" font-family="sans-serif">交響楽団</text><text x="245" y="262" text-anchor="middle" fill="#ffcdd2" font-size="10" font-family="sans-serif">自律が低く変化にも弱い</text><text x="245" y="279" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">指揮者依存・仕様変更に脆弱</text><text x="245" y="296" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">多くのチームはここから始まる</text><rect x="415" y="200" width="320" height="135" fill="#e65100" rx="8" opacity="0.4"/><text x="575" y="244" text-anchor="middle" fill="#ffccbc" font-size="13" font-weight="bold" font-family="sans-serif">フリージャズ</text><text x="575" y="262" text-anchor="middle" fill="#ffab91" font-size="10" font-family="sans-serif">変化には強いが自律が低い</text><text x="575" y="279" text-anchor="middle" fill="#ff8a65" font-size="9" font-family="sans-serif">カオス・方向性がバラバラ</text><text x="575" y="296" text-anchor="middle" fill="#ff8a65" font-size="9" font-family="sans-serif">→ スプリントゴール設定が必要</text></svg>
 ![w:820 center](assets/band-type-diagnosis.svg)
 
 <!--
@@ -312,12 +390,21 @@ style: |
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - **音楽とアジャイルの関係：**
 - - [Jazz and Agile — Michael Sahota (2010)](https://www.methodsandtools.com/archive/jazzagile.php)
 - - [Improvisation in Software Development](https://www.infoq.com/articles/improvisation-software/)
 - **ジャズ史・音楽理論：**
+
+<!--
+参考文献。特にMichael SahottaのJazz and Agile記事は本プレゼンの元ネタの一つ。
+-->
+
+---
+
+# 参考文献（2/2）
+
 - - [Kind of Blue - Miles Davis (1959)](https://en.wikipedia.org/wiki/Kind_of_Blue)
 - - [Duke Ellington Orchestra Leadership Style](https://www.jazzhistory.net/ellington)
 - **アジャイル原典：**

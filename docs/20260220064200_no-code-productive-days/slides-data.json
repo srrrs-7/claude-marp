@@ -26,6 +26,7 @@
 			"title": "あなたは今日、生産的でしたか？",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-perception.svg)",
 				"- 多くの開発者の回答: 「たくさんコードを書いた日 = 良い日」",
 				"- **GitHub Contributions** のグラフが緑色 = 充実感",
 				"- コミット数、PR数、マージ数で「成果」を測る文化",
@@ -48,6 +49,7 @@
 			"title": "コード = 生産性という幻想",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-loc.svg)",
 				"- **Bill Gates**: 「コード行数で進捗を測るのは重量で飛行機の進捗を測るようなもの」",
 				"- LOC (Lines of Code) は1960年代からの計測手法",
 				"- 10行で解決する人と100行で解決する人、どちらが優秀？",
@@ -77,6 +79,7 @@
 			"title": "Glue Work — チームを支える接着剤",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-glue.svg)",
 				"- **Tanya Reilly (2019)**: \"Being Glue\" — 組織を機能させる見えない仕事",
 				"- コードレビュー: バグを未然に防ぎ、知識を共有する",
 				"- オンボーディング: 新メンバーの立ち上がりを3ヶ月→1ヶ月に短縮",
@@ -89,6 +92,7 @@
 			"title": "乗数効果 (Multiplier Effect)",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-multiplier.svg)",
 				"- **自分で100行のコードを書く** → 100行分の価値",
 				"- **5人のコードレビューで各20行の改善** → 100行分 + バグ防止",
 				"- **良い設計ドキュメントを書く** → チーム全員の開発速度向上",
@@ -130,7 +134,7 @@
 		{
 			"title": "5. 組織としての生産性",
 			"layout": "section",
-			"content": []
+			"content": ["![w:800 center](assets/svg-staff.svg)"]
 		},
 		{
 			"title": "DORA指標が教えること",
@@ -148,6 +152,7 @@
 			"title": "SPACE Framework",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-dora.svg)",
 				"- **GitHub/MS/University of Victoria (2021)**: 開発者生産性の5次元",
 				"- **S**atisfaction: 仕事への満足度",
 				"- **P**erformance: 成果の質と影響",

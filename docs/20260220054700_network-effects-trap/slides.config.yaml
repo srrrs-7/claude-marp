@@ -5,6 +5,7 @@ output:
   baseName: "network-effects-trap"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ネットワーク効果と独占"
   footer: "© 2026"

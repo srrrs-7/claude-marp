@@ -1,4 +1,4 @@
-<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <text x="400" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#f8f8f8">Adjusted R² — 特徴量数によるペナルティ</text>
   <!-- Formulas -->
   <rect x="50" y="38" width="700" height="70" rx="10" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1.5"/>

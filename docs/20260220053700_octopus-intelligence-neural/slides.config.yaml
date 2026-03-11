@@ -5,6 +5,7 @@ output:
   baseName: "octopus-intelligence-neural"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "分散知性の生物学"
   footer: "© 2026"

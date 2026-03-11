@@ -10,6 +10,9 @@ bun.lock
 # Agent team workspaces (transient)
 .agent-teams/
 
+# Incremental build cache
+.cache/
+
 # OS
 .DS_Store
 Thumbs.db

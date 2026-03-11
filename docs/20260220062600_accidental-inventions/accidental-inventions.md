@@ -7,6 +7,71 @@ paginate: true
 header: "偶然の発明"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -42,6 +107,7 @@ style: |
 
 # セレンディピティの定義
 
+![w:900 center](assets/discovery-timeline.svg)
 - **1754年** ― ホレス・ウォルポールが造語
 - ペルシャの童話「セレンディップの三人の王子」から
 - 「探していないものを偶然見つけ、その価値に気づく能力」
@@ -61,6 +127,7 @@ style: |
 
 # ペニシリン（1928年）
 
+![w:900 center](assets/invention-mechanism.svg)
 - **アレクサンダー・フレミング** ― ブドウ球菌の培養実験中
 - 休暇から戻ると、培養皿にカビが生えていた
 - カビの周囲だけ細菌が死滅していることに気づく
@@ -170,6 +237,7 @@ style: |
 
 # なぜ「偶然」は一部の人にしか訪れないのか
 
+![w:900 center](assets/three-conditions.svg)
 - **選択的注意：** 専門知識がないと「異常」に気づけない
 - フレミングはカビを見た。他の研究者は汚れた培養皿を見た。
 - **パターン認識：** 異分野の知識がつながりを生む
@@ -189,6 +257,7 @@ style: |
 
 # セレンディピティを促進する環境設計
 
+![w:900 center](assets/serendipity-environment.svg)
 - **1. 学際的チーム** ― 異分野の人が隣り合うオフィス設計
 - ベル研究所：廊下が長く、全員がすれ違う設計
 - **2. 20%ルール** ― Googleの「本業以外に使える時間」

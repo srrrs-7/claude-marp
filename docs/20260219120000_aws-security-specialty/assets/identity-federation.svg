@@ -1,0 +1,25 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold">アイデンティティフェデレーションフロー</text>
+<rect x="20" y="145" width="130" height="80" rx="10" fill="#e91e63" opacity="0.85"/>
+<text x="85" y="182" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">User / App</text>
+<rect x="195" y="135" width="140" height="100" rx="10" fill="#7b1fa2" opacity="0.85"/>
+<text x="265" y="178" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">IdP</text>
+<text x="265" y="196" text-anchor="middle" font-size="12" fill="#ffffff">(Cognito/ADFS)</text>
+<rect x="385" y="135" width="140" height="100" rx="10" fill="#1565c0" opacity="0.85"/>
+<text x="455" y="178" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">IAM Identity</text>
+<text x="455" y="196" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Center</text>
+<rect x="575" y="135" width="140" height="100" rx="10" fill="#00695c" opacity="0.85"/>
+<text x="645" y="178" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">AWS</text>
+<text x="645" y="196" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Resources</text>
+<line x1="150" y1="185" x2="195" y2="185" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="195,185 185,179 185,191" fill="#f9a825"/>
+<line x1="335" y1="185" x2="385" y2="185" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="385,185 375,179 375,191" fill="#f9a825"/>
+<line x1="525" y1="185" x2="575" y2="185" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="575,185 565,179 565,191" fill="#f9a825"/>
+<rect x="180" y="295" width="440" height="60" rx="8" fill="#16213e"/>
+<text x="400" y="320" text-anchor="middle" font-size="13" fill="#4fc3f7">SAML 2.0 / OIDC トークン交換</text>
+<text x="400" y="340" text-anchor="middle" font-size="13" fill="#ffffff">STS AssumeRoleWithWebIdentity → 一時認証情報</text>
+<text x="400" y="385" text-anchor="middle" font-size="13" fill="#4fc3f7">Identity Federation Flow</text>
+</svg>

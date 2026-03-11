@@ -5,6 +5,7 @@ output:
   baseName: "10x-engineer-myth"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "10倍エンジニア神話"
   footer: "© 2026"

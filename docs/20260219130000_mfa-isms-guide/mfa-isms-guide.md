@@ -499,12 +499,18 @@ style: |
 
 ---
 
-# 参考文献・推奨リソース
+# 参考文献・推奨リソース（1/2）
 
 - **標準・規格:**
 - [NIST SP 800-63B Digital Identity Guidelines](https://pages.nist.gov/800-63-3/sp800-63b.html)
 - [ISO/IEC 27001:2022 Information Security Management](https://www.iso.org/standard/27001)
 - **業界レポート・研究:**
+
+
+---
+
+# 参考文献・推奨リソース（2/2）
+
 - [Verizon DBIR 2024](https://www.verizon.com/business/resources/reports/dbir/)
 - [FIDO Alliance — MFA Overview](https://fidoalliance.org/overview/)
 - **実装ガイド:**

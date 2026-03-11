@@ -1,4 +1,4 @@
-<svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+<svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <!-- Axes -->
   <line x1="80" y1="300" x2="640" y2="300" stroke="#333" stroke-width="2"/>
   <polygon points="637,294 647,300 637,306" fill="#333"/>

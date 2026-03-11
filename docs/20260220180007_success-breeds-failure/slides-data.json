@@ -42,6 +42,7 @@
 			"title": "Blockbusterの拒絶 — 5000万ドルの判断ミス",
 			"layout": "default",
 			"content": [
+				"<svg viewBox='0 0 800 220' style='max-height:45vh;width:auto;display:block;margin:0 auto;letter-spacing:0'><rect x='0' y='0' width='800' height='220' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>Blockbuster vs Netflix — 逆転の軌跡</text><line x1='80' y1='180' x2='750' y2='180' stroke='#555' stroke-width='2'/><line x1='80' y1='180' x2='80' y2='40' stroke='#555' stroke-width='2'/><text x='40' y='110' text-anchor='middle' fill='#999' font-size='10' transform='rotate(-90 40 110)'>時価総額</text><polyline points='120,60 200,55 280,80 360,130 440,165 560,175 680,178' fill='none' stroke='#e74c3c' stroke-width='3'/><text x='135' y='52' fill='#e74c3c' font-size='10'>Blockbuster</text><polyline points='120,175 200,172 280,165 360,140 440,100 560,60 680,45' fill='none' stroke='#2ecc71' stroke-width='3'/><text x='685' y='42' fill='#2ecc71' font-size='10'>Netflix</text><text x='120' y='195' text-anchor='middle' fill='#aaa' font-size='9'>2000</text><text x='280' y='195' text-anchor='middle' fill='#aaa' font-size='9'>2004</text><text x='440' y='195' text-anchor='middle' fill='#aaa' font-size='9'>2008</text><text x='600' y='195' text-anchor='middle' fill='#aaa' font-size='9'>2012</text><text x='680' y='195' text-anchor='middle' fill='#e74c3c' font-size='9'>破産</text><circle cx='120' cy='175' r='5' fill='#f9a825'/><text x='155' y='160' fill='#f9a825' font-size='8'>Netflix: 買収提案$50M</text><text x='155' y='172' fill='#f9a825' font-size='8'>笑い飛ばされる</text></svg>",
 				"- 2000年: Netflixが「DVD部門ごと5000万ドルで買収してほしい」と提案",
 				"- Blockbuster CEO の反応: 笑い飛ばした",
 				"- 当時Blockbusterは全米9000店舗、年商60億ドル",
@@ -110,6 +111,7 @@
 			"title": "プロダクトの「成功の罠」",
 			"layout": "default",
 			"content": [
+				"<svg viewBox='0 0 800 200' style='max-height:42vh;width:auto;display:block;margin:0 auto;letter-spacing:0'><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>成功 → 慢心 → 衰退のサイクル</text><rect x='60' y='55' width='140' height='50' rx='8' fill='#2d5016'/><text x='130' y='78' text-anchor='middle' fill='#4ecdc4' font-size='12' font-weight='bold'>成功</text><text x='130' y='96' text-anchor='middle' fill='#aaa' font-size='9'>DAU急増・高評価</text><polygon points='208,80 228,75 228,85' fill='#f9a825'/><line x1='200' y1='80' x2='228' y2='80' stroke='#f9a825' stroke-width='2'/><rect x='240' y='55' width='140' height='50' rx='8' fill='#5a3a00'/><text x='310' y='78' text-anchor='middle' fill='#f9a825' font-size='12' font-weight='bold'>慢心</text><text x='310' y='96' text-anchor='middle' fill='#aaa' font-size='9'>「壊すな」圧力増大</text><polygon points='388,80 408,75 408,85' fill='#e91e63'/><line x1='380' y1='80' x2='408' y2='80' stroke='#e91e63' stroke-width='2'/><rect x='420' y='55' width='140' height='50' rx='8' fill='#5a1a1a'/><text x='490' y='78' text-anchor='middle' fill='#ff6b6b' font-size='12' font-weight='bold'>停滞</text><text x='490' y='96' text-anchor='middle' fill='#aaa' font-size='9'>イノベーション消滅</text><polygon points='568,80 588,75 588,85' fill='#e91e63'/><line x1='560' y1='80' x2='588' y2='80' stroke='#e91e63' stroke-width='2'/><rect x='600' y='55' width='140' height='50' rx='8' fill='#7f1d1d'/><text x='670' y='78' text-anchor='middle' fill='#ff8888' font-size='12' font-weight='bold'>衰退</text><text x='670' y='96' text-anchor='middle' fill='#aaa' font-size='9'>競合に追い抜かれる</text><rect x='150' y='135' width='500' height='40' rx='8' fill='#16213e' stroke='#e91e63' stroke-width='1'/><text x='400' y='155' text-anchor='middle' fill='#e91e63' font-size='11' font-weight='bold'>Twitter / Reddit — 大規模ユーザーが変化を阻害する</text><text x='400' y='170' text-anchor='middle' fill='#aaa' font-size='10'>「壊すな」の圧力が「改善するな」に変質する</text></svg>",
 				"- DAU（日次アクティブユーザー）が高いほどリスクが取れなくなる",
 				"- Twitter: タイムラインのアルゴリズム変更 → ユーザー反発",
 				"- Reddit: APIの有料化 → コミュニティの大規模離脱",
@@ -121,6 +123,7 @@
 			"title": "技術スタックの「勝利の呪縛」",
 			"layout": "default",
 			"content": [
+				"<svg viewBox='0 0 800 200' style='max-height:40vh;width:auto;display:block;margin:0 auto;letter-spacing:0'><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>技術選択の「成功の呪縛」サイクル</text><rect x='80' y='55' width='140' height='45' rx='8' fill='#2d5016'/><text x='150' y='75' text-anchor='middle' fill='#fff' font-size='11' font-weight='bold'>技術Xで成功</text><text x='150' y='92' text-anchor='middle' fill='#aaa' font-size='9'>IPO / 大型受注</text><polygon points='228,77 248,72 248,82' fill='#f9a825'/><line x1='220' y1='77' x2='248' y2='77' stroke='#f9a825' stroke-width='2'/><rect x='260' y='55' width='140' height='45' rx='8' fill='#5a3a00'/><text x='330' y='75' text-anchor='middle' fill='#fff' font-size='11' font-weight='bold'>Xへの固執</text><text x='330' y='92' text-anchor='middle' fill='#aaa' font-size='9'>「実績があるから」</text><polygon points='408,77 428,72 428,82' fill='#f9a825'/><line x1='400' y1='77' x2='428' y2='77' stroke='#f9a825' stroke-width='2'/><rect x='440' y='55' width='140' height='45' rx='8' fill='#5a1a1a'/><text x='510' y='75' text-anchor='middle' fill='#fff' font-size='11' font-weight='bold'>新技術スルー</text><text x='510' y='92' text-anchor='middle' fill='#aaa' font-size='9'>移行コストを理由に</text><polygon points='588,77 608,72 608,82' fill='#e74c3c'/><line x1='580' y1='77' x2='608' y2='77' stroke='#e74c3c' stroke-width='2'/><rect x='620' y='55' width='140' height='45' rx='8' fill='#7f1d1d'/><text x='690' y='75' text-anchor='middle' fill='#ff8888' font-size='11' font-weight='bold'>技術的負債</text><text x='690' y='92' text-anchor='middle' fill='#aaa' font-size='9'>採用困難・速度低下</text><text x='400' y='145' text-anchor='middle' fill='#e74c3c' font-size='13' font-weight='bold'>「成功した技術」が「変化できない理由」になる</text><text x='400' y='168' text-anchor='middle' fill='#aaa' font-size='11'>技術選択は結婚ではなく、リースであるべき</text></svg>",
 				"- 「うちはPerlで成功した」「RailsでIPOした」",
 				"- 成功した技術選択への過剰な忠誠心",
 				"- リプレースの遅れ → 技術的負債の蓄積",
@@ -152,13 +155,19 @@
 			]
 		},
 		{
-			"title": "参考文献",
+			"title": "参考文献（1/2）",
 			"layout": "default",
 			"content": [
 				"- **Books:**",
 				"  - [Christensen \"The Innovator's Dilemma\" (1997)](https://www.hbs.edu/faculty/Pages/item.aspx?num=46)",
 				"  - [Christensen \"The Innovator's Solution\" (2003)](https://www.hbs.edu/faculty/Pages/item.aspx?num=131)",
-				"- **Case Studies:**",
+				"- **Case Studies:**"
+			]
+		},
+		{
+			"title": "参考文献（2/2）",
+			"layout": "default",
+			"content": [
 				"  - [Kodak and the Digital Revolution (HBS Case Study)](https://www.hbs.edu/faculty/Pages/item.aspx?num=44949)",
 				"  - [Nokia's Bridge Program (Insead Case Study)](https://www.insead.edu/case/nokia)",
 				"- **Further Reading:**",

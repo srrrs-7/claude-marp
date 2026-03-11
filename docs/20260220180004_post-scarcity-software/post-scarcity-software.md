@@ -7,6 +7,71 @@ paginate: true
 header: "ポスト希少性ソフトウェア"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -103,6 +168,8 @@ style: |
 - - プライバシー: 個人情報の取り扱いはドメイン知識が不可欠
 - - バイアス: AI学習データに含まれる偏りの検出
 - - **判断の責任は常に人間に帰属する**
+- 
+- <svg viewBox='0 0 800 200' style='max-height:40vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='30' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>AI生成コードのリスク層</text><rect x='80' y='50' width='640' height='40' rx='8' fill='#7f1d1d'/><text x='400' y='75' text-anchor='middle' fill='#ff8888' font-size='12' font-weight='bold'>法的リスク: 著作権侵害 / ライセンス汚染</text><rect x='120' y='100' width='560' height='35' rx='8' fill='#5a1a3a'/><text x='400' y='122' text-anchor='middle' fill='#e91e63' font-size='12' font-weight='bold'>セキュリティ: 脆弱性 / サプライチェーン攻撃</text><rect x='160' y='144' width='480' height='35' rx='8' fill='#1a2a5a'/><text x='400' y='166' text-anchor='middle' fill='#7ec8e3' font-size='12' font-weight='bold'>倫理: バイアス / プライバシー侵害</text><text x='400' y='192' text-anchor='middle' fill='#aaa' font-size='10'>責任の所在は常に人間に — 「AIが生成した」は免責にならない</text></svg>
 
 
 ---
@@ -146,6 +213,8 @@ style: |
 - - プロンプトエンジニアリングの限界:
 -   - 「何を聞くか」を知らなければ、答えも得られない
 -   - ドメインの深い理解なしにはプロンプトは書けない
+- 
+- <svg viewBox='0 0 800 180' style='max-height:36vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='180' fill='#1a1a2e' rx='12'/><text x='400' y='30' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>10倍エンジニアの定義の変化</text><rect x='60' y='50' width='300' height='100' rx='10' fill='#16213e' stroke='#e74c3c' stroke-width='2'/><text x='210' y='78' text-anchor='middle' fill='#e74c3c' font-size='13' font-weight='bold'>旧: コード量で測る</text><text x='210' y='100' text-anchor='middle' fill='#aaa' font-size='11'>1日500行のコードを書く</text><text x='210' y='120' text-anchor='middle' fill='#aaa' font-size='11'>言語の深い習熟</text><text x='210' y='138' text-anchor='middle' fill='#aaa' font-size='11'>個人の実装スピード</text><rect x='440' y='50' width='300' height='100' rx='10' fill='#16213e' stroke='#2ecc71' stroke-width='2'/><text x='590' y='78' text-anchor='middle' fill='#2ecc71' font-size='13' font-weight='bold'>新: 判断の質で測る</text><text x='590' y='100' text-anchor='middle' fill='#aaa' font-size='11'>不要な機能を10個削除する</text><text x='590' y='120' text-anchor='middle' fill='#aaa' font-size='11'>正しい問いを立てる力</text><text x='590' y='138' text-anchor='middle' fill='#aaa' font-size='11'>ドメイン理解 × AI活用</text></svg>
 
 
 ---
@@ -185,12 +254,18 @@ style: |
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - - **Books & Papers:**
 -   - [Rifkin "The Zero Marginal Cost Society" (2014)](https://www.thezeromarginalcostsociety.com/)
 -   - [GitHub "Research: Quantifying Copilot's Impact" (2022)](https://github.blog/2022-09-07-research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/)
 - - **Industry Analysis:**
+
+
+---
+
+# 参考文献（2/2）
+
 -   - ["The Death of the Junior Developer" (Various, 2024)](https://www.businessinsider.com/junior-developer-jobs-ai-coding-tools-2024)
 -   - [Stack Overflow Developer Survey 2025](https://survey.stackoverflow.co/2025/)
 - - **Further Reading:**

@@ -7,6 +7,71 @@ paginate: true
 header: "Wood Wide Web とマイクロサービス"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section { font-size: 1.05em; }
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
@@ -46,12 +111,23 @@ style: |
 
 ---
 
-# 糖・栄養・シグナルの交換 — APIコールと何が違うか
+# 糖・栄養・シグナルの交換 — APIコールと何が違うか（1/2）
 
+- <svg viewBox='0 0 780 310' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='780' height='310' fill='#1a1a2e' rx='8'/><text x='390' y='28' text-anchor='middle' fill='#e8d5b7' font-size='13' font-weight='bold'>自然の通信プロトコル vs REST/gRPC</text><rect x='20' y='45' width='340' height='240' rx='6' fill='#0f2a0f' stroke='#4caf50' stroke-width='1.5'/><text x='190' y='68' text-anchor='middle' fill='#66bb6a' font-size='12' font-weight='bold'>菌根ネットワークの通信</text><rect x='40' y='82' width='290' height='48' rx='5' fill='#1b4a1b' stroke='#4caf50' stroke-width='1'/><text x='70' y='102' fill='#ffd700' font-size='11' font-weight='bold'>炭素（糖分）</text><text x='70' y='120' fill='#a5d6a7' font-size='10'>光合成産物 → 周辺木へ転送</text><polygon points='320,106 340,100 320,115' fill='#4caf50'/><rect x='40' y='140' width='290' height='48' rx='5' fill='#1b4a1b' stroke='#4caf50' stroke-width='1'/><text x='70' y='160' fill='#ffd700' font-size='11' font-weight='bold'>リン・窒素</text><text x='70' y='178' fill='#a5d6a7' font-size='10'>土壌栄養素 → 根へ配送</text><polygon points='320,164 340,158 320,173' fill='#4caf50'/><rect x='40' y='198' width='290' height='48' rx='5' fill='#1b4a1b' stroke='#4caf50' stroke-width='1'/><text x='70' y='218' fill='#ffd700' font-size='11' font-weight='bold'>化学シグナル</text><text x='70' y='236' fill='#a5d6a7' font-size='10'>害虫・乾燥ストレスの警告</text><polygon points='320,222 340,216 320,231' fill='#4caf50'/><text x='190' y='272' text-anchor='middle' fill='#e8b86d' font-size='10'>送信側が受信側の状態に応じて調整</text><rect x='420' y='45' width='340' height='240' rx='6' fill='#0d1a2e' stroke='#4a90d9' stroke-width='1.5'/><text x='590' y='68' text-anchor='middle' fill='#42a5f5' font-size='12' font-weight='bold'>マイクロサービスの通信</text><rect x='440' y='82' width='290' height='48' rx='5' fill='#0d2540' stroke='#1976d2' stroke-width='1'/><text x='470' y='102' fill='#ffd700' font-size='11' font-weight='bold'>REST/gRPC リクエスト</text><text x='470' y='120' fill='#90caf9' font-size='10'>= 栄養素の交換</text><rect x='440' y='140' width='290' height='48' rx='5' fill='#0d2540' stroke='#1976d2' stroke-width='1'/><text x='470' y='160' fill='#ffd700' font-size='11' font-weight='bold'>Kafka イベントバス</text><text x='470' y='178' fill='#90caf9' font-size='10'>= 化学シグナルの伝播</text><rect x='440' y='198' width='290' height='48' rx='5' fill='#0d2540' stroke='#1976d2' stroke-width='1'/><text x='470' y='218' fill='#ffd700' font-size='11' font-weight='bold'>バックプレッシャー</text><text x='470' y='236' fill='#90caf9' font-size='10'>= 過剰栄養の調整機構</text><text x='590' y='272' text-anchor='middle' fill='#64b5f6' font-size='10'>Producer-Consumer パターンで制御</text><text x='390' y='295' text-anchor='middle' fill='#f9a825' font-size='11' font-weight='bold'>40億年の進化 ≈ 現代のAPI設計パターン</text></svg>
 - **菌根ネットワークの通信:**
 - - 炭素（糖分）: 光合成産物を周辺木へ転送
 - - リン・窒素: 土壌栄養素を根へ配送
 - - 化学シグナル: 害虫攻撃・乾燥ストレスの警告
+
+<!--
+自然の通信プロトコルはREST/gRPCと驚くほど類似した役割分担がある。
+-->
+
+---
+
+# 糖・栄養・シグナルの交換 — APIコールと何が違うか（2/2）
+
+- <svg viewBox='0 0 780 310' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='780' height='310' fill='#1a1a2e' rx='8'/><text x='390' y='26' text-anchor='middle' fill='#e8d5b7' font-size='13' font-weight='bold'>自然 ↔ マイクロサービス 対応マップ</text><line x1='390' y1='45' x2='390' y2='280' stroke='#444' stroke-width='1.5' stroke-dasharray='6,4'/><text x='195' y='60' text-anchor='middle' fill='#66bb6a' font-size='11' font-weight='bold'>自然界</text><text x='585' y='60' text-anchor='middle' fill='#42a5f5' font-size='11' font-weight='bold'>マイクロサービス</text><rect x='30' y='72' width='320' height='36' rx='5' fill='#1b4a1b' stroke='#4caf50' stroke-width='1'/><text x='190' y='94' text-anchor='middle' fill='#a5d6a7' font-size='10'>炭素（糖）: 光合成産物の転送</text><line x1='355' y1='90' x2='425' y2='90' stroke='#f9a825' stroke-width='2'/><polygon points='420,84 435,90 420,96' fill='#f9a825'/><rect x='430' y='72' width='320' height='36' rx='5' fill='#0d2540' stroke='#1976d2' stroke-width='1'/><text x='590' y='94' text-anchor='middle' fill='#90caf9' font-size='10'>REST リクエスト: データ転送</text><rect x='30' y='118' width='320' height='36' rx='5' fill='#1b4a1b' stroke='#4caf50' stroke-width='1'/><text x='190' y='140' text-anchor='middle' fill='#a5d6a7' font-size='10'>化学シグナル: 伝播・警告</text><line x1='355' y1='136' x2='425' y2='136' stroke='#f9a825' stroke-width='2'/><polygon points='420,130 435,136 420,142' fill='#f9a825'/><rect x='430' y='118' width='320' height='36' rx='5' fill='#0d2540' stroke='#1976d2' stroke-width='1'/><text x='590' y='140' text-anchor='middle' fill='#90caf9' font-size='10'>Kafka イベント: 非同期通知</text><rect x='30' y='164' width='320' height='36' rx='5' fill='#1b4a1b' stroke='#4caf50' stroke-width='1'/><text x='190' y='186' text-anchor='middle' fill='#a5d6a7' font-size='10'>過剰栄養の調整（菌根菌）</text><line x1='355' y1='182' x2='425' y2='182' stroke='#f9a825' stroke-width='2'/><polygon points='420,176 435,182 420,188' fill='#f9a825'/><rect x='430' y='164' width='320' height='36' rx='5' fill='#0d2540' stroke='#1976d2' stroke-width='1'/><text x='590' y='186' text-anchor='middle' fill='#90caf9' font-size='10'>Backpressure / Rate Limit</text><rect x='30' y='210' width='320' height='36' rx='5' fill='#1b4a1b' stroke='#4caf50' stroke-width='1'/><text x='190' y='232' text-anchor='middle' fill='#a5d6a7' font-size='10'>枯れ木の回避ルート</text><line x1='355' y1='228' x2='425' y2='228' stroke='#f9a825' stroke-width='2'/><polygon points='420,222 435,228 420,234' fill='#f9a825'/><rect x='430' y='210' width='320' height='36' rx='5' fill='#0d2540' stroke='#1976d2' stroke-width='1'/><text x='590' y='232' text-anchor='middle' fill='#90caf9' font-size='10'>Circuit Breaker フォールバック</text><text x='390' y='285' text-anchor='middle' fill='#e91e63' font-size='11' font-weight='bold'>自然は最適なAPIを40億年かけて実装した</text></svg>
 - **マイクロサービスとの対応:**
 - - REST/gRPC リクエスト = 栄養素の交換
 - - イベントバス（Kafka）= 化学シグナルの伝播
@@ -97,12 +173,23 @@ style: |
 
 ---
 
-# サービスディスカバリ — 木が互いを認識する仕組み
+# サービスディスカバリ — 木が互いを認識する仕組み（1/2）
 
+- <svg viewBox='0 0 780 300' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='780' height='300' fill='#1a1a2e' rx='8'/><text x='390' y='26' text-anchor='middle' fill='#e8d5b7' font-size='13' font-weight='bold'>化学的サービスディスカバリ（自然）</text><rect x='0' y='35' width='780' height='140' fill='#2d5016' rx='0'/><rect x='0' y='170' width='780' height='130' fill='#3d1f00' rx='0'/><rect x='0' y='35' width='780' height='12' fill='#2d5016'/><text x='390' y='52' text-anchor='middle' fill='#a8d8a8' font-size='10'>地上部</text><text x='390' y='210' text-anchor='middle' fill='#c4956a' font-size='10'>地下部（菌根ネットワーク）</text><rect x='60' y='45' width='18' height='80' fill='#4a7c2f'/><rect x='51' y='45' width='36' height='55' fill='#5a9c3f' rx='18'/><text x='69' y='42' text-anchor='middle' fill='#c8e6c9' font-size='9'>Oak-1</text><rect x='220' y='50' width='14' height='70' fill='#4a7c2f'/><rect x='213' y='50' width='28' height='48' fill='#5a9c3f' rx='14'/><text x='227' y='47' text-anchor='middle' fill='#c8e6c9' font-size='9'>NEW</text><rect x='400' y='43' width='20' height='90' fill='#4a7c2f'/><rect x='390' y='43' width='40' height='64' fill='#5a9c3f' rx='20'/><text x='410' y='40' text-anchor='middle' fill='#c8e6c9' font-size='9'>Birch-3</text><rect x='580' y='48' width='16' height='74' fill='#4a7c2f'/><rect x='572' y='48' width='32' height='52' fill='#5a9c3f' rx='16'/><text x='588' y='45' text-anchor='middle' fill='#c8e6c9' font-size='9'>Pine-4</text><rect x='700' y='46' width='18' height='78' fill='#4a7c2f'/><rect x='691' y='46' width='36' height='54' fill='#5a9c3f' rx='18'/><text x='709' y='43' text-anchor='middle' fill='#c8e6c9' font-size='9'>Oak-5</text><path d='M69,180 Q150,200 227,195 Q300,190 410,205' stroke='#e8b86d' stroke-width='2.5' fill='none'/><path d='M410,205 Q490,215 588,200 Q650,192 709,185' stroke='#e8b86d' stroke-width='2.5' fill='none'/><circle cx='69' cy='180' r='8' fill='#f9a825'/><circle cx='227' cy='195' r='10' fill='#ff7043' style='filter:drop-shadow(0 0 6px #ff4500)'/><text x='227' y='235' text-anchor='middle' fill='#ff7043' font-size='10' font-weight='bold'>新木</text><text x='227' y='248' text-anchor='middle' fill='#ff7043' font-size='9'>化学物質発信中</text><circle cx='410' cy='205' r='8' fill='#f9a825'/><circle cx='588' cy='200' r='8' fill='#f9a825'/><circle cx='709' cy='185' r='8' fill='#f9a825'/><path d='M197,195 Q227,175 240,190' stroke='#ff7043' stroke-width='1.5' fill='none' stroke-dasharray='3,2'/><text x='190' y='172' fill='#ff7043' font-size='9'>化学物質</text><text x='185' y='183' fill='#ff7043' font-size='9'>拡散シグナル</text><text x='390' y='280' text-anchor='middle' fill='#e8b86d' font-size='10'>菌糸が化学物質を感知 → 新木と数週間で接続</text></svg>
 - **化学的サービスディスカバリ（自然）:**
 - - 菌糸が根の分泌する化学物質を感知して接続
 - - 同種の木は優先的に菌根ネットワークで繋がる
 - - 新しい木が植わると数週間で既存ネットワークに接続
+
+<!--
+自然のサービスディスカバリは化学的シグナルによるもの。Kubernetesでは CoreDNS や Consul が同様の役割を担う。
+-->
+
+---
+
+# サービスディスカバリ — 木が互いを認識する仕組み（2/2）
+
+- <svg viewBox='0 0 780 300' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='780' height='300' fill='#1a1a2e' rx='8'/><text x='390' y='26' text-anchor='middle' fill='#e8d5b7' font-size='13' font-weight='bold'>Kubernetes サービスディスカバリ</text><rect x='20' y='40' width='220' height='230' rx='6' fill='#0d2540' stroke='#1976d2' stroke-width='1.5'/><text x='130' y='62' text-anchor='middle' fill='#42a5f5' font-size='11' font-weight='bold'>CoreDNS</text><text x='130' y='78' text-anchor='middle' fill='#64b5f6' font-size='9'>DNS ベース名前解決</text><rect x='35' y='90' width='190' height='32' rx='4' fill='#1565c0' stroke='#42a5f5' stroke-width='1'/><text x='130' y='111' text-anchor='middle' fill='#fff' font-size='10'>my-svc.namespace.svc.cluster</text><rect x='35' y='132' width='190' height='32' rx='4' fill='#1565c0' stroke='#42a5f5' stroke-width='1'/><text x='130' y='153' text-anchor='middle' fill='#fff' font-size='10'>10.96.0.1 (ClusterIP)</text><rect x='35' y='174' width='190' height='32' rx='4' fill='#1565c0' stroke='#42a5f5' stroke-width='1'/><text x='130' y='195' text-anchor='middle' fill='#fff' font-size='10'>自動TTL更新（Pod 追加時）</text><rect x='265' y='40' width='220' height='230' rx='6' fill='#0d2a0a' stroke='#388e3c' stroke-width='1.5'/><text x='375' y='62' text-anchor='middle' fill='#66bb6a' font-size='11' font-weight='bold'>Consul</text><text x='375' y='78' text-anchor='middle' fill='#81c784' font-size='9'>ヘルスチェック付き登録</text><rect x='280' y='90' width='190' height='32' rx='4' fill='#1b4a1b' stroke='#388e3c' stroke-width='1'/><text x='375' y='111' text-anchor='middle' fill='#fff' font-size='10'>サービス登録（Agent）</text><rect x='280' y='132' width='190' height='32' rx='4' fill='#1b4a1b' stroke='#388e3c' stroke-width='1'/><text x='375' y='153' text-anchor='middle' fill='#fff' font-size='10'>健全性チェック（/health）</text><rect x='280' y='174' width='190' height='32' rx='4' fill='#1b4a1b' stroke='#388e3c' stroke-width='1'/><text x='375' y='195' text-anchor='middle' fill='#fff' font-size='10'>障害サービスの自動除外</text><rect x='510' y='40' width='250' height='230' rx='6' fill='#0d1a2e' stroke='#7b1fa2' stroke-width='1.5'/><text x='635' y='62' text-anchor='middle' fill='#ce93d8' font-size='11' font-weight='bold'>Envoy xDS プロトコル</text><text x='635' y='78' text-anchor='middle' fill='#ba68c8' font-size='9'>動的設定配信</text><rect x='525' y='90' width='220' height='32' rx='4' fill='#4a1a6a' stroke='#7b1fa2' stroke-width='1'/><text x='635' y='111' text-anchor='middle' fill='#fff' font-size='10'>Listener Discovery Service (LDS)</text><rect x='525' y='132' width='220' height='32' rx='4' fill='#4a1a6a' stroke='#7b1fa2' stroke-width='1'/><text x='635' y='153' text-anchor='middle' fill='#fff' font-size='10'>Cluster Discovery Service (CDS)</text><rect x='525' y='174' width='220' height='32' rx='4' fill='#4a1a6a' stroke='#7b1fa2' stroke-width='1'/><text x='635' y='195' text-anchor='middle' fill='#fff' font-size='10'>Endpoint Discovery (EDS)</text><rect x='20' y='280' width='740' height='10' rx='3' fill='#1a1a3e'/><text x='390' y='288' text-anchor='middle' fill='#f9a825' font-size='9' font-weight='bold'>新サービス投入 → 即座にディスカバリー ≒ 新木が菌根ネットワークに接続</text></svg>
 - **技術的サービスディスカバリ（Kubernetes）:**
 - - CoreDNS による DNS ベースのサービス解決
 - - Consul による健全性チェック付き登録・発見
@@ -161,12 +248,23 @@ style: |
 
 ---
 
-# どちらを選ぶべきか — ユースケース別指針
+# どちらを選ぶべきか — ユースケース別指針（1/2）
 
+- <svg viewBox='0 0 780 300' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='780' height='300' fill='#1a1a2e' rx='8'/><text x='390' y='26' text-anchor='middle' fill='#e8d5b7' font-size='13' font-weight='bold'>ユースケース選択フロー</text><rect x='300' y='40' width='180' height='44' rx='8' fill='#16213e' stroke='#f9a825' stroke-width='2'/><text x='390' y='62' text-anchor='middle' fill='#f9a825' font-size='12' font-weight='bold'>接続パターンの選択</text><text x='390' y='78' text-anchor='middle' fill='#e8b86d' font-size='9'>どちらを使うか？</text><line x1='390' y1='84' x2='390' y2='108' stroke='#888' stroke-width='1.5'/><rect x='220' y='108' width='320' height='38' rx='6' fill='#1a3a1a' stroke='#4caf50' stroke-width='1.5'/><text x='380' y='132' text-anchor='middle' fill='#81c784' font-size='11'>トポロジーは安定している？</text><line x1='250' y1='127' x2='90' y2='155' stroke='#4caf50' stroke-width='1.5'/><text x='155' y='148' fill='#4caf50' font-size='10'>YES</text><line x1='530' y1='127' x2='680' y2='155' stroke='#e74c3c' stroke-width='1.5'/><text x='610' y='148' fill='#e74c3c' font-size='10'>NO</text><rect x='20' y='155' width='200' height='44' rx='6' fill='#1b4a1b' stroke='#4caf50' stroke-width='2'/><text x='120' y='174' text-anchor='middle' fill='#a5d6a7' font-size='10' font-weight='bold'>菌根型</text><text x='120' y='190' text-anchor='middle' fill='#81c784' font-size='9'>Service Mesh 永続接続</text><rect x='560' y='155' width='200' height='44' rx='6' fill='#3d1500' stroke='#f9a825' stroke-width='2'/><text x='660' y='174' text-anchor='middle' fill='#ffcc80' font-size='10' font-weight='bold'>アリ型</text><text x='660' y='190' text-anchor='middle' fill='#ffa726' font-size='9'>ACO 動的最適化</text><rect x='20' y='215' width='200' height='65' rx='5' fill='#0f1f0f' stroke='#388e3c' stroke-width='1'/><text x='120' y='233' text-anchor='middle' fill='#66bb6a' font-size='9'>適用場面:</text><text x='120' y='248' text-anchor='middle' fill='#a5d6a7' font-size='9'>• 低レイテンシ必須</text><text x='120' y='262' text-anchor='middle' fill='#a5d6a7' font-size='9'>• 基盤インフラ通信</text><text x='120' y='276' text-anchor='middle' fill='#a5d6a7' font-size='9'>• 観測性一元管理</text><rect x='560' y='215' width='200' height='65' rx='5' fill='#1f0f00' stroke='#e65100' stroke-width='1'/><text x='660' y='233' text-anchor='middle' fill='#ffab40' font-size='9'>適用場面:</text><text x='660' y='248' text-anchor='middle' fill='#ffcc80' font-size='9'>• 頻繁変化ルーティング</text><text x='660' y='262' text-anchor='middle' fill='#ffcc80' font-size='9'>• 大規模分散スケジューリング</text><text x='660' y='276' text-anchor='middle' fill='#ffcc80' font-size='9'>• 未知環境の経路探索</text></svg>
 - **菌根型（Service Mesh / 永続接続）が適する場面:**
 - - 安定したサービス間通信（低レイテンシ必須）
 - - 長期間変化しないトポロジー（基盤インフラ）
 - - 観測性・セキュリティポリシーの一元管理
+
+<!--
+両者はトレードオフがある。実際のシステムでは組み合わせることが多い（例：Istio + カスタムルーティングロジック）。
+-->
+
+---
+
+# どちらを選ぶべきか — ユースケース別指針（2/2）
+
+- <svg viewBox='0 0 780 300' style='max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width='780' height='300' fill='#1a1a2e' rx='8'/><text x='390' y='26' text-anchor='middle' fill='#e8d5b7' font-size='13' font-weight='bold'>アリ型 — ユースケース詳細</text><rect x='20' y='45' width='220' height='230' rx='6' fill='#1a1000' stroke='#f57f17' stroke-width='1.5'/><text x='130' y='68' text-anchor='middle' fill='#ffca28' font-size='12' font-weight='bold'>CDN / エッジルーティング</text><circle cx='80' cy='120' r='20' fill='#f57f17' opacity='0.8'/><text x='80' y='124' text-anchor='middle' fill='#fff' font-size='9'>Tokyo</text><circle cx='130' cy='100' r='20' fill='#f57f17' opacity='0.8'/><text x='130' y='104' text-anchor='middle' fill='#fff' font-size='9'>Seoul</text><circle cx='180' cy='130' r='20' fill='#f57f17' opacity='0.8'/><text x='180' y='134' text-anchor='middle' fill='#fff' font-size='9'>SG</text><path d='M99,116 Q115,100 112,108' stroke='#ffd54f' stroke-width='2' fill='none'/><path d='M148,110 Q165,118 162,126' stroke='#ffd54f' stroke-width='2' fill='none'/><text x='130' y='175' text-anchor='middle' fill='#ffe082' font-size='9'>フェロモン経路更新</text><text x='130' y='190' text-anchor='middle' fill='#ffe082' font-size='9'>= トラフィック最適化</text><text x='130' y='255' text-anchor='middle' fill='#aaa' font-size='9'>Fastly / CloudFlare</text><rect x='280' y='45' width='220' height='230' rx='6' fill='#1a0a1a' stroke='#7b1fa2' stroke-width='1.5'/><text x='390' y='68' text-anchor='middle' fill='#ce93d8' font-size='12' font-weight='bold'>分散タスクスケジューリング</text><rect x='300' y='85' width='80' height='28' rx='4' fill='#4a1a6a' stroke='#9b59b6' stroke-width='1'/><text x='340' y='104' text-anchor='middle' fill='#fff' font-size='9'>Worker A</text><rect x='400' y='85' width='80' height='28' rx='4' fill='#4a1a6a' stroke='#9b59b6' stroke-width='1'/><text x='440' y='104' text-anchor='middle' fill='#fff' font-size='9'>Worker B</text><rect x='300' y='140' width='80' height='28' rx='4' fill='#4a1a6a' stroke='#9b59b6' stroke-width='1'/><text x='340' y='159' text-anchor='middle' fill='#fff' font-size='9'>Worker C</text><rect x='400' y='140' width='80' height='28' rx='4' fill='#4a1a6a' stroke='#9b59b6' stroke-width='1'/><text x='440' y='159' text-anchor='middle' fill='#fff' font-size='9'>Worker D</text><circle cx='390' cy='205' r='18' fill='#6a1b9a'/><text x='390' y='210' text-anchor='middle' fill='#fff' font-size='9'>Sched</text><line x1='340' y1='113' x2='380' y2='188' stroke='#9b59b6' stroke-width='1.5'/><line x1='440' y1='113' x2='400' y2='188' stroke='#9b59b6' stroke-width='1.5'/><line x1='340' y1='140' x2='378' y2='200' stroke='#9b59b6' stroke-width='1.5'/><line x1='440' y1='140' x2='402' y2='200' stroke='#9b59b6' stroke-width='1.5'/><text x='390' y='255' text-anchor='middle' fill='#aaa' font-size='9'>Kubernetes / Airflow</text><rect x='540' y='45' width='220' height='230' rx='6' fill='#0a1a2a' stroke='#1976d2' stroke-width='1.5'/><text x='650' y='68' text-anchor='middle' fill='#42a5f5' font-size='12' font-weight='bold'>ロボティクス / 倉庫物流</text><rect x='560' y='85' width='180' height='130' rx='4' fill='#0d2540' stroke='#1565c0' stroke-width='1'/><circle cx='600' cy='110' r='8' fill='#f9a825'/><text x='600' y='114' text-anchor='middle' fill='#000' font-size='7'>R1</text><circle cx='660' cy='130' r='8' fill='#f9a825'/><text x='660' y='134' text-anchor='middle' fill='#000' font-size='7'>R2</text><circle cx='700' cy='110' r='8' fill='#f9a825'/><text x='700' y='114' text-anchor='middle' fill='#000' font-size='7'>R3</text><rect x='620' y='170' width='40' height='30' rx='3' fill='#e91e63'/><text x='640' y='190' text-anchor='middle' fill='#fff' font-size='8'>GOAL</text><path d='M608,118 Q630,115 652,122' stroke='#42a5f5' stroke-width='1.5' fill='none'/><path d='M668,138 Q680,125 692,118' stroke='#42a5f5' stroke-width='1.5' fill='none'/><text x='650' y='255' text-anchor='middle' fill='#aaa' font-size='9'>Amazon Robotics / AGV</text></svg>
 - **アリ型（ACO / 動的最適化）が適する場面:**
 - - 頻繁に変化するルーティング（CDN、エッジ）
 - - 大規模分散タスクスケジューリング
@@ -191,6 +289,11 @@ style: |
 - サーキットブレーカーパターンの実装例
 - 障害ノードを自動遮断し、森全体を守る菌根の知恵
 
+
+---
+
+# Resilience4J / Hystrix — 防御の菌根（コード例）
+
 ```java
 // Resilience4J Circuit Breaker — 菌根型耐障害性
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
@@ -214,9 +317,6 @@ Try.ofSupplier(decorated)
         ex -> NutrientPacket.fallback()); // 代替経路へフォールバック
 ```
 
-<!--
-Resilience4Jのサーキットブレーカーは菌根ネットワークの障害分離メカニズムと同じ。50%の失敗率でOpen状態に移行し、ネットワーク全体を保護する。
--->
 
 ---
 
@@ -250,12 +350,21 @@ Prometheusのhealth_scoreメトリクスは菌根ネットワークが感知す�
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - **Research & Data:**
 - [Simard et al. (1997) Net transfer of carbon between ectomycorrhizal tree species](https://www.nature.com/articles/41557)
 - [Beiler et al. (2010) Architecture of the wood-wide web](https://nph.onlinelibrary.wiley.com/doi/10.1111/j.1469-8137.2009.03069.x)
 - **Microservices Architecture:**
+
+<!--
+菌根ネットワーク研究とマイクロサービスアーキテクチャの主要参考文献。
+-->
+
+---
+
+# 参考文献（2/2）
+
 - [Istio Service Mesh Documentation](https://istio.io/latest/docs/)
 - [Resilience4J Circuit Breaker Guide](https://resilience4j.readme.io/docs/circuitbreaker)
 - **Biomimicry in Software Design:**

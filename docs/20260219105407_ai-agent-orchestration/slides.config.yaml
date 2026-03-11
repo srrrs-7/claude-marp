@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "AI Agent Orchestration Workshop"
   footer: "© 2026 Engineering Workshop"

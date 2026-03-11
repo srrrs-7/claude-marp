@@ -5,6 +5,7 @@ output:
   baseName: "programming-language-philosophy"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "言語設計と思想"
   footer: "© 2026"

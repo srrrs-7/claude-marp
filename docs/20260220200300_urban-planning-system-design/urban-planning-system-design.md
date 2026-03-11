@@ -1,11 +1,77 @@
 ---
 marp: true
 theme: gaia
+class: invert
 size: 16:9
 paginate: true
 header: "都市計画とシステム設計"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section {
     font-size: 1.05em;
   }
@@ -39,6 +105,7 @@ style: |
 # 第一章：トップダウン設計の罠
 
 - 完璧な設計図は、なぜ現実に敗北するのか
+- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><rect x="60" y="30" width="180" height="140" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="150" y="60" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold">完璧な設計図</text><text x="150" y="85" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">全てを事前に計画</text><text x="150" y="105" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">機能ごとに分離</text><text x="150" y="125" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">ユーザー不在の設計</text><polygon points="280,100 260,90 260,110" fill="#e91e63"/><line x1="240" y1="100" x2="260" y2="100" stroke="#e91e63" stroke-width="3"/><text x="320" y="80" font-family="sans-serif" font-size="28" fill="#e91e63" text-anchor="middle">✗</text><rect x="360" y="30" width="180" height="140" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="450" y="60" font-family="sans-serif" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold">現実</text><text x="450" y="85" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">住民が別の行動をとる</text><text x="450" y="105" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">計画外の経路が生まれる</text><text x="450" y="125" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">システムが形骸化する</text><rect x="580" y="50" width="170" height="100" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="665" y="80" font-family="sans-serif" font-size="12" fill="#4caf50" text-anchor="middle" font-weight="bold">教訓</text><text x="665" y="103" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">観察 → 適応</text><text x="665" y="123" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">有機的成長を許容</text></svg>
 
 
 ---
@@ -59,8 +126,7 @@ style: |
 - 「完璧な設計図に基づいてサービスを分割する」— 同じ罠
 - **過剰分割の症状**: 数百のマイクロサービス、複雑な依存関係図
 - **Nanoservice反パターン**: 1つのAPIしか持たないサービス群
-- **分散モノリス**: 独立していない「マイクロサービスもどき」
-- 設計図通りに動かない理由は、都市計画の失敗と同じ
+- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="320" fill="#1a1a2e"/><text x="400" y="28" font-family="sans-serif" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">過剰分割アンチパターン vs. 適切なバウンデッドコンテキスト</text><rect x="20" y="45" width="340" height="255" rx="8" fill="#12122a" stroke="#e91e63" stroke-width="2"/><text x="190" y="68" font-family="sans-serif" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold">Nanoservice地獄 (悪い例)</text><rect x="35" y="80" width="70" height="30" rx="4" fill="#2a1a2e" stroke="#e91e63" stroke-width="1"/><text x="70" y="100" font-family="sans-serif" font-size="10" fill="#fff" text-anchor="middle">User-GET</text><rect x="115" y="80" width="70" height="30" rx="4" fill="#2a1a2e" stroke="#e91e63" stroke-width="1"/><text x="150" y="100" font-family="sans-serif" font-size="10" fill="#fff" text-anchor="middle">User-POST</text><rect x="195" y="80" width="70" height="30" rx="4" fill="#2a1a2e" stroke="#e91e63" stroke-width="1"/><text x="230" y="100" font-family="sans-serif" font-size="10" fill="#fff" text-anchor="middle">User-DEL</text><rect x="275" y="80" width="70" height="30" rx="4" fill="#2a1a2e" stroke="#e91e63" stroke-width="1"/><text x="310" y="100" font-family="sans-serif" font-size="10" fill="#fff" text-anchor="middle">User-PUT</text><rect x="35" y="125" width="70" height="30" rx="4" fill="#2a1a2e" stroke="#e91e63" stroke-width="1"/><text x="70" y="145" font-family="sans-serif" font-size="10" fill="#fff" text-anchor="middle">Order-GET</text><rect x="115" y="125" width="70" height="30" rx="4" fill="#2a1a2e" stroke="#e91e63" stroke-width="1"/><text x="150" y="145" font-family="sans-serif" font-size="10" fill="#fff" text-anchor="middle">Order-Post</text><rect x="195" y="125" width="70" height="30" rx="4" fill="#2a1a2e" stroke="#e91e63" stroke-width="1"/><text x="230" y="145" font-family="sans-serif" font-size="10" fill="#fff" text-anchor="middle">Order-Del</text><rect x="275" y="125" width="70" height="30" rx="4" fill="#2a1a2e" stroke="#e91e63" stroke-width="1"/><text x="310" y="145" font-family="sans-serif" font-size="10" fill="#fff" text-anchor="middle">Order-Put</text><rect x="35" y="170" width="70" height="30" rx="4" fill="#2a1a2e" stroke="#e91e63" stroke-width="1"/><text x="70" y="190" font-family="sans-serif" font-size="10" fill="#fff" text-anchor="middle">Pay-Init</text><rect x="115" y="170" width="70" height="30" rx="4" fill="#2a1a2e" stroke="#e91e63" stroke-width="1"/><text x="150" y="190" font-family="sans-serif" font-size="10" fill="#fff" text-anchor="middle">Pay-Exec</text><rect x="195" y="170" width="70" height="30" rx="4" fill="#2a1a2e" stroke="#e91e63" stroke-width="1"/><text x="230" y="190" font-family="sans-serif" font-size="10" fill="#fff" text-anchor="middle">Pay-Refund</text><rect x="275" y="170" width="70" height="30" rx="4" fill="#2a1a2e" stroke="#e91e63" stroke-width="1"/><text x="310" y="190" font-family="sans-serif" font-size="10" fill="#fff" text-anchor="middle">Pay-Check</text><text x="190" y="240" font-family="sans-serif" font-size="11" fill="#e91e63" text-anchor="middle">12個のサービス → 依存関係爆発</text><text x="190" y="258" font-family="sans-serif" font-size="11" fill="#e91e63" text-anchor="middle">= Pruitt-Igoe（機能別に完全分離）</text><rect x="440" y="45" width="340" height="255" rx="8" fill="#12122a" stroke="#f9a825" stroke-width="2"/><text x="610" y="68" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold">バウンデッドコンテキスト (良い例)</text><rect x="455" y="80" width="140" height="90" rx="8" fill="#1e2a3a" stroke="#f9a825" stroke-width="2"/><text x="525" y="102" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="bold">User Context</text><text x="525" y="120" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">CRUD + Auth + Profile</text><text x="525" y="136" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">（内部は混在してよい）</text><rect x="615" y="80" width="150" height="90" rx="8" fill="#1e2a3a" stroke="#f9a825" stroke-width="2"/><text x="690" y="102" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="bold">Order Context</text><text x="690" y="120" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">Cart + Order + History</text><text x="690" y="136" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">（自律的な街区）</text><rect x="455" y="190" width="140" height="90" rx="8" fill="#1e2a3a" stroke="#f9a825" stroke-width="2"/><text x="525" y="212" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="bold">Payment Context</text><text x="525" y="230" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">Init + Exec + Refund</text><text x="525" y="246" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">（凝集度高）</text><rect x="615" y="190" width="150" height="90" rx="8" fill="#1e2a3a" stroke="#f9a825" stroke-width="2"/><text x="690" y="212" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="bold">Notification Ctx</text><text x="690" y="230" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">Email + SMS + Push</text><text x="690" y="246" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">（責務が明確）</text></svg>
 
 
 ---
@@ -69,6 +135,7 @@ style: |
 # 第二章：ジェイン・ジェイコブスの教え
 
 - 街角の観察者が発見した、都市の真実
+- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><circle cx="400" cy="100" r="60" fill="none" stroke="#f9a825" stroke-width="3"/><text x="400" y="95" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold">観察</text><text x="400" y="115" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">Observation</text><circle cx="150" cy="100" r="45" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="150" y="95" font-family="sans-serif" font-size="11" fill="#e91e63" text-anchor="middle">計画家の</text><text x="150" y="113" font-family="sans-serif" font-size="11" fill="#e91e63" text-anchor="middle">視点</text><circle cx="650" cy="100" r="45" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="650" y="95" font-family="sans-serif" font-size="11" fill="#4caf50" text-anchor="middle">住民の</text><text x="650" y="113" font-family="sans-serif" font-size="11" fill="#4caf50" text-anchor="middle">視点</text><polygon points="310,100 295,92 295,108" fill="#f9a825"/><line x1="195" y1="100" x2="295" y2="100" stroke="#f9a825" stroke-width="2"/><polygon points="490,100 505,92 505,108" fill="#f9a825"/><line x1="460" y1="100" x2="505" y2="100" stroke="#f9a825" stroke-width="2"/><text x="400" y="185" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">「良い街は計画されない、育まれる」— Jane Jacobs</text></svg>
 
 
 ---
@@ -88,9 +155,8 @@ style: |
 
 - 住宅・商業・オフィスが**混在**する街区の活力と安全性
 - 「多様性」が経済と安全を同時に生む（目の数の増加）
-- **ソフトウェア類比**: マイクロサービスの過度な専門化 vs. 機能的まとまり
 - **バウンデッドコンテキスト** = 自然な「街区」— 内部は混在してよい
-- 凝集度（Cohesion）を高め、結合度（Coupling）を下げる
+- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="340" fill="#1a1a2e"/><text x="400" y="28" font-family="sans-serif" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">混合用途 vs. 単一用途の比較：街とソフトウェア</text><rect x="20" y="45" width="360" height="275" rx="8" fill="#12122a" stroke="#f9a825" stroke-width="2"/><text x="200" y="68" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold">活力ある街区（混合用途）</text><rect x="40" y="80" width="80" height="50" rx="6" fill="#1e3a2a" stroke="#4caf50" stroke-width="1"/><text x="80" y="107" font-family="sans-serif" font-size="11" fill="#4caf50" text-anchor="middle">住宅</text><rect x="135" y="80" width="80" height="50" rx="6" fill="#1e2a3a" stroke="#2196f3" stroke-width="1"/><text x="175" y="107" font-family="sans-serif" font-size="11" fill="#2196f3" text-anchor="middle">商業</text><rect x="230" y="80" width="80" height="50" rx="6" fill="#3a1e2a" stroke="#e91e63" stroke-width="1"/><text x="270" y="107" font-family="sans-serif" font-size="11" fill="#e91e63" text-anchor="middle">オフィス</rect><rect x="40" y="145" width="80" height="50" rx="6" fill="#2a2a1e" stroke="#ff9800" stroke-width="1"/><text x="80" y="172" font-family="sans-serif" font-size="11" fill="#ff9800" text-anchor="middle">公園</text><rect x="135" y="145" width="80" height="50" rx="6" fill="#1a2a3a" stroke="#00bcd4" stroke-width="1"/><text x="175" y="172" font-family="sans-serif" font-size="11" fill="#00bcd4" text-anchor="middle">飲食店</text><rect x="230" y="145" width="80" height="50" rx="6" fill="#2a1e3a" stroke="#9c27b0" stroke-width="1"/><text x="270" y="172" font-family="sans-serif" font-size="11" fill="#9c27b0" text-anchor="middle">学校</text><text x="200" y="225" font-family="sans-serif" font-size="11" fill="#4caf50" text-anchor="middle">高い凝集度：多様な目的が共存</text><text x="200" y="245" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">低い結合度：街区をまたぐ依存が少ない</text><text x="200" y="265" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle">= バウンデッドコンテキスト</text><text x="200" y="295" font-family="sans-serif" font-size="11" fill="#4caf50" text-anchor="middle">活力・安全・回復力 HIGH</text><rect x="420" y="45" width="360" height="275" rx="8" fill="#12122a" stroke="#e91e63" stroke-width="2"/><text x="600" y="68" font-family="sans-serif" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold">単一用途ゾーニング（機能分離）</text><rect x="440" y="80" width="320" height="55" rx="6" fill="#2a1a1a" stroke="#e91e63" stroke-width="1"/><text x="600" y="112" font-family="sans-serif" font-size="11" fill="#e91e63" text-anchor="middle">住宅ゾーン（昼間は無人）</text><rect x="440" y="150" width="320" height="55" rx="6" fill="#2a1a1a" stroke="#e91e63" stroke-width="1"/><text x="600" y="182" font-family="sans-serif" font-size="11" fill="#e91e63" text-anchor="middle">商業ゾーン（夜間は無人）</text><rect x="440" y="220" width="320" height="55" rx="6" fill="#2a1a1a" stroke="#e91e63" stroke-width="1"/><text x="600" y="252" font-family="sans-serif" font-size="11" fill="#e91e63" text-anchor="middle">Nanoservice群（1機能のみ）</text><text x="600" y="295" font-family="sans-serif" font-size="11" fill="#e91e63" text-anchor="middle">活力・安全・回復力 LOW</text></svg>
 
 
 ---
@@ -110,6 +176,7 @@ style: |
 # 第三章：都市の諸問題とソフトウェアの類比
 
 - 老朽化・置き換え・渋滞 — 同じ問題が繰り返される
+- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><rect x="30" y="40" width="160" height="120" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="110" y="70" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="bold">老朽化</text><text x="110" y="92" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">インフラ劣化</text><text x="110" y="110" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">技術的負債</text><text x="110" y="128" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">レガシーコード</text><rect x="320" y="40" width="160" height="120" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="70" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle" font-weight="bold">置き換え</text><text x="400" y="92" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">ジェントリフィケーション</text><text x="400" y="110" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">APIマイグレーション</text><text x="400" y="128" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">互換性の破壊</text><rect x="610" y="40" width="160" height="120" rx="8" fill="#16213e" stroke="#2196f3" stroke-width="2"/><text x="690" y="70" font-family="sans-serif" font-size="12" fill="#2196f3" text-anchor="middle" font-weight="bold">渋滞</text><text x="690" y="92" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">幹線道路の混雑</text><text x="690" y="110" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">DBボトルネック</text><text x="690" y="128" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">ブラヒェスの逆説</text><polygon points="210,100 230,90 230,110" fill="#ffffff"/><line x1="190" y1="100" x2="230" y2="100" stroke="#ffffff" stroke-width="2"/><polygon points="500,100 520,90 520,110" fill="#ffffff"/><line x1="480" y1="100" x2="520" y2="100" stroke="#ffffff" stroke-width="2"/><text x="265" y="104" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">→</text><text x="555" y="104" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">→</text><text x="400" y="185" font-family="sans-serif" font-size="11" fill="#f9a825" text-anchor="middle">都市とソフトウェアは同じ問題を繰り返す</text></svg>
 
 
 ---
@@ -130,8 +197,7 @@ style: |
 - 古い住民を追い出す「再開発」— 価値ある文化と人的ネットワークの喪失
 - **データマイグレーション**: 古いユーザーを置き去りにするリスク
 - **下位互換性の破壊** = 元の居住者を強制退去させること
-- APIの廃止（Deprecation）は必ずユーザーへの移行期間を設ける
-- 「開発者体験（DX）の再開発」はユーザーを犠牲にしてはならない
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="28" font-family="sans-serif" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">APIマイグレーション：ジェントリフィケーションの罠と回避策</text><rect x="20" y="45" width="220" height="235" rx="8" fill="#12122a" stroke="#e91e63" stroke-width="2"/><text x="130" y="68" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle" font-weight="bold">破壊的移行 (悪)</text><rect x="35" y="80" width="190" height="40" rx="6" fill="#2a1a1a" stroke="#e91e63" stroke-width="1"/><text x="130" y="104" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle">v1 API（旧住民）削除</text><polygon points="130,130 120,120 140,120" fill="#e91e63"/><line x1="130" y1="120" x2="130" y2="150" stroke="#e91e63" stroke-width="2"/><rect x="35" y="150" width="190" height="40" rx="6" fill="#2a1a1a" stroke="#f9a825" stroke-width="1"/><text x="130" y="174" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle">v2 API（新開発）突然公開</text><text x="130" y="215" font-family="sans-serif" font-size="10" fill="#e91e63" text-anchor="middle">既存クライアントが即座に壊れる</text><text x="130" y="233" font-family="sans-serif" font-size="10" fill="#e91e63" text-anchor="middle">強制退去 = ユーザー離脱</text><text x="130" y="258" font-family="sans-serif" font-size="10" fill="#e91e63" text-anchor="middle">下位互換なし</text><rect x="290" y="45" width="220" height="235" rx="8" fill="#12122a" stroke="#f9a825" stroke-width="2"/><text x="400" y="68" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="bold">段階的移行 (良)</text><rect x="305" y="80" width="190" height="35" rx="6" fill="#1e3a2a" stroke="#4caf50" stroke-width="1"/><text x="400" y="102" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle">v1 API（継続稼働）</text><rect x="305" y="125" width="190" height="35" rx="6" fill="#1e2a3a" stroke="#2196f3" stroke-width="1"/><text x="400" y="147" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle">v2 API（並行提供）</text><rect x="305" y="170" width="190" height="35" rx="6" fill="#2a2a1e" stroke="#ff9800" stroke-width="1"/><text x="400" y="192" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle">v1 非推奨通知（6ヶ月前）</text><rect x="305" y="215" width="190" height="40" rx="6" fill="#1e3a2a" stroke="#4caf50" stroke-width="1"/><text x="400" y="239" font-family="sans-serif" font-size="11" fill="#4caf50" text-anchor="middle">v1 廃止（移行完了後）</text><rect x="560" y="45" width="220" height="235" rx="8" fill="#12122a" stroke="#4caf50" stroke-width="2"/><text x="670" y="68" font-family="sans-serif" font-size="12" fill="#4caf50" text-anchor="middle" font-weight="bold">Street Furniture法則</text><text x="670" y="95" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">既存住民への敬意</text><text x="670" y="130" font-family="sans-serif" font-size="11" fill="#f9a825" text-anchor="middle">移行ガイドの提供</text><text x="670" y="160" font-family="sans-serif" font-size="11" fill="#f9a825" text-anchor="middle">SDKの後方互換維持</text><text x="670" y="190" font-family="sans-serif" font-size="11" fill="#f9a825" text-anchor="middle">Deprecationヘッダー</text><text x="670" y="220" font-family="sans-serif" font-size="11" fill="#f9a825" text-anchor="middle">段階的サンセット計画</text><text x="670" y="258" font-family="sans-serif" font-size="10" fill="#4caf50" text-anchor="middle">ユーザーを大切にする設計</text></svg>
 
 
 ---
@@ -152,8 +218,7 @@ style: |
 - 「多様性」が災害・経済危機からの回復力を生む
 - ジェイコブス: 単一用途の街区は外部ショックに対して脆弱
 - **ソフトウェア**: 単一障害点（SPOF）の排除とカオスエンジニアリング
-- 地域コミュニティの自律性 = マイクロサービスの独立デプロイ能力
-- 冗長性・多様性・自律性が、回復力の三原則
+- <svg viewBox="0 0 800 310" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="310" fill="#1a1a2e"/><text x="400" y="28" font-family="sans-serif" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">レジリエンス三原則：冗長性・多様性・自律性</text><rect x="20" y="45" width="230" height="245" rx="8" fill="#12122a" stroke="#f9a825" stroke-width="2"/><text x="135" y="70" font-family="sans-serif" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold">冗長性</text><text x="135" y="90" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">Redundancy</text><rect x="40" y="105" width="190" height="35" rx="6" fill="#1e2a3a" stroke="#2196f3" stroke-width="1"/><text x="135" y="127" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle">Multi-AZ デプロイ</text><rect x="40" y="150" width="190" height="35" rx="6" fill="#1e2a3a" stroke="#2196f3" stroke-width="1"/><text x="135" y="172" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle">DB レプリカ</text><rect x="40" y="195" width="190" height="35" rx="6" fill="#1e2a3a" stroke="#2196f3" stroke-width="1"/><text x="135" y="217" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle">Load Balancer</text><text x="135" y="265" font-family="sans-serif" font-size="10" fill="#2196f3" text-anchor="middle">都市の複数避難経路に相当</text><rect x="285" y="45" width="230" height="245" rx="8" fill="#12122a" stroke="#4caf50" stroke-width="2"/><text x="400" y="70" font-family="sans-serif" font-size="14" fill="#4caf50" text-anchor="middle" font-weight="bold">多様性</text><text x="400" y="90" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">Diversity</text><rect x="305" y="105" width="190" height="35" rx="6" fill="#1e3a2a" stroke="#4caf50" stroke-width="1"/><text x="400" y="127" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle">複数クラウドプロバイダ</text><rect x="305" y="150" width="190" height="35" rx="6" fill="#1e3a2a" stroke="#4caf50" stroke-width="1"/><text x="400" y="172" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle">Polyglot Persistence</text><rect x="305" y="195" width="190" height="35" rx="6" fill="#1e3a2a" stroke="#4caf50" stroke-width="1"/><text x="400" y="217" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle">Circuit Breaker</text><text x="400" y="265" font-family="sans-serif" font-size="10" fill="#4caf50" text-anchor="middle">混合用途街区の回復力に相当</text><rect x="550" y="45" width="230" height="245" rx="8" fill="#12122a" stroke="#e91e63" stroke-width="2"/><text x="665" y="70" font-family="sans-serif" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold">自律性</text><text x="665" y="90" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">Autonomy</text><rect x="570" y="105" width="190" height="35" rx="6" fill="#2a1e3a" stroke="#e91e63" stroke-width="1"/><text x="665" y="127" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle">独立デプロイ</text><rect x="570" y="150" width="190" height="35" rx="6" fill="#2a1e3a" stroke="#e91e63" stroke-width="1"/><text x="665" y="172" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle">Chaos Engineering</text><rect x="570" y="195" width="190" height="35" rx="6" fill="#2a1e3a" stroke="#e91e63" stroke-width="1"/><text x="665" y="217" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle">自己回復（Self-Heal）</text><text x="665" y="265" font-family="sans-serif" font-size="10" fill="#e91e63" text-anchor="middle">地域コミュニティの自治に相当</text></svg>
 
 
 ---
@@ -164,5 +229,6 @@ style: |
 - **ユーザーの行動を観察してから最適化** — Desire Pathsを先に観察せよ
 - **多様性と混合用途を恐れない** — バウンデッドコンテキスト内の自由
 - **下位互換性への敬意** — 既存のユーザーと文化を大切にする
+- <svg viewBox="0 0 800 230" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="230" fill="#1a1a2e"/><text x="400" y="26" font-family="sans-serif" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">都市計画 ↔ ソフトウェアアーキテクチャ 対応マップ</text><rect x="20" y="40" width="200" height="175" rx="8" fill="#12122a" stroke="#f9a825" stroke-width="2"/><text x="120" y="62" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="bold">都市計画の概念</text><text x="120" y="85" font-family="sans-serif" font-size="11" fill="#ddd" text-anchor="middle">街区</text><text x="120" y="108" font-family="sans-serif" font-size="11" fill="#ddd" text-anchor="middle">幹線道路</text><text x="120" y="131" font-family="sans-serif" font-size="11" fill="#ddd" text-anchor="middle">Desire Path</text><text x="120" y="154" font-family="sans-serif" font-size="11" fill="#ddd" text-anchor="middle">老朽インフラ</text><text x="120" y="177" font-family="sans-serif" font-size="11" fill="#ddd" text-anchor="middle">ジェントリフィケーション</text><rect x="300" y="40" width="200" height="175" rx="8" fill="#12122a" stroke="#aaa" stroke-width="1"/><text x="400" y="62" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle" font-weight="bold">対応</text><text x="400" y="85" font-family="sans-serif" font-size="18" fill="#f9a825" text-anchor="middle">↔</text><text x="400" y="108" font-family="sans-serif" font-size="18" fill="#f9a825" text-anchor="middle">↔</text><text x="400" y="131" font-family="sans-serif" font-size="18" fill="#f9a825" text-anchor="middle">↔</text><text x="400" y="154" font-family="sans-serif" font-size="18" fill="#f9a825" text-anchor="middle">↔</text><text x="400" y="177" font-family="sans-serif" font-size="18" fill="#f9a825" text-anchor="middle">↔</text><rect x="580" y="40" width="200" height="175" rx="8" fill="#12122a" stroke="#e91e63" stroke-width="2"/><text x="680" y="62" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle" font-weight="bold">ソフトウェア概念</text><text x="680" y="85" font-family="sans-serif" font-size="11" fill="#ddd" text-anchor="middle">バウンデッドコンテキスト</text><text x="680" y="108" font-family="sans-serif" font-size="11" fill="#ddd" text-anchor="middle">API Gateway</text><text x="680" y="131" font-family="sans-serif" font-size="11" fill="#ddd" text-anchor="middle">想定外ユースケース</text><text x="680" y="154" font-family="sans-serif" font-size="11" fill="#ddd" text-anchor="middle">技術的負債</text><text x="680" y="177" font-family="sans-serif" font-size="11" fill="#ddd" text-anchor="middle">破壊的APIマイグレーション</text></svg>
 - 参考文献: [The Death and Life of Great American Cities（Jane Jacobs, 1961）](https://en.wikipedia.org/wiki/The_Death_and_Life_of_Great_American_Cities)
 

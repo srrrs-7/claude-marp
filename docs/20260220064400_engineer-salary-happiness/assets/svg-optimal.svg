@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">年収最大化 vs 幸福最大化：比較</text>
+  <!-- left: max salary -->
+  <rect x="40" y="60" width="320" height="230" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="200" y="87" fill="#e91e63" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">年収最大化戦略</text>
+  <text x="200" y="115" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">外資系GAFAM</text>
+  <text x="200" y="138" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">高報酬</text>
+  <text x="200" y="163" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">× 高負荷・不安定</text>
+  <text x="200" y="183" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">× 自律性が低い場合も</text>
+  <text x="200" y="203" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">× PIP・レイオフリスク</text>
+  <text x="200" y="260" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">ヘドニック・アダプテーションで</text>
+  <text x="200" y="276" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">慣れてしまう</text>
+  <!-- right: max happiness -->
+  <rect x="440" y="60" width="320" height="230" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="600" y="87" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">幸福最大化戦略</text>
+  <text x="600" y="115" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">「十分な年収」+ 3要素</text>
+  <text x="600" y="138" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">自律性 × 成長 × 仲間</text>
+  <text x="600" y="163" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">通勤30分短縮=年収+40万相当</text>
+  <text x="600" y="183" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">完全リモート=年収+8%相当</text>
+  <text x="600" y="203" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">技術的興味のある仕事</text>
+  <text x="600" y="260" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">時間 × 自由度 × 成長</text>
+  <text x="600" y="276" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">の最適化が鍵</text>
+  <!-- conclusion -->
+  <rect x="120" y="312" width="560" height="42" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="337" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">年収は「十分」であればよい。その先は別の投資を</text>
+</svg>

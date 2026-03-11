@@ -237,7 +237,7 @@ Googleのサイトリライアビリティエンジニアリング（SRE）やNe
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - **数学・論理学:**
 - - [Gödel's Incompleteness Theorems (Stanford Encyclopedia)](https://plato.stanford.edu/entries/goedel-incompleteness/)
@@ -245,6 +245,15 @@ Googleのサイトリライアビリティエンジニアリング（SRE）やNe
 - - [「ゲーデル・エッシャー・バッハ」ダグラス・ホフスタッター](https://www.amazon.co.jp/dp/4826901259)
 - 
 - **ソフトウェア工学への応用:**
+
+<!--
+特に「ゲーデル・エッシャー・バッハ」は不完全性定理を音楽・美術と絡めて解説した名著。ソフトウェアエンジニアにも強く推薦。
+-->
+
+---
+
+# 参考文献（2/2）
+
 - - [Halting Problem - Wikipedia](https://en.wikipedia.org/wiki/Halting_problem)
 - - [Rice's Theorem and Software Verification](https://en.wikipedia.org/wiki/Rice%27s_theorem)
 - - [「プログラムはなぜ動くのか」矢沢久雄](https://www.amazon.co.jp/dp/4822283151)

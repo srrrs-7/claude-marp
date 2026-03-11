@@ -5,6 +5,7 @@ output:
   baseName: "planning-fallacy"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "計画錯誤とプロジェクト管理"
   footer: "© 2026"

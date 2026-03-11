@@ -190,10 +190,15 @@
 		},
 		{
 			"title": "コード例: モジュール境界の実装",
-			"layout": "default",
 			"content": ["Railsでの実装例（Packwerk / Zeitwerk）"],
+			"layout": "default"
+		},
+		{
+			"title": "コード例: モジュール境界の実装（コード例）",
+			"content": [],
 			"code": "# app/packages/billing/public/billing_service.rb\nmodule Billing\n  class BillingService\n    def charge(order_id:, amount:)\n      # Internal implementation hidden\n      invoice = Invoice.create!(order_id:, amount:)\n      PaymentGateway.new.process(invoice)\n    end\n  end\nend\n\n# app/packages/orders/order_processor.rb\nmodule Orders\n  class OrderProcessor\n    def complete(order)\n      # Only uses Billing's public API\n      Billing::BillingService.new.charge(\n        order_id: order.id,\n        amount: order.total\n      )\n    end\n  end\nend",
-			"codeLanguage": "ruby"
+			"codeLanguage": "ruby",
+			"layout": "default"
 		},
 		{
 			"title": "Part 4: 技術的トレードオフ深掘り",
@@ -212,11 +217,15 @@
 		},
 		{
 			"title": "分散トレーシングの地獄",
-			"layout": "default",
 			"content": ["エラーログに必要な情報を全て揃えるためのコード例"],
+			"layout": "default"
+		},
+		{
+			"title": "分散トレーシングの地獄（コード例）",
+			"content": [],
 			"code": "// マイクロサービス: 障害追跡のコスト\nspan := tracer.StartSpan(\"order.process\")\nspan.SetTag(\"order_id\", orderID)\ndefer span.Finish()\n\nctx := opentracing.ContextWithSpan(ctx, span)\n\n// 5サービスにコンテキスト伝播が必要\ninventory, err := inventoryClient.Check(ctx, items)\nif err != nil {\n    span.SetTag(\"error\", true)\n    span.LogFields(log.Error(err))\n    // ここでエラーが出ても originは不明\n    return fmt.Errorf(\"inventory: %w\", err)\n}",
 			"codeLanguage": "go",
-			"speakerNotes": "モノリスでは同じエラーがスタックトレース1枚で完結する。"
+			"layout": "default"
 		},
 		{
 			"title": "データ整合性: 分散トランザクションの罠",
@@ -319,11 +328,15 @@
 		},
 		{
 			"title": "モジュラーモノリスのディレクトリ設計",
-			"layout": "default",
 			"content": ["ドメイン境界を反映したディレクトリ構造例"],
+			"layout": "default"
+		},
+		{
+			"title": "モジュラーモノリスのディレクトリ設計（コード例）",
+			"content": [],
 			"code": "src/\n├── modules/\n│   ├── billing/\n│   │   ├── public/          # 外部公開API\n│   │   │   └── billing_service.ts\n│   │   ├── internal/        # 内部実装（直接インポート禁止）\n│   │   │   ├── invoice.ts\n│   │   │   └── payment_gateway.ts\n│   │   └── index.ts         # 公開エントリポイント\n│   ├── orders/\n│   │   ├── public/\n│   │   ├── internal/\n│   │   └── index.ts\n│   └── inventory/\n├── shared/                  # 全モジュール共通（最小限）\n│   └── types.ts\n└── app.ts",
 			"codeLanguage": "text",
-			"speakerNotes": "ESLint の import ルールや Packwerk（Ruby）でモジュール境界をlintで強制できる。"
+			"layout": "default"
 		},
 		{
 			"title": "テスト戦略: テストピラミッド",

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="bold" fill="#ffffff">Backstage サービスカタログ: エンティティ関係</text>
+
+  <!-- Domain -->
+  <rect x="300" y="55" width="200" height="55" rx="10" fill="#2d1f4e"/>
+  <rect x="300" y="55" width="200" height="8" rx="4" fill="#a78bfa"/>
+  <text x="400" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#a78bfa">Domain</text>
+  <text x="400" y="100" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2d9f3">ビジネスドメイン全体</text>
+
+  <!-- Arrow Domain → System -->
+  <line x1="400" y1="110" x2="400" y2="148" stroke="#a78bfa" stroke-width="2"/>
+  <polygon points="393,148 400,160 407,148" fill="#a78bfa"/>
+  <text x="415" y="135" font-family="sans-serif" font-size="10" fill="#9ca3af">contains</text>
+
+  <!-- System -->
+  <rect x="300" y="160" width="200" height="55" rx="10" fill="#1e3a5f"/>
+  <rect x="300" y="160" width="200" height="8" rx="4" fill="#60a5fa"/>
+  <text x="400" y="185" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#60a5fa">System</text>
+  <text x="400" y="205" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#bfdbfe">関連コンポーネントの集合</text>
+
+  <!-- Arrows from System to Component and API -->
+  <line x1="340" y1="215" x2="220" y2="270" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="213,267 220,280 227,268" fill="#60a5fa"/>
+
+  <line x1="460" y1="215" x2="580" y2="270" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="573,267 580,280 587,268" fill="#60a5fa"/>
+
+  <text x="258" y="252" font-family="sans-serif" font-size="10" fill="#9ca3af">provides</text>
+  <text x="520" y="252" font-family="sans-serif" font-size="10" fill="#9ca3af">provides</text>
+
+  <!-- Component -->
+  <rect x="100" y="280" width="200" height="55" rx="10" fill="#1a3a2e"/>
+  <rect x="100" y="280" width="200" height="8" rx="4" fill="#34d399"/>
+  <text x="200" y="305" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#34d399">Component</text>
+  <text x="200" y="325" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a7f3d0">service / website / library</text>
+
+  <!-- API -->
+  <rect x="500" y="280" width="200" height="55" rx="10" fill="#1a2d40"/>
+  <rect x="500" y="280" width="200" height="8" rx="4" fill="#38bdf8"/>
+  <text x="600" y="305" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#38bdf8">API</text>
+  <text x="600" y="325" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#bae6fd">openapi / graphql / grpc</text>
+
+  <!-- Component ↔ API (dependsOn) -->
+  <line x1="300" y1="310" x2="500" y2="310" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <polygon points="500,303 512,310 500,317" fill="#6b7280"/>
+  <text x="400" y="302" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#9ca3af">dependsOn / consumesApi</text>
+
+  <!-- Group and User (bottom left) -->
+  <rect x="100" y="390" width="160" height="50" rx="8" fill="#2d1f4e"/>
+  <text x="180" y="412" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#a78bfa">Group</text>
+  <text x="180" y="430" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2d9f3">チーム / 組織</text>
+
+  <rect x="280" y="390" width="160" height="50" rx="8" fill="#2d1f4e"/>
+  <text x="360" y="412" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#a78bfa">User</text>
+  <text x="360" y="430" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2d9f3">個人メンバー</text>
+
+  <!-- Component → Owner (Group) -->
+  <line x1="180" y1="390" x2="180" y2="340" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="173,340 180,328 187,340" fill="#a78bfa"/>
+  <text x="110" y="368" font-family="sans-serif" font-size="10" fill="#9ca3af">owner</text>
+
+  <!-- Resource box -->
+  <rect x="500" y="390" width="200" height="50" rx="8" fill="#1a3a2e"/>
+  <text x="600" y="412" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399">Resource</text>
+  <text x="600" y="430" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a7f3d0">DB / S3 / Queue</text>
+
+  <!-- Component → Resource -->
+  <line x1="560" y1="390" x2="260" y2="340" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="253,336 260,326 267,340" fill="#34d399"/>
+  <text x="450" y="372" font-family="sans-serif" font-size="10" fill="#9ca3af">dependsOn</text>
+
+  <!-- Legend at bottom right -->
+  <rect x="590" y="455" width="180" height="32" rx="6" fill="#111827"/>
+  <line x1="600" y1="471" x2="630" y2="471" stroke="#6b7280" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="640" y="475" font-family="sans-serif" font-size="11" fill="#9ca3af">関連 (relation)</text>
+  <line x1="600" y1="487" x2="630" y2="487" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="630,481 642,487 630,493" fill="#60a5fa"/>
+  <!-- (note: second line needs another approach since we already have polygon) -->
+</svg>

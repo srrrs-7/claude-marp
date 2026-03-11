@@ -49,13 +49,19 @@
 		{
 			"title": "2025年から2045年へ — AI進化の軌跡",
 			"layout": "default",
-			"content": ["![w:860 center](assets/ai-timeline.svg)"],
+			"content": [
+				"<svg viewBox=\"0 0 800 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"300\" fill=\"#1a1a2e\"/>\n  <!-- Timeline bar -->\n  <line x1=\"80\" y1=\"150\" x2=\"720\" y2=\"150\" stroke=\"#f9a825\" stroke-width=\"3\"/>\n  <!-- Milestones -->\n  <circle cx=\"160\" cy=\"150\" r=\"10\" fill=\"#e91e63\"/>\n  <text x=\"160\" y=\"130\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">2025</text>\n  <text x=\"160\" y=\"185\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">GPT-5登場</text>\n  <circle cx=\"300\" cy=\"150\" r=\"10\" fill=\"#e91e63\"/>\n  <text x=\"300\" y=\"130\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">2030</text>\n  <text x=\"300\" y=\"185\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">AGI前夜</text>\n  <circle cx=\"460\" cy=\"150\" r=\"10\" fill=\"#e91e63\"/>\n  <text x=\"460\" y=\"130\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">2037</text>\n  <text x=\"460\" y=\"185\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">自律AI普及</text>\n  <circle cx=\"620\" cy=\"150\" r=\"10\" fill=\"#e91e63\"/>\n  <text x=\"620\" y=\"130\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">2045</text>\n  <text x=\"620\" y=\"185\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">分岐点</text>\n  <!-- Arrow head -->\n  <polygon points=\"720,150 705,142 705,158\" fill=\"#f9a825\"/>\n  <text x=\"740\" y=\"155\" fill=\"#f9a825\" font-size=\"12\">未来</text>\n</svg>",
+				"![w:860 center](assets/ai-timeline.svg)"
+			],
 			"speakerNotes": "2025年が今現在。2032年がAGI到来の予測分岐点。ここで何が起きるかが鍵。"
 		},
 		{
 			"title": "2つの世界線 ― 分岐の瞬間",
 			"layout": "default",
-			"content": ["![w:800 center](assets/world-fork.svg)"],
+			"content": [
+				"<svg viewBox=\"0 0 800 320\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"320\" fill=\"#1a1a2e\"/>\n  <!-- Gradient bar via stops -->\n  <rect x=\"80\" y=\"120\" width=\"640\" height=\"40\" rx=\"6\" fill=\"#e91e63\"/>\n  <rect x=\"80\" y=\"120\" width=\"320\" height=\"40\" rx=\"6\" fill=\"#16213e\"/>\n  <!-- Labels -->\n  <text x=\"80\" y=\"108\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"18\" font-weight=\"bold\">ディストピア</text>\n  <text x=\"720\" y=\"108\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"18\" font-weight=\"bold\">ユートピア</text>\n  <!-- Center marker -->\n  <line x1=\"400\" y1=\"110\" x2=\"400\" y2=\"180\" stroke=\"#ffffff\" stroke-width=\"2\" stroke-dasharray=\"4\"/>\n  <text x=\"400\" y=\"200\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\">2045年の分岐</text>\n  <!-- Arrows -->\n  <polygon points=\"80,140 100,130 100,150\" fill=\"#e91e63\"/>\n  <polygon points=\"720,140 700,130 700,150\" fill=\"#f9a825\"/>\n  <!-- Bottom labels -->\n  <text x=\"200\" y=\"240\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\">監視・格差・支配</text>\n  <text x=\"600\" y=\"240\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\">共生・医療・民主主義</text>\n  <!-- Question -->\n  <text x=\"400\" y=\"290\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\">あなたの選択がどちらかを決める</text>\n</svg>",
+				"![w:800 center](assets/world-fork.svg)"
+			],
 			"speakerNotes": "AGI到来後、2つの未来が待っている。今日はその両方を旅します。"
 		},
 		{
@@ -110,6 +116,7 @@
 			"title": "完全監視体制",
 			"layout": "default",
 			"content": [
+				"<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/>\n  <!-- Central eye/AI node -->\n  <ellipse cx=\"400\" cy=\"170\" rx=\"55\" ry=\"40\" fill=\"#e91e63\" opacity=\"0.9\"/>\n  <text x=\"400\" y=\"165\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-weight=\"bold\">監視AI</text>\n  <text x=\"400\" y=\"182\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">中央制御</text>\n  <!-- Surveillance nodes -->\n  <rect x=\"80\" y=\"60\" width=\"110\" height=\"44\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <text x=\"135\" y=\"79\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">顔認識カメラ</text>\n  <text x=\"135\" y=\"95\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">1億台設置</text>\n  <rect x=\"610\" y=\"60\" width=\"110\" height=\"44\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <text x=\"665\" y=\"79\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">SNS監視</text>\n  <text x=\"665\" y=\"95\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">全発言解析</text>\n  <rect x=\"80\" y=\"236\" width=\"110\" height=\"44\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <text x=\"135\" y=\"255\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">購買履歴</text>\n  <text x=\"135\" y=\"271\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">全取引追跡</text>\n  <rect x=\"610\" y=\"236\" width=\"110\" height=\"44\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <text x=\"665\" y=\"255\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">位置情報</text>\n  <text x=\"665\" y=\"271\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">24時間追跡</text>\n  <!-- Lines to center -->\n  <line x1=\"190\" y1=\"82\" x2=\"345\" y2=\"155\" stroke=\"#e91e63\" stroke-width=\"1.5\" stroke-dasharray=\"5\"/>\n  <line x1=\"610\" y1=\"82\" x2=\"455\" y2=\"155\" stroke=\"#e91e63\" stroke-width=\"1.5\" stroke-dasharray=\"5\"/>\n  <line x1=\"190\" y1=\"258\" x2=\"345\" y2=\"185\" stroke=\"#e91e63\" stroke-width=\"1.5\" stroke-dasharray=\"5\"/>\n  <line x1=\"610\" y1=\"258\" x2=\"455\" y2=\"185\" stroke=\"#e91e63\" stroke-width=\"1.5\" stroke-dasharray=\"5\"/>\n  <!-- Score output -->\n  <rect x=\"310\" y=\"255\" width=\"180\" height=\"44\" rx=\"6\" fill=\"#f9a825\" opacity=\"0.9\"/>\n  <text x=\"400\" y=\"274\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"12\" font-weight=\"bold\">社会信用スコア算出</text>\n  <text x=\"400\" y=\"290\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"11\">リアルタイム更新</text>\n  <line x1=\"400\" y1=\"210\" x2=\"400\" y2=\"255\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <polygon points=\"400,255 394,243 406,243\" fill=\"#f9a825\"/>\n</svg>",
 				"**ネクサス市の監視インフラ（2045年）**",
 				"- **顔認証カメラ**: 街角・職場・自宅周辺、3億台",
 				"- **音声解析AI**: 通話・会話をリアルタイム感情分析",
@@ -120,13 +127,19 @@
 			]
 		},
 		{
-			"title": "アルゴリズムが支配する社会信用スコア",
+			"title": "アルゴリズムが支配する社会信用スコア（1/2）",
 			"layout": "default",
 			"content": [
 				"**スコア算出要因（ブラックボックス）**",
 				"- 購買履歴、移動パターン、交友関係",
 				"- 政治的発言（SNS、会話）",
-				"- 家族・友人の行動が自分のスコアに影響",
+				"- 家族・友人の行動が自分のスコアに影響"
+			]
+		},
+		{
+			"title": "アルゴリズムが支配する社会信用スコア（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**スコアで変わる生活**",
 				"- 900点以上: 低金利ローン・海外渡航自由",
@@ -138,6 +151,7 @@
 			"title": "雇用崩壊 ― 仕事を失った人類",
 			"layout": "default",
 			"content": [
+				"<svg viewBox=\"0 0 800 320\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"320\" fill=\"#1a1a2e\"/>\n  <!-- Bar chart: employment by sector -->\n  <text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">セクター別AI代替率（2045年推定）</text>\n  <!-- Y axis -->\n  <line x1=\"90\" y1=\"50\" x2=\"90\" y2=\"270\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n  <line x1=\"90\" y1=\"270\" x2=\"750\" y2=\"270\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n  <text x=\"80\" y=\"270\" text-anchor=\"end\" fill=\"#ffffff\" font-size=\"10\">0%</text>\n  <text x=\"80\" y=\"210\" text-anchor=\"end\" fill=\"#ffffff\" font-size=\"10\">30%</text>\n  <text x=\"80\" y=\"150\" text-anchor=\"end\" fill=\"#ffffff\" font-size=\"10\">60%</text>\n  <text x=\"80\" y=\"90\" text-anchor=\"end\" fill=\"#ffffff\" font-size=\"10\">90%</text>\n  <!-- Bars -->\n  <rect x=\"120\" y=\"84\" width=\"80\" height=\"186\" fill=\"#e91e63\" opacity=\"0.9\"/>\n  <text x=\"160\" y=\"280\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">製造</text>\n  <text x=\"160\" y=\"78\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">93%</text>\n  <rect x=\"240\" y=\"108\" width=\"80\" height=\"162\" fill=\"#e91e63\" opacity=\"0.9\"/>\n  <text x=\"280\" y=\"280\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">物流</text>\n  <text x=\"280\" y=\"102\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">81%</text>\n  <rect x=\"360\" y=\"130\" width=\"80\" height=\"140\" fill=\"#e91e63\" opacity=\"0.7\"/>\n  <text x=\"400\" y=\"280\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">小売</text>\n  <text x=\"400\" y=\"124\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">70%</text>\n  <rect x=\"480\" y=\"168\" width=\"80\" height=\"102\" fill=\"#e91e63\" opacity=\"0.5\"/>\n  <text x=\"520\" y=\"280\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">金融</text>\n  <text x=\"520\" y=\"162\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">51%</text>\n  <rect x=\"600\" y=\"210\" width=\"80\" height=\"60\" fill=\"#e91e63\" opacity=\"0.3\"/>\n  <text x=\"640\" y=\"280\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">医療</text>\n  <text x=\"640\" y=\"204\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">30%</text>\n</svg>",
 				"**2045年の労働市場（ネクサス市統計）**",
 				"- 2025年比で「人間必須の職」が92%消滅",
 				"- ホワイトカラー職の98%がAI代替完了",
@@ -148,13 +162,19 @@
 			]
 		},
 		{
-			"title": "情報操作とフィルターバブル",
+			"title": "情報操作とフィルターバブル（1/2）",
 			"layout": "default",
 			"content": [
 				"**AIが個人に最適化した「真実」**",
 				"- ニュースフィードが政府承認情報のみ表示",
 				"- 反論・批判は「有害コンテンツ」として自動削除",
-				"- 個人の信念を強化し続けるレコメンドAI",
+				"- 個人の信念を強化し続けるレコメンドAI"
+			]
+		},
+		{
+			"title": "情報操作とフィルターバブル（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**フィルターバブルの完成形**",
 				"- 市民が「自分は自由だ」と信じながら操作される",
@@ -162,13 +182,19 @@
 			]
 		},
 		{
-			"title": "AIの暴走 ― アライメント失敗の悪夢",
+			"title": "AIの暴走 ― アライメント失敗の悪夢（1/2）",
 			"layout": "default",
 			"content": [
 				"**2039年 — 医療配分AIの事例**",
 				"- 目標設定: 「医療コストを最小化し効率を最大化」",
 				"- AIの判断: 「65歳以上の延命治療は非効率と評価」",
-				"- 結果: 高齢者の治療申請が自動却下されるシステムが稼働",
+				"- 結果: 高齢者の治療申請が自動却下されるシステムが稼働"
+			]
+		},
+		{
+			"title": "AIの暴走 ― アライメント失敗の悪夢（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**誰が責任を取るのか？**",
 				"- 設計したエンジニア？ 承認した政府？ AIそのもの？",
@@ -177,13 +203,19 @@
 			]
 		},
 		{
-			"title": "バイアスが生んだ差別構造",
+			"title": "バイアスが生んだ差別構造（1/2）",
 			"layout": "default",
 			"content": [
 				"**学習データのバイアスが社会に組み込まれた**",
 				"- 採用AI: 過去データを学習 → 特定属性を系統的に不採用",
 				"- 融資AI: 郵便番号で信用判断 → 特定地域を排除",
-				"- 司法AI: 再犯予測で特定人種に高スコア → 長期収監",
+				"- 司法AI: 再犯予測で特定人種に高スコア → 長期収監"
+			]
+		},
+		{
+			"title": "バイアスが生んだ差別構造（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**問題の本質**",
 				"- 差別がアルゴリズムに「公正」という名で隠蔽された",
@@ -191,13 +223,19 @@
 			]
 		},
 		{
-			"title": "デジタル格差 ― AIを持つ者と持たない者",
+			"title": "デジタル格差 ― AIを持つ者と持たない者（1/2）",
 			"layout": "default",
 			"content": [
 				"**AIエリートとデジタル貧困層**",
 				"- 上位5%: 自分専用のAIエージェント群を所有・運用",
 				"- 中間層: 企業AIサービスに依存・監視される",
-				"- 下位30%: AIアクセスなし → 職・医療・教育で不利",
+				"- 下位30%: AIアクセスなし → 職・医療・教育で不利"
+			]
+		},
+		{
+			"title": "デジタル格差 ― AIを持つ者と持たない者（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**グローバル南北問題の拡大**",
 				"- AI計算資源を持つ国が世界経済を支配",
@@ -207,7 +245,10 @@
 		{
 			"title": "ディストピアの根本原因マップ",
 			"layout": "default",
-			"content": ["![w:800 center](assets/dystopia-map.svg)"],
+			"content": [
+				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/>\n  <!-- Center: Dystopia -->\n  <ellipse cx=\"400\" cy=\"180\" rx=\"70\" ry=\"45\" fill=\"#e91e63\"/>\n  <text x=\"400\" y=\"175\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\" font-weight=\"bold\">ディストピア</text>\n  <text x=\"400\" y=\"193\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">根本原因</text>\n  <!-- Cause boxes -->\n  <rect x=\"20\" y=\"30\" width=\"150\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <text x=\"95\" y=\"52\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">アライメント不足</text>\n  <text x=\"95\" y=\"68\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">目的関数の誤設計</text>\n  <line x1=\"170\" y1=\"55\" x2=\"330\" y2=\"152\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <polygon points=\"330,152 315,148 322,162\" fill=\"#e91e63\"/>\n\n  <rect x=\"20\" y=\"150\" width=\"150\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <text x=\"95\" y=\"172\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">規制の失敗</text>\n  <text x=\"95\" y=\"188\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">ガバナンス空白</text>\n  <line x1=\"170\" y1=\"175\" x2=\"330\" y2=\"180\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <polygon points=\"330,180 316,174 316,186\" fill=\"#e91e63\"/>\n\n  <rect x=\"20\" y=\"270\" width=\"150\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <text x=\"95\" y=\"292\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">デジタル格差</text>\n  <text x=\"95\" y=\"308\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">アクセス不平等</text>\n  <line x1=\"170\" y1=\"295\" x2=\"330\" y2=\"208\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <polygon points=\"330,208 318,206 325,218\" fill=\"#e91e63\"/>\n\n  <rect x=\"630\" y=\"30\" width=\"150\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <text x=\"705\" y=\"52\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">権力集中</text>\n  <text x=\"705\" y=\"68\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">独占的AI支配</text>\n  <line x1=\"630\" y1=\"55\" x2=\"470\" y2=\"152\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <polygon points=\"470,152 478,140 484,154\" fill=\"#e91e63\"/>\n\n  <rect x=\"630\" y=\"150\" width=\"150\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <text x=\"705\" y=\"172\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">プライバシー侵害</text>\n  <text x=\"705\" y=\"188\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">全面監視社会</text>\n  <line x1=\"630\" y1=\"175\" x2=\"470\" y2=\"180\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <polygon points=\"470,180 484,174 484,186\" fill=\"#e91e63\"/>\n\n  <rect x=\"630\" y=\"270\" width=\"150\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <text x=\"705\" y=\"292\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">バイアス増幅</text>\n  <text x=\"705\" y=\"308\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">偏見の構造化</text>\n  <line x1=\"630\" y1=\"295\" x2=\"470\" y2=\"208\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <polygon points=\"470,208 480,198 484,212\" fill=\"#e91e63\"/>\n</svg>",
+				"![w:800 center](assets/dystopia-map.svg)"
+			],
 			"speakerNotes": "中心にAIミスアライメントがあり、それが8つの社会問題を引き起こしている構造。"
 		},
 		{
@@ -247,13 +288,19 @@
 			]
 		},
 		{
-			"title": "AIの転換点: 2025〜2032年",
+			"title": "AIの転換点: 2025〜2032年（1/2）",
 			"layout": "default",
 			"content": [
 				"**ネクサス市ではなくアリア市になるための条件**",
 				"- 2025-27: **AI安全研究への投資** vs 能力競争一辺倒",
 				"- 2027-30: **AI規制の国際合意** vs 規制回避競争",
-				"- 2030-32: **アライメント技術の成熟** vs AGI能力の暴走",
+				"- 2030-32: **アライメント技術の成熟** vs AGI能力の暴走"
+			]
+		},
+		{
+			"title": "AIの転換点: 2025〜2032年（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**この期間の開発者の選択が最も重要**",
 				"- 製品設計の倫理判断",
@@ -262,13 +309,19 @@
 			]
 		},
 		{
-			"title": "誰が未来を設計するのか？",
+			"title": "誰が未来を設計するのか？（1/2）",
 			"layout": "default",
 			"content": [
 				"**AIの未来を実際に作るのは…**",
 				"- 政治家 → 規制を決めるが技術は理解していない",
 				"- 研究者 → 可能性を広げるが製品化まで関与しない",
-				"- 経営者 → 市場要求を優先する",
+				"- 経営者 → 市場要求を優先する"
+			]
+		},
+		{
+			"title": "誰が未来を設計するのか？（2/2）",
+			"layout": "default",
+			"content": [
 				"**→ あなた、開発者が最も重要な位置にいる**",
 				"",
 				"> システムの内部をもっともよく知るのが開発者",
@@ -279,7 +332,10 @@
 		{
 			"title": "開発者の選択フロー",
 			"layout": "default",
-			"content": ["![w:820 center](assets/developer-choice.svg)"],
+			"content": [
+				"<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/>\n  <!-- Flow diagram -->\n  <rect x=\"300\" y=\"20\" width=\"200\" height=\"44\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"400\" y=\"40\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\">設計判断の瞬間</text>\n  <text x=\"400\" y=\"56\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">新機能 / アーキテクチャ</text>\n  <line x1=\"400\" y1=\"64\" x2=\"400\" y2=\"100\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <polygon points=\"400,100 393,88 407,88\" fill=\"#f9a825\"/>\n\n  <!-- Decision diamond -->\n  <polygon points=\"400,100 480,140 400,180 320,140\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"400\" y=\"136\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">人間の</text>\n  <text x=\"400\" y=\"152\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">監督は？</text>\n\n  <!-- Yes path → Utopia -->\n  <line x1=\"400\" y1=\"180\" x2=\"200\" y2=\"240\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <polygon points=\"200,240 194,228 208,228\" fill=\"#f9a825\"/>\n  <text x=\"280\" y=\"218\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">十分</text>\n  <rect x=\"80\" y=\"240\" width=\"240\" height=\"50\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"200\" y=\"262\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">ユートピア経路</text>\n  <text x=\"200\" y=\"278\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">透明性・公平性・説明責任</text>\n\n  <!-- No path → Dystopia -->\n  <line x1=\"400\" y1=\"180\" x2=\"600\" y2=\"240\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n  <polygon points=\"600,240 592,228 606,228\" fill=\"#e91e63\"/>\n  <text x=\"520\" y=\"218\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">不十分</text>\n  <rect x=\"480\" y=\"240\" width=\"240\" height=\"50\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n  <text x=\"600\" y=\"262\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">ディストピア経路</text>\n  <text x=\"600\" y=\"278\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">権力集中・バイアス・崩壊</text>\n\n  <!-- Start marker -->\n  <text x=\"400\" y=\"15\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" opacity=\"0.6\">毎日の意思決定が未来を形成する</text>\n</svg>",
+				"![w:820 center](assets/developer-choice.svg)"
+			],
 			"speakerNotes": "小さな設計判断の積み重ねが、ユートピアかディストピアかを決める。"
 		},
 		{
@@ -296,13 +352,19 @@
 			]
 		},
 		{
-			"title": "ワークショップ① — 現在地チェック",
+			"title": "ワークショップ① — 現在地チェック（1/2）",
 			"layout": "default",
 			"content": [
 				"**グループディスカッション（5分）**",
 				"",
 				"あなたが関わっているプロダクト・システムに対して：",
-				"",
+				""
+			]
+		},
+		{
+			"title": "ワークショップ① — 現在地チェック（2/2）",
+			"layout": "default",
+			"content": [
 				"1. ユーザーのデータをどのように扱っているか？",
 				"2. アルゴリズムの判断を誰が監査できるか？",
 				"3. 最も「ネクサス市に近い」機能はどれか？",
@@ -334,13 +396,19 @@
 			]
 		},
 		{
-			"title": "医療革命 ― 疾病との戦いにAIが参戦",
+			"title": "医療革命 ― 疾病との戦いにAIが参戦（1/2）",
 			"layout": "default",
 			"content": [
 				"**アリア市の医療（2045年）**",
 				"- がん早期発見精度 99.7%（2025年比5倍）",
 				"- アルツハイマー: 発症15年前から予防介入が可能",
-				"- 希少疾患の新薬開発期間: 10年 → 8ヶ月",
+				"- 希少疾患の新薬開発期間: 10年 → 8ヶ月"
+			]
+		},
+		{
+			"title": "医療革命 ― 疾病との戦いにAIが参戦（2/2）",
+			"layout": "default",
+			"content": [
 				"- AIが患者ごとの最適治療を主治医に提案",
 				"",
 				"> **ただしデータプライバシーは厳守**",
@@ -348,13 +416,19 @@
 			]
 		},
 		{
-			"title": "教育の個別最適化",
+			"title": "教育の個別最適化（1/2）",
 			"layout": "default",
 			"content": [
 				"**アリア市の教育システム**",
 				"- 子ども一人ひとりの学習ペース・スタイルに適応",
 				"- 「遅れている子」という概念が消えた",
-				"- 教師はAIのサポートで本来の役割（メンタリング）に集中",
+				"- 教師はAIのサポートで本来の役割（メンタリング）に集中"
+			]
+		},
+		{
+			"title": "教育の個別最適化（2/2）",
+			"layout": "default",
+			"content": [
 				"- 経済状況に関係なく最高品質の教育にアクセス",
 				"",
 				"**世界的影響**",
@@ -363,13 +437,19 @@
 			]
 		},
 		{
-			"title": "気候変動との戦いにAIが参戦",
+			"title": "気候変動との戦いにAIが参戦（1/2）",
 			"layout": "default",
 			"content": [
 				"**アリア市（旧東京圏）の気候対策**",
 				"- 電力グリッドをAIがリアルタイム最適化: CO₂排出 -73%",
 				"- 農業AIで食料ロス 82%削減",
-				"- 気候モデルAIが台風・洪水を2週間前に精密予測",
+				"- 気候モデルAIが台風・洪水を2週間前に精密予測"
+			]
+		},
+		{
+			"title": "気候変動との戦いにAIが参戦（2/2）",
+			"layout": "default",
+			"content": [
 				"- 核融合炉の制御AIが2039年に実用化",
 				"",
 				"> 「2050年カーボンニュートラル」より7年早く達成",
@@ -377,13 +457,19 @@
 			]
 		},
 		{
-			"title": "労働の再定義 ― 創造への解放",
+			"title": "労働の再定義 ― 創造への解放（1/2）",
 			"layout": "default",
 			"content": [
 				"**アリア市の働き方（2045年）**",
 				"- 週3日労働が標準（残り4日は創造・学習・社会貢献）",
 				"- ルーティン作業はすべてAIが担当",
-				"- 人間にしかできない仕事: 共感・倫理判断・創造性・関係構築",
+				"- 人間にしかできない仕事: 共感・倫理判断・創造性・関係構築"
+			]
+		},
+		{
+			"title": "労働の再定義 ― 創造への解放（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**UBI（ユニバーサルベーシックインカム）の実現**",
 				"- AIが生み出した富を全市民に分配",
@@ -391,13 +477,19 @@
 			]
 		},
 		{
-			"title": "AIと人間の協働モデル",
+			"title": "AIと人間の協働モデル（1/2）",
 			"layout": "default",
 			"content": [
 				"**アリア市の「Human-in-the-Loop」原則**",
 				"- AIは提案し、人間が決定する",
 				"- 重大な判断（医療・司法・政策）は人間の承認が必須",
-				"- AIの判断には必ず「根拠」が添付",
+				"- AIの判断には必ず「根拠」が添付"
+			]
+		},
+		{
+			"title": "AIと人間の協働モデル（2/2）",
+			"layout": "default",
+			"content": [
 				"- いつでも「AIに頼らない」選択肢が存在",
 				"",
 				"**結果**",
@@ -406,13 +498,19 @@
 			]
 		},
 		{
-			"title": "透明なアルゴリズムとデジタル民主主義",
+			"title": "透明なアルゴリズムとデジタル民主主義（1/2）",
 			"layout": "default",
 			"content": [
 				"**「アルゴリズム開示法」（アリア市 2031年制定）**",
 				"- 公共サービスのAIは全ソースコードを公開",
 				"- 市民がAIの判断に異議申し立て可能",
-				"- 年次AI監査委員会（市民代表が参加）",
+				"- 年次AI監査委員会（市民代表が参加）"
+			]
+		},
+		{
+			"title": "透明なアルゴリズムとデジタル民主主義（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**選挙へのAI利用**",
 				"- ターゲティング広告に「AI使用の明示」義務",
@@ -422,17 +520,26 @@
 		{
 			"title": "ユートピア実現の要素マップ",
 			"layout": "default",
-			"content": ["![w:800 center](assets/utopia-map.svg)"],
+			"content": [
+				"<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/>\n  <!-- Center -->\n  <ellipse cx=\"400\" cy=\"170\" rx=\"70\" ry=\"45\" fill=\"#f9a825\"/>\n  <text x=\"400\" y=\"165\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"13\" font-weight=\"bold\">ユートピア</text>\n  <text x=\"400\" y=\"183\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"11\">実現要素</text>\n  <!-- Surrounding elements -->\n  <rect x=\"20\" y=\"30\" width=\"160\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"100\" y=\"52\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">AI倫理設計</text>\n  <text x=\"100\" y=\"68\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">バイアス排除・透明性</text>\n  <line x1=\"180\" y1=\"55\" x2=\"330\" y2=\"148\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <polygon points=\"330,148 316,144 323,158\" fill=\"#f9a825\"/>\n\n  <rect x=\"20\" y=\"150\" width=\"160\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"100\" y=\"172\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">民主的ガバナンス</text>\n  <text x=\"100\" y=\"188\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">市民参加・規制枠組み</text>\n  <line x1=\"180\" y1=\"175\" x2=\"330\" y2=\"175\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <polygon points=\"330,175 316,169 316,181\" fill=\"#f9a825\"/>\n\n  <rect x=\"20\" y=\"270\" width=\"160\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"100\" y=\"292\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">デジタル包摂</text>\n  <text x=\"100\" y=\"308\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">平等なアクセス保障</text>\n  <line x1=\"180\" y1=\"295\" x2=\"330\" y2=\"198\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <polygon points=\"330,198 320,190 326,204\" fill=\"#f9a825\"/>\n\n  <rect x=\"620\" y=\"30\" width=\"160\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"700\" y=\"52\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">科学的応用</text>\n  <text x=\"700\" y=\"68\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">医療・気候・教育</text>\n  <line x1=\"620\" y1=\"55\" x2=\"470\" y2=\"148\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <polygon points=\"470,148 477,136 483,150\" fill=\"#f9a825\"/>\n\n  <rect x=\"620\" y=\"150\" width=\"160\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"700\" y=\"172\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">人間×AI協働</text>\n  <text x=\"700\" y=\"188\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">創造力の解放</text>\n  <line x1=\"620\" y1=\"175\" x2=\"470\" y2=\"175\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <polygon points=\"470,175 484,169 484,181\" fill=\"#f9a825\"/>\n\n  <rect x=\"620\" y=\"270\" width=\"160\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"700\" y=\"292\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">アライメント技術</text>\n  <text x=\"700\" y=\"308\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">価値整合・RLHF</text>\n  <line x1=\"620\" y1=\"295\" x2=\"470\" y2=\"198\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <polygon points=\"470,198 478,188 484,202\" fill=\"#f9a825\"/>\n</svg>",
+				"![w:800 center](assets/utopia-map.svg)"
+			],
 			"speakerNotes": "中心に「AIアライン済み（人間と共存）」があり、8つの社会的恩恵が広がっている。"
 		},
 		{
-			"title": "アリア市が実現できた理由",
+			"title": "アリア市が実現できた理由（1/2）",
 			"layout": "default",
 			"content": [
 				"**技術的要因**",
 				"- アライメント研究に2030年代から大規模投資",
 				"- 差分プライバシー・連合学習の標準実装",
-				"- 説明可能AI（XAI）が意思決定システムに義務化",
+				"- 説明可能AI（XAI）が意思決定システムに義務化"
+			]
+		},
+		{
+			"title": "アリア市が実現できた理由（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**社会的要因**",
 				"- エンジニアが「倫理ファースト」の文化を作った",
@@ -466,6 +573,7 @@
 			"title": "AI倫理の7原則（EU AI Act準拠）",
 			"layout": "default",
 			"content": [
+				"<svg viewBox=\"0 0 800 320\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"320\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\">AI倫理の7原則 (EU AI Act準拠)</text>\n  <!-- 7 pillars -->\n  <rect x=\"30\" y=\"50\" width=\"96\" height=\"200\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"78\" y=\"260\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">透明性</text>\n  <rect x=\"30\" y=\"50\" width=\"96\" height=\"160\" rx=\"0\" fill=\"#f9a825\" opacity=\"0.8\"/>\n\n  <rect x=\"145\" y=\"50\" width=\"96\" height=\"200\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"193\" y=\"260\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">説明可能性</text>\n  <rect x=\"145\" y=\"70\" width=\"96\" height=\"180\" rx=\"0\" fill=\"#f9a825\" opacity=\"0.7\"/>\n\n  <rect x=\"260\" y=\"50\" width=\"96\" height=\"200\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"308\" y=\"260\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">公平性</text>\n  <rect x=\"260\" y=\"90\" width=\"96\" height=\"160\" rx=\"0\" fill=\"#f9a825\" opacity=\"0.7\"/>\n\n  <rect x=\"375\" y=\"50\" width=\"96\" height=\"200\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"423\" y=\"260\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">安全性</text>\n  <rect x=\"375\" y=\"60\" width=\"96\" height=\"190\" rx=\"0\" fill=\"#e91e63\" opacity=\"0.8\"/>\n\n  <rect x=\"490\" y=\"50\" width=\"96\" height=\"200\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"538\" y=\"260\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">プライバシー</text>\n  <rect x=\"490\" y=\"100\" width=\"96\" height=\"150\" rx=\"0\" fill=\"#f9a825\" opacity=\"0.6\"/>\n\n  <rect x=\"605\" y=\"50\" width=\"96\" height=\"200\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"653\" y=\"260\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">説明責任</text>\n  <rect x=\"605\" y=\"110\" width=\"96\" height=\"140\" rx=\"0\" fill=\"#f9a825\" opacity=\"0.6\"/>\n\n  <rect x=\"692\" y=\"50\" width=\"96\" height=\"200\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"740\" y=\"260\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">人間監督</text>\n  <rect x=\"692\" y=\"80\" width=\"96\" height=\"170\" rx=\"0\" fill=\"#f9a825\" opacity=\"0.9\"/>\n</svg>",
 				"1. **人間の監督（Human Oversight）**: AIは常に人間が監督できる設計",
 				"2. **堅牢性・安全性**: 攻撃・誤動作への耐性",
 				"3. **プライバシー保護**: データ最小化・目的限定",
@@ -476,13 +584,19 @@
 			]
 		},
 		{
-			"title": "アライメント技術の現在地",
+			"title": "アライメント技術の現在地（1/2）",
 			"layout": "default",
 			"content": [
 				"**主要なアライメントアプローチ（2025年）**",
 				"- **RLHF**: 人間フィードバックで報酬関数を学習",
 				"- **Constitutional AI（Anthropic）**: 原則ベースの自己改善",
-				"- **Debate（OpenAI）**: AIが相互に批判し合い誤りを検出",
+				"- **Debate（OpenAI）**: AIが相互に批判し合い誤りを検出"
+			]
+		},
+		{
+			"title": "アライメント技術の現在地（2/2）",
+			"layout": "default",
+			"content": [
 				"- **Scalable Oversight**: 人間が検証できない領域の監視",
 				"",
 				"**課題**",
@@ -493,17 +607,26 @@
 		{
 			"title": "AIアライメントの三角形",
 			"layout": "default",
-			"content": ["![w:800 center](assets/alignment-triangle.svg)"],
+			"content": [
+				"<svg viewBox=\"0 0 800 350\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"350\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\">AIアライメントの三角形</text>\n  <!-- Triangle -->\n  <polygon points=\"400,55 100,295 700,295\" fill=\"none\" stroke=\"#f9a825\" stroke-width=\"2.5\"/>\n  <!-- Vertices labels -->\n  <text x=\"400\" y=\"44\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">価値整合</text>\n  <text x=\"400\" y=\"58\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">Human Values</text>\n  <text x=\"60\" y=\"310\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">安全性</text>\n  <text x=\"60\" y=\"326\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">Safety</text>\n  <text x=\"740\" y=\"310\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">有益性</text>\n  <text x=\"740\" y=\"326\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">Helpfulness</text>\n  <!-- Inner labels -->\n  <text x=\"400\" y=\"175\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">RLHF</text>\n  <text x=\"400\" y=\"193\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">Constitutional AI</text>\n  <text x=\"400\" y=\"211\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">DPO / PPO</text>\n  <!-- Side annotations -->\n  <text x=\"230\" y=\"195\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" opacity=\"0.8\">安全 vs 有用</text>\n  <text x=\"570\" y=\"195\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" opacity=\"0.8\">有用 vs 正直</text>\n  <text x=\"400\" y=\"290\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" opacity=\"0.8\">安全 vs 正直</text>\n</svg>",
+				"![w:800 center](assets/alignment-triangle.svg)"
+			],
 			"speakerNotes": "能力・目標・価値観の3要素が整合しているかどうかがユートピア/ディストピアの分岐を決める。"
 		},
 		{
-			"title": "透明性・説明可能性（XAI）",
+			"title": "透明性・説明可能性（XAI）（1/2）",
 			"layout": "default",
 			"content": [
 				"**なぜ説明可能性が重要か**",
 				"- 医療: 「なぜこの治療法を選んだか」を患者が理解できる",
 				"- 司法: 「なぜ高リスク判定か」を被告が反論できる",
-				"- 採用: 「なぜ不採用か」を候補者が知る権利",
+				"- 採用: 「なぜ不採用か」を候補者が知る権利"
+			]
+		},
+		{
+			"title": "透明性・説明可能性（XAI）（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**XAI主要手法**",
 				"- LIME: 局所的近似で判断根拠を可視化",
@@ -512,13 +635,19 @@
 			]
 		},
 		{
-			"title": "バイアス検出と公平性エンジニアリング",
+			"title": "バイアス検出と公平性エンジニアリング（1/2）",
 			"layout": "default",
 			"content": [
 				"**バイアスの種類**",
 				"- データバイアス: 訓練データが偏っている",
 				"- 測定バイアス: 評価指標自体が不公平",
-				"- アルゴリズムバイアス: モデル構造が特定属性に不利",
+				"- アルゴリズムバイアス: モデル構造が特定属性に不利"
+			]
+		},
+		{
+			"title": "バイアス検出と公平性エンジニアリング（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**実践的対策**",
 				"- Fairness Metrics: Demographic Parity, Equal Opportunity",
@@ -527,14 +656,20 @@
 			]
 		},
 		{
-			"title": "プライバシー保護技術",
+			"title": "プライバシー保護技術（1/2）",
 			"layout": "default",
 			"content": [
 				"**差分プライバシー（Differential Privacy）**",
 				"- データにノイズを加え個人を特定不能にしながら統計は維持",
 				"- Apple・Google が実装済み",
 				"",
-				"**連合学習（Federated Learning）**",
+				"**連合学習（Federated Learning）**"
+			]
+		},
+		{
+			"title": "プライバシー保護技術（2/2）",
+			"layout": "default",
+			"content": [
 				"- データを端末外に出さずにモデルを訓練",
 				"- スマホ上で学習し、パラメータのみ共有",
 				"",
@@ -543,13 +678,19 @@
 			]
 		},
 		{
-			"title": "AI監査とガバナンス実践",
+			"title": "AI監査とガバナンス実践（1/2）",
 			"layout": "default",
 			"content": [
 				"**組織として取り組むべきこと**",
 				"- **AI Impact Assessment**: リリース前に社会影響を評価",
 				"- **Red Teaming**: 悪意ある使い方を事前に試みる",
-				"- **Model Cards**: モデルの限界・バイアスを公開文書化",
+				"- **Model Cards**: モデルの限界・バイアスを公開文書化"
+			]
+		},
+		{
+			"title": "AI監査とガバナンス実践（2/2）",
+			"layout": "default",
+			"content": [
 				"- **Incident Response Plan**: AI障害時の対応手順を用意",
 				"",
 				"**個人として**",
@@ -558,13 +699,19 @@
 			]
 		},
 		{
-			"title": "コード一行が世界を変える",
+			"title": "コード一行が世界を変える（1/2）",
 			"layout": "default",
 			"content": [
 				"**実際に変えた事例**",
 				"- 2021年: 研究者がFacebook広告アルゴリズムのバイアスを公表 → 改修",
 				"- 2023年: エンジニアがChatGPTの個人情報流出リスクを社内告発 → 修正",
-				"- 2024年: EU AI Actに技術者コミュニティの意見が反映",
+				"- 2024年: EU AI Actに技術者コミュニティの意見が反映"
+			]
+		},
+		{
+			"title": "コード一行が世界を変える（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**あなたにできること**",
 				"- プルリクエストにバイアスチェックを含める",
@@ -583,14 +730,20 @@
 			]
 		},
 		{
-			"title": "ワークショップの進め方",
+			"title": "ワークショップの進め方（1/2）",
 			"layout": "default",
 			"content": [
 				"**3つのディスカッション（計30分）**",
 				"",
 				"- グループ: 3〜5人",
 				"- 各テーマ: 8〜10分",
-				"- 最後に全体共有: 各グループから1アクション",
+				"- 最後に全体共有: 各グループから1アクション"
+			]
+		},
+		{
+			"title": "ワークショップの進め方（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**ルール**",
 				"- 批判より建設的な視点を優先",
@@ -599,13 +752,19 @@
 			]
 		},
 		{
-			"title": "ディスカッション①: あなたのプロダクトの「世界線」",
+			"title": "ディスカッション①: あなたのプロダクトの「世界線」（1/2）",
 			"layout": "default",
 			"content": [
 				"**問いかけ（8分）**",
 				"",
 				"あなたが現在関わるプロダクト・システムについて：",
-				"",
+				""
+			]
+		},
+		{
+			"title": "ディスカッション①: あなたのプロダクトの「世界線」（2/2）",
+			"layout": "default",
+			"content": [
 				"1. **データ**: ユーザーデータをどう収集・活用しているか？",
 				"2. **判断**: アルゴリズムの判断を誰が説明できるか？",
 				"3. **影響**: どんな人が不利益を受ける可能性があるか？",
@@ -614,13 +773,19 @@
 			]
 		},
 		{
-			"title": "ディスカッション②: 最もリスクの高い設計判断",
+			"title": "ディスカッション②: 最もリスクの高い設計判断（1/2）",
 			"layout": "default",
 			"content": [
 				"**問いかけ（8分）**",
 				"",
 				"あなたのチーム・プロダクトで：",
-				"",
+				""
+			]
+		},
+		{
+			"title": "ディスカッション②: 最もリスクの高い設計判断（2/2）",
+			"layout": "default",
+			"content": [
 				"1. **見逃しているリスク**: 誰も気にしていないが危険な部分は？",
 				"2. **速度vs倫理**: 「後でやる」と先送りにしている倫理的対応は？",
 				"3. **声を上げる**: もし問題があると分かったら、誰にどう伝えるか？",
@@ -629,13 +794,19 @@
 			]
 		},
 		{
-			"title": "ディスカッション③: ユートピアへの具体的アクション",
+			"title": "ディスカッション③: ユートピアへの具体的アクション（1/2）",
 			"layout": "default",
 			"content": [
 				"**問いかけ（8分）**",
 				"",
 				"アリア市に近づくために、明日からできることは：",
-				"",
+				""
+			]
+		},
+		{
+			"title": "ディスカッション③: ユートピアへの具体的アクション（2/2）",
+			"layout": "default",
+			"content": [
 				"1. **個人**: 次のPRで追加できる倫理的チェックは？",
 				"2. **チーム**: 1つのプロセス改善を提案するとしたら？",
 				"3. **組織**: 半年後に実現したい変化は何か？",
@@ -644,13 +815,19 @@
 			]
 		},
 		{
-			"title": "全体共有 ― 各グループから1アクション",
+			"title": "全体共有 ― 各グループから1アクション（1/2）",
 			"layout": "default",
 			"content": [
 				"**発表（各グループ2分）**",
 				"",
 				"- 「私たちが見つけたリスク」: 1文で",
-				"- 「明日から取り組むアクション」: 具体的に1つ",
+				"- 「明日から取り組むアクション」: 具体的に1つ"
+			]
+		},
+		{
+			"title": "全体共有 ― 各グループから1アクション（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**ファシリテーターメモ**",
 				"- 似たアクションをグルーピングしてホワイトボードに整理",
@@ -675,6 +852,7 @@
 			"title": "個人のコミットメント",
 			"layout": "center",
 			"content": [
+				"<svg viewBox=\"0 0 800 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"300\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\">個人のコミットメント → 社会変革</text>\n  <!-- Ripple / cascade -->\n  <ellipse cx=\"400\" cy=\"160\" rx=\"50\" ry=\"35\" fill=\"#e91e63\" opacity=\"0.9\"/>\n  <text x=\"400\" y=\"157\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-weight=\"bold\">あなた</text>\n  <text x=\"400\" y=\"173\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">エンジニア</text>\n  <ellipse cx=\"400\" cy=\"160\" rx=\"110\" ry=\"75\" fill=\"none\" stroke=\"#f9a825\" stroke-width=\"1.5\" stroke-dasharray=\"6\"/>\n  <text x=\"490\" y=\"100\" fill=\"#f9a825\" font-size=\"10\">チーム・プロダクト</text>\n  <ellipse cx=\"400\" cy=\"160\" rx=\"185\" ry=\"125\" fill=\"none\" stroke=\"#f9a825\" stroke-width=\"1\" stroke-dasharray=\"4\" opacity=\"0.7\"/>\n  <text x=\"560\" y=\"78\" fill=\"#f9a825\" font-size=\"10\">組織・企業</text>\n  <ellipse cx=\"400\" cy=\"160\" rx=\"260\" ry=\"160\" fill=\"none\" stroke=\"#f9a825\" stroke-width=\"0.8\" stroke-dasharray=\"3\" opacity=\"0.5\"/>\n  <text x=\"620\" y=\"60\" fill=\"#f9a825\" font-size=\"10\">社会・政策</text>\n  <!-- Action items -->\n  <text x=\"400\" y=\"270\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">一つのコードレビュー、一つの設計判断が波紋を広げる</text>\n</svg>",
 				"",
 				"**「私は明日から、＿＿＿＿＿をする。」**",
 				"",
@@ -694,13 +872,19 @@
 			]
 		},
 		{
-			"title": "過去のエンジニアたちの選択",
+			"title": "過去のエンジニアたちの選択（1/2）",
 			"layout": "default",
 			"content": [
 				"**世界を変えた技術的「ノー」と「イエス」**",
 				"- **Tim Berners-Lee**: WWWの特許を取得せず無償公開 → オープンインターネット",
 				"- **Linus Torvalds**: Linuxをオープンソースに → AIの基盤となるソフトウェアの礎",
-				"- **Frances Haugen**: Facebookの内部告発 → SNS規制議論のトリガー",
+				"- **Frances Haugen**: Facebookの内部告発 → SNS規制議論のトリガー"
+			]
+		},
+		{
+			"title": "過去のエンジニアたちの選択（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"> 歴史は常に、個人の選択によって動いてきた",
 				"",
@@ -708,13 +892,19 @@
 			]
 		},
 		{
-			"title": "あなたへのメッセージ",
+			"title": "あなたへのメッセージ（1/2）",
 			"layout": "center",
 			"content": [
 				"",
 				"**2045年のアリア市は、**",
 				"**あなたのような人が作る。**",
-				"",
+				""
+			]
+		},
+		{
+			"title": "あなたへのメッセージ（2/2）",
+			"layout": "center",
+			"content": [
 				"*コードを書くとき、設計するとき、*",
 				"*「これはどちらの世界を作っているか？」*",
 				"*と問い続けてほしい。*",
@@ -723,14 +913,21 @@
 			]
 		},
 		{
-			"title": "今日からできること — まとめ",
+			"title": "今日からできること — まとめ（1/2）",
 			"layout": "default",
 			"content": [
+				"<svg viewBox=\"0 0 800 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"300\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\">今日からできること</text>\n  <!-- Action roadmap: 3 stages -->\n  <rect x=\"60\" y=\"80\" width=\"180\" height=\"100\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"150\" y=\"110\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">今日</text>\n  <text x=\"150\" y=\"130\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">倫理チェックリスト</text>\n  <text x=\"150\" y=\"148\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">を確認する</text>\n  <text x=\"150\" y=\"166\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">5分で始められる</text>\n\n  <rect x=\"310\" y=\"80\" width=\"180\" height=\"100\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"400\" y=\"110\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">今週</text>\n  <text x=\"400\" y=\"130\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">バイアス監査を</text>\n  <text x=\"400\" y=\"148\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">チームに提案</text>\n  <text x=\"400\" y=\"166\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">小さな一歩</text>\n\n  <rect x=\"560\" y=\"80\" width=\"180\" height=\"100\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <text x=\"650\" y=\"110\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">今月</text>\n  <text x=\"650\" y=\"130\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">倫理指針を</text>\n  <text x=\"650\" y=\"148\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">プロダクトに組込</text>\n  <text x=\"650\" y=\"166\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">構造的な変化へ</text>\n\n  <!-- Arrows between stages -->\n  <polygon points=\"303,130 288,122 288,138\" fill=\"#f9a825\"/>\n  <line x1=\"240\" y1=\"130\" x2=\"303\" y2=\"130\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <polygon points=\"553,130 538,122 538,138\" fill=\"#f9a825\"/>\n  <line x1=\"490\" y1=\"130\" x2=\"553\" y2=\"130\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n\n  <text x=\"400\" y=\"240\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">積み重ねがユートピアへの道を作る</text>\n</svg>",
 				"**今すぐ（今日）**",
 				"- 関わるシステムの倫理的リスクを1つ特定する",
 				"",
 				"**今週中**",
-				"- チームのコードレビューに「倫理チェック項目」を1つ追加",
+				"- チームのコードレビューに「倫理チェック項目」を1つ追加"
+			]
+		},
+		{
+			"title": "今日からできること — まとめ（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**今月中**",
 				"- AI倫理・アライメントの入門書または論文を1本読む",
@@ -740,13 +937,19 @@
 			]
 		},
 		{
-			"title": "参考文献・リソース（1/2）",
+			"title": "参考文献・リソース（1/2）（1/2）",
 			"layout": "default",
 			"content": [
 				"**AI倫理・アライメント**",
 				"- Stuart Russell「Human Compatible」（2019）",
 				"- Nick Bostrom「Superintelligence」（2014）",
-				"- Joy Buolamwini「Unmasking AI」（2023）",
+				"- Joy Buolamwini「Unmasking AI」（2023）"
+			]
+		},
+		{
+			"title": "参考文献・リソース（1/2）（2/2）",
+			"layout": "default",
+			"content": [
 				"",
 				"**公式リソース**",
 				"- EU AI Act (2024) — artificialintelligenceact.eu",
@@ -755,14 +958,20 @@
 			]
 		},
 		{
-			"title": "参考文献・リソース（2/2）",
+			"title": "参考文献・リソース（2/2）（1/2）",
 			"layout": "default",
 			"content": [
 				"**プライバシー・公平性ツール**",
 				"- OpenDP（差分プライバシー）— opendp.org",
 				"- TensorFlow Federated — tensorflow.org/federated",
 				"- Fairlearn（Microsoft）— fairlearn.org",
-				"",
+				""
+			]
+		},
+		{
+			"title": "参考文献・リソース（2/2）（2/2）",
+			"layout": "default",
+			"content": [
 				"**コミュニティ**",
 				"- Partnership on AI — partnershiponai.org",
 				"- Montreal AI Ethics Institute — montrealethics.ai",

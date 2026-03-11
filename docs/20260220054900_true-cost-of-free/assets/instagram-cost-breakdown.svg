@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="280" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" font-size="16" fill="#f9a825" font-weight="bold" font-family="sans-serif">Instagram利用の「真のコスト」内訳（年間）</text>
+  <rect x="30" y="55" width="170" height="190" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="115" y="86" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">時間コスト</text>
+  <text x="115" y="116" text-anchor="middle" font-size="22" fill="white" font-weight="bold" font-family="sans-serif">¥200,000</text>
+  <line x1="55" y1="128" x2="175" y2="128" stroke="#333" stroke-width="1"/>
+  <text x="115" y="148" text-anchor="middle" font-size="10" fill="#aaa" font-family="sans-serif">182.5h × 1,113円</text>
+  <text x="115" y="165" text-anchor="middle" font-size="10" fill="#aaa" font-family="sans-serif">30分/日 × 365日</text>
+  <text x="115" y="185" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">日本の平均時給</text>
+  <text x="115" y="200" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">2024年：約1,113円</text>
+  <text x="115" y="228" text-anchor="middle" font-size="11" fill="#e91e63" font-weight="bold" font-family="sans-serif">最大のコスト</text>
+  <rect x="220" y="55" width="170" height="190" rx="10" fill="#16213e" stroke="#ff9800" stroke-width="2"/>
+  <text x="305" y="86" text-anchor="middle" font-size="13" fill="#ff9800" font-weight="bold" font-family="sans-serif">精神的コスト</text>
+  <text x="305" y="116" text-anchor="middle" font-size="16" fill="white" font-weight="bold" font-family="sans-serif">測定困難</text>
+  <line x1="245" y1="128" x2="365" y2="128" stroke="#333" stroke-width="1"/>
+  <text x="305" y="148" text-anchor="middle" font-size="10" fill="#aaa" font-family="sans-serif">不安・抑うつリスク</text>
+  <text x="305" y="165" text-anchor="middle" font-size="10" fill="#aaa" font-family="sans-serif">自己肯定感の低下</text>
+  <text x="305" y="185" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">10代女性の32%が</text>
+  <text x="305" y="200" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">体への不満悪化</text>
+  <text x="305" y="228" text-anchor="middle" font-size="11" fill="#ff9800" font-weight="bold" font-family="sans-serif">Meta内部資料より</text>
+  <rect x="410" y="55" width="170" height="190" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/>
+  <text x="495" y="86" text-anchor="middle" font-size="13" fill="#4fc3f7" font-weight="bold" font-family="sans-serif">データコスト</text>
+  <text x="495" y="116" text-anchor="middle" font-size="22" fill="white" font-weight="bold" font-family="sans-serif">$19〜$72</text>
+  <line x1="435" y1="128" x2="555" y2="128" stroke="#333" stroke-width="1"/>
+  <text x="495" y="148" text-anchor="middle" font-size="10" fill="#aaa" font-family="sans-serif">MetaのARPU</text>
+  <text x="495" y="165" text-anchor="middle" font-size="10" fill="#aaa" font-family="sans-serif">（年間広告収益）</text>
+  <text x="495" y="185" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">行動・嗜好データ</text>
+  <text x="495" y="200" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">広告ターゲティング</text>
+  <text x="495" y="228" text-anchor="middle" font-size="11" fill="#4fc3f7" font-weight="bold" font-family="sans-serif">Metaの収益</text>
+  <rect x="600" y="55" width="170" height="190" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="685" y="86" text-anchor="middle" font-size="13" fill="#4caf50" font-weight="bold" font-family="sans-serif">表面上の価格</text>
+  <text x="685" y="116" text-anchor="middle" font-size="28" fill="white" font-weight="bold" font-family="sans-serif">¥0</text>
+  <line x1="625" y1="128" x2="745" y2="128" stroke="#333" stroke-width="1"/>
+  <text x="685" y="148" text-anchor="middle" font-size="10" fill="#aaa" font-family="sans-serif">支払い金額</text>
+  <text x="685" y="185" text-anchor="middle" font-size="13" fill="#e91e63" font-family="sans-serif">「無料」</text>
+  <text x="685" y="205" text-anchor="middle" font-size="12" fill="#e91e63" font-family="sans-serif">の錯覚</text>
+  <text x="685" y="228" text-anchor="middle" font-size="11" fill="#e91e63" font-weight="bold" font-family="sans-serif">実際は最も高価</text>
+</svg>

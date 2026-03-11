@@ -5,6 +5,7 @@ output:
   baseName: "map-is-not-territory-architecture"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "地図は現実ではない"
   footer: "© 2026"

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#1a1a2e"/>
+  <text x="400" y="32" text-anchor="middle" fill="#a78bfa" font-size="14" font-weight="bold" font-family="sans-serif">Pull-based vs Push-based デプロイ</text>
+
+  <!-- Left: Push-based -->
+  <rect x="30" y="50" width="350" height="400" rx="14" fill="#2e1a1a" stroke="#f472b6" stroke-width="2"/>
+  <text x="205" y="85" text-anchor="middle" fill="#f472b6" font-size="15" font-weight="bold" font-family="sans-serif">Push-based</text>
+
+  <!-- CI/CD box -->
+  <rect x="55" y="100" width="120" height="50" rx="8" fill="#3b1f2e" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="115" y="130" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">CI/CD System</text>
+
+  <!-- Arrow push out -->
+  <line x1="175" y1="125" x2="225" y2="125" stroke="#f472b6" stroke-width="2"/>
+  <polygon points="225,119 237,125 225,131" fill="#f472b6"/>
+  <text x="200" y="115" text-anchor="middle" fill="#d1d5db" font-size="10" font-family="sans-serif">kubectl apply</text>
+
+  <!-- K8s cluster -->
+  <rect x="237" y="100" width="120" height="50" rx="8" fill="#3b1f2e" stroke="#f472b6" stroke-width="1.5"/>
+  <text x="297" y="130" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">K8s Cluster</text>
+
+  <!-- Credentials warning -->
+  <rect x="55" y="175" width="300" height="40" rx="6" fill="#4a1a1a" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="205" y="200" text-anchor="middle" fill="#ef4444" font-size="12" font-family="sans-serif">クラスタ認証情報が CI に必要</text>
+
+  <!-- Characteristics -->
+  <text x="65" y="250" fill="#f9a8d4" font-size="12" font-family="sans-serif">特徴:</text>
+  <text x="65" y="272" fill="#d1d5db" font-size="12" font-family="sans-serif">・外部システムがクラスタを直接操作</text>
+  <text x="65" y="292" fill="#d1d5db" font-size="12" font-family="sans-serif">・kubeconfig をCIに保管する必要あり</text>
+  <text x="65" y="312" fill="#d1d5db" font-size="12" font-family="sans-serif">・デプロイの失敗が外部から見えにくい</text>
+  <text x="65" y="332" fill="#d1d5db" font-size="12" font-family="sans-serif">・Jenkins / GitHub Actions 等で多い</text>
+  <text x="65" y="360" fill="#ef4444" font-size="12" font-family="sans-serif">リスク: 認証情報漏洩・設定ドリフト</text>
+  <text x="65" y="380" fill="#ef4444" font-size="12" font-family="sans-serif">ドリフト検知なし・手動操作の混入</text>
+
+  <!-- Right: Pull-based -->
+  <rect x="420" y="50" width="350" height="400" rx="14" fill="#1a2e1a" stroke="#34d399" stroke-width="2"/>
+  <text x="595" y="85" text-anchor="middle" fill="#34d399" font-size="15" font-weight="bold" font-family="sans-serif">Pull-based (GitOps)</text>
+
+  <!-- Git Repo -->
+  <rect x="445" y="100" width="100" height="50" rx="8" fill="#1f4a3a" stroke="#34d399" stroke-width="1.5"/>
+  <text x="495" y="130" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Git Repo</text>
+
+  <!-- Arrow pull -->
+  <line x1="545" y1="125" x2="585" y2="125" stroke="#34d399" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="585,119 597,125 585,131" fill="#34d399"/>
+  <text x="565" y="115" text-anchor="middle" fill="#d1d5db" font-size="10" font-family="sans-serif">watch &amp; pull</text>
+
+  <!-- ArgoCD inside cluster -->
+  <rect x="597" y="88" width="150" height="74" rx="8" fill="#1f4a3a" stroke="#34d399" stroke-width="1.5"/>
+  <text x="672" y="112" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold" font-family="sans-serif">ArgoCD / Flux</text>
+  <text x="672" y="130" text-anchor="middle" fill="#d1d5db" font-size="10" font-family="sans-serif">（クラスタ内部で動作）</text>
+  <text x="672" y="148" text-anchor="middle" fill="#d1d5db" font-size="10" font-family="sans-serif">Reconcile Loop</text>
+
+  <!-- Secure badge -->
+  <rect x="445" y="175" width="300" height="40" rx="6" fill="#1a3a1a" stroke="#34d399" stroke-width="1.5"/>
+  <text x="595" y="200" text-anchor="middle" fill="#34d399" font-size="12" font-family="sans-serif">外部への認証情報不要（inbound のみ）</text>
+
+  <!-- Characteristics -->
+  <text x="455" y="250" fill="#6ee7b7" font-size="12" font-family="sans-serif">特徴:</text>
+  <text x="455" y="272" fill="#d1d5db" font-size="12" font-family="sans-serif">・エージェントがクラスタ内で動作</text>
+  <text x="455" y="292" fill="#d1d5db" font-size="12" font-family="sans-serif">・Git に push するだけでデプロイ完了</text>
+  <text x="455" y="312" fill="#d1d5db" font-size="12" font-family="sans-serif">・ドリフトを自動検知・修復</text>
+  <text x="455" y="332" fill="#d1d5db" font-size="12" font-family="sans-serif">・ArgoCD / Flux が代表実装</text>
+  <text x="455" y="360" fill="#34d399" font-size="12" font-family="sans-serif">メリット: セキュリティ向上</text>
+  <text x="455" y="380" fill="#34d399" font-size="12" font-family="sans-serif">自動 Self-healing・監査証跡が完全</text>
+
+  <!-- VS badge -->
+  <circle cx="400" cy="250" r="20" fill="#1a1a2e" stroke="#a78bfa" stroke-width="2"/>
+  <text x="400" y="256" text-anchor="middle" fill="#a78bfa" font-size="13" font-weight="bold" font-family="sans-serif">VS</text>
+</svg>

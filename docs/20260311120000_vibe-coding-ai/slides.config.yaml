@@ -1,0 +1,21 @@
+topic: "Vibe Coding & AI駆動開発"
+language: "ja"
+
+slides:
+  count: 60
+
+output:
+  dir: "docs/20260311120000_vibe-coding-ai"
+  baseName: "vibe-coding-ai"
+
+marp:
+  theme: gaia
+  class: invert
+  paginate: true
+  header: "Vibe Coding & AI駆動開発"
+  footer: "© 2026 Internal Training"
+  style: |
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

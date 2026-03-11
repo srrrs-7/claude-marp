@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="bold" fill="#ffffff">Terraform ワークフロー</text>
+
+  <!-- Main flow: Write → Init → Plan → Apply → Destroy -->
+
+  <!-- Write Code -->
+  <rect x="30" y="100" width="130" height="80" rx="10" fill="#3b1f6e"/>
+  <rect x="30" y="100" width="130" height="7" rx="4" fill="#a78bfa"/>
+  <text x="95" y="135" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#a78bfa">Write</text>
+  <text x="95" y="155" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2d9f3">HCL コード記述</text>
+  <text x="95" y="172" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e2d9f3">*.tf ファイル</text>
+
+  <!-- Arrow Write→Init -->
+  <line x1="160" y1="140" x2="200" y2="140" stroke="#a78bfa" stroke-width="2.5"/>
+  <polygon points="200,133 212,140 200,147" fill="#a78bfa"/>
+
+  <!-- Init -->
+  <rect x="212" y="100" width="130" height="80" rx="10" fill="#1e3a5f"/>
+  <rect x="212" y="100" width="130" height="7" rx="4" fill="#60a5fa"/>
+  <text x="277" y="135" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#60a5fa">Init</text>
+  <text x="277" y="155" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#bfdbfe">プロバイダー初期化</text>
+  <text x="277" y="172" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#bfdbfe">terraform init</text>
+
+  <!-- Arrow Init→Plan -->
+  <line x1="342" y1="140" x2="382" y2="140" stroke="#60a5fa" stroke-width="2.5"/>
+  <polygon points="382,133 394,140 382,147" fill="#60a5fa"/>
+
+  <!-- Plan -->
+  <rect x="394" y="100" width="130" height="80" rx="10" fill="#1a3a2e"/>
+  <rect x="394" y="100" width="130" height="7" rx="4" fill="#34d399"/>
+  <text x="459" y="135" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#34d399">Plan</text>
+  <text x="459" y="155" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a7f3d0">差分プレビュー</text>
+  <text x="459" y="172" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a7f3d0">terraform plan</text>
+
+  <!-- Arrow Plan→Apply -->
+  <line x1="524" y1="140" x2="564" y2="140" stroke="#34d399" stroke-width="2.5"/>
+  <polygon points="564,133 576,140 564,147" fill="#34d399"/>
+
+  <!-- Apply -->
+  <rect x="576" y="100" width="130" height="80" rx="10" fill="#1a2a1a"/>
+  <rect x="576" y="100" width="130" height="7" rx="4" fill="#86efac"/>
+  <text x="641" y="135" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#86efac">Apply</text>
+  <text x="641" y="155" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#bbf7d0">リソース作成/更新</text>
+  <text x="641" y="172" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#bbf7d0">terraform apply</text>
+
+  <!-- Divider line -->
+  <line x1="40" y1="230" x2="760" y2="230" stroke="#374151" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- Sub-flows below -->
+
+  <!-- Plan detail box -->
+  <rect x="310" y="255" width="260" height="110" rx="8" fill="#0f1f2e"/>
+  <text x="440" y="278" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#34d399">Plan 詳細</text>
+  <text x="440" y="298" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e5e7eb">+ 追加リソース (green)</text>
+  <text x="440" y="316" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e5e7eb">~ 変更リソース (yellow)</text>
+  <text x="440" y="334" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e5e7eb">- 削除リソース (red)</text>
+  <text x="440" y="354" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#9ca3af">レビュー後 Apply へ</text>
+
+  <!-- Destroy box -->
+  <rect x="576" y="255" width="170" height="110" rx="8" fill="#2d1215"/>
+  <rect x="576" y="255" width="170" height="7" rx="4" fill="#f87171"/>
+  <text x="661" y="285" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f87171">Destroy</text>
+  <text x="661" y="305" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fca5a5">全リソース削除</text>
+  <text x="661" y="323" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fca5a5">terraform destroy</text>
+  <text x="661" y="345" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#9ca3af">注意: 本番環境</text>
+  <text x="661" y="362" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#9ca3af">では慎重に</text>
+
+  <!-- Arrow from Apply down to Destroy indicator -->
+  <line x1="641" y1="180" x2="641" y2="255" stroke="#f87171" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+  <!-- State file explanation -->
+  <rect x="40" y="255" width="260" height="110" rx="8" fill="#0f1f2e"/>
+  <text x="170" y="278" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#60a5fa">State ファイル</text>
+  <text x="170" y="298" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e5e7eb">terraform.tfstate</text>
+  <text x="170" y="316" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e5e7eb">インフラの現状記録</text>
+  <text x="170" y="334" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e5e7eb">S3 などにリモート保存</text>
+  <text x="170" y="354" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#9ca3af">チーム共有に必須</text>
+
+  <!-- Arrow from Apply to state -->
+  <line x1="459" y1="180" x2="459" y2="230" stroke="#6b7280" stroke-width="1.5"/>
+  <line x1="459" y1="230" x2="170" y2="230" stroke="#6b7280" stroke-width="1.5"/>
+  <line x1="170" y1="230" x2="170" y2="255" stroke="#6b7280" stroke-width="1.5"/>
+
+  <!-- Bottom note -->
+  <rect x="40" y="390" width="720" height="80" rx="8" fill="#111827"/>
+  <text x="400" y="415" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a78bfa">推奨プラクティス</text>
+  <text x="200" y="440" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e5e7eb">Plan 結果は必ずレビュー</text>
+  <text x="400" y="440" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e5e7eb">State はリモートバックエンドに保存</text>
+  <text x="620" y="440" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e5e7eb">-target は緊急時のみ</text>
+  <text x="295" y="462" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e5e7eb">ロック機能でチーム競合防止</text>
+  <text x="530" y="462" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e5e7eb">CI/CD で自動化推奨</text>
+</svg>

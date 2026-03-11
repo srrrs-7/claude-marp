@@ -26,6 +26,7 @@
 			"title": "イースタリンのパラドックス",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-easterlin.svg)",
 				"- **Richard Easterlin (1974)**: 国が豊かになっても国民の幸福度は上がらない",
 				"- 絶対的な所得より **相対的な所得** が幸福感を決める",
 				"- 「隣の芝生は青い」= 社会的比較の罠",
@@ -42,7 +43,7 @@
 		{
 			"title": "2. エンジニア年収の現実",
 			"layout": "section",
-			"content": []
+			"content": ["![w:800 center](assets/svg-salary-dist.svg)"]
 		},
 		{
 			"title": "日本のエンジニア年収分布",
@@ -72,12 +73,13 @@
 		{
 			"title": "3. 幸福度の飽和点",
 			"layout": "section",
-			"content": []
+			"content": ["![w:800 center](assets/svg-diminishing.svg)"]
 		},
 		{
 			"title": "お金で買える幸せの限界",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-hedonic.svg)",
 				"- **Kahneman & Deaton (2010)**: 年収$75K(約750万円)で日常の幸福感は飽和",
 				"- **Killingsworth (2021)**: $100K以上でも幸福度は上がり続ける（反論）",
 				"- **Kahneman & Killingsworth (2023)**: 共同論文で和解",
@@ -107,6 +109,7 @@
 			"title": "エンジニアの幸福度を決めるもの",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-sdt.svg)",
 				"- **Stack Overflow Developer Survey (2024)** より",
 				"- 1位: 技術的に面白い仕事 (72%)",
 				"- 2位: ワークライフバランス (68%)",
@@ -131,7 +134,7 @@
 		{
 			"title": "5. 最適な選択とは",
 			"layout": "section",
-			"content": []
+			"content": ["![w:800 center](assets/svg-optimal.svg)"]
 		},
 		{
 			"title": "年収最大化 vs 幸福最大化",

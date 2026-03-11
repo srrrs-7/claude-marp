@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "Phase Transition × Tech Adoption"
   footer: "© 2026 Critical Points"

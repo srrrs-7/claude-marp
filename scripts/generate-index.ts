@@ -12,6 +12,7 @@ interface PresentationInfo {
 	topic: string;
 	theme: string;
 	slideCount: number;
+	readingMins: number;
 	htmlPath: string; // relative to docs/
 }
 
@@ -201,14 +202,27 @@ async function collectPresentations(): Promise<PresentationInfo[]> {
 		const topic = String(config.topic ?? dirName);
 		const theme = extractTheme(config);
 
-		// Slide count from slides-data.json
+		// Slide count + reading time from slides-data.json
 		let slideCount = 0;
+		let readingMins = 0;
 		const dataPath = `${docsDir}/${dirName}/slides-data.json`;
 		try {
 			const data = (await Bun.file(dataPath).json()) as {
-				slides?: unknown[];
+				slides?: Array<{
+					title?: string;
+					content?: string[];
+					speakerNotes?: string;
+				}>;
 			};
-			slideCount = data.slides?.length ?? 0;
+			const slides = data.slides ?? [];
+			slideCount = slides.length;
+			let chars = 0;
+			for (const s of slides) {
+				chars += (s.title ?? "").length;
+				for (const c of s.content ?? []) chars += c.length;
+				chars += (s.speakerNotes ?? "").length;
+			}
+			readingMins = Math.max(1, Math.ceil(chars / 350));
 		} catch {
 			// slides-data.json may not exist
 		}
@@ -220,7 +234,14 @@ async function collectPresentations(): Promise<PresentationInfo[]> {
 			continue;
 		}
 
-		presentations.push({ dirName, topic, theme, slideCount, htmlPath });
+		presentations.push({
+			dirName,
+			topic,
+			theme,
+			slideCount,
+			readingMins,
+			htmlPath,
+		});
 	}
 
 	return presentations;
@@ -233,6 +254,7 @@ async function collectPresentations(): Promise<PresentationInfo[]> {
 const ICON_SLIDES = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`;
 const ICON_THEME = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>`;
 const ICON_PLAY = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
+const ICON_CLOCK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`;
 
 // ---------------------------------------------------------------------------
 // HTML generation
@@ -248,13 +270,23 @@ function escapeHtml(s: string): string {
 
 function renderCard(p: PresentationInfo, categoryLabel: string): string {
 	const catId = classify(p.topic, p.dirName);
-	return `    <div class="card" data-category="${catId}">
+	// Timestamp embedded in dirName (14 digits at start) — used for sort
+	const ts = p.dirName.match(/^(\d{14})/)?.[1] ?? "0";
+	const readingLabel =
+		p.readingMins < 60
+			? `${p.readingMins} min`
+			: `${Math.floor(p.readingMins / 60)}h ${p.readingMins % 60}m`;
+	return `    <div class="card" data-category="${catId}" data-ts="${ts}" data-slides="${p.slideCount}" data-mins="${p.readingMins}">
       <div class="card-category">${escapeHtml(categoryLabel)}</div>
       <h3>${escapeHtml(p.topic)}</h3>
       <div class="card-meta">
         <span class="tag">
           ${ICON_SLIDES}
           ${p.slideCount} slides
+        </span>
+        <span class="tag">
+          ${ICON_CLOCK}
+          ${readingLabel}
         </span>
         <span class="tag">
           ${ICON_THEME}
@@ -285,12 +317,20 @@ ${cards}
   </div>`;
 }
 
-function generateHtml(categories: Category[], totalSlides: number): string {
+function generateHtml(
+	categories: Category[],
+	totalSlides: number,
+	totalMins: number,
+): string {
 	const totalPresentations = categories.reduce(
 		(sum, c) => sum + c.presentations.length,
 		0,
 	);
 	const activeCategories = categories.filter((c) => c.presentations.length > 0);
+	const totalHours = Math.floor(totalMins / 60);
+	const totalMinRem = totalMins % 60;
+	const totalTimeLabel =
+		totalHours > 0 ? `${totalHours}h ${totalMinRem}m` : `${totalMins}m`;
 
 	const filterButtons = [
 		`  <button class="filter-btn active" data-filter="all">All</button>`,
@@ -400,6 +440,43 @@ function generateHtml(categories: Category[], totalSlides: number): string {
   .btn:hover{background:var(--accent-hover)}
   .btn svg{width:16px;height:16px}
 
+  /* Search */
+  .search-wrap{
+    max-width:480px;margin:1.5rem auto 0;position:relative;
+  }
+  .search-wrap svg{
+    position:absolute;left:.75rem;top:50%;transform:translateY(-50%);
+    width:16px;height:16px;stroke:var(--text-sub);pointer-events:none;
+  }
+  #search{
+    width:100%;padding:.55rem .75rem .55rem 2.25rem;
+    border:1px solid rgba(255,255,255,.2);border-radius:8px;
+    background:rgba(255,255,255,.08);color:#e2e8f0;font-size:.9rem;
+    outline:none;transition:border-color .15s;
+  }
+  #search::placeholder{color:#94a3b8}
+  #search:focus{border-color:rgba(96,165,250,.6)}
+  #no-results{
+    display:none;text-align:center;padding:3rem 1rem;
+    color:var(--text-sub);font-size:1rem;
+  }
+
+  /* Sort bar */
+  .sort-bar{
+    display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
+    max-width:1100px;margin:0 auto;padding:.75rem 1.5rem;
+    border-bottom:1px solid var(--border);
+  }
+  .sort-label{font-size:.8rem;color:var(--text-sub);margin-right:.25rem}
+  .sort-btn{
+    padding:.3rem .8rem;border:1px solid var(--border);border-radius:99px;
+    background:transparent;color:var(--text-sub);cursor:pointer;
+    font-size:.8rem;transition:all .15s;
+  }
+  .sort-btn:hover,.sort-btn.active{
+    background:var(--accent);color:#fff;border-color:var(--accent);
+  }
+
   /* Footer */
   footer{
     text-align:center;padding:2rem 1rem;color:var(--text-sub);
@@ -419,6 +496,10 @@ function generateHtml(categories: Category[], totalSlides: number): string {
 <header class="hero">
   <h1>Slide Deck Collection</h1>
   <p>Marp-powered presentations generated with Claude Code</p>
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input id="search" type="search" placeholder="Search presentations..." autocomplete="off">
+  </div>
   <div class="stats">
     <div class="stat">
       <div class="stat-num">${totalPresentations}</div>
@@ -427,6 +508,10 @@ function generateHtml(categories: Category[], totalSlides: number): string {
     <div class="stat">
       <div class="stat-num">${totalSlides}</div>
       <div class="stat-label">Total Slides</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">${totalTimeLabel}</div>
+      <div class="stat-label">Reading Time</div>
     </div>
     <div class="stat">
       <div class="stat-num">${activeCategories.length}</div>
@@ -439,9 +524,19 @@ function generateHtml(categories: Category[], totalSlides: number): string {
 ${filterButtons}
 </nav>
 
+<div class="sort-bar">
+  <span class="sort-label">Sort:</span>
+  <button class="sort-btn active" data-sort="newest">Newest</button>
+  <button class="sort-btn" data-sort="oldest">Oldest</button>
+  <button class="sort-btn" data-sort="slides">Most Slides</button>
+  <button class="sort-btn" data-sort="reading">Reading Time</button>
+</div>
+
 <main class="container">
 
 ${sections}
+
+  <p id="no-results">No presentations match your search.</p>
 
 </main>
 
@@ -451,32 +546,73 @@ ${sections}
 
 <script>
 document.addEventListener('DOMContentLoaded',()=>{
-  const btns=document.querySelectorAll('.filter-btn');
-  const cards=document.querySelectorAll('.card');
+  const filterBtns=document.querySelectorAll('.filter-btn');
+  const sortBtns=document.querySelectorAll('.sort-btn');
   const sections=document.querySelectorAll('.section-title');
+  const searchInput=document.getElementById('search');
+  const noResults=document.getElementById('no-results');
+  let activeFilter='all';
+  let searchQuery='';
+  let activeSort='newest';
 
-  btns.forEach(btn=>{
+  function getCardVal(c,sort){
+    if(sort==='slides')return parseInt(c.dataset.slides||'0',10);
+    if(sort==='reading')return parseInt(c.dataset.mins||'0',10);
+    const ts=c.dataset.ts||'0';
+    return sort==='newest'?-parseInt(ts,10):parseInt(ts,10);
+  }
+
+  function sortGrids(){
+    document.querySelectorAll('.grid').forEach(grid=>{
+      const children=[...grid.children];
+      children.sort((a,b)=>getCardVal(b,activeSort)-getCardVal(a,activeSort));
+      children.forEach(c=>grid.appendChild(c));
+    });
+  }
+
+  function applyFilters(){
+    let anyVisible=false;
+    document.querySelectorAll('.card').forEach(c=>{
+      const matchFilter=activeFilter==='all'||c.dataset.category===activeFilter;
+      const matchSearch=!searchQuery||c.querySelector('h3').textContent.toLowerCase().includes(searchQuery);
+      const visible=matchFilter&&matchSearch;
+      c.style.display=visible?'':'none';
+      if(visible)anyVisible=true;
+    });
+    sections.forEach(s=>{
+      const grid=s.nextElementSibling;
+      const hasVisible=[...grid.children].some(c=>c.style.display!=='none');
+      s.style.display=hasVisible?'':'none';
+      grid.style.display=hasVisible?'':'none';
+    });
+    noResults.style.display=anyVisible?'none':'block';
+  }
+
+  filterBtns.forEach(btn=>{
     btn.addEventListener('click',()=>{
-      btns.forEach(b=>b.classList.remove('active'));
+      filterBtns.forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
-      const f=btn.dataset.filter;
-
-      if(f==='all'){
-        cards.forEach(c=>c.style.display='');
-        sections.forEach(s=>{s.style.display='';s.nextElementSibling.style.display='';});
-      }else{
-        cards.forEach(c=>{
-          c.style.display=c.dataset.category===f?'':'none';
-        });
-        sections.forEach(s=>{
-          const grid=s.nextElementSibling;
-          const hasVisible=[...grid.children].some(c=>c.style.display!=='none');
-          s.style.display=hasVisible?'':'none';
-          grid.style.display=hasVisible?'':'none';
-        });
-      }
+      activeFilter=btn.dataset.filter;
+      applyFilters();
     });
   });
+
+  sortBtns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      sortBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      activeSort=btn.dataset.sort;
+      sortGrids();
+      applyFilters();
+    });
+  });
+
+  searchInput.addEventListener('input',()=>{
+    searchQuery=searchInput.value.trim().toLowerCase();
+    applyFilters();
+  });
+
+  sortGrids();
 });
 </script>
 </body>
@@ -528,12 +664,16 @@ async function main() {
 		.filter((c) => c.presentations.length > 0);
 
 	const totalSlides = presentations.reduce((sum, p) => sum + p.slideCount, 0);
+	const totalMins = presentations.reduce((sum, p) => sum + p.readingMins, 0);
 
-	const html = generateHtml(categories, totalSlides);
+	const html = generateHtml(categories, totalSlides, totalMins);
 	await Bun.write("docs/index.html", html);
 
 	console.log(`  ${presentations.length} presentations`);
 	console.log(`  ${totalSlides} total slides`);
+	const hrs = Math.floor(totalMins / 60);
+	const rem = totalMins % 60;
+	console.log(`  ${hrs}h ${rem}m reading time`);
 	console.log(`  ${categories.length} categories`);
 	for (const cat of categories) {
 		console.log(`    ${cat.label}: ${cat.presentations.length}`);

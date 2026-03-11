@@ -5,6 +5,7 @@ output:
   baseName: "optimization-trap"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "最適化の罠"
   footer: "© 2026"

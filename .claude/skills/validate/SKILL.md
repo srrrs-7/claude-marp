@@ -6,7 +6,7 @@ user_invocable: true
 
 # Validate Skill
 
-すべての slides-data.json ファイルをスキーマに対して検証する。
+すべての slides-data.json ファイルをスキーマ・品質基準に対して検証する。
 
 ## Usage
 
@@ -22,19 +22,30 @@ user_invocable: true
 
 ## Workflow
 
-1. **Validation Script を実行**
+1. **スキーマ検証（必須）**
    ```bash
    bun run validate
    ```
 
-2. **結果を分析**
+2. **品質チェック（スキーマ通過後に実施）**
+
+   | チェック項目 | NG条件 | 修正コマンド |
+   |-------------|--------|------------|
+   | 箇条書き数 | 1スライドに8項目以上 | `python3 scripts/split-bullet-overflow.py --all` |
+   | コードブロック行数 | 12行超え | `bun run split` |
+   | コード+箇条書き混在 | コード7〜10行で箇条書き3項目以上 | `bun run split` |
+   | SVG比率 | 全スライドの50%未満 | 手動でSVGスライドを追加 |
+   | url(#id) 参照 | SVG内に filter/marker-end/fill の url(#...) | `bun scripts/fix-svg-url-refs.ts` |
+   | class:invert | gaiaテーマで未設定 | フロントマターに手動追加 |
+
+3. **結果分析**
    - ✅ Valid files のリスト
    - ❌ Invalid files のリスト (エラー詳細付き)
 
-3. **エラーがある場合**
+4. **エラーがある場合**
    - エラーの種類を説明
-   - 修正方法を提案
    - 自動修正が可能かユーザーに確認
+   - 承認後に `bun run fix` で自動修正
 
 ## Output Example
 
@@ -69,37 +80,35 @@ docs/20260214090000_broken/slides-data.json:
 
 **Invalid enum values:**
 - `layout` must be: `"default"`, `"center"`, or `"section"`
-- Check schema for valid values
 
 **Missing required fields:**
 - Every slide must have: `title`, `layout`
 - Optional fields: `content`, `code`, `codeLanguage`, `speakerNotes`
 
-## Auto-fix Suggestions
+## Auto-fix Commands
 
-When validation fails, offer to fix common errors:
-
-1. **Rename field errors** — Change `bullets` to `content`
-2. **Fix enum values** — Replace invalid layout values with `default`
-3. **Add missing fields** — Add required `title` or `layout`
-
-**Example response:**
-
-```
-⚠️ Found 3 validation errors in slides-data.json:
-  - Field 'bullets' should be 'content' (5 slides affected)
-  - Invalid layout value 'custom' should be 'default' (2 slides affected)
-
-Would you like me to automatically fix these errors?
+```bash
+bun run fix:all                                      # 一括修正: fix → split → bullet-split → fix-svg → generate:index
+# または個別に:
+bun run fix                                          # bullets→content, invalid layout values
+bun run split                                        # split code+bullets co-located slides
+python3 scripts/split-bullet-overflow.py --all       # split 8+ bullet slides into 2
+bun scripts/fix-svg-url-refs.ts                      # fix url(#id) violations in SVGs
+bun run doctor                                       # project health check (toolchain, exports, SVG violations)
 ```
 
-## Integration
+## Full Validation Pipeline
 
-This skill can be used:
-
-- **After slide generation** — Verify JSON before rendering
-- **Before commit** — Ensure all slides are valid
-- **Batch validation** — Check all presentations at once
+```bash
+bun run validate \
+  && bun run fix \
+  && bun run split \
+  && python3 scripts/split-bullet-overflow.py --all \
+  && bun scripts/fix-svg-url-refs.ts \
+  && bun run rebuild:render
+# After render: manually add class:invert to gaia theme .md files
+# Then: bun run rebuild:export && bun run generate:index
+```
 
 ## Related Commands
 

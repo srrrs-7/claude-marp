@@ -1,0 +1,36 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold">WAF ルール評価チェーン</text>
+<text x="400" y="115" text-anchor="middle" font-size="14" fill="#4fc3f7">ルール優先度 (Priority) 順に評価</text>
+<rect x="30" y="135" width="120" height="75" rx="8" fill="#e91e63" opacity="0.85"/>
+<text x="90" y="170" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">IP Rate</text>
+<text x="90" y="188" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Limit</text>
+<rect x="180" y="135" width="120" height="75" rx="8" fill="#7b1fa2" opacity="0.85"/>
+<text x="240" y="170" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Geo</text>
+<text x="240" y="188" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Match</text>
+<rect x="330" y="135" width="120" height="75" rx="8" fill="#1565c0" opacity="0.85"/>
+<text x="390" y="170" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Managed</text>
+<text x="390" y="188" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Rules</text>
+<rect x="480" y="135" width="120" height="75" rx="8" fill="#00695c" opacity="0.85"/>
+<text x="540" y="170" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Custom</text>
+<text x="540" y="188" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Rules</text>
+<rect x="630" y="135" width="120" height="75" rx="8" fill="#f9a825" opacity="0.85"/>
+<text x="690" y="170" text-anchor="middle" font-size="13" fill="#1a1a2e" font-weight="bold">Default</text>
+<text x="690" y="188" text-anchor="middle" font-size="13" fill="#1a1a2e" font-weight="bold">Action</text>
+<line x1="150" y1="172" x2="180" y2="172" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="180,172 170,166 170,178" fill="#4fc3f7"/>
+<line x1="300" y1="172" x2="330" y2="172" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="330,172 320,166 320,178" fill="#4fc3f7"/>
+<line x1="450" y1="172" x2="480" y2="172" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="480,172 470,166 470,178" fill="#4fc3f7"/>
+<line x1="600" y1="172" x2="630" y2="172" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="630,172 620,166 620,178" fill="#4fc3f7"/>
+<text x="400" y="270" text-anchor="middle" font-size="13" fill="#ffffff">各ルールのアクション</text>
+<rect x="95" y="285" width="130" height="48" rx="8" fill="#2e7d32" opacity="0.8"/>
+<text x="160" y="314" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="bold">Allow</text>
+<rect x="330" y="285" width="130" height="48" rx="8" fill="#e91e63" opacity="0.8"/>
+<text x="395" y="314" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="bold">Block</text>
+<rect x="565" y="285" width="130" height="48" rx="8" fill="#f9a825" opacity="0.8"/>
+<text x="630" y="314" text-anchor="middle" font-size="14" fill="#1a1a2e" font-weight="bold">Count</text>
+<text x="400" y="385" text-anchor="middle" font-size="13" fill="#4fc3f7">AWS WAF Rule Evaluation Chain</text>
+</svg>

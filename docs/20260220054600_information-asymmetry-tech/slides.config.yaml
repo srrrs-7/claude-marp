@@ -5,6 +5,7 @@ output:
   baseName: "information-asymmetry-tech"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "情報格差とプラットフォーム経済"
   footer: "© 2026"

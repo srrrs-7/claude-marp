@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">「生産的な一日」の認識バイアス</text>
+  <!-- left: perceived -->
+  <rect x="40" y="55" width="330" height="230" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="205" y="85" fill="#e91e63" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">よくある認識</text>
+  <!-- bar: commit heavy -->
+  <rect x="65" y="105" width="280" height="32" rx="4" fill="#e91e63" opacity="0.8"/>
+  <text x="205" y="126" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">コードを書く・コミットする</text>
+  <rect x="65" y="145" width="200" height="32" rx="4" fill="#e91e63" opacity="0.5"/>
+  <text x="165" y="166" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="start">　PRを作成する</text>
+  <rect x="65" y="185" width="130" height="32" rx="4" fill="#e91e63" opacity="0.3"/>
+  <text x="130" y="206" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">バグ修正</text>
+  <text x="205" y="262" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">会議・ドキュメント = 「無駄」?</text>
+  <!-- right: reality -->
+  <rect x="430" y="55" width="330" height="230" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="595" y="85" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">実際の価値</text>
+  <rect x="455" y="105" width="280" height="32" rx="4" fill="#f9a825" opacity="0.8"/>
+  <text x="595" y="126" fill="#1a1a2e" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">設計・アーキテクチャ判断</text>
+  <rect x="455" y="145" width="240" height="32" rx="4" fill="#f9a825" opacity="0.7"/>
+  <text x="575" y="166" fill="#1a1a2e" font-size="11" font-family="sans-serif" text-anchor="middle">コードレビュー（バグ防止）</text>
+  <rect x="455" y="185" width="210" height="32" rx="4" fill="#f9a825" opacity="0.55"/>
+  <text x="560" y="206" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">ドキュメント（再現性確保）</text>
+  <text x="595" y="262" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">乗数効果でチーム全体が速くなる</text>
+  <!-- arrow between -->
+  <polygon points="380,160 400,168 380,176" fill="#f9a825"/>
+  <line x1="370" y1="168" x2="400" y2="168" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="320" fill="#aaaaaa" font-size="12" font-family="sans-serif" text-anchor="middle">コミットログに残らない仕事がチームの基盤を支える</text>
+  <text x="400" y="355" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">Activity ≠ Progress（活動量 ≠ 進捗）</text>
+</svg>

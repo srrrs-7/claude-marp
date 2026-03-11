@@ -7,6 +7,71 @@ paginate: true
 header: "Pokemon GOと都市デザイン"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -78,6 +143,7 @@ style: |
 
 # PokeStopが都市の「目」を変えた
 
+![w:900 center](assets/pokestop-density.svg)
 - **PokeStop = 都市のランドマークの再発見装置**
 - 普段通り過ぎていた彫刻・記念碑・壁画に足を止める人々
 - 地域の歴史・文化遺産への「気づき」が生まれた
@@ -132,6 +198,7 @@ style: |
 
 # コミュニティの自発的形成
 
+![w:900 center](assets/community-formation.svg)
 - **レイドバトル** ― 見知らぬ人同士が協力する設計
 - コミュニティ・デイ ― 月1回の大規模イベントが公園に人を集める
 - Discord/LINEグループが自然発生 → リアルの友人関係に発展
@@ -161,6 +228,7 @@ style: |
 
 # AR時代の都市計画フレームワーク
 
+![w:900 center](assets/walkability-comparison.svg)
 - **Walkability（歩きやすさ）の再定義が必要：**
 - 従来：歩道幅・信号タイミング・バリアフリー
 - AR時代：+デジタルレイヤーとの共存・注意力の分散・集客ポイント設計
@@ -180,6 +248,7 @@ style: |
 
 # Pokemon GOの先にある未来
 
+![w:900 center](assets/ar-city-layers.svg)
 - **ARグラス時代** ― スマホを覗き込む必要がなくなる
 - デジタルツインと連携した都市体験（バーチャル歴史ガイドなど）
 - 「見える人だけに見える」パーソナライズされた都市景観

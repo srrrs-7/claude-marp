@@ -9,6 +9,179 @@ interface ValidationError {
 	errors: string[];
 }
 
+interface QualityWarning {
+	slideIndex: number;
+	title: string;
+	type: string;
+	message: string;
+}
+
+// ---------------------------------------------------------------------------
+// Quality helpers (Google / Amazon best practices)
+// ---------------------------------------------------------------------------
+
+/**
+ * Generic "label titles" — topic labels with no assertive claim.
+ * Content slides (layout: default) should state a conclusion, not just a noun.
+ * Section / center slides are exempt (they are dividers / title cards).
+ */
+const LABEL_TITLE_RE =
+	/^(アジェンダ|目次|概要|まとめ|結論|はじめに|導入|背景|課題|解決策|参考文献|おわりに|終わりに|ご清聴ありがとうございました|ありがとうございました|質疑応答|デモ|agenda|overview|introduction|conclusion|summary|background|problem|solution|next steps?|references?|thank you|q&a|demo|outline|contents?)$/i;
+
+/** Max recommended chars per bullet (Japanese ~50, English ~80). */
+const MAX_BULLET_CHARS = 60;
+
+/** Estimate reading time in minutes (Japanese: ~350 chars/min) */
+function estimateReadingTime(
+	slides: Array<{ title?: string; content?: string[]; speakerNotes?: string }>,
+): number {
+	let totalChars = 0;
+	for (const slide of slides) {
+		totalChars += (slide.title ?? "").length;
+		for (const line of slide.content ?? []) totalChars += line.length;
+		totalChars += (slide.speakerNotes ?? "").length;
+	}
+	return Math.ceil(totalChars / 350);
+}
+
+/** Return duplicate titles within a single deck */
+function findDuplicateTitles(slides: Array<{ title?: string }>): string[] {
+	const seen = new Map<string, number>();
+	for (const slide of slides) {
+		const t = (slide.title ?? "").trim();
+		if (t) seen.set(t, (seen.get(t) ?? 0) + 1);
+	}
+	return [...seen.entries()].filter(([, n]) => n > 1).map(([t]) => t);
+}
+
+/**
+ * Check slide quality against Google / Amazon presentation principles.
+ * Returns a list of warnings (not errors — deck is still valid).
+ */
+function checkQuality(
+	slides: Array<{
+		title?: string;
+		subtitle?: string;
+		content?: string[];
+		code?: string;
+		layout?: string;
+		speakerNotes?: string;
+	}>,
+): QualityWarning[] {
+	const warnings: QualityWarning[] = [];
+
+	let consecutiveTextOnly = 0;
+
+	for (let i = 0; i < slides.length; i++) {
+		const slide = slides[i];
+		const title = (slide.title ?? "").trim();
+		const layout = slide.layout ?? "default";
+		const content = slide.content ?? [];
+		const hasSvg = content.some(
+			(c) => c.includes("<svg") || c.startsWith("!["),
+		);
+		const hasCode = !!slide.code;
+		const isContentSlide = layout === "default";
+
+		// ── 1. Assertive title check (label title on content slide) ────────
+		if (isContentSlide && LABEL_TITLE_RE.test(title)) {
+			warnings.push({
+				slideIndex: i + 1,
+				title,
+				type: "label_title",
+				message: `Generic label title "${title}" — state the conclusion instead (e.g. "コストが40%削減できる理由" not "コスト削減")`,
+			});
+		}
+
+		// ── 2. Long bullet warning ──────────────────────────────────────────
+		for (const item of content) {
+			if (
+				!item.startsWith("|") &&
+				!item.startsWith("![") &&
+				!item.includes("<svg") &&
+				item.length > MAX_BULLET_CHARS
+			) {
+				warnings.push({
+					slideIndex: i + 1,
+					title,
+					type: "long_bullet",
+					message: `Bullet too long (${item.length} chars > ${MAX_BULLET_CHARS}): "${item.slice(0, 40)}…" — split or condense for readability`,
+				});
+				break; // one warning per slide
+			}
+		}
+
+		// ── 3. Missing subtitle on key content slides ───────────────────────
+		// Only flag if it's a long (≥ 4 bullets) content slide with no subtitle and no SVG
+		if (
+			isContentSlide &&
+			content.length >= 4 &&
+			!hasSvg &&
+			!hasCode &&
+			!slide.subtitle
+		) {
+			warnings.push({
+				slideIndex: i + 1,
+				title,
+				type: "missing_subtitle",
+				message: `Dense text slide with no subtitle (BLUF) — add "subtitle" field with the "so what?" one-liner`,
+			});
+		}
+
+		// ── 4. Consecutive text-only slides ────────────────────────────────
+		if (isContentSlide && !hasSvg && !hasCode) {
+			consecutiveTextOnly++;
+			if (consecutiveTextOnly >= 3) {
+				warnings.push({
+					slideIndex: i + 1,
+					title,
+					type: "consecutive_text",
+					message: `3+ consecutive text-only slides (slides ${i - 1}–${i + 1}) — insert an SVG diagram to break the pattern`,
+				});
+			}
+		} else {
+			consecutiveTextOnly = 0;
+		}
+
+		// ── 5. Missing speaker notes on content slides ─────────────────────
+		if (isContentSlide && !slide.speakerNotes && content.length > 0) {
+			warnings.push({
+				slideIndex: i + 1,
+				title,
+				type: "missing_notes",
+				message: `No speaker notes — add "why this matters" / evidence / transition to next slide`,
+			});
+		}
+	}
+
+	// ── 6. Narrative arc check (deck-level) ──────────────────────────────
+	const contentSlides = slides.filter(
+		(s) => (s.layout ?? "default") === "default",
+	);
+	const labelTitleCount = contentSlides.filter((s) =>
+		LABEL_TITLE_RE.test((s.title ?? "").trim()),
+	).length;
+	const assertiveRatio =
+		contentSlides.length > 0
+			? (contentSlides.length - labelTitleCount) / contentSlides.length
+			: 1;
+
+	if (contentSlides.length >= 5 && assertiveRatio < 0.6) {
+		warnings.push({
+			slideIndex: 0,
+			title: "(deck-level)",
+			type: "weak_narrative",
+			message: `Only ${Math.round(assertiveRatio * 100)}% of content slides have assertive titles (target ≥60%). Titles should state conclusions, not just topics.`,
+		});
+	}
+
+	return warnings;
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+
 async function validateAllSlides() {
 	const glob = new Glob("docs/**/slides-data.json");
 	const files = Array.from(glob.scanSync());
@@ -20,15 +193,44 @@ async function validateAllSlides() {
 
 	let validCount = 0;
 	let invalidCount = 0;
+	let totalSlideCount = 0;
+	let totalReadingMins = 0;
+	let dupeWarnings = 0;
+	let qualityWarningCount = 0;
 	const errors: ValidationError[] = [];
 
-	console.log("🔍 Validating slides data files...\n");
+	// --quality flag shows per-slide quality warnings
+	const showQuality = process.argv.includes("--quality");
+
+	console.log(
+		`🔍 Validating slides data files${showQuality ? " (quality mode)" : ""}...\n`,
+	);
 
 	for (const file of files) {
 		try {
 			const data = await Bun.file(file).json();
 			generationResultSchema.parse(data);
-			console.log(`✅ ${file}`);
+
+			const slides = data.slides ?? [];
+			const dupes = findDuplicateTitles(slides);
+			const mins = estimateReadingTime(slides);
+			const quality = showQuality ? checkQuality(slides) : [];
+
+			totalSlideCount += slides.length;
+			totalReadingMins += mins;
+			qualityWarningCount += quality.length;
+
+			const hasIssues = dupes.length > 0 || quality.length > 0;
+
+			if (hasIssues) {
+				console.log(`⚠️  ${file} (${slides.length} slides, ~${mins} min)`);
+				for (const t of dupes) console.log(`   - Duplicate title: "${t}"`);
+				for (const w of quality)
+					console.log(`   [${w.type}] slide ${w.slideIndex}: ${w.message}`);
+				if (dupes.length > 0) dupeWarnings++;
+			} else {
+				console.log(`✅ ${file} (${slides.length} slides, ~${mins} min)`);
+			}
 			validCount++;
 		} catch (error) {
 			console.log(`❌ ${file}`);
@@ -51,7 +253,29 @@ async function validateAllSlides() {
 		}
 	}
 
-	console.log(`\n📊 Summary: ${validCount} valid, ${invalidCount} invalid`);
+	const totalHours = Math.floor(totalReadingMins / 60);
+	const remainMins = totalReadingMins % 60;
+	const timeStr =
+		totalHours > 0 ? `${totalHours}h ${remainMins}m` : `${totalReadingMins}m`;
+
+	console.log(
+		`\n📊 Summary: ${validCount} valid, ${invalidCount} invalid` +
+			(dupeWarnings > 0 ? `, ${dupeWarnings} with duplicate titles` : "") +
+			(qualityWarningCount > 0
+				? `, ${qualityWarningCount} quality warnings`
+				: "") +
+			` | ${totalSlideCount} slides | ~${timeStr} total reading time`,
+	);
+
+	if (showQuality && qualityWarningCount > 0) {
+		console.log(
+			"\n💡 Quality tips (Google/Amazon best practices):\n" +
+				"  - Assertive titles: state the conclusion, not just the topic\n" +
+				'  - BLUF: add "subtitle" field for the one-line "so what?"\n' +
+				"  - Max 60 chars per bullet — short, scannable points\n" +
+				"  - Insert SVG every 2-3 slides — picture superiority effect",
+		);
+	}
 
 	if (invalidCount > 0) {
 		console.log("\n❌ Validation failed. Fix the following errors:\n");
@@ -62,7 +286,6 @@ async function validateAllSlides() {
 			}
 			console.log();
 		}
-
 		console.log("💡 Common fixes:");
 		console.log('  - Change "bullets" field to "content"');
 		console.log('  - Use valid layout values: "default", "center", "section"');

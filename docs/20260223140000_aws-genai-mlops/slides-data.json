@@ -11,14 +11,20 @@
 			"speakerNotes": "AWS Certified Generative AI Developer - Professional 試験のMLOpsセクション完全対策"
 		},
 		{
-			"title": "アジェンダ",
+			"title": "アジェンダ（1/2）",
 			"content": [
 				"1. MLOps基礎 — 概念・成熟度モデル・チーム役割",
 				"2. データ管理・前処理 — S3・Glue・Feature Store・Ground Truth",
 				"3. 学習パイプライン — SageMaker Training・分散学習・HPO",
 				"4. CI/CDパイプライン — SageMaker Pipelines・CodePipeline統合",
 				"5. モデル評価 — Clarify・バイアス検出・A/Bテスト",
-				"6. デプロイ戦略 — エンドポイント・Blue/Green・カナリア",
+				"6. デプロイ戦略 — エンドポイント・Blue/Green・カナリア"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "アジェンダ（2/2）",
+			"content": [
 				"7. モデルモニタリング — ドリフト検知・アラート・再学習",
 				"8. セキュリティ — IAM・VPC・暗号化・コンプライアンス",
 				"9. コスト最適化 — Spot・Savings Plans・推論最適化",
@@ -236,10 +242,14 @@
 				"SageMaker Experiments でも実験ごとのデータ参照を記録可能",
 				"MLflow Tracking でデータセットハッシュを記録してバージョン管理"
 			],
-			"layout": "default",
+			"layout": "default"
+		},
+		{
+			"title": "データバージョン管理 (DVC)（コード例）",
+			"content": [],
 			"code": "# DVC基本操作\ndvc init\ndvc add data/train.csv\ngit add data/train.csv.dvc .gitignore\ngit commit -m 'Add training data'\ndvc push  # S3へアップロード\n\n# リモートS3設定\ndvc remote add -d myremote s3://my-bucket/dvc\ndvc remote modify myremote region ap-northeast-1",
 			"codeLanguage": "bash",
-			"speakerNotes": "DVCはGitと同じ操作感でデータ管理。.dvcファイルをGitで管理し実データはS3に保存。試験でのデータ再現性の実装手法として重要。"
+			"layout": "default"
 		},
 		{
 			"title": "データ拡張技術一覧",
@@ -279,10 +289,14 @@
 				"PandasフレームワークとSageMaker Processingで前処理スクリプト実装",
 				"SKLearnProcessorでscikit-learnパイプラインを実行"
 			],
-			"layout": "default",
+			"layout": "default"
+		},
+		{
+			"title": "データ変換パターン — SageMaker Processing（コード例）",
+			"content": [],
 			"code": "from sagemaker.sklearn.processing import SKLearnProcessor\nfrom sagemaker.processing import ProcessingInput, ProcessingOutput\n\nsklearn_processor = SKLearnProcessor(\n    framework_version='1.2-1',\n    role=role,\n    instance_type='ml.m5.xlarge',\n    instance_count=1\n)\n\nsklearn_processor.run(\n    code='preprocessing.py',\n    inputs=[ProcessingInput(\n        source='s3://bucket/raw/',\n        destination='/opt/ml/processing/input'\n    )],\n    outputs=[ProcessingOutput(\n        source='/opt/ml/processing/output',\n        destination='s3://bucket/processed/'\n    )]\n)",
 			"codeLanguage": "python",
-			"speakerNotes": "SageMaker Processingはコンテナベースで任意の前処理を実行できる。SKLearnProcessor以外にもPySparkProcessor、FrameworkProcessorがある。/opt/ml/processing/input と /opt/ml/processing/output が規約パス。"
+			"layout": "default"
 		},
 		{
 			"title": "データ前処理ベストプラクティス",
@@ -375,10 +389,14 @@
 				"Apache Deequ の Python ラッパー — AWS が開発したデータ品質ライブラリ",
 				"SparkDataFrame に対して宣言的に品質制約を定義"
 			],
-			"layout": "default",
+			"layout": "default"
+		},
+		{
+			"title": "PyDeequ (Deequ) 検証コード（コード例）",
+			"content": [],
 			"code": "from pydeequ.checks import Check, CheckLevel\nfrom pydeequ.verification import VerificationSuite\n\ncheck = Check(spark, CheckLevel.Error, 'Data Quality')\n\nresult = VerificationSuite(spark).onData(df).addCheck(\n    check.isComplete('customer_id')\n        .isNonNegative('age')\n        .isContainedIn('status', ['active', 'inactive'])\n        .hasSize(lambda x: x >= 1000)\n        .hasCompleteness('email', lambda x: x >= 0.95)\n).run()\n\nprint(result.status)  # 'Success' or 'Error'",
 			"codeLanguage": "python",
-			"speakerNotes": "SageMaker Processing Job内でPyDeequを実行し、品質チェックを自動化することが推奨パターン。Deequは元々Amazon内部でAmazonの大規模データセットに使用していたScalaライブラリ。"
+			"layout": "default"
 		},
 		{
 			"title": "Great Expectations 統合",
@@ -409,10 +427,14 @@
 			"content": [
 				"SageMaker Pipelines の QualityCheckStep でデータ品質チェックを自動化"
 			],
-			"layout": "default",
+			"layout": "default"
+		},
+		{
+			"title": "検証ルール設計パターン — QualityCheckStep（コード例）",
+			"content": [],
 			"code": "from sagemaker.workflow.quality_check_step import (\n    QualityCheckStep, DataQualityCheckConfig\n)\n\ndata_quality_config = DataQualityCheckConfig(\n    baseline_dataset='s3://bucket/baseline/data.csv',\n    dataset_format=DatasetFormat.csv(header=True),\n    output_s3_uri='s3://bucket/quality-reports/'\n)\n\ndata_quality_check_step = QualityCheckStep(\n    name='DataQualityCheck',\n    quality_check_config=data_quality_config,\n    check_job_config=check_job_config,\n    skip_check=False,\n    register_new_baseline=False\n)",
 			"codeLanguage": "python",
-			"speakerNotes": "skip_check=Trueにするとベースライン生成のみでチェックをスキップ。register_new_baseline=Trueにすると現在のデータを新しいベースラインとして登録。初回実行時はregister_new_baseline=Trueで実行する。"
+			"layout": "default"
 		},
 		{
 			"title": "異常検出パターン",
@@ -556,10 +578,14 @@
 				"SageMaker Managed MLflow でトラッキングサーバーを完全マネージド化",
 				"既存MLflowコードをほぼ変更なしで移行可能"
 			],
-			"layout": "default",
+			"layout": "default"
+		},
+		{
+			"title": "MLflow 統合パターン（コード例）",
+			"content": [],
 			"code": "import mlflow\nimport sagemaker\n\n# SageMaker Managed MLflow\nmlflow.set_tracking_uri(sagemaker.get_mlflow_tracking_arn())\nmlflow.set_experiment('mlops-experiment')\n\nwith mlflow.start_run():\n    mlflow.log_param('learning_rate', 0.001)\n    mlflow.log_param('epochs', 100)\n    \n    # 学習ループ\n    for epoch in range(100):\n        loss = train_epoch()\n        mlflow.log_metric('train_loss', loss, step=epoch)\n    \n    mlflow.sklearn.log_model(model, 'model')",
 			"codeLanguage": "python",
-			"speakerNotes": "SageMaker Managed MLflowは完全マネージドのMLflowトラッキングサーバー。set_tracking_uriにARNを指定するだけで既存コードがそのまま動く。実験・メトリクス・モデルアーティファクトをS3に自動保存。Tracking ServerはマルチAZ構成で高可用性。"
+			"layout": "default"
 		},
 		{
 			"title": "転移学習・ファインチューニング概念",
@@ -746,10 +772,14 @@
 				"SageMaker Real-time Endpoint のデプロイと推論呼び出し",
 				"Production Variantsでカナリアデプロイを設定"
 			],
-			"layout": "default",
+			"layout": "default"
+		},
+		{
+			"title": "リアルタイム推論設定（コード例）（コード例）",
+			"content": [],
 			"code": "import sagemaker\nfrom sagemaker.model import Model\n\n# モデルデプロイ\nmodel = Model(\n    image_uri=container_image,\n    model_data='s3://bucket/model.tar.gz',\n    role=role\n)\n\npredictor = model.deploy(\n    initial_instance_count=2,\n    instance_type='ml.g4dn.xlarge',\n    endpoint_name='mlops-demo-endpoint'\n)\n\n# 推論\nresponse = predictor.predict({\n    'instances': [[1.2, 3.4, 5.6]]\n})",
 			"codeLanguage": "python",
-			"speakerNotes": "Auto Scalingを設定するにはapplication-autoscaling APIを使用。CloudWatchメトリクスSageMakerVariantInvocationsPerInstanceを監視。カナリアデプロイにはupdate_endpoint_weights_and_capacities() を使ってトラフィック重みを段階的に変更。"
+			"layout": "default"
 		},
 		{
 			"title": "バッチ変換 (Batch Transform)",
@@ -865,10 +895,14 @@
 				"AWS CDK でSageMaker Endpointをコード定義",
 				"インフラの変更もGitで管理可能"
 			],
-			"layout": "default",
+			"layout": "default"
+		},
+		{
+			"title": "インフラ as Code (CDK) コード例（コード例）",
+			"content": [],
 			"code": "from aws_cdk import aws_sagemaker as sagemaker\nfrom aws_cdk import Stack\n\nclass MLEndpointStack(Stack):\n    def __init__(self, scope, id, **kwargs):\n        super().__init__(scope, id, **kwargs)\n        \n        model = sagemaker.CfnModel(\n            self, 'MLModel',\n            execution_role_arn=role_arn,\n            primary_container=sagemaker.CfnModel.ContainerDefinitionProperty(\n                image=container_image,\n                model_data_url='s3://bucket/model.tar.gz'\n            )\n        )\n        endpoint_config = sagemaker.CfnEndpointConfig(\n            self, 'EndpointConfig',\n            production_variants=[{\n                'modelName': model.attr_model_name,\n                'instanceType': 'ml.g4dn.xlarge',\n                'initialInstanceCount': 2,\n                'variantName': 'AllTraffic'\n            }]\n        )",
 			"codeLanguage": "python",
-			"speakerNotes": "CDKを使うとエンドポイント定義をPythonコードで記述し、cdk deployで自動プロビジョニング。Terraform/CloudFormationも同様に使用可能。GitOpsとの組み合わせでインフラ変更もPRレビュー対象になる。"
+			"layout": "default"
 		},
 		{
 			"title": "監視・品質管理",
@@ -906,10 +940,14 @@
 			"content": [
 				"Model Monitor でデータ品質ベースラインを生成し定期チェックを設定"
 			],
-			"layout": "default",
+			"layout": "default"
+		},
+		{
+			"title": "データ品質モニタリング設定（コード例）",
+			"content": [],
 			"code": "from sagemaker.model_monitor import DefaultModelMonitor\nfrom sagemaker.model_monitor.dataset_format import DatasetFormat\n\n# ベースライン生成\nmonitor = DefaultModelMonitor(role=role, instance_type='ml.m5.xlarge')\nmonitor.suggest_baseline(\n    baseline_dataset='s3://bucket/baseline/data.csv',\n    dataset_format=DatasetFormat.csv(header=True),\n    output_s3_uri='s3://bucket/baseline-results/'\n)\n\n# 定期モニタリングスケジュール\nmonitor.create_monitoring_schedule(\n    monitor_schedule_name='data-quality-schedule',\n    endpoint_input=predictor.endpoint_name,\n    output_s3_uri='s3://bucket/monitoring-reports/',\n    schedule_cron_expression='cron(0 * ? * * *)'\n)",
 			"codeLanguage": "python",
-			"speakerNotes": "suggest_baseline()は学習データの統計プロファイルと制約(constraints.json, statistics.json)を自動生成。create_monitoring_scheduleでcron式によるスケジュール設定。EndpointにはDataCaptureConfigでキャプチャ有効化が必要。"
+			"layout": "default"
 		},
 		{
 			"title": "モデル品質モニタリング",
@@ -1044,10 +1082,14 @@
 				"ParameterString でパイプライン実行時に動的パラメータを渡す",
 				"CDK/CloudFormationと組み合わせてインフラ全体をIaC化"
 			],
-			"layout": "default",
+			"layout": "default"
+		},
+		{
+			"title": "MLOps IaC パターン — AWS CDK + SageMaker Pipelines（コード例）",
+			"content": [],
 			"code": "from sagemaker.workflow.pipeline import Pipeline\nfrom sagemaker.workflow.steps import TrainingStep, ProcessingStep\nfrom sagemaker.workflow.parameters import ParameterString\n\n# パイプラインパラメータ\nmodel_approval = ParameterString(\n    name='ModelApprovalStatus',\n    default_value='PendingManualApproval'\n)\n\n# パイプライン定義\npipeline = Pipeline(\n    name='mlops-training-pipeline',\n    parameters=[model_approval],\n    steps=[preprocess_step, train_step, eval_step,\n           condition_step],\n    sagemaker_session=session\n)\n\npipeline.upsert(role_arn=role)  # 更新可能なupsert",
 			"codeLanguage": "python",
-			"speakerNotes": "pipeline.upsert()はパイプラインが存在すれば更新、なければ作成する冪等な操作。ParameterStringにより実行ごとに異なる値を渡せるため、同じパイプライン定義でdev/prod両環境に対応できる。"
+			"layout": "default"
 		},
 		{
 			"title": "セキュリティ・ガバナンス",

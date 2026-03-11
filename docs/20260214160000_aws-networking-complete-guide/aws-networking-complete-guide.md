@@ -1,6 +1,7 @@
 ---
 marp: true
 theme: gaia
+class: invert
 size: 16:9
 paginate: true
 ---
@@ -89,12 +90,18 @@ paginate: true
 
 ---
 
-# パブリック vs プライベートサブネット
+# パブリック vs プライベートサブネット（1/2）
 
 - **パブリックサブネット**
 - 　ルートテーブルにIGW（0.0.0.0/0 → igw-xxx）を持つ
 - 　パブリックIPまたはElastic IPが必要
 - 　用途: ALB、Bastion Host、NAT Gateway
+
+
+---
+
+# パブリック vs プライベートサブネット（2/2）
+
 - **プライベートサブネット**
 - 　IGWへのルートを持たない
 - 　外向き通信はNAT Gateway経由
@@ -109,6 +116,11 @@ paginate: true
 - **ローカルルート**: VPC CIDR内は自動ルーティング（削除不可）
 - **最長プレフィックス一致** でルートを評価
 
+
+---
+
+# ルートテーブルの仕組み（コード例）
+
 ```text
 # パブリックサブネットのルートテーブル
 10.0.0.0/16  →  local
@@ -122,12 +134,18 @@ paginate: true
 
 ---
 
-# Internet Gateway & NAT Gateway
+# Internet Gateway & NAT Gateway（1/2）
 
 - **Internet Gateway (IGW)**
 - 　VPCに1つだけアタッチ可能
 - 　水平スケール・冗長・高可用性（AWS管理）
 - 　パブリックIPとプライベートIPの1:1 NAT
+
+
+---
+
+# Internet Gateway & NAT Gateway（2/2）
+
 - **NAT Gateway**
 - 　AZ単位でデプロイ（HAにはマルチAZ配置が必要）
 - 　最大 100 Gbps のバースト帯域
@@ -151,12 +169,18 @@ paginate: true
 
 ---
 
-# セキュリティグループ vs NACL
+# セキュリティグループ vs NACL（1/2）
 
 - **セキュリティグループ (SG)**
 - 　インスタンス（ENI）レベルで適用
 - 　**ステートフル**: 戻りトラフィックは自動許可
 - 　許可ルールのみ（暗黙のDeny All）
+
+
+---
+
+# セキュリティグループ vs NACL（2/2）
+
 - 　他のSGをソースに指定可能
 - **ネットワークACL (NACL)**
 - 　サブネットレベルで適用
@@ -201,12 +225,18 @@ paginate: true
 
 ---
 
-# VPC Endpoints — Gateway型 & Interface型
+# VPC Endpoints — Gateway型 & Interface型（1/2）
 
 - **Gateway Endpoint**
 - 　対象: **S3** と **DynamoDB** のみ
 - 　ルートテーブルにエントリ追加で動作
 - 　無料、VPC内からのみアクセス可
+
+
+---
+
+# VPC Endpoints — Gateway型 & Interface型（2/2）
+
 - **Interface Endpoint (PrivateLink)**
 - 　対象: 多数のAWSサービス + サードパーティ
 - 　サブネット内にENI（プライベートIP）を作成
@@ -231,12 +261,18 @@ paginate: true
 
 ---
 
-# Direct Connect 概要
+# Direct Connect 概要（1/2）
 
 - オンプレミス ↔ AWS 間の**専用線接続**
 - **メリット:**
 - 　安定した低レイテンシ・高帯域
 - 　インターネットを経由しない（セキュリティ向上）
+
+
+---
+
+# Direct Connect 概要（2/2）
+
 - 　データ転送コスト削減（VPN比で安価）
 - **帯域オプション:** 1Gbps / 10Gbps / 100Gbps（専用接続）
 - **ホスト型接続:** 50Mbps〜10Gbps（パートナー経由）
@@ -245,12 +281,18 @@ paginate: true
 
 ---
 
-# DXの物理構成とコンポーネント
+# DXの物理構成とコンポーネント（1/2）
 
 - **DXロケーション**: AWS Direct Connectポイントオブプレゼンス
 - **接続 (Connection)**: 物理ポートの割り当て
 - **LOA-CFA**: Letter of Authorization — 接続許可証
 - **クロスコネクト**: DXロケーション内の物理ケーブル
+
+
+---
+
+# DXの物理構成とコンポーネント（2/2）
+
 - **構成の流れ:**
 - 　1. AWS ConsoleでDX接続をリクエスト
 - 　2. LOA-CFAをダウンロード
@@ -260,13 +302,19 @@ paginate: true
 
 ---
 
-# Virtual Interface (VIF) の種類
+# Virtual Interface (VIF) の種類（1/2）
 
 - **Private VIF**
 - 　VPC内のリソースにプライベートIPでアクセス
 - 　VGWまたはDX Gatewayに接続
 - **Public VIF**
 - 　AWSパブリックサービス（S3等）にパブリックIPでアクセス
+
+
+---
+
+# Virtual Interface (VIF) の種類（2/2）
+
 - 　インターネット経由ではなくDX経由
 - **Transit VIF**
 - 　Transit Gatewayに接続
@@ -290,12 +338,18 @@ paginate: true
 
 ---
 
-# DX Gateway
+# DX Gateway（1/2）
 
 - **DX Gateway** = グローバルリソース（リージョン非依存）
 - 1つのDX接続から複数リージョンのVPCへアクセス
 - **接続パターン:**
 - 　Private VIF → DX Gateway → 複数VGW（最大10）
+
+
+---
+
+# DX Gateway（2/2）
+
 - 　Transit VIF → DX Gateway → Transit Gateway
 - **制約:**
 - 　DX Gateway経由ではVPC間通信不可（折り返し通信不可）
@@ -312,12 +366,18 @@ paginate: true
 
 ---
 
-# DX冗長構成パターン
+# DX冗長構成パターン（1/2）
 
 - **開発/テスト（非クリティカル）:**
 - 　1 DX接続 + バックアップ VPN
 - **本番（高可用性）:**
 - 　2 DX接続 @ 異なるDXロケーション
+
+
+---
+
+# DX冗長構成パターン（2/2）
+
 - **最大回復性 (Maximum Resiliency):**
 - 　2 DXロケーション × 各2接続 = 計4接続
 - **ポイント:**
@@ -335,12 +395,18 @@ paginate: true
 
 ---
 
-# BGPの基礎知識
+# BGPの基礎知識（1/2）
 
 - **BGP** = インターネットの経路制御に使われるルーティングプロトコル
 - **パスベクトル型**: AS（自律システム）単位で経路情報を交換
 - **eBGP**: 異なるAS間の経路交換
 - **iBGP**: 同一AS内の経路交換
+
+
+---
+
+# BGPの基礎知識（2/2）
+
 - **AWSでの必須シーン:**
 - 　Direct Connect — 全VIFでBGP必須
 - 　Site-to-Site VPN — 動的ルーティング時にBGP使用
@@ -349,12 +415,18 @@ paginate: true
 
 ---
 
-# ASN (Autonomous System Number)
+# ASN (Autonomous System Number)（1/2）
 
 - **ASN** = BGPで各ネットワークを識別する番号
 - **パブリックASN**: IANAが割り当て（1〜64495）
 - **プライベートASN**: 内部利用（64512〜65534）
 - **AWSのデフォルトASN:**
+
+
+---
+
+# ASN (Autonomous System Number)（2/2）
+
 - 　VGW: 64512（変更可能）
 - 　DX: 7224（AWS側、変更不可）
 - 　TGW: 64512（作成時に指定可能）
@@ -363,12 +435,18 @@ paginate: true
 
 ---
 
-# AWSにおけるBGPルート伝搬
+# AWSにおけるBGPルート伝搬（1/2）
 
 - **ルート伝搬 (Route Propagation)**
 - 　VGW/TGWで学習したBGPルートをルートテーブルに自動追加
 - 　ルートテーブルで伝搬の有効化が必要
 - **経路選択の優先順位:**
+
+
+---
+
+# AWSにおけるBGPルート伝搬（2/2）
+
 - 　1. 最長プレフィックス一致（より具体的なルート優先）
 - 　2. 静的ルート > 伝搬ルート
 - 　3. DXルート > VPNルート
@@ -377,13 +455,19 @@ paginate: true
 
 ---
 
-# BGP設定のポイント
+# BGP設定のポイント（1/2）
 
 - **BGPコミュニティタグ（DX）:**
 - 　`7224:8100` — 同一リージョン内で優先ルート
 - 　`7224:8200` — 同一大陸内で優先ルート
 - 　`7224:9100` — ローカルリージョンのみ伝搬
 - **DXのBGP設定:**
+
+
+---
+
+# BGP設定のポイント（2/2）
+
 - 　MD5認証キーの設定（推奨）
 - 　BFD (Bidirectional Forwarding Detection) の有効化
 - **試験ポイント:**
@@ -401,12 +485,18 @@ paginate: true
 
 ---
 
-# Site-to-Site VPN 概要
+# Site-to-Site VPN 概要（1/2）
 
 - オンプレミス ↔ AWS 間を**インターネット経由の暗号化トンネル**で接続
 - **構成要素:**
 - 　**Customer Gateway (CGW)** — オンプレ側VPN機器の設定情報
 - 　**Virtual Private Gateway (VGW)** — AWS側VPNエンドポイント
+
+
+---
+
+# Site-to-Site VPN 概要（2/2）
+
 - 　または **Transit Gateway** をVPN終端として使用
 - **特徴:**
 - 　数分〜数時間でセットアップ可能（DXより迅速）
@@ -416,13 +506,19 @@ paginate: true
 
 ---
 
-# IPsecトンネルの仕組み
+# IPsecトンネルの仕組み（1/2）
 
 - **IPsec** = IP層でのセキュリティプロトコルスイート
 - **Phase 1 (IKE):**
 - 　IKEv1 or IKEv2 でセキュリティアソシエーション確立
 - 　認証: Pre-Shared Key (PSK) or 証明書
 - **Phase 2 (IPsec):**
+
+
+---
+
+# IPsecトンネルの仕組み（2/2）
+
 - 　ESP (Encapsulating Security Payload) でデータ暗号化
 - 　AES-128/256-GCM 対応
 - **トンネル構成:**
@@ -432,12 +528,18 @@ paginate: true
 
 ---
 
-# Customer Gateway & Virtual Private Gateway
+# Customer Gateway & Virtual Private Gateway（1/2）
 
 - **Customer Gateway (CGW)**
 - 　オンプレのVPN機器情報をAWSに登録したリソース
 - 　固定パブリックIP or NAT-T対応の場合はNAT背後も可
 - 　BGP ASNの指定（動的ルーティング時）
+
+
+---
+
+# Customer Gateway & Virtual Private Gateway（2/2）
+
 - **Virtual Private Gateway (VGW)**
 - 　1つのVPCにアタッチするAWS側のVPN終端
 - 　複数VPN接続・DX接続を受け入れ可能
@@ -454,13 +556,19 @@ paginate: true
 
 ---
 
-# Accelerated Site-to-Site VPN
+# Accelerated Site-to-Site VPN（1/2）
 
 - **AWS Global Accelerator** を利用してVPNパフォーマンスを向上
 - **仕組み:**
 - 　オンプレ → 最寄りのAWSエッジロケーション → AWSバックボーン → VPC
 - 　パブリックインターネットの経路を最小化
 - **メリット:**
+
+
+---
+
+# Accelerated Site-to-Site VPN（2/2）
+
 - 　レイテンシの削減・安定化
 - 　パケットロスの低減
 - **制約:**
@@ -478,12 +586,18 @@ paginate: true
 
 ---
 
-# Client VPN 概要 — リモートアクセスVPN
+# Client VPN 概要 — リモートアクセスVPN（1/2）
 
 - **AWS Client VPN** = フルマネージドのリモートアクセスVPNサービス
 - **OpenVPNベース**: 標準的なOpenVPNクライアントで接続可能
 - **ユースケース:**
 - 　リモートワーカーからVPC内リソースへの安全なアクセス
+
+
+---
+
+# Client VPN 概要 — リモートアクセスVPN（2/2）
+
 - 　オンプレミスネットワークへのリモートアクセス（VPC経由）
 - **スプリットトンネル:**
 - 　有効: AWSトラフィックのみVPN経由
@@ -493,12 +607,18 @@ paginate: true
 
 ---
 
-# Client VPN の認証方式
+# Client VPN の認証方式（1/2）
 
 - **1. Active Directory 認証**
 - 　AWS Directory Service または オンプレADと連携
 - 　ユーザー名/パスワードベース
 - **2. 相互証明書認証 (Mutual TLS)**
+
+
+---
+
+# Client VPN の認証方式（2/2）
+
 - 　サーバー証明書 + クライアント証明書
 - 　ACM (Certificate Manager) で管理
 - **3. SAML 2.0 フェデレーション認証**
@@ -538,12 +658,18 @@ paginate: true
 
 ---
 
-# Transit Gateway 概要
+# Transit Gateway 概要（1/2）
 
 - **Transit Gateway (TGW)** = リージョナルなネットワークハブ
 - **ハブ&スポーク型**: 複数VPC・VPN・DXを一元管理
 - **主なメリット:**
 - 　VPCフルメッシュ不要（N×(N-1)/2 → N 接続で済む）
+
+
+---
+
+# Transit Gateway 概要（2/2）
+
 - 　推移的ルーティング対応（VPC Peeringでは不可）
 - 　一元的なルーティングポリシー管理
 - **アタッチメント:**
@@ -565,12 +691,18 @@ paginate: true
 
 ---
 
-# TGW + VPN接続
+# TGW + VPN接続（1/2）
 
 - **VGWの代わりにTGWをVPN終端として使用**
 - **メリット:**
 - 　1つのVPN接続で複数VPCへアクセス可能
 - 　Accelerated VPN対応
+
+
+---
+
+# TGW + VPN接続（2/2）
+
 - 　ECMP対応で帯域スケーリング
 - **構成:**
 - 　CGW → VPN接続 → TGWアタッチメント → TGWルートテーブル
@@ -580,13 +712,19 @@ paginate: true
 
 ---
 
-# TGW + Direct Connect
+# TGW + Direct Connect（1/2）
 
 - **Transit VIF** → **DX Gateway** → **TGW** の接続パス
 - **メリット:**
 - 　1つのDX接続で複数リージョンの複数VPCへアクセス
 - 　VPC個別のPrivate VIFが不要
 - **構成:**
+
+
+---
+
+# TGW + Direct Connect（2/2）
+
 - 　オンプレ → DX → Transit VIF → DX Gateway → TGW → VPC
 - **制約:**
 - 　DX GatewayあたりTGW最大3（同一アカウント）
@@ -596,13 +734,19 @@ paginate: true
 
 ---
 
-# TGWピアリング（リージョン間）
+# TGWピアリング（リージョン間）（1/2）
 
 - **TGW Peering** = 異なるリージョン間のTGWを接続
 - **クロスリージョン通信:**
 - 　AWSバックボーン経由の暗号化通信
 - 　グローバルネットワーク構築に活用
 - **特徴:**
+
+
+---
+
+# TGWピアリング（リージョン間）（2/2）
+
 - 　スタティックルーティング（BGP伝搬なし）
 - 　帯域制限なし
 - 　クロスアカウント対応
@@ -613,13 +757,19 @@ paginate: true
 
 ---
 
-# ECMP (Equal Cost Multi-Path) とは
+# ECMP (Equal Cost Multi-Path) とは（1/2）
 
 - **ECMP** = 同一コストの複数経路にトラフィックを分散するルーティング技術
 - **仕組み:**
 - 　BGPで同一プレフィックス・同一AS Path長のルートを受信
 - 　フローベースのハッシュでトラフィックを均等分散
 - **フローの識別 (5-tuple):**
+
+
+---
+
+# ECMP (Equal Cost Multi-Path) とは（2/2）
+
 - 　送信元IP / 宛先IP / プロトコル / 送信元ポート / 宛先ポート
 - **AWSでのサポート:**
 - 　Transit Gateway + VPN: **ECMP対応**
@@ -629,13 +779,19 @@ paginate: true
 
 ---
 
-# TGW + VPN ECMP構成
+# TGW + VPN ECMP構成（1/2）
 
 - **TGWのECMP設定**: 作成時に有効化（デフォルト: 有効）
 - **帯域スケーリング:**
 - 　1 VPN接続 = 2トンネル × 1.25 Gbps = **2.5 Gbps**
 - 　2 VPN接続 = 4トンネル = **5 Gbps**
 - 　N VPN接続 = 2N トンネル = **N × 2.5 Gbps**
+
+
+---
+
+# TGW + VPN ECMP構成（2/2）
+
 - **要件:**
 - 　BGP必須（静的ルーティングではECMP不可）
 - 　全トンネルから同一プレフィックスをBGP広告
@@ -652,13 +808,19 @@ paginate: true
 
 ---
 
-# ECMP設計の注意点と制限事項
+# ECMP設計の注意点と制限事項（1/2）
 
 - **フローベース分散の特性:**
 - 　単一フロー（単一TCP接続）は1トンネルに固定
 - 　大容量の単一フローはスケールしない
 - **非対称ルーティング:**
 - 　行き帰りで異なるトンネルを通る可能性あり
+
+
+---
+
+# ECMP設計の注意点と制限事項（2/2）
+
 - 　ステートフルファイアウォールに注意
 - **制限事項:**
 - 　DX経由のTGW接続ではECMP非対応
@@ -684,13 +846,19 @@ paginate: true
 
 ---
 
-# TGW GREアタッチメント
+# TGW GREアタッチメント（1/2）
 
 - **TGW Connect** = GREトンネル用のアタッチメントタイプ
 - **ユースケース:**
 - 　SD-WANアプライアンス（Cisco, Palo Alto等）との接続
 - 　VPC内のネットワーク仮想アプライアンス (NVA)
 - **構成:**
+
+
+---
+
+# TGW GREアタッチメント（2/2）
+
 - 　TGW Connect アタッチメント（トランスポート: VPCまたはDX）
 - 　TGW Connect Peer: GREトンネル + BGPピアリング
 - **帯域:** Connect Peerあたり最大 **5 Gbps**
@@ -745,12 +913,18 @@ paginate: true
 
 ---
 
-# ハイブリッド接続のベストプラクティス
+# ハイブリッド接続のベストプラクティス（1/2）
 
 - **1. DX + VPN バックアップ構成**
 - 　メイン: DX / バックアップ: VPN（BGPで自動フェイルオーバー）
 - **2. デュアルDX高可用性構成**
 - 　異なるDXロケーション × 2接続以上
+
+
+---
+
+# ハイブリッド接続のベストプラクティス（2/2）
+
 - **3. Transit Gatewayで集約**
 - 　大規模環境ではTGWにDX/VPNを集約
 - **4. 暗号化が必要な場合**
@@ -768,12 +942,18 @@ paginate: true
 
 ---
 
-# 試験で問われるキーポイント
+# 試験で問われるキーポイント（1/2）
 
 - **ルーティング優先順位:**
 - 　1. 最長プレフィックス一致（最優先）
 - 　2. 静的ルート > 伝搬ルート
 - 　3. DX (BGP) > VPN (BGP)
+
+
+---
+
+# 試験で問われるキーポイント（2/2）
+
 - **VPC Peeringの制約:** 推移的ルーティング不可 → TGWで解決
 - **ECMP:** TGW + VPNのみ対応（DX/VGWは非対応）
 - **DX暗号化:** デフォルトなし → MACsec or VPNオーバーレイ
@@ -783,13 +963,19 @@ paginate: true
 
 ---
 
-# よく出るシナリオ問題パターン
+# よく出るシナリオ問題パターン（1/2）
 
 - **Q: VPN帯域を増やしたい**
 - 　→ TGW + ECMP（複数VPN接続で帯域集約）
 - **Q: DXの冗長性を最大化したい**
 - 　→ 2 DXロケーション × 各2接続 = 4接続
 - **Q: DX上で暗号化通信したい**
+
+
+---
+
+# よく出るシナリオ問題パターン（2/2）
+
 - 　→ DX + VPN overlay or MACsec
 - **Q: 100以上のVPCを接続したい**
 - 　→ Transit Gateway（Peeringはフルメッシュで非現実的）
@@ -799,12 +985,18 @@ paginate: true
 
 ---
 
-# 参考リソース
+# 参考リソース（1/2）
 
 - **AWS公式ドキュメント:**
 - - [Amazon VPC User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/)
 - - [AWS Direct Connect User Guide](https://docs.aws.amazon.com/directconnect/latest/UserGuide/)
 - - [AWS Site-to-Site VPN User Guide](https://docs.aws.amazon.com/vpn/latest/s2svpn/)
+
+
+---
+
+# 参考リソース（2/2）
+
 - - [Transit Gateway Guide](https://docs.aws.amazon.com/vpc/latest/tgw/)
 - **学習リソース:**
 - - [AWS Skill Builder](https://skillbuilder.aws/)

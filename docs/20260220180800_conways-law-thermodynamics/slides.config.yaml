@@ -5,6 +5,7 @@ output:
   baseName: "conways-law-thermodynamics"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "コンウェイの法則と熱力学"
   footer: "© 2026"

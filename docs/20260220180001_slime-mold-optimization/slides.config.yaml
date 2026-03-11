@@ -5,6 +5,7 @@ output:
   baseName: "slime-mold-optimization"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "スライム菌の最適化"
   footer: "© 2026"

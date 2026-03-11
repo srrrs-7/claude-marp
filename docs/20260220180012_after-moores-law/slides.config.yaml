@@ -5,6 +5,7 @@ output:
   baseName: "after-moores-law"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ムーアの法則の死後"
   footer: "© 2026"

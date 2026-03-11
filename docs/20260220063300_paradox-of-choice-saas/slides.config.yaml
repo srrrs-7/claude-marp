@@ -5,6 +5,7 @@ output:
   baseName: "paradox-of-choice-saas"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "選択のパラドックスとSaaS"
   footer: "© 2026"

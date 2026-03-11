@@ -129,6 +129,11 @@ style: |
 
 - tool_use / tool_result メッセージで制御ループを構成
 
+
+---
+
+# ReAct の実装（Claude API）（コード例）
+
 ```python
 MAX_STEPS = 10
 
@@ -191,6 +196,11 @@ for step in range(MAX_STEPS):
 # Function Calling の実装
 
 - input_schema に JSON Schema 形式でツール定義を記述する
+
+
+---
+
+# Function Calling の実装（コード例）
 
 ```python
 tools = [
@@ -309,6 +319,11 @@ tools = [
 
 - Subagent を tool として定義し、Orchestrator が呼び出す構成
 
+
+---
+
+# Orchestrator の実装例（コード例）
+
 ```python
 # Subagentをtoolとして定義
 subagent_tools = [
@@ -347,6 +362,11 @@ response = client.messages.create(
 # Parallel Agents の実装
 
 - asyncio.gather で並列実行し、全結果が揃ってから統合する
+
+
+---
+
+# Parallel Agents の実装（コード例）
 
 ```python
 import asyncio
@@ -447,6 +467,11 @@ results = asyncio.run(parallel_research([
 
 - 高リスクツールのリストを定義し、呼び出し前に人間の承認を要求する
 
+
+---
+
+# HiTL の実装パターン（コード例）
+
 ```python
 HIGH_RISK_TOOLS = {"delete_records", "send_email", "deploy_to_prod"}
 
@@ -501,6 +526,11 @@ def execute_with_hitl(tool_name: str, tool_input: dict) -> dict:
 # 構造化出力で信頼性を高める
 
 - tool_choice で強制的にスキーマ準拠の出力を得る
+
+
+---
+
+# 構造化出力で信頼性を高める（コード例）
 
 ```python
 from pydantic import BaseModel, Field
@@ -587,6 +617,11 @@ response = client.messages.create(
 
 - Planner → Parallel Researchers → Writer の3層構造
 
+
+---
+
+# リサーチエージェント: Plan-then-Execute（コード例）
+
 ```python
 # Step 1: 調査計画の立案
 plan = planner_agent.run(
@@ -671,6 +706,11 @@ report = writer_agent.run(
 # Prompt Caching の活用
 
 - cache_control でシステムプロンプトをキャッシュし、コストを ~90% 削減
+
+
+---
+
+# Prompt Caching の活用（コード例）
 
 ```python
 response = client.messages.create(

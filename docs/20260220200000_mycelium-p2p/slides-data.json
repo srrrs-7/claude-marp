@@ -64,6 +64,7 @@
 			"title": "P2Pネットワークの設計原則",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/p2p-principles.svg)",
 				"- **非中央集権**: 単一の管理サーバーが存在しない",
 				"- **対等なノード**: 各参加者がクライアント兼サーバー",
 				"- **自律分散**: ノードが独立して意思決定",
@@ -76,6 +77,7 @@
 			"title": "代表的なP2Pプロトコル",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/protocols-comparison.svg)",
 				"- **Gossip Protocol**: 噂話のように情報を伝播（Cassandra, Redis Cluster）",
 				"- **DHT（分散ハッシュテーブル）**: キーでデータ位置を特定（BitTorrent, IPFS）",
 				"- **Chord Ring**: ノードをリング状に配置し O(log N) でルーティング",
@@ -116,6 +118,7 @@
 			"title": "森の Load Balancer：栄養素の再分配",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/resource-redistribution.svg)",
 				"- 日当たりの良い木 → 余剰炭素を菌糸ネットワークへ供給",
 				"- 日陰の若木 ← 菌糸経由で炭素・リンを受領",
 				"- **ソース-シンクモデル**: 余剰ノードから不足ノードへ自動転送",
@@ -126,10 +129,15 @@
 		},
 		{
 			"title": "リソース再分配のコード比較",
-			"layout": "default",
 			"content": ["- 菌糸ネットワークの栄養素転送 ≒ P2Pの負荷分散アルゴリズム"],
+			"layout": "default"
+		},
+		{
+			"title": "リソース再分配のコード比較（コード例）",
+			"content": [],
 			"code": "// P2P Load Balancing (Work Stealing)\nasync function redistributeLoad(nodes: PeerNode[]) {\n  const avg = nodes.reduce((s, n) => s + n.load, 0) / nodes.length;\n  const donors = nodes.filter(n => n.load > avg * 1.2); // surplus\n  const receivers = nodes.filter(n => n.load < avg * 0.8); // deficit\n\n  for (const donor of donors) {\n    const target = receivers.shift();\n    if (target) await donor.transferWork(target, donor.load - avg);\n  }\n}",
-			"codeLanguage": "typescript"
+			"codeLanguage": "typescript",
+			"layout": "default"
 		},
 		{
 			"title": "耐障害性",
@@ -168,6 +176,7 @@
 			"title": "菌糸ネットワークから学ぶ設計指針",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/design-principles-map.svg)",
 				"- **Hub-and-Spoke は自然界でも有効**: Mother Treeが証明",
 				"- **完全分散 vs ハブ型のハイブリッド** が最も頑健",
 				"- **インセンティブ設計** が持続可能性の鍵（相利共生）",

@@ -1,0 +1,34 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#f9a825">セレンディピティを生む環境設計</text>
+  <!-- Center: result -->
+  <circle cx="400" cy="210" r="60" fill="#16213e" stroke="#f9a825" stroke-width="3"/>
+  <text x="400" y="205" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">セレンディピティ</text>
+  <text x="400" y="224" text-anchor="middle" font-size="12" fill="#ffffff">が起きる</text>
+  <!-- Node: 学際的チーム -->
+  <rect x="40" y="60" width="160" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="120" y="85" text-anchor="middle" font-size="12" fill="#e91e63">学際的チーム</text>
+  <text x="120" y="103" text-anchor="middle" font-size="11" fill="#ffffff">異分野の出会い</text>
+  <line x1="200" y1="90" x2="344" y2="170" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="338,166 350,176 340,180" fill="#e91e63"/>
+  <!-- Node: 自由時間 -->
+  <rect x="580" y="60" width="160" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="660" y="85" text-anchor="middle" font-size="12" fill="#e91e63">20%ルール</text>
+  <text x="660" y="103" text-anchor="middle" font-size="11" fill="#ffffff">探索の自由</text>
+  <line x1="580" y1="90" x2="456" y2="170" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="462,166 450,176 460,180" fill="#e91e63"/>
+  <!-- Node: 失敗の許容 -->
+  <rect x="40" y="280" width="160" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="120" y="305" text-anchor="middle" font-size="12" fill="#f9a825">失敗の許容</text>
+  <text x="120" y="323" text-anchor="middle" font-size="11" fill="#ffffff">3Mの15%ルール</text>
+  <line x1="200" y1="310" x2="344" y2="248" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="338,244 350,254 340,258" fill="#f9a825"/>
+  <!-- Node: 偶然の出会い -->
+  <rect x="580" y="280" width="160" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="660" y="305" text-anchor="middle" font-size="12" fill="#f9a825">偶然の出会い</text>
+  <text x="660" y="323" text-anchor="middle" font-size="11" fill="#ffffff">廊下・共有スペース</text>
+  <line x1="580" y1="310" x2="456" y2="248" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="462,244 450,254 460,258" fill="#f9a825"/>
+  <!-- Radial label -->
+  <text x="400" y="376" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.6">偶然を設計することはできないが、偶然が起きやすい環境は設計できる</text>
+</svg>

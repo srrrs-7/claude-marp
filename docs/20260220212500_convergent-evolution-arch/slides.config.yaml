@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "Convergent Evolution × Architecture"
   footer: "© 2026 Evolutionary Design Patterns"

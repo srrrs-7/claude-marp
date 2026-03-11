@@ -5,6 +5,7 @@ output:
   baseName: "digital-yuan-strategy"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "通貨覇権と制裁回避"
   footer: "© 2026"

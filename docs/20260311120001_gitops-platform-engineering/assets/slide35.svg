@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">GitOpsパイプライン全体像</text>
+
+  <!-- Stage 1: Code Commit -->
+  <rect x="20" y="70" width="110" height="80" rx="8" fill="#2d2d4e" stroke="#a78bfa" stroke-width="2"/>
+  <text x="75" y="98" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a78bfa" font-weight="bold">① Code</text>
+  <text x="75" y="114" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a78bfa" font-weight="bold">Commit</text>
+  <text x="75" y="132" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#cccccc">git push</text>
+  <text x="75" y="146" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#cccccc">Pull Request</text>
+
+  <!-- Arrow -->
+  <line x1="132" y1="110" x2="152" y2="110" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="152,105 162,110 152,115" fill="#60a5fa"/>
+
+  <!-- Stage 2: CI Build -->
+  <rect x="164" y="70" width="110" height="80" rx="8" fill="#2d2d4e" stroke="#60a5fa" stroke-width="2"/>
+  <text x="219" y="98" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#60a5fa" font-weight="bold">② CI Build</text>
+  <text x="219" y="114" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Test / Lint</text>
+  <text x="219" y="130" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Build Image</text>
+  <text x="219" y="146" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Security Scan</text>
+
+  <!-- Arrow -->
+  <line x1="276" y1="110" x2="296" y2="110" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="296,105 306,110 296,115" fill="#60a5fa"/>
+
+  <!-- Stage 3: Image Registry -->
+  <rect x="308" y="70" width="110" height="80" rx="8" fill="#2d2d4e" stroke="#34d399" stroke-width="2"/>
+  <text x="363" y="98" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#34d399" font-weight="bold">③ Registry</text>
+  <text x="363" y="114" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Push Image</text>
+  <text x="363" y="130" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Tag: SHA/SemVer</text>
+  <text x="363" y="146" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Sign (Cosign)</text>
+
+  <!-- Arrow -->
+  <line x1="420" y1="110" x2="440" y2="110" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="440,105 450,110 440,115" fill="#60a5fa"/>
+
+  <!-- Stage 4: Update GitOps Repo -->
+  <rect x="452" y="70" width="110" height="80" rx="8" fill="#2d2d4e" stroke="#fbbf24" stroke-width="2"/>
+  <text x="507" y="93" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fbbf24" font-weight="bold">④ GitOps</text>
+  <text x="507" y="109" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fbbf24" font-weight="bold">Repo更新</text>
+  <text x="507" y="125" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">image tag更新</text>
+  <text x="507" y="141" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">PR → merge</text>
+
+  <!-- Arrow -->
+  <line x1="564" y1="110" x2="584" y2="110" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="584,105 594,110 584,115" fill="#60a5fa"/>
+
+  <!-- Stage 5: GitOps Controller -->
+  <rect x="596" y="70" width="110" height="80" rx="8" fill="#2d2d4e" stroke="#f87171" stroke-width="2"/>
+  <text x="651" y="93" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f87171" font-weight="bold">⑤ ArgoCD</text>
+  <text x="651" y="109" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f87171" font-weight="bold">/ Flux</text>
+  <text x="651" y="125" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">diff検出</text>
+  <text x="651" y="141" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">自動 Sync</text>
+
+  <!-- Arrow down from ArgoCD to Deploy -->
+  <line x1="651" y1="152" x2="651" y2="185" stroke="#34d399" stroke-width="2"/>
+  <polygon points="646,185 651,195 656,185" fill="#34d399"/>
+
+  <!-- Deploy to K8s -->
+  <rect x="560" y="197" width="185" height="70" rx="8" fill="#1e3e2e" stroke="#34d399" stroke-width="2"/>
+  <text x="652" y="226" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399" font-weight="bold">⑥ Kubernetes Deploy</text>
+  <text x="652" y="248" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Rolling / Canary / Blue-Green</text>
+
+  <!-- Horizontal pipeline line -->
+  <line x1="75" y1="190" x2="560" y2="190" stroke="#444466" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Bottom section: Environments row -->
+  <text x="400" y="295" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#a78bfa" font-weight="bold">デプロイ環境フロー</text>
+
+  <!-- Dev env -->
+  <rect x="30" y="315" width="155" height="65" rx="8" fill="#16213e" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="107" y="342" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#a78bfa" font-weight="bold">Dev</text>
+  <text x="107" y="362" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">自動デプロイ</text>
+  <text x="107" y="376" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">mainブランチ毎</text>
+
+  <!-- Arrow -->
+  <line x1="187" y1="348" x2="212" y2="348" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="212,343 222,348 212,353" fill="#60a5fa"/>
+
+  <!-- Staging env -->
+  <rect x="224" y="315" width="155" height="65" rx="8" fill="#16213e" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="301" y="342" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#60a5fa" font-weight="bold">Staging</text>
+  <text x="301" y="362" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Smoke Test後</text>
+  <text x="301" y="376" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">自動昇格</text>
+
+  <!-- Arrow -->
+  <line x1="381" y1="348" x2="406" y2="348" stroke="#60a5fa" stroke-width="1.5"/>
+  <polygon points="406,343 416,348 406,353" fill="#60a5fa"/>
+
+  <!-- Prod env -->
+  <rect x="418" y="315" width="155" height="65" rx="8" fill="#16213e" stroke="#34d399" stroke-width="1.5"/>
+  <text x="495" y="342" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399" font-weight="bold">Production</text>
+  <text x="495" y="362" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">手動承認 or</text>
+  <text x="495" y="376" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">Progressive Delivery</text>
+
+  <!-- Rollback arrow -->
+  <rect x="618" y="315" width="155" height="65" rx="8" fill="#2e1e1e" stroke="#f87171" stroke-width="1.5"/>
+  <text x="695" y="342" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#f87171" font-weight="bold">⟳ Rollback</text>
+  <text x="695" y="362" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">git revert で</text>
+  <text x="695" y="376" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">即座に戻せる</text>
+
+  <!-- Bottom note -->
+  <text x="400" y="432" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888888">全操作がGitに記録され、監査・ロールバックが常に可能</text>
+
+  <!-- Observability icons bottom -->
+  <rect x="100" y="448" width="130" height="30" rx="5" fill="#2d2d4e" stroke="#a78bfa" stroke-width="1"/>
+  <text x="165" y="468" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a78bfa">📊 Metrics収集</text>
+  <rect x="335" y="448" width="130" height="30" rx="5" fill="#2d2d4e" stroke="#60a5fa" stroke-width="1"/>
+  <text x="400" y="468" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#60a5fa">📝 Audit Log</text>
+  <rect x="570" y="448" width="130" height="30" rx="5" fill="#2d2d4e" stroke="#34d399" stroke-width="1"/>
+  <text x="635" y="468" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#34d399">🔔 Alert通知</text>
+</svg>

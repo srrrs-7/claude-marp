@@ -1,0 +1,30 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="36" font-family="sans-serif" font-size="19" font-weight="bold" fill="#f9a825" text-anchor="middle">VPC Endpoint Policy 設計方針</text>
+  <rect x="40" y="56" width="720" height="60" rx="10" fill="#3d2000" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="83" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">基本原則: デフォルトは Allow * — 必ず制限すること</text>
+  <text x="400" y="103" font-family="sans-serif" font-size="12" fill="#ffd580" text-anchor="middle">Principal / Action / Resource / Condition を組み合わせて最小権限を実現</text>
+  <rect x="40" y="130" width="220" height="130" rx="10" fill="#0a3d62" stroke="#00bcd4" stroke-width="1.5"/>
+  <text x="150" y="155" font-family="sans-serif" font-size="13" font-weight="bold" fill="#00bcd4" text-anchor="middle">Principal 制御</text>
+  <text x="150" y="178" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">aws:PrincipalAccount</text>
+  <text x="150" y="196" font-family="sans-serif" font-size="11" fill="#a0a0a0" text-anchor="middle">自アカウントのみ</text>
+  <text x="150" y="214" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">aws:PrincipalOrgID</text>
+  <text x="150" y="232" font-family="sans-serif" font-size="11" fill="#a0a0a0" text-anchor="middle">Organizations全体</text>
+  <rect x="290" y="130" width="220" height="130" rx="10" fill="#1a3d20" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="400" y="155" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4caf50" text-anchor="middle">Action 制御</text>
+  <text x="400" y="178" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">ReadOnly: s3:Get*, s3:List*</text>
+  <text x="400" y="196" font-family="sans-serif" font-size="11" fill="#a0a0a0" text-anchor="middle">読み取り専用を制限</text>
+  <text x="400" y="214" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">特定操作のみ許可</text>
+  <text x="400" y="232" font-family="sans-serif" font-size="11" fill="#a0a0a0" text-anchor="middle">Write禁止など</text>
+  <rect x="540" y="130" width="220" height="130" rx="10" fill="#3d0a0a" stroke="#f44336" stroke-width="1.5"/>
+  <text x="650" y="155" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f44336" text-anchor="middle">Resource 制御</text>
+  <text x="650" y="178" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">特定バケットARNのみ</text>
+  <text x="650" y="196" font-family="sans-serif" font-size="11" fill="#a0a0a0" text-anchor="middle">arn:aws:s3:::my-bucket/*</text>
+  <text x="650" y="214" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">特定テーブルARNのみ</text>
+  <text x="650" y="232" font-family="sans-serif" font-size="11" fill="#a0a0a0" text-anchor="middle">arn:aws:dynamodb:::table/x</text>
+  <rect x="40" y="275" width="720" height="100" rx="10" fill="#1a1a3e" stroke="#9c27b0" stroke-width="1.5"/>
+  <text x="400" y="300" font-family="sans-serif" font-size="13" font-weight="bold" fill="#9c27b0" text-anchor="middle">推奨: EP Policy + Bucket Policy の二重制御</text>
+  <text x="400" y="322" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">EP Policy: エンドポイント通過時の制限 (通過ゲート)</text>
+  <text x="400" y="342" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">Bucket Policy: aws:sourceVpce Deny で EP経由以外を完全拒否</text>
+  <text x="400" y="362" font-family="sans-serif" font-size="11" fill="#f9a825" text-anchor="middle">→ 多層防御でデータの持ち出しを防止</text>
+</svg>

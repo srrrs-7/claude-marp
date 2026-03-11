@@ -1,4 +1,4 @@
-<svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;background:#0f172a;border-radius:12px">
+<svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <text x="500" y="28" text-anchor="middle" fill="#f1f5f9" font-size="16" font-weight="bold" font-family="sans-serif">カスタマーサポートBot — Supervisorパターン実装例</text>
   <!-- User Input -->
   <rect x="30" y="50" width="140" height="55" rx="8" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>

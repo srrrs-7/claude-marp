@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "デジタルコモンズの悲劇"
   footer: "© 2026"

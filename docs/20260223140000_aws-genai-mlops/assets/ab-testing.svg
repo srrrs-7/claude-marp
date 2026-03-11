@@ -1,0 +1,33 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold">モデルバージョン A/B テスト</text>
+<rect x="50" y="150" width="140" height="70" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="1.5"/>
+<text x="120" y="183" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Inference</text>
+<text x="120" y="201" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Request</text>
+<line x1="190" y1="185" x2="240" y2="185" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="240,185 230,179 230,191" fill="#4fc3f7"/>
+<rect x="240" y="155" width="140" height="60" rx="10" fill="#7b1fa2" opacity="0.9"/>
+<text x="310" y="183" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Traffic</text>
+<text x="310" y="201" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Splitter</text>
+<line x1="380" y1="175" x2="450" y2="135" stroke="#f9a825" stroke-width="2"/>
+<polygon points="450,135 439,138 443,126" fill="#f9a825"/>
+<line x1="380" y1="195" x2="450" y2="235" stroke="#f9a825" stroke-width="2"/>
+<polygon points="450,235 443,246 439,234" fill="#f9a825"/>
+<rect x="450" y="100" width="140" height="65" rx="10" fill="#e91e63" opacity="0.85"/>
+<text x="520" y="127" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Model A</text>
+<text x="520" y="145" text-anchor="middle" font-size="12" fill="#ffffff">v1.0 (70%)</text>
+<rect x="450" y="205" width="140" height="65" rx="10" fill="#1565c0" opacity="0.85"/>
+<text x="520" y="232" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Model B</text>
+<text x="520" y="250" text-anchor="middle" font-size="12" fill="#ffffff">v2.0 (30%)</text>
+<line x1="590" y1="132" x2="640" y2="185" stroke="#4fc3f7" stroke-width="2"/>
+<polygon points="640,185 629,182 632,170" fill="#4fc3f7"/>
+<line x1="590" y1="237" x2="640" y2="185" stroke="#4fc3f7" stroke-width="2"/>
+<polygon points="640,185 632,197 629,186" fill="#4fc3f7"/>
+<rect x="640" y="150" width="120" height="70" rx="10" fill="#00695c" opacity="0.85"/>
+<text x="700" y="180" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Metrics</text>
+<text x="700" y="198" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Compare</text>
+<rect x="180" y="310" width="440" height="55" rx="8" fill="#16213e"/>
+<text x="400" y="333" text-anchor="middle" font-size="13" fill="#4fc3f7">統計的有意差が確認されたら Model B に全切替</text>
+<text x="400" y="353" text-anchor="middle" font-size="12" fill="#ffffff">SageMaker Endpoint — Production Variants</text>
+<text x="400" y="385" text-anchor="middle" font-size="13" fill="#4fc3f7">A/B Testing for Model Versions</text>
+</svg>

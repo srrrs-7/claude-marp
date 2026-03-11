@@ -1,0 +1,26 @@
+<svg viewBox="0 0 800 380" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="55" font-family="sans-serif" font-size="24" font-weight="bold" fill="#f9a825" text-anchor="middle">ANS 試験対策ポイント</text>
+  <text x="400" y="84" font-family="sans-serif" font-size="15" fill="#ffffff" text-anchor="middle">頻出パターンと設計判断の鍵</text>
+  <rect x="40" y="105" width="335" height="95" rx="10" fill="#0a3d62" stroke="#00bcd4" stroke-width="1.5"/>
+  <text x="207" y="128" font-family="sans-serif" font-size="13" font-weight="bold" fill="#00bcd4" text-anchor="middle">Gateway EP を選ぶケース</text>
+  <text x="207" y="150" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">S3 / DynamoDB + コスト最小化</text>
+  <text x="207" y="168" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">VPC 内のアクセスのみ</text>
+  <text x="207" y="186" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle">→ 無料・ルートテーブル追加のみ</text>
+  <rect x="425" y="105" width="335" height="95" rx="10" fill="#1a3d20" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="592" y="128" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4caf50" text-anchor="middle">Interface EP を選ぶケース</text>
+  <text x="592" y="150" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">オンプレ / TGW 経由でアクセス</text>
+  <text x="592" y="168" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">S3/DDB 以外のサービス</text>
+  <text x="592" y="186" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle">→ SG制御・DNS解決が鍵</text>
+  <rect x="40" y="215" width="335" height="95" rx="10" fill="#3d2000" stroke="#ff9800" stroke-width="1.5"/>
+  <text x="207" y="238" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ff9800" text-anchor="middle">EP 共有パターン</text>
+  <text x="207" y="260" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">TGW + Shared Services VPC</text>
+  <text x="207" y="278" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">Interface EP を集約 (Gateway は不可)</text>
+  <text x="207" y="296" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle">→ EP 数を最小化でコスト削減</text>
+  <rect x="425" y="215" width="335" height="95" rx="10" fill="#2d003d" stroke="#9c27b0" stroke-width="1.5"/>
+  <text x="592" y="238" font-family="sans-serif" font-size="13" font-weight="bold" fill="#9c27b0" text-anchor="middle">CIDR 重複環境</text>
+  <text x="592" y="260" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">VPC Peering は CIDR 重複不可</text>
+  <text x="592" y="278" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">PrivateLink (Interface EP) は重複OK</text>
+  <text x="592" y="296" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle">→ NLB + Endpoint Service で解決</text>
+  <text x="400" y="340" font-family="sans-serif" font-size="12" fill="#a0a0a0" text-anchor="middle">この4パターンを押さえれば ANS 設計問題の大半は解ける</text>
+</svg>

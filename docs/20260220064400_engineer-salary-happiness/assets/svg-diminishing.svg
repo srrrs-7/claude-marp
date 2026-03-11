@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">お金で買える幸せの逓減曲線</text>
+  <!-- axes -->
+  <line x1="80" y1="290" x2="720" y2="290" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+  <line x1="80" y1="60" x2="80" y2="295" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+  <text x="400" y="318" fill="#aaaaaa" font-size="12" font-family="sans-serif" text-anchor="middle">年収（万円）</text>
+  <text x="28" y="175" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle" transform="rotate(-90,28,175)">日常の幸福感</text>
+  <!-- curve: logarithmic rising then flat -->
+  <path d="M80,285 Q180,200 280,155 Q380,120 480,105 Q560,95 640,90 Q680,88 720,87" fill="none" stroke="#f9a825" stroke-width="3"/>
+  <!-- saturation zone -->
+  <rect x="450" y="60" width="270" height="230" rx="4" fill="#f9a825" opacity="0.04"/>
+  <line x1="450" y1="60" x2="450" y2="290" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6"/>
+  <text x="570" y="80" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" opacity="0.8">飽和ゾーン</text>
+  <!-- x labels -->
+  <text x="80" y="308" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">0</text>
+  <text x="210" y="308" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">300</text>
+  <text x="330" y="308" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">500</text>
+  <text x="450" y="308" fill="#f9a825" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="bold">750</text>
+  <text x="580" y="308" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">1000</text>
+  <text x="700" y="308" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">1500</text>
+  <!-- callout: Kahneman -->
+  <line x1="450" y1="110" x2="380" y2="145" stroke="#e91e63" stroke-width="1.5"/>
+  <rect x="150" y="148" width="235" height="42" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="267" y="167" fill="#e91e63" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="bold">Kahneman &amp; Deaton (2010)</text>
+  <text x="267" y="183" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">$75K(約750万)で日常の幸福感は飽和</text>
+  <text x="400" y="345" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">お金が解決するのは「経済的ストレスの除去」まで / それ以上は使い方が鍵</text>
+</svg>

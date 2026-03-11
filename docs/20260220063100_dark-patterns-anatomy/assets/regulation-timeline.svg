@@ -1,0 +1,46 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">ダークパターン規制の歴史</text>
+  <!-- Timeline horizontal line -->
+  <line x1="60" y1="200" x2="740" y2="200" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+  <polygon points="734,195 748,200 734,205" fill="#ffffff" opacity="0.5"/>
+  <!-- 2010: Dark patterns named -->
+  <line x1="120" y1="200" x2="120" y2="140" stroke="#f9a825" stroke-width="2"/>
+  <circle cx="120" cy="200" r="7" fill="#f9a825"/>
+  <rect x="50" y="95" width="140" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="120" y="117" text-anchor="middle" font-size="11" fill="#f9a825">2010年</text>
+  <text x="120" y="133" text-anchor="middle" font-size="10" fill="#ffffff">ブリグヌルが命名</text>
+  <text x="120" y="220" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">darkpatterns.org</text>
+  <!-- 2018: GDPR -->
+  <line x1="240" y1="200" x2="240" y2="260" stroke="#e91e63" stroke-width="2"/>
+  <circle cx="240" cy="200" r="7" fill="#e91e63"/>
+  <rect x="170" y="262" width="140" height="50" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="240" y="284" text-anchor="middle" font-size="11" fill="#e91e63">2018年</text>
+  <text x="240" y="300" text-anchor="middle" font-size="10" fill="#ffffff">EU GDPR施行</text>
+  <text x="240" y="220" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">同意の有効性規制</text>
+  <!-- 2022: FTC actions -->
+  <line x1="400" y1="200" x2="400" y2="140" stroke="#f9a825" stroke-width="2"/>
+  <circle cx="400" cy="200" r="7" fill="#f9a825"/>
+  <rect x="330" y="95" width="140" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="117" text-anchor="middle" font-size="11" fill="#f9a825">2022年</text>
+  <text x="400" y="133" text-anchor="middle" font-size="10" fill="#ffffff">FTC訴訟 Epic/Amazon</text>
+  <text x="400" y="220" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">Epic: 5.2億ドル和解</text>
+  <!-- 2024: EU DSA -->
+  <line x1="560" y1="200" x2="560" y2="260" stroke="#e91e63" stroke-width="2"/>
+  <circle cx="560" cy="200" r="9" fill="#e91e63"/>
+  <rect x="490" y="262" width="140" height="50" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="560" y="284" text-anchor="middle" font-size="11" fill="#e91e63">2024年</text>
+  <text x="560" y="300" text-anchor="middle" font-size="11" fill="#e91e63">EU DSA全面施行</text>
+  <text x="560" y="220" text-anchor="middle" font-size="10" fill="#e91e63" opacity="0.8">違反: 売上6%制裁金</text>
+  <!-- 2025+: Future -->
+  <line x1="690" y1="200" x2="690" y2="140" stroke="#4caf50" stroke-width="2" stroke-dasharray="4,3"/>
+  <circle cx="690" cy="200" r="7" fill="#4caf50" opacity="0.7"/>
+  <rect x="620" y="95" width="140" height="50" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="690" y="117" text-anchor="middle" font-size="11" fill="#4caf50">2025年〜</text>
+  <text x="690" y="133" text-anchor="middle" font-size="10" fill="#ffffff">各国での規制拡大</text>
+  <text x="690" y="220" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">日本・米国・英国</text>
+  <!-- Bottom message -->
+  <rect x="80" y="338" width="640" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="358" text-anchor="middle" font-size="13" fill="#f9a825">「デザインの自由」は「欺瞞の自由」ではない</text>
+  <text x="400" y="374" text-anchor="middle" font-size="11" fill="#ffffff">エシカルデザインは今や法的義務であり競争優位の源泉</text>
+</svg>

@@ -30,6 +30,7 @@
 			"title": "囚人のジレンマの基本構造",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-pd-concept.svg)",
 				"- 2人の容疑者が **別々の部屋** で尋問される",
 				"- **協調**（黙秘）: 両者軽い刑、**裏切り**（自白）: 相手だけ重い刑",
 				"- 両者裏切り → 両者中程度の刑（最悪の集団結果）",
@@ -52,6 +53,7 @@
 			"title": "プラットフォーム間の囚人のジレンマ",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-platform-pd.svg)",
 				"- **協調** = 標準規格に準拠、相互運用性を確保",
 				"- **裏切り** = 独自規格でロックイン、囲い込み",
 				"- **ブラウザ戦争** (1990s): IE vs Netscape → 独自拡張の応酬",
@@ -64,6 +66,7 @@
 			"title": "Embrace, Extend, Extinguish",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-3e.svg)",
 				"- Microsoft の有名な3E戦略（1990年代）",
 				"- **Embrace**: オープン標準を表面的に採用（協調の偽装）",
 				"- **Extend**: 独自拡張を追加（差別化 = 静かな裏切り）",
@@ -111,6 +114,7 @@
 			"title": "協調を強制するメカニズム",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-standards.svg)",
 				"- **W3C / WHATWG**: Web標準の策定 → ブラウザ間の協調を制度化",
 				"- **IETF**: インターネットプロトコル標準 → TCP/IP の成功",
 				"- **OCI**: コンテナ標準 → Docker vs Podman の互換性確保",
@@ -128,6 +132,7 @@
 			"title": "プラットフォーム選択のゲーム理論",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-dev-choice.svg)",
 				"- **マルチプラットフォーム**: 協調戦略（Flutter, React Native, Kotlin Multiplatform）",
 				"- **プラットフォーム専用**: 裏切り戦略（SwiftUI, Jetpack Compose）",
 				"- **標準準拠**: 長期協調（Web Components, WASM）",

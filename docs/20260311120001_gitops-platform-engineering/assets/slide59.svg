@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <text x="400" y="36" text-anchor="middle" font-size="20" font-weight="bold" fill="#ffffff" font-family="sans-serif">Platform Engineering 成熟度モデル</text>
+
+  <!-- Level bars -->
+  <!-- Level 1 -->
+  <rect x="30" y="70" width="140" height="390" rx="8" fill="#16213e" stroke="#475569" stroke-width="1.5"/>
+  <rect x="30" y="70" width="140" height="40" rx="8" fill="#334155"/>
+  <text x="100" y="97" text-anchor="middle" font-size="14" font-weight="bold" fill="#94a3b8" font-family="sans-serif">Level 1</text>
+  <text x="100" y="125" text-anchor="middle" font-size="12" font-weight="bold" fill="#94a3b8" font-family="sans-serif">Ad-hoc</text>
+  <text x="100" y="155" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">手動デプロイ</text>
+  <text x="100" y="173" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">ドキュメントなし</text>
+  <text x="100" y="191" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">各チームが独自</text>
+  <text x="100" y="209" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">に運用</text>
+  <text x="100" y="235" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">---</text>
+  <text x="100" y="255" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">目標:</text>
+  <text x="100" y="273" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">脱・手作業</text>
+
+  <!-- Level 2 -->
+  <rect x="182" y="70" width="140" height="390" rx="8" fill="#1e3a5f" stroke="#60a5fa" stroke-width="1.5"/>
+  <rect x="182" y="70" width="140" height="40" rx="8" fill="#1e4a7f"/>
+  <text x="252" y="97" text-anchor="middle" font-size="14" font-weight="bold" fill="#60a5fa" font-family="sans-serif">Level 2</text>
+  <text x="252" y="125" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa" font-family="sans-serif">Repeatable</text>
+  <text x="252" y="155" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">基本CI/CD</text>
+  <text x="252" y="173" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">IaC導入済み</text>
+  <text x="252" y="191" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">コンテナ化完了</text>
+  <text x="252" y="209" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">基本監視あり</text>
+  <text x="252" y="235" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">---</text>
+  <text x="252" y="255" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">目標:</text>
+  <text x="252" y="273" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">標準化</text>
+
+  <!-- Level 3 -->
+  <rect x="334" y="70" width="140" height="390" rx="8" fill="#2d1b4e" stroke="#a78bfa" stroke-width="2"/>
+  <rect x="334" y="70" width="140" height="40" rx="8" fill="#3d2b6e"/>
+  <text x="404" y="97" text-anchor="middle" font-size="14" font-weight="bold" fill="#a78bfa" font-family="sans-serif">Level 3</text>
+  <text x="404" y="125" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa" font-family="sans-serif">Defined</text>
+  <text x="404" y="155" text-anchor="middle" font-size="11" fill="#a78bfa" font-family="sans-serif">GitOps全面導入</text>
+  <text x="404" y="173" text-anchor="middle" font-size="11" fill="#a78bfa" font-family="sans-serif">SLO策定済み</text>
+  <text x="404" y="191" text-anchor="middle" font-size="11" fill="#a78bfa" font-family="sans-serif">Policy as Code</text>
+  <text x="404" y="209" text-anchor="middle" font-size="11" fill="#a78bfa" font-family="sans-serif">Platform Team</text>
+  <text x="404" y="235" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">---</text>
+  <text x="404" y="255" text-anchor="middle" font-size="10" fill="#a78bfa" font-family="sans-serif">目標:</text>
+  <text x="404" y="273" text-anchor="middle" font-size="10" fill="#a78bfa" font-family="sans-serif">自動化率80%</text>
+
+  <!-- Level 4 -->
+  <rect x="486" y="70" width="140" height="390" rx="8" fill="#1a3a2a" stroke="#34d399" stroke-width="2"/>
+  <rect x="486" y="70" width="140" height="40" rx="8" fill="#2a5a3a"/>
+  <text x="556" y="97" text-anchor="middle" font-size="14" font-weight="bold" fill="#34d399" font-family="sans-serif">Level 4</text>
+  <text x="556" y="125" text-anchor="middle" font-size="12" font-weight="bold" fill="#34d399" font-family="sans-serif">Managed</text>
+  <text x="556" y="155" text-anchor="middle" font-size="11" fill="#34d399" font-family="sans-serif">IDPセルフサービス</text>
+  <text x="556" y="173" text-anchor="middle" font-size="11" fill="#34d399" font-family="sans-serif">Supply Chain Sec</text>
+  <text x="556" y="191" text-anchor="middle" font-size="11" fill="#34d399" font-family="sans-serif">FinOps統合</text>
+  <text x="556" y="209" text-anchor="middle" font-size="11" fill="#34d399" font-family="sans-serif">DORA改善測定</text>
+  <text x="556" y="235" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">---</text>
+  <text x="556" y="255" text-anchor="middle" font-size="10" fill="#34d399" font-family="sans-serif">目標:</text>
+  <text x="556" y="273" text-anchor="middle" font-size="10" fill="#34d399" font-family="sans-serif">開発者満足度↑</text>
+
+  <!-- Level 5 -->
+  <rect x="638" y="70" width="132" height="390" rx="8" fill="#2d2a16" stroke="#fbbf24" stroke-width="2.5"/>
+  <rect x="638" y="70" width="132" height="40" rx="8" fill="#4d4a2e"/>
+  <text x="704" y="97" text-anchor="middle" font-size="14" font-weight="bold" fill="#fbbf24" font-family="sans-serif">Level 5</text>
+  <text x="704" y="125" text-anchor="middle" font-size="12" font-weight="bold" fill="#fbbf24" font-family="sans-serif">Optimizing</text>
+  <text x="704" y="155" text-anchor="middle" font-size="11" fill="#fbbf24" font-family="sans-serif">AI/ML Operations</text>
+  <text x="704" y="173" text-anchor="middle" font-size="11" fill="#fbbf24" font-family="sans-serif">予測的スケール</text>
+  <text x="704" y="191" text-anchor="middle" font-size="11" fill="#fbbf24" font-family="sans-serif">自己修復システム</text>
+  <text x="704" y="209" text-anchor="middle" font-size="11" fill="#fbbf24" font-family="sans-serif">継続的改善文化</text>
+  <text x="704" y="235" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">---</text>
+  <text x="704" y="255" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="sans-serif">目標:</text>
+  <text x="704" y="273" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="sans-serif">業界リーダー</text>
+
+  <!-- Progress staircase visual at bottom -->
+  <rect x="30" y="390" width="140" height="20" rx="3" fill="#334155" opacity="0.8"/>
+  <rect x="182" y="370" width="140" height="40" rx="3" fill="#1e4a7f" opacity="0.8"/>
+  <rect x="334" y="345" width="140" height="65" rx="3" fill="#3d2b6e" opacity="0.8"/>
+  <rect x="486" y="315" width="140" height="95" rx="3" fill="#2a5a3a" opacity="0.8"/>
+  <rect x="638" y="278" width="132" height="132" rx="3" fill="#4d4a2e" opacity="0.8"/>
+
+  <text x="100" y="405" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">L1</text>
+  <text x="252" y="392" text-anchor="middle" font-size="10" fill="#60a5fa" font-family="sans-serif">L2</text>
+  <text x="404" y="375" text-anchor="middle" font-size="10" fill="#a78bfa" font-family="sans-serif">L3</text>
+  <text x="556" y="355" text-anchor="middle" font-size="10" fill="#34d399" font-family="sans-serif">L4</text>
+  <text x="704" y="330" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="sans-serif">L5</text>
+
+  <!-- Footer -->
+  <text x="400" y="478" text-anchor="middle" font-size="11" fill="#475569" font-family="sans-serif">CNCF Platforms Working Group / Gartner Platform Engineering参考</text>
+</svg>

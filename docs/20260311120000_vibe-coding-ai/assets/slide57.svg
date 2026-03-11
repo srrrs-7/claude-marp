@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="36" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">AI Coding 2026-2030 普及率・能力予測</text>
+
+  <!-- Chart area -->
+  <rect x="70" y="55" width="700" height="300" fill="#0f172a" stroke="#334155" stroke-width="1" rx="6"/>
+
+  <!-- Y-axis label -->
+  <text x="20" y="215" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#94a3b8" transform="rotate(-90,20,215)">普及率 / 能力スコア (%)</text>
+
+  <!-- Y-axis grid and labels -->
+  <line x1="95" y1="75" x2="750" y2="75" stroke="#1e293b" stroke-width="1"/>
+  <text x="82" y="79" text-anchor="end" font-family="sans-serif" font-size="10" fill="#94a3b8">100</text>
+
+  <line x1="95" y1="115" x2="750" y2="115" stroke="#1e293b" stroke-width="1"/>
+  <text x="82" y="119" text-anchor="end" font-family="sans-serif" font-size="10" fill="#94a3b8">80</text>
+
+  <line x1="95" y1="155" x2="750" y2="155" stroke="#1e293b" stroke-width="1"/>
+  <text x="82" y="159" text-anchor="end" font-family="sans-serif" font-size="10" fill="#94a3b8">60</text>
+
+  <line x1="95" y1="195" x2="750" y2="195" stroke="#1e293b" stroke-width="1"/>
+  <text x="82" y="199" text-anchor="end" font-family="sans-serif" font-size="10" fill="#94a3b8">40</text>
+
+  <line x1="95" y1="235" x2="750" y2="235" stroke="#1e293b" stroke-width="1"/>
+  <text x="82" y="239" text-anchor="end" font-family="sans-serif" font-size="10" fill="#94a3b8">20</text>
+
+  <line x1="95" y1="275" x2="750" y2="275" stroke="#1e293b" stroke-width="1"/>
+  <text x="82" y="279" text-anchor="end" font-family="sans-serif" font-size="10" fill="#94a3b8">0</text>
+
+  <!-- X-axis labels -->
+  <text x="130" y="375" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#94a3b8">2024</text>
+  <text x="240" y="375" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#94a3b8">2025</text>
+  <text x="350" y="375" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#34d399" font-weight="bold">2026★</text>
+  <text x="460" y="375" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#94a3b8">2027</text>
+  <text x="570" y="375" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#94a3b8">2028</text>
+  <text x="680" y="375" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#f472b6">2030</text>
+
+  <!-- Data series: AI adoption among developers (solid green) -->
+  <!-- 2024:30% 2025:52% 2026:68% 2027:78% 2028:86% 2030:95% -->
+  <polyline points="130,247 240,219 350,199 460,179 570,163 680,83" fill="none" stroke="#34d399" stroke-width="2.5"/>
+  <!-- Dots -->
+  <circle cx="130" cy="247" r="5" fill="#34d399"/>
+  <circle cx="240" cy="219" r="5" fill="#34d399"/>
+  <circle cx="350" cy="199" r="7" fill="#34d399" stroke="#1a1a2e" stroke-width="2"/>
+  <circle cx="460" cy="179" r="5" fill="#34d399"/>
+  <circle cx="570" cy="163" r="5" fill="#34d399"/>
+  <circle cx="680" cy="83" r="5" fill="#34d399"/>
+  <!-- Labels -->
+  <text x="130" y="242" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#34d399">30%</text>
+  <text x="240" y="214" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#34d399">52%</text>
+  <text x="355" y="193" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#34d399">68%</text>
+  <text x="460" y="174" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#34d399">78%</text>
+  <text x="570" y="158" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#34d399">86%</text>
+  <text x="680" y="78" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#34d399">95%</text>
+
+  <!-- Data series: AI coding capability (solid purple) -->
+  <!-- 2024:20% 2025:38% 2026:58% 2027:72% 2028:82% 2030:96% -->
+  <polyline points="130,259 240,231 350,207 460,183 570,163 680,79" fill="none" stroke="#a78bfa" stroke-width="2.5"/>
+  <circle cx="130" cy="259" r="5" fill="#a78bfa"/>
+  <circle cx="240" cy="231" r="5" fill="#a78bfa"/>
+  <circle cx="350" cy="207" r="7" fill="#a78bfa" stroke="#1a1a2e" stroke-width="2"/>
+  <circle cx="460" cy="183" r="5" fill="#a78bfa"/>
+  <circle cx="570" cy="163" r="5" fill="#a78bfa"/>
+  <circle cx="680" cy="79" r="5" fill="#a78bfa"/>
+  <text x="130" y="272" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a78bfa">20%</text>
+  <text x="240" y="244" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a78bfa">38%</text>
+  <text x="355" y="218" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a78bfa">58%</text>
+
+  <!-- Data series: Autonomous AI tasks (dashed blue) -->
+  <!-- 2024:5% 2025:12% 2026:28% 2027:45% 2028:62% 2030:88% -->
+  <polyline points="130,271 240,261 350,243 460,219 570,191 680,99" fill="none" stroke="#60a5fa" stroke-width="2" stroke-dasharray="6,3"/>
+  <circle cx="130" cy="271" r="5" fill="#60a5fa"/>
+  <circle cx="240" cy="261" r="5" fill="#60a5fa"/>
+  <circle cx="350" cy="243" r="7" fill="#60a5fa" stroke="#1a1a2e" stroke-width="2"/>
+  <circle cx="460" cy="219" r="5" fill="#60a5fa"/>
+  <circle cx="570" cy="191" r="5" fill="#60a5fa"/>
+  <circle cx="680" cy="99" r="5" fill="#60a5fa"/>
+
+  <!-- NOW vertical line -->
+  <line x1="350" y1="60" x2="350" y2="360" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="355" y="72" font-family="sans-serif" font-size="10" fill="#34d399">NOW</text>
+
+  <!-- Legend -->
+  <rect x="70" y="390" width="700" height="75" fill="#16213e" stroke="#334155" stroke-width="1" rx="6"/>
+  <line x1="100" y1="415" x2="140" y2="415" stroke="#34d399" stroke-width="2.5"/>
+  <circle cx="120" cy="415" r="4" fill="#34d399"/>
+  <text x="150" y="419" font-family="sans-serif" font-size="11" fill="#e2e8f0">開発者AI採用率</text>
+
+  <line x1="290" y1="415" x2="330" y2="415" stroke="#a78bfa" stroke-width="2.5"/>
+  <circle cx="310" cy="415" r="4" fill="#a78bfa"/>
+  <text x="340" y="419" font-family="sans-serif" font-size="11" fill="#e2e8f0">AIコーディング能力スコア</text>
+
+  <line x1="520" y1="415" x2="560" y2="415" stroke="#60a5fa" stroke-width="2" stroke-dasharray="6,3"/>
+  <circle cx="540" cy="415" r="4" fill="#60a5fa"/>
+  <text x="570" y="419" font-family="sans-serif" font-size="11" fill="#e2e8f0">自律タスク完了率</text>
+
+  <text x="400" y="450" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#94a3b8">※ 各調査・論文・専門家予測の集合値 — 実際の進化は更に速い可能性あり</text>
+
+  <!-- Footer -->
+  <text x="400" y="482" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#94a3b8">2030年には95%のエンジニアがAIを日常活用 — 今が転換点</text>
+</svg>

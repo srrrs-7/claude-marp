@@ -1,0 +1,35 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#f9a825">ケーブル支配者の権力構造</text>
+  <!-- Central hub: Cable Owner -->
+  <circle cx="400" cy="200" r="65" fill="#16213e" stroke="#f9a825" stroke-width="3"/>
+  <text x="400" y="194" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">ケーブル</text>
+  <text x="400" y="212" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">所有者</text>
+  <!-- Spoke nodes -->
+  <!-- Data routing -->
+  <rect x="20" y="80" width="160" height="50" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="100" y="102" text-anchor="middle" font-size="12" fill="#e91e63">データ経路制御</text>
+  <text x="100" y="119" text-anchor="middle" font-size="11" fill="#ffffff">どこを通るか決める</text>
+  <line x1="180" y1="105" x2="338" y2="178" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="334,172 344,184 332,186" fill="#e91e63"/>
+  <!-- Surveillance -->
+  <rect x="20" y="270" width="160" height="50" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="100" y="292" text-anchor="middle" font-size="12" fill="#e91e63">通信傍受リスク</text>
+  <text x="100" y="309" text-anchor="middle" font-size="11" fill="#ffffff">物理アクセスの脅威</text>
+  <line x1="180" y1="295" x2="338" y2="222" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="334,216 344,228 332,230" fill="#e91e63"/>
+  <!-- Pricing -->
+  <rect x="620" y="80" width="160" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="700" y="102" text-anchor="middle" font-size="12" fill="#f9a825">帯域幅・価格設定</text>
+  <text x="700" y="119" text-anchor="middle" font-size="11" fill="#ffffff">コスト転嫁が可能</text>
+  <line x1="620" y1="105" x2="462" y2="178" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="468,172 458,184 470,186" fill="#f9a825"/>
+  <!-- Digital sovereignty -->
+  <rect x="620" y="270" width="160" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="700" y="292" text-anchor="middle" font-size="12" fill="#f9a825">デジタル主権喪失</text>
+  <text x="700" y="309" text-anchor="middle" font-size="11" fill="#ffffff">従属国の現実</text>
+  <line x1="620" y1="295" x2="462" y2="222" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="468,216 458,228 470,230" fill="#f9a825"/>
+  <!-- Bottom historical note -->
+  <text x="400" y="374" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.6">19世紀の電信支配から21世紀のGAFAMケーブル帝国まで — 構造は変わらない</text>
+</svg>

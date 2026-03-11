@@ -1,6 +1,7 @@
 ---
 marp: true
 theme: gaia
+class: invert
 size: 16:9
 paginate: true
 ---
@@ -623,12 +624,18 @@ paginate: true
 
 ---
 
-# 推奨学習リソース
+# 推奨学習リソース（1/2）
 
 - **AWS 公式ドキュメント:**
 - [Amazon Bedrock ユーザーガイド](https://docs.aws.amazon.com/bedrock/latest/userguide/)
 - [Amazon SageMaker ドキュメント](https://docs.aws.amazon.com/sagemaker/latest/dg/)
 - **AWS Skill Builder（無料/有料）:**
+
+
+---
+
+# 推奨学習リソース（2/2）
+
 - [AWS Certified AI Practitioner 学習パス](https://aws.amazon.com/training/learn-about/ai-practitioner/)
 - [Generative AI with Amazon Bedrock コース](https://explore.skillbuilder.aws/)
 - **ハンズオン・ワークショップ:**

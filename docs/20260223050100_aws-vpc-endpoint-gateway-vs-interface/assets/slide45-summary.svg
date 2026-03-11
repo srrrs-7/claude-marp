@@ -1,0 +1,29 @@
+<svg viewBox="0 0 800 380" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="44" font-family="sans-serif" font-size="20" font-weight="bold" fill="#f9a825" text-anchor="middle">まとめ: Gateway vs Interface Endpoint</text>
+  <rect x="40" y="65" width="340" height="260" rx="12" fill="#0a2744" stroke="#00bcd4" stroke-width="2"/>
+  <text x="210" y="96" font-family="sans-serif" font-size="16" font-weight="bold" fill="#00bcd4" text-anchor="middle">Gateway Endpoint</text>
+  <rect x="60" y="108" width="300" height="40" rx="6" fill="#16213e"/>
+  <text x="210" y="132" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">対象: S3 / DynamoDB のみ</text>
+  <rect x="60" y="153" width="300" height="40" rx="6" fill="#16213e"/>
+  <text x="210" y="177" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">仕組み: ルートテーブルエントリ</text>
+  <rect x="60" y="198" width="300" height="40" rx="6" fill="#16213e"/>
+  <text x="210" y="222" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">コスト: 完全無料</text>
+  <rect x="60" y="243" width="300" height="40" rx="6" fill="#16213e"/>
+  <text x="210" y="267" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">オンプレ接続: 非対応</text>
+  <rect x="60" y="288" width="300" height="27" rx="6" fill="#1a3d62" stroke="#f9a825" stroke-width="1"/>
+  <text x="210" y="307" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f9a825" text-anchor="middle">VPC内のみ・コスト優先</text>
+  <rect x="420" y="65" width="340" height="260" rx="12" fill="#0a3d20" stroke="#4caf50" stroke-width="2"/>
+  <text x="590" y="96" font-family="sans-serif" font-size="16" font-weight="bold" fill="#4caf50" text-anchor="middle">Interface Endpoint</text>
+  <rect x="440" y="108" width="300" height="40" rx="6" fill="#16213e"/>
+  <text x="590" y="132" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">対象: 100+ AWSサービス</text>
+  <rect x="440" y="153" width="300" height="40" rx="6" fill="#16213e"/>
+  <text x="590" y="177" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">仕組み: ENI + PrivateLink</text>
+  <rect x="440" y="198" width="300" height="40" rx="6" fill="#16213e"/>
+  <text x="590" y="222" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">コスト: $0.01/h/AZ + $0.01/GB</text>
+  <rect x="440" y="243" width="300" height="40" rx="6" fill="#16213e"/>
+  <text x="590" y="267" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">オンプレ接続: 対応</text>
+  <rect x="440" y="288" width="300" height="27" rx="6" fill="#1a3d20" stroke="#f9a825" stroke-width="1"/>
+  <text x="590" y="307" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f9a825" text-anchor="middle">多サービス・オンプレ・SG制御</text>
+  <text x="400" y="355" font-family="sans-serif" font-size="13" fill="#ffffff" text-anchor="middle">実務では両者を組み合わせてコストとセキュリティを最適化</text>
+</svg>

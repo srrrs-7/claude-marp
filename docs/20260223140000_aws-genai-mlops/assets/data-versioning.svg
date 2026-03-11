@@ -1,0 +1,35 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold">データバージョン管理とリネージ</text>
+<rect x="30" y="70" width="160" height="55" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="1.5"/>
+<text x="110" y="97" text-anchor="middle" font-size="13" fill="#ffffff">Raw Dataset v1</text>
+<text x="110" y="113" text-anchor="middle" font-size="11" fill="#4fc3f7">S3 / DVC</text>
+<rect x="30" y="175" width="160" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+<text x="110" y="202" text-anchor="middle" font-size="13" fill="#ffffff">Raw Dataset v2</text>
+<text x="110" y="218" text-anchor="middle" font-size="11" fill="#e91e63">追加データ</text>
+<rect x="30" y="280" width="160" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="110" y="307" text-anchor="middle" font-size="13" fill="#ffffff">Processed v3</text>
+<text x="110" y="323" text-anchor="middle" font-size="11" fill="#f9a825">クリーニング済み</text>
+<line x1="190" y1="97" x2="270" y2="200" stroke="#4fc3f7" stroke-width="1.5" opacity="0.7"/>
+<line x1="190" y1="202" x2="270" y2="200" stroke="#4fc3f7" stroke-width="1.5" opacity="0.7"/>
+<line x1="190" y1="307" x2="270" y2="200" stroke="#4fc3f7" stroke-width="1.5" opacity="0.7"/>
+<rect x="270" y="160" width="165" height="80" rx="12" fill="#e91e63" opacity="0.9"/>
+<text x="352" y="197" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="bold">ML Lineage</text>
+<text x="352" y="217" text-anchor="middle" font-size="12" fill="#ffffff">Tracking</text>
+<line x1="435" y1="200" x2="490" y2="160" stroke="#f9a825" stroke-width="2"/>
+<polygon points="490,160 479,163 483,151" fill="#f9a825"/>
+<line x1="435" y1="200" x2="490" y2="240" stroke="#f9a825" stroke-width="2"/>
+<polygon points="490,240 483,251 479,239" fill="#f9a825"/>
+<rect x="490" y="125" width="150" height="65" rx="10" fill="#1565c0" opacity="0.85"/>
+<text x="565" y="153" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Model v1</text>
+<text x="565" y="171" text-anchor="middle" font-size="12" fill="#ffffff">← Dataset v1</text>
+<rect x="490" y="210" width="150" height="65" rx="10" fill="#7b1fa2" opacity="0.85"/>
+<text x="565" y="238" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Model v2</text>
+<text x="565" y="256" text-anchor="middle" font-size="12" fill="#ffffff">← Dataset v3</text>
+<line x1="640" y1="200" x2="685" y2="200" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="685,200 675,194 675,206" fill="#f9a825"/>
+<rect x="685" y="165" width="95" height="70" rx="8" fill="#00695c" opacity="0.85"/>
+<text x="732" y="196" text-anchor="middle" font-size="12" fill="#ffffff">SageMaker</text>
+<text x="732" y="214" text-anchor="middle" font-size="12" fill="#ffffff">Model Reg.</text>
+<text x="400" y="385" text-anchor="middle" font-size="13" fill="#4fc3f7">Data Versioning and ML Lineage Tracking</text>
+</svg>

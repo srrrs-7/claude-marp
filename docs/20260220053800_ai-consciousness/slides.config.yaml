@@ -5,6 +5,7 @@ output:
   baseName: "ai-consciousness"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "意識のハードプロブレム"
   footer: "© 2026"

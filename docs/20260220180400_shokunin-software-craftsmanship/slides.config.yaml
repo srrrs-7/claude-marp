@@ -5,6 +5,7 @@ output:
   baseName: "shokunin-software-craftsmanship"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "職人気質とソフトウェアクラフトマンシップ"
   footer: "© 2026"

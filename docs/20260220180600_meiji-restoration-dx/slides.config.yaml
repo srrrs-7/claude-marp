@@ -5,6 +5,7 @@ output:
   baseName: "meiji-restoration-dx"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "明治維新はDXの教科書だ"
   footer: "© 2026"

@@ -5,6 +5,7 @@ output:
   baseName: "average-lies"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "統計と平均値の罠"
   footer: "© 2026"

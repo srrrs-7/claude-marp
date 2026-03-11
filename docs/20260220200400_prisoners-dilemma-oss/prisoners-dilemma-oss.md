@@ -7,6 +7,71 @@ paginate: true
 header: "囚人のジレンマとオープンソース"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section {
     font-size: 1.05em;
   }
@@ -55,6 +120,7 @@ style: |
 
 # ゲーム理論の基本構造
 
+![w:800 center](assets/game-theory-basic.svg)
 - - **支配戦略**: 相手がどう動こうと「裏切り」が最適
 - - **Nash均衡**: 両者が裏切りを選択 → 最悪の結果
 - - **パレート最適**: 両者が協力 → 最善の結果
@@ -80,6 +146,7 @@ style: |
 
 # フリーライダー問題
 
+![w:800 center](assets/free-rider-problem.svg)
 - - **企業の合理的選択**: OSSを使うが貢献しない
 - - Fortune 500企業の97%がOSSを利用
 - - しかしOSSメンテナの46%は無報酬
@@ -164,6 +231,7 @@ style: |
 
 # 成功事例と新しいモデル
 
+![w:800 center](assets/incentive-design.svg)
 - - **GitHub Sponsors**: 直接的な金銭的支援
 - - **Open Collective**: 透明性のある資金管理
 - - **Dual License**: Community版 + Enterprise版
@@ -180,12 +248,18 @@ style: |
 
 ---
 
-# ゲーム理論が示す3つの教訓
+# ゲーム理論が示す3つの教訓（1/2）
 
 - - **1. 繰り返しが協力を生む**
 -   - 一回限りのゲームでは裏切りが合理的
 -   - 長期的関係では協力が進化的に安定
 - - **2. 制度設計が均衡を変える**
+
+
+---
+
+# ゲーム理論が示す3つの教訓（2/2）
+
 -   - フリーライドのコストを上げる仕組み
 -   - 貢献のリターンを可視化する仕組み
 - - **3. 透明性が信頼を構築する**

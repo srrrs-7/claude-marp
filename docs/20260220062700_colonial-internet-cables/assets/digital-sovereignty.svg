@@ -1,0 +1,35 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">デジタル主権への各国の対応戦略</text>
+  <!-- 4 strategy boxes -->
+  <!-- EU -->
+  <rect x="30" y="50" width="360" height="140" rx="8" fill="#16213e" stroke="#003399" stroke-width="2"/>
+  <text x="50" y="76" font-size="13" font-weight="bold" fill="#60a0ff">EU — 規制アプローチ</text>
+  <text x="50" y="100" font-size="11" fill="#ffffff">GDPR: 個人データの域外移転制限</text>
+  <text x="50" y="118" font-size="11" fill="#ffffff">DSA: ダークパターン・プラットフォーム規制</text>
+  <text x="50" y="136" font-size="11" fill="#ffffff">DMA: ゲートキーパー規制</text>
+  <text x="50" y="158" font-size="11" fill="#60a0ff" opacity="0.8">→ 法的フレームワークで主権を守る</text>
+  <!-- Africa -->
+  <rect x="410" y="50" width="360" height="140" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="430" y="76" font-size="13" font-weight="bold" fill="#4caf50">アフリカ連合 — インフラ投資</text>
+  <text x="430" y="100" font-size="11" fill="#ffffff">大陸内ケーブル網の構築推進</text>
+  <text x="430" y="118" font-size="11" fill="#ffffff">PIDA: アフリカインフラ開発計画</text>
+  <text x="430" y="136" font-size="11" fill="#ffffff">目標: 域内データを域内で処理</text>
+  <text x="430" y="158" font-size="11" fill="#4caf50" opacity="0.8">→ 物理インフラで自立する</text>
+  <!-- India -->
+  <rect x="30" y="210" width="360" height="140" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="50" y="236" font-size="13" font-weight="bold" fill="#f9a825">インド — 多様化アプローチ</text>
+  <text x="50" y="260" font-size="11" fill="#ffffff">中国経由ケーブルの回避</text>
+  <text x="50" y="278" font-size="11" fill="#ffffff">複数国との並列ケーブル契約</text>
+  <text x="50" y="296" font-size="11" fill="#ffffff">データローカライゼーション法</text>
+  <text x="50" y="318" font-size="11" fill="#f9a825" opacity="0.8">→ 依存先を分散してリスクを下げる</text>
+  <!-- Starlink / Satellite -->
+  <rect x="410" y="210" width="360" height="140" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="430" y="236" font-size="13" font-weight="bold" fill="#e91e63">衛星ルート — 新たな依存?</text>
+  <text x="430" y="260" font-size="11" fill="#ffffff">Starlink: 低軌道衛星でケーブル不要</text>
+  <text x="430" y="278" font-size="11" fill="#ffffff">Amazon Kuiper: 競合サービス</text>
+  <text x="430" y="296" font-size="11" fill="#ffffff">問題: どちらも米国企業</text>
+  <text x="430" y="318" font-size="11" fill="#e91e63" opacity="0.8">→ インフラの地政学は変わらない</text>
+  <!-- Bottom -->
+  <text x="400" y="376" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.6">誰が「インターネットの道路」を所有すべきか — 21世紀の地政学的課題</text>
+</svg>

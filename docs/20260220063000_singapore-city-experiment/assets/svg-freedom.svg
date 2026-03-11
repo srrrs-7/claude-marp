@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">自由 vs 効率 ：シンガポールのトレードオフ</text>
+  <!-- scale/balance visualization -->
+  <line x1="400" y1="60" x2="400" y2="120" stroke="#f9a825" stroke-width="3"/>
+  <line x1="200" y1="120" x2="600" y2="120" stroke="#f9a825" stroke-width="3"/>
+  <!-- left pan: freedom -->
+  <line x1="200" y1="120" x2="200" y2="155" stroke="#e91e63" stroke-width="2"/>
+  <rect x="100" y="155" width="200" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="200" y="180" fill="#e91e63" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">自由</text>
+  <text x="200" y="200" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">報道の自由 126位</text>
+  <text x="200" y="218" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">集会に許可が必要</text>
+  <text x="200" y="234" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">事実上一党支配</text>
+  <!-- right pan: efficiency -->
+  <line x1="600" y1="120" x2="600" y2="140" stroke="#f9a825" stroke-width="2"/>
+  <rect x="500" y="140" width="200" height="90" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="600" y="165" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">効率・繁栄</text>
+  <text x="600" y="185" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">GDP世界トップ5</text>
+  <text x="600" y="203" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">汚職最少クラス</text>
+  <text x="600" y="221" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">行政効率: 世界最高水準</text>
+  <!-- question box -->
+  <rect x="150" y="290" width="500" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="312" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">問い: 効率と自由は本当にトレードオフなのか？</text>
+  <text x="400" y="332" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">最高の「ユーザー体験」は自由か、それとも設計か？</text>
+</svg>

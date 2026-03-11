@@ -5,6 +5,7 @@ output:
   baseName: "pokemon-go-urban-design"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "Pokemon GOと都市デザイン"
   footer: "© 2026"

@@ -7,6 +7,71 @@ paginate: true
 header: "ゲーデルとテスト"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -153,6 +218,12 @@ style: |
 - - ランダム生成された大量の入力で不変条件をテスト
 - - 「すべてのリストに対して reverse(reverse(xs)) == xs」のような性質
 - - ゲーデル的限界の中での最善策: **確率的な信頼**の構築
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="28" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">通常テスト vs プロパティベーステスト</text><rect x="30" y="50" width="340" height="170" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="76" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">通常のユニットテスト</text><text x="50" y="102" font-size="12" fill="#ccccdd" font-family="sans-serif">test(reverse([1,2,3]) == [3,2,1])</text><text x="50" y="124" font-size="12" fill="#ccccdd" font-family="sans-serif">test(reverse([]) == [])</text><text x="50" y="146" font-size="12" fill="#ccccdd" font-family="sans-serif">test(reverse([5]) == [5])</text><text x="50" y="175" font-size="11" fill="#888899" font-family="sans-serif">問題: 設計者が想定した</text><text x="50" y="193" font-size="11" fill="#888899" font-family="sans-serif">ケースしか検証できない</text><text x="200" y="212" text-anchor="middle" font-size="14" fill="#e91e63" font-family="sans-serif">✗ 未知のエッジケースが残る</text><rect x="430" y="50" width="340" height="170" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="600" y="76" text-anchor="middle" font-size="13" fill="#4caf50" font-weight="bold" font-family="sans-serif">プロパティベーステスト</text><text x="450" y="102" font-size="12" fill="#ccccdd" font-family="sans-serif">property: ∀xs,</text><text x="450" y="122" font-size="12" fill="#f9a825" font-family="sans-serif">  rev(rev(xs)) == xs</text><text x="450" y="146" font-size="12" fill="#ccccdd" font-family="sans-serif">→ 1000個のランダム入力で検証</text><text x="450" y="175" font-size="11" fill="#888899" font-family="sans-serif">利点: 設計者が思いつかない</text><text x="450" y="193" font-size="11" fill="#888899" font-family="sans-serif">入力パターンを自動探索</text><text x="600" y="212" text-anchor="middle" font-size="14" fill="#4caf50" font-family="sans-serif">✓ 確率的に広い信頼を獲得</text></svg>
+
+
+---
+
+# プロパティベーステスト（コード例）
 
 ```python
 from hypothesis import given, strategies as st
@@ -179,12 +250,19 @@ def test_addition_commutative(a, b):
 ---
 
 <!-- _class: lead -->
-# まとめ — 不完全性と共に生きる
+# まとめ — 不完全性と共に生きる（1/2）
 
 - **テストは「完全性の証明」ではなく「信頼の構築」**
 - 
 - 完全なソフトウェアは **数学的に不可能** である
 - 
+
+
+---
+
+<!-- _class: lead -->
+# まとめ — 不完全性と共に生きる（2/2）
+
 - だからこそ私たちは:
 - - リスクベースで優先順位をつけ
 - - 多層的な検証を重ね
@@ -194,13 +272,19 @@ def test_addition_commutative(a, b):
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - **数学・理論:**
 - - [Godel, K. (1931) "Uber formal unentscheidbare Satze"](https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems)
 - - [Turing, A. (1936) "On Computable Numbers"](https://en.wikipedia.org/wiki/Turing%27s_proof)
 - 
 - **ソフトウェアテスト:**
+
+
+---
+
+# 参考文献（2/2）
+
 - - [Dijkstra, E.W. "Notes on Structured Programming" (EWD249)](https://www.cs.utexas.edu/~EWD/ewd02xx/EWD249.PDF)
 - - [Claessen & Hughes (2000) "QuickCheck" - ICFP](https://www.cs.tufts.edu/~nr/cs257/archive/john-hughes/quick.pdf)
 - 

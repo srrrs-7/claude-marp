@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "Post-Quantum Cryptography"
   footer: "© 2026 Quantum Security"

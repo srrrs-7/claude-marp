@@ -5,6 +5,7 @@ output:
   baseName: "standardization-changed-world"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "標準化の経済学"
   footer: "© 2026"

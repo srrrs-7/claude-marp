@@ -1226,13 +1226,22 @@ SageMaker Endpoint の Production Variants 機能でA/Bテストを実装。Vari
 
 ---
 
-# 試験重要ポイント TOP 20
+# 試験重要ポイント TOP 20（1/2）
 
 - 1. **Feature Store**: Online(DynamoDB低レイテンシ) vs Offline(S3全履歴) の使い分け
 - 2. **Spot Training**: 最大90%コスト削減、チェックポイントで中断対応必須
 - 3. **推論4タイプ**: RT/Serverless/Async/Batch の使い分けと制限値を暗記
 - 4. **MME vs MCE**: 同一フレームワーク多数モデル(MME) vs 異フレームワーク(MCE)
 - 5. **Distributed Training**: データ並列(SMDDP)= データ分割, モデル並列(SMP)= レイヤー分割
+
+<!--
+TOP 10は必須暗記項目。特に推論4タイプの制限値(Serverless: 4MB/60秒, Async: 1GB/1時間, RT: 6MB/60秒)と、MME/MCEの選択基準は高頻出。Feature Store の Online/Offline 二重構造はほぼ毎回出題。
+-->
+
+---
+
+# 試験重要ポイント TOP 20（2/2）
+
 - 6. **Model Monitor**: Data Quality / Model Quality / Bias Drift / Feature Attribution
 - 7. **VPC分離**: EnableNetworkIsolation=true でコンテナのアウトバウンド通信遮断
 - 8. **MLOps成熟度**: Level 0(手動) → Level 3(フル自動/継続学習)

@@ -328,13 +328,19 @@
 			]
 		},
 		{
-			"title": "ローカル説明 vs グローバル説明",
+			"title": "ローカル説明 vs グローバル説明（1/2）",
 			"layout": "default",
 			"content": [
 				"**グローバル説明（Global Explanation）**",
 				"　→ モデル全体の動作を説明。「このモデルは全般的にXを重視する」",
 				"　→ 手法: 特徴量重要度・PDP・Global SHAP Summary",
-				"　→ 用途: モデルの妥当性確認・規制当局への説明・バイアス発見",
+				"　→ 用途: モデルの妥当性確認・規制当局への説明・バイアス発見"
+			]
+		},
+		{
+			"title": "ローカル説明 vs グローバル説明（2/2）",
+			"layout": "default",
+			"content": [
 				"**ローカル説明（Local Explanation）**",
 				"　→ 特定の予測インスタンスを説明。「この人の融資が拒否された理由はXとY」",
 				"　→ 手法: LIME・SHAP Force Plot・Counterfactual Explanation",
@@ -900,13 +906,19 @@
 			]
 		},
 		{
-			"title": "参考リソース（2/2）",
+			"title": "参考リソース（2/2）（1/2）",
 			"layout": "default",
 			"content": [
 				"**規制・フレームワーク:**",
 				"- [NIST AI Risk Management Framework](https://airc.nist.gov/RMF_Overview)",
 				"- [EU AI Act 条文](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689)",
-				"**研究・技術資料:**",
+				"**研究・技術資料:**"
+			]
+		},
+		{
+			"title": "参考リソース（2/2）（2/2）",
+			"layout": "default",
+			"content": [
 				"- [SHAP GitHub](https://github.com/shap/shap)",
 				"- [Fairlearn（Microsoft）](https://fairlearn.org/)",
 				"**試験対策:**",

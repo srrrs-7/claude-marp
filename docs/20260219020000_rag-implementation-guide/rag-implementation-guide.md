@@ -1,10 +1,76 @@
 ---
 marp: true
 theme: gaia
+class: invert
 size: 16:9
 paginate: true
 footer: "RAG実装ガイド完全版 2026 | AWS GenAI Developer Pro"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section { font-size: 0.80em; }
   section pre code { font-size: 0.58em; line-height: 1.4; }
   table { font-size: 0.66em; border-collapse: collapse; width: 100%; }
@@ -30,6 +96,34 @@ style: |
 
 # 学習ロードマップ
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
+<rect x="20" y="40" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">S3 Bucket</text>
+<text x="80" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ソース文書</text>
+<line x1="140" y1="62" x2="165" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="175,62 163,67 163,57" fill="#f9a825"/>
+<rect x="175" y="40" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="240" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Data Ingestion</text>
+<text x="240" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Bedrock KB</text>
+<line x1="305" y1="62" x2="330" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="340,62 328,67 328,57" fill="#f9a825"/>
+<rect x="340" y="40" width="130" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="405" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenSearch</text>
+<text x="405" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Serverless</text>
+<line x1="470" y1="62" x2="495" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="505,62 493,67 493,57" fill="#f9a825"/>
+<rect x="505" y="40" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="570" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector Index</text>
+<text x="570" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">k-NN Index</text>
+<line x1="635" y1="62" x2="660" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="670,62 658,67 658,57" fill="#f9a825"/>
+<rect x="670" y="40" width="110" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query API</text>
+<text x="725" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">検索エンドポイント</text>
+<text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="11">OCU (OpenSearch Compute Unit): Index/Search に独立スケール</text>
+<text x="400" y="138" text-anchor="middle" fill="#f9a825" font-size="11">k-NN アルゴリズム: HNSW (精度高) / IVF (コスト低)</text>
+<text x="400" y="162" text-anchor="middle" fill="#ffffff" font-size="11">ベクトル次元: 最大16000 | Metric: cosine / euclidean / dot_product</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">コレクション = インデックスの論理グループ | VPC Endpoint対応</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">料金: 0.24 USD/OCU-hour (最小0.5 OCU × 2リソース)</text>
+</svg>
 | フェーズ | セクション | 重点度 | 試験比率目安 |
 |---------|-----------|--------|------------|
 | ① | RAG基礎（概念・アーキテクチャ） | ★★★ | ~10% |
@@ -45,6 +139,20 @@ style: |
 
 # 試験出題マップ（Domain 3: FM活用 30%）
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Aurora PostgreSQL pgvector — セットアップ</text>
+<rect x="20" y="40" width="760" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold"></text>
+
+<text x="400" y="58" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">CREATE EXTENSION vector;</text>
+<text x="400" y="76" text-anchor="middle" fill="#ffffff" font-size="11">CREATE TABLE docs (id serial, content text, embedding vector(1536));</text>
+<text x="400" y="120" text-anchor="middle" fill="#ffffff" font-size="11">インデックス作成: CREATE INDEX ON docs USING hnsw (embedding vector_cosine_ops);</text>
+<text x="400" y="145" text-anchor="middle" fill="#ffffff" font-size="11">検索: SELECT * FROM docs ORDER BY embedding &lt;=&gt; '[0.1,0.2,...]' LIMIT 5;</text>
+<text x="400" y="170" text-anchor="middle" fill="#f9a825" font-size="11">演算子: &lt;=&gt; (cosine) / &lt;-&gt; (L2) / &lt;#&gt; (inner product)</text>
+<text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="11">Serverless v2: 0.5〜128 ACU | 自動スケール | コスト最適</text>
+<text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB統合: データソース選択時に Aurora PostgreSQL を指定するだけ</text>
+</svg>
 | 出題テーマ | 頻出キーワード | 難易度 |
 |-----------|-------------|--------|
 | RAGアーキテクチャ | Pipeline, Chunking, Embedding, Indexing | ★★ |
@@ -69,6 +177,28 @@ style: |
 
 # RAGとは？なぜ必要か
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
+<rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed Text v2</text>
+<text x="135" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.00002/1K tokens</text>
+<rect x="285" y="40" width="230" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cohere Embed v3</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.0001/1K tokens</text>
+<rect x="550" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenAI text-embed-3</text>
+<text x="665" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.00013/1K tokens</text>
+<text x="135" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 8K tokens</text>
+<text x="135" y="130" text-anchor="middle" fill="#f9a825" font-size="10">AWS最低コスト</text>
+<text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1024dim / 多言語</text>
+<text x="400" y="130" text-anchor="middle" fill="#f9a825" font-size="10">高精度・推奨</text>
+<text x="665" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 3072dim</text>
+<text x="665" y="130" text-anchor="middle" fill="#f9a825" font-size="10">外部API必要</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">選択基準: コスト重視→Titan / 多言語精度→Cohere / AWS外→OpenAI</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">重要: Indexing時とQuery時は必ず同一モデルを使用</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">次元数削減: Matryoshka Embedding で 1/4 次元でも精度維持可能</text>
+</svg>
 - **RAG (Retrieval-Augmented Generation)** = 外部知識検索 + 生成AIの組み合わせ
 | 課題 | RAGによる解決策 |
 |------|--------------|
@@ -84,6 +214,35 @@ style: |
 
 # RAGアーキテクチャ全体像
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">クエリ処理パイプライン</text>
+<rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw Query</text>
+<text x="75" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="130" y1="65" x2="155" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="165,65 153,70 153,60" fill="#f9a825"/>
+<rect x="165" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">前処理</text>
+<text x="225" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">正規化/言語検出</text>
+<line x1="285" y1="65" x2="310" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="320,65 308,70 308,60" fill="#f9a825"/>
+<rect x="320" y="45" width="120" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="380" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query Embed</text>
+<text x="380" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル化</text>
+<line x1="440" y1="65" x2="465" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="475,65 463,70 463,60" fill="#f9a825"/>
+<rect x="475" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="535" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ANN Search</text>
+<text x="535" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Top-K取得</text>
+<line x1="595" y1="65" x2="620" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="630,65 618,70 618,60" fill="#f9a825"/>
+<rect x="630" y="45" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="705" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Rerank</text>
+<text x="705" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">精度向上</text>
+<text x="400" y="125" text-anchor="middle" fill="#ffffff" font-size="11">クエリ拡張テクニック</text>
+<text x="200" y="148" text-anchor="middle" fill="#f9a825" font-size="10">HyDE: 仮説文書生成→埋め込み</text>
+<text x="400" y="148" text-anchor="middle" fill="#f9a825" font-size="10">Multi-Query: 複数バリエーション</text>
+<text x="600" y="148" text-anchor="middle" fill="#f9a825" font-size="10">Step-Back: 抽象化→具体化</text>
+<text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="11">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>
+<text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>
+</svg>
 - **インジェスト（Indexing）パイプライン:**
 - ソースデータ（S3等）→ 前処理・OCR → チャンキング → エンベディング → ベクトルDB格納
 - **クエリ（Runtime）パイプライン:**
@@ -102,6 +261,28 @@ style: |
 
 # RAG vs Fine-tuning vs In-Context Learning
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG セキュリティ設計</text>
+<rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM Role</text>
+<text x="130" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最小権限原則</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">VPC Endpoint</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">プライベート通信</text>
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">KMS 暗号化</text>
+<text x="670" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">保存/転送時</text>
+<text x="130" y="115" text-anchor="middle" fill="#f9a825" font-size="10">bedrock:InvokeModel</text>
+<text x="130" y="130" text-anchor="middle" fill="#ffffff" font-size="10">s3:GetObject (KB用)</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock/OpenSearch/S3</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">インターネット不要</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Vector DB / S3</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">CMK推奨</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">データ隔離: テナント毎に別KB / メタデータフィルタでアクセス制御</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Guardrails: PII検出・トピックフィルタ・Grounding Check</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">監査: CloudTrail (API呼び出し) + CloudWatch Logs (詳細ログ)</text>
+</svg>
 | 比較軸 | RAG | Fine-tuning | In-Context Learning |
 |-------|-----|------------|---------------------|
 | 知識更新 | リアルタイム | 再学習必要 | プロンプト内のみ |
@@ -118,6 +299,40 @@ style: |
 
 # エンベディング（Embedding）基礎
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG パイプライン全体像</text>
+<text x="200" y="75" text-anchor="middle" fill="#ffffff" font-size="12">オフライン（Indexing Phase）</text>
+<text x="590" y="75" text-anchor="middle" fill="#e91e63" font-size="12">オンライン（Query Phase）</text>
+<line x1="390" y1="65" x2="390" y2="175" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="30" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="77.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Ingest</text>
+<text x="77.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">S3→Parse</text><line x1="125" y1="127" x2="128" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="138,127 126,132 126,122" fill="#f9a825"/><rect x="138" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="185.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunk</text>
+<text x="185.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">分割処理</text><line x1="233" y1="127" x2="236" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="246,127 234,132 234,122" fill="#f9a825"/><rect x="246" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="293.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="293.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル化</text><line x1="341" y1="127" x2="344" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="354,127 342,132 342,122" fill="#f9a825"/><rect x="354" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="401.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Index</text>
+<text x="401.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">DB格納</text><line x1="449" y1="127" x2="452" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="462,127 450,132 450,122" fill="#f9a825"/><rect x="462" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="509.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Retrieve</text>
+<text x="509.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">類似検索</text><line x1="557" y1="127" x2="560" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="570,127 558,132 558,122" fill="#f9a825"/><rect x="570" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="617.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augment</text>
+<text x="617.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Prompt合成</text><line x1="665" y1="127" x2="668" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="678,127 666,132 666,122" fill="#f9a825"/><rect x="678" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Generate</text>
+<text x="725.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">LLM応答</text>
+<text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="11">← Offline: 事前インデックス作成  |  Online: リアルタイム検索・生成 →</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">主要コンポーネント</text>
+<rect x="30" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Document Loader</text>
+<text x="140" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">S3/URL/Confluence/SharePoint</text>
+<rect x="290" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector Store</text>
+<text x="400" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">OpenSearch/pgvector/Pinecone</text>
+<rect x="550" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="660" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude 3.5 / Titan / Llama</text>
+<text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="12">Amazon Bedrock Knowledge Bases = マネージド RAG サービス</text>
+</svg>
 | モデル | Provider | 次元数 | 最大入力 | 特徴 |
 |-------|---------|--------|---------|------|
 | Titan Embeddings Text v2 | Amazon | 256/512/1024 | 8,192 tok | 可変次元・AWS最適化 |
@@ -135,6 +350,30 @@ style: |
 
 # チャンキング戦略
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG レイテンシ最適化</text>
+<rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">キャッシュ層</text>
+<text x="130" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Semantic Cache</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">並列処理</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Async Retrieval</text>
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Streaming</text>
+<text x="670" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">SSE/WebSocket</text>
+<text x="130" y="115" text-anchor="middle" fill="#f9a825" font-size="10">類似クエリをキャッシュ</text>
+<text x="130" y="130" text-anchor="middle" fill="#ffffff" font-size="10">ElastiCache/DynamoDB</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Embed + Search 同時</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">asyncio / Promise.all</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">初回トークンを即表示</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">体感速度 大幅改善</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">典型的レイテンシ内訳 (合計 2〜5秒)</text>
+<text x="200" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Embed: 50〜200ms</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">ANN Search: 10〜100ms</text>
+<text x="600" y="188" text-anchor="middle" fill="#f9a825" font-size="11">LLM Gen: 1〜4sec</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Provisioned Throughput: LLM呼び出し速度を最大2x向上</text>
+</svg>
 | 戦略 | 説明 | 最適ユースケース |
 |------|------|----------------|
 | Fixed-size | 固定トークン数で分割（オーバーラップあり） | 汎用テキスト・初期実装 |
@@ -152,6 +391,53 @@ style: |
 
 # 検索戦略（Semantic / Keyword / Hybrid）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">チャンキング戦略 比較</text>
+<rect x="20" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="110" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Fixed Size</text>
+<text x="110" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">固定トークン数</text>
+<rect x="210" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="300" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Recursive</text>
+<text x="300" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">区切り文字ベース</text>
+<rect x="400" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="490" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Semantic</text>
+<text x="490" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">意味単位分割</text>
+<rect x="590" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="680" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Hierarchical</text>
+<text x="680" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">親子構造</text>
+<rect x="20" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="110" y="140" text-anchor="middle" fill="#f9a825" font-size="11">chunk_size: 500</text>
+<text x="110" y="158" text-anchor="middle" fill="#ffffff" font-size="11">chunk_overlap: 50</text>
+<text x="110" y="176" text-anchor="middle" fill="#ffffff" font-size="11">シンプル・高速</text>
+<rect x="210" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="300" y="140" text-anchor="middle" fill="#f9a825" font-size="11">
+
+ → 
+ → 。</text>
+<text x="300" y="158" text-anchor="middle" fill="#ffffff" font-size="11">自然な境界</text>
+<text x="300" y="176" text-anchor="middle" fill="#ffffff" font-size="11">精度バランス良</text>
+<rect x="400" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="490" y="140" text-anchor="middle" fill="#f9a825" font-size="11">埋め込み類似度</text>
+<text x="490" y="158" text-anchor="middle" fill="#ffffff" font-size="11">で境界を検出</text>
+<text x="490" y="176" text-anchor="middle" fill="#ffffff" font-size="11">高精度・処理重</text>
+<rect x="590" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="680" y="140" text-anchor="middle" fill="#f9a825" font-size="11">Parent: 章/節</text>
+<text x="680" y="158" text-anchor="middle" fill="#ffffff" font-size="11">Child: 段落</text>
+<text x="680" y="176" text-anchor="middle" fill="#ffffff" font-size="11">コンテキスト保持</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">チャンクサイズ vs 精度のトレードオフ</text>
+<rect x="60" y="255" width="680" height="110" rx="6" fill="#16213e"/>
+<line x1="100" y1="320" x2="690" y2="320" stroke="#ffffff" stroke-width="2"/><polygon points="700,320 688,325 688,315" fill="#ffffff"/>
+<text x="80" y="325" text-anchor="end" fill="#ffffff" font-size="11">小</text>
+<text x="710" y="325" fill="#ffffff" font-size="11">大 →チャンクサイズ</text>
+<line x1="100" y1="360" x2="100" y2="265" stroke="#ffffff" stroke-width="1"/>
+<text x="95" y="270" text-anchor="end" fill="#ffffff" font-size="11">高</text>
+<text x="95" y="365" text-anchor="end" fill="#ffffff" font-size="11">低</text>
+<path d="M 100 340 Q 300 270 500 280 Q 600 285 700 300" stroke="#f9a825" stroke-width="2.5" fill="none"/>
+<text x="300" y="290" fill="#f9a825" font-size="11">精度</text>
+<path d="M 100 290 Q 300 295 500 305 Q 600 315 700 340" stroke="#e91e63" stroke-width="2.5" fill="none"/>
+<text x="500" y="330" fill="#e91e63" font-size="11">速度</text>
+</svg>
 | 戦略 | 仕組み | 強み | 弱み |
 |------|--------|------|------|
 | Semantic（意味検索） | ベクトル類似度（ANN） | 同義語・意味的近傍を発見 | 固有名詞・完全一致に弱い |
@@ -168,6 +454,39 @@ style: |
 
 # 類似度計算手法（距離メトリクス）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding ベクトル空間イメージ</text>
+<text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">意味が近い概念ほど近傍に配置される</text>
+<rect x="40" y="60" width="720" height="300" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+<circle cx="180" cy="120" r="8" fill="#f9a825"/>
+<text x="192" y="125" fill="#f9a825" font-size="11">AWS Lambda</text>
+<circle cx="220" cy="150" r="8" fill="#f9a825"/>
+<text x="232" y="155" fill="#f9a825" font-size="11">サーバーレス関数</text>
+<circle cx="160" cy="170" r="8" fill="#f9a825"/>
+<text x="172" y="175" fill="#f9a825" font-size="11">イベント駆動</text>
+<circle cx="450" cy="100" r="8" fill="#e91e63"/>
+<text x="462" y="105" fill="#e91e63" font-size="11">RDS Aurora</text>
+<circle cx="490" cy="130" r="8" fill="#e91e63"/>
+<text x="502" y="135" fill="#e91e63" font-size="11">PostgreSQL</text>
+<circle cx="430" cy="150" r="8" fill="#e91e63"/>
+<text x="442" y="155" fill="#e91e63" font-size="11">リレーショナルDB</text>
+<circle cx="600" cy="270" r="8" fill="#4fc3f7"/>
+<text x="612" y="275" fill="#4fc3f7" font-size="11">機械学習</text>
+<circle cx="640" cy="240" r="8" fill="#4fc3f7"/>
+<text x="652" y="245" fill="#4fc3f7" font-size="11">SageMaker</text>
+<circle cx="580" cy="300" r="8" fill="#4fc3f7"/>
+<text x="592" y="305" fill="#4fc3f7" font-size="11">モデル訓練</text>
+<ellipse cx="190" cy="147" rx="70" ry="40" fill="none" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="190" y="210" text-anchor="middle" fill="#f9a825" font-size="11">コンピューティングクラスタ</text>
+<ellipse cx="460" cy="125" rx="65" ry="35" fill="none" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="460" y="185" text-anchor="middle" fill="#e91e63" font-size="11">データベースクラスタ</text>
+<ellipse cx="615" cy="270" rx="65" ry="40" fill="none" stroke="#4fc3f7" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="615" y="330" text-anchor="middle" fill="#4fc3f7" font-size="11">MLクラスタ</text>
+<line x1="245" y1="155" x2="395" y2="135" stroke="#ffffff" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+<text x="320" y="135" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.6">距離=非類似</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">クエリを同一空間に変換 → コサイン類似度でTop-K取得 → LLMへ送信</text>
+</svg>
 | 手法 | 数式 | 値域 | 特徴 |
 |------|------|------|------|
 | コサイン類似度 | A·B / (|A||B|) | -1〜1 | 方向の類似性。テキスト検索に最適 |
@@ -185,6 +504,33 @@ style: |
 
 # RAG評価指標（RAGAS フレームワーク）
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG モニタリング スタック</text>
+<rect x="20" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="102.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudWatch</text>
+<text x="102.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">メトリクス/アラーム</text>
+<rect x="210" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="292.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">X-Ray</text>
+<text x="292.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">分散トレーシング</text>
+<rect x="400" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="482.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<text x="482.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">API監査ログ</text>
+<rect x="590" y="40" width="190" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="685" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">RAGAS</text>
+<text x="685" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAG品質評価</text>
+<text x="400" y="120" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">主要モニタリング指標</text>
+<text x="100" y="143" text-anchor="middle" fill="#f9a825" font-size="10">InvocationLatency</text>
+<text x="100" y="158" text-anchor="middle" fill="#ffffff" font-size="10">ThrottlingErrors</text>
+<text x="290" y="143" text-anchor="middle" fill="#f9a825" font-size="10">End-to-End Trace</text>
+<text x="290" y="158" text-anchor="middle" fill="#ffffff" font-size="10">ボトルネック特定</text>
+<text x="480" y="143" text-anchor="middle" fill="#f9a825" font-size="10">全API呼び出し記録</text>
+<text x="480" y="158" text-anchor="middle" fill="#ffffff" font-size="10">コンプライアンス</text>
+<text x="680" y="143" text-anchor="middle" fill="#f9a825" font-size="10">Faithfulness</text>
+<text x="680" y="158" text-anchor="middle" fill="#ffffff" font-size="10">Context Precision</text>
+<text x="400" y="188" text-anchor="middle" fill="#ffffff" font-size="11">アラーム設定: Latency P99 &gt; 5s / Error Rate &gt; 1% / Cost 日次上限</text>
+<text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock: InvocationsCount / InputTokenCount / OutputTokenCount</text>
+</svg>
 | 指標 | 説明 | 測定対象 |
 |------|------|---------|
 | Faithfulness（忠実性） | 回答がコンテキストに基づいているか | ハルシネーション検出 |
@@ -202,6 +548,28 @@ style: |
 
 # RAGパイプライン全工程チェックリスト
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG コスト最適化戦略</text>
+<rect x="20" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="132.5" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embedding コスト削減</text>
+
+<rect x="290" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="402.5" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM コスト削減</text>
+
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">インフラコスト削減</text>
+
+<text x="132" y="115" text-anchor="middle" fill="#f9a825" font-size="10">差分更新のみ再Embed</text>
+<text x="132" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Titan v2 最安値利用</text>
+<text x="402" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Batch API (50%OFF)</text>
+<text x="402" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Prompt キャッシュ活用</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Serverless自動スケール</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">S3 Intelligent-Tiering</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">モデル選択: 分類/ルーティングはHaiku → 応答生成のみSonnet</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Semantic Cacheで重複クエリのLLM呼び出しを削減 (命中率30〜60%)</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">月次コスト試算: 1M queries × $0.003/query ≈ $3,000/月 (Sonnet)</text>
+</svg>
 | フェーズ | ステップ | 主要考慮点 |
 |---------|---------|-----------|
 | インジェスト① | データ収集（S3, Confluence等） | アクセス権限・データ品質 |
@@ -228,6 +596,34 @@ style: |
 
 # Amazon Bedrock Knowledge Base — 概要・特徴
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
+<rect x="20" y="40" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">S3 Bucket</text>
+<text x="80" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ソース文書</text>
+<line x1="140" y1="62" x2="165" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="175,62 163,67 163,57" fill="#f9a825"/>
+<rect x="175" y="40" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="240" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Data Ingestion</text>
+<text x="240" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Bedrock KB</text>
+<line x1="305" y1="62" x2="330" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="340,62 328,67 328,57" fill="#f9a825"/>
+<rect x="340" y="40" width="130" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="405" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenSearch</text>
+<text x="405" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Serverless</text>
+<line x1="470" y1="62" x2="495" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="505,62 493,67 493,57" fill="#f9a825"/>
+<rect x="505" y="40" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="570" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector Index</text>
+<text x="570" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">k-NN Index</text>
+<line x1="635" y1="62" x2="660" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="670,62 658,67 658,57" fill="#f9a825"/>
+<rect x="670" y="40" width="110" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query API</text>
+<text x="725" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">検索エンドポイント</text>
+<text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="11">OCU (OpenSearch Compute Unit): Index/Search に独立スケール</text>
+<text x="400" y="138" text-anchor="middle" fill="#f9a825" font-size="11">k-NN アルゴリズム: HNSW (精度高) / IVF (コスト低)</text>
+<text x="400" y="162" text-anchor="middle" fill="#ffffff" font-size="11">ベクトル次元: 最大16000 | Metric: cosine / euclidean / dot_product</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">コレクション = インデックスの論理グループ | VPC Endpoint対応</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">料金: 0.24 USD/OCU-hour (最小0.5 OCU × 2リソース)</text>
+</svg>
 - **フルマネージドRASサービス** — インフラ管理不要でRAGを即時実装
 | 機能カテゴリ | 提供内容 |
 |------------|---------|
@@ -245,6 +641,20 @@ style: |
 
 # KB対応データソース一覧
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Aurora PostgreSQL pgvector — セットアップ</text>
+<rect x="20" y="40" width="760" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold"></text>
+
+<text x="400" y="58" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">CREATE EXTENSION vector;</text>
+<text x="400" y="76" text-anchor="middle" fill="#ffffff" font-size="11">CREATE TABLE docs (id serial, content text, embedding vector(1536));</text>
+<text x="400" y="120" text-anchor="middle" fill="#ffffff" font-size="11">インデックス作成: CREATE INDEX ON docs USING hnsw (embedding vector_cosine_ops);</text>
+<text x="400" y="145" text-anchor="middle" fill="#ffffff" font-size="11">検索: SELECT * FROM docs ORDER BY embedding &lt;=&gt; '[0.1,0.2,...]' LIMIT 5;</text>
+<text x="400" y="170" text-anchor="middle" fill="#f9a825" font-size="11">演算子: &lt;=&gt; (cosine) / &lt;-&gt; (L2) / &lt;#&gt; (inner product)</text>
+<text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="11">Serverless v2: 0.5〜128 ACU | 自動スケール | コスト最適</text>
+<text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB統合: データソース選択時に Aurora PostgreSQL を指定するだけ</text>
+</svg>
 | データソース | 対応フォーマット | 認証方式 |
 |------------|----------------|---------|
 | Amazon S3 | PDF, TXT, HTML, DOC, DOCX, CSV, XLS, JSON, MD | IAMロール |
@@ -263,6 +673,28 @@ style: |
 
 # KB対応ベクトルDB一覧
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
+<rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed Text v2</text>
+<text x="135" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.00002/1K tokens</text>
+<rect x="285" y="40" width="230" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cohere Embed v3</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.0001/1K tokens</text>
+<rect x="550" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenAI text-embed-3</text>
+<text x="665" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.00013/1K tokens</text>
+<text x="135" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 8K tokens</text>
+<text x="135" y="130" text-anchor="middle" fill="#f9a825" font-size="10">AWS最低コスト</text>
+<text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1024dim / 多言語</text>
+<text x="400" y="130" text-anchor="middle" fill="#f9a825" font-size="10">高精度・推奨</text>
+<text x="665" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 3072dim</text>
+<text x="665" y="130" text-anchor="middle" fill="#f9a825" font-size="10">外部API必要</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">選択基準: コスト重視→Titan / 多言語精度→Cohere / AWS外→OpenAI</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">重要: Indexing時とQuery時は必ず同一モデルを使用</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">次元数削減: Matryoshka Embedding で 1/4 次元でも精度維持可能</text>
+</svg>
 | ベクトルDB | 種別 | 特徴 | 最適ユースケース |
 |----------|------|------|----------------|
 | Amazon OpenSearch Serverless | AWS管理 | スケーラブル・Hybrid検索・全文検索 | 大規模・検索機能豊富 |
@@ -279,6 +711,49 @@ style: |
 
 # KB対応エンベディングモデル
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">検索手法 比較</text>
+<rect x="30" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="145" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Dense Retrieval</text>
+<text x="145" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル類似検索 (ANN)</text>
+<rect x="285" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sparse Retrieval</text>
+<text x="400" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">BM25 / TF-IDF</text>
+<rect x="540" y="50" width="230" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="655" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Hybrid Search</text>
+<text x="655" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Dense + Sparse</text>
+<text x="145" y="130" text-anchor="middle" fill="#ffffff" font-size="11">意味・文脈マッチ得意</text>
+<text x="145" y="148" text-anchor="middle" fill="#f9a825" font-size="11">専門用語弱い</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11">キーワード完全一致得意</text>
+<text x="400" y="148" text-anchor="middle" fill="#f9a825" font-size="11">意味理解なし</text>
+<text x="655" y="130" text-anchor="middle" fill="#ffffff" font-size="11">両手法の長所を統合</text>
+<text x="655" y="148" text-anchor="middle" fill="#f9a825" font-size="11">精度最高・推奨</text>
+<text x="400" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Hybrid Search の仕組み</text>
+<rect x="50" y="210" width="150" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="125" y="225.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="125" y="244.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">"Aurora設定方法"</text>
+<line x1="200" y1="232" x2="232.1913119055697" y2="206.24695047554425" stroke="#f9a825" stroke-width="2"/><polygon points="240,200 233.75304952445575,211.40068461786825 227.50609904891152,203.59199652343796" fill="#f9a825"/>
+<line x1="200" y1="232" x2="231.80768079480958" y2="254.2653765563667" stroke="#f9a825" stroke-width="2"/><polygon points="240,260 227.3019052319549,257.21461147023524 233.03652867558816,249.02229226504485" fill="#f9a825"/>
+<rect x="240" y="185" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="198" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Dense</text>
+<text x="315" y="217" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル検索</text>
+<rect x="240" y="255" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="268" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sparse</text>
+<text x="315" y="287" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">BM25検索</text>
+<line x1="390" y1="205" x2="421.71151325924353" y2="226.40527144998939" stroke="#f9a825" stroke-width="2"/><polygon points="430,232 417.2564516360869,229.4305691103655 422.8511801860975,221.14208236960903" fill="#f9a825"/>
+<line x1="390" y1="275" x2="421.71151325924353" y2="253.59472855001061" stroke="#f9a825" stroke-width="2"/><polygon points="430,248 422.8511801860975,258.857917630391 417.2564516360869,250.5694308896345" fill="#f9a825"/>
+<rect x="430" y="215" width="150" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="505" y="230.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">RRF Fusion</text>
+<text x="505" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">スコア統合</text>
+<line x1="580" y1="237" x2="610" y2="237" stroke="#f9a825" stroke-width="2"/><polygon points="620,237 608,242 608,232" fill="#f9a825"/>
+<rect x="620" y="215" width="150" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="695" y="230.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-K Results</text>
+<text x="695" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最終結果</text>
+<text x="400" y="330" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">RRF (Reciprocal Rank Fusion)</text>
+<text x="400" y="350" text-anchor="middle" fill="#f9a825" font-size="12">score = Σ 1/(k + rank_i)  where k=60 (常数)</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">OpenSearch Serverless: hybrid検索ネイティブサポート</text>
+</svg>
 | モデル | Provider | 次元数 | 最大入力 | 特徴 |
 |-------|---------|--------|---------|------|
 | Titan Embeddings Text v2 | Amazon | 256/512/1024 | 8,192 tok | 可変次元・AWS最適化・コスト低 |
@@ -296,6 +771,35 @@ style: |
 
 # KB設定パラメータ詳細
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">クエリ処理パイプライン</text>
+<rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw Query</text>
+<text x="75" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="130" y1="65" x2="155" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="165,65 153,70 153,60" fill="#f9a825"/>
+<rect x="165" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">前処理</text>
+<text x="225" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">正規化/言語検出</text>
+<line x1="285" y1="65" x2="310" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="320,65 308,70 308,60" fill="#f9a825"/>
+<rect x="320" y="45" width="120" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="380" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query Embed</text>
+<text x="380" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル化</text>
+<line x1="440" y1="65" x2="465" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="475,65 463,70 463,60" fill="#f9a825"/>
+<rect x="475" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="535" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ANN Search</text>
+<text x="535" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Top-K取得</text>
+<line x1="595" y1="65" x2="620" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="630,65 618,70 618,60" fill="#f9a825"/>
+<rect x="630" y="45" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="705" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Rerank</text>
+<text x="705" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">精度向上</text>
+<text x="400" y="125" text-anchor="middle" fill="#ffffff" font-size="11">クエリ拡張テクニック</text>
+<text x="200" y="148" text-anchor="middle" fill="#f9a825" font-size="10">HyDE: 仮説文書生成→埋め込み</text>
+<text x="400" y="148" text-anchor="middle" fill="#f9a825" font-size="10">Multi-Query: 複数バリエーション</text>
+<text x="600" y="148" text-anchor="middle" fill="#f9a825" font-size="10">Step-Back: 抽象化→具体化</text>
+<text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="11">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>
+<text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>
+</svg>
 | パラメータ | 設定値 | 説明 |
 |----------|--------|------|
 | チャンクサイズ | 20〜8,192 トークン | デフォルト300 |
@@ -314,6 +818,28 @@ style: |
 
 # KBのチャンキング設定詳細
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG セキュリティ設計</text>
+<rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM Role</text>
+<text x="130" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最小権限原則</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">VPC Endpoint</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">プライベート通信</text>
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">KMS 暗号化</text>
+<text x="670" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">保存/転送時</text>
+<text x="130" y="115" text-anchor="middle" fill="#f9a825" font-size="10">bedrock:InvokeModel</text>
+<text x="130" y="130" text-anchor="middle" fill="#ffffff" font-size="10">s3:GetObject (KB用)</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock/OpenSearch/S3</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">インターネット不要</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Vector DB / S3</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">CMK推奨</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">データ隔離: テナント毎に別KB / メタデータフィルタでアクセス制御</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Guardrails: PII検出・トピックフィルタ・Grounding Check</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">監査: CloudTrail (API呼び出し) + CloudWatch Logs (詳細ログ)</text>
+</svg>
 | チャンキング方式 | 設定項目 | 推奨シナリオ |
 |----------------|---------|-------------|
 | Default | 300トークン固定・管理簡単 | 初期実装・汎用テキスト |
@@ -331,6 +857,30 @@ style: |
 
 # KBのメタデータフィルタリング
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG レイテンシ最適化</text>
+<rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">キャッシュ層</text>
+<text x="130" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Semantic Cache</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">並列処理</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Async Retrieval</text>
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Streaming</text>
+<text x="670" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">SSE/WebSocket</text>
+<text x="130" y="115" text-anchor="middle" fill="#f9a825" font-size="10">類似クエリをキャッシュ</text>
+<text x="130" y="130" text-anchor="middle" fill="#ffffff" font-size="10">ElastiCache/DynamoDB</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Embed + Search 同時</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">asyncio / Promise.all</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">初回トークンを即表示</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">体感速度 大幅改善</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">典型的レイテンシ内訳 (合計 2〜5秒)</text>
+<text x="200" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Embed: 50〜200ms</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">ANN Search: 10〜100ms</text>
+<text x="600" y="188" text-anchor="middle" fill="#f9a825" font-size="11">LLM Gen: 1〜4sec</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Provisioned Throughput: LLM呼び出し速度を最大2x向上</text>
+</svg>
 - **メタデータ属性でベクトル検索結果を事前フィルタリング（Pre-filter）**
 | 演算子 | 使用例 |
 |--------|-------|
@@ -349,6 +899,33 @@ style: |
 
 # KBのデータ同期・インジェスト
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG モニタリング スタック</text>
+<rect x="20" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="102.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudWatch</text>
+<text x="102.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">メトリクス/アラーム</text>
+<rect x="210" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="292.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">X-Ray</text>
+<text x="292.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">分散トレーシング</text>
+<rect x="400" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="482.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<text x="482.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">API監査ログ</text>
+<rect x="590" y="40" width="190" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="685" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">RAGAS</text>
+<text x="685" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAG品質評価</text>
+<text x="400" y="120" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">主要モニタリング指標</text>
+<text x="100" y="143" text-anchor="middle" fill="#f9a825" font-size="10">InvocationLatency</text>
+<text x="100" y="158" text-anchor="middle" fill="#ffffff" font-size="10">ThrottlingErrors</text>
+<text x="290" y="143" text-anchor="middle" fill="#f9a825" font-size="10">End-to-End Trace</text>
+<text x="290" y="158" text-anchor="middle" fill="#ffffff" font-size="10">ボトルネック特定</text>
+<text x="480" y="143" text-anchor="middle" fill="#f9a825" font-size="10">全API呼び出し記録</text>
+<text x="480" y="158" text-anchor="middle" fill="#ffffff" font-size="10">コンプライアンス</text>
+<text x="680" y="143" text-anchor="middle" fill="#f9a825" font-size="10">Faithfulness</text>
+<text x="680" y="158" text-anchor="middle" fill="#ffffff" font-size="10">Context Precision</text>
+<text x="400" y="188" text-anchor="middle" fill="#ffffff" font-size="11">アラーム設定: Latency P99 &gt; 5s / Error Rate &gt; 1% / Cost 日次上限</text>
+<text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock: InvocationsCount / InputTokenCount / OutputTokenCount</text>
+</svg>
 | 同期方式 | トリガー | ユースケース |
 |---------|---------|-------------|
 | 手動同期 | Console / StartIngestionJob API | 初期ロード・スポット更新 |
@@ -369,6 +946,49 @@ style: |
 
 # Retrieve API — 検索のみ（LLM生成なし）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Re-ranking パイプライン</text>
+<rect x="20" y="55" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="80" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ユーザー入力</text>
+<line x1="140" y1="77" x2="170" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="180,77 168,82 168,72" fill="#f9a825"/>
+<rect x="180" y="55" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">First Stage</text>
+<text x="245" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">粗い検索</text>
+<line x1="310" y1="77" x2="340" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="350,77 338,82 338,72" fill="#f9a825"/>
+<rect x="350" y="55" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-100</text>
+<text x="415" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">候補取得</text>
+<line x1="480" y1="77" x2="510" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="520,77 508,82 508,72" fill="#f9a825"/>
+<rect x="520" y="55" width="140" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="590" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Re-ranker</text>
+<text x="590" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">精密スコアリング</text>
+<line x1="660" y1="77" x2="690" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="700,77 688,82 688,72" fill="#f9a825"/>
+<rect x="700" y="55" width="80" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="740" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-5</text>
+<text x="740" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最終</text>
+<text x="245" y="130" text-anchor="middle" fill="#f9a825" font-size="11">ANN/BM25</text>
+<text x="415" y="130" text-anchor="middle" fill="#ffffff" font-size="11">Recall重視</text>
+<text x="590" y="130" text-anchor="middle" fill="#e91e63" font-size="11">Precision重視</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Re-ranker 種類と特徴</text>
+<rect x="30" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cross-Encoder</text>
+<text x="140" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">クエリ×文書を同時入力</text>
+<rect x="290" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cohere Rerank</text>
+<text x="400" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">API呼び出し型</text>
+<rect x="550" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM Reranking</text>
+<text x="660" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">GPT/Claude判定</text>
+<text x="140" y="250" text-anchor="middle" fill="#f9a825" font-size="10">高精度・低速</text>
+<text x="400" y="250" text-anchor="middle" fill="#f9a825" font-size="10">バランス良・推奨</text>
+<text x="660" y="250" text-anchor="middle" fill="#f9a825" font-size="10">最高精度・コスト高</text>
+<text x="400" y="305" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">効果: MRR/NDCG を平均 15-30% 改善</text>
+<rect x="60" y="325" width="680" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="400" y="348" text-anchor="middle" fill="#ffffff" font-size="12">Bedrock Knowledge Bases: Cohere Rerank ネイティブ統合</text>
+<text x="400" y="366" text-anchor="middle" fill="#f9a825" font-size="11">numberOfResults↑ → Re-rank → contextWindow内に収まる数を選択</text>
+</svg>
 - **用途:** 独自プロンプト組み立て / 複数KB検索の統合 / 結果フィルタ後処理
 | レスポンス項目 | 説明 |
 |-------------|------|
@@ -379,6 +999,34 @@ style: |
 - Top-k件の retrieval_results リストで返却
 - scoreThreshold 指定で低スコア結果を除外可能
 - filter パラメータでメタデータ条件を追加
+
+
+---
+
+# Retrieve API — 検索のみ（LLM生成なし）（コード例）
+
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG コスト最適化戦略</text>
+<rect x="20" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="132.5" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embedding コスト削減</text>
+
+<rect x="290" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="402.5" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM コスト削減</text>
+
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">インフラコスト削減</text>
+
+<text x="132" y="115" text-anchor="middle" fill="#f9a825" font-size="10">差分更新のみ再Embed</text>
+<text x="132" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Titan v2 最安値利用</text>
+<text x="402" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Batch API (50%OFF)</text>
+<text x="402" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Prompt キャッシュ活用</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Serverless自動スケール</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">S3 Intelligent-Tiering</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">モデル選択: 分類/ルーティングはHaiku → 応答生成のみSonnet</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Semantic Cacheで重複クエリのLLM呼び出しを削減 (命中率30〜60%)</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">月次コスト試算: 1M queries × $0.003/query ≈ $3,000/月 (Sonnet)</text>
+</svg>
 
 ```python
 response = bedrock_agent_runtime.retrieve(
@@ -401,6 +1049,34 @@ response = bedrock_agent_runtime.retrieve(
 
 # RetrieveAndGenerate API — 検索+LLM生成
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
+<rect x="20" y="40" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">S3 Bucket</text>
+<text x="80" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ソース文書</text>
+<line x1="140" y1="62" x2="165" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="175,62 163,67 163,57" fill="#f9a825"/>
+<rect x="175" y="40" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="240" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Data Ingestion</text>
+<text x="240" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Bedrock KB</text>
+<line x1="305" y1="62" x2="330" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="340,62 328,67 328,57" fill="#f9a825"/>
+<rect x="340" y="40" width="130" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="405" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenSearch</text>
+<text x="405" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Serverless</text>
+<line x1="470" y1="62" x2="495" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="505,62 493,67 493,57" fill="#f9a825"/>
+<rect x="505" y="40" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="570" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector Index</text>
+<text x="570" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">k-NN Index</text>
+<line x1="635" y1="62" x2="660" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="670,62 658,67 658,57" fill="#f9a825"/>
+<rect x="670" y="40" width="110" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query API</text>
+<text x="725" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">検索エンドポイント</text>
+<text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="11">OCU (OpenSearch Compute Unit): Index/Search に独立スケール</text>
+<text x="400" y="138" text-anchor="middle" fill="#f9a825" font-size="11">k-NN アルゴリズム: HNSW (精度高) / IVF (コスト低)</text>
+<text x="400" y="162" text-anchor="middle" fill="#ffffff" font-size="11">ベクトル次元: 最大16000 | Metric: cosine / euclidean / dot_product</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">コレクション = インデックスの論理グループ | VPC Endpoint対応</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">料金: 0.24 USD/OCU-hour (最小0.5 OCU × 2リソース)</text>
+</svg>
 - **用途:** エンドツーエンドRAG。検索・プロンプト構築・LLM生成を一括実行
 | 設定項目 | 説明 |
 |---------|------|
@@ -412,6 +1088,26 @@ response = bedrock_agent_runtime.retrieve(
 | orchestrationConfiguration | リランキングモデル指定 |
 - レスポンス: output.text（生成回答）+ citations（引用元リスト）
 - citations: retrievedReferences（ソースチャンク+URI+メタデータ）が含まれる
+
+
+---
+
+# RetrieveAndGenerate API — 検索+LLM生成（コード例）
+
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Aurora PostgreSQL pgvector — セットアップ</text>
+<rect x="20" y="40" width="760" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold"></text>
+
+<text x="400" y="58" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">CREATE EXTENSION vector;</text>
+<text x="400" y="76" text-anchor="middle" fill="#ffffff" font-size="11">CREATE TABLE docs (id serial, content text, embedding vector(1536));</text>
+<text x="400" y="120" text-anchor="middle" fill="#ffffff" font-size="11">インデックス作成: CREATE INDEX ON docs USING hnsw (embedding vector_cosine_ops);</text>
+<text x="400" y="145" text-anchor="middle" fill="#ffffff" font-size="11">検索: SELECT * FROM docs ORDER BY embedding &lt;=&gt; '[0.1,0.2,...]' LIMIT 5;</text>
+<text x="400" y="170" text-anchor="middle" fill="#f9a825" font-size="11">演算子: &lt;=&gt; (cosine) / &lt;-&gt; (L2) / &lt;#&gt; (inner product)</text>
+<text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="11">Serverless v2: 0.5〜128 ACU | 自動スケール | コスト最適</text>
+<text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB統合: データソース選択時に Aurora PostgreSQL を指定するだけ</text>
+</svg>
 
 ```python
 response = bedrock_agent_runtime.retrieve_and_generate(
@@ -437,6 +1133,28 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # Retrieve vs RetrieveAndGenerate 比較
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
+<rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed Text v2</text>
+<text x="135" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.00002/1K tokens</text>
+<rect x="285" y="40" width="230" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cohere Embed v3</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.0001/1K tokens</text>
+<rect x="550" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenAI text-embed-3</text>
+<text x="665" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.00013/1K tokens</text>
+<text x="135" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 8K tokens</text>
+<text x="135" y="130" text-anchor="middle" fill="#f9a825" font-size="10">AWS最低コスト</text>
+<text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1024dim / 多言語</text>
+<text x="400" y="130" text-anchor="middle" fill="#f9a825" font-size="10">高精度・推奨</text>
+<text x="665" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 3072dim</text>
+<text x="665" y="130" text-anchor="middle" fill="#f9a825" font-size="10">外部API必要</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">選択基準: コスト重視→Titan / 多言語精度→Cohere / AWS外→OpenAI</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">重要: Indexing時とQuery時は必ず同一モデルを使用</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">次元数削減: Matryoshka Embedding で 1/4 次元でも精度維持可能</text>
+</svg>
 | 比較軸 | Retrieve | RetrieveAndGenerate |
 |-------|---------|---------------------|
 | LLM呼び出し | なし | あり（FM推論コスト発生） |
@@ -456,6 +1174,21 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # KBとBedrock Agentsの統合
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG 評価指標 (RAGAS フレームワーク)</text>
+<line x1="250" y1="210" x2="250" y2="80" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.583302491977" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.58330249197707" y2="275" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="250" y2="340" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="275.00000000000006" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><polygon points="250,177.5 278.14582562299427,193.75 278.14582562299427,226.25 250,242.5 221.85417437700573,226.25 221.85417437700573,193.75 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,145 306.29165124598853,177.5 306.29165124598853,242.5 250,275 193.7083487540115,242.50000000000003 193.7083487540115,177.5 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,112.5 334.43747686898274,161.25 334.4374768689828,258.75 250,307.5 165.56252313101726,258.75000000000006 165.56252313101726,161.25 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,80 362.583302491977,145 362.58330249197707,275 250,340 137.416697508023,275.00000000000006 137.416697508023,145 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/>
+<polygon points="250,99.5 337.81497594374207,159.3 331.05997779422347,256.79999999999995 250,327 159.93335800641842,262.00000000000006 176.82085338021494,167.75 " fill="#e91e63" fill-opacity="0.3" stroke="#e91e63" stroke-width="2"/>
+<text x="250" y="52" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Faithfulness</text><text x="250" y="64" text-anchor="middle" fill="#f9a825" font-size="10">85%</text><text x="386.8320137979413" y="131" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Answer Relevance</text><text x="386.8320137979413" y="143" text-anchor="middle" fill="#f9a825" font-size="10">78%</text><text x="386.83201379794133" y="289" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Context Precision</text><text x="386.83201379794133" y="301" text-anchor="middle" fill="#f9a825" font-size="10">72%</text><text x="250" y="368" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Context Recall</text><text x="250" y="380" text-anchor="middle" fill="#f9a825" font-size="10">90%</text><text x="113.16798620205873" y="289.00000000000006" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Answer Correctness</text><text x="113.16798620205873" y="301.00000000000006" text-anchor="middle" fill="#f9a825" font-size="10">80%</text><text x="113.1679862020587" y="131" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Latency</text><text x="113.1679862020587" y="143" text-anchor="middle" fill="#f9a825" font-size="10">65%</text>
+<rect x="520" y="60" width="260" height="290" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="650" y="85" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">評価指標の意味</text>
+<text x="535" y="108" fill="#ffffff" font-size="11">Faithfulness</text><text x="770" y="108" text-anchor="end" fill="#f9a825" font-size="11">幻覚なし率</text>
+<text x="535" y="146" fill="#ffffff" font-size="11">Answer Relevance</text><text x="770" y="146" text-anchor="end" fill="#f9a825" font-size="11">回答関連性</text>
+<text x="535" y="184" fill="#ffffff" font-size="11">Context Precision</text><text x="770" y="184" text-anchor="end" fill="#f9a825" font-size="11">文脈精度</text>
+<text x="535" y="222" fill="#ffffff" font-size="11">Context Recall</text><text x="770" y="222" text-anchor="end" fill="#f9a825" font-size="11">文脈網羅率</text>
+<text x="535" y="260" fill="#ffffff" font-size="11">Answer Correctness</text><text x="770" y="260" text-anchor="end" fill="#f9a825" font-size="11">正解一致率</text>
+<text x="535" y="298" fill="#ffffff" font-size="11">Latency</text><text x="770" y="298" text-anchor="end" fill="#f9a825" font-size="11">応答速度</text>
+</svg>
 - **Agents + KB = マルチステップ推論 + 外部知識参照の組み合わせ**
 | 統合方式 | 説明 |
 |---------|------|
@@ -474,6 +1207,67 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # KBのハイブリッド検索
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Advanced RAG パターン</text>
+<text x="200" y="55" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">HyDE (Hypothetical Doc Embedding)</text>
+<rect x="20" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="75" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">"Aurora設定"</text>
+<line x1="130" y1="90" x2="155" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="165,90 153,95 153,85" fill="#f9a825"/>
+<rect x="165" y="70" width="110" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="220" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="220" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">仮想文書生成</text>
+<line x1="275" y1="90" x2="300" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="310,90 298,95 298,85" fill="#f9a825"/>
+<rect x="310" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="365" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="365" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">仮想文書</text>
+<line x1="420" y1="90" x2="445" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="455,90 443,95 443,85" fill="#f9a825"/>
+<rect x="455" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="510" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Search</text>
+<text x="510" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">類似検索</text>
+<line x1="565" y1="90" x2="590" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="600,90 588,95 588,85" fill="#f9a825"/>
+<rect x="600" y="70" width="100" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-K</text>
+<text x="650" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">文書取得</text>
+<text x="220" y="135" text-anchor="middle" fill="#f9a825" font-size="11">「Auroraの設定手順は...」を生成</text>
+<line x1="20" y1="155" x2="780" y2="155" stroke="#f9a825" stroke-width="1" opacity="0.3"/>
+<text x="200" y="175" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Multi-Query Retrieval</text>
+<rect x="20" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="75" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">元質問</text>
+<line x1="130" y1="210" x2="155" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="165,210 153,215 153,205" fill="#f9a825"/>
+<rect x="165" y="190" width="120" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="225" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">3〜5クエリ生成</text>
+<line x1="285" y1="195" x2="310.8085496998194" y2="183.93919298579166" stroke="#f9a825" stroke-width="2"/><polygon points="320,180 310.93985613267915,189.3227567330403 307.00066314688746,180.13130643285973" fill="#f9a825"/>
+<line x1="285" y1="210" x2="310" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="320,210 308,215 308,205" fill="#f9a825"/>
+<line x1="285" y1="225" x2="310.8085496998194" y2="236.06080701420834" stroke="#f9a825" stroke-width="2"/><polygon points="320,240 307.00066314688746,239.86869356714027 310.93985613267915,230.6772432669597" fill="#f9a825"/>
+<rect x="320" y="165" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="184" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 1</text>
+
+<rect x="320" y="195" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="214" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 2</text>
+
+<rect x="320" y="225" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="244" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 3</text>
+
+<line x1="430" y1="183" x2="457.0821774443653" y2="203.8919654570818" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 452.44459566177926,206.6292698263155 458.55263020469744,198.7114472706808" fill="#f9a825"/>
+<line x1="430" y1="214" x2="455.064673273436" y2="211.13546591160733" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 453.6453408839268,216.3302224572108 452.5098749723195,206.39489573064677" fill="#f9a825"/>
+<line x1="430" y1="244" x2="457.82720619140775" y2="216.9678568426325" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 459.87657585100555,221.94782511545512 452.90871900837305,214.77503130686287" fill="#f9a825"/>
+<rect x="465" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="520" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Merge</text>
+<text x="520" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">重複除去</text>
+<line x1="575" y1="210" x2="600" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="610,210 598,215 598,205" fill="#f9a825"/>
+<rect x="610" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Final</text>
+<text x="665" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">文書セット</text>
+<line x1="20" y1="280" x2="780" y2="280" stroke="#f9a825" stroke-width="1" opacity="0.3"/>
+<text x="200" y="300" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Step-Back Prompting</text>
+<text x="400" y="320" text-anchor="middle" fill="#ffffff" font-size="11">具体 → 抽象化 → 検索 → 組み合わせ回答</text>
+<text x="400" y="345" text-anchor="middle" fill="#f9a825" font-size="11">例: 「Lambda timeout設定」→「Lambda設定全般とは？」で文脈収集</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">HyDE: 文書ドメインが専門的な場合に有効  |  Multi-Query: 質問が曖昧な場合</text>
+</svg>
 - **HYBRID = ベクトル検索（Semantic）+ キーワード検索（BM25）の統合**
 | 設定値 | 説明 | 適用場面 |
 |-------|------|---------|
@@ -489,26 +1283,170 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 ---
 
-# KBのReranking（再スコアリング）
+# KBのReranking（再スコアリング）（1/2）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">本番 RAG アーキテクチャ (AWS)</text>
+<rect x="20" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Client</text>
+<text x="80" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Web/Mobile</text>
+<line x1="140" y1="70" x2="170" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="180,70 168,75 168,65" fill="#f9a825"/>
+<rect x="180" y="50" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">API Gateway</text>
+<text x="245" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">+ Lambda</text>
+<line x1="310" y1="70" x2="340" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="350,70 338,75 338,65" fill="#f9a825"/>
+<rect x="350" y="50" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Bedrock KB</text>
+<text x="415" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAGオーケストレーション</text>
+<line x1="480" y1="70" x2="510" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="520,70 508,75 508,65" fill="#f9a825"/>
+<rect x="520" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="580" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3.5</text>
+<text x="580" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Sonnet</text>
+<line x1="480" y1="85" x2="480" y2="135" stroke="#f9a825" stroke-width="2"/><polygon points="480,145 475,133 485,133" fill="#f9a825"/>
+<rect x="350" y="145" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenSearch</text>
+<text x="415" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Serverless</text>
+<line x1="480" y1="145" x2="480" y2="175" stroke="#f9a825" stroke-width="2"/><polygon points="480,185 475,173 485,173" fill="#f9a825"/>
+<rect x="350" y="185" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="198" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed Model</text>
+<text x="415" y="217" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Titan v2</text>
+<rect x="20" y="145" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">S3 Bucket</text>
+<text x="95" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ドキュメント格納</text>
+<line x1="170" y1="165" x2="340" y2="165" stroke="#f9a825" stroke-width="2"/><polygon points="350,165 338,170 338,160" fill="#f9a825"/>
+<rect x="540" y="145" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="605" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudWatch</text>
+<text x="605" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">モニタリング</text>
+<rect x="540" y="200" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="605" y="213" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">X-Ray</text>
+<text x="605" y="232" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">トレーシング</text>
+<rect x="690" y="145" width="100" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="740" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">GuardRails</text>
+<text x="740" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">安全フィルタ</text>
+<text x="400" y="275" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">本番運用チェックリスト</text>
+<rect x="20" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">セキュリティ</text>
+
+<rect x="285" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">パフォーマンス</text>
+
+<rect x="550" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">コスト最適化</text>
+
+<text x="135" y="315" text-anchor="middle" fill="#f9a825" font-size="10">IAM最小権限 / VPC Endpoint</text><text x="135" y="333" text-anchor="middle" fill="#ffffff" font-size="10">KMS暗号化 / Guardrails</text>
+<text x="400" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Provisioned Throughput</text><text x="400" y="333" text-anchor="middle" fill="#ffffff" font-size="10">キャッシュ / バッチ処理</text>
+<text x="665" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Spot Embedding / S3 Intelligent</text><text x="665" y="333" text-anchor="middle" fill="#ffffff" font-size="10">Haiku for classify</text>
+</svg>
 - **Rerankingとは:** 最初の検索結果（Top-k）をLLMで再評価して順序を最適化
+- **Rerankingの流れ:**
+- Retrieve（Top-20等） → Rerankingモデルで関連度再評価 → 上位5件でLLM生成
+- **設定（RetrieveAndGenerate）:**
 | Rerankingモデル | Provider | 特徴 |
 |---------------|---------|------|
 | Amazon Rerank 1.0 | Amazon | AWS最適化・低コスト |
 | Cohere Rerank 1.0 | Cohere | 高精度・多言語対応 |
-- **Rerankingの流れ:**
-- Retrieve（Top-20等） → Rerankingモデルで関連度再評価 → 上位5件でLLM生成
-- **設定（RetrieveAndGenerate）:**
+
+
+---
+
+# KBのReranking（再スコアリング）（2/2）
+
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG パイプライン全体像</text>
+<text x="200" y="75" text-anchor="middle" fill="#ffffff" font-size="12">オフライン（Indexing Phase）</text>
+<text x="590" y="75" text-anchor="middle" fill="#e91e63" font-size="12">オンライン（Query Phase）</text>
+<line x1="390" y1="65" x2="390" y2="175" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="30" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="77.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Ingest</text>
+<text x="77.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">S3→Parse</text><line x1="125" y1="127" x2="128" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="138,127 126,132 126,122" fill="#f9a825"/><rect x="138" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="185.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunk</text>
+<text x="185.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">分割処理</text><line x1="233" y1="127" x2="236" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="246,127 234,132 234,122" fill="#f9a825"/><rect x="246" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="293.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="293.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル化</text><line x1="341" y1="127" x2="344" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="354,127 342,132 342,122" fill="#f9a825"/><rect x="354" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="401.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Index</text>
+<text x="401.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">DB格納</text><line x1="449" y1="127" x2="452" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="462,127 450,132 450,122" fill="#f9a825"/><rect x="462" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="509.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Retrieve</text>
+<text x="509.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">類似検索</text><line x1="557" y1="127" x2="560" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="570,127 558,132 558,122" fill="#f9a825"/><rect x="570" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="617.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augment</text>
+<text x="617.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Prompt合成</text><line x1="665" y1="127" x2="668" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="678,127 666,132 666,122" fill="#f9a825"/><rect x="678" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Generate</text>
+<text x="725.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">LLM応答</text>
+<text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="11">← Offline: 事前インデックス作成  |  Online: リアルタイム検索・生成 →</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">主要コンポーネント</text>
+<rect x="30" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Document Loader</text>
+<text x="140" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">S3/URL/Confluence/SharePoint</text>
+<rect x="290" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector Store</text>
+<text x="400" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">OpenSearch/pgvector/Pinecone</text>
+<rect x="550" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="660" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude 3.5 / Titan / Llama</text>
+<text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="12">Amazon Bedrock Knowledge Bases = マネージド RAG サービス</text>
+</svg>
 - orchestrationConfiguration.queryTransformationConfiguration に rerankingModel を指定
 - **メリット / デメリット:**
 - 精度大幅向上（特に長文・複雑な質問）
 - レイテンシ増加・Rerankingモデルのコスト増
+| Rerankingモデル | Provider | 特徴 |
+|---------------|---------|------|
+| Amazon Rerank 1.0 | Amazon | AWS最適化・低コスト |
+| Cohere Rerank 1.0 | Cohere | 高精度・多言語対応 |
 
 
 ---
 
 # KBとGuardrails統合
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">チャンキング戦略 比較</text>
+<rect x="20" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="110" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Fixed Size</text>
+<text x="110" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">固定トークン数</text>
+<rect x="210" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="300" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Recursive</text>
+<text x="300" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">区切り文字ベース</text>
+<rect x="400" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="490" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Semantic</text>
+<text x="490" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">意味単位分割</text>
+<rect x="590" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="680" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Hierarchical</text>
+<text x="680" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">親子構造</text>
+<rect x="20" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="110" y="140" text-anchor="middle" fill="#f9a825" font-size="11">chunk_size: 500</text>
+<text x="110" y="158" text-anchor="middle" fill="#ffffff" font-size="11">chunk_overlap: 50</text>
+<text x="110" y="176" text-anchor="middle" fill="#ffffff" font-size="11">シンプル・高速</text>
+<rect x="210" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="300" y="140" text-anchor="middle" fill="#f9a825" font-size="11">
+
+ → 
+ → 。</text>
+<text x="300" y="158" text-anchor="middle" fill="#ffffff" font-size="11">自然な境界</text>
+<text x="300" y="176" text-anchor="middle" fill="#ffffff" font-size="11">精度バランス良</text>
+<rect x="400" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="490" y="140" text-anchor="middle" fill="#f9a825" font-size="11">埋め込み類似度</text>
+<text x="490" y="158" text-anchor="middle" fill="#ffffff" font-size="11">で境界を検出</text>
+<text x="490" y="176" text-anchor="middle" fill="#ffffff" font-size="11">高精度・処理重</text>
+<rect x="590" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="680" y="140" text-anchor="middle" fill="#f9a825" font-size="11">Parent: 章/節</text>
+<text x="680" y="158" text-anchor="middle" fill="#ffffff" font-size="11">Child: 段落</text>
+<text x="680" y="176" text-anchor="middle" fill="#ffffff" font-size="11">コンテキスト保持</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">チャンクサイズ vs 精度のトレードオフ</text>
+<rect x="60" y="255" width="680" height="110" rx="6" fill="#16213e"/>
+<line x1="100" y1="320" x2="690" y2="320" stroke="#ffffff" stroke-width="2"/><polygon points="700,320 688,325 688,315" fill="#ffffff"/>
+<text x="80" y="325" text-anchor="end" fill="#ffffff" font-size="11">小</text>
+<text x="710" y="325" fill="#ffffff" font-size="11">大 →チャンクサイズ</text>
+<line x1="100" y1="360" x2="100" y2="265" stroke="#ffffff" stroke-width="1"/>
+<text x="95" y="270" text-anchor="end" fill="#ffffff" font-size="11">高</text>
+<text x="95" y="365" text-anchor="end" fill="#ffffff" font-size="11">低</text>
+<path d="M 100 340 Q 300 270 500 280 Q 600 285 700 300" stroke="#f9a825" stroke-width="2.5" fill="none"/>
+<text x="300" y="290" fill="#f9a825" font-size="11">精度</text>
+<path d="M 100 290 Q 300 295 500 305 Q 600 315 700 340" stroke="#e91e63" stroke-width="2.5" fill="none"/>
+<text x="500" y="330" fill="#e91e63" font-size="11">速度</text>
+</svg>
 - **Guardrails = RAGパイプライン全体にコンテンツフィルタリングを適用**
 | フィルター種別 | 機能 |
 |-------------|------|
@@ -527,6 +1465,35 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # KBのモニタリング（CloudWatch）
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">クエリ処理パイプライン</text>
+<rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw Query</text>
+<text x="75" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="130" y1="65" x2="155" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="165,65 153,70 153,60" fill="#f9a825"/>
+<rect x="165" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">前処理</text>
+<text x="225" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">正規化/言語検出</text>
+<line x1="285" y1="65" x2="310" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="320,65 308,70 308,60" fill="#f9a825"/>
+<rect x="320" y="45" width="120" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="380" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query Embed</text>
+<text x="380" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル化</text>
+<line x1="440" y1="65" x2="465" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="475,65 463,70 463,60" fill="#f9a825"/>
+<rect x="475" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="535" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ANN Search</text>
+<text x="535" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Top-K取得</text>
+<line x1="595" y1="65" x2="620" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="630,65 618,70 618,60" fill="#f9a825"/>
+<rect x="630" y="45" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="705" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Rerank</text>
+<text x="705" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">精度向上</text>
+<text x="400" y="125" text-anchor="middle" fill="#ffffff" font-size="11">クエリ拡張テクニック</text>
+<text x="200" y="148" text-anchor="middle" fill="#f9a825" font-size="10">HyDE: 仮説文書生成→埋め込み</text>
+<text x="400" y="148" text-anchor="middle" fill="#f9a825" font-size="10">Multi-Query: 複数バリエーション</text>
+<text x="600" y="148" text-anchor="middle" fill="#f9a825" font-size="10">Step-Back: 抽象化→具体化</text>
+<text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="11">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>
+<text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>
+</svg>
 | メトリクス | 説明 | アラート推奨 |
 |----------|------|------------|
 | IngestionJobStatus | インジェストジョブ成否 | FAILED時 |
@@ -544,6 +1511,28 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # KBのIAMポリシー設計
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG セキュリティ設計</text>
+<rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM Role</text>
+<text x="130" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最小権限原則</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">VPC Endpoint</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">プライベート通信</text>
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">KMS 暗号化</text>
+<text x="670" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">保存/転送時</text>
+<text x="130" y="115" text-anchor="middle" fill="#f9a825" font-size="10">bedrock:InvokeModel</text>
+<text x="130" y="130" text-anchor="middle" fill="#ffffff" font-size="10">s3:GetObject (KB用)</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock/OpenSearch/S3</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">インターネット不要</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Vector DB / S3</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">CMK推奨</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">データ隔離: テナント毎に別KB / メタデータフィルタでアクセス制御</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Guardrails: PII検出・トピックフィルタ・Grounding Check</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">監査: CloudTrail (API呼び出し) + CloudWatch Logs (詳細ログ)</text>
+</svg>
 - **KBアクセス制御の3レイヤー:**
 - ① アプリ → Bedrock KB API（bedrock:Retrieve/RetrieveAndGenerate権限）
 - ② KB → S3データソース（s3:GetObject/ListBucket権限）
@@ -555,6 +1544,36 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 | bedrock:StartIngestionJob | データ同期開始 |
 | bedrock:GetIngestionJob | ジョブ状態確認 |
 | bedrock:CreateKnowledgeBase | KB作成 |
+
+
+---
+
+# KBのIAMポリシー設計（コード例）
+
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG レイテンシ最適化</text>
+<rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">キャッシュ層</text>
+<text x="130" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Semantic Cache</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">並列処理</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Async Retrieval</text>
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Streaming</text>
+<text x="670" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">SSE/WebSocket</text>
+<text x="130" y="115" text-anchor="middle" fill="#f9a825" font-size="10">類似クエリをキャッシュ</text>
+<text x="130" y="130" text-anchor="middle" fill="#ffffff" font-size="10">ElastiCache/DynamoDB</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Embed + Search 同時</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">asyncio / Promise.all</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">初回トークンを即表示</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">体感速度 大幅改善</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">典型的レイテンシ内訳 (合計 2〜5秒)</text>
+<text x="200" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Embed: 50〜200ms</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">ANN Search: 10〜100ms</text>
+<text x="600" y="188" text-anchor="middle" fill="#f9a825" font-size="11">LLM Gen: 1〜4sec</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Provisioned Throughput: LLM呼び出し速度を最大2x向上</text>
+</svg>
 
 ```json
 # KBへのRetrieve権限ポリシー例
@@ -573,6 +1592,39 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # KBのVPCエンドポイント設定
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding ベクトル空間イメージ</text>
+<text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">意味が近い概念ほど近傍に配置される</text>
+<rect x="40" y="60" width="720" height="300" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+<circle cx="180" cy="120" r="8" fill="#f9a825"/>
+<text x="192" y="125" fill="#f9a825" font-size="11">AWS Lambda</text>
+<circle cx="220" cy="150" r="8" fill="#f9a825"/>
+<text x="232" y="155" fill="#f9a825" font-size="11">サーバーレス関数</text>
+<circle cx="160" cy="170" r="8" fill="#f9a825"/>
+<text x="172" y="175" fill="#f9a825" font-size="11">イベント駆動</text>
+<circle cx="450" cy="100" r="8" fill="#e91e63"/>
+<text x="462" y="105" fill="#e91e63" font-size="11">RDS Aurora</text>
+<circle cx="490" cy="130" r="8" fill="#e91e63"/>
+<text x="502" y="135" fill="#e91e63" font-size="11">PostgreSQL</text>
+<circle cx="430" cy="150" r="8" fill="#e91e63"/>
+<text x="442" y="155" fill="#e91e63" font-size="11">リレーショナルDB</text>
+<circle cx="600" cy="270" r="8" fill="#4fc3f7"/>
+<text x="612" y="275" fill="#4fc3f7" font-size="11">機械学習</text>
+<circle cx="640" cy="240" r="8" fill="#4fc3f7"/>
+<text x="652" y="245" fill="#4fc3f7" font-size="11">SageMaker</text>
+<circle cx="580" cy="300" r="8" fill="#4fc3f7"/>
+<text x="592" y="305" fill="#4fc3f7" font-size="11">モデル訓練</text>
+<ellipse cx="190" cy="147" rx="70" ry="40" fill="none" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="190" y="210" text-anchor="middle" fill="#f9a825" font-size="11">コンピューティングクラスタ</text>
+<ellipse cx="460" cy="125" rx="65" ry="35" fill="none" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="460" y="185" text-anchor="middle" fill="#e91e63" font-size="11">データベースクラスタ</text>
+<ellipse cx="615" cy="270" rx="65" ry="40" fill="none" stroke="#4fc3f7" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="615" y="330" text-anchor="middle" fill="#4fc3f7" font-size="11">MLクラスタ</text>
+<line x1="245" y1="155" x2="395" y2="135" stroke="#ffffff" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+<text x="320" y="135" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.6">距離=非類似</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">クエリを同一空間に変換 → コサイン類似度でTop-K取得 → LLMへ送信</text>
+</svg>
 - **VPCエンドポイント利用でインターネット経由を回避（セキュリティ強化）**
 | エンドポイント | サービス | 用途 |
 |-------------|---------|------|
@@ -590,6 +1642,33 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # KBのコスト最適化
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG モニタリング スタック</text>
+<rect x="20" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="102.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudWatch</text>
+<text x="102.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">メトリクス/アラーム</text>
+<rect x="210" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="292.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">X-Ray</text>
+<text x="292.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">分散トレーシング</text>
+<rect x="400" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="482.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<text x="482.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">API監査ログ</text>
+<rect x="590" y="40" width="190" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="685" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">RAGAS</text>
+<text x="685" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAG品質評価</text>
+<text x="400" y="120" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">主要モニタリング指標</text>
+<text x="100" y="143" text-anchor="middle" fill="#f9a825" font-size="10">InvocationLatency</text>
+<text x="100" y="158" text-anchor="middle" fill="#ffffff" font-size="10">ThrottlingErrors</text>
+<text x="290" y="143" text-anchor="middle" fill="#f9a825" font-size="10">End-to-End Trace</text>
+<text x="290" y="158" text-anchor="middle" fill="#ffffff" font-size="10">ボトルネック特定</text>
+<text x="480" y="143" text-anchor="middle" fill="#f9a825" font-size="10">全API呼び出し記録</text>
+<text x="480" y="158" text-anchor="middle" fill="#ffffff" font-size="10">コンプライアンス</text>
+<text x="680" y="143" text-anchor="middle" fill="#f9a825" font-size="10">Faithfulness</text>
+<text x="680" y="158" text-anchor="middle" fill="#ffffff" font-size="10">Context Precision</text>
+<text x="400" y="188" text-anchor="middle" fill="#ffffff" font-size="11">アラーム設定: Latency P99 &gt; 5s / Error Rate &gt; 1% / Cost 日次上限</text>
+<text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock: InvocationsCount / InputTokenCount / OutputTokenCount</text>
+</svg>
 | コスト要因 | 最適化策 |
 |----------|---------|
 | エンベディング生成 | Titan v2の低次元（256）使用でトークンコスト削減 |
@@ -609,6 +1688,28 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # KBの制限・クォータ（試験頻出数値）
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG コスト最適化戦略</text>
+<rect x="20" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="132.5" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embedding コスト削減</text>
+
+<rect x="290" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="402.5" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM コスト削減</text>
+
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">インフラコスト削減</text>
+
+<text x="132" y="115" text-anchor="middle" fill="#f9a825" font-size="10">差分更新のみ再Embed</text>
+<text x="132" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Titan v2 最安値利用</text>
+<text x="402" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Batch API (50%OFF)</text>
+<text x="402" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Prompt キャッシュ活用</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Serverless自動スケール</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">S3 Intelligent-Tiering</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">モデル選択: 分類/ルーティングはHaiku → 応答生成のみSonnet</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Semantic Cacheで重複クエリのLLM呼び出しを削減 (命中率30〜60%)</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">月次コスト試算: 1M queries × $0.003/query ≈ $3,000/月 (Sonnet)</text>
+</svg>
 | 制限項目 | デフォルト値 | 備考 |
 |---------|------------|------|
 | KB数 / アカウント | 5 | Service Quotaで引き上げ可 |
@@ -628,6 +1729,34 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # KBのトラブルシューティング
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
+<rect x="20" y="40" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">S3 Bucket</text>
+<text x="80" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ソース文書</text>
+<line x1="140" y1="62" x2="165" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="175,62 163,67 163,57" fill="#f9a825"/>
+<rect x="175" y="40" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="240" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Data Ingestion</text>
+<text x="240" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Bedrock KB</text>
+<line x1="305" y1="62" x2="330" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="340,62 328,67 328,57" fill="#f9a825"/>
+<rect x="340" y="40" width="130" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="405" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenSearch</text>
+<text x="405" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Serverless</text>
+<line x1="470" y1="62" x2="495" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="505,62 493,67 493,57" fill="#f9a825"/>
+<rect x="505" y="40" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="570" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector Index</text>
+<text x="570" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">k-NN Index</text>
+<line x1="635" y1="62" x2="660" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="670,62 658,67 658,57" fill="#f9a825"/>
+<rect x="670" y="40" width="110" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query API</text>
+<text x="725" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">検索エンドポイント</text>
+<text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="11">OCU (OpenSearch Compute Unit): Index/Search に独立スケール</text>
+<text x="400" y="138" text-anchor="middle" fill="#f9a825" font-size="11">k-NN アルゴリズム: HNSW (精度高) / IVF (コスト低)</text>
+<text x="400" y="162" text-anchor="middle" fill="#ffffff" font-size="11">ベクトル次元: 最大16000 | Metric: cosine / euclidean / dot_product</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">コレクション = インデックスの論理グループ | VPC Endpoint対応</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">料金: 0.24 USD/OCU-hour (最小0.5 OCU × 2リソース)</text>
+</svg>
 | 症状 | 原因 | 対処法 |
 |------|------|--------|
 | インジェストFAILED | S3権限不足 | KB IAMロールにs3:GetObject追加 |
@@ -642,13 +1771,105 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 ---
 
-# Bedrock KB 試験ポイントまとめ
+# Bedrock KB 試験ポイントまとめ（1/2）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">検索手法 比較</text>
+<rect x="30" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="145" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Dense Retrieval</text>
+<text x="145" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル類似検索 (ANN)</text>
+<rect x="285" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sparse Retrieval</text>
+<text x="400" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">BM25 / TF-IDF</text>
+<rect x="540" y="50" width="230" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="655" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Hybrid Search</text>
+<text x="655" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Dense + Sparse</text>
+<text x="145" y="130" text-anchor="middle" fill="#ffffff" font-size="11">意味・文脈マッチ得意</text>
+<text x="145" y="148" text-anchor="middle" fill="#f9a825" font-size="11">専門用語弱い</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11">キーワード完全一致得意</text>
+<text x="400" y="148" text-anchor="middle" fill="#f9a825" font-size="11">意味理解なし</text>
+<text x="655" y="130" text-anchor="middle" fill="#ffffff" font-size="11">両手法の長所を統合</text>
+<text x="655" y="148" text-anchor="middle" fill="#f9a825" font-size="11">精度最高・推奨</text>
+<text x="400" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Hybrid Search の仕組み</text>
+<rect x="50" y="210" width="150" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="125" y="225.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="125" y="244.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">"Aurora設定方法"</text>
+<line x1="200" y1="232" x2="232.1913119055697" y2="206.24695047554425" stroke="#f9a825" stroke-width="2"/><polygon points="240,200 233.75304952445575,211.40068461786825 227.50609904891152,203.59199652343796" fill="#f9a825"/>
+<line x1="200" y1="232" x2="231.80768079480958" y2="254.2653765563667" stroke="#f9a825" stroke-width="2"/><polygon points="240,260 227.3019052319549,257.21461147023524 233.03652867558816,249.02229226504485" fill="#f9a825"/>
+<rect x="240" y="185" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="198" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Dense</text>
+<text x="315" y="217" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル検索</text>
+<rect x="240" y="255" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="268" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sparse</text>
+<text x="315" y="287" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">BM25検索</text>
+<line x1="390" y1="205" x2="421.71151325924353" y2="226.40527144998939" stroke="#f9a825" stroke-width="2"/><polygon points="430,232 417.2564516360869,229.4305691103655 422.8511801860975,221.14208236960903" fill="#f9a825"/>
+<line x1="390" y1="275" x2="421.71151325924353" y2="253.59472855001061" stroke="#f9a825" stroke-width="2"/><polygon points="430,248 422.8511801860975,258.857917630391 417.2564516360869,250.5694308896345" fill="#f9a825"/>
+<rect x="430" y="215" width="150" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="505" y="230.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">RRF Fusion</text>
+<text x="505" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">スコア統合</text>
+<line x1="580" y1="237" x2="610" y2="237" stroke="#f9a825" stroke-width="2"/><polygon points="620,237 608,242 608,232" fill="#f9a825"/>
+<rect x="620" y="215" width="150" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="695" y="230.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-K Results</text>
+<text x="695" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最終結果</text>
+<text x="400" y="330" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">RRF (Reciprocal Rank Fusion)</text>
+<text x="400" y="350" text-anchor="middle" fill="#f9a825" font-size="12">score = Σ 1/(k + rank_i)  where k=60 (常数)</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">OpenSearch Serverless: hybrid検索ネイティブサポート</text>
+</svg>
 - ✅ Retrieve API = 検索のみ（LLM不要）。カスタム後処理に最適
 - ✅ RetrieveAndGenerate = エンドツーエンドRAG。citations付き回答
 - ✅ HYBRID検索はOpenSearch Serverlessのみサポート
 - ✅ Rerankingでk増やして再絞り込み → 精度向上・レイテンシ増
 - ✅ Hierarchical chunking: 検索=子チャンク、生成=親チャンクコンテキスト
+
+
+---
+
+# Bedrock KB 試験ポイントまとめ（2/2）
+
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Re-ranking パイプライン</text>
+<rect x="20" y="55" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="80" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ユーザー入力</text>
+<line x1="140" y1="77" x2="170" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="180,77 168,82 168,72" fill="#f9a825"/>
+<rect x="180" y="55" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">First Stage</text>
+<text x="245" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">粗い検索</text>
+<line x1="310" y1="77" x2="340" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="350,77 338,82 338,72" fill="#f9a825"/>
+<rect x="350" y="55" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-100</text>
+<text x="415" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">候補取得</text>
+<line x1="480" y1="77" x2="510" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="520,77 508,82 508,72" fill="#f9a825"/>
+<rect x="520" y="55" width="140" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="590" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Re-ranker</text>
+<text x="590" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">精密スコアリング</text>
+<line x1="660" y1="77" x2="690" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="700,77 688,82 688,72" fill="#f9a825"/>
+<rect x="700" y="55" width="80" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="740" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-5</text>
+<text x="740" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最終</text>
+<text x="245" y="130" text-anchor="middle" fill="#f9a825" font-size="11">ANN/BM25</text>
+<text x="415" y="130" text-anchor="middle" fill="#ffffff" font-size="11">Recall重視</text>
+<text x="590" y="130" text-anchor="middle" fill="#e91e63" font-size="11">Precision重視</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Re-ranker 種類と特徴</text>
+<rect x="30" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cross-Encoder</text>
+<text x="140" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">クエリ×文書を同時入力</text>
+<rect x="290" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cohere Rerank</text>
+<text x="400" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">API呼び出し型</text>
+<rect x="550" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM Reranking</text>
+<text x="660" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">GPT/Claude判定</text>
+<text x="140" y="250" text-anchor="middle" fill="#f9a825" font-size="10">高精度・低速</text>
+<text x="400" y="250" text-anchor="middle" fill="#f9a825" font-size="10">バランス良・推奨</text>
+<text x="660" y="250" text-anchor="middle" fill="#f9a825" font-size="10">最高精度・コスト高</text>
+<text x="400" y="305" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">効果: MRR/NDCG を平均 15-30% 改善</text>
+<rect x="60" y="325" width="680" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="400" y="348" text-anchor="middle" fill="#ffffff" font-size="12">Bedrock Knowledge Bases: Cohere Rerank ネイティブ統合</text>
+<text x="400" y="366" text-anchor="middle" fill="#f9a825" font-size="11">numberOfResults↑ → Re-rank → contextWindow内に収まる数を選択</text>
+</svg>
 - ✅ メタデータフィルタは .metadata.json ファイルで設定（S3の場合）
 - ✅ 増分同期で変更分のみ再処理（全件再処理は避ける）
 - ✅ GuardrailsのグラウンディングチェックはRAG専用機能
@@ -668,6 +1889,20 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # Amazon OpenSearch Service 概要
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Aurora PostgreSQL pgvector — セットアップ</text>
+<rect x="20" y="40" width="760" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold"></text>
+
+<text x="400" y="58" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">CREATE EXTENSION vector;</text>
+<text x="400" y="76" text-anchor="middle" fill="#ffffff" font-size="11">CREATE TABLE docs (id serial, content text, embedding vector(1536));</text>
+<text x="400" y="120" text-anchor="middle" fill="#ffffff" font-size="11">インデックス作成: CREATE INDEX ON docs USING hnsw (embedding vector_cosine_ops);</text>
+<text x="400" y="145" text-anchor="middle" fill="#ffffff" font-size="11">検索: SELECT * FROM docs ORDER BY embedding &lt;=&gt; '[0.1,0.2,...]' LIMIT 5;</text>
+<text x="400" y="170" text-anchor="middle" fill="#f9a825" font-size="11">演算子: &lt;=&gt; (cosine) / &lt;-&gt; (L2) / &lt;#&gt; (inner product)</text>
+<text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="11">Serverless v2: 0.5〜128 ACU | 自動スケール | コスト最適</text>
+<text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB統合: データソース選択時に Aurora PostgreSQL を指定するだけ</text>
+</svg>
 - **OpenSearch Service** = Elasticsearch互換のフルテキスト検索・分析エンジン（AWS管理）
 | 種別 | 説明 | 管理 |
 |------|------|------|
@@ -686,6 +1921,28 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # OpenSearch Serverless とは
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
+<rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed Text v2</text>
+<text x="135" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.00002/1K tokens</text>
+<rect x="285" y="40" width="230" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cohere Embed v3</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.0001/1K tokens</text>
+<rect x="550" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenAI text-embed-3</text>
+<text x="665" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.00013/1K tokens</text>
+<text x="135" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 8K tokens</text>
+<text x="135" y="130" text-anchor="middle" fill="#f9a825" font-size="10">AWS最低コスト</text>
+<text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1024dim / 多言語</text>
+<text x="400" y="130" text-anchor="middle" fill="#f9a825" font-size="10">高精度・推奨</text>
+<text x="665" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 3072dim</text>
+<text x="665" y="130" text-anchor="middle" fill="#f9a825" font-size="10">外部API必要</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">選択基準: コスト重視→Titan / 多言語精度→Cohere / AWS外→OpenAI</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">重要: Indexing時とQuery時は必ず同一モデルを使用</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">次元数削減: Matryoshka Embedding で 1/4 次元でも精度維持可能</text>
+</svg>
 - **サーバーレスOpenSearch** — キャパシティ管理不要・リクエストに応じて自動スケール
 | 特徴 | 説明 |
 |------|------|
@@ -706,6 +1963,35 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # OpenSearch Service vs OpenSearch Serverless 比較
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">クエリ処理パイプライン</text>
+<rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw Query</text>
+<text x="75" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="130" y1="65" x2="155" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="165,65 153,70 153,60" fill="#f9a825"/>
+<rect x="165" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">前処理</text>
+<text x="225" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">正規化/言語検出</text>
+<line x1="285" y1="65" x2="310" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="320,65 308,70 308,60" fill="#f9a825"/>
+<rect x="320" y="45" width="120" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="380" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query Embed</text>
+<text x="380" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル化</text>
+<line x1="440" y1="65" x2="465" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="475,65 463,70 463,60" fill="#f9a825"/>
+<rect x="475" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="535" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ANN Search</text>
+<text x="535" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Top-K取得</text>
+<line x1="595" y1="65" x2="620" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="630,65 618,70 618,60" fill="#f9a825"/>
+<rect x="630" y="45" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="705" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Rerank</text>
+<text x="705" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">精度向上</text>
+<text x="400" y="125" text-anchor="middle" fill="#ffffff" font-size="11">クエリ拡張テクニック</text>
+<text x="200" y="148" text-anchor="middle" fill="#f9a825" font-size="10">HyDE: 仮説文書生成→埋め込み</text>
+<text x="400" y="148" text-anchor="middle" fill="#f9a825" font-size="10">Multi-Query: 複数バリエーション</text>
+<text x="600" y="148" text-anchor="middle" fill="#f9a825" font-size="10">Step-Back: 抽象化→具体化</text>
+<text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="11">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>
+<text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>
+</svg>
 | 比較軸 | OpenSearch Service（Provisioned） | OpenSearch Serverless |
 |-------|----------------------------------|----------------------|
 | 管理 | クラスター・ノード管理が必要 | フルマネージド |
@@ -723,6 +2009,28 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # OpenSearch Serverless — コレクション設定
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG セキュリティ設計</text>
+<rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM Role</text>
+<text x="130" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最小権限原則</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">VPC Endpoint</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">プライベート通信</text>
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">KMS 暗号化</text>
+<text x="670" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">保存/転送時</text>
+<text x="130" y="115" text-anchor="middle" fill="#f9a825" font-size="10">bedrock:InvokeModel</text>
+<text x="130" y="130" text-anchor="middle" fill="#ffffff" font-size="10">s3:GetObject (KB用)</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock/OpenSearch/S3</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">インターネット不要</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Vector DB / S3</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">CMK推奨</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">データ隔離: テナント毎に別KB / メタデータフィルタでアクセス制御</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Guardrails: PII検出・トピックフィルタ・Grounding Check</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">監査: CloudTrail (API呼び出し) + CloudWatch Logs (詳細ログ)</text>
+</svg>
 - **コレクション** = インデックスの論理グループ（1コレクション = 1ベクトルDBに相当）
 | 設定項目 | 説明 |
 |---------|------|
@@ -740,6 +2048,30 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # k-NN（近似最近傍）検索の仕組み
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG レイテンシ最適化</text>
+<rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">キャッシュ層</text>
+<text x="130" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Semantic Cache</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">並列処理</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Async Retrieval</text>
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Streaming</text>
+<text x="670" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">SSE/WebSocket</text>
+<text x="130" y="115" text-anchor="middle" fill="#f9a825" font-size="10">類似クエリをキャッシュ</text>
+<text x="130" y="130" text-anchor="middle" fill="#ffffff" font-size="10">ElastiCache/DynamoDB</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Embed + Search 同時</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">asyncio / Promise.all</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">初回トークンを即表示</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">体感速度 大幅改善</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">典型的レイテンシ内訳 (合計 2〜5秒)</text>
+<text x="200" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Embed: 50〜200ms</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">ANN Search: 10〜100ms</text>
+<text x="600" y="188" text-anchor="middle" fill="#f9a825" font-size="11">LLM Gen: 1〜4sec</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Provisioned Throughput: LLM呼び出し速度を最大2x向上</text>
+</svg>
 - **ANN（Approximate Nearest Neighbor）** = 完全一致ではなく近似で高速化
 | 手法 | 仕組み | 特徴 |
 |------|--------|------|
@@ -759,6 +2091,21 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # OpenSearch ベクトルエンジン比較（Faiss / nmslib / Lucene）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG 評価指標 (RAGAS フレームワーク)</text>
+<line x1="250" y1="210" x2="250" y2="80" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.583302491977" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.58330249197707" y2="275" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="250" y2="340" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="275.00000000000006" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><polygon points="250,177.5 278.14582562299427,193.75 278.14582562299427,226.25 250,242.5 221.85417437700573,226.25 221.85417437700573,193.75 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,145 306.29165124598853,177.5 306.29165124598853,242.5 250,275 193.7083487540115,242.50000000000003 193.7083487540115,177.5 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,112.5 334.43747686898274,161.25 334.4374768689828,258.75 250,307.5 165.56252313101726,258.75000000000006 165.56252313101726,161.25 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,80 362.583302491977,145 362.58330249197707,275 250,340 137.416697508023,275.00000000000006 137.416697508023,145 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/>
+<polygon points="250,99.5 337.81497594374207,159.3 331.05997779422347,256.79999999999995 250,327 159.93335800641842,262.00000000000006 176.82085338021494,167.75 " fill="#e91e63" fill-opacity="0.3" stroke="#e91e63" stroke-width="2"/>
+<text x="250" y="52" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Faithfulness</text><text x="250" y="64" text-anchor="middle" fill="#f9a825" font-size="10">85%</text><text x="386.8320137979413" y="131" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Answer Relevance</text><text x="386.8320137979413" y="143" text-anchor="middle" fill="#f9a825" font-size="10">78%</text><text x="386.83201379794133" y="289" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Context Precision</text><text x="386.83201379794133" y="301" text-anchor="middle" fill="#f9a825" font-size="10">72%</text><text x="250" y="368" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Context Recall</text><text x="250" y="380" text-anchor="middle" fill="#f9a825" font-size="10">90%</text><text x="113.16798620205873" y="289.00000000000006" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Answer Correctness</text><text x="113.16798620205873" y="301.00000000000006" text-anchor="middle" fill="#f9a825" font-size="10">80%</text><text x="113.1679862020587" y="131" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Latency</text><text x="113.1679862020587" y="143" text-anchor="middle" fill="#f9a825" font-size="10">65%</text>
+<rect x="520" y="60" width="260" height="290" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="650" y="85" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">評価指標の意味</text>
+<text x="535" y="108" fill="#ffffff" font-size="11">Faithfulness</text><text x="770" y="108" text-anchor="end" fill="#f9a825" font-size="11">幻覚なし率</text>
+<text x="535" y="146" fill="#ffffff" font-size="11">Answer Relevance</text><text x="770" y="146" text-anchor="end" fill="#f9a825" font-size="11">回答関連性</text>
+<text x="535" y="184" fill="#ffffff" font-size="11">Context Precision</text><text x="770" y="184" text-anchor="end" fill="#f9a825" font-size="11">文脈精度</text>
+<text x="535" y="222" fill="#ffffff" font-size="11">Context Recall</text><text x="770" y="222" text-anchor="end" fill="#f9a825" font-size="11">文脈網羅率</text>
+<text x="535" y="260" fill="#ffffff" font-size="11">Answer Correctness</text><text x="770" y="260" text-anchor="end" fill="#f9a825" font-size="11">正解一致率</text>
+<text x="535" y="298" fill="#ffffff" font-size="11">Latency</text><text x="770" y="298" text-anchor="end" fill="#f9a825" font-size="11">応答速度</text>
+</svg>
 | エンジン | アルゴリズム | 特徴 | 推奨シナリオ |
 |--------|------------|------|------------|
 | Faiss（Facebook AI） | IVF + HNSW | 大規模・GPU最適化・Disk ANN対応 | 1億件超の大規模 |
@@ -775,6 +2122,33 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # OpenSearch インデックス設計
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG モニタリング スタック</text>
+<rect x="20" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="102.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudWatch</text>
+<text x="102.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">メトリクス/アラーム</text>
+<rect x="210" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="292.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">X-Ray</text>
+<text x="292.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">分散トレーシング</text>
+<rect x="400" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="482.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<text x="482.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">API監査ログ</text>
+<rect x="590" y="40" width="190" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="685" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">RAGAS</text>
+<text x="685" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAG品質評価</text>
+<text x="400" y="120" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">主要モニタリング指標</text>
+<text x="100" y="143" text-anchor="middle" fill="#f9a825" font-size="10">InvocationLatency</text>
+<text x="100" y="158" text-anchor="middle" fill="#ffffff" font-size="10">ThrottlingErrors</text>
+<text x="290" y="143" text-anchor="middle" fill="#f9a825" font-size="10">End-to-End Trace</text>
+<text x="290" y="158" text-anchor="middle" fill="#ffffff" font-size="10">ボトルネック特定</text>
+<text x="480" y="143" text-anchor="middle" fill="#f9a825" font-size="10">全API呼び出し記録</text>
+<text x="480" y="158" text-anchor="middle" fill="#ffffff" font-size="10">コンプライアンス</text>
+<text x="680" y="143" text-anchor="middle" fill="#f9a825" font-size="10">Faithfulness</text>
+<text x="680" y="158" text-anchor="middle" fill="#ffffff" font-size="10">Context Precision</text>
+<text x="400" y="188" text-anchor="middle" fill="#ffffff" font-size="11">アラーム設定: Latency P99 &gt; 5s / Error Rate &gt; 1% / Cost 日次上限</text>
+<text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock: InvocationsCount / InputTokenCount / OutputTokenCount</text>
+</svg>
 - **ベクトルフィールドの設定が検索精度・速度の鍵**
 | フィールド設定 | 説明 |
 |-------------|------|
@@ -784,6 +2158,34 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 | engine | faiss / nmslib / lucene |
 | ef_construction | インデックス精度（デフォルト512） |
 | m | 隣接ノード数（デフォルト16） |
+
+
+---
+
+# OpenSearch インデックス設計（コード例）
+
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG コスト最適化戦略</text>
+<rect x="20" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="132.5" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embedding コスト削減</text>
+
+<rect x="290" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="402.5" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM コスト削減</text>
+
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">インフラコスト削減</text>
+
+<text x="132" y="115" text-anchor="middle" fill="#f9a825" font-size="10">差分更新のみ再Embed</text>
+<text x="132" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Titan v2 最安値利用</text>
+<text x="402" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Batch API (50%OFF)</text>
+<text x="402" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Prompt キャッシュ活用</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Serverless自動スケール</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">S3 Intelligent-Tiering</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">モデル選択: 分類/ルーティングはHaiku → 応答生成のみSonnet</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Semantic Cacheで重複クエリのLLM呼び出しを削減 (命中率30〜60%)</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">月次コスト試算: 1M queries × $0.003/query ≈ $3,000/月 (Sonnet)</text>
+</svg>
 
 ```json
 PUT /my-vector-index
@@ -811,6 +2213,34 @@ PUT /my-vector-index
 
 # OpenSearch ハイブリッド検索（BM25 + kNN）
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
+<rect x="20" y="40" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">S3 Bucket</text>
+<text x="80" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ソース文書</text>
+<line x1="140" y1="62" x2="165" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="175,62 163,67 163,57" fill="#f9a825"/>
+<rect x="175" y="40" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="240" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Data Ingestion</text>
+<text x="240" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Bedrock KB</text>
+<line x1="305" y1="62" x2="330" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="340,62 328,67 328,57" fill="#f9a825"/>
+<rect x="340" y="40" width="130" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="405" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenSearch</text>
+<text x="405" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Serverless</text>
+<line x1="470" y1="62" x2="495" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="505,62 493,67 493,57" fill="#f9a825"/>
+<rect x="505" y="40" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="570" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector Index</text>
+<text x="570" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">k-NN Index</text>
+<line x1="635" y1="62" x2="660" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="670,62 658,67 658,57" fill="#f9a825"/>
+<rect x="670" y="40" width="110" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query API</text>
+<text x="725" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">検索エンドポイント</text>
+<text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="11">OCU (OpenSearch Compute Unit): Index/Search に独立スケール</text>
+<text x="400" y="138" text-anchor="middle" fill="#f9a825" font-size="11">k-NN アルゴリズム: HNSW (精度高) / IVF (コスト低)</text>
+<text x="400" y="162" text-anchor="middle" fill="#ffffff" font-size="11">ベクトル次元: 最大16000 | Metric: cosine / euclidean / dot_product</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">コレクション = インデックスの論理グループ | VPC Endpoint対応</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">料金: 0.24 USD/OCU-hour (最小0.5 OCU × 2リソース)</text>
+</svg>
 - **ハイブリッドクエリ** = ベクトル検索 + キーワード検索のスコアを統合
 | ステップ | 処理 |
 |---------|------|
@@ -828,6 +2258,67 @@ PUT /my-vector-index
 
 # OpenSearch スコア正規化
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Advanced RAG パターン</text>
+<text x="200" y="55" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">HyDE (Hypothetical Doc Embedding)</text>
+<rect x="20" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="75" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">"Aurora設定"</text>
+<line x1="130" y1="90" x2="155" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="165,90 153,95 153,85" fill="#f9a825"/>
+<rect x="165" y="70" width="110" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="220" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="220" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">仮想文書生成</text>
+<line x1="275" y1="90" x2="300" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="310,90 298,95 298,85" fill="#f9a825"/>
+<rect x="310" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="365" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="365" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">仮想文書</text>
+<line x1="420" y1="90" x2="445" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="455,90 443,95 443,85" fill="#f9a825"/>
+<rect x="455" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="510" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Search</text>
+<text x="510" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">類似検索</text>
+<line x1="565" y1="90" x2="590" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="600,90 588,95 588,85" fill="#f9a825"/>
+<rect x="600" y="70" width="100" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-K</text>
+<text x="650" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">文書取得</text>
+<text x="220" y="135" text-anchor="middle" fill="#f9a825" font-size="11">「Auroraの設定手順は...」を生成</text>
+<line x1="20" y1="155" x2="780" y2="155" stroke="#f9a825" stroke-width="1" opacity="0.3"/>
+<text x="200" y="175" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Multi-Query Retrieval</text>
+<rect x="20" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="75" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">元質問</text>
+<line x1="130" y1="210" x2="155" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="165,210 153,215 153,205" fill="#f9a825"/>
+<rect x="165" y="190" width="120" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="225" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">3〜5クエリ生成</text>
+<line x1="285" y1="195" x2="310.8085496998194" y2="183.93919298579166" stroke="#f9a825" stroke-width="2"/><polygon points="320,180 310.93985613267915,189.3227567330403 307.00066314688746,180.13130643285973" fill="#f9a825"/>
+<line x1="285" y1="210" x2="310" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="320,210 308,215 308,205" fill="#f9a825"/>
+<line x1="285" y1="225" x2="310.8085496998194" y2="236.06080701420834" stroke="#f9a825" stroke-width="2"/><polygon points="320,240 307.00066314688746,239.86869356714027 310.93985613267915,230.6772432669597" fill="#f9a825"/>
+<rect x="320" y="165" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="184" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 1</text>
+
+<rect x="320" y="195" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="214" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 2</text>
+
+<rect x="320" y="225" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="244" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 3</text>
+
+<line x1="430" y1="183" x2="457.0821774443653" y2="203.8919654570818" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 452.44459566177926,206.6292698263155 458.55263020469744,198.7114472706808" fill="#f9a825"/>
+<line x1="430" y1="214" x2="455.064673273436" y2="211.13546591160733" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 453.6453408839268,216.3302224572108 452.5098749723195,206.39489573064677" fill="#f9a825"/>
+<line x1="430" y1="244" x2="457.82720619140775" y2="216.9678568426325" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 459.87657585100555,221.94782511545512 452.90871900837305,214.77503130686287" fill="#f9a825"/>
+<rect x="465" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="520" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Merge</text>
+<text x="520" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">重複除去</text>
+<line x1="575" y1="210" x2="600" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="610,210 598,215 598,205" fill="#f9a825"/>
+<rect x="610" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Final</text>
+<text x="665" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">文書セット</text>
+<line x1="20" y1="280" x2="780" y2="280" stroke="#f9a825" stroke-width="1" opacity="0.3"/>
+<text x="200" y="300" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Step-Back Prompting</text>
+<text x="400" y="320" text-anchor="middle" fill="#ffffff" font-size="11">具体 → 抽象化 → 検索 → 組み合わせ回答</text>
+<text x="400" y="345" text-anchor="middle" fill="#f9a825" font-size="11">例: 「Lambda timeout設定」→「Lambda設定全般とは？」で文脈収集</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">HyDE: 文書ドメインが専門的な場合に有効  |  Multi-Query: 質問が曖昧な場合</text>
+</svg>
 - **なぜ正規化が必要か:** kNNスコア（0〜1）とBM25スコア（0〜∞）の尺度が異なるため
 | 正規化手法 | 計算式 | 特徴 |
 |----------|--------|------|
@@ -844,6 +2335,20 @@ PUT /my-vector-index
 
 # OpenSearch Serverless セキュリティポリシー（3種）
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Aurora PostgreSQL pgvector — セットアップ</text>
+<rect x="20" y="40" width="760" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold"></text>
+
+<text x="400" y="58" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">CREATE EXTENSION vector;</text>
+<text x="400" y="76" text-anchor="middle" fill="#ffffff" font-size="11">CREATE TABLE docs (id serial, content text, embedding vector(1536));</text>
+<text x="400" y="120" text-anchor="middle" fill="#ffffff" font-size="11">インデックス作成: CREATE INDEX ON docs USING hnsw (embedding vector_cosine_ops);</text>
+<text x="400" y="145" text-anchor="middle" fill="#ffffff" font-size="11">検索: SELECT * FROM docs ORDER BY embedding &lt;=&gt; '[0.1,0.2,...]' LIMIT 5;</text>
+<text x="400" y="170" text-anchor="middle" fill="#f9a825" font-size="11">演算子: &lt;=&gt; (cosine) / &lt;-&gt; (L2) / &lt;#&gt; (inner product)</text>
+<text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="11">Serverless v2: 0.5〜128 ACU | 自動スケール | コスト最適</text>
+<text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB統合: データソース選択時に Aurora PostgreSQL を指定するだけ</text>
+</svg>
 - **3種類のセキュリティポリシーでアクセス制御を多層構成**
 | ポリシー種別 | 制御内容 | 設定対象 |
 |-----------|---------|---------|
@@ -863,6 +2368,59 @@ PUT /my-vector-index
 
 # Bedrock KBとOpenSearch Serverlessの統合
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">本番 RAG アーキテクチャ (AWS)</text>
+<rect x="20" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Client</text>
+<text x="80" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Web/Mobile</text>
+<line x1="140" y1="70" x2="170" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="180,70 168,75 168,65" fill="#f9a825"/>
+<rect x="180" y="50" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">API Gateway</text>
+<text x="245" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">+ Lambda</text>
+<line x1="310" y1="70" x2="340" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="350,70 338,75 338,65" fill="#f9a825"/>
+<rect x="350" y="50" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Bedrock KB</text>
+<text x="415" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAGオーケストレーション</text>
+<line x1="480" y1="70" x2="510" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="520,70 508,75 508,65" fill="#f9a825"/>
+<rect x="520" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="580" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3.5</text>
+<text x="580" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Sonnet</text>
+<line x1="480" y1="85" x2="480" y2="135" stroke="#f9a825" stroke-width="2"/><polygon points="480,145 475,133 485,133" fill="#f9a825"/>
+<rect x="350" y="145" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenSearch</text>
+<text x="415" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Serverless</text>
+<line x1="480" y1="145" x2="480" y2="175" stroke="#f9a825" stroke-width="2"/><polygon points="480,185 475,173 485,173" fill="#f9a825"/>
+<rect x="350" y="185" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="198" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed Model</text>
+<text x="415" y="217" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Titan v2</text>
+<rect x="20" y="145" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">S3 Bucket</text>
+<text x="95" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ドキュメント格納</text>
+<line x1="170" y1="165" x2="340" y2="165" stroke="#f9a825" stroke-width="2"/><polygon points="350,165 338,170 338,160" fill="#f9a825"/>
+<rect x="540" y="145" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="605" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudWatch</text>
+<text x="605" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">モニタリング</text>
+<rect x="540" y="200" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="605" y="213" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">X-Ray</text>
+<text x="605" y="232" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">トレーシング</text>
+<rect x="690" y="145" width="100" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="740" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">GuardRails</text>
+<text x="740" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">安全フィルタ</text>
+<text x="400" y="275" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">本番運用チェックリスト</text>
+<rect x="20" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">セキュリティ</text>
+
+<rect x="285" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">パフォーマンス</text>
+
+<rect x="550" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">コスト最適化</text>
+
+<text x="135" y="315" text-anchor="middle" fill="#f9a825" font-size="10">IAM最小権限 / VPC Endpoint</text><text x="135" y="333" text-anchor="middle" fill="#ffffff" font-size="10">KMS暗号化 / Guardrails</text>
+<text x="400" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Provisioned Throughput</text><text x="400" y="333" text-anchor="middle" fill="#ffffff" font-size="10">キャッシュ / バッチ処理</text>
+<text x="665" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Spot Embedding / S3 Intelligent</text><text x="665" y="333" text-anchor="middle" fill="#ffffff" font-size="10">Haiku for classify</text>
+</svg>
 - **統合フロー:** KB作成時にOpenSearch Serverlessコレクションを指定
 | 設定項目 | 説明 |
 |---------|------|
@@ -881,6 +2439,28 @@ PUT /my-vector-index
 
 # OpenSearch Serverless パフォーマンスチューニング
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
+<rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed Text v2</text>
+<text x="135" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.00002/1K tokens</text>
+<rect x="285" y="40" width="230" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cohere Embed v3</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.0001/1K tokens</text>
+<rect x="550" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenAI text-embed-3</text>
+<text x="665" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.00013/1K tokens</text>
+<text x="135" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 8K tokens</text>
+<text x="135" y="130" text-anchor="middle" fill="#f9a825" font-size="10">AWS最低コスト</text>
+<text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1024dim / 多言語</text>
+<text x="400" y="130" text-anchor="middle" fill="#f9a825" font-size="10">高精度・推奨</text>
+<text x="665" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 3072dim</text>
+<text x="665" y="130" text-anchor="middle" fill="#f9a825" font-size="10">外部API必要</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">選択基準: コスト重視→Titan / 多言語精度→Cohere / AWS外→OpenAI</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">重要: Indexing時とQuery時は必ず同一モデルを使用</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">次元数削減: Matryoshka Embedding で 1/4 次元でも精度維持可能</text>
+</svg>
 | チューニング項目 | 設定・対処法 |
 |--------------|------------|
 | ef_search 増加 | 検索精度↑・レイテンシ↑。デフォルト512 |
@@ -899,6 +2479,35 @@ PUT /my-vector-index
 
 # OpenSearch Serverless モニタリング
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">クエリ処理パイプライン</text>
+<rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw Query</text>
+<text x="75" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="130" y1="65" x2="155" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="165,65 153,70 153,60" fill="#f9a825"/>
+<rect x="165" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">前処理</text>
+<text x="225" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">正規化/言語検出</text>
+<line x1="285" y1="65" x2="310" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="320,65 308,70 308,60" fill="#f9a825"/>
+<rect x="320" y="45" width="120" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="380" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query Embed</text>
+<text x="380" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル化</text>
+<line x1="440" y1="65" x2="465" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="475,65 463,70 463,60" fill="#f9a825"/>
+<rect x="475" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="535" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ANN Search</text>
+<text x="535" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Top-K取得</text>
+<line x1="595" y1="65" x2="620" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="630,65 618,70 618,60" fill="#f9a825"/>
+<rect x="630" y="45" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="705" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Rerank</text>
+<text x="705" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">精度向上</text>
+<text x="400" y="125" text-anchor="middle" fill="#ffffff" font-size="11">クエリ拡張テクニック</text>
+<text x="200" y="148" text-anchor="middle" fill="#f9a825" font-size="10">HyDE: 仮説文書生成→埋め込み</text>
+<text x="400" y="148" text-anchor="middle" fill="#f9a825" font-size="10">Multi-Query: 複数バリエーション</text>
+<text x="600" y="148" text-anchor="middle" fill="#f9a825" font-size="10">Step-Back: 抽象化→具体化</text>
+<text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="11">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>
+<text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>
+</svg>
 | メトリクス | 説明 | アラート推奨 |
 |----------|------|------------|
 | SearchLatency | 検索レイテンシ（p50/p90/p99） | p99 > 500ms |
@@ -914,26 +2523,150 @@ PUT /my-vector-index
 
 ---
 
-# OpenSearch Serverless IAM設定
+# OpenSearch Serverless IAM設定（1/2）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG パイプライン全体像</text>
+<text x="200" y="75" text-anchor="middle" fill="#ffffff" font-size="12">オフライン（Indexing Phase）</text>
+<text x="590" y="75" text-anchor="middle" fill="#e91e63" font-size="12">オンライン（Query Phase）</text>
+<line x1="390" y1="65" x2="390" y2="175" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="30" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="77.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Ingest</text>
+<text x="77.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">S3→Parse</text><line x1="125" y1="127" x2="128" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="138,127 126,132 126,122" fill="#f9a825"/><rect x="138" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="185.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunk</text>
+<text x="185.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">分割処理</text><line x1="233" y1="127" x2="236" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="246,127 234,132 234,122" fill="#f9a825"/><rect x="246" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="293.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="293.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル化</text><line x1="341" y1="127" x2="344" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="354,127 342,132 342,122" fill="#f9a825"/><rect x="354" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="401.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Index</text>
+<text x="401.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">DB格納</text><line x1="449" y1="127" x2="452" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="462,127 450,132 450,122" fill="#f9a825"/><rect x="462" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="509.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Retrieve</text>
+<text x="509.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">類似検索</text><line x1="557" y1="127" x2="560" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="570,127 558,132 558,122" fill="#f9a825"/><rect x="570" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="617.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augment</text>
+<text x="617.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Prompt合成</text><line x1="665" y1="127" x2="668" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="678,127 666,132 666,122" fill="#f9a825"/><rect x="678" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Generate</text>
+<text x="725.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">LLM応答</text>
+<text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="11">← Offline: 事前インデックス作成  |  Online: リアルタイム検索・生成 →</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">主要コンポーネント</text>
+<rect x="30" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Document Loader</text>
+<text x="140" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">S3/URL/Confluence/SharePoint</text>
+<rect x="290" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector Store</text>
+<text x="400" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">OpenSearch/pgvector/Pinecone</text>
+<rect x="550" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="660" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude 3.5 / Titan / Llama</text>
+<text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="12">Amazon Bedrock Knowledge Bases = マネージド RAG サービス</text>
+</svg>
 - **IAM ≠ データアクセスポリシー。2層で制御する点が試験頻出**
+- **必要なIAMアクション（API呼び出し側）:**
+- aoss:APIAccessAll または個別アクション（aoss:CreateIndex等）
+- **データアクセスポリシー（インデックス操作側）:**
 | 制御レイヤー | 制御内容 | 設定場所 |
 |-----------|---------|---------|
 | IAM | AWSリソースへのAPI呼び出し制御 | IAMポリシー |
 | データアクセスポリシー | OpenSearch内のインデックスCRUD制御 | OSSコンソール |
-- **必要なIAMアクション（API呼び出し側）:**
-- aoss:APIAccessAll または個別アクション（aoss:CreateIndex等）
-- **データアクセスポリシー（インデックス操作側）:**
+
+
+---
+
+# OpenSearch Serverless IAM設定（2/2）
+
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">チャンキング戦略 比較</text>
+<rect x="20" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="110" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Fixed Size</text>
+<text x="110" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">固定トークン数</text>
+<rect x="210" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="300" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Recursive</text>
+<text x="300" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">区切り文字ベース</text>
+<rect x="400" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="490" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Semantic</text>
+<text x="490" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">意味単位分割</text>
+<rect x="590" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="680" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Hierarchical</text>
+<text x="680" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">親子構造</text>
+<rect x="20" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="110" y="140" text-anchor="middle" fill="#f9a825" font-size="11">chunk_size: 500</text>
+<text x="110" y="158" text-anchor="middle" fill="#ffffff" font-size="11">chunk_overlap: 50</text>
+<text x="110" y="176" text-anchor="middle" fill="#ffffff" font-size="11">シンプル・高速</text>
+<rect x="210" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="300" y="140" text-anchor="middle" fill="#f9a825" font-size="11">
+
+ → 
+ → 。</text>
+<text x="300" y="158" text-anchor="middle" fill="#ffffff" font-size="11">自然な境界</text>
+<text x="300" y="176" text-anchor="middle" fill="#ffffff" font-size="11">精度バランス良</text>
+<rect x="400" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="490" y="140" text-anchor="middle" fill="#f9a825" font-size="11">埋め込み類似度</text>
+<text x="490" y="158" text-anchor="middle" fill="#ffffff" font-size="11">で境界を検出</text>
+<text x="490" y="176" text-anchor="middle" fill="#ffffff" font-size="11">高精度・処理重</text>
+<rect x="590" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="680" y="140" text-anchor="middle" fill="#f9a825" font-size="11">Parent: 章/節</text>
+<text x="680" y="158" text-anchor="middle" fill="#ffffff" font-size="11">Child: 段落</text>
+<text x="680" y="176" text-anchor="middle" fill="#ffffff" font-size="11">コンテキスト保持</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">チャンクサイズ vs 精度のトレードオフ</text>
+<rect x="60" y="255" width="680" height="110" rx="6" fill="#16213e"/>
+<line x1="100" y1="320" x2="690" y2="320" stroke="#ffffff" stroke-width="2"/><polygon points="700,320 688,325 688,315" fill="#ffffff"/>
+<text x="80" y="325" text-anchor="end" fill="#ffffff" font-size="11">小</text>
+<text x="710" y="325" fill="#ffffff" font-size="11">大 →チャンクサイズ</text>
+<line x1="100" y1="360" x2="100" y2="265" stroke="#ffffff" stroke-width="1"/>
+<text x="95" y="270" text-anchor="end" fill="#ffffff" font-size="11">高</text>
+<text x="95" y="365" text-anchor="end" fill="#ffffff" font-size="11">低</text>
+<path d="M 100 340 Q 300 270 500 280 Q 600 285 700 300" stroke="#f9a825" stroke-width="2.5" fill="none"/>
+<text x="300" y="290" fill="#f9a825" font-size="11">精度</text>
+<path d="M 100 290 Q 300 295 500 305 Q 600 315 700 340" stroke="#e91e63" stroke-width="2.5" fill="none"/>
+<text x="500" y="330" fill="#e91e63" font-size="11">速度</text>
+</svg>
 - IAMロールARNまたはIAMユーザーARNを対象として指定
 - **試験ポイント:**
 - IAMでaoss:APIAccessAllを付与してもデータアクセスポリシーがなければ操作不可
 - 両方の設定が必要（かつ一致している必要がある）
+| 制御レイヤー | 制御内容 | 設定場所 |
+|-----------|---------|---------|
+| IAM | AWSリソースへのAPI呼び出し制御 | IAMポリシー |
+| データアクセスポリシー | OpenSearch内のインデックスCRUD制御 | OSSコンソール |
 
 
 ---
 
 # OpenSearch Serverless コスト最適化
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding ベクトル空間イメージ</text>
+<text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">意味が近い概念ほど近傍に配置される</text>
+<rect x="40" y="60" width="720" height="300" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+<circle cx="180" cy="120" r="8" fill="#f9a825"/>
+<text x="192" y="125" fill="#f9a825" font-size="11">AWS Lambda</text>
+<circle cx="220" cy="150" r="8" fill="#f9a825"/>
+<text x="232" y="155" fill="#f9a825" font-size="11">サーバーレス関数</text>
+<circle cx="160" cy="170" r="8" fill="#f9a825"/>
+<text x="172" y="175" fill="#f9a825" font-size="11">イベント駆動</text>
+<circle cx="450" cy="100" r="8" fill="#e91e63"/>
+<text x="462" y="105" fill="#e91e63" font-size="11">RDS Aurora</text>
+<circle cx="490" cy="130" r="8" fill="#e91e63"/>
+<text x="502" y="135" fill="#e91e63" font-size="11">PostgreSQL</text>
+<circle cx="430" cy="150" r="8" fill="#e91e63"/>
+<text x="442" y="155" fill="#e91e63" font-size="11">リレーショナルDB</text>
+<circle cx="600" cy="270" r="8" fill="#4fc3f7"/>
+<text x="612" y="275" fill="#4fc3f7" font-size="11">機械学習</text>
+<circle cx="640" cy="240" r="8" fill="#4fc3f7"/>
+<text x="652" y="245" fill="#4fc3f7" font-size="11">SageMaker</text>
+<circle cx="580" cy="300" r="8" fill="#4fc3f7"/>
+<text x="592" y="305" fill="#4fc3f7" font-size="11">モデル訓練</text>
+<ellipse cx="190" cy="147" rx="70" ry="40" fill="none" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="190" y="210" text-anchor="middle" fill="#f9a825" font-size="11">コンピューティングクラスタ</text>
+<ellipse cx="460" cy="125" rx="65" ry="35" fill="none" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="460" y="185" text-anchor="middle" fill="#e91e63" font-size="11">データベースクラスタ</text>
+<ellipse cx="615" cy="270" rx="65" ry="40" fill="none" stroke="#4fc3f7" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="615" y="330" text-anchor="middle" fill="#4fc3f7" font-size="11">MLクラスタ</text>
+<line x1="245" y1="155" x2="395" y2="135" stroke="#ffffff" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+<text x="320" y="135" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.6">距離=非類似</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">クエリを同一空間に変換 → コサイン類似度でTop-K取得 → LLMへ送信</text>
+</svg>
 | コスト要因 | 単価目安 | 最適化策 |
 |----------|---------|---------|
 | OCU（検索） | ~$0.24/OCU-時 | ef_searchを下げてOCU削減 |
@@ -949,13 +2682,105 @@ PUT /my-vector-index
 
 ---
 
-# OpenSearch Serverless 試験ポイントまとめ
+# OpenSearch Serverless 試験ポイントまとめ（1/2）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">検索手法 比較</text>
+<rect x="30" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="145" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Dense Retrieval</text>
+<text x="145" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル類似検索 (ANN)</text>
+<rect x="285" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sparse Retrieval</text>
+<text x="400" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">BM25 / TF-IDF</text>
+<rect x="540" y="50" width="230" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="655" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Hybrid Search</text>
+<text x="655" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Dense + Sparse</text>
+<text x="145" y="130" text-anchor="middle" fill="#ffffff" font-size="11">意味・文脈マッチ得意</text>
+<text x="145" y="148" text-anchor="middle" fill="#f9a825" font-size="11">専門用語弱い</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11">キーワード完全一致得意</text>
+<text x="400" y="148" text-anchor="middle" fill="#f9a825" font-size="11">意味理解なし</text>
+<text x="655" y="130" text-anchor="middle" fill="#ffffff" font-size="11">両手法の長所を統合</text>
+<text x="655" y="148" text-anchor="middle" fill="#f9a825" font-size="11">精度最高・推奨</text>
+<text x="400" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Hybrid Search の仕組み</text>
+<rect x="50" y="210" width="150" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="125" y="225.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="125" y="244.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">"Aurora設定方法"</text>
+<line x1="200" y1="232" x2="232.1913119055697" y2="206.24695047554425" stroke="#f9a825" stroke-width="2"/><polygon points="240,200 233.75304952445575,211.40068461786825 227.50609904891152,203.59199652343796" fill="#f9a825"/>
+<line x1="200" y1="232" x2="231.80768079480958" y2="254.2653765563667" stroke="#f9a825" stroke-width="2"/><polygon points="240,260 227.3019052319549,257.21461147023524 233.03652867558816,249.02229226504485" fill="#f9a825"/>
+<rect x="240" y="185" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="198" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Dense</text>
+<text x="315" y="217" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル検索</text>
+<rect x="240" y="255" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="268" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sparse</text>
+<text x="315" y="287" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">BM25検索</text>
+<line x1="390" y1="205" x2="421.71151325924353" y2="226.40527144998939" stroke="#f9a825" stroke-width="2"/><polygon points="430,232 417.2564516360869,229.4305691103655 422.8511801860975,221.14208236960903" fill="#f9a825"/>
+<line x1="390" y1="275" x2="421.71151325924353" y2="253.59472855001061" stroke="#f9a825" stroke-width="2"/><polygon points="430,248 422.8511801860975,258.857917630391 417.2564516360869,250.5694308896345" fill="#f9a825"/>
+<rect x="430" y="215" width="150" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="505" y="230.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">RRF Fusion</text>
+<text x="505" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">スコア統合</text>
+<line x1="580" y1="237" x2="610" y2="237" stroke="#f9a825" stroke-width="2"/><polygon points="620,237 608,242 608,232" fill="#f9a825"/>
+<rect x="620" y="215" width="150" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="695" y="230.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-K Results</text>
+<text x="695" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最終結果</text>
+<text x="400" y="330" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">RRF (Reciprocal Rank Fusion)</text>
+<text x="400" y="350" text-anchor="middle" fill="#f9a825" font-size="12">score = Σ 1/(k + rank_i)  where k=60 (常数)</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">OpenSearch Serverless: hybrid検索ネイティブサポート</text>
+</svg>
 - ✅ Bedrock KBのベクトルDBとして使えるのは OpenSearch **Serverless** のみ
 - ✅ コレクションタイプ: VectorSearch（低コスト）/ Search（全文+ベクトル）
 - ✅ k-NNエンジン: Faiss（大規模）/ nmslib（バランス）/ Lucene（小規模）
 - ✅ HYBRID検索 = kNN（ベクトル）+ BM25（キーワード）のスコア統合
 - ✅ セキュリティ3層: 暗号化ポリシー + ネットワークポリシー + データアクセスポリシー
+
+
+---
+
+# OpenSearch Serverless 試験ポイントまとめ（2/2）
+
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Re-ranking パイプライン</text>
+<rect x="20" y="55" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="80" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ユーザー入力</text>
+<line x1="140" y1="77" x2="170" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="180,77 168,82 168,72" fill="#f9a825"/>
+<rect x="180" y="55" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">First Stage</text>
+<text x="245" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">粗い検索</text>
+<line x1="310" y1="77" x2="340" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="350,77 338,82 338,72" fill="#f9a825"/>
+<rect x="350" y="55" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-100</text>
+<text x="415" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">候補取得</text>
+<line x1="480" y1="77" x2="510" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="520,77 508,82 508,72" fill="#f9a825"/>
+<rect x="520" y="55" width="140" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="590" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Re-ranker</text>
+<text x="590" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">精密スコアリング</text>
+<line x1="660" y1="77" x2="690" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="700,77 688,82 688,72" fill="#f9a825"/>
+<rect x="700" y="55" width="80" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="740" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-5</text>
+<text x="740" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最終</text>
+<text x="245" y="130" text-anchor="middle" fill="#f9a825" font-size="11">ANN/BM25</text>
+<text x="415" y="130" text-anchor="middle" fill="#ffffff" font-size="11">Recall重視</text>
+<text x="590" y="130" text-anchor="middle" fill="#e91e63" font-size="11">Precision重視</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Re-ranker 種類と特徴</text>
+<rect x="30" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cross-Encoder</text>
+<text x="140" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">クエリ×文書を同時入力</text>
+<rect x="290" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cohere Rerank</text>
+<text x="400" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">API呼び出し型</text>
+<rect x="550" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM Reranking</text>
+<text x="660" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">GPT/Claude判定</text>
+<text x="140" y="250" text-anchor="middle" fill="#f9a825" font-size="10">高精度・低速</text>
+<text x="400" y="250" text-anchor="middle" fill="#f9a825" font-size="10">バランス良・推奨</text>
+<text x="660" y="250" text-anchor="middle" fill="#f9a825" font-size="10">最高精度・コスト高</text>
+<text x="400" y="305" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">効果: MRR/NDCG を平均 15-30% 改善</text>
+<rect x="60" y="325" width="680" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="400" y="348" text-anchor="middle" fill="#ffffff" font-size="12">Bedrock Knowledge Bases: Cohere Rerank ネイティブ統合</text>
+<text x="400" y="366" text-anchor="middle" fill="#f9a825" font-size="11">numberOfResults↑ → Re-rank → contextWindow内に収まる数を選択</text>
+</svg>
 - ✅ IAMとデータアクセスポリシーは独立（両方設定が必要）
 - ✅ ef_construction/m: インデックス精度（高い→精度↑・メモリ↑）
 - ✅ ef_search: 検索精度（高い→精度↑・レイテンシ↑）
@@ -975,6 +2800,21 @@ PUT /my-vector-index
 
 # pgvector 概要・特徴
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG 評価指標 (RAGAS フレームワーク)</text>
+<line x1="250" y1="210" x2="250" y2="80" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.583302491977" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.58330249197707" y2="275" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="250" y2="340" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="275.00000000000006" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><polygon points="250,177.5 278.14582562299427,193.75 278.14582562299427,226.25 250,242.5 221.85417437700573,226.25 221.85417437700573,193.75 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,145 306.29165124598853,177.5 306.29165124598853,242.5 250,275 193.7083487540115,242.50000000000003 193.7083487540115,177.5 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,112.5 334.43747686898274,161.25 334.4374768689828,258.75 250,307.5 165.56252313101726,258.75000000000006 165.56252313101726,161.25 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,80 362.583302491977,145 362.58330249197707,275 250,340 137.416697508023,275.00000000000006 137.416697508023,145 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/>
+<polygon points="250,99.5 337.81497594374207,159.3 331.05997779422347,256.79999999999995 250,327 159.93335800641842,262.00000000000006 176.82085338021494,167.75 " fill="#e91e63" fill-opacity="0.3" stroke="#e91e63" stroke-width="2"/>
+<text x="250" y="52" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Faithfulness</text><text x="250" y="64" text-anchor="middle" fill="#f9a825" font-size="10">85%</text><text x="386.8320137979413" y="131" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Answer Relevance</text><text x="386.8320137979413" y="143" text-anchor="middle" fill="#f9a825" font-size="10">78%</text><text x="386.83201379794133" y="289" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Context Precision</text><text x="386.83201379794133" y="301" text-anchor="middle" fill="#f9a825" font-size="10">72%</text><text x="250" y="368" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Context Recall</text><text x="250" y="380" text-anchor="middle" fill="#f9a825" font-size="10">90%</text><text x="113.16798620205873" y="289.00000000000006" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Answer Correctness</text><text x="113.16798620205873" y="301.00000000000006" text-anchor="middle" fill="#f9a825" font-size="10">80%</text><text x="113.1679862020587" y="131" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Latency</text><text x="113.1679862020587" y="143" text-anchor="middle" fill="#f9a825" font-size="10">65%</text>
+<rect x="520" y="60" width="260" height="290" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="650" y="85" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">評価指標の意味</text>
+<text x="535" y="108" fill="#ffffff" font-size="11">Faithfulness</text><text x="770" y="108" text-anchor="end" fill="#f9a825" font-size="11">幻覚なし率</text>
+<text x="535" y="146" fill="#ffffff" font-size="11">Answer Relevance</text><text x="770" y="146" text-anchor="end" fill="#f9a825" font-size="11">回答関連性</text>
+<text x="535" y="184" fill="#ffffff" font-size="11">Context Precision</text><text x="770" y="184" text-anchor="end" fill="#f9a825" font-size="11">文脈精度</text>
+<text x="535" y="222" fill="#ffffff" font-size="11">Context Recall</text><text x="770" y="222" text-anchor="end" fill="#f9a825" font-size="11">文脈網羅率</text>
+<text x="535" y="260" fill="#ffffff" font-size="11">Answer Correctness</text><text x="770" y="260" text-anchor="end" fill="#f9a825" font-size="11">正解一致率</text>
+<text x="535" y="298" fill="#ffffff" font-size="11">Latency</text><text x="770" y="298" text-anchor="end" fill="#f9a825" font-size="11">応答速度</text>
+</svg>
 - **pgvector** = PostgreSQL拡張機能でベクトル検索を追加するオープンソースライブラリ
 | 特徴 | 説明 |
 |------|------|
@@ -993,6 +2833,28 @@ PUT /my-vector-index
 
 # pgvector — Aurora PostgreSQL 有効化
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG セキュリティ設計</text>
+<rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM Role</text>
+<text x="130" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最小権限原則</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">VPC Endpoint</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">プライベート通信</text>
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">KMS 暗号化</text>
+<text x="670" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">保存/転送時</text>
+<text x="130" y="115" text-anchor="middle" fill="#f9a825" font-size="10">bedrock:InvokeModel</text>
+<text x="130" y="130" text-anchor="middle" fill="#ffffff" font-size="10">s3:GetObject (KB用)</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock/OpenSearch/S3</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">インターネット不要</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Vector DB / S3</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">CMK推奨</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">データ隔離: テナント毎に別KB / メタデータフィルタでアクセス制御</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Guardrails: PII検出・トピックフィルタ・Grounding Check</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">監査: CloudTrail (API呼び出し) + CloudWatch Logs (詳細ログ)</text>
+</svg>
 - **Aurora PostgreSQL でのpgvector有効化手順**
 - 対応バージョン: Aurora PostgreSQL 13.6+ / 14.4+ / 15.2+
 | ステップ | コマンド / 操作 |
@@ -1002,6 +2864,36 @@ PUT /my-vector-index
 | ③ データ挿入 | INSERT INTO t(text, emb) VALUES ('...', '[0.1, 0.2, ...]'); |
 | ④ インデックス作成 | CREATE INDEX ON t USING ivfflat(emb); |
 | ⑤ 類似検索 | SELECT * FROM t ORDER BY emb <=> query_vec LIMIT 5; |
+
+
+---
+
+# pgvector — Aurora PostgreSQL 有効化（コード例）
+
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG レイテンシ最適化</text>
+<rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">キャッシュ層</text>
+<text x="130" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Semantic Cache</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">並列処理</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Async Retrieval</text>
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Streaming</text>
+<text x="670" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">SSE/WebSocket</text>
+<text x="130" y="115" text-anchor="middle" fill="#f9a825" font-size="10">類似クエリをキャッシュ</text>
+<text x="130" y="130" text-anchor="middle" fill="#ffffff" font-size="10">ElastiCache/DynamoDB</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Embed + Search 同時</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">asyncio / Promise.all</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">初回トークンを即表示</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">体感速度 大幅改善</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">典型的レイテンシ内訳 (合計 2〜5秒)</text>
+<text x="200" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Embed: 50〜200ms</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">ANN Search: 10〜100ms</text>
+<text x="600" y="188" text-anchor="middle" fill="#f9a825" font-size="11">LLM Gen: 1〜4sec</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Provisioned Throughput: LLM呼び出し速度を最大2x向上</text>
+</svg>
 
 ```sql
 -- pgvector 有効化
@@ -1027,6 +2919,33 @@ LIMIT 5;
 
 # pgvector — vector型と演算子
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG モニタリング スタック</text>
+<rect x="20" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="102.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudWatch</text>
+<text x="102.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">メトリクス/アラーム</text>
+<rect x="210" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="292.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">X-Ray</text>
+<text x="292.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">分散トレーシング</text>
+<rect x="400" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="482.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<text x="482.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">API監査ログ</text>
+<rect x="590" y="40" width="190" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="685" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">RAGAS</text>
+<text x="685" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAG品質評価</text>
+<text x="400" y="120" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">主要モニタリング指標</text>
+<text x="100" y="143" text-anchor="middle" fill="#f9a825" font-size="10">InvocationLatency</text>
+<text x="100" y="158" text-anchor="middle" fill="#ffffff" font-size="10">ThrottlingErrors</text>
+<text x="290" y="143" text-anchor="middle" fill="#f9a825" font-size="10">End-to-End Trace</text>
+<text x="290" y="158" text-anchor="middle" fill="#ffffff" font-size="10">ボトルネック特定</text>
+<text x="480" y="143" text-anchor="middle" fill="#f9a825" font-size="10">全API呼び出し記録</text>
+<text x="480" y="158" text-anchor="middle" fill="#ffffff" font-size="10">コンプライアンス</text>
+<text x="680" y="143" text-anchor="middle" fill="#f9a825" font-size="10">Faithfulness</text>
+<text x="680" y="158" text-anchor="middle" fill="#ffffff" font-size="10">Context Precision</text>
+<text x="400" y="188" text-anchor="middle" fill="#ffffff" font-size="11">アラーム設定: Latency P99 &gt; 5s / Error Rate &gt; 1% / Cost 日次上限</text>
+<text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock: InvocationsCount / InputTokenCount / OutputTokenCount</text>
+</svg>
 | 演算子 | 距離メトリクス | 説明 |
 |--------|-------------|------|
 | <-> | L2（ユークリッド）距離 | 空間的距離。小さいほど類似 |
@@ -1045,28 +2964,174 @@ LIMIT 5;
 
 ---
 
-# pgvector — IVFFlat インデックス
+# pgvector — IVFFlat インデックス（1/2）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Advanced RAG パターン</text>
+<text x="200" y="55" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">HyDE (Hypothetical Doc Embedding)</text>
+<rect x="20" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="75" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">"Aurora設定"</text>
+<line x1="130" y1="90" x2="155" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="165,90 153,95 153,85" fill="#f9a825"/>
+<rect x="165" y="70" width="110" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="220" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="220" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">仮想文書生成</text>
+<line x1="275" y1="90" x2="300" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="310,90 298,95 298,85" fill="#f9a825"/>
+<rect x="310" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="365" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="365" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">仮想文書</text>
+<line x1="420" y1="90" x2="445" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="455,90 443,95 443,85" fill="#f9a825"/>
+<rect x="455" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="510" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Search</text>
+<text x="510" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">類似検索</text>
+<line x1="565" y1="90" x2="590" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="600,90 588,95 588,85" fill="#f9a825"/>
+<rect x="600" y="70" width="100" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-K</text>
+<text x="650" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">文書取得</text>
+<text x="220" y="135" text-anchor="middle" fill="#f9a825" font-size="11">「Auroraの設定手順は...」を生成</text>
+<line x1="20" y1="155" x2="780" y2="155" stroke="#f9a825" stroke-width="1" opacity="0.3"/>
+<text x="200" y="175" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Multi-Query Retrieval</text>
+<rect x="20" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="75" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">元質問</text>
+<line x1="130" y1="210" x2="155" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="165,210 153,215 153,205" fill="#f9a825"/>
+<rect x="165" y="190" width="120" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="225" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">3〜5クエリ生成</text>
+<line x1="285" y1="195" x2="310.8085496998194" y2="183.93919298579166" stroke="#f9a825" stroke-width="2"/><polygon points="320,180 310.93985613267915,189.3227567330403 307.00066314688746,180.13130643285973" fill="#f9a825"/>
+<line x1="285" y1="210" x2="310" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="320,210 308,215 308,205" fill="#f9a825"/>
+<line x1="285" y1="225" x2="310.8085496998194" y2="236.06080701420834" stroke="#f9a825" stroke-width="2"/><polygon points="320,240 307.00066314688746,239.86869356714027 310.93985613267915,230.6772432669597" fill="#f9a825"/>
+<rect x="320" y="165" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="184" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 1</text>
+
+<rect x="320" y="195" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="214" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 2</text>
+
+<rect x="320" y="225" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="244" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 3</text>
+
+<line x1="430" y1="183" x2="457.0821774443653" y2="203.8919654570818" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 452.44459566177926,206.6292698263155 458.55263020469744,198.7114472706808" fill="#f9a825"/>
+<line x1="430" y1="214" x2="455.064673273436" y2="211.13546591160733" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 453.6453408839268,216.3302224572108 452.5098749723195,206.39489573064677" fill="#f9a825"/>
+<line x1="430" y1="244" x2="457.82720619140775" y2="216.9678568426325" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 459.87657585100555,221.94782511545512 452.90871900837305,214.77503130686287" fill="#f9a825"/>
+<rect x="465" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="520" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Merge</text>
+<text x="520" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">重複除去</text>
+<line x1="575" y1="210" x2="600" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="610,210 598,215 598,205" fill="#f9a825"/>
+<rect x="610" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Final</text>
+<text x="665" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">文書セット</text>
+<line x1="20" y1="280" x2="780" y2="280" stroke="#f9a825" stroke-width="1" opacity="0.3"/>
+<text x="200" y="300" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Step-Back Prompting</text>
+<text x="400" y="320" text-anchor="middle" fill="#ffffff" font-size="11">具体 → 抽象化 → 検索 → 組み合わせ回答</text>
+<text x="400" y="345" text-anchor="middle" fill="#f9a825" font-size="11">例: 「Lambda timeout設定」→「Lambda設定全般とは？」で文脈収集</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">HyDE: 文書ドメインが専門的な場合に有効  |  Multi-Query: 質問が曖昧な場合</text>
+</svg>
 - **IVFFlat（Inverted File Flat）** = ベクトルをクラスタリングして検索範囲を絞る
-| パラメータ | 説明 | 推奨値 |
-|----------|------|--------|
-| lists | クラスタ数（多い→精度↑・遅い） | rows/1000（最大100） |
-| probes | 検索時の探索クラスタ数 | lists/10〜lists |
 - **インデックス作成:**
 - CREATE INDEX ON documents USING ivfflat(embedding vector_cosine_ops) WITH (lists = 100);
 - **検索時のprobes設定:**
 - SET ivfflat.probes = 10;  -- 精度↑はprobes↑
+| パラメータ | 説明 | 推奨値 |
+|----------|------|--------|
+| lists | クラスタ数（多い→精度↑・遅い） | rows/1000（最大100） |
+| probes | 検索時の探索クラスタ数 | lists/10〜lists |
+
+
+---
+
+# pgvector — IVFFlat インデックス（2/2）
+
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">本番 RAG アーキテクチャ (AWS)</text>
+<rect x="20" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Client</text>
+<text x="80" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Web/Mobile</text>
+<line x1="140" y1="70" x2="170" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="180,70 168,75 168,65" fill="#f9a825"/>
+<rect x="180" y="50" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">API Gateway</text>
+<text x="245" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">+ Lambda</text>
+<line x1="310" y1="70" x2="340" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="350,70 338,75 338,65" fill="#f9a825"/>
+<rect x="350" y="50" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Bedrock KB</text>
+<text x="415" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAGオーケストレーション</text>
+<line x1="480" y1="70" x2="510" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="520,70 508,75 508,65" fill="#f9a825"/>
+<rect x="520" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="580" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3.5</text>
+<text x="580" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Sonnet</text>
+<line x1="480" y1="85" x2="480" y2="135" stroke="#f9a825" stroke-width="2"/><polygon points="480,145 475,133 485,133" fill="#f9a825"/>
+<rect x="350" y="145" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenSearch</text>
+<text x="415" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Serverless</text>
+<line x1="480" y1="145" x2="480" y2="175" stroke="#f9a825" stroke-width="2"/><polygon points="480,185 475,173 485,173" fill="#f9a825"/>
+<rect x="350" y="185" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="198" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed Model</text>
+<text x="415" y="217" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Titan v2</text>
+<rect x="20" y="145" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">S3 Bucket</text>
+<text x="95" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ドキュメント格納</text>
+<line x1="170" y1="165" x2="340" y2="165" stroke="#f9a825" stroke-width="2"/><polygon points="350,165 338,170 338,160" fill="#f9a825"/>
+<rect x="540" y="145" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="605" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudWatch</text>
+<text x="605" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">モニタリング</text>
+<rect x="540" y="200" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="605" y="213" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">X-Ray</text>
+<text x="605" y="232" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">トレーシング</text>
+<rect x="690" y="145" width="100" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="740" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">GuardRails</text>
+<text x="740" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">安全フィルタ</text>
+<text x="400" y="275" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">本番運用チェックリスト</text>
+<rect x="20" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">セキュリティ</text>
+
+<rect x="285" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">パフォーマンス</text>
+
+<rect x="550" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">コスト最適化</text>
+
+<text x="135" y="315" text-anchor="middle" fill="#f9a825" font-size="10">IAM最小権限 / VPC Endpoint</text><text x="135" y="333" text-anchor="middle" fill="#ffffff" font-size="10">KMS暗号化 / Guardrails</text>
+<text x="400" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Provisioned Throughput</text><text x="400" y="333" text-anchor="middle" fill="#ffffff" font-size="10">キャッシュ / バッチ処理</text>
+<text x="665" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Spot Embedding / S3 Intelligent</text><text x="665" y="333" text-anchor="middle" fill="#ffffff" font-size="10">Haiku for classify</text>
+</svg>
 - **特徴:**
 - インデックス構築が速い（HNSWより高速）
 - 大規模データ（100万件超）でスケールしやすい
 - 精度はHNSWより低め（probes調整で改善可）
 - **注意:** インデックス前に十分なデータが必要（空テーブルでの作成は非推奨）
+| パラメータ | 説明 | 推奨値 |
+|----------|------|--------|
+| lists | クラスタ数（多い→精度↑・遅い） | rows/1000（最大100） |
+| probes | 検索時の探索クラスタ数 | lists/10〜lists |
 
 
 ---
 
 # pgvector — HNSW インデックス
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG コスト最適化戦略</text>
+<rect x="20" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="132.5" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embedding コスト削減</text>
+
+<rect x="290" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="402.5" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM コスト削減</text>
+
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">インフラコスト削減</text>
+
+<text x="132" y="115" text-anchor="middle" fill="#f9a825" font-size="10">差分更新のみ再Embed</text>
+<text x="132" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Titan v2 最安値利用</text>
+<text x="402" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Batch API (50%OFF)</text>
+<text x="402" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Prompt キャッシュ活用</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Serverless自動スケール</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">S3 Intelligent-Tiering</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">モデル選択: 分類/ルーティングはHaiku → 応答生成のみSonnet</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Semantic Cacheで重複クエリのLLM呼び出しを削減 (命中率30〜60%)</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">月次コスト試算: 1M queries × $0.003/query ≈ $3,000/月 (Sonnet)</text>
+</svg>
 - **HNSW（Hierarchical Navigable Small World）** = 階層グラフ構造で高精度・高速検索
 | パラメータ | 説明 | 推奨値 |
 |----------|------|--------|
@@ -1089,6 +3154,34 @@ LIMIT 5;
 
 # pgvector パフォーマンスチューニング
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
+<rect x="20" y="40" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">S3 Bucket</text>
+<text x="80" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ソース文書</text>
+<line x1="140" y1="62" x2="165" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="175,62 163,67 163,57" fill="#f9a825"/>
+<rect x="175" y="40" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="240" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Data Ingestion</text>
+<text x="240" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Bedrock KB</text>
+<line x1="305" y1="62" x2="330" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="340,62 328,67 328,57" fill="#f9a825"/>
+<rect x="340" y="40" width="130" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="405" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenSearch</text>
+<text x="405" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Serverless</text>
+<line x1="470" y1="62" x2="495" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="505,62 493,67 493,57" fill="#f9a825"/>
+<rect x="505" y="40" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="570" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector Index</text>
+<text x="570" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">k-NN Index</text>
+<line x1="635" y1="62" x2="660" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="670,62 658,67 658,57" fill="#f9a825"/>
+<rect x="670" y="40" width="110" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query API</text>
+<text x="725" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">検索エンドポイント</text>
+<text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="11">OCU (OpenSearch Compute Unit): Index/Search に独立スケール</text>
+<text x="400" y="138" text-anchor="middle" fill="#f9a825" font-size="11">k-NN アルゴリズム: HNSW (精度高) / IVF (コスト低)</text>
+<text x="400" y="162" text-anchor="middle" fill="#ffffff" font-size="11">ベクトル次元: 最大16000 | Metric: cosine / euclidean / dot_product</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">コレクション = インデックスの論理グループ | VPC Endpoint対応</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">料金: 0.24 USD/OCU-hour (最小0.5 OCU × 2リソース)</text>
+</svg>
 | チューニング項目 | 対処法 |
 |--------------|--------|
 | インデックス不使用 | WHERE句の条件を最小化、ANNインデックス適用確認 |
@@ -1106,6 +3199,20 @@ LIMIT 5;
 
 # pgvector 制限・クォータ
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Aurora PostgreSQL pgvector — セットアップ</text>
+<rect x="20" y="40" width="760" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold"></text>
+
+<text x="400" y="58" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">CREATE EXTENSION vector;</text>
+<text x="400" y="76" text-anchor="middle" fill="#ffffff" font-size="11">CREATE TABLE docs (id serial, content text, embedding vector(1536));</text>
+<text x="400" y="120" text-anchor="middle" fill="#ffffff" font-size="11">インデックス作成: CREATE INDEX ON docs USING hnsw (embedding vector_cosine_ops);</text>
+<text x="400" y="145" text-anchor="middle" fill="#ffffff" font-size="11">検索: SELECT * FROM docs ORDER BY embedding &lt;=&gt; '[0.1,0.2,...]' LIMIT 5;</text>
+<text x="400" y="170" text-anchor="middle" fill="#f9a825" font-size="11">演算子: &lt;=&gt; (cosine) / &lt;-&gt; (L2) / &lt;#&gt; (inner product)</text>
+<text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="11">Serverless v2: 0.5〜128 ACU | 自動スケール | コスト最適</text>
+<text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB統合: データソース選択時に Aurora PostgreSQL を指定するだけ</text>
+</svg>
 | 制限項目 | 値 | 備考 |
 |---------|---|------|
 | 最大次元数 | 16,000 | 通常1,024以下を推奨 |
@@ -1126,6 +3233,28 @@ LIMIT 5;
 
 # Bedrock KBとAurora pgvectorの統合
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
+<rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed Text v2</text>
+<text x="135" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.00002/1K tokens</text>
+<rect x="285" y="40" width="230" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cohere Embed v3</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.0001/1K tokens</text>
+<rect x="550" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenAI text-embed-3</text>
+<text x="665" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.00013/1K tokens</text>
+<text x="135" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 8K tokens</text>
+<text x="135" y="130" text-anchor="middle" fill="#f9a825" font-size="10">AWS最低コスト</text>
+<text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1024dim / 多言語</text>
+<text x="400" y="130" text-anchor="middle" fill="#f9a825" font-size="10">高精度・推奨</text>
+<text x="665" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 3072dim</text>
+<text x="665" y="130" text-anchor="middle" fill="#f9a825" font-size="10">外部API必要</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">選択基準: コスト重視→Titan / 多言語精度→Cohere / AWS外→OpenAI</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">重要: Indexing時とQuery時は必ず同一モデルを使用</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">次元数削減: Matryoshka Embedding で 1/4 次元でも精度維持可能</text>
+</svg>
 - **統合フロー:** KB作成時にAurora PostgreSQLクラスターを指定
 | 設定項目 | 説明 |
 |---------|------|
@@ -1146,6 +3275,35 @@ LIMIT 5;
 
 # pgvector セキュリティ・コスト
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">クエリ処理パイプライン</text>
+<rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw Query</text>
+<text x="75" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="130" y1="65" x2="155" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="165,65 153,70 153,60" fill="#f9a825"/>
+<rect x="165" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">前処理</text>
+<text x="225" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">正規化/言語検出</text>
+<line x1="285" y1="65" x2="310" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="320,65 308,70 308,60" fill="#f9a825"/>
+<rect x="320" y="45" width="120" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="380" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query Embed</text>
+<text x="380" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル化</text>
+<line x1="440" y1="65" x2="465" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="475,65 463,70 463,60" fill="#f9a825"/>
+<rect x="475" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="535" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ANN Search</text>
+<text x="535" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Top-K取得</text>
+<line x1="595" y1="65" x2="620" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="630,65 618,70 618,60" fill="#f9a825"/>
+<rect x="630" y="45" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="705" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Rerank</text>
+<text x="705" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">精度向上</text>
+<text x="400" y="125" text-anchor="middle" fill="#ffffff" font-size="11">クエリ拡張テクニック</text>
+<text x="200" y="148" text-anchor="middle" fill="#f9a825" font-size="10">HyDE: 仮説文書生成→埋め込み</text>
+<text x="400" y="148" text-anchor="middle" fill="#f9a825" font-size="10">Multi-Query: 複数バリエーション</text>
+<text x="600" y="148" text-anchor="middle" fill="#f9a825" font-size="10">Step-Back: 抽象化→具体化</text>
+<text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="11">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>
+<text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>
+</svg>
 - **セキュリティ設定:**
 | 項目 | 設定 |
 |------|------|
@@ -1165,13 +3323,100 @@ LIMIT 5;
 
 ---
 
-# pgvector 試験ポイントまとめ
+# pgvector 試験ポイントまとめ（1/2）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG パイプライン全体像</text>
+<text x="200" y="75" text-anchor="middle" fill="#ffffff" font-size="12">オフライン（Indexing Phase）</text>
+<text x="590" y="75" text-anchor="middle" fill="#e91e63" font-size="12">オンライン（Query Phase）</text>
+<line x1="390" y1="65" x2="390" y2="175" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="30" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="77.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Ingest</text>
+<text x="77.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">S3→Parse</text><line x1="125" y1="127" x2="128" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="138,127 126,132 126,122" fill="#f9a825"/><rect x="138" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="185.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunk</text>
+<text x="185.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">分割処理</text><line x1="233" y1="127" x2="236" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="246,127 234,132 234,122" fill="#f9a825"/><rect x="246" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="293.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="293.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル化</text><line x1="341" y1="127" x2="344" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="354,127 342,132 342,122" fill="#f9a825"/><rect x="354" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="401.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Index</text>
+<text x="401.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">DB格納</text><line x1="449" y1="127" x2="452" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="462,127 450,132 450,122" fill="#f9a825"/><rect x="462" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="509.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Retrieve</text>
+<text x="509.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">類似検索</text><line x1="557" y1="127" x2="560" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="570,127 558,132 558,122" fill="#f9a825"/><rect x="570" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="617.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augment</text>
+<text x="617.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Prompt合成</text><line x1="665" y1="127" x2="668" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="678,127 666,132 666,122" fill="#f9a825"/><rect x="678" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Generate</text>
+<text x="725.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">LLM応答</text>
+<text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="11">← Offline: 事前インデックス作成  |  Online: リアルタイム検索・生成 →</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">主要コンポーネント</text>
+<rect x="30" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Document Loader</text>
+<text x="140" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">S3/URL/Confluence/SharePoint</text>
+<rect x="290" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector Store</text>
+<text x="400" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">OpenSearch/pgvector/Pinecone</text>
+<rect x="550" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="660" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude 3.5 / Titan / Llama</text>
+<text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="12">Amazon Bedrock Knowledge Bases = マネージド RAG サービス</text>
+</svg>
 - ✅ pgvector = PostgreSQL拡張機能でRDB+ベクトル検索を統合
 - ✅ Bedrock KB対応 = Aurora PostgreSQLのみ（RDS PostgreSQLは非対応）
 - ✅ 演算子: <-> L2距離 / <=> コサイン距離 / <#> 内積（負値）
 - ✅ IVFFlat: 構築速い・中精度・大規模向き
 - ✅ HNSW: 高精度・メモリ大・更新に強い（pgvector 0.5.0以降）
+
+
+---
+
+# pgvector 試験ポイントまとめ（2/2）
+
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">チャンキング戦略 比較</text>
+<rect x="20" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="110" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Fixed Size</text>
+<text x="110" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">固定トークン数</text>
+<rect x="210" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="300" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Recursive</text>
+<text x="300" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">区切り文字ベース</text>
+<rect x="400" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="490" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Semantic</text>
+<text x="490" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">意味単位分割</text>
+<rect x="590" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="680" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Hierarchical</text>
+<text x="680" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">親子構造</text>
+<rect x="20" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="110" y="140" text-anchor="middle" fill="#f9a825" font-size="11">chunk_size: 500</text>
+<text x="110" y="158" text-anchor="middle" fill="#ffffff" font-size="11">chunk_overlap: 50</text>
+<text x="110" y="176" text-anchor="middle" fill="#ffffff" font-size="11">シンプル・高速</text>
+<rect x="210" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="300" y="140" text-anchor="middle" fill="#f9a825" font-size="11">
+
+ → 
+ → 。</text>
+<text x="300" y="158" text-anchor="middle" fill="#ffffff" font-size="11">自然な境界</text>
+<text x="300" y="176" text-anchor="middle" fill="#ffffff" font-size="11">精度バランス良</text>
+<rect x="400" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="490" y="140" text-anchor="middle" fill="#f9a825" font-size="11">埋め込み類似度</text>
+<text x="490" y="158" text-anchor="middle" fill="#ffffff" font-size="11">で境界を検出</text>
+<text x="490" y="176" text-anchor="middle" fill="#ffffff" font-size="11">高精度・処理重</text>
+<rect x="590" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="680" y="140" text-anchor="middle" fill="#f9a825" font-size="11">Parent: 章/節</text>
+<text x="680" y="158" text-anchor="middle" fill="#ffffff" font-size="11">Child: 段落</text>
+<text x="680" y="176" text-anchor="middle" fill="#ffffff" font-size="11">コンテキスト保持</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">チャンクサイズ vs 精度のトレードオフ</text>
+<rect x="60" y="255" width="680" height="110" rx="6" fill="#16213e"/>
+<line x1="100" y1="320" x2="690" y2="320" stroke="#ffffff" stroke-width="2"/><polygon points="700,320 688,325 688,315" fill="#ffffff"/>
+<text x="80" y="325" text-anchor="end" fill="#ffffff" font-size="11">小</text>
+<text x="710" y="325" fill="#ffffff" font-size="11">大 →チャンクサイズ</text>
+<line x1="100" y1="360" x2="100" y2="265" stroke="#ffffff" stroke-width="1"/>
+<text x="95" y="270" text-anchor="end" fill="#ffffff" font-size="11">高</text>
+<text x="95" y="365" text-anchor="end" fill="#ffffff" font-size="11">低</text>
+<path d="M 100 340 Q 300 270 500 280 Q 600 285 700 300" stroke="#f9a825" stroke-width="2.5" fill="none"/>
+<text x="300" y="290" fill="#f9a825" font-size="11">精度</text>
+<path d="M 100 290 Q 300 295 500 305 Q 600 315 700 340" stroke="#e91e63" stroke-width="2.5" fill="none"/>
+<text x="500" y="330" fill="#e91e63" font-size="11">速度</text>
+</svg>
 - ✅ DB接続情報はSecrets Managerで管理
 - ✅ ACID対応 → ベクトル + リレーショナルデータのトランザクション処理が可能
 - ✅ コスト: 小規模ならOpenSearchより安価な場合が多い
@@ -1191,6 +3436,39 @@ LIMIT 5;
 
 # Amazon MemoryDB for Redis — ベクトル検索
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding ベクトル空間イメージ</text>
+<text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">意味が近い概念ほど近傍に配置される</text>
+<rect x="40" y="60" width="720" height="300" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+<circle cx="180" cy="120" r="8" fill="#f9a825"/>
+<text x="192" y="125" fill="#f9a825" font-size="11">AWS Lambda</text>
+<circle cx="220" cy="150" r="8" fill="#f9a825"/>
+<text x="232" y="155" fill="#f9a825" font-size="11">サーバーレス関数</text>
+<circle cx="160" cy="170" r="8" fill="#f9a825"/>
+<text x="172" y="175" fill="#f9a825" font-size="11">イベント駆動</text>
+<circle cx="450" cy="100" r="8" fill="#e91e63"/>
+<text x="462" y="105" fill="#e91e63" font-size="11">RDS Aurora</text>
+<circle cx="490" cy="130" r="8" fill="#e91e63"/>
+<text x="502" y="135" fill="#e91e63" font-size="11">PostgreSQL</text>
+<circle cx="430" cy="150" r="8" fill="#e91e63"/>
+<text x="442" y="155" fill="#e91e63" font-size="11">リレーショナルDB</text>
+<circle cx="600" cy="270" r="8" fill="#4fc3f7"/>
+<text x="612" y="275" fill="#4fc3f7" font-size="11">機械学習</text>
+<circle cx="640" cy="240" r="8" fill="#4fc3f7"/>
+<text x="652" y="245" fill="#4fc3f7" font-size="11">SageMaker</text>
+<circle cx="580" cy="300" r="8" fill="#4fc3f7"/>
+<text x="592" y="305" fill="#4fc3f7" font-size="11">モデル訓練</text>
+<ellipse cx="190" cy="147" rx="70" ry="40" fill="none" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="190" y="210" text-anchor="middle" fill="#f9a825" font-size="11">コンピューティングクラスタ</text>
+<ellipse cx="460" cy="125" rx="65" ry="35" fill="none" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="460" y="185" text-anchor="middle" fill="#e91e63" font-size="11">データベースクラスタ</text>
+<ellipse cx="615" cy="270" rx="65" ry="40" fill="none" stroke="#4fc3f7" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="615" y="330" text-anchor="middle" fill="#4fc3f7" font-size="11">MLクラスタ</text>
+<line x1="245" y1="155" x2="395" y2="135" stroke="#ffffff" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+<text x="320" y="135" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.6">距離=非類似</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">クエリを同一空間に変換 → コサイン類似度でTop-K取得 → LLMへ送信</text>
+</svg>
 - **MemoryDB** = Redis互換のインメモリDB（耐久性あり）+ ベクトル検索対応
 | 特徴 | 説明 |
 |------|------|
@@ -1209,6 +3487,49 @@ LIMIT 5;
 
 # Pinecone on AWS Marketplace
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">検索手法 比較</text>
+<rect x="30" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="145" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Dense Retrieval</text>
+<text x="145" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル類似検索 (ANN)</text>
+<rect x="285" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sparse Retrieval</text>
+<text x="400" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">BM25 / TF-IDF</text>
+<rect x="540" y="50" width="230" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="655" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Hybrid Search</text>
+<text x="655" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Dense + Sparse</text>
+<text x="145" y="130" text-anchor="middle" fill="#ffffff" font-size="11">意味・文脈マッチ得意</text>
+<text x="145" y="148" text-anchor="middle" fill="#f9a825" font-size="11">専門用語弱い</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11">キーワード完全一致得意</text>
+<text x="400" y="148" text-anchor="middle" fill="#f9a825" font-size="11">意味理解なし</text>
+<text x="655" y="130" text-anchor="middle" fill="#ffffff" font-size="11">両手法の長所を統合</text>
+<text x="655" y="148" text-anchor="middle" fill="#f9a825" font-size="11">精度最高・推奨</text>
+<text x="400" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Hybrid Search の仕組み</text>
+<rect x="50" y="210" width="150" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="125" y="225.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="125" y="244.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">"Aurora設定方法"</text>
+<line x1="200" y1="232" x2="232.1913119055697" y2="206.24695047554425" stroke="#f9a825" stroke-width="2"/><polygon points="240,200 233.75304952445575,211.40068461786825 227.50609904891152,203.59199652343796" fill="#f9a825"/>
+<line x1="200" y1="232" x2="231.80768079480958" y2="254.2653765563667" stroke="#f9a825" stroke-width="2"/><polygon points="240,260 227.3019052319549,257.21461147023524 233.03652867558816,249.02229226504485" fill="#f9a825"/>
+<rect x="240" y="185" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="198" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Dense</text>
+<text x="315" y="217" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル検索</text>
+<rect x="240" y="255" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="268" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sparse</text>
+<text x="315" y="287" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">BM25検索</text>
+<line x1="390" y1="205" x2="421.71151325924353" y2="226.40527144998939" stroke="#f9a825" stroke-width="2"/><polygon points="430,232 417.2564516360869,229.4305691103655 422.8511801860975,221.14208236960903" fill="#f9a825"/>
+<line x1="390" y1="275" x2="421.71151325924353" y2="253.59472855001061" stroke="#f9a825" stroke-width="2"/><polygon points="430,248 422.8511801860975,258.857917630391 417.2564516360869,250.5694308896345" fill="#f9a825"/>
+<rect x="430" y="215" width="150" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="505" y="230.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">RRF Fusion</text>
+<text x="505" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">スコア統合</text>
+<line x1="580" y1="237" x2="610" y2="237" stroke="#f9a825" stroke-width="2"/><polygon points="620,237 608,242 608,232" fill="#f9a825"/>
+<rect x="620" y="215" width="150" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="695" y="230.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-K Results</text>
+<text x="695" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最終結果</text>
+<text x="400" y="330" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">RRF (Reciprocal Rank Fusion)</text>
+<text x="400" y="350" text-anchor="middle" fill="#f9a825" font-size="12">score = Σ 1/(k + rank_i)  where k=60 (常数)</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">OpenSearch Serverless: hybrid検索ネイティブサポート</text>
+</svg>
 - **Pinecone** = ベクトル専用フルマネージドDBのSaaS（サードパーティ）
 | 特徴 | 説明 |
 |------|------|
@@ -1228,6 +3549,28 @@ LIMIT 5;
 
 # Weaviate / MongoDB Atlas Vector Search
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG セキュリティ設計</text>
+<rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM Role</text>
+<text x="130" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最小権限原則</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">VPC Endpoint</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">プライベート通信</text>
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">KMS 暗号化</text>
+<text x="670" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">保存/転送時</text>
+<text x="130" y="115" text-anchor="middle" fill="#f9a825" font-size="10">bedrock:InvokeModel</text>
+<text x="130" y="130" text-anchor="middle" fill="#ffffff" font-size="10">s3:GetObject (KB用)</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock/OpenSearch/S3</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">インターネット不要</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Vector DB / S3</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">CMK推奨</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">データ隔離: テナント毎に別KB / メタデータフィルタでアクセス制御</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Guardrails: PII検出・トピックフィルタ・Grounding Check</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">監査: CloudTrail (API呼び出し) + CloudWatch Logs (詳細ログ)</text>
+</svg>
 | | Weaviate | MongoDB Atlas |
 |-|---------|--------------|
 | 種別 | オープンソースVectorDB（SaaS版あり） | ドキュメントDB + ベクトル |
@@ -1244,6 +3587,49 @@ LIMIT 5;
 
 # Amazon Neptune Analytics — GraphRAG
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Re-ranking パイプライン</text>
+<rect x="20" y="55" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="80" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ユーザー入力</text>
+<line x1="140" y1="77" x2="170" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="180,77 168,82 168,72" fill="#f9a825"/>
+<rect x="180" y="55" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">First Stage</text>
+<text x="245" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">粗い検索</text>
+<line x1="310" y1="77" x2="340" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="350,77 338,82 338,72" fill="#f9a825"/>
+<rect x="350" y="55" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-100</text>
+<text x="415" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">候補取得</text>
+<line x1="480" y1="77" x2="510" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="520,77 508,82 508,72" fill="#f9a825"/>
+<rect x="520" y="55" width="140" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="590" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Re-ranker</text>
+<text x="590" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">精密スコアリング</text>
+<line x1="660" y1="77" x2="690" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="700,77 688,82 688,72" fill="#f9a825"/>
+<rect x="700" y="55" width="80" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="740" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-5</text>
+<text x="740" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最終</text>
+<text x="245" y="130" text-anchor="middle" fill="#f9a825" font-size="11">ANN/BM25</text>
+<text x="415" y="130" text-anchor="middle" fill="#ffffff" font-size="11">Recall重視</text>
+<text x="590" y="130" text-anchor="middle" fill="#e91e63" font-size="11">Precision重視</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Re-ranker 種類と特徴</text>
+<rect x="30" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cross-Encoder</text>
+<text x="140" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">クエリ×文書を同時入力</text>
+<rect x="290" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cohere Rerank</text>
+<text x="400" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">API呼び出し型</text>
+<rect x="550" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM Reranking</text>
+<text x="660" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">GPT/Claude判定</text>
+<text x="140" y="250" text-anchor="middle" fill="#f9a825" font-size="10">高精度・低速</text>
+<text x="400" y="250" text-anchor="middle" fill="#f9a825" font-size="10">バランス良・推奨</text>
+<text x="660" y="250" text-anchor="middle" fill="#f9a825" font-size="10">最高精度・コスト高</text>
+<text x="400" y="305" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">効果: MRR/NDCG を平均 15-30% 改善</text>
+<rect x="60" y="325" width="680" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="400" y="348" text-anchor="middle" fill="#ffffff" font-size="12">Bedrock Knowledge Bases: Cohere Rerank ネイティブ統合</text>
+<text x="400" y="366" text-anchor="middle" fill="#f9a825" font-size="11">numberOfResults↑ → Re-rank → contextWindow内に収まる数を選択</text>
+</svg>
 - **Neptune Analytics** = グラフDB + ベクトル検索 + グラフアルゴリズムの統合
 | 特徴 | 説明 |
 |------|------|
@@ -1263,6 +3649,30 @@ LIMIT 5;
 
 # 全ベクトルDB比較マトリクス①（機能・特性）
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG レイテンシ最適化</text>
+<rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">キャッシュ層</text>
+<text x="130" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Semantic Cache</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">並列処理</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Async Retrieval</text>
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Streaming</text>
+<text x="670" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">SSE/WebSocket</text>
+<text x="130" y="115" text-anchor="middle" fill="#f9a825" font-size="10">類似クエリをキャッシュ</text>
+<text x="130" y="130" text-anchor="middle" fill="#ffffff" font-size="10">ElastiCache/DynamoDB</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Embed + Search 同時</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">asyncio / Promise.all</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">初回トークンを即表示</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">体感速度 大幅改善</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">典型的レイテンシ内訳 (合計 2〜5秒)</text>
+<text x="200" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Embed: 50〜200ms</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">ANN Search: 10〜100ms</text>
+<text x="600" y="188" text-anchor="middle" fill="#f9a825" font-size="11">LLM Gen: 1〜4sec</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Provisioned Throughput: LLM呼び出し速度を最大2x向上</text>
+</svg>
 | DB | 種別 | Hybrid検索 | Transaction | グラフ統合 | KB対応 |
 |---|------|-----------|------------|-----------|--------|
 | OpenSearch Serverless | AWS管理 | ✅ BM25+kNN | ❌ | ❌ | ✅ |
@@ -1279,6 +3689,33 @@ LIMIT 5;
 
 # 全ベクトルDB比較マトリクス②（コスト・スケール・レイテンシ）
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG モニタリング スタック</text>
+<rect x="20" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="102.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudWatch</text>
+<text x="102.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">メトリクス/アラーム</text>
+<rect x="210" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="292.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">X-Ray</text>
+<text x="292.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">分散トレーシング</text>
+<rect x="400" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="482.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<text x="482.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">API監査ログ</text>
+<rect x="590" y="40" width="190" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="685" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">RAGAS</text>
+<text x="685" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAG品質評価</text>
+<text x="400" y="120" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">主要モニタリング指標</text>
+<text x="100" y="143" text-anchor="middle" fill="#f9a825" font-size="10">InvocationLatency</text>
+<text x="100" y="158" text-anchor="middle" fill="#ffffff" font-size="10">ThrottlingErrors</text>
+<text x="290" y="143" text-anchor="middle" fill="#f9a825" font-size="10">End-to-End Trace</text>
+<text x="290" y="158" text-anchor="middle" fill="#ffffff" font-size="10">ボトルネック特定</text>
+<text x="480" y="143" text-anchor="middle" fill="#f9a825" font-size="10">全API呼び出し記録</text>
+<text x="480" y="158" text-anchor="middle" fill="#ffffff" font-size="10">コンプライアンス</text>
+<text x="680" y="143" text-anchor="middle" fill="#f9a825" font-size="10">Faithfulness</text>
+<text x="680" y="158" text-anchor="middle" fill="#ffffff" font-size="10">Context Precision</text>
+<text x="400" y="188" text-anchor="middle" fill="#ffffff" font-size="11">アラーム設定: Latency P99 &gt; 5s / Error Rate &gt; 1% / Cost 日次上限</text>
+<text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock: InvocationsCount / InputTokenCount / OutputTokenCount</text>
+</svg>
 | DB | コスト感 | 最大スケール | レイテンシ | ユースケース |
 |---|---------|------------|-----------|------------|
 | OpenSearch Serverless | 中（OCU課金） | 大規模 | 中 | 大規模・Hybrid |
@@ -1296,13 +3733,95 @@ LIMIT 5;
 
 ---
 
-# ベクトルDB 選択フレームワーク
+# ベクトルDB 選択フレームワーク（1/2）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG 評価指標 (RAGAS フレームワーク)</text>
+<line x1="250" y1="210" x2="250" y2="80" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.583302491977" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.58330249197707" y2="275" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="250" y2="340" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="275.00000000000006" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><polygon points="250,177.5 278.14582562299427,193.75 278.14582562299427,226.25 250,242.5 221.85417437700573,226.25 221.85417437700573,193.75 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,145 306.29165124598853,177.5 306.29165124598853,242.5 250,275 193.7083487540115,242.50000000000003 193.7083487540115,177.5 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,112.5 334.43747686898274,161.25 334.4374768689828,258.75 250,307.5 165.56252313101726,258.75000000000006 165.56252313101726,161.25 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,80 362.583302491977,145 362.58330249197707,275 250,340 137.416697508023,275.00000000000006 137.416697508023,145 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/>
+<polygon points="250,99.5 337.81497594374207,159.3 331.05997779422347,256.79999999999995 250,327 159.93335800641842,262.00000000000006 176.82085338021494,167.75 " fill="#e91e63" fill-opacity="0.3" stroke="#e91e63" stroke-width="2"/>
+<text x="250" y="52" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Faithfulness</text><text x="250" y="64" text-anchor="middle" fill="#f9a825" font-size="10">85%</text><text x="386.8320137979413" y="131" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Answer Relevance</text><text x="386.8320137979413" y="143" text-anchor="middle" fill="#f9a825" font-size="10">78%</text><text x="386.83201379794133" y="289" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Context Precision</text><text x="386.83201379794133" y="301" text-anchor="middle" fill="#f9a825" font-size="10">72%</text><text x="250" y="368" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Context Recall</text><text x="250" y="380" text-anchor="middle" fill="#f9a825" font-size="10">90%</text><text x="113.16798620205873" y="289.00000000000006" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Answer Correctness</text><text x="113.16798620205873" y="301.00000000000006" text-anchor="middle" fill="#f9a825" font-size="10">80%</text><text x="113.1679862020587" y="131" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Latency</text><text x="113.1679862020587" y="143" text-anchor="middle" fill="#f9a825" font-size="10">65%</text>
+<rect x="520" y="60" width="260" height="290" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="650" y="85" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">評価指標の意味</text>
+<text x="535" y="108" fill="#ffffff" font-size="11">Faithfulness</text><text x="770" y="108" text-anchor="end" fill="#f9a825" font-size="11">幻覚なし率</text>
+<text x="535" y="146" fill="#ffffff" font-size="11">Answer Relevance</text><text x="770" y="146" text-anchor="end" fill="#f9a825" font-size="11">回答関連性</text>
+<text x="535" y="184" fill="#ffffff" font-size="11">Context Precision</text><text x="770" y="184" text-anchor="end" fill="#f9a825" font-size="11">文脈精度</text>
+<text x="535" y="222" fill="#ffffff" font-size="11">Context Recall</text><text x="770" y="222" text-anchor="end" fill="#f9a825" font-size="11">文脈網羅率</text>
+<text x="535" y="260" fill="#ffffff" font-size="11">Answer Correctness</text><text x="770" y="260" text-anchor="end" fill="#f9a825" font-size="11">正解一致率</text>
+<text x="535" y="298" fill="#ffffff" font-size="11">Latency</text><text x="770" y="298" text-anchor="end" fill="#f9a825" font-size="11">応答速度</text>
+</svg>
 - **要件ベースの選択フロー:**
 - 既存PostgreSQL/Auroraがある → pgvector（移行コスト最小）
 - グラフ構造（エンティティ関係）が必要 → Neptune Analytics
 - マイクロ秒レイテンシが必要 → MemoryDB for Redis
 - 大規模（100万件超）+ ハイブリッド検索 → OpenSearch Serverless
+
+
+---
+
+# ベクトルDB 選択フレームワーク（2/2）
+
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Advanced RAG パターン</text>
+<text x="200" y="55" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">HyDE (Hypothetical Doc Embedding)</text>
+<rect x="20" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="75" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">"Aurora設定"</text>
+<line x1="130" y1="90" x2="155" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="165,90 153,95 153,85" fill="#f9a825"/>
+<rect x="165" y="70" width="110" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="220" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="220" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">仮想文書生成</text>
+<line x1="275" y1="90" x2="300" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="310,90 298,95 298,85" fill="#f9a825"/>
+<rect x="310" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="365" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="365" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">仮想文書</text>
+<line x1="420" y1="90" x2="445" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="455,90 443,95 443,85" fill="#f9a825"/>
+<rect x="455" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="510" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Search</text>
+<text x="510" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">類似検索</text>
+<line x1="565" y1="90" x2="590" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="600,90 588,95 588,85" fill="#f9a825"/>
+<rect x="600" y="70" width="100" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-K</text>
+<text x="650" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">文書取得</text>
+<text x="220" y="135" text-anchor="middle" fill="#f9a825" font-size="11">「Auroraの設定手順は...」を生成</text>
+<line x1="20" y1="155" x2="780" y2="155" stroke="#f9a825" stroke-width="1" opacity="0.3"/>
+<text x="200" y="175" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Multi-Query Retrieval</text>
+<rect x="20" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="75" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">元質問</text>
+<line x1="130" y1="210" x2="155" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="165,210 153,215 153,205" fill="#f9a825"/>
+<rect x="165" y="190" width="120" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="225" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">3〜5クエリ生成</text>
+<line x1="285" y1="195" x2="310.8085496998194" y2="183.93919298579166" stroke="#f9a825" stroke-width="2"/><polygon points="320,180 310.93985613267915,189.3227567330403 307.00066314688746,180.13130643285973" fill="#f9a825"/>
+<line x1="285" y1="210" x2="310" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="320,210 308,215 308,205" fill="#f9a825"/>
+<line x1="285" y1="225" x2="310.8085496998194" y2="236.06080701420834" stroke="#f9a825" stroke-width="2"/><polygon points="320,240 307.00066314688746,239.86869356714027 310.93985613267915,230.6772432669597" fill="#f9a825"/>
+<rect x="320" y="165" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="184" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 1</text>
+
+<rect x="320" y="195" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="214" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 2</text>
+
+<rect x="320" y="225" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="244" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 3</text>
+
+<line x1="430" y1="183" x2="457.0821774443653" y2="203.8919654570818" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 452.44459566177926,206.6292698263155 458.55263020469744,198.7114472706808" fill="#f9a825"/>
+<line x1="430" y1="214" x2="455.064673273436" y2="211.13546591160733" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 453.6453408839268,216.3302224572108 452.5098749723195,206.39489573064677" fill="#f9a825"/>
+<line x1="430" y1="244" x2="457.82720619140775" y2="216.9678568426325" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 459.87657585100555,221.94782511545512 452.90871900837305,214.77503130686287" fill="#f9a825"/>
+<rect x="465" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="520" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Merge</text>
+<text x="520" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">重複除去</text>
+<line x1="575" y1="210" x2="600" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="610,210 598,215 598,205" fill="#f9a825"/>
+<rect x="610" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Final</text>
+<text x="665" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">文書セット</text>
+<line x1="20" y1="280" x2="780" y2="280" stroke="#f9a825" stroke-width="1" opacity="0.3"/>
+<text x="200" y="300" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Step-Back Prompting</text>
+<text x="400" y="320" text-anchor="middle" fill="#ffffff" font-size="11">具体 → 抽象化 → 検索 → 組み合わせ回答</text>
+<text x="400" y="345" text-anchor="middle" fill="#f9a825" font-size="11">例: 「Lambda timeout設定」→「Lambda設定全般とは？」で文脈収集</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">HyDE: 文書ドメインが専門的な場合に有効  |  Multi-Query: 質問が曖昧な場合</text>
+</svg>
 - ベクトル検索のみでシンプルに → Pinecone
 - NoSQL + ベクトル統合 → MongoDB Atlas / DocumentDB
 - **AWSネイティブが優先される場合:**
@@ -1315,6 +3834,28 @@ LIMIT 5;
 
 # ユースケース別推奨ベクトルDB
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG コスト最適化戦略</text>
+<rect x="20" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="132.5" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embedding コスト削減</text>
+
+<rect x="290" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="402.5" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM コスト削減</text>
+
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">インフラコスト削減</text>
+
+<text x="132" y="115" text-anchor="middle" fill="#f9a825" font-size="10">差分更新のみ再Embed</text>
+<text x="132" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Titan v2 最安値利用</text>
+<text x="402" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Batch API (50%OFF)</text>
+<text x="402" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Prompt キャッシュ活用</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Serverless自動スケール</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">S3 Intelligent-Tiering</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">モデル選択: 分類/ルーティングはHaiku → 応答生成のみSonnet</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Semantic Cacheで重複クエリのLLM呼び出しを削減 (命中率30〜60%)</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">月次コスト試算: 1M queries × $0.003/query ≈ $3,000/月 (Sonnet)</text>
+</svg>
 | ユースケース | 推奨DB | 理由 |
 |-----------|--------|------|
 | 社内FAQ・ドキュメント検索 | OpenSearch Serverless | Hybrid検索・スケール |
@@ -1331,6 +3872,34 @@ LIMIT 5;
 
 # AWS管理 vs サードパーティ ベクトルDB比較
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
+<rect x="20" y="40" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">S3 Bucket</text>
+<text x="80" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ソース文書</text>
+<line x1="140" y1="62" x2="165" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="175,62 163,67 163,57" fill="#f9a825"/>
+<rect x="175" y="40" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="240" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Data Ingestion</text>
+<text x="240" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Bedrock KB</text>
+<line x1="305" y1="62" x2="330" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="340,62 328,67 328,57" fill="#f9a825"/>
+<rect x="340" y="40" width="130" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="405" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenSearch</text>
+<text x="405" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Serverless</text>
+<line x1="470" y1="62" x2="495" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="505,62 493,67 493,57" fill="#f9a825"/>
+<rect x="505" y="40" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="570" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector Index</text>
+<text x="570" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">k-NN Index</text>
+<line x1="635" y1="62" x2="660" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="670,62 658,67 658,57" fill="#f9a825"/>
+<rect x="670" y="40" width="110" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query API</text>
+<text x="725" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">検索エンドポイント</text>
+<text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="11">OCU (OpenSearch Compute Unit): Index/Search に独立スケール</text>
+<text x="400" y="138" text-anchor="middle" fill="#f9a825" font-size="11">k-NN アルゴリズム: HNSW (精度高) / IVF (コスト低)</text>
+<text x="400" y="162" text-anchor="middle" fill="#ffffff" font-size="11">ベクトル次元: 最大16000 | Metric: cosine / euclidean / dot_product</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">コレクション = インデックスの論理グループ | VPC Endpoint対応</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">料金: 0.24 USD/OCU-hour (最小0.5 OCU × 2リソース)</text>
+</svg>
 | 比較軸 | AWS管理（OSS/pgvector等） | サードパーティ（Pinecone等） |
 |-------|------------------------|--------------------------|
 | IAM統合 | ネイティブ対応 | 独自認証（APIキー等） |
@@ -1357,6 +3926,59 @@ LIMIT 5;
 
 # 基本RAGパターン（Naive RAG）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">本番 RAG アーキテクチャ (AWS)</text>
+<rect x="20" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Client</text>
+<text x="80" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Web/Mobile</text>
+<line x1="140" y1="70" x2="170" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="180,70 168,75 168,65" fill="#f9a825"/>
+<rect x="180" y="50" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">API Gateway</text>
+<text x="245" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">+ Lambda</text>
+<line x1="310" y1="70" x2="340" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="350,70 338,75 338,65" fill="#f9a825"/>
+<rect x="350" y="50" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Bedrock KB</text>
+<text x="415" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAGオーケストレーション</text>
+<line x1="480" y1="70" x2="510" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="520,70 508,75 508,65" fill="#f9a825"/>
+<rect x="520" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="580" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3.5</text>
+<text x="580" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Sonnet</text>
+<line x1="480" y1="85" x2="480" y2="135" stroke="#f9a825" stroke-width="2"/><polygon points="480,145 475,133 485,133" fill="#f9a825"/>
+<rect x="350" y="145" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenSearch</text>
+<text x="415" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Serverless</text>
+<line x1="480" y1="145" x2="480" y2="175" stroke="#f9a825" stroke-width="2"/><polygon points="480,185 475,173 485,173" fill="#f9a825"/>
+<rect x="350" y="185" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="198" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed Model</text>
+<text x="415" y="217" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Titan v2</text>
+<rect x="20" y="145" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">S3 Bucket</text>
+<text x="95" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ドキュメント格納</text>
+<line x1="170" y1="165" x2="340" y2="165" stroke="#f9a825" stroke-width="2"/><polygon points="350,165 338,170 338,160" fill="#f9a825"/>
+<rect x="540" y="145" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="605" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudWatch</text>
+<text x="605" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">モニタリング</text>
+<rect x="540" y="200" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="605" y="213" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">X-Ray</text>
+<text x="605" y="232" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">トレーシング</text>
+<rect x="690" y="145" width="100" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="740" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">GuardRails</text>
+<text x="740" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">安全フィルタ</text>
+<text x="400" y="275" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">本番運用チェックリスト</text>
+<rect x="20" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">セキュリティ</text>
+
+<rect x="285" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">パフォーマンス</text>
+
+<rect x="550" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">コスト最適化</text>
+
+<text x="135" y="315" text-anchor="middle" fill="#f9a825" font-size="10">IAM最小権限 / VPC Endpoint</text><text x="135" y="333" text-anchor="middle" fill="#ffffff" font-size="10">KMS暗号化 / Guardrails</text>
+<text x="400" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Provisioned Throughput</text><text x="400" y="333" text-anchor="middle" fill="#ffffff" font-size="10">キャッシュ / バッチ処理</text>
+<text x="665" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Spot Embedding / S3 Intelligent</text><text x="665" y="333" text-anchor="middle" fill="#ffffff" font-size="10">Haiku for classify</text>
+</svg>
 - **最もシンプルなRAG実装**
 | ステップ | 処理 |
 |---------|------|
@@ -1375,6 +3997,20 @@ LIMIT 5;
 
 # Advanced RAGパターン
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Aurora PostgreSQL pgvector — セットアップ</text>
+<rect x="20" y="40" width="760" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold"></text>
+
+<text x="400" y="58" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">CREATE EXTENSION vector;</text>
+<text x="400" y="76" text-anchor="middle" fill="#ffffff" font-size="11">CREATE TABLE docs (id serial, content text, embedding vector(1536));</text>
+<text x="400" y="120" text-anchor="middle" fill="#ffffff" font-size="11">インデックス作成: CREATE INDEX ON docs USING hnsw (embedding vector_cosine_ops);</text>
+<text x="400" y="145" text-anchor="middle" fill="#ffffff" font-size="11">検索: SELECT * FROM docs ORDER BY embedding &lt;=&gt; '[0.1,0.2,...]' LIMIT 5;</text>
+<text x="400" y="170" text-anchor="middle" fill="#f9a825" font-size="11">演算子: &lt;=&gt; (cosine) / &lt;-&gt; (L2) / &lt;#&gt; (inner product)</text>
+<text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="11">Serverless v2: 0.5〜128 ACU | 自動スケール | コスト最適</text>
+<text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB統合: データソース選択時に Aurora PostgreSQL を指定するだけ</text>
+</svg>
 | 技術 | 解決する課題 | 実装方法 |
 |------|-----------|---------|
 | Query Rewriting | クエリの意味ギャップ | LLMでクエリを拡張・明確化 |
@@ -1391,6 +4027,28 @@ LIMIT 5;
 
 # Corrective RAG（CRAG）
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
+<rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed Text v2</text>
+<text x="135" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.00002/1K tokens</text>
+<rect x="285" y="40" width="230" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cohere Embed v3</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.0001/1K tokens</text>
+<rect x="550" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenAI text-embed-3</text>
+<text x="665" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.00013/1K tokens</text>
+<text x="135" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 8K tokens</text>
+<text x="135" y="130" text-anchor="middle" fill="#f9a825" font-size="10">AWS最低コスト</text>
+<text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1024dim / 多言語</text>
+<text x="400" y="130" text-anchor="middle" fill="#f9a825" font-size="10">高精度・推奨</text>
+<text x="665" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 3072dim</text>
+<text x="665" y="130" text-anchor="middle" fill="#f9a825" font-size="10">外部API必要</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">選択基準: コスト重視→Titan / 多言語精度→Cohere / AWS外→OpenAI</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">重要: Indexing時とQuery時は必ず同一モデルを使用</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">次元数削減: Matryoshka Embedding で 1/4 次元でも精度維持可能</text>
+</svg>
 - **CRAG** = 検索結果の品質を評価し、品質不足なら検索戦略を修正する自己訂正型RAG
 | フェーズ | 処理 |
 |---------|------|
@@ -1409,6 +4067,40 @@ LIMIT 5;
 
 # Self-RAG
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG パイプライン全体像</text>
+<text x="200" y="75" text-anchor="middle" fill="#ffffff" font-size="12">オフライン（Indexing Phase）</text>
+<text x="590" y="75" text-anchor="middle" fill="#e91e63" font-size="12">オンライン（Query Phase）</text>
+<line x1="390" y1="65" x2="390" y2="175" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="30" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="77.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Ingest</text>
+<text x="77.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">S3→Parse</text><line x1="125" y1="127" x2="128" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="138,127 126,132 126,122" fill="#f9a825"/><rect x="138" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="185.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunk</text>
+<text x="185.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">分割処理</text><line x1="233" y1="127" x2="236" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="246,127 234,132 234,122" fill="#f9a825"/><rect x="246" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="293.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="293.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル化</text><line x1="341" y1="127" x2="344" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="354,127 342,132 342,122" fill="#f9a825"/><rect x="354" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="401.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Index</text>
+<text x="401.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">DB格納</text><line x1="449" y1="127" x2="452" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="462,127 450,132 450,122" fill="#f9a825"/><rect x="462" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="509.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Retrieve</text>
+<text x="509.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">類似検索</text><line x1="557" y1="127" x2="560" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="570,127 558,132 558,122" fill="#f9a825"/><rect x="570" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="617.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augment</text>
+<text x="617.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Prompt合成</text><line x1="665" y1="127" x2="668" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="678,127 666,132 666,122" fill="#f9a825"/><rect x="678" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Generate</text>
+<text x="725.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">LLM応答</text>
+<text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="11">← Offline: 事前インデックス作成  |  Online: リアルタイム検索・生成 →</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">主要コンポーネント</text>
+<rect x="30" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Document Loader</text>
+<text x="140" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">S3/URL/Confluence/SharePoint</text>
+<rect x="290" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector Store</text>
+<text x="400" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">OpenSearch/pgvector/Pinecone</text>
+<rect x="550" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="660" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude 3.5 / Titan / Llama</text>
+<text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="12">Amazon Bedrock Knowledge Bases = マネージド RAG サービス</text>
+</svg>
 - **Self-RAG** = LLM自身が検索の必要性を判断し、回答を自己批評するRAG
 | トークン | 役割 |
 |---------|------|
@@ -1427,6 +4119,53 @@ LIMIT 5;
 
 # マルチホップRAG（Multi-hop）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">チャンキング戦略 比較</text>
+<rect x="20" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="110" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Fixed Size</text>
+<text x="110" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">固定トークン数</text>
+<rect x="210" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="300" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Recursive</text>
+<text x="300" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">区切り文字ベース</text>
+<rect x="400" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="490" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Semantic</text>
+<text x="490" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">意味単位分割</text>
+<rect x="590" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="680" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Hierarchical</text>
+<text x="680" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">親子構造</text>
+<rect x="20" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="110" y="140" text-anchor="middle" fill="#f9a825" font-size="11">chunk_size: 500</text>
+<text x="110" y="158" text-anchor="middle" fill="#ffffff" font-size="11">chunk_overlap: 50</text>
+<text x="110" y="176" text-anchor="middle" fill="#ffffff" font-size="11">シンプル・高速</text>
+<rect x="210" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="300" y="140" text-anchor="middle" fill="#f9a825" font-size="11">
+
+ → 
+ → 。</text>
+<text x="300" y="158" text-anchor="middle" fill="#ffffff" font-size="11">自然な境界</text>
+<text x="300" y="176" text-anchor="middle" fill="#ffffff" font-size="11">精度バランス良</text>
+<rect x="400" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="490" y="140" text-anchor="middle" fill="#f9a825" font-size="11">埋め込み類似度</text>
+<text x="490" y="158" text-anchor="middle" fill="#ffffff" font-size="11">で境界を検出</text>
+<text x="490" y="176" text-anchor="middle" fill="#ffffff" font-size="11">高精度・処理重</text>
+<rect x="590" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="680" y="140" text-anchor="middle" fill="#f9a825" font-size="11">Parent: 章/節</text>
+<text x="680" y="158" text-anchor="middle" fill="#ffffff" font-size="11">Child: 段落</text>
+<text x="680" y="176" text-anchor="middle" fill="#ffffff" font-size="11">コンテキスト保持</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">チャンクサイズ vs 精度のトレードオフ</text>
+<rect x="60" y="255" width="680" height="110" rx="6" fill="#16213e"/>
+<line x1="100" y1="320" x2="690" y2="320" stroke="#ffffff" stroke-width="2"/><polygon points="700,320 688,325 688,315" fill="#ffffff"/>
+<text x="80" y="325" text-anchor="end" fill="#ffffff" font-size="11">小</text>
+<text x="710" y="325" fill="#ffffff" font-size="11">大 →チャンクサイズ</text>
+<line x1="100" y1="360" x2="100" y2="265" stroke="#ffffff" stroke-width="1"/>
+<text x="95" y="270" text-anchor="end" fill="#ffffff" font-size="11">高</text>
+<text x="95" y="365" text-anchor="end" fill="#ffffff" font-size="11">低</text>
+<path d="M 100 340 Q 300 270 500 280 Q 600 285 700 300" stroke="#f9a825" stroke-width="2.5" fill="none"/>
+<text x="300" y="290" fill="#f9a825" font-size="11">精度</text>
+<path d="M 100 290 Q 300 295 500 305 Q 600 315 700 340" stroke="#e91e63" stroke-width="2.5" fill="none"/>
+<text x="500" y="330" fill="#e91e63" font-size="11">速度</text>
+</svg>
 - **マルチホップ** = 複数の検索ステップを連鎖させて複雑な質問に回答
 - **例:** 「AWSのCEOが卒業した大学の創設者は誰ですか？」
 - → ①「AWSのCEO」を検索 → ②「○○の出身大学」を検索 → ③「大学の創設者」を検索 → 統合回答
@@ -1443,6 +4182,39 @@ LIMIT 5;
 
 # GraphRAG（+ Amazon Neptune Analytics）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding ベクトル空間イメージ</text>
+<text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">意味が近い概念ほど近傍に配置される</text>
+<rect x="40" y="60" width="720" height="300" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+<circle cx="180" cy="120" r="8" fill="#f9a825"/>
+<text x="192" y="125" fill="#f9a825" font-size="11">AWS Lambda</text>
+<circle cx="220" cy="150" r="8" fill="#f9a825"/>
+<text x="232" y="155" fill="#f9a825" font-size="11">サーバーレス関数</text>
+<circle cx="160" cy="170" r="8" fill="#f9a825"/>
+<text x="172" y="175" fill="#f9a825" font-size="11">イベント駆動</text>
+<circle cx="450" cy="100" r="8" fill="#e91e63"/>
+<text x="462" y="105" fill="#e91e63" font-size="11">RDS Aurora</text>
+<circle cx="490" cy="130" r="8" fill="#e91e63"/>
+<text x="502" y="135" fill="#e91e63" font-size="11">PostgreSQL</text>
+<circle cx="430" cy="150" r="8" fill="#e91e63"/>
+<text x="442" y="155" fill="#e91e63" font-size="11">リレーショナルDB</text>
+<circle cx="600" cy="270" r="8" fill="#4fc3f7"/>
+<text x="612" y="275" fill="#4fc3f7" font-size="11">機械学習</text>
+<circle cx="640" cy="240" r="8" fill="#4fc3f7"/>
+<text x="652" y="245" fill="#4fc3f7" font-size="11">SageMaker</text>
+<circle cx="580" cy="300" r="8" fill="#4fc3f7"/>
+<text x="592" y="305" fill="#4fc3f7" font-size="11">モデル訓練</text>
+<ellipse cx="190" cy="147" rx="70" ry="40" fill="none" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="190" y="210" text-anchor="middle" fill="#f9a825" font-size="11">コンピューティングクラスタ</text>
+<ellipse cx="460" cy="125" rx="65" ry="35" fill="none" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="460" y="185" text-anchor="middle" fill="#e91e63" font-size="11">データベースクラスタ</text>
+<ellipse cx="615" cy="270" rx="65" ry="40" fill="none" stroke="#4fc3f7" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="615" y="330" text-anchor="middle" fill="#4fc3f7" font-size="11">MLクラスタ</text>
+<line x1="245" y1="155" x2="395" y2="135" stroke="#ffffff" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+<text x="320" y="135" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.6">距離=非類似</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">クエリを同一空間に変換 → コサイン類似度でTop-K取得 → LLMへ送信</text>
+</svg>
 - **GraphRAG** = グラフ構造でエンティティ関係を表現し、ベクトル検索と組み合わせる
 | 通常RAG | GraphRAG |
 |--------|---------|
@@ -1460,6 +4232,35 @@ LIMIT 5;
 
 # RAGのセキュリティ設計
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">クエリ処理パイプライン</text>
+<rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw Query</text>
+<text x="75" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="130" y1="65" x2="155" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="165,65 153,70 153,60" fill="#f9a825"/>
+<rect x="165" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">前処理</text>
+<text x="225" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">正規化/言語検出</text>
+<line x1="285" y1="65" x2="310" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="320,65 308,70 308,60" fill="#f9a825"/>
+<rect x="320" y="45" width="120" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="380" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query Embed</text>
+<text x="380" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル化</text>
+<line x1="440" y1="65" x2="465" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="475,65 463,70 463,60" fill="#f9a825"/>
+<rect x="475" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="535" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ANN Search</text>
+<text x="535" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Top-K取得</text>
+<line x1="595" y1="65" x2="620" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="630,65 618,70 618,60" fill="#f9a825"/>
+<rect x="630" y="45" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="705" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Rerank</text>
+<text x="705" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">精度向上</text>
+<text x="400" y="125" text-anchor="middle" fill="#ffffff" font-size="11">クエリ拡張テクニック</text>
+<text x="200" y="148" text-anchor="middle" fill="#f9a825" font-size="10">HyDE: 仮説文書生成→埋め込み</text>
+<text x="400" y="148" text-anchor="middle" fill="#f9a825" font-size="10">Multi-Query: 複数バリエーション</text>
+<text x="600" y="148" text-anchor="middle" fill="#f9a825" font-size="10">Step-Back: 抽象化→具体化</text>
+<text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="11">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>
+<text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>
+</svg>
 | セキュリティ脅威 | 対策 |
 |--------------|------|
 | プロンプトインジェクション（直接） | Guardrails + 入力バリデーション |
@@ -1478,6 +4279,49 @@ LIMIT 5;
 
 # プロンプトインジェクション対策（RAG）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">検索手法 比較</text>
+<rect x="30" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="145" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Dense Retrieval</text>
+<text x="145" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル類似検索 (ANN)</text>
+<rect x="285" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sparse Retrieval</text>
+<text x="400" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">BM25 / TF-IDF</text>
+<rect x="540" y="50" width="230" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="655" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Hybrid Search</text>
+<text x="655" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Dense + Sparse</text>
+<text x="145" y="130" text-anchor="middle" fill="#ffffff" font-size="11">意味・文脈マッチ得意</text>
+<text x="145" y="148" text-anchor="middle" fill="#f9a825" font-size="11">専門用語弱い</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11">キーワード完全一致得意</text>
+<text x="400" y="148" text-anchor="middle" fill="#f9a825" font-size="11">意味理解なし</text>
+<text x="655" y="130" text-anchor="middle" fill="#ffffff" font-size="11">両手法の長所を統合</text>
+<text x="655" y="148" text-anchor="middle" fill="#f9a825" font-size="11">精度最高・推奨</text>
+<text x="400" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Hybrid Search の仕組み</text>
+<rect x="50" y="210" width="150" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="125" y="225.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="125" y="244.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">"Aurora設定方法"</text>
+<line x1="200" y1="232" x2="232.1913119055697" y2="206.24695047554425" stroke="#f9a825" stroke-width="2"/><polygon points="240,200 233.75304952445575,211.40068461786825 227.50609904891152,203.59199652343796" fill="#f9a825"/>
+<line x1="200" y1="232" x2="231.80768079480958" y2="254.2653765563667" stroke="#f9a825" stroke-width="2"/><polygon points="240,260 227.3019052319549,257.21461147023524 233.03652867558816,249.02229226504485" fill="#f9a825"/>
+<rect x="240" y="185" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="198" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Dense</text>
+<text x="315" y="217" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル検索</text>
+<rect x="240" y="255" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="268" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sparse</text>
+<text x="315" y="287" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">BM25検索</text>
+<line x1="390" y1="205" x2="421.71151325924353" y2="226.40527144998939" stroke="#f9a825" stroke-width="2"/><polygon points="430,232 417.2564516360869,229.4305691103655 422.8511801860975,221.14208236960903" fill="#f9a825"/>
+<line x1="390" y1="275" x2="421.71151325924353" y2="253.59472855001061" stroke="#f9a825" stroke-width="2"/><polygon points="430,248 422.8511801860975,258.857917630391 417.2564516360869,250.5694308896345" fill="#f9a825"/>
+<rect x="430" y="215" width="150" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="505" y="230.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">RRF Fusion</text>
+<text x="505" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">スコア統合</text>
+<line x1="580" y1="237" x2="610" y2="237" stroke="#f9a825" stroke-width="2"/><polygon points="620,237 608,242 608,232" fill="#f9a825"/>
+<rect x="620" y="215" width="150" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="695" y="230.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-K Results</text>
+<text x="695" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最終結果</text>
+<text x="400" y="330" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">RRF (Reciprocal Rank Fusion)</text>
+<text x="400" y="350" text-anchor="middle" fill="#f9a825" font-size="12">score = Σ 1/(k + rank_i)  where k=60 (常数)</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">OpenSearch Serverless: hybrid検索ネイティブサポート</text>
+</svg>
 - **間接プロンプトインジェクション** = 悪意のある文書をベクトルDBに混入させ、検索経由でLLMを操作
 | 攻撃パターン | 対策 |
 |-----------|------|
@@ -1496,6 +4340,28 @@ LIMIT 5;
 
 # RAGのコスト最適化戦略
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG セキュリティ設計</text>
+<rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">IAM Role</text>
+<text x="130" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最小権限原則</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">VPC Endpoint</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">プライベート通信</text>
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">KMS 暗号化</text>
+<text x="670" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">保存/転送時</text>
+<text x="130" y="115" text-anchor="middle" fill="#f9a825" font-size="10">bedrock:InvokeModel</text>
+<text x="130" y="130" text-anchor="middle" fill="#ffffff" font-size="10">s3:GetObject (KB用)</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock/OpenSearch/S3</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">インターネット不要</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Vector DB / S3</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">CMK推奨</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">データ隔離: テナント毎に別KB / メタデータフィルタでアクセス制御</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Guardrails: PII検出・トピックフィルタ・Grounding Check</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">監査: CloudTrail (API呼び出し) + CloudWatch Logs (詳細ログ)</text>
+</svg>
 | フェーズ | コスト要因 | 最適化策 |
 |---------|----------|---------|
 | インジェスト | エンベディングトークン | Titan v2 低次元（256）選択 |
@@ -1514,6 +4380,30 @@ LIMIT 5;
 
 # RAG評価フレームワーク（RAGAS詳細）
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG レイテンシ最適化</text>
+<rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">キャッシュ層</text>
+<text x="130" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Semantic Cache</text>
+<rect x="290" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">並列処理</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Async Retrieval</text>
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Streaming</text>
+<text x="670" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">SSE/WebSocket</text>
+<text x="130" y="115" text-anchor="middle" fill="#f9a825" font-size="10">類似クエリをキャッシュ</text>
+<text x="130" y="130" text-anchor="middle" fill="#ffffff" font-size="10">ElastiCache/DynamoDB</text>
+<text x="400" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Embed + Search 同時</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">asyncio / Promise.all</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">初回トークンを即表示</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">体感速度 大幅改善</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="11">典型的レイテンシ内訳 (合計 2〜5秒)</text>
+<text x="200" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Embed: 50〜200ms</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">ANN Search: 10〜100ms</text>
+<text x="600" y="188" text-anchor="middle" fill="#f9a825" font-size="11">LLM Gen: 1〜4sec</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Provisioned Throughput: LLM呼び出し速度を最大2x向上</text>
+</svg>
 | 指標 | 計算方法 | スコア範囲 | 改善策 |
 |------|---------|----------|--------|
 | Faithfulness | 回答の各文がコンテキストに支持されているか | 0〜1 | Guardrailsグラウンディング |
@@ -1531,6 +4421,33 @@ LIMIT 5;
 
 # RAGのモニタリング・オブザーバビリティ
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG モニタリング スタック</text>
+<rect x="20" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="102.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudWatch</text>
+<text x="102.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">メトリクス/アラーム</text>
+<rect x="210" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="292.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">X-Ray</text>
+<text x="292.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">分散トレーシング</text>
+<rect x="400" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="482.5" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudTrail</text>
+<text x="482.5" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">API監査ログ</text>
+<rect x="590" y="40" width="190" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="685" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">RAGAS</text>
+<text x="685" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAG品質評価</text>
+<text x="400" y="120" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">主要モニタリング指標</text>
+<text x="100" y="143" text-anchor="middle" fill="#f9a825" font-size="10">InvocationLatency</text>
+<text x="100" y="158" text-anchor="middle" fill="#ffffff" font-size="10">ThrottlingErrors</text>
+<text x="290" y="143" text-anchor="middle" fill="#f9a825" font-size="10">End-to-End Trace</text>
+<text x="290" y="158" text-anchor="middle" fill="#ffffff" font-size="10">ボトルネック特定</text>
+<text x="480" y="143" text-anchor="middle" fill="#f9a825" font-size="10">全API呼び出し記録</text>
+<text x="480" y="158" text-anchor="middle" fill="#ffffff" font-size="10">コンプライアンス</text>
+<text x="680" y="143" text-anchor="middle" fill="#f9a825" font-size="10">Faithfulness</text>
+<text x="680" y="158" text-anchor="middle" fill="#ffffff" font-size="10">Context Precision</text>
+<text x="400" y="188" text-anchor="middle" fill="#ffffff" font-size="11">アラーム設定: Latency P99 &gt; 5s / Error Rate &gt; 1% / Cost 日次上限</text>
+<text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock: InvocationsCount / InputTokenCount / OutputTokenCount</text>
+</svg>
 | 監視レイヤー | メトリクス | AWSサービス |
 |-----------|----------|-----------|
 | インジェスト | IngestionJobStatus / 失敗件数 | CloudWatch |
@@ -1547,13 +4464,77 @@ LIMIT 5;
 
 ---
 
-# よくある実装ミス・試験ひっかけパターン
+# よくある実装ミス・試験ひっかけパターン（1/2）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Re-ranking パイプライン</text>
+<rect x="20" y="55" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="80" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ユーザー入力</text>
+<line x1="140" y1="77" x2="170" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="180,77 168,82 168,72" fill="#f9a825"/>
+<rect x="180" y="55" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">First Stage</text>
+<text x="245" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">粗い検索</text>
+<line x1="310" y1="77" x2="340" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="350,77 338,82 338,72" fill="#f9a825"/>
+<rect x="350" y="55" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-100</text>
+<text x="415" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">候補取得</text>
+<line x1="480" y1="77" x2="510" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="520,77 508,82 508,72" fill="#f9a825"/>
+<rect x="520" y="55" width="140" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="590" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Re-ranker</text>
+<text x="590" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">精密スコアリング</text>
+<line x1="660" y1="77" x2="690" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="700,77 688,82 688,72" fill="#f9a825"/>
+<rect x="700" y="55" width="80" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="740" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-5</text>
+<text x="740" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最終</text>
+<text x="245" y="130" text-anchor="middle" fill="#f9a825" font-size="11">ANN/BM25</text>
+<text x="415" y="130" text-anchor="middle" fill="#ffffff" font-size="11">Recall重視</text>
+<text x="590" y="130" text-anchor="middle" fill="#e91e63" font-size="11">Precision重視</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Re-ranker 種類と特徴</text>
+<rect x="30" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cross-Encoder</text>
+<text x="140" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">クエリ×文書を同時入力</text>
+<rect x="290" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cohere Rerank</text>
+<text x="400" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">API呼び出し型</text>
+<rect x="550" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM Reranking</text>
+<text x="660" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">GPT/Claude判定</text>
+<text x="140" y="250" text-anchor="middle" fill="#f9a825" font-size="10">高精度・低速</text>
+<text x="400" y="250" text-anchor="middle" fill="#f9a825" font-size="10">バランス良・推奨</text>
+<text x="660" y="250" text-anchor="middle" fill="#f9a825" font-size="10">最高精度・コスト高</text>
+<text x="400" y="305" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">効果: MRR/NDCG を平均 15-30% 改善</text>
+<rect x="60" y="325" width="680" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="400" y="348" text-anchor="middle" fill="#ffffff" font-size="12">Bedrock Knowledge Bases: Cohere Rerank ネイティブ統合</text>
+<text x="400" y="366" text-anchor="middle" fill="#f9a825" font-size="11">numberOfResults↑ → Re-rank → contextWindow内に収まる数を選択</text>
+</svg>
 - ❌ 「定期的な知識更新はFine-tuningで」→ ✅ 定期更新はRAGが最適
 - ❌ 「チャンクは大きいほど精度が上がる」→ ✅ 大きすぎると精度低下・コスト増
 - ❌ 「Retrieve APIはLLMを呼び出す」→ ✅ 検索のみ。LLM生成はR&G API
 - ❌ 「HYBRIDはどのベクトルDBでも使える」→ ✅ OpenSearch Serverlessのみ
 - ❌ 「pgvectorはRDS PostgreSQLでもBedrock KB対応」→ ✅ Aurora必須
+
+
+---
+
+# よくある実装ミス・試験ひっかけパターン（2/2）
+
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG 評価指標 (RAGAS フレームワーク)</text>
+<line x1="250" y1="210" x2="250" y2="80" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.583302491977" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.58330249197707" y2="275" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="250" y2="340" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="275.00000000000006" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><polygon points="250,177.5 278.14582562299427,193.75 278.14582562299427,226.25 250,242.5 221.85417437700573,226.25 221.85417437700573,193.75 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,145 306.29165124598853,177.5 306.29165124598853,242.5 250,275 193.7083487540115,242.50000000000003 193.7083487540115,177.5 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,112.5 334.43747686898274,161.25 334.4374768689828,258.75 250,307.5 165.56252313101726,258.75000000000006 165.56252313101726,161.25 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,80 362.583302491977,145 362.58330249197707,275 250,340 137.416697508023,275.00000000000006 137.416697508023,145 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/>
+<polygon points="250,99.5 337.81497594374207,159.3 331.05997779422347,256.79999999999995 250,327 159.93335800641842,262.00000000000006 176.82085338021494,167.75 " fill="#e91e63" fill-opacity="0.3" stroke="#e91e63" stroke-width="2"/>
+<text x="250" y="52" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Faithfulness</text><text x="250" y="64" text-anchor="middle" fill="#f9a825" font-size="10">85%</text><text x="386.8320137979413" y="131" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Answer Relevance</text><text x="386.8320137979413" y="143" text-anchor="middle" fill="#f9a825" font-size="10">78%</text><text x="386.83201379794133" y="289" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Context Precision</text><text x="386.83201379794133" y="301" text-anchor="middle" fill="#f9a825" font-size="10">72%</text><text x="250" y="368" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Context Recall</text><text x="250" y="380" text-anchor="middle" fill="#f9a825" font-size="10">90%</text><text x="113.16798620205873" y="289.00000000000006" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Answer Correctness</text><text x="113.16798620205873" y="301.00000000000006" text-anchor="middle" fill="#f9a825" font-size="10">80%</text><text x="113.1679862020587" y="131" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Latency</text><text x="113.1679862020587" y="143" text-anchor="middle" fill="#f9a825" font-size="10">65%</text>
+<rect x="520" y="60" width="260" height="290" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="650" y="85" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">評価指標の意味</text>
+<text x="535" y="108" fill="#ffffff" font-size="11">Faithfulness</text><text x="770" y="108" text-anchor="end" fill="#f9a825" font-size="11">幻覚なし率</text>
+<text x="535" y="146" fill="#ffffff" font-size="11">Answer Relevance</text><text x="770" y="146" text-anchor="end" fill="#f9a825" font-size="11">回答関連性</text>
+<text x="535" y="184" fill="#ffffff" font-size="11">Context Precision</text><text x="770" y="184" text-anchor="end" fill="#f9a825" font-size="11">文脈精度</text>
+<text x="535" y="222" fill="#ffffff" font-size="11">Context Recall</text><text x="770" y="222" text-anchor="end" fill="#f9a825" font-size="11">文脈網羅率</text>
+<text x="535" y="260" fill="#ffffff" font-size="11">Answer Correctness</text><text x="770" y="260" text-anchor="end" fill="#f9a825" font-size="11">正解一致率</text>
+<text x="535" y="298" fill="#ffffff" font-size="11">Latency</text><text x="770" y="298" text-anchor="end" fill="#f9a825" font-size="11">応答速度</text>
+</svg>
 - ❌ 「エンベディングモデルはクエリ時に変えても良い」→ ✅ インジェストと同一必須
 - ❌ 「OpenSearch ProvisionedはBedrock KB対応」→ ✅ Serverlessのみ
 - ❌ 「IAMだけでOpenSearch Serverlessを操作できる」→ ✅ データアクセスポリシーも必要
@@ -1573,6 +4554,28 @@ LIMIT 5;
 
 # RAG数値リファレンス（試験頻出）
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG コスト最適化戦略</text>
+<rect x="20" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="132.5" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embedding コスト削減</text>
+
+<rect x="290" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="402.5" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM コスト削減</text>
+
+<rect x="560" y="40" width="220" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">インフラコスト削減</text>
+
+<text x="132" y="115" text-anchor="middle" fill="#f9a825" font-size="10">差分更新のみ再Embed</text>
+<text x="132" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Titan v2 最安値利用</text>
+<text x="402" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Batch API (50%OFF)</text>
+<text x="402" y="130" text-anchor="middle" fill="#ffffff" font-size="10">Prompt キャッシュ活用</text>
+<text x="670" y="115" text-anchor="middle" fill="#f9a825" font-size="10">Serverless自動スケール</text>
+<text x="670" y="130" text-anchor="middle" fill="#ffffff" font-size="10">S3 Intelligent-Tiering</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">モデル選択: 分類/ルーティングはHaiku → 応答生成のみSonnet</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Semantic Cacheで重複クエリのLLM呼び出しを削減 (命中率30〜60%)</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">月次コスト試算: 1M queries × $0.003/query ≈ $3,000/月 (Sonnet)</text>
+</svg>
 | 項目 | 数値 |
 |------|------|
 | Bedrock KB / アカウント上限 | 5（引き上げ可） |
@@ -1595,6 +4598,34 @@ LIMIT 5;
 
 # 主要キーワード索引 A–K
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
+<rect x="20" y="40" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">S3 Bucket</text>
+<text x="80" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ソース文書</text>
+<line x1="140" y1="62" x2="165" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="175,62 163,67 163,57" fill="#f9a825"/>
+<rect x="175" y="40" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="240" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Data Ingestion</text>
+<text x="240" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Bedrock KB</text>
+<line x1="305" y1="62" x2="330" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="340,62 328,67 328,57" fill="#f9a825"/>
+<rect x="340" y="40" width="130" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="405" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenSearch</text>
+<text x="405" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Serverless</text>
+<line x1="470" y1="62" x2="495" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="505,62 493,67 493,57" fill="#f9a825"/>
+<rect x="505" y="40" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="570" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector Index</text>
+<text x="570" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">k-NN Index</text>
+<line x1="635" y1="62" x2="660" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="670,62 658,67 658,57" fill="#f9a825"/>
+<rect x="670" y="40" width="110" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725" y="55.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query API</text>
+<text x="725" y="74.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">検索エンドポイント</text>
+<text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="11">OCU (OpenSearch Compute Unit): Index/Search に独立スケール</text>
+<text x="400" y="138" text-anchor="middle" fill="#f9a825" font-size="11">k-NN アルゴリズム: HNSW (精度高) / IVF (コスト低)</text>
+<text x="400" y="162" text-anchor="middle" fill="#ffffff" font-size="11">ベクトル次元: 最大16000 | Metric: cosine / euclidean / dot_product</text>
+<text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">コレクション = インデックスの論理グループ | VPC Endpoint対応</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">料金: 0.24 USD/OCU-hour (最小0.5 OCU × 2リソース)</text>
+</svg>
 | キーワード | 説明 |
 |----------|------|
 | ANN（Approximate Nearest Neighbor） | 近似最近傍検索。正確さよりも速度を優先 |
@@ -1615,6 +4646,20 @@ LIMIT 5;
 
 # 主要キーワード索引 L–Z
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Aurora PostgreSQL pgvector — セットアップ</text>
+<rect x="20" y="40" width="760" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold"></text>
+
+<text x="400" y="58" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">CREATE EXTENSION vector;</text>
+<text x="400" y="76" text-anchor="middle" fill="#ffffff" font-size="11">CREATE TABLE docs (id serial, content text, embedding vector(1536));</text>
+<text x="400" y="120" text-anchor="middle" fill="#ffffff" font-size="11">インデックス作成: CREATE INDEX ON docs USING hnsw (embedding vector_cosine_ops);</text>
+<text x="400" y="145" text-anchor="middle" fill="#ffffff" font-size="11">検索: SELECT * FROM docs ORDER BY embedding &lt;=&gt; '[0.1,0.2,...]' LIMIT 5;</text>
+<text x="400" y="170" text-anchor="middle" fill="#f9a825" font-size="11">演算子: &lt;=&gt; (cosine) / &lt;-&gt; (L2) / &lt;#&gt; (inner product)</text>
+<text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="11">Serverless v2: 0.5〜128 ACU | 自動スケール | コスト最適</text>
+<text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB統合: データソース選択時に Aurora PostgreSQL を指定するだけ</text>
+</svg>
 | キーワード | 説明 |
 |----------|------|
 | Knowledge Base（KB） | Bedrock のフルマネージドRAGサービス |
@@ -1634,14 +4679,134 @@ LIMIT 5;
 
 ---
 
-# ベクトルDB選択フロー（試験対策）
+# ベクトルDB選択フロー（試験対策）（1/2）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Advanced RAG パターン</text>
+<text x="200" y="55" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">HyDE (Hypothetical Doc Embedding)</text>
+<rect x="20" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="75" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">"Aurora設定"</text>
+<line x1="130" y1="90" x2="155" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="165,90 153,95 153,85" fill="#f9a825"/>
+<rect x="165" y="70" width="110" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="220" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="220" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">仮想文書生成</text>
+<line x1="275" y1="90" x2="300" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="310,90 298,95 298,85" fill="#f9a825"/>
+<rect x="310" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="365" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="365" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">仮想文書</text>
+<line x1="420" y1="90" x2="445" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="455,90 443,95 443,85" fill="#f9a825"/>
+<rect x="455" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="510" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Search</text>
+<text x="510" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">類似検索</text>
+<line x1="565" y1="90" x2="590" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="600,90 588,95 588,85" fill="#f9a825"/>
+<rect x="600" y="70" width="100" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-K</text>
+<text x="650" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">文書取得</text>
+<text x="220" y="135" text-anchor="middle" fill="#f9a825" font-size="11">「Auroraの設定手順は...」を生成</text>
+<line x1="20" y1="155" x2="780" y2="155" stroke="#f9a825" stroke-width="1" opacity="0.3"/>
+<text x="200" y="175" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Multi-Query Retrieval</text>
+<rect x="20" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="75" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">元質問</text>
+<line x1="130" y1="210" x2="155" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="165,210 153,215 153,205" fill="#f9a825"/>
+<rect x="165" y="190" width="120" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="225" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">3〜5クエリ生成</text>
+<line x1="285" y1="195" x2="310.8085496998194" y2="183.93919298579166" stroke="#f9a825" stroke-width="2"/><polygon points="320,180 310.93985613267915,189.3227567330403 307.00066314688746,180.13130643285973" fill="#f9a825"/>
+<line x1="285" y1="210" x2="310" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="320,210 308,215 308,205" fill="#f9a825"/>
+<line x1="285" y1="225" x2="310.8085496998194" y2="236.06080701420834" stroke="#f9a825" stroke-width="2"/><polygon points="320,240 307.00066314688746,239.86869356714027 310.93985613267915,230.6772432669597" fill="#f9a825"/>
+<rect x="320" y="165" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="184" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 1</text>
+
+<rect x="320" y="195" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="214" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 2</text>
+
+<rect x="320" y="225" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="244" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 3</text>
+
+<line x1="430" y1="183" x2="457.0821774443653" y2="203.8919654570818" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 452.44459566177926,206.6292698263155 458.55263020469744,198.7114472706808" fill="#f9a825"/>
+<line x1="430" y1="214" x2="455.064673273436" y2="211.13546591160733" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 453.6453408839268,216.3302224572108 452.5098749723195,206.39489573064677" fill="#f9a825"/>
+<line x1="430" y1="244" x2="457.82720619140775" y2="216.9678568426325" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 459.87657585100555,221.94782511545512 452.90871900837305,214.77503130686287" fill="#f9a825"/>
+<rect x="465" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="520" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Merge</text>
+<text x="520" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">重複除去</text>
+<line x1="575" y1="210" x2="600" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="610,210 598,215 598,205" fill="#f9a825"/>
+<rect x="610" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Final</text>
+<text x="665" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">文書セット</text>
+<line x1="20" y1="280" x2="780" y2="280" stroke="#f9a825" stroke-width="1" opacity="0.3"/>
+<text x="200" y="300" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Step-Back Prompting</text>
+<text x="400" y="320" text-anchor="middle" fill="#ffffff" font-size="11">具体 → 抽象化 → 検索 → 組み合わせ回答</text>
+<text x="400" y="345" text-anchor="middle" fill="#f9a825" font-size="11">例: 「Lambda timeout設定」→「Lambda設定全般とは？」で文脈収集</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">HyDE: 文書ドメインが専門的な場合に有効  |  Multi-Query: 質問が曖昧な場合</text>
+</svg>
 - **Q1: ハイブリッド検索（BM25+ベクトル）が必要？**
 - YES → OpenSearch Serverless（唯一のBedrock KB対応Hybrid）
 - **Q2: 既存PostgreSQL/Auroraを活用したい？**
 - YES → Aurora pgvector（SQL+ACID+ベクトル統合）
 - **Q3: グラフ構造・エンティティ関係が重要？**
 - YES → Neptune Analytics（GraphRAG）
+
+
+---
+
+# ベクトルDB選択フロー（試験対策）（2/2）
+
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">本番 RAG アーキテクチャ (AWS)</text>
+<rect x="20" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Client</text>
+<text x="80" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Web/Mobile</text>
+<line x1="140" y1="70" x2="170" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="180,70 168,75 168,65" fill="#f9a825"/>
+<rect x="180" y="50" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">API Gateway</text>
+<text x="245" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">+ Lambda</text>
+<line x1="310" y1="70" x2="340" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="350,70 338,75 338,65" fill="#f9a825"/>
+<rect x="350" y="50" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Bedrock KB</text>
+<text x="415" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAGオーケストレーション</text>
+<line x1="480" y1="70" x2="510" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="520,70 508,75 508,65" fill="#f9a825"/>
+<rect x="520" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="580" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3.5</text>
+<text x="580" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Sonnet</text>
+<line x1="480" y1="85" x2="480" y2="135" stroke="#f9a825" stroke-width="2"/><polygon points="480,145 475,133 485,133" fill="#f9a825"/>
+<rect x="350" y="145" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenSearch</text>
+<text x="415" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Serverless</text>
+<line x1="480" y1="145" x2="480" y2="175" stroke="#f9a825" stroke-width="2"/><polygon points="480,185 475,173 485,173" fill="#f9a825"/>
+<rect x="350" y="185" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="198" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed Model</text>
+<text x="415" y="217" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Titan v2</text>
+<rect x="20" y="145" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">S3 Bucket</text>
+<text x="95" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ドキュメント格納</text>
+<line x1="170" y1="165" x2="340" y2="165" stroke="#f9a825" stroke-width="2"/><polygon points="350,165 338,170 338,160" fill="#f9a825"/>
+<rect x="540" y="145" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="605" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudWatch</text>
+<text x="605" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">モニタリング</text>
+<rect x="540" y="200" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="605" y="213" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">X-Ray</text>
+<text x="605" y="232" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">トレーシング</text>
+<rect x="690" y="145" width="100" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="740" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">GuardRails</text>
+<text x="740" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">安全フィルタ</text>
+<text x="400" y="275" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">本番運用チェックリスト</text>
+<rect x="20" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">セキュリティ</text>
+
+<rect x="285" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">パフォーマンス</text>
+
+<rect x="550" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">コスト最適化</text>
+
+<text x="135" y="315" text-anchor="middle" fill="#f9a825" font-size="10">IAM最小権限 / VPC Endpoint</text><text x="135" y="333" text-anchor="middle" fill="#ffffff" font-size="10">KMS暗号化 / Guardrails</text>
+<text x="400" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Provisioned Throughput</text><text x="400" y="333" text-anchor="middle" fill="#ffffff" font-size="10">キャッシュ / バッチ処理</text>
+<text x="665" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Spot Embedding / S3 Intelligent</text><text x="665" y="333" text-anchor="middle" fill="#ffffff" font-size="10">Haiku for classify</text>
+</svg>
 - **Q4: マイクロ秒レイテンシが必要？**
 - YES → MemoryDB for Redis
 - **Q5: ベクトル専用でシンプルに？**
@@ -1653,13 +4818,100 @@ LIMIT 5;
 
 ---
 
-# OpenSearch Serverless 試験ポイント10選
+# OpenSearch Serverless 試験ポイント10選（1/2）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG パイプライン全体像</text>
+<text x="200" y="75" text-anchor="middle" fill="#ffffff" font-size="12">オフライン（Indexing Phase）</text>
+<text x="590" y="75" text-anchor="middle" fill="#e91e63" font-size="12">オンライン（Query Phase）</text>
+<line x1="390" y1="65" x2="390" y2="175" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="30" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="77.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Ingest</text>
+<text x="77.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">S3→Parse</text><line x1="125" y1="127" x2="128" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="138,127 126,132 126,122" fill="#f9a825"/><rect x="138" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="185.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunk</text>
+<text x="185.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">分割処理</text><line x1="233" y1="127" x2="236" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="246,127 234,132 234,122" fill="#f9a825"/><rect x="246" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="293.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="293.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル化</text><line x1="341" y1="127" x2="344" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="354,127 342,132 342,122" fill="#f9a825"/><rect x="354" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="401.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Index</text>
+<text x="401.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">DB格納</text><line x1="449" y1="127" x2="452" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="462,127 450,132 450,122" fill="#f9a825"/><rect x="462" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="509.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Retrieve</text>
+<text x="509.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">類似検索</text><line x1="557" y1="127" x2="560" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="570,127 558,132 558,122" fill="#f9a825"/><rect x="570" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="617.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augment</text>
+<text x="617.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Prompt合成</text><line x1="665" y1="127" x2="668" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="678,127 666,132 666,122" fill="#f9a825"/><rect x="678" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Generate</text>
+<text x="725.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">LLM応答</text>
+<text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="11">← Offline: 事前インデックス作成  |  Online: リアルタイム検索・生成 →</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">主要コンポーネント</text>
+<rect x="30" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Document Loader</text>
+<text x="140" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">S3/URL/Confluence/SharePoint</text>
+<rect x="290" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector Store</text>
+<text x="400" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">OpenSearch/pgvector/Pinecone</text>
+<rect x="550" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="660" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude 3.5 / Titan / Llama</text>
+<text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="12">Amazon Bedrock Knowledge Bases = マネージド RAG サービス</text>
+</svg>
 - ① Bedrock KBのデフォルトベクトルDB = OpenSearch **Serverless**（Provisioned不可）
 - ② コレクションタイプ: VectorSearch（安価）/ Search（全文+ベクトル）
 - ③ 3種ポリシー: 暗号化 + ネットワーク + データアクセス（全て設定必要）
 - ④ IAMとデータアクセスポリシーは独立（どちらか片方だけでは操作不可）
 - ⑤ k-NNエンジン: Faiss（大規模/Disk ANN）/ nmslib（バランス）/ Lucene（小規模）
+
+
+---
+
+# OpenSearch Serverless 試験ポイント10選（2/2）
+
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">チャンキング戦略 比較</text>
+<rect x="20" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="110" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Fixed Size</text>
+<text x="110" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">固定トークン数</text>
+<rect x="210" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="300" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Recursive</text>
+<text x="300" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">区切り文字ベース</text>
+<rect x="400" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="490" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Semantic</text>
+<text x="490" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">意味単位分割</text>
+<rect x="590" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="680" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Hierarchical</text>
+<text x="680" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">親子構造</text>
+<rect x="20" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="110" y="140" text-anchor="middle" fill="#f9a825" font-size="11">chunk_size: 500</text>
+<text x="110" y="158" text-anchor="middle" fill="#ffffff" font-size="11">chunk_overlap: 50</text>
+<text x="110" y="176" text-anchor="middle" fill="#ffffff" font-size="11">シンプル・高速</text>
+<rect x="210" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="300" y="140" text-anchor="middle" fill="#f9a825" font-size="11">
+
+ → 
+ → 。</text>
+<text x="300" y="158" text-anchor="middle" fill="#ffffff" font-size="11">自然な境界</text>
+<text x="300" y="176" text-anchor="middle" fill="#ffffff" font-size="11">精度バランス良</text>
+<rect x="400" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="490" y="140" text-anchor="middle" fill="#f9a825" font-size="11">埋め込み類似度</text>
+<text x="490" y="158" text-anchor="middle" fill="#ffffff" font-size="11">で境界を検出</text>
+<text x="490" y="176" text-anchor="middle" fill="#ffffff" font-size="11">高精度・処理重</text>
+<rect x="590" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="680" y="140" text-anchor="middle" fill="#f9a825" font-size="11">Parent: 章/節</text>
+<text x="680" y="158" text-anchor="middle" fill="#ffffff" font-size="11">Child: 段落</text>
+<text x="680" y="176" text-anchor="middle" fill="#ffffff" font-size="11">コンテキスト保持</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">チャンクサイズ vs 精度のトレードオフ</text>
+<rect x="60" y="255" width="680" height="110" rx="6" fill="#16213e"/>
+<line x1="100" y1="320" x2="690" y2="320" stroke="#ffffff" stroke-width="2"/><polygon points="700,320 688,325 688,315" fill="#ffffff"/>
+<text x="80" y="325" text-anchor="end" fill="#ffffff" font-size="11">小</text>
+<text x="710" y="325" fill="#ffffff" font-size="11">大 →チャンクサイズ</text>
+<line x1="100" y1="360" x2="100" y2="265" stroke="#ffffff" stroke-width="1"/>
+<text x="95" y="270" text-anchor="end" fill="#ffffff" font-size="11">高</text>
+<text x="95" y="365" text-anchor="end" fill="#ffffff" font-size="11">低</text>
+<path d="M 100 340 Q 300 270 500 280 Q 600 285 700 300" stroke="#f9a825" stroke-width="2.5" fill="none"/>
+<text x="300" y="290" fill="#f9a825" font-size="11">精度</text>
+<path d="M 100 290 Q 300 295 500 305 Q 600 315 700 340" stroke="#e91e63" stroke-width="2.5" fill="none"/>
+<text x="500" y="330" fill="#e91e63" font-size="11">速度</text>
+</svg>
 - ⑥ ef_construction = インデックス精度、ef_search = 検索精度（どちらも大きいほど精度↑）
 - ⑦ HYBRID = kNN + BM25。OpenSearch Serverlessのみ（他DBでは不可）
 - ⑧ スコア正規化: Min-Max / Z-score / L2（異なるスコア尺度を統一）
@@ -1669,13 +4921,95 @@ LIMIT 5;
 
 ---
 
-# Aurora pgvector 試験ポイント10選
+# Aurora pgvector 試験ポイント10選（1/2）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding ベクトル空間イメージ</text>
+<text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">意味が近い概念ほど近傍に配置される</text>
+<rect x="40" y="60" width="720" height="300" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+<circle cx="180" cy="120" r="8" fill="#f9a825"/>
+<text x="192" y="125" fill="#f9a825" font-size="11">AWS Lambda</text>
+<circle cx="220" cy="150" r="8" fill="#f9a825"/>
+<text x="232" y="155" fill="#f9a825" font-size="11">サーバーレス関数</text>
+<circle cx="160" cy="170" r="8" fill="#f9a825"/>
+<text x="172" y="175" fill="#f9a825" font-size="11">イベント駆動</text>
+<circle cx="450" cy="100" r="8" fill="#e91e63"/>
+<text x="462" y="105" fill="#e91e63" font-size="11">RDS Aurora</text>
+<circle cx="490" cy="130" r="8" fill="#e91e63"/>
+<text x="502" y="135" fill="#e91e63" font-size="11">PostgreSQL</text>
+<circle cx="430" cy="150" r="8" fill="#e91e63"/>
+<text x="442" y="155" fill="#e91e63" font-size="11">リレーショナルDB</text>
+<circle cx="600" cy="270" r="8" fill="#4fc3f7"/>
+<text x="612" y="275" fill="#4fc3f7" font-size="11">機械学習</text>
+<circle cx="640" cy="240" r="8" fill="#4fc3f7"/>
+<text x="652" y="245" fill="#4fc3f7" font-size="11">SageMaker</text>
+<circle cx="580" cy="300" r="8" fill="#4fc3f7"/>
+<text x="592" y="305" fill="#4fc3f7" font-size="11">モデル訓練</text>
+<ellipse cx="190" cy="147" rx="70" ry="40" fill="none" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="190" y="210" text-anchor="middle" fill="#f9a825" font-size="11">コンピューティングクラスタ</text>
+<ellipse cx="460" cy="125" rx="65" ry="35" fill="none" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="460" y="185" text-anchor="middle" fill="#e91e63" font-size="11">データベースクラスタ</text>
+<ellipse cx="615" cy="270" rx="65" ry="40" fill="none" stroke="#4fc3f7" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="615" y="330" text-anchor="middle" fill="#4fc3f7" font-size="11">MLクラスタ</text>
+<line x1="245" y1="155" x2="395" y2="135" stroke="#ffffff" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+<text x="320" y="135" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.6">距離=非類似</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">クエリを同一空間に変換 → コサイン類似度でTop-K取得 → LLMへ送信</text>
+</svg>
 - ① Bedrock KB対応 = Aurora PostgreSQLのみ（RDS PostgreSQLは非対応）
 - ② pgvector有効化: CREATE EXTENSION vector;
 - ③ 演算子: <-> L2距離 / <=> コサイン距離 / <#> 内積（負値）
 - ④ HNSW = 高精度・メモリ大（pgvector 0.5.0+）/ IVFFlat = 高速・中精度
 - ⑤ IVFFlat: インデックス構築前に十分なデータが必要（空テーブルは非推奨）
+
+
+---
+
+# Aurora pgvector 試験ポイント10選（2/2）
+
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">検索手法 比較</text>
+<rect x="30" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="145" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Dense Retrieval</text>
+<text x="145" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル類似検索 (ANN)</text>
+<rect x="285" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sparse Retrieval</text>
+<text x="400" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">BM25 / TF-IDF</text>
+<rect x="540" y="50" width="230" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="655" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Hybrid Search</text>
+<text x="655" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Dense + Sparse</text>
+<text x="145" y="130" text-anchor="middle" fill="#ffffff" font-size="11">意味・文脈マッチ得意</text>
+<text x="145" y="148" text-anchor="middle" fill="#f9a825" font-size="11">専門用語弱い</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11">キーワード完全一致得意</text>
+<text x="400" y="148" text-anchor="middle" fill="#f9a825" font-size="11">意味理解なし</text>
+<text x="655" y="130" text-anchor="middle" fill="#ffffff" font-size="11">両手法の長所を統合</text>
+<text x="655" y="148" text-anchor="middle" fill="#f9a825" font-size="11">精度最高・推奨</text>
+<text x="400" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Hybrid Search の仕組み</text>
+<rect x="50" y="210" width="150" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="125" y="225.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="125" y="244.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">"Aurora設定方法"</text>
+<line x1="200" y1="232" x2="232.1913119055697" y2="206.24695047554425" stroke="#f9a825" stroke-width="2"/><polygon points="240,200 233.75304952445575,211.40068461786825 227.50609904891152,203.59199652343796" fill="#f9a825"/>
+<line x1="200" y1="232" x2="231.80768079480958" y2="254.2653765563667" stroke="#f9a825" stroke-width="2"/><polygon points="240,260 227.3019052319549,257.21461147023524 233.03652867558816,249.02229226504485" fill="#f9a825"/>
+<rect x="240" y="185" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="198" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Dense</text>
+<text x="315" y="217" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル検索</text>
+<rect x="240" y="255" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="268" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sparse</text>
+<text x="315" y="287" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">BM25検索</text>
+<line x1="390" y1="205" x2="421.71151325924353" y2="226.40527144998939" stroke="#f9a825" stroke-width="2"/><polygon points="430,232 417.2564516360869,229.4305691103655 422.8511801860975,221.14208236960903" fill="#f9a825"/>
+<line x1="390" y1="275" x2="421.71151325924353" y2="253.59472855001061" stroke="#f9a825" stroke-width="2"/><polygon points="430,248 422.8511801860975,258.857917630391 417.2564516360869,250.5694308896345" fill="#f9a825"/>
+<rect x="430" y="215" width="150" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="505" y="230.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">RRF Fusion</text>
+<text x="505" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">スコア統合</text>
+<line x1="580" y1="237" x2="610" y2="237" stroke="#f9a825" stroke-width="2"/><polygon points="620,237 608,242 608,232" fill="#f9a825"/>
+<rect x="620" y="215" width="150" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="695" y="230.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-K Results</text>
+<text x="695" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最終結果</text>
+<text x="400" y="330" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">RRF (Reciprocal Rank Fusion)</text>
+<text x="400" y="350" text-anchor="middle" fill="#f9a825" font-size="12">score = Σ 1/(k + rank_i)  where k=60 (常数)</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">OpenSearch Serverless: hybrid検索ネイティブサポート</text>
+</svg>
 - ⑥ probes（IVFFlat）/ ef_search（HNSW）で精度と速度をトレードオフ調整
 - ⑦ DB接続情報はSecrets Managerで管理（ハードコード禁止）
 - ⑧ ACID対応 = ベクトル + リレーショナルデータのトランザクション処理が可能
@@ -1685,13 +5019,77 @@ LIMIT 5;
 
 ---
 
-# Bedrock Knowledge Base 試験ポイント10選
+# Bedrock Knowledge Base 試験ポイント10選（1/2）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Re-ranking パイプライン</text>
+<rect x="20" y="55" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="80" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ユーザー入力</text>
+<line x1="140" y1="77" x2="170" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="180,77 168,82 168,72" fill="#f9a825"/>
+<rect x="180" y="55" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">First Stage</text>
+<text x="245" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">粗い検索</text>
+<line x1="310" y1="77" x2="340" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="350,77 338,82 338,72" fill="#f9a825"/>
+<rect x="350" y="55" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-100</text>
+<text x="415" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">候補取得</text>
+<line x1="480" y1="77" x2="510" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="520,77 508,82 508,72" fill="#f9a825"/>
+<rect x="520" y="55" width="140" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="590" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Re-ranker</text>
+<text x="590" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">精密スコアリング</text>
+<line x1="660" y1="77" x2="690" y2="77" stroke="#f9a825" stroke-width="2"/><polygon points="700,77 688,82 688,72" fill="#f9a825"/>
+<rect x="700" y="55" width="80" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="740" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-5</text>
+<text x="740" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最終</text>
+<text x="245" y="130" text-anchor="middle" fill="#f9a825" font-size="11">ANN/BM25</text>
+<text x="415" y="130" text-anchor="middle" fill="#ffffff" font-size="11">Recall重視</text>
+<text x="590" y="130" text-anchor="middle" fill="#e91e63" font-size="11">Precision重視</text>
+<text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Re-ranker 種類と特徴</text>
+<rect x="30" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cross-Encoder</text>
+<text x="140" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">クエリ×文書を同時入力</text>
+<rect x="290" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cohere Rerank</text>
+<text x="400" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">API呼び出し型</text>
+<rect x="550" y="185" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="218" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM Reranking</text>
+<text x="660" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">GPT/Claude判定</text>
+<text x="140" y="250" text-anchor="middle" fill="#f9a825" font-size="10">高精度・低速</text>
+<text x="400" y="250" text-anchor="middle" fill="#f9a825" font-size="10">バランス良・推奨</text>
+<text x="660" y="250" text-anchor="middle" fill="#f9a825" font-size="10">最高精度・コスト高</text>
+<text x="400" y="305" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">効果: MRR/NDCG を平均 15-30% 改善</text>
+<rect x="60" y="325" width="680" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="400" y="348" text-anchor="middle" fill="#ffffff" font-size="12">Bedrock Knowledge Bases: Cohere Rerank ネイティブ統合</text>
+<text x="400" y="366" text-anchor="middle" fill="#f9a825" font-size="11">numberOfResults↑ → Re-rank → contextWindow内に収まる数を選択</text>
+</svg>
 - ① Retrieve API = 検索のみ。RetrieveAndGenerate = 検索+LLM生成
 - ② HYBRID searchType はOpenSearch Serverlessのみ対応
 - ③ Rerankingモデル: Amazon Rerank 1.0 / Cohere Rerank 1.0
 - ④ Hierarchical chunking: 検索=子チャンク、生成=親チャンクコンテキスト
 - ⑤ メタデータフィルタ（.metadata.json）でS3ドキュメントのpre-filterが可能
+
+
+---
+
+# Bedrock Knowledge Base 試験ポイント10選（2/2）
+
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG 評価指標 (RAGAS フレームワーク)</text>
+<line x1="250" y1="210" x2="250" y2="80" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.583302491977" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.58330249197707" y2="275" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="250" y2="340" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="275.00000000000006" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><polygon points="250,177.5 278.14582562299427,193.75 278.14582562299427,226.25 250,242.5 221.85417437700573,226.25 221.85417437700573,193.75 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,145 306.29165124598853,177.5 306.29165124598853,242.5 250,275 193.7083487540115,242.50000000000003 193.7083487540115,177.5 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,112.5 334.43747686898274,161.25 334.4374768689828,258.75 250,307.5 165.56252313101726,258.75000000000006 165.56252313101726,161.25 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,80 362.583302491977,145 362.58330249197707,275 250,340 137.416697508023,275.00000000000006 137.416697508023,145 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/>
+<polygon points="250,99.5 337.81497594374207,159.3 331.05997779422347,256.79999999999995 250,327 159.93335800641842,262.00000000000006 176.82085338021494,167.75 " fill="#e91e63" fill-opacity="0.3" stroke="#e91e63" stroke-width="2"/>
+<text x="250" y="52" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Faithfulness</text><text x="250" y="64" text-anchor="middle" fill="#f9a825" font-size="10">85%</text><text x="386.8320137979413" y="131" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Answer Relevance</text><text x="386.8320137979413" y="143" text-anchor="middle" fill="#f9a825" font-size="10">78%</text><text x="386.83201379794133" y="289" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Context Precision</text><text x="386.83201379794133" y="301" text-anchor="middle" fill="#f9a825" font-size="10">72%</text><text x="250" y="368" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Context Recall</text><text x="250" y="380" text-anchor="middle" fill="#f9a825" font-size="10">90%</text><text x="113.16798620205873" y="289.00000000000006" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Answer Correctness</text><text x="113.16798620205873" y="301.00000000000006" text-anchor="middle" fill="#f9a825" font-size="10">80%</text><text x="113.1679862020587" y="131" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10">Latency</text><text x="113.1679862020587" y="143" text-anchor="middle" fill="#f9a825" font-size="10">65%</text>
+<rect x="520" y="60" width="260" height="290" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="650" y="85" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">評価指標の意味</text>
+<text x="535" y="108" fill="#ffffff" font-size="11">Faithfulness</text><text x="770" y="108" text-anchor="end" fill="#f9a825" font-size="11">幻覚なし率</text>
+<text x="535" y="146" fill="#ffffff" font-size="11">Answer Relevance</text><text x="770" y="146" text-anchor="end" fill="#f9a825" font-size="11">回答関連性</text>
+<text x="535" y="184" fill="#ffffff" font-size="11">Context Precision</text><text x="770" y="184" text-anchor="end" fill="#f9a825" font-size="11">文脈精度</text>
+<text x="535" y="222" fill="#ffffff" font-size="11">Context Recall</text><text x="770" y="222" text-anchor="end" fill="#f9a825" font-size="11">文脈網羅率</text>
+<text x="535" y="260" fill="#ffffff" font-size="11">Answer Correctness</text><text x="770" y="260" text-anchor="end" fill="#f9a825" font-size="11">正解一致率</text>
+<text x="535" y="298" fill="#ffffff" font-size="11">Latency</text><text x="770" y="298" text-anchor="end" fill="#f9a825" font-size="11">応答速度</text>
+</svg>
 - ⑥ 増分同期で変更ファイルのみ再処理（全件再処理より高速）
 - ⑦ Guardrailsグラウンディングチェック = RAG専用機能（R&G API固有）
 - ⑧ RetrieveAndGenerateのcitations = ソースURI付き引用元リスト
@@ -1701,13 +5099,133 @@ LIMIT 5;
 
 ---
 
-# RAG設計パターン 試験ポイント10選
+# RAG設計パターン 試験ポイント10選（1/2）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Advanced RAG パターン</text>
+<text x="200" y="55" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">HyDE (Hypothetical Doc Embedding)</text>
+<rect x="20" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="75" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">"Aurora設定"</text>
+<line x1="130" y1="90" x2="155" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="165,90 153,95 153,85" fill="#f9a825"/>
+<rect x="165" y="70" width="110" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="220" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="220" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">仮想文書生成</text>
+<line x1="275" y1="90" x2="300" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="310,90 298,95 298,85" fill="#f9a825"/>
+<rect x="310" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="365" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="365" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">仮想文書</text>
+<line x1="420" y1="90" x2="445" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="455,90 443,95 443,85" fill="#f9a825"/>
+<rect x="455" y="70" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="510" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Search</text>
+<text x="510" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">類似検索</text>
+<line x1="565" y1="90" x2="590" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="600,90 588,95 588,85" fill="#f9a825"/>
+<rect x="600" y="70" width="100" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="83" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-K</text>
+<text x="650" y="102" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">文書取得</text>
+<text x="220" y="135" text-anchor="middle" fill="#f9a825" font-size="11">「Auroraの設定手順は...」を生成</text>
+<line x1="20" y1="155" x2="780" y2="155" stroke="#f9a825" stroke-width="1" opacity="0.3"/>
+<text x="200" y="175" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Multi-Query Retrieval</text>
+<rect x="20" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="75" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">元質問</text>
+<line x1="130" y1="210" x2="155" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="165,210 153,215 153,205" fill="#f9a825"/>
+<rect x="165" y="190" width="120" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="225" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">3〜5クエリ生成</text>
+<line x1="285" y1="195" x2="310.8085496998194" y2="183.93919298579166" stroke="#f9a825" stroke-width="2"/><polygon points="320,180 310.93985613267915,189.3227567330403 307.00066314688746,180.13130643285973" fill="#f9a825"/>
+<line x1="285" y1="210" x2="310" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="320,210 308,215 308,205" fill="#f9a825"/>
+<line x1="285" y1="225" x2="310.8085496998194" y2="236.06080701420834" stroke="#f9a825" stroke-width="2"/><polygon points="320,240 307.00066314688746,239.86869356714027 310.93985613267915,230.6772432669597" fill="#f9a825"/>
+<rect x="320" y="165" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="184" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 1</text>
+
+<rect x="320" y="195" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="214" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 2</text>
+
+<rect x="320" y="225" width="110" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="244" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query 3</text>
+
+<line x1="430" y1="183" x2="457.0821774443653" y2="203.8919654570818" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 452.44459566177926,206.6292698263155 458.55263020469744,198.7114472706808" fill="#f9a825"/>
+<line x1="430" y1="214" x2="455.064673273436" y2="211.13546591160733" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 453.6453408839268,216.3302224572108 452.5098749723195,206.39489573064677" fill="#f9a825"/>
+<line x1="430" y1="244" x2="457.82720619140775" y2="216.9678568426325" stroke="#f9a825" stroke-width="2"/><polygon points="465,210 459.87657585100555,221.94782511545512 452.90871900837305,214.77503130686287" fill="#f9a825"/>
+<rect x="465" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="520" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Merge</text>
+<text x="520" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">重複除去</text>
+<line x1="575" y1="210" x2="600" y2="210" stroke="#f9a825" stroke-width="2"/><polygon points="610,210 598,215 598,205" fill="#f9a825"/>
+<rect x="610" y="190" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="203" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Final</text>
+<text x="665" y="222" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">文書セット</text>
+<line x1="20" y1="280" x2="780" y2="280" stroke="#f9a825" stroke-width="1" opacity="0.3"/>
+<text x="200" y="300" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Step-Back Prompting</text>
+<text x="400" y="320" text-anchor="middle" fill="#ffffff" font-size="11">具体 → 抽象化 → 検索 → 組み合わせ回答</text>
+<text x="400" y="345" text-anchor="middle" fill="#f9a825" font-size="11">例: 「Lambda timeout設定」→「Lambda設定全般とは？」で文脈収集</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">HyDE: 文書ドメインが専門的な場合に有効  |  Multi-Query: 質問が曖昧な場合</text>
+</svg>
 - ① 基本RAG = Indexing → Retrieve → Generate の3ステップ
 - ② Advanced RAG: Query Rewriting / HyDE / Reranking / Multi-query
 - ③ CRAG = 検索品質をLLMで評価し、不良なら再検索する自己訂正型
 - ④ Self-RAG = LLMが[Retrieve]トークンで検索の必要性を自律判断
 - ⑤ マルチホップ = 複数検索を連鎖（Bedrock Agentsで実装）
+
+
+---
+
+# RAG設計パターン 試験ポイント10選（2/2）
+
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">本番 RAG アーキテクチャ (AWS)</text>
+<rect x="20" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="80" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Client</text>
+<text x="80" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Web/Mobile</text>
+<line x1="140" y1="70" x2="170" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="180,70 168,75 168,65" fill="#f9a825"/>
+<rect x="180" y="50" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="245" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">API Gateway</text>
+<text x="245" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">+ Lambda</text>
+<line x1="310" y1="70" x2="340" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="350,70 338,75 338,65" fill="#f9a825"/>
+<rect x="350" y="50" width="130" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Bedrock KB</text>
+<text x="415" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">RAGオーケストレーション</text>
+<line x1="480" y1="70" x2="510" y2="70" stroke="#f9a825" stroke-width="2"/><polygon points="520,70 508,75 508,65" fill="#f9a825"/>
+<rect x="520" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="580" y="63" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Claude 3.5</text>
+<text x="580" y="82" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Sonnet</text>
+<line x1="480" y1="85" x2="480" y2="135" stroke="#f9a825" stroke-width="2"/><polygon points="480,145 475,133 485,133" fill="#f9a825"/>
+<rect x="350" y="145" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenSearch</text>
+<text x="415" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Serverless</text>
+<line x1="480" y1="145" x2="480" y2="175" stroke="#f9a825" stroke-width="2"/><polygon points="480,185 475,173 485,173" fill="#f9a825"/>
+<rect x="350" y="185" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="198" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed Model</text>
+<text x="415" y="217" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Titan v2</text>
+<rect x="20" y="145" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">S3 Bucket</text>
+<text x="95" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ドキュメント格納</text>
+<line x1="170" y1="165" x2="340" y2="165" stroke="#f9a825" stroke-width="2"/><polygon points="350,165 338,170 338,160" fill="#f9a825"/>
+<rect x="540" y="145" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="605" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">CloudWatch</text>
+<text x="605" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">モニタリング</text>
+<rect x="540" y="200" width="130" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="605" y="213" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">X-Ray</text>
+<text x="605" y="232" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">トレーシング</text>
+<rect x="690" y="145" width="100" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="740" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">GuardRails</text>
+<text x="740" y="177" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">安全フィルタ</text>
+<text x="400" y="275" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">本番運用チェックリスト</text>
+<rect x="20" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">セキュリティ</text>
+
+<rect x="285" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">パフォーマンス</text>
+
+<rect x="550" y="290" width="230" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="335" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">コスト最適化</text>
+
+<text x="135" y="315" text-anchor="middle" fill="#f9a825" font-size="10">IAM最小権限 / VPC Endpoint</text><text x="135" y="333" text-anchor="middle" fill="#ffffff" font-size="10">KMS暗号化 / Guardrails</text>
+<text x="400" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Provisioned Throughput</text><text x="400" y="333" text-anchor="middle" fill="#ffffff" font-size="10">キャッシュ / バッチ処理</text>
+<text x="665" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Spot Embedding / S3 Intelligent</text><text x="665" y="333" text-anchor="middle" fill="#ffffff" font-size="10">Haiku for classify</text>
+</svg>
 - ⑥ GraphRAG = Neptune Analytics + ベクトル検索でエンティティ関係を活用
 - ⑦ 間接プロンプトインジェクション = 悪意文書経由でLLMを操作→Guardrailsで対策
 - ⑧ マルチテナント分離: テナント別KB vs 単一KB+メタデータフィルタのトレードオフ
@@ -1719,6 +5237,28 @@ LIMIT 5;
 
 # RAGセキュリティ・コスト最適化 統括まとめ
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
+<rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="135" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Titan Embed Text v2</text>
+<text x="135" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.00002/1K tokens</text>
+<rect x="285" y="40" width="230" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Cohere Embed v3</text>
+<text x="400" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.0001/1K tokens</text>
+<rect x="550" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="665" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">OpenAI text-embed-3</text>
+<text x="665" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">$0.00013/1K tokens</text>
+<text x="135" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 8K tokens</text>
+<text x="135" y="130" text-anchor="middle" fill="#f9a825" font-size="10">AWS最低コスト</text>
+<text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1024dim / 多言語</text>
+<text x="400" y="130" text-anchor="middle" fill="#f9a825" font-size="10">高精度・推奨</text>
+<text x="665" y="115" text-anchor="middle" fill="#ffffff" font-size="10">1536dim / 3072dim</text>
+<text x="665" y="130" text-anchor="middle" fill="#f9a825" font-size="10">外部API必要</text>
+<text x="400" y="163" text-anchor="middle" fill="#ffffff" font-size="11">選択基準: コスト重視→Titan / 多言語精度→Cohere / AWS外→OpenAI</text>
+<text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">重要: Indexing時とQuery時は必ず同一モデルを使用</text>
+<text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">次元数削減: Matryoshka Embedding で 1/4 次元でも精度維持可能</text>
+</svg>
 - **セキュリティ最重要ポイント:**
 | 脅威 | 最小対策 |
 |------|---------|
@@ -1737,8 +5277,42 @@ LIMIT 5;
 
 ---
 
-# 直前チェックリスト（全セクション）
+# 直前チェックリスト（全セクション）（1/2）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG パイプライン全体像</text>
+<text x="200" y="75" text-anchor="middle" fill="#ffffff" font-size="12">オフライン（Indexing Phase）</text>
+<text x="590" y="75" text-anchor="middle" fill="#e91e63" font-size="12">オンライン（Query Phase）</text>
+<line x1="390" y1="65" x2="390" y2="175" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="30" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="77.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Ingest</text>
+<text x="77.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">S3→Parse</text><line x1="125" y1="127" x2="128" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="138,127 126,132 126,122" fill="#f9a825"/><rect x="138" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="185.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Chunk</text>
+<text x="185.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">分割処理</text><line x1="233" y1="127" x2="236" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="246,127 234,132 234,122" fill="#f9a825"/><rect x="246" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="293.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Embed</text>
+<text x="293.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル化</text><line x1="341" y1="127" x2="344" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="354,127 342,132 342,122" fill="#f9a825"/><rect x="354" y="100" width="95" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="401.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Index</text>
+<text x="401.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">DB格納</text><line x1="449" y1="127" x2="452" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="462,127 450,132 450,122" fill="#f9a825"/><rect x="462" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="509.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Retrieve</text>
+<text x="509.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">類似検索</text><line x1="557" y1="127" x2="560" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="570,127 558,132 558,122" fill="#f9a825"/><rect x="570" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="617.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Augment</text>
+<text x="617.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Prompt合成</text><line x1="665" y1="127" x2="668" y2="127" stroke="#f9a825" stroke-width="2"/><polygon points="678,127 666,132 666,122" fill="#f9a825"/><rect x="678" y="100" width="95" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725.5" y="120.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Generate</text>
+<text x="725.5" y="139.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">LLM応答</text>
+<text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="11">← Offline: 事前インデックス作成  |  Online: リアルタイム検索・生成 →</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">主要コンポーネント</text>
+<rect x="30" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Document Loader</text>
+<text x="140" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">S3/URL/Confluence/SharePoint</text>
+<rect x="290" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Vector Store</text>
+<text x="400" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">OpenSearch/pgvector/Pinecone</text>
+<rect x="550" y="260" width="220" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="280.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">LLM</text>
+<text x="660" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude 3.5 / Titan / Llama</text>
+<text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="12">Amazon Bedrock Knowledge Bases = マネージド RAG サービス</text>
+</svg>
 - **RAG基礎:**
 - [ ] RAG vs FT vs ICL の使い分けを説明できる
 - [ ] エンベディングモデル4種の次元数と特徴を覚えた
@@ -1747,6 +5321,59 @@ LIMIT 5;
 - [ ] Retrieve / R&G APIの違いと用途を説明できる
 - [ ] HYBRID検索の対応DBを言える（OpenSearch Serverlessのみ）
 - [ ] メタデータフィルタの演算子を3つ以上言える
+
+
+---
+
+# 直前チェックリスト（全セクション）（2/2）
+
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">チャンキング戦略 比較</text>
+<rect x="20" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="110" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Fixed Size</text>
+<text x="110" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">固定トークン数</text>
+<rect x="210" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="300" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Recursive</text>
+<text x="300" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">区切り文字ベース</text>
+<rect x="400" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="490" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Semantic</text>
+<text x="490" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">意味単位分割</text>
+<rect x="590" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="680" y="68" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Hierarchical</text>
+<text x="680" y="87" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">親子構造</text>
+<rect x="20" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="110" y="140" text-anchor="middle" fill="#f9a825" font-size="11">chunk_size: 500</text>
+<text x="110" y="158" text-anchor="middle" fill="#ffffff" font-size="11">chunk_overlap: 50</text>
+<text x="110" y="176" text-anchor="middle" fill="#ffffff" font-size="11">シンプル・高速</text>
+<rect x="210" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="300" y="140" text-anchor="middle" fill="#f9a825" font-size="11">
+
+ → 
+ → 。</text>
+<text x="300" y="158" text-anchor="middle" fill="#ffffff" font-size="11">自然な境界</text>
+<text x="300" y="176" text-anchor="middle" fill="#ffffff" font-size="11">精度バランス良</text>
+<rect x="400" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="490" y="140" text-anchor="middle" fill="#f9a825" font-size="11">埋め込み類似度</text>
+<text x="490" y="158" text-anchor="middle" fill="#ffffff" font-size="11">で境界を検出</text>
+<text x="490" y="176" text-anchor="middle" fill="#ffffff" font-size="11">高精度・処理重</text>
+<rect x="590" y="115" width="180" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="680" y="140" text-anchor="middle" fill="#f9a825" font-size="11">Parent: 章/節</text>
+<text x="680" y="158" text-anchor="middle" fill="#ffffff" font-size="11">Child: 段落</text>
+<text x="680" y="176" text-anchor="middle" fill="#ffffff" font-size="11">コンテキスト保持</text>
+<text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">チャンクサイズ vs 精度のトレードオフ</text>
+<rect x="60" y="255" width="680" height="110" rx="6" fill="#16213e"/>
+<line x1="100" y1="320" x2="690" y2="320" stroke="#ffffff" stroke-width="2"/><polygon points="700,320 688,325 688,315" fill="#ffffff"/>
+<text x="80" y="325" text-anchor="end" fill="#ffffff" font-size="11">小</text>
+<text x="710" y="325" fill="#ffffff" font-size="11">大 →チャンクサイズ</text>
+<line x1="100" y1="360" x2="100" y2="265" stroke="#ffffff" stroke-width="1"/>
+<text x="95" y="270" text-anchor="end" fill="#ffffff" font-size="11">高</text>
+<text x="95" y="365" text-anchor="end" fill="#ffffff" font-size="11">低</text>
+<path d="M 100 340 Q 300 270 500 280 Q 600 285 700 300" stroke="#f9a825" stroke-width="2.5" fill="none"/>
+<text x="300" y="290" fill="#f9a825" font-size="11">精度</text>
+<path d="M 100 290 Q 300 295 500 305 Q 600 315 700 340" stroke="#e91e63" stroke-width="2.5" fill="none"/>
+<text x="500" y="330" fill="#e91e63" font-size="11">速度</text>
+</svg>
 - **OpenSearch Serverless:**
 - [ ] 3種セキュリティポリシーの違いを説明できる
 - [ ] Faiss/nmslib/Luceneの適切な使い分けを説明できる
@@ -1761,6 +5388,35 @@ LIMIT 5;
 
 # 全セクション早見表（試験直前総まとめ）
 
+- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="220" fill="#1a1a2e"/>
+<text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">クエリ処理パイプライン</text>
+<rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="75" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Raw Query</text>
+<text x="75" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">自然言語</text>
+<line x1="130" y1="65" x2="155" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="165,65 153,70 153,60" fill="#f9a825"/>
+<rect x="165" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="225" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">前処理</text>
+<text x="225" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">正規化/言語検出</text>
+<line x1="285" y1="65" x2="310" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="320,65 308,70 308,60" fill="#f9a825"/>
+<rect x="320" y="45" width="120" height="40" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="380" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query Embed</text>
+<text x="380" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル化</text>
+<line x1="440" y1="65" x2="465" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="475,65 463,70 463,60" fill="#f9a825"/>
+<rect x="475" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="535" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">ANN Search</text>
+<text x="535" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Top-K取得</text>
+<line x1="595" y1="65" x2="620" y2="65" stroke="#f9a825" stroke-width="2"/><polygon points="630,65 618,70 618,60" fill="#f9a825"/>
+<rect x="630" y="45" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="705" y="58" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Rerank</text>
+<text x="705" y="77" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">精度向上</text>
+<text x="400" y="125" text-anchor="middle" fill="#ffffff" font-size="11">クエリ拡張テクニック</text>
+<text x="200" y="148" text-anchor="middle" fill="#f9a825" font-size="10">HyDE: 仮説文書生成→埋め込み</text>
+<text x="400" y="148" text-anchor="middle" fill="#f9a825" font-size="10">Multi-Query: 複数バリエーション</text>
+<text x="600" y="148" text-anchor="middle" fill="#f9a825" font-size="10">Step-Back: 抽象化→具体化</text>
+<text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="11">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>
+<text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>
+</svg>
 | セクション | 最重要キーワード | ひっかけポイント |
 |-----------|---------------|----------------|
 | RAG基礎 | Embedding, Chunking, ANN | RAGとFTの使い分け |
@@ -1778,13 +5434,96 @@ LIMIT 5;
 ---
 
 <!-- _class: lead -->
-# クロージング・参考資料
+# クロージング・参考資料（1/2）
 
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding ベクトル空間イメージ</text>
+<text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">意味が近い概念ほど近傍に配置される</text>
+<rect x="40" y="60" width="720" height="300" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+<circle cx="180" cy="120" r="8" fill="#f9a825"/>
+<text x="192" y="125" fill="#f9a825" font-size="11">AWS Lambda</text>
+<circle cx="220" cy="150" r="8" fill="#f9a825"/>
+<text x="232" y="155" fill="#f9a825" font-size="11">サーバーレス関数</text>
+<circle cx="160" cy="170" r="8" fill="#f9a825"/>
+<text x="172" y="175" fill="#f9a825" font-size="11">イベント駆動</text>
+<circle cx="450" cy="100" r="8" fill="#e91e63"/>
+<text x="462" y="105" fill="#e91e63" font-size="11">RDS Aurora</text>
+<circle cx="490" cy="130" r="8" fill="#e91e63"/>
+<text x="502" y="135" fill="#e91e63" font-size="11">PostgreSQL</text>
+<circle cx="430" cy="150" r="8" fill="#e91e63"/>
+<text x="442" y="155" fill="#e91e63" font-size="11">リレーショナルDB</text>
+<circle cx="600" cy="270" r="8" fill="#4fc3f7"/>
+<text x="612" y="275" fill="#4fc3f7" font-size="11">機械学習</text>
+<circle cx="640" cy="240" r="8" fill="#4fc3f7"/>
+<text x="652" y="245" fill="#4fc3f7" font-size="11">SageMaker</text>
+<circle cx="580" cy="300" r="8" fill="#4fc3f7"/>
+<text x="592" y="305" fill="#4fc3f7" font-size="11">モデル訓練</text>
+<ellipse cx="190" cy="147" rx="70" ry="40" fill="none" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="190" y="210" text-anchor="middle" fill="#f9a825" font-size="11">コンピューティングクラスタ</text>
+<ellipse cx="460" cy="125" rx="65" ry="35" fill="none" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="460" y="185" text-anchor="middle" fill="#e91e63" font-size="11">データベースクラスタ</text>
+<ellipse cx="615" cy="270" rx="65" ry="40" fill="none" stroke="#4fc3f7" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="615" y="330" text-anchor="middle" fill="#4fc3f7" font-size="11">MLクラスタ</text>
+<line x1="245" y1="155" x2="395" y2="135" stroke="#ffffff" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+<text x="320" y="135" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.6">距離=非類似</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">クエリを同一空間に変換 → コサイン類似度でTop-K取得 → LLMへ送信</text>
+</svg>
 - **RAG実装ガイド完全版 — 学習完了**
 - 
 - **AWS公式ドキュメント:**
 - Bedrock Knowledge Base: docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html
 - OpenSearch Serverless: docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless.html
+
+
+---
+
+<!-- _class: lead -->
+# クロージング・参考資料（2/2）
+
+- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">検索手法 比較</text>
+<rect x="30" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="145" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Dense Retrieval</text>
+<text x="145" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル類似検索 (ANN)</text>
+<rect x="285" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sparse Retrieval</text>
+<text x="400" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">BM25 / TF-IDF</text>
+<rect x="540" y="50" width="230" height="55" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="655" y="70.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Hybrid Search</text>
+<text x="655" y="89.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Dense + Sparse</text>
+<text x="145" y="130" text-anchor="middle" fill="#ffffff" font-size="11">意味・文脈マッチ得意</text>
+<text x="145" y="148" text-anchor="middle" fill="#f9a825" font-size="11">専門用語弱い</text>
+<text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11">キーワード完全一致得意</text>
+<text x="400" y="148" text-anchor="middle" fill="#f9a825" font-size="11">意味理解なし</text>
+<text x="655" y="130" text-anchor="middle" fill="#ffffff" font-size="11">両手法の長所を統合</text>
+<text x="655" y="148" text-anchor="middle" fill="#f9a825" font-size="11">精度最高・推奨</text>
+<text x="400" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Hybrid Search の仕組み</text>
+<rect x="50" y="210" width="150" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="125" y="225.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Query</text>
+<text x="125" y="244.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">"Aurora設定方法"</text>
+<line x1="200" y1="232" x2="232.1913119055697" y2="206.24695047554425" stroke="#f9a825" stroke-width="2"/><polygon points="240,200 233.75304952445575,211.40068461786825 227.50609904891152,203.59199652343796" fill="#f9a825"/>
+<line x1="200" y1="232" x2="231.80768079480958" y2="254.2653765563667" stroke="#f9a825" stroke-width="2"/><polygon points="240,260 227.3019052319549,257.21461147023524 233.03652867558816,249.02229226504485" fill="#f9a825"/>
+<rect x="240" y="185" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="198" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Dense</text>
+<text x="315" y="217" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">ベクトル検索</text>
+<rect x="240" y="255" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="268" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sparse</text>
+<text x="315" y="287" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">BM25検索</text>
+<line x1="390" y1="205" x2="421.71151325924353" y2="226.40527144998939" stroke="#f9a825" stroke-width="2"/><polygon points="430,232 417.2564516360869,229.4305691103655 422.8511801860975,221.14208236960903" fill="#f9a825"/>
+<line x1="390" y1="275" x2="421.71151325924353" y2="253.59472855001061" stroke="#f9a825" stroke-width="2"/><polygon points="430,248 422.8511801860975,258.857917630391 417.2564516360869,250.5694308896345" fill="#f9a825"/>
+<rect x="430" y="215" width="150" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="505" y="230.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">RRF Fusion</text>
+<text x="505" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">スコア統合</text>
+<line x1="580" y1="237" x2="610" y2="237" stroke="#f9a825" stroke-width="2"/><polygon points="620,237 608,242 608,232" fill="#f9a825"/>
+<rect x="620" y="215" width="150" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
+<text x="695" y="230.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Top-K Results</text>
+<text x="695" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">最終結果</text>
+<text x="400" y="330" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">RRF (Reciprocal Rank Fusion)</text>
+<text x="400" y="350" text-anchor="middle" fill="#f9a825" font-size="12">score = Σ 1/(k + rank_i)  where k=60 (常数)</text>
+<text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">OpenSearch Serverless: hybrid検索ネイティブサポート</text>
+</svg>
 - pgvector on Aurora: docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraPostgreSQL.VectorDB.html
 - 
 - **試験申込:**

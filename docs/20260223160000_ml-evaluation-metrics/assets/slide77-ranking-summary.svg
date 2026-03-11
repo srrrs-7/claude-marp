@@ -1,4 +1,4 @@
-<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <text x="400" y="22" text-anchor="middle" font-size="15" font-weight="bold" fill="#fb923c">ランキング・推薦指標 — まとめ</text>
   <!-- Left: formulas -->
   <rect x="20" y="34" width="370" height="316" rx="12" fill="rgba(251,146,60,0.08)" stroke="#fb923c" stroke-width="1.5"/>

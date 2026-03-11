@@ -7,6 +7,71 @@ paginate: true
 header: "Mycelium Network × P2P"
 footer: "© 2026 Forest Internet"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section {
     font-size: 1.05em;
   }
@@ -88,6 +153,7 @@ style: |
 
 # P2Pネットワークの設計原則
 
+![w:800 center](assets/p2p-principles.svg)
 - - **非中央集権**: 単一の管理サーバーが存在しない
 - - **対等なノード**: 各参加者がクライアント兼サーバー
 - - **自律分散**: ノードが独立して意思決定
@@ -102,6 +168,7 @@ BitTorrent, Bitcoin, IPFS など実例多数。いずれも菌糸ネットワー
 
 # 代表的なP2Pプロトコル
 
+![w:800 center](assets/protocols-comparison.svg)
 - - **Gossip Protocol**: 噂話のように情報を伝播（Cassandra, Redis Cluster）
 - - **DHT（分散ハッシュテーブル）**: キーでデータ位置を特定（BitTorrent, IPFS）
 - - **Chord Ring**: ノードをリング状に配置し O(log N) でルーティング
@@ -154,6 +221,7 @@ BitTorrent, Bitcoin, IPFS など実例多数。いずれも菌糸ネットワー
 
 # 森の Load Balancer：栄養素の再分配
 
+![w:800 center](assets/resource-redistribution.svg)
 - - 日当たりの良い木 → 余剰炭素を菌糸ネットワークへ供給
 - - 日陰の若木 ← 菌糸経由で炭素・リンを受領
 - - **ソース-シンクモデル**: 余剰ノードから不足ノードへ自動転送
@@ -167,6 +235,11 @@ BitTorrent, Bitcoin, IPFS など実例多数。いずれも菌糸ネットワー
 # リソース再分配のコード比較
 
 - - 菌糸ネットワークの栄養素転送 ≒ P2Pの負荷分散アルゴリズム
+
+
+---
+
+# リソース再分配のコード比較（コード例）
 
 ```typescript
 // P2P Load Balancing (Work Stealing)
@@ -232,6 +305,7 @@ async function redistributeLoad(nodes: PeerNode[]) {
 
 # 菌糸ネットワークから学ぶ設計指針
 
+![w:800 center](assets/design-principles-map.svg)
 - - **Hub-and-Spoke は自然界でも有効**: Mother Treeが証明
 - - **完全分散 vs ハブ型のハイブリッド** が最も頑健
 - - **インセンティブ設計** が持続可能性の鍵（相利共生）

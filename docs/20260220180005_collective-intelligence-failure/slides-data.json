@@ -141,13 +141,19 @@
 			"speakerNotes": "集合知は自然発生しない。4条件を意図的に設計・維持しなければ、集団はむしろ個人より悪い判断をする。"
 		},
 		{
-			"title": "まとめ",
+			"title": "まとめ（1/2）",
 			"layout": "center",
 			"content": [
 				"「多数決」は集合知ではない",
 				"",
 				"独立性と多様性なき群衆は、賢明ではなく危険である",
-				"",
+				""
+			]
+		},
+		{
+			"title": "まとめ（2/2）",
+			"layout": "center",
+			"content": [
 				"集合知を活かすには、**条件を設計**しなければならない",
 				"",
 				"多様性 / 独立性 / 分散化 / 集約メカニズム",
@@ -156,13 +162,19 @@
 			]
 		},
 		{
-			"title": "参考文献",
+			"title": "参考文献（1/2）",
 			"layout": "default",
 			"content": [
 				"**Research & Data:**",
 				"- [J. Surowiecki 'The Wisdom of Crowds' (2004)](https://en.wikipedia.org/wiki/The_Wisdom_of_Crowds)",
 				"- [Salganik, Dodds, Watts 'Experimental Study of Inequality and Unpredictability in an Artificial Cultural Market' (Science, 2006)](https://doi.org/10.1126/science.1121066)",
-				"- [Shumailov et al. 'Model Collapse' (2023)](https://arxiv.org/abs/2305.17493)",
+				"- [Shumailov et al. 'Model Collapse' (2023)](https://arxiv.org/abs/2305.17493)"
+			]
+		},
+		{
+			"title": "参考文献（2/2）",
+			"layout": "default",
+			"content": [
 				"- [Francis Galton 'Vox Populi' (Nature, 1907)](https://doi.org/10.1038/075450a0)",
 				"",
 				"**Applications & Design:**",

@@ -5,6 +5,7 @@ output:
   baseName: "carbon-aware-computing"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "炭素認識コンピューティング"
   footer: "© 2026"

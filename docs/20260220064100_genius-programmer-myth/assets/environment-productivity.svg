@@ -1,0 +1,47 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#f9a825">同じエンジニア、異なる環境での生産性</text>
+  <!-- X axis: bar chart -->
+  <line x1="80" y1="300" x2="720" y2="300" stroke="#ffffff" stroke-width="2"/>
+  <line x1="80" y1="60" x2="80" y2="300" stroke="#ffffff" stroke-width="2"/>
+  <!-- Y axis labels -->
+  <text x="68" y="300" text-anchor="end" font-size="11" fill="#ffffff">0</text>
+  <text x="68" y="240" text-anchor="end" font-size="11" fill="#ffffff">1x</text>
+  <text x="68" y="180" text-anchor="end" font-size="11" fill="#ffffff">2x</text>
+  <text x="68" y="120" text-anchor="end" font-size="11" fill="#ffffff">3x</text>
+  <text x="68" y="75" text-anchor="end" font-size="11" fill="#ffffff">4x</text>
+  <!-- Grid lines -->
+  <line x1="80" y1="240" x2="720" y2="240" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <line x1="80" y1="180" x2="720" y2="180" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <line x1="80" y1="120" x2="720" y2="120" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <!-- Bars -->
+  <!-- Bad environment: many meetings -->
+  <rect x="110" y="228" width="80" height="72" fill="#e91e63" rx="4"/>
+  <text x="150" y="220" text-anchor="middle" font-size="10" fill="#e91e63">1.2x</text>
+  <text x="150" y="320" text-anchor="middle" font-size="10" fill="#ffffff">会議過多</text>
+  <text x="150" y="334" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">環境</text>
+  <!-- Context switching -->
+  <rect x="230" y="216" width="80" height="84" fill="#e91e63" rx="4"/>
+  <text x="270" y="208" text-anchor="middle" font-size="10" fill="#e91e63">1.5x</text>
+  <text x="270" y="320" text-anchor="middle" font-size="10" fill="#ffffff">頻繁な</text>
+  <text x="270" y="334" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">割り込み</text>
+  <!-- Technical debt -->
+  <rect x="350" y="204" width="80" height="96" fill="#f9a825" rx="4"/>
+  <text x="390" y="196" text-anchor="middle" font-size="10" fill="#f9a825">1.8x</text>
+  <text x="390" y="320" text-anchor="middle" font-size="10" fill="#ffffff">技術的</text>
+  <text x="390" y="334" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">負債なし</text>
+  <!-- Good tools -->
+  <rect x="470" y="168" width="80" height="132" fill="#4caf50" rx="4"/>
+  <text x="510" y="160" text-anchor="middle" font-size="10" fill="#4caf50">2.5x</text>
+  <text x="510" y="320" text-anchor="middle" font-size="10" fill="#ffffff">良いツール</text>
+  <text x="510" y="334" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">+ CI/CD</text>
+  <!-- Ideal environment -->
+  <rect x="590" y="96" width="80" height="204" fill="#4caf50" rx="4"/>
+  <text x="630" y="88" text-anchor="middle" font-size="10" fill="#4caf50">4.5x</text>
+  <text x="630" y="320" text-anchor="middle" font-size="10" fill="#ffffff">心理的安全</text>
+  <text x="630" y="334" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">+ 自律性</text>
+  <!-- Y axis title -->
+  <text x="25" y="200" text-anchor="middle" font-size="12" fill="#ffffff" transform="rotate(-90,25,200)">相対的生産性</text>
+  <!-- Bottom message -->
+  <text x="400" y="375" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.6">「10xエンジニア」の多くは単に「10x環境」にいるだけかもしれない</text>
+</svg>

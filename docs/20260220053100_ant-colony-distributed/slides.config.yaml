@@ -5,6 +5,7 @@ output:
   baseName: "ant-colony-distributed"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "アリのコロニーと分散システム"
   footer: "© 2026"

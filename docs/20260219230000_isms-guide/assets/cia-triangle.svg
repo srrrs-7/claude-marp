@@ -1,4 +1,4 @@
-<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="460" fill="#f0f4f8" rx="12"/>
   <!-- Triangle lines -->
   <line x1="400" y1="80" x2="100" y2="400" stroke="#90A4AE" stroke-width="2.5" stroke-dasharray="8,4"/>

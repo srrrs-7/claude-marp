@@ -1,0 +1,41 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="32" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#f9a825" font-weight="bold">スケールの一致：宇宙 vs 脳</text>
+  <!-- Left column header: Universe -->
+  <rect x="60" y="50" width="280" height="44" rx="8" fill="#16213e"/>
+  <text x="200" y="78" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#f9a825" font-weight="bold">宇宙</text>
+  <!-- Right column header: Brain -->
+  <rect x="460" y="50" width="280" height="44" rx="8" fill="#16213e"/>
+  <text x="600" y="78" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#e91e63" font-weight="bold">脳（ニューラルネット）</text>
+  <!-- Row 1: Nodes -->
+  <rect x="60" y="110" width="280" height="48" rx="6" fill="#0d1b2a"/>
+  <text x="200" y="132" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#ffffff">銀河の数</text>
+  <text x="200" y="150" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#4ec9b0" font-weight="bold">≈ 10¹¹</text>
+  <rect x="460" y="110" width="280" height="48" rx="6" fill="#0d1b2a"/>
+  <text x="600" y="132" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#ffffff">ニューロン数</text>
+  <text x="600" y="150" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#4ec9b0" font-weight="bold">≈ 10¹¹</text>
+  <!-- Equal sign 1 -->
+  <text x="400" y="142" text-anchor="middle" font-family="sans-serif" font-size="24" fill="#f9a825" font-weight="bold">=</text>
+  <!-- Row 2: Active ratio -->
+  <rect x="60" y="174" width="280" height="48" rx="6" fill="#0d1b2a"/>
+  <text x="200" y="196" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#ffffff">バリオン物質</text>
+  <text x="200" y="214" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#4ec9b0" font-weight="bold">≈ 5%</text>
+  <rect x="460" y="174" width="280" height="48" rx="6" fill="#0d1b2a"/>
+  <text x="600" y="196" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#ffffff">活動ニューロン</text>
+  <text x="600" y="214" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#4ec9b0" font-weight="bold">≈ 5-10%</text>
+  <!-- Equal sign 2 -->
+  <text x="400" y="206" text-anchor="middle" font-family="sans-serif" font-size="24" fill="#f9a825" font-weight="bold">≈</text>
+  <!-- Row 3: Network type -->
+  <rect x="60" y="238" width="280" height="48" rx="6" fill="#0d1b2a"/>
+  <text x="200" y="260" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#ffffff">ネットワーク種別</text>
+  <text x="200" y="278" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#4ec9b0" font-weight="bold">スケールフリー</text>
+  <rect x="460" y="238" width="280" height="48" rx="6" fill="#0d1b2a"/>
+  <text x="600" y="260" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#ffffff">ネットワーク種別</text>
+  <text x="600" y="278" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#4ec9b0" font-weight="bold">スケールフリー</text>
+  <!-- Equal sign 3 -->
+  <text x="400" y="270" text-anchor="middle" font-family="sans-serif" font-size="24" fill="#f9a825" font-weight="bold">=</text>
+  <!-- Bottom note -->
+  <rect x="100" y="304" width="600" height="52" rx="8" fill="#16213e"/>
+  <text x="400" y="326" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#ffffff">スケール差：</text>
+  <text x="400" y="346" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#e91e63" font-weight="bold">10²⁷ 倍の差があっても、構造パターンは同一</text>
+</svg>

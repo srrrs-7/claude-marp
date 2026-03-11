@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "なぜモノリスは再評価されているか"
   footer: "© 2026"

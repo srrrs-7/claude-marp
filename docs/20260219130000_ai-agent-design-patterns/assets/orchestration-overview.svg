@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" style="max-height:65vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 
   <!-- Dividers -->
   <line x1="450" y1="10" x2="450" y2="390" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>

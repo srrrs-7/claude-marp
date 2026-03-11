@@ -5,6 +5,7 @@ output:
   baseName: "willpower-myth"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "意志力の神話"
   footer: "© 2026"

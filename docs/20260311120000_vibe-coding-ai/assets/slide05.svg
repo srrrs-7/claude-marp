@@ -1,0 +1,73 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="42" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">従来開発 vs AI駆動開発</text>
+
+  <!-- Divider -->
+  <line x1="400" y1="60" x2="400" y2="480" stroke="#a78bfa" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Left panel header: 従来開発 -->
+  <rect x="20" y="62" width="360" height="44" rx="8" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2"/>
+  <text x="200" y="90" font-family="sans-serif" font-size="17" font-weight="bold" fill="#60a5fa" text-anchor="middle">従来開発</text>
+
+  <!-- Right panel header: AI駆動開発 -->
+  <rect x="420" y="62" width="360" height="44" rx="8" fill="#1a3d32" stroke="#34d399" stroke-width="2"/>
+  <text x="600" y="90" font-family="sans-serif" font-size="17" font-weight="bold" fill="#34d399" text-anchor="middle">AI駆動開発（Vibe Coding）</text>
+
+  <!-- Row 1: 設計 -->
+  <rect x="20" y="118" width="360" height="60" rx="6" fill="#1e2a4a"/>
+  <text x="40" y="141" font-family="sans-serif" font-size="12" font-weight="bold" fill="#93c5fd">設計</text>
+  <text x="40" y="161" font-family="sans-serif" font-size="12" fill="#bfdbfe">人間が詳細設計書を書く</text>
+  <text x="40" y="175" font-family="sans-serif" font-size="11" fill="#93c5fd">UML/仕様書を手動作成</text>
+
+  <rect x="420" y="118" width="360" height="60" rx="6" fill="#1a2e28"/>
+  <text x="440" y="141" font-family="sans-serif" font-size="12" font-weight="bold" fill="#6ee7b7">設計</text>
+  <text x="440" y="161" font-family="sans-serif" font-size="12" fill="#a7f3d0">意図を伝えるとAIが設計提案</text>
+  <text x="440" y="175" font-family="sans-serif" font-size="11" fill="#6ee7b7">対話で要件を深掘り・精緻化</text>
+
+  <!-- Row 2: 実装 -->
+  <rect x="20" y="186" width="360" height="60" rx="6" fill="#1e2a4a"/>
+  <text x="40" y="209" font-family="sans-serif" font-size="12" font-weight="bold" fill="#93c5fd">実装</text>
+  <text x="40" y="229" font-family="sans-serif" font-size="12" fill="#bfdbfe">全コードを手書き</text>
+  <text x="40" y="243" font-family="sans-serif" font-size="11" fill="#93c5fd">タイプミス・バグが混入しやすい</text>
+
+  <rect x="420" y="186" width="360" height="60" rx="6" fill="#1a2e28"/>
+  <text x="440" y="209" font-family="sans-serif" font-size="12" font-weight="bold" fill="#6ee7b7">実装</text>
+  <text x="440" y="229" font-family="sans-serif" font-size="12" fill="#a7f3d0">AIがコードを自動生成・編集</text>
+  <text x="440" y="243" font-family="sans-serif" font-size="11" fill="#6ee7b7">人間はレビュー・承認に集中</text>
+
+  <!-- Row 3: テスト -->
+  <rect x="20" y="254" width="360" height="60" rx="6" fill="#1e2a4a"/>
+  <text x="40" y="277" font-family="sans-serif" font-size="12" font-weight="bold" fill="#93c5fd">テスト</text>
+  <text x="40" y="297" font-family="sans-serif" font-size="12" fill="#bfdbfe">テストケースを手動作成</text>
+  <text x="40" y="311" font-family="sans-serif" font-size="11" fill="#93c5fd">カバレッジ確保に時間がかかる</text>
+
+  <rect x="420" y="254" width="360" height="60" rx="6" fill="#1a2e28"/>
+  <text x="440" y="277" font-family="sans-serif" font-size="12" font-weight="bold" fill="#6ee7b7">テスト</text>
+  <text x="440" y="297" font-family="sans-serif" font-size="12" fill="#a7f3d0">AIがテスト自動生成・実行</text>
+  <text x="440" y="311" font-family="sans-serif" font-size="11" fill="#6ee7b7">高カバレッジを自動維持</text>
+
+  <!-- Row 4: イテレーション速度 -->
+  <rect x="20" y="322" width="360" height="60" rx="6" fill="#1e2a4a"/>
+  <text x="40" y="345" font-family="sans-serif" font-size="12" font-weight="bold" fill="#93c5fd">速度</text>
+  <text x="40" y="365" font-family="sans-serif" font-size="12" fill="#bfdbfe">週〜月単位のサイクル</text>
+  <text x="40" y="379" font-family="sans-serif" font-size="11" fill="#93c5fd">ボトルネックは実装速度</text>
+
+  <rect x="420" y="322" width="360" height="60" rx="6" fill="#1a2e28"/>
+  <text x="440" y="345" font-family="sans-serif" font-size="12" font-weight="bold" fill="#6ee7b7">速度</text>
+  <text x="440" y="365" font-family="sans-serif" font-size="12" fill="#a7f3d0">時間〜日単位のイテレーション</text>
+  <text x="440" y="379" font-family="sans-serif" font-size="11" fill="#6ee7b7">ボトルネックは意思決定</text>
+
+  <!-- Row 5: スキル要件 -->
+  <rect x="20" y="390" width="360" height="60" rx="6" fill="#1e2a4a"/>
+  <text x="40" y="413" font-family="sans-serif" font-size="12" font-weight="bold" fill="#93c5fd">スキル</text>
+  <text x="40" y="433" font-family="sans-serif" font-size="12" fill="#bfdbfe">言語・フレームワーク精通が必要</text>
+  <text x="40" y="447" font-family="sans-serif" font-size="11" fill="#93c5fd">習得コストが高い</text>
+
+  <rect x="420" y="390" width="360" height="60" rx="6" fill="#1a2e28"/>
+  <text x="440" y="413" font-family="sans-serif" font-size="12" font-weight="bold" fill="#6ee7b7">スキル</text>
+  <text x="440" y="433" font-family="sans-serif" font-size="12" fill="#a7f3d0">目的・要件定義能力が重要</text>
+  <text x="440" y="447" font-family="sans-serif" font-size="11" fill="#6ee7b7">プロンプト設計・レビュー力</text>
+</svg>

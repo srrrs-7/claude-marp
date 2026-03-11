@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <text x="400" y="36" text-anchor="middle" font-size="20" font-weight="bold" fill="#ffffff" font-family="sans-serif">SLO/SLA設定フレームワーク</text>
+
+  <!-- SLI Layer (bottom) -->
+  <rect x="100" y="370" width="600" height="80" rx="10" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2"/>
+  <text x="400" y="400" text-anchor="middle" font-size="16" font-weight="bold" fill="#60a5fa" font-family="sans-serif">SLI — Service Level Indicator</text>
+  <text x="400" y="422" text-anchor="middle" font-size="12" fill="#94a3b8" font-family="sans-serif">実際に計測される指標: Latency, Availability, Error Rate, Throughput</text>
+  <text x="400" y="440" text-anchor="middle" font-size="11" fill="#475569" font-family="sans-serif">例: 99.5% requests completed &lt; 200ms over last 30 days</text>
+
+  <!-- Arrow up -->
+  <line x1="400" y1="370" x2="400" y2="310" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="400,310 394,322 406,322" fill="#60a5fa"/>
+
+  <!-- SLO Layer (middle) -->
+  <rect x="150" y="220" width="500" height="90" rx="10" fill="#2d1b4e" stroke="#a78bfa" stroke-width="2"/>
+  <text x="400" y="252" text-anchor="middle" font-size="16" font-weight="bold" fill="#a78bfa" font-family="sans-serif">SLO — Service Level Objective</text>
+  <text x="400" y="272" text-anchor="middle" font-size="12" fill="#94a3b8" font-family="sans-serif">内部目標値: SLIに対する具体的な達成目標</text>
+  <text x="400" y="292" text-anchor="middle" font-size="11" fill="#475569" font-family="sans-serif">例: 可用性 99.9% / エラーレート &lt; 0.1% / レイテンシ p99 &lt; 500ms</text>
+
+  <!-- Arrow up -->
+  <line x1="400" y1="220" x2="400" y2="160" stroke="#a78bfa" stroke-width="2"/>
+  <polygon points="400,160 394,172 406,172" fill="#a78bfa"/>
+
+  <!-- SLA Layer (top) -->
+  <rect x="200" y="75" width="400" height="85" rx="10" fill="#1a3a2a" stroke="#34d399" stroke-width="2"/>
+  <text x="400" y="108" text-anchor="middle" font-size="16" font-weight="bold" fill="#34d399" font-family="sans-serif">SLA — Service Level Agreement</text>
+  <text x="400" y="130" text-anchor="middle" font-size="12" fill="#94a3b8" font-family="sans-serif">顧客との契約: SLOを外部公約として定義</text>
+  <text x="400" y="150" text-anchor="middle" font-size="11" fill="#475569" font-family="sans-serif">違反時にはペナルティ / クレジット発生</text>
+
+  <!-- Error Budget box -->
+  <rect x="560" y="210" width="205" height="140" rx="8" fill="#2d2a16" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="662" y="232" text-anchor="middle" font-size="13" font-weight="bold" fill="#fbbf24" font-family="sans-serif">Error Budget</text>
+  <text x="662" y="252" text-anchor="middle" font-size="11" fill="#94a3b8" font-family="sans-serif">SLO 99.9% の場合</text>
+  <text x="662" y="272" text-anchor="middle" font-size="11" fill="#fbbf24" font-family="sans-serif">月間 = 43.2分の許容</text>
+  <text x="662" y="292" text-anchor="middle" font-size="11" fill="#94a3b8" font-family="sans-serif">Burn Rate 監視で</text>
+  <text x="662" y="312" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">残予算を可視化</text>
+  <text x="662" y="332" text-anchor="middle" font-size="10" fill="#475569" font-family="sans-serif">消耗時 → Release Freeze</text>
+
+  <!-- Left side notes -->
+  <rect x="35" y="210" width="105" height="140" rx="8" fill="#16213e" stroke="#334155" stroke-width="1"/>
+  <text x="87" y="232" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff" font-family="sans-serif">計測 Tools</text>
+  <text x="87" y="252" text-anchor="middle" font-size="10" fill="#60a5fa" font-family="sans-serif">Prometheus</text>
+  <text x="87" y="270" text-anchor="middle" font-size="10" fill="#a78bfa" font-family="sans-serif">Grafana SLO</text>
+  <text x="87" y="288" text-anchor="middle" font-size="10" fill="#34d399" font-family="sans-serif">Sloth</text>
+  <text x="87" y="306" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="sans-serif">OpenSLO</text>
+  <text x="87" y="324" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">Nobl9</text>
+  <text x="87" y="342" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="sans-serif">Google SRE</text>
+</svg>

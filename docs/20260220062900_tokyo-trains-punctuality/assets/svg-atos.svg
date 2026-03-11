@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">ATOS 自動遅延回復プロセス</text>
+  <!-- step 1 -->
+  <rect x="30" y="60" width="160" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="110" y="88" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">遅延発生</text>
+  <text x="110" y="106" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">例: 山手線</text>
+  <text x="110" y="120" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">+3分の遅延</text>
+  <!-- arrow -->
+  <polygon points="196,91 208,97 196,103" fill="#f9a825"/>
+  <line x1="190" y1="97" x2="208" y2="97" stroke="#f9a825" stroke-width="2"/>
+  <!-- step 2 -->
+  <rect x="210" y="60" width="160" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="290" y="88" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">ATOS検知</text>
+  <text x="290" y="106" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">1,600駅の</text>
+  <text x="290" y="120" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">全列車を監視</text>
+  <!-- arrow -->
+  <polygon points="376,91 388,97 376,103" fill="#f9a825"/>
+  <line x1="370" y1="97" x2="388" y2="97" stroke="#f9a825" stroke-width="2"/>
+  <!-- step 3 -->
+  <rect x="390" y="60" width="160" height="70" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="470" y="88" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">復旧案生成</text>
+  <text x="470" y="106" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">停車時間短縮</text>
+  <text x="470" y="120" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">2〜3秒/駅</text>
+  <!-- arrow -->
+  <polygon points="556,91 568,97 556,103" fill="#e91e63"/>
+  <line x1="550" y1="97" x2="568" y2="97" stroke="#e91e63" stroke-width="2"/>
+  <!-- step 4 -->
+  <rect x="570" y="60" width="165" height="70" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="652" y="88" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">自動回復</text>
+  <text x="652" y="106" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">3〜4周で</text>
+  <text x="652" y="120" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">遅延ほぼ解消</text>
+  <!-- analogy box -->
+  <rect x="150" y="200" width="500" height="75" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="225" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">エンジニアリングとの対比</text>
+  <text x="400" y="248" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">分散システムの 自動スケーリング + リバランシング</text>
+  <text x="400" y="266" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">自己修復システム（Self-Healing Architecture）</text>
+  <text x="400" y="340" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">1日 約12,000本の列車を同時最適化</text>
+</svg>

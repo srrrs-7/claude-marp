@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "OpenClaw完全解説"
   footer: "© 2026 - エンジニア向け詳細解説"

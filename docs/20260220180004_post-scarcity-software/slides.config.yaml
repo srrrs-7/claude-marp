@@ -5,6 +5,7 @@ output:
   baseName: "post-scarcity-software"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ポスト希少性ソフトウェア"
   footer: "© 2026"

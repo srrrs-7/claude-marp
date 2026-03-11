@@ -17,12 +17,25 @@ user_invocable: true
 4. **config生成** — `slides.config.yaml` を作成（`docs/<timestamp>_<title>/` に専用ディレクトリ）
 5. **並列データ生成** — タスクごとに独立したエージェントを**同時起動** → 各 `slides-data-part{N}.json` を並列生成
 6. **マージ & 検証** — 全エージェント完了後に結合 → `slides-data.json` → Zodバリデーション
-7. **レンダリング** — `bun run slides render --in <path>/slides-data.json`
-8. **レビューループ** — フィードバック → 修正 → 再レンダリング（OKまで繰り返し）
-9. **デザイン調整** — テーマ・CSS・ディレクティブの微調整
-10. **エクスポート** — `bun run slides export -f html --in <path>/<name>.md`
-11. **セルフヒーリング検証** — エクスポート後に自動検証し、問題があれば修正→再エクスポート
-12. **インデックス更新** — `bun run generate:index` で `docs/index.html` を再生成
+7. **自動修正パイプライン** — マージ後に順番に実行:
+   ```bash
+   bun run fix                                         # bullets→content, layout修正, codeLanguage補完
+   bun run split                                       # コード+箇条書き分離
+   python3 scripts/split-bullet-overflow.py --all     # 8+項目スライド分割
+   bun scripts/fix-svg-url-refs.ts                    # url(#id)違反修正
+   ```
+7a. **品質ゲート** — 修正後に品質チェックを実行:
+   ```bash
+   bun run validate -- --quality   # assertive title比率・long bullet・consecutive text等を確認
+   ```
+   🔴 高優先度の警告があれば、データJSON を修正してから render に進む。
+8. **レンダリング** — `bun run slides render -c <config> --in <path>/slides-data.json`
+9. **class:invert適用** — gaiaテーマの場合: `sed -i '/^theme: gaia$/a class: invert' <path>/<name>.md`
+10. **レビューループ** — フィードバック → 修正 → 再レンダリング（OKまで繰り返し）
+11. **デザイン調整** — テーマ・CSS・ディレクティブの微調整
+12. **エクスポート** — `bun run slides export -c <config> -f html --in <path>/<name>.md`
+13. **セルフヒーリング検証** — エクスポート後に自動検証し、問題があれば修正→再エクスポート
+14. **インデックス更新** — `bun run generate:index` で `docs/index.html` を再生成
 
 **出力先:** すべてのファイルは `docs/<yyyymmddhhmmss>_<title>/` 配下に集約される
 
@@ -37,6 +50,9 @@ user_invocable: true
 - レビューループは何度でも回す
 - **【重要】config生成時**: `slides.config.yaml` の `output.dir` は **必ず** `"docs/<timestamp>_<title>"` のフルパスを指定（相対パス `"."` は実行ディレクトリ基準で解決されるため不可）
 - **【最重要】図解ファースト**: 説明はテキスト箇条書きではなく SVG 図解を第一手段とする。全スライドの 50% 以上に図解を含めること（詳細は「図解ファースト原則」セクション参照）
+- **【品質基準】主張タイトル**: `layout: default` のスライドタイトルは主張文（動詞 or 数値含む）にする。ラベルタイトル（概要・課題・解決策など単体）は禁止
+- **【品質基準】BLUF**: スライド2（タイトルの直後）にデッキ全体の結論を1文で提示するスライドを必ず入れる
+- **【品質基準】subtitle**: 4項目以上の箇条書きを持つコンテンツスライドには `subtitle` フィールドで "So What?" の一行サマリーを追加する
 
 ---
 

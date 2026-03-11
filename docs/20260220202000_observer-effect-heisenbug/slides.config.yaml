@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "Observer Effect × Heisenbug"
   footer: "© 2026 Quantum Debugging"

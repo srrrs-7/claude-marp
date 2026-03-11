@@ -5,6 +5,7 @@ output:
   baseName: "japanese-game-industry-golden-age"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "日本ゲーム産業の黄金時代"
   footer: "© 2026"

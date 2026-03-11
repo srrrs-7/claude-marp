@@ -1,0 +1,43 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">制約が創造性を生む — ジャズとソフトウェアの逆説</text>
+  <!-- Left side: No constraints -->
+  <rect x="30" y="55" width="320" height="270" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="190" y="82" text-anchor="middle" font-size="14" font-weight="bold" fill="#e91e63">制約なし</text>
+  <!-- Jazz example -->
+  <rect x="50" y="95" width="280" height="60" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1" opacity="0.7"/>
+  <text x="190" y="118" text-anchor="middle" font-size="12" fill="#e91e63">ジャズ: コード進行なし</text>
+  <text x="190" y="138" text-anchor="middle" font-size="11" fill="#ffffff">= ランダムな音の羅列</text>
+  <!-- Software example -->
+  <rect x="50" y="168" width="280" height="60" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1" opacity="0.7"/>
+  <text x="190" y="191" text-anchor="middle" font-size="12" fill="#e91e63">ソフトウェア: 設計なし</text>
+  <text x="190" y="211" text-anchor="middle" font-size="11" fill="#ffffff">= スパゲッティコード</text>
+  <!-- Result -->
+  <rect x="50" y="241" width="280" height="70" rx="6" fill="#e91e63" opacity="0.15"/>
+  <text x="190" y="268" text-anchor="middle" font-size="13" fill="#e91e63">結果：混沌</text>
+  <text x="190" y="290" text-anchor="middle" font-size="11" fill="#ffffff">聴衆（ユーザー）には</text>
+  <text x="190" y="308" text-anchor="middle" font-size="11" fill="#ffffff">意味が伝わらない</text>
+  <!-- Center arrow -->
+  <text x="400" y="195" text-anchor="middle" font-size="28" fill="#f9a825">→</text>
+  <text x="400" y="220" text-anchor="middle" font-size="11" fill="#ffffff">制約を</text>
+  <text x="400" y="236" text-anchor="middle" font-size="11" fill="#ffffff">加える</text>
+  <!-- Right side: With constraints -->
+  <rect x="450" y="55" width="320" height="270" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="610" y="82" text-anchor="middle" font-size="14" font-weight="bold" fill="#4caf50">制約あり</text>
+  <!-- Jazz example -->
+  <rect x="470" y="95" width="280" height="60" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="610" y="118" text-anchor="middle" font-size="12" fill="#4caf50">ジャズ: 12小節ブルース</text>
+  <text x="610" y="138" text-anchor="middle" font-size="11" fill="#ffffff">= 無限の即興表現の余地</text>
+  <!-- Software example -->
+  <rect x="470" y="168" width="280" height="60" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="610" y="191" text-anchor="middle" font-size="12" fill="#4caf50">ソフトウェア: 良いアーキテクチャ</text>
+  <text x="610" y="211" text-anchor="middle" font-size="11" fill="#ffffff">= 安全な変更・拡張の余地</text>
+  <!-- Result -->
+  <rect x="470" y="241" width="280" height="70" rx="6" fill="#4caf50" opacity="0.15"/>
+  <text x="610" y="268" text-anchor="middle" font-size="13" fill="#4caf50">結果：創造的自由</text>
+  <text x="610" y="290" text-anchor="middle" font-size="11" fill="#ffffff">聴衆（ユーザー）に</text>
+  <text x="610" y="308" text-anchor="middle" font-size="11" fill="#ffffff">価値が届く</text>
+  <!-- Bottom message -->
+  <text x="400" y="360" text-anchor="middle" font-size="13" fill="#f9a825">「自由」は「制約のなさ」ではなく「制約の中での可能性」</text>
+  <text x="400" y="382" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.6">コード進行 = アーキテクチャ = スプリントの目標</text>
+</svg>

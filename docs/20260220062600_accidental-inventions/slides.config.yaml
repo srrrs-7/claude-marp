@@ -5,6 +5,7 @@ output:
   baseName: "accidental-inventions"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "偶然の発明"
   footer: "© 2026"

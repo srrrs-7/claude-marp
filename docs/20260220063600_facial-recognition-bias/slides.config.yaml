@@ -5,6 +5,7 @@ output:
   baseName: "facial-recognition-bias"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "顔認識AIとバイアス"
   footer: "© 2026"

@@ -7,6 +7,71 @@ paginate: true
 header: "スライム菌の最適化"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -64,12 +129,19 @@ style: |
 
 ---
 
-# 数学的等価性 — ダイクストラ法との比較
+# 数学的等価性 — ダイクストラ法との比較（1/2）
 
 - - 粘菌の管径変化は **最短経路問題** の近似解
 - - ダイクストラ法: O(V log V) の計算コスト
 - - 粘菌: 並列・分散処理で同等の結果を達成
 - - 局所ルールのみでグローバル最適に収束する理由:
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="28" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">粘菌の最短経路発見プロセス</text><circle cx="100" cy="130" r="22" fill="#f9a825" opacity="0.9"/><text x="100" y="135" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="bold" font-family="sans-serif">食物A</text><circle cx="700" cy="130" r="22" fill="#f9a825" opacity="0.9"/><text x="700" y="135" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="bold" font-family="sans-serif">食物B</text><circle cx="300" cy="80" r="14" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="300" y="84" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">分岐1</text><circle cx="400" cy="50" r="14" fill="#16213e" stroke="#aaaaaa" stroke-width="1"/><text x="400" y="54" text-anchor="middle" font-size="9" fill="#aaaaaa" font-family="sans-serif">迂回</text><circle cx="500" cy="80" r="14" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="500" y="84" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">分岐2</text><circle cx="300" cy="185" r="14" fill="#16213e" stroke="#aaaaaa" stroke-width="1"/><text x="300" y="189" text-anchor="middle" font-size="9" fill="#aaaaaa" font-family="sans-serif">迂回L</text><circle cx="500" cy="185" r="14" fill="#16213e" stroke="#aaaaaa" stroke-width="1"/><text x="500" y="189" text-anchor="middle" font-size="9" fill="#aaaaaa" font-family="sans-serif">迂回R</text><line x1="122" y1="130" x2="286" y2="84" stroke="#4caf50" stroke-width="5" opacity="0.9"/><line x1="314" y1="80" x2="486" y2="80" stroke="#4caf50" stroke-width="5" opacity="0.9"/><line x1="514" y1="84" x2="678" y2="128" stroke="#4caf50" stroke-width="5" opacity="0.9"/><line x1="122" y1="135" x2="286" y2="181" stroke="#555566" stroke-width="1" stroke-dasharray="4,4"/><line x1="300" y1="64" x2="386" y2="56" stroke="#555566" stroke-width="1" stroke-dasharray="4,4"/><line x1="414" y1="52" x2="486" y2="70" stroke="#555566" stroke-width="1" stroke-dasharray="4,4"/><line x1="314" y1="185" x2="486" y2="185" stroke="#555566" stroke-width="1" stroke-dasharray="4,4"/><line x1="514" y1="181" x2="678" y2="135" stroke="#555566" stroke-width="1" stroke-dasharray="4,4"/><text x="400" y="75" text-anchor="middle" font-size="11" fill="#4caf50" font-weight="bold" font-family="sans-serif">最短経路（管が太くなる）</text><text x="400" y="215" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">点線 = 使われない管（退化）</text><text x="400" y="240" text-anchor="middle" font-size="12" fill="#f9a825" font-family="sans-serif">流量に比例した正のフィードバックが局所ルールでグローバル最適に収束</text></svg>
+
+
+---
+
+# 数学的等価性 — ダイクストラ法との比較（2/2）
+
 -   - 流量に比例した管径変化（正のフィードバック）
 -   - エネルギーコスト最小化（自然淘汰圧）
 - 
@@ -108,12 +180,18 @@ style: |
 
 ---
 
-# 負荷分散の生物学的証明
+# 負荷分散の生物学的証明（1/2）
 
 - - 使われる経路は強化される（管径増大）
 - - 使われない経路は自然消滅する（コスト削減）
 - - これは **Ant Colony Optimization (ACO)** とも共通する原理
 - - 実際のCDN/ロードバランサーに応用可能:
+
+
+---
+
+# 負荷分散の生物学的証明（2/2）
+
 -   - レスポンスタイムが良い経路に重み付け
 -   - タイムアウトが多い経路のトラフィックを減少
 - 
@@ -182,12 +260,18 @@ style: |
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - - **Research:**
 -   - [Tero et al. "Rules for Biologically Inspired Adaptive Network Design" (Science, 2010)](https://www.science.org/doi/10.1126/science.1177894)
 -   - [Nakagaki et al. "Intelligent behaviors of amoeboid movement" (2000)](https://doi.org/10.1038/35035159)
 - - **Applications:**
+
+
+---
+
+# 参考文献（2/2）
+
 -   - [Physarum Machines (Adamatzky, 2010)](https://www.worldscientific.com/worldscibooks/10.1142/7968)
 -   - [Ant Colony Optimization (Dorigo & Stutzle)](https://mitpress.mit.edu/books/ant-colony-optimization)
 - - **Further Reading:**

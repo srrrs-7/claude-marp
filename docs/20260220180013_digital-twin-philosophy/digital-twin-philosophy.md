@@ -154,12 +154,19 @@ style: |
 ---
 
 <!-- _class: lead -->
-# まとめ — 「本物」の価値はどこに宿るか
+# まとめ — 「本物」の価値はどこに宿るか（1/2）
 
 - **完璧なコピーが生まれたとき**
 - **「本物」の定義そのものが揺らぐ**
 - 
 - デジタルツインは技術革新であると同時に、
+
+
+---
+
+<!-- _class: lead -->
+# まとめ — 「本物」の価値はどこに宿るか（2/2）
+
 - 存在論・アイデンティティ・所有権への根本的な問いである
 - 
 - **技術者は「何をコピーするか」だけでなく**
@@ -168,12 +175,18 @@ style: |
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - - **哲学・理論:**
 -   - Nick Bostrom, "Are You Living in a Computer Simulation?" (2003)
 -   - Jean Baudrillard, "Simulacra and Simulation" (1981)
 -   - Plutarch, "Life of Theseus" (1st century AD)
+
+
+---
+
+# 参考文献（2/2）
+
 - - **技術・事例:**
 -   - [NASA Digital Twin](https://www.nasa.gov/intelligent-systems-division/)
 -   - [GE Predix Platform](https://www.ge.com/digital/)

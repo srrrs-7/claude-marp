@@ -5,6 +5,7 @@ output:
   baseName: "digital-twin-philosophy"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "デジタルツインの哲学"
   footer: "© 2026"

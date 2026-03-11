@@ -5,6 +5,7 @@ output:
   baseName: "silence-communication"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "非言語コミュニケーション"
   footer: "© 2026"

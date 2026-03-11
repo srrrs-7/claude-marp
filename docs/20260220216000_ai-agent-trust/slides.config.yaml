@@ -7,6 +7,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "AIエージェントの信頼問題"
   footer: "© 2026"

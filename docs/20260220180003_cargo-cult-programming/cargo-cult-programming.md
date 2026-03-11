@@ -7,6 +7,71 @@ paginate: true
 header: "カーゴカルト・プログラミング"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -50,6 +115,11 @@ style: |
 - 「消すとなぜか壊れる」空行やコメント
 - **例外の握り潰し**
 - try-catch で全てを飲み込む「安全」なコード
+
+
+---
+
+# コードレベルのカーゴカルト（コード例）
 
 ```typescript
 // カーゴカルトの典型例
@@ -160,13 +230,21 @@ try {
 
 ---
 
-# カーゴカルト検出チェックリスト
+# カーゴカルト検出チェックリスト（1/2）
 
+- <svg viewBox='0 0 800 200' style='max-height:42vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>危険信号スコアカード（前半）</text><rect x='40' y='50' width='720' height='38' rx='6' fill='#5a1a1a'/><text x='70' y='74' fill='#ff8888' font-size='13'>1.</text><text x='90' y='74' fill='#fff' font-size='13'>技術選定の理由を</text><text x='280' y='74' fill='#f9a825' font-size='13' font-weight='bold'>3行以内で</text><text x='370' y='74' fill='#fff' font-size='13'>説明できない</text><rect x='40' y='96' width='720' height='38' rx='6' fill='#5a1a1a' opacity='0.8'/><text x='70' y='120' fill='#ff8888' font-size='13'>2.</text><text x='90' y='120' fill='#fff' font-size='13'>「X社がやっているから」が主な根拠</text><rect x='40' y='142' width='720' height='38' rx='6' fill='#5a1a1a' opacity='0.6'/><text x='70' y='166' fill='#ff8888' font-size='13'>3.</text><text x='90' y='166' fill='#fff' font-size='13'>導入前にプロトタイプで検証していない</text></svg>
 - あなたのチームは大丈夫？ 5つの危険信号
 - 
 - - [ ] 技術選定の理由を**3行以内で**説明できない
 - - [ ] 「X社がやっているから」が主な根拠
 - - [ ] 導入前にプロトタイプで検証していない
+
+
+---
+
+# カーゴカルト検出チェックリスト（2/2）
+
+- <svg viewBox='0 0 800 160' style='max-height:35vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='160' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>危険信号スコアカード（後半）</text><rect x='40' y='45' width='720' height='38' rx='6' fill='#5a1a1a'/><text x='70' y='69' fill='#ff8888' font-size='13'>4.</text><text x='90' y='69' fill='#fff' font-size='13'>チーム全員が仕組みを理解していない</text><rect x='40' y='91' width='720' height='38' rx='6' fill='#5a1a1a' opacity='0.8'/><text x='70' y='115' fill='#ff8888' font-size='13'>5.</text><text x='90' y='115' fill='#fff' font-size='13'>「前のプロジェクトでもこうだった」が口癖</text></svg>
 - - [ ] チーム全員が仕組みを理解していない
 - - [ ] 「前のプロジェクトでもこうだった」が口癖
 - 
@@ -189,12 +267,18 @@ try {
 
 ---
 
-# 参考文献
+# 参考文献（1/2）
 
 - - **Research & Lectures:**
 - - [Feynman, "Cargo Cult Science" (1974 Caltech)](http://calteches.library.caltech.edu/51/2/CargoCult.htm)
 - - [Christensen, The Innovator's Dilemma (1997)](https://www.hbs.edu/faculty/Pages/item.aspx?num=46)
 - - **Books:**
+
+
+---
+
+# 参考文献（2/2）
+
 - - McConnell, *Code Complete* 2nd Edition (2004)
 - - Forsgren et al., *Accelerate* (2018)
 - - **Articles:**

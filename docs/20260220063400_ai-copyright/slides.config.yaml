@@ -5,6 +5,7 @@ output:
   baseName: "ai-copyright"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "AIと著作権"
   footer: "© 2026"

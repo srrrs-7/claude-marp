@@ -32,6 +32,53 @@ Verify: bun -e "const d=JSON.parse(require('fs').readFileSync('slides-data.json'
 
 ---
 
+## Slide Quality Principles — Google / Amazon Standards
+
+**すべてのスライドデータ生成時に適用される品質基準。**
+
+### Assertive Title Rule（最重要）
+
+`layout: "default"` のスライドタイトルは **主張文** にする。トピックラベルは禁止。
+
+| ❌ 禁止（ラベル） | ✅ 必須（主張） |
+|---|---|
+| `コスト削減` | `コスト削減で年間$2M回収できる` |
+| `課題` | `現状のレイテンシが顧客離脱の主因になっている` |
+| `アーキテクチャ` | `新アーキテクチャが99.9%可用性を保証する理由` |
+| `まとめ` | `今すぐ実行すべき3つのアクション` |
+
+目標: コンテンツスライドの **60%以上** が主張タイトル。
+
+### BLUF — Bottom Line Up Front
+
+**タイトルスライドの直後（スライド2）に結論を1文で提示。** 証拠・データは後続スライドで。
+
+### subtitle フィールド（推奨）
+
+4項目以上の箇条書きを持つスライドには `subtitle` で "So What?" の一行サマリーを付ける:
+
+```json
+{
+  "title": "P99レイテンシの改善実績",
+  "subtitle": "800ms → 120ms に削減、CVR 18%改善を達成",
+  "content": ["キャッシュ層を追加", "N+1クエリを削除", "CDNエッジを最適化"]
+}
+```
+
+レンダリングすると `> *subtitle*` のブロッククォートとして表示される。
+
+### SCQA ナラティブ構造
+
+```
+S（状況）→ C（複雑化）→ Q（問い）→ A（答え = BLUF）
+```
+
+### bun run validate -- --quality
+
+品質チェックを実行し、assertive title比率・long bullet・連続テキストスライドを確認。
+
+---
+
 ## Interview-First Policy
 
 **Applied to all task interactions — complete before executing any task.**
@@ -163,13 +210,20 @@ marp:
     }
 ```
 
-**`class:` is absent from the config schema** — never emitted by the render pipeline. After every `bun run slides render`, manually add to the generated `.md` front matter:
+**`marp.class` is now part of the config schema** — set it in `slides.config.yaml` and the render pipeline will automatically emit it in the front matter:
 
+```yaml
+marp:
+  theme: gaia
+  class: invert      # ← "invert" for dark mode (gaia only); omit for light mode
+```
+
+The rendered `.md` front matter will contain:
 ```yaml
 ---
 marp: true
 theme: gaia
-class: invert      # ← add manually for dark mode (gaia invert)
+class: invert
 size: 16:9
 ---
 ```
@@ -182,11 +236,15 @@ size: 16:9
 bun run slides init                     # Create slides.config.yaml template
 bun run slides render -c <config> --in <data.json>          # Render JSON → Marp markdown
 bun run slides export -c <config> -f html --in <file.md>    # Export markdown → HTML
-bun run validate                        # Validate all slides-data.json (Zod schema)
-bun run fix                             # Auto-fix common schema issues
-bun run split                           # Split code/diagrams to prevent overflow (all)
+bun run validate                        # Validate all slides-data.json (Zod schema) + reading time + duplicate titles
+bun run fix                             # Auto-fix common schema issues (bullets→content, layout values, codeLanguage)
+bun run fix:all                         # Chain: fix → split → fix-svg → generate:index (one-shot cleanup)
+bun run split                           # Split code+bullets co-located on same slide (all)
+python3 scripts/split-bullet-overflow.py --all  # Split slides with 8+ bullet points into 2 slides
 bun run fix-svg                         # Fix SVG overflow issues in markdown files
-bun run rebuild                         # Re-render + re-export all presentations
+bun run doctor                          # Project health check (toolchain, exports, SVG violations)
+bun run rebuild                         # Re-render + re-export all presentations (incremental by default)
+bun run rebuild -- --force              # Force full rebuild (ignore cache)
 bun run rebuild:render                  # Re-render only
 bun run rebuild:export                  # Re-export only
 bun run typecheck                       # tsgo (native TS compiler, not tsc)
@@ -341,11 +399,13 @@ tmux-based parallel execution: Claude Code (impl) + Codex (review) workers in sp
 
 | Symptom | Cause | Fix |
 |---------|-------|-----|
-| `class: invert` not applied after render | Not in config schema; render pipeline never emits it | Manually add to `.md` front matter after render |
-| Header/footer/style not rendered | Placed at YAML top level (Zod strips unknown keys) | Move under `marp:` key |
+| `class: invert` not in output | `marp.class` not set in `slides.config.yaml` | Add `class: "invert"` under `marp:` key — pipeline auto-emits it |
+| Header/footer/style not rendered | Placed at YAML top level in `slides.config.yaml` (Zod strips unknown keys) | Move under `marp:` key in config YAML |
 | Files render to wrong directory | `output.dir` is relative path | Use full path: `"docs/<timestamp>_<slug>"` |
 | SVG shadows/arrows missing in HTML | `url(#id)` refs break in Marp's foreignObject context | `bun scripts/fix-svg-url-refs.ts` → re-export |
 | SVG images not showing in `dist/` | Marp CLI doesn't inline external `<img src="assets/">` | `fixAssetPaths()` auto-rewrites to `../assets/`; verify `assets/` dir exists |
+| Slide content overflowing (bullets) | 8+ bullet points on one slide | `python3 scripts/split-bullet-overflow.py --all` → re-render |
+| Slide content overflowing (code) | Code block > 12 lines or code+bullets combined | `bun run split` → re-render |
 | 32K token API error | Large content output inline instead of via Write tool | Use Write tool for all large output; set `CLAUDE_CODE_MAX_OUTPUT_TOKENS` |
 | Parallel worker stalls / falls back to sequential | `mode: "bypassPermissions"` not set in Task tool call | Add `mode: "bypassPermissions"` to every Task tool call that spawns a slide worker |
 | Worker completes but output file missing | Overlapping file paths between workers (cache conflict) | Assign strictly non-overlapping `slides-data-part{N}.json` paths |

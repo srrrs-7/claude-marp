@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">実用主義（Pragmatism）の政策判断フレーム</text>
+  <!-- center: core principle -->
+  <ellipse cx="400" cy="170" rx="90" ry="55" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
+  <text x="400" y="163" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">機能するか？</text>
+  <text x="400" y="182" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">イデオロギーより</text>
+  <text x="400" y="198" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">実効性で決める</text>
+  <!-- surrounding policy examples -->
+  <rect x="30" y="60" width="160" height="55" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="110" y="82" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">英語を公用語に</text>
+  <text x="110" y="100" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">外資誘致と国際化</text>
+  <line x1="190" y1="87" x2="312" y2="145" stroke="#e91e63" stroke-width="1" stroke-dasharray="4,3"/>
+  <rect x="30" y="240" width="160" height="55" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="110" y="262" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">ガム販売禁止</text>
+  <text x="110" y="280" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">公共空間美化</text>
+  <line x1="190" y1="267" x2="312" y2="195" stroke="#e91e63" stroke-width="1" stroke-dasharray="4,3"/>
+  <rect x="615" y="60" width="165" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="697" y="82" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">高い公務員給与</text>
+  <text x="697" y="100" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">汚職防止のため</text>
+  <line x1="615" y1="87" x2="490" y2="145" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+  <rect x="615" y="240" width="165" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="697" y="262" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">鞭打ち刑の維持</text>
+  <text x="697" y="280" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">犯罪抑止のため</text>
+  <line x1="615" y1="267" x2="490" y2="195" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="400" y="345" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">「正しいか」ではなく「機能するか」で判断する文化</text>
+</svg>

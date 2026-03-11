@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#1a1a2e"/>
+  <!-- Outer ring label -->
+  <circle cx="400" cy="250" r="220" fill="none" stroke="#a78bfa" stroke-width="2" stroke-dasharray="8,4" opacity="0.5"/>
+  <!-- Middle ring -->
+  <circle cx="400" cy="250" r="150" fill="none" stroke="#60a5fa" stroke-width="2" stroke-dasharray="6,4" opacity="0.6"/>
+  <!-- Center IDP circle -->
+  <circle cx="400" cy="250" r="75" fill="#2d1b69" stroke="#a78bfa" stroke-width="3"/>
+  <text x="400" y="243" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Internal</text>
+  <text x="400" y="262" text-anchor="middle" fill="#a78bfa" font-size="15" font-weight="bold" font-family="sans-serif">Developer</text>
+  <text x="400" y="281" text-anchor="middle" fill="#a78bfa" font-size="15" font-weight="bold" font-family="sans-serif">Platform</text>
+
+  <!-- Satellite items on middle ring -->
+  <!-- Top -->
+  <rect x="330" y="60" width="140" height="44" rx="10" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2"/>
+  <text x="400" y="87" text-anchor="middle" fill="#60a5fa" font-size="13" font-family="sans-serif">CI/CD Pipeline</text>
+  <line x1="400" y1="104" x2="400" y2="175" stroke="#60a5fa" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- Right top -->
+  <rect x="580" y="120" width="150" height="44" rx="10" fill="#1e3a5f" stroke="#34d399" stroke-width="2"/>
+  <text x="655" y="147" text-anchor="middle" fill="#34d399" font-size="13" font-family="sans-serif">Observability</text>
+  <line x1="580" y1="142" x2="492" y2="204" stroke="#34d399" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- Right bottom -->
+  <rect x="590" y="300" width="140" height="44" rx="10" fill="#1e3a5f" stroke="#f59e0b" stroke-width="2"/>
+  <text x="660" y="327" text-anchor="middle" fill="#f59e0b" font-size="13" font-family="sans-serif">Security / Policy</text>
+  <line x1="590" y1="322" x2="475" y2="295" stroke="#f59e0b" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- Bottom -->
+  <rect x="330" y="396" width="140" height="44" rx="10" fill="#1e3a5f" stroke="#a78bfa" stroke-width="2"/>
+  <text x="400" y="423" text-anchor="middle" fill="#a78bfa" font-size="13" font-family="sans-serif">Infrastructure</text>
+  <line x1="400" y1="396" x2="400" y2="325" stroke="#a78bfa" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- Left bottom -->
+  <rect x="70" y="300" width="140" height="44" rx="10" fill="#1e3a5f" stroke="#f472b6" stroke-width="2"/>
+  <text x="140" y="327" text-anchor="middle" fill="#f472b6" font-size="13" font-family="sans-serif">Self-service Portal</text>
+  <line x1="210" y1="322" x2="326" y2="293" stroke="#f472b6" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- Left top -->
+  <rect x="70" y="120" width="140" height="44" rx="10" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2"/>
+  <text x="140" y="147" text-anchor="middle" fill="#60a5fa" font-size="13" font-family="sans-serif">Container Platform</text>
+  <line x1="210" y1="142" x2="327" y2="204" stroke="#60a5fa" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- Outer ring label -->
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="14" font-family="sans-serif" opacity="0.7">Platform Engineering — 開発者体験の向上</text>
+</svg>

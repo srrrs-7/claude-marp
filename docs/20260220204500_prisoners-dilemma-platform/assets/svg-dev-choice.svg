@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">開発者の戦略的選択：ゲーム理論で読む技術選定</text>
+  <!-- 2x2 matrix -->
+  <!-- axes -->
+  <text x="400" y="65" fill="#aaaaaa" font-size="12" font-family="sans-serif" text-anchor="middle">短期 ← ロックイン度 → 長期</text>
+  <text x="50" y="200" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle" transform="rotate(-90,50,200)">低 ← 相互運用性 → 高</text>
+  <!-- quadrant borders -->
+  <line x1="400" y1="80" x2="400" y2="330" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+  <line x1="80" y1="205" x2="720" y2="205" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+  <!-- Q1: high interop, long term = best -->
+  <rect x="410" y="85" width="300" height="110" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="560" y="112" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">標準準拠 × 長期協調</text>
+  <text x="560" y="133" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">Web Components, WASM</text>
+  <text x="560" y="153" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">Kotlin Multiplatform</text>
+  <text x="560" y="175" fill="#f9a825" font-size="11" font-family="sans-serif" text-anchor="middle">しっぺ返し戦略 — 最善</text>
+  <!-- Q2: low interop, short term = risky -->
+  <rect x="80" y="85" width="305" height="110" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="232" y="112" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">ベンダーロックイン</text>
+  <text x="232" y="133" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">特定SDK専用実装</text>
+  <text x="232" y="153" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">SwiftUI, Jetpack Compose</text>
+  <text x="232" y="175" fill="#e91e63" font-size="11" font-family="sans-serif" text-anchor="middle">裏切られ戦略 — 要注意</text>
+  <!-- Q3: high interop, short term = ok -->
+  <rect x="80" y="215" width="305" height="100" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="232" y="242" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">マルチプラットフォーム</text>
+  <text x="232" y="263" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">Flutter, React Native</text>
+  <text x="232" y="285" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">移行コスト低い — バランス型</text>
+  <!-- Q4: low interop, long term = dependency inversion -->
+  <rect x="410" y="215" width="300" height="100" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="560" y="242" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">抽象化レイヤー</text>
+  <text x="560" y="263" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">Dependency Inversion</text>
+  <text x="560" y="285" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">裏切られた時の損失を最小化</text>
+  <text x="400" y="350" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">「最初は標準準拠、裏切られたら移行準備」— しっぺ返し戦略の実践</text>
+</svg>

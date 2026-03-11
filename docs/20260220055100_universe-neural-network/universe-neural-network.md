@@ -7,6 +7,71 @@ paginate: true
 header: "宇宙とニューラルネットワーク"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -72,6 +137,7 @@ style: |
 
 # なぜ同じ数値なのか
 
+![w:800 center](assets/scale-comparison-new.svg)
 - - **ノード数**: 宇宙の銀河 ~10^11 ≈ 脳のニューロン ~10^11
 - - **接続密度**: 両方ともスケールフリーネットワーク
 - - **活動比率**: 宇宙のバリオン物質 ~5% ≈ 脳の活動ニューロン ~5-10%
@@ -108,6 +174,7 @@ style: |
 
 # ビッグバンは「学習の開始」
 
+![w:800 center](assets/bigbang-learning.svg)
 - - **初期状態**: ランダム重み（高エネルギー・高エントロピー）
 - - **学習過程**: 宇宙膨張によるエネルギー散逸（勾配降下）
 - - **収束**: 現在の物理法則（最適化された重み）
@@ -172,6 +239,7 @@ style: |
 
 # エントロピーと学習の統一
 
+![w:800 center](assets/entropy-unification.svg)
 - - **ボルツマンエントロピー**: S = k_B ln W（物理の乱雑さ）
 - - **シャノンエントロピー**: H = -Σ p log p（情報の不確実性）
 - - **交差エントロピー損失**: 深層学習の最も基本的な損失関数
@@ -190,6 +258,7 @@ style: |
 
 # 検証可能性と批判
 
+![w:800 center](assets/verification-roadmap.svg)
 - - **批判1**: 反証不可能ではないか？（ポパーの基準）
 - - **批判2**: 単なるアナロジーの過度な拡大解釈
 - - **批判3**: 数学的形式の一致 ≠ 物理的同一性

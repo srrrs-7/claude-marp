@@ -5,6 +5,7 @@ output:
   baseName: "dunbar-conway-law"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ダンバー数とコンウェイの法則"
   footer: "© 2026"

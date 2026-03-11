@@ -7,6 +7,71 @@ paginate: true
 header: "確証バイアスとコードレビュー"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -42,6 +107,7 @@ style: |
 
 # 確証バイアスの定義
 
+![w:900 center](assets/bias-loop.svg)
 - **自分の既存の信念を支持する情報ばかり探し、矛盾する情報を無視する傾向**
 - 1960年代にピーター・ウェイソンが実験で実証
 - 人間の認知の最も根深いバイアスの一つ
@@ -61,6 +127,7 @@ style: |
 
 # レビュアーの心理状態がレビューを決める
 
+![w:900 center](assets/review-decision-tree.svg)
 - **「この開発者は優秀だ」と思っている場合：**
 - コードをざっと読む → 問題点を見逃す → LGTM
 - 「きっと理由があるのだろう」と解釈してしまう
@@ -91,6 +158,7 @@ style: |
 
 # Microsoft Research の研究結果
 
+![w:900 center](assets/pr-size-vs-bugs.svg)
 - **数千件のコードレビューを分析した結果：**
 - レビュアーが検出するバグの数は**プルリクエストのサイズに反比例**
 - 200行以下のPR → バグ検出率が最も高い
@@ -121,6 +189,7 @@ style: |
 
 # 権威バイアスとチーム内力学
 
+![w:900 center](assets/psychological-safety.svg)
 - **テックリードのコード** → 誰も反対意見を言いにくい
 - 「この人が書いたなら正しいだろう」→ レビューが形骸化
 - 逆にジュニアのコード → 過度に厳しいレビュー → 萎縮
@@ -150,12 +219,18 @@ style: |
 
 ---
 
-# レビュアーのマインドセット
+# レビュアーのマインドセット（1/2）
 
 - **「バグを見つける」のではなく「理解する」姿勢**
 - 「このコードの意図は何か」を最初に問う
 - 自分の好みと客観的品質を区別する
 - 「なぜこう書いたのか」を著者に聞く習慣
+
+
+---
+
+# レビュアーのマインドセット（2/2）
+
 - ---
 - **確認すべき質問：**
 - 「もしこのコードの著者名を知らなかったら、同じレビューをするか？」
@@ -170,12 +245,19 @@ style: |
 
 ---
 
-# AIコードレビューは確証バイアスを解決するか
+# AIコードレビューは確証バイアスを解決するか（1/2）
 
+![w:900 center](assets/ai-human-review.svg)
 - **AIの利点：** 著者バイアス・権威バイアスがない
 - 全てのコードを同じ基準で一貫してチェック
 - 人間が見逃しやすいパターン（セキュリティ脆弱性等）を検出
 - ---
+
+
+---
+
+# AIコードレビューは確証バイアスを解決するか（2/2）
+
 - **AIの限界：** 学習データのバイアスを引き継ぐ
 - 「よくあるパターン」=「良いパターン」と判断する傾向
 - ビジネスロジックの妥当性は判断できない

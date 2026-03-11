@@ -7,6 +7,71 @@ paginate: true
 header: "絵文字は言語か"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -18,6 +83,7 @@ style: |
 - 毎日100億個以上の絵文字が送信されている
 - 象形文字から絵文字へ ― 人類は「絵」に回帰しているのか
 - 言語学・文化論・テクノロジーの視点から
+- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="320" fill="#1a1a2e"/><text x="400" y="46" text-anchor="middle" font-size="22" fill="#f9a825" font-weight="bold" font-family="sans-serif">絵文字送信数の爆発的成長（2010→2026）</text><line x1="80" y1="260" x2="740" y2="260" stroke="#ffffff" stroke-width="2"/><line x1="80" y1="260" x2="80" y2="80" stroke="#ffffff" stroke-width="2"/><text x="75" y="264" text-anchor="end" font-size="13" fill="#aaaaaa" font-family="sans-serif">0</text><text x="75" y="204" text-anchor="end" font-size="13" fill="#aaaaaa" font-family="sans-serif">25億</text><text x="75" y="144" text-anchor="end" font-size="13" fill="#aaaaaa" font-family="sans-serif">50億</text><text x="75" y="84" text-anchor="end" font-size="13" fill="#aaaaaa" font-family="sans-serif">100億</text><polyline points="80,255 150,248 220,238 290,225 360,210 430,190 500,168 570,140 640,118 710,84" fill="none" stroke="#e91e63" stroke-width="3"/><circle cx="80" cy="255" r="5" fill="#f9a825"/><circle cx="150" cy="248" r="5" fill="#f9a825"/><circle cx="220" cy="238" r="5" fill="#f9a825"/><circle cx="290" cy="225" r="5" fill="#f9a825"/><circle cx="360" cy="210" r="5" fill="#f9a825"/><circle cx="430" cy="190" r="5" fill="#f9a825"/><circle cx="500" cy="168" r="5" fill="#f9a825"/><circle cx="570" cy="140" r="5" fill="#f9a825"/><circle cx="640" cy="118" r="5" fill="#f9a825"/><circle cx="710" cy="84" r="5" fill="#f9a825"/><text x="80" y="278" text-anchor="middle" font-size="12" fill="#aaaaaa" font-family="sans-serif">2010</text><text x="220" y="278" text-anchor="middle" font-size="12" fill="#aaaaaa" font-family="sans-serif">2013</text><text x="360" y="278" text-anchor="middle" font-size="12" fill="#aaaaaa" font-family="sans-serif">2016</text><text x="500" y="278" text-anchor="middle" font-size="12" fill="#aaaaaa" font-family="sans-serif">2019</text><text x="640" y="278" text-anchor="middle" font-size="12" fill="#aaaaaa" font-family="sans-serif">2022</text><text x="710" y="278" text-anchor="middle" font-size="12" fill="#aaaaaa" font-family="sans-serif">2026</text><text x="720" y="80" font-size="13" fill="#e91e63" font-family="sans-serif" font-weight="bold">100億/日</text></svg>
 
 
 ---
@@ -45,10 +111,7 @@ style: |
 - **栗田穣崇** ― NTTドコモのi-mode向けに176個の絵文字を制作
 - 12x12ピクセルの小さなアイコンからスタート
 - 日本の携帯メール文化で「テキストに感情を添える」ために考案
-- ---
-- 2010年：Unicode 6.0に722個の絵文字が正式収録
-- 2015年：Oxford辞書の「Word of the Year」に絵文字が選出（Face with Tears of Joy）
-- 2025年：Unicode 16.0で**3,782個**の絵文字が利用可能
+- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><line x1="40" y1="100" x2="760" y2="100" stroke="#444466" stroke-width="2"/><circle cx="100" cy="100" r="12" fill="#f9a825"/><text x="100" y="80" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">1999</text><text x="100" y="128" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">176個</text><text x="100" y="144" text-anchor="middle" font-size="11" fill="#aaaaaa" font-family="sans-serif">ドコモ</text><circle cx="250" cy="100" r="12" fill="#e91e63"/><text x="250" y="80" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">2010</text><text x="250" y="128" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">722個</text><text x="250" y="144" text-anchor="middle" font-size="11" fill="#aaaaaa" font-family="sans-serif">Unicode 6.0</text><circle cx="420" cy="100" r="12" fill="#f9a825"/><text x="420" y="80" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">2015</text><text x="420" y="128" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">1,282個</text><text x="420" y="144" text-anchor="middle" font-size="11" fill="#aaaaaa" font-family="sans-serif">Word of Year</text><circle cx="590" cy="100" r="12" fill="#e91e63"/><text x="590" y="80" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">2019</text><text x="590" y="128" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">3,019個</text><text x="590" y="144" text-anchor="middle" font-size="11" fill="#aaaaaa" font-family="sans-serif">肌色追加</text><circle cx="730" cy="100" r="14" fill="#f9a825"/><text x="730" y="78" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">2025</text><text x="730" y="128" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">3,782個</text><text x="730" y="144" text-anchor="middle" font-size="11" fill="#aaaaaa" font-family="sans-serif">Unicode 16.0</text><polygon points="100,100 112,96 112,104" fill="#444466"/><polygon points="250,100 238,96 238,104" fill="#444466"/></svg>
 
 
 ---
@@ -61,12 +124,7 @@ style: |
 
 # 絵文字は「言語」の条件を満たすか
 
-- **言語の5条件（言語学者チャールズ・ホケットの基準）：**
-- 1. 恣意性 ― 記号と意味の関係が任意か → 絵文字は**象形的**（部分的に不適合）
-- 2. 生産性 ― 新しい意味を無限に生成できるか → 組み合わせで**一部可能**
-- 3. 置換性 ― 今ここにないものを表現できるか → **可能**（過去・未来を表現）
-- 4. 文化的伝達 ― 学習によって習得されるか → **可能**
-- 5. 二重分節性 ― 音素+形態素の体系があるか → **ない**
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" font-size="20" fill="#f9a825" font-weight="bold" font-family="sans-serif">ホケットの言語5条件 vs 絵文字</text><rect x="40" y="55" width="200" height="44" rx="6" fill="#2a2a4e" stroke="#f9a825" stroke-width="1.5"/><text x="140" y="73" text-anchor="middle" font-size="14" fill="#f9a825" font-weight="bold" font-family="sans-serif">言語条件</text><text x="140" y="91" text-anchor="middle" font-size="12" fill="#aaaaaa" font-family="sans-serif">(Hockett基準)</text><rect x="560" y="55" width="200" height="44" rx="6" fill="#2a2a4e" stroke="#e91e63" stroke-width="1.5"/><text x="660" y="73" text-anchor="middle" font-size="14" fill="#e91e63" font-weight="bold" font-family="sans-serif">絵文字の対応</text><text x="660" y="91" text-anchor="middle" font-size="12" fill="#aaaaaa" font-family="sans-serif">(充足度)</text><rect x="40" y="115" width="340" height="42" rx="5" fill="#1e3a5f" stroke="#555588" stroke-width="1"/><text x="60" y="133" font-size="13" fill="#ffffff" font-family="sans-serif" font-weight="bold">恣意性</text><text x="60" y="150" font-size="11" fill="#aaaaaa" font-family="sans-serif">記号と意味の関係が任意</text><rect x="420" y="115" width="340" height="42" rx="5" fill="#3a1a2e" stroke="#e91e63" stroke-width="1"/><text x="440" y="133" font-size="13" fill="#e91e63" font-family="sans-serif" font-weight="bold">部分的 ✗</text><text x="440" y="150" font-size="11" fill="#aaaaaa" font-family="sans-serif">象形的 — 見た目で意味が分かる</text><rect x="40" y="165" width="340" height="42" rx="5" fill="#1e3a5f" stroke="#555588" stroke-width="1"/><text x="60" y="183" font-size="13" fill="#ffffff" font-family="sans-serif" font-weight="bold">生産性</text><text x="60" y="200" font-size="11" fill="#aaaaaa" font-family="sans-serif">新しい意味を無限に生成</text><rect x="420" y="165" width="340" height="42" rx="5" fill="#1a3a1e" stroke="#4caf50" stroke-width="1"/><text x="440" y="183" font-size="13" fill="#4caf50" font-family="sans-serif" font-weight="bold">一部可能 △</text><text x="440" y="200" font-size="11" fill="#aaaaaa" font-family="sans-serif">組み合わせで表現拡張</text><rect x="40" y="215" width="340" height="42" rx="5" fill="#1e3a5f" stroke="#555588" stroke-width="1"/><text x="60" y="233" font-size="13" fill="#ffffff" font-family="sans-serif" font-weight="bold">置換性</text><text x="60" y="250" font-size="11" fill="#aaaaaa" font-family="sans-serif">今ここにないものを表現</text><rect x="420" y="215" width="340" height="42" rx="5" fill="#1a3a1e" stroke="#4caf50" stroke-width="1"/><text x="440" y="233" font-size="13" fill="#4caf50" font-family="sans-serif" font-weight="bold">可能 ✓</text><text x="440" y="250" font-size="11" fill="#aaaaaa" font-family="sans-serif">過去・未来を表現できる</text><rect x="40" y="265" width="340" height="42" rx="5" fill="#1e3a5f" stroke="#555588" stroke-width="1"/><text x="60" y="283" font-size="13" fill="#ffffff" font-family="sans-serif" font-weight="bold">文化的伝達</text><text x="60" y="300" font-size="11" fill="#aaaaaa" font-family="sans-serif">学習によって習得</text><rect x="420" y="265" width="340" height="42" rx="5" fill="#1a3a1e" stroke="#4caf50" stroke-width="1"/><text x="440" y="283" font-size="13" fill="#4caf50" font-family="sans-serif" font-weight="bold">可能 ✓</text><text x="440" y="300" font-size="11" fill="#aaaaaa" font-family="sans-serif">社会的に習得・伝達される</text><rect x="40" y="315" width="340" height="42" rx="5" fill="#1e3a5f" stroke="#555588" stroke-width="1"/><text x="60" y="333" font-size="13" fill="#ffffff" font-family="sans-serif" font-weight="bold">二重分節性</text><text x="60" y="350" font-size="11" fill="#aaaaaa" font-family="sans-serif">音素＋形態素の体系</text><rect x="420" y="315" width="340" height="42" rx="5" fill="#3a1a2e" stroke="#e91e63" stroke-width="1"/><text x="440" y="333" font-size="13" fill="#e91e63" font-family="sans-serif" font-weight="bold">なし ✗</text><text x="440" y="350" font-size="11" fill="#aaaaaa" font-family="sans-serif">体系的分解ができない</text></svg>
 - → **結論：絵文字は言語ではないが、コミュニケーションシステムではある**
 
 
@@ -82,10 +140,7 @@ style: |
 
 - **対面コミュニケーション：** 表情・声のトーン・ジェスチャーが55%以上の情報を伝える
 - **テキストチャット：** これらが全てゼロ → 「怒っているの？」という誤解が頻発
-- **絵文字の役割：** テキストに欠けている非言語情報を補完する
-- ---
-- 「了解」← 冷たい / 「了解！」← やや温かい / 「了解！👍」← 好意的
-- 同じ言葉でも絵文字で感情のニュアンスが全く変わる
+- <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="220" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" font-size="17" fill="#f9a825" font-weight="bold" font-family="sans-serif">絵文字による感情トーンの変化</text><rect x="40" y="50" width="220" height="60" rx="8" fill="#2a2a4e" stroke="#555588" stroke-width="1.5"/><text x="150" y="76" text-anchor="middle" font-size="15" fill="#aaaaaa" font-family="sans-serif">「了解」</text><text x="150" y="98" text-anchor="middle" font-size="12" fill="#e91e63" font-family="sans-serif">冷たい・そっけない</text><rect x="290" y="50" width="220" height="60" rx="8" fill="#1e3a1e" stroke="#4caf50" stroke-width="1.5"/><text x="400" y="76" text-anchor="middle" font-size="15" fill="#ffffff" font-family="sans-serif">「了解！」</text><text x="400" y="98" text-anchor="middle" font-size="12" fill="#4caf50" font-family="sans-serif">やや温かい</text><rect x="540" y="50" width="220" height="60" rx="8" fill="#1a3a1e" stroke="#f9a825" stroke-width="1.5"/><text x="650" y="76" text-anchor="middle" font-size="15" fill="#ffffff" font-family="sans-serif">「了解！👍」</text><text x="650" y="98" text-anchor="middle" font-size="12" fill="#f9a825" font-family="sans-serif">好意的・協力的</text><polygon points="265,80 278,76 278,84" fill="#f9a825"/><line x1="262" y1="80" x2="276" y2="80" stroke="#f9a825" stroke-width="2"/><polygon points="515,80 528,76 528,84" fill="#f9a825"/><line x1="512" y1="80" x2="526" y2="80" stroke="#f9a825" stroke-width="2"/><rect x="40" y="135" width="720" height="66" rx="8" fill="#0d1b2a" stroke="#333355" stroke-width="1"/><text x="400" y="158" text-anchor="middle" font-size="13" fill="#aaaaaa" font-family="sans-serif">対面：表情55% ＋ 声のトーン38% ＋ 言葉7%</text><rect x="60" y="165" width="400" height="14" rx="3" fill="#333355"/><rect x="60" y="165" width="395" height="14" rx="3" fill="#e91e63"/><rect x="60" y="165" width="220" height="14" rx="3" fill="#f9a825"/><rect x="60" y="165" width="28" height="14" rx="3" fill="#4caf50"/><text x="468" y="177" font-size="11" fill="#aaaaaa" font-family="sans-serif">→ テキストのみでは7%</text></svg>
 - → **絵文字はデジタル時代の「表情筋」**
 
 
@@ -93,13 +148,8 @@ style: |
 
 # 皮肉・冗談・世代のコード
 
-- **世代間で絵文字の意味が異なる：**
-- 💀 Z世代：「面白すぎて死んだ」/ 他の世代：「死・危険」
-- 🙂 Z世代：「受動的攻撃（皮肉）」/ 他の世代：「笑顔」
-- 😂 Z世代：「おじさん構文」/ 他の世代：「爆笑」
-- ---
+- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e"/><text x="400" y="32" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold" font-family="sans-serif">世代別 絵文字意味マップ</text><rect x="40" y="50" width="120" height="38" rx="6" fill="#2a2a4e" stroke="#f9a825" stroke-width="1.5"/><text x="100" y="74" text-anchor="middle" font-size="22" font-family="sans-serif">絵文字</text><rect x="200" y="50" width="120" height="38" rx="6" fill="#1e3a2e" stroke="#4caf50" stroke-width="1.5"/><text x="260" y="68" text-anchor="middle" font-size="12" fill="#4caf50" font-weight="bold" font-family="sans-serif">Z世代</text><text x="260" y="84" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">の解釈</text><rect x="480" y="50" width="120" height="38" rx="6" fill="#3a1a2e" stroke="#e91e63" stroke-width="1.5"/><text x="540" y="68" text-anchor="middle" font-size="12" fill="#e91e63" font-weight="bold" font-family="sans-serif">他世代</text><text x="540" y="84" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">の解釈</text><text x="80" y="140" text-anchor="middle" font-size="28" font-family="sans-serif">💀</text><text x="260" y="140" text-anchor="middle" font-size="12" fill="#4caf50" font-family="sans-serif">面白すぎて死んだ</text><text x="540" y="140" text-anchor="middle" font-size="12" fill="#e91e63" font-family="sans-serif">死・危険</text><line x1="165" y1="134" x2="196" y2="134" stroke="#444466" stroke-width="1" stroke-dasharray="4,3"/><line x1="385" y1="134" x2="476" y2="134" stroke="#444466" stroke-width="1" stroke-dasharray="4,3"/><text x="80" y="185" text-anchor="middle" font-size="28" font-family="sans-serif">🙂</text><text x="260" y="185" text-anchor="middle" font-size="12" fill="#4caf50" font-family="sans-serif">受動的攻撃（皮肉）</text><text x="540" y="185" text-anchor="middle" font-size="12" fill="#e91e63" font-family="sans-serif">笑顔・普通</text><line x1="165" y1="179" x2="196" y2="179" stroke="#444466" stroke-width="1" stroke-dasharray="4,3"/><line x1="385" y1="179" x2="476" y2="179" stroke="#444466" stroke-width="1" stroke-dasharray="4,3"/><text x="80" y="232" text-anchor="middle" font-size="28" font-family="sans-serif">😂</text><text x="260" y="232" text-anchor="middle" font-size="12" fill="#4caf50" font-family="sans-serif">おじさん構文</text><text x="540" y="232" text-anchor="middle" font-size="12" fill="#e91e63" font-family="sans-serif">爆笑</text><line x1="165" y1="226" x2="196" y2="226" stroke="#444466" stroke-width="1" stroke-dasharray="4,3"/><line x1="385" y1="226" x2="476" y2="226" stroke="#444466" stroke-width="1" stroke-dasharray="4,3"/><text x="400" y="266" text-anchor="middle" font-size="13" fill="#aaaaaa" font-family="sans-serif">同じ絵文字 → コンテキスト依存で意味が分岐 ← 自然言語と同じ性質</text></svg>
 - 絵文字は**コンテキスト依存の符号** ← 自然言語と同じ性質
-- 「同じ記号でも文脈で意味が変わる」= 言語の本質的特徴
 
 
 ---
@@ -112,13 +162,7 @@ style: |
 
 # 同じ絵文字、異なる意味
 
-- **👍 (Thumbs Up)**
-- 日米欧：「OK」「いいね」 / 中東・西アフリカ：侮辱的ジェスチャー
-- **🙏 (Folded Hands)**
-- 日本：「お願いします」「ありがとう」 / 西洋：「祈り」「ハイタッチ」
-- **💩 (Pile of Poo)**
-- 日本：「うんちくん」（親しみ） / 西洋：ネガティブな表現
-- → **絵文字は文化を超えた「普遍語」ではない**
+- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="320" fill="#1a1a2e"/><text x="400" y="32" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold" font-family="sans-serif">文化間での絵文字意味比較</text><rect x="50" y="50" width="700" height="2" fill="#333355"/><text x="90" y="76" text-anchor="middle" font-size="26" font-family="sans-serif">👍</text><rect x="120" y="56" width="180" height="36" rx="5" fill="#1a3a1e" stroke="#4caf50" stroke-width="1"/><text x="210" y="70" text-anchor="middle" font-size="11" fill="#4caf50" font-weight="bold" font-family="sans-serif">日・米・欧</text><text x="210" y="85" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">「OK」「いいね」</text><rect x="320" y="56" width="200" height="36" rx="5" fill="#3a1a1a" stroke="#e91e63" stroke-width="1"/><text x="420" y="70" text-anchor="middle" font-size="11" fill="#e91e63" font-weight="bold" font-family="sans-serif">中東・西アフリカ</text><text x="420" y="85" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">侮辱的ジェスチャー</text><rect x="540" y="56" width="200" height="36" rx="5" fill="#2a2a1a" stroke="#f9a825" stroke-width="1"/><text x="640" y="70" text-anchor="middle" font-size="11" fill="#f9a825" font-weight="bold" font-family="sans-serif">文化差：大</text><text x="640" y="85" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">誤解リスク 高</text><text x="90" y="138" text-anchor="middle" font-size="26" font-family="sans-serif">🙏</text><rect x="120" y="118" width="180" height="36" rx="5" fill="#1a3a1e" stroke="#4caf50" stroke-width="1"/><text x="210" y="132" text-anchor="middle" font-size="11" fill="#4caf50" font-weight="bold" font-family="sans-serif">日本</text><text x="210" y="147" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">「お願い」「ありがとう」</text><rect x="320" y="118" width="200" height="36" rx="5" fill="#1a2a3a" stroke="#5599cc" stroke-width="1"/><text x="420" y="132" text-anchor="middle" font-size="11" fill="#5599cc" font-weight="bold" font-family="sans-serif">西洋</text><text x="420" y="147" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">「祈り」「ハイタッチ」</text><rect x="540" y="118" width="200" height="36" rx="5" fill="#2a2a1a" stroke="#f9a825" stroke-width="1"/><text x="640" y="132" text-anchor="middle" font-size="11" fill="#f9a825" font-weight="bold" font-family="sans-serif">文化差：中</text><text x="640" y="147" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">文脈で補完可</text><text x="90" y="202" text-anchor="middle" font-size="26" font-family="sans-serif">💩</text><rect x="120" y="182" width="180" height="36" rx="5" fill="#1a3a1e" stroke="#4caf50" stroke-width="1"/><text x="210" y="196" text-anchor="middle" font-size="11" fill="#4caf50" font-weight="bold" font-family="sans-serif">日本</text><text x="210" y="211" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">「うんちくん」（親しみ）</text><rect x="320" y="182" width="200" height="36" rx="5" fill="#3a1a1a" stroke="#e91e63" stroke-width="1"/><text x="420" y="196" text-anchor="middle" font-size="11" fill="#e91e63" font-weight="bold" font-family="sans-serif">西洋</text><text x="420" y="211" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">ネガティブな表現</text><rect x="540" y="182" width="200" height="36" rx="5" fill="#3a1a1a" stroke="#e91e63" stroke-width="1"/><text x="640" y="196" text-anchor="middle" font-size="11" fill="#e91e63" font-weight="bold" font-family="sans-serif">文化差：大</text><text x="640" y="211" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">真逆の印象</text><rect x="50" y="232" width="700" height="2" fill="#333355"/><text x="400" y="268" text-anchor="middle" font-size="15" fill="#e91e63" font-weight="bold" font-family="sans-serif">絵文字は文化を超えた「普遍語」ではない</text><text x="400" y="292" text-anchor="middle" font-size="12" fill="#aaaaaa" font-family="sans-serif">同じアイコンでも文化的背景によって意味が大きく異なる</text></svg>
 
 
 ---
@@ -131,6 +175,7 @@ style: |
 
 # Unicode Consortiumの権力
 
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">Unicode Consortium — 絵文字承認プロセス</text><circle cx="400" cy="140" r="55" fill="#e91e63" opacity="0.9"/><text x="400" y="133" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">Unicode</text><text x="400" y="151" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">Consortium</text><rect x="30" y="50" width="160" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/><text x="110" y="72" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">提案者</text><text x="110" y="90" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">誰でも提案可能</text><text x="110" y="104" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">申請書提出</text><line x1="190" y1="77" x2="348" y2="115" stroke="#f9a825" stroke-width="1.5"/><polygon points="348,110 355,120 343,122" fill="#f9a825"/><rect x="610" y="50" width="160" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/><text x="690" y="72" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">会員企業</text><text x="690" y="90" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">Apple / Google</text><text x="690" y="104" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">Microsoft / Meta</text><line x1="610" y1="77" x2="452" y2="115" stroke="#f9a825" stroke-width="1.5"/><polygon points="452,110 457,122 445,120" fill="#f9a825"/><rect x="30" y="210" width="160" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1"/><text x="110" y="232" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">政治的判断の例</text><text x="110" y="248" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">銃: リアル→水鉄砲</text><text x="110" y="263" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">(2016年 銃規制の圧力)</text><line x1="190" y1="232" x2="348" y2="175" stroke="#e91e63" stroke-width="1" stroke-dasharray="5,3"/><rect x="610" y="210" width="160" height="60" rx="8" fill="#16213e" stroke="#69f0ae" stroke-width="1"/><text x="690" y="232" text-anchor="middle" fill="#69f0ae" font-size="11" font-weight="bold" font-family="sans-serif">多様性の追加例</text><text x="690" y="248" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">肌色バリエーション</text><text x="690" y="263" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">(2015年 多様性の要求)</text><line x1="610" y1="232" x2="452" y2="175" stroke="#69f0ae" stroke-width="1" stroke-dasharray="5,3"/><text x="400" y="270" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">年間~100個承認 — 「どの絵文字が存在するか」自体が政治的決定</text></svg>
 - **誰が絵文字を「承認」するのか？**
 - Unicode Consortium ― 非営利団体（Apple、Google、Microsoft等が出資）
 - 年間約100個の新規絵文字を審査・承認
@@ -144,12 +189,8 @@ style: |
 
 # 「存在しない」絵文字の問題
 
-- **文化的偏り：** 西洋の食べ物は豊富だが、アジア・アフリカの食べ物は少ない
-- 日本のおにぎり🍙はあるが、インドのロティはない
+- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e"/><text x="400" y="32" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold" font-family="sans-serif">Unicode絵文字の地域・カテゴリ別収録バランス</text><text x="120" y="68" text-anchor="middle" font-size="13" fill="#aaaaaa" font-family="sans-serif">食べ物カテゴリ（例）</text><rect x="40" y="78" width="180" height="24" rx="4" fill="#4caf50"/><text x="40" y="68" font-size="11" fill="#4caf50" font-family="sans-serif">西洋料理</text><text x="228" y="95" font-size="12" fill="#4caf50" font-family="sans-serif">多数収録</text><rect x="40" y="112" width="80" height="24" rx="4" fill="#f9a825"/><text x="40" y="108" font-size="11" fill="#f9a825" font-family="sans-serif">アジア料理</text><text x="128" y="129" font-size="12" fill="#f9a825" font-family="sans-serif">限定的</text><rect x="40" y="146" width="30" height="24" rx="4" fill="#e91e63"/><text x="40" y="142" font-size="11" fill="#e91e63" font-family="sans-serif">アフリカ料理</text><text x="78" y="163" font-size="12" fill="#e91e63" font-family="sans-serif">ほぼなし</text><line x1="40" y1="190" x2="740" y2="190" stroke="#333355" stroke-width="1"/><text x="400" y="216" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="bold" font-family="sans-serif">「絵文字にない = 表現できない = 存在しないことにされる」</text><rect x="80" y="230" width="180" height="36" rx="6" fill="#1e3a1e" stroke="#4caf50" stroke-width="1.5"/><text x="170" y="248" text-anchor="middle" font-size="11" fill="#4caf50" font-family="sans-serif">おにぎり 🍙</text><text x="170" y="262" text-anchor="middle" font-size="11" fill="#aaaaaa" font-family="sans-serif">Unicode収録済み</text><rect x="300" y="230" width="180" height="36" rx="6" fill="#3a1a1a" stroke="#e91e63" stroke-width="1.5"/><text x="390" y="248" text-anchor="middle" font-size="11" fill="#e91e63" font-family="sans-serif">インドのロティ</text><text x="390" y="262" text-anchor="middle" font-size="11" fill="#aaaaaa" font-family="sans-serif">収録なし</text><rect x="520" y="230" width="180" height="36" rx="6" fill="#3a1a1a" stroke="#e91e63" stroke-width="1.5"/><text x="610" y="248" text-anchor="middle" font-size="11" fill="#e91e63" font-family="sans-serif">多数のアフリカ料理</text><text x="610" y="262" text-anchor="middle" font-size="11" fill="#aaaaaa" font-family="sans-serif">収録なし</text></svg>
 - **障害の表現：** 車椅子は2019年にようやく追加
-- **宗教的表現：** 一部の宗教シンボルだけが収録
-- ---
-- 「絵文字に存在しない = 表現できない = 存在しないことにされる」
 - → **表現手段の有無が社会的な可視性に直結する**
 
 
@@ -163,13 +204,8 @@ style: |
 
 # 絵文字はどこに向かうのか
 
-- **1. AI生成カスタム絵文字** ― テキストから個人化された絵文字を生成
-- **2. アニメーション絵文字** ― 静止画から動画へ（Memoji、Snapchat Bitmoji）
-- **3. 3D/AR絵文字** ― 空間コンピューティング時代の表現
-- **4. 企業ブランド絵文字** ― マーケティングツールとしての活用
-- ---
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="32" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold" font-family="sans-serif">絵文字の進化ロードマップ</text><rect x="40" y="55" width="140" height="60" rx="8" fill="#2a2a4e" stroke="#f9a825" stroke-width="2"/><text x="110" y="78" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">現在</text><text x="110" y="96" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">静止画絵文字</text><text x="110" y="110" text-anchor="middle" font-size="11" fill="#aaaaaa" font-family="sans-serif">3,782個</text><polygon points="185,85 198,81 198,89" fill="#f9a825"/><line x1="180" y1="85" x2="196" y2="85" stroke="#f9a825" stroke-width="2"/><rect x="200" y="55" width="140" height="60" rx="8" fill="#1a3a2e" stroke="#4caf50" stroke-width="2"/><text x="270" y="78" text-anchor="middle" font-size="13" fill="#4caf50" font-weight="bold" font-family="sans-serif">近未来</text><text x="270" y="96" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">AI生成絵文字</text><text x="270" y="110" text-anchor="middle" font-size="11" fill="#aaaaaa" font-family="sans-serif">個人化・無限</text><polygon points="345,85 358,81 358,89" fill="#4caf50"/><line x1="340" y1="85" x2="356" y2="85" stroke="#4caf50" stroke-width="2"/><rect x="360" y="55" width="140" height="60" rx="8" fill="#1e2a3e" stroke="#5599cc" stroke-width="2"/><text x="430" y="78" text-anchor="middle" font-size="13" fill="#5599cc" font-weight="bold" font-family="sans-serif">中期</text><text x="430" y="96" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">3D/AR絵文字</text><text x="430" y="110" text-anchor="middle" font-size="11" fill="#aaaaaa" font-family="sans-serif">空間コンピューティング</text><polygon points="505,85 518,81 518,89" fill="#5599cc"/><line x1="500" y1="85" x2="516" y2="85" stroke="#5599cc" stroke-width="2"/><rect x="520" y="55" width="140" height="60" rx="8" fill="#3a1a2e" stroke="#e91e63" stroke-width="2"/><text x="590" y="78" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">遠未来？</text><text x="590" y="96" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">新しいビジュアル</text><text x="590" y="110" text-anchor="middle" font-size="11" fill="#aaaaaa" font-family="sans-serif">言語体系</text><line x1="40" y1="155" x2="760" y2="155" stroke="#333355" stroke-width="1"/><text x="400" y="180" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">象形文字（紀元前3200年） → テキスト → 絵文字 → ???</text><rect x="60" y="200" width="680" height="60" rx="8" fill="#0d1b2a" stroke="#333355" stroke-width="1"/><text x="400" y="224" text-anchor="middle" font-size="13" fill="#aaaaaa" font-family="sans-serif">人類のコミュニケーション史は「絵」から始まり、「絵」に回帰する循環を描いている</text><text x="400" y="248" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">次の5000年、私たちはどんな「記号」で話すのか？</text></svg>
 - **根本的な問い：** 人類は5000年前の象形文字に回帰しているのか？
-- → テキスト → 絵文字 → 次は何か？
 
 
 ---
@@ -182,6 +218,7 @@ style: |
 - 文化・世代・文脈で意味が変わる ← 自然言語と同じ性質
 - 「どの絵文字が存在するか」自体が政治的決定
 - **問い：** 絵文字が「言語」になる日は来るか？
+- <svg viewBox="0 0 800 140" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="140" fill="#1a1a2e"/><rect x="40" y="20" width="140" height="100" rx="8" fill="#2a2a4e" stroke="#f9a825" stroke-width="2"/><text x="110" y="56" text-anchor="middle" font-size="28" font-family="sans-serif">📜</text><text x="110" y="82" text-anchor="middle" font-size="11" fill="#f9a825" font-weight="bold" font-family="sans-serif">象形文字</text><text x="110" y="98" text-anchor="middle" font-size="10" fill="#aaaaaa" font-family="sans-serif">紀元前3200年</text><polygon points="185,70 198,66 198,74" fill="#f9a825"/><line x1="182" y1="70" x2="196" y2="70" stroke="#f9a825" stroke-width="2"/><rect x="200" y="20" width="140" height="100" rx="8" fill="#2a2a4e" stroke="#5599cc" stroke-width="2"/><text x="270" y="56" text-anchor="middle" font-size="28" font-family="sans-serif">📝</text><text x="270" y="82" text-anchor="middle" font-size="11" fill="#5599cc" font-weight="bold" font-family="sans-serif">テキスト</text><text x="270" y="98" text-anchor="middle" font-size="10" fill="#aaaaaa" font-family="sans-serif">近代～現代</text><polygon points="345,70 358,66 358,74" fill="#5599cc"/><line x1="342" y1="70" x2="356" y2="70" stroke="#5599cc" stroke-width="2"/><rect x="360" y="20" width="140" height="100" rx="8" fill="#2a2a4e" stroke="#e91e63" stroke-width="2"/><text x="430" y="56" text-anchor="middle" font-size="28" font-family="sans-serif">😊</text><text x="430" y="82" text-anchor="middle" font-size="11" fill="#e91e63" font-weight="bold" font-family="sans-serif">絵文字</text><text x="430" y="98" text-anchor="middle" font-size="10" fill="#aaaaaa" font-family="sans-serif">1999年～現在</text><polygon points="505,70 518,66 518,74" fill="#e91e63"/><line x1="502" y1="70" x2="516" y2="70" stroke="#e91e63" stroke-width="2"/><rect x="520" y="20" width="220" height="100" rx="8" fill="#3a1a2e" stroke="#e91e63" stroke-width="2" stroke-dasharray="6,4"/><text x="630" y="56" text-anchor="middle" font-size="28" font-family="sans-serif">🔮</text><text x="630" y="82" text-anchor="middle" font-size="11" fill="#e91e63" font-weight="bold" font-family="sans-serif">次の記号体系</text><text x="630" y="98" text-anchor="middle" font-size="10" fill="#aaaaaa" font-family="sans-serif">未知の未来へ</text></svg>
 
 
 ---

@@ -1,0 +1,44 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#f9a825">アフリカのインターネット経路問題</text>
+  <!-- Nigeria node -->
+  <circle cx="130" cy="220" r="40" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="130" y="215" text-anchor="middle" font-size="12" fill="#ffffff">ナイジェリア</text>
+  <text x="130" y="232" text-anchor="middle" font-size="11" fill="#e91e63">Lagos</text>
+  <!-- Kenya node -->
+  <circle cx="280" cy="300" r="40" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="280" y="295" text-anchor="middle" font-size="12" fill="#ffffff">ケニア</text>
+  <text x="280" y="312" text-anchor="middle" font-size="11" fill="#e91e63">Nairobi</text>
+  <!-- London hub -->
+  <circle cx="400" cy="100" r="50" fill="#16213e" stroke="#f9a825" stroke-width="3"/>
+  <text x="400" y="95" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">ロンドン</text>
+  <text x="400" y="114" text-anchor="middle" font-size="11" fill="#ffffff">欧州ハブ</text>
+  <!-- South Africa node -->
+  <circle cx="200" cy="360" r="35" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="200" y="355" text-anchor="middle" font-size="11" fill="#ffffff">南アフリカ</text>
+  <text x="200" y="371" text-anchor="middle" font-size="10" fill="#e91e63">Cape Town</text>
+  <!-- Routes to London (curved-ish via straight lines) -->
+  <line x1="165" y1="195" x2="368" y2="130" stroke="#e91e63" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="366,124 376,136 364,138" fill="#e91e63"/>
+  <text x="250" y="152" text-anchor="middle" font-size="11" fill="#e91e63">大陸間ケーブル</text>
+  <line x1="303" y1="268" x2="424" y2="148" stroke="#e91e63" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="420,142 430,154 418,156" fill="#e91e63"/>
+  <!-- Ideal direct route (not existing) -->
+  <line x1="165" y1="240" x2="248" y2="284" stroke="#4caf50" stroke-width="2"/>
+  <polygon points="244,278 254,290 242,292" fill="#4caf50"/>
+  <text x="200" y="270" text-anchor="middle" font-size="11" fill="#4caf50">理想：</text>
+  <text x="200" y="284" text-anchor="middle" font-size="11" fill="#4caf50">直接接続</text>
+  <!-- Right side: stats -->
+  <rect x="520" y="80" width="240" height="220" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="640" y="108" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">アフリカの現実</text>
+  <text x="640" y="136" text-anchor="middle" font-size="12" fill="#ffffff">大陸内通信の</text>
+  <text x="640" y="155" text-anchor="middle" font-size="20" font-weight="bold" fill="#e91e63">70%+</text>
+  <text x="640" y="176" text-anchor="middle" font-size="12" fill="#ffffff">が大陸外を経由</text>
+  <line x1="540" y1="195" x2="740" y2="195" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="640" y="218" text-anchor="middle" font-size="12" fill="#ffffff">結果:</text>
+  <text x="640" y="238" text-anchor="middle" font-size="11" fill="#e91e63">遅延増加</text>
+  <text x="640" y="258" text-anchor="middle" font-size="11" fill="#e91e63">コスト増加</text>
+  <text x="640" y="278" text-anchor="middle" font-size="11" fill="#e91e63">プライバシーリスク</text>
+  <!-- Bottom -->
+  <text x="400" y="384" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.6">デジタル新植民地主義：インフラ依存が情報主権を損なう</text>
+</svg>

@@ -1,4 +1,4 @@
-<svg viewBox="0 0 860 340" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0;font-family:sans-serif">
+<svg viewBox="0 0 860 340" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <text x="430" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#333">Agent Runtime 処理フロー</text>
 
   <!-- Step boxes -->

@@ -5,6 +5,7 @@ output:
   baseName: "glymphatic-sleep"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "睡眠と脳の洗浄"
   footer: "© 2026"

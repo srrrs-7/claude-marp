@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">運転士の停車精度と安全習慣</text>
+  <!-- scale bar: target zone -->
+  <rect x="100" y="90" width="600" height="40" rx="4" fill="#16213e" stroke="#ffffff" stroke-width="1" opacity="0.4"/>
+  <rect x="370" y="90" width="60" height="40" rx="4" fill="#f9a825" opacity="0.7"/>
+  <text x="400" y="115" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">±10cm</text>
+  <text x="100" y="80" fill="#aaaaaa" font-size="11" font-family="sans-serif">停車目標範囲（ホームドア対応）</text>
+  <!-- annotation arrows -->
+  <line x1="400" y1="130" x2="400" y2="155" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="394,155 400,167 406,155" fill="#f9a825"/>
+  <text x="400" y="185" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">精度 ±10cm以内</text>
+  <!-- habits box -->
+  <rect x="60" y="215" width="300" height="110" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="210" y="238" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">指差確認（Pointing &amp; Calling）</text>
+  <text x="210" y="258" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">全操作を声に出して指差す</text>
+  <text x="210" y="276" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">エラー率を約85%低減（鉄道総研）</text>
+  <text x="210" y="294" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">→ 航空・医療にも導入されている</text>
+  <text x="210" y="312" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">訓練期間: 約1年</text>
+  <!-- tech + human box -->
+  <rect x="430" y="215" width="300" height="110" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="580" y="238" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">技術 + 人間のハイブリッド</text>
+  <text x="580" y="258" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">ATO（自動運転）でも</text>
+  <text x="580" y="276" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">最終調整は人間が行う</text>
+  <text x="580" y="294" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">完全自動化より協調が効率的</text>
+  <text x="400" y="345" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">テクノロジーと人間の技術の組み合わせが最適解</text>
+</svg>

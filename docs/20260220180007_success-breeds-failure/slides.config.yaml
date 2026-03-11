@@ -5,6 +5,7 @@ output:
   baseName: "success-breeds-failure"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "成功が失敗を生む"
   footer: "© 2026"

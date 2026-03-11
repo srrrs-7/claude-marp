@@ -5,6 +5,7 @@ output:
   baseName: "arpanet-myth"
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "インターネットの真の起源"
   footer: "© 2026"

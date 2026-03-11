@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="38" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">GitHub PR + AI レビュー統合フロー</text>
+
+  <!-- Row 1: Developer -->
+  <rect x="30" y="60" width="120" height="60" rx="8" fill="#2d1b69" stroke="#a78bfa" stroke-width="2"/>
+  <text x="90" y="88" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#a78bfa" text-anchor="middle">開発者</text>
+  <text x="90" y="107" font-family="Arial, sans-serif" font-size="11" fill="#c4b5fd" text-anchor="middle">コード完成</text>
+
+  <line x1="150" y1="90" x2="188" y2="90" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="180,83 192,90 180,97" fill="#60a5fa"/>
+
+  <rect x="190" y="60" width="120" height="60" rx="8" fill="#0c1e40" stroke="#60a5fa" stroke-width="2"/>
+  <text x="250" y="88" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#60a5fa" text-anchor="middle">git push</text>
+  <text x="250" y="107" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">ブランチ作成</text>
+
+  <line x1="310" y1="90" x2="348" y2="90" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="340,83 352,90 340,97" fill="#60a5fa"/>
+
+  <rect x="350" y="60" width="130" height="60" rx="8" fill="#0c1e40" stroke="#60a5fa" stroke-width="2"/>
+  <text x="415" y="88" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#60a5fa" text-anchor="middle">PR 作成</text>
+  <text x="415" y="107" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">gh pr create</text>
+
+  <!-- Trigger arrow down -->
+  <line x1="415" y1="120" x2="415" y2="155" stroke="#a78bfa" stroke-width="2" stroke-dasharray="4,2"/>
+  <polygon points="408,148 415,160 422,148" fill="#a78bfa"/>
+  <text x="435" y="145" font-family="Arial, sans-serif" font-size="10" fill="#8b8ba0">自動トリガー</text>
+
+  <!-- GitHub Actions CI -->
+  <rect x="295" y="160" width="240" height="70" rx="8" fill="#1a0a3d" stroke="#a78bfa" stroke-width="2"/>
+  <text x="415" y="188" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#a78bfa" text-anchor="middle">GitHub Actions</text>
+  <text x="415" y="207" font-family="Arial, sans-serif" font-size="11" fill="#c4b5fd" text-anchor="middle">CI: テスト・Lint・ビルド</text>
+  <text x="415" y="222" font-family="Arial, sans-serif" font-size="11" fill="#c4b5fd" text-anchor="middle">Claude Code AIレビュー起動</text>
+
+  <!-- Parallel arrows down -->
+  <line x1="360" y1="230" x2="310" y2="268" stroke="#34d399" stroke-width="2"/>
+  <polygon points="305,262 308,274 317,265" fill="#34d399"/>
+
+  <line x1="470" y1="230" x2="510" y2="268" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="503,262 513,274 518,264" fill="#fbbf24"/>
+
+  <!-- CI Results box -->
+  <rect x="190" y="270" width="160" height="60" rx="8" fill="#022c22" stroke="#34d399" stroke-width="2"/>
+  <text x="270" y="297" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#34d399" text-anchor="middle">CI 結果</text>
+  <text x="270" y="316" font-family="Arial, sans-serif" font-size="11" fill="#6ee7b7" text-anchor="middle">Pass / Fail</text>
+
+  <!-- AI Review box -->
+  <rect x="440" y="270" width="185" height="60" rx="8" fill="#1c1c10" stroke="#fbbf24" stroke-width="2"/>
+  <text x="532" y="293" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fbbf24" text-anchor="middle">AI レビュー結果</text>
+  <text x="532" y="312" font-family="Arial, sans-serif" font-size="11" fill="#fde68a" text-anchor="middle">コメント自動投稿</text>
+
+  <!-- Arrows to Human Review -->
+  <line x1="270" y1="330" x2="310" y2="368" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="305,362 312,374 318,364" fill="#60a5fa"/>
+
+  <line x1="532" y1="330" x2="490" y2="368" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="487,362 488,374 498,366" fill="#60a5fa"/>
+
+  <!-- Human Review -->
+  <rect x="295" y="370" width="240" height="60" rx="8" fill="#0c1e40" stroke="#60a5fa" stroke-width="2"/>
+  <text x="415" y="398" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#60a5fa" text-anchor="middle">人間レビュー</text>
+  <text x="415" y="416" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">最終判断 + Approve/Request Changes</text>
+
+  <!-- Arrow to Merge -->
+  <line x1="535" y1="400" x2="590" y2="400" stroke="#34d399" stroke-width="2"/>
+  <polygon points="583,393 595,400 583,407" fill="#34d399"/>
+
+  <rect x="592" y="375" width="130" height="50" rx="8" fill="#022c22" stroke="#34d399" stroke-width="2"/>
+  <text x="657" y="400" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#34d399" text-anchor="middle">Merge</text>
+  <text x="657" y="416" font-family="Arial, sans-serif" font-size="11" fill="#6ee7b7" text-anchor="middle">main ブランチ</text>
+
+  <!-- Left panel: AI review items -->
+  <rect x="30" y="160" width="255" height="305" rx="8" fill="#1f1035" stroke="#a78bfa" stroke-width="1"/>
+  <text x="157" y="185" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#a78bfa" text-anchor="middle">AI レビュー観点</text>
+  <text x="48" y="210" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• コードスタイル一貫性</text>
+  <text x="48" y="233" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• セキュリティ脆弱性</text>
+  <text x="48" y="256" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• パフォーマンス問題</text>
+  <text x="48" y="279" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• テストカバレッジ</text>
+  <text x="48" y="302" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• ドキュメント不足</text>
+  <text x="48" y="325" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• 命名規則違反</text>
+  <text x="48" y="348" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• 重複コード</text>
+  <text x="48" y="371" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• 型安全性の問題</text>
+  <text x="48" y="394" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• SOLID原則違反</text>
+  <text x="48" y="417" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• エラーハンドリング漏れ</text>
+  <text x="48" y="440" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• 非推奨API使用</text>
+  <text x="48" y="460" font-family="Arial, sans-serif" font-size="12" fill="#e2e8f0">• 依存ライブラリ脆弱性</text>
+
+  <!-- Right: timeline note -->
+  <rect x="635" y="60" width="145" height="300" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+  <text x="707" y="85" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#94a3b8" text-anchor="middle">時間比較</text>
+  <text x="650" y="108" font-family="Arial, sans-serif" font-size="11" fill="#64748b">従来:</text>
+  <text x="650" y="126" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">レビュー待ち</text>
+  <text x="650" y="144" font-family="Arial, sans-serif" font-size="11" fill="#fca5a5">1〜2日</text>
+  <line x1="650" y1="155" x2="770" y2="155" stroke="#374151" stroke-width="1"/>
+  <text x="650" y="175" font-family="Arial, sans-serif" font-size="11" fill="#64748b">AI導入後:</text>
+  <text x="650" y="193" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">初回レビュー</text>
+  <text x="650" y="211" font-family="Arial, sans-serif" font-size="11" fill="#34d399">数分</text>
+  <text x="650" y="232" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">人間最終確認</text>
+  <text x="650" y="250" font-family="Arial, sans-serif" font-size="11" fill="#fbbf24">30分〜数時間</text>
+  <line x1="650" y1="262" x2="770" y2="262" stroke="#374151" stroke-width="1"/>
+  <text x="650" y="282" font-family="Arial, sans-serif" font-size="11" fill="#64748b">効果:</text>
+  <text x="650" y="300" font-family="Arial, sans-serif" font-size="11" fill="#34d399">速度 10x↑</text>
+  <text x="650" y="318" font-family="Arial, sans-serif" font-size="11" fill="#34d399">品質 一貫性↑</text>
+  <text x="650" y="336" font-family="Arial, sans-serif" font-size="11" fill="#34d399">負荷 軽減↑</text>
+</svg>

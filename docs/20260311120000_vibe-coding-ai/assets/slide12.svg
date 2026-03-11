@@ -1,0 +1,66 @@
+<svg viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="42" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">コンテキスト管理戦略</text>
+
+  <!-- Context Window visualization -->
+  <rect x="40" y="60" width="320" height="360" rx="12" fill="#1e2040" stroke="#a78bfa" stroke-width="2.5"/>
+  <text x="200" y="88" font-family="sans-serif" font-size="14" font-weight="bold" fill="#a78bfa" text-anchor="middle">コンテキストウィンドウ</text>
+
+  <!-- System prompt section -->
+  <rect x="56" y="100" width="288" height="52" rx="8" fill="#2d1b5e" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="200" y="122" font-family="sans-serif" font-size="12" font-weight="bold" fill="#c4b5fd" text-anchor="middle">System Prompt</text>
+  <text x="200" y="140" font-family="sans-serif" font-size="11" fill="#ddd6fe" text-anchor="middle">CLAUDE.md 内容 + 基本ルール</text>
+
+  <!-- File contents section -->
+  <rect x="56" y="162" width="288" height="52" rx="8" fill="#1e3a5f" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="200" y="184" font-family="sans-serif" font-size="12" font-weight="bold" fill="#93c5fd" text-anchor="middle">読み込みファイル内容</text>
+  <text x="200" y="202" font-family="sans-serif" font-size="11" fill="#bfdbfe" text-anchor="middle">Read したソースコード・設定ファイル</text>
+
+  <!-- Tool results section -->
+  <rect x="56" y="224" width="288" height="52" rx="8" fill="#1a3d32" stroke="#34d399" stroke-width="1.5"/>
+  <text x="200" y="246" font-family="sans-serif" font-size="12" font-weight="bold" fill="#6ee7b7" text-anchor="middle">ツール実行結果</text>
+  <text x="200" y="264" font-family="sans-serif" font-size="11" fill="#a7f3d0" text-anchor="middle">Bash出力・検索結果・エラーログ</text>
+
+  <!-- Conversation history -->
+  <rect x="56" y="286" width="288" height="52" rx="8" fill="#3d3000" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="200" y="308" font-family="sans-serif" font-size="12" font-weight="bold" fill="#fde68a" text-anchor="middle">会話履歴</text>
+  <text x="200" y="326" font-family="sans-serif" font-size="11" fill="#fef3c7" text-anchor="middle">過去のやり取り・承認済み内容</text>
+
+  <!-- Warning: limit bar -->
+  <rect x="56" y="348" width="288" height="32" rx="6" fill="#3d1a1a" stroke="#f87171" stroke-width="1.5"/>
+  <text x="200" y="368" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f87171" text-anchor="middle">上限: ~200K tokens（要管理）</text>
+
+  <!-- Right side: Strategies -->
+  <rect x="400" y="60" width="360" height="360" rx="12" fill="#1a2030" stroke="#60a5fa" stroke-width="2"/>
+  <text x="580" y="88" font-family="sans-serif" font-size="14" font-weight="bold" fill="#60a5fa" text-anchor="middle">管理戦略</text>
+
+  <!-- Strategy 1 -->
+  <rect x="416" y="100" width="328" height="60" rx="8" fill="#1e3a5f" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="432" y="120" font-family="sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">1. CLAUDE.md に知識を外部化</text>
+  <text x="432" y="138" font-family="sans-serif" font-size="11" fill="#bfdbfe">プロジェクトルール・慣習はファイルに記録</text>
+  <text x="432" y="154" font-family="sans-serif" font-size="11" fill="#93c5fd">会話に含めずAIが自動参照</text>
+
+  <!-- Strategy 2 -->
+  <rect x="416" y="170" width="328" height="60" rx="8" fill="#1a3d32" stroke="#34d399" stroke-width="1.5"/>
+  <text x="432" y="190" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">2. タスクを細分化</text>
+  <text x="432" y="208" font-family="sans-serif" font-size="11" fill="#a7f3d0">大きなタスクは小さなセッションに分割</text>
+  <text x="432" y="224" font-family="sans-serif" font-size="11" fill="#6ee7b7">/clear で定期的にコンテキストをリセット</text>
+
+  <!-- Strategy 3 -->
+  <rect x="416" y="240" width="328" height="60" rx="8" fill="#3d3000" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="432" y="260" font-family="sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">3. 必要ファイルのみ Read</text>
+  <text x="432" y="278" font-family="sans-serif" font-size="11" fill="#fde68a">全ファイル読み込みを避ける</text>
+  <text x="432" y="294" font-family="sans-serif" font-size="11" fill="#fef3c7">Grep/Glob で対象を絞り込む</text>
+
+  <!-- Strategy 4 -->
+  <rect x="416" y="310" width="328" height="60" rx="8" fill="#2d1b5e" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="432" y="330" font-family="sans-serif" font-size="12" font-weight="bold" fill="#a78bfa">4. サブエージェント活用</text>
+  <text x="432" y="348" font-family="sans-serif" font-size="11" fill="#c4b5fd">独立タスクは別エージェントに委任</text>
+  <text x="432" y="364" font-family="sans-serif" font-size="11" fill="#ddd6fe">並列処理でコンテキスト分散</text>
+
+  <!-- Bottom note -->
+  <text x="400" y="450" font-family="sans-serif" font-size="12" fill="#f472b6" text-anchor="middle">コンテキスト枯渇 = 応答品質低下 → 早めの管理が重要</text>
+</svg>

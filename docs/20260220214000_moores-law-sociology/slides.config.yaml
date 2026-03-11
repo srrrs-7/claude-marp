@@ -13,6 +13,7 @@ output:
 
 marp:
   theme: gaia
+  class: invert
   paginate: true
   header: "ムーアの法則の社会学"
   footer: "© 2026"

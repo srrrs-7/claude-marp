@@ -1,0 +1,31 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="28" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold">SageMaker パイプラインステージ</text>
+<rect x="20" y="120" width="115" height="70" rx="10" fill="#e91e63" opacity="0.85"/>
+<text x="77" y="153" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">Data</text>
+<text x="77" y="170" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">Processing</text>
+<rect x="160" y="120" width="115" height="70" rx="10" fill="#7b1fa2" opacity="0.85"/>
+<text x="217" y="153" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">Feature</text>
+<text x="217" y="170" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">Engineering</text>
+<rect x="300" y="120" width="115" height="70" rx="10" fill="#1565c0" opacity="0.85"/>
+<text x="357" y="153" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">Training</text>
+<text x="357" y="170" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">Job</text>
+<rect x="440" y="120" width="115" height="70" rx="10" fill="#00695c" opacity="0.85"/>
+<text x="497" y="153" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">Model</text>
+<text x="497" y="170" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">Evaluation</text>
+<rect x="580" y="120" width="115" height="70" rx="10" fill="#f9a825" opacity="0.85"/>
+<text x="637" y="153" text-anchor="middle" font-size="12" fill="#1a1a2e" font-weight="bold">Register /</text>
+<text x="637" y="170" text-anchor="middle" font-size="12" fill="#1a1a2e" font-weight="bold">Deploy</text>
+<line x1="135" y1="155" x2="160" y2="155" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="160,155 150,149 150,161" fill="#4fc3f7"/>
+<line x1="275" y1="155" x2="300" y2="155" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="300,155 290,149 290,161" fill="#4fc3f7"/>
+<line x1="415" y1="155" x2="440" y2="155" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="440,155 430,149 430,161" fill="#4fc3f7"/>
+<line x1="555" y1="155" x2="580" y2="155" stroke="#4fc3f7" stroke-width="2.5"/>
+<polygon points="580,155 570,149 570,161" fill="#4fc3f7"/>
+<rect x="100" y="255" width="600" height="60" rx="8" fill="#16213e"/>
+<text x="400" y="280" text-anchor="middle" font-size="13" fill="#4fc3f7">各ステップは自動的に実行・記録・バージョン管理される</text>
+<text x="400" y="300" text-anchor="middle" font-size="12" fill="#ffffff">Step Functions / SageMaker Pipelines SDK</text>
+<text x="400" y="370" text-anchor="middle" font-size="13" fill="#4fc3f7">SageMaker Pipelines — Automated ML Workflow</text>
+</svg>

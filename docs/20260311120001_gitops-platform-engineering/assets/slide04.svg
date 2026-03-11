@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="500" fill="#1a1a2e"/>
+  <!-- Divider -->
+  <line x1="400" y1="40" x2="400" y2="470" stroke="#a78bfa" stroke-width="2" stroke-dasharray="6,4" opacity="0.5"/>
+
+  <!-- Left: Traditional DevOps -->
+  <text x="200" y="65" text-anchor="middle" fill="#f472b6" font-size="17" font-weight="bold" font-family="sans-serif">従来の DevOps</text>
+  <rect x="40" y="80" width="320" height="360" rx="12" fill="#2a1a3e" stroke="#f472b6" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Left items -->
+  <rect x="60" y="105" width="280" height="46" rx="8" fill="#3b1f4f" stroke="#f472b6" stroke-width="1"/>
+  <text x="200" y="133" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">チームごとに独自スクリプト</text>
+
+  <rect x="60" y="165" width="280" height="46" rx="8" fill="#3b1f4f" stroke="#f472b6" stroke-width="1"/>
+  <text x="200" y="193" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ツール・手順が不統一</text>
+
+  <rect x="60" y="225" width="280" height="46" rx="8" fill="#3b1f4f" stroke="#f472b6" stroke-width="1"/>
+  <text x="200" y="253" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">知識のサイロ化</text>
+
+  <rect x="60" y="285" width="280" height="46" rx="8" fill="#3b1f4f" stroke="#f472b6" stroke-width="1"/>
+  <text x="200" y="313" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">オンボーディングに時間がかかる</text>
+
+  <rect x="60" y="345" width="280" height="46" rx="8" fill="#3b1f4f" stroke="#f472b6" stroke-width="1"/>
+  <text x="200" y="373" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">インフラ変更が属人的</text>
+
+  <text x="200" y="455" text-anchor="middle" fill="#f472b6" font-size="12" font-family="sans-serif" opacity="0.8">スケールしにくい</text>
+
+  <!-- Right: Platform Engineering -->
+  <text x="600" y="65" text-anchor="middle" fill="#34d399" font-size="17" font-weight="bold" font-family="sans-serif">Platform Engineering</text>
+  <rect x="440" y="80" width="320" height="360" rx="12" fill="#1a3a2e" stroke="#34d399" stroke-width="1.5" opacity="0.9"/>
+
+  <rect x="460" y="105" width="280" height="46" rx="8" fill="#1f4a3a" stroke="#34d399" stroke-width="1"/>
+  <text x="600" y="133" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">共通 IDP（Internal Developer Platform）</text>
+
+  <rect x="460" y="165" width="280" height="46" rx="8" fill="#1f4a3a" stroke="#34d399" stroke-width="1"/>
+  <text x="600" y="193" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">標準化されたツールチェーン</text>
+
+  <rect x="460" y="225" width="280" height="46" rx="8" fill="#1f4a3a" stroke="#34d399" stroke-width="1"/>
+  <text x="600" y="253" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">セルフサービスによる生産性向上</text>
+
+  <rect x="460" y="285" width="280" height="46" rx="8" fill="#1f4a3a" stroke="#34d399" stroke-width="1"/>
+  <text x="600" y="313" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">テンプレート化で素早いオンボーディング</text>
+
+  <rect x="460" y="345" width="280" height="46" rx="8" fill="#1f4a3a" stroke="#34d399" stroke-width="1"/>
+  <text x="600" y="373" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">GitOpsで変更を可視化・追跡</text>
+
+  <text x="600" y="455" text-anchor="middle" fill="#34d399" font-size="12" font-family="sans-serif" opacity="0.8">組織全体でスケール可能</text>
+
+  <!-- VS badge -->
+  <circle cx="400" cy="250" r="22" fill="#1a1a2e" stroke="#a78bfa" stroke-width="2"/>
+  <text x="400" y="256" text-anchor="middle" fill="#a78bfa" font-size="14" font-weight="bold" font-family="sans-serif">VS</text>
+</svg>

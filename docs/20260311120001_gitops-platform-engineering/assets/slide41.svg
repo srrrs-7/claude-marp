@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="bold" fill="#ffffff">Blue-Greenデプロイ — 環境切り替えフロー</text>
+
+  <!-- Users / Traffic -->
+  <rect x="330" y="55" width="140" height="50" rx="8" fill="#2d2d4e" stroke="#ffffff" stroke-width="2"/>
+  <text x="400" y="77" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff" font-weight="bold">👥 Users</text>
+  <text x="400" y="97" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">All Traffic</text>
+
+  <!-- Router / LB -->
+  <rect x="330" y="130" width="140" height="50" rx="8" fill="#2d2d4e" stroke="#a78bfa" stroke-width="2"/>
+  <text x="400" y="152" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#a78bfa" font-weight="bold">🔀 Router</text>
+  <text x="400" y="170" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#cccccc">DNS / Load Balancer</text>
+
+  <!-- Arrow from Users to Router -->
+  <line x1="400" y1="107" x2="400" y2="128" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="395,128 400,138 405,128" fill="#ffffff"/>
+
+  <!-- === BEFORE state === -->
+  <text x="200" y="215" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#cccccc" font-weight="bold">Before</text>
+
+  <!-- Blue env LIVE -->
+  <rect x="60" y="230" width="280" height="100" rx="10" fill="#1e2a4e" stroke="#60a5fa" stroke-width="3"/>
+  <text x="200" y="260" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#60a5fa" font-weight="bold">🔵 Blue (v1)</text>
+  <text x="200" y="284" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#cccccc">Status: LIVE — 全トラフィック受信</text>
+  <text x="200" y="304" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#60a5fa">3 replicas / healthy</text>
+
+  <!-- Green env (standby) -->
+  <rect x="460" y="230" width="280" height="100" rx="10" fill="#1e1e1e" stroke="#444466" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="600" y="260" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#444466" font-weight="bold">🟢 Green (v2)</text>
+  <text x="600" y="284" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#666688">Status: Idle / Preparing</text>
+  <text x="600" y="304" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666688">0 replicas (scaled down)</text>
+
+  <!-- Arrow from Router to Blue (before) -->
+  <line x1="360" y1="182" x2="220" y2="228" stroke="#60a5fa" stroke-width="2.5"/>
+  <polygon points="213,223 220,228 225,218" fill="#60a5fa"/>
+
+  <!-- === SWITCH PROCESS === -->
+  <!-- Deploy new version -->
+  <rect x="465" y="355" width="270" height="36" rx="6" fill="#3d3000" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="600" y="378" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fbbf24">① Green に v2 デプロイ &amp; smoke test</text>
+
+  <!-- Switch DNS/LB -->
+  <rect x="465" y="400" width="270" height="36" rx="6" fill="#2d2d4e" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="600" y="423" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a78bfa">② Router を Blue→Green へ切り替え</text>
+
+  <!-- Keep blue for rollback -->
+  <rect x="65" y="355" width="270" height="36" rx="6" fill="#1e2a4e" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="200" y="378" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#60a5fa">③ Blue は待機状態で保持（ロールバック用）</text>
+
+  <!-- Rollback arrow -->
+  <rect x="65" y="400" width="270" height="36" rx="6" fill="#2e1e1e" stroke="#f87171" stroke-width="1.5"/>
+  <text x="200" y="423" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f87171">⟳ 問題発生 → 即座に Blue に戻す</text>
+
+  <!-- Switch arrow in diagram -->
+  <line x1="440" y1="185" x2="460" y2="185" stroke="#34d399" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <polygon points="460,180 470,185 460,190" fill="#34d399"/>
+  <text x="450" y="176" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#34d399" font-weight="bold">SWITCH</text>
+
+  <!-- After arrow to green -->
+  <line x1="440" y1="195" x2="590" y2="230" stroke="#34d399" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <polygon points="585,225 590,230 582,235" fill="#34d399"/>
+
+  <!-- Bottom note -->
+  <text x="400" y="462" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#888888">切り替え時間: DNS TTL (数秒〜分) or LB ルール変更 (即時)</text>
+  <text x="400" y="485" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fbbf24">注意: DBマイグレーションは後方互換性を保つこと（Blue/Greenで同一DBを使用）</text>
+</svg>

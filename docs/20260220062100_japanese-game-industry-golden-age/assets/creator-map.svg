@@ -1,0 +1,39 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0">
+  <rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#f9a825" font-weight="bold">天才クリエイターと代表作</text>
+  <!-- Center: Japan game industry -->
+  <circle cx="400" cy="200" r="50" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="196" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#f9a825" font-weight="bold">日本ゲーム</text>
+  <text x="400" y="213" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#f9a825" font-weight="bold">産業黄金期</text>
+  <!-- Creator nodes -->
+  <!-- Miyamoto Nintendo -->
+  <circle cx="190" cy="100" r="36" fill="#16213e" stroke="#4ec9b0" stroke-width="2"/>
+  <text x="190" y="96" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#4ec9b0" font-weight="bold">宮本茂</text>
+  <text x="190" y="112" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">マリオ・ゼルダ</text>
+  <line x1="220" y1="126" x2="360" y2="170" stroke="#4ec9b0" stroke-width="1.5" opacity="0.6"/>
+  <!-- Sakaguchi Square -->
+  <circle cx="610" cy="100" r="36" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="610" y="96" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e91e63" font-weight="bold">坂口博信</text>
+  <text x="610" y="112" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">FF シリーズ</text>
+  <line x1="582" y1="126" x2="440" y2="170" stroke="#e91e63" stroke-width="1.5" opacity="0.6"/>
+  <!-- Horii Enix -->
+  <circle cx="190" cy="300" r="36" fill="#16213e" stroke="#9c27b0" stroke-width="2"/>
+  <text x="190" y="296" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#9c27b0" font-weight="bold">堀井雄二</text>
+  <text x="190" y="312" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">ドラゴンクエスト</text>
+  <line x1="222" y1="276" x2="360" y2="230" stroke="#9c27b0" stroke-width="1.5" opacity="0.6"/>
+  <!-- Naka Sega -->
+  <circle cx="610" cy="300" r="36" fill="#16213e" stroke="#ff9800" stroke-width="2"/>
+  <text x="610" y="296" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ff9800" font-weight="bold">中裕司</text>
+  <text x="610" y="312" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">ソニック</text>
+  <line x1="582" y1="276" x2="440" y2="230" stroke="#ff9800" stroke-width="1.5" opacity="0.6"/>
+  <!-- Yokoi Nintendo -->
+  <circle cx="400" cy="344" r="32" fill="#16213e" stroke="#4ec9b0" stroke-width="2"/>
+  <text x="400" y="340" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4ec9b0" font-weight="bold">横井軍平</text>
+  <text x="400" y="355" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">ゲームボーイ</text>
+  <line x1="400" y1="313" x2="400" y2="250" stroke="#4ec9b0" stroke-width="1.5" opacity="0.6"/>
+  <!-- Company labels -->
+  <text x="155" y="62" font-family="sans-serif" font-size="10" fill="#555">任天堂</text>
+  <text x="575" y="62" font-family="sans-serif" font-size="10" fill="#555">スクウェア</text>
+  <text x="155" y="346" font-family="sans-serif" font-size="10" fill="#555">エニックス</text>
+  <text x="580" y="346" font-family="sans-serif" font-size="10" fill="#555">セガ</text>
+</svg>
