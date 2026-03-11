@@ -310,7 +310,7 @@ style: |
 
 # テレコム連合 vs ハイパースケーラー（2/2）
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">国際帯域の所有構造（2025年推計）</text>
   <!-- Donut chart area -->
@@ -353,7 +353,7 @@ style: |
 
 # ハイパースケーラーの独自ケーブル戦略（1/2）
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">国際帯域の所有構造（2025年推計）</text>
   <!-- Donut chart area -->
@@ -395,7 +395,7 @@ style: |
 
 # ハイパースケーラーの独自ケーブル戦略（2/2）
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">国際帯域の所有構造（2025年推計）</text>
   <!-- Donut chart area -->
@@ -438,7 +438,7 @@ style: |
 
 # 海底ケーブル敷設船 — 世界のインフラを担う数十隻（1/2）
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">国際帯域の所有構造（2025年推計）</text>
   <!-- Donut chart area -->

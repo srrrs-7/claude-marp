@@ -240,7 +240,7 @@ bun run validate                        # Validate all slides-data.json (Zod sch
 bun run validate:quality                # Quality check: assertive titles, subtitle coverage, SVG ratio
 bun run lint                            # Shorthand: validate + validate:quality
 bun run fix                             # Auto-fix common schema issues (bullets→content, layout values, codeLanguage)
-bun run fix:all                         # Chain: fix → split → fix-svg → generate:index (one-shot cleanup)
+bun run fix:all                         # Chain: fix → split → split-bullet-overflow → fix-svg → fix-svg-url-refs → generate:index
 bun run split                           # Split code+bullets co-located on same slide (all)
 python3 scripts/split-bullet-overflow.py --all  # Split slides with 8+ bullet points into 2 slides
 bun run fix-svg                         # Fix SVG overflow issues in markdown files
@@ -258,6 +258,7 @@ bun run typecheck                       # tsgo (native TS compiler, not tsc)
 bun run check                           # Biome lint + format check
 bun run format                          # Auto-format with Biome
 bun run test                            # Regression tests (bun:test)
+bun run spellcheck                      # cspell spell check across all files
 bun run generate:index                  # Regenerate docs/index.html (grade badges, sort, search, reading time)
 bun scripts/fix-svg-url-refs.ts        # Fix url(#id) violations across all SVGs/markdown
 ```
