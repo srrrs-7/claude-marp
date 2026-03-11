@@ -23,7 +23,10 @@
 		{
 			"title": "現代暗号が直面する脅威",
 			"layout": "section",
-			"content": ["量子コンピュータはなぜ暗号を破壊するのか"]
+			"content": [
+				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">現代暗号が直面する3つの脅威</text><rect x=\"40\" y=\"50\" width=\"220\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"150\" y=\"75\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">①量子コンピュータ</text><rect x=\"58\" y=\"90\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"150\" y=\"112\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Shorのアルゴリズムが</text><text x=\"150\" y=\"130\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">RSA/ECCを破る</text><rect x=\"58\" y=\"148\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"150\" y=\"168\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">2048bit RSA:</text><text x=\"150\" y=\"186\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">4000論理qubitで解読可能</text><rect x=\"58\" y=\"206\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"150\" y=\"226\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">現在: ~1000 noisy qubit</text><text x=\"150\" y=\"244\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">Q-Day: 2030-2035?</text><rect x=\"58\" y=\"265\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#e91e63\" fill-opacity=\"0.2\"/><text x=\"150\" y=\"287\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">全既存暗号通信が</text><text x=\"150\" y=\"303\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">遡及的に解読される</text><rect x=\"290\" y=\"50\" width=\"220\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"400\" y=\"75\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">②HNDL攻撃</text><rect x=\"308\" y=\"90\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"112\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Harvest Now,</text><text x=\"400\" y=\"130\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Decrypt Later</text><rect x=\"308\" y=\"148\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"168\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">今すぐ暗号データを収集</text><text x=\"400\" y=\"186\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">量子時代に復号する</text><rect x=\"308\" y=\"206\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"226\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">国家レベルで実施中</text><text x=\"400\" y=\"244\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">今対策しないと手遅れ</text><rect x=\"308\" y=\"265\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#f9a825\" fill-opacity=\"0.15\"/><text x=\"400\" y=\"287\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">機密情報の有効期間が</text><text x=\"400\" y=\"303\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">対策タイムラインを決める</text><rect x=\"540\" y=\"50\" width=\"220\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"650\" y=\"75\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">③移行の困難さ</text><rect x=\"558\" y=\"90\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"650\" y=\"112\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">TLS/PKI全体の</text><text x=\"650\" y=\"130\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">更新が必要</text><rect x=\"558\" y=\"148\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"650\" y=\"168\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">インターネット規模の</text><text x=\"650\" y=\"186\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">インフラ更新</text><rect x=\"558\" y=\"206\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"650\" y=\"226\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">IoT/組込みシステムは</text><text x=\"650\" y=\"244\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">10年以上かかる</text><rect x=\"558\" y=\"265\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#e91e63\" fill-opacity=\"0.2\"/><text x=\"650\" y=\"287\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">今すぐ始めないと</text><text x=\"650\" y=\"303\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">間に合わない</text></svg>",
+				"量子コンピュータはなぜ暗号を破壊するのか"
+			]
 		},
 		{
 			"title": "暗号の安全性の前提",
@@ -41,17 +44,24 @@
 		{
 			"title": "古典 vs 量子：計算量の断崖",
 			"layout": "default",
-			"content": ["![w:900 center](assets/classical-vs-quantum.svg)"]
+			"content": [
+				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">古典 vs 量子：計算量の断崖</text><rect x=\"40\" y=\"50\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"210\" y=\"75\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">古典コンピュータ</text><text x=\"210\" y=\"95\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">RSA-2048の因数分解</text><rect x=\"58\" y=\"108\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"127\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">最良アルゴリズム: GNFS</text><text x=\"210\" y=\"143\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">計算量: exp(n^(1/3)) クラス</text><rect x=\"58\" y=\"160\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"179\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">現在最速スパコン:</text><text x=\"210\" y=\"195\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">RSA-2048 ≈ 10^14 年</text><rect x=\"58\" y=\"212\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"231\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">宇宙の年齢: ~10^10 年</text><text x=\"210\" y=\"247\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">つまり事実上「解けない」</text><rect x=\"58\" y=\"264\" width=\"304\" height=\"50\" rx=\"6\" fill=\"#f9a825\" fill-opacity=\"0.15\"/><text x=\"210\" y=\"286\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">現代暗号の前提</text><text x=\"210\" y=\"304\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">「計算量が保証する安全性」</text><rect x=\"420\" y=\"50\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"590\" y=\"75\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">量子コンピュータ</text><text x=\"590\" y=\"95\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">Shorのアルゴリズム</text><rect x=\"438\" y=\"108\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"127\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">量子フーリエ変換を活用</text><text x=\"590\" y=\"143\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">計算量: poly(n) クラス</text><rect x=\"438\" y=\"160\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"179\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">必要qubit数:</text><text x=\"590\" y=\"195\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">RSA-2048 ≈ 4,000 論理qubit</text><rect x=\"438\" y=\"212\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"231\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">予測解読時間: 数時間</text><text x=\"590\" y=\"247\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">10^14年 → 数時間に短縮</text><rect x=\"438\" y=\"264\" width=\"304\" height=\"50\" rx=\"6\" fill=\"#e91e63\" fill-opacity=\"0.2\"/><text x=\"590\" y=\"286\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">前提が崩壊する</text><text x=\"590\" y=\"304\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">全ての公開鍵暗号が危険に</text></svg>",
+				"![w:900 center](assets/classical-vs-quantum.svg)"
+			]
 		},
 		{
 			"title": "Shorのアルゴリズム",
 			"layout": "section",
-			"content": ["1994年に発表された、暗号学を揺るがす量子アルゴリズム"]
+			"content": [
+				"1994年に発表された、暗号学を揺るがす量子アルゴリズム"
+			]
 		},
 		{
 			"title": "Shorのアルゴリズムの仕組み",
 			"layout": "default",
-			"content": ["![w:900 center](assets/shor-algorithm.svg)"]
+			"content": [
+				"![w:900 center](assets/shor-algorithm.svg)"
+			]
 		},
 		{
 			"title": "なぜShorは脅威なのか",
@@ -70,12 +80,17 @@
 		{
 			"title": "Harvest Now, Decrypt Later",
 			"layout": "section",
-			"content": ["量子コンピュータを待たずに始まっている攻撃"]
+			"content": [
+				"量子コンピュータを待たずに始まっている攻撃"
+			]
 		},
 		{
 			"title": "HNDL攻撃フロー",
 			"layout": "default",
-			"content": ["![w:900 center](assets/hndl-attack-flow.svg)"]
+			"content": [
+				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">HNDL攻撃の深刻さ：なぜ今すぐ対策が必要か</text><line x1=\"80\" y1=\"110\" x2=\"720\" y2=\"110\" stroke=\"#f9a825\" stroke-width=\"2.5\"/><circle cx=\"120\" cy=\"110\" r=\"6\" fill=\"#f9a825\"/><text x=\"120\" y=\"97\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">現在</text><text x=\"120\" y=\"83\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">収集開始</text><circle cx=\"280\" cy=\"110\" r=\"6\" fill=\"#e91e63\"/><text x=\"280\" y=\"97\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">2026-2028</text><text x=\"280\" y=\"83\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">PQC移行期限</text><circle cx=\"480\" cy=\"110\" r=\"6\" fill=\"#e91e63\"/><text x=\"480\" y=\"97\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">2030-2035</text><text x=\"480\" y=\"83\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">Q-Day予測</text><circle cx=\"680\" cy=\"110\" r=\"6\" fill=\"#aaaaaa\"/><text x=\"680\" y=\"97\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">Q-Day後</text><text x=\"680\" y=\"83\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">大規模解読</text><rect x=\"40\" y=\"130\" width=\"340\" height=\"200\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><text x=\"210\" y=\"153\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">攻撃の仕組み</text><rect x=\"58\" y=\"165\" width=\"304\" height=\"36\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"188\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">今: 暗号化通信を大量収集・保管</text><rect x=\"58\" y=\"209\" width=\"304\" height=\"36\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"232\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">Q-Day後: 全データを一括復号</text><rect x=\"58\" y=\"253\" width=\"304\" height=\"36\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"276\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">対象: 機密通信・医療・金融</text><rect x=\"58\" y=\"297\" width=\"304\" height=\"22\" rx=\"5\" fill=\"#e91e63\" fill-opacity=\"0.2\"/><text x=\"210\" y=\"313\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">収集済みデータは後から保護不可能</text><rect x=\"420\" y=\"130\" width=\"340\" height=\"200\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"590\" y=\"153\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">対策のタイムライン</text><rect x=\"438\" y=\"165\" width=\"304\" height=\"36\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"188\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">機密情報の有効期間: 10-30年</text><rect x=\"438\" y=\"209\" width=\"304\" height=\"36\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"232\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">PQC移行期間: 5-10年</text><rect x=\"438\" y=\"253\" width=\"304\" height=\"36\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"276\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">つまり: 今から対策が必須</text><rect x=\"438\" y=\"297\" width=\"304\" height=\"22\" rx=\"5\" fill=\"#f9a825\" fill-opacity=\"0.15\"/><text x=\"590\" y=\"313\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">Q-Day前に移行完了が必要条件</text></svg>",
+				"![w:900 center](assets/hndl-attack-flow.svg)"
+			]
 		},
 		{
 			"title": "HNDLが深刻な理由",
@@ -93,12 +108,17 @@
 		{
 			"title": "NIST PQC標準化の成果",
 			"layout": "section",
-			"content": ["10年の選定プロセスを経て、新たな暗号標準が誕生"]
+			"content": [
+				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">NIST PQC標準化の成果：4つの新アルゴリズム</text><rect x=\"40\" y=\"50\" width=\"340\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"60\" y=\"73\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">ML-KEM (Kyber) — 鍵カプセル化</text><text x=\"60\" y=\"95\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">格子問題の困難性に基づく</text><text x=\"60\" y=\"113\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">TLSの鍵交換に直接置き換え可能</text><text x=\"60\" y=\"131\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ 2024年8月 FIPS 203 として標準化</text><text x=\"60\" y=\"160\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">既にGoogle Chrome / CloudFlare で試験実装</text><rect x=\"420\" y=\"50\" width=\"340\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"440\" y=\"73\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">ML-DSA (Dilithium) — デジタル署名</text><text x=\"440\" y=\"95\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">格子問題ベースの署名スキーム</text><text x=\"440\" y=\"113\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">コードサイニング・証明書の置き換え</text><text x=\"440\" y=\"131\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ 2024年8月 FIPS 204 として標準化</text><text x=\"440\" y=\"160\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">NSAが政府システム向けに推奨</text><rect x=\"40\" y=\"200\" width=\"340\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"60\" y=\"223\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">SLH-DSA (SPHINCS+) — 署名(代替)</text><text x=\"60\" y=\"245\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">ハッシュ関数ベース (最も保守的)</text><text x=\"60\" y=\"263\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">量子後も信頼性の高い数学的根拠</text><text x=\"60\" y=\"281\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ 2024年8月 FIPS 205 として標準化</text><text x=\"60\" y=\"310\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">バックアップ署名スキームとして位置づけ</text><rect x=\"420\" y=\"200\" width=\"340\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><text x=\"440\" y=\"223\" fill=\"#aaaaaa\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">FN-DSA (Falcon) — 署名(高効率)</text><text x=\"440\" y=\"245\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">NTRU格子ベース、署名サイズが小さい</text><text x=\"440\" y=\"263\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">IoT/制約環境向けに最適化</text><text x=\"440\" y=\"281\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">→ FIPS 206 として標準化</text><text x=\"440\" y=\"310\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">実装の複雑さが課題</text></svg>",
+				"10年の選定プロセスを経て、新たな暗号標準が誕生"
+			]
 		},
 		{
 			"title": "NIST PQC標準アルゴリズム",
 			"layout": "default",
-			"content": ["![w:900 center](assets/pqc-algorithms.svg)"]
+			"content": [
+				"![w:900 center](assets/pqc-algorithms.svg)"
+			]
 		},
 		{
 			"title": "格子暗号とは何か",
@@ -130,22 +150,31 @@
 		{
 			"title": "量子脅威タイムライン",
 			"layout": "section",
-			"content": ["Q-Day（量子コンピュータが暗号を破る日）はいつ来るか"]
+			"content": [
+				"Q-Day（量子コンピュータが暗号を破る日）はいつ来るか"
+			]
 		},
 		{
 			"title": "Q-Day予測と量子コンピュータの進展",
 			"layout": "default",
-			"content": ["![w:900 center](assets/crypto-threat-timeline.svg)"]
+			"content": [
+				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">Q-Day予測：量子コンピュータの進展シナリオ</text><line x1=\"80\" y1=\"240\" x2=\"720\" y2=\"240\" stroke=\"#ffffff\" stroke-width=\"1.5\"/><line x1=\"80\" y1=\"60\" x2=\"80\" y2=\"240\" stroke=\"#ffffff\" stroke-width=\"1.5\"/><text x=\"400\" y=\"260\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">年</text><text x=\"80\" y=\"256\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">2024</text><text x=\"208\" y=\"256\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">2026</text><text x=\"336\" y=\"256\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">2028</text><text x=\"464\" y=\"256\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">2030</text><text x=\"592\" y=\"256\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">2032</text><text x=\"720\" y=\"256\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">2034</text><text x=\"72\" y=\"244\" text-anchor=\"end\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">100</text><text x=\"72\" y=\"180\" text-anchor=\"end\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">1K</text><text x=\"72\" y=\"120\" text-anchor=\"end\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">10K</text><text x=\"72\" y=\"65\" text-anchor=\"end\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">100K</text><!-- Optimistic scenario --><path d=\"M 80 225 C 160 215, 250 195, 336 165 C 420 135, 510 100, 600 72 C 640 62, 670 61, 720 60\" stroke=\"#e91e63\" stroke-width=\"2\" fill=\"none\" stroke-dasharray=\"8,4\"/><text x=\"600\" y=\"55\" fill=\"#e91e63\" font-size=\"10\" font-family=\"sans-serif\">楽観シナリオ(楽)</text><!-- Conservative scenario --><path d=\"M 80 228 C 160 222, 280 210, 400 188 C 490 170, 580 140, 660 110 C 690 98, 710 90, 720 85\" stroke=\"#f9a825\" stroke-width=\"2.5\" fill=\"none\"/><!-- Target line: 4000 logical qubits = RSA-2048 threat --><line x1=\"80\" y1=\"120\" x2=\"720\" y2=\"120\" stroke=\"#ffffff\" stroke-width=\"1\" stroke-dasharray=\"4,4\"/><text x=\"726\" y=\"118\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">RSA-2048</text><text x=\"726\" y=\"130\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">解読ライン</text><circle cx=\"600\" cy=\"120\" r=\"6\" fill=\"#e91e63\"/><text x=\"580\" y=\"108\" fill=\"#e91e63\" font-size=\"10\" font-family=\"sans-serif\">~2031</text><text x=\"395\" y=\"110\" fill=\"#f9a825\" font-size=\"10\" font-family=\"sans-serif\">~2033</text><circle cx=\"395\" cy=\"120\" r=\"6\" fill=\"#f9a825\"/><rect x=\"40\" y=\"272\" width=\"340\" height=\"64\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"210\" y=\"292\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">最速シナリオ: 2030-2032年</text><text x=\"210\" y=\"310\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">誤り訂正の突破口が鍵</text><text x=\"210\" y=\"326\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">Google/IBM の競争加速が影響</text><rect x=\"420\" y=\"272\" width=\"340\" height=\"64\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1\"/><text x=\"590\" y=\"292\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">保守シナリオ: 2033-2038年</text><text x=\"590\" y=\"310\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">物理qubitからの論理qubit比率</text><text x=\"590\" y=\"326\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">現状: 1000物理→1論理qubit</text></svg>",
+				"![w:900 center](assets/crypto-threat-timeline.svg)"
+			]
 		},
 		{
 			"title": "移行ロードマップと実践",
 			"layout": "section",
-			"content": ["今から始めるべき具体的なステップ"]
+			"content": [
+				"今から始めるべき具体的なステップ"
+			]
 		},
 		{
 			"title": "ポスト量子暗号 移行ロードマップ",
 			"layout": "default",
-			"content": ["![w:900 center](assets/migration-roadmap.svg)"]
+			"content": [
+				"![w:900 center](assets/migration-roadmap.svg)"
+			]
 		},
 		{
 			"title": "今すぐ始められるアクション",
