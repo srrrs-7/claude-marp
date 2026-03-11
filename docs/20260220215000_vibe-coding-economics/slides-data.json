@@ -145,9 +145,7 @@
 		{
 			"title": "氷山モデル：可視10% vs 隠れた90%",
 			"layout": "default",
-			"content": [
-				"![w:900 center](assets/tech-debt-iceberg.svg)"
-			]
+			"content": ["![w:900 center](assets/tech-debt-iceberg.svg)"]
 		},
 		{
 			"title": "負債が顕在化するタイミング",
@@ -172,16 +170,12 @@
 		{
 			"title": "用途別リスクマトリクス",
 			"layout": "default",
-			"content": [
-				"![w:900 center](assets/risk-matrix.svg)"
-			]
+			"content": ["![w:900 center](assets/risk-matrix.svg)"]
 		},
 		{
 			"title": "判断フレームワーク",
 			"layout": "default",
-			"content": [
-				"![w:900 center](assets/decision-framework.svg)"
-			]
+			"content": ["![w:900 center](assets/decision-framework.svg)"]
 		},
 		{
 			"title": "結論：バイブコーディングとの付き合い方",

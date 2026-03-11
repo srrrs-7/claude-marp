@@ -52,16 +52,12 @@
 		{
 			"title": "Shorのアルゴリズム",
 			"layout": "section",
-			"content": [
-				"1994年に発表された、暗号学を揺るがす量子アルゴリズム"
-			]
+			"content": ["1994年に発表された、暗号学を揺るがす量子アルゴリズム"]
 		},
 		{
 			"title": "Shorのアルゴリズムの仕組み",
 			"layout": "default",
-			"content": [
-				"![w:900 center](assets/shor-algorithm.svg)"
-			]
+			"content": ["![w:900 center](assets/shor-algorithm.svg)"]
 		},
 		{
 			"title": "なぜShorは脅威なのか",
@@ -80,9 +76,7 @@
 		{
 			"title": "Harvest Now, Decrypt Later",
 			"layout": "section",
-			"content": [
-				"量子コンピュータを待たずに始まっている攻撃"
-			]
+			"content": ["量子コンピュータを待たずに始まっている攻撃"]
 		},
 		{
 			"title": "HNDL攻撃フロー",
@@ -116,9 +110,7 @@
 		{
 			"title": "NIST PQC標準アルゴリズム",
 			"layout": "default",
-			"content": [
-				"![w:900 center](assets/pqc-algorithms.svg)"
-			]
+			"content": ["![w:900 center](assets/pqc-algorithms.svg)"]
 		},
 		{
 			"title": "格子暗号とは何か",
@@ -150,9 +142,7 @@
 		{
 			"title": "量子脅威タイムライン",
 			"layout": "section",
-			"content": [
-				"Q-Day（量子コンピュータが暗号を破る日）はいつ来るか"
-			]
+			"content": ["Q-Day（量子コンピュータが暗号を破る日）はいつ来るか"]
 		},
 		{
 			"title": "Q-Day予測と量子コンピュータの進展",
@@ -165,16 +155,12 @@
 		{
 			"title": "移行ロードマップと実践",
 			"layout": "section",
-			"content": [
-				"今から始めるべき具体的なステップ"
-			]
+			"content": ["今から始めるべき具体的なステップ"]
 		},
 		{
 			"title": "ポスト量子暗号 移行ロードマップ",
 			"layout": "default",
-			"content": [
-				"![w:900 center](assets/migration-roadmap.svg)"
-			]
+			"content": ["![w:900 center](assets/migration-roadmap.svg)"]
 		},
 		{
 			"title": "今すぐ始められるアクション",
