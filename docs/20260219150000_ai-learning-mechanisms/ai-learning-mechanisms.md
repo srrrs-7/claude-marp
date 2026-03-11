@@ -7,6 +7,71 @@ paginate: true
 header: "AIの学習の仕組み"
 footer: "© 2026 - 研究者・専門家向け完全解説"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section { font-size: 1.0em; }
   section pre code { font-size: 0.56em; line-height: 1.35; }
   section h1 { font-size: 1.55em; }
@@ -19,6 +84,14 @@ style: |
 <!-- _class: lead -->
 # AIの学習の仕組み
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="90" text-anchor="middle" fill="#f9a825" font-size="32" font-weight="bold">AIの学習の仕組み</text>
+  <text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="18">Deep Learning · Transformers · RLHF</text>
+  <line x1="150" y1="150" x2="650" y2="150" stroke="#f9a825" stroke-width="1.5" opacity="0.6"/>
+  <text x="400" y="185" text-anchor="middle" fill="#f9a825" font-size="13">勾配降下法から最新アライメント技術まで</text>
+  <text x="400" y="215" text-anchor="middle" fill="#ffffff" font-size="11" opacity="0.7">機械学習エンジニア向け深掘り解説</text>
+</svg>
 - 研究者・専門家向け完全解説
 - 機械学習の基礎から最新手法まで
 - 2026年2月
@@ -28,6 +101,33 @@ style: |
 
 # AIの「学習」とは何か
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">AIの「学習」とは何か</text>
+  <!-- Analogy: data -> model -> prediction -->
+  <rect x="40" y="90" width="160" height="70" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="120" y="120" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">データ</text>
+  <text x="120" y="142" text-anchor="middle" fill="#ffffff" font-size="10">入力・ラベル</text>
+  <polygon points="220,125 205,118 205,132" fill="#f9a825"/>
+  <line x1="200" y1="125" x2="223" y2="125" stroke="#f9a825" stroke-width="2"/>
+  <rect x="223" y="90" width="200" height="70" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="323" y="120" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">モデル学習</text>
+  <text x="323" y="142" text-anchor="middle" fill="#ffffff" font-size="10">パラメータ最適化</text>
+  <polygon points="445,125 430,118 430,132" fill="#f9a825"/>
+  <line x1="423" y1="125" x2="448" y2="125" stroke="#f9a825" stroke-width="2"/>
+  <rect x="448" y="90" width="160" height="70" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="528" y="120" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">予測・生成</text>
+  <text x="528" y="142" text-anchor="middle" fill="#ffffff" font-size="10">汎化能力</text>
+  <!-- Feedback loop -->
+  <polygon points="660,125 645,118 645,132" fill="#f9a825"/>
+  <line x1="608" y1="125" x2="663" y2="125" stroke="#f9a825" stroke-width="2"/>
+  <rect x="663" y="90" width="110" height="70" rx="6" fill="#f9a825" opacity="0.9"/>
+  <text x="718" y="122" text-anchor="middle" fill="#1a1a2e" font-size="11" font-weight="bold">損失計算</text>
+  <text x="718" y="140" text-anchor="middle" fill="#1a1a2e" font-size="10">誤差評価</text>
+  <path d="M 718 160 Q 718 210 323 210 Q 18 210 18 155" fill="none" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5"/>
+  <polygon points="18,155 12,167 24,167" fill="#e91e63"/>
+  <text x="400" y="232" text-anchor="middle" fill="#e91e63" font-size="10">誤差逆伝播 → パラメータ更新</text>
+</svg>
 - **関数近似問題**: データから未知の関数 f: X → Y を近似する
 - **経験的リスク最小化 (ERM)**: min_θ (1/n) Σ L(f_θ(xᵢ), yᵢ)
 - **帰納バイアス**: 仮説空間の制約がなければ汎化は不可能 (No Free Lunch)
@@ -65,6 +165,34 @@ style: |
 <!-- _class: lead -->
 # 1. 機械学習の3パラダイム
 
+- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="280" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">機械学習の3パラダイム</text>
+  <!-- Three boxes -->
+  <rect x="40" y="60" width="210" height="160" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="145" y="90" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">教師あり学習</text>
+  <text x="145" y="115" text-anchor="middle" fill="#ffffff" font-size="11">入力 X → 出力 Y</text>
+  <text x="145" y="135" text-anchor="middle" fill="#ffffff" font-size="11">ラベル付きデータ</text>
+  <text x="145" y="155" text-anchor="middle" fill="#f9a825" font-size="10">分類・回帰</text>
+  <text x="145" y="175" text-anchor="middle" fill="#ffffff" font-size="10">例: CNN画像認識</text>
+  <text x="145" y="192" text-anchor="middle" fill="#ffffff" font-size="10">例: Transformer翻訳</text>
+
+  <rect x="295" y="60" width="210" height="160" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="90" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">教師なし学習</text>
+  <text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="11">構造・パターン発見</text>
+  <text x="400" y="135" text-anchor="middle" fill="#ffffff" font-size="11">ラベルなしデータ</text>
+  <text x="400" y="155" text-anchor="middle" fill="#f9a825" font-size="10">クラスタリング・生成</text>
+  <text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="10">例: k-means</text>
+  <text x="400" y="192" text-anchor="middle" fill="#ffffff" font-size="10">例: VAE / GAN</text>
+
+  <rect x="550" y="60" width="210" height="160" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="655" y="90" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">強化学習</text>
+  <text x="655" y="115" text-anchor="middle" fill="#ffffff" font-size="11">報酬最大化</text>
+  <text x="655" y="135" text-anchor="middle" fill="#ffffff" font-size="11">環境との相互作用</text>
+  <text x="655" y="155" text-anchor="middle" fill="#f9a825" font-size="10">行動選択・最適化</text>
+  <text x="655" y="175" text-anchor="middle" fill="#ffffff" font-size="10">例: AlphaGo</text>
+  <text x="655" y="192" text-anchor="middle" fill="#ffffff" font-size="10">例: RLHF (LLM)</text>
+</svg>
 - 教師あり学習 / 教師なし学習 / 強化学習
 
 
@@ -72,6 +200,26 @@ style: |
 
 # 学習パラダイムの概要
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">学習パラダイムの概要</text>
+  <!-- Venn diagram-like: 3 paradigms -->
+  <ellipse cx="250" cy="145" rx="140" ry="90" fill="#16213e" stroke="#f9a825" stroke-width="1.5" opacity="0.8"/>
+  <text x="190" y="135" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">教師あり</text>
+  <text x="190" y="152" text-anchor="middle" fill="#ffffff" font-size="9">ラベル付きデータ</text>
+  <text x="190" y="168" text-anchor="middle" fill="#ffffff" font-size="9">回帰・分類</text>
+  <ellipse cx="550" cy="145" rx="140" ry="90" fill="#16213e" stroke="#e91e63" stroke-width="1.5" opacity="0.8"/>
+  <text x="610" y="135" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">強化学習</text>
+  <text x="610" y="152" text-anchor="middle" fill="#ffffff" font-size="9">報酬最大化</text>
+  <text x="610" y="168" text-anchor="middle" fill="#ffffff" font-size="9">RLHF</text>
+  <!-- Center overlap: self-supervised -->
+  <text x="400" y="130" text-anchor="middle" fill="#f9a825" font-size="10" font-weight="bold">自己教師あり</text>
+  <text x="400" y="148" text-anchor="middle" fill="#ffffff" font-size="9">BERT / GPT</text>
+  <text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="9">事前学習</text>
+  <!-- Bottom: unsupervised -->
+  <rect x="280" y="210" width="240" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="400" y="232" text-anchor="middle" fill="#f9a825" font-size="11">教師なし: クラスタリング・生成</text>
+</svg>
 - 問題の構造 (ラベルの有無・報酬の有無) がパラダイムを決定する
 - 3つのパラダイムは相互補完的に組み合わせて使われる
 ![w:850 center](assets/learning-paradigms.svg)
@@ -81,6 +229,27 @@ style: |
 
 # 教師あり学習の定式化
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">教師あり学習の定式化</text>
+  <!-- Formula boxes -->
+  <rect x="60" y="60" width="680" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="86" text-anchor="middle" fill="#f9a825" font-size="14" font-family="monospace">f: X → Y</text>
+  <text x="400" y="110" text-anchor="middle" fill="#ffffff" font-size="11">訓練データ {(xᵢ, yᵢ)} から関数 f を学習</text>
+  <!-- Components -->
+  <rect x="60" y="145" width="200" height="70" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="160" y="168" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">仮説空間 H</text>
+  <text x="160" y="188" text-anchor="middle" fill="#ffffff" font-size="10">モデルアーキテクチャ</text>
+  <text x="160" y="205" text-anchor="middle" fill="#ffffff" font-size="10">パラメータ空間</text>
+  <rect x="300" y="145" width="200" height="70" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="400" y="168" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">損失関数 L</text>
+  <text x="400" y="188" text-anchor="middle" fill="#ffffff" font-size="10">予測誤差の測定</text>
+  <text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">MSE / CrossEntropy</text>
+  <rect x="540" y="145" width="200" height="70" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="640" y="168" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">最適化 O</text>
+  <text x="640" y="188" text-anchor="middle" fill="#ffffff" font-size="10">損失最小化</text>
+  <text x="640" y="205" text-anchor="middle" fill="#ffffff" font-size="10">SGD / Adam</text>
+</svg>
 - 入力 x ∈ X, 出力 y ∈ Y, 仮説クラス H から h: X→Y を選択
 - **経験的リスク**: R̂(h) = (1/n) Σ L(h(xᵢ), yᵢ)
 - **期待リスク**: R(h) = E_{(x,y)~D}[L(h(x), y)] — 真の目標
@@ -93,6 +262,26 @@ style: |
 
 # 教師なし・自己教師あり学習
 
+- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="240" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">学習パラダイム比較</text>
+  <rect x="30" y="50" width="220" height="165" rx="8" fill="#16213e" stroke="#888" stroke-width="1.5"/>
+  <text x="140" y="80" text-anchor="middle" fill="#888" font-size="12" font-family="sans-serif">教師あり学習</text>
+  <text x="140" y="103" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">ラベル付きデータ必須</text>
+  <text x="140" y="121" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">分類・回帰</text>
+  <text x="140" y="145" text-anchor="middle" fill="#888" font-size="28" font-family="sans-serif">🏷</text>
+  <rect x="290" y="50" width="220" height="165" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="80" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">教師なし学習</text>
+  <text x="400" y="103" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">ラベルなし・構造発見</text>
+  <text x="400" y="121" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">クラスタリング・次元削減</text>
+  <text x="400" y="145" text-anchor="middle" fill="#f9a825" font-size="28" font-family="sans-serif">🔍</text>
+  <rect x="550" y="50" width="220" height="165" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="660" y="80" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">自己教師あり学習</text>
+  <text x="660" y="103" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">データ自体がラベル</text>
+  <text x="660" y="121" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">マスク・穴埋め予測</text>
+  <text x="660" y="145" text-anchor="middle" fill="#e91e63" font-size="28" font-family="sans-serif">🤖</text>
+  <text x="660" y="195" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">LLM 事前学習の基盤</text>
+</svg>
 - **教師なし**: ラベルなしデータ p(x) の構造を発見
 - クラスタリング (K-means, DBSCAN): 密度に基づく分離
 - 次元削減 (PCA, t-SNE, UMAP): 潜在空間 z ∈ Z の学習
@@ -105,6 +294,27 @@ style: |
 
 # 強化学習の基礎
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">強化学習の基礎 — MDP</text>
+  <!-- RL cycle -->
+  <ellipse cx="200" cy="140" rx="80" ry="60" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="200" y="135" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">Agent</text>
+  <text x="200" y="155" text-anchor="middle" fill="#ffffff" font-size="10">π(a|s)</text>
+  <ellipse cx="600" cy="140" rx="80" ry="60" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="600" y="135" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">Environment</text>
+  <text x="600" y="155" text-anchor="middle" fill="#ffffff" font-size="10">P(s'|s,a)</text>
+  <!-- Action arrow -->
+  <line x1="280" y1="120" x2="520" y2="120" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="520,120 506,113 506,127" fill="#f9a825"/>
+  <text x="400" y="113" text-anchor="middle" fill="#f9a825" font-size="11">Action a</text>
+  <!-- Reward + State arrows back -->
+  <line x1="520" y1="160" x2="280" y2="160" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="280,160 294,153 294,167" fill="#e91e63"/>
+  <text x="400" y="178" text-anchor="middle" fill="#e91e63" font-size="11">Reward r  +  State s'</text>
+  <!-- Goal -->
+  <text x="400" y="225" text-anchor="middle" fill="#f9a825" font-size="11">目標: 累積報酬 G = Σ γᵗ rₜ を最大化する方策 π を学習</text>
+</svg>
 - **マルコフ決定過程 (MDP)**: (S, A, P, R, γ) の5タプルで定義
 - 目標: 期待累積報酬 E[Σ γᵗ rₜ] の最大化 (γ: 割引率)
 - **方策 π(a|s)**: 状態から行動確率への写像
@@ -117,6 +327,28 @@ style: |
 
 # 汎化誤差と過学習
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">汎化誤差と過学習</text>
+  <!-- Training vs validation loss curves -->
+  <line x1="80" y1="220" x2="740" y2="220" stroke="#ffffff" stroke-width="1.5"/>
+  <line x1="80" y1="50" x2="80" y2="220" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="415" y="240" text-anchor="middle" fill="#ffffff" font-size="11">学習エポック数</text>
+  <text x="56" y="135" text-anchor="middle" fill="#ffffff" font-size="10" transform="rotate(-90,56,135)">損失</text>
+  <!-- Training loss -->
+  <polyline points="80,200 150,175 220,150 300,120 380,95 460,75 540,60 620,50 700,44"
+    fill="none" stroke="#f9a825" stroke-width="2.5"/>
+  <text x="710" y="42" fill="#f9a825" font-size="10">訓練損失</text>
+  <!-- Validation loss -->
+  <polyline points="80,200 150,170 220,145 300,120 380,105 460,105 540,115 620,130 700,148"
+    fill="none" stroke="#e91e63" stroke-width="2.5"/>
+  <text x="710" y="150" fill="#e91e63" font-size="10">検証損失</text>
+  <!-- Overfitting marker -->
+  <line x1="460" y1="50" x2="460" y2="220" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="4" opacity="0.7"/>
+  <text x="460" y="44" text-anchor="middle" fill="#f9a825" font-size="10">最適点</text>
+  <!-- Overfitting zone shading annotation -->
+  <text x="580" y="195" text-anchor="middle" fill="#e91e63" font-size="10">過学習領域</text>
+</svg>
 - **汎化誤差** = 期待リスク − 経験的リスク (理想は 0 に近い)
 - **過学習**: 訓練損失 ↓ だが汎化損失 ↑ — 訓練データを記憶
 - **過小適合**: モデル表現力が不足 — 両方の損失が高い
@@ -129,6 +361,33 @@ style: |
 
 # バイアス・バリアンス・トレードオフ
 
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="300" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">バイアス・バリアンス・トレードオフ</text>
+  <!-- Axes -->
+  <line x1="80" y1="250" x2="750" y2="250" stroke="#ffffff" stroke-width="1.5"/>
+  <line x1="80" y1="50" x2="80" y2="250" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="415" y="270" text-anchor="middle" fill="#ffffff" font-size="11">モデル複雑度</text>
+  <text x="50" y="150" text-anchor="middle" fill="#ffffff" font-size="11" transform="rotate(-90,50,150)">誤差</text>
+  <!-- Bias curve (decreasing) -->
+  <polyline points="80,60 180,80 280,110 380,150 480,185 580,210 680,230 750,240"
+    fill="none" stroke="#f9a825" stroke-width="2.5"/>
+  <text x="760" y="242" fill="#f9a825" font-size="11">Bias²</text>
+  <!-- Variance curve (increasing) -->
+  <polyline points="80,240 180,235 280,225 380,205 480,175 580,140 680,100 750,65"
+    fill="none" stroke="#e91e63" stroke-width="2.5"/>
+  <text x="760" y="67" fill="#e91e63" font-size="11">Variance</text>
+  <!-- Total error curve (U-shape) -->
+  <polyline points="80,140 180,145 280,160 380,175 480,180 580,175 680,165 750,170"
+    fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="6"/>
+  <text x="760" y="172" fill="#ffffff" font-size="10">Total</text>
+  <!-- Optimal point -->
+  <line x1="450" y1="50" x2="450" y2="250" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="4" opacity="0.7"/>
+  <text x="450" y="45" text-anchor="middle" fill="#f9a825" font-size="11">最適点</text>
+  <!-- Legend -->
+  <text x="100" y="290" fill="#f9a825" font-size="10">高バイアス = 過小適合</text>
+  <text x="400" y="290" text-anchor="middle" fill="#e91e63" font-size="10">高バリアンス = 過学習</text>
+</svg>
 - 期待二乗誤差 = Bias²(ĥ) + Var(ĥ) + 不可約誤差 (ノイズ)
 - **Bias (偏り)**: 仮説クラスの表現力不足による系統的誤差
 - **Variance (分散)**: 訓練データへの高感度 → 過学習傾向
@@ -141,6 +400,31 @@ style: |
 
 # 正則化手法
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">正則化手法の比較</text>
+  <rect x="40" y="55" width="220" height="150" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="150" y="82" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">L1正則化 (Lasso)</text>
+  <text x="150" y="107" text-anchor="middle" fill="#ffffff" font-size="10">+ λΣ|wᵢ|</text>
+  <text x="150" y="130" text-anchor="middle" fill="#ffffff" font-size="10">スパース解</text>
+  <text x="150" y="152" text-anchor="middle" fill="#f9a825" font-size="9">特徴選択に有効</text>
+  <text x="150" y="172" text-anchor="middle" fill="#ffffff" font-size="9">不要な重みを0に</text>
+  <text x="150" y="192" text-anchor="middle" fill="#f9a825" font-size="9">例: テキスト分類</text>
+  <rect x="290" y="55" width="220" height="150" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="82" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">L2正則化 (Ridge)</text>
+  <text x="400" y="107" text-anchor="middle" fill="#ffffff" font-size="10">+ λΣwᵢ²</text>
+  <text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="10">重みを均等に縮小</text>
+  <text x="400" y="152" text-anchor="middle" fill="#f9a825" font-size="9">滑らかな解</text>
+  <text x="400" y="172" text-anchor="middle" fill="#ffffff" font-size="9">数値的安定性高い</text>
+  <text x="400" y="192" text-anchor="middle" fill="#f9a825" font-size="9">例: 線形回帰</text>
+  <rect x="540" y="55" width="220" height="150" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="650" y="82" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">Dropout</text>
+  <text x="650" y="107" text-anchor="middle" fill="#ffffff" font-size="10">確率 p でニューロン無効化</text>
+  <text x="650" y="130" text-anchor="middle" fill="#ffffff" font-size="10">アンサンブル効果</text>
+  <text x="650" y="152" text-anchor="middle" fill="#f9a825" font-size="9">深層学習に必須</text>
+  <text x="650" y="172" text-anchor="middle" fill="#ffffff" font-size="9">p=0.1〜0.5</text>
+  <text x="650" y="192" text-anchor="middle" fill="#f9a825" font-size="9">例: Transformer</text>
+</svg>
 - **L2 正則化 (Weight Decay)**: loss += λ Σ wᵢ² — 重みを小さく保つ
 - **L1 正則化 (Lasso)**: loss += λ Σ |wᵢ| — スパース解を誘導
 - **Dropout**: 学習時ランダムにニューロンをマスク (p = 0.1〜0.5)
@@ -154,6 +438,24 @@ style: |
 <!-- _class: lead -->
 # 2. 最適化と損失関数
 
+- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="240" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">最適化: 損失景観と勾配降下</text>
+  <line x1="60" y1="200" x2="740" y2="200" stroke="#444" stroke-width="1.5"/>
+  <line x1="60" y1="50" x2="60" y2="205" stroke="#444" stroke-width="1.5"/>
+  <text x="35" y="55" fill="#aaa" font-size="10" font-family="sans-serif">Loss</text>
+  <text x="700" y="215" fill="#aaa" font-size="10" font-family="sans-serif">θ</text>
+  <path d="M 80,160 Q 200,60 400,80 Q 520,95 560,70 Q 620,45 680,100 Q 720,130 740,150" fill="none" stroke="#f9a825" stroke-width="2.5"/>
+  <circle cx="560" cy="70" r="6" fill="#e91e63"/>
+  <text x="560" y="58" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">局所最小</text>
+  <circle cx="200" cy="90" r="6" fill="#888"/>
+  <text x="200" y="78" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">初期点</text>
+  <line x1="200" y1="90" x2="350" y2="82" stroke="#888" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <polygon points="346,79 356,82 348,88" fill="#888"/>
+  <circle cx="400" cy="80" r="6" fill="#f9a825"/>
+  <text x="400" y="68" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SGD</text>
+  <text x="400" y="220" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">損失景観: 多数の局所最小・サドル点を持つ複雑な空間</text>
+</svg>
 - 損失設計と勾配ベース最適化の理論と実践
 
 
@@ -161,6 +463,27 @@ style: |
 
 # 損失関数の種類
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">主要な損失関数</text>
+  <!-- Loss function grid -->
+  <rect x="40" y="55" width="340" height="70" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="210" y="78" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">MSE (Mean Squared Error)</text>
+  <text x="210" y="97" text-anchor="middle" fill="#ffffff" font-size="10">L = Σ(ŷᵢ - yᵢ)² / n</text>
+  <text x="210" y="115" text-anchor="middle" fill="#f9a825" font-size="9">回帰問題・外れ値に敏感</text>
+  <rect x="420" y="55" width="340" height="70" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="590" y="78" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">Cross-Entropy</text>
+  <text x="590" y="97" text-anchor="middle" fill="#ffffff" font-size="10">L = -Σ yᵢ log(ŷᵢ)</text>
+  <text x="590" y="115" text-anchor="middle" fill="#f9a825" font-size="9">分類問題・確率出力</text>
+  <rect x="40" y="145" width="340" height="70" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="210" y="168" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">Contrastive Loss</text>
+  <text x="210" y="187" text-anchor="middle" fill="#ffffff" font-size="10">類似ペア近づけ / 非類似遠ざけ</text>
+  <text x="210" y="205" text-anchor="middle" fill="#f9a825" font-size="9">対照学習 (CLIP, SimCLR)</text>
+  <rect x="420" y="145" width="340" height="70" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="590" y="168" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">Huber Loss</text>
+  <text x="590" y="187" text-anchor="middle" fill="#ffffff" font-size="10">MSE + MAEのハイブリッド</text>
+  <text x="590" y="205" text-anchor="middle" fill="#f9a825" font-size="9">外れ値ロバスト回帰</text>
+</svg>
 - **MSE**: L = (1/n) Σ (yᵢ − ŷᵢ)² — 回帰の標準、外れ値に敏感
 - **Cross-Entropy**: L = −Σ yᵢ log ŷᵢ — 分類の標準、最大尤度推定
 - **KL Divergence**: DKL(P‖Q) = Σ P log(P/Q) — 分布間距離
@@ -173,6 +496,37 @@ style: |
 
 # 勾配降下法の原理
 
+- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="320" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">勾配降下法の原理</text>
+  <!-- Loss landscape (parabola-like) -->
+  <polyline points="60,260 130,180 200,120 280,80 360,65 440,65 520,80 600,120 670,180 740,260"
+    fill="none" stroke="#f9a825" stroke-width="2.5"/>
+  <!-- Fill under curve -->
+  <polygon points="60,260 130,180 200,120 280,80 360,65 440,65 520,80 600,120 670,180 740,260 740,280 60,280"
+    fill="#f9a825" opacity="0.08"/>
+  <!-- Axes -->
+  <line x1="40" y1="275" x2="760" y2="275" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="760" y="290" text-anchor="end" fill="#ffffff" font-size="11">パラメータ θ</text>
+  <text x="40" y="40" fill="#ffffff" font-size="11">損失 L(θ)</text>
+  <!-- Gradient descent steps -->
+  <circle cx="650" cy="155" r="6" fill="#e91e63"/>
+  <text x="660" y="148" fill="#ffffff" font-size="10">初期値</text>
+  <line x1="650" y1="155" x2="570" y2="110" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="570,110 578,124 562,122" fill="#e91e63"/>
+  <circle cx="570" cy="110" r="6" fill="#e91e63" opacity="0.8"/>
+
+  <line x1="570" y1="110" x2="500" y2="85" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="500,85 510,97 496,100" fill="#e91e63"/>
+  <circle cx="500" cy="85" r="6" fill="#e91e63" opacity="0.6"/>
+
+  <line x1="500" y1="85" x2="440" y2="67" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="440,67 452,78 438,82" fill="#e91e63"/>
+  <circle cx="440" cy="67" r="8" fill="#f9a825"/>
+  <text x="430" y="55" text-anchor="middle" fill="#f9a825" font-size="11">最小値</text>
+  <!-- Learning rate annotation -->
+  <text x="400" y="308" text-anchor="middle" fill="#ffffff" font-size="11">学習率 η で -∇L(θ) 方向に更新: θ ← θ - η · ∇L(θ)</text>
+</svg>
 - 更新則: θ_{t+1} = θ_t − η ∇_θ L(θ_t; X)
 - 学習率 η の役割: 大きすぎると発散、小さすぎると収束遅延
 - ミニバッチ SGD: B サンプルごとに更新 — 計算と品質のバランス
@@ -183,6 +537,30 @@ style: |
 
 # SGD → Adam → AdamW の進化
 
+- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="240" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">最適化アルゴリズムの進化</text>
+  <rect x="30" y="55" width="165" height="155" rx="8" fill="#16213e" stroke="#888" stroke-width="1.5"/>
+  <text x="112" y="83" text-anchor="middle" fill="#888" font-size="13" font-family="sans-serif">SGD</text>
+  <text x="112" y="105" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">単純な勾配降下</text>
+  <text x="112" y="123" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">固定学習率</text>
+  <text x="112" y="160" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">遅い収束</text>
+  <rect x="215" y="55" width="165" height="155" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="297" y="83" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">Adam</text>
+  <text x="297" y="105" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">適応学習率</text>
+  <text x="297" y="123" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">1次・2次モーメント</text>
+  <text x="297" y="160" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">高速収束</text>
+  <rect x="400" y="55" width="165" height="155" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="482" y="83" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">AdamW</text>
+  <text x="482" y="105" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">Adam + 重み減衰</text>
+  <text x="482" y="123" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">汎化性能向上</text>
+  <text x="482" y="160" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">LLM 標準</text>
+  <rect x="585" y="55" width="185" height="155" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="677" y="83" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">Sophia / Lion</text>
+  <text x="677" y="105" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">2次最適化</text>
+  <text x="677" y="123" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">ヘッセ行列近似</text>
+  <text x="677" y="160" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">研究最前線</text>
+</svg>
 - SGD + Momentum: 鞍点を乗り越える慣性を付与
 - AdaGrad: 疎な勾配に適応的学習率 (累積二乗和で除算)
 
@@ -207,6 +585,27 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # 学習率スケジューリング
 
+- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="280" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">学習率スケジューリング</text>
+  <!-- Axes -->
+  <line x1="80" y1="230" x2="740" y2="230" stroke="#ffffff" stroke-width="1.5"/>
+  <line x1="80" y1="50" x2="80" y2="230" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="415" y="252" text-anchor="middle" fill="#ffffff" font-size="11">学習ステップ</text>
+  <text x="50" y="140" text-anchor="middle" fill="#ffffff" font-size="10" transform="rotate(-90,50,140)">LR</text>
+  <!-- Warmup + cosine decay -->
+  <polyline points="80,220 160,80 240,80 340,95 440,115 540,140 640,175 720,205"
+    fill="none" stroke="#f9a825" stroke-width="2.5"/>
+  <text x="730" y="205" fill="#f9a825" font-size="10">Cosine</text>
+  <!-- Step decay -->
+  <polyline points="80,80 260,80 260,130 440,130 440,170 620,170 620,200 720,200"
+    fill="none" stroke="#e91e63" stroke-width="2" stroke-dasharray="6"/>
+  <text x="730" y="200" fill="#e91e63" font-size="10">Step</text>
+  <!-- Warmup annotation -->
+  <line x1="80" y1="60" x2="160" y2="60" stroke="#f9a825" stroke-width="1" stroke-dasharray="3" opacity="0.6"/>
+  <line x1="160" y1="60" x2="160" y2="230" stroke="#f9a825" stroke-width="1" stroke-dasharray="3" opacity="0.6"/>
+  <text x="120" y="55" text-anchor="middle" fill="#f9a825" font-size="10">Warmup</text>
+</svg>
 - **Warmup**: 初期の不安定な勾配を避けるため学習率を徐々に増加
 - **Cosine Decay**: η(t) = η_min + 0.5(η_max−η_min)(1+cos(πt/T))
 - **Linear Decay**: シンプルで BERT 系モデルに広く使用
@@ -219,6 +618,30 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # 損失地形と局所最適解
 
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="300" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">損失地形と局所最適解</text>
+  <!-- Non-convex loss landscape -->
+  <polyline points="40,260 100,200 150,230 210,160 270,200 330,120 390,155 440,80 490,100 550,140 610,95 660,140 720,90 760,70"
+    fill="none" stroke="#f9a825" stroke-width="2.5"/>
+  <polygon points="40,260 100,200 150,230 210,160 270,200 330,120 390,155 440,80 490,100 550,140 610,95 660,140 720,90 760,70 760,280 40,280"
+    fill="#f9a825" opacity="0.08"/>
+  <!-- Axes -->
+  <line x1="40" y1="275" x2="770" y2="275" stroke="#ffffff" stroke-width="1.5"/>
+  <!-- Local minimum markers -->
+  <circle cx="330" cy="120" r="7" fill="#e91e63"/>
+  <text x="330" y="108" text-anchor="middle" fill="#e91e63" font-size="10">局所最適解</text>
+  <circle cx="610" cy="95" r="7" fill="#e91e63"/>
+  <text x="610" y="83" text-anchor="middle" fill="#e91e63" font-size="10">局所最適解</text>
+  <!-- Global minimum -->
+  <circle cx="760" cy="70" r="9" fill="#f9a825"/>
+  <text x="750" y="58" text-anchor="middle" fill="#f9a825" font-size="10">大域最適解</text>
+  <!-- Saddle point -->
+  <circle cx="440" cy="80" r="7" fill="#ffffff"/>
+  <text x="440" y="68" text-anchor="middle" fill="#ffffff" font-size="10">鞍点</text>
+  <!-- Annotations -->
+  <text x="400" y="300" text-anchor="middle" fill="#ffffff" font-size="10">SGD・AdamWはノイズ性質で局所最適を脱出しやすい</text>
+</svg>
 - 高次元パラメータ空間では真の局所最小解は稀 — 多くは鞍点
 - **シャープ最小値 vs フラット最小値**: フラットほど汎化が良い傾向
 - **SAM (Sharpness-Aware Minimization)**: フラット最小を明示的に探索
@@ -231,6 +654,20 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # 勾配クリッピングと学習安定化
 
+- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="240" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">勾配クリッピング: 効果の可視化</text>
+  <text x="240" y="55" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">クリッピングなし</text>
+  <line x1="60" y1="180" x2="420" y2="180" stroke="#444" stroke-width="1"/>
+  <polyline points="80,175 120,170 160,155 200,60 210,175 240,170 260,165 290,155 320,148 360,135 400,130" fill="none" stroke="#e91e63" stroke-width="2"/>
+  <text x="195" y="50" text-anchor="middle" fill="#e91e63" font-size="9" font-family="sans-serif">爆発!</text>
+  <text x="560" y="55" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">クリッピングあり</text>
+  <line x1="440" y1="180" x2="760" y2="180" stroke="#444" stroke-width="1"/>
+  <polyline points="460,175 500,168 540,160 580,148 620,138 660,130 700,122 740,115" fill="none" stroke="#f9a825" stroke-width="2"/>
+  <line x1="440" y1="100" x2="760" y2="100" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="700" y="92" fill="#888" font-size="9" font-family="sans-serif">clip threshold</text>
+  <text x="400" y="210" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">||grad|| > threshold → grad = grad * (threshold / ||grad||)</text>
+</svg>
 - **勾配爆発**: 深いNNで勾配が指数的に増大 → 発散
 - **Gradient Clipping**: ‖g‖ > τ なら g ← g × (τ/‖g‖)
 - **LayerNorm / RMSNorm**: 各層の活性化を正規化して安定化
@@ -244,6 +681,59 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 <!-- _class: lead -->
 # 3. ニューラルネットワーク基礎
 
+- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="240" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">ニューラルネットワーク: 基本構造</text>
+  <text x="130" y="60" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Input Layer</text>
+  <circle cx="100" cy="85" r="18" fill="#16213e" stroke="#888" stroke-width="1.5"/>
+  <text x="100" y="90" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">x₁</text>
+  <circle cx="100" cy="125" r="18" fill="#16213e" stroke="#888" stroke-width="1.5"/>
+  <text x="100" y="130" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">x₂</text>
+  <circle cx="100" cy="165" r="18" fill="#16213e" stroke="#888" stroke-width="1.5"/>
+  <text x="100" y="170" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">x₃</text>
+  <text x="300" y="60" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Hidden Layer 1</text>
+  <circle cx="270" cy="80" r="18" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <circle cx="270" cy="120" r="18" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <circle cx="270" cy="160" r="18" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <circle cx="270" cy="200" r="18" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="480" y="60" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Hidden Layer 2</text>
+  <circle cx="450" cy="90" r="18" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <circle cx="450" cy="135" r="18" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <circle cx="450" cy="180" r="18" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="650" y="60" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">Output Layer</text>
+  <circle cx="630" cy="110" r="18" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <circle cx="630" cy="160" r="18" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <line x1="118" y1="85" x2="252" y2="80" stroke="#444" stroke-width="0.8"/>
+  <line x1="118" y1="85" x2="252" y2="120" stroke="#444" stroke-width="0.8"/>
+  <line x1="118" y1="85" x2="252" y2="160" stroke="#444" stroke-width="0.8"/>
+  <line x1="118" y1="85" x2="252" y2="200" stroke="#444" stroke-width="0.8"/>
+  <line x1="118" y1="125" x2="252" y2="80" stroke="#444" stroke-width="0.8"/>
+  <line x1="118" y1="125" x2="252" y2="120" stroke="#444" stroke-width="0.8"/>
+  <line x1="118" y1="125" x2="252" y2="160" stroke="#444" stroke-width="0.8"/>
+  <line x1="118" y1="125" x2="252" y2="200" stroke="#444" stroke-width="0.8"/>
+  <line x1="118" y1="165" x2="252" y2="80" stroke="#444" stroke-width="0.8"/>
+  <line x1="118" y1="165" x2="252" y2="120" stroke="#444" stroke-width="0.8"/>
+  <line x1="118" y1="165" x2="252" y2="160" stroke="#444" stroke-width="0.8"/>
+  <line x1="118" y1="165" x2="252" y2="200" stroke="#444" stroke-width="0.8"/>
+  <line x1="288" y1="80" x2="432" y2="90" stroke="#444" stroke-width="0.8"/>
+  <line x1="288" y1="80" x2="432" y2="135" stroke="#444" stroke-width="0.8"/>
+  <line x1="288" y1="80" x2="432" y2="180" stroke="#444" stroke-width="0.8"/>
+  <line x1="288" y1="120" x2="432" y2="90" stroke="#444" stroke-width="0.8"/>
+  <line x1="288" y1="120" x2="432" y2="135" stroke="#444" stroke-width="0.8"/>
+  <line x1="288" y1="120" x2="432" y2="180" stroke="#444" stroke-width="0.8"/>
+  <line x1="288" y1="160" x2="432" y2="90" stroke="#444" stroke-width="0.8"/>
+  <line x1="288" y1="160" x2="432" y2="135" stroke="#444" stroke-width="0.8"/>
+  <line x1="288" y1="160" x2="432" y2="180" stroke="#444" stroke-width="0.8"/>
+  <line x1="288" y1="200" x2="432" y2="90" stroke="#444" stroke-width="0.8"/>
+  <line x1="288" y1="200" x2="432" y2="135" stroke="#444" stroke-width="0.8"/>
+  <line x1="288" y1="200" x2="432" y2="180" stroke="#444" stroke-width="0.8"/>
+  <line x1="468" y1="90" x2="612" y2="110" stroke="#888" stroke-width="1"/>
+  <line x1="468" y1="90" x2="612" y2="160" stroke="#888" stroke-width="1"/>
+  <line x1="468" y1="135" x2="612" y2="110" stroke="#888" stroke-width="1"/>
+  <line x1="468" y1="135" x2="612" y2="160" stroke="#888" stroke-width="1"/>
+  <line x1="468" y1="180" x2="612" y2="110" stroke="#888" stroke-width="1"/>
+  <line x1="468" y1="180" x2="612" y2="160" stroke="#888" stroke-width="1"/>
+</svg>
 - パーセプトロンから深層モデルへ
 
 
@@ -251,6 +741,49 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # パーセプトロンからMLPへ
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">パーセプトロン → MLP の進化</text>
+  <!-- Perceptron left -->
+  <text x="170" y="55" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">パーセプトロン (1958)</text>
+  <circle cx="100" cy="120" r="16" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="100" y="125" text-anchor="middle" fill="#ffffff" font-size="9">x₁</text>
+  <circle cx="100" cy="170" r="16" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="100" y="175" text-anchor="middle" fill="#ffffff" font-size="9">x₂</text>
+  <circle cx="240" cy="145" r="20" fill="#e91e63" opacity="0.8"/>
+  <text x="240" y="150" text-anchor="middle" fill="#ffffff" font-size="10">Σ+θ</text>
+  <line x1="116" y1="120" x2="220" y2="138" stroke="#f9a825" stroke-width="1.5"/>
+  <line x1="116" y1="170" x2="220" y2="152" stroke="#f9a825" stroke-width="1.5"/>
+  <line x1="260" y1="145" x2="310" y2="145" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="310,145 296,138 296,152" fill="#f9a825"/>
+  <text x="350" y="150" text-anchor="middle" fill="#f9a825" font-size="11">ŷ</text>
+  <text x="200" y="220" text-anchor="middle" fill="#ffffff" font-size="9">線形分離のみ</text>
+
+  <!-- MLP right -->
+  <text x="580" y="55" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">MLP (多層)</text>
+  <!-- Input -->
+  <circle cx="430" cy="110" r="12" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <circle cx="430" cy="150" r="12" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <circle cx="430" cy="190" r="12" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <!-- Hidden -->
+  <circle cx="560" cy="100" r="12" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <circle cx="560" cy="150" r="12" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <circle cx="560" cy="200" r="12" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <!-- Output -->
+  <circle cx="690" cy="150" r="14" fill="#f9a825" opacity="0.9"/>
+  <text x="690" y="155" text-anchor="middle" fill="#1a1a2e" font-size="9">ŷ</text>
+  <!-- Edges -->
+  <line x1="442" y1="112" x2="548" y2="105" stroke="#f9a825" stroke-width="0.8" opacity="0.5"/>
+  <line x1="442" y1="112" x2="548" y2="152" stroke="#f9a825" stroke-width="0.8" opacity="0.5"/>
+  <line x1="442" y1="150" x2="548" y2="105" stroke="#f9a825" stroke-width="0.8" opacity="0.5"/>
+  <line x1="442" y1="150" x2="548" y2="152" stroke="#f9a825" stroke-width="0.8" opacity="0.5"/>
+  <line x1="442" y1="150" x2="548" y2="202" stroke="#f9a825" stroke-width="0.8" opacity="0.5"/>
+  <line x1="442" y1="190" x2="548" y2="202" stroke="#f9a825" stroke-width="0.8" opacity="0.5"/>
+  <line x1="572" y1="105" x2="676" y2="148" stroke="#f9a825" stroke-width="0.8" opacity="0.5"/>
+  <line x1="572" y1="152" x2="676" y2="150" stroke="#f9a825" stroke-width="0.8" opacity="0.5"/>
+  <line x1="572" y1="202" x2="676" y2="156" stroke="#f9a825" stroke-width="0.8" opacity="0.5"/>
+  <text x="580" y="230" text-anchor="middle" fill="#ffffff" font-size="9">非線形分離可能</text>
+</svg>
 - パーセプトロン (Rosenblatt 1957): 線形分離可能な問題のみ解ける
 - **XOR 問題**: 単層では解けず → 多層が必要 (Minsky & Papert 1969)
 - **普遍近似定理**: 十分な幅の1隠れ層 NN は任意の連続関数を近似
@@ -261,6 +794,32 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # 活性化関数の進化
 
+- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="280" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">活性化関数の進化</text>
+  <!-- Axes -->
+  <line x1="80" y1="170" x2="740" y2="170" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
+  <line x1="400" y1="50" x2="400" y2="260" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
+  <!-- Sigmoid -->
+  <polyline points="80,165 140,160 200,148 260,130 320,110 380,92 400,88 420,88 480,95 540,115 600,135 660,152 720,160 740,163"
+    fill="none" stroke="#e91e63" stroke-width="2"/>
+  <text x="745" y="165" fill="#e91e63" font-size="10">σ</text>
+  <!-- ReLU -->
+  <polyline points="80,170 399,170 400,170 740,60"
+    fill="none" stroke="#f9a825" stroke-width="2.5"/>
+  <text x="745" y="62" fill="#f9a825" font-size="10">ReLU</text>
+  <!-- GELU (approximate) -->
+  <polyline points="80,175 200,172 320,162 380,148 400,145 420,140 480,115 580,80 680,52 740,38"
+    fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="5"/>
+  <text x="745" y="42" fill="#ffffff" font-size="10">GELU</text>
+  <!-- Zero line label -->
+  <text x="395" y="167" text-anchor="end" fill="#ffffff" font-size="9" opacity="0.5">0</text>
+  <text x="72" y="174" text-anchor="end" fill="#ffffff" font-size="9" opacity="0.5">x=0</text>
+  <!-- Labels bottom -->
+  <text x="150" y="255" fill="#e91e63" font-size="10">Sigmoid: 勾配消失問題あり</text>
+  <text x="400" y="255" text-anchor="middle" fill="#f9a825" font-size="10">ReLU: 高速・シンプル</text>
+  <text x="650" y="255" fill="#ffffff" font-size="10">GELU: Transformerで主流</text>
+</svg>
 - **Sigmoid**: σ(z) = 1/(1+e^{−z}) — 勾配消失問題あり
 - **tanh**: (e^z − e^{−z})/(e^z + e^{−z}) — 中心化で Sigmoid 改善
 - **ReLU**: max(0, z) — 勾配消失を大幅改善 (Krizhevsky 2012)
@@ -273,6 +832,55 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # 誤差逆伝播法 (Backpropagation)
 
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="300" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">誤差逆伝播法 (Backpropagation)</text>
+  <!-- Neural network layers -->
+  <!-- Input layer -->
+  <circle cx="100" cy="100" r="18" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="100" y="105" text-anchor="middle" fill="#ffffff" font-size="10">x₁</text>
+  <circle cx="100" cy="170" r="18" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="100" y="175" text-anchor="middle" fill="#ffffff" font-size="10">x₂</text>
+  <circle cx="100" cy="240" r="18" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="100" y="245" text-anchor="middle" fill="#ffffff" font-size="10">x₃</text>
+  <text x="100" y="290" text-anchor="middle" fill="#f9a825" font-size="10">入力層</text>
+  <!-- Hidden layer 1 -->
+  <circle cx="280" cy="80" r="18" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="280" y="85" text-anchor="middle" fill="#ffffff" font-size="10">h₁</text>
+  <circle cx="280" cy="170" r="18" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="280" y="175" text-anchor="middle" fill="#ffffff" font-size="10">h₂</text>
+  <circle cx="280" cy="260" r="18" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="280" y="265" text-anchor="middle" fill="#ffffff" font-size="10">h₃</text>
+  <text x="280" y="290" text-anchor="middle" fill="#f9a825" font-size="10">隠れ層1</text>
+  <!-- Hidden layer 2 -->
+  <circle cx="460" cy="120" r="18" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="460" y="125" text-anchor="middle" fill="#ffffff" font-size="10">h₄</text>
+  <circle cx="460" cy="220" r="18" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="460" y="225" text-anchor="middle" fill="#ffffff" font-size="10">h₅</text>
+  <text x="460" y="290" text-anchor="middle" fill="#f9a825" font-size="10">隠れ層2</text>
+  <!-- Output layer -->
+  <circle cx="640" cy="170" r="18" fill="#e91e63"/>
+  <text x="640" y="175" text-anchor="middle" fill="#ffffff" font-size="10">ŷ</text>
+  <text x="640" y="290" text-anchor="middle" fill="#f9a825" font-size="10">出力層</text>
+  <!-- Forward pass edges (thin) -->
+  <line x1="118" y1="107" x2="262" y2="87" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+  <line x1="118" y1="110" x2="262" y2="163" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+  <line x1="118" y1="170" x2="262" y2="86" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+  <line x1="118" y1="170" x2="262" y2="170" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+  <line x1="118" y1="170" x2="262" y2="254" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+  <line x1="118" y1="233" x2="262" y2="170" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+  <line x1="118" y1="233" x2="262" y2="254" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+  <line x1="298" y1="87" x2="442" y2="127" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+  <line x1="298" y1="170" x2="442" y2="127" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+  <line x1="298" y1="170" x2="442" y2="213" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+  <line x1="298" y1="254" x2="442" y2="213" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+  <line x1="478" y1="127" x2="622" y2="163" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+  <line x1="478" y1="213" x2="622" y2="177" stroke="#f9a825" stroke-width="1" opacity="0.5"/>
+  <!-- Backprop arrow (red, bold) -->
+  <line x1="622" y1="170" x2="80" y2="170" stroke="#e91e63" stroke-width="3" stroke-dasharray="8"/>
+  <polygon points="80,170 98,162 98,178" fill="#e91e63"/>
+  <text x="400" y="35" text-anchor="middle" fill="#e91e63" font-size="11">逆伝播: ∂L/∂w = ∂L/∂ŷ · ∂ŷ/∂h · ∂h/∂w  (連鎖律)</text>
+</svg>
 - **連鎖律**: ∂L/∂w = (∂L/∂a)(∂a/∂z)(∂z/∂w)
 - 計算グラフで演算ノードを通じて勾配を自動微分
 - PyTorch / JAX の autograd が実装の核心
@@ -295,6 +903,28 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # ドロップアウトと正則化
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">バッチ正規化 (Batch Normalization)</text>
+  <!-- Before BN -->
+  <rect x="40" y="60" width="320" height="155" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="200" y="84" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">BN なし</text>
+  <text x="200" y="108" text-anchor="middle" fill="#ffffff" font-size="10">各層の入力分布が不安定</text>
+  <text x="200" y="128" text-anchor="middle" fill="#ffffff" font-size="10">Internal Covariate Shift</text>
+  <text x="200" y="150" text-anchor="middle" fill="#e91e63" font-size="10">学習率を小さくせざるを得ない</text>
+  <text x="200" y="170" text-anchor="middle" fill="#e91e63" font-size="10">初期化に敏感</text>
+  <text x="200" y="192" text-anchor="middle" fill="#e91e63" font-size="10">収束が遅い</text>
+  <!-- After BN -->
+  <rect x="440" y="60" width="320" height="155" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="600" y="84" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">BN あり</text>
+  <text x="600" y="108" text-anchor="middle" fill="#ffffff" font-size="10">μ=0, σ=1 に正規化</text>
+  <text x="600" y="128" text-anchor="middle" fill="#ffffff" font-size="10">学習を安定化</text>
+  <text x="600" y="150" text-anchor="middle" fill="#f9a825" font-size="10">高い学習率が使える</text>
+  <text x="600" y="170" text-anchor="middle" fill="#f9a825" font-size="10">初期化に頑健</text>
+  <text x="600" y="192" text-anchor="middle" fill="#f9a825" font-size="10">Dropout代替にもなる</text>
+  <!-- Formula -->
+  <text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="11">x̂ = (x - μ) / σ  →  γx̂ + β  (γ, β は学習パラメータ)</text>
+</svg>
 - **Dropout** (Srivastava 2014): 訓練時に確率 p でユニットをゼロ化
 - **アンサンブル解釈**: 指数的な数のサブネットの平均と等価
 - **Inverted Dropout**: テスト時に (1−p) 補正で期待値を一致
@@ -307,6 +937,35 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # 残差接続 (ResNet)
 
+- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="240" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">残差接続 (Skip Connection)</text>
+  <rect x="50" y="60" width="140" height="55" rx="6" fill="#16213e" stroke="#888" stroke-width="1.5"/>
+  <text x="120" y="85" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">Input x</text>
+  <rect x="230" y="60" width="140" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="300" y="82" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Weight Layer</text>
+  <text x="300" y="99" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">+ ReLU</text>
+  <rect x="410" y="60" width="140" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="480" y="82" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Weight Layer</text>
+  <text x="480" y="99" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">F(x)</text>
+  <circle cx="610" cy="87" r="22" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="610" y="84" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">⊕</text>
+  <text x="610" y="100" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">add</text>
+  <rect x="670" y="60" width="110" height="55" rx="6" fill="#16213e" stroke="#888" stroke-width="1.5"/>
+  <text x="725" y="85" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">Output</text>
+  <text x="725" y="102" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">F(x)+x</text>
+  <polygon points="228,87 228,81 218,87" fill="#f9a825"/>
+  <line x1="190" y1="87" x2="228" y2="87" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="408,87 408,81 398,87" fill="#f9a825"/>
+  <line x1="370" y1="87" x2="408" y2="87" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="587,87 587,81 577,87" fill="#e91e63"/>
+  <line x1="550" y1="87" x2="587" y2="87" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="668,87 668,81 658,87" fill="#888"/>
+  <line x1="632" y1="87" x2="668" y2="87" stroke="#888" stroke-width="1.5"/>
+  <path d="M 120,115 Q 120,155 610,155 Q 610,115 610,109" fill="none" stroke="#e91e63" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="607,113 610,103 613,113" fill="#e91e63"/>
+  <text x="370" y="175" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">Skip Connection: 入力を直接加算 → 勾配消失を防ぐ</text>
+</svg>
 - **消失勾配問題**: 深いNNで勾配が指数的に縮小する問題
 - **残差ブロック**: H(x) = F(x) + x — 恒等写像をスキップ
 - 勾配の直接経路: スキップ接続を通じて勾配がダイレクトに流れる
@@ -332,6 +991,31 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 <!-- _class: lead -->
 # 4. 深層学習アーキテクチャ
 
+- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="240" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">深層学習アーキテクチャ 進化の系譜</text>
+  <line x1="60" y1="130" x2="740" y2="130" stroke="#444" stroke-width="2"/>
+  <polygon points="738,124 752,130 738,136" fill="#444"/>
+  <circle cx="120" cy="130" r="8" fill="#888"/>
+  <text x="120" y="118" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">1998</text>
+  <text x="120" y="148" text-anchor="middle" fill="#888" font-size="9" font-family="sans-serif">LeNet</text>
+  <circle cx="220" cy="130" r="8" fill="#888"/>
+  <text x="220" y="118" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">2012</text>
+  <text x="220" y="148" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">AlexNet</text>
+  <circle cx="330" cy="130" r="8" fill="#f9a825"/>
+  <text x="330" y="118" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">2015</text>
+  <text x="330" y="148" text-anchor="middle" fill="#f9a825" font-size="9" font-family="sans-serif">ResNet</text>
+  <circle cx="450" cy="130" r="8" fill="#f9a825"/>
+  <text x="450" y="118" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">2017</text>
+  <text x="450" y="148" text-anchor="middle" fill="#f9a825" font-size="9" font-family="sans-serif">Transformer</text>
+  <circle cx="570" cy="130" r="8" fill="#e91e63"/>
+  <text x="570" y="118" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">2020</text>
+  <text x="570" y="148" text-anchor="middle" fill="#e91e63" font-size="9" font-family="sans-serif">GPT-3</text>
+  <circle cx="680" cy="130" r="10" fill="#e91e63"/>
+  <text x="680" y="118" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">2024+</text>
+  <text x="680" y="148" text-anchor="middle" fill="#e91e63" font-size="9" font-family="sans-serif">LLM時代</text>
+  <text x="400" y="200" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">深さ: 8層 → 100層+ → 1T パラメータ規模へ</text>
+</svg>
 - CNN / RNN / Transformer の設計原理
 
 
@@ -375,6 +1059,50 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # Attention 機構の原理
 
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="300" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Attention 機構の原理</text>
+  <!-- Q K V boxes -->
+  <rect x="60" y="100" width="90" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="105" y="130" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">Q</text>
+  <text x="105" y="162" text-anchor="middle" fill="#ffffff" font-size="10">Query</text>
+
+  <rect x="200" y="100" width="90" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="245" y="130" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">K</text>
+  <text x="245" y="162" text-anchor="middle" fill="#ffffff" font-size="10">Key</text>
+
+  <rect x="340" y="100" width="90" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="385" y="130" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">V</text>
+  <text x="385" y="162" text-anchor="middle" fill="#ffffff" font-size="10">Value</text>
+
+  <!-- Score computation -->
+  <rect x="490" y="80" width="120" height="50" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="550" y="100" text-anchor="middle" fill="#ffffff" font-size="11">スコア計算</text>
+  <text x="550" y="118" text-anchor="middle" fill="#e91e63" font-size="10">QKᵀ / √dₖ</text>
+
+  <!-- Softmax -->
+  <rect x="490" y="160" width="120" height="50" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="550" y="182" text-anchor="middle" fill="#ffffff" font-size="11">Softmax</text>
+  <text x="550" y="200" text-anchor="middle" fill="#e91e63" font-size="10">注意重み α</text>
+
+  <!-- Output -->
+  <rect x="650" y="120" width="120" height="50" rx="6" fill="#f9a825" opacity="0.9"/>
+  <text x="710" y="141" text-anchor="middle" fill="#1a1a2e" font-size="11" font-weight="bold">Attention出力</text>
+  <text x="710" y="159" text-anchor="middle" fill="#1a1a2e" font-size="10">αV (加重和)</text>
+
+  <!-- Arrows -->
+  <line x1="150" y1="125" x2="490" y2="105" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="490,105 477,99 477,111" fill="#f9a825"/>
+  <line x1="290" y1="125" x2="490" y2="108" stroke="#f9a825" stroke-width="1.5"/>
+  <line x1="430" y1="180" x2="490" y2="180" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="490,180 477,174 477,186" fill="#f9a825"/>
+  <line x1="550" y1="130" x2="550" y2="160" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="550,160 543,148 557,148" fill="#e91e63"/>
+  <line x1="610" y1="185" x2="650" y2="158" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="650,158 638,156 644,168" fill="#f9a825"/>
+  <!-- Formula bottom -->
+  <text x="400" y="278" text-anchor="middle" fill="#ffffff" font-size="11">Attention(Q,K,V) = softmax(QKᵀ/√dₖ)V</text>
+</svg>
 - RNN の固定長ベクトル圧縮による情報ボトルネックを解消
 - **Scaled Dot-Product**: Attention(Q,K,V) = softmax(QKᵀ/√d_k)·V
 - Q / K / V: 同じ入力から線形変換で生成 (Self-Attention)
@@ -385,6 +1113,39 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # Transformer アーキテクチャ
 
+- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="340" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Transformer アーキテクチャ</text>
+  <!-- Encoder side -->
+  <rect x="30" y="46" width="340" height="260" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="200" y="68" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">エンコーダ (×N)</text>
+  <rect x="55" y="80" width="290" height="40" rx="4" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="200" y="105" text-anchor="middle" fill="#ffffff" font-size="11">Multi-Head Self-Attention</text>
+  <rect x="55" y="130" width="290" height="40" rx="4" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="200" y="155" text-anchor="middle" fill="#ffffff" font-size="11">Add &amp; Norm</text>
+  <rect x="55" y="180" width="290" height="40" rx="4" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="200" y="205" text-anchor="middle" fill="#ffffff" font-size="11">Feed Forward Network</text>
+  <rect x="55" y="230" width="290" height="40" rx="4" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="200" y="255" text-anchor="middle" fill="#ffffff" font-size="11">Add &amp; Norm</text>
+  <text x="200" y="295" text-anchor="middle" fill="#f9a825" font-size="10">+ Positional Encoding</text>
+
+  <!-- Decoder side -->
+  <rect x="430" y="46" width="340" height="260" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="600" y="68" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">デコーダ (×N)</text>
+  <rect x="455" y="80" width="290" height="34" rx="4" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="600" y="102" text-anchor="middle" fill="#ffffff" font-size="11">Masked Self-Attention</text>
+  <rect x="455" y="124" width="290" height="34" rx="4" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="600" y="146" text-anchor="middle" fill="#ffffff" font-size="11">Cross-Attention (Enc→Dec)</text>
+  <rect x="455" y="168" width="290" height="34" rx="4" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="600" y="190" text-anchor="middle" fill="#ffffff" font-size="11">Add &amp; Norm</text>
+  <rect x="455" y="212" width="290" height="34" rx="4" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="600" y="234" text-anchor="middle" fill="#ffffff" font-size="11">Feed Forward + Add &amp; Norm</text>
+  <text x="600" y="295" text-anchor="middle" fill="#e91e63" font-size="10">Linear → Softmax → 出力</text>
+
+  <!-- Center arrow -->
+  <line x1="370" y1="175" x2="430" y2="175" stroke="#f9a825" stroke-width="2.5"/>
+  <polygon points="430,175 416,168 416,182" fill="#f9a825"/>
+</svg>
 - Vaswani et al. (2017): 「Attention is All You Need」
 - Encoder-only (BERT) / Decoder-only (GPT) / Enc-Dec (T5) の3系統
 - FFN: 2層MLP、幅は Attention の4倍が標準
@@ -395,6 +1156,37 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # Multi-Head Self-Attention の詳細
 
+- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="240" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Multi-Head Attention 構造</text>
+  <rect x="40" y="55" width="155" height="55" rx="6" fill="#16213e" stroke="#888" stroke-width="1.5"/>
+  <text x="117" y="78" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">Input X</text>
+  <text x="117" y="96" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">[seq_len, d_model]</text>
+  <rect x="230" y="40" width="120" height="45" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="290" y="60" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">Head 1</text>
+  <text x="290" y="76" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">Q₁K₁ᵀV₁</text>
+  <rect x="230" y="95" width="120" height="45" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="290" y="115" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">Head 2</text>
+  <text x="290" y="131" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">Q₂K₂ᵀV₂</text>
+  <rect x="230" y="150" width="120" height="45" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="290" y="170" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">Head h</text>
+  <text x="290" y="186" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">QₕKₕᵀVₕ</text>
+  <text x="290" y="137" fill="#888" font-size="18" font-family="sans-serif">⋮</text>
+  <line x1="195" y1="82" x2="230" y2="62" stroke="#888" stroke-width="1.5"/>
+  <line x1="195" y1="82" x2="230" y2="117" stroke="#888" stroke-width="1.5"/>
+  <line x1="195" y1="82" x2="230" y2="172" stroke="#888" stroke-width="1.5"/>
+  <rect x="400" y="90" width="120" height="55" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="460" y="112" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">Concat</text>
+  <text x="460" y="130" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">+ Linear W_O</text>
+  <line x1="350" y1="62" x2="400" y2="110" stroke="#e91e63" stroke-width="1"/>
+  <line x1="350" y1="117" x2="400" y2="117" stroke="#e91e63" stroke-width="1"/>
+  <line x1="350" y1="172" x2="400" y2="130" stroke="#e91e63" stroke-width="1"/>
+  <rect x="570" y="90" width="160" height="55" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="650" y="112" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">Output</text>
+  <text x="650" y="130" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">[seq_len, d_model]</text>
+  <polygon points="568,117 568,111 558,117" fill="#e91e63"/>
+  <line x1="520" y1="117" x2="568" y2="117" stroke="#e91e63" stroke-width="1.5"/>
+</svg>
 - h 個の独立した Attention ヘッドを並列実行 → 多様な依存を捕捉
 - 各ヘッド: d_head = d_model / h 次元で独立した Q/K/V 変換
 - 出力: Concat([head₁, ..., headₕ]) · W_O で統合
@@ -407,6 +1199,38 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # 位置エンコーディング
 
+- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="280" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Multi-Head Self-Attention の詳細</text>
+  <!-- Multiple heads -->
+  <rect x="40" y="60" width="140" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="110" y="92" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">Head 1</text>
+  <text x="110" y="112" text-anchor="middle" fill="#ffffff" font-size="9">Q₁K₁V₁</text>
+  <text x="110" y="128" text-anchor="middle" fill="#f9a825" font-size="9">局所関係</text>
+  <rect x="200" y="60" width="140" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="270" y="92" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">Head 2</text>
+  <text x="270" y="112" text-anchor="middle" fill="#ffffff" font-size="9">Q₂K₂V₂</text>
+  <text x="270" y="128" text-anchor="middle" fill="#f9a825" font-size="9">構文関係</text>
+  <rect x="360" y="60" width="140" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="430" y="92" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">Head 3</text>
+  <text x="430" y="112" text-anchor="middle" fill="#ffffff" font-size="9">Q₃K₃V₃</text>
+  <text x="430" y="128" text-anchor="middle" fill="#f9a825" font-size="9">意味関係</text>
+  <rect x="520" y="60" width="140" height="80" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5" opacity="0.7"/>
+  <text x="590" y="92" text-anchor="middle" fill="#f9a825" font-size="11">Head h</text>
+  <text x="590" y="112" text-anchor="middle" fill="#ffffff" font-size="9" opacity="0.7">...</text>
+  <!-- Concat -->
+  <rect x="120" y="190" width="480" height="50" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="360" y="212" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">Concat + Linear W⁰</text>
+  <text x="360" y="230" text-anchor="middle" fill="#ffffff" font-size="10">全ヘッドの出力を結合して線形変換</text>
+  <!-- Arrows down to concat -->
+  <line x1="110" y1="140" x2="200" y2="190" stroke="#f9a825" stroke-width="1.5"/>
+  <line x1="270" y1="140" x2="270" y2="190" stroke="#f9a825" stroke-width="1.5"/>
+  <line x1="430" y1="140" x2="380" y2="190" stroke="#f9a825" stroke-width="1.5"/>
+  <line x1="590" y1="140" x2="520" y2="190" stroke="#f9a825" stroke-width="1.5" opacity="0.7"/>
+  <!-- h= note -->
+  <text x="700" y="100" text-anchor="middle" fill="#f9a825" font-size="11">h=8〜16</text>
+  <text x="700" y="118" text-anchor="middle" fill="#ffffff" font-size="10">並列処理</text>
+</svg>
 - Transformer は順序情報を持たない → 位置情報を明示的に付与
 - **Sinusoidal** (原論文): PE(pos, 2i) = sin(pos/10000^{2i/d})
 - **学習可能位置埋め込み**: BERT — 最大長のルックアップテーブル
@@ -419,6 +1243,40 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # Vision Transformer (ViT)
 
+- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="240" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Vision Transformer (ViT) パイプライン</text>
+  <rect x="30" y="70" width="100" height="100" rx="4" fill="#16213e" stroke="#888" stroke-width="1.5"/>
+  <text x="80" y="115" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">画像</text>
+  <text x="80" y="133" text-anchor="middle" fill="#888" font-size="9" font-family="sans-serif">224×224</text>
+  <rect x="165" y="65" width="120" height="110" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="225" y="90" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">Patch Split</text>
+  <text x="225" y="108" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">16×16 patches</text>
+  <rect x="215" y="118" width="20" height="20" fill="#e91e63" opacity="0.5"/>
+  <rect x="237" y="118" width="20" height="20" fill="#f9a825" opacity="0.5"/>
+  <rect x="215" y="140" width="20" height="20" fill="#888" opacity="0.5"/>
+  <rect x="237" y="140" width="20" height="20" fill="#e91e63" opacity="0.3"/>
+  <rect x="320" y="65" width="140" height="110" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="390" y="90" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">Linear Embed</text>
+  <text x="390" y="108" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">+ Position Embed</text>
+  <text x="390" y="150" text-anchor="middle" fill="#aaa" font-size="26" font-family="sans-serif">→</text>
+  <rect x="500" y="65" width="140" height="110" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="570" y="90" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">Transformer</text>
+  <text x="570" y="108" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">Encoder ×12</text>
+  <text x="570" y="130" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">Self-Attention</text>
+  <text x="570" y="148" text-anchor="middle" fill="#aaa" font-size="9" font-family="sans-serif">+ FFN</text>
+  <rect x="680" y="85" width="100" height="70" rx="6" fill="#16213e" stroke="#888" stroke-width="1.5"/>
+  <text x="730" y="112" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">MLP Head</text>
+  <text x="730" y="130" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">クラス分類</text>
+  <polygon points="163,120 163,114 153,120" fill="#f9a825"/>
+  <line x1="130" y1="120" x2="163" y2="120" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="318,120 318,114 308,120" fill="#f9a825"/>
+  <line x1="285" y1="120" x2="318" y2="120" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="498,120 498,114 488,120" fill="#e91e63"/>
+  <line x1="460" y1="120" x2="498" y2="120" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="678,120 678,114 668,120" fill="#888"/>
+  <line x1="640" y1="120" x2="678" y2="120" stroke="#888" stroke-width="1.5"/>
+</svg>
 - **画像パッチ化**: 16×16 ピクセルのパッチを「トークン」として処理
 - **ViT** (Dosovitskiy 2020): 大規模事前学習で ResNet を超える
 - スケーリング依存性: CNN より大量データで初めて性能を発揮
@@ -451,6 +1309,29 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # マスク言語モデリング (BERT)
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">自己教師あり学習の概念</text>
+  <!-- The key idea: create supervision from data itself -->
+  <rect x="40" y="70" width="300" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="190" y="98" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">大量のラベルなしデータ</text>
+  <text x="190" y="120" text-anchor="middle" fill="#ffffff" font-size="11">Webテキスト、画像、音声</text>
+  <text x="190" y="138" text-anchor="middle" fill="#f9a825" font-size="10">人手ラベル不要</text>
+  <!-- Transformation -->
+  <rect x="250" y="158" width="300" height="60" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="183" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">自動タスク生成</text>
+  <text x="400" y="203" text-anchor="middle" fill="#ffffff" font-size="10">マスク埋め / 次トークン予測 / 回転予測</text>
+  <!-- Output: rich representations -->
+  <rect x="460" y="70" width="300" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="610" y="98" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">豊富な特徴表現</text>
+  <text x="610" y="120" text-anchor="middle" fill="#ffffff" font-size="11">汎用的な埋め込み</text>
+  <text x="610" y="138" text-anchor="middle" fill="#f9a825" font-size="10">下流タスクに転用可能</text>
+  <!-- Arrows -->
+  <line x1="190" y1="150" x2="310" y2="158" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="310,158 298,152 298,164" fill="#f9a825"/>
+  <line x1="550" y1="170" x2="590" y2="150" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="590,150 580,162 594,162" fill="#f9a825"/>
+</svg>
 - **BERT** (Devlin 2018): 双方向エンコーダによる文脈表現の学習
 - **MLM**: 入力の 15% をランダムマスク → マスクトークンを予測
 - → 80% を [MASK]、10% をランダム語、10% を元の語に置換
@@ -463,6 +1344,29 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # 自己回帰型事前学習 (GPT 系)
 
+- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="240" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">自己回帰型事前学習: 次トークン予測</text>
+  <rect x="40" y="60" width="100" height="50" rx="6" fill="#16213e" stroke="#888" stroke-width="1.5"/>
+  <text x="90" y="82" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">The</text>
+  <text x="90" y="100" text-anchor="middle" fill="#888" font-size="9" font-family="sans-serif">token₁</text>
+  <rect x="160" y="60" width="100" height="50" rx="6" fill="#16213e" stroke="#888" stroke-width="1.5"/>
+  <text x="210" y="82" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">cat</text>
+  <text x="210" y="100" text-anchor="middle" fill="#888" font-size="9" font-family="sans-serif">token₂</text>
+  <rect x="280" y="60" width="100" height="50" rx="6" fill="#16213e" stroke="#888" stroke-width="1.5"/>
+  <text x="330" y="82" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">sat</text>
+  <text x="330" y="100" text-anchor="middle" fill="#888" font-size="9" font-family="sans-serif">token₃</text>
+  <rect x="400" y="60" width="100" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="450" y="82" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">on</text>
+  <text x="450" y="100" text-anchor="middle" fill="#f9a825" font-size="9" font-family="sans-serif">token₄ ← 予測</text>
+  <rect x="170" y="155" width="460" height="65" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="180" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">Causal Language Model</text>
+  <text x="400" y="200" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">P(token₄ | token₁, token₂, token₃) を最大化</text>
+  <line x1="90" y1="110" x2="90" y2="155" stroke="#888" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="210" y1="110" x2="210" y2="155" stroke="#888" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="330" y1="110" x2="330" y2="155" stroke="#888" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="450" y1="110" x2="450" y2="155" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="3,3"/>
+</svg>
 - 目標: 次トークン予測 — P(x_t | x_1, ..., x_{t-1}) の最大化
 - **GPT-1 (2018)**: 大規模コーパス事前学習 → 少量データで微調整
 - **GPT-2 (2019)**: 1.5B パラメータ — Zero-shot マルチタスク
@@ -499,6 +1403,46 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # Instruction Tuning の登場
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">MAE (Masked Autoencoder) の原理</text>
+  <!-- Input image grid with masked patches -->
+  <rect x="40" y="70" width="200" height="140" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="140" y="60" text-anchor="middle" fill="#f9a825" font-size="11">入力画像</text>
+  <!-- Patches - some masked -->
+  <rect x="53" y="83" width="40" height="40" fill="#e91e63" opacity="0.3"/>
+  <rect x="98" y="83" width="40" height="40" fill="#f9a825" opacity="0.4"/>
+  <text x="118" y="108" text-anchor="middle" fill="#1a1a2e" font-size="9">vis</text>
+  <rect x="143" y="83" width="40" height="40" fill="#e91e63" opacity="0.3"/>
+  <rect x="188" y="83" width="40" height="40" fill="#f9a825" opacity="0.4"/>
+  <text x="208" y="108" text-anchor="middle" fill="#1a1a2e" font-size="9">vis</text>
+  <rect x="53" y="128" width="40" height="40" fill="#f9a825" opacity="0.4"/>
+  <text x="73" y="153" text-anchor="middle" fill="#1a1a2e" font-size="9">vis</text>
+  <rect x="98" y="128" width="40" height="40" fill="#e91e63" opacity="0.3"/>
+  <rect x="143" y="128" width="40" height="40" fill="#f9a825" opacity="0.4"/>
+  <text x="163" y="153" text-anchor="middle" fill="#1a1a2e" font-size="9">vis</text>
+  <rect x="188" y="128" width="40" height="40" fill="#e91e63" opacity="0.3"/>
+  <text x="73" y="220" text-anchor="middle" fill="#e91e63" font-size="9">マスク(75%)</text>
+  <text x="208" y="220" text-anchor="middle" fill="#f9a825" font-size="9">可視(25%)</text>
+  <!-- Encoder -->
+  <rect x="280" y="100" width="120" height="80" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="340" y="140" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">Encoder</text>
+  <text x="340" y="158" text-anchor="middle" fill="#ffffff" font-size="9">可視パッチのみ処理</text>
+  <!-- Decoder -->
+  <rect x="440" y="100" width="120" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="500" y="140" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">Decoder</text>
+  <text x="500" y="158" text-anchor="middle" fill="#ffffff" font-size="9">マスク部分を再構成</text>
+  <!-- Reconstructed -->
+  <rect x="600" y="70" width="160" height="140" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="680" y="60" text-anchor="middle" fill="#f9a825" font-size="11">再構成</text>
+  <!-- Arrows -->
+  <line x1="240" y1="140" x2="280" y2="140" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="280,140 267,133 267,147" fill="#f9a825"/>
+  <line x1="400" y1="140" x2="440" y2="140" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="440,140 427,133 427,147" fill="#f9a825"/>
+  <line x1="560" y1="140" x2="600" y2="140" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="600,140 587,133 587,147" fill="#f9a825"/>
+</svg>
 - **FLAN** (Wei 2021): 60+ データセットを自然言語指示に変換
 - **Instruction Following**: 指示文を理解して多様なタスクをゼロショット実行
 - **InstructGPT** (2022): SFT + RLHF で有害出力を大幅削減
@@ -511,6 +1455,40 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # 思考連鎖 (CoT) 事前学習
 
+- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="240" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">MAE (Masked Autoencoder) 学習</text>
+  <rect x="30" y="60" width="120" height="120" rx="4" fill="#16213e" stroke="#888" stroke-width="1.5"/>
+  <rect x="40" y="70" width="40" height="40" fill="#f9a825" opacity="0.6"/>
+  <rect x="82" y="70" width="40" height="40" fill="#e91e63" opacity="0.4"/>
+  <rect x="40" y="112" width="40" height="40" fill="#e91e63" opacity="0.3"/>
+  <rect x="82" y="112" width="40" height="40" fill="#f9a825" opacity="0.5"/>
+  <text x="90" y="200" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">Original</text>
+  <rect x="180" y="60" width="120" height="120" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <rect x="190" y="70" width="40" height="40" fill="#f9a825" opacity="0.6"/>
+  <rect x="232" y="70" width="40" height="40" fill="#1a1a2e"/>
+  <rect x="190" y="112" width="40" height="40" fill="#1a1a2e"/>
+  <rect x="232" y="112" width="40" height="40" fill="#f9a825" opacity="0.5"/>
+  <text x="240" y="200" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">Masked (75%)</text>
+  <rect x="340" y="80" width="150" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="415" y="115" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">Encoder</text>
+  <text x="415" y="133" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">visible patches のみ</text>
+  <rect x="530" y="80" width="130" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="595" y="115" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">Decoder</text>
+  <text x="595" y="133" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">全patch 再構成</text>
+  <rect x="690" y="60" width="100" height="120" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <rect x="700" y="70" width="40" height="40" fill="#f9a825" opacity="0.5"/>
+  <rect x="742" y="70" width="40" height="40" fill="#e91e63" opacity="0.35"/>
+  <rect x="700" y="112" width="40" height="40" fill="#e91e63" opacity="0.25"/>
+  <rect x="742" y="112" width="40" height="40" fill="#f9a825" opacity="0.45"/>
+  <text x="740" y="200" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">Reconstructed</text>
+  <polygon points="338,120 338,114 328,120" fill="#e91e63"/>
+  <line x1="300" y1="120" x2="338" y2="120" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="528,120 528,114 518,120" fill="#e91e63"/>
+  <line x1="490" y1="120" x2="528" y2="120" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="688,120 688,114 678,120" fill="#f9a825"/>
+  <line x1="660" y1="120" x2="688" y2="120" stroke="#f9a825" stroke-width="1.5"/>
+</svg>
 - **CoT Prompting** (Wei 2022): 中間推論ステップを含む few-shot 例で推論誘導
 - **Zero-Shot CoT**: 「Let's think step by step」のみで推論を引き出す
 - **STaR** (Self-Taught Reasoner): 自己生成した正解推論でブートストラップ
@@ -531,6 +1509,30 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # Kaplan スケーリング則 (2020)
 
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="300" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Kaplan スケーリング則 (2020) — 損失 vs 規模</text>
+  <!-- Log-log axes -->
+  <line x1="80" y1="260" x2="750" y2="260" stroke="#ffffff" stroke-width="1.5"/>
+  <line x1="80" y1="50" x2="80" y2="260" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="415" y="282" text-anchor="middle" fill="#ffffff" font-size="11">規模 (モデルパラメータ数 / データ / 計算量) [log]</text>
+  <text x="32" y="155" text-anchor="middle" fill="#ffffff" font-size="10" transform="rotate(-90,32,155)">損失 L [log]</text>
+  <!-- Power law line -->
+  <polyline points="80,250 160,210 240,185 320,165 400,148 480,134 560,122 640,112 720,104"
+    fill="none" stroke="#f9a825" stroke-width="3"/>
+  <text x="730" y="100" fill="#f9a825" font-size="11">L ∝ N⁻⁰·⁰⁷⁶</text>
+  <!-- Data point markers -->
+  <circle cx="160" cy="210" r="5" fill="#e91e63"/>
+  <text x="160" y="200" text-anchor="middle" fill="#e91e63" font-size="9">1B</text>
+  <circle cx="320" cy="165" r="5" fill="#e91e63"/>
+  <text x="320" y="155" text-anchor="middle" fill="#e91e63" font-size="9">10B</text>
+  <circle cx="480" cy="134" r="5" fill="#e91e63"/>
+  <text x="480" y="124" text-anchor="middle" fill="#e91e63" font-size="9">100B</text>
+  <circle cx="640" cy="112" r="5" fill="#e91e63"/>
+  <text x="640" y="102" text-anchor="middle" fill="#e91e63" font-size="9">1T</text>
+  <!-- Annotation -->
+  <text x="400" y="290" text-anchor="middle" fill="#ffffff" font-size="11">規模を10倍にすると損失は一定率で改善 → べき乗則</text>
+</svg>
 - Kaplan et al. (2020): 計算量・モデルサイズ・データの3要素の冪乗則
 - L(N) ∝ N^{−0.076}: パラメータ数に対する冪乗的損失減少
 - L(C) ∝ C^{−0.050}: 計算量 FLOPs に対する冪乗的損失減少
@@ -597,6 +1599,41 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # RLHF: 強化学習による人間フィードバック
 
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="300" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">RLHF パイプライン</text>
+  <!-- Step 1: SFT -->
+  <rect x="30" y="80" width="140" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="100" y="105" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">Step 1</text>
+  <text x="100" y="125" text-anchor="middle" fill="#ffffff" font-size="10">SFT (監督学習)</text>
+  <!-- Step 2: Reward Model -->
+  <rect x="230" y="80" width="140" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="300" y="105" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">Step 2</text>
+  <text x="300" y="125" text-anchor="middle" fill="#ffffff" font-size="10">報酬モデル学習</text>
+  <!-- Step 3: RL fine-tuning -->
+  <rect x="430" y="80" width="140" height="60" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="500" y="105" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">Step 3</text>
+  <text x="500" y="125" text-anchor="middle" fill="#ffffff" font-size="10">PPO強化学習</text>
+  <!-- Aligned LLM -->
+  <rect x="630" y="80" width="140" height="60" rx="6" fill="#f9a825" opacity="0.9"/>
+  <text x="700" y="105" text-anchor="middle" fill="#1a1a2e" font-size="12" font-weight="bold">Aligned</text>
+  <text x="700" y="125" text-anchor="middle" fill="#1a1a2e" font-size="10">LLM出力</text>
+  <!-- Arrows -->
+  <polygon points="218,110 204,103 204,117" fill="#f9a825"/>
+  <line x1="170" y1="110" x2="218" y2="110" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="418,110 404,103 404,117" fill="#f9a825"/>
+  <line x1="370" y1="110" x2="418" y2="110" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="618,110 604,103 604,117" fill="#f9a825"/>
+  <line x1="570" y1="110" x2="618" y2="110" stroke="#f9a825" stroke-width="2"/>
+  <!-- Human feedback loop -->
+  <rect x="200" y="200" width="400" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="225" text-anchor="middle" fill="#ffffff" font-size="11">人間アノテーター: 応答ペアを比較・ランク付け</text>
+  <text x="400" y="243" text-anchor="middle" fill="#f9a825" font-size="10">好み → 報酬モデルを訓練</text>
+  <line x1="300" y1="200" x2="300" y2="140" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5"/>
+  <polygon points="300,140 293,152 307,152" fill="#f9a825"/>
+  <line x1="500" y1="200" x2="500" y2="140" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5"/>
+  <polygon points="500,140 493,152 507,152" fill="#e91e63"/>
+</svg>
 - Ziegler et al. (2019) / InstructGPT (2022) が実用化を確立
 - KL 制約: L = R(π) − β DKL(π ‖ π_ref) で発散を防止
 - 人間評価コスト: 数万件の比較ラベルが必要
@@ -639,6 +1676,30 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # DPO: 直接選好最適化（コード例）
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">DPO vs PPO: アライメント手法比較</text>
+  <!-- RLHF/PPO -->
+  <rect x="40" y="55" width="330" height="160" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="205" y="80" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">PPO (RLHF)</text>
+  <text x="205" y="105" text-anchor="middle" fill="#ffffff" font-size="10">1. SFT モデル</text>
+  <text x="205" y="125" text-anchor="middle" fill="#ffffff" font-size="10">2. 報酬モデル学習</text>
+  <text x="205" y="145" text-anchor="middle" fill="#ffffff" font-size="10">3. PPO強化学習</text>
+  <text x="205" y="165" text-anchor="middle" fill="#e91e63" font-size="10">複雑・不安定・高コスト</text>
+  <text x="205" y="190" text-anchor="middle" fill="#ffffff" font-size="9">4つのモデルを同時に保持</text>
+  <!-- DPO -->
+  <rect x="430" y="55" width="330" height="160" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="595" y="80" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">DPO (Direct Preference)</text>
+  <text x="595" y="105" text-anchor="middle" fill="#ffffff" font-size="10">1. SFT モデル</text>
+  <text x="595" y="125" text-anchor="middle" fill="#ffffff" font-size="10">2. 選好データで直接最適化</text>
+  <text x="595" y="145" text-anchor="middle" fill="#f9a825" font-size="10">報酬モデル不要</text>
+  <text x="595" y="165" text-anchor="middle" fill="#f9a825" font-size="10">シンプル・安定・低コスト</text>
+  <text x="595" y="190" text-anchor="middle" fill="#ffffff" font-size="9">2つのモデルのみ</text>
+  <!-- Arrow from complex to simple -->
+  <text x="400" y="145" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" opacity="0.4">→</text>
+  <text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11">DPO: Llama 2, Mistral等で広く採用</text>
+</svg>
+
 ```python
 # DPO Loss (Rafailov et al., 2023)
 def dpo_loss(pi_logp_w, pi_logp_l, ref_logp_w, ref_logp_l, beta=0.1):
@@ -667,6 +1728,31 @@ def dpo_loss(pi_logp_w, pi_logp_l, ref_logp_w, ref_logp_l, beta=0.1):
 
 # PEFT: パラメータ効率的ファインチューニング
 
+- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="280" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">PEFT: パラメータ効率的ファインチューニング</text>
+  <!-- Full fine-tune vs PEFT comparison -->
+  <!-- Full -->
+  <rect x="40" y="60" width="320" height="170" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="200" y="85" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">フルファインチューニング</text>
+  <text x="200" y="110" text-anchor="middle" fill="#ffffff" font-size="11">全パラメータ更新</text>
+  <text x="200" y="132" text-anchor="middle" fill="#ffffff" font-size="11">175B パラメータ全て</text>
+  <text x="200" y="154" text-anchor="middle" fill="#e91e63" font-size="11">GPU メモリ: 数百 GB</text>
+  <text x="200" y="176" text-anchor="middle" fill="#e91e63" font-size="11">コスト: 非常に高い</text>
+  <text x="200" y="198" text-anchor="middle" fill="#ffffff" font-size="10">壊滅的忘却リスクあり</text>
+  <!-- PEFT -->
+  <rect x="440" y="60" width="320" height="170" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="600" y="85" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">LoRA / QLoRA (PEFT)</text>
+  <text x="600" y="110" text-anchor="middle" fill="#ffffff" font-size="11">一部パラメータのみ更新</text>
+  <text x="600" y="132" text-anchor="middle" fill="#ffffff" font-size="11">0.1〜1% のパラメータ</text>
+  <text x="600" y="154" text-anchor="middle" fill="#f9a825" font-size="11">GPU メモリ: 数 GB</text>
+  <text x="600" y="176" text-anchor="middle" fill="#f9a825" font-size="11">コスト: 大幅削減</text>
+  <text x="600" y="198" text-anchor="middle" fill="#ffffff" font-size="10">元モデル保持・精度同等</text>
+  <!-- VS -->
+  <text x="400" y="152" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold" opacity="0.5">VS</text>
+  <!-- Bottom -->
+  <text x="400" y="260" text-anchor="middle" fill="#ffffff" font-size="11">ΔW = BA (rank r分解行列)  r ≪ d</text>
+</svg>
 - 動機: 170B モデルの完全 FT には数百 GB の VRAM が必要
 - **Adapter** (Houlsby 2019): 各層に小型 FFN を挿入 → 全パラメータの 1%
 - **Prefix Tuning**: Key/Value に連続的な「soft prompt」を前置
@@ -737,6 +1823,41 @@ class LoRALayer(nn.Module):
 
 # データ汚染と評価セット独立性
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">データキュレーションパイプライン</text>
+  <!-- Pipeline steps -->
+  <rect x="20" y="90" width="120" height="60" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="80" y="115" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">収集</text>
+  <text x="80" y="135" text-anchor="middle" fill="#ffffff" font-size="9">Web・書籍・コード</text>
+  <polygon points="155,120 141,113 141,127" fill="#f9a825"/>
+  <line x1="140" y1="120" x2="158" y2="120" stroke="#f9a825" stroke-width="2"/>
+  <rect x="158" y="90" width="120" height="60" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="218" y="115" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">フィルタリング</text>
+  <text x="218" y="135" text-anchor="middle" fill="#ffffff" font-size="9">品質・安全性</text>
+  <polygon points="293,120 279,113 279,127" fill="#f9a825"/>
+  <line x1="278" y1="120" x2="296" y2="120" stroke="#f9a825" stroke-width="2"/>
+  <rect x="296" y="90" width="120" height="60" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="356" y="115" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">重複排除</text>
+  <text x="356" y="135" text-anchor="middle" fill="#ffffff" font-size="9">MinHash・exact</text>
+  <polygon points="431,120 417,113 417,127" fill="#f9a825"/>
+  <line x1="416" y1="120" x2="434" y2="120" stroke="#f9a825" stroke-width="2"/>
+  <rect x="434" y="90" width="120" height="60" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="494" y="115" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">トークン化</text>
+  <text x="494" y="135" text-anchor="middle" fill="#ffffff" font-size="9">BPE・SentencePiece</text>
+  <polygon points="569,120 555,113 555,127" fill="#f9a825"/>
+  <line x1="554" y1="120" x2="572" y2="120" stroke="#f9a825" stroke-width="2"/>
+  <rect x="572" y="90" width="120" height="60" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="632" y="115" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">配分設計</text>
+  <text x="632" y="135" text-anchor="middle" fill="#ffffff" font-size="9">混合比率最適化</text>
+  <polygon points="707,120 693,113 693,127" fill="#f9a825"/>
+  <line x1="692" y1="120" x2="710" y2="120" stroke="#f9a825" stroke-width="2"/>
+  <rect x="710" y="90" width="70" height="60" rx="4" fill="#f9a825" opacity="0.9"/>
+  <text x="745" y="123" text-anchor="middle" fill="#1a1a2e" font-size="11" font-weight="bold">訓練</text>
+  <text x="745" y="140" text-anchor="middle" fill="#1a1a2e" font-size="9">データ</text>
+  <!-- Quality note -->
+  <text x="400" y="195" text-anchor="middle" fill="#f9a825" font-size="11">品質 &gt; 量: 高品質1Tトークン &gt; 低品質10Tトークン</text>
+</svg>
 - **データ汚染**: 評価ベンチマークのデータが訓練データに混入する問題
 - 汚染モデルはベンチマークを「暗記」→ 実能力より高いスコアを報告
 - **汚染検出**: n-gram 重複率 / Perplexity スパイク / カナリアデータ
@@ -769,6 +1890,36 @@ class LoRALayer(nn.Module):
 
 # 分散学習の並列化戦略
 
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="300" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">分散学習の並列化戦略</text>
+  <!-- Data parallel -->
+  <rect x="30" y="60" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="140" y="85" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">データ並列</text>
+  <text x="140" y="105" text-anchor="middle" fill="#ffffff" font-size="11">同一モデルを複数GPU</text>
+  <text x="140" y="123" text-anchor="middle" fill="#ffffff" font-size="10">ミニバッチを分割処理</text>
+  <!-- Model parallel -->
+  <rect x="290" y="60" width="220" height="80" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="85" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">モデル並列</text>
+  <text x="400" y="105" text-anchor="middle" fill="#ffffff" font-size="11">モデルを層で分割</text>
+  <text x="400" y="123" text-anchor="middle" fill="#ffffff" font-size="10">各GPUが異なる層を担当</text>
+  <!-- Tensor parallel -->
+  <rect x="550" y="60" width="220" height="80" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="660" y="85" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">テンソル並列</text>
+  <text x="660" y="105" text-anchor="middle" fill="#ffffff" font-size="11">行列計算を分割</text>
+  <text x="660" y="123" text-anchor="middle" fill="#ffffff" font-size="10">Megatron-LM方式</text>
+  <!-- 3D parallel -->
+  <rect x="200" y="190" width="400" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="215" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">3D並列 (Data + Model + Tensor)</text>
+  <text x="400" y="237" text-anchor="middle" fill="#ffffff" font-size="10">GPT-3・GPT-4 等の大規模学習に使用</text>
+  <!-- Arrows to 3D -->
+  <line x1="140" y1="140" x2="280" y2="190" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="280,190 270,178 284,178" fill="#f9a825"/>
+  <line x1="400" y1="140" x2="400" y2="190" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="400,190 393,178 407,178" fill="#f9a825"/>
+  <line x1="660" y1="140" x2="520" y2="190" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="520,190 524,176 534,186" fill="#e91e63"/>
+</svg>
 - 各手法の適用範囲は問題規模とハードウェアに依存する
 - データ並列: モデルがGPU 1台に収まる場合の標準手法
 - モデル並列: 単一モデルが 1GPU を超える場合に必要
@@ -835,6 +1986,43 @@ class LoRALayer(nn.Module):
 
 # Mixture of Experts (MoE)
 
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="300" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Mixture of Experts (MoE)</text>
+  <!-- Input -->
+  <rect x="30" y="120" width="120" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="90" y="148" text-anchor="middle" fill="#ffffff" font-size="11">入力トークン</text>
+  <!-- Router -->
+  <rect x="220" y="110" width="120" height="70" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="280" y="140" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">Router</text>
+  <text x="280" y="160" text-anchor="middle" fill="#ffffff" font-size="10">Top-K 専門家選択</text>
+  <line x1="150" y1="145" x2="220" y2="145" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="220,145 207,138 207,152" fill="#f9a825"/>
+  <!-- Experts -->
+  <rect x="420" y="40" width="100" height="40" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="470" y="65" text-anchor="middle" fill="#f9a825" font-size="11">Expert 1</text>
+  <rect x="420" y="100" width="100" height="40" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="470" y="125" text-anchor="middle" fill="#f9a825" font-size="11">Expert 2</text>
+  <rect x="420" y="160" width="100" height="40" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="470" y="185" text-anchor="middle" fill="#e91e63" font-size="11">Expert K</text>
+  <rect x="420" y="220" width="100" height="40" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5" opacity="0.5"/>
+  <text x="470" y="245" text-anchor="middle" fill="#ffffff" font-size="11" opacity="0.5">Expert N</text>
+  <text x="470" y="270" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.5">(非活性)</text>
+  <!-- Lines from router to experts -->
+  <line x1="340" y1="135" x2="420" y2="60" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="420,60 412,72 424,70" fill="#f9a825"/>
+  <line x1="340" y1="145" x2="420" y2="120" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="420,120 410,112 416,124" fill="#f9a825"/>
+  <line x1="340" y1="155" x2="420" y2="175" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="420,175 412,165 422,163" fill="#e91e63"/>
+  <!-- Aggregation -->
+  <rect x="600" y="120" width="120" height="50" rx="6" fill="#f9a825" opacity="0.9"/>
+  <text x="660" y="142" text-anchor="middle" fill="#1a1a2e" font-size="11" font-weight="bold">加重統合</text>
+  <text x="660" y="160" text-anchor="middle" fill="#1a1a2e" font-size="10">出力 = Σ gᵢ·Eᵢ(x)</text>
+  <line x1="520" y1="60" x2="600" y2="140" stroke="#f9a825" stroke-width="1.5"/>
+  <line x1="520" y1="120" x2="600" y2="143" stroke="#f9a825" stroke-width="1.5"/>
+  <line x1="520" y1="175" x2="600" y2="156" stroke="#e91e63" stroke-width="1.5"/>
+</svg>
 - FFN 層を N 個の Expert に置き換え — 上位 K 個のみ実行
 - **Mixtral 8x7B** (2023): 8 Expert 中 2 使用 — 46.7B params / 12.9B active
 - Expert のロードバランス: routing collapse を防ぐ auxiliary loss
@@ -869,6 +2057,41 @@ class LoRALayer(nn.Module):
 
 # 拡散モデルの学習
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">拡散モデルの学習原理</text>
+  <!-- Forward process: add noise -->
+  <text x="200" y="55" text-anchor="middle" fill="#e91e63" font-size="11">順プロセス (ノイズ付加)</text>
+  <rect x="40" y="70" width="70" height="60" rx="4" fill="#f9a825" opacity="0.7"/>
+  <text x="75" y="105" text-anchor="middle" fill="#1a1a2e" font-size="9">x₀ 画像</text>
+  <polygon points="126,100 112,93 112,107" fill="#e91e63"/>
+  <line x1="110" y1="100" x2="129" y2="100" stroke="#e91e63" stroke-width="2"/>
+  <rect x="129" y="70" width="60" height="60" rx="4" fill="#e91e63" opacity="0.5"/>
+  <text x="159" y="105" text-anchor="middle" fill="#ffffff" font-size="9">x₁</text>
+  <polygon points="205,100 191,93 191,107" fill="#e91e63"/>
+  <line x1="189" y1="100" x2="208" y2="100" stroke="#e91e63" stroke-width="2"/>
+  <rect x="208" y="70" width="60" height="60" rx="4" fill="#e91e63" opacity="0.7"/>
+  <text x="238" y="105" text-anchor="middle" fill="#ffffff" font-size="9">x₂</text>
+  <text x="295" y="103" text-anchor="middle" fill="#e91e63" font-size="14">...</text>
+  <rect x="330" y="70" width="70" height="60" rx="4" fill="#e91e63" opacity="0.9"/>
+  <text x="365" y="105" text-anchor="middle" fill="#ffffff" font-size="9">xₜ 雑音</text>
+  <!-- Reverse process: denoise -->
+  <text x="600" y="55" text-anchor="middle" fill="#f9a825" font-size="11">逆プロセス (ノイズ除去) — 学習対象</text>
+  <rect x="430" y="70" width="70" height="60" rx="4" fill="#e91e63" opacity="0.9"/>
+  <text x="465" y="105" text-anchor="middle" fill="#ffffff" font-size="9">xₜ</text>
+  <rect x="540" y="80" width="120" height="40" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="600" y="104" text-anchor="middle" fill="#f9a825" font-size="11">U-Net εθ</text>
+  <polygon points="530,100 516,93 516,107" fill="#f9a825"/>
+  <line x1="500" y1="100" x2="533" y2="100" stroke="#f9a825" stroke-width="2"/>
+  <line x1="660" y1="100" x2="700" y2="100" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="700,100 686,93 686,107" fill="#f9a825"/>
+  <rect x="700" y="70" width="70" height="60" rx="4" fill="#f9a825" opacity="0.7"/>
+  <text x="735" y="105" text-anchor="middle" fill="#1a1a2e" font-size="9">x₀再構成</text>
+  <!-- Training objective -->
+  <rect x="160" y="170" width="480" height="50" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="192" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">訓練目標: ‖ε - εθ(xₜ, t)‖²</text>
+  <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">付加したノイズ ε を予測するようにモデルを訓練</text>
+</svg>
 - **DDPM** (Ho 2020): q(x_t|x_{t-1}) = N(√αx_{t-1}, (1-α)I) でノイズ付加
 - **逆拡散**: εθ(x_t, t) でノイズを予測 → 段階的にデノイズ
 - **単純損失**: L = E[‖ε − εθ(√ᾱx₀+√(1-ᾱ)ε, t)‖²]
@@ -925,6 +2148,30 @@ class LoRALayer(nn.Module):
 
 # 主要ベンチマーク概観
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">主要AIベンチマーク</text>
+  <!-- Benchmark grid -->
+  <rect x="30" y="55" width="220" height="55" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="140" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">MMLU</text>
+  <text x="140" y="98" text-anchor="middle" fill="#ffffff" font-size="10">57科目の知識 (0-shot)</text>
+  <rect x="290" y="55" width="220" height="55" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">HumanEval</text>
+  <text x="400" y="98" text-anchor="middle" fill="#ffffff" font-size="10">コード生成 (pass@1)</text>
+  <rect x="550" y="55" width="220" height="55" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="660" y="78" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">MATH</text>
+  <text x="660" y="98" text-anchor="middle" fill="#ffffff" font-size="10">数学推論 (競技レベル)</text>
+  <rect x="30" y="130" width="220" height="55" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="140" y="153" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">HellaSwag</text>
+  <text x="140" y="173" text-anchor="middle" fill="#ffffff" font-size="10">常識推論・文脈補完</text>
+  <rect x="290" y="130" width="220" height="55" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="153" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">BIG-Bench</text>
+  <text x="400" y="173" text-anchor="middle" fill="#ffffff" font-size="10">創発能力テスト (200+)</text>
+  <rect x="550" y="130" width="220" height="55" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="660" y="153" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">MT-Bench</text>
+  <text x="660" y="173" text-anchor="middle" fill="#ffffff" font-size="10">マルチターン対話評価</text>
+  <text x="400" y="215" text-anchor="middle" fill="#f9a825" font-size="10" opacity="0.8">注: ベンチマーク汚染・饱和問題が近年深刻化</text>
+</svg>
 - **MMLU** (2021): 57 分野 14,000 問 — 幅広い知識評価
 - **HumanEval / MBPP**: コード生成 — pass@k で機能的正確さを測定
 - **MATH** (Hendrycks 2021): 数学問題集 — 解法ステップが必要
@@ -949,6 +2196,37 @@ class LoRALayer(nn.Module):
 
 # 内部表現の可視化
 
+- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="280" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">内部表現の可視化 (t-SNE / Probing)</text>
+  <!-- t-SNE scatter plot simulation -->
+  <!-- Cluster 1: animals -->
+  <ellipse cx="180" cy="160" rx="70" ry="55" fill="#f9a825" opacity="0.12"/>
+  <circle cx="155" cy="150" r="5" fill="#f9a825" opacity="0.8"/>
+  <circle cx="175" cy="165" r="5" fill="#f9a825" opacity="0.8"/>
+  <circle cx="195" cy="145" r="5" fill="#f9a825" opacity="0.8"/>
+  <circle cx="210" cy="175" r="5" fill="#f9a825" opacity="0.8"/>
+  <circle cx="165" cy="180" r="5" fill="#f9a825" opacity="0.8"/>
+  <text x="180" y="228" text-anchor="middle" fill="#f9a825" font-size="11">動物概念</text>
+  <!-- Cluster 2: numbers -->
+  <ellipse cx="420" cy="120" rx="65" ry="50" fill="#e91e63" opacity="0.12"/>
+  <circle cx="400" cy="110" r="5" fill="#e91e63" opacity="0.8"/>
+  <circle cx="425" cy="125" r="5" fill="#e91e63" opacity="0.8"/>
+  <circle cx="440" cy="105" r="5" fill="#e91e63" opacity="0.8"/>
+  <circle cx="410" cy="140" r="5" fill="#e91e63" opacity="0.8"/>
+  <circle cx="445" cy="130" r="5" fill="#e91e63" opacity="0.8"/>
+  <text x="420" y="185" text-anchor="middle" fill="#e91e63" font-size="11">数値概念</text>
+  <!-- Cluster 3: places -->
+  <ellipse cx="620" cy="175" rx="60" ry="50" fill="#ffffff" opacity="0.10"/>
+  <circle cx="600" cy="165" r="5" fill="#ffffff" opacity="0.7"/>
+  <circle cx="625" cy="180" r="5" fill="#ffffff" opacity="0.7"/>
+  <circle cx="640" cy="160" r="5" fill="#ffffff" opacity="0.7"/>
+  <circle cx="610" cy="195" r="5" fill="#ffffff" opacity="0.7"/>
+  <circle cx="645" cy="190" r="5" fill="#ffffff" opacity="0.7"/>
+  <text x="620" y="238" text-anchor="middle" fill="#ffffff" font-size="11">場所概念</text>
+  <!-- Axes labels -->
+  <text x="400" y="270" text-anchor="middle" fill="#ffffff" font-size="10">t-SNE 次元削減: 高次元埋め込み空間に概念クラスターが形成される</text>
+</svg>
 - **Probing**: 線形分類器でニューロン表現に格納された情報を検査
 - **Activation Atlas** (Carter 2019): UMAP + Concept Activation Vectors
 - **Logit Lens**: 中間層の残差ストリームを語彙空間に投影して可視化
@@ -981,6 +2259,33 @@ class LoRALayer(nn.Module):
 
 # 学習パラダイムの変遷まとめ
 
+- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="260" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">AI学習パラダイムの変遷</text>
+  <!-- Timeline -->
+  <line x1="60" y1="130" x2="740" y2="130" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="740,130 726,123 726,137" fill="#f9a825"/>
+  <circle cx="120" cy="130" r="10" fill="#e91e63"/>
+  <text x="120" y="110" text-anchor="middle" fill="#ffffff" font-size="9">1960-80s</text>
+  <text x="120" y="150" text-anchor="middle" fill="#f9a825" font-size="9">パーセプトロン</text>
+  <text x="120" y="163" text-anchor="middle" fill="#ffffff" font-size="8">ルールベース</text>
+  <circle cx="240" cy="130" r="10" fill="#e91e63"/>
+  <text x="240" y="110" text-anchor="middle" fill="#ffffff" font-size="9">1990-2000s</text>
+  <text x="240" y="150" text-anchor="middle" fill="#f9a825" font-size="9">SVM / RF</text>
+  <text x="240" y="163" text-anchor="middle" fill="#ffffff" font-size="8">特徴量エンジニアリング</text>
+  <circle cx="380" cy="130" r="10" fill="#e91e63"/>
+  <text x="380" y="110" text-anchor="middle" fill="#ffffff" font-size="9">2012</text>
+  <text x="380" y="150" text-anchor="middle" fill="#f9a825" font-size="9">Deep Learning</text>
+  <text x="380" y="163" text-anchor="middle" fill="#ffffff" font-size="8">AlexNet · GPU時代</text>
+  <circle cx="520" cy="130" r="10" fill="#e91e63"/>
+  <text x="520" y="110" text-anchor="middle" fill="#ffffff" font-size="9">2017-20</text>
+  <text x="520" y="150" text-anchor="middle" fill="#f9a825" font-size="9">Transformer</text>
+  <text x="520" y="163" text-anchor="middle" fill="#ffffff" font-size="8">BERT / GPT</text>
+  <circle cx="660" cy="130" r="12" fill="#f9a825"/>
+  <text x="660" y="108" text-anchor="middle" fill="#ffffff" font-size="9">2022+</text>
+  <text x="660" y="150" text-anchor="middle" fill="#f9a825" font-size="9">RLHF / DPO</text>
+  <text x="660" y="163" text-anchor="middle" fill="#f9a825" font-size="8">アライメント時代</text>
+</svg>
 - **1990-2010**: 特徴量エンジニアリング + 浅い学習 (SVM, Boosting)
 - **2012**: AlexNet — 深層学習の幕開け、特徴量の自動学習
 - **2017**: Transformer — Self-Attention と自己回帰生成の確立
